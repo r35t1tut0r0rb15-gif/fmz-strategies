@@ -315,7 +315,7 @@ v = 19.06 / 136.54 = 0.139593 (computed). Factor = 1 / (1 - v) = 136.54 / 117.48
 - **Ex date:** the issuer notice gives the payment date (9 Jan 2023) but no explicit ex date. I use Eurex's effective date of 19 Dec 2022, the first trading day after the Friday 16 Dec EGM. That this matches the Xetra cash ex date is my reading. The loader should confirm the price gap sits at 19 Dec and not at early January.
 - That the 136.54 close is the Xetra closing auction of 16 Dec 2022 is my reading (Eurex says only "Closing auction price of the share").
 
-## IBE (Iberdrola S.A., BME Mercado Continuo, ISIN ES0144580Y14)
+## IBE (Iberdrola S.A., BME Mercado Continuo)
 
 ### Events in window: 16 scrip editions ("Iberdrola Retribución Flexible")
 
