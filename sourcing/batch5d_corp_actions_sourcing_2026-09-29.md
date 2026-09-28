@@ -279,3 +279,39 @@ The ex date of 2020-11-17 is my reading: 16 Nov was the last regular-way day car
 - **web.archive.org is blocked by this session's egress proxy** (connection reset). archive.org's availability API (reachable) lists a snapshot: `http://web.archive.org/web/20240616120847/https://s21.q4cdn.com/317678438/files/doc_news/2020/08/Distribution-Tax-Basis-Information.pdf`. A session with archive.org access can close this gap quickly.
 - Search-engine summaries quote "94.8%" to Pfizer and "5.2%" to Viatris. **I did not fetch the document, so this figure is not used.** If confirmed, it would give 1/(1-0.052) = 1.05485232 (computed, **not sourced**).
 
+## VOWG_p (Volkswagen AG preference shares, Xetra, ISIN DE0007664039)
+
+### Events in window
+
+| Ex date | Event | Factor | Status |
+|---|---|---|---|
+| 2022-12-19 | Special dividend EUR 19.06 per preference share (from the Porsche AG IPO proceeds), paid 2023-01-09 | **1.16224038** | sourced |
+
+No splits, reverse splits, rights issues or spinoffs to shareholders found for VW preference shares in the window (reading). The Porsche AG IPO in Sept 2022 placed shares with investors and did not distribute them to VW holders; the cash went out through this special dividend. Ordinary annual dividends are out of scope.
+
+### Sources
+
+**Eurex corporate-action notice** (dated Dec 19, 2022): https://www.eurex.com/ex-en/rules-regs/corporate-actions/corporate-action-information/Volkswagen-AG-Preference-shares-Special-Dividend-3297074
+
+> "The company Volkswagen AG has announced the payment of a special dividend of EUR 19.06 per share. ... The payment of the special dividend will result in an adjustment of the above-mentioned contracts. Volkswagen AG - - Preference shares : Special dividend adjustment result Adjustment result: Closing price: 136.54 R-Factor: 0.86040721"
+
+Procedure PDF: https://www.eurex.com/resource/blob/3297072/153ed45408dc4b34595debc11412c7d6/data/Info_001_VOW3_en.pdf
+
+> "Issue Date: 21 October 2022 Effective Date: 19 December 2022 ... Corporate Action Special Dividend Company ISIN ... Volkswagen AG – Preference shares DE0007664039"; "Determination of adjustment factor (R-factor) S1 S2 Closing auction price of the share S1 minus special dividend R-Factor S2 / S1"
+
+**Volkswagen AG dividend notice (Dividendenbekanntmachung), 19 Dec 2022**: https://uploads.vw-mms.de/system/production/documents/cws/002/173/file_de/d3939780dfaefc7f9dc37b7fef0c10897a0390ee/2022-12-19_Volkswagen_AG_Dividendenbekanntmachung_Sonderdividende.pdf?1686563055=
+
+> "Die außerordentliche Hauptversammlung unserer Gesellschaft hat am 16. Dezember 2022 beschlossen, ... 9.554.687.712,78 Euro zur Zahlung einer Sonderdividende von 19,06 Euro je dividendenberechtigter Stammaktie und je dividendenberechtigter Vorzugsaktie ... Zusätzlich hat die außerordentliche Hauptversammlung am 16. Dezember 2022 beschlossen, dass der Anspruch auf die Sonderdividende am 9. Januar 2023 fällig ist."
+
+**VW media release No. 175/2022** (Dec 16, 2022): https://www.volkswagen-group.com/en/publications/more/press-release-vw-shareholders-approve-special-dividend-2152/download?disposition=attachment
+
+> "approved a special distribution of EUR 19.06 per ordinary and preferred share entitled to dividend with a majority of 99,9974 percent ... the shareholders also voted in favor of the distribution of the special dividend on January 9, 2023."
+
+### Factor
+
+v = 19.06 / 136.54 = 0.139593 (computed). Factor = 1 / (1 - v) = 136.54 / 117.48 = **1.16224038** (computed). Cross-check: 117.48 / 136.54 = 0.86040721, which equals Eurex's R-factor (computed).
+
+### Gaps / caveats
+- **Ex date:** the issuer notice gives the payment date (9 Jan 2023) but no explicit ex date. I use Eurex's effective date of 19 Dec 2022, the first trading day after the Friday 16 Dec EGM. That this matches the Xetra cash ex date is my reading. The loader should confirm the price gap sits at 19 Dec and not at early January.
+- That the 136.54 close is the Xetra closing auction of 16 Dec 2022 is my reading (Eurex says only "Closing auction price of the share").
+
