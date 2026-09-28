@@ -315,3 +315,62 @@ v = 19.06 / 136.54 = 0.139593 (computed). Factor = 1 / (1 - v) = 136.54 / 117.48
 - **Ex date:** the issuer notice gives the payment date (9 Jan 2023) but no explicit ex date. I use Eurex's effective date of 19 Dec 2022, the first trading day after the Friday 16 Dec EGM. That this matches the Xetra cash ex date is my reading. The loader should confirm the price gap sits at 19 Dec and not at early January.
 - That the 136.54 close is the Xetra closing auction of 16 Dec 2022 is my reading (Eurex says only "Closing auction price of the share").
 
+## IBE (Iberdrola S.A., BME Mercado Continuo, ISIN ES0144580Y14)
+
+### Events in window: 16 scrip editions ("Iberdrola Retribución Flexible")
+
+Each edition is a free-share capital increase: 1 free-allocation right per share, and N rights convert into 1 new share. Holders can take new shares, sell the rights in the market, or take a cash dividend (Dividendo a Cuenta in January, Dividendo Complementario in July) by waiving their rights. All terms come from the official legal notice Iberdrola publishes in the BORME (Boletín Oficial del Registro Mercantil, Sección Segunda, "AUMENTO DE CAPITAL"), fetched from boe.es.
+
+| Ex date (1st rights-trading day) | Last cum date (BORME publication) | Record date | Rights per new share N | Cash option EUR/share | Factor (N+1)/N (computed) | BORME ref |
+|---|---|---|---|---|---|---|
+| 2019-01-09 | 2019-01-08 | 10 de enero de 2019 | 45 | 0.151 (interim) | 1.02222222 | [BORME-C-2019-46](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2019-46) |
+| 2019-07-04 | 2019-07-03 | 5 de julio de 2019 | 43 | 0.200 (final) | 1.02325581 | [BORME-C-2019-5647](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2019-5647) |
+| 2020-01-09 | 2020-01-08 | 10 de enero de 2020 | 54 | 0.168 (interim) | 1.01851852 | [BORME-C-2020-63](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2020-63) |
+| 2020-07-08 | 2020-07-07 | 9 de julio de 2020 | 44 | 0.232 (final) | 1.02272727 | [BORME-C-2020-3353](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2020-3353) |
+| 2021-01-12 | 2021-01-11 | 13 de enero de 2021 | 70 | 0.168 (interim) | 1.01428571 | [BORME-C-2021-88](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2021-88) |
+| 2021-07-08 | 2021-07-07 | 9 de julio de 2021 | 40 | 0.254 (final) | 1.02500000 | [BORME-C-2021-5035](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2021-5035) |
+| 2022-01-10 | 2022-01-07 | 11 de enero de 2022 | 60 | 0.170 (interim) | 1.01666667 | [BORME-C-2022-67](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2022-67) |
+| 2022-07-08 | 2022-07-07 | 11 de julio de 2022 | 36 | 0.274 (final) | 1.02777778 | [BORME-C-2022-4847](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2022-4847) |
+| 2023-01-06 | 2023-01-05 | 9 de enero de 2023 | 60 | 0.180 (interim) | 1.01666667 | [BORME-C-2023-52](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2023-52) |
+| 2023-07-07 | 2023-07-06 | 10 de julio de 2023 | 37 | 0.316 (final) | 1.02702703 | [BORME-C-2023-4566](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2023-4566) |
+| 2024-01-09 | 2024-01-08 | 10 de enero de 2024 | 58 | 0.202 (interim) | 1.01724138 | [BORME-C-2024-71](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2024-71) |
+| 2024-07-04 | 2024-07-03 | 5 de julio de 2024 | 34 | 0.351 (final) | 1.02941176 | [BORME-C-2024-4108](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2024-4108) |
+| 2025-01-10 | 2025-01-09 | 13 de enero de 2025 | 58 | 0.231 (interim) | 1.01724138 | [BORME-C-2025-39](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2025-39) |
+| 2025-07-04 | 2025-07-03 | 7 de julio de 2025 | 39 | 0.409 (final) | 1.02564103 | [BORME-C-2025-3945](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2025-3945) |
+| 2026-01-12 | 2026-01-09 | 13 de enero de 2026 | 73 | 0.253 (interim) | 1.01369863 | [BORME-C-2026-65](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2026-65) |
+| 2026-07-06 | 2026-07-03 | 7 de julio de 2026 | 50 | 0.425 (final) | 1.02000000 | [BORME-C-2026-3939](https://www.boe.es/diario_borme/txt.php?id=BORME-C-2026-3939) |
+
+Every row is `sourced` for the ratio, dates and cash amount. The **factor treatment is my reading** (see the decision below).
+
+### Verbatim quotes (pattern shared by all 16 notices; per-edition numbers are in the CSV `source_quote`)
+
+BORME-C-2019-46 (8 Jan 2019): https://www.boe.es/diario_borme/txt.php?id=BORME-C-2019-46
+
+> "gozarán del derecho de asignación gratuita de las nuevas acciones, en la proporción de una acción nueva por cada 45 derechos de asignación gratuita, los accionistas de la Sociedad: (a) que hayan adquirido sus respectivas acciones de Iberdrola no más tarde de las 23:59 horas de Madrid del día de publicación de este anuncio (last trading date); y (b) cuyas operaciones bursátiles se hayan liquidado hasta el día 10 de enero de 2019 (record date) en los registros contables de Iberclear. A cada acción antigua de la Sociedad le corresponderá un derecho de asignación gratuita."
+
+> "los derechos de asignación gratuita serán negociables en las Bolsas de Valores de Bilbao, Madrid, Barcelona y Valencia ... durante un plazo de 15 días naturales, a partir del día natural siguiente al de la publicación de este anuncio (esto es, entre el 9 y el 23 de enero de 2019, ambos inclusive)."
+
+> "Por tanto, el importe bruto por acción del Dividendo a Cuenta también ascenderá a 0,151 euros."
+
+BORME-C-2026-3939 (3 Jul 2026): https://www.boe.es/diario_borme/txt.php?id=BORME-C-2026-3939
+
+> "en la proporción de una acción nueva por cada 50 derechos de asignación gratuita ... no más tarde de las 23:59 horas de Madrid del día de publicación de este anuncio (last trading date); y (b) cuyas operaciones bursátiles se hayan liquidado hasta el día 7 de julio de 2026 (record date)"
+
+> "a partir del día hábil bursátil siguiente al de la publicación de este anuncio (esto es, entre el 6 y el 20 de julio de 2026, ambos inclusive)."
+
+> "(i) el importe bruto por acción del Dividendo Complementario es de 0,425 euros; y (ii) el importe bruto por acción del Dividendo de Ajuste es de 0,002 euros."
+
+### Factor treatment (reading, needs a decision)
+
+The brief's convention has no rule for a scrip. I treat each edition as a **bonus issue of 1 new share per N held**, i.e. a split of (N+1):N, so factor = (N+1)/N (computed from the sourced N). This is how a free-share ("liberada") capital increase is usually adjusted. It fits the economics: N is set so that a right is worth about the cash option. An alternative is to treat each edition as a **cash dividend equal to the cash option**, factor = C/(C - cash), where C is the last cum close. That needs a sourced close, which I did not fetch. The two treatments differ only slightly (reading).
+
+### Other IBE events checked
+- **July 2025 EUR 5bn capital increase**: an accelerated placement **without** preferential subscription rights (per Iberdrola's newsroom headline "Iberdrola culmina con éxito la ampliación de capital de 5.000 millones de euros, sobresuscrita en 3,8 veces", seen in search results only; iberdrola.com returns 403 and was not fetched). No rights were detached, so there is no factor (reading).
+- Capital reductions that cancel buyback shares happen regularly. They change neither the per-share price nor the holdings, so no factor (reading).
+- The EUR 0.002 "Dividendo de Ajuste" in July 2026 is paid on every share. It is ordinary-dividend size and ignored.
+
+### Gaps
+- iberdrola.com (pages and PDFs) returns **403** to curl and WebFetch, so the issuer's own scrip history page and booklet were not used. BORME is the legal primary source instead.
+- MEFF (BME derivatives) adjustment notices would give an exchange coefficient per edition, but MEFF's archive is loaded by a form I could not drive with plain requests. Only 2026 notices for other issuers were visible.
+- Ex dates are my reading: the first rights-trading day quoted in each notice, which is the day after the stated "last trading date".
+
