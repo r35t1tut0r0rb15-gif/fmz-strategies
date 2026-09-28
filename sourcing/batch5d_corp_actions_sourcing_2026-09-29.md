@@ -82,3 +82,39 @@ No tradeable right was detached, so there is no ex date and factor = 1 (reading)
 ### Other AIRF notes
 - airfranceklm.com HTML pages return a Cloudflare "Just a moment..." challenge, which I did not bypass. The /sites/default/files PDF above was directly downloadable.
 
+## FDX (FedEx Corporation, NYSE, CIK 1048911)
+
+### Events in window
+
+| Ex date | Event | Factor | Status |
+|---|---|---|---|
+| 2026-06-01 | Spinoff of FedEx Freight Holding Company (FDXF), 1 FDXF per 2 FDX, 80.1% distributed | **1.22624157** | sourced |
+
+No splits, reverse splits or special cash distributions found for FDX in 2019-01-01..2026-09-28 (reading, based on the EDGAR 8-K item list from 2019 onward and the FY2026 10-K). The September 2026 424B5 filings are note offerings (5.750% Notes due 2036; EUR 4.000% 2030 / 4.625% 2034 notes), not equity events.
+
+### Sources
+
+**Form 8937** (signed June 22, 2026), linked from https://investors.fedex.com/fedex-freight-spin-off/default.aspx (that page is behind a Cloudflare challenge for curl; its content was fetched via WebFetch; the PDF itself downloaded directly):
+https://s21.q4cdn.com/665674268/files/doc_downloads/2026/06/FedEx-Fairway-Form-8937-executed.pdf
+
+> "On June 1, 2026, FedEx Corporation ("FedEx") distributed to holders of FedEx common stock, on a pro rata basis, 80.1% of the outstanding shares of FedEx Freight Holding Company, Inc. ("FedEx Freight") common stock (the "Distribution"). Each FedEx shareholder received one share of FedEx Freight common stock for every two shares of FedEx common stock held on May 15, 2026, the record date for the Distribution."
+
+> "One method for determining the fair market values is to use the volume-weighted average trading prices of the FedEx common stock and the FedEx Freight common stock on June 1, 2026. Using this method, the fair market value of a share of FedEx common stock on June 1, 2026 was $336.39 and the fair market value of a share of FedEx Freight common stock on June 1, 2026 was $152.22. Based on these fair market values and the distribution ratio of one share of FedEx Freight common stock per two shares of FedEx common stock held, shareholders' pre-Distribution tax basis should be apportioned 81.55% to their FedEx common stock and 18.45% to their FedEx Freight common stock."
+
+**8-K dated June 1, 2026** (Items 1.01, 2.01): https://www.sec.gov/Archives/edgar/data/1048911/000110465926068519/tm2616055d1_8k.htm
+
+> "Each FedEx stockholder received one share of FedEx Freight common stock for every two shares of FedEx common stock held of record as of the close of business on May 15, 2026. Stockholders will receive cash in lieu of fractional shares. FedEx Freight will begin "regular way" trading on June 1, 2026 on the New York Stock Exchange ("NYSE") under the ticker symbol "FDXF.""
+
+**Board approval release, Exhibit 99.4 to the May 13, 2026 8-K**: https://www.sec.gov/Archives/edgar/data/1048911/000110465926060233/tm2520565d14_ex99-4.htm
+
+> "Beginning May 27, 2026 and ending at the close of business on May 29, 2026, it is expected that there will be two markets for FedEx common stock on the NYSE, a "regular-way" market and an "ex-distribution" market ... Shares of FedEx common stock that trade on the "regular-way" market beginning on the Record Date will trade under the symbol "FDX" with an entitlement to receive shares of FedEx Freight common stock in the distribution."
+
+### Factor
+
+v = 0.1845 (from the 8937). Factor = 1 / (1 - 0.1845) = 1 / 0.8155 = **1.22624157** (computed). Check: 0.5 x 152.22 / (336.39 + 0.5 x 152.22) = 76.11 / 412.50 = 0.18451 (computed).
+
+### Gaps / caveats
+- Ex date 2026-06-01 is my reading: regular-way FDX kept the entitlement through the 29 May close (a Friday), so 1 June was the first regular-way ex session. The OCC info memo #59055 ("FedEx Corporation - Distribution", 28 May 2026) returned HTTP 403 and was not read.
+- The 8937 split uses **same-day post-spin VWAPs**, not the last cum close. That is the issuer's primary value split and the preferred source per the brief, but it is not identical to a price-based cum/ex ratio (reading).
+- FedEx kept 19.9% of FDXF and plans to monetize it within 24 months, possibly by distributing it to FDX holders. No such event had been filed by 2026-09-28.
+
