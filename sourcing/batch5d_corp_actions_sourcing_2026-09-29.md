@@ -118,3 +118,42 @@ v = 0.1845 (from the 8937). Factor = 1 / (1 - 0.1845) = 1 / 0.8155 = **1.2262415
 - The 8937 split uses **same-day post-spin VWAPs**, not the last cum close. That is the issuer's primary value split and the preferred source per the brief, but it is not identical to a price-based cum/ex ratio (reading).
 - FedEx kept 19.9% of FDXF and plans to monetize it within 24 months, possibly by distributing it to FDX holders. No such event had been filed by 2026-09-28.
 
+## IBM (International Business Machines, NYSE, CIK 51143)
+
+### Events in window
+
+| Ex date | Event | Factor | Status |
+|---|---|---|---|
+| 2021-11-04 | Spinoff of Kyndryl Holdings (KD), 1 KD per 5 IBM, 80.1% distributed | **1.04384134** | sourced |
+
+No splits, reverse splits or other special distributions found for IBM in the window (reading, based on the 8-K item lists). IBM kept 19.9% of Kyndryl and planned to exchange it for IBM debt. That was not a distribution to IBM holders, so it needs no price adjustment (reading).
+
+### Sources
+
+**IBM Form 8937**, linked as "Download IRS Form 8937" from https://www.ibm.com/investor/services/faqs-about-the-kyndryl-holdings-inc-distribution:
+https://www.ibm.com/investor/att/pdf/Form-8937-Report-of-Organizational-Actions-Affecting-Basis-of-Securities.pdf
+
+The PDF is a scanned image with no text layer. I rendered its pages to images and transcribed the text below by reading those images.
+
+> Line 14: "On November 3, 2021, IBM distributed 80.1% of the outstanding shares of Kyndryl Holdings to IBM common stockholders. Each holder of IBM common stock received one share of Kyndryl Holdings common stock for every five shares of IBM common stock held as of the record date, October 25, 2021."
+
+> Line 15: "One possible approach is to utilize the New York Stock Exchange market closing price on November 4, 2021, the date on which Kyndryl Holdings stock first traded, (the "Closing Price") as an indication of the fair market value. For IBM common stock the Closing Price was $120.85 per share and for Kyndryl Holdings common stock the Closing Price was $26.38 per share. Based on that approach and the assumptions and calculations set forth in Line 16 below, 95.8% of an IBM stockholder's aggregate tax basis in shares of IBM common stock immediately prior to the Distribution would be allocated to such shareholder's shares of IBM common stock and 4.2% would be allocated to such shareholder's shares of Kyndryl Holdings common stock received in the Distribution"
+
+**IBM 8-K, November 3, 2021** (Item 2.01): https://www.sec.gov/Archives/edgar/data/51143/000155837021014643/ibm-20211103x8k.htm
+
+> "The distribution was made in the amount of one share of Kyndryl common stock for every five shares of IBM common stock (the "Distribution") owned by IBM's stockholders of record as of the close of business on October 25, 2021."
+
+**Board approval release, October 12, 2021** (8-K Ex. 99.1): https://www.sec.gov/Archives/edgar/data/51143/000110465921125064/tm2128856d3_ex99-1.htm
+
+> "The distribution is expected to occur after close of market on November 3, 2021."
+
+**IBM FAQ page:** "The distribution was effective as of 5:00 PM, Eastern time, on 3 November 2021."
+
+### Factor
+
+v = 0.042 (issuer, rounded). Factor = 1 / 0.958 = **1.04384134** (computed). Unrounded from the issuer's own closing prices: v = 5.276 / 126.126 = 0.041831, factor = 1.04365737 (computed). The difference is about 0.02%.
+
+### Gaps
+- Ex date 2021-11-04 is my reading, based on the after-close distribution on 3 Nov and KD's first trade on 4 Nov. No exchange notice was fetched.
+- The Kyndryl IR spinoff page (investors.kyndryl.com) returned 403 to curl and 503 to WebFetch. It wasn't needed.
+
