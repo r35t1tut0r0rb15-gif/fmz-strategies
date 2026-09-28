@@ -157,3 +157,33 @@ v = 0.042 (issuer, rounded). Factor = 1 / 0.958 = **1.04384134** (computed). Unr
 - Ex date 2021-11-04 is my reading, based on the after-close distribution on 3 Nov and KD's first trade on 4 Nov. No exchange notice was fetched.
 - The Kyndryl IR spinoff page (investors.kyndryl.com) returned 403 to curl and 503 to WebFetch. It wasn't needed.
 
+## T (AT&T Inc., NYSE, CIK 732717)
+
+### Events in window
+
+| Ex date | Event | Factor | Status |
+|---|---|---|---|
+| 2022-04-11 | WarnerMedia spinoff + merger with Discovery (Reverse Morris Trust): 1 SpinCo per T share -> 0.241917 WBD | **1.30684788** | sourced |
+
+No splits, reverse splits or other special distributions found for T in the window (reading, based on the 8-K item lists).
+
+### Sources
+
+**AT&T attachment to Form 8937**: https://investors.att.com/~/media/Files/A/ATT-IR-V2/documents/attachment-to-form-8937-new.pdf
+
+> Line 14: "At the close of business on April 8, 2022, AT&T completed the previously announced transaction to combine AT&T's WarnerMedia business with Discovery by distributing, on a pro rata basis, all of the outstanding common stock of SpinCo to AT&T common stockholders of record as of April 5, 2022 (the "Distribution"). Pursuant to the Distribution, each holder of AT&T common stock received one share of SpinCo common stock for every share of AT&T common stock held as of the record date. ... In the Merger, each share of SpinCo common stock immediately prior to the Merger was automatically converted into the right to receive 0.241917 shares of WBD common stock."
+
+> Line 16: "One approach to determine the fair market value of AT&T is to use the average of the opening and closing trading prices quoted on the New York Stock Exchange on April 11, 2022, the first trading day following the Distribution. ... Using the average of the opening and closing trading prices for shares of WBD common stock ($24.43) and shares of AT&T common stock ($19.26) on April 11, 2022, and taking into account the Merger exchange ratio (1 : 0.241917 SpinCo to WBD), approximately 23.48% of the aggregate tax basis held by the AT&T stockholders immediately prior to the Distribution would be allocated to the shares of SpinCo common stock received by such stockholders."
+
+**AT&T 8-K, April 8, 2022**: https://www.sec.gov/Archives/edgar/data/732717/000073271722000030/t-20220408.htm
+
+> "each holder of shares of common stock, par value $1.00 per share, of AT&T (the "AT&T Common Stock") was entitled to receive one share of Spinco Common Stock for each share of AT&T Common Stock held as of the record date, April 5, 2022 ... the holders of Spinco Common Stock were entitled to receive 0.241917 shares of WBD common stock (the "Exchange Ratio") for each share of Spinco Common Stock held on the closing date."
+
+### Factor
+
+v = 0.2348. Factor = 1 / 0.7652 = **1.30684788** (computed). Check: 0.241917 x 24.43 = 5.9100; 5.9100 / (19.26 + 5.9100) = 0.23480 (computed).
+
+### Gaps
+- Ex date 2022-04-11 is my reading (distribution at the close on Friday 8 April; the 8937 names 11 April as "the first trading day following the Distribution"). No NYSE ex-date notice was fetched.
+- The 8937 values are the average of open and close on 11 April, not the last cum close. That is the issuer's method.
+
