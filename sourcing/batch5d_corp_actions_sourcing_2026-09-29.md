@@ -187,3 +187,65 @@ v = 0.2348. Factor = 1 / 0.7652 = **1.30684788** (computed). Check: 0.241917 x 2
 - Ex date 2022-04-11 is my reading (distribution at the close on Friday 8 April; the 8937 names 11 April as "the first trading day following the Distribution"). No NYSE ex-date notice was fetched.
 - The 8937 values are the average of open and close on 11 April, not the last cum close. That is the issuer's method.
 
+## GE (General Electric, now GE Aerospace, NYSE, CIK 40545)
+
+### Events in window
+
+| Ex date | Event | Factor | Status |
+|---|---|---|---|
+| 2019-02-26 | GE Transportation spin + merger into Wabtec: 0.005371 WAB per GE share (taxable dividend) | none: needs GE cum close | **unsourceable** |
+| 2021-08-02 | Reverse split 1:8 | **0.125** | sourced |
+| 2023-01-04 | Spinoff of GE HealthCare (GEHC), 1 per 3, ~80.1% distributed | **1.26374321** | sourced |
+| 2024-04-02 | Spinoff of GE Vernova (GEV), 1 per 4, 100% distributed | **1.25407575** | sourced |
+
+The brief mentioned "two spinoffs" (GEHC and GEV). The window also includes the Wabtec transaction and the reverse split. Other 8-Ks with Item 2.01 (Baker Hughes deconsolidation 2019-09, BioPharma sale 2020-04, GECAS sale 2021-11) were asset sales, not shareholder distributions (reading). The 2026-06-25 Item 5.03 8-K is a bylaw amendment.
+
+### 2019 Wabtec transaction (unsourceable factor)
+
+GE Shareholder Services page: https://www.ge.com/investor-relations/shareholder-services
+
+> "On February 25th, 2019, GE completed the spin-off and subsequent merger of its transportation business with Wabtec Corporation (NYSE:WAB). Under the terms of the transaction, GE distributed all 8.7 billion shares of common stock of Transportation Systems Holdings Inc. ("SpinCo") with respect to the shares of GE common stock outstanding as of the close of business on February 14, 2019 by means of a pro rata distribution (the "Spin-off"), and SpinCo and a subsidiary of Wabtec then merged. Record Date: GE shareholders must own GE stock by February 14th and hold through February 25th close of trade to be eligible to receive Wabtec shares. Exchange ratio: GE shareholders receive .005371 shares of Wabtec for every 1 share of GE owned. ... Fair Market Value: $78.06 per share, the closing stock price of Wabtec on February 25, 2019. ... Cost Basis Adjustment to GE Shares: No change to historic cost basis of GE shares. ... GE will not be filing form 8937 because the transaction has no impact on the tax basis in GE shares."
+
+- Value distributed per GE share = 0.005371 x 78.06 = **$0.41926** (computed).
+- **Why unsourceable:** there is no 8937 and no issuer-stated fraction. The factor needs GE's last cum close (2019-02-25), and I did not fetch that from a primary source. The factor would be C / (C - 0.41926) (computed formula), on the pre-reverse-split share basis.
+- Ex date 2019-02-26 is my reading. "Hold through February 25th close of trade" implies due-bill trading, which puts the ex date on the next day.
+
+### 2021-08-02 reverse split 1:8
+
+8-K July 30, 2021 (Item 3.03): https://www.sec.gov/Archives/edgar/data/40545/000120677421001925/ge3936671-8k.htm
+
+> "On July 30, 2021, General Electric Company (the "Company") filed a Certificate of Amendment to its Certificate of Incorporation (the "Certificate of Amendment") in order to effect a one-for-eight reverse stock split of the Company's common stock ... On August 2, 2021, GE common stock will begin trading, on a split-adjusted basis, (i) on the New York Stock Exchange under the symbol "GE", with a new CUSIP number (369604 301)"
+
+The shareholder-services page adds: "GE filed an amendment to its certificate of incorporation to effectuate the reverse stock split after the close of trading on July 30, 2021, and GE common stock began trading on a split-adjusted basis on August 2, 2021."
+
+Factor = 1/8 = **0.125** (computed).
+
+### 2023-01-04 GE HealthCare spinoff
+
+GE Form 8937 attachment: https://www.ge.com/sites/default/files/general-electric-form-8937-attachment.pdf
+
+> "On January 3, 2023, after the close of trading on The Nasdaq Stock Market LLC, pursuant to the terms and conditions of the Separation and Distribution Agreement dated as of November 7, 2022, as amended, by and among GE and GEHC, GE distributed to its shareholders on a pro rata basis approximately 80.1 percent of its shares of GEHC common stock (the "Distribution"). Pursuant to the Distribution, each holder of record of GE common stock received one share of GEHC common stock for every three shares of GE common stock held on December 16, 2022"
+
+> "One possible approach is to utilize the New York Stock Exchange opening trading price on January 4, 2023 for GE common stock ($68.41 per share) and the Nasdaq opening trading price for GEHC common stock ($54.13 per share) as an indication of the fair market value. Based on that approach ... 79.13% of a GE shareholder's aggregate tax basis ... would be allocated to such shareholder's shares of GE common stock following the Distribution, and 20.87% ... would be allocated to such shareholder's shares of GEHC common stock received in the Distribution."
+
+8-K Jan 4, 2023: https://www.sec.gov/Archives/edgar/data/40545/000119312523001157/d431727d8k.htm ("On January 4, 2023, GE HealthCare's common stock began trading on The Nasdaq Stock Market LLC under the ticker symbol "GEHC."")
+
+Factor = 1 / (1 - 0.2087) = **1.26374321** (computed). Check: (54.13/3) / (68.41 + 54.13/3) = 0.20871 (computed).
+
+### 2024-04-02 GE Vernova spinoff
+
+GE Form 8937 attachment (hosted on geaerospace.com): https://www.geaerospace.com/sites/default/files/ge-form-8937-attachment.pdf
+
+> "On April 2, 2024, prior to the open of trading on the New York Stock Exchange, pursuant to the terms and conditions of the Separation and Distribution Agreement dated as of April 1, 2024, by and among GE and GEV, GE distributed to its shareholders on a pro rata basis 100 percent of its shares of GEV common stock (the "Distribution"). Pursuant to the Distribution, each holder of record of GE common stock received one share of GEV common stock for every four shares of GE common stock held on March 19, 2024"
+
+> "One possible approach is to utilize the New York Stock Exchange opening trading price on April 2, 2024 for GE common stock ($140.53 per share) and the New York Stock Exchange opening trading price for GEV common stock ($142.85 per share) as an indication of the fair market value. Based on that approach ... 79.74% ... would be allocated to such shareholder's shares of GE common stock following the Distribution, and 20.26% ... would be allocated to such shareholder's shares of GEV common stock received in the Distribution."
+
+8-K April 2, 2024: https://www.sec.gov/Archives/edgar/data/40545/000119312524084038/d792336d8k.htm ("On April 2, 2024 (the "Distribution Date") at 12:10 a.m. Eastern Time, General Electric Company completed the previously announced separation ...")
+
+Factor = 1 / (1 - 0.2026) = **1.25407575** (computed). Check: (142.85/4) / (140.53 + 142.85/4) = 0.20263 (computed).
+
+### Gaps
+- Wabtec 2019: factor unsourceable (see above).
+- Both spinoff ex dates are my readings from the distribution timing in the 8937s and 8-Ks. No NYSE ex-date notice was fetched.
+- Both 8937s use **opening prices on the ex date**, not the last cum close.
+
