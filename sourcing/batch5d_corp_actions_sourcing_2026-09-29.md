@@ -249,3 +249,33 @@ Factor = 1 / (1 - 0.2026) = **1.25407575** (computed). Check: (142.85/4) / (140.
 - Both spinoff ex dates are my readings from the distribution timing in the 8937s and 8-Ks. No NYSE ex-date notice was fetched.
 - Both 8937s use **opening prices on the ex date**, not the last cum close.
 
+## PFE (Pfizer Inc., NYSE, CIK 78003)
+
+### Events in window
+
+| Ex date | Event | Factor | Status |
+|---|---|---|---|
+| 2020-11-17 | Upjohn spinoff + combination with Mylan -> Viatris (VTRS), ~0.124079 VTRS per PFE | none | **unsourceable** |
+
+No splits, reverse splits or other special distributions found for PFE in the window (reading, based on the 8-K item lists). The 2019 consumer-health JV with GSK was not a shareholder distribution (reading).
+
+### Sources fetched
+
+**Pfizer 8-K, November 20, 2020** (Item 2.01): https://www.sec.gov/Archives/edgar/data/78003/000119312520298356/d72492d8k.htm
+
+> "Effective as of 12:01 a.m. Eastern time on November 16, 2020, pursuant to the Separation and Distribution Agreement and the Business Combination Agreement, Pfizer completed the previously announced Separation of the Upjohn Business as a result of the Distribution and, after the Distribution, the combination of the Upjohn Business with Mylan. In the Distribution, Pfizer stockholders received approximately 0.124079 shares of common stock of Viatris for every one share of Pfizer common stock held by such Pfizer stockholder as of the close of business on the Record Date."
+
+(Record date: "the record date of November 13, 2020".)
+
+**Pfizer release, November 5, 2020** (8-K Ex. 99.1): https://www.sec.gov/Archives/edgar/data/78003/000119312520286896/d81265dex991.htm
+
+> "If a Pfizer stockholder sells shares of Pfizer common stock in the "regular way" market beginning on November 12, 2020, the date that is the business day immediately prior to the record date for the spin-off, and continuing until the close of business on the expected closing date of November 16, 2020, that Pfizer stockholder will be selling both his or her shares of Pfizer common stock and the right (represented by a "due-bill") to receive shares of Viatris common stock in the distribution."
+
+The ex date of 2020-11-17 is my reading: 16 Nov was the last regular-way day carrying the due bill.
+
+### Why the factor is unsourceable
+- The Form 8937 URL that search engines index, https://s21.q4cdn.com/317678438/files/doc_news/2020/08/Distribution-Tax-Basis-Information.pdf, returns **HTTP 404** (curl and WebFetch).
+- pfizer.com investor pages return **403** (curl and WebFetch). investor.viatris.com returned an empty reply (curl) or 503 (WebFetch).
+- **web.archive.org is blocked by this session's egress proxy** (connection reset). archive.org's availability API (reachable) lists a snapshot: `http://web.archive.org/web/20240616120847/https://s21.q4cdn.com/317678438/files/doc_news/2020/08/Distribution-Tax-Basis-Information.pdf`. A session with archive.org access can close this gap quickly.
+- Search-engine summaries quote "94.8%" to Pfizer and "5.2%" to Viatris. **I did not fetch the document, so this figure is not used.** If confirmed, it would give 1/(1-0.052) = 1.05485232 (computed, **not sourced**).
+
