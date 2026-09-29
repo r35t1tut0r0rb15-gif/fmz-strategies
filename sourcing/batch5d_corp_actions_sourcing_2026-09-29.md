@@ -511,7 +511,7 @@ HKEX dividend form, 6-K Ex. 99.2: https://www.sec.gov/Archives/edgar/data/157755
 ### Failed (4 rows `unsourceable`)
 
 1. **PFE 2020-11-17 Upjohn/Viatris spinoff.** The Pfizer 8937 is 404 at its indexed URL, pfizer.com returns 403, and web.archive.org is blocked here. An archived copy exists (archive.org's availability API lists `web/20240616120847`). **Recommendation:** re-run just this item in a session whose network policy allows `web.archive.org`, or have someone download the 8937 by hand. Do not use the unfetched "5.2%" from search snippets.
-2. **GE 2019-02-26 Wabtec distribution** (0.005371 WAB per GE share, worth $0.41926 per share). GE filed no 8937 (taxable dividend). The factor needs GE's last cum close. **Recommendation:** see decision 4. The expected factor is small (about 1.04 on the pre-reverse-split basis; reading, not verified).
+2. **GE 2019-02-26 Wabtec distribution** (0.005371 WAB per GE share, worth $0.41926 per share). GE filed no 8937 (taxable dividend). The factor needs GE's last cum close. **Recommendation:** see decision 4.
 3. **BABA 2024-06-13 special US$0.66/ADS** and 4. **BABA 2025-06-12 special US$0.95/ADS**: amounts and dates are sourced; the cum close is not. **Recommendation:** see decision 4.
 
 ### Decisions owed
