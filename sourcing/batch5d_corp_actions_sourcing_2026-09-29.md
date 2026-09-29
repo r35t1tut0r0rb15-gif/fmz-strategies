@@ -430,3 +430,43 @@ Factor 1 (1:1). This is an instrument change and matters only for how a US-line 
 - totalenergies.com was not needed. Euronext's notices could not be fetched (bot check), so Eurex stands in as the exchange source for the close.
 - Which line the project's "TTE" means (Paris or NYSE) is **not stated in the brief**. See decisions owed.
 
+## BABA (Alibaba Group Holding, NYSE ADS; HK 9988 from Nov 2019; CIK 1577552)
+
+### Events in window
+
+| Ex date | Event | Factor | Status |
+|---|---|---|---|
+| 2019-07-30 | 1-to-8 ordinary-share subdivision + ADS ratio 1:1 -> 1:8 (ADS count unchanged) | **1** for the ADS | sourced |
+| 2024-06-13 (NYSE, reading) / 2024-06-12 (HK) | One-time extraordinary dividend US$0.66/ADS (US$0.0825/share), alongside regular US$1.00/ADS | none | **unsourceable** (no sourced cum close) |
+| 2025-06-12 (NYSE, reading) / 2025-06-11 (HK) | One-time extraordinary dividend US$0.95/ADS (US$0.11875/share), alongside regular US$1.05/ADS | none | **unsourceable** (no sourced cum close) |
+
+Checked and found **not** to be distributions to BABA holders: the Cainiao (2023), Banma (2025) and infrastructure REIT (2026) spin-off listings. In each, Alibaba obtained a Hong Kong waiver of the shareholders' "assured entitlement" (distribution in specie). Sources: https://www.sec.gov/Archives/edgar/data/1577552/000110465923103638/tm2326925d1_ex99-1.htm, https://www.sec.gov/Archives/edgar/data/1577552/000110465925081052/tm2524076d1_ex99-1.htm, https://www.sec.gov/Archives/edgar/data/1577552/000110465926049424/tm2612812d1_ex99-1.htm. For example (2025, Banma): "the assured entitlement (whether by way of a preferential offering or a distribution in specie) would in most cases give the Shareholders small and odd lots of the Banma Shares with no significant value." The FY2026 dividend (May 2026) was regular only: "an annual regular cash dividend for fiscal year 2026 in the amount of US$0.13125 per ordinary share or US$1.05 per ADS" (https://www.sec.gov/Archives/edgar/data/1577552/000110465926060224/tm2614494d1_ex99-1.htm).
+
+### 2019-07-30 subdivision / ADS ratio change
+
+6-K Ex. 99.1: https://www.sec.gov/Archives/edgar/data/1577552/000110465919042446/a19-16252_1ex99d1.htm
+
+> "Effective before the commencement of trading on the New York Stock Exchange on July 30, 2019, the date determined by the Board, the Company subdivided each of its issued and unissued ordinary shares into eight (8) ordinary shares. ... Following the ADS Ratio Change, each ADS now represents eight (8) Ordinary Shares. Previously, each ADS represented one Ordinary Share. Because the ADS Ratio Change was exactly proportionate to the Share Subdivision, no new ADSs were issued to any ADS holder and the total number of the Company's outstanding ADSs remains unchanged."
+
+ADS factor = 1 (computed). **The loader must not apply 8:1 to BABA ADS prices.**
+
+### 2024 and 2025 extraordinary dividends
+
+FY2024 results, 6-K Ex. 99.1: https://www.sec.gov/Archives/edgar/data/1577552/000110465924061145/tm2414429d1_ex99-1.htm
+
+> "Our board of directors has approved a two-part dividend comprised of (i) an annual regular cash dividend for fiscal year 2024 in the amount of US$0.125 per ordinary share or US$1.00 per ADS, and (ii) a one-time extraordinary cash dividend as a distribution of proceeds from disposition of certain financial investments in the amount of US$0.0825 per ordinary share or US$0.66 per ADS, in each case payable in U.S. dollars, to holders of ordinary shares and holders of ADSs, as of the close of business on June 13, 2024, Hong Kong Time and New York Time, respectively."
+
+HKEX dividend form, 6-K Ex. 99.3: https://www.sec.gov/Archives/edgar/data/1577552/000110465924066829/tm2415924d1_ex99-3.htm
+
+> "Title of announcement SPECIAL DIVIDEND FOR THE YEAR ENDED MARCH 31, 2024 ... Dividend declared USD 0.0825 per share ... Ex-dividend date 12 June 2024 ... Record date 13 June 2024 Payment date 03 July 2024"
+
+FY2025 results, 6-K Ex. 99.1: https://www.sec.gov/Archives/edgar/data/1577552/000110465925049400/tm2515233d1_ex99-1.htm
+
+> "Our board of directors has approved a two-part dividend in the total amount of US$0.25 per ordinary share or US$2.00 per ADS comprised of (i) an annual regular cash dividend for fiscal year 2025 in the amount of US$0.13125 per ordinary share or US$1.05 per ADS, and (ii) a one-time extraordinary cash dividend as a distribution of proceeds from disposition of certain businesses and financial investments in the amount of US$0.11875 per ordinary share or US$0.95 per ADS, in each case payable in U.S. dollars, to holders of ordinary shares and holders of ADSs, as of the close of business on June 12, 2025, Hong Kong Time and New York Time, respectively."
+
+HKEX dividend form, 6-K Ex. 99.2: https://www.sec.gov/Archives/edgar/data/1577552/000110465925049429/tm2515251d1_ex99-2.htm
+
+> "SPECIAL DIVIDEND FOR THE YEAR ENDED MARCH 31, 2025 ... Dividend declared USD 0.11875 per share ... Ex-dividend date 11 June 2025 ... Record date 12 June 2025 Payment date 03 July 2025"
+
+**Why unsourceable:** the amounts are exact and sourced, but a factor needs the last cum ADS close, and I fetched no primary source for it (no Eurex notice for BABA; OCC memos returned 403 earlier in this session). Formula: C/(C - 0.66) and C/(C - 0.95) for the special part only (computed formula). The NYSE ex dates are my reading (US T+1 since 28 May 2024, so ex date = record date). The HK ex dates come from the issuer's HKEX forms.
+
