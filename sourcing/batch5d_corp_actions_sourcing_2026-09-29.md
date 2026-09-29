@@ -470,3 +470,56 @@ HKEX dividend form, 6-K Ex. 99.2: https://www.sec.gov/Archives/edgar/data/157755
 
 **Why unsourceable:** the amounts are exact and sourced, but a factor needs the last cum ADS close, and I fetched no primary source for it (no Eurex notice for BABA; OCC memos returned 403 earlier in this session). Formula: C/(C - 0.66) and C/(C - 0.95) for the special part only (computed formula). The NYSE ex dates are my reading (US T+1 since 28 May 2024, so ex date = record date). The HK ex dates come from the issuer's HKEX forms.
 
+## Access summary (what could and could not be fetched)
+
+| Host | Result | Used for |
+|---|---|---|
+| www.sec.gov, data.sec.gov, efts.sec.gov | OK | FDX, IBM, T, GE, PFE, TTE, BABA filings |
+| news.klm.com (KLM newsroom PDF of the AF-KLM release) | OK | AIRF rights issue |
+| www.nasdaq.com (press-release copies) | OK | AIRF reverse split, AIRF 2021 capital increase |
+| www.eurex.com | OK | AIRF, VOWG_p, TTE closing prices and R-factors |
+| www.boe.es (BORME) | OK | IBE scrips |
+| issuer PDF CDNs (q4cdn FedEx, ibm.com, ge.com, geaerospace.com, investors.att.com, uploads.vw-mms.de, airfranceklm.com/sites/default/files) | OK | 8937s, VW notice, AF-KLM newsletter |
+| live.euronext.com | empty HTTP 202 (bot check), **not bypassed** | none |
+| airfranceklm.com HTML, investors.fedex.com (curl) | Cloudflare challenge, **not bypassed** (FedEx page read via WebFetch) | none |
+| iberdrola.com | 403 | none |
+| pfizer.com, investor.viatris.com, investors.kyndryl.com, infomemo.theocc.com, ir.wabteccorp.com | 403 / 503 / empty | none |
+| **web.archive.org** | **blocked by this session's egress proxy** (connection reset); archive.org's availability API worked | none |
+| MEFF adjustments archive (meff.es) | page loads, but the year filter did not return results to plain requests | none |
+
+## For the project chat
+
+### Finished (30 rows `sourced`)
+
+| Symbol | Ex date | Event | Factor |
+|---|---|---|---|
+| AIRF | 2022-05-25 | Rights issue 1 right -> 3 new @ EUR 1.17 | **1.98275862** (b: official close 24 May 2022, EUR 3.45 per Eurex; TERP 1.74). (a) issuer figure 4.296/1.951 = 2.20194772 |
+| AIRF | 2023-08-31 | Reverse split 10 -> 1 | **0.1** |
+| AIRF | 2021-04-19 | Capital increase without rights | 1 (no adjustment) |
+| FDX | 2026-06-01 | FedEx Freight spinoff (8937: 18.45%) | **1.22624157** |
+| IBM | 2021-11-04 | Kyndryl spinoff (8937: 4.2%) | **1.04384134** |
+| T | 2022-04-11 | WarnerMedia/WBD spinoff (8937: 23.48%) | **1.30684788** |
+| GE | 2021-08-02 | Reverse split 1:8 | **0.125** |
+| GE | 2023-01-04 | GE HealthCare spinoff (8937: 20.87%) | **1.26374321** |
+| GE | 2024-04-02 | GE Vernova spinoff (8937: 20.26%) | **1.25407575** |
+| VOWG_p | 2022-12-19 | Special dividend EUR 19.06 (Eurex close 136.54) | **1.16224038** |
+| TTE | 2022-12-06 | Special interim dividend EUR 1.00 (Eurex close 58.76) | **1.01731302** (Paris line) |
+| TTE | 2019-03-19 / 2025-12-08 | Last scrip option / ADR -> ordinary 1:1 | 1 / 1 |
+| BABA | 2019-07-30 | 1:8 subdivision offset by ADS ratio change | **1** for the ADS (do NOT apply 8) |
+| IBE | 16 dates 2019-01-09 .. 2026-07-06 | Scrip editions, N from BORME | (N+1)/N, from 1.0137 to 1.0294 |
+
+### Failed (4 rows `unsourceable`)
+
+1. **PFE 2020-11-17 Upjohn/Viatris spinoff.** The Pfizer 8937 is 404 at its indexed URL, pfizer.com returns 403, and web.archive.org is blocked here. An archived copy exists (archive.org's availability API lists `web/20240616120847`). **Recommendation:** re-run just this item in a session whose network policy allows `web.archive.org`, or have someone download the 8937 by hand. Do not use the unfetched "5.2%" from search snippets.
+2. **GE 2019-02-26 Wabtec distribution** (0.005371 WAB per GE share, worth $0.41926 per share). GE filed no 8937 (taxable dividend). The factor needs GE's last cum close. **Recommendation:** see decision 4. The expected factor is small (about 1.04 on the pre-reverse-split basis; reading, not verified).
+3. **BABA 2024-06-13 special US$0.66/ADS** and 4. **BABA 2025-06-12 special US$0.95/ADS**: amounts and dates are sourced; the cum close is not. **Recommendation:** see decision 4.
+
+### Decisions owed
+
+1. **AIRF rights issue: variant (a) or (b)?** (a) = 2.20194772 uses the issuer's 20 May close. (b) = 1.98275862 uses the official last cum close (24 May, EUR 3.45, via Eurex). **Recommend (b):** it follows the stated convention and matches Eurex's own adjustment exactly (1/R). One caveat: Eurex doesn't name the cash market for the 3.45, so "Euronext official close" is my reading. If the project needs Euronext's own record, someone with access to live.euronext.com should confirm it.
+2. **8937 fractions are measured after the event** (FDX: VWAP on the ex date; IBM: close on the ex date; T: average of open and close on the ex date; GE: opening prices on the ex date), not at the last cum close. **Recommend accepting them as they are.** They are the issuer's primary value split, which the brief prefers, and the difference from a cum-close ratio is small.
+3. **IBE scrip treatment.** I used bonus-issue treatment, factor (N+1)/N, based on the official N. The alternative is a cash dividend equal to the cash option, which needs a cum close for each edition. **Recommend bonus-issue treatment:** it's the standard treatment of a free-share issue and needs no price. Also check whether the data feed already adjusts IBE for these; the brief asked me to list them regardless.
+4. **Cash distributions with no issuer fraction (GE Wabtec 2019, BABA 2024/2025 specials).** Is the loader allowed to compute C/(C - D) from its own unadjusted cum close C, where D is the sourced amount? **Recommend yes.** Tag the result `computed-from-feed` so it stays separate from exchange-sourced factors. Otherwise these stay unsourceable until an exchange or OCC price notice turns up.
+5. **Which listing each symbol means.** TTE (Euronext Paris vs NYSE) and BABA (NYSE ADS vs HK 9988) change the ex date and the price basis. **Recommend TTE = Euronext Paris** (the Eurex factor applies there) **and BABA = NYSE ADS.** The project should confirm.
+6. **Ordinary dividends** (TTE's 2019 scrip-option dividend, BABA's regular parts, VW's regular dividends) are out of scope and got factor 1 or were left out. **Recommend keeping it that way** unless the loader is meant to build total-return series.
+7. **Ex dates marked (reading)** (the spinoff ex dates, VOWG_p 2022-12-19, BABA's NYSE ex dates) come from issuer timing text, not from exchange ex-date notices. **Recommend checking each against the feed's unadjusted price gap before loading.** That check only confirms dates; it doesn't infer factors.
