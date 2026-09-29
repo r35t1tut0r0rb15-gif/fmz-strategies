@@ -374,3 +374,59 @@ The brief's convention has no rule for a scrip. I treat each edition as a **bonu
 - MEFF (BME derivatives) adjustment notices would give an exchange coefficient per edition, but MEFF's archive is loaded by a form I could not drive with plain requests. Only 2026 notices for other issuers were visible.
 - Ex dates are my reading: the first rights-trading day quoted in each notice, which is the day after the stated "last trading date".
 
+## TTE (TotalEnergies SE, Euronext Paris primary; NYSE ADS -> ordinary shares; CIK 879764)
+
+### Events in window
+
+| Ex date | Event | Factor | Status |
+|---|---|---|---|
+| 2019-03-19 | Third 2018 interim dividend EUR 0.64 **with scrip (share) option**, the last scrip before the option was dropped | 1 (ordinary dividend, out of scope) | sourced |
+| 2022-12-06 | **Special interim dividend EUR 1.00** (NYSE ADS ex date 2022-12-02) | **1.01731302** (Paris line) | sourced |
+| 2025-12-08 | NYSE ADRs converted 1:1 into NYSE-listed ordinary shares | 1 | sourced |
+
+No splits, reverse splits, rights issues or spinoffs to shareholders found in the window (reading, based on EDGAR full-text searches of 6-Ks for "scrip", "special dividend" and "free share allocation"; the 2026 "free share allocation" hits are employee plans). The planned TotalEnergies EP Canada spin-off (2022) did not happen as a distribution (reading, not separately sourced).
+
+### 2019 scrip option (third 2018 interim)
+
+6-K, July 2019 (H1 2019 results): https://www.sec.gov/Archives/edgar/data/879764/000163462119000047/ex991.htm
+
+> "the buyback of shares issued in 2019 under the scrip dividend option (not renewed at the 2019 Shareholders' meeting) to cancel any dilution related to the exercise of this option"
+
+> "Given the decision made by the Board of Directors on February 6, 2019 not to propose to the Shareholders' meeting the renewal of the scrip dividend option beginning with the payment of the final 2018 dividend, the final 2018 dividend has been paid exclusively in cash. Dividend 2018 First interim Second interim Third interim Final Amount €0.64 €0.64 €0.64 €0.64 Declaration of distribution (1) September 19, 2018 December 12, 2018 March 13, 2019 May 29, 2019 Ex-dividend date September 25, 2018 December 18, 2018 March 19, 2019 June 11, ..."
+
+6-K, Feb 2019 (Q4 2018 results): https://www.sec.gov/Archives/edgar/data/879764/000163462119000005/ex991.htm
+
+> "Taking into account its strong financial position, the Group will eliminate the scrip dividend option from June 2019."
+
+Treatment (reading): this was an ordinary dividend with a share election, not a bonus issue. The price drop at the ex date is the EUR 0.64 dividend, so no split-type factor applies (factor 1) under this batch's scope.
+
+### 2022-12-06 special interim dividend EUR 1.00
+
+Issuer, 6-K Ex. 99.2 (Oct 27, 2022): https://www.sec.gov/Archives/edgar/data/879764/000110465922111779/tm2228787d1_ex99-2.htm
+
+> "Third 2022 interim dividend of €0.69/share, an increase of 5% compared to 2021, and announcement of the ex-dividend and payment dates of the special interim dividend of €1/share ... These interim dividends will be paid in cash exclusively, according to the following timetable: Ex-dividend date Payment date Special interim dividend Shareholders December 6, 2022 December 16, 2022 ADS holders December 2, 2022 December 28, 2022"
+
+Eurex notice (Dec 06, 2022): https://www.eurex.com/ex-en/rules-regs/corporate-actions/corporate-action-information/TotalEnergies-SE-Special-Dividend-3303556
+
+> "The company TotalEnergies SE has announced the payment of a special dividend of EUR 1.00 per share. ... Adjustment result: Closing price: 58.76 R-Factor: 0.98298162"
+
+Eurex PDF: https://www.eurex.com/resource/blob/3303440/67f4fb60a568ea4c5ec3f678fe229098/data/Info_001_TOTB_en.pdf
+
+> "Issue Date: 27 October 2022 Effective Date: 06 December 2022 ... Special Dividend Total Energies SE FR0000120271"; "Closing auction price of the TotalEnergies SE share S1 minus special dividend R-Factor S2 / S1"
+
+Factor = 58.76 / (58.76 - 1.00) = **1.01731302** (computed); 57.76 / 58.76 = 0.98298162, which equals Eurex's R-factor (computed).
+
+Caveat: the price and factor apply to the **Euronext Paris** line. For the old NYSE ADS line the ex date was 2022-12-02 and a USD price would be needed, which I did not source. That 58.76 is the Paris closing auction on 5 Dec 2022 is my reading.
+
+### 2025-12-08 ADR -> ordinary share conversion (NYSE)
+
+6-K Ex. 99.1 (Dec 8, 2025): https://www.sec.gov/Archives/edgar/data/879764/000110465925119004/tm2526657d2_ex99-1.htm
+
+> "TotalEnergies SE (NYSE: TTE) announces, as of today, December 8, 2025, the commencement of trading of its ordinary shares on the New York Stock Exchange ("NYSE"), replacing the listing of its American Depositary Receipts ("ADRs"). ... the conversion of ADRs into ordinary shares, with each ADR exchangeable for one NYSE-listed ordinary share."
+
+Factor 1 (1:1). This is an instrument change and matters only for how a US-line series is stitched together.
+
+### Gaps
+- totalenergies.com was not needed. Euronext's notices could not be fetched (bot check), so Eurex stands in as the exchange source for the close.
+- Which line the project's "TTE" means (Paris or NYSE) is **not stated in the brief**. See decisions owed.
+
