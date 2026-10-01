@@ -7,6 +7,8 @@
   strategy file was edited.
 - Files added: this report; `cloud_recheck337_2026-10-01.csv` (the 337 rows); `cloud_owed3_counts_2026-10-01.csv`
   (1,257 rows); `cloud_recheck337_tools/` (the scripts and the hand-review list, so the result can be re-run).
+- Copies on Drive: `Claude handoff\reports\cloud_recheck337_2026-10-01\`. The counts CSV is copied there without its
+  file-name column (`..._no-filenames.csv`, the batch 5f convention); the full CSVs are on the GitHub branch.
 
 ---
 
@@ -187,7 +189,7 @@ hand-override), note, evidence (the order call, with its line number in the sour
 3. **5G-A owed 3.** Reversals are common (about 7 in 10 stop strategies can reverse); time exits are rare (about 2–5 %).
    **Recommend:** if the exact re-check is extended, do **reversals first**, not time exits as the 5G-A report
    suggested. This count reverses that order.
-4. **Next-bar-open stops (226 here, plus any among the 5,806 not in this population).** These are unaffected by Y14 (c),
+4. **Next-bar-open stops (226 here).** These are unaffected by Y14 (c),
    but only if the conversion keeps them as close-based exits. **Recommend:** the strategy-authoring contract should
    say that a Pine close-based stop is converted as a close-based exit, never as `sl_stop`. Otherwise it silently joins
    the Y14 (c) population.
