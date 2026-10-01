@@ -96,7 +96,7 @@ rows puts all 1,015 in `intrabar_order`, matching batch 5f.
    `position_size`, or its label names a stop/exit/target), is an inside-the-bar exit whatever its variables are called.
    A `strategy.exit` with no price argument is treated as placing no exit (Pine needs one; not verified by running Pine
    here).
-6. `finalize.py` applies the hand review: 13 overrides with a reason each, the JavaScript review, and the list of
+6. `finalize.py` applies the hand review: 14 overrides with a reason each, the JavaScript review, and the list of
    hand-checked ids.
 
 ### How far to trust it

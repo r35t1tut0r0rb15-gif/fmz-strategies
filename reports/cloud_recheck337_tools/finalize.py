@@ -17,6 +17,7 @@ OVERRIDES = {  # id: (class, stop_kind, reason)
     '380530': ('no_stop_exit', '', "'tp' is a ROC period (best-hour strategy)"),
     '483038': ('no_stop_exit', '', "'sl' is the lowest value of an oscillator (snake line), not a stop"),
     '430850': ('no_stop_exit', '', "'takeProfitLevel' is an RSI-oscillator level; the exit is a signal, not a price target"),
+    '428975': ('stop_and_reverse', 'trailing', 'PB-SAR elastic stop: reverses on the SAR trigger (its TP means trigger price); its strategy.exit calls have no price and do nothing'),
     '438036': ('close_based_stop', 'SL', "unnamed stop level (log midpoint) plotted as 'StopLoss'; exit when close is below it"),
 }
 JS = {  # hand review of the 10 JavaScript files
