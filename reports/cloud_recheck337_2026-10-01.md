@@ -7,8 +7,9 @@
   strategy file was edited.
 - Files added: this report; `cloud_recheck337_2026-10-01.csv` (the 337 rows); `cloud_owed3_counts_2026-10-01.csv`
   (1,257 rows); `cloud_recheck337_tools/` (the scripts and the hand-review list, so the result can be re-run).
-- Copies on Drive: `Claude handoff\reports\cloud_recheck337_2026-10-01\`. The counts CSV is copied there without its
-  file-name column (`..._no-filenames.csv`, the batch 5f convention); the full CSVs are on the GitHub branch.
+- Copies on Drive: `Claude handoff\reports\cloud_recheck337_2026-10-01\`: this report, the 337 CSV without its file
+  and evidence columns (`..._no-filenames.csv`, the batch 5f convention) and the per-strategy counts as a compact ID list
+  (`cloud_owed3_flags_2026-10-01.md`, also in the repo). The full CSVs and the scripts are on the GitHub branch.
 
 ---
 
@@ -126,7 +127,7 @@ exit** (1,015 confirmed + 242 from the 337); 1,248 of them are Pine. Static and 
 | time-based exit, possible | 33 | `barssince(<entry-like signal>)`, often signal timing rather than an exit |
 | **same-bar entry and exit** possible | **1,023** | every strategy with an inside-the-bar exit order can fill entry and stop on one bar. Whether it *does* depends on the data, so it cannot be counted without running. |
 
-Per-file flags are in `cloud_owed3_counts_2026-10-01.csv`. `max_bars_back` (a Pine memory setting) was excluded after
+Per-file flags are in `cloud_owed3_counts_2026-10-01.csv` (ID lists: `cloud_owed3_flags_2026-10-01.md`). `max_bars_back` (a Pine memory setting) was excluded after
 it produced 29 false time-exit matches.
 
 ## 5. The 10 JavaScript files (all hand-read)
