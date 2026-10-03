@@ -1,0 +1,50 @@
+# Original sizing and money-management code, FMZ #42283 (KingKeltner趋势策略_低频)
+# Source: https://www.fmz.com/strategy/42283  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Parameters: trailing stop %, slippage (trailingPrcnt is ported as a signal exit)  [lines 26-30]
+   26: KK_Length  			=	11	   // 计算通道中值的窗口数
+   27: kkDev 				=   1.3    // 计算通道宽度的偏差   
+   28: trailingPrcnt 		=   15    // 移动止损
+   29: LoopInterval  		=   60 	   // 轮询间隔(秒)
+   30: SlidePrice          =	0.3    // 滑动价(元)
+
+## Quantity rounding helper  [lines 31-33]
+   31: function adjustFloat(v) {
+   32:     return Math.floor(v*1000)/1000;
+   33: }
+
+## Minimum balance guard  [lines 75-75]
+   75: var minMoney			= 100;		// 如果资金小于该数值，则不买入
+
+## Entry execution: all-in buy at ticker.Last + SlidePrice, minMoney guard  [lines 104-117]
+  104:         if( account.Stocks <= exchange.GetMinStock() ){
+  105:         	if(LastRecord.Close > kk_Up){
+  106:         		Log("start buy");
+  107:         		var price = ticker.Last + SlidePrice;
+  108: 		        var amount = adjustFloat(account.Balance / price);
+  109: 		        if (account.Balance > minMoney && amount >= exchange.GetMinStock()) {
+  110: 		        	if (exchange.Buy(price, amount, "做多")) {
+  111: 		        		intraTradeHigh = LastRecord.High
+  112:         				intraTradeLow  = LastRecord.Low
+  113: 		        		LastBuyPrice = LastHighPrice = price;
+  114: 		        	}
+  115: 		        } 
+  116:         	}
+  117:         }
+
+## Exit execution: sell all at ticker.Last - SlidePrice (trailing condition ported as signal)  [lines 118-131]
+  118:         else if( exchange.GetMinStock() < account.Stocks ){
+  119:         	Log("Close",LastRecord.Close, "intraTradeHigh",intraTradeHigh ,"intraTradeHigh * ( 1 - trailingPrcnt)",intraTradeHigh * ( 1 - trailingPrcnt/100.0))
+  120:         	intraTradeHigh = Math.max(intraTradeHigh , LastRecord.High)
+  121:         	intraTradeLow  = LastRecord.Low
+  122:         	if(LastRecord.Close < intraTradeHigh * ( 1 - trailingPrcnt/100.0)){	// 移动止损
+  123:         		Log("start sell");
+  124:         		var price = ticker.Last - SlidePrice;
+  125: 		    	var sellAmount = account.Stocks;
+  126: 		    	if (sellAmount > exchange.GetMinStock()) {
+  127: 		    		exchange.Sell(ticker.Last - SlidePrice, sellAmount, "卖出");
+  128: 		    		LastSellPrice = LastLowPrice = price;
+  129: 		    	} 
+  130:         	}
+  131:         }

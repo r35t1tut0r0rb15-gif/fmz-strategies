@@ -1,0 +1,20 @@
+# 数字货币定投
+
+- FMZ id: 54256
+- Source: https://www.fmz.com/strategy/54256 (repository copy: `数字货币定投.md`)
+- Language: python
+- Author: ankye
+- Last modified (FMZ): 2017-09-08 14:43:38
+- Kind: trading strategy/bot
+
+## Why flagged (criterion 3: needs crypto-exchange-only features)
+
+- order book (depth) used
+- multiple exchanges (cross-exchange arbitrage/hedge)
+
+## Other screening notes
+
+- Criterion 1: FAIL - tick/order-level loop with no bar data (no GetRecords/indicators)
+- Duplicate group: none
+
+Not ported. Kept verbatim in `original_source.md` for future crypto-exchange work.

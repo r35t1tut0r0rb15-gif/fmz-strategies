@@ -1,0 +1,73 @@
+# Original sizing and money-management code, FMZ #11604 (RSI_now_sb_ok)
+# Source: https://www.fmz.com/strategy/11604  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Parameter row: order price offset SlidePrice  [lines 21-21]
+   21: |SlidePrice|0.3|下单滑动值|
+
+## Quantity rounding helper  [lines 32-34]
+   32: function adjustFloat(v) {
+   33:     return Math.floor(v*1000)/1000;
+   34: }
+
+## Entry execution: all-in buy / sell-all, SlidePrice offsets, min-stock guard  [lines 112-137]
+  112: 	//执行开仓
+  113:     if (State == STATE_BUY) {
+  114:         var price = ticker.Last + SlidePrice;
+  115:         var amount = adjustFloat(account.Balance / price);
+  116:         if (amount >= exchange.GetMinStock()) {
+  117: 			exchange.Buy(price, amount);
+  118:         }
+  119: 		else
+  120: 		{
+  121:         	// No money, wait sell and log profit
+  122:         	Log("<--- Buy");
+  123:         	State = STATE_WAIT_SELL;
+  124: 			return;
+  125: 		}
+  126:     } else if(State == STATE_SELL) {
+  127:         if (account.Stocks > exchange.GetMinStock()) {
+  128:             exchange.Sell(ticker.Last - SlidePrice, account.Stocks);
+  129:         } 
+  130: 		else 
+  131: 		{
+  132:             // No stocks, wait buy and log profit
+  133:             Log("<--- Sell");
+  134:             State = STATE_WAIT_BUY;
+  135: 			return;
+  136:         }
+  137:     }
+
+## Cover execution: buy back / sell only the stocks traded since entry  [lines 151-182]
+  151: 	//执行平仓
+  152:     if (State == STATE_BUY_COVER) {
+  153:         var price = ticker.Last + SlidePrice;
+  154: 		var stkTB = adjustFloat(EnterAcnt.Stocks - account.Stocks);
+  155: 		var stkCB = adjustFloat(account.Balance / price);
+  156:         var amount = (stkTB < stkCB) ? stkTB : stkCB;
+  157: 		
+  158:         if (amount >= exchange.GetMinStock()) {
+  159: 			exchange.Buy(price, amount);
+  160:         }
+  161: 		else
+  162: 		{
+  163:         	// No money, wait idle and log profit
+  164:         	Log("<--- covers");
+  165:         	LogProfitTotal(InitAccount, account, ticker);
+  166:         	Log(account);
+  167:         	State = STATE_WAIT_IDLE;
+  168: 		}
+  169:     } else if(State == STATE_SELL_COVER) {
+  170:     	var stkS = account.Stocks - EnterAcnt.Stocks;
+  171:         if (stkS > exchange.GetMinStock()) {
+  172:             exchange.Sell(ticker.Last - SlidePrice, stkS);
+  173:         } 
+  174: 		else 
+  175: 		{
+  176:             // No stocks, wait idle and log profit
+  177:             Log("<--- coverb");
+  178:             LogProfitTotal(InitAccount, account, ticker);
+  179:             Log(account);
+  180:             State = STATE_WAIT_IDLE;
+  181:         }
+  182:     }

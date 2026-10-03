@@ -1,0 +1,42 @@
+# Original sizing and money-management code, FMZ #42451 (Ma单均线趋势交易)
+# Source: https://www.fmz.com/strategy/42451  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Parameters: unused trailingPrcnt, slippage  [lines 27-29]
+   27: trailingPrcnt 		=   15    // 移动止损
+   28: LoopInterval  		=   60 	   // 轮询间隔(秒)
+   29: SlidePrice          =	0.3    // 滑动价(元)
+
+## Quantity rounding helper  [lines 30-32]
+   30: function adjustFloat(v) {
+   31:     return Math.floor(v*1000)/1000;
+   32: }
+
+## Minimum balance guard  [lines 72-72]
+   72: var minMoney			= 100;		// 如果资金小于该数值，则不买入
+
+## Entry/exit execution: all-in buy, sell all, SlidePrice offsets  [lines 108-131]
+  108:         if( account.Stocks <= exchange.GetMinStock() ){
+  109:         	if(ma_inc > 1.000001){
+  110: 
+  111:         		var price = ticker.Last + SlidePrice;
+  112: 		        var amount = adjustFloat(account.Balance / price);
+  113: 		        if (account.Balance > minMoney && amount >= exchange.GetMinStock()) {
+  114: 		        	Log("start buy");
+  115: 		        	if (exchange.Buy(price, amount, "做多")) {
+  116: 		        		LastBuyPrice = LastHighPrice = price;
+  117: 		        	}
+  118: 		        } 
+  119:         	}
+  120:         }
+  121:         else if( exchange.GetMinStock() < account.Stocks ){
+  122:         	if(ma_inc < 0.999999){	// 移动止损
+  123:         		var price = ticker.Last - SlidePrice;
+  124: 		    	var sellAmount = account.Stocks;
+  125: 		    	if (sellAmount > exchange.GetMinStock()) {
+  126: 		    		Log("start sell");
+  127: 		    		exchange.Sell(ticker.Last - SlidePrice, sellAmount, "卖出");
+  128: 		    		LastSellPrice = LastLowPrice = price;
+  129: 		    	} 
+  130:         	}
+  131:         }

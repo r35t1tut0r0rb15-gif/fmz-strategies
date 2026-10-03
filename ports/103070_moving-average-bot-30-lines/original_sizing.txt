@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #103070 (简单均线策略Moving-Average-Bot-30-lines)
+# Source: https://www.fmz.com/strategy/103070  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Parameter row: Slippage  [lines 30-30]
+   30: |Slippage|0.1|Slippage|
+
+## Entry execution: 99% of balance at ask + Slippage, min amount 0.1, cancel if pending  [lines 65-73]
+   65:         if (n >= EnterPeriod && NowAccount.Balance > 0) {
+   66:             var Price = _N(ticker.Sell+Slippage, 2);
+   67:             var Amount = _N(0.99*NowAccount.Balance/Price, 3);
+   68:             if(Amount>0.1){
+   69:                var id = exchange.Buy(Price, Amount);
+   70:                if(exchange.GetOrders(id).Status == ORDER_STATE_PENDING){exchange.CancelOrder(id);}
+   71:                LogProfit((NowAccount.Stocks + NowAccount.FrozenStocks)*ticker.Last + NowAccount.Balance + NowAccount.FrozenBalance - InitValue);
+   72:             }
+   73:         }
+
+## Exit execution: sell all stocks at bid - Slippage, min amount 0.1, cancel if pending  [lines 74-82]
+   74:         if(n <= -EnterPeriod && NowAccount.Stocks > 0) {
+   75:             var Price = _N(ticker.Buy-Slippage, 2);
+   76:             var Amount = _N(NowAccount.Stocks, 3);
+   77:             if(Amount>0.1){
+   78:                 var id = exchange.Sell(Price, Amount);
+   79:                 if(exchange.GetOrders(id).Status == ORDER_STATE_PENDING){exchange.CancelOrder(id);}
+   80:                 LogProfit((NowAccount.Stocks + NowAccount.FrozenStocks)*ticker.Last + NowAccount.Balance + NowAccount.FrozenBalance - InitValue);
+   81:             }
+   82:         }

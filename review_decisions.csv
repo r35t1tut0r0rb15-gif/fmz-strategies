@@ -1,0 +1,14 @@
+fmz_id,file,final_outcome,criterion,reason
+179,趋势跟踪震荡策略.md,REJECTED_ON_READING,1,"Entries and exits are a tick-price state machine (ticker.Last vs tick-tracked highs/lows, percent pull-backs); only the EMA regime is bar-based. Cannot be evaluated once per completed bar without changing the rule."
+21104,python版现货数字货币交易类库Python-Version-Spot-Cryptocurrency-Trading-Class-Library.md,REJECTED_ON_READING,1,"Python spot trading class library (template exporting ext.* functions), not a signal strategy."
+21369,均线-趋势_数字货币策略V02.md,REJECTED_ON_READING,1,"Entry needs the consecutive-cross count to shrink while still negative, which only happens through the forming bar's changing values; exit also requires price > entry + 4 currency units (hard-coded price distance)."
+21370,Python-机器学习之-SVM-预测买卖.md,REJECTED_ON_READING,2,Linear SVM trained on raw Open/Close price levels with an absolute 2-unit label threshold: the model is tied to the instrument's price scale. Also predicts the forming bar from its first tick (criterion 1).
+23531,R-Breaker-交易策略.md,REJECTED_ON_READING,1,R-Breaker: entries/exits trigger when the tick price crosses pivot levels inside the bar (intraday level-break fills).
+23874,R-Breaker11-交易策略.md,REJECTED_ON_READING,1,R-Breaker variant: same tick-price pivot level breaks inside the bar as #23531.
+62163,talib简单应用之查找三只乌鸦.md,REJECTED_ON_READING,1,"talib demo: sells once when three black crows appear on the forming bar, then throws; no exit, not a trading strategy."
+11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
+42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
+42451,Ma单均线趋势交易.md,PORTED,,ports/42451_ma/
+55839,一目均衡.md,PORTED,,ports/55839_strategy/
+103070,简单均线策略Moving-Average-Bot-30-lines.md,PORTED,,ports/103070_moving-average-bot-30-lines/
+119038,Paul-The-Gambler-Lévy-Gold-Edition.md,PORTED,,ports/119038_paul-the-gambler-l-vy-gold-edition/

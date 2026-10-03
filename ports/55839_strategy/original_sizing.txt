@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #55839 (一目均衡)
+# Source: https://www.fmz.com/strategy/55839  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Fixed 1-unit market orders at ticker.Last on every signal (units accumulate; no position cap)  [lines 213-230]
+  213:     if (cross(TenkanSenArray, closeArray) && cross(KijunSenArray, closeArray)) {
+  214:         $.PlotFlag(ttime, "Q", "Q", "circlepin", "green");
+  215: 
+  216:         if (absx < CX) {
+  217:             if (close < TenkanSen) {
+  218:                 exchange.Buy(price, 1, "做多");
+  219:             } else {
+  220:                 exchange.Sell(price, 1, "做空");
+  221:             }
+  222:         } else {
+  223:             if (close > TenkanSen) {
+  224:                 exchange.Buy(price, 1, "做多2");
+  225:             } else {
+  226:                 exchange.Sell(price, 1, "做空2");
+  227:             }
+  228:         }
+  229: 
+  230:     }

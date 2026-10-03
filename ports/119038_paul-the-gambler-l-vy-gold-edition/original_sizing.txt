@@ -1,0 +1,155 @@
+# Original sizing and money-management code, FMZ #119038 (Paul-The-Gambler-Lévy-Gold-Edition)
+# Source: https://www.fmz.com/strategy/119038  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Parameters: stop/target distances (ported via stops), start size, risk limit, leverage, contract, multiplier  [lines 23-32]
+   23: |Argument|Default|Description|
+   24: |----|----|----|
+   25: |STOP_LOSS|0.015|止损距离|
+   26: |TAKE_PROFIT|0.03|止盈距离|
+   27: |START_SIZE|true|初始仓位|
+   28: |RISK_LIMIT|1025|最大仓位|
+   29: |LEVERAGE_RATE|20|杠杆大小|
+   30: |CONTRACT_TYPE|this_week|合约类型|
+   31: |DELAY|30|刷新间隔|
+   32: |AMP|2|反向倍数|
+
+## updatePositions: stop-loss / take-profit checks against ticker bid/ask, martingale reverse at AMP x size up to RISK_LIMIT (lines 185-193 are the RSI-slope entry the port uses)  [lines 116-195]
+  116: def updatePositions():
+  117:     global TotalWin
+  118:     global TotalLoss
+  119:     global FullLoss
+  120: 
+  121:     opened = False
+  122: 
+  123:     try:
+  124:         Long = Positions['Long']['Amount']
+  125:         LongEntry = Positions['Long']['Price']
+  126:         Current = Ticker['Sell']
+  127: 
+  128:         StopLoss = LongEntry * (1-STOP_LOSS)
+  129:         TakeProfit = LongEntry * (1+TAKE_PROFIT)
+  130: 
+  131:         if Current > TakeProfit:
+  132:             Risked = True
+  133:             Log('多仓达到预设止盈价位. #0000FF')
+  134:             TotalWin+=1
+  135:             Log('总计止盈次数: ', TotalWin, ' 总计止损次数: ', TotalLoss, ' 完全止损次数: ', FullLoss, ' 持有过的最大仓位: ', MaxPosition, ' 总计开多: ', TotalLongs, ' 总计开空: ', TotalShorts)
+  136:             coverLong(Long, True)
+  137:         if Current < StopLoss:
+  138:             Risked = True
+  139:             Log('多仓达到预设止损价位. #FF0000')
+  140:             TotalLoss+=1
+  141:             Log('总计止盈次数: ', TotalWin, ' 总计止损次数: ', TotalLoss, ' 完全止损次数: ', FullLoss, ' 持有过的最大仓位: ', MaxPosition, ' 总计开多: ', TotalLongs, ' 总计开空: ', TotalShorts)
+  142:             coverLong(Long, True)
+  143:             if Long*AMP < RISK_LIMIT:
+  144:                 openShort(Long*AMP, True)
+  145:             else:
+  146:                 FullLoss+=1
+  147:                 Log('超过允许的最大仓位，停止开仓. #FF0000')
+  148:                 Log('总计止盈次数: ', TotalWin, ' 总计止损次数: ', TotalLoss, ' 完全止损次数: ', FullLoss, ' 持有过的最大仓位: ', MaxPosition, ' 总计开多: ', TotalLongs, ' 总计开空: ', TotalShorts)
+  149: 
+  150:         opened = True
+  151:     except KeyError:
+  152:         pass
+  153: 
+  154:     try:
+  155:         Short = Positions['Short']['Amount']
+  156:         ShortEntry = Positions['Short']['Price']
+  157:         Current = Ticker['Buy']
+  158: 
+  159:         StopLoss = ShortEntry * (1+STOP_LOSS)
+  160:         TakeProfit = ShortEntry * (1-TAKE_PROFIT)
+  161: 
+  162:         if Current < TakeProfit:
+  163:             Risked = True
+  164:             Log('空仓达到预设止盈价位. #0000FF')
+  165:             TotalWin+=1
+  166:             Log('总计止盈次数: ', TotalWin, ' 总计止损次数: ', TotalLoss, ' 完全止损次数: ', FullLoss, ' 持有过的最大仓位: ', MaxPosition, ' 总计开多: ', TotalLongs, ' 总计开空: ', TotalShorts)
+  167:             coverShort(Short, True)
+  168:         if Current > StopLoss:
+  169:             Risked = True
+  170:             Log('空仓达到预设止损价位. #FF0000')
+  171:             TotalLoss+=1
+  172:             Log('总计止盈次数: ', TotalWin, ' 总计止损次数: ', TotalLoss, ' 完全止损次数: ', FullLoss, ' 持有过的最大仓位: ', MaxPosition, ' 总计开多: ', TotalLongs, ' 总计开空: ', TotalShorts)
+  173:             coverShort(Short, True)
+  174:             if Short*AMP < RISK_LIMIT:
+  175:                 openLong(Short*AMP, True)
+  176:             else:
+  177:                 FullLoss+=1
+  178:                 Log('超过允许的最大仓位，停止开仓. #FF0000')
+  179:                 Log('总计止盈次数: ', TotalWin, ' 总计止损次数: ', TotalLoss, ' 完全止损次数: ', FullLoss, ' 持有过的最大仓位: ', MaxPosition, ' 总计开多: ', TotalLongs, ' 总计开空: ', TotalShorts)
+  180: 
+  181:         opened = True
+  182:     except KeyError:
+  183:         pass
+  184: 
+  185:     if not opened:
+  186:         Log('还没开仓，随便开个仓位.')
+  187:         RSI = talib.RSI(getTAFormat(Records), timeperiod=14)
+  188:         if RSI[-2]<RSI[-1]:
+  189:             Log('RSI14: ', RSI[-1],' 正在开多.')
+  190:             openLong(START_SIZE, True)
+  191:         else:
+  192:             Log('RSI14: ', RSI[-1],' 正在开空.')
+  193:             openShort(START_SIZE, True)
+  194: 
+  195:     return True
+
+## Order helpers: floor amounts, +/-1% marketable limit prices, futures direction  [lines 197-247]
+  197: def openLong(Amount=0, marketPrice=False):
+  198:     global TotalLongs
+  199: 
+  200:     Amount = floor(Amount)
+  201: 
+  202:     TotalLongs+=Amount
+  203: 
+  204:     exchange.SetDirection('buy')
+  205: 
+  206:     if marketPrice:
+  207:         exchange.Buy(Ticker['Sell']*1.01, Amount)
+  208:     else:
+  209:         exchange.Buy(Ticker['Sell'], Amount)
+  210: 
+  211:     return True
+  212: 
+  213: def coverLong(Amount=0, marketPrice=False):
+  214:     exchange.SetDirection('closebuy')
+  215: 
+  216:     if marketPrice:
+  217:         exchange.Sell(Ticker['Buy']*0.99, Amount)
+  218:     else:
+  219:         exchange.Sell(Ticker['Buy'], Amount)
+  220: 
+  221:     return True
+  222: 
+  223: def openShort(Amount=0, marketPrice=False):
+  224:     global TotalShorts
+  225: 
+  226:     Amount = floor(Amount)
+  227: 
+  228:     TotalShorts+=Amount
+  229: 
+  230:     exchange.SetDirection('sell')
+  231: 
+  232:     if marketPrice:
+  233:         exchange.Sell(Ticker['Buy']*0.99, Amount)
+  234:     else:
+  235:         exchange.Sell(Ticker['Buy'], Amount)
+  236: 
+  237:     return True
+  238: 
+  239: def coverShort(Amount=0, marketPrice=False):
+  240:     exchange.SetDirection('closesell')
+  241: 
+  242:     if marketPrice:
+  243:         exchange.Buy(Ticker['Sell']*1.01, Amount)
+  244:     else:
+  245:         exchange.Buy(Ticker['Sell'], Amount)
+  246: 
+  247:     return True
+
+## Contract type and leverage set-up  [lines 257-259]
+  257: def main():
+  258:     exchange.SetContractType(CONTRACT_TYPE)
+  259:     exchange.SetMarginLevel(LEVERAGE_RATE)

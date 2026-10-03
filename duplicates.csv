@@ -1,0 +1,270 @@
+representative_id,representative_file,lang,n_members,collapsed_ids,collapsed_files,max_jaccard_per_collapsed
+86,统计各个平台间的最大差价by-JackConan.md,javascript,2,98,每1分钟统计各个平台间的差价by-JackConan.md,98:0.81
+236,冰山委托-买入.md,javascript,2,103319,Iceberg-Buy-Order.md,103319:0.90
+629,网格变形策略之单边网格.md,javascript,2,311968,网格变形策略之单边网格-注释.md,311968:0.96
+2406,单点狙击高频加仓自动反手解套算法-V12.md,javascript,2,9929,破冰者.md,9929:0.81
+12101,Dual-Thrust-OKCoin-期货.md,javascript,2,103247,Dual-Thrust-OKEX-Feature.md,103247:0.99
+20663,策略框架.md,javascript,2,28128,测试-布林带策略基于策略框架.md,28128:0.89
+34388,移植-OKCoin-韭菜收割机.md,javascript,2,124178,移植-OKCoin-韭菜收割机-注释.md,124178:1.00
+113618,动态平衡-做市策略.md,javascript,2,114044,动态平衡-做市策略-小高.md,114044:1.00
+116012,指数平衡策略Index-Balance-Bot.md,javascript,2,120581,指数均衡策略-教学.md,120581:0.82
+178347,1btc起fmex多头解锁策略后市看多.md,javascript,2,178417,1btc起Fmex空头解锁策略后市看空.md,178417:0.98
+178712,Bit-Maker-30-套利-智能学习-USDT-本位-Binance-单平台-Arbitrage-USDT-Standard.md,javascript,2,236644,SuperHunter-智能学习-多账户合并展示版.md,236644:0.88
+270012,数字货币合约简易跟单机器人.md,javascript,2,423776,跟单机器人V10要求相同交易所可多用户跟单可设定跟单倍数.md,423776:0.80
+322060,币安合约网格-基础版本-001.md,python,2,322284,币安合约网格-002v.md,322284:0.83
+345080,趋势马丁网格ver100策略仅供学习参考.md,javascript,2,348791,币安多产品趋势马丁与逆势马丁策略分享.md,348791:0.91
+353603,简单马丁格尔多空交易策略.md,javascript,2,353904,魔改马丁双向持仓.md,353904:0.80
+361629,Bollinger-Bands-Strategy.md,PineScript,2,439066,基于布林带的智能追踪交易策略Bollinger-Bands-Based-Intelligent-Tracking-Trading-Strategy.md,439066:0.94
+361661,Bollinger-RSI-Double-Strategy-v11.md,PineScript,3,434670;436643,BollingerRSI双重策略仅多头v12Bollinger-RSI-Double-Strategy-Long-Only-v12.md | Bollinger带通道-RSI双线策略Bollinger-Band-RSI-Dual-Line-Strategy.md,434670:0.80;436643:0.87
+361725,MA-Emperor-insiliconot.md,PineScript,3,426939;435093,移动平均线交叉趋势追踪策略Moving-Average-Crossover-Trend-Following-Strategy.md | 移动平均交叉双向交易策略Moving-Average-Crossover-Strategy-for-Two-way-Trading.md,426939:0.98;435093:0.98
+361786,MilleMachine.md,PineScript,3,432079;437030,趋势反转跟踪止损策略Trend-Reversal-Tracking-Stop-Loss-Strategy.md | 运用Hull移动平均线均势跟踪策略Momentum-Tracking-Strategy.md,432079:1.00;437030:1.00
+361880,Triple-Supertrend-with-EMA-and-ADX.md,PineScript,2,427121,三重超趋势EMA-ADX过滤策略Triple-Supertrend-with-EMA-and-ADX-Strategy.md,427121:0.86
+361966,Buy-Sell-Strat.md,PineScript,2,433566,双EMA黄金交叉突破策略Dual-EMA-Crossover-Breakout-Strategy.md,433566:0.85
+361969,QQE-MOD-SSL-Hybrid-Waddah-Attar-Explosion.md,PineScript,2,439109,融合多重指标的情绪驱动突破策略Triple-Indicators-Sentiment-Driven-Breakout-Strategy.md,439109:0.96
+362022,EMA-bands-leledc-bollinger-bands-trend-catching-strategy.md,PineScript,2,434180,基于EMALeledc和布林带的趋势跟踪策略EMA-bands-Leledc-Bollinger-bands-trend-following-strategy.md,434180:0.98
+362031,Chande-Kroll-Stop.md,PineScript,2,431251,基于Chande-Kroll止损与ADX过滤的趋势跟踪策略ADX-Filtered-Chande-Kroll-Stop-Loss-Trend-Following-Strategy.md,431251:0.86
+362055,Big-Snapper-Alerts-R30-Chaiking-Volatility-condition-TP-RSI.md,PineScript,2,441066,双重MA指标震荡价格追踪策略Dual-MA-Indicator-Oscillating-Price-Tracking-Strategy.md,441066:0.98
+362059,Best-TradingView-Strategy.md,PineScript,2,430177,多重指标的量化交易策略Quantitative-Trading-Strategy-Based-on-Multiple-Indicators.md,430177:0.98
+362168,MTF-RSI-STOCH-Strategy.md,PineScript,2,442396,多时间框架RSI与随机指标策略Multi-Timeframe-RSI-and-Stochastics-Strategy.md,442396:0.88
+362210,MA-HYBRID-BY-RAJ.md,PineScript,3,363851;391080,SSL-Hybrid.md | SSL-Hybrid-STOCH-RSI.md,363851:1.00;391080:0.88
+362418,Smaller-Fractals-Transparency.md,PineScript,2,442255,基于峰峰形态的交易策略Peak-to-Peak-Pattern-Based-Trading-Strategy.md,442255:0.81
+362638,Combo-2-20-EMA-Bandpass-Filter.md,PineScript,2,439042,基于双EMA和带通滤波器的组合交易策略Combination-Trading-Strategy-Based-on-Dual-EMA-and-Bandpass-Filter.md,439042:0.86
+362671,Moon-Launch-Alerts-Template-Indicator.md,PineScript,2,363756,ML-Alerts-Template.md,363756:0.97
+362842,SSS.md,PineScript,2,435866,坚如磐石的VIP量化策略The-Solid-as-a-Rock-VIP-Quant-Strategy.md,435866:0.82
+362845,SAR-3SMMA-with-SL-TP.md,PineScript,2,431495,SAR动态追踪突破三均线策略Parabolic-SAR-Dynamic-Breakout-Triple-SMMA-Strategy.md,431495:0.91
+362920,Villa-Dinamic-Pivot-Supertrend-Strategy.md,PineScript,2,430145,布林带和RSI指标组合策略Bollinger-Bands-and-RSI-indicators-strategy.md,430145:0.94
+363001,Trading-the-Equity-Curve-Position-Sizing-Example.md,PineScript,2,438939,基于资金曲线的仓位管理策略Dynamic-Position-Sizing-Strategy-Based-on-Equity-Curve.md,438939:0.88
+363572,OCC-Strategy-R51.md,PineScript,2,435254,双均线交叉点位策略Open-Close-Cross-Point-Strategy.md,435254:0.81
+363588,Fukuiz-Octa-EMA-Ichimoku.md,PineScript,2,434982,Octa-EMA与Ichimoku云图量化交易策略Octa-EMA-and-Ichimoku-Cloud-Quantitative-Trading-Strategy.md,434982:0.85
+363822,VuManChu-Cipher-B-Divergences-Strategy.md,PineScript,2,438943,基于乖离率指标优化的波动跟踪策略WaveTrend-and-DER-Based-Swing-Trading-Strategy.md,438943:0.98
+364518,BuySell-Strategy-depends-on-AOStochRSIATR.md,PineScript,4,380330;380337;429567,BuySell-Strategy-depends-on-AOStochRSIATR-by-SerdarYILMAZ.md | BuySell-Strategy-depends-on-AOStochRSIATR-by-SerdarYILMAZ-SerdarYILMAZ.md | 多指标买卖策略Multi-Indicator-Buy-and-Sell-Strategy.md,380330:0.92;380337:1.00;429567:1.00
+365028,QQE-signals.md,PineScript,2,452613,基于QQE指标和RSI指标的多空信号策略-QQE-and-RSI-based-Long-Short-Signal-Strategy.md,452613:0.83
+365088,SUPERTREND-ATR-WITH-TRAILING-STOP-LOSS.md,PineScript,2,433556,基于ATR和追踪止损的超级趋势策略SuperTrend-Strategy-with-Trailing-Stop-Loss.md,433556:0.98
+365283,MACD-ReLoaded-STRATEGY.md,PineScript,2,435290,量价平衡移动平均线策略Volume-Weighted-Moving-Average-Convergence-Divergence.md,435290:0.98
+365373,Super-Scalper-5-Min-15-Min.md,PineScript,4,442079;442083;442547,金森一分钟震荡策略Gem-Forest-One-Minute-Scalping-Strategy.md | 黄金森林1分钟突破策略Gem-Forest-1-Minute-Breakout-Strategy.md | 基于RSI金叉超级做空策略RSI-Golden-Cross-Short-Strategy.md,442079:0.97;442083:0.88;442547:0.88
+365600,BEST-Engulfing-Breakout-Strategy.md,PineScript,2,440459,动量突破与吞噬模型算法交易策略Momentum-Breakout-and-Engulfing-Pattern-Algorithmic-Trading-Strategy.md,440459:0.95
+365668,Swing-Hull-rsi-EMA-Strategy.md,PineScript,2,440702,双移动平均线和RSI指标的多空交叉策略Swing-Dual-Moving-Average-and-RSI-Crossover-Strategy.md,440702:0.98
+365671,Stochastic-RSI-Double-Strategy.md,PineScript,2,436762,双重策略组合-随机慢速指标与相对强弱指标Double-Strategy-Combination-Stochastic-Slow-and-Relative-Strength-Index.md,436762:1.00
+365691,Profit-Maximizer-PMax.md,PineScript,2,426590,基于PMax指标的趋势跟踪策略Trend-Following-Strategy-Based-on-PMax-Indicator.md,426590:0.86
+365727,Hull-Suite-Strategy.md,PineScript,2,434954,双向霍尔移动平均线交易策略Dual-Hull-Moving-Average-Trading-Strategy.md,434954:0.84
+365859,Range-Filter-Buy-and-Sell.md,PineScript,3,368724;427523,Range-Filter-Buy-and-Sell-5min-Strategy.md | 范围过滤买卖短线交易策略Range-Filter-Breakout-Short-term-Trading-Strategy.md,368724:0.90;427523:0.98
+365884,Hull-Moving-Average-Swing-Trader.md,PineScript,2,428614,Hull移动平均振荡交易策略Hull-Moving-Average-Swing-Trading-Strategy.md,428614:0.97
+365892,Super-Trend-Daily-20-BF.md,PineScript,2,426602,可配置化双向超趋策略Configurable-Dual-direction-Supertrend-Strategy.md,426602:0.92
+366419,SuperB.md,PineScript,2,435238,趋势追踪型RafaelZioni动量策略RafaelZioni-Momentum-Trend-Following-Strategy.md,435238:0.85
+366430,blackcat-L2-Reversal-Labels-Strategy.md,PineScript,2,434528,MACD指标底部反转预警策略-MACD-Indicator-Bottom-Reversal-Early-Warning-Strategy.md,434528:1.00
+366538,Low-Scanner-strategy-crypto.md,PineScript,2,434671,智能量化低点反转策略Smart-Quantitative-Bottom-Reversal-Trading-Strategy.md,434671:0.88
+366931,Support-Resistance-breakout.md,PineScript,2,436641,动态支持阻力突破趋势策略Dynamic-Support-Resistance-Breakout-Trend-Strategy.md,436641:1.00
+376193,饥饿者.md,PineScript,2,437389,自适应止损轨道策略Adaptive-Stop-Loss-Rail-Strategy.md,437389:0.94
+377541,AlphaTrend-Strategy.md,PineScript,3,426357;440836,AlphaTrend-Adaptive-ATR-Channel-Breakout-Strategy.md | AlphaTrend双向跟踪策略AlphaTrend-Dual-Tracking-Strategy.md,426357:0.94;440836:0.82
+379174,TradingView策略信号下单机器人-币安版.md,javascript,2,379536,TradingView策略信号下单机器人-欧易版.md,379536:0.94
+380250,Arnaud-Legoux-Moving-Average-Cross-ALMA.md,PineScript,2,427669,ALMA均线交叉策略ALMA-Crossover-Strategy.md,427669:0.95
+380251,EMA-SCALPEUR-RSi-SHORT.md,PineScript,2,426802,多均线移动RSI策略Multi-EMA-Moving-RSI-Strategy.md,426802:1.00
+380291,EMA-2155200.md,PineScript,2,435952,基于RSI和EMA的趋势突破策略RSI-EMA-Trend-Breakout-Strategy.md,435952:0.85
+380402,Alert-alertcondition-or-strategy-alerts.md,PineScript,2,428050,基于Stochastic指标的弹性止损短期交易策略Short-term-Trading-Strategy-Based-on-Stochastic-Indicator-with-Elastic-Stop-Loss.md,428050:0.91
+380446,BTC-bot.md,PineScript,2,429563,多级分批止盈BTC机器人交易策略Multi-level-Batch-Take-Profit-BTC-Robot-Trading-Strategy.md,429563:0.85
+380530,Trade-Hour-V3.md,PineScript,2,427263,交易黄金时段策略Golden-Trade-Hour-Strategy.md,427263:1.00
+392048,TradingView信号执行策略21教学.md,javascript,2,413340,TradingView信号执行策略2教学-Copy.md,413340:0.92
+392636,MACD-Strategy.md,PineScript,2,431237,MACD均线交叉趋势追踪止损策略MACD-Moving-Average-Crossover-Trend-Following-Strategy-with-Trailing-Stop-Loss.md,431237:0.82
+405725,价格振幅均线-3年33万倍收益.md,javascript,2,424959,收藏价格振幅均线-3年33万倍收益.md,424959:1.00
+425773,EMA-Cross-JC-Intraday-with-Trailing-SL.md,PineScript,2,425776,MA-CROSSOVER.md,425776:0.91
+426047,VWMA-SMA-Bollinger-Bands-RSI-Strategy-Analyzing-Price-and-Volume-Correlation.md,PineScript,3,438780;439640,量化交易双重指标策略Quantitative-Trading-Dual-Indicator-Strategy.md | 动量顺势双策略Momentum-Trend-Dual-Strategy.md,438780:0.84;439640:0.84
+426361,Composite-Entry-Signal-RSI-Trading-Strategy.md,PineScript,3,427929;440880,CMARSI交易策略CMARSI-Trading-Strategy.md | 基于均线叠加RSI策略CRSI-Moving-Average-Strategy.md,427929:0.89;440880:0.88
+426390,MACD-and-SMA-200-Combo-Strategy.md,PineScript,2,436899,双均线紧缩趋势追踪策略Dual-Moving-Average-Convergence-Trend-Tracking-Strategy.md,436899:0.93
+426461,Noros-Fast-RSI-Breakthrough-Strategy.md,PineScript,2,433396,针对加密货币的快速RSI跳空策略Fast-RSI-Gap-Trading-Strategy-for-Cryptocurrencies.md,433396:0.85
+426464,Consecutive-Up-Down-N-Days-Strategy.md,PineScript,2,438044,基于K线形态的高频套利策略Up-Down-K-Line-Pattern-High-Frequency-Arbitrage-Strategy.md,438044:0.87
+426477,Multi-Indicator-Convergence-Trading-Strategy.md,PineScript,2,430127,多因子动量轮动策略Multi-factor-Momentum-Rotation-Strategy.md,430127:0.88
+426498,多因子组合交易策略Multi-factor-Combined-Trading-Strategy.md,PineScript,2,432762,反转强势策略-Elder-Ray-Bull-Power-Combo-Strategy.md,432762:0.95
+426511,周一买入周三止盈策略Buy-Monday-Sell-Wednesday-Trading-Strategy.md,PineScript,2,427270,周一买入周二止损止盈策略Buy-Monday-Sell-Tuesday-with-Stop-Loss-Take-Profit-Strategy.md,427270:0.82
+426514,布林带通道突破交易策略Bollinger-Band-Channel-Breakout-Trading-Strategy.md,PineScript,3,430115;436883,均线穿越波动带策略Mean-Reversion-Bollinger-Bands-Strategy.md | 基于布林带的量化交易策略Bollinger-Bands-Based-Quantitative-Trading-Strategy.md,430115:0.90;436883:0.89
+426521,快慢EMA交叉追踪策略Fast-and-Slow-EMA-Crossover-Trend-Trading-Strategy.md,PineScript,2,430973,基于13和48周期EMA的趋势跟踪策略EMA-13-48-Trend-Following-Strategy.md,430973:1.00
+426610,基于三重指数移动平均和线性回归的趋势跟踪策略Trend-Following-Strategy-Based-on-Triple-EMA-and-Linear-Regression.md,PineScript,2,432889,双趋势均线智能追踪投资策略Dual-Trend-Lines-Intelligent-Tracking-BTC-Investment-Strategy.md,432889:0.93
+426772,唐奇安通道突破策略Donchian-Channel-Breakout-Strategy.md,PineScript,2,440321,唐奇安通道突破趋势跟踪策略Donchian-Channel-Breakout-Strategy.md,440321:0.92
+426838,组合简单移动平均线与自适应移动平均线的策略Combining-Simple-Moving-Average-and-Adaptive-Moving-Average-Strategy.md,PineScript,2,439763,并联移动平均线与无限脉冲响应均线策略Combined-Moving-Average-and-Infinite-Impulse-Response-Line-Strategy.md,439763:0.93
+426842,多指标组合的短线量化交易策略Multi-Indicator-Short-Term-Algorithmic-Trading-Strategy.md,PineScript,3,437555;437763,均线叉趋势追踪策略Crossing-Moving-Average-Trend-Tracking-Strategy.md | Ichimoku云带量化交易策略Ichimoku-Cloud-Quantitative-Trading-Strategy.md,437555:0.85;437763:0.85
+426889,基于多指标的数字货币量化策略Multi-Indicator-Quantitative-Strategy-for-Cryptocurrencies.md,PineScript,2,431957,动量价格趋势跟踪策略Momentum-Price-Trend-Tracking-Strategy.md,431957:0.92
+427062,朗格安德逆转策略Langande-Reversal-Strategy.md,PineScript,5,427377;427907;432366;435465,基于支点反转的交易策略Pivot-Point-Reversal-Trading-Strategy.md | 轴心支撑压力反转策略Pivot-Reversal-Strategy.md | 双向突破反转策略Bidirectional-Breakout-Reversal-Strategy.md | 枢轴反转K线策略Pivot-Reversal-Candlestick-Strategy.md,427377:0.86;427907:0.82;432366:0.92;435465:0.92
+427066,日线收盘价对比策略Daily-Close-Price-Comparison-Strategy.md,PineScript,2,428082,基于收盘价差异的短线交易策略Closing-Price-Difference-Based-Short-term-Trading-Strategy.md,428082:1.00
+427120,Noro波带趋势跟踪策略Noro-Bands-Trend-Following-Strategy.md,PineScript,3,435898;438037,双轨快速量化反转交易策略Dual-Track-Fast-Quantitative-Reversal-Trading-Strategy.md | 双重均线震荡突破策略Dual-Moving-Average-Oscillation-Breakout-Strategy.md,435898:0.89;438037:0.85
+427123,动量震荡带RSI交易策略Momentum-Oscillator-Bollinger-Band-RSI-Trading-Strategy.md,PineScript,2,444357,基于布林带和RSI的多头摆动交易策略Bullish-Swing-Trading-Strategy-Based-on-Bollinger-Bands-and-RSI.md,444357:0.88
+427142,移动均线布林带融合交易策略Moving-Average-Bollinger-Band-Fusion-Trading-Strategy.md,PineScript,2,434978,均线双边振荡交易策略Oscillation-Trading-Strategy-Between-Moving-Averages.md,434978:0.95
+427164,移动均线交叉策略Moving-Average-Crossover-Strategy.md,PineScript,2,437546,移动平均交叉系统Moving-Average-Crossover-System.md,437546:0.97
+427183,正成交量指数策略Positive-Volume-Index-Strategy.md,PineScript,2,436111,量化策略之负量指标反转策略Quantitative-Strategy-of-Negative-Volume-Index-Reversal.md,436111:0.90
+427185,动量指标破位交易策略Momentum-Breakout-Trading-Strategy.md,PineScript,2,439225,单边趋势震荡突破策略Single-Side-Trend-Shock-Breakout-Strategy.md,439225:0.86
+427260,基于自适应移动平均线和趋势突破的交易策略Trend-Breakout-Strategy-Based-on-Adaptive-MA-and-Trendlines.md,PineScript,2,430051,月度趋势突破策略Monthly-Trend-Breakout-Strategy.md,430051:0.94
+427290,双EMA跨度交易策略Dual-EMA-Crossover-Trading-Strategy.md,PineScript,2,430132,双EMA跨度突破策略Dual-EMA-Spread-Breakout-Strategy.md,430132:1.00
+427353,基于9日EMA的突破回调交易策略9-day-EMA-Breakout-Pullback-Trading-Strategy.md,PineScript,2,429463,威廉姆斯9日趋势突破策略Williams-9-Days-Breakout-Strategy.md,429463:0.88
+427467,平滑RSI回测策略V2Smoothed-RSI-Backtesting-Strategy-V2.md,PineScript,2,427880,基于较平滑RSI指标的交易策略Smoothed-RSI-Trading-Strategy-Based-on-Improved-RSI-Indicator.md,427880:0.80
+427511,RSI-的-MACD-交易策略MACD-of-RSI-Trading-Strategy.md,PineScript,2,436487,MACD-histogram策略MACD-Histogram-Strategy-of-RSI.md,436487:1.00
+427731,多重指标辅助策略Multi-indicator-Assisted-Strategy.md,PineScript,2,433095,均线三剑客量化交易策略Triple-Moving-Average-Quantitative-Trading-Strategy.md,433095:0.95
+427732,超级趋势追踪策略SuperTrend-Trend-Following-Strategy.md,PineScript,2,430038,跟踪超趋势策略Following-the-Supertrend-Strategy.md,430038:0.92
+427877,动量策略Momentum-Strategy.md,PineScript,2,432349,双动量指标突破策略Dual-Momentum-Breakout-Strategy.md,432349:0.81
+427892,超跌RSI追涨策略Oversold-RSI-Breakout-Strategy.md,PineScript,2,436250,反转突破RSI超卖策略Reversal-Breakout-Oversold-RSI-Strategy.md,436250:0.93
+427925,ATR跟踪止损策略ATR-Trailing-Stop-Strategy.md,PineScript,3,428064;442844,ATR趋势追踪策略ATR-Trend-Following-Strategy.md | 均线黄金分割放大ATR突破策略Average-True-Range-Breakout-Strategy-with-Golden-Ratio.md,428064:0.87;442844:0.90
+428058,九日均线和二十日均线交叉策略Nine-and-Twenty-Moving-Average-Crossover-Strategy.md,PineScript,2,431222,双均线交叉多空策略Dual-Moving-Average-Crossover-Trend-Trading-Strategy.md,431222:0.82
+428084,移动平均线穿越策略Moving-Average-Crossover-Strategy.md,PineScript,2,433446,移动平均线交叉交易策略Moving-Average-Crossover-Trading-Strategy.md,433446:1.00
+428088,Williams-VIX修复策略Williams-VIX-Fix-Strategy.md,PineScript,3,428627;434524,双重策略RSI与随机指标组合策略Dual-Strategy-Combining-RSI-and-Stochastic-Oscillator.md | 双重指标买入过滤买入信号策略Dual-Indicator-Filtered-Buy-Signal-Strategy.md,428627:0.98;434524:0.91
+428098,基于CCI零位的趋势追踪策略CCI-Zero-Crossing-Trend-Following-Strategy.md,PineScript,2,434612,CCI零点反转交易策略CCI-Zero-Cross-Trading-Strategy.md,434612:0.82
+428578,EMA增强超级趋势策略EMA-Enhanced-SuperTrend-Strategy.md,PineScript,4,428613;432355;433944,双移动均线策略Dual-Moving-Average-Crossover-Strategy.md | 双向MA追踪止损策略Dual-Moving-Average-Tracking-Stop-Loss-Strategy.md | 超趋势均线BOLL指标策略Supertrend-Bollinger-Bands-Strategy.md,428613:1.00;432355:1.00;433944:0.95
+428581,MACD真级别策略MACD-TrueLevel-Strategy.md,PineScript,2,431501,RSI真实区域突破策略RSI-True-Level-Breakout-Strategy.md,431501:0.85
+428630,双随机动能指标筛选策略Stochastic-Momentum-Dual-Indicators-Strategy.md,PineScript,3,433007;439602,个性化动量交易策略Personalized-Momentum-Trading-Strategy.md | 相对强弱指标的量化交易策略Stochastic-Momentum-Strategy.md,433007:0.96;439602:0.96
+428681,SMA-和-RSI-组合交易策略SMA-and-RSI-Combination-Trading-Strategy.md,PineScript,2,428682,基于SMA和RSI的短线双重过滤策略SMA-RSI-Double-Filter-Short-term-Trading-Strategy.md,428682:0.90
+428695,追踪昨日高点策略Yesterdays-High-Breakout-Trend-Following-Strategy.md,PineScript,2,431225,突破昨日最高价策略Yesterdays-High-Breakout-Strategy.md,431225:0.98
+428756,blackcat-L1-MartinGale-Scalping-Strategy.md,PineScript,2,433071,动态均线回撤马丁策略Dynamic-Moving-Average-Retracement-Martin-Strategy.md,433071:0.83
+428790,动量顺势突破策略A-Momentum-Breakout-Strategy.md,PineScript,3,430054;437664,基于卡马利拉通道的突破策略Breakout-Strategy-Based-on-Camarilla-Channels.md | Camarilla支撑阻力层突破策略Camarilla-Pivot-Breakout-Strategy.md,430054:0.84;437664:0.97
+428799,RSI与SMA组合交易策略RSI-and-SMA-Combination-Trading-Strategy.md,PineScript,2,437631,RSI和SMA交叉策略RSI-and-SMA-Crossover-Strategy.md,437631:0.91
+428811,双重均线与MACD组合短线策略Dual-Moving-Average-and-MACD-Combination-Short-term-Trading-Strategy.md,PineScript,2,440083,平滑移动平均策略组合优化Price-EMA-with-stochastic-optimization-based-on-machine-learning.md,440083:0.94
+428854,趋势跟踪移动止损均线策略Trend-Following-Moving-Stop-Loss-MA-Strategy.md,PineScript,2,430128,RSI双轨震荡线长短双向交易策略RSI-Dual-rail-Oscillation-Line-Long-and-Short-Bi-directional-Trading-Strategy.md,430128:0.98
+428985,摆动交易策略Swing-Trading-Strategy.md,PineScript,2,433915,趋势过滤移动均线交叉量化策略-Trend-Filter-Moving-Average-Crossover-Quantitative-Strategy.md,433915:0.84
+429163,海洋理论网格交易策略Ocean-Theory-Grid-Trading-Strategy.md,PineScript,10,438937;439343;439698;440716;440879;442332;445440;445838;446336,自适应智能网格交易策略Adaptive-Intelligent-Grid-Trading-Strategy.md | 基于网格交易的自适应加密货币套利策略Adaptive-Cryptocurrency-Grid-Trading-Strategy-Based-on-Arbitrage.md | 基于动态网格交易策略Dynamic-Grid-Trading-Strategy.md | 双向网格K线追踪交易策略Grid-Trading-Strategy-Based-on-Real-time-K-line-Tracking.md | 主动自适应量化网格交易策略Self-adaptive-Quant-Grid-Trading-Strategy.md | 基于量化交易平台的自适应网格交易策略Adaptive-Grid-Trading-Strategy-Based-on-Quantitative-Trading-Platform.md | 基于多空自适应动态网格策略A-Long-Short-Adaptive-Dynamic-Grid-Strategy-Based.md | 动态网格趋势追踪量化交易策略Dynamic-Grid-Trend-Following-Quantitative-Trading-Strategy.md | 网格交易风险对冲策略Grid-Trading-Risk-Hedging-Strategy.md,438937:1.00;439343:1.00;439698:1.00;440716:1.00;440879:1.00;442332:1.00;445440:0.92;445838:1.00;446336:1.00
+429688,多时间框架交替Parabolic-SAR策略Alternating-Timeframe-Parabolic-SAR-Strategy.md,PineScript,2,438932,SAR交替时间框架交易策略SAR-Alternating-Timeframe-Trading-Strategy.md,438932:0.89
+429948,多因子动量和反转组合策略Momentum-Reversal-Combo-Strategy.md,PineScript,2,431275,双向反转与动量均线策略Bidirectional-Reversal-and-Momentum-Moving-Average-Strategy.md,431275:0.80
+429969,三重模式震荡交易策略Triple-Pattern-Oscillation-Trading-Strategy.md,PineScript,3,440092;443240,坚如磐石的趋势追踪策略Solid-Trend-Following-Strategy.md | 双向追踪止损移动平均趋势策略Dual-directional-Trailing-Stop-Moving-Average-Trend-Strategy.md,440092:0.85;443240:0.89
+430011,均线穿越多空策略Trend-Following-Strategy-Based-on-Moving-Average-Crossover.md,PineScript,4,435941;440311;440693,多种技术指标相结合策略Universal-Sniper-Strategy.md | 开箱即用的机器学习交易策略Out-of-the-box-Machine-Learning-Trading-Strategy.md | 耐心剖析K线蕴含宝贵信息的三重均线波段策略The-Triple-Moving-Average-Channel-Strategy-for-Patiently-Mining-Valuable-Information-from-Candlestick-Lines.md,435941:1.00;440311:0.94;440693:1.00
+430040,追踪移动均线交易策略Moving-Average-Tracking-Trading-Strategy.md,PineScript,2,430121,均线交叉和MACD过滤的海因阿修蜡烛策略V3Heiken-Ashi-Moving-Average-Crossover-Strategy-with-MACD-Filter-V3.md,430121:1.00
+430044,基于RSI极值与SMA均线过滤的趋势跟踪策略A-Trend-Following-Strategy.md,PineScript,2,435127,基于RSI指标和200日SMA滤波器的间接强度指数策略Indirect-Strength-Index-Strategy-Based-on-RSI-Indicator-and-200-day-SMA-Filter.md,435127:0.93
+430130,反向突破交易策略Contrarian-Breakout-Trading-Strategy.md,PineScript,2,432806,反向K线突破短线交易策略Reversal-Short-term-Breakout-Trading-Strategy.md,432806:0.83
+430383,多时间框架买入价格下跌策略Multi-Timeframe-Buy-the-Dip-Strategy.md,PineScript,3,436600;440446,简单低买高卖策略Simple-Buy-Low-Sell-High-Strategy.md | 牛市回调短线策略Scalping-Dips-in-Bull-Market-Strategy.md,436600:0.83;440446:0.83
+430555,动量反转组合策略Momentum-Reversal-Combo-Strategy.md,PineScript,2,440511,双机制动态趋势追踪策略Dual-Mechanism-Dynamic-Trend-Tracking-Strategy.md,440511:0.85
+430585,特斯拉超趋势策略Tesla-Supertrend-Strategy.md,PineScript,4,436541;439762;440876,基于双均线追踪策略Dual-Moving-Average-Tracking-Strategy.md | 基于超趋势指标的多空自动交易策略Supertrend-Tracking-Strategy.md | Supertrend-Bitcoin长线策略Supertrend-Bitcoin-Long-Line-Strategy.md,436541:1.00;439762:0.89;440876:1.00
+430693,价格通道趋势跟踪策略trend-following-strategy-based-on-Donchian-Channels.md,PineScript,2,437799,双通道突破Turtle策略Double-Channel-Breakthrough-Turtle-Strategy.md,437799:1.00
+430740,超越指标动量系统交易策略SMI-Ergodic-Oscillator-Momentum-Trading-Strategy.md,PineScript,2,432119,双移动均线趋势跟踪策略Dual-Moving-Average-Trend-Following-Strategy.md,432119:0.92
+430757,动量跟随的Schaff趋势循环策略Schaff-Trend-Cycle-Momentum-Following-Strategy.md,PineScript,2,440703,基于MACD与随机指标的加密货币交易策略Cryptocurrency-Trading-Strategy-Based-on-MACD-and-Stochastic-Indicators.md,440703:0.84
+430773,黄金交叉追涨杀跌策略Golden-Cross-Trend-Following-Strategy.md,PineScript,2,435513,金叉死叉趋势追踪策略Golden-Dead-Cross-Trend-Tracking-Strategy.md,435513:0.91
+430876,海因阿修与超级趋势策略Heiken-Ashi-and-Super-Trend-Strategy.md,PineScript,2,435475,Heiken-Ashi与超级趋势组合策略Heiken-Ashi-and-Super-Trend-Combination-Strategy.md,435475:0.95
+430887,反转复活振荡指标组合策略Combo-Strategy-of-123-Reversal-and-Fractal-Chaos-Oscillator.md,PineScript,2,439996,双重反转震荡带趋势跟踪策略Dual-Reversal-Oscillating-Band-Trend-Following-Strategy.md,439996:0.82
+430984,斐波那契回撤交易策略脚本.md,PineScript,2,432798,基于斐波那契回撤的量化交易策略Fibonacci-Retracement-Quantitative-Trading-Strategy.md,432798:0.88
+431212,动量突破趋势追踪策略Trend-Tracking-Strategy-Based-on-Momentum-Breakout.md,PineScript,2,435470,动量震荡交易策略Dynamic-Momentum-Oscillator-Trading-Strategy.md,435470:0.96
+431249,指标积分策略Momentum-Integral-Indicator-Strategy.md,PineScript,2,434986,均线趋势跟踪交易策略Moving-Average-Trend-Following-Trading-Strategy.md,434986:0.92
+431272,多重MA带动量交易策略Multi-Timeframe-Moving-Average-Momentum-Trading-Strategy.md,PineScript,2,433073,动量反转均线组合策略Momentum-Reversal-Moving-Average-Combination-Strategy.md,433073:0.99
+431395,EMAC指数移动平均线交叉优化策略EMAC-Exponential-Moving-Average-Cross-Optimized-Strategy.md,PineScript,2,434560,双轨突破均线交叉策略Double-Rail-Breakthrough-Moving-Average-Crossover-Strategy.md,434560:0.97
+431431,基于T3移动平均线和ATR的交易策略Volatility-Adjusted-Moving-Average-Trading-Strategy.md,PineScript,3,437504;442400,基于-T3-和-ATR-的自动跟踪趋势策略Automatic-Tracking-Trend-Strategy-Based-on-T3-and-ATR.md | 自适应移动止损均线交易策略Adaptive-Moving-Stop-Line-Trading-Strategy.md,437504:0.96;442400:0.96
+431672,动量追踪策略Momentum-Tracking-Strategy.md,PineScript,2,440370,动量指标和趋势跟踪趋势策略Momentum-Trend-Strategy.md,440370:0.96
+431889,RSI回调突破策略RSI-Pullback-Breakout-Strategy.md,PineScript,2,439598,基于RSI指标的短线交易策略RSI-5-Momentum-Trading-Strategy.md,439598:1.00
+431895,动态通道指标突破策略Dynamic-Channel-Breakout-Strategy.md,PineScript,2,442870,唐奇安通道骑势策略Donchian-Channel-Trend-Riding-Strategy.md,442870:0.88
+432078,周末交易策略Weekend-Trading-Strategy.md,PineScript,2,432304,周末波动交易策略Weekend-Volatility-Trading-Strategy.md,432304:0.94
+432212,双EMA均线与ATR指标配合过滤的趋势跟随策略Dual-EMA-Crossover-Trend-Following-Strategy-with-ATR-and-ADX-Filters.md,PineScript,2,434548,双EMA黄金交叉交易策略Dual-EMA-Golden-Cross-Trading-Strategy.md,434548:0.87
+432217,多均线裂缝双向交易策略Williams-Fractals-Dual-Direction-Trading-Strategy.md,PineScript,2,432792,趋势跟踪双EMA-Williams指标策略Dual-EMA-Williams-Indicator-Trend-Tracking-Strategy.md,432792:0.94
+432330,RSI趋势跟踪策略RSI-Trend-Following-Strategy.md,PineScript,2,436501,基于RSI和加权移动平均线的趋势跟踪策略Trend-Following-Strategy-Based-on-RSI-and-Weighted-Moving-Average.md,436501:0.91
+432340,趋势区间突破策略Trend-Breakout-Strategy-Based-on-Bollinger-Bands.md,PineScript,2,436249,双重均线布林带趋势追踪策略Dual-Moving-Average-Bollinger-Band-Trend-Tracking-Strategy.md,436249:0.82
+432361,基于MACD指标的趋势跟踪策略MACD-Trend-Following-Strategy.md,PineScript,3,435768;438452,MACD机器人交易策略MACD-Robot-Trading-Strategy.md | 基于MACD的长线策略MACD-Long-Only-Strategy.md,435768:0.90;438452:0.97
+432418,双均线反转策略Dual-Moving-Average-Reversion-Strategy.md,PineScript,2,438778,双向均线回归交易策略Bidirectional-Moving-Average-Reversion-Trading-Strategy.md,438778:0.84
+432657,双重强力指标策略Double-Strong-Indicators-Strategy.md,PineScript,2,439758,基于MACD与RSI交叉策略MACD-and-RSI-Crossover-Strategy.md,439758:1.00
+432766,双向波动吞噬策略Dual-direction-Volatility-Swallowing-Strategy.md,PineScript,2,441051,基于动量震荡交易策略Momentum-Swing-Trading-Strategy.md,441051:1.00
+432767,双均线交叉与RSI指标结合的量化交易策略Dual-Moving-Average-Crossover-Combined-with-RSI-Indicator-Quantitative-Trading-Strategy.md,PineScript,2,435287,基于RSI和移动平均线的趋势追踪策略RSI-and-Moving-Average-Crossover-Trend-Following-Strategy.md,435287:0.91
+432874,多重均线突破策略Multi-Moving-Average-Breakout-Strategy.md,PineScript,2,441008,多时间框架均线交叉趋势跟随策略Crossover-Strategy-between-Multiple-Moving-Averages.md,441008:0.93
+432892,双轨系统动量交易策略Dual-track-System-Momentum-Trading-Strategy.md,PineScript,2,439065,多因子驱动趋势追踪策略Multifactor-Driven-Trend-Trading-Strategy.md,439065:1.00
+432909,彩云策略Kairou-Strategy.md,PineScript,3,433407;439352,Ichimoku混合Macd和Tsi综合策略Ichimoku-Mixed-Equilibrium-Table-Macd-and-Tsi-Combined-Strategy.md | Ichimoku云带策略优化A-Trend-Strategy-Optimization-Based-On-Ichimoku-Cloud-Chart.md,433407:0.98;439352:0.98
+432969,布林带趋势震荡交易策略Bollinger-Trend-Shock-Trading-Strategy.md,PineScript,2,434569,布林带反转趋势策略Bollinger-Bands-Reversal-Trend-Strategy.md,434569:0.85
+433010,基于价格的止损止盈策略Price-based-Stop-Loss-and-Take-Profit-Strategy.md,PineScript,2,442933,基于双均线跟随策略Dual-Moving-Average-Following-Strategy.md,442933:0.95
+433108,高级布林带均线网格趋势追踪策略Advanced-Bollinger-Band-Moving-Average-Grid-Trend-Tracking-Strategy.md,PineScript,2,435273,布林波段双均线追踪网格策略Bollinger-Fibonacci-Grid-Tracking-Trend-Strategy.md,435273:0.92
+433452,蜡烛形态策略-Candlestick-Pattern-Strategy.md,PineScript,3,439228;442121,K线形态策略Candlestick-Patterns-Strategy.md | 基于卡片形态策略Candle-Patterns-Trading-Strategy.md,439228:0.84;442121:0.98
+433901,快速RSI反转策略Fast-RSI-Reversal-Strategy.md,PineScript,2,434178,快速RSI策略分析Fast-RSI-Strategy-Analysis.md,434178:0.84
+433910,基于布林带突破的FiboBuLL波浪策略FiboBuLL-Wave-Strategy-Based-on-Bollinger-Bands-Breakout.md,PineScript,2,438821,玻尔波带波动信号策略Bollinger-Wave-Strategy.md,438821:0.97
+434166,Fisher变换指标回测策略Fisher-Transform-Backtest-Strategy.md,PineScript,3,438062;439975,基于费雪转换的Ehlers交易策略Ehlers-Fisher-Transform-Trading-Strategy.md | Fisher变换指标回测策略Backtesting-Strategy-Based-on-Fisher-Transform-Indicator.md,438062:0.91;439975:0.94
+434293,双均线突破策略Dual-Moving-Average-Breakthrough-Strategy.md,PineScript,2,439229,低买高卖的动量交易策略-Momentum-Breakout-Strategy.md,439229:1.00
+434326,低频傅里叶变换趋势跟踪移动平均线策略Low-Frequency-Fourier-Transform-Trend-Following-Moving-Average-Strategy.md,PineScript,2,365882,FTSMA-Trend-is-your-frend.md,365882:0.97
+434428,Reversal-Bollinger-Bands-Strategy反转波动带策略.md,PineScript,2,435515,布林带突破股票策略Bollinger-Breakout-Stock-Strategy.md,435515:0.96
+434447,MACD多层次布林通道海龟策略MACD-Bollinger-Turtle-Trading-Strategy.md,PineScript,2,439096,三重移动平均均线与MACD组合量化策略Triple-Moving-Average-Combined-with-MACD-Quantitative-Strategy.md,439096:1.00
+434488,双EMA均线交叉策略Dual-EMA-Crossover-Strategy.md,PineScript,2,442366,DEMA交叉趋势追踪策略DEMA-Crossover-Trend-Following-Strategy.md,442366:0.98
+434585,唐奇安通道带跟踪止损策略Donchian-Channel-With-Trailing-Stop-Loss-Strategy.md,PineScript,2,439076,一种趋势跟踪动态通道突破策略Dynamic-Channel-Breakout-Strategy.md,439076:0.87
+434610,移动平均回拉交易策略Moving-Average-Pullback-Trading-Strategy.md,PineScript,4,435128;439187;442514,跟踪长期趋势的简单拉回策略Simple-Pullback-Strategy-Tracking-Long-Term-Trends.md | 动量反转短线交易策略-Momentum-Reversal-Trading-Strategy.md | 双均线压力回调策略Dual-Moving-Average-Pressure-Rebound-Strategy.md,435128:1.00;439187:1.00;442514:0.91
+434678,双重反转动点指数均线策略Reversal-Dynamic-Pivot-Points-Exponential-Moving-Average-Strategy.md,PineScript,2,439113,双重确认反转趋势追踪策略Dual-Confirmation-Reversal-Trend-Tracking-Strategy.md,439113:0.81
+434966,基于趋势交易者平均线的布林带回测策略Trend-Trader-Bands-Backtest-Strategy-Based-on-Trend-Trader-Moving-Average.md,PineScript,2,442566,基于动态趋势追踪策略Trading-Dynamic-Trend-Tracking-Strategy.md,442566:0.85
+434976,动态ATR追踪止损策略Dynamic-ATR-Trailing-Stop-Loss-Strategy.md,PineScript,2,440561,双ATR尾随止损策略Dual-ATR-Trailing-Stop-Strategy.md,440561:0.85
+435250,基于加速振荡器的趋势反转策略Trend-Reversal-Strategy-Based-on-Accelerator-Oscillator.md,PineScript,2,435716,威廉指标的精妙震荡器AC回测策略AC-Backtest-Strategy-of-Williams-Indicator.md,435716:0.90
+435270,动态意识形态趋势反转策略Dynamic-Pattern-Trend-Reversal-Strategy.md,PineScript,2,446331,多空线性交叉策略Long-Short-Linear-Regression-Crossover-Strategy.md,446331:0.98
+435271,MACD配信交叉策略MACD-Crossover-with-Signal-Strategy.md,PineScript,2,438464,基于MACD的多时框架交易策略Multi-Timeframe-Trading-Strategy-Based-on-MACD.md,438464:0.83
+435464,跨趋势跟随套利181策略Valeria-181-Robot-Strategy-Improved-24.md,PineScript,3,435968;442222,基于简单双均线反转策略Double-Moving-Average-Reversal-Strategy.md | 跨均线反转策略Cross-Moving-Average-Reversal-Strategy.md,435968:0.90;442222:0.94
+435477,EMA黄金交叉短线交易策略EMA-Golden-Cross-Short-term-Trading-Strategy.md,PineScript,2,438484,双EMA黄金交叉止盈策略Dual-EMA-Golden-Cross-Profit-Taking-Strategy.md,438484:0.84
+435718,积极通道EMA追踪止损策略Positive-Channel-EMA-Trailing-Stop-Strategy.md,PineScript,2,439749,基于均线和周期判断的动量突破策略Momentum-Breakout-Strategy-Based-on-Cycle-Judgment-with-Moving-Averages.md,439749:0.95
+435721,多重时间框架魔改加强的史托克指标与SMA组合趋势跟踪策略X48-DayLight-Hunter-Strategy-Optimization-and-Adaptation.md,PineScript,2,438050,基于随机停损盈利的双向开仓量化策略Quant-Strategy-with-Stochastic-Signal-SMA-Filter-and-Random-Stop-loss-take-profit.md,438050:0.82
+435963,基于两条不同参数渐变均线交易策略Meticulous-EMA-Crossover-Strategy.md,PineScript,2,439648,基于均线的趋势跟踪策略Trend-Following-Strategy-Based-on-Moving-Average.md,439648:1.00
+435986,多重加权移动平均线趋势策略Multiple-Weighted-Moving-Averages-Trend-Strategy.md,PineScript,2,436529,基于加权移动平均线策略Based-on-Weighted-Moving-Average-Strategy.md,436529:1.00
+435995,双EMA黄金交叉突破策略Dual-EMA-Golden-Cross-Breakthrough-Strategy.md,PineScript,3,436775;437017,基于双均线穿越交易策略Double-Moving-Average-Crossover-Trading-Strategy.md | 双EMA金叉死叉趋势策略Dual-EMA-Crossover-Trend-Strategy.md,436775:0.93;437017:0.86
+436137,均线回转反转策略Mean-Reversion-Reverse-Strategy-Based-on-Moving-Average.md,PineScript,3,439203;442249,基于均线的趋势追踪策略-Trend-Following-Strategy-Based-on-Moving-Averages.md | 均线交叉长线并量化策略EMA-Crossover-for-Long-Line-Quant-Strategy.md,439203:0.95;442249:0.81
+436232,基于简单移动平均线的量化交易策略The-moving-average-crossover-strategy-is-a-quantitative-trading-strategy.md,PineScript,2,439073,Dual-SMA-Momentum-Strategy双SMA动量策略.md,439073:1.00
+436261,基于双均线和FRAMA指标的多空交叉交易策略FRAMA-and-Moving-Average-Crossover-Trading-Strategy-Based-on-Dual-Moving-Average.md,PineScript,2,438806,基于FRAMA指标的MA均线交叉策略FraMA-and-MA-Crossover-Trading-Strategy-Based-on-FRAMA-Indicator.md,438806:0.95
+436515,50资金50仓位动态平衡量化策略Dynamic-Balancing-Strategy-with-50-Funds-and-50-Positions.md,PineScript,2,442087,动态平衡双向跟踪槓桿ETF投资策略Dynamic-Balancing-Leveraged-ETF-Investment-Strategy.md,442087:0.90
+436783,基于SMA均线和RSI指标的白银价格短期交易策略Short-Term-Silver-Trading-Strategy-Based-on-SMA-and-RSI-Indicators.md,PineScript,2,442232,基于EMARSI和MACD的多时间框架交易策略EMA-RSI-and-MACD-Based-Multi-Timeframe-Trading-Strategy.md,442232:0.81
+436903,多重指标量化交易策略Comprehensive-Quantitative-Trading-Strategy-Based-on-Multiple-Indicators.md,PineScript,2,441988,综合多空自动期货交易策略Comprehensive-Futures-Automated-Trading-Strategy-for-Both-Long-and-Short.md,441988:0.96
+437003,基于RSI指标的跨时间框架策略VWAP-RSI-Oversold-Crossunder-BTC-Short-Strategy.md,PineScript,2,443128,基于RSI指标的多空自动交易策略RSI-based-Auto-Trading-Strategy.md,443128:0.81
+437034,基于QQE和MA的趋势跟踪策略Trend-Following-Strategy-Based-on-QQE-and-MA.md,PineScript,2,439638,基于QQE指标的动量交易策略QQE-Momentum-Trading-Strategy.md,439638:0.99
+437048,动态趋势突破策略Dynamic-Breakout-Trend-Following-Strategy.md,PineScript,2,440531,基于动量指标的趋势跟踪突破交易策略Momentum-Breakout-Trading-Strategy.md,440531:1.00
+437565,宽带突破策略Bollinger-Band-Breakout-Strategy.md,PineScript,2,440308,一种只做多头的布林带突破追踪策略The-Bollinger-Band-breakout-strategy-is-a-long-only-momentum-chasing-strategy.md,440308:0.89
+437685,阻力与支撑带动的拉里金叉RSI策略RSIndex-and-Moving-Average-Combination-Strategy.md,PineScript,2,439194,RSIBollinger双轨低位区间突破策略RSIBollinger-Bands-Breakout-Strategy-at-Lower-Area.md,439194:0.84
+437746,突破追踪策略Breakthrough-Tracking-Strategy.md,PineScript,2,426597,高点低点突破趋势追踪策略High-Low-Breakout-Trend-Following-Strategy.md,426597:0.80
+438033,多重交叉海龟与加权移动平均线与MACD与TSI组合策略Multiple-Crossovers-Turtle-and-Weighted-Moving-Average-and-MACD-and-TSI-Combination-Strategy.md,PineScript,2,435834,多重指标组合自适应趋势策略Multi-indicator-Combination-Adaptive-Trend-Strategy.md,435834:0.95
+438769,多时间框架超级趋势追踪策略Multi-timeframe-Super-Trend-Tracking-Strategy.md,PineScript,2,442096,超级ATR趋势跟踪策略Super-ATR-Trend-Following-Strategy.md,442096:0.97
+438777,RSI多空分歧指标交易策略RSI-Bullish-and-Bearish-Divergence-Trading-Strategy.md,PineScript,3,439616;439702,RSI-异常背离交易策略RSI-Divergence-Trading-Strategy.md | RSI指标分歧交易策略RSI-Divergence-Trading-Strategy.md,439616:0.98;439702:0.98
+438794,基于双移动平均线交叉的回调入场策略EintSimple-Pullback-Strategy.md,PineScript,5,439757;442417;443098;446459,基于动量回踩策略Momentum-Pullback-Strategy.md | 基于均线的回撤交易策略Trend-Reversal-Strategy-Based-on-Moving-Averages.md | 多时间框架均线回调交易策略Multi-Timeframe-Moving-Average-Pullback-Trading-Strategy.md | 移动平均回调追踪策略-Moving-Average-Pullback-Tracking-Strategy.md,439757:1.00;442417:0.93;443098:0.89;446459:1.00
+438826,ADX动态平均趋势指标策略ADX-Dynamic-Trend-Strategy.md,PineScript,2,438952,ADX动量趋势策略ADX-Momentum-Trend-Strategy.md,438952:1.00
+438931,基于EMA-MA交叉的交易策略EMA-MA-Crossover-Options-Trading-Strategy.md,PineScript,2,439612,双EMA黄金交叉算法策略Dual-EMA-Golden-Cross-Strategy.md,439612:0.96
+438938,超级趋势指标DEMA双重趋势追踪策略Dual-Trend-Tracking-Strategy.md,PineScript,2,442634,超趋势Bollinger带双指数移动平均线交易策略SuperTrend-Bollinger-Bands-Dual-Moving-Average-Trading-Strategy.md,442634:0.82
+438950,移动平均线与随机RSI组合交易策略Moving-Average-and-Stochastic-RSI-Combination-Trading-Strategy.md,PineScript,2,440699,移动平均线和随机相对强弱指标策略Moving-Average-and-Stochastic-RSI-Strategy.md,440699:1.00
+439039,趋势追踪移动止损策略Trend-Tracking-Trailing-Stop-Strategy.md,PineScript,2,439642,基于趋势追踪和ADX指标的短线交易策略Trend-Tracking-and-Short-term-Trading-Strategy-Based-on-ADX-Indicator.md,439642:0.86
+439077,基于ADX指标的自适应交易策略Adaptive-Trading-Strategy-Based-on-ADX-Indicator.md,PineScript,2,440455,双向ADX交易策略Dual-directional-ADX-Trading-Strategy.md,440455:0.96
+439104,动量均线交叉交易策略Momentum-Moving-Average-Crossover-Trading-Strategy.md,PineScript,2,440295,均线黄金交叉短线策略Crossover-EMA-Short-term-Trading-Strategy.md,440295:0.85
+439201,基于布林带的突破策略Bollinger-Bands-Breakout-Strategy.md,PineScript,2,443089,基于布林带跟踪策略The-Bollinger-Bands-Tracking-Strategy.md,443089:1.00
+439275,基于供需区域与EMA滑动止损的交易策略Trading-Strategy-Based-on-Supply-and-Demand-Zones-with-EMA-and-Trailing-Stop.md,PineScript,2,439652,动量指标辅助均线回转交易策略Supply-Demand-Momentum-Reversal-Trading-Strategy.md,439652:0.92
+439360,双止盈双止损移动止损量化策略Dual-Take-Profit-Dual-Stop-Loss-Trailing-Stop-Loss-Bitcoin-Quantitative-Strategy.md,PineScript,2,443137,移动平均线双轨道交易策略Dual-Moving-Average-Channel-Trading-Strategy.md,443137:0.89
+439366,比特币和黄金5分钟震荡交易策略20Bitcoin-and-Gold-5-Minute-Scalping-Strategy-20.md,PineScript,2,439759,比特币和黄金双跳空策略Bitcoin-and-Gold-Double-Gap-Strategy.md,439759:0.91
+439734,聚合多时间帧MACD-RSI-CCI-StochRSI-MA线性交易策略Aggregated-Multi-timeframe-MACD-RSI-CCI-StochRSI-MA-Linear-Trading-Strategy.md,PineScript,2,440297,多指标融合交易策略Multi-indicator-Composite-Trading-Strategy.md,440297:0.82
+439830,基于动量均线交易策略Momentum-Moving-Average-Crossover-Trading-Strategy.md,PineScript,2,440854,双EMA均线追踪策略Dual-Exponential-Moving-Average-Trend-Following-Strategy.md,440854:0.96
+439838,双向自适应范围滤波动量跟踪策略This-strategy-is-a-bidirectional-adaptive-range-filtering-momentum-tracking-strategy.md,PineScript,2,441059,双范围过滤趋势跟踪策略Dual-Range-Filter-Trend-Tracking-Strategy.md,441059:0.92
+439866,RSI与布林带量化策略RSI-Bollinger-Bands-Trading-Strategy.md,PineScript,2,441147,RSI与布林带融合的LTC交易策略RSI-and-Bollinger-Bands-Fusion-Trading-Strategy-for-LTC.md,441147:0.97
+439965,多因子量化交易策略Quantitative-Trading-Strategy-with-Multiple-Factors.md,PineScript,2,442210,基于多个因子量化交易策略Multi-factor-Quantitative-Trading-Strategy.md,442210:1.00
+439972,基于卡尔曼滤波的趋势跟踪策略Kalman-Filter-Based-Trend-Tracking-Strategy.md,PineScript,2,440827,双均线策略360Dual-Moving-Average-Strategy-360.md,440827:1.00
+440095,移动平均差值零轴交叉策略Moving-Average-Difference-Zero-Cross-Strategy.md,PineScript,2,439706,双均线黄金交叉算法Dual-Moving-Average-Golden-Cross-Algorithm.md,439706:0.80
+440363,动量趋势追踪者策略Momentum-Trend-Tracker-Strategy.md,PineScript,2,442565,MACD动量复合均线策略-MACD-Momentum-with-MA-Strategy.md,442565:0.91
+440371,基于海龟交易员策略的突破反转模型Breakout-Reversal-Model-Based-on-Turtle-Trading-Strategy.md,PineScript,2,443140,游龟交易策略Turtle-Trend-Strategy.md,443140:0.86
+440467,基于多指标的趋势跟踪策略Trend-Following-Strategy-Based-on-Multiple-Indicators.md,PineScript,2,440993,基于多因子模型的动量交易策略Momentum-Trading-Strategy-Based-on-Multi-factor-Model.md,440993:0.97
+440557,多尼昌趋势跟踪策略Donchian-Trend-Following-Strategy.md,PineScript,2,439623,Donchian渠道趋势跟踪策略Donchian-Channel-Trend-Following-Strategy.md,439623:0.90
+440712,Ichimoku云图量化策略Ichimoku-Clouds-Quant-Strategy.md,PineScript,2,442501,基于一目均衡表的云内涨跌趋势策略Cloud-based-Trend-Strategy-Using-Ichimoku-Cloud.md,442501:0.89
+440817,开仓高收盘低吃单交易策略Open-High-Close-Low-Breakout-Trading-Strategy.md,PineScript,2,441989,开高低止损追踪策略Open-High-Low-Stop-Loss-Tracking-Strategy.md,441989:1.00
+440829,金叉死叉量化交易策略Gold-Cross-Dead-Cross-Quantitative-Trading-Strategy.md,PineScript,5,442336;442541;442636;442824,基于金叉死叉交易策略Golden-Cross-Dead-Cross-Trading-Strategy.md | 移动均线黄金交易策略Moving-Average-Crossover-Gold-Trading-Strategy.md | 基于均线交叉的RR策略Crossing-Moving-Average-RR-Strategy.md | 基于金本位量化交易策略Gold-Standard-Quantitative-Trading-Strategy.md,442336:1.00;442541:1.00;442636:1.00;442824:1.00
+440982,Bollinger-Bands与RSI组合交易策略Bollinger-Bands-and-RSI-Combination-Trading-Strategy.md,PineScript,2,441136,Bollinger-Bands和RSI组合策略Bollinger-Bands-and-RSI-Combination-Strategy.md,441136:0.90
+440992,双向自适应布林带趋势追踪策略-Adaptive-Bollinger-Bands-Trend-Tracking-Strategy.md,PineScript,2,441175,基于纤程指标的移动止损限价策略Fibonacci-Retracement-Dynamic-Stop-Loss-Strategy.md,441175:0.88
+441013,黄金抛物线突破策略Golden-Parabola-Breakout-Strategy.md,PineScript,2,441053,基于5日移动平均线带和GBS买卖点的量化交易策略Quantitative-Trading-Strategy-Based-on-5-day-Moving-Average-Band-and-GBS-Buy-Sell-Signals.md,441053:1.00
+441052,双平滑均线振荡器股票策略Dual-Moving-Average-Oscillator-Stock-Strategy.md,PineScript,2,441134,动态双重指数平滑均线交易策略Dynamic-Dual-Exponential-Moving-Average-Trading-Strategy.md,441134:0.91
+441152,移动平均线交叉趋势跟踪策略Trend-Tracking-Strategy-Based-on-Moving-Average-Crossover.md,PineScript,2,443251,基于多重EMA和RSI的趋势追踪策略Multi-EMA-and-RSI-Trend-Following-Strategy.md,443251:0.92
+441969,三均线震荡区间反转策略3-Moving-Average-Swing-Interval-Reversal-Strategy.md,PineScript,3,442002;442853,多时间周期MACD零轴交叉反转策略scillator-Profile-Reversal-Strategy-Based-on-Multi-Timeframe-MACD-Zero-crossing.md | 价格震荡辅助判断三因子模型Three-Factors-Model-for-Price-Oscillation-Detection.md,442002:0.81;442853:1.00
+441991,基于双EMA指标的趋势跟随策略Dual-EMA-Indicator-Based-Trend-Following-Strategy.md,PineScript,2,442958,基于均线交叉的趋势跟随策略EMA-Cross-Trend-Following-Strategy.md,442958:0.86
+442010,基于双均线智能追踪交易策略Dual-Moving-Average-Intelligent-Tracking-Trading-Strategy.md,PineScript,2,442114,双动能均线交易策略Bugra-Trading-Strategy-Based-on-Dual-Kinetic-Moving-Average.md,442114:1.00
+442016,3-10震荡器轮廓标记策略3-10-Oscillator-Profile-Flagging-Strategy.md,PineScript,3,442274;442866,基于双均线反转跟踪策略Dual-Moving-Average-Reversal-Tracking-Strategy.md | 趋势反转型跨时间幅特异波动率交易策略Trend-Reversal-with-Intrabar-Volatility-Trading-Strategy.md,442274:0.89;442866:0.95
+442077,基于EMA指标的趋势跟踪交易策略EMA-Crossover-Trend-Following-Trading-Strategy.md,PineScript,2,442821,基于双EMA智能追踪策略Dual-EMA-Intelligent-Tracking-Strategy.md,442821:1.00
+442361,基于布林带突破和RSI指标的多时间框架趋势策略Multi-timeframe-Bollinger-Bands-Breakout-Strategy-Incorporating-RSI.md,PineScript,2,443138,三重BB-bands闭合突破与RSI指标的组合交易策略Triple-BB-Bands-Breakout-with-RSI-Strategy.md,443138:1.00
+442556,双均线金叉死叉止盈止损策略Dual-Moving-Average-Crossover-Strategy-with-Stop-Loss-and-Take-Profit.md,PineScript,2,444005,基于随机指标交叉的双向止盈止损策略Bidirectional-Stop-Loss-Take-Profit-Strategy-Based-on-Stochastic-Crossover.md,444005:0.83
+442817,双移动平均-HullMA交叉趋势策略Dual-Moving-Average-HullMA-Crossover-Trend-Strategy.md,PineScript,2,436646,双均线交叉黄金交叉量化策略Dual-Moving-Average-Golden-Cross-Quantitative-Strategy.md,436646:0.85
+442928,基于-Stochastics-Momentum-Index-的趋势追踪策略Momentum-Surfer-Strategy-Based-on-Stochastics-Momentum-Index.md,PineScript,2,444334,基于随机力矩指标的量化交易策略Quantitative-Trading-Strategy-Based-on-Stochastics-Momentum-Index.md,444334:0.82
+442929,动态均线回拉交易策略Pullback-Trading-Strategy-Based-on-Dynamic-Moving-Average.md,PineScript,2,449852,多时间框架比特币币安币和以太坊交易回撤策略-Multi-Timeframe-Bitcoin-Binance-Coin-and-Ethereum-Pullback-Trading-Strategy.md,449852:0.85
+442979,布林带趋势突破交易策略Bollinger-Bands-Breakout-Trend-Trading-Strategy.md,PineScript,2,443101,双重均线与加速指标组合交易策略Double-Moving-Average-and-MACD-Combination-Trading-Strategy.md,443101:1.00
+443108,基于移动平均线交叉和K线形态的比特币scalping策略Bitcoin-Scalping-Strategy-Based-on-Moving-Average-Crossover-and-Candlestick-Patterns.md,PineScript,2,443109,基于移动平均线交叉与日内K线形态的量化交易策略Moving-Average-Crossover-Strategy-with-Intraday-Candlestick-Patterns.md,443109:1.00
+443119,基于EMA均线和RSI指标的量化交易策略EMA-and-RSI-Quantitative-Trading-Strategy.md,PineScript,2,443244,趋势追踪移动平均策略Trend-Following-Moving-Average-Strategy.md,443244:1.00
+443643,连续K线反转突破策略Consecutive-Candlestick-Reversal-Breakout-Strategy.md,PineScript,2,444031,连续阴跌-阳涨反转策略Consecutive-Downs-Ups-Reversal-Strategy.md,444031:0.93
+444034,基于价格波动范围的买卖信号过滤策略Range-Filter-Buy-Sell-Signals-Strategy.md,PineScript,2,435516,双向价格突破均线选时交易策略Dual-Direction-Price-Breakthrough-Moving-Average-Timing-Trading-Strategy.md,435516:0.82
+444344,基于UT-Bot指标的ATR移动止损策略UT-Bot-Indicator-Based-ATR-Trailing-Stop-Strategy.md,PineScript,2,444361,基于ATR与SMA的动态止损追踪策略Dynamic-Trailing-Stop-Strategy-Based-on-ATR-and-SMA.md,444361:1.00
+444363,基于双均线交叉策略The-Dual-Moving-Average-Crossover-Strategy.md,PineScript,2,458025,自适应多均线交叉动态交易策略-Adaptive-Multi-Moving-Average-Crossover-Dynamic-Trading-Strategy.md,458025:0.91
+444988,高低点自动预测与交易策略High-Low-Automatic-Forecasting-and-Trading-Strategy.md,PineScript,2,445477,基于915高低点自动预测的多空目标止损策略Automatic-Forecasting-Long-Short-Target-Stop-Loss-Strategy-Based-on-915-High-Low.md,445477:1.00
+446561,EMA双均线交叉趋势追踪策略EMA-Dual-Moving-Average-Crossover-Trend-Following-Strategy.md,PineScript,2,446566,马库斯的趋势交易者箭头和警报策略-Marcus-Trend-Trader-with-Arrows-and-Alerts-Strategy.md,446566:0.86
+450868,基于三根连续阴线和均线的动态止盈止损交易策略-Dynamic-Take-Profit-and-Stop-Loss-Trading-Strategy-Based-on-Three-Consecutive-Bearish-Candles-and-Moving-Averages.md,PineScript,2,451412,基于连续三根阴线和双均线的交易策略Trading-Strategy-Based-on-Three-Consecutive-Bearish-Candles-and-Dual-Moving-Averages.md,451412:1.00
+451072,Advanced-MACD-Strategy-with-Limited-Martingale-基于有限马丁格尔的高级MACD策略.md,PineScript,3,453225;453649,MACD与限制性马丁格尔相结合的高级策略-Advanced-MACD-Strategy-with-Limited-Martingale.md | MACD与马丁策略结合的多头优化交易策略-MACD-and-Martingale-Combination-Strategy-for-Optimized-Long-Trading.md,453225:1.00;453649:0.83
+452358,短线做空高流通货币对策略-Short-term-Short-Selling-Strategy-for-High-liquidity-Currency-Pairs.md,PineScript,2,452696,动态头寸规模短线外汇交易策略Dynamic-Position-Sizing-Short-Term-Forex-Trading-Strategy.md,452696:0.92
+452616,多因子融合策略Multi-factor-Fusion-Strategy-Multi-factor-Fusion-Strategy.md,PineScript,2,452693,十五分钟图表高级交易信号策略-Advanced-15-Minute-Chart-Trading-Signal-Strategy.md,452693:1.00
+452697,基于BTC15分钟图表的技术交易策略-Technical-Trading-Strategy-for-BTC-15-minute-Chart.md,PineScript,2,452745,WaveTrend-Oscillator-Divergence-Strategy-波动趋势震荡指标背离策略.md,452745:0.83
+471673,RSI动态止损智能交易策略-RSI-Dynamic-Stop-Loss-Intelligent-Trading-Strategy.md,PineScript,2,473388,动态ATR止损的RSI超卖弹性量化策略-Dynamic-ATR-Stop-Loss-RSI-Oversold-Rebound-Quantitative-Strategy.md,473388:1.00
+473122,基于玻林格带与蜡烛图形态的高级趋势交易策略-Advanced-Trend-Trading-Strategy-Based-on-Bollinger-Bands-and-Candlestick-Patterns.md,PineScript,2,473394,基于布林带和蜡烛图形态的动态波动率交易策略-Dynamic-Volatility-Trading-Strategy-Based-on-Bollinger-Bands-and-Candlestick-Patterns.md,473394:0.96
+473134,基于动量震荡交易的自适应趋势跟踪策略-Adaptive-Trend-Following-Strategy-Based-on-Momentum-Oscillator.md,PineScript,2,474705,基于Chande动量振荡器的自适应均值回归交易策略-Adaptive-Mean-Reversion-Trading-Strategy-Based-on-Chande-Momentum-Oscillator.md,474705:1.00
+474865,动态趋势跟踪ATR多周期交易策略-Dynamic-Trend-Following-ATR-Multi-Period-Trading-Strategy.md,PineScript,2,474872,基于ATR的动态跟踪止损交易策略-Dynamic-ATR-based-Trailing-Stop-Trading-Strategy.md,474872:1.00
+475313,双重动量振荡器智能择时交易策略-Dual-Momentum-Oscillator-Smart-Timing-Trading-Strategy.md,PineScript,2,475632,多重技术指标交叉趋势跟踪策略RSI与随机RSI协同交易系统-Multi-Technical-Indicator-Cross-Trend-Tracking-Strategy-RSI-and-Stochastic-RSI-Synergy-Trading-System.md,475632:0.91
+478733,动态趋势判定RSI指标交叉策略-Dynamic-Trend-RSI-Indicator-Crossing-Strategy.md,PineScript,2,478741,多重技术指标交叉动量趋势跟踪策略-Multi-Technical-Indicator-Crossover-Momentum-Trend-Following-Strategy.md,478741:0.83
+482473,基于价格结构的高比例回报突破交易策略-High-Reward-to-Risk-Price-Structure-Breakout-Trading-Strategy.md,PineScript,2,482797,量化价格行为突破动态风险收益比交易策略-Dynamic-Risk-Reward-Price-Action-Breakout-Trading-Strategy.md,482797:0.86
+482652,多周期趋势跟踪与成交量分析的自适应风险策略-Multi-Period-Trend-Following-and-Volume-Analysis-Adaptive-Risk-Strategy.md,PineScript,2,482834,多周期趋势确认动态风控量化交易策略-Multi-Period-Trend-Confirmation-Dynamic-Risk-Control-Quantitative-Trading-Strategy.md,482834:0.95
+482795,多周期趋势跟踪与成交量确认策略-Multi-Period-Trend-Following-with-Volume-Confirmation-Strategy.md,PineScript,2,482796,多均线趋势跟踪与交易量平衡策略-Multi-Moving-Average-Trend-Following-with-On-Balance-Volume-Strategy.md,482796:1.00
+482921,三线突破动量趋势跟踪策略结合ADX过滤器-Three-Line-Strike-Momentum-Trend-Following-Strategy-with-ADX-Filter.md,PineScript,2,483019,基于ATR和ADX的动态三线突破交易策略-Dynamic-Three-Line-Strike-Trading-Strategy-with-ATR-and-ADX-Integration.md,483019:1.00
+486573,多指标趋势确认交易系统-均线融合RSI背离MACD信号策略-Multi-Indicator-Trend-Confirmation-Trading-System-EMA-Confluence-with-RSI-Divergence-and-MACD-Signal-Strategy.md,PineScript,2,489201,多参数交叉趋势动量策略-Multi-Parameter-Crossover-Trend-Momentum-Strategy.md,489201:1.00
+488167,多指标共识交易策略流动性加权趋势信号系统-Multi-Indicator-Consensus-Trading-Strategy-Liquidity-Weighted-Trend-Signal-System.md,PineScript,2,488237,多指标共识策略优化型趋势交易系统结合流动性加权超趋势趋势信号和增强型波浪指标-Multi-Indicator-Consensus-Trend-Trading-System-Combining-Liquidity-Weighted-Supertrend-Trend-Signals-and-Enhanced-Wavetrend-Oscillator.md,488237:1.00
+488267,Black-Scholes-Volatility-Adjusted-Dynamic-Breakout-Strategy-布莱克-斯科尔斯波动率调整动态突破策略.md,PineScript,2,489038,基于布莱克-舒尔斯理论的突破交易量化策略与追踪止损优化系统-Black-Scholes-Volatility-Breakout-Trading-Strategy-with-Dynamic-Trailing-Stop-Optimization.md,489038:0.85
+488546,动态趋势动量突破策略-Dynamic-Trend-Momentum-Breakout-Strategy.md,PineScript,2,488846,多指标联动趋势突破量化交易策略-Multi-Indicator-Momentum-Breakout-Quantitative-Trading-Strategy.md,488846:1.00
+489311,动态趋势识别策略与指数移动平均线和自适应波动阈值-Dynamic-Trend-Identification-Strategy-with-Exponential-Moving-Average-and-Adaptive-Volatility-Threshold.md,PineScript,2,490075,动态指数移动平均趋势识别与ATR阈值策略-Dynamic-EMA-Trend-Detection-with-ATR-Threshold-Strategy.md,490075:1.00
+490570,智能波动跟踪型DCA策略与双轨止损系统-Intelligent-Volatility-Responsive-DCA-Strategy-with-Dual-Trailing-Stop-System.md,PineScript,2,490797,指数移动平均交叉智能定投链式止损跟踪系统-EMA-Crossover-Smart-DCA-with-Dual-Trailing-Stop-System.md,490797:0.91
+490919,多层动态阈值RMA量化交易策略趋势与动量协同优化方法-Multi-Layer-Dynamic-Threshold-RMA-Trading-Strategy-Trend-and-Momentum-Synergy-Optimization.md,PineScript,2,491034,动态阈值三重运行移动平均趋势交易策略-Dynamic-Threshold-Triple-Running-Moving-Average-Trend-Trading-Strategy.md,491034:1.00
