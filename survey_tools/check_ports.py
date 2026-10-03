@@ -19,9 +19,8 @@ FORBIDDEN = [
     (r'center\s*=\s*True', 'centred window'),
     (r'\bffill\b|fillna\(\s*method\s*=\s*["\']f|\bpad\(', 'forward fill'),
     (r'\b(fees|slippage|fixed_fees|swap)\s*=', 'cost argument'),
-    (r'["\'](price|open)["\']\s*:', 'price/open portfolio kwarg'),
     (r'resample\(\s*["\']1D["\']', 'midnight daily resample (use broker_day)'),
-    (r'\.(mean|std|max|min|quantile|median)\(\s*\)\s*$', 'possible whole-series statistic'),
+    (r'\[["\'](open|high|low|close)["\']\]\.(mean|std|max|min|quantile|median|sum)\(', 'whole-column statistic'),
 ]
 COMPANIONS = ['original_source.md', 'original_sizing.txt', 'PORT_NOTES.md']
 
@@ -64,6 +63,10 @@ def check(path):
             errs.append(f'{why}: {m.group(0)!r}')
     if not re.search(r'REVERSAL INTENDED|upon_opposite_entry|[Ll]ong only|Opposite entries cannot occur', src):
         errs.append('opposite-entry behaviour not declared')
+    if 'portfolio_kwargs' in names:
+        body = ast.get_source_segment(src, names['portfolio_kwargs']) or ''
+        if re.search(r'["\'](price|open)["\']|\bprice\s*=|\bopen\s*=', body):
+            errs.append('portfolio_kwargs sets price/open')
     for c in COMPANIONS:
         if not (path.parent / c).exists():
             errs.append(f'missing {c}')
