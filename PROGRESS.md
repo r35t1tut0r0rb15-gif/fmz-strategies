@@ -1,6 +1,6 @@
 # Progress (branch `survey`)
 
-Last updated 2026-09-29 by session 5E-cloud.
+Last updated 2026-10-03 by session 5E-cloud (contract fix pass).
 
 ## Done
 
@@ -27,12 +27,31 @@ Last updated 2026-09-29 by session 5E-cloud.
 3. After each batch: `python3 survey_tools/make_port_files.py && python3 survey_tools/check_ports.py
    && python3 survey_tools/summarize.py`, update this file, commit, push.
 
+## Reverse in one bar; flat-first variant pending decision
+
+The contract prefers flat before reverse (swap is booked on the first flat bar). These batch-1
+ports reverse in one bar and are deliberately left unchanged until the project decides whether to
+add flat-first variants (each would be a separate trial):
+
+| Port | FAMILY | Reversal |
+|---|---|---|
+| `ports/11604_rsi-now-sb-ok/` | rsi_oscillator | buy/sell RSI zone crosses, always in market |
+| `ports/55839_strategy/` | ichimoku | buy/sell on the Tenkan+Kijun double cross |
+| `ports/119038_paul-the-gambler-l-vy-gold-edition/` | stop_and_reverse_bracket | opposite entry on a stop-out |
+
+## Contract fix pass 2026-10-03
+
+`FAMILY` added to all 6 ports (proposed, user to confirm; reasons in each PORT_NOTES.md);
+`check_ports.py` now requires `FAMILY` and rejects any occurrence of `KNOWN_ANSWER_TEST`;
+SURVEY_README.md: stops-Series timing corrected, flat-before-reverse and FTMO time-exit rules added.
+
 ## Open questions for the project (do not block porting)
 
 1. **Volume**: 548 candidates use volume. Does `raw_1m_df` carry volume, and is it meaningful
    for the project's CFDs (broker tick volume)? Until answered they stay `HELD_NEEDS_VOLUME`.
-2. **Stops as Series**: when `stops()` returns a per-bar Series (ATR-scaled), does the engine
-   read it on the signal row or on the fill row? The ports assume the engine lags it like signals.
+2. ~~**Stops as Series**~~ ANSWERED 2026-10-03: the engine passes stop Series to vbt unlagged and
+   vbt reads them on the fill bar, so per-bar stops must be built from the previous bar
+   (`(k*atr/close).shift(1)`). SURVEY_README.md corrected; no batch-1 port returns a stop Series.
 3. **Criterion 4 boundary**: fixed stop/target exits are ported via `stops()` *and* stored;
    trailing stops that `stops()` cannot express are stored only (or ported as a close-based
    signal exit when they are the strategy's only exit). Confirm this split.

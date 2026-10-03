@@ -21,6 +21,14 @@ def grid_of(path):
     return {}
 
 
+def family_of(path):
+    tree = ast.parse(path.read_text(encoding='utf-8'))
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and any(getattr(t, 'id', None) == 'FAMILY' for t in node.targets):
+            return ast.literal_eval(node.value)
+    return ''
+
+
 def reason_head(why):
     return re.split(r'[:(]', why, 1)[0].strip()
 
@@ -86,16 +94,17 @@ def main():
     L += ['## Ports (criteria 4 and 5)', '',
           'Each port folder holds `module.py`, `original_source.md` (verbatim), `original_sizing.txt`',
           '(verbatim sizing and money-management code, labelled with line numbers) and `PORT_NOTES.md`.', '',
-          '| FMZ id | Folder | Language | Declared grid | Trials |', '|---:|---|---|---|---:|']
+          'FAMILY names are proposed (2026-10-03), user to confirm.', '',
+          '| FMZ id | Folder | Language | FAMILY | Declared grid | Trials |', '|---:|---|---|---|---|---:|']
     total = 0
     for p in ports:
         g = grid_of(p)
         n = math.prod(len(v) for v in g.values()) if g else 0
         total += n
         fid = p.parent.name.split('_')[0]
-        L.append(f"| {fid} | `ports/{p.parent.name}/` | {byid[fid]['lang']} | "
+        L.append(f"| {fid} | `ports/{p.parent.name}/` | {byid[fid]['lang']} | {family_of(p)} | "
                  + ', '.join(f'{k} x{len(v)}' for k, v in g.items()) + f' | {n} |')
-    L += [f'| | **{len(ports)} ports** | | | **{total}** |', '']
+    L += [f'| | **{len(ports)} ports** | | | | **{total}** |', '']
 
     L += ['## Rejected on reading', '', '| FMZ id | File | Criterion | Reason |', '|---:|---|---|---|']
     for d in decisions.values():

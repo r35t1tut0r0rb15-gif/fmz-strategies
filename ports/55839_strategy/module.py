@@ -33,6 +33,7 @@ import numpy as np
 import pandas as pd
 
 NAME = "fmz_55839_ichimoku_double_cross"
+FAMILY = "ichimoku"  # proposed 2026-10-03, user to confirm
 FREQ = "1h"
 PERIODS_PER_YEAR_OVERRIDE = None
 

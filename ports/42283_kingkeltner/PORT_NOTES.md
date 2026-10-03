@@ -33,3 +33,8 @@
 - Position state is tracked inside `simulate` exactly as the engine will fill it (entry at the
   next open, exit at the next open), so exit signals are only emitted while the engine is long.
 - `FREQ = "1h"`: the source declares no period ("低频" = low frequency).
+
+## FAMILY (proposed, user to confirm)
+
+`FAMILY = "volatility_channel_breakout"`. Close breaking an ATR-scaled band around a moving average (Keltner-type channel breakout).
+Added 2026-10-03 in the contract fix pass.

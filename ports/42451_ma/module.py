@@ -23,6 +23,7 @@ Interpretation choices
 import pandas as pd
 
 NAME = "fmz_42451_sma_slope_long"
+FAMILY = "ma_trend"  # proposed 2026-10-03, user to confirm
 FREQ = "1h"
 PERIODS_PER_YEAR_OVERRIDE = None
 DEAD_BAND = 1e-6

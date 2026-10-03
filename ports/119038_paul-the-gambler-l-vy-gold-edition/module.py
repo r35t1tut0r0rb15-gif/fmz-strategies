@@ -33,6 +33,7 @@ import numpy as np
 import pandas as pd
 
 NAME = "fmz_119038_rsi_slope_reverse_on_stop"
+FAMILY = "stop_and_reverse_bracket"  # proposed 2026-10-03, user to confirm
 FREQ = "1h"
 PERIODS_PER_YEAR_OVERRIDE = None
 

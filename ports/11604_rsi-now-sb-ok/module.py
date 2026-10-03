@@ -29,6 +29,7 @@ import numpy as np
 import pandas as pd
 
 NAME = "fmz_11604_rsi_zone_cross_reversal"
+FAMILY = "rsi_oscillator"  # proposed 2026-10-03, user to confirm
 FREQ = "1h"
 PERIODS_PER_YEAR_OVERRIDE = None
 

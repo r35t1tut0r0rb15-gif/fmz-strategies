@@ -29,6 +29,7 @@ import numpy as np
 import pandas as pd
 
 NAME = "fmz_42283_kingkeltner_breakout"
+FAMILY = "volatility_channel_breakout"  # proposed 2026-10-03, user to confirm
 FREQ = "1h"
 PERIODS_PER_YEAR_OVERRIDE = None
 

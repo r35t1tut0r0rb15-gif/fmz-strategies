@@ -27,3 +27,8 @@
   code. A short variant is not declared (it would be a different strategy).
 - `trailingPrcnt` is unused in the original code and is not ported.
 - `FREQ = "1h"`: the source declares no period.
+
+## FAMILY (proposed, user to confirm)
+
+`FAMILY = "ma_trend"`. Long while a moving average points up, out when it points down: moving-average trend following. Same family as #103070 (dual-MA cross), which is the same logic with a second average.
+Added 2026-10-03 in the contract fix pass.

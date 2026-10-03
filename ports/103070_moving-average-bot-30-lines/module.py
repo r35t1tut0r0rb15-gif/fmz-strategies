@@ -27,6 +27,7 @@ import numpy as np
 import pandas as pd
 
 NAME = "fmz_103070_sma_cross_confirmed_long"
+FAMILY = "ma_trend"  # proposed 2026-10-03, user to confirm
 FREQ = "15min"
 PERIODS_PER_YEAR_OVERRIDE = None
 

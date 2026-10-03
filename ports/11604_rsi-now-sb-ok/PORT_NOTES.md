@@ -36,3 +36,8 @@
 - Spot short = selling the account's initial coins. Treated as a short signal; sizing is
   the separate layer's concern.
 - No bar period in the source: `FREQ = "1h"` per the README rule.
+
+## FAMILY (proposed, user to confirm)
+
+`FAMILY = "rsi_oscillator"`. Entries come from RSI crossing fixed oscillator thresholds; the trade decision is an RSI-level event.
+Added 2026-10-03 in the contract fix pass.

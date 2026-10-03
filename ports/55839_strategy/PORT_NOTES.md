@@ -33,3 +33,8 @@
   close equals the line is not a cross.
 - Hull MA and displaced cloud are plot-only in the original and are not ported.
 - `FREQ = "1h"` from the description ("小时线为基准") and the one-hour loop sleep.
+
+## FAMILY (proposed, user to confirm)
+
+`FAMILY = "ichimoku"`. Close crossing the Ichimoku Tenkan/Kijun (Donchian-midline) lines, gated by cloud thickness; its own family because it combines channel midlines with a cloud filter.
+Added 2026-10-03 in the contract fix pass.

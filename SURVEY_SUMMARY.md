@@ -123,15 +123,17 @@ Files whose signals use volume: 661 (held while not otherwise excluded: 548).
 Each port folder holds `module.py`, `original_source.md` (verbatim), `original_sizing.txt`
 (verbatim sizing and money-management code, labelled with line numbers) and `PORT_NOTES.md`.
 
-| FMZ id | Folder | Language | Declared grid | Trials |
-|---:|---|---|---|---:|
-| 11604 | `ports/11604_rsi-now-sb-ok/` | javascript | rsi_period x3, zone x3 | 9 |
-| 42283 | `ports/42283_kingkeltner/` | javascript | kk_length x3, kk_dev x3, trail_atr x3 | 27 |
-| 42451 | `ports/42451_ma/` | javascript | ma_length x4 | 4 |
-| 55839 | `ports/55839_strategy/` | javascript | tenkan x3, kijun x3, cloud_atr x3 | 27 |
-| 103070 | `ports/103070_moving-average-bot-30-lines/` | javascript | fast x3, slow x3, enter_period x3 | 27 |
-| 119038 | `ports/119038_paul-the-gambler-l-vy-gold-edition/` | python | sl_atr x3, tp_atr x3 | 9 |
-| | **6 ports** | | | **103** |
+FAMILY names are proposed (2026-10-03), user to confirm.
+
+| FMZ id | Folder | Language | FAMILY | Declared grid | Trials |
+|---:|---|---|---|---|---:|
+| 11604 | `ports/11604_rsi-now-sb-ok/` | javascript | rsi_oscillator | rsi_period x3, zone x3 | 9 |
+| 42283 | `ports/42283_kingkeltner/` | javascript | volatility_channel_breakout | kk_length x3, kk_dev x3, trail_atr x3 | 27 |
+| 42451 | `ports/42451_ma/` | javascript | ma_trend | ma_length x4 | 4 |
+| 55839 | `ports/55839_strategy/` | javascript | ichimoku | tenkan x3, kijun x3, cloud_atr x3 | 27 |
+| 103070 | `ports/103070_moving-average-bot-30-lines/` | javascript | ma_trend | fast x3, slow x3, enter_period x3 | 27 |
+| 119038 | `ports/119038_paul-the-gambler-l-vy-gold-edition/` | python | stop_and_reverse_bracket | sl_atr x3, tp_atr x3 | 9 |
+| | **6 ports** | | | | **103** |
 
 ## Rejected on reading
 

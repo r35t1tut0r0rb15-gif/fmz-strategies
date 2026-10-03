@@ -1,7 +1,8 @@
 """Static contract check of every ports/*/module.py. Parses the AST only: nothing is imported,
 executed or backtested.
 
-Checks: the exact public names the contract requires; GRID keys are a subset of
+Checks: the exact public names the contract requires (FAMILY included); no occurrence of the
+banned known-answer-test name anywhere in a module; GRID keys are a subset of
 DEFAULT_PARAMS; USES_STOPS <-> stops(); no shift(-k), bfill, centred windows, whole-series
 statistics, cost constants or forbidden portfolio kwargs; the four companion files exist.
 """
@@ -11,7 +12,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-REQUIRED = {'NAME', 'GRID', 'DEFAULT_PARAMS', 'FREQ', 'PERIODS_PER_YEAR_OVERRIDE',
+REQUIRED = {'NAME', 'FAMILY', 'GRID', 'DEFAULT_PARAMS', 'FREQ', 'PERIODS_PER_YEAR_OVERRIDE',
             'precompute', 'simulate', 'portfolio_kwargs'}
 FORBIDDEN = [
     (r'\.shift\(\s*-', 'negative shift'),
@@ -49,6 +50,15 @@ def check(path):
             errs.append('GRID values must be non-empty lists')
     except (KeyError, ValueError) as e:
         errs.append(f'GRID/DEFAULT_PARAMS not literal: {e}')
+    if 'FAMILY' in names:
+        try:
+            fam = ast.literal_eval(names['FAMILY'].value)
+            if not (isinstance(fam, str) and fam.strip()):
+                errs.append('FAMILY must be a non-empty string')
+        except ValueError:
+            errs.append('FAMILY must be a string literal')
+    if 'KNOWN_ANSWER_TEST' in src:   # banned anywhere in a module, comments included
+        errs.append('name KNOWN_ANSWER_TEST appears in the module')
     uses_stops = 'USES_STOPS' in names
     if uses_stops != ('stops' in names):
         errs.append('USES_STOPS and stops() must appear together')

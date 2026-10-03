@@ -49,6 +49,8 @@ Python, vectorbtpro. Each port is ONE module exposing exactly:
 
 ```
 NAME: str
+FAMILY: str                            # strategy family = trial-deflation group; a run spec naming a
+                                       # different family is refused by the mining driver
 GRID: dict[str, list]                  # declared parameter ranges (criterion 5)
 DEFAULT_PARAMS: dict                   # superset of GRID's keys
 FREQ: str                              # vbt frequency of the module's bars, e.g. "1h"
@@ -65,6 +67,11 @@ Stop-using ports also set `USES_STOPS = True` and define `stops(bars, **params)`
 with only `sl_stop`, `tp_stop`, `max_hold_time` (fractions of the entry fill price);
 `portfolio_kwargs` must then be empty.
 
+The name `KNOWN_ANSWER_TEST` must not appear anywhere in a port module, not even in a comment.
+
+*Added 2026-10-03 (fix pass): `FAMILY` and the `KNOWN_ANSWER_TEST` rule come from the house
+strategy-authoring contract; the 2026-09-29 interface summary had left them out.*
+
 Timing rules: a signal is True on the bar whose data generates it; the engine lags every signal
 one bar and fills at that bar's open. Ports never shift signals and never use `shift(-k)`. No
 whole-series statistics, centred windows or bfill. Rolling windows end at the current bar, and
@@ -73,6 +80,15 @@ the higher bar closes. Daily bars are broker days (end 17:00 America/New_York) v
 `broker_day(index)`, bound by the desktop to `registry_schema.broker_day`. Pine's
 `strategy.entry` reverses by default, so each port declares either
 `{"upon_opposite_entry": "ignore"}` or "reversal intended" in its docstring. No cost constants.
+
+**Prefer flat before reverse.** Swap (overnight financing) is booked on the first flat bar, so a
+port should close a position and open the opposite one on a later bar, not reverse in one bar,
+unless the strategy's logic requires the one-bar reversal. A port that reverses in one bar says so.
+The three batch-1 ports that reverse in one bar (11604, 55839, 119038) are left as written; their
+flat-first variants are pending a project decision (see `PROGRESS.md`).
+
+**Time exits for FTMO strategies with shorts** are explicit exit signals emitted by `simulate()`,
+not `max_hold_time` in `stops()`.
 
 ## Interpretation rules applied to every port
 
@@ -98,13 +114,17 @@ These are fixed here, before porting, so they are applied the same way to every 
 - **Criterion 4: what counts as sizing / money management.** Stored verbatim, not ported:
   order quantities, % of equity, leverage, pyramiding, martingale/averaging-in, balance checks,
   minimum-trade guards, slippage/price offsets, and trailing stops that `stops()` cannot express.
-  Fixed stop-loss / take-profit / time exits that `stops()` can express are ported there *and*
+  Fixed stop-loss / take-profit exits that `stops()` can express are ported there *and*
   quoted in `original_sizing.txt`, so the separate layer can also test them. A trailing exit
   that the original evaluates on bar closes as its only exit is part of the signal and is ported
-  as a signal exit.
-- **Stops as Series.** When `stops()` returns a per-bar Series (e.g. k·ATR/close), each value
-  uses data through that bar. The desktop must apply the same one-bar lag to it as to signals.
-  This is an open point for the desktop to confirm.
+  as a signal exit. Time exits are explicit exit signals from `simulate()` (required for FTMO
+  strategies with shorts; see "Time exits" above), and the original time-exit code is quoted too.
+- **Stops as Series.** The engine lags the four signal Series one bar, but it passes `sl_stop` /
+  `tp_stop` Series to vbt UNLAGGED, and vbt reads them on the entry FILL bar (signal bar + 1).
+  So a per-bar stop must use bars up to the previous bar only, e.g. `(k * atr / close).shift(1)`:
+  the value read on the fill bar then comes from the signal bar. (Corrected 2026-10-03; the
+  2026-09-29 text assumed the engine lagged stops like signals. No batch-1 port returns a stop
+  Series, so no port changed.)
 - **Volume.** The contract's bars carry open/high/low/close only, and CFD volume is broker tick
   volume anyway. Strategies whose signals use volume are held (`HELD_NEEDS_VOLUME`) until the
   project confirms whether volume is available and meaningful.

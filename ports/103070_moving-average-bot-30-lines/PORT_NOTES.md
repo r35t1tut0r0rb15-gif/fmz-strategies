@@ -30,3 +30,8 @@ Every fast value is below every slow value, so no grid point is degenerate.
   as used here; the port's `_signed_run` implements exactly that.
 - Description notes it "included template (function with $.)"; the code shown calls only
   built-ins, so nothing else is needed.
+
+## FAMILY (proposed, user to confirm)
+
+`FAMILY = "ma_trend"`. Fast/slow moving-average cross with a confirmation count: moving-average trend following. Same family as #42451.
+Added 2026-10-03 in the contract fix pass.
