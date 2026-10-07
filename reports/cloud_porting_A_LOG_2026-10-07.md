@@ -21,3 +21,15 @@ and `PROGRESS.md`, and carry on; never redo a pushed batch.
 - All 6 ports pass `py_compile` and `check_ports.py`.
 
 Resume point: Task 1 committed (hash in the next entry). Next: Task 2.
+
+Task 1 commit: cf80b57 (pushed, verified with ls-remote).
+
+## Task 2: duplicates explained + near-duplicate check
+
+- `reports/near_duplicates_2026-10-07.md`: (a) 327 collapsed = 251 DUPLICATE + 61 REJECTED +
+  15 FLAGGED (priority order); 7 of the 251 are exact copies, 244 near-duplicates -> rule 7
+  decision owed (re-open them?). (b) exhaustive check over 3,747 candidates: 0 pairs >= 0.80,
+  124 groups at 0.65-0.80 (302 candidates, 31 groups span both halves).
+- `near_duplicate_groups.csv` + `survey_tools/near_dup_candidates.py`.
+
+Resume point: Task 2 committed (hash in next entry). Next: Task 3 (no_bar_size.csv).

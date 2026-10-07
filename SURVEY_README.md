@@ -34,6 +34,9 @@ names, backtest screenshots) are ignored and never used in any decision (criteri
 | `review_decisions.csv` | final outcomes decided by reading a file (overrides `screening.csv`) |
 | `duplicates.csv` | criterion 6: representative id -> collapsed ids |
 | `possible_duplicates.csv` | pairs just under the collapse threshold, checked by hand before porting |
+| `near_duplicate_groups.csv` | 2026-10-07: screen groups (`DG<rep>`, >= 0.80, all members) and exhaustive 0.65-0.80 groups among the remaining candidates (`ND<id>`); method in `survey_tools/near_dup_candidates.py` |
+| `no_bar_size.csv` | 2026-10-07: every corpus file with no bar size (rule 1), language, stop logic flag |
+| `reports/` | 2026-10-07: worker logs and reports |
 | `ports/<fmz_id>_<slug>/module.py` | the port |
 | `ports/<fmz_id>_<slug>/original_source.md` | verbatim copy of the FMZ file |
 | `ports/<fmz_id>_<slug>/original_sizing.txt` | verbatim sizing / money-management code with line references (criterion 4) |
