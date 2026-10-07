@@ -12,6 +12,10 @@ fmz_id,file,final_outcome,criterion,reason
 187874,标定值或均线交叉策略.md,REJECTED_ON_READING,2,"Entries and exits fire on hard-coded BTC price levels (REF(C,1) < 6725 buys, > 10000 sells, 'Gann levels'). Without them only an MA(10/30) cross remains, which would be a different strategy."
 191622,割庄神器.md,REJECTED_ON_READING,1,"Order-level ladder on perpetual swaps: opens on a daily-range test of > 20 price units, then keeps resting limit orders k = 11 price units above/below the fill, averaging in and martingale-style profit targets; fills inside the bar at set prices (also hard-coded price units, criterion 2)."
 201007,抛硬币策略.md,REJECTED_ON_READING,1,Coin-flip strategy: entries and exits are drawn from Math.random(); no deterministic signal to port. (Its trailing take-profit and stop are attached to random entries.)
+205469,bybit-swap永续加仓策略.md,REJECTED_ON_READING,1,"One-direction accumulation ladder on a perpetual swap: buys (or sells) a fixed USD slice on every bar the MA filter holds, doubles it after two counter bars, scales out after three with-trend bars, caps total size; no exit other than a live-only bar-count stop. Position size is the strategy."
+255502,恒温器-震荡修正为-最高价-最低价-添加增减仓选项-添加额外张数功能-修正cmi数据刷新日期问一天一次变为1小时一次-ok-准备修正一些功能.md,REJECTED_ON_READING,1,"Two concurrent sub-systems (CMI shock / trend) each holding its own hedged futures position with ATR-step scale-in or scale-out ladders, extra-lot counters and departure callbacks. The outcome is defined by the ladder of partial exits, which cannot be reduced to one net position's entry/exit signals without changing the strategy."
+266142,均仓策略.md,REJECTED_ON_READING,1,Pure 50/50 coin/cash rebalancing (buy or sell 1 % / 10 % slices when the coin share leaves 0.49-0.51); no entry or exit signal.
+299799,ahr999定投策略.md,REJECTED_ON_READING,2,"AHR999 dollar-cost averaging: the indicator is a Bitcoin-only model (price vs a log-price curve fitted to days since the 2009 genesis block); the code throws for any other pair. Also periodic accumulation, not entries/exits."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -38,3 +42,12 @@ fmz_id,file,final_outcome,criterion,reason
 194224,MACD低买高卖自动跟单滑动止损.md,PORTED,,ports/194224_macd/
 200131,吕神-简易波动率策略.md,PORTED,,ports/200131_strategy/
 200625,SuperTrend-V1.md,PORTED,,ports/200625_supertrend-v1/
+207157,Larry-Connors-RSI2均值回归策略.md,PORTED,,ports/207157_larry-connors-rsi2/
+224799,SAR抛物线转向指标.md,PORTED,,ports/224799_sar/
+262467,TD狄马克序列.md,PORTED,,ports/262467_td/
+271523,韭菜保护程序唐安奇通道均仓策略.md,PORTED,,ports/271523_strategy/
+288889,练习01RSI.md,PORTED,,ports/288889_01rsi/
+301620,三均线系统Exodus.md,PORTED,,ports/301620_exodus/
+318486,均线傻瓜版.md,PORTED,,ports/318486_strategy/
+333269,数字货币期货双均线拐点策略教学.md,PORTED,,ports/333269_strategy/
+345036,ATR-RSI组合策略.md,PORTED,,ports/345036_atr-rsi/

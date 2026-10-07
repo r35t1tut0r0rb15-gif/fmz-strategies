@@ -121,6 +121,44 @@ SIZING = {
         ("Venue: quarterly contract", 37, 37),
         ("Order execution: close opposite, vol lots (2x vol on shorts), +/-1 % prices", 101, 123),
     ],
+    # ---- worker A, batch A3 (2026-10-07)
+    207157: [
+        ("Lot liang (equity x previous close / 100)", 38, 38),
+        ("Order statements with lot sizes", 45, 49),
+    ],
+    224799: [
+        ("Arguments: Amount (time_interval is the bar size)", 34, 35),
+        ("Venue set-up: contract type, 1x margin", 61, 69),
+        ("Order execution: fixed Amount at ticker prices", 93, 126),
+    ],
+    262467: [
+        ("Venue: quarterly contract", 29, 29),
+        ("Order execution: one contract per order, repeated on later polls", 62, 85),
+    ],
+    271523: [
+        ("Exposure levels: all-in buy, all-out sell, 50/50 rebalancing ladder (1 % and 10x steps)", 96, 181),
+    ],
+    288889: [
+        ("Order execution: 1 % slices of coins / cash on every loop, 4-minute pause", 18, 42),
+    ],
+    301620: [
+        ("Argument: buyVolume", 36, 36),
+        ("Open(): fixed buyVolume market orders", 89, 107),
+    ],
+    318486: [
+        ("Argument: Amount", 18, 18),
+        ("Venue: swap contract", 34, 34),
+        ("Order execution: fixed Amount at ticker prices", 62, 96),
+    ],
+    333269: [
+        ("Argument: amount", 22, 22),
+        ("Cancel-all and cover helpers", 53, 82),
+    ],
+    345036: [
+        ("Argument: slide_price", 40, 40),
+        ("Order cancelling helper", 101, 112),
+        ("Order execution: buy with all cash at Last+slide, sell all at Last-slide", 127, 145),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -157,6 +195,19 @@ REJECTED_ON_READING = {
                   "profit targets; fills inside the bar at set prices (also hard-coded price units, criterion 2)."),
     201007: ("1", "Coin-flip strategy: entries and exits are drawn from Math.random(); no deterministic signal "
                   "to port. (Its trailing take-profit and stop are attached to random entries.)"),
+    # ---- worker A, batch A3 (2026-10-07)
+    205469: ("1", "One-direction accumulation ladder on a perpetual swap: buys (or sells) a fixed USD slice on every "
+                  "bar the MA filter holds, doubles it after two counter bars, scales out after three with-trend bars, "
+                  "caps total size; no exit other than a live-only bar-count stop. Position size is the strategy."),
+    255502: ("1", "Two concurrent sub-systems (CMI shock / trend) each holding its own hedged futures position with "
+                  "ATR-step scale-in or scale-out ladders, extra-lot counters and departure callbacks. The outcome is "
+                  "defined by the ladder of partial exits, which cannot be reduced to one net position's entry/exit "
+                  "signals without changing the strategy."),
+    266142: ("1", "Pure 50/50 coin/cash rebalancing (buy or sell 1 % / 10 % slices when the coin share leaves "
+                  "0.49-0.51); no entry or exit signal."),
+    299799: ("2", "AHR999 dollar-cost averaging: the indicator is a Bitcoin-only model (price vs a log-price curve "
+                  "fitted to days since the 2009 genesis block); the code throws for any other pair. Also periodic "
+                  "accumulation, not entries/exits."),
 }
 
 DUPLICATE_ON_READING = {

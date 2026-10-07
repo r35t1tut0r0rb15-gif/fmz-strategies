@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #345036 (ATR-RSI组合策略)
+# Source: https://www.fmz.com/strategy/345036  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Argument: slide_price  [lines 40-40]
+   40: |slide_price|0.3|下单滑动值|
+
+## Order cancelling helper  [lines 101-112]
+  101: // 取消未成交下单
+  102: function canelPendingOrders() {
+  103:     while (true) {
+  104:         let orders = _C(exchange.GetOrders);
+  105:         if (orders.length == 0) {
+  106:             break;
+  107:         }
+  108:         for (let i = 0; i < orders.length; i++) {
+  109:             exchange.CancelOrder(orders[i].Id);
+  110:         }
+  111:     }
+  112: }
+
+## Order execution: buy with all cash at Last+slide, sell all at Last-slide  [lines 127-145]
+  127:             let account = _C(exchange.GetAccount);
+  128:             if (rsi == RSI_BUY && last_rsi_staus != RSI_BUY) {
+  129:                 Log("买入信号");
+  130:                 last_rsi_staus = RSI_BUY;
+  131:                 canelPendingOrders();
+  132:                 if(account.Balance>0){
+  133:                     let price = ticker.Last + slide_price;
+  134:                     let amount = account.Balance / price * 0.99;
+  135:                     exchange.Buy(price, amount);
+  136:                 }
+  137:             } else if (rsi == RSI_SELL && last_rsi_staus != RSI_SELL) {
+  138:                 Log("卖出信号");
+  139:                 last_rsi_staus = RSI_SELL;
+  140:                 canelPendingOrders();
+  141:                 if (account.Stocks > 0) {
+  142:                     let price = ticker.Last - slide_price;
+  143:                     exchange.Sell(price, account.Stocks);
+  144:                 }
+  145:             }

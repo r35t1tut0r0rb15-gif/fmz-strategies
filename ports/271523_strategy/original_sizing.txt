@@ -1,0 +1,91 @@
+# Original sizing and money-management code, FMZ #271523 (韭菜保护程序唐安奇通道均仓策略)
+# Source: https://www.fmz.com/strategy/271523  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Exposure levels: all-in buy, all-out sell, 50/50 rebalancing ladder (1 % and 10x steps)  [lines 96-181]
+   96:     def cancelAllOrders(self):
+   97:         orders = self.exchange.GetOrders()
+   98:         for order in orders:
+   99:             self.exchange.CancelOrder(order['Id'], order)
+  100:         return True
+  101:     #全仓买入函数
+  102:     def allin(self):
+  103:         kr =  _C(self.exchange.GetRecords,PERIOD_H1)
+  104:         account = _C(self.exchange.GetAccount)
+  105:         self.cny = account.Balance
+  106:         buynum=_N(self.cny*0.99/kr[-1].Close,3)
+  107:         if buynum>0:
+  108:             Log("全仓allin")
+  109:             self.exchange.Buy(kr[-1].Close,buynum)
+  110:         
+  111:     #全仓卖出函数
+  112:     def allout(self):
+  113:         kr =  _C(self.exchange.GetRecords,PERIOD_H1)
+  114:         account = _C(self.exchange.GetAccount)
+  115:         self.btc = _N(account.Stocks,3)
+  116:         if self.btc>0:
+  117:             Log("空仓allout")
+  118:             self.exchange.Sell(kr[-1].Close,self.btc)
+  119:     #均仓函数
+  120:     def balanceAccount(self):
+  121:         kr =  _C(self.exchange.GetRecords,PERIOD_H1)
+  122:         account = _C(self.exchange.GetAccount)
+  123:         if account is None:
+  124:             return
+  125: 
+  126:         #赋值
+  127:         self.account = account
+  128: 
+  129:         #赋值
+  130:         self.btc = account.Stocks
+  131:         self.cny = account.Balance
+  132:         
+  133:         accountmoney=self.btc * kr[-1].Close + self.cny
+  134:         self.p = self.btc * kr[-1].Close / accountmoney
+  135:         tradenum=_N(accountmoney/kr[-1].Close/100,3)
+  136:         if tradenum<0.001:
+  137:             tradenum=0.001
+  138:         #判断self.p的值是否小于0.48
+  139:         # Log(self.p)
+  140:         if (0.45<self.p < 0.49):
+  141:             #调用Log函数并传入参数"开始平衡", self.p
+  142:             Log("开始平衡", self.p)
+  143: 
+  144:             self.exchange.Buy(kr[-1].Close, tradenum)
+  145: 
+  146:             Log("持币数:",self.btc,"现金数:",self.cny)
+  147: 
+  148:             #判断self.p的值是否大于0.52
+  149:         elif (0.55 > self.p > 0.51):
+  150:             #调用Log函数并传入参数"开始平衡", self.p
+  151:             Log("开始平衡", self.p)
+  152: 
+  153:             #调用Sell函数并传入相应的参数
+  154:             self.exchange.Sell(kr[-1].Close, tradenum)
+  155: 
+  156:             Log("持币数:",self.btc,"现金数:",self.cny)
+  157:         elif (self.p >= 0.55):
+  158:             #调用Log函数并传入参数"开始平衡", self.p
+  159:             Log("开始平衡,快速平仓", self.p)
+  160: 
+  161:             self.exchange.Sell(kr[-1].Close, _N(tradenum*10,3))
+  162: 
+  163:             Log("持币数:",self.btc,"现金数:",self.cny)
+  164:         elif (self.p <= 0.45):
+  165:             #调用Log函数并传入参数"开始平衡", self.p
+  166:             Log("开始平衡，快速建仓", self.p)
+  167: 
+  168:             self.exchange.Buy(kr[-1].Close, _N(tradenum*10,3))
+  169: 
+  170:             Log("持币数:",self.btc,"现金数:",self.cny)
+  171:     #交易循环
+  172:     def loop(self):
+  173:         self.cancelAllOrders()
+  174:         rt=self.donchian()
+  175:         if rt=='全仓':
+  176:             self.allin()
+  177:         elif rt=='均仓':
+  178:             self.balanceAccount()
+  179:         else:
+  180:             self.allout()
+  181:         Sleep(1000*60)

@@ -16,11 +16,12 @@ Last updated 2026-10-07 by cloud worker A (rules 2026-10-07; batches A1-).
 | 1 | 179 - 119038 | 11604, 42283, 42451, 55839, 103070, 119038 | 179, 21104, 21369, 21370, 23531, 23874, 62163 |
 | A1 | 126968 - 171038 | 126968, 127101, 127691, 128249, 128250, 128418, 132298, 146391, 156699, 171038 | 170557, 170842; 128126 duplicate on reading of 127691 |
 | A2 | 177631 - 201007 | 183416, 186598, 188499, 188507, 192353, 193609, 194224, 200131, 200625 | 177631, 187874, 191622, 201007 |
+| A3 | 205469 - 345036 | 207157, 224799, 262467, 271523, 288889, 301620, 318486, 333269, 345036 | 205469, 255502, 266142, 299799 |
 
 ## Next
 
 1. Continue the queue: `overall == PORT_CANDIDATE` in `screening.csv`, ascending `fmz_id`,
-   skipping ids already in `review_decisions.csv`. **Next id: 205469** (worker A works upward
+   skipping ids already in `review_decisions.csv`. **Next id: 345289** (worker A works upward
    from 126968 on branch `survey`; worker B ports ids >= 439378 on `survey-b`, then works
    down from 439377; A stops when its next id is one B has done).
    Worker A's log with resume points: `reports/cloud_porting_A_LOG_2026-10-07.md`.

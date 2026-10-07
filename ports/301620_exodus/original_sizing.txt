@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #301620 (三均线系统Exodus)
+# Source: https://www.fmz.com/strategy/301620  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Argument: buyVolume  [lines 36-36]
+   36: |buyVolume|0.016|交易数量(0.016BTC)|
+
+## Open(): fixed buyVolume market orders  [lines 89-107]
+   89: function Open(direction) {
+   90:     let pos = exchange.GetPosition()[0];
+   91: 
+   92:     if (pos != null) {
+   93:         return;
+   94:     }
+   95:     let amount = buyVolume;
+   96:     if (direction == 1) { //做多
+   97:         Log("做多", amount);
+   98:         exchange.SetDirection("buy");
+   99:         exchange.Buy(-1, amount);
+  100:     }
+  101:     if (direction == 2) { //做空
+  102:         Log("做空", amount);
+  103:         exchange.SetDirection("sell");
+  104:         exchange.Sell(-1, amount);
+  105:     }
+  106:     
+  107: }

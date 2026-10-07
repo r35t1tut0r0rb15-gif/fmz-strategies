@@ -1,0 +1,54 @@
+# Original sizing and money-management code, FMZ #224799 (SAR抛物线转向指标)
+# Source: https://www.fmz.com/strategy/224799  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Arguments: Amount (time_interval is the bar size)  [lines 34-35]
+   34: |Amount|100|Amount|
+   35: |time_interval|3600|自定义K线周期（秒）|
+
+## Venue set-up: contract type, 1x margin  [lines 61-69]
+   61: if (IsVirtual) {
+   62:     if (exchange.GetCurrency() == "BTC_USD") {
+   63:         exchange.SetContractType("quarter"); //选择合约
+   64:     } else if (exchange.GetCurrency() == "XBT_USD") {
+   65:         exchange.SetContractType("XBTUSD"); //便于策略选择BitMEX回测
+   66:     }
+   67: }
+   68: 
+   69: exchange.SetMarginLevel(1)
+
+## Order execution: fixed Amount at ticker prices  [lines 93-126]
+   93: function onTick() {
+   94: 
+   95:     ticker = exchange.GetTicker()
+   96:     if (status === Idle) {
+   97:         if (ticker.Last > sar[sar.length - 1]) {
+   98:             exchange.SetDirection("buy")
+   99:             exchange.Buy(ticker.Sell, Amount)
+  100:             status = PD_LONG
+  101:             $.PlotFlag(new Date().getTime(), 'Buy', 'BK');
+  102:         } else if (ticker.Last < sar[sar.length - 1]) {
+  103:             exchange.SetDirection("sell")
+  104:             exchange.Sell(ticker.Buy, Amount)
+  105:             status = PD_SHORT
+  106:             $.PlotFlag(new Date().getTime(), 'Sell', 'SK');
+  107:         }
+  108:     } else if (status === PD_LONG) {
+  109:         if (ticker.Last < sar[sar.length - 1]) {
+  110:             exchange.SetDirection("closebuy")
+  111:             exchange.Sell(ticker.Buy, Amount)
+  112:             account = exchange.GetAccount()
+  113:             status = Idle
+  114:             $.PlotFlag(new Date().getTime(), 'CloseBuy', 'SP');
+  115:         }
+  116:     } else if (status === PD_SHORT) {
+  117:         if (ticker.Last > sar[sar.length - 1]) {
+  118:             exchange.SetDirection("closesell")
+  119:             exchange.Buy(ticker.Sell, Amount)
+  120:             account = exchange.GetAccount()
+  121:             status = Idle
+  122:             $.PlotFlag(new Date().getTime(), 'CloseSell', 'BP');
+  123:         }
+  124:     }
+  125: 
+  126: }

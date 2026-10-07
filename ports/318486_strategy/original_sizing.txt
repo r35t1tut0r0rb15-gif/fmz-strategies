@@ -1,0 +1,46 @@
+# Original sizing and money-management code, FMZ #318486 (均线傻瓜版)
+# Source: https://www.fmz.com/strategy/318486  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Argument: Amount  [lines 18-18]
+   18: |Amount|100|数额|
+
+## Venue: swap contract  [lines 34-34]
+   34: e.SetContractType('swap')
+
+## Order execution: fixed Amount at ticker prices  [lines 62-96]
+   62: // 开平仓规则
+   63: function onTick() {
+   64:     if (LastBarTime !== Bar.Time) { // K线结束后进行交易
+   65: 
+   66:         if (status === PD_LONG) {
+   67:             if (Bar.Close < MA_close_10) {
+   68:                 exchange.SetDirection("closebuy")
+   69:                 exchange.Sell(ticker.Buy, Amount)
+   70:                 status = Idle
+   71:             }
+   72:         }
+   73: 
+   74:         if (status === PD_SHORT) {
+   75:             if (Bar.Close > MA_close_10) {
+   76:                 exchange.SetDirection("closesell") 
+   77:                 exchange.Buy(ticker.Sell, Amount)
+   78:                 status = Idle
+   79:             }
+   80:         }
+   81:  Sleep(1 * 1000)
+   82:         if (status === Idle) {
+   83:             if (Bar.Close > MA_close_20 ) {
+   84:                 exchange.SetDirection("buy") 
+   85:                 exchange.Buy(ticker.Sell, Amount)
+   86:                 status = PD_LONG
+   87:             }
+   88:             if (Bar.Close < MA_close_20 ) {
+   89:                 exchange.SetDirection("sell") 
+   90:                 exchange.Sell(ticker.Buy, Amount)
+   91:                 status = PD_SHORT
+   92:             }
+   93:         }
+   94:         LastBarTime = Bar.Time
+   95:     }
+   96: }

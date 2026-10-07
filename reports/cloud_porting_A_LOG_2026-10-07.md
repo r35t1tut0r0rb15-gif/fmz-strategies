@@ -108,3 +108,30 @@ assumption for the project.
 All 25 ports pass py_compile and check_ports.py.
 
 Resume point: batch A2 committed (hash in next entry). Next id: 205469.
+
+Batch A2 commit: f63a58e (pushed, verified).
+
+## Task 4, batch A3 (ids 205469 - 345036)
+
+origin/survey-b still absent at batch start.
+
+| id | outcome | note |
+|---|---|---|
+| 205469 | REJECTED_ON_READING (1) | one-direction accumulation ladder |
+| 207157 | PORTED | RSI2 vs SMA as written (inverse of Connors' rule; flagged), 15min |
+| 224799 | PORTED | Parabolic SAR side (TA-Lib SAR), 1h (code's 3600 s) |
+| 255502 | REJECTED_ON_READING (1) | two concurrent hedged sub-systems with scale ladders |
+| 262467 | PORTED | TD count fade, 1h |
+| 266142 | REJECTED_ON_READING (1) | pure 50/50 rebalancing |
+| 271523 | PORTED | weekly breakout/MA regime, long only, daily |
+| 288889 | PORTED | RSI 30/70 long only, 4h |
+| 299799 | REJECTED_ON_READING (2) | AHR999 Bitcoin-only model, DCA |
+| 301620 | PORTED | EMA cross + MACD confirm, close stop/target, 1h |
+| 318486 | PORTED | MA20 entry / MA10 exit, 5min |
+| 333269 | PORTED | dual-EMA turning points, no numeric defaults in source (declared), 1h |
+| 345036 | PORTED | ATR-active RSI swing long (author's divisor slip kept), 15min |
+
+All 34 ports pass py_compile and check_ports.py.
+
+Resume point: batch A3 committed (hash in next entry). Next id: 345289 (last bot before the
+PineScript block, which starts at 356844).

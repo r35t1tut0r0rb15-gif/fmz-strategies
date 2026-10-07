@@ -1,0 +1,30 @@
+# Original sizing and money-management code, FMZ #288889 (练习01RSI)
+# Source: https://www.fmz.com/strategy/288889  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Order execution: 1 % slices of coins / cash on every loop, 4-minute pause  [lines 18-42]
+   18: def RSI():
+   19:     ticker = exchange.GetTicker()
+   20:     account = exchange.GetAccount()
+   21:     r = exchange.GetRecords(PERIOD_H1 * 4)
+   22:     rsi = TA.RSI(r, 14)
+   23:     is_buy = False
+   24:     is_sell = False
+   25:     if rsi[-1] > 70 and account["Stocks"] > 0:
+   26:         id = exchange.Sell(ticker["Buy"], account["Stocks"] * 0.01)
+   27:         is_buy = True
+   28:     elif rsi[-1] < 30 and account["Balance"] > 0:
+   29:         id = exchange.Buy(ticker["Sell"], account["Balance"] / ticker["Sell"] * 0.01)
+   30:         is_sell = True
+   31: 
+   32: 
+   33:     if is_buy or is_sell:
+   34:         Sleep(1000 * 60 * 4)
+   35:         
+   36: #    if rsi[-1] < 40 and account["Balance"] > 0:
+   37: #        id = exchange.Buy(ticker["Buy"], account["Balance"] / ticker["Sell"] * 0.0005)
+   38: #    if rsi[-1] > 60 and account["Stocks"] > 0:
+   39: #        id = exchange.Sell(ticker["Sell"], account["Stocks"] * 0.0005)
+   40: #    if rsi[-1] < 40 and account["Balance"] > 0:
+   41: #        id = exchange.Buy(ticker["Buy"], account["Balance"] / ticker["Sell"] * 0.05)
+   42:     return

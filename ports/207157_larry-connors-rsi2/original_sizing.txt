@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #207157 (Larry-Connors-RSI2均值回归策略)
+# Source: https://www.fmz.com/strategy/207157  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Lot liang (equity x previous close / 100)  [lines 38-38]
+   38: liang:=INTPART(1*MONEYTOT*REF(C,1)/100);
+
+## Order statements with lot sizes  [lines 45-49]
+   45: CLOSE>ma1 AND RSI2>90,SK(liang);
+   46: CLOSE>ma1 AND RSI2<10,BP(SKVOL);
+   47: 
+   48: CLOSE<ma1 AND RSI2<10,BK(liang);
+   49: CLOSE<ma1 AND RSI2>90,SP(BKVOL);

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3721 |
+| PORT_CANDIDATE | 3708 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 25 |
-| REJECTED_ON_READING | 13 |
+| PORTED | 34 |
+| REJECTED_ON_READING | 17 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -153,7 +153,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 194224 | `ports/194224_macd/` | javascript | macd_momentum | bar_size_pending | hist_atr x3, body_atr x3, stop_atr x3 | 27 |
 | 200131 | `ports/200131_strategy/` | javascript | momentum_breakout | none | n x3 | 3 |
 | 200625 | `ports/200625_supertrend-v1/` | python | supertrend | none | factor x3, pd x3 | 9 |
-| | **25 ports** | | | | | **443** |
+| 207157 | `ports/207157_larry-connors-rsi2/` | MyLanguage | rsi_oscillator | none | y x4, band x2 | 8 |
+| 224799 | `ports/224799_sar/` | javascript | parabolic_sar | none | acceleration x3, maximum x3 | 9 |
+| 262467 | `ports/262467_td/` | python | td_sequential | none | lookback x3, exit_count x3 | 9 |
+| 271523 | `ports/271523_strategy/` | python | ma_trend | none | hh_weeks x3, ma_weeks x3 | 9 |
+| 288889 | `ports/288889_01rsi/` | python | rsi_oscillator | none | rsi_period x3, zone x2 | 6 |
+| 301620 | `ports/301620_exodus/` | javascript | ma_trend | none | within x3, stop_atr x3, win_loss x2 | 18 |
+| 318486 | `ports/318486_strategy/` | javascript | ma_trend | none | ma_exit x3, ma_entry x3 | 9 |
+| 333269 | `ports/333269_strategy/` | javascript | ma_trend | none | ema1 x3, ema2 x3, tp_atr x3 | 27 |
+| 345036 | `ports/345036_atr-rsi/` | javascript | rsi_oscillator | none | rsi_period x3, atrma_period x3 | 9 |
+| | **34 ports** | | | | | **547** |
 
 ## Rejected on reading
 
@@ -172,6 +181,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 187874 | 标定值或均线交叉策略.md | 2 | Entries and exits fire on hard-coded BTC price levels (REF(C,1) < 6725 buys, > 10000 sells, 'Gann levels'). Without them only an MA(10/30) cross remains, which would be a different strategy. |
 | 191622 | 割庄神器.md | 1 | Order-level ladder on perpetual swaps: opens on a daily-range test of > 20 price units, then keeps resting limit orders k = 11 price units above/below the fill, averaging in and martingale-style profit targets; fills inside the bar at set prices (also hard-coded price units, criterion 2). |
 | 201007 | 抛硬币策略.md | 1 | Coin-flip strategy: entries and exits are drawn from Math.random(); no deterministic signal to port. (Its trailing take-profit and stop are attached to random entries.) |
+| 205469 | bybit-swap永续加仓策略.md | 1 | One-direction accumulation ladder on a perpetual swap: buys (or sells) a fixed USD slice on every bar the MA filter holds, doubles it after two counter bars, scales out after three with-trend bars, caps total size; no exit other than a live-only bar-count stop. Position size is the strategy. |
+| 255502 | 恒温器-震荡修正为-最高价-最低价-添加增减仓选项-添加额外张数功能-修正cmi数据刷新日期问一天一次变为1小时一次-ok-准备修正一些功能.md | 1 | Two concurrent sub-systems (CMI shock / trend) each holding its own hedged futures position with ATR-step scale-in or scale-out ladders, extra-lot counters and departure callbacks. The outcome is defined by the ladder of partial exits, which cannot be reduced to one net position's entry/exit signals without changing the strategy. |
+| 266142 | 均仓策略.md | 1 | Pure 50/50 coin/cash rebalancing (buy or sell 1 % / 10 % slices when the coin share leaves 0.49-0.51); no entry or exit signal. |
+| 299799 | ahr999定投策略.md | 2 | AHR999 dollar-cost averaging: the indicator is a Bitcoin-only model (price vs a log-price curve fitted to days since the 2009 genesis block); the code throws for any other pair. Also periodic accumulation, not entries/exits. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

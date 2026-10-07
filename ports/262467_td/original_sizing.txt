@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #262467 (TD狄马克序列)
+# Source: https://www.fmz.com/strategy/262467  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Venue: quarterly contract  [lines 29-29]
+   29:     exchange.SetContractType("quarter")
+
+## Order execution: one contract per order, repeated on later polls  [lines 62-85]
+   62:         position = exchange.GetPosition()
+   63:         #if len(position) > 0:
+   64:             #Log(position[0]["Type"])
+   65:         if TDindex == 9 or TDindex == 13 or TDindex == 22:  #and len(position) == 0 :
+   66:             Log('上根K线的TD序列为：',TDindex)
+   67:             exchange.SetDirection("sell")
+   68:             id2 = exchange.Sell(-1, 1)
+   69:         
+   70:         if TDindex == -9 or TDindex == -13 or TDindex == -22:  #and len(position) == 0 :
+   71:             Log('上根K线的TD序列为：',TDindex)
+   72:             exchange.SetDirection("buy")
+   73:             id2 = exchange.Buy(-1, 1)
+   74:         if len(position) > 0:
+   75:             if position[0]["Type"] ==0 and TDindex >= 2 :
+   76:                 #Log(position[0]["Type"])
+   77:                 Log('上根K线的TD序列为：',TDindex)
+   78:                 exchange.SetDirection("closebuy")
+   79:                 id2 = exchange.Sell(-1, 1)
+   80:             
+   81:             if position[0]["Type"] ==1 and TDindex <= -2 :
+   82:                 #Log(position[0]["Type"])
+   83:                 Log('上根K线的TD序列为：',TDindex)
+   84:                 exchange.SetDirection("closesell")
+   85:                 id2 = exchange.Buy(-1, 1)
