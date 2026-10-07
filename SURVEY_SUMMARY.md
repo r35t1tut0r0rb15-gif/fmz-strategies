@@ -11,12 +11,12 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3682 |
+| PORT_CANDIDATE | 3669 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 59 |
+| PORTED | 72 |
 | REJECTED_ON_READING | 18 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
@@ -187,7 +187,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 361839 | `ports/361839_magic-macd/` | PineScript | macd_momentum | none | fast x3, slow x3 | 9 |
 | 361844 | `ports/361844_jma-dwma-by-multigrain/` | PineScript | ma_trend | none | jma_len x3, dwma_len x3 | 9 |
 | 361847 | `ports/361847_tom-demark-sequential-heat-map/` | PineScript | td_sequential | bar_size_pending | lookback x3, count x2 | 6 |
-| | **59 ports** | | | | | **758** |
+| 361880 | `ports/361880_triple-supertrend-with-ema-and-adx/` | PineScript | supertrend | none | m1 x2, m2 x2, m3 x2 | 8 |
+| 361969 | `ports/361969_qqe-mod-ssl-hybrid-waddah-attar-explosion/` | PineScript | multi_indicator_confluence | coarse_bar_stop | baseline_len x3, swing_len x3, sensitivity x2 | 18 |
+| 361974 | `ports/361974_williams-r-smoothed/` | PineScript | williams_r_oscillator | none | length x3, fast x3 | 9 |
+| 361977 | `ports/361977_ichimoku-cloud-smooth-oscillator/` | PineScript | ichimoku | none | conversion x3, base x3 | 9 |
+| 361996 | `ports/361996_ha-market-bias/` | PineScript | heikin_ashi_trend | none | ha_len x2, ha_len2 x2 | 4 |
+| 362000 | `ports/362000_heikin-ashi-trend/` | PineScript | heikin_ashi_trend | none | ema_len x3, smooth x3 | 9 |
+| 362004 | `ports/362004_rsi-buy-sell-signals/` | PineScript | ma_envelope_reversion | none | length x3, env_atr x3 | 9 |
+| 362031 | `ports/362031_chande-kroll-stop/` | PineScript | volatility_stop_cross | bar_size_pending | p x2, q x2, x x2 | 8 |
+| 362055 | `ports/362055_big-snapper-alerts-r30-chaiking-volatility-condition-tp-rsi/` | PineScript | multi_indicator_confluence | none | st_factor x2, st_len x2, len_coloured x3 | 12 |
+| 362059 | `ports/362059_best-tradingview-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | bb_len x2, bb_mult x2, slow_sma x2 | 8 |
+| 362060 | `ports/362060_tv/` | PineScript | macd_divergence | none | fast x2, slow x3 | 6 |
+| 362089 | `ports/362089_midas-mk-ii-ultimate-crypto-swing/` | PineScript | ma_trend | none | ema_len x3, sma_len x3 | 9 |
+| 362092 | `ports/362092_moving-average-buy-sell/` | PineScript | ma_trend | none | wave x3, tide x2 | 6 |
+| | **72 ports** | | | | | **873** |
 
 ## Rejected on reading
 

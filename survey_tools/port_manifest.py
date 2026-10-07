@@ -199,6 +199,19 @@ SIZING = {
         ("qty = equity / close", 53, 53),
     ],
     361834: [], 361839: [], 361844: [], 361847: [],
+    # ---- worker A, batch A6 (2026-10-07)
+    361880: [],
+    361969: [
+        ("Risk management input: account percent loss per trade", 138, 138),
+        ("Risk-based quantity: equity x risk / stop distance", 555, 557),
+        ("Long entry with qty", 560, 560),
+        ("Short entry with qty", 567, 567),
+    ],
+    361974: [], 361977: [], 361996: [], 362000: [], 362004: [], 362031: [], 362055: [],
+    362059: [
+        ("strategy(): margin_long = margin_short = 0", 55, 55),
+    ],
+    362060: [], 362089: [], 362092: [],
 }
 
 REJECTED_ON_READING = {

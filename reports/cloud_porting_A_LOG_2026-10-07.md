@@ -189,3 +189,20 @@ origin/survey-b still absent at batch start.
 All 59 ports pass py_compile and check_ports.py.
 
 Resume point: batch A5 committed (hash in next entry). Next id: 361880.
+
+Batch A5 commit: 2ef3770 (pushed, verified).
+
+## Task 4, batch A6 (ids 361880 - 362092)
+
+origin/survey-b still absent at batch start. 13 ported, 0 rejected:
+361880 triple SuperTrend (2h); 361969 QQE+SSL+WAE confluence (4h, swing sl_stop, coarse_bar_stop;
+simulate mirrors the engine stop for flat-state gating); 361974 smoothed %R turns (4h);
+361977 T3 cloud oscillator (2h); 361996 HA bias faded as written (10min); 362000 HA EMA trend (4h);
+362004 envelope cross faded as written (4h, percent -> ATR); 362031 Chande-Kroll cross faded as
+written (bar_size_pending); 362055 Big Snapper state machine (2h); 362059 SMA trend + BB cross
+(15min, trailing_stop_pending); 362060 MACD cross divergence (4h); 362089 EMA/SMA cross + MACD
+(15min); 362092 EMA 20/200 cross (4h).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A6 committed (hash in next entry). Next id: 362103.

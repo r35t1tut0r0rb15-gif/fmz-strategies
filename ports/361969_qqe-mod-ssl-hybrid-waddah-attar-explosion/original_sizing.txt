@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #361969 (QQE-MOD-SSL-Hybrid-Waddah-Attar-Explosion)
+# Source: https://www.fmz.com/strategy/361969  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk management input: account percent loss per trade  [lines 138-138]
+  138: accountRiskPercent = input.float(2, "Account percent loss per trade", step=0.1, group='Strategy: Risk Management', tooltip='Each trade will risk X% of the account balance')
+
+## Risk-based quantity: equity x risk / stop distance  [lines 555-557]
+  555: riskAmt = strategy.equity * accountRiskPercent / 100
+  556: longQty = math.abs(riskAmt / longStopPercent * 100) / close
+  557: shortQty = math.abs(riskAmt / shortStopPercent * 100) / close
+
+## Long entry with qty  [lines 560-560]
+  560:     strategy.entry("Long", strategy.long, qty=longQty)
+
+## Short entry with qty  [lines 567-567]
+  567:     strategy.entry("Short", strategy.short, qty=shortQty)
