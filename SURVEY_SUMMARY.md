@@ -11,12 +11,12 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3656 |
+| PORT_CANDIDATE | 3643 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 85 |
+| PORTED | 98 |
 | REJECTED_ON_READING | 18 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
@@ -213,7 +213,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 362327 | `ports/362327_hull-4ema/` | PineScript | ma_trend | none | hma_len x4 | 4 |
 | 362403 | `ports/362403_bb-rsi-adx-entry-points/` | PineScript | bollinger_reversion | none | bb_len x2, adx_min x3 | 6 |
 | 362418 | `ports/362418_smaller-fractals-transparency/` | PineScript | pivot_reversal | none | n x3 | 3 |
-| | **85 ports** | | | | | **981** |
+| 362427 | `ports/362427_playing-the-cross/` | PineScript | ichimoku | bar_size_pending | kijun x3, ema_len x3 | 9 |
+| 362430 | `ports/362430_triple-ema-macd/` | PineScript | macd_momentum | none | fast x2, slow x2, trend_slow x2 | 8 |
+| 362443 | `ports/362443_swing-high-low-indicator-w-macd-and-ema-confirmations/` | PineScript | ma_trend | none | fast x3, slow x2 | 6 |
+| 362457 | `ports/362457_3-supertrend-add-in-this-single-script/` | PineScript | supertrend | none | f1 x2, f2 x2, f3 x2 | 8 |
+| 362497 | `ports/362497_mahl-band/` | PineScript | directional_movement | none | ma_len x3, di_len x3 | 9 |
+| 362499 | `ports/362499_moving-average-colored-ema-sma/` | PineScript | multi_timeframe_ma | none | ema_len x3, sma_len x2, ret_len x2 | 12 |
+| 362542 | `ports/362542_pivot-order-blocks/` | PineScript | pivot_reversal | bar_size_pending | left x3, right x2 | 6 |
+| 362572 | `ports/362572_3ema/` | PineScript | ma_trend_oscillator_pullback | none | short x2, mid x2, long x2 | 8 |
+| 362637 | `ports/362637_essma/` | PineScript | ma_trend | none | length x3 | 3 |
+| 362638 | `ports/362638_combo-2-20-ema-bandpass-filter/` | PineScript | multi_indicator_confluence | bar_size_pending | length x3, zone_atr x3 | 9 |
+| 362649 | `ports/362649_rolling-heikin-ashi-candles/` | PineScript | heikin_ashi_trend | none | tf x3 | 3 |
+| 362654 | `ports/362654_rsi-and-bband-simultaneously-oversold/` | PineScript | bollinger_reversion | none | rsi_period x2, bb_period x2, bb_mult x2 | 8 |
+| 362664 | `ports/362664_rsi-divergence-with-pivot-bb-sma-ema-smma-wma-vwma/` | PineScript | rsi_oscillator | none | rsi_period x3, lookback x2 | 6 |
+| | **98 ports** | | | | | **1076** |
 
 ## Rejected on reading
 

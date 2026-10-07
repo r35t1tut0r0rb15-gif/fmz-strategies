@@ -223,3 +223,20 @@ origin/survey-b still absent at batch start. 13 ported, 0 rejected:
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A7 committed (hash in next entry). Next id: 362427.
+
+Batch A7 commit: 0b7843c (pushed, verified).
+
+## Task 4, batch A8 (ids 362427 - 362664)
+
+origin/survey-b still absent at batch start. 13 ported, 0 rejected:
+362427 EMA/Kijun cross faded as written (bar_size_pending); 362430 MACD histogram cross with EMA
+50/200 trend (30min); 362443 EMA 20/50 side (4h); 362457 triple SuperTrend agreement (30min);
+362497 MAHL band (10min); 362499 EMA/SMA cross + return sign + daily SuperTrend (1h);
+362542 confirmed pivots (bar_size_pending); 362572 3-EMA pullback zone (5min); 362637 ESSMA vs
+its WMA (1h); 362638 2/20 EMA + bandpass combo (bar_size_pending, zones -> ATR); 362649 rolling
+Heikin Ashi faded as written (6h); 362654 RSI+BB extreme faded as written (10min); 362664 RSI
+divergence faded as written (10min).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A8 committed (hash in next entry). Next id: 362667.

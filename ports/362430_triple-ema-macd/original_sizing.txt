@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #362430 (Triple-EMA-MACD)
+# Source: https://www.fmz.com/strategy/362430  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): default_qty_value = 750  [lines 58-58]
+   58: strategy(title = "Triple EMA + MACD", shorttitle = "tEMACd", overlay = true, default_qty_value = 750)
