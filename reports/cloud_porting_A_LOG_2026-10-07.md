@@ -38,12 +38,17 @@ Task 2 commit: fc81097 (pushed, verified).
 
 ## Task 3: no_bar_size.csv
 
-- `survey_tools/bar_size.py` -> `no_bar_size.csv`: **539 of 5,806 files have no bar size**
-  (536 have no `/*backtest*/` header; 3 have a period without a unit: 40155 `15`, 61867 `1440`,
-  and one `60`). 94 of the 539 show stop logic (static hint). By language: javascript 289,
-  python 131, PineScript 91, MyLanguage 27, cpp 1. By outcome: FLAGGED 219, REJECTED 197,
-  PORT_CANDIDATE 91, HELD_NEEDS_VOLUME 19, REJECTED_ON_READING 6, PORTED 5, DUPLICATE 2.
+- `survey_tools/bar_size.py` -> `no_bar_size.csv`: **484 of 5,806 files have no bar size**
+  (481 have no backtest header; 3 have a period without a unit: 40155 `15`, 61867 `1440`, and
+  one `60`). 85 of the 484 show stop logic (static hint). By language: javascript 289,
+  python 100, PineScript 91, MyLanguage 3, cpp 1. By outcome: FLAGGED 202, REJECTED 185,
+  PORT_CANDIDATE 70, HELD_NEEDS_VOLUME 15, REJECTED_ON_READING 5, PORTED 5, DUPLICATE 2.
+- Correction (same day, second commit): the first version (539 files) only recognised the
+  `/*backtest*/` form; MyLanguage writes the header `(*backtest ... *)` and Python
+  `'''backtest ... '''`, and one Python file writes `period: 1day`. Fixed; 484 is the count.
 - `note` also records any period the code requests (`PERIOD_H1` ...) or the description names;
   these are where the author's own code/words fix the size.
 
 Resume point: Task 3 committed (hash in next entry). Next: Task 4 from id 126968.
+
+Task 3 commits: 0caedb8 (first count, superseded), correction in the next commit.

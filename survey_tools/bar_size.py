@@ -2,7 +2,8 @@
 
 Static text only; nothing is executed.
 
-A file HAS a bar size when its source block carries FMZ's `/*backtest ... */` header with a
+A file HAS a bar size when its source block carries FMZ's backtest header (`/*backtest ... */`;
+MyLanguage writes it `(*backtest ... *)`, Python `'''backtest ... '''`) with a
 `period:` value that has a unit (`1m`, `15m`, `1h`, `4h`, `1d`, `2d`, ...). It has NO bar size
 when there is no such header, the header has no `period:` line, or the period has no unit
 (e.g. 61867 `period: 1440`, 40155 `period: 15`). Ports of these files use
@@ -42,14 +43,14 @@ DESC_PERIOD = re.compile(r'(小时线|日线|分钟线|周线|\b(hourly|daily|\d
 
 
 def bar_size(code):
-    m = re.search(r'/\*\s*backtest(.*?)\*/', code, re.S)
+    m = re.search(r'(?:/\*|\(\*|\'\'\'|""")\s*backtest(.*?)(?:\*/|\*\)|\'\'\'|""")', code, re.S)
     if not m:
-        return None, 'no /*backtest*/ header'
+        return None, 'no backtest header'
     pm = re.search(r'^\s*period\s*:\s*(\S*)', m.group(1), re.M)
     if not pm:
-        return None, '/*backtest*/ header has no period'
+        return None, 'backtest header has no period'
     v = pm.group(1)
-    if re.fullmatch(r'\d+[mhdwM]', v):
+    if re.fullmatch(r'\d+(?:[mhdwM]|min|hour|day|week)s?', v):
         return v, ''
     return None, f'period without unit: "{v}"'
 
