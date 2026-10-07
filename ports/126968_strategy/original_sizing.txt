@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #126968 (麦语言海龟策略体验)
+# Source: https://www.fmz.com/strategy/126968  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Argument: RATIO (equity fraction per unit)  [lines 42-42]
+   42: |RATIO|0.01|资金比率|
+
+## Lot formula (1 % of equity per ATR), unit size TC, 4-unit cap MTC  [lines 65-68]
+   65: ZOOM:=IFELSE(ISCONTRACT('@Futures_(?!CTP).*'), CLOSE, 1); // 兼容数字货币期货币为保证金
+   66: LOT:=((MONEYTOT*RATIO*ZOOM)/(UNIT*ATR))*ZOOM;//根据权益的1%计算下单手数
+   67: TC..IFELSE(ISCONTRACT('@Futures.*'), INTPART(LOT), LOT); // 兼容期货与现货ISCONTRACT以@开头表示匹配交易所名子, 支持正则
+   68: MTC..4*TC; //总的持仓头寸
+
+## Pyramid adds every 0.5 ATR up to MTC (kept in the port only as the stop reference)  [lines 78-79]
+   78: C>=BKPRICE+0.5*ATR&&BKVOL<MTC&&ISLASTBK,BK(TC);//价格在上次开仓的基础上上涨0.5倍ATR，在手数不超过4倍TC的时候，买入加仓TC手
+   79: C<=SKPRICE-0.5*ATR&&SKVOL<MTC&&ISLASTSK,SK(TC);//价格在上次开仓的基础上下跌0.5倍ATR，在手数不超过4倍TC的时候，卖出加仓TC手
+
+## TRADE_AGAIN / MULTSIG execution settings  [lines 86-87]
+   86: TRADE_AGAIN(10);
+   87: MULTSIG(1, 1, 10);

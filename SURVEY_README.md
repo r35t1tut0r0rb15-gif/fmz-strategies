@@ -204,6 +204,40 @@ These are fixed here, before porting, so they are applied the same way to every 
 - **Port order.** Ports are made in ascending FMZ id over the admitted, deduplicated set.
   This is a neutral order and implies nothing about merit.
 
+## MyLanguage (麦语言) interpretation rules (added 2026-10-07, worker A)
+
+Fixed before the first MyLanguage port, applied to all of them.
+
+- **Evaluation model.** FMZ MyLanguage's default is the close-price model: every statement is
+  evaluated once when a bar completes, and orders go out right after, i.e. at the next bar's open.
+  That is the contract exactly. Scripts that switch to intrabar evaluation (`MULTSIG`, real-time
+  model) are ported on completed bars (same rule as bots polling the forming bar), and say so.
+- **Functions.** `C/O/H/L` = the current bar; `REF(X,n)` = `X.shift(n)`; `MA` = simple MA;
+  `EMA(X,N)` = `ewm(span=N, adjust=False)` (seeded with the first value); `SMA(X,N,M)` =
+  `ewm(alpha=M/N, adjust=False)`; `DMA(X,A)` = `Y = A*X + (1-A)*Y'` with a Series `A`;
+  `HHV/LLV(X,N)` = rolling max/min over N bars INCLUDING the current bar; `HV/LV(X,N)` = the same
+  over the N bars BEFORE the current bar (`HHV(X,N).shift(1)`); `SUM(X,N)` = rolling sum;
+  `CROSSUP(A,B)` = `A > B and A[1] <= B[1]`, `CROSSDOWN` mirror; `BARPOS` = 1-based bar number.
+  Rolling windows have no value until N bars exist (no partial-window values).
+- **Position words.** `BK`/`SK` open long/short; `SP`/`BP` close long/short; `BPK`/`SPK` close the
+  opposite side and open (a one-bar reversal: `REVERSAL INTENDED`); `CLOSEOUT` closes all.
+  `BKVOL>0` = long held; `ISLASTBK` = the latest signal was `BK`.
+- **AUTOFILTER** (and explicit `BKVOL=0`/`ISLAST...=0` guards): an opening signal is valid only
+  from flat (or as `BPK`/`SPK`), and at most one signal per bar, the first valid statement in
+  source order winning. Without AUTOFILTER, a repeated `BK` while long is an add (pyramiding:
+  sizing, criterion 4, not ported); a `BK` while short would hold both sides on FMZ, which a
+  net-position contract cannot hold, so the port ignores it (`upon_opposite_entry="ignore"` and
+  the port's own position tracking).
+- **BKPRICE / SKPRICE** = the price of the latest `BK`/`SK` signal, i.e. that signal bar's close
+  under the close-price model (adds included, since the source's stop refers to them);
+  `BKHIGH`/`SKLOW` = highest high / lowest low of the bars after that signal bar.
+- **Exits.** `SP`/`BP` statements, including the authors' "stop loss" lines (`C<=BKPRICE*(1-x%)`,
+  `LOW<=...`), are conditions on the completed bar, so they are exit signals from `simulate()`,
+  not `sl_stop` (rule 3 by analogy). Percent distances become ATR multiples (criterion 2):
+  the source's own ATR if it has one, else Wilder ATR(14), taken on the reference signal bar.
+- Money words (`MONEYTOT`, lot formulas, `TRADE_AGAIN`, `MULTSIG` counts, `SETSIGPRICETYPE`) are
+  sizing/execution: quoted in `original_sizing.txt`.
+
 ## Screening method (criteria 1, 2, 3, 6), `survey_tools/screen.py`
 
 Static regular-expression rules over comment-stripped source code only (descriptions are not

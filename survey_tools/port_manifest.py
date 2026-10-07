@@ -6,6 +6,11 @@ These blocks are copied verbatim into original_sizing.txt (criterion 4).
 
 REJECTED_ON_READING: fmz_id -> (criterion, reason). Files the screen marked PORT_CANDIDATE
 but reading showed they fail; written to review_decisions.csv.
+
+DUPLICATE_ON_READING: fmz_id -> (ported fmz_id, reason). Candidates whose logic AND defaults are
+identical to a port (exact duplicates in behaviour, set aside under rule 7, 2026-10-07).
+
+An empty SIZING list means the source has no sizing or money-management code.
 """
 
 SIZING = {
@@ -43,6 +48,44 @@ SIZING = {
         ("Order helpers: floor amounts, +/-1% marketable limit prices, futures direction", 197, 247),
         ("Contract type and leverage set-up", 257, 259),
     ],
+    # ---- worker A, batch A1 (2026-10-07)
+    126968: [
+        ("Argument: RATIO (equity fraction per unit)", 42, 42),
+        ("Lot formula (1 % of equity per ATR), unit size TC, 4-unit cap MTC", 65, 68),
+        ("Pyramid adds every 0.5 ATR up to MTC (kept in the port only as the stop reference)", 78, 79),
+        ("TRADE_AGAIN / MULTSIG execution settings", 86, 87),
+    ],
+    127101: [
+        ("Order-price type for BK", 59, 59),
+        ("Order-price type for SK", 61, 61),
+    ],
+    127691: [],
+    128249: [
+        ("Backtest header: TradeAmount", 66, 66),
+        ("Open statements without AUTOFILTER: a repeated BK/SK adds a lot", 84, 85),
+        ("Close statements close the whole volume (SP(BKVOL), BP(SKVOL))", 86, 89),
+    ],
+    128250: [
+        ("Close statements close the whole volume (SP(BKVOL), BP(SKVOL))", 86, 89),
+    ],
+    128418: [
+        ("Backtest header: TradeAmount", 64, 64),
+    ],
+    132298: [
+        ("Lot formula (1 % of equity per ATR), unit size TC, 4-unit cap MTC", 198, 201),
+        ("Pyramid adds every 0.5 ATR up to MTC (kept in the port only as the stop reference)", 206, 207),
+        ("TRADE_AGAIN execution setting", 212, 212),
+    ],
+    146391: [
+        ("Order execution: 10 % of balance / stocks per signal, unbounded position counter", 72, 91),
+    ],
+    156699: [],
+    171038: [
+        ("monkeyOper: inventory trading at +/-3 % from the last price (commented out in the source)", 50, 97),
+        ("bullOper: cancel shorts, close shorts, buy 20 %/30 % up to half the account", 99, 141),
+        ("bearOper: cancel longs, close longs, sell 20 %/30 % up to half the account", 143, 185),
+        ("Venue set-up: quarterly contract, 5x leverage", 248, 257),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -60,4 +103,16 @@ REJECTED_ON_READING = {
     23874: ("1", "R-Breaker variant: same tick-price pivot level breaks inside the bar as #23531."),
     62163: ("1", "talib demo: sells once when three black crows appear on the forming bar, then throws; no exit, "
                  "not a trading strategy."),
+    # ---- worker A, batch A1 (2026-10-07)
+    170557: ("1", "Inventory-ratio ladder (grid-like): buys/sells 10-20 % of equity whenever the tick price is 3 % "
+                  "beyond a 30-min channel midpoint or 7 % from the last trade price, keeping cash between 10 % and "
+                  "90 %. The position is a continuously rebalanced inventory driven by tick prices and the last "
+                  "fill, not entries/exits on bars."),
+    170842: ("1", "Not a signal strategy: an OKEx futures order-API demo (opens two buy orders once, then only logs "
+                  "orders and positions)."),
+}
+
+DUPLICATE_ON_READING = {
+    128126: (127691, "Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead "
+                     "of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."),
 }

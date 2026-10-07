@@ -11,13 +11,14 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3747 |
+| PORT_CANDIDATE | 3734 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 7 |
-| PORTED | 6 |
+| PORTED | 16 |
+| REJECTED_ON_READING | 9 |
+| DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
 `PORT_CANDIDATE` = passed the static screen and is waiting to be read and ported.
@@ -133,7 +134,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 55839 | `ports/55839_strategy/` | javascript | ichimoku | none | tenkan x3, kijun x3, cloud_atr x3 | 27 |
 | 103070 | `ports/103070_moving-average-bot-30-lines/` | javascript | ma_trend | none | fast x3, slow x3, enter_period x3 | 27 |
 | 119038 | `ports/119038_paul-the-gambler-l-vy-gold-edition/` | python | stop_and_reverse_bracket | bar_size_pending | sl_atr x3, tp_atr x3 | 9 |
-| | **6 ports** | | | | | **103** |
+| 126968 | `ports/126968_strategy/` | MyLanguage | donchian_breakout | none | short_period x3, long_period x3, stop_atr x3 | 27 |
+| 127101 | `ports/127101_macdma-macdma-indicator-combination-strategy/` | MyLanguage | ma_trend | none | ma_fast x3, ma_slow x3, stop_atr x3 | 27 |
+| 127691 | `ports/127691_atr-channel-strategy-based-on-atr-volatility-indicator/` | MyLanguage | donchian_breakout | none | n x3, m x3, sl_atr x3 | 27 |
+| 128249 | `ports/128249_kd-trading-strategy-of-traditional-ma-index-and-kd-index/` | MyLanguage | ma_trend_oscillator_pullback | none | n x3, nkd x3, sl_atr x3 | 27 |
+| 128250 | `ports/128250_rsi-combination-of-double-ma-and-rsi/` | MyLanguage | ma_trend | none | n1 x3, n2 x3, sl_atr x3 | 27 |
+| 128418 | `ports/128418_dmi-dmi-and-high-low-strategy/` | MyLanguage | ma_trend | none | n x3, m x3 | 9 |
+| 132298 | `ports/132298_m-language-turtle-trading-strategy-implementationsv-10/` | MyLanguage | donchian_breakout | none | entry_period x3, exit_period x3, stop_atr x3 | 27 |
+| 146391 | `ports/146391_bollmaboll/` | python | bollinger_breakout | none | bo x3, ma x3, ma2 x3 | 27 |
+| 156699 | `ports/156699_02/` | MyLanguage | ma_envelope_breakout | bar_size_pending | n x4 | 4 |
+| 171038 | `ports/171038_v10-okex/` | javascript | multi_timeframe_breakout_regime | none | mnum x3, dnum x3, center_atr x3 | 27 |
+| | **16 ports** | | | | | **332** |
 
 ## Rejected on reading
 
@@ -146,6 +157,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 23531 | R-Breaker-交易策略.md | 1 | R-Breaker: entries/exits trigger when the tick price crosses pivot levels inside the bar (intraday level-break fills). |
 | 23874 | R-Breaker11-交易策略.md | 1 | R-Breaker variant: same tick-price pivot level breaks inside the bar as #23531. |
 | 62163 | talib简单应用之查找三只乌鸦.md | 1 | talib demo: sells once when three black crows appear on the forming bar, then throws; no exit, not a trading strategy. |
+| 170557 | 单商品小卖部策略V20_年化130.md | 1 | Inventory-ratio ladder (grid-like): buys/sells 10-20 % of equity whenever the tick price is 3 % beyond a 30-min channel midpoint or 7 % from the last trade price, keeping cash between 10 % and 90 %. The position is a continuously rebalanced inventory driven by tick prices and the last fill, not entries/exits on bars. |
+| 170842 | OKex期货测试for新手.md | 1 | Not a signal strategy: an OKEx futures order-API demo (opens two buy orders once, then only logs orders and positions). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

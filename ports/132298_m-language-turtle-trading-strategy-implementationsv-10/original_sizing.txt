@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #132298 (M-Language-Turtle-Trading-strategy-implementationsV-10)
+# Source: https://www.fmz.com/strategy/132298  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Lot formula (1 % of equity per ATR), unit size TC, 4-unit cap MTC  [lines 198-201]
+  198: ZOOM:=IFELSE(ISCONTRACT('@Futures_(?!CTP).*'), CLOSE, 1); // Compatible with cryptocurrency futures as margin
+  199: LOT:=((MONEYTOT*0.01*ZOOM)/(UNIT*ATR))*ZOOM;// Calculate the number of one hand based on 1% of equity
+  200: TC..IFELSE(ISCONTRACT('@Futures.*'), INTPART(LOT), LOT); // Compatible futures and spot ISCONTRACT starts with @ to indicate matching exchange name, support
+  201: MTC..4*TC; // Total position
+
+## Pyramid adds every 0.5 ATR up to MTC (kept in the port only as the stop reference)  [lines 206-207]
+  206: C>=BKPRICE+0.5*ATR&&BKVOL<MTC&&ISLASTBK,BK(TC);// The price has increased by 0.5 times ATR on the basis of the last holding position, and when the number of hands does not exceed 4 times of TC, buy long the adding position of TC hands
+  207: C<=SKPRICE-0.5*ATR&&SKVOL<MTC&&ISLASTSK,SK(TC);// The price fell 0.5 times ATR on the basis of the last holding position, and when the number of hands does not exceed 4 times of TC, sell short the adding position of TC hand.
+
+## TRADE_AGAIN execution setting  [lines 212-212]
+  212: TRADE_AGAIN(10);

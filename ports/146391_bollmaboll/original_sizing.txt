@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #146391 (bollmaboll)
+# Source: https://www.fmz.com/strategy/146391  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Order execution: 10 % of balance / stocks per signal, unbounded position counter  [lines 72-91]
+   72: 	if bb[0][-1] > mabt[-1] and bb[0][-2] < mabt[-2] and bb[2][-1] < bb[2][-2] and bb[1][-1] > bb[1][-2] and records.Close[-1] > move[-1] and rsi[-1]>60:
+   73: 		position += 1
+   74: 		exchange.Buy(-1,account.Balance*0.1)
+   75: 		#log('向上突破开多 '+ str(close[-1]))
+   76: 	
+   77: 	if bb[2][-1] < mabd[-1] and bb[2][-2] > mabd[-2] and bb[0][-1] > bb[0][-2] and bb[1][-1] < bb[1][-2] and records.Close[-1] < move[-1] and rsi[-1]<40:
+   78: 		position -= 1
+   79: 		exchange.Sell(-1,account.Stocks*0.1)
+   80: 		#log('向下突破开空 '+ str(close[-1]))
+   81: 	
+   82: 	if bb[0][-1]-bb[2][-1] < bb[0][-2]-bb[2][-2]:
+   83: 		if bb[0][-1] < mabt[-1] and bb[0][-2] > mabt[-2] and position> 0:
+   84: 			position -= 1
+   85: 			exchange.Sell(-1,account.Stocks*0.1)
+   86: 			#log('多单平仓 '+ str(close[-1]))
+   87: 
+   88: 		if bb[2][-1] > mabd[-1] and bb[2][-2] < mabd[-2] and position < 0:
+   89: 			position += 1
+   90: 			exchange.Buy(-1,account.Balance*0.1)
+   91: 			#log('空单平仓 '+ str(close[-1]))

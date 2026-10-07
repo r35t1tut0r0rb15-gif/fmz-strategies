@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #128249 (传统均线指标与KD指标的交易策略Trading-Strategy-of-Traditional-MA-Index-and-KD-Index)
+# Source: https://www.fmz.com/strategy/128249  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Backtest header: TradeAmount  [lines 66-66]
+   66: args: [["TradeAmount",100,126961],["ContractType","XBTUSD",126961]]
+
+## Open statements without AUTOFILTER: a repeated BK/SK adds a lot  [lines 84-85]
+   84: BARPOS>N AND C>MAC AND K<D,BK;
+   85: BARPOS>N AND C<MAC AND K>D,SK;
+
+## Close statements close the whole volume (SP(BKVOL), BP(SKVOL))  [lines 86-89]
+   86: C<=BKPRICE*(1-SLOSS*0.01),SP(BKVOL);
+   87: C>=SKPRICE*(1+SLOSS*0.01),BP(SKVOL);
+   88: C>=BKPRICE*(1+SLOSS*0.01) AND C<MAC,SP(BKVOL);
+   89: C<=SKPRICE*(1-SLOSS*0.01) AND C>MAC,BP(SKVOL);

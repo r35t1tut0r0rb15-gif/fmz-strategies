@@ -1,0 +1,155 @@
+# Original sizing and money-management code, FMZ #171038 (牛熊小卖部策略V10_OKex合约)
+# Source: https://www.fmz.com/strategy/171038  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## monkeyOper: inventory trading at +/-3 % from the last price (commented out in the source)  [lines 50-97]
+   50: function monkeyOper(){
+   51:    var i;
+   52:    var position;
+   53:    var account = _C(exchange.GetAccount);
+   54:    var ticker = _C(exchange.GetTicker);
+   55:    var nowPrice=ticker.Sell;
+   56:    var pAmount;
+   57:     
+   58:   /* if(status==10){ //进入猴市初始化,设定公允价格
+   59:        operPrice=mlow+mhigh;
+   60:    }else{ 
+   61:        if(nowPrice<operPrice*0.97){ //值得买
+   62:             //买平所有空单
+   63:             position = _C(exchange.GetPosition);
+   64:             for (i = 0; i < position.length; i++) {
+   65:                if(position[i].Type==PD_SHORT){ //买平空单
+   66:                  exchange.SetDirection("closesell"); 
+   67:                  exchange.Buy(nowPrice,position[i].Amount);
+   68:                }else{
+   69:                  pAmount=position[i].Amount;
+   70:                }
+   71:            }
+   72:           
+   73:            if(pAmount*10<account.Stocks*nowPrice){ //最多持半仓
+   74:               exchange.Buy(nowPrice,Math.floor(nowPrice*account.Stocks*0.1/10)); //尝试做多
+   75:               Log("猴市买入",account.Stocks*0.1);
+   76:               operPrice=nowPrice;
+   77:            } 
+   78:        }else if(nowPrice>operPrice*1.03){ //值得卖
+   79:             //卖平所有多单
+   80:             position = _C(exchange.GetPosition);
+   81:             for (i = 0; i < position.length; i++) {
+   82:                if(position[i].Type==PD_LONG){ //卖平多单
+   83:                  exchange.SetDirection("closebuy"); 
+   84:                  exchange.Sell(nowPrice,position[i].Amount);
+   85:                }else{
+   86:                  pAmount=position[i].Amount;
+   87:                }
+   88:            }
+   89:           
+   90:            if(pAmount*10<account.Stocks*nowPrice){ //最多持半仓
+   91:               exchange.Sell(nowPrice,Math.floor(nowPrice*account.Stocks*0.1/10)); //尝试做多
+   92:               Log("猴市卖出",account.Stocks*0.1);
+   93:               operPrice=nowPrice;
+   94:            } 
+   95:        }    
+   96:    }*/
+   97: }
+
+## bullOper: cancel shorts, close shorts, buy 20 %/30 % up to half the account  [lines 99-141]
+   99: function bullOper(){
+  100:    //去掉所有挂的空仓
+  101:    var orders = _C(exchange.GetOrders);
+  102:    var account = _C(exchange.GetAccount);
+  103:   
+  104:    for (var i = 0; i < orders.length; i++) {
+  105:        var order=orders[i];
+  106:        if(order.type==1){  //空单
+  107:            exchange.CancelOrder(order.Id);
+  108:            Log("清空单");
+  109:        }
+  110:    }
+  111:    
+  112:    var ticker = _C(exchange.GetTicker);
+  113:    var nowPrice=ticker.Sell;
+  114:    //买平所有空单
+  115:    var position = _C(exchange.GetPosition);
+  116:    var pAmount=0;
+  117:    for (i = 0; i < position.length; i++) {
+  118:        if(position[i].Type==PD_SHORT){ //买平空单,注意成交方向相反
+  119:            exchange.SetDirection("closesell"); 
+  120:            exchange.Buy(nowPrice,position[i].Amount);
+  121:        }else{
+  122:            pAmount=position[i].Amount;
+  123:        }
+  124:    }
+  125:    
+  126:    if(status==20){  //当前价格做多
+  127:        exchange.SetDirection("buy"); 
+  128:        if(pAmount*10<account.Stocks*nowPrice){ //最多持半仓
+  129:           exchange.Buy(nowPrice,Math.floor(nowPrice*account.Stocks*0.2/10)); //尝试做多
+  130:           Log("初始买入",account.Stocks*0.1);
+  131:        } 
+  132:        operPrice=nowPrice;
+  133:    }else if(nowPrice<operPrice*0.97){  //最多挂两单，大力做多
+  134:        exchange.SetDirection("buy");
+  135:        if(pAmount*10<account.Stocks*nowPrice){ //最多持半仓
+  136:           exchange.Buy(nowPrice,Math.floor(nowPrice*account.Stocks*0.3/10));
+  137:           Log("加大买入",account.Stocks*0.3);
+  138:        }
+  139:        operPrice=nowPrice;
+  140:    }
+  141: }
+
+## bearOper: cancel longs, close longs, sell 20 %/30 % up to half the account  [lines 143-185]
+  143: function bearOper(){
+  144:    //去掉所有挂的多仓
+  145:    var orders = _C(exchange.GetOrders);
+  146:    var account = _C(exchange.GetAccount);
+  147:   
+  148:    for (var i = 0; i < orders.length; i++) {
+  149:        var order=orders[i];
+  150:        if(order.type==0){  //多单
+  151:            exchange.CancelOrder(order.Id);
+  152:            Log("清多单");
+  153:        }
+  154:    }
+  155:    
+  156:    var ticker = _C(exchange.GetTicker);
+  157:    var nowPrice=ticker.Sell;
+  158:    //买平所有多单
+  159:    var position = _C(exchange.GetPosition);
+  160:    var pAmount=0;
+  161:    for (i = 0; i < position.length; i++) {
+  162:        if(position[i].Type==PD_LONG){ //卖平多单
+  163:            exchange.SetDirection("closebuy"); 
+  164:            exchange.Sell(nowPrice,position[i].Amount);
+  165:        }else{
+  166:            pAmount=position[i].Amount;
+  167:        }
+  168:    }
+  169:    
+  170:    if(status==30){  //当前价格做空
+  171:        exchange.SetDirection("sell"); 
+  172:        if(pAmount*10<account.Stocks*nowPrice){ //最多持半仓
+  173:           exchange.Sell(nowPrice,Math.floor(nowPrice*account.Stocks*0.2/10)); //尝试做空
+  174:           Log("初始卖出",account.Stocks*0.1);
+  175:        } 
+  176:        operPrice=nowPrice;
+  177:    }else if(nowPrice>operPrice*1.03){  //最多挂两单，大力做多
+  178:        exchange.SetDirection("sell");
+  179:        if(pAmount*10<account.Stocks*nowPrice){ //最多持半仓
+  180:           exchange.Sell(nowPrice,Math.floor(nowPrice*account.Stocks*0.3/10));
+  181:           Log("加大卖出",account.Stocks*0.3);
+  182:        }
+  183:        operPrice=nowPrice;
+  184:    }
+  185: }
+
+## Venue set-up: quarterly contract, 5x leverage  [lines 248-257]
+  248: function main() {
+  249:     var initAccount = _C(exchange.GetAccount);
+  250:     Log(initAccount);
+  251:     exchange.SetContractType("quarter")    // 举例设置为OKEX期货当周合约
+  252:     exchange.SetMarginLevel(5);              // 设置杠杆为5倍
+  253:     while (true) {
+  254:         oper();
+  255:         Sleep(Interval*1000);
+  256:     }
+  257: }

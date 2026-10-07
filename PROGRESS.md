@@ -1,6 +1,6 @@
 # Progress (branch `survey`)
 
-Last updated 2026-10-03 by session 5E-cloud (contract fix pass).
+Last updated 2026-10-07 by cloud worker A (rules 2026-10-07; batches A1-).
 
 ## Done
 
@@ -14,16 +14,19 @@ Last updated 2026-10-03 by session 5E-cloud (contract fix pass).
 | Batch | FMZ ids read | Ported | Rejected on reading |
 |---|---|---|---|
 | 1 | 179 - 119038 | 11604, 42283, 42451, 55839, 103070, 119038 | 179, 21104, 21369, 21370, 23531, 23874, 62163 |
+| A1 | 126968 - 171038 | 126968, 127101, 127691, 128249, 128250, 128418, 132298, 146391, 156699, 171038 | 170557, 170842; 128126 duplicate on reading of 127691 |
 
 ## Next
 
 1. Continue the queue: `overall == PORT_CANDIDATE` in `screening.csv`, ascending `fmz_id`,
-   skipping ids already in `review_decisions.csv`. **Next id: 126968** (MyLanguage turtle).
-   About 40 FMZ-API bots (JavaScript/Python/MyLanguage) remain before the PineScript block,
-   which starts at 356844.
-2. Before porting any file, check `possible_duplicates.csv` for its id. If the partner's logic
-   is the same, collapse it: record it in `review_decisions.csv` as `DUPLICATE_ON_READING` of the
-   representative (the one ported or to be ported) and add it to that port's notes.
+   skipping ids already in `review_decisions.csv`. **Next id: 177631** (worker A works upward
+   from 126968 on branch `survey`; worker B ports ids >= 439378 on `survey-b`, then works
+   down from 439377; A stops when its next id is one B has done).
+   Worker A's log with resume points: `reports/cloud_porting_A_LOG_2026-10-07.md`.
+2. Before porting any file, check `near_duplicate_groups.csv` (and `possible_duplicates.csv`)
+   for its id. Rule 7 (2026-10-07): near-duplicates are still ported, with their group id in
+   PORT_NOTES.md; only an exact duplicate (same logic and defaults) is set aside, recorded in
+   `port_manifest.DUPLICATE_ON_READING` -> `review_decisions.csv` as `DUPLICATE_ON_READING`.
 3. After each batch: `python3 survey_tools/make_port_files.py && python3 survey_tools/check_ports.py
    && python3 survey_tools/summarize.py`, update this file, commit, push.
 

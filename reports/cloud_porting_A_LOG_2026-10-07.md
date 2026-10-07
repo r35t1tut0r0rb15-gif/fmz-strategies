@@ -52,3 +52,31 @@ Task 2 commit: fc81097 (pushed, verified).
 Resume point: Task 3 committed (hash in next entry). Next: Task 4 from id 126968.
 
 Task 3 commits: 0caedb8 (first count, superseded), correction in the next commit.
+
+Task 3 correction commit: f17d01e (pushed, verified).
+
+## Task 4, batch A1 (ids 126968 - 171038)
+
+origin/survey-b did not exist when the batch started (worker B has pushed nothing yet).
+Added to SURVEY_README.md: "MyLanguage interpretation rules" (close-price model, function
+semantics incl. HV/LV excluding the current bar, AUTOFILTER, BKPRICE, exits as signals).
+
+| id | outcome | note |
+|---|---|---|
+| 126968 | PORTED | turtle 20/55, daily broker days, donchian_breakout |
+| 127101 | PORTED | MACD + dual SMA, 1h, ma_trend |
+| 127691 | PORTED | ATR channel stop-and-reverse, 1h; ND127691 |
+| 128126 | DUPLICATE_ON_READING of 127691 | same logic and defaults |
+| 128249 | PORTED | EMA + KD pullback, 30min |
+| 128250 | PORTED | dual EMA + RSI cross, 15min |
+| 128418 | PORTED | Kaufman AMA cross, 5min |
+| 132298 | PORTED | turtle V1.0, daily |
+| 146391 | PORTED | Bollinger band-MA cross, 1min (code's PERIOD_M1) |
+| 156699 | PORTED | MA high/low envelope reverse; bar_size_pending |
+| 170557 | REJECTED_ON_READING (1) | inventory-ratio ladder on tick prices |
+| 170842 | REJECTED_ON_READING (1) | order-API demo, not a strategy |
+| 171038 | PORTED | 30min channel vs daily range regime |
+
+All 16 ports pass py_compile and check_ports.py.
+
+Resume point: batch A1 committed (hash in next entry). Next id: 177631.

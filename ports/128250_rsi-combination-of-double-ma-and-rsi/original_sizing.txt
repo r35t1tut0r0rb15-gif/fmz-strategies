@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #128250 (双均线策略与相对强弱RSI指标组合Combination-of-Double-MA-and-RSI)
+# Source: https://www.fmz.com/strategy/128250  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Close statements close the whole volume (SP(BKVOL), BP(SKVOL))  [lines 86-89]
+   86: SELLY,SP(BKVOL);
+   87: BUYY,BP(SKVOL);
+   88: SELLS,SP(BKVOL);
+   89: BUYS,BP(SKVOL);

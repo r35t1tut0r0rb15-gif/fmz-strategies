@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from port_manifest import REJECTED_ON_READING, SIZING  # noqa: E402
+from port_manifest import DUPLICATE_ON_READING, REJECTED_ON_READING, SIZING  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -29,6 +29,9 @@ def main():
                f"# Source: {r['detail_url']}  (verbatim from original_source.md; line numbers refer to it)",
                "# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.",
                ""]
+        if not blocks:
+            out.append("(The source has no sizing or money-management code: one lot per signal.)")
+            out.append("")
         for label, a, b in blocks:
             out.append(f"## {label}  [lines {a}-{b}]")
             out.extend(f"{i:>5}: {lines[i - 1]}" for i in range(a, b + 1))
@@ -39,9 +42,12 @@ def main():
         w.writerow(['fmz_id', 'file', 'final_outcome', 'criterion', 'reason'])
         for fid, (crit, why) in sorted(REJECTED_ON_READING.items()):
             w.writerow([fid, rows[fid]['file'], 'REJECTED_ON_READING', crit, why])
+        for fid, (rep, why) in sorted(DUPLICATE_ON_READING.items()):
+            w.writerow([fid, rows[fid]['file'], 'DUPLICATE_ON_READING', '6', f"of #{rep}: {why}"])
         for fid in sorted(SIZING):
             w.writerow([fid, rows[fid]['file'], 'PORTED', '', f"ports/{rows[fid]['slug']}/"])
-    print(len(SIZING), 'ports;', len(REJECTED_ON_READING), 'rejected on reading')
+    print(len(SIZING), 'ports;', len(REJECTED_ON_READING), 'rejected on reading;',
+          len(DUPLICATE_ON_READING), 'duplicates on reading')
 
 
 if __name__ == '__main__':

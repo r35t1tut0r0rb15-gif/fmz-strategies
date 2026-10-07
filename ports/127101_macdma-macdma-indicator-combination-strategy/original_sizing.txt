@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #127101 (你不知道的MACDMA指标组合策略MACDMA-Indicator-Combination-Strategy)
+# Source: https://www.fmz.com/strategy/127101  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Order-price type for BK  [lines 59-59]
+   59: SETSIGPRICETYPE(BK,NEW_ORDER);
+
+## Order-price type for SK  [lines 61-61]
+   61: SETSIGPRICETYPE(SK,NEW_ORDER);
