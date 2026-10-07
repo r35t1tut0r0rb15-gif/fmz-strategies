@@ -13,7 +13,7 @@
 | 3 | PASS | Exchange pair in the header only (if any). |
 | 4 | DONE | No sizing code. |
 | 5 | DECLARED | See grid. |
-| 6 | PORTED (rule 7) | No `DG` or `ND` group. |
+| 6 | PORTED (rule 7) | Group `DG362638` (Jaccard >= 0.80) with #439042 (DUPLICATE); best Jaccard 0.863 with #439042. |
 | 7 | IGNORED |  |
 
 ## Declared grid (criterion 5)

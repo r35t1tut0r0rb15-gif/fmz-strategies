@@ -13,7 +13,7 @@
 | 3 | PASS | Binance futures pair in the header only. |
 | 4 | DONE | No sizing code. |
 | 5 | DECLARED | See grid. |
-| 6 | PORTED (rule 7) | No `DG` or `ND` group. |
+| 6 | PORTED (rule 7) | Group `DG361725` (Jaccard >= 0.80) with #426939 (DUPLICATE), #435093 (DUPLICATE); best Jaccard 0.878 with #426939. |
 | 7 | IGNORED |  |
 
 ## Declared grid (criterion 5)

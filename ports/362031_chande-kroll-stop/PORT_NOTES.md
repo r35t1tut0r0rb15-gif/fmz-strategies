@@ -13,7 +13,7 @@
 | 3 | PASS | No venue code. |
 | 4 | DONE | No sizing code. |
 | 5 | DECLARED | See grid. |
-| 6 | PORTED (rule 7) | No `DG` or `ND` group. |
+| 6 | PORTED (rule 7) | Group `DG362031` (Jaccard >= 0.80) with #431251 (DUPLICATE); best Jaccard 0.859 with #431251. |
 | 7 | IGNORED |  |
 
 ## Declared grid (criterion 5)

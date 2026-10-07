@@ -13,7 +13,7 @@
 | 3 | PASS | No venue code. |
 | 4 | DONE | Risk-based quantity (1 % of equity over the stop distance) -> `original_sizing.txt`. |
 | 5 | DECLARED | See grid. |
-| 6 | PORTED (rule 7) | No `DG` or `ND` group. |
+| 6 | PORTED (rule 7) | Group `DG361786` (Jaccard >= 0.80) with #432079 (DUPLICATE), #437030 (DUPLICATE); best Jaccard 0.924 with #432079. |
 | 7 | IGNORED |  |
 
 ## Declared grid (criterion 5)

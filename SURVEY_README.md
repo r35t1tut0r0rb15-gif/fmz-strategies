@@ -103,7 +103,8 @@ the older text is left in place for the record and marked "superseded 2026-10-07
 reads its bars argument but has no `.shift(k)` (k >= 1) inside `stops()` itself, i.e. a stop
 Series built from the current bar; `stops()` keys other than `sl_stop`/`tp_stop`/`max_hold_time`;
 stops on a FREQ longer than 1 h without `coarse_bar_stop`; any `resample()` that is not
-`label="left", closed="left"`.
+`label="left", closed="left"`; a port whose id is in `near_duplicate_groups.csv` but whose
+PORT_NOTES.md does not name that group id (rule 7; added in batch A9).
 
 **Broker days in a module.** A daily port defines `broker_day(index)` locally (session ends 17:00
 America/New_York; the desktop binds the name to `registry_schema.broker_day`) and groups 1-minute

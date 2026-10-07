@@ -16,8 +16,10 @@ Added 2026-10-07 (SURVEY_README.md, "Rules added 2026-10-07"):
 - stops() returns only sl_stop / tp_stop / max_hold_time;
 - stops on bars longer than 1 h need the mark coarse_bar_stop;
 - every resample() is label="left", closed="left".
+- a port whose id is in near_duplicate_groups.csv names its group id in PORT_NOTES.md (rule 7).
 """
 import ast
+import csv
 import re
 import sys
 from pathlib import Path
@@ -38,6 +40,19 @@ COMPANIONS = ['original_source.md', 'original_sizing.txt', 'PORT_NOTES.md']
 MARKS = {'bar_size_pending', 'trailing_stop_pending', 'coarse_bar_stop', 'stop_is_entry_condition'}
 PENDING_FREQ = 'bar_size_pending'
 STOP_KEYS = {'sl_stop', 'tp_stop', 'max_hold_time'}
+
+
+def _groups():
+    path = ROOT / 'near_duplicate_groups.csv'
+    out = {}
+    if path.exists():
+        with path.open(encoding='utf-8') as f:
+            for r in csv.DictReader(f):
+                out.setdefault(r['fmz_id'], set()).add(r['group_id'])
+    return out
+
+
+GROUPS = _groups()
 
 
 def freq_minutes(freq):
@@ -164,6 +179,12 @@ def check(path):
     for c in COMPANIONS:
         if not (path.parent / c).exists():
             errs.append(f'missing {c}')
+    notes = path.parent / 'PORT_NOTES.md'
+    if notes.exists():
+        text = notes.read_text(encoding='utf-8')
+        for g in sorted(GROUPS.get(path.parent.name.split('_')[0], ())):
+            if g not in text:
+                errs.append(f'PORT_NOTES.md does not name near-duplicate group {g} (rule 7)')
     return errs
 
 

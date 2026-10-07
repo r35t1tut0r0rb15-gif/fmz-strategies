@@ -13,7 +13,7 @@
 | 3 | PASS | Binance futures pair in the header only. |
 | 4 | DONE | Risk-based quantity (2 % of equity over the stop distance) -> `original_sizing.txt`. |
 | 5 | DECLARED | See grid. |
-| 6 | PORTED (rule 7) | No `DG` or `ND` group. |
+| 6 | PORTED (rule 7) | Group `DG361969` (Jaccard >= 0.80) with #439109 (DUPLICATE); best Jaccard 0.955 with #439109. |
 | 7 | IGNORED |  |
 
 ## Declared grid (criterion 5)

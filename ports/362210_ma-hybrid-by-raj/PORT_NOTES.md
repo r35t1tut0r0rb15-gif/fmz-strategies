@@ -13,7 +13,7 @@
 | 3 | PASS | Binance futures pair in the header only. |
 | 4 | DONE | No sizing code. |
 | 5 | DECLARED | See grid. |
-| 6 | PORTED (rule 7) | No `DG` or `ND` group. Same SSL Hybrid family as #361969 (different rule set). |
+| 6 | PORTED (rule 7) | Group `DG362210` (Jaccard >= 0.80) with #363851 (DUPLICATE), #391080 (DUPLICATE); best Jaccard 1.000 with #363851. |
 | 7 | IGNORED |  |
 
 ## Declared grid (criterion 5)

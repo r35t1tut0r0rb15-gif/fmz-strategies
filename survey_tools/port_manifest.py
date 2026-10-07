@@ -221,6 +221,16 @@ SIZING = {
     ],
     362443: [], 362457: [], 362497: [], 362499: [], 362542: [], 362572: [], 362637: [], 362638: [], 362649: [],
     362654: [], 362664: [],
+    # ---- worker A, batch A9 (2026-10-07)
+    362667: [], 362671: [],
+    362842: [
+        ("Commented-out strategy(): 100 % of equity, initial capital 1000 (not active)", 60, 60),
+    ],
+    362868: [], 362870: [], 362887: [], 362898: [],
+    363001: [
+        ("Trading-the-equity-curve sizing: initial % equity, equity SMAs, size adjustment", 76, 108),
+    ],
+    363002: [], 363562: [], 363579: [],
 }
 
 REJECTED_ON_READING = {
@@ -274,6 +284,13 @@ REJECTED_ON_READING = {
     361719: ("1", "Signals come from request.security(syminfo.tickerid, '18000', src)[1]: '18000' is not a valid "
                   "Pine resolution (minutes? seconds?), so the higher timeframe the counts run on is undefined. "
                   "Porting would mean choosing a bar size (rule 1 forbids); needs the project to define it."),
+    # ---- worker A, batch A9 (2026-10-07)
+    363557: ("1", "Pivots come from request.security(syminfo.tickerid, '240', get_phpl(), lookahead_on) without "
+                  "[1]: on historical bars the 4 h pivot is visible from the first 5 m bar of the 4 h bar that "
+                  "confirms it, i.e. it reads the future (SURVEY_README request.security rule)."),
+    363572: ("1", "Both MA series are read through request.security(..., stratRes, lookahead_on) without [1] "
+                  "(alternate resolution on by default, 3x the chart period): on historical bars the "
+                  "higher-timeframe values are visible before that bar closes, i.e. they read the future."),
 }
 
 DUPLICATE_ON_READING = {

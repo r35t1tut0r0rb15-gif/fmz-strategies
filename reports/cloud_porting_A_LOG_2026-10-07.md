@@ -240,3 +240,24 @@ divergence faded as written (10min).
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A8 committed (hash in next entry). Next id: 362667.
+
+Batch A8 commit: f252a14 (pushed, verified). Interim final report: 8f62b3b
+(`survey_tools/report_a.py` regenerates `reports/cloud_porting_A_report_2026-10-07.md`).
+
+## Task 4, batch A9 (ids 362667 - 363579)
+
+origin/survey-b still absent at batch start. 11 ported, 2 rejected:
+362667 HalfTrend + HEMA + SMA (5min); 362671 Moon Launch state machine (5min, DG362671);
+362842 SSS SSL flip long-only with 1 % tp_stop and close-based exit (15min, DG362842);
+362868 Mobo bands (1h); 362870 BRAHMASTRA Kalman HMA cross (2h); 362887 range filter + UO + EMA
+(2h); 362898 RSI extreme cross, overbought -> long as written (5min); 363001 CMO cross + momentum
++ SuperTrend, equity-curve sizing stored (15min, DG363001); 363002 Rainbow oscillator (1h);
+363562 Sidboss range filter (30min); 363579 Smarter MACD rising bottoms (3min).
+Rejected (criterion 1, request.security lookahead_on without [1] reads the future): 363557, 363572.
+
+Fix found while checking: 15 earlier ports (A5-A8) did not name their near-duplicate group in
+PORT_NOTES.md row 6 (rule 7). All fixed; check_ports.py now flags it (negative-tested).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A9 committed (hash in next entry). Next id: 363582.

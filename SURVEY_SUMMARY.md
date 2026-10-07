@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3643 |
+| PORT_CANDIDATE | 3630 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 98 |
-| REJECTED_ON_READING | 18 |
+| PORTED | 109 |
+| REJECTED_ON_READING | 20 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -226,7 +226,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 362649 | `ports/362649_rolling-heikin-ashi-candles/` | PineScript | heikin_ashi_trend | none | tf x3 | 3 |
 | 362654 | `ports/362654_rsi-and-bband-simultaneously-oversold/` | PineScript | bollinger_reversion | none | rsi_period x2, bb_period x2, bb_mult x2 | 8 |
 | 362664 | `ports/362664_rsi-divergence-with-pivot-bb-sma-ema-smma-wma-vwma/` | PineScript | rsi_oscillator | none | rsi_period x3, lookback x2 | 6 |
-| | **98 ports** | | | | | **1076** |
+| 362667 | `ports/362667_halftrend-hema-sma-false-signals-strategy/` | PineScript | supertrend | none | sma_len x3, hema_len x3 | 9 |
+| 362671 | `ports/362671_moon-launch-alerts-template-indicator/` | PineScript | multi_indicator_confluence | none | ema1 x2, atr_len x2 | 4 |
+| 362842 | `ports/362842_sss/` | PineScript | ma_trend | none | ma_len x3, take_profit x3 | 9 |
+| 362868 | `ports/362868_mobo-bands/` | PineScript | bollinger_breakout | none | dpo_len x3, mobo_len x2, num_dev x2 | 12 |
+| 362870 | `ports/362870_brahmastra/` | PineScript | ma_trend | none | length x3, gain x3 | 9 |
+| 362887 | `ports/362887_ftl-range-filter-x2-ema-uo/` | PineScript | volatility_channel_breakout | none | per2 x2, mult2 x2, ema_len x2 | 8 |
+| 362898 | `ports/362898_rsi-by-zdmre/` | PineScript | rsi_oscillator | none | rsi_len x3 | 3 |
+| 363001 | `ports/363001_trading-the-equity-curve-position-sizing-example/` | PineScript | momentum_oscillator_turn | none | cmo_len x2, st_factor x2, mom_len x2 | 8 |
+| 363002 | `ports/363002_rainbow-oscillator/` | PineScript | momentum_oscillator_turn | none | period x3, level_period x2 | 6 |
+| 363562 | `ports/363562_sidboss/` | PineScript | volatility_channel_breakout | none | per x3, mult x3 | 9 |
+| 363579 | `ports/363579_smarter-macd/` | PineScript | macd_momentum | none | fast x2, slow x2, signal x2 | 8 |
+| | **109 ports** | | | | | **1161** |
 
 ## Rejected on reading
 
@@ -250,6 +261,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 266142 | 均仓策略.md | 1 | Pure 50/50 coin/cash rebalancing (buy or sell 1 % / 10 % slices when the coin share leaves 0.49-0.51); no entry or exit signal. |
 | 299799 | ahr999定投策略.md | 2 | AHR999 dollar-cost averaging: the indicator is a Bitcoin-only model (price vs a log-price curve fitted to days since the 2009 genesis block); the code throws for any other pair. Also periodic accumulation, not entries/exits. |
 | 361719 | Demark-Reversal-Points.md | 1 | Signals come from request.security(syminfo.tickerid, '18000', src)[1]: '18000' is not a valid Pine resolution (minutes? seconds?), so the higher timeframe the counts run on is undefined. Porting would mean choosing a bar size (rule 1 forbids); needs the project to define it. |
+| 363557 | Pivot-Points-High-Low-Multi-Time-Frame.md | 1 | Pivots come from request.security(syminfo.tickerid, '240', get_phpl(), lookahead_on) without [1]: on historical bars the 4 h pivot is visible from the first 5 m bar of the 4 h bar that confirms it, i.e. it reads the future (SURVEY_README request.security rule). |
+| 363572 | OCC-Strategy-R51.md | 1 | Both MA series are read through request.security(..., stratRes, lookahead_on) without [1] (alternate resolution on by default, 3x the chart period): on historical bars the higher-timeframe values are visible before that bar closes, i.e. they read the future. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

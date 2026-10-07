@@ -1,0 +1,38 @@
+# Original sizing and money-management code, FMZ #363001 (Trading-the-Equity-Curve-Position-Sizing-Example)
+# Source: https://www.fmz.com/strategy/363001  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trading-the-equity-curve sizing: initial % equity, equity SMAs, size adjustment  [lines 76-108]
+   76: useTEC           = input.bool(true, title="Use Trading the Equity Curve Position Sizing")
+   77: defulttraderule  = useTEC ? false: true
+   78: initialsize      = input.float(defval=10.0, title="Initial % Equity")
+   79: slowequitylength = input.int(25, title="Slow SMA Period")
+   80: fastequitylength = input.int(9, title="Fast SMA Period")
+   81: seedequity = 100000 * .10
+   82: if strategy.equity == 0
+   83:     seedequity
+   84: else
+   85:     strategy.equity
+   86: slowequityseed   = strategy.equity > seedequity ? strategy.equity : seedequity
+   87: fastequityseed   = strategy.equity > seedequity ? strategy.equity : seedequity
+   88: smaslowequity    = ta.sma(slowequityseed, slowequitylength)
+   89: smafastequity    = ta.sma(fastequityseed, fastequitylength)
+   90: equitycalc       = input.bool(true, title="Use Fast/Slow Avg", tooltip="Fast Equity Avg is below Slow---otherwise if unchecked uses Slow Equity Avg below Equity")
+   91: sizeadjstring    = input.string("Reduce size by (%)", title="Position Size Adjustment", options=["Reduce size by (%)","Increase size by (%)"])
+   92: sizeadjint       = input.int(50, title="Increase/Decrease % Equity by:")
+   93: equitydowntrendavgs = smafastequity < smaslowequity
+   94: slowequitylessequity = strategy.equity < smaslowequity
+   95: 
+   96: equitymethod = equitycalc ? equitydowntrendavgs : slowequitylessequity
+   97: 
+   98: if sizeadjstring == ("Reduce size by (%)")
+   99:     sizeadjdown = initialsize * (1 - (sizeadjint/100))
+  100: else
+  101:     sizeadjup = initialsize * (1 + (sizeadjint/100))
+  102: c = close
+  103: qty = 100000 * (initialsize / 100) / c
+  104: if useTEC and equitymethod
+  105:     if sizeadjstring == "Reduce size by (%)"
+  106:         qty := (strategy.equity * (initialsize / 100) * (1 - (sizeadjint/100))) / c
+  107:     else
+  108:         qty := (strategy.equity * (initialsize / 100) * (1 + (sizeadjint/100))) / c
