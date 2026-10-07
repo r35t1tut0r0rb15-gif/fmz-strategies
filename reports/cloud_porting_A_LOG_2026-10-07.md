@@ -33,3 +33,17 @@ Task 1 commit: cf80b57 (pushed, verified with ls-remote).
 - `near_duplicate_groups.csv` + `survey_tools/near_dup_candidates.py`.
 
 Resume point: Task 2 committed (hash in next entry). Next: Task 3 (no_bar_size.csv).
+
+Task 2 commit: fc81097 (pushed, verified).
+
+## Task 3: no_bar_size.csv
+
+- `survey_tools/bar_size.py` -> `no_bar_size.csv`: **539 of 5,806 files have no bar size**
+  (536 have no `/*backtest*/` header; 3 have a period without a unit: 40155 `15`, 61867 `1440`,
+  and one `60`). 94 of the 539 show stop logic (static hint). By language: javascript 289,
+  python 131, PineScript 91, MyLanguage 27, cpp 1. By outcome: FLAGGED 219, REJECTED 197,
+  PORT_CANDIDATE 91, HELD_NEEDS_VOLUME 19, REJECTED_ON_READING 6, PORTED 5, DUPLICATE 2.
+- `note` also records any period the code requests (`PERIOD_H1` ...) or the description names;
+  these are where the author's own code/words fix the size.
+
+Resume point: Task 3 committed (hash in next entry). Next: Task 4 from id 126968.
