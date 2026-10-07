@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3604 |
+| PORT_CANDIDATE | 3591 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 135 |
-| REJECTED_ON_READING | 20 |
+| PORTED | 147 |
+| REJECTED_ON_READING | 21 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -263,7 +263,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 365028 | `ports/365028_qqe-signals/` | PineScript | rsi_oscillator | none | rsi_len x2, sf x2, qqe x2 | 8 |
 | 365059 | `ports/365059_trendscalp-fractalbox-3ema/` | PineScript | pivot_reversal | none |  | 0 |
 | 365075 | `ports/365075_order-block-finder/` | PineScript | candle_pattern | none | periods x3, threshold x2 | 6 |
-| | **135 ports** | | | | | **1353** |
+| 365078 | `ports/365078_atr-smoothed/` | PineScript | volatility_stop_cross | none | atr_period x3, mult x3 | 9 |
+| 365080 | `ports/365080_crypto-futures-hourly-scalping-with-ma-rsi-ogcheckers/` | PineScript | rsi_oscillator | none | rsi_upper x2, rsi_buffer x2 | 4 |
+| 365127 | `ports/365127_trading-abc/` | PineScript | pivot_reversal | none | prd x3, error_rate x2 | 6 |
+| 365128 | `ports/365128_supertrended-moving-averages/` | PineScript | supertrend | none | length x3, mult x3 | 9 |
+| 365283 | `ports/365283_macd-reloaded-strategy/` | PineScript | macd_momentum | none | fast x2, slow x2, trigger x2 | 8 |
+| 365314 | `ports/365314_moving-average-cross-alert-multi-timeframe-mtf/` | PineScript | ma_trend | none | short x2, long x2 | 4 |
+| 365315 | `ports/365315_quantitative-qualitative-estimation/` | PineScript | rsi_oscillator | none | rsi_len x3, sf x3 | 9 |
+| 365320 | `ports/365320_consolidation-zones-live/` | PineScript | volatility_channel_breakout | none | prd x3, conslen x3 | 9 |
+| 365345 | `ports/365345_linear-regression/` | PineScript | zscore_reversion | none | length x3, dev x3 | 9 |
+| 365359 | `ports/365359_relative-strength-index-divergences-libertus/` | PineScript | rsi_oscillator | bar_size_pending | rsi_period x3, lookback x2 | 6 |
+| 365373 | `ports/365373_super-scalper-5-min-15-min/` | PineScript | momentum_breakout | none | atr_len x3, mult x3 | 9 |
+| 365381 | `ports/365381_matrix-series/` | PineScript | momentum_oscillator_turn | none | smoother x3, level x2 | 6 |
+| | **147 ports** | | | | | **1441** |
 
 ## Rejected on reading
 
@@ -289,6 +301,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 361719 | Demark-Reversal-Points.md | 1 | Signals come from request.security(syminfo.tickerid, '18000', src)[1]: '18000' is not a valid Pine resolution (minutes? seconds?), so the higher timeframe the counts run on is undefined. Porting would mean choosing a bar size (rule 1 forbids); needs the project to define it. |
 | 363557 | Pivot-Points-High-Low-Multi-Time-Frame.md | 1 | Pivots come from request.security(syminfo.tickerid, '240', get_phpl(), lookahead_on) without [1]: on historical bars the 4 h pivot is visible from the first 5 m bar of the 4 h bar that confirms it, i.e. it reads the future (SURVEY_README request.security rule). |
 | 363572 | OCC-Strategy-R51.md | 1 | Both MA series are read through request.security(..., stratRes, lookahead_on) without [1] (alternate resolution on by default, 3x the chart period): on historical bars the higher-timeframe values are visible before that bar closes, i.e. they read the future. |
+| 365389 | TradingView-Alerts-to-MT4-MT5-dynamic-variables-NON-REPAINTING.md | 1 | The exit is a two-step ladder: 50 % of the position at a 150-tick profit (qty_percent=50), the rest at 400 ticks or a pivot stop; a partial exit cannot be expressed as one net position's signals, and tick distances are instrument-specific (an MT4 alert template; criterion 2 too). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -298,3 +298,21 @@ Scratch fix: the group writer now names every group of an id (365028 is in two).
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A11 committed (hash in next entry). Next id: 365078.
+
+Batch A11 commit: 70754b7 (pushed, verified).
+
+## Task 4, batch A12 (ids 365078 - 365389)
+
+origin/survey-b still absent at batch start. 12 ported, 1 rejected:
+365078 ATR trailing-stop flips (2h); 365080 red-bar RSI(open) extreme, higher RSI -> long as
+written (10min); 365127 Trading ABC zigzag pull-back (30min); 365128 SuperTrend around EMA 100
+(10min); 365283 MACD on VAR averages (30min, DG365283); 365314 EMA 50/100 cross with close
+confirmation (15min); 365315 QQE fast/slow cross (1h); 365320 consolidation-zone breakout
+(45min); 365345 linear-regression channel reversion (45min); 365359 RSI divergence Libertus
+(bar_size_pending); 365373 Super Scalper RSI-pair (5min, DG365373); 365381 Matrix Series,
+overbought -> long as written (15min).
+Rejected: 365389 (criterion 1: 50 % partial take-profit ladder in ticks; criterion 2 too).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A12 committed (hash in next entry). Next id: 365419.

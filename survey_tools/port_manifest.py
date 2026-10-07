@@ -248,6 +248,9 @@ SIZING = {
     # ---- worker A, batch A11 (2026-10-07): no sizing code in these sources
     363848: [], 363980: [], 363997: [], 364001: [], 364037: [], 364518: [], 364527: [], 364535: [], 364536: [],
     364540: [], 365028: [], 365059: [], 365075: [],
+    # ---- worker A, batch A12 (2026-10-07): no sizing code in these sources
+    365078: [], 365080: [], 365127: [], 365128: [], 365283: [], 365314: [], 365315: [], 365320: [], 365345: [],
+    365359: [], 365373: [], 365381: [],
 }
 
 REJECTED_ON_READING = {
@@ -308,6 +311,10 @@ REJECTED_ON_READING = {
     363572: ("1", "Both MA series are read through request.security(..., stratRes, lookahead_on) without [1] "
                   "(alternate resolution on by default, 3x the chart period): on historical bars the "
                   "higher-timeframe values are visible before that bar closes, i.e. they read the future."),
+    # ---- worker A, batch A12 (2026-10-07)
+    365389: ("1", "The exit is a two-step ladder: 50 % of the position at a 150-tick profit (qty_percent=50), the "
+                  "rest at 400 ticks or a pivot stop; a partial exit cannot be expressed as one net position's "
+                  "signals, and tick distances are instrument-specific (an MT4 alert template; criterion 2 too)."),
 }
 
 DUPLICATE_ON_READING = {
