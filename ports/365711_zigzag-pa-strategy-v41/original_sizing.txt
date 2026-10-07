@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #365711 (ZigZag-PA-Strategy-V41)
+# Source: https://www.fmz.com/strategy/365711  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 0, initial capital 100000  [lines 61-61]
+   61: strategy(title='[STRATEGY][RS]ZigZag PA Strategy V4.1', shorttitle='S', overlay=true, pyramiding=0, initial_capital=100000, currency=currency.USD)
+
+## Target 1 / target 2 trade sizes (qty 10000)  [lines 272-280]
+  272: target01_trade_size = input(title='Target 1 - Trade size:', type=float, defval=10000.00)
+  273: target01_ew_rate = input(title='Target 1 - Fib. Rate to use for Entry Window:', type=float, defval=0.236)
+  274: target01_tp_rate = input(title='Target 1 - Fib. Rate to use for TP:', type=float, defval=0.618)
+  275: target01_sl_rate = input(title='Target 1 - Fib. Rate to use for SL:', type=float, defval=-0.236)
+  276: target02_active = input(title='Target 2 - Active?', type=bool, defval=false)
+  277: target02_trade_size = input(title='Target 2 - Trade size:', type=float, defval=10000.00)
+  278: target02_ew_rate = input(title='Target 2 - Fib. Rate to use for Entry Window:', type=float, defval=0.236)
+  279: target02_tp_rate = input(title='Target 2 - Fib. Rate to use for TP:', type=float, defval=1.618)
+  280: target02_sl_rate = input(title='Target 2 - Fib. Rate to use for SL:', type=float, defval=-0.236)

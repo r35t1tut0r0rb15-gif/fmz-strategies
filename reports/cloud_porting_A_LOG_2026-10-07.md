@@ -316,3 +316,21 @@ Rejected: 365389 (criterion 1: 50 % partial take-profit ladder in ticks; criteri
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A12 committed (hash in next entry). Next id: 365419.
+
+Batch A12 commit: a625008 (pushed, verified).
+
+## Task 4, batch A13 (ids 365419 - 365727)
+
+origin/survey-b still absent at batch start. 13 ported, 0 rejected:
+365419 Bollinger basis cross + AO (1h); 365600 engulfing + SMA with TP/SL 2000/200 USD -> ATR
+multiples via stops() and a close-based MA exit (30min, DG365600); 365642 PAC break with EMA 180
+filter (2h); 365668 Hull swing / EMA pull-back with RSI closes and a 750-tick stop -> ATR multiple
+(30min, DG365668); 365671 ChartArt Stoch + RSI (30min, DG365671); 365691 PMax (15min, DG365691 +
+ND365691); 365695 broken fractal (1h, 1 trial); 365706 SMA cross follow-through (4h);
+365711 zigzag harmonic patterns with high/low-checked closes (1h, ND365711); 365713 NRTR (2h);
+365719 LuxAlgo pivots (daily broker days); 365722 PSAR flips (15min); 365727 Hull Suite (30min,
+DG365727 + ND365727).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A13 committed (hash in next entry). Next id: 365858.

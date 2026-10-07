@@ -251,6 +251,24 @@ SIZING = {
     # ---- worker A, batch A12 (2026-10-07): no sizing code in these sources
     365078: [], 365080: [], 365127: [], 365128: [], 365283: [], 365314: [], 365315: [], 365320: [], 365345: [],
     365359: [], 365373: [], 365381: [],
+    # ---- worker A, batch A13 (2026-10-07)
+    365419: [],
+    365600: [
+        ("strategy(): pyramiding 2, qty 500, commission 0.2 %, initial capital 10000", 92, 94),
+    ],
+    365642: [],
+    365668: [
+        ("strategy(): cash qty 10000, initial capital 10000", 47, 47),
+    ],
+    365671: [], 365691: [], 365695: [], 365706: [],
+    365711: [
+        ("strategy(): pyramiding 0, initial capital 100000", 61, 61),
+        ("Target 1 / target 2 trade sizes (qty 10000)", 272, 280),
+    ],
+    365713: [], 365719: [], 365722: [],
+    365727: [
+        ("strategy(): 100 % of equity, pyramiding 1, commission 0", 56, 56),
+    ],
 }
 
 REJECTED_ON_READING = {

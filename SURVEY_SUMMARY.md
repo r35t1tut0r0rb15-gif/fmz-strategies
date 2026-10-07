@@ -11,12 +11,12 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3591 |
+| PORT_CANDIDATE | 3578 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 147 |
+| PORTED | 160 |
 | REJECTED_ON_READING | 21 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
@@ -275,7 +275,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 365359 | `ports/365359_relative-strength-index-divergences-libertus/` | PineScript | rsi_oscillator | bar_size_pending | rsi_period x3, lookback x2 | 6 |
 | 365373 | `ports/365373_super-scalper-5-min-15-min/` | PineScript | momentum_breakout | none | atr_len x3, mult x3 | 9 |
 | 365381 | `ports/365381_matrix-series/` | PineScript | momentum_oscillator_turn | none | smoother x3, level x2 | 6 |
-| | **147 ports** | | | | | **1441** |
+| 365419 | `ports/365419_bollinger-awesome-alert-r1/` | PineScript | ma_trend | none | bb_length x2, fast_ma x2 | 4 |
+| 365600 | `ports/365600_best-engulfing-breakout-strategy/` | PineScript | candle_pattern | none | length_ma x3, sl_atr x2, tp_atr x2 | 12 |
+| 365642 | `ports/365642_scalping-swing-trading-tool-r1-4/` | PineScript | ma_envelope_breakout | none | pac_len x3, ema_medium x2 | 6 |
+| 365668 | `ports/365668_swing-hull-rsi-ema-strategy/` | PineScript | ma_trend_oscillator_pullback | none | hull_period x2, sl_atr x3 | 6 |
+| 365671 | `ports/365671_stochastic-rsi-double-strategy/` | PineScript | stochastic_oscillator | none | stoch_len x2, rsi_len x2, smooth x2 | 8 |
+| 365691 | `ports/365691_profit-maximizer-pmax/` | PineScript | volatility_stop_cross | none | atr_len x2, mult x2, ma_len x2 | 8 |
+| 365695 | `ports/365695_broken-fractal-someones-broken-dream-is-your-profit/` | PineScript | pivot_reversal | none |  | 0 |
+| 365706 | `ports/365706_intraday-buy-sell/` | PineScript | ma_trend | none | sma_len x3 | 3 |
+| 365711 | `ports/365711_zigzag-pa-strategy-v41/` | PineScript | pivot_reversal | none | ew_rate x2, tp_rate x2, sl_rate x2 | 8 |
+| 365713 | `ports/365713_nick-rypock-trailing-reverse-nrtr/` | PineScript | volatility_stop_cross | none | k_pct x4 | 4 |
+| 365719 | `ports/365719_pivot-based-trailing-maxima-minima/` | PineScript | pivot_reversal | none | length x4 | 4 |
+| 365722 | `ports/365722_parabolic-sar-buy-and-sell/` | PineScript | parabolic_sar | none | start x2, increment x2, maximum x2 | 8 |
+| 365727 | `ports/365727_hull-suite-strategy/` | PineScript | ma_trend | none | length x4 | 4 |
+| | **160 ports** | | | | | **1516** |
 
 ## Rejected on reading
 
