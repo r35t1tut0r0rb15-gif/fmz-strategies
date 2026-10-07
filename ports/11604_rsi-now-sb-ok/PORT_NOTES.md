@@ -35,9 +35,13 @@
   emits entries only and relies on the engine's default reversal (declared in the docstring).
 - Spot short = selling the account's initial coins. Treated as a short signal; sizing is
   the separate layer's concern.
-- No bar period in the source: `FREQ = "1h"` per the README rule.
+- No bar period in the source: `FREQ = "bar_size_pending"` (was `"1h"` until 2026-10-07). Rule 2026-10-07: never choose a bar size; mark `bar_size_pending`. Logic unchanged.
 
 ## FAMILY (proposed, user to confirm)
 
 `FAMILY = "rsi_oscillator"`. Entries come from RSI crossing fixed oscillator thresholds; the trade decision is an RSI-level event.
 Added 2026-10-03 in the contract fix pass.
+
+## Marks (2026-10-07)
+
+`bar_size_pending`

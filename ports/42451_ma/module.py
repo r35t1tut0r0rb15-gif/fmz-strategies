@@ -17,14 +17,17 @@ Interpretation choices
     * Long only, as coded. The header comment says "MA up long, MA down short; bitcoin long only";
       the code never shorts, so no short signals are emitted. Opposite entries cannot occur.
     * `trailingPrcnt` (line 27) is declared but never used by the code; not ported.
-    * No bar size in the source; FREQ = "1h" (README rule).
+    * No bar size in the source; FREQ = "bar_size_pending" (rule 2026-10-07: never choose a bar
+      size; until 2026-10-07 this port used the old "1h" default). Logic unchanged.
     * Sizing (all-in buy, sell all, minMoney, SlidePrice) is in original_sizing.txt. No costs here.
+
+Marks: bar_size_pending
 """
 import pandas as pd
 
 NAME = "fmz_42451_sma_slope_long"
 FAMILY = "ma_trend"  # proposed 2026-10-03, user to confirm
-FREQ = "1h"
+FREQ = "bar_size_pending"  # source declares no bar size; set by the project before running
 PERIODS_PER_YEAR_OVERRIDE = None
 DEAD_BAND = 1e-6
 

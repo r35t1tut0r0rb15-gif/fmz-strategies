@@ -26,9 +26,13 @@
 - Header comment promises shorts when the MA falls; the code is long-only. The port follows the
   code. A short variant is not declared (it would be a different strategy).
 - `trailingPrcnt` is unused in the original code and is not ported.
-- `FREQ = "1h"`: the source declares no period.
+- `FREQ = "bar_size_pending"` (was `"1h"` until 2026-10-07): the source declares no period. Rule 2026-10-07: never choose a bar size; mark `bar_size_pending`. Logic unchanged.
 
 ## FAMILY (proposed, user to confirm)
 
 `FAMILY = "ma_trend"`. Long while a moving average points up, out when it points down: moving-average trend following. Same family as #103070 (dual-MA cross), which is the same logic with a second average.
 Added 2026-10-03 in the contract fix pass.
+
+## Marks (2026-10-07)
+
+`bar_size_pending`

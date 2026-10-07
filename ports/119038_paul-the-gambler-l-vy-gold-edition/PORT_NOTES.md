@@ -29,9 +29,13 @@ diagonal and brackets it.
   the entry signal.
 - After a take-profit the position is flat and the next bar re-enters by RSI slope; after a stop
   the opposite position opens (reversal). Both are reproduced; the doubling is sizing.
-- `FREQ = "1h"`: the source declares no period.
+- `FREQ = "bar_size_pending"` (was `"1h"` until 2026-10-07): the source declares no period. Rule 2026-10-07: never choose a bar size; mark `bar_size_pending`. Logic unchanged.
 
 ## FAMILY (proposed, user to confirm)
 
 `FAMILY = "stop_and_reverse_bracket"`. RSI slope only picks the opening side; the logic that drives the trades is the fixed target/stop bracket and the reversal after a stop. Alternative if you prefer grouping by indicator: rsi_oscillator (with #11604).
 Added 2026-10-03 in the contract fix pass.
+
+## Marks (2026-10-07)
+
+`bar_size_pending`

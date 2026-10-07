@@ -21,16 +21,19 @@ Interpretation choices
     * The four thresholds are exposed through a declared `zone` parameter (see ZONES) so the
       grid stays coarse; DEFAULT is the original's 50/50/50/50.
     * RSI is Wilder's (TA-Lib, which FMZ's TA.RSI wraps).
-    * No bar size in the source; FREQ = "1h" (project default for undeclared periods).
+    * No bar size in the source; FREQ = "bar_size_pending" (rule 2026-10-07: never choose a bar
+      size; until 2026-10-07 this port used the old "1h" default). Logic unchanged.
     * Sizing (all-in buy, sell-all, SlidePrice offsets, min-stock guards) is not ported; it is in
       original_sizing.txt. No costs here.
+
+Marks: bar_size_pending
 """
 import numpy as np
 import pandas as pd
 
 NAME = "fmz_11604_rsi_zone_cross_reversal"
 FAMILY = "rsi_oscillator"  # proposed 2026-10-03, user to confirm
-FREQ = "1h"
+FREQ = "bar_size_pending"  # source declares no bar size; set by the project before running
 PERIODS_PER_YEAR_OVERRIDE = None
 
 # zone -> (RSIBuyL, RSIBuyH, RSISellL, RSISellH)

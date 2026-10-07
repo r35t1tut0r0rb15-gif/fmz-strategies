@@ -29,8 +29,14 @@ def family_of(path):
     return ''
 
 
+def marks_of(path):
+    doc = ast.get_docstring(ast.parse(path.read_text(encoding='utf-8'))) or ''
+    m = re.search(r'^\s*Marks:\s*(.+)$', doc, re.M)
+    return m.group(1).strip() if m else ''
+
+
 def reason_head(why):
-    return re.split(r'[:(]', why, 1)[0].strip()
+    return re.split(r'[:(]', why, maxsplit=1)[0].strip()
 
 
 def table(counter, head):
@@ -95,16 +101,16 @@ def main():
           'Each port folder holds `module.py`, `original_source.md` (verbatim), `original_sizing.txt`',
           '(verbatim sizing and money-management code, labelled with line numbers) and `PORT_NOTES.md`.', '',
           'FAMILY names are proposed (2026-10-03), user to confirm.', '',
-          '| FMZ id | Folder | Language | FAMILY | Declared grid | Trials |', '|---:|---|---|---|---|---:|']
+          '| FMZ id | Folder | Language | FAMILY | Marks | Declared grid | Trials |', '|---:|---|---|---|---|---|---:|']
     total = 0
     for p in ports:
         g = grid_of(p)
         n = math.prod(len(v) for v in g.values()) if g else 0
         total += n
         fid = p.parent.name.split('_')[0]
-        L.append(f"| {fid} | `ports/{p.parent.name}/` | {byid[fid]['lang']} | {family_of(p)} | "
+        L.append(f"| {fid} | `ports/{p.parent.name}/` | {byid[fid]['lang']} | {family_of(p)} | {marks_of(p)} | "
                  + ', '.join(f'{k} x{len(v)}' for k, v in g.items()) + f' | {n} |')
-    L += [f'| | **{len(ports)} ports** | | | | **{total}** |', '']
+    L += [f'| | **{len(ports)} ports** | | | | | **{total}** |', '']
 
     L += ['## Rejected on reading', '', '| FMZ id | File | Criterion | Reason |', '|---:|---|---|---|']
     for d in decisions.values():

@@ -125,15 +125,15 @@ Each port folder holds `module.py`, `original_source.md` (verbatim), `original_s
 
 FAMILY names are proposed (2026-10-03), user to confirm.
 
-| FMZ id | Folder | Language | FAMILY | Declared grid | Trials |
-|---:|---|---|---|---|---:|
-| 11604 | `ports/11604_rsi-now-sb-ok/` | javascript | rsi_oscillator | rsi_period x3, zone x3 | 9 |
-| 42283 | `ports/42283_kingkeltner/` | javascript | volatility_channel_breakout | kk_length x3, kk_dev x3, trail_atr x3 | 27 |
-| 42451 | `ports/42451_ma/` | javascript | ma_trend | ma_length x4 | 4 |
-| 55839 | `ports/55839_strategy/` | javascript | ichimoku | tenkan x3, kijun x3, cloud_atr x3 | 27 |
-| 103070 | `ports/103070_moving-average-bot-30-lines/` | javascript | ma_trend | fast x3, slow x3, enter_period x3 | 27 |
-| 119038 | `ports/119038_paul-the-gambler-l-vy-gold-edition/` | python | stop_and_reverse_bracket | sl_atr x3, tp_atr x3 | 9 |
-| | **6 ports** | | | | **103** |
+| FMZ id | Folder | Language | FAMILY | Marks | Declared grid | Trials |
+|---:|---|---|---|---|---|---:|
+| 11604 | `ports/11604_rsi-now-sb-ok/` | javascript | rsi_oscillator | bar_size_pending | rsi_period x3, zone x3 | 9 |
+| 42283 | `ports/42283_kingkeltner/` | javascript | volatility_channel_breakout | bar_size_pending | kk_length x3, kk_dev x3, trail_atr x3 | 27 |
+| 42451 | `ports/42451_ma/` | javascript | ma_trend | bar_size_pending | ma_length x4 | 4 |
+| 55839 | `ports/55839_strategy/` | javascript | ichimoku | none | tenkan x3, kijun x3, cloud_atr x3 | 27 |
+| 103070 | `ports/103070_moving-average-bot-30-lines/` | javascript | ma_trend | none | fast x3, slow x3, enter_period x3 | 27 |
+| 119038 | `ports/119038_paul-the-gambler-l-vy-gold-edition/` | python | stop_and_reverse_bracket | bar_size_pending | sl_atr x3, tp_atr x3 | 9 |
+| | **6 ports** | | | | | **103** |
 
 ## Rejected on reading
 

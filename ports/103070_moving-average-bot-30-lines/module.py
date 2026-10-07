@@ -22,6 +22,8 @@ Interpretation choices
       1d period only sets FMZ's chart; the signal uses the M15 records.)
     * Sizing (99 % of balance, Slippage, 0.1 minimum, cancel-if-pending) is in
       original_sizing.txt. No costs here.
+
+Marks: none
 """
 import numpy as np
 import pandas as pd

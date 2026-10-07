@@ -27,14 +27,17 @@ Interpretation choices
       portfolio_kwargs is {} so the engine's default reversal applies.
     * Martingale sizing (AMP x size, RISK_LIMIT, START_SIZE), leverage and the weekly contract are
       sizing / venue set-up, stored in original_sizing.txt. No costs here.
-    * No bar size in the source; FREQ = "1h" (README rule).
+    * No bar size in the source; FREQ = "bar_size_pending" (rule 2026-10-07: never choose a bar
+      size; until 2026-10-07 this port used the old "1h" default). Logic unchanged.
+
+Marks: bar_size_pending
 """
 import numpy as np
 import pandas as pd
 
 NAME = "fmz_119038_rsi_slope_reverse_on_stop"
 FAMILY = "stop_and_reverse_bracket"  # proposed 2026-10-03, user to confirm
-FREQ = "1h"
+FREQ = "bar_size_pending"  # source declares no bar size; set by the project before running
 PERIODS_PER_YEAR_OVERRIDE = None
 
 GRID = {

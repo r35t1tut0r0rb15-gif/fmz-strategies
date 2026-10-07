@@ -52,11 +52,11 @@ SURVEY_README.md: stops-Series timing corrected, flat-before-reverse and FTMO ti
 2. ~~**Stops as Series**~~ ANSWERED 2026-10-03: the engine passes stop Series to vbt unlagged and
    vbt reads them on the fill bar, so per-bar stops must be built from the previous bar
    (`(k*atr/close).shift(1)`). SURVEY_README.md corrected; no batch-1 port returns a stop Series.
-3. **Criterion 4 boundary**: fixed stop/target exits are ported via `stops()` *and* stored;
+3. ~~**Criterion 4 boundary**~~ ANSWERED 2026-10-07 by rules 2-4 in SURVEY_README.md. Was: fixed stop/target exits are ported via `stops()` *and* stored;
    trailing stops that `stops()` cannot express are stored only (or ported as a close-based
    signal exit when they are the strategy's only exit). Confirm this split.
-4. **Undeclared bar size**: ports whose source gives no period use `FREQ = "1h"`. Confirm, or name
-   a different default.
+4. ~~**Undeclared bar size**~~ ANSWERED 2026-10-07 (rule 1): `FREQ = "bar_size_pending"` + mark;
+   applied to 11604, 42283, 42451, 119038 (logic unchanged).
 
 ## How to resume in a new session
 

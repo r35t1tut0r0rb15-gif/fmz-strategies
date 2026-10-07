@@ -22,15 +22,18 @@ Interpretation choices
       tracking position exactly as the engine will (entry fills at the next open; exits likewise).
       The running high starts at the signal bar's high, as in the original (line 111).
     * Long only (spot). Shorts are never emitted, so opposite entries cannot occur.
-    * No bar size in the source; FREQ = "1h" (README rule for undeclared periods).
+    * No bar size in the source; FREQ = "bar_size_pending" (rule 2026-10-07: never choose a bar
+      size; until 2026-10-07 this port used the old "1h" default). Logic unchanged.
     * Sizing (all-in buy, minMoney guard, SlidePrice) is in original_sizing.txt. No costs here.
+
+Marks: bar_size_pending
 """
 import numpy as np
 import pandas as pd
 
 NAME = "fmz_42283_kingkeltner_breakout"
 FAMILY = "volatility_channel_breakout"  # proposed 2026-10-03, user to confirm
-FREQ = "1h"
+FREQ = "bar_size_pending"  # source declares no bar size; set by the project before running
 PERIODS_PER_YEAR_OVERRIDE = None
 
 GRID = {

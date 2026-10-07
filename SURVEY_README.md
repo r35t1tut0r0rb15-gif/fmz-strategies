@@ -20,7 +20,7 @@ names, backtest screenshots) are ignored and never used in any decision (criteri
 5. Each port's parameter ranges are declared before any backtest. A coarse grid first,
    narrowing later on training data only. Every point counts as a trial. A strategy with no
    parameters gets a few declared starting variants.
-6. Near-duplicates are collapsed to one representative, and the others are listed.
+6. Near-duplicates are collapsed to one representative, and the others are listed. *(2026-10-07: near-duplicates are now ported too, exact duplicates set aside; rule 7.)*
 7. FMZ's own performance claims are ignored.
 
 ## Layout
@@ -42,6 +42,69 @@ names, backtest screenshots) are ignored and never used in any decision (criteri
 | `survey_tools/` | the static screening scripts (read text only; never execute strategies) |
 
 Line references in `original_sizing.txt` are line numbers in `original_source.md`.
+
+## Rules added 2026-10-07 (they win over everything below and over `PROGRESS.md`)
+
+Given by the project on 2026-10-07. Where they differ from older text in this file, these win;
+the older text is left in place for the record and marked "superseded 2026-10-07".
+
+1. **No bar size in the source** (no `/*backtest*/ period`, or a period without a unit, e.g.
+   ids 61867 `period: 1440` and 40155 `period: 15`): set `FREQ = "bar_size_pending"` exactly and
+   add the mark `bar_size_pending`. Never choose a bar size. This replaces the old `FREQ = "1h"`
+   default. Applied to the existing ports 119038, 11604, 42283 and 42451 (all four had used the
+   `1h` default), logic unchanged. Such a module cannot run until the project sets `FREQ`
+   (`precompute` raises on the unknown frequency). A bar size the code itself requests
+   (e.g. `GetRecords(PERIOD_M15)`) or the author states in so many words is the source's own.
+2. **Trailing stop**: port the strategy and mark it `trailing_stop_pending`. `stops()` has no
+   trailing key, so the trailing stop is described exactly in `PORT_NOTES.md` (distance as an
+   ATR multiple, activation) and quoted in `original_sizing.txt`, and is not emitted until the
+   project decides how to express it. An author's trail checked on closes is ported as a
+   close-based exit signal from `simulate()`, not as a stop (no mark needed).
+3. **Pine close-based stop** (`if close < stopLevel` -> `strategy.close`): always a close-based
+   exit signal from `simulate()`, never `sl_stop`.
+4. **Stops on bars longer than 1 h**: port normally and mark `coarse_bar_stop`.
+5. **Pine `strategy.entry(..., stop=, limit=)`**: port TWO modules: (1) exactly as written,
+   marked `stop_is_entry_condition`; (2) as the author evidently meant (a real stop-loss and
+   take-profit at those levels), under its own name, the assumption stated in its notes. First
+   check that the contract can express (1); if it cannot, report it and port only (2), marked.
+   *Checked 2026-10-07 (worker A):* the contract cannot express (1). A Pine `stop=`/`limit=` entry
+   is a resting order that fills inside a bar at its own price; the contract has only boolean
+   signals filled at the next bar's open. Re-reading the level as "enter next open once a
+   completed bar crossed it" changes both the trigger and the fill, so it is not "exactly as
+   written". Hence only (2) is ported, marked `stop_is_entry_condition`, and the case is reported.
+   Note: the static screen already sent every such file (468) to `REJECTED`
+   ("entries are resting limit/stop orders ..."), so none is in the `PORT_CANDIDATE` queue; whether
+   to re-open them under this rule is a project decision.
+6. **Reversals**: declare `REVERSAL INTENDED` in the docstring, or return
+   `upon_opposite_entry="ignore"` from `portfolio_kwargs` when the source only enters when flat.
+   Do NOT create long-only / short-only split versions. (A source that is itself long-only, e.g. a
+   spot bot, is ported as it is and says "Long only".) `{"upon_opposite_entry": "ignore"}` is
+   allowed in `portfolio_kwargs` of a stop-using port too; that is the only key it may hold there.
+7. **Near-duplicates are still ported**, each with its group id from `near_duplicate_groups.csv`
+   in `PORT_NOTES.md`. Exact duplicates stay set aside. (Supersedes criterion 6's "collapsed to one
+   representative" for ports made from 2026-10-07 on.)
+8. `HELD_NEEDS_VOLUME` and `FLAGGED_CRYPTO_ONLY` rows are not ported.
+9. A real module never contains the text `KNOWN_ANSWER_TEST` anywhere, not even in a comment.
+   Daily bars are broker days (17:00 New York), never `resample("1D")`; intraday bars resample with
+   `label="left", closed="left"`, no ffill. No whole-series statistics, centred windows, bfill or
+   `shift(-k)`. No costs in a module.
+10. **Static checks only**: `py_compile` and `survey_tools/check_ports.py` on every port. Never
+    run, backtest or optimise anything.
+
+**Marks.** Every module's docstring ends with one line `Marks: none` or `Marks: a, b`, using only
+`bar_size_pending`, `trailing_stop_pending`, `coarse_bar_stop`, `stop_is_entry_condition`.
+`PORT_NOTES.md` repeats them under "Marks".
+
+**check_ports.py additions (2026-10-07).** It also flags: a missing or unknown `Marks:` line;
+`FREQ = "bar_size_pending"` without the mark (or the mark without that FREQ); a `stops()` that
+reads its bars argument but has no `.shift(k)` (k >= 1) inside `stops()` itself, i.e. a stop
+Series built from the current bar; `stops()` keys other than `sl_stop`/`tp_stop`/`max_hold_time`;
+stops on a FREQ longer than 1 h without `coarse_bar_stop`; any `resample()` that is not
+`label="left", closed="left"`.
+
+**Broker days in a module.** A daily port defines `broker_day(index)` locally (session ends 17:00
+America/New_York; the desktop binds the name to `registry_schema.broker_day`) and groups 1-minute
+bars by it; each daily bar is stamped with its session's UTC start.
 
 ## Strategy interface (the project's execution contract)
 
@@ -65,7 +128,7 @@ portfolio_kwargs(**params) -> dict     # normally {}. Never price=, open=, fees,
 
 Stop-using ports also set `USES_STOPS = True` and define `stops(bars, **params)` returning a dict
 with only `sl_stop`, `tp_stop`, `max_hold_time` (fractions of the entry fill price);
-`portfolio_kwargs` must then be empty.
+`portfolio_kwargs` must then be empty. *(2026-10-07: except `{"upon_opposite_entry": "ignore"}`, rule 6.)*
 
 The name `KNOWN_ANSWER_TEST` must not appear anywhere in a port module, not even in a comment.
 
@@ -114,6 +177,7 @@ These are fixed here, before porting, so they are applied the same way to every 
 - **Criterion 4: what counts as sizing / money management.** Stored verbatim, not ported:
   order quantities, % of equity, leverage, pyramiding, martingale/averaging-in, balance checks,
   minimum-trade guards, slippage/price offsets, and trailing stops that `stops()` cannot express.
+  *(2026-10-07: trailing stops are now ported with the mark `trailing_stop_pending`; rule 2.)*
   Fixed stop-loss / take-profit exits that `stops()` can express are ported there *and*
   quoted in `original_sizing.txt`, so the separate layer can also test them. A trailing exit
   that the original evaluates on bar closes as its only exit is part of the signal and is ported
@@ -130,6 +194,7 @@ These are fixed here, before porting, so they are applied the same way to every 
   project confirms whether volume is available and meaningful.
 - **Bar size.** `FREQ` is the original's backtest period when the source declares one (FMZ's
   `backtest ... period:` header). When it does not, the port uses `1h` and says so.
+  *Superseded 2026-10-07 by rule 1: `FREQ = "bar_size_pending"` + mark, never a chosen size.*
 - **FMZ TA library.** `TA.MA` = simple MA, `TA.EMA` = EMA seeded with the first value
   (pandas `ewm(adjust=False)`), `TA.RSI`/`TA.ATR` = Wilder smoothing (RMA seeded with an SMA),
   matching TA-Lib, which FMZ wraps.

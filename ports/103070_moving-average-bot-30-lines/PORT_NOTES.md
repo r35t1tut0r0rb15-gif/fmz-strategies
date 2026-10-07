@@ -35,3 +35,7 @@ Every fast value is below every slow value, so no grid point is degenerate.
 
 `FAMILY = "ma_trend"`. Fast/slow moving-average cross with a confirmation count: moving-average trend following. Same family as #42451.
 Added 2026-10-03 in the contract fix pass.
+
+## Marks (2026-10-07)
+
+`none`
