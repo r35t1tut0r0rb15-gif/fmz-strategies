@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #200625 (SuperTrend-V1)
+# Source: https://www.fmz.com/strategy/200625  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Venue: quarterly contract  [lines 37-37]
+   37:     exchange.SetContractType("quarter")
+
+## Order execution: close opposite, vol lots (2x vol on shorts), +/-1 % prices  [lines 101-123]
+  101:     if(M15['Trend'].values[-1] == 1 and M15['Trend'].values[-2] == -1):
+  102: 
+  103:         Log('SuperTrend V.1 Alert Long','Create Order Buy')
+  104:         Log('Tsl=',Tsl)
+  105:         position = exchange.GetPosition()
+  106:         if len(position) > 0:
+  107:             Amount=position[0]["Amount"]
+  108:             exchange.SetDirection("closesell")
+  109:             exchange.Buy(_C(exchange.GetTicker).Sell*1.01, Amount);
+  110:         
+  111:         exchange.SetDirection("buy")
+  112:         exchange.Buy(_C(exchange.GetTicker).Sell*1.01, vol);
+  113: 
+  114:     if(M15['Trend'].values[-1] == -1 and M15['Trend'].values[-2] == 1):
+  115:         Log('SuperTrend V.1 Alert Long','Create Order Sell')
+  116:         Log('Tsl=',Tsl)
+  117:         position = exchange.GetPosition()
+  118:         if len(position) > 0:
+  119:             Amount=position[0]["Amount"]
+  120:             exchange.SetDirection("closebuy")
+  121:             exchange.Sell(_C(exchange.GetTicker).Buy*0.99,Amount);
+  122:         exchange.SetDirection("sell")
+  123:         exchange.Sell(_C(exchange.GetTicker).Buy*0.99, vol*2);

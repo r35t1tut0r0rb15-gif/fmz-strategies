@@ -1,0 +1,36 @@
+# Original sizing and money-management code, FMZ #186598 (海龟策略btc现货版)
+# Source: https://www.fmz.com/strategy/186598  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Unit = 1 % of portfolio per ATR, capped by balance; +100 price guard  [lines 59-71]
+   59:     acct = exchange.GetAccount()
+   60: 
+   61:     records=exchange.GetRecords(fresh_rete*60*60)
+   62: 
+   63:     ticker = exchange.GetTicker()
+   64:     
+   65: 
+   66:     portfolio_value = acct.Balance+acct.FrozenBalance+(acct.Stocks+acct.FrozenStocks)*records[-1]['Close']
+   67:     atr = TA.ATR(records, atrlength)[-1]
+   68:     #计算得到unit大小
+   69:     value = portfolio_value*trade_percent
+   70:     unit =  min(round(value/atr,4),round(acct.Balance/(ticker['Last']+100),4))
+   71:     #unit =  round(value/atr,2)
+
+## Order execution: buy at ticker.Last+10, order history, sell all  [lines 100-115]
+  100:     if opensign | addsign:
+  101:         if acct.Balance >= (ticker['Last']+10)*unit and unit >0:
+  102:             id = exchange.Buy(ticker['Last']+10,unit)
+  103:             orderinfo = exchange.GetOrder(id)
+  104:             data = {'ordertime':_D(records[-1]['Time']/1000),'id':id,'price':records[-1]['Close']}
+  105:             hisorder = hisorder.append(data,ignore_index=True)
+  106:             Log('买入后，最新账户信息：', exchange.GetAccount())
+  107:             Log("opensign",opensign,"addsign",addsign)
+  108:     #    else:
+  109:     #        Log('余额已不足，请充值......', exchange.GetAccount())
+  110:     if stopsign | closesign:
+  111:         exchange.Sell(-1, acct.Stocks+acct.FrozenStocks)
+  112:         data = {'ordertime':[],'id':[],'price':[]}
+  113:         hisorder = pd.DataFrame(data)
+  114:         Log('卖出后，最新账户信息：', exchange.GetAccount())
+  115:         Log("stopsign",stopsign,"closesign",closesign)

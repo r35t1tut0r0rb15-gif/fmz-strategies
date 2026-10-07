@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3734 |
+| PORT_CANDIDATE | 3721 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 16 |
-| REJECTED_ON_READING | 9 |
+| PORTED | 25 |
+| REJECTED_ON_READING | 13 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -144,7 +144,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 146391 | `ports/146391_bollmaboll/` | python | bollinger_breakout | none | bo x3, ma x3, ma2 x3 | 27 |
 | 156699 | `ports/156699_02/` | MyLanguage | ma_envelope_breakout | bar_size_pending | n x4 | 4 |
 | 171038 | `ports/171038_v10-okex/` | javascript | multi_timeframe_breakout_regime | none | mnum x3, dnum x3, center_atr x3 | 27 |
-| | **16 ports** | | | | | **332** |
+| 183416 | `ports/183416_by/` | MyLanguage | slope_momentum | none | length x3, smooth x3 | 9 |
+| 186598 | `ports/186598_btc/` | python | donchian_breakout | none | dc_range x3, atr_length x2, stop_atr x3 | 18 |
+| 188499 | `ports/188499_krt/` | MyLanguage | volatility_channel_breakout | none | n x4 | 4 |
+| 188507 | `ports/188507_strategy/` | MyLanguage | ma_trend | none | n x3, band_atr x3 | 9 |
+| 192353 | `ports/192353_strategy/` | python | donchian_breakout | bar_size_pending | entry_period x3, exit_period x3, stop_atr x3 | 27 |
+| 193609 | `ports/193609_demo/` | javascript | ma_trend | bar_size_pending | ma_length x5 | 5 |
+| 194224 | `ports/194224_macd/` | javascript | macd_momentum | bar_size_pending | hist_atr x3, body_atr x3, stop_atr x3 | 27 |
+| 200131 | `ports/200131_strategy/` | javascript | momentum_breakout | none | n x3 | 3 |
+| 200625 | `ports/200625_supertrend-v1/` | python | supertrend | none | factor x3, pd x3 | 9 |
+| | **25 ports** | | | | | **443** |
 
 ## Rejected on reading
 
@@ -159,6 +168,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 62163 | talib简单应用之查找三只乌鸦.md | 1 | talib demo: sells once when three black crows appear on the forming bar, then throws; no exit, not a trading strategy. |
 | 170557 | 单商品小卖部策略V20_年化130.md | 1 | Inventory-ratio ladder (grid-like): buys/sells 10-20 % of equity whenever the tick price is 3 % beyond a 30-min channel midpoint or 7 % from the last trade price, keeping cash between 10 % and 90 %. The position is a continuously rebalanced inventory driven by tick prices and the last fill, not entries/exits on bars. |
 | 170842 | OKex期货测试for新手.md | 1 | Not a signal strategy: an OKEx futures order-API demo (opens two buy orders once, then only logs orders and positions). |
+| 177631 | 大中小三周期跃迁策略V20_现货_测试.md | 1 | Inventory-ratio ladder: every 15 minutes buys or sells 5-20 % of equity when the tick price moves between Bollinger-relative zones of the daily bars, keeping cash between 10 % and 90 %. The position is a continuously rebalanced inventory, not entries/exits (the hourly band width is also undefined in the code). |
+| 187874 | 标定值或均线交叉策略.md | 2 | Entries and exits fire on hard-coded BTC price levels (REF(C,1) < 6725 buys, > 10000 sells, 'Gann levels'). Without them only an MA(10/30) cross remains, which would be a different strategy. |
+| 191622 | 割庄神器.md | 1 | Order-level ladder on perpetual swaps: opens on a daily-range test of > 20 price units, then keeps resting limit orders k = 11 price units above/below the fill, averaging in and martingale-style profit targets; fills inside the bar at set prices (also hard-coded price units, criterion 2). |
+| 201007 | 抛硬币策略.md | 1 | Coin-flip strategy: entries and exits are drawn from Math.random(); no deterministic signal to port. (Its trailing take-profit and stop are attached to random entries.) |
 
 ## Flagged and stored under criterion 3 (253 files)
 

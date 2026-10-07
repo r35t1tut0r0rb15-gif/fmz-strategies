@@ -8,6 +8,10 @@ fmz_id,file,final_outcome,criterion,reason
 62163,talib简单应用之查找三只乌鸦.md,REJECTED_ON_READING,1,"talib demo: sells once when three black crows appear on the forming bar, then throws; no exit, not a trading strategy."
 170557,单商品小卖部策略V20_年化130.md,REJECTED_ON_READING,1,"Inventory-ratio ladder (grid-like): buys/sells 10-20 % of equity whenever the tick price is 3 % beyond a 30-min channel midpoint or 7 % from the last trade price, keeping cash between 10 % and 90 %. The position is a continuously rebalanced inventory driven by tick prices and the last fill, not entries/exits on bars."
 170842,OKex期货测试for新手.md,REJECTED_ON_READING,1,"Not a signal strategy: an OKEx futures order-API demo (opens two buy orders once, then only logs orders and positions)."
+177631,大中小三周期跃迁策略V20_现货_测试.md,REJECTED_ON_READING,1,"Inventory-ratio ladder: every 15 minutes buys or sells 5-20 % of equity when the tick price moves between Bollinger-relative zones of the daily bars, keeping cash between 10 % and 90 %. The position is a continuously rebalanced inventory, not entries/exits (the hourly band width is also undefined in the code)."
+187874,标定值或均线交叉策略.md,REJECTED_ON_READING,2,"Entries and exits fire on hard-coded BTC price levels (REF(C,1) < 6725 buys, > 10000 sells, 'Gann levels'). Without them only an MA(10/30) cross remains, which would be a different strategy."
+191622,割庄神器.md,REJECTED_ON_READING,1,"Order-level ladder on perpetual swaps: opens on a daily-range test of > 20 price units, then keeps resting limit orders k = 11 price units above/below the fill, averaging in and martingale-style profit targets; fills inside the bar at set prices (also hard-coded price units, criterion 2)."
+201007,抛硬币策略.md,REJECTED_ON_READING,1,Coin-flip strategy: entries and exits are drawn from Math.random(); no deterministic signal to port. (Its trailing take-profit and stop are attached to random entries.)
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -25,3 +29,12 @@ fmz_id,file,final_outcome,criterion,reason
 146391,bollmaboll.md,PORTED,,ports/146391_bollmaboll/
 156699,均线策略范例02.md,PORTED,,ports/156699_02/
 171038,牛熊小卖部策略V10_OKex合约.md,PORTED,,ports/171038_v10-okex/
+183416,定量分型速率交易策略-by泊宇量化.md,PORTED,,ports/183416_by/
+186598,海龟策略btc现货版.md,PORTED,,ports/186598_btc/
+188499,KRT凯尔特纳通道.md,PORTED,,ports/188499_krt/
+188507,典型价格百分比通道-凯尔特纳与百分比通道变形.md,PORTED,,ports/188507_strategy/
+192353,海龟.md,PORTED,,ports/192353_strategy/
+193609,一根均线-趋势-Demo.md,PORTED,,ports/193609_demo/
+194224,MACD低买高卖自动跟单滑动止损.md,PORTED,,ports/194224_macd/
+200131,吕神-简易波动率策略.md,PORTED,,ports/200131_strategy/
+200625,SuperTrend-V1.md,PORTED,,ports/200625_supertrend-v1/

@@ -86,6 +86,41 @@ SIZING = {
         ("bearOper: cancel longs, close longs, sell 20 %/30 % up to half the account", 143, 185),
         ("Venue set-up: quarterly contract, 5x leverage", 248, 257),
     ],
+    # ---- worker A, batch A2 (2026-10-07)
+    183416: [
+        ("Lot size liang (half of equity x previous close / 100)", 33, 33),
+        ("Order statements: shorts at 2x liang, longs at liang", 42, 43),
+    ],
+    186598: [
+        ("Unit = 1 % of portfolio per ATR, capped by balance; +100 price guard", 59, 71),
+        ("Order execution: buy at ticker.Last+10, order history, sell all", 100, 115),
+    ],
+    188499: [],
+    188507: [],
+    192353: [
+        ("Unit formula (1 % of equity per N) and equity from margin", 63, 77),
+        ("set_position: reconcile long/short legs with +/-0.5 % limit prices", 104, 143),
+        ("Venue: quarterly contract", 205, 205),
+    ],
+    193609: [
+        ("Argument: Amount", 18, 18),
+        ("Venue: XBTUSD contract", 26, 26),
+        ("Order execution: fixed Amount at ticker prices", 47, 81),
+    ],
+    194224: [
+        ("Arguments: SlidePrice, orderTimeout, MinStock (ac1/bc1/TrailingStop are ported)", 18, 23),
+        ("Order helpers: sliced buy with timeouts, sell loop, rounding", 31, 141),
+        ("Execution: buy with the whole balance, sell all, profit log", 184, 197),
+    ],
+    200131: [
+        ("Argument: Amount", 174, 174),
+        ("Venue: XBTUSD contract", 191, 191),
+        ("Order execution: fixed Amount at ticker prices", 300, 338),
+    ],
+    200625: [
+        ("Venue: quarterly contract", 37, 37),
+        ("Order execution: close opposite, vol lots (2x vol on shorts), +/-1 % prices", 101, 123),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -110,6 +145,18 @@ REJECTED_ON_READING = {
                   "fill, not entries/exits on bars."),
     170842: ("1", "Not a signal strategy: an OKEx futures order-API demo (opens two buy orders once, then only logs "
                   "orders and positions)."),
+    # ---- worker A, batch A2 (2026-10-07)
+    177631: ("1", "Inventory-ratio ladder: every 15 minutes buys or sells 5-20 % of equity when the tick price "
+                  "moves between Bollinger-relative zones of the daily bars, keeping cash between 10 % and 90 %. The "
+                  "position is a continuously rebalanced inventory, not entries/exits (the hourly band width is "
+                  "also undefined in the code)."),
+    187874: ("2", "Entries and exits fire on hard-coded BTC price levels (REF(C,1) < 6725 buys, > 10000 sells, "
+                  "'Gann levels'). Without them only an MA(10/30) cross remains, which would be a different strategy."),
+    191622: ("1", "Order-level ladder on perpetual swaps: opens on a daily-range test of > 20 price units, then keeps "
+                  "resting limit orders k = 11 price units above/below the fill, averaging in and martingale-style "
+                  "profit targets; fills inside the bar at set prices (also hard-coded price units, criterion 2)."),
+    201007: ("1", "Coin-flip strategy: entries and exits are drawn from Math.random(); no deterministic signal "
+                  "to port. (Its trailing take-profit and stop are attached to random entries.)"),
 }
 
 DUPLICATE_ON_READING = {

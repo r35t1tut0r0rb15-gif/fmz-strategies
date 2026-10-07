@@ -80,3 +80,31 @@ semantics incl. HV/LV excluding the current bar, AUTOFILTER, BKPRICE, exits as s
 All 16 ports pass py_compile and check_ports.py.
 
 Resume point: batch A1 committed (hash in next entry). Next id: 177631.
+
+Batch A1 commit: d85cd82 (pushed, verified).
+
+## Task 4, batch A2 (ids 177631 - 201007)
+
+origin/survey-b still absent at batch start. SURVEY_README: FMZ `TA.Highest/Lowest` read as
+excluding the current element (authors' comments; breakout rules need it) - flagged as an
+assumption for the project.
+
+| id | outcome | note |
+|---|---|---|
+| 177631 | REJECTED_ON_READING (1) | inventory-ratio ladder |
+| 183416 | PORTED | regression-slope reverse, 1h |
+| 186598 | PORTED | spot turtle, daily (code's 24 h records) |
+| 187874 | REJECTED_ON_READING (2) | hard-coded BTC price levels |
+| 188499 | PORTED | KRT Keltner reverse, daily; source typo `H+L+C)/3` ported as (H+L+C)/3 |
+| 188507 | PORTED | typical-price EMA reverse with ATR band gate, daily |
+| 191622 | REJECTED_ON_READING (1) | swap order ladder, price-unit offsets |
+| 192353 | PORTED | turtle 55/20, author's highest-LOW long exit kept; bar_size_pending |
+| 193609 | PORTED | single SMA reverse; bar_size_pending |
+| 194224 | PORTED | MACD hist turn, long only; bar_size_pending |
+| 200131 | PORTED | log-return range breakout (criterion 2 change of indicator), 15min |
+| 200625 | PORTED | SuperTrend flip, 15min |
+| 201007 | REJECTED_ON_READING (1) | random (coin-flip) entries |
+
+All 25 ports pass py_compile and check_ports.py.
+
+Resume point: batch A2 committed (hash in next entry). Next id: 205469.

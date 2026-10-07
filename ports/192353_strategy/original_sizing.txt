@@ -1,0 +1,65 @@
+# Original sizing and money-management code, FMZ #192353 (海龟)
+# Source: https://www.fmz.com/strategy/192353  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Unit formula (1 % of equity per N) and equity from margin  [lines 63-77]
+   63:         self.equity=0
+   64:         positions = _C(exchange.GetPosition)
+   65:         for position in positions:
+   66:             if position["Type"]==PD_LONG:
+   67:                 self.equity+=position["Margin"]
+   68:             elif position["Type"]==PD_SHORT:
+   69:                 self.equity+=position["Margin"]
+   70:         self.account = _C(exchange.GetAccount)
+   71:         self.equity += self.account["Stocks"]+self.account["FrozenStocks"]
+   72:         #Log(self.equity)
+   73:         records = _C(exchange.GetRecords)
+   74:         self.n =TA.ATR(records, self.atr_day_length)[-1]
+   75:         # 买卖单位
+   76:         self.current_price = records[-1]["Close"]
+   77:         self.unit = int((self.equity * 0.01*self.current_price*self.current_price) / (100 * self.n))
+
+## set_position: reconcile long/short legs with +/-0.5 % limit prices  [lines 104-143]
+  104:     def set_position(self, pos):
+  105:         self.state["position"] = pos
+  106:         self.state["last_price"] = self.current_price
+  107:         positions = _C(exchange.GetPosition)
+  108:         sell_amount =0
+  109:         long_amount = 0
+  110:         for position in positions:
+  111:             if position["Type"]==PD_LONG:
+  112:                 long_amount=position["Amount"]
+  113:             elif position["Type"]==PD_SHORT:
+  114:                 sell_amount=position["Amount"]
+  115: 
+  116:         if pos>0:
+  117:             if sell_amount>0:
+  118:                 exchange.SetDirection("closesell")
+  119:                 exchange.Buy(self.current_price*1.005,sell_amount)
+  120:             if pos>long_amount:
+  121:                 exchange.SetDirection("buy")
+  122:                 exchange.Buy(self.current_price*1.005,pos-long_amount)
+  123:             elif pos<long_amount:
+  124:                 exchange.SetDirection("closebuy")
+  125:                 exchange.Sell(self.current_price*0.995,long_amount-pos)
+  126:         elif pos<0:
+  127:             pos=-pos 
+  128:             if long_amount>0:
+  129:                 exchange.SetDirection("closebuy")
+  130:                 exchange.Sell(self.current_price*0.995,long_amount)
+  131:             if pos>sell_amount:
+  132:                 exchange.SetDirection("sell")
+  133:                 exchange.Sell(self.current_price*0.995,pos-sell_amount)
+  134:             elif pos<sell_amount:
+  135:                 exchange.SetDirection("closesell")
+  136:                 exchange.Buy(self.current_price*1.005,sell_amount-pos)
+  137:         else:
+  138:             if long_amount>0:
+  139:                 exchange.SetDirection("closebuy")
+  140:                 exchange.Sell(self.current_price*0.995,long_amount)      
+  141:             if sell_amount>0:
+  142:                 exchange.SetDirection("closesell")
+  143:                 exchange.Buy(self.current_price*1.005,sell_amount)                
+
+## Venue: quarterly contract  [lines 205-205]
+  205:     exchange.SetContractType("quarter")

@@ -1,0 +1,46 @@
+# Original sizing and money-management code, FMZ #193609 (一根均线-趋势-Demo)
+# Source: https://www.fmz.com/strategy/193609  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Argument: Amount  [lines 18-18]
+   18: |Amount|100|Amount|
+
+## Venue: XBTUSD contract  [lines 26-26]
+   26: e.SetContractType('XBTUSD')
+
+## Order execution: fixed Amount at ticker prices  [lines 47-81]
+   47: function onTick() {
+   48:     if (LastBarTime !== Bar.Time) { // K线结束后进行交易
+   49:         if (status === Idle) {
+   50:             if (Bar.Close > MA_close) {
+   51:                 exchange.SetDirection("buy") 
+   52:                 exchange.Buy(ticker.Sell, Amount)
+   53:                 status = PD_LONG
+   54:             }
+   55:             if (Bar.Close < MA_close) {
+   56:                 exchange.SetDirection("sell") 
+   57:                 exchange.Sell(ticker.Buy, Amount)
+   58:                 status = PD_SHORT
+   59:             }
+   60:         }
+   61:         if (status === PD_LONG) {
+   62:             if (Bar.Close < MA_close) {
+   63:                 exchange.SetDirection("closebuy")
+   64:                 exchange.Sell(ticker.Buy, Amount)
+   65:                 exchange.SetDirection("sell") 
+   66:                 exchange.Sell(ticker.Buy, Amount)
+   67:                 status = PD_SHORT
+   68:             }
+   69:         }
+   70:         if (status === PD_SHORT) {
+   71:             if (Bar.Close > MA_close) {
+   72:                 exchange.SetDirection("closesell") 
+   73:                 exchange.Buy(ticker.Sell, Amount)
+   74:                 exchange.SetDirection("buy") 
+   75:                 exchange.Buy(ticker.Sell, Amount)
+   76:                 status = PD_LONG
+   77:             }
+   78:         }
+   79:         LastBarTime = Bar.Time
+   80:     }
+   81: }

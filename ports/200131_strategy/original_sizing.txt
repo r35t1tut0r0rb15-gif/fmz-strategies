@@ -1,0 +1,50 @@
+# Original sizing and money-management code, FMZ #200131 (吕神-简易波动率策略)
+# Source: https://www.fmz.com/strategy/200131  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Argument: Amount  [lines 174-174]
+  174: |Amount|100|下单量|
+
+## Venue: XBTUSD contract  [lines 191-191]
+  191: exchange.SetContractType('XBTUSD')
+
+## Order execution: fixed Amount at ticker prices  [lines 300-338]
+  300: function onTick() {
+  301:     // 无仓位时
+  302:     if (pos.length == 0) {
+  303:         // Long 当前K线的收盘价 > 上轨 && 之前K线的收盘价 <= 上轨
+  304:         if (vix_arr[vix_arr.length - 1] > vix_ma_up[vix_ma_up.length - 1] &&
+  305:             vix_arr[vix_arr.length - 2] <= vix_ma_up[vix_ma_up.length - 2]) {
+  306:             exchange.SetDirection("buy")
+  307:             exchange.Buy(ticker.Sell, Amount)
+  308:             $.PlotFlag(new Date().getTime(), 'Buy', 'BK')
+  309:         }
+  310:         // Short 当前K线的收盘价 < 下轨 && 之前K线的收盘价 >= 下轨
+  311:         if (vix_arr[vix_arr.length - 1] < vix_ma_dw[vix_ma_dw.length - 1] &&
+  312:             vix_arr[vix_arr.length - 2] >= vix_ma_dw[vix_ma_dw.length - 2]) {
+  313:             exchange.SetDirection("sell")
+  314:             exchange.Sell(ticker.Buy, Amount)
+  315:             $.PlotFlag(new Date().getTime(), 'Sell', 'SK')
+  316:         }
+  317:     }
+  318:     // 多仓时
+  319:     if (pos.length > 0 && pos[0].Type == 0) {
+  320:         // 平多 当前K线的收盘价 < 中轨 && 之前K线的收盘价 >= 中轨
+  321:         if (vix_arr[vix_arr.length - 1] < vix_ma[vix_ma.length - 1] &&
+  322:             vix_arr[vix_arr.length - 2] >= vix_ma[vix_ma.length - 2]) {
+  323:             exchange.SetDirection("closebuy")
+  324:             exchange.Sell(ticker.Buy, pos[0].Amount)
+  325:             $.PlotFlag(new Date().getTime(), 'Sell', 'SBK')
+  326:         }
+  327:     }
+  328:     // 空仓时
+  329:     if (pos.length > 0 && pos[0].Type == 1) {
+  330:         // 平空 当前K线的收盘价 > 中轨 && 之前K线的收盘价 <= 中轨
+  331:         if (vix_arr[vix_arr.length - 1] > vix_ma[vix_ma.length - 1] &&
+  332:             vix_arr[vix_arr.length - 2] <= vix_ma[vix_ma.length - 2]) {
+  333:             exchange.SetDirection("closesell")
+  334:             exchange.Buy(ticker.Sell, pos[0].Amount)
+  335:             $.PlotFlag(new Date().getTime(), 'Buy', 'PSK')
+  336:         }
+  337:     }
+  338: }

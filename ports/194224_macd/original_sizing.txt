@@ -1,0 +1,140 @@
+# Original sizing and money-management code, FMZ #194224 (MACD低买高卖自动跟单滑动止损)
+# Source: https://www.fmz.com/strategy/194224  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Arguments: SlidePrice, orderTimeout, MinStock (ac1/bc1/TrailingStop are ported)  [lines 18-23]
+   18: |ac1|0.005|交叉后第一柱|
+   19: |bc1|-1e-06|交叉后前一柱|
+   20: |SlidePrice|0.3|滑动价格|
+   21: |TrailingStop|0.5|止损点|
+   22: |orderTimeout|30|买单超时(秒)|
+   23: |MinStock|30|最小持仓|
+
+## Order helpers: sliced buy with timeouts, sell loop, rounding  [lines 31-141]
+   31: Fixed = function(v) {
+   32:     return Math.floor(v*1000)/1000;
+   33: };
+   34: 
+   35: // for orders
+   36: WaitOrder = function(exchange, orderId, timeoutToCancel) {
+   37:     var ts = (new Date()).getTime();
+   38:     while (true) {
+   39:         Sleep(3000);
+   40:         var orderInfo = exchange.GetOrder(orderId);
+   41:         if (!orderInfo) {
+   42:             continue;
+   43:         }
+   44:         if (orderInfo.Status == ORDER_STATE_CLOSED || orderInfo.Status == ORDER_STATE_CANCELED) {
+   45:             return orderInfo;
+   46:         }
+   47:         if (((new Date()).getTime() - ts) > timeoutToCancel) {
+   48:             exchange.CancelOrder(orderId);
+   49:         }
+   50:     }
+   51: };
+   52: 
+   53: Buy = function(exchange, maxPrice, slidePrice, balanceRatio, timeoutS) {
+   54:     var ts = (new Date()).getTime();
+   55:     var account;
+   56:     var dealAmount = 0.0;
+   57:     var usedBlance = 0.0;
+   58:     var maxBalanceUse = 0.0;
+   59:     var isFirst = true;
+   60:     do {
+   61:         if (isFirst) {
+   62:             isFirst = false;
+   63:         } else {
+   64:             Sleep(3000);
+   65:         }
+   66: 
+   67:         var ticker = exchange.GetTicker();
+   68:         if (!ticker) {
+   69:             continue;
+   70:         }
+   71: 
+   72:         var buyPrice = ticker.Sell + slidePrice;
+   73: 
+   74:         // Price too high, wait...
+   75:         if (buyPrice > maxPrice) {
+   76:             continue;
+   77:         }
+   78: 
+   79:         // Initialize at first
+   80:         if (!account) {
+   81:             account = exchange.GetAccount();
+   82:             if (!account) {
+   83:                 continue;
+   84:             }
+   85:             // Initialize maxBalanceUse
+   86:             maxBalanceUse = account.Balance * balanceRatio;
+   87:         }
+   88: 
+   89:         var buyAmount = Fixed((maxBalanceUse - usedBlance) / buyPrice);
+   90:         if (buyAmount < MinStock) {
+   91:             break;
+   92:         }
+   93: 
+   94:         orderId = exchange.Buy(buyPrice, buyAmount);
+   95:         if (!orderId) {
+   96:             Log(buyPrice, buyAmount, maxBalanceUse, usedBlance);
+   97:             continue;
+   98:         }
+   99: 
+  100:         var orderInfo = WaitOrder(exchange, orderId, timeoutS);
+  101:         dealAmount += orderInfo.DealAmount;
+  102:         usedBlance += orderInfo.Price * orderInfo.DealAmount;
+  103:         if (orderInfo.Status == ORDER_STATE_CLOSED) {
+  104:             break;
+  105:         }
+  106:     } while (((new Date()).getTime() - ts) < timeoutS);
+  107: 
+  108:     return {amount: dealAmount, price: (dealAmount > 0 ? usedBlance / dealAmount : 0)};
+  109: };
+  110: 
+  111: Sell = function(exchange, sellAmount, slidePrice) {
+  112:     // Account info must set
+  113:     var account = exchange.GetAccount();
+  114:     while (!account) {
+  115:         Sleep(2000);
+  116:         account = exchange.GetAccount();
+  117:     }
+  118: 
+  119:     sellAmount = Math.min(sellAmount, account.Stocks);
+  120: 
+  121:     var cash = 0.0;
+  122:     var remain = sellAmount;
+  123: 
+  124:     while (remain >= exchange.GetMinStock()) {
+  125:         var ticker = exchange.GetTicker();
+  126:         if (!ticker) {
+  127:             Sleep(2000);
+  128:             continue;
+  129:         }
+  130:         var sellPrice = ticker.Buy - slidePrice;
+  131:         var sellOrderId = exchange.Sell(sellPrice, remain);
+  132:         if (!sellOrderId) {
+  133:             Sleep(2000);
+  134:             continue;
+  135:         }
+  136:         var orderInfo = WaitOrder(exchange, sellOrderId, 10000);
+  137:         remain -= orderInfo.DealAmount;
+  138:         cash += orderInfo.Price * orderInfo.DealAmount;
+  139:     }
+  140:     return {amount: sellAmount, price: (sellAmount > 0 ? cash / sellAmount : 0)};
+  141: };
+
+## Execution: buy with the whole balance, sell all, profit log  [lines 184-197]
+  184:     if (op == 1) {
+  185:         var info = Buy(exchange, ticker.Sell + (SlidePrice * 3), SlidePrice, BanlanceRatio, orderTimeout * 1000);
+  186:         if (info.amount > 0) {
+  187:             BuyInfo = info;
+  188:             timeAtBuy = records[records.length-1].Time;
+  189:         }
+  190:     } else if (op == 2) {
+  191:         var info = Sell(exchange, BuyInfo.amount, SlidePrice);
+  192:         if (info.amount > 0) {
+  193:             Profit += info.amount * (info.price - BuyInfo.price);
+  194:             LogProfit(Profit);
+  195:             BuyInfo = null;
+  196:         }
+  197:     }

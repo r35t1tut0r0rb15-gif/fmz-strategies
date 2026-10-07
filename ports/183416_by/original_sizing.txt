@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #183416 (定量分型速率交易策略-by泊宇量化)
+# Source: https://www.fmz.com/strategy/183416  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Lot size liang (half of equity x previous close / 100)  [lines 33-33]
+   33: liang:=INTPART(MONEYTOT*REF(C,1)/100)*0.5;
+
+## Order statements: shorts at 2x liang, longs at liang  [lines 42-43]
+   42: ss<REF(ss,1),SPK(liang*2);//当斜率变小说明行情动能减弱，有下跌趋势，平多做空
+   43: ss>REF(ss,1),BPK(liang);//当斜率变大说明行情动能不断增加，有上升趋势，平空做多

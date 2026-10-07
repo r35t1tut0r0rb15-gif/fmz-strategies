@@ -201,6 +201,12 @@ These are fixed here, before porting, so they are applied the same way to every 
 - **FMZ TA library.** `TA.MA` = simple MA, `TA.EMA` = EMA seeded with the first value
   (pandas `ewm(adjust=False)`), `TA.RSI`/`TA.ATR` = Wilder smoothing (RMA seeded with an SMA),
   matching TA-Lib, which FMZ wraps.
+  *Added 2026-10-07 (worker A):* `TA.Highest/TA.Lowest(data, n, attr)` are read as EXCLUDING the
+  current (last) element: authors say so in comments (#171038 "不包含当前Bar"), and the breakout
+  rules of #192353 and #200131 can only fire under that reading. With the forming-bar mapping
+  (records[-1] -> completed bar t) they cover bars t-n..t-1. Where a bot uses them only on
+  completed bars with no forming-bar price (#171038), they cover the n bars up to t. If the
+  project knows FMZ's definition to be otherwise, these ports need revisiting.
 - **Port order.** Ports are made in ascending FMZ id over the admitted, deduplicated set.
   This is a neutral order and implies nothing about merit.
 
