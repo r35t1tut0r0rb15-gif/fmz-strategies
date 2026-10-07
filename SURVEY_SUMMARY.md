@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3695 |
+| PORT_CANDIDATE | 3682 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 47 |
-| REJECTED_ON_READING | 17 |
+| PORTED | 59 |
+| REJECTED_ON_READING | 18 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -175,7 +175,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 361567 | `ports/361567_optimized-trend-tracker/` | PineScript | supertrend | none | length x3, band_atr x3 | 9 |
 | 361675 | `ports/361675_cm-sling-shot-system/` | PineScript | ma_trend_oscillator_pullback | none | ema_fast x3, ema_slow x2 | 6 |
 | 361689 | `ports/361689_tma-overlay/` | PineScript | candle_pattern | none | n_bars x3 | 3 |
-| | **47 ports** | | | | | **659** |
+| 361718 | `ports/361718_swing-highs-lows-candle-patterns/` | PineScript | pivot_reversal | none | length x3 | 3 |
+| 361725 | `ports/361725_ma-emperor-insiliconot/` | PineScript | ma_trend | none | len_fast x3, len_slow x3 | 9 |
+| 361783 | `ports/361783_engulfing-candles/` | PineScript | candle_pattern | none | min_body_atr x3 | 3 |
+| 361785 | `ports/361785_ks-reversal-indicator-i/` | PineScript | bollinger_reversion | none | length x3, multiplier x3 | 9 |
+| 361786 | `ports/361786_millemachine/` | PineScript | ma_trend | bar_size_pending, trailing_stop_pending | ei_len x3, bl_len x3, atr_mult x3 | 27 |
+| 361794 | `ports/361794_baguette-by-multigrain/` | PineScript | ma_envelope_reversion | none | jma_len x3, atr_mul x3 | 9 |
+| 361802 | `ports/361802_3ema-boullinger-pivot/` | PineScript | pivot_reversal | none | dist x3 | 3 |
+| 361827 | `ports/361827_pine/` | PineScript | momentum_breakout | none | n x3 | 3 |
+| 361834 | `ports/361834_z-score-with-signals/` | PineScript | zscore_reversion | none | length x3, threshold x3 | 9 |
+| 361839 | `ports/361839_magic-macd/` | PineScript | macd_momentum | none | fast x3, slow x3 | 9 |
+| 361844 | `ports/361844_jma-dwma-by-multigrain/` | PineScript | ma_trend | none | jma_len x3, dwma_len x3 | 9 |
+| 361847 | `ports/361847_tom-demark-sequential-heat-map/` | PineScript | td_sequential | bar_size_pending | lookback x3, count x2 | 6 |
+| | **59 ports** | | | | | **758** |
 
 ## Rejected on reading
 
@@ -198,6 +210,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 255502 | 恒温器-震荡修正为-最高价-最低价-添加增减仓选项-添加额外张数功能-修正cmi数据刷新日期问一天一次变为1小时一次-ok-准备修正一些功能.md | 1 | Two concurrent sub-systems (CMI shock / trend) each holding its own hedged futures position with ATR-step scale-in or scale-out ladders, extra-lot counters and departure callbacks. The outcome is defined by the ladder of partial exits, which cannot be reduced to one net position's entry/exit signals without changing the strategy. |
 | 266142 | 均仓策略.md | 1 | Pure 50/50 coin/cash rebalancing (buy or sell 1 % / 10 % slices when the coin share leaves 0.49-0.51); no entry or exit signal. |
 | 299799 | ahr999定投策略.md | 2 | AHR999 dollar-cost averaging: the indicator is a Bitcoin-only model (price vs a log-price curve fitted to days since the 2009 genesis block); the code throws for any other pair. Also periodic accumulation, not entries/exits. |
+| 361719 | Demark-Reversal-Points.md | 1 | Signals come from request.security(syminfo.tickerid, '18000', src)[1]: '18000' is not a valid Pine resolution (minutes? seconds?), so the higher timeframe the counts run on is undefined. Porting would mean choosing a bar size (rule 1 forbids); needs the project to define it. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -186,6 +186,19 @@ SIZING = {
     361567: [],
     361675: [],
     361689: [],
+    # ---- worker A, batch A5 (2026-10-07)
+    361718: [], 361725: [], 361783: [], 361785: [],
+    361786: [
+        ("Commented-out strategy() line: 100 % of equity, commission (not active)", 63, 63),
+        ("Risk settings: % risk, fixed/dynamic SL switch, RRR", 72, 81),
+        ("Risk-based entry quantity (equity x risk / stop distance)", 176, 177),
+        ("Short-side risk-based quantity", 193, 194),
+    ],
+    361794: [], 361802: [],
+    361827: [
+        ("qty = equity / close", 53, 53),
+    ],
+    361834: [], 361839: [], 361844: [], 361847: [],
 }
 
 REJECTED_ON_READING = {
@@ -235,6 +248,10 @@ REJECTED_ON_READING = {
     299799: ("2", "AHR999 dollar-cost averaging: the indicator is a Bitcoin-only model (price vs a log-price curve "
                   "fitted to days since the 2009 genesis block); the code throws for any other pair. Also periodic "
                   "accumulation, not entries/exits."),
+    # ---- worker A, batch A5 (2026-10-07)
+    361719: ("1", "Signals come from request.security(syminfo.tickerid, '18000', src)[1]: '18000' is not a valid "
+                  "Pine resolution (minutes? seconds?), so the higher timeframe the counts run on is undefined. "
+                  "Porting would mean choosing a bar size (rule 1 forbids); needs the project to define it."),
 }
 
 DUPLICATE_ON_READING = {

@@ -16,6 +16,7 @@ fmz_id,file,final_outcome,criterion,reason
 255502,恒温器-震荡修正为-最高价-最低价-添加增减仓选项-添加额外张数功能-修正cmi数据刷新日期问一天一次变为1小时一次-ok-准备修正一些功能.md,REJECTED_ON_READING,1,"Two concurrent sub-systems (CMI shock / trend) each holding its own hedged futures position with ATR-step scale-in or scale-out ladders, extra-lot counters and departure callbacks. The outcome is defined by the ladder of partial exits, which cannot be reduced to one net position's entry/exit signals without changing the strategy."
 266142,均仓策略.md,REJECTED_ON_READING,1,Pure 50/50 coin/cash rebalancing (buy or sell 1 % / 10 % slices when the coin share leaves 0.49-0.51); no entry or exit signal.
 299799,ahr999定投策略.md,REJECTED_ON_READING,2,"AHR999 dollar-cost averaging: the indicator is a Bitcoin-only model (price vs a log-price curve fitted to days since the 2009 genesis block); the code throws for any other pair. Also periodic accumulation, not entries/exits."
+361719,Demark-Reversal-Points.md,REJECTED_ON_READING,1,"Signals come from request.security(syminfo.tickerid, '18000', src)[1]: '18000' is not a valid Pine resolution (minutes? seconds?), so the higher timeframe the counts run on is undefined. Porting would mean choosing a bar size (rule 1 forbids); needs the project to define it."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -64,3 +65,15 @@ fmz_id,file,final_outcome,criterion,reason
 361567,Optimized-Trend-Tracker.md,PORTED,,ports/361567_optimized-trend-tracker/
 361675,CM-Sling-Shot-System.md,PORTED,,ports/361675_cm-sling-shot-system/
 361689,TMA-Overlay.md,PORTED,,ports/361689_tma-overlay/
+361718,Swing-Highs-Lows-Candle-Patterns.md,PORTED,,ports/361718_swing-highs-lows-candle-patterns/
+361725,MA-Emperor-insiliconot.md,PORTED,,ports/361725_ma-emperor-insiliconot/
+361783,Engulfing-Candles.md,PORTED,,ports/361783_engulfing-candles/
+361785,Ks-Reversal-Indicator-I.md,PORTED,,ports/361785_ks-reversal-indicator-i/
+361786,MilleMachine.md,PORTED,,ports/361786_millemachine/
+361794,baguette-by-multigrain.md,PORTED,,ports/361794_baguette-by-multigrain/
+361802,3EMA-Boullinger-PIVOT.md,PORTED,,ports/361802_3ema-boullinger-pivot/
+361827,吕神简易波动率策略Pine语言版本.md,PORTED,,ports/361827_pine/
+361834,Z-Score-with-Signals.md,PORTED,,ports/361834_z-score-with-signals/
+361839,MAGIC-MACD.md,PORTED,,ports/361839_magic-macd/
+361844,jma-dwma-by-multigrain.md,PORTED,,ports/361844_jma-dwma-by-multigrain/
+361847,Tom-DeMark-Sequential-Heat-Map.md,PORTED,,ports/361847_tom-demark-sequential-heat-map/

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #361827 (吕神简易波动率策略Pine语言版本)
+# Source: https://www.fmz.com/strategy/361827  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = equity / close  [lines 53-53]
+   53: qty = math.round(strategy.equity / close, 2)

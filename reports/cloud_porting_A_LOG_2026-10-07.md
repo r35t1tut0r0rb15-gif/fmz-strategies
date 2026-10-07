@@ -163,3 +163,29 @@ ta.* semantics, backtest windows, request.security, inputs).
 All 47 ports pass py_compile and check_ports.py.
 
 Resume point: batch A4 committed (hash in next entry). Next id: 361718.
+
+Batch A4 commit: f98a858 (pushed, verified).
+
+## Task 4, batch A5 (ids 361718 - 361847)
+
+origin/survey-b still absent at batch start.
+
+| id | outcome | note |
+|---|---|---|
+| 361718 | PORTED | swing pivot side (long on swing high, as written), 2h |
+| 361719 | REJECTED_ON_READING (1) | HTF resolution '18000' undefined (would mean choosing a bar size) |
+| 361725 | PORTED | low-pass filter cross, 1h |
+| 361783 | PORTED | engulfing reverse, 1h (declared min-body variants; 0 = source) |
+| 361785 | PORTED | K's reversal (band + MACD cross), 30min |
+| 361786 | PORTED | HMA turn + McGinley filter, sl_stop initial; marks bar_size_pending, trailing_stop_pending |
+| 361794 | PORTED | JMA ATR envelope reversion, 1h |
+| 361802 | PORTED | pivot confirm side, 1h |
+| 361827 | PORTED | Pine version of 200131 (log return), daily |
+| 361834 | PORTED | H/L z-score reversion, 1h |
+| 361839 | PORTED | MACD 12/26/9 cross on 1h (near #356844, not exact) |
+| 361844 | PORTED | JMA vs DWMA cross with pivot exits, 1h |
+| 361847 | PORTED | TD setup 13 fade; bar_size_pending |
+
+All 59 ports pass py_compile and check_ports.py.
+
+Resume point: batch A5 committed (hash in next entry). Next id: 361880.

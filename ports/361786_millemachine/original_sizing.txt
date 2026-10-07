@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #361786 (MilleMachine)
+# Source: https://www.fmz.com/strategy/361786  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy() line: 100 % of equity, commission (not active)  [lines 63-63]
+   63: //strategy("MilleMachine", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, initial_capital=10000, commission_type=strategy.commission.percent, commission_value=0.06)
+
+## Risk settings: % risk, fixed/dynamic SL switch, RRR  [lines 72-81]
+   72: // Risk management settings
+   73: //Spacer2 = input(false, title="======= Risk management settings =======")
+   74: Risk = input(1.0, title="% Risk",minval=0)/100
+   75: RRR = 2                                     //input(2,title="Risk Reward Ratio",step=0.1,minval=0,maxval=20)
+   76: SL_Mode = false                             // input(true, title="ON = Fixed SL / OFF = Dynamic SL (ATR)")
+   77: SL_Fix = 3                                  //input(3,title="StopLoss %",step=0.25, minval=0)/100
+   78: ATR = atr(14)                               //input(14,title="Periode ATR"))
+   79: Mul = input(2,title="ATR Multiplier",step=0.1)
+   80: xATR = ATR * Mul
+   81: SL = SL_Mode ? SL_Fix : (1 - close/(close+xATR))
+
+## Risk-based entry quantity (equity x risk / stop distance)  [lines 176-177]
+  176:     Entry_Contracts = strategy.equity * Risk / ((TriggerPrice-SLPrice)/TriggerPrice) / TriggerPrice
+  177:     strategy.entry("Long", strategy.long, comment=str.tostring(math.round((TriggerSL/TriggerPrice)*1000)), qty=Entry_Contracts)
+
+## Short-side risk-based quantity  [lines 193-194]
+  193:     Entry_Contracts = strategy.equity * Risk / ((SLPrice-TriggerPrice)/TriggerPrice) / TriggerPrice
+  194:     strategy.entry("Short", strategy.short, comment=str.tostring(math.round((TriggerSL/TriggerPrice)*1000)), qty=Entry_Contracts)
