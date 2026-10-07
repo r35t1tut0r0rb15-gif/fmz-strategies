@@ -11,12 +11,12 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3669 |
+| PORT_CANDIDATE | 3656 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 72 |
+| PORTED | 85 |
 | REJECTED_ON_READING | 18 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
@@ -200,7 +200,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 362060 | `ports/362060_tv/` | PineScript | macd_divergence | none | fast x2, slow x3 | 6 |
 | 362089 | `ports/362089_midas-mk-ii-ultimate-crypto-swing/` | PineScript | ma_trend | none | ema_len x3, sma_len x3 | 9 |
 | 362092 | `ports/362092_moving-average-buy-sell/` | PineScript | ma_trend | none | wave x3, tide x2 | 6 |
-| | **72 ports** | | | | | **873** |
+| 362103 | `ports/362103_ehma-range-strategy/` | PineScript | ma_envelope_breakout | none | period x3, band_atr x3 | 9 |
+| 362163 | `ports/362163_momentum-20/` | PineScript | momentum_oscillator_turn | none | window x3, base_window x3 | 9 |
+| 362167 | `ports/362167_ema-aroon-ash/` | PineScript | multi_indicator_confluence | none | ema_len x2, aroon_len x3, tp_mult x3 | 18 |
+| 362168 | `ports/362168_mtf-rsi-stoch-strategy/` | PineScript | rsi_oscillator | none | rsi_len x3, k_len x3 | 9 |
+| 362172 | `ports/362172_nik-stoch/` | PineScript | stochastic_oscillator | none | k_len x3, smooth x2 | 6 |
+| 362178 | `ports/362178_diamond-trend/` | PineScript | parabolic_sar | none | length x3, dev x3 | 9 |
+| 362210 | `ports/362210_ma-hybrid-by-raj/` | PineScript | ma_trend | none | baseline_len x3, ssl2_len x2, atr_crit x2 | 12 |
+| 362214 | `ports/362214_amacd-all-moving-average-convergence-divergence/` | PineScript | macd_momentum | none | fast x2, slow x2, signal x2 | 8 |
+| 362223 | `ports/362223_kijunsen-line-with-cross/` | PineScript | ichimoku | bar_size_pending | n x3 | 3 |
+| 362256 | `ports/362256_angle-attack-follow-line-indicator/` | PineScript | supertrend | none | bb_period x3, bb_dev x2, atr_period x2 | 12 |
+| 362327 | `ports/362327_hull-4ema/` | PineScript | ma_trend | none | hma_len x4 | 4 |
+| 362403 | `ports/362403_bb-rsi-adx-entry-points/` | PineScript | bollinger_reversion | none | bb_len x2, adx_min x3 | 6 |
+| 362418 | `ports/362418_smaller-fractals-transparency/` | PineScript | pivot_reversal | none | n x3 | 3 |
+| | **85 ports** | | | | | **981** |
 
 ## Rejected on reading
 

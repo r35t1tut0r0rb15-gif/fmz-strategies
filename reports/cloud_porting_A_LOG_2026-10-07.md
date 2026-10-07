@@ -206,3 +206,20 @@ written (bar_size_pending); 362055 Big Snapper state machine (2h); 362059 SMA tr
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A6 committed (hash in next entry). Next id: 362103.
+
+Batch A6 commit: 7617e69 (pushed, verified).
+
+## Task 4, batch A7 (ids 362103 - 362418)
+
+origin/survey-b still absent at batch start. 13 ported, 0 rejected:
+362103 EHMA band reverse (daily, % -> ATR); 362163 normalised momentum cross (30min);
+362167 EMA/Aroon/ASH with fixed SL/TP via stops() (3min; simulate mirrors the engine stop/target);
+362168 MTF RSI/Stoch average (1h bars, daily decisions; W/D/4h/1h); 362172 fast stoch faded (1h);
+362178 PSAR regression band flip (15min; TradingView pine_sar); 362210 SSL hybrid continuation (30min);
+362214 AMACD deal state (one-sided as written, 30min); 362223 HL2/Kijun cross (bar_size_pending);
+362256 Follow Line flip (15min); 362327 HMA local-extreme cross (5min); 362403 BB/RSI/ADX (1h);
+362418 Williams fractal side (1h).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A7 committed (hash in next entry). Next id: 362427.
