@@ -261,3 +261,22 @@ PORT_NOTES.md row 6 (rule 7). All fixed; check_ports.py now flags it (negative-t
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A9 committed (hash in next entry). Next id: 363582.
+
+Batch A9 commit: a9d6425 (pushed, verified).
+
+## Task 4, batch A10 (ids 363582 - 363847)
+
+origin/survey-b still absent at batch start. 13 ported, 0 rejected:
+363582 CCI on 5 lower timeframes, overbought -> long as written (15min bars, 12h decisions);
+363588 Octa-EMA + Ichimoku (10min, DG363588); 363590 RSI on 5 timeframes, overbought -> long as
+written (15min); 363749 LuxAlgo Fibonacci progression (5min); 363766 SMA/ADX/KAMA + pivot ATR
+trend close_all (2h); 363793 Trendelicious (30min); 363797 EMA cross with close-based trail and
+3.5 % close stop (1h, trailing_stop_pending, ND363797); 363803 Super Scalper (1min);
+363807 slow SuperTrend (1min); 363824 QQE momentum zigzag (10min); 363825 SuperTrend on close
+(1min); 363829 Pivot Point SuperTrend (1min); 363847 RISOTTO RSI/OTT (1min).
+New scratch helpers: higher/lower-timeframe blocks from the port's bars with an as-of read of
+completed blocks (searchsorted, no fill).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A10 committed (hash in next entry). Next id: 363848.

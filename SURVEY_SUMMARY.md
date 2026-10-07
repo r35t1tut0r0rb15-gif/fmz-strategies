@@ -11,12 +11,12 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3630 |
+| PORT_CANDIDATE | 3617 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 109 |
+| PORTED | 122 |
 | REJECTED_ON_READING | 20 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
@@ -237,7 +237,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 363002 | `ports/363002_rainbow-oscillator/` | PineScript | momentum_oscillator_turn | none | period x3, level_period x2 | 6 |
 | 363562 | `ports/363562_sidboss/` | PineScript | volatility_channel_breakout | none | per x3, mult x3 | 9 |
 | 363579 | `ports/363579_smarter-macd/` | PineScript | macd_momentum | none | fast x2, slow x2, signal x2 | 8 |
-| | **109 ports** | | | | | **1161** |
+| 363582 | `ports/363582_cci-mtf-obos/` | PineScript | momentum_oscillator_turn | none | cci_len x3 | 3 |
+| 363588 | `ports/363588_fukuiz-octa-ema-ichimoku/` | PineScript | ichimoku | none | ema_fast x2, ema_slow x2, displacement x2 | 8 |
+| 363590 | `ports/363590_rsi-mtf-obos/` | PineScript | rsi_oscillator | none | rsi_len x3 | 3 |
+| 363749 | `ports/363749_fibonacci-progression-with-breaks/` | PineScript | volatility_channel_breakout | none | size x3, seq_len x3 | 9 |
+| 363766 | `ports/363766_sma-btc-killer/` | PineScript | multi_indicator_confluence | none | adx_len x2, adx_th x2, cloud_len x2 | 8 |
+| 363793 | `ports/363793_trendelicious/` | PineScript | donchian_breakout | none | length x3 | 3 |
+| 363797 | `ports/363797_backtesting-indicator/` | PineScript | ma_trend | trailing_stop_pending | ema1 x2, ema2 x2, stop_loss x2 | 8 |
+| 363803 | `ports/363803_super-scalper/` | PineScript | momentum_breakout | none | atr_len x3, mult x3 | 9 |
+| 363807 | `ports/363807_concept-dual-supertrend/` | PineScript | supertrend | none | period x3, mult x3 | 9 |
+| 363824 | `ports/363824_momentum-based-zigzag/` | PineScript | rsi_oscillator | none | rsi_len x3, qqe_factor x2 | 6 |
+| 363825 | `ports/363825_supertrend4moving/` | PineScript | supertrend | none | period x3, mult x3 | 9 |
+| 363829 | `ports/363829_pivot-point-supertrend/` | PineScript | supertrend | none | prd x3, factor x2, atr_period x2 | 12 |
+| 363847 | `ports/363847_risotto/` | PineScript | rsi_oscillator | none | rsi_len x2, var_len x2, ott_pct x3 | 12 |
+| | **122 ports** | | | | | **1260** |
 
 ## Rejected on reading
 

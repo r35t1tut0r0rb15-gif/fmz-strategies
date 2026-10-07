@@ -231,6 +231,20 @@ SIZING = {
         ("Trading-the-equity-curve sizing: initial % equity, equity SMAs, size adjustment", 76, 108),
     ],
     363002: [], 363562: [], 363579: [],
+    # ---- worker A, batch A10 (2026-10-07)
+    363582: [],
+    363588: [
+        ("Commented-out strategy(): cash 1000 per order, initial capital 10000 (not active)", 78, 79),
+    ],
+    363590: [], 363749: [],
+    363766: [
+        ("Commented-out strategy(): 100 % of equity, pyramiding 1, commission (not active)", 93, 93),
+    ],
+    363793: [],
+    363797: [
+        ("Commented-out strategy() and the table's balance / allocation / commission inputs", 64, 70),
+    ],
+    363803: [], 363807: [], 363824: [], 363825: [], 363829: [], 363847: [],
 }
 
 REJECTED_ON_READING = {
