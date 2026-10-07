@@ -159,6 +159,33 @@ SIZING = {
         ("Order cancelling helper", 101, 112),
         ("Order execution: buy with all cash at Last+slide, sell all at Last-slide", 127, 145),
     ],
+    # ---- worker A, batch A4 (2026-10-07)
+    345289: [
+        ("Argument: splide_price", 18, 18),
+        ("Order cancelling helper", 50, 61),
+        ("Order execution: all cash at Last+slide, all coins at Last-slide, 0.1 minimum", 84, 99),
+    ],
+    356844: [],
+    359806: [
+        ("strategy(): 50 % of equity per order", 66, 66),
+    ],
+    360536: [
+        ("strategy(pyramiding=4) and risk/unit inputs (RiskRatio, ContractUnit, MinStock)", 41, 49),
+        ("Turtle unit size from equity / N", 68, 68),
+        ("Pyramid adds with qty=turtelUnits (kept in the port only as the stop reference)", 115, 119),
+        ("Short-side pyramid adds", 130, 134),
+    ],
+    361360: [],
+    361508: [],
+    361521: [],
+    361532: [],
+    361554: [],
+    361565: [
+        ("Commented-out strategy() line (25 % of equity, calc_on_every_tick; not active)", 49, 49),
+    ],
+    361567: [],
+    361675: [],
+    361689: [],
 }
 
 REJECTED_ON_READING = {

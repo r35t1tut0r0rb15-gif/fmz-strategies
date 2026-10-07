@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #360536 (海龟交易法Turtles-strategy)
+# Source: https://www.fmz.com/strategy/360536  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(pyramiding=4) and risk/unit inputs (RiskRatio, ContractUnit, MinStock)  [lines 41-49]
+   41: strategy("Turtles strategy", overlay=true, pyramiding=4)
+   42: // inputs
+   43: RiskRatio = input(1)                   // % Risk Per N ( 0 - 100)
+   44: ATRLength = input(20)                  // 平均波动周期 ATR Length
+   45: BOLength = input(20)                   // 短周期 BreakOut Length
+   46: FSLength = input(55)                   // 长周期 FailSafe Length
+   47: TELength = input(10)                   // 离市周期 Trailing Exit Length
+   48: ContractUnit = input(1)
+   49: MinStock = input(0.01)
+
+## Turtle unit size from equity / N  [lines 68-68]
+   68: turtelUnits = math.round((strategy.equity*RiskRatio/100) /(N * ContractUnit), 3)
+
+## Pyramid adds with qty=turtelUnits (kept in the port only as the stop reference)  [lines 115-119]
+  115:         if not na(PreEntryPrice) and turtelUnits >= MinStock
+  116:             if high >= PreEntryPrice + 0.5*N 
+  117:                 PreEntryPrice := high
+  118:                 strategy.entry("B1", strategy.long, qty=turtelUnits)
+  119:                 SendOrderThisBar := true
+
+## Short-side pyramid adds  [lines 130-134]
+  130:         if not na(PreEntryPrice) and turtelUnits >= MinStock
+  131:             if low <= PreEntryPrice - 0.5*N
+  132:                 PreEntryPrice := low
+  133:                 strategy.entry("S1", strategy.short, qty=turtelUnits)
+  134:                 SendOrderThisBar := true

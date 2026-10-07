@@ -135,3 +135,31 @@ All 34 ports pass py_compile and check_ports.py.
 
 Resume point: batch A3 committed (hash in next entry). Next id: 345289 (last bot before the
 PineScript block, which starts at 356844).
+
+Batch A3 commit: e7ceef7 (pushed, verified).
+
+## Task 4, batch A4 (ids 345289 - 361689)
+
+origin/survey-b still absent at batch start. SURVEY_README: "PineScript interpretation rules"
+added before the first Pine port (timing, entries/reversal, exits -> stops()/signals/marks,
+ta.* semantics, backtest windows, request.security, inputs).
+
+| id | outcome | note |
+|---|---|---|
+| 345289 | PORTED | MA order + RSI dip, long only, 15min (last JS bot) |
+| 356844 | PORTED | MACD signal cross reverse, daily |
+| 359806 | PORTED | SuperTrend with slope filter, daily |
+| 360536 | PORTED | Pine turtle 20/55/10, daily |
+| 361360 | PORTED | hourly vs daily EMA side, on 1h bars, signals at the 17:00 NY close |
+| 361508 | PORTED | squeeze-momentum histogram turns, daily |
+| 361521 | PORTED | WaveTrend extremes, 1h |
+| 361532 | PORTED | MACD gap side (90 USD -> ATR), 1h |
+| 361554 | PORTED | DI+/DI- side, daily |
+| 361565 | PORTED | pivot flags with market orders (no stop= in this copy), 12h |
+| 361567 | PORTED | OTT VAR cross (percent -> ATR), 1h; ND361567 with 433011 |
+| 361675 | PORTED | sling-shot signals faded as written, 15min |
+| 361689 | PORTED | three-line strike faded as written, 4h |
+
+All 47 ports pass py_compile and check_ports.py.
+
+Resume point: batch A4 committed (hash in next entry). Next id: 361718.

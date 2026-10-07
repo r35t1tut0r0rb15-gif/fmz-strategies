@@ -244,6 +244,39 @@ Fixed before the first MyLanguage port, applied to all of them.
 - Money words (`MONEYTOT`, lot formulas, `TRADE_AGAIN`, `MULTSIG` counts, `SETSIGPRICETYPE`) are
   sizing/execution: quoted in `original_sizing.txt`.
 
+## PineScript interpretation rules (added 2026-10-07, worker A)
+
+Fixed before the first Pine port, applied to all of them.
+
+- **Timing.** A Pine strategy (no `process_orders_on_close`, no `calc_on_every_tick`) evaluates
+  once at each bar close and fills market orders at the next bar's open: the contract exactly.
+- **Entries.** `strategy.entry` reverses an opposite position by default: `REVERSAL INTENDED`
+  unless the script only enters when flat (then `upon_opposite_entry="ignore"`, rule 6).
+  With the default `pyramiding = 0`, a same-direction entry while in a position is ignored;
+  `pyramiding > 0` adds are sizing. `strategy.close`/`strategy.close_all` -> exit signals.
+  `strategy.order` is ported by its net effect.
+- **Exits.** `strategy.exit(stop=, limit=)` with a level fixed at entry -> `stops()`:
+  `sl_stop`/`tp_stop` as fractions of the entry fill, built from the signal bar and shifted one
+  bar inside `stops()` (the level is re-based on the fill price; said in each port). `loss=`/
+  `profit=` in ticks -> ATR multiples (criterion 2). A stop level that moves after entry
+  (`trail_*`, or `stop=` recomputed every bar) cannot be expressed by `stops()`: rule 2, mark
+  `trailing_stop_pending`, described in PORT_NOTES. A close-based stop (`if close < level ->
+  strategy.close`) is an exit signal (rule 3). Stops on bars > 1 h: mark `coarse_bar_stop`.
+  Where both a fixed stop and a target exist, `strategy.exit` fills whichever is hit first
+  intrabar; vbt does the same with `sl_stop`/`tp_stop`.
+- **Functions.** `ta.sma`; `ta.ema` = `ewm(span, adjust=False)`; `ta.rma`/`ta.rsi`/`ta.atr`
+  = Wilder (SMA seed); `ta.stdev` = population (ddof 0); `ta.highest/lowest` include the
+  current bar; `ta.crossover(a,b)` = `a > b and a[1] <= b[1]`; `x[n]` = `shift(n)`;
+  `ta.change(x)` = `x.diff()`; `nz(x)` = `fillna(0)` only where the script says so.
+- **Backtest windows.** Inputs that only restrict trading to a date range
+  (`time >= timestamp(...)`) are the author's backtest window, not strategy logic: dropped,
+  and said so. Session / day-of-week filters are logic (kept; criterion 2 REVIEW).
+- **request.security.** A higher timeframe read with `[1]` and `lookahead_on` (or without
+  lookahead) is the last completed higher bar: built inside `simulate()` from the port's bars
+  (broker days for "D"), shifted one higher bar. `lookahead_on` without `[1]` reads the future:
+  REJECTED (criterion 1). Another symbol: REJECTED (criterion 2).
+- **Inputs.** Defaults are the `input*()` defaults; the backtest header's `args` are noted.
+
 ## Screening method (criteria 1, 2, 3, 6), `survey_tools/screen.py`
 
 Static regular-expression rules over comment-stripped source code only (descriptions are not

@@ -11,12 +11,12 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3708 |
+| PORT_CANDIDATE | 3695 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 34 |
+| PORTED | 47 |
 | REJECTED_ON_READING | 17 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
@@ -162,7 +162,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 318486 | `ports/318486_strategy/` | javascript | ma_trend | none | ma_exit x3, ma_entry x3 | 9 |
 | 333269 | `ports/333269_strategy/` | javascript | ma_trend | none | ema1 x3, ema2 x3, tp_atr x3 | 27 |
 | 345036 | `ports/345036_atr-rsi/` | javascript | rsi_oscillator | none | rsi_period x3, atrma_period x3 | 9 |
-| | **34 ports** | | | | | **547** |
+| 345289 | `ports/345289_strategy/` | javascript | ma_trend_oscillator_pullback | none | fast_ma x2, slow_ma x2, rsi_period x2 | 8 |
+| 356844 | `ports/356844_macd-pine/` | PineScript | macd_momentum | none | fast x3, slow x3 | 9 |
+| 359806 | `ports/359806_supertrend/` | PineScript | supertrend | none | factor x3, atr_period x3 | 9 |
+| 360536 | `ports/360536_turtles-strategy/` | PineScript | donchian_breakout | none | bo_length x3, fs_length x3, te_length x3 | 27 |
+| 361360 | `ports/361360_multiple-timeframe-trading/` | PineScript | multi_timeframe_ma | none | ema_length x4 | 4 |
+| 361508 | `ports/361508_squeeze-momentum-indicator/` | PineScript | momentum_oscillator_turn | none | length_kc x4 | 4 |
+| 361521 | `ports/361521_indicator-wavetrend-oscillator/` | PineScript | wavetrend_oscillator | none | n1 x3, ob_level x3 | 9 |
+| 361532 | `ports/361532_macd-custom-indicator-multiple-time-frameall-available-optio/` | PineScript | macd_momentum | none | gap_atr x3, fast x2, slow x2 | 12 |
+| 361554 | `ports/361554_adx-and-di-for-v4/` | PineScript | directional_movement | none | length x3 | 3 |
+| 361565 | `ports/361565_monthly-returns-in-pinescript-strategies/` | PineScript | pivot_reversal | none | left_bars x3, right_bars x3 | 9 |
+| 361567 | `ports/361567_optimized-trend-tracker/` | PineScript | supertrend | none | length x3, band_atr x3 | 9 |
+| 361675 | `ports/361675_cm-sling-shot-system/` | PineScript | ma_trend_oscillator_pullback | none | ema_fast x3, ema_slow x2 | 6 |
+| 361689 | `ports/361689_tma-overlay/` | PineScript | candle_pattern | none | n_bars x3 | 3 |
+| | **47 ports** | | | | | **659** |
 
 ## Rejected on reading
 

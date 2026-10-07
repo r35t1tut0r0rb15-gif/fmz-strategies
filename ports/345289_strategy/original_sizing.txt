@@ -1,0 +1,38 @@
+# Original sizing and money-management code, FMZ #345289 (跨时间周期策略)
+# Source: https://www.fmz.com/strategy/345289  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Argument: splide_price  [lines 18-18]
+   18: |splide_price|0.1|滑点|
+
+## Order cancelling helper  [lines 50-61]
+   50: // 取消未成交下单
+   51: function canelPendingOrders() {
+   52:     while (true) {
+   53:         let orders = _C(exchange.GetOrders);
+   54:         if (orders.length == 0) {
+   55:             break;
+   56:         }
+   57:         for (let i = 0; i < orders.length; i++) {
+   58:             exchange.CancelOrder(orders[i].Id);
+   59:         }
+   60:     }
+   61: }
+
+## Order execution: all cash at Last+slide, all coins at Last-slide, 0.1 minimum  [lines 84-99]
+   84:     if (n > 0 && getRsiStatus(records) == RSI_BUY) {
+   85:         canelPendingOrders();
+   86:         let price = ticker.Last + splide_price;
+   87:         let amount = account.Balance / price - 0.1;
+   88:         if (amount > 0.1) {
+   89:             exchange.Buy(price, amount);
+   90:         }
+   91:     }
+   92:     else if (n < 0 && getRsiStatus(records) == RSI_SELL) {
+   93:         canelPendingOrders();
+   94:         let price = ticker.Last - splide_price;
+   95:         let amount = account.Stocks;
+   96:         if (amount > 0.1) {
+   97:             exchange.Sell(price, amount);
+   98:         }
+   99:     }

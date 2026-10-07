@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #359806 (超级趋势策略SuperTrend)
+# Source: https://www.fmz.com/strategy/359806  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 50 % of equity per order  [lines 66-66]
+   66: strategy("supertrend", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value = 50)

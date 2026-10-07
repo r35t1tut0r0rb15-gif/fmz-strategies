@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #361565 (Monthly-Returns-in-PineScript-Strategies)
+# Source: https://www.fmz.com/strategy/361565  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy() line (25 % of equity, calc_on_every_tick; not active)  [lines 49-49]
+   49: //strategy("Monthly Returns in PineScript Strategies", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 25, calc_on_every_tick = true, commission_type = strategy.commission.percent, commission_value = 0.1)

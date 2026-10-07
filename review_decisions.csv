@@ -51,3 +51,16 @@ fmz_id,file,final_outcome,criterion,reason
 318486,均线傻瓜版.md,PORTED,,ports/318486_strategy/
 333269,数字货币期货双均线拐点策略教学.md,PORTED,,ports/333269_strategy/
 345036,ATR-RSI组合策略.md,PORTED,,ports/345036_atr-rsi/
+345289,跨时间周期策略.md,PORTED,,ports/345289_strategy/
+356844,MACD-Pine简单策略.md,PORTED,,ports/356844_macd-pine/
+359806,超级趋势策略SuperTrend.md,PORTED,,ports/359806_supertrend/
+360536,海龟交易法Turtles-strategy.md,PORTED,,ports/360536_turtles-strategy/
+361360,跨周期均线交易multiple-timeframe-trading.md,PORTED,,ports/361360_multiple-timeframe-trading/
+361508,Squeeze-Momentum-Indicator.md,PORTED,,ports/361508_squeeze-momentum-indicator/
+361521,Indicator-WaveTrend-Oscillator.md,PORTED,,ports/361521_indicator-wavetrend-oscillator/
+361532,MacD-Custom-Indicator-Multiple-Time-FrameAll-Available-Options.md,PORTED,,ports/361532_macd-custom-indicator-multiple-time-frameall-available-optio/
+361554,ADX-and-DI-for-v4.md,PORTED,,ports/361554_adx-and-di-for-v4/
+361565,Monthly-Returns-in-PineScript-Strategies.md,PORTED,,ports/361565_monthly-returns-in-pinescript-strategies/
+361567,Optimized-Trend-Tracker.md,PORTED,,ports/361567_optimized-trend-tracker/
+361675,CM-Sling-Shot-System.md,PORTED,,ports/361675_cm-sling-shot-system/
+361689,TMA-Overlay.md,PORTED,,ports/361689_tma-overlay/
