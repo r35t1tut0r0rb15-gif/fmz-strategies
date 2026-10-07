@@ -280,3 +280,21 @@ completed blocks (searchsorted, no fill).
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A10 committed (hash in next entry). Next id: 363848.
+
+Batch A10 commit: 344c9f9 (pushed, verified).
+
+## Task 4, batch A11 (ids 363848 - 365075)
+
+origin/survey-b still absent at batch start. 13 ported, 0 rejected:
+363848 Chandelier Exit flips (30min); 363980 RSI(open) regular divergence (10min);
+363997 Bollinger turn-back on opens (30min); 364001 RedK momentum bars (3min); 364037 EMA 9/20
+cross (30min); 364518 AO+Stoch+RSI with ATR stop/target via stops() (30min, trailing_stop_pending:
+levels re-set on repeated signals; DG364518); 364527 Heikin-Ashi PAC pull-back (3min);
+364535 SMA 8/20 cross (bar_size_pending); 364536 HODL line (5min); 364540 CM MACD zero-side
+cross (10min, ND364540); 365028 QQE signals (10min, DG365028 + ND365028); 365059 fractal box
+(45min, no parameters: 1 trial); 365075 order-block sequence (30min).
+Scratch fix: the group writer now names every group of an id (365028 is in two).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A11 committed (hash in next entry). Next id: 365078.

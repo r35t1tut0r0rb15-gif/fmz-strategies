@@ -142,3 +142,16 @@ fmz_id,file,final_outcome,criterion,reason
 363825,Supertrend4moving.md,PORTED,,ports/363825_supertrend4moving/
 363829,Pivot-Point-Supertrend.md,PORTED,,ports/363829_pivot-point-supertrend/
 363847,RISOTTO.md,PORTED,,ports/363847_risotto/
+363848,Chandelier-Exit.md,PORTED,,ports/363848_chandelier-exit/
+363980,Fukuiz-Trend.md,PORTED,,ports/363980_fukuiz-trend/
+363997,SuperJump-Turn-Back-Bollinger-Band.md,PORTED,,ports/363997_superjump-turn-back-bollinger-band/
+364001,RedK-Momentum-Bars.md,PORTED,,ports/364001_redk-momentum-bars/
+364037,EMA-TREND-CLOUD.md,PORTED,,ports/364037_ema-trend-cloud/
+364518,BuySell-Strategy-depends-on-AOStochRSIATR.md,PORTED,,ports/364518_buysell-strategy-depends-on-aostochrsiatr/
+364527,Scalping-PullBack-Tool-R1.md,PORTED,,ports/364527_scalping-pullback-tool-r1/
+364535,2-Moving-Average-Color-Direction-Detection.md,PORTED,,ports/364535_2-moving-average-color-direction-detection/
+364536,HODL-LINE.md,PORTED,,ports/364536_hodl-line/
+364540,CM-MACD-Custom-Indicator-Multiple-Time-Frame-V2.md,PORTED,,ports/364540_cm-macd-custom-indicator-multiple-time-frame-v2/
+365028,QQE-signals.md,PORTED,,ports/365028_qqe-signals/
+365059,TrendScalp-FractalBox-3EMA.md,PORTED,,ports/365059_trendscalp-fractalbox-3ema/
+365075,Order-Block-Finder.md,PORTED,,ports/365075_order-block-finder/

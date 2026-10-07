@@ -11,12 +11,12 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3617 |
+| PORT_CANDIDATE | 3604 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 122 |
+| PORTED | 135 |
 | REJECTED_ON_READING | 20 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
@@ -250,7 +250,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 363825 | `ports/363825_supertrend4moving/` | PineScript | supertrend | none | period x3, mult x3 | 9 |
 | 363829 | `ports/363829_pivot-point-supertrend/` | PineScript | supertrend | none | prd x3, factor x2, atr_period x2 | 12 |
 | 363847 | `ports/363847_risotto/` | PineScript | rsi_oscillator | none | rsi_len x2, var_len x2, ott_pct x3 | 12 |
-| | **122 ports** | | | | | **1260** |
+| 363848 | `ports/363848_chandelier-exit/` | PineScript | volatility_stop_cross | none | length x3, mult x3 | 9 |
+| 363980 | `ports/363980_fukuiz-trend/` | PineScript | rsi_oscillator | none | rsi_len x2, lb x3 | 6 |
+| 363997 | `ports/363997_superjump-turn-back-bollinger-band/` | PineScript | bollinger_reversion | none | length x3, mult x3 | 9 |
+| 364001 | `ports/364001_redk-momentum-bars/` | PineScript | ma_trend | none | fast x2, slow x2, filter_len x2 | 8 |
+| 364037 | `ports/364037_ema-trend-cloud/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| 364518 | `ports/364518_buysell-strategy-depends-on-aostochrsiatr/` | PineScript | stochastic_oscillator | trailing_stop_pending | stoch_k x2, rsi_len x3, atr_len x2 | 12 |
+| 364527 | `ports/364527_scalping-pullback-tool-r1/` | PineScript | ma_trend_oscillator_pullback | none | pac_len x2, lookback x3 | 6 |
+| 364535 | `ports/364535_2-moving-average-color-direction-detection/` | PineScript | ma_trend | bar_size_pending | slow x3, fast x3 | 9 |
+| 364536 | `ports/364536_hodl-line/` | PineScript | donchian_breakout | none | length x4, hma_len x2 | 8 |
+| 364540 | `ports/364540_cm-macd-custom-indicator-multiple-time-frame-v2/` | PineScript | macd_momentum | none | fast x2, slow x2, signal x2 | 8 |
+| 365028 | `ports/365028_qqe-signals/` | PineScript | rsi_oscillator | none | rsi_len x2, sf x2, qqe x2 | 8 |
+| 365059 | `ports/365059_trendscalp-fractalbox-3ema/` | PineScript | pivot_reversal | none |  | 0 |
+| 365075 | `ports/365075_order-block-finder/` | PineScript | candle_pattern | none | periods x3, threshold x2 | 6 |
+| | **135 ports** | | | | | **1353** |
 
 ## Rejected on reading
 

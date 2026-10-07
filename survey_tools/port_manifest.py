@@ -245,6 +245,9 @@ SIZING = {
         ("Commented-out strategy() and the table's balance / allocation / commission inputs", 64, 70),
     ],
     363803: [], 363807: [], 363824: [], 363825: [], 363829: [], 363847: [],
+    # ---- worker A, batch A11 (2026-10-07): no sizing code in these sources
+    363848: [], 363980: [], 363997: [], 364001: [], 364037: [], 364518: [], 364527: [], 364535: [], 364536: [],
+    364540: [], 365028: [], 365059: [], 365075: [],
 }
 
 REJECTED_ON_READING = {
