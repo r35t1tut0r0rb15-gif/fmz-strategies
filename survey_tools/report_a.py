@@ -1,0 +1,133 @@
+"""Write reports/cloud_porting_A_report_2026-10-07.md (worker A's final report) from the repo state.
+
+Counts come from ports/, survey_tools/port_manifest.py and git log; the decisions owed are kept
+in DECISIONS / AS_WRITTEN below and updated per batch. Static: modules are parsed, never imported.
+"""
+import ast
+import re
+import subprocess
+import sys
+from collections import Counter
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / 'survey_tools'))
+import port_manifest as pm  # noqa: E402
+
+A_START = 126968
+B_START = 439378
+MARKS = ['bar_size_pending', 'trailing_stop_pending', 'coarse_bar_stop', 'stop_is_entry_condition']
+
+# Ports whose direction or rule is a likely author slip, kept as written (decision owed).
+AS_WRITTEN = {
+    'direction inverted relative to the source\'s own names or colours': [
+        207157, 361675, 361689, 361996, 362004, 362031, 362172, 362418, 362427, 362649, 362654, 362664],
+    'formula slip kept': [192353, 345036, 188499],
+}
+
+DECISIONS = [
+    'Rule 7 re-opening: SURVEY_SUMMARY\'s 251 DUPLICATE rows include only 7 exact copies; the other '
+    '244 are near-duplicates that rule 7 would now port. Re-open them as PORT_CANDIDATE or keep them '
+    'set aside? (reports/near_duplicates_2026-10-07.md)',
+    'Rule 5: the contract cannot express "stop=/limit= as entry condition" (stops() takes only '
+    'sl_stop/tp_stop/max_hold_time; entries fill at the next open). The 468 screened files with '
+    'strategy.entry(stop=/limit=) were REJECTED at screening; re-open them for the second '
+    '("as meant") module only, or extend the contract with entry-price orders?',
+    'FMZ TA.Highest/TA.Lowest are read as excluding the current element (ports 171038, 192353, '
+    '200131, 271523, 55839); confirm against the FMZ library.',
+    'Ports kept as written although the source looks like a slip (see "Kept as written" below): '
+    'keep, or add a corrected variant per rule 5-style dual porting?',
+    '333269 has no numeric defaults in the source (grid chosen from the argument table only).',
+    '200131 and 361827 compute the indicator change as a log return (as the source does).',
+    '361719 rejected: request.security resolution "18000" is undefined; the project would have to '
+    'define it before it can be ported.',
+    '362214 is one-sided as written (the source never opens the other side).',
+    '55839 keeps FREQ "1h" (author states hourly bars in the text); 103070 keeps PERIOD_M15 from '
+    'the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source\'s '
+    'bar size, not as a choice.',
+    'FAMILY values are proposals ("user to confirm") in every port.',
+]
+
+
+def docstring(path):
+    return ast.get_docstring(ast.parse(path.read_text(encoding='utf-8'))) or ''
+
+
+def marks(path):
+    m = re.search(r'^\s*Marks:\s*(.+)$', docstring(path), re.M)
+    vals = {v.strip() for v in m.group(1).split(',')} if m else set()
+    return vals - {'none'}
+
+
+def main():
+    ports = {}
+    for d in sorted((ROOT / 'ports').iterdir()):
+        if (d / 'module.py').exists():
+            ports[int(d.name.split('_')[0])] = d
+    a_ports = sorted(i for i in ports if A_START <= i < B_START)
+    a_rej = {i: v for i, v in pm.REJECTED_ON_READING.items() if A_START <= i < B_START}
+    a_dup = {i: v for i, v in pm.DUPLICATE_ON_READING.items() if A_START <= i < B_START}
+    rej_tally = Counter(f'criterion {c}' for c, _ in a_rej.values())
+    mark_count = Counter()
+    for i in a_ports:
+        mark_count.update(marks(ports[i] / 'module.py'))
+    upgraded = [i for i in (11604, 42283, 42451, 119038) if i in ports]
+    up_marks = Counter()
+    for i in upgraded:
+        up_marks.update(marks(ports[i] / 'module.py'))
+    stops = [i for i in a_ports if 'USES_STOPS = True' in (ports[i] / 'module.py').read_text()]
+    last_id = max(a_ports + list(a_rej) + list(a_dup))
+    log = subprocess.run(['git', 'log', '--format=%h %s', '--grep=^survey A'], cwd=ROOT,
+                         capture_output=True, text=True).stdout.strip().splitlines()
+    nxt = re.search(r'Next id: (\d+)', (ROOT / 'PROGRESS.md').read_text())
+
+    out = ['# Cloud worker A: FMZ porting report (2026-10-07)', '',
+           'Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothing was run, '
+           'backtested or optimised. Per-batch detail and resume points: '
+           '`reports/cloud_porting_A_LOG_2026-10-07.md`.', '',
+           '## Counts (worker A, ids 126968 and up)', '',
+           f'- Ported: **{len(a_ports)}** ({len(stops)} with stops(): {", ".join(map(str, stops)) or "-"})',
+           f'- Rejected on reading: **{len(a_rej)}** '
+           f'({", ".join(f"{k}: {v}" for k, v in sorted(rej_tally.items()))})',
+           f'- Exact duplicate on reading (set aside, rule 7): **{len(a_dup)}** '
+           f'({", ".join(f"{i} of {v[0]}" for i, v in a_dup.items())})',
+           f'- Last id reached: **{last_id}**; next id in the queue: **{nxt.group(1) if nxt else "?"}**',
+           '- Existing batch-1 ports re-marked under rule 1 (logic unchanged): '
+           f'{", ".join(map(str, upgraded))} ({", ".join(f"{k} {v}" for k, v in sorted(up_marks.items()))})',
+           '', '### Marks on worker A ports', '', '| Mark | Ports |', '|---|---|']
+    for m in MARKS:
+        out.append(f'| {m} | {mark_count.get(m, 0)} |')
+    out += ['', '### Rejections (criterion, id, reason)', '']
+    for i, (c, why) in sorted(a_rej.items()):
+        out.append(f'- {i} (criterion {c}): {why}')
+    out += ['', '### Commits (newest first)', '']
+    out += [f'- `{line}`' for line in log]
+    out += ['', '## Kept as written', '']
+    for k, ids in AS_WRITTEN.items():
+        out.append(f'- {k}: {", ".join(map(str, sorted(ids)))}')
+    out += ['', '## For the project chat', '',
+            '**Finished**', '',
+            '- Task 1: rules 2026-10-07 in SURVEY_README.md; check_ports.py extended (Marks line, '
+            'bar_size_pending only with its mark, stop Series shifted inside stops(), coarse_bar_stop, '
+            'left-labelled resampling); all ports pass.',
+            '- Task 2: DUPLICATE 251 explained (reports/near_duplicates_2026-10-07.md); '
+            'near_duplicate_groups.csv over all 3,747 PORT_CANDIDATE rows (5-token shingles, exact '
+            'Jaccard; >= 0.80 none new, 0.65-0.80 band grouped as ND).',
+            '- Task 3: no_bar_size.csv: 484 of 5,806 files have no bar size (85 with stop logic).',
+            f'- Task 4: {len(a_ports)} ported, {len(a_rej)} rejected, {len(a_dup)} duplicate on reading, '
+            f'ids {A_START} to {last_id}.',
+            '', '**Failed / not done**', '',
+            f'- Task 4 is not complete: the queue continues at {nxt.group(1) if nxt else "?"}; worker B\'s '
+            'branch `survey-b` did not exist on origin at any batch start, so the stop condition was '
+            'never reached.',
+            '- Rule 5 module (1) ("exactly as written") cannot be expressed by the contract; no '
+            'stop_is_entry_condition port exists.',
+            '', '**Decisions owed**', '']
+    out += [f'{n}. {d}' for n, d in enumerate(DECISIONS, 1)]
+    path = ROOT / 'reports' / 'cloud_porting_A_report_2026-10-07.md'
+    path.write_text('\n'.join(out) + '\n', encoding='utf-8')
+    print('wrote', path.relative_to(ROOT))
+
+
+if __name__ == '__main__':
+    main()

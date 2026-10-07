@@ -1,0 +1,81 @@
+# Cloud worker A: FMZ porting report (2026-10-07)
+
+Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothing was run, backtested or optimised. Per-batch detail and resume points: `reports/cloud_porting_A_LOG_2026-10-07.md`.
+
+## Counts (worker A, ids 126968 and up)
+
+- Ported: **92** (3 with stops(): 361786, 361969, 362167)
+- Rejected on reading: **11** (criterion 1: 9, criterion 2: 2)
+- Exact duplicate on reading (set aside, rule 7): **1** (128126 of 127691)
+- Last id reached: **362664**; next id in the queue: **362667**
+- Existing batch-1 ports re-marked under rule 1 (logic unchanged): 11604, 42283, 42451, 119038 (bar_size_pending 4)
+
+### Marks on worker A ports
+
+| Mark | Ports |
+|---|---|
+| bar_size_pending | 11 |
+| trailing_stop_pending | 2 |
+| coarse_bar_stop | 1 |
+| stop_is_entry_condition | 0 |
+
+### Rejections (criterion, id, reason)
+
+- 170557 (criterion 1): Inventory-ratio ladder (grid-like): buys/sells 10-20 % of equity whenever the tick price is 3 % beyond a 30-min channel midpoint or 7 % from the last trade price, keeping cash between 10 % and 90 %. The position is a continuously rebalanced inventory driven by tick prices and the last fill, not entries/exits on bars.
+- 170842 (criterion 1): Not a signal strategy: an OKEx futures order-API demo (opens two buy orders once, then only logs orders and positions).
+- 177631 (criterion 1): Inventory-ratio ladder: every 15 minutes buys or sells 5-20 % of equity when the tick price moves between Bollinger-relative zones of the daily bars, keeping cash between 10 % and 90 %. The position is a continuously rebalanced inventory, not entries/exits (the hourly band width is also undefined in the code).
+- 187874 (criterion 2): Entries and exits fire on hard-coded BTC price levels (REF(C,1) < 6725 buys, > 10000 sells, 'Gann levels'). Without them only an MA(10/30) cross remains, which would be a different strategy.
+- 191622 (criterion 1): Order-level ladder on perpetual swaps: opens on a daily-range test of > 20 price units, then keeps resting limit orders k = 11 price units above/below the fill, averaging in and martingale-style profit targets; fills inside the bar at set prices (also hard-coded price units, criterion 2).
+- 201007 (criterion 1): Coin-flip strategy: entries and exits are drawn from Math.random(); no deterministic signal to port. (Its trailing take-profit and stop are attached to random entries.)
+- 205469 (criterion 1): One-direction accumulation ladder on a perpetual swap: buys (or sells) a fixed USD slice on every bar the MA filter holds, doubles it after two counter bars, scales out after three with-trend bars, caps total size; no exit other than a live-only bar-count stop. Position size is the strategy.
+- 255502 (criterion 1): Two concurrent sub-systems (CMI shock / trend) each holding its own hedged futures position with ATR-step scale-in or scale-out ladders, extra-lot counters and departure callbacks. The outcome is defined by the ladder of partial exits, which cannot be reduced to one net position's entry/exit signals without changing the strategy.
+- 266142 (criterion 1): Pure 50/50 coin/cash rebalancing (buy or sell 1 % / 10 % slices when the coin share leaves 0.49-0.51); no entry or exit signal.
+- 299799 (criterion 2): AHR999 dollar-cost averaging: the indicator is a Bitcoin-only model (price vs a log-price curve fitted to days since the 2009 genesis block); the code throws for any other pair. Also periodic accumulation, not entries/exits.
+- 361719 (criterion 1): Signals come from request.security(syminfo.tickerid, '18000', src)[1]: '18000' is not a valid Pine resolution (minutes? seconds?), so the higher timeframe the counts run on is undefined. Porting would mean choosing a bar size (rule 1 forbids); needs the project to define it.
+
+### Commits (newest first)
+
+- `f252a14 survey A batch A8: 13 ports (ids 362427-362664)`
+- `0b7843c survey A batch A7: 13 ports (ids 362103-362418)`
+- `7617e69 survey A batch A6: 13 ports (ids 361880-362092)`
+- `2ef3770 survey A batch A5: 12 ports, 1 rejected (ids 361718-361847)`
+- `f98a858 survey A batch A4: 13 ports (ids 345289-361689), Pine rules in SURVEY_README`
+- `e7ceef7 survey A batch A3: 9 ports, 4 rejected (ids 205469-345036)`
+- `f63a58e survey A batch A2: 9 ports, 4 rejected (ids 177631-201007)`
+- `d85cd82 survey A batch A1: 10 ports, 2 rejected, 1 duplicate on reading (ids 126968-171038)`
+- `f17d01e survey A: no_bar_size.csv corrected to 484 files (MyLanguage/Python backtest header forms)`
+- `0caedb8 survey A: no_bar_size.csv (539 of 5,806 files have no bar size)`
+- `fc81097 survey A: near_duplicate_groups.csv (exhaustive candidate check) and DUPLICATE count explained`
+- `cf80b57 survey A: rules 2026-10-07 in SURVEY_README; check_ports marks/pending FREQ/stop-Series timing`
+
+## Kept as written
+
+- direction inverted relative to the source's own names or colours: 207157, 361675, 361689, 361996, 362004, 362031, 362172, 362418, 362427, 362649, 362654, 362664
+- formula slip kept: 188499, 192353, 345036
+
+## For the project chat
+
+**Finished**
+
+- Task 1: rules 2026-10-07 in SURVEY_README.md; check_ports.py extended (Marks line, bar_size_pending only with its mark, stop Series shifted inside stops(), coarse_bar_stop, left-labelled resampling); all ports pass.
+- Task 2: DUPLICATE 251 explained (reports/near_duplicates_2026-10-07.md); near_duplicate_groups.csv over all 3,747 PORT_CANDIDATE rows (5-token shingles, exact Jaccard; >= 0.80 none new, 0.65-0.80 band grouped as ND).
+- Task 3: no_bar_size.csv: 484 of 5,806 files have no bar size (85 with stop logic).
+- Task 4: 92 ported, 11 rejected, 1 duplicate on reading, ids 126968 to 362664.
+
+**Failed / not done**
+
+- Task 4 is not complete: the queue continues at 362667; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
+- Rule 5 module (1) ("exactly as written") cannot be expressed by the contract; no stop_is_entry_condition port exists.
+
+**Decisions owed**
+
+1. Rule 7 re-opening: SURVEY_SUMMARY's 251 DUPLICATE rows include only 7 exact copies; the other 244 are near-duplicates that rule 7 would now port. Re-open them as PORT_CANDIDATE or keep them set aside? (reports/near_duplicates_2026-10-07.md)
+2. Rule 5: the contract cannot express "stop=/limit= as entry condition" (stops() takes only sl_stop/tp_stop/max_hold_time; entries fill at the next open). The 468 screened files with strategy.entry(stop=/limit=) were REJECTED at screening; re-open them for the second ("as meant") module only, or extend the contract with entry-price orders?
+3. FMZ TA.Highest/TA.Lowest are read as excluding the current element (ports 171038, 192353, 200131, 271523, 55839); confirm against the FMZ library.
+4. Ports kept as written although the source looks like a slip (see "Kept as written" below): keep, or add a corrected variant per rule 5-style dual porting?
+5. 333269 has no numeric defaults in the source (grid chosen from the argument table only).
+6. 200131 and 361827 compute the indicator change as a log return (as the source does).
+7. 361719 rejected: request.security resolution "18000" is undefined; the project would have to define it before it can be ported.
+8. 362214 is one-sided as written (the source never opens the other side).
+9. 55839 keeps FREQ "1h" (author states hourly bars in the text); 103070 keeps PERIOD_M15 from the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source's bar size, not as a choice.
+10. FAMILY values are proposals ("user to confirm") in every port.
