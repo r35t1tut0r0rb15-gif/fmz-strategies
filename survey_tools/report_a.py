@@ -25,6 +25,7 @@ AS_WRITTEN = {
         362898, 363582, 363590, 365080, 365381, 366941, 366946],
     'formula slip kept': [192353, 345036, 188499],
     'exit bound to a mis-typed entry id (so one side has no bracket)': [426300],
+    'strategy.close naming ids no entry uses (positions end only at the opposite entry)': [426557],
 }
 
 DECISIONS = [
@@ -52,8 +53,11 @@ DECISIONS = [
     '426368: an opposite cross issues a reversing entry plus close_all; the port fills them in '
     'issue order (the bar ends flat). If close_all is sized at issue time the reversal would '
     'stand (always-in). Confirm the broker-emulator reading.',
-    'Multi-day header periods: 426502 (3d) is built from broker days in fixed 3-date blocks counted '
-    'from 1970-01-01, 426516 (7d) from calendar weeks of broker-day dates. Confirm the block phase.',
+    'Multi-day header periods: 426502 / 426561 (3d), 426581 (2d), 426604 (4d) are built from broker '
+    'days in fixed blocks of broker-day dates counted from 1970-01-01, 426516 (7d) from calendar '
+    'weeks of broker-day dates. Confirm the block phase.',
+    '426561 has a bare word "Stochastic" on line 129 (does not compile as written); ported reading '
+    'it as a lost comment.',
     'Session / weekday rules on crypto pairs are read in UTC (426511, TradingView\'s Binance time '
     'zone); FMZ\'s exchange time zone is not documented.',
     '426483 (unit strategy.order on alternating crosses) holds +1 / 0 or -1 / 0 depending on the '

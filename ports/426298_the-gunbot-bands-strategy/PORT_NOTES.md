@@ -25,7 +25,7 @@
 - `strategy()` is commented out: one position; isAdding (martingale qty) off by default, so sizing only (original_sizing.txt).
 - v3 integer division: `15 / timeframe.multiplier` = 5 on 3-minute bars.
 - Criterion 2 (ADAPT): ts / tp / sl / tsi price distances -> ATR(14) multiples at the latest signal bar.
-- All exits are `strategy.close` on bar closes: close-based exit signals (the trailing one marks trailing_stop_pending).
+- All exits are `strategy.close` on bar closes: close-based exit signals (a trail checked on closes needs no mark, rule 2).
 - With nz(), the exits of a side never signalled read last_open = 0 (the short call is then always true); harmless while flat.
 - FREQ = "3min" from the backtest header.
 
@@ -35,4 +35,4 @@
 
 ## Marks (2026-10-07)
 
-`trailing_stop_pending`
+`none`

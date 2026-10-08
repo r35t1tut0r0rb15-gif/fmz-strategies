@@ -40,6 +40,9 @@ fmz_id,file,final_outcome,criterion,reason
 426461,Noros-Fast-RSI-Breakthrough-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 10 with entries repeated on every signal bar, the first long rule adding only below strategy.position_avg_price: a pyramided averaging ladder (as #395966, #422794)."
 426478,双Gann通道突破买卖策略Gann-Double-Channel-Breakout-Trading-Strategy.md,REJECTED_ON_READING,1,"The signal is a crossover of security(tickerid, '375', close) and security(..., open) on the daily header chart: a 375-minute resolution below the chart's, whose value per daily bar (and 375-minute block alignment on a 24 h market) is undefined (as #426261)."
 426509,快速RSI指标突破交易策略Fast-RSI-Breakout-Trading-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 5 with entries repeated on every signal bar, the long rule adding only below strategy.position_avg_price: a pyramided averaging ladder (as #426461)."
+426556,周末区间震荡策略Weekend-Range-Trading-Strategy.md,REJECTED_ON_READING,1,"Weekend range bot: leveraged entries plus 'Adding to Short / Long Entry' orders below / above the average price (a pyramided averaging ladder), and an exit when strategy.openprofit / initial capital exceeds 10 %, which depends on the position size (as #426461)."
+426570,海龟空头突破加仓策略Turtle-Short-Breakout-Pyramiding-Strategy.md,REJECTED_ON_READING,1,"Turtle short with pyramiding = 5: up to five 'P' adds every pyramidInput x N below the last add, with the stop and the win / loss bookkeeping driven by the averaged price of the stacked units (a pyramided ladder, as #395966)."
+426588,MACD和RSI指标融合的震荡市场交易策略Trading-Strategy-for-Oscillating-Markets-Combining-MACD-and-RSI-Indicators.md,REJECTED_ON_READING,1,"pyramiding = 2 with strategy.entry repeated on every signal: a second MACD cross-up while long adds a second unit, so the position size path depends on stacking (as #426509)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -298,3 +301,13 @@ fmz_id,file,final_outcome,criterion,reason
 426510,TEMA均线交叉交易策略TEMA-Crossover-Trading-Strategy.md,PORTED,,ports/426510_tema-tema-crossover-trading-strategy/
 426511,周一买入周三止盈策略Buy-Monday-Sell-Wednesday-Trading-Strategy.md,PORTED,,ports/426511_buy-monday-sell-wednesday-trading-strategy/
 426516,EMA多头突破过滤交易策略EMA-Breakout-Filter-Long-Only-Trading-Strategy.md,PORTED,,ports/426516_ema-ema-breakout-filter-long-only-trading-strategy/
+426521,快慢EMA交叉追踪策略Fast-and-Slow-EMA-Crossover-Trend-Trading-Strategy.md,PORTED,,ports/426521_ema-fast-and-slow-ema-crossover-trend-trading-strategy/
+426557,均线布林带RSI组合交易策略Moving-Average-Bollinger-Bands-RSI-Combo-Strategy.md,PORTED,,ports/426557_rsi-moving-average-bollinger-bands-rsi-combo-strategy/
+426561,多指标组合交易策略Multi-Indicator-Combo-Trading-Strategy.md,PORTED,,ports/426561_multi-indicator-combo-trading-strategy/
+426571,凯斯动态止损策略Kase-Dynamic-Stop-Loss-Strategy.md,PORTED,,ports/426571_kase-dynamic-stop-loss-strategy/
+426579,DMI乘数均线交易策略DMI-Moving-Average-Trading-Strategy.md,PORTED,,ports/426579_dmi-dmi-moving-average-trading-strategy/
+426581,多因子量化交易策略Multi-factor-Quantitative-Trading-Strategy.md,PORTED,,ports/426581_multi-factor-quantitative-trading-strategy/
+426587,多指标融合反转交易策略Multi-indicator-Combined-Reversal-Trading-Strategy.md,PORTED,,ports/426587_multi-indicator-combined-reversal-trading-strategy/
+426593,基于RSI指标的趋势回调交易策略Trend-Retracement-Trading-Strategy-Based-on-RSI-Indicator.md,PORTED,,ports/426593_rsi-trend-retracement-trading-strategy-based-on-rsi-indicato/
+426598,基于ATR指标的抛物线止损策略Parabolic-SAR-Trailing-Stop-Strategy-Based-on-ATR-Indicator.md,PORTED,,ports/426598_atr-parabolic-sar-trailing-stop-strategy-based-on-atr-indica/
+426604,基于RSI指标的双重超买超卖策略Dual-Overbought-Oversold-Strategy-Based-on-RSI-Indicator.md,PORTED,,ports/426604_rsi-dual-overbought-oversold-strategy-based-on-rsi-indicator/

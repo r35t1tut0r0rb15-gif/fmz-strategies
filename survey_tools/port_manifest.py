@@ -425,6 +425,29 @@ SIZING = {
     426516: [
         ("strategy(): 100 % of equity", 103, 103),
     ],
+    # ---- worker A, batch A23 (2026-10-08)
+    426557: [], 426571: [], 426579: [], 426587: [],
+    426521: [
+        ("Commented-out strategy(): pyramiding 3, percent of equity (not active)", 103, 103),
+    ],
+    426561: [
+        ("Commented-out strategy(): 100 % of equity, commission, slippage (not active)", 96, 96),
+    ],
+    426581: [
+        ("strategy(): 100 % of equity, commission, pyramiding 0", 116, 116),
+    ],
+    426593: [
+        ("Hard-coded capital and position size", 83, 84),
+        ("Trailing stop: offset input, tracked extreme and strategy.exit(trail_price, trail_offset)", 79, 107),
+        ("Entries with qty = positionSize", 111, 120),
+    ],
+    426598: [
+        ("strategy(): 100 % of equity", 66, 66),
+    ],
+    426604: [
+        ("strategy(): 100 % of equity, initial capital 200", 82, 82),
+        ("Take profit re-issued at 1.3 % of the current close", 107, 107),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -560,6 +583,16 @@ REJECTED_ON_READING = {
     # ---- worker A, batch A22 (2026-10-08)
     426509: ("1", "pyramiding = 5 with entries repeated on every signal bar, the long rule adding only below "
                   "strategy.position_avg_price: a pyramided averaging ladder (as #426461)."),
+    # ---- worker A, batch A23 (2026-10-08)
+    426556: ("1", "Weekend range bot: leveraged entries plus 'Adding to Short / Long Entry' orders below / "
+                  "above the average price (a pyramided averaging ladder), and an exit when "
+                  "strategy.openprofit / initial capital exceeds 10 %, which depends on the position size "
+                  "(as #426461)."),
+    426570: ("1", "Turtle short with pyramiding = 5: up to five 'P' adds every pyramidInput x N below the last "
+                  "add, with the stop and the win / loss bookkeeping driven by the averaged price of the "
+                  "stacked units (a pyramided ladder, as #395966)."),
+    426588: ("1", "pyramiding = 2 with strategy.entry repeated on every signal: a second MACD cross-up while "
+                  "long adds a second unit, so the position size path depends on stacking (as #426509)."),
 }
 
 DUPLICATE_ON_READING = {

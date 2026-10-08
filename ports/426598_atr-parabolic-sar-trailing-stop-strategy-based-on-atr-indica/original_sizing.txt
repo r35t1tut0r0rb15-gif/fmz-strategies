@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426598 (基于ATR指标的抛物线止损策略Parabolic-SAR-Trailing-Stop-Strategy-Based-on-ATR-Indicator)
+# Source: https://www.fmz.com/strategy/426598  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 66-66]
+   66: strategy(title="ATR Parabolic SAR Strategy [QuantNomad]", shorttitle="ATR PSAR Strategy [QN]", overlay=true, default_qty_type = strategy.percent_of_equity,  default_qty_value = 100)

@@ -502,3 +502,24 @@ Rejected (criterion 1): 426509 (pyramided averaging ladder).
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A22 committed (hash in next entry). Next id: 426521.
+
+Batch A22 commit: 8dc3b4a (pushed, verified).
+
+## Task 4, batch A23 (ids 426521 - 426604)
+
+origin/survey-b still absent at batch start. 10 ported, 3 rejected:
+426521 EMA 13 / 48 long only (broker days, DG426521); 426557 MA Bollinger + RSI, closes on unused
+ids kept as written (30min); 426561 EMA ribbon + RSI + stoch from flat (3-day bars, ND426561; a
+non-compiling bare word read as a comment, decision owed); 426571 Kase dev stop (broker days);
+426579 DMI extremes (1min); 426581 EMA ribbon 8..55 from flat (2-day bars, ND426561); 426587 combo
+123 reversal + CMO disparity (4h); 426593 RSI(2) extremes with tick trailing stop pending (1h,
+trailing_stop_pending); 426598 ATR parabolic SAR (1h, ND426598); 426604 RSI(5) contrarian with a
+re-issued 1.3 % target (4-day bars, trailing_stop_pending, coarse_bar_stop).
+Rejected (criterion 1): 426556 (averaging ladder, equity-based exit), 426570 (turtle pyramid),
+426588 (pyramiding 2 stacking).
+Also: 426298 (batch A20) no longer carries trailing_stop_pending: its trail is checked on bar
+closes, which SURVEY_README rule 2 ports as a close-based exit signal with no mark.
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A23 committed (hash in next entry). Next id: 426610.

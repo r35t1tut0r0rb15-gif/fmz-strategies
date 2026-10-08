@@ -32,12 +32,12 @@ Interpretation choices (Pine rules in SURVEY_README.md)
       tick on BTC_USDT). They become *_atr x ATR(14) at the latest signal bar; the source's
       defaults are 0 ATR.
     * The exits are strategy.close calls evaluated on the bar close (filled next open), so the
-      trailing exit is a close-based exit signal: rule 2, mark trailing_stop_pending.
+      trailing exit is a close-based exit signal (rule 2: a trail checked on closes needs no mark).
     * Same bar: the entry fills first, then a close of the other side finds nothing to close.
       strategy.entry reverses: REVERSAL INTENDED (portfolio_kwargs {}).
     * FREQ = "3min" from the backtest header.
 
-Marks: trailing_stop_pending
+Marks: none
 """
 import numpy as np
 import pandas as pd

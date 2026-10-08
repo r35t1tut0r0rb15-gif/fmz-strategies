@@ -1,0 +1,50 @@
+# Original sizing and money-management code, FMZ #426593 (基于RSI指标的趋势回调交易策略Trend-Retracement-Trading-Strategy-Based-on-RSI-Indicator)
+# Source: https://www.fmz.com/strategy/426593  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Hard-coded capital and position size  [lines 83-84]
+   83: initialCapital = 250
+   84: positionSize = initialCapital * 0.015
+
+## Trailing stop: offset input, tracked extreme and strategy.exit(trail_price, trail_offset)  [lines 79-107]
+   79: var float trailingStopPrice = na
+   80: var float trailingStopOffset = input(100, "Trailing Stop Offset (pips)")
+   81: 
+   82: // Capital inicial
+   83: initialCapital = 250
+   84: positionSize = initialCapital * 0.015
+   85: 
+   86: // Condiciones de entrada y salida
+   87: rsi = ta.rsi(close, rsiPeriod)
+   88: 
+   89: // Condiciones de entrada y salida para la orden de venta
+   90: sellCondition = rsi > sellLevel
+   91: closeSellCondition = rsi < takeProfitLevelSell
+   92: 
+   93: // Condiciones de entrada y salida para la orden de compra
+   94: buyCondition = rsi < buyLevel
+   95: closeBuyCondition = rsi > takeProfitLevelBuy
+   96: 
+   97: // Trailing Stop para las posiciones de venta
+   98: if strategy.position_size < 0
+   99:     if low < trailingStopPrice
+  100:         trailingStopPrice := low
+  101:     strategy.exit("Sell", "Sell", trail_offset = trailingStopOffset * syminfo.mintick, trail_price = trailingStopPrice)
+  102: 
+  103: // Trailing Stop para las posiciones de compra
+  104: if strategy.position_size > 0
+  105:     if high > trailingStopPrice
+  106:         trailingStopPrice := high
+  107:     strategy.exit("Buy", "Buy", trail_offset = trailingStopOffset * syminfo.mintick, trail_price = trailingStopPrice)
+
+## Entries with qty = positionSize  [lines 111-120]
+  111:     strategy.entry("Sell", strategy.short, qty = positionSize)
+  112:     trailingStopPrice := high
+  113: 
+  114: // Cerrar orden de venta
+  115: if (closeSellCondition)
+  116:     strategy.close("Sell")
+  117: 
+  118: // Ejecutar orden de compra
+  119: if (buyCondition)
+  120:     strategy.entry("Buy", strategy.long, qty = positionSize)
