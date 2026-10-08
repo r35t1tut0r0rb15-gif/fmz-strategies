@@ -1,0 +1,8 @@
+# Original sizing and money-management code, FMZ #426249 (BEST-Supertrend-Strategy)
+# Source: https://www.fmz.com/strategy/426249  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): qty 100, initial capital (not active)  [lines 67-69]
+   67: // strategy(title="BEST Supertrend Strategy", shorttitle="Supertrend Strategy", overlay=true, 
+   68: //  pyramiding=0, default_qty_value=100, precision=7, currency=currency.USD,
+   69: //  commission_value=0.2,commission_type=strategy.commission.percent, initial_capital=1000000)

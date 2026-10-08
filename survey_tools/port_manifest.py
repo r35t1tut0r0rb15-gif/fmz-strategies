@@ -327,6 +327,38 @@ SIZING = {
         ("Buy amount and order", 52, 54),
         ("Sell amount and order", 59, 61),
     ],
+    # ---- worker A, batch A19 (2026-10-08)
+    425773: [],
+    425796: [
+        ("LOTS: percent of money over margin and unit", 47, 47),
+        ("Entries with LOTS", 73, 74),
+        ("Exits with the held volume", 76, 77),
+    ],
+    425797: [
+        ("LOTS: percent of money over margin and unit", 49, 49),
+        ("Entries with LOTS", 69, 71),
+        ("Exits with the held volume", 73, 75),
+    ],
+    425882: [
+        ("Commented-out strategy(): 100 cash per order (not active)", 78, 78),
+    ],
+    426136: [
+        ("strategy(): margin_long / margin_short 100", 60, 60),
+    ],
+    426137: [
+        ("Long entry with qty 1", 81, 81),
+    ],
+    426141: [
+        ("strategy(): 100 % of equity", 53, 53),
+    ],
+    426142: [],
+    426145: [
+        ("Commented-out strategy(): pyramiding 5, qty 100 (not active)", 45, 45),
+    ],
+    426249: [
+        ("Commented-out strategy(): qty 100, initial capital (not active)", 67, 69),
+    ],
+    426259: [],
 }
 
 REJECTED_ON_READING = {
@@ -422,6 +454,14 @@ REJECTED_ON_READING = {
     416875: ("1", "Martingale: every second it buys or sells a growing bet according to the last candle's colour, "
                   "multiplying the size after wins and losses and stopping after four losses. The position "
                   "size sequence is the strategy (tick loop as well)."),
+    # ---- worker A, batch A19 (2026-10-08)
+    422794: ("1", "Martingale ladder: pyramiding=6 and strategy.order adds strategy.position_size * martinFactor "
+                  "to a losing position (lines 55-67); the position size depends on fills, not on a bar rule "
+                  "(as #395966, #416875)."),
+    425798: ("1", "The entry and exit tests read BKVOL <> 1 / BKVOL = 1 / SKVOL = 1 (exactly one lot held), so "
+                  "the rules change with the sizing formula LOTS; and the stop multiplier LIQKA is a plain "
+                  "(non-VARIABLE) MyLanguage name decremented each held bar (lines 102-108), whose persistence "
+                  "across bars is undefined. No defined signal to test."),
 }
 
 DUPLICATE_ON_READING = {

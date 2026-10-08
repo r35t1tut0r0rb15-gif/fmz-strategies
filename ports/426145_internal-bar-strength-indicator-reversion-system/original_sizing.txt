@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426145 (Internal-Bar-Strength-Indicator-Reversion-system)
+# Source: https://www.fmz.com/strategy/426145  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): pyramiding 5, qty 100 (not active)  [lines 45-45]
+   45: // strategy("IBS", initial_capital=10000, overlay=false, pyramiding=5, default_qty_value=100, currency="USD")

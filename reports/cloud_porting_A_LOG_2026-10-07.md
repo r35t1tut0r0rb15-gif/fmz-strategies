@@ -420,3 +420,24 @@ accumulation by hour), 395966 (pyramided weekday ladder demo), 416875 (martingal
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A18 committed (hash in next entry). Next id: 422794.
+
+Batch A18 commit: 4bf67b5 (pushed, verified).
+
+## Task 4, batch A19 (ids 422794 - 426259)
+
+origin/survey-b still absent at batch start (worker restarted mid-batch after a usage limit; the
+uncommitted modules in the working tree were checked and completed, nothing redone). 11 ported,
+2 rejected:
+425773 EMA cross intraday with ATR-adapted bracket and 15:20 UTC square-off (45min, DG425773);
+425796 MyLanguage Aroon + EMA (1h, REVERSAL INTENDED); 425797 MyLanguage EMA + range-change
+filter, additive S1 -> ATR (1h); 425882 EMA 200 + stoch RSI strong bar (1h); 426136 EMA 20 +
+stoch long only (4h); 426137 BB lower + EMA 9 exit long only (broker days); 426141 RSI(3) 47/56
+(broker days); 426142 Tenkan / Kijun with ATR bracket (1h, trailing_stop_pending); 426145 IBS
+with ATR bracket 5:1 (1h); 426249 SMA cross + previous broker-day SuperTrend (2h); 426259
+squeeze momentum turn (broker days).
+Rejected (criterion 1): 422794 (martingale ladder, pyramiding 6); 425798 (rules test exactly one
+lot held, so depend on sizing; LIQKA persistence undefined).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A19 committed (hash in next entry). Next id: 426261.

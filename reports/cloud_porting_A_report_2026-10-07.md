@@ -4,10 +4,10 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 
 ## Counts (worker A, ids 126968 and up)
 
-- Ported: **210** (15 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245, 385745, 391341, 395962, 396182, 400134, 402455)
-- Rejected on reading: **23** (criterion 1: 21, criterion 2: 2)
+- Ported: **221** (18 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245, 385745, 391341, 395962, 396182, 400134, 402455, 425773, 426142, 426145)
+- Rejected on reading: **25** (criterion 1: 23, criterion 2: 2)
 - Exact duplicate on reading (set aside, rule 7): **1** (128126 of 127691)
-- Last id reached: **416875**; next id in the queue: **422794**
+- Last id reached: **426259**; next id in the queue: **426261**
 - Existing batch-1 ports re-marked under rule 1 (logic unchanged): 11604, 42283, 42451, 119038 (bar_size_pending 4)
 
 ### Marks on worker A ports
@@ -15,7 +15,7 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 | Mark | Ports |
 |---|---|
 | bar_size_pending | 18 |
-| trailing_stop_pending | 6 |
+| trailing_stop_pending | 7 |
 | coarse_bar_stop | 3 |
 | stop_is_entry_condition | 0 |
 
@@ -44,9 +44,12 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - 392636 (criterion 1): The exit is a partial take-profit ladder (10 % of the position at +2 %, 50 % at +5 %, the rest on a close below an ATR stop): partial exits cannot be expressed as one net position's signals (as #365389). pyramiding=2 also stacks entries.
 - 395966 (criterion 1): A Pine documentation example: two pyramided units opened on Monday / Tuesday and closed by entry id on Thursday / Friday; the outcome is a position-size ladder by weekday, not entries/exits of one net position.
 - 416875 (criterion 1): Martingale: every second it buys or sells a growing bet according to the last candle's colour, multiplying the size after wins and losses and stopping after four losses. The position size sequence is the strategy (tick loop as well).
+- 422794 (criterion 1): Martingale ladder: pyramiding=6 and strategy.order adds strategy.position_size * martinFactor to a losing position (lines 55-67); the position size depends on fills, not on a bar rule (as #395966, #416875).
+- 425798 (criterion 1): The entry and exit tests read BKVOL <> 1 / BKVOL = 1 / SKVOL = 1 (exactly one lot held), so the rules change with the sizing formula LOTS; and the stop multiplier LIQKA is a plain (non-VARIABLE) MyLanguage name decremented each held bar (lines 102-108), whose persistence across bars is undefined. No defined signal to test.
 
 ### Commits (newest first)
 
+- `4bf67b5 survey A batch A18: 8 ports, 5 rejected (ids 380446-416875)`
 - `7cd1890 survey A batch A17: 12 ports, 1 rejected (ids 370728-380396)`
 - `8fc418c survey A batch A16: 10 ports, 3 rejected (ids 367643-370711)`
 - `1c121fa survey A batch A15: 13 ports (ids 366641-367572)`
@@ -82,11 +85,11 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - Task 1: rules 2026-10-07 in SURVEY_README.md; check_ports.py extended (Marks line, bar_size_pending only with its mark, stop Series shifted inside stops(), coarse_bar_stop, left-labelled resampling); all ports pass.
 - Task 2: DUPLICATE 251 explained (reports/near_duplicates_2026-10-07.md); near_duplicate_groups.csv over all 3,747 PORT_CANDIDATE rows (5-token shingles, exact Jaccard; >= 0.80 none new, 0.65-0.80 band grouped as ND).
 - Task 3: no_bar_size.csv: 484 of 5,806 files have no bar size (85 with stop logic).
-- Task 4: 210 ported, 23 rejected, 1 duplicate on reading, ids 126968 to 416875.
+- Task 4: 221 ported, 25 rejected, 1 duplicate on reading, ids 126968 to 426259.
 
 **Failed / not done**
 
-- Task 4 is not complete: the queue continues at 422794; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
+- Task 4 is not complete: the queue continues at 426261; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
 - Rule 5 module (1) ("exactly as written") cannot be expressed by the contract; no stop_is_entry_condition port exists.
 
 **Decisions owed**

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3513 |
+| PORT_CANDIDATE | 3500 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 216 |
-| REJECTED_ON_READING | 30 |
+| PORTED | 227 |
+| REJECTED_ON_READING | 32 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -344,7 +344,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 400134 | `ports/400134_sma-pine/` | PineScript | ma_trend | bar_size_pending | fast x2, slow x2, pct x2 | 8 |
 | 402455 | `ports/402455_with/` | PineScript | macd_momentum | coarse_bar_stop | stop_pct x3, tp_pct x3 | 9 |
 | 410112 | `ports/410112_rsi/` | python | rsi_oscillator | none | rsi_period x3, rsi_buy x2, rsi_sell x2 | 12 |
-| | **216 ports** | | | | | **1912** |
+| 425773 | `ports/425773_ema-cross-jc-intraday-with-trailing-sl/` | PineScript | ma_trend | none | slow x2, fast x2, sl_atr x2 | 8 |
+| 425796 | `ports/425796_trade02-ma/` | MyLanguage | directional_movement | none | N x3 | 3 |
+| 425797 | `ports/425797_trade03/` | MyLanguage | ma_trend | none | S1 x2, s1_atr x3 | 6 |
+| 425882 | `ports/425882_ema200-and-stochastic-rsi-strategy/` | PineScript | stochastic_oscillator | none | wick_pct x2, change_pct x2, ema_len x2 | 8 |
+| 426136 | `ports/426136_simple-ema20-strategy-stochastic/` | PineScript | ma_trend | none | ema_len x3, period_k x2 | 6 |
+| 426137 | `ports/426137_bollinger-bands-ema-9/` | PineScript | bollinger_reversion | none | length x2, mult x3 | 6 |
+| 426141 | `ports/426141_relative-strength-index-strategy/` | PineScript | rsi_oscillator | none | length x3, over_sold x2, over_bought x2 | 12 |
+| 426142 | `ports/426142_bvs-ichimoku-cloud-all-signals/` | PineScript | ichimoku | trailing_stop_pending | sl_atr x3, tp_atr x2 | 6 |
+| 426145 | `ports/426145_internal-bar-strength-indicator-reversion-system/` | PineScript | candle_pattern | none | ibs_low x2, ibs_high x2, sl_atr x3 | 12 |
+| 426249 | `ports/426249_best-supertrend-strategy/` | PineScript | supertrend | none | factor x2, fast x2, slow x2 | 8 |
+| 426259 | `ports/426259_squeeze-momentum-on-reversal-strategy/` | PineScript | momentum_oscillator_turn | none | length_kc x2, strength_atr x3 | 6 |
+| | **227 ports** | | | | | **1993** |
 
 ## Rejected on reading
 
@@ -380,6 +391,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 392636 | MACD-Strategy.md | 1 | The exit is a partial take-profit ladder (10 % of the position at +2 %, 50 % at +5 %, the rest on a close below an ATR stop): partial exits cannot be expressed as one net position's signals (as #365389). pyramiding=2 also stacks entries. |
 | 395966 | Exit-from-specific-entries.md | 1 | A Pine documentation example: two pyramided units opened on Monday / Tuesday and closed by entry id on Thursday / Friday; the outcome is a position-size ladder by weekday, not entries/exits of one net position. |
 | 416875 | MartinGale-Strategy1.md | 1 | Martingale: every second it buys or sells a growing bet according to the last candle's colour, multiplying the size after wins and losses and stopping after four losses. The position size sequence is the strategy (tick loop as well). |
+| 422794 | 布林带策略止盈和马丁格尔倍投.md | 1 | Martingale ladder: pyramiding=6 and strategy.order adds strategy.position_size * martinFactor to a losing position (lines 55-67); the position size depends on fills, not on a bar rule (as #395966, #416875). |
+| 425798 | Trade01高低轨道线均线.md | 1 | The entry and exit tests read BKVOL <> 1 / BKVOL = 1 / SKVOL = 1 (exactly one lot held), so the rules change with the sizing formula LOTS; and the stop multiplier LIQKA is a plain (non-VARIABLE) MyLanguage name decremented each held bar (lines 102-108), whose persistence across bars is undefined. No defined signal to test. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

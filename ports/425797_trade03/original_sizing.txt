@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #425797 (Trade03-双均线波动率差过滤)
+# Source: https://www.fmz.com/strategy/425797  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## LOTS: percent of money over margin and unit  [lines 49-49]
+   49: LOTS:= MAX(1,INTPART(percent/100*MONEYTOT*C/(MARGIN*UNIT)));//币本
+
+## Entries with LOTS  [lines 69-71]
+   69: BKVOL<=0 AND REF(BUYK,1),BPK(LOTS);
+   70: 
+   71: SKVOL<=0 AND REF(SELLK,1),SPK(LOTS);
+
+## Exits with the held volume  [lines 73-75]
+   73: BKVOL>0 AND  REF(SELLY,1),SP(BKVOL);
+   74: 
+   75: SKVOL>0 AND  REF(BUYY,1),BP(SKVOL);
