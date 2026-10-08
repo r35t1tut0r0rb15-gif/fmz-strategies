@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426783 (威廉姆斯R指标交易策略Williams-R-Indicator-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/426783  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital 100000  [lines 117-117]
+  117: strategy("Williams %R Strategy", overlay=true, initial_capital=100000, shorttitle="W%R Strategy")

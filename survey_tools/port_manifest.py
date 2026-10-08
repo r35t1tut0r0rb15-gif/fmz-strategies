@@ -475,6 +475,26 @@ SIZING = {
         ("2 % of equity position size (computed, unused by the order)", 104, 104),
         ("Bracket from the signal close, re-issued at each 16:00 bar", 98, 107),
     ],
+    # ---- worker A, batch A25 (2026-10-08)
+    426780: [], 426794: [], 426799: [], 426807: [], 426810: [],
+    426783: [
+        ("strategy(): initial capital 100000", 117, 117),
+    ],
+    426786: [
+        ("strategy(): 100 % of equity", 123, 123),
+    ],
+    426797: [
+        ("strategy(): initial capital 1000, 100 % of equity", 121, 121),
+    ],
+    426801: [
+        ("Entries with qty 1", 147, 152),
+    ],
+    426806: [
+        ("strategy(): cash 10000 per order, initial capital 10000", 127, 127),
+    ],
+    426808: [
+        ("Commented-out strategy(): qty 10000 (not active)", 135, 135),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -626,6 +646,13 @@ REJECTED_ON_READING = {
                   "signals (as #365389)."),
     426621: ("1", "CoinFlip: the direction is int(math.random() + 0.5), a random draw each bar, so there is "
                   "no deterministic rule to test (the ATR-scaled qty and bracket only frame the coin flip)."),
+    # ---- worker A, batch A25 (2026-10-08)
+    426781: ("1", "pyramiding = 2 with two long entry ids ('Fast Enter', 'Slow Enter') that fill together "
+                  "and exit separately (each with its own RSI exit and a 10 % stop under the averaged "
+                  "price): the position is a two-unit stack (as #426588)."),
+    426811: ("3", "The signal is a monthly SMA cross of another instrument (security('BMFBOVESPA:IBOV', 'M', "
+                  "close)): the strategy trades the chart symbol on the Bovespa index, which the project's "
+                  "bars do not carry."),
 }
 
 DUPLICATE_ON_READING = {

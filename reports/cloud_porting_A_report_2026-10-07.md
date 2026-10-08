@@ -4,10 +4,10 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 
 ## Counts (worker A, ids 126968 and up)
 
-- Ported: **272** (26 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245, 385745, 391341, 395962, 396182, 400134, 402455, 425773, 426142, 426145, 426300, 426359, 426477, 426487, 426506, 426511, 426604, 426779)
-- Rejected on reading: **39** (criterion 1: 37, criterion 2: 2)
+- Ported: **283** (27 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245, 385745, 391341, 395962, 396182, 400134, 402455, 425773, 426142, 426145, 426300, 426359, 426477, 426487, 426506, 426511, 426604, 426779, 426794)
+- Rejected on reading: **41** (criterion 1: 38, criterion 2: 2, criterion 3: 1)
 - Exact duplicate on reading (set aside, rule 7): **1** (128126 of 127691)
-- Last id reached: **426779**; next id in the queue: **426780**
+- Last id reached: **426811**; next id in the queue: **426812**
 - Existing batch-1 ports re-marked under rule 1 (logic unchanged): 11604, 42283, 42451, 119038 (bar_size_pending 4)
 
 ### Marks on worker A ports
@@ -15,7 +15,7 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 | Mark | Ports |
 |---|---|
 | bar_size_pending | 18 |
-| trailing_stop_pending | 10 |
+| trailing_stop_pending | 11 |
 | coarse_bar_stop | 8 |
 | stop_is_entry_condition | 0 |
 
@@ -60,9 +60,12 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - 426588 (criterion 1): pyramiding = 2 with strategy.entry repeated on every signal: a second MACD cross-up while long adds a second unit, so the position size path depends on stacking (as #426509).
 - 426610 (criterion 1): Exits are a partial take-profit ladder (strategy.exit qty_percent 20 % at +15 % and 20 % at +30 %) plus a full close: partial exits cannot be expressed as one net position's signals (as #365389).
 - 426621 (criterion 1): CoinFlip: the direction is int(math.random() + 0.5), a random draw each bar, so there is no deterministic rule to test (the ATR-scaled qty and bracket only frame the coin flip).
+- 426781 (criterion 1): pyramiding = 2 with two long entry ids ('Fast Enter', 'Slow Enter') that fill together and exit separately (each with its own RSI exit and a 10 % stop under the averaged price): the position is a two-unit stack (as #426588).
+- 426811 (criterion 3): The signal is a monthly SMA cross of another instrument (security('BMFBOVESPA:IBOV', 'M', close)): the strategy trades the chart symbol on the Bovespa index, which the project's bars do not carry.
 
 ### Commits (newest first)
 
+- `59acf10 survey A batch A24: 11 ports, 2 rejected (ids 426610-426779)`
 - `d70b46d survey A batch A23: 10 ports, 3 rejected (ids 426521-426604)`
 - `8dc3b4a survey A batch A22: 12 ports, 1 rejected (ids 426482-426516)`
 - `eae5f89 survey A batch A21: 8 ports, 5 rejected (ids 426361-426478)`
@@ -98,6 +101,8 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - formula slip kept: 188499, 192353, 345036
 - exit bound to a mis-typed entry id (so one side has no bracket): 426300
 - strategy.close naming ids no entry uses (positions end only at the opposite entry): 426557
+- bands that look swapped (long test covers most of the range): 426780
+- short threshold +50 where -50 looks meant: 426794
 
 ## For the project chat
 
@@ -106,11 +111,11 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - Task 1: rules 2026-10-07 in SURVEY_README.md; check_ports.py extended (Marks line, bar_size_pending only with its mark, stop Series shifted inside stops(), coarse_bar_stop, left-labelled resampling); all ports pass.
 - Task 2: DUPLICATE 251 explained (reports/near_duplicates_2026-10-07.md); near_duplicate_groups.csv over all 3,747 PORT_CANDIDATE rows (5-token shingles, exact Jaccard; >= 0.80 none new, 0.65-0.80 band grouped as ND).
 - Task 3: no_bar_size.csv: 484 of 5,806 files have no bar size (85 with stop logic).
-- Task 4: 272 ported, 39 rejected, 1 duplicate on reading, ids 126968 to 426779.
+- Task 4: 283 ported, 41 rejected, 1 duplicate on reading, ids 126968 to 426811.
 
 **Failed / not done**
 
-- Task 4 is not complete: the queue continues at 426780; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
+- Task 4 is not complete: the queue continues at 426812; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
 - Rule 5 module (1) ("exactly as written") cannot be expressed by the contract; no stop_is_entry_condition port exists.
 
 **Decisions owed**

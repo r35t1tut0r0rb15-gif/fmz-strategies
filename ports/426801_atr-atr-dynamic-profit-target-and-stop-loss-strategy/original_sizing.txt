@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #426801 (ATR-动态止盈止损策略ATR-Dynamic-Profit-Target-and-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/426801  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Entries with qty 1  [lines 147-152]
+  147:     strategy.entry("Buy", strategy.long, 1)
+  148:     
+  149:     
+  150: 
+  151: if (bearish)
+  152:     strategy.entry("Sell", strategy.short, 1)

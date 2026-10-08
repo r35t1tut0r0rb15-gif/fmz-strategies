@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3435 |
+| PORT_CANDIDATE | 3422 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
-| PORTED | 278 |
+| PORTED | 289 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 46 |
+| REJECTED_ON_READING | 48 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -406,7 +406,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426776 | `ports/426776_moving-average-crossover-strategy/` | PineScript | ma_trend | none | long_pair x2, short_pair x2 | 4 |
 | 426778 | `ports/426778_range-breakout-momentum-tracking-strategy/` | PineScript | volatility_stop_cross | none | bb_period x2, bb_dev x2, atr_period x2 | 8 |
 | 426779 | `ports/426779_mechanical-trading-strategy/` | PineScript | calendar_seasonal | trailing_stop_pending, coarse_bar_stop | tp_pct x2, sl_pct x2 | 4 |
-| | **278 ports** | | | | | **2289** |
+| 426780 | `ports/426780_stochastic-oscillator-band-breakout-strategy/` | PineScript | stochastic_oscillator | none | length x2, up_band x2, down_band x2 | 8 |
+| 426783 | `ports/426783_r-williams-r-indicator-trading-strategy/` | PineScript | williams_r_oscillator | none | length x3, oversold x2 | 6 |
+| 426786 | `ports/426786_t3-t3-moving-average-channel-breakout-strategy/` | PineScript | ma_envelope_breakout | none | length x3 | 3 |
+| 426794 | `ports/426794_break-momentum-moving-average-breakout-strategy/` | PineScript | momentum_breakout | trailing_stop_pending | mom_atr x3, tp_atr x3 | 9 |
+| 426797 | `ports/426797_ichimoku-trading-strategy/` | PineScript | ichimoku | none | conv x2, base x2, span_b x2, disp x2 | 16 |
+| 426799 | `ports/426799_dynamic-momentum-index-strategy/` | PineScript | ma_envelope_reversion | none | len_first x2, len_second x2, len_third x2 | 8 |
+| 426801 | `ports/426801_atr-atr-dynamic-profit-target-and-stop-loss-strategy/` | PineScript | volatility_stop_cross | none | length x3, mult x3 | 9 |
+| 426806 | `ports/426806_modified-directional-movement-index-strategy/` | PineScript | directional_movement | none | length x2, smoothing x2 | 4 |
+| 426807 | `ports/426807_inside-bar-failure-strategy/` | PineScript | candle_pattern | none | forward x3 | 3 |
+| 426808 | `ports/426808_enhanced-moving-average-convergence-trend-strategy/` | PineScript | macd_momentum | none | fast x2, slow x2, signal x2 | 8 |
+| 426810 | `ports/426810_moving-average-entry-optimization-strategy/` | PineScript | ma_trend | none | period x2, maxwait x2, thr_atr x3 | 12 |
+| | **289 ports** | | | | | **2375** |
 
 ## Rejected on reading
 
@@ -458,6 +469,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426588 | MACD和RSI指标融合的震荡市场交易策略Trading-Strategy-for-Oscillating-Markets-Combining-MACD-and-RSI-Indicators.md | 1 | pyramiding = 2 with strategy.entry repeated on every signal: a second MACD cross-up while long adds a second unit, so the position size path depends on stacking (as #426509). |
 | 426610 | 基于三重指数移动平均和线性回归的趋势跟踪策略Trend-Following-Strategy-Based-on-Triple-EMA-and-Linear-Regression.md | 1 | Exits are a partial take-profit ladder (strategy.exit qty_percent 20 % at +15 % and 20 % at +30 %) plus a full close: partial exits cannot be expressed as one net position's signals (as #365389). |
 | 426621 | 基于随机运气的简单交易策略Simple-Trading-Strategy-Based-on-Random-Luck.md | 1 | CoinFlip: the direction is int(math.random() + 0.5), a random draw each bar, so there is no deterministic rule to test (the ATR-scaled qty and bracket only frame the coin flip). |
+| 426781 | 双RSI指标突破策略Dual-RSI-Indicator-Breakout-Strategy.md | 1 | pyramiding = 2 with two long entry ids ('Fast Enter', 'Slow Enter') that fill together and exit separately (each with its own RSI exit and a 10 % stop under the averaged price): the position is a two-unit stack (as #426588). |
+| 426811 | 长线对冲策略Long-Term-Hedging-Strategy.md | 3 | The signal is a monthly SMA cross of another instrument (security('BMFBOVESPA:IBOV', 'M', close)): the strategy trades the chart symbol on the Bovespa index, which the project's bars do not carry. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

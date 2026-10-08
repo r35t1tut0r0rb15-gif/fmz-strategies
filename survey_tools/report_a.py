@@ -26,6 +26,8 @@ AS_WRITTEN = {
     'formula slip kept': [192353, 345036, 188499],
     'exit bound to a mis-typed entry id (so one side has no bracket)': [426300],
     'strategy.close naming ids no entry uses (positions end only at the opposite entry)': [426557],
+    'bands that look swapped (long test covers most of the range)': [426780],
+    'short threshold +50 where -50 looks meant': [426794],
 }
 
 DECISIONS = [

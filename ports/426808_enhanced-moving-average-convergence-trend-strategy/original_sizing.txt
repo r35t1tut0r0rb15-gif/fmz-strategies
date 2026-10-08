@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426808 (增强移动平均聚合趋势策略Enhanced-Moving-Average-Convergence-Trend-Strategy)
+# Source: https://www.fmz.com/strategy/426808  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): qty 10000 (not active)  [lines 135-135]
+  135: // strategy("macdas",shorttitle="macdas",overlay=true,default_qty_value=10000,initial_capital=10000,currency=currency.USD)

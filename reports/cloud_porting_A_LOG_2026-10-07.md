@@ -541,3 +541,21 @@ Rejected (criterion 1): 426610 (partial take-profit ladder), 426621 (math.random
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A24 committed (hash in next entry). Next id: 426780.
+
+Batch A24 commit: 59acf10 (pushed, verified).
+
+## Task 4, batch A25 (ids 426780 - 426811)
+
+origin/survey-b still absent at batch start. 11 ported, 2 rejected:
+426780 stochastic bands, swapped-looking bands kept (1h); 426783 Williams %R long only (12h);
+426786 T3 channel (4-day bars); 426794 momentum + EMA 5 with ATR target, tick trailing pending
+(30min, trailing_stop_pending); 426797 doubled Ichimoku long only (2h); 426799 CMO disparity
+(3h); 426801 volatility stop (broker days); 426806 modified DMI (3-day bars); 426807 inside-bar
+failure with timed exit (4-day bars); 426808 MACD of histogram long only (broker days); 426810
+delayed MA entry (1h, threshold -> ATR).
+Rejected: 426781 (criterion 1, two-unit stack), 426811 (criterion 3, signals from the Bovespa
+index).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A25 committed (hash in next entry). Next id: 426812.
