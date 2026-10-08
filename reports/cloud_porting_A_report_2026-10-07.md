@@ -4,10 +4,10 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 
 ## Counts (worker A, ids 126968 and up)
 
-- Ported: **294** (31 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245, 385745, 391341, 395962, 396182, 400134, 402455, 425773, 426142, 426145, 426300, 426359, 426477, 426487, 426506, 426511, 426604, 426779, 426794, 426834, 426836, 426843, 426847)
+- Ported: **307** (34 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245, 385745, 391341, 395962, 396182, 400134, 402455, 425773, 426142, 426145, 426300, 426359, 426477, 426487, 426506, 426511, 426604, 426779, 426794, 426834, 426836, 426843, 426847, 426848, 426854, 426885)
 - Rejected on reading: **43** (criterion 1: 39, criterion 2: 2, criterion 3: 2)
 - Exact duplicate on reading (set aside, rule 7): **1** (128126 of 127691)
-- Last id reached: **426847**; next id in the queue: **426848**
+- Last id reached: **426886**; next id in the queue: **426888**
 - Existing batch-1 ports re-marked under rule 1 (logic unchanged): 11604, 42283, 42451, 119038 (bar_size_pending 4)
 
 ### Marks on worker A ports
@@ -16,7 +16,7 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 |---|---|
 | bar_size_pending | 18 |
 | trailing_stop_pending | 12 |
-| coarse_bar_stop | 11 |
+| coarse_bar_stop | 12 |
 | stop_is_entry_condition | 0 |
 
 ### Rejections (criterion, id, reason)
@@ -52,21 +52,22 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - 426361 (criterion 1): The only exit is strategy.exit('close', 'buy') with no profit / loss / stop / limit / trail argument (an error on TradingView, no exit level on any runtime), so a long entered on the MA crossing 40 has no defined exit (as #368717).
 - 426364 (criterion 1): KD inventory model: strategy.order adds or removes one default unit per bar until the position reaches a target share count (0.33 steps of 20 / -10 shares); the position size path is the strategy (as #380530).
 - 426455 (criterion 1): Four strategy.exit calls share the id 'Exit' with no from_entry: two set a 300-tick stop with a 150 / 50-tick trailing stop, two (when= buy / sell) set no exit level at all. Which exit order is live on a bar depends on how the runtime merges re-issued ids; the exits are undefined.
-- 426461 (criterion 1): pyramiding = 10 with entries repeated on every signal bar, the first long rule adding only below strategy.position_avg_price: a pyramided averaging ladder (as #395966, #422794).
 - 426478 (criterion 1): The signal is a crossover of security(tickerid, '375', close) and security(..., open) on the daily header chart: a 375-minute resolution below the chart's, whose value per daily bar (and 375-minute block alignment on a 24 h market) is undefined (as #426261).
-- 426509 (criterion 1): pyramiding = 5 with entries repeated on every signal bar, the long rule adding only below strategy.position_avg_price: a pyramided averaging ladder (as #426461).
-- 426556 (criterion 1): Weekend range bot: leveraged entries plus 'Adding to Short / Long Entry' orders below / above the average price (a pyramided averaging ladder), and an exit when strategy.openprofit / initial capital exceeds 10 %, which depends on the position size (as #426461).
+- 426556 (criterion 1): Weekend range bot on 2-day header bars: the reference is security(ticker, 'D', close[days_since_friday]), a daily (lower-than-chart) resolution whose value per 2-day bar is undefined (as #426261), and the weekday rules (Saturday / Sunday entries, Monday close) cannot be resolved on 2-day bars. (Its averaging adds and openprofit exit would be sizing; re-worded in A27.)
 - 426570 (criterion 1): Turtle short with pyramiding = 5: up to five 'P' adds every pyramidInput x N below the last add, with the stop and the win / loss bookkeeping driven by the averaged price of the stacked units (a pyramided ladder, as #395966).
-- 426588 (criterion 1): pyramiding = 2 with strategy.entry repeated on every signal: a second MACD cross-up while long adds a second unit, so the position size path depends on stacking (as #426509).
 - 426610 (criterion 1): Exits are a partial take-profit ladder (strategy.exit qty_percent 20 % at +15 % and 20 % at +30 %) plus a full close: partial exits cannot be expressed as one net position's signals (as #365389).
 - 426621 (criterion 1): CoinFlip: the direction is int(math.random() + 0.5), a random draw each bar, so there is no deterministic rule to test (the ATR-scaled qty and bracket only frame the coin flip).
-- 426781 (criterion 1): pyramiding = 2 with two long entry ids ('Fast Enter', 'Slow Enter') that fill together and exit separately (each with its own RSI exit and a 10 % stop under the averaged price): the position is a two-unit stack (as #426588).
+- 426781 (criterion 1): pyramiding = 2 with two long entry ids ('Fast Enter', 'Slow Enter') that fill together and exit separately (each with its own RSI exit and a 10 % stop under the averaged price): each unit leaves on its own exit, i.e. partial exits of the net position (as #365389).
 - 426811 (criterion 3): The signal is a monthly SMA cross of another instrument (security('BMFBOVESPA:IBOV', 'M', close)): the strategy trades the chart symbol on the Bovespa index, which the project's bars do not carry.
 - 426825 (criterion 1): The only exit is strategy.exit(stop = buyStop / sellStop), a level recomputed every bar whose ratchet reads strategy.position_size (a moving stop, rule 2), and the entry rule itself reads that level (close - 3 ATR > buyStop). The position path cannot be produced until moving stops are expressible; port it then (decision owed).
 - 426832 (criterion 3): The signal is the SMA of the ratio of the chart symbol to a second instrument (security('BTC_USDT:swap', close)): a spread between two contracts the project's single-symbol bars do not carry.
+- 426849 (criterion 1): Exits are a partial take-profit (strategy.exit qty_percent = tp1 % at TP1) plus a second exit, with the stop moved to the entry price after the partial fill: partial exits cannot be expressed as one net position's signals (as #365389).
+- 426850 (criterion 1): Exits are a three-step partial take-profit ladder (Exit1-Exit3 with qty 10 / 15 / 20 % at +5 / +10 / +15 %) plus the remainder: partial exits (as #365389).
+- 426882 (criterion 1): Every exit tests strategy.position_size >= 1 (at least one whole unit held), and the risk-based qty is a fraction of a coin on BTC, so whether any exit can fire depends on the sizing formula (as #425798).
 
 ### Commits (newest first)
 
+- `a9e84b8 survey A batch A26: 11 ports, 2 rejected (ids 426812-426847)`
 - `82e0705 survey A batch A25: 11 ports, 2 rejected (ids 426780-426811)`
 - `59acf10 survey A batch A24: 11 ports, 2 rejected (ids 426610-426779)`
 - `d70b46d survey A batch A23: 10 ports, 3 rejected (ids 426521-426604)`
@@ -100,13 +101,14 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 
 ## Kept as written
 
-- direction inverted relative to the source's own names or colours: 207157, 361675, 361689, 361996, 362004, 362031, 362172, 362418, 362427, 362649, 362654, 362664, 362898, 363582, 363590, 365080, 365381, 366941, 366946
-- formula slip kept: 188499, 192353, 345036
+- direction inverted relative to the source's own names or colours: 207157, 361675, 361689, 361996, 362004, 362031, 362172, 362418, 362427, 362649, 362654, 362664, 362898, 363582, 363590, 365080, 365381, 366941, 366946, 426848
+- formula slip kept: 188499, 192353, 345036, 426854
 - exit bound to a mis-typed entry id (so one side has no bracket): 426300
 - strategy.close naming ids no entry uses (positions end only at the opposite entry): 426557
 - bands that look swapped (long test covers most of the range): 426780
 - conditions written as bare statements (no effect): 426816
 - entry uses the take-profit percent instead of the retrace input: 426843
+- sell rule reads close > open[1] where the mirror would be close < open[1]: 426885
 - short threshold +50 where -50 looks meant: 426794
 
 ## For the project chat
@@ -116,11 +118,11 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - Task 1: rules 2026-10-07 in SURVEY_README.md; check_ports.py extended (Marks line, bar_size_pending only with its mark, stop Series shifted inside stops(), coarse_bar_stop, left-labelled resampling); all ports pass.
 - Task 2: DUPLICATE 251 explained (reports/near_duplicates_2026-10-07.md); near_duplicate_groups.csv over all 3,747 PORT_CANDIDATE rows (5-token shingles, exact Jaccard; >= 0.80 none new, 0.65-0.80 band grouped as ND).
 - Task 3: no_bar_size.csv: 484 of 5,806 files have no bar size (85 with stop logic).
-- Task 4: 294 ported, 43 rejected, 1 duplicate on reading, ids 126968 to 426847.
+- Task 4: 307 ported, 43 rejected, 1 duplicate on reading, ids 126968 to 426886.
 
 **Failed / not done**
 
-- Task 4 is not complete: the queue continues at 426848; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
+- Task 4 is not complete: the queue continues at 426888; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
 - Rule 5 module (1) ("exactly as written") cannot be expressed by the contract; no stop_is_entry_condition port exists.
 
 **Decisions owed**
@@ -144,9 +146,12 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 17. 426483 (unit strategy.order on alternating crosses) holds +1 / 0 or -1 / 0 depending on the first cross in the data: data-start dependence as 366388 / 370711.
 18. Account-currency P/L exits and equity protectors (426842, 426847) are treated as balance checks (sizing, README) and not ported; 426556 was rejected mainly for its averaging ladder. Confirm.
 19. 426825 rejected because its entry reads its own moving stop; it can be ported once moving (trailing) stops are expressible.
-20. strategy.exit with no price arguments is read as "no exit" (426361 rejected, 426455 rejected for re-issued exit ids).
-21. 362214 is one-sided as written (the source never opens the other side).
-22. 55839 keeps FREQ "1h" (author states hourly bars in the text); 103070 keeps PERIOD_M15 from the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source's bar size, not as a choice.
-23. FAMILY values are proposals ("user to confirm") in every port.
-24. Sources whose orders are degenerate were rejected on reading (criterion 1): 368717 (long entries, no exit at all), 368734 and 369999 (a count / plot handle tested as a boolean, so long on almost every bar). Confirm that "no testable rule" is a valid rejection, or port them as written.
-25. Some ports depend on where the data starts (Pine cum() / bar_index running means: 366388 cancels it, 370711 does not); acceptable?
+20. Same-bar entry and exit: ports from batch A23 on resolve them in Pine's order inside simulate(); earlier long-only ports that return raw le / lx leave a same-bar conflict to the engine. Audit owed.
+21. Correction (A27): 426461, 426509 and 426588 had been rejected as pyramided ladders, but SURVEY_README classes pyramiding adds as sizing; they are now ported (net position). Ladders whose exits read the averaged price or unit counts stay rejected (426570, 426882). The earlier martingale / averaging rejections (395966, 416875, 422794) may likewise be portable as a net position under that rule; re-read owed.
+22. 426856: a limit exit at the bar's close is ported as a close-based exit at the next open.
+23. strategy.exit with no price arguments is read as "no exit" (426361 rejected, 426455 rejected for re-issued exit ids).
+24. 362214 is one-sided as written (the source never opens the other side).
+25. 55839 keeps FREQ "1h" (author states hourly bars in the text); 103070 keeps PERIOD_M15 from the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source's bar size, not as a choice.
+26. FAMILY values are proposals ("user to confirm") in every port.
+27. Sources whose orders are degenerate were rejected on reading (criterion 1): 368717 (long entries, no exit at all), 368734 and 369999 (a count / plot handle tested as a boolean, so long on almost every bar). Confirm that "no testable rule" is a valid rejection, or port them as written.
+28. Some ports depend on where the data starts (Pine cum() / bar_index running means: 366388 cancels it, 370711 does not); acceptable?

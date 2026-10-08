@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #426461 (Noros-Fast-RSI-Breakthrough-Strategy)
+# Source: https://www.fmz.com/strategy/426461  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 10  [lines 158-158]
+  158: strategy(title = "Noro's Fast RSI Strategy v1.6", shorttitle = "Fast RSI str 1.6", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 10)
+
+## Entries with qty 0 when a side is disabled  [lines 236-246]
+  236: if up1 or up2 or up3
+  237:     if strategy.position_size < 0
+  238:         strategy.close_all()
+  239:         
+  240:     strategy.entry("Long", strategy.long, needlong == false ? 0 : na, when=(time > timestamp(fromyear, frommonth, fromday, 00, 00) and time < timestamp(toyear, tomonth, today, 23, 59)))
+  241: 
+  242: if dn1 or dn2 or dn3
+  243:     if strategy.position_size > 0
+  244:         strategy.close_all()
+  245:         
+  246:     strategy.entry("Short", strategy.short, needshort == false ? 0 : na, when=(time > timestamp(fromyear, frommonth, fromday, 00, 00) and time < timestamp(toyear, tomonth, today, 23, 59)))

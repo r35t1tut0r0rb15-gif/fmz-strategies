@@ -582,3 +582,26 @@ signals to the engine.
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A26 committed (hash in next entry). Next id: 426848.
+
+Batch A26 commit: a9e84b8 (pushed, verified).
+
+## Task 4, batch A27 (ids 426848 - 426886, plus three re-reads)
+
+origin/survey-b still absent at batch start. 10 ported, 3 rejected:
+426848 Bollinger 51 x 3.01 with inverted-looking directions kept and a 14.2 / 99 % bracket (1h);
+426852 RSI %b (3h); 426854 QuantCat momentum with daily-ATR bracket (1h); 426855 Noro triple
+RSI (45min); 426856 mean reversion + trend long only, limit-at-close exit as a close-based exit
+(broker days; decision owed); 426879 averaged-high breakout long only (broker days); 426883
+Gann swing oscillator (3h); 426884 bar up / down (3h); 426885 JetzGiantz swing reversal with
+ATR bracket mirrored (4h, coarse_bar_stop); 426886 hl2 EMA cross (1h).
+Rejected (criterion 1): 426849, 426850 (partial take-profit ladders), 426882 (exits gated on
+position_size >= 1 unit, as 425798).
+Correction: 426461 (A21), 426509 (A22) and 426588 (A23) had been rejected as pyramided ladders,
+but SURVEY_README classes pyramiding adds as sizing. They are re-read and ported here (net
+position; the average price is the first fill) and removed from REJECTED_ON_READING. The
+reasons of 426556 and 426781, which cited them, were re-worded (their rejections stand on
+other grounds).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A27 committed (hash in next entry). Next id: 426888.

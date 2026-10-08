@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3409 |
+| PORT_CANDIDATE | 3396 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
-| PORTED | 300 |
+| PORTED | 313 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | REJECTED_ON_READING | 50 |
@@ -372,6 +372,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426377 | `ports/426377_dual-moving-average-indicators-fusion-strategy/` | PineScript | multi_indicator_confluence | none | length x2, apo_short x1, apo_long x2 | 4 |
 | 426391 | `ports/426391_ultra-long-period-rsi-reversal-strategy/` | PineScript | rsi_oscillator | none | length x3, band x2 | 6 |
 | 426460 | `ports/426460_sell-in-may-buy-in-september-strategy/` | PineScript | calendar_seasonal | none | buy_month x3, sell_month x1 | 3 |
+| 426461 | `ports/426461_noros-fast-rsi-breakthrough-strategy/` | PineScript | rsi_oscillator | none | fast x2, limit x2 | 4 |
 | 426477 | `ports/426477_multi-indicator-convergence-trading-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | rsi_diff x2, tp_atr x3 | 6 |
 | 426482 | `ports/426482_stoch-dual-ma-stoch-indicators-combo-trading-strategy/` | PineScript | stochastic_oscillator | none | l_ma x2, l_ema x2, stk_long x2 | 8 |
 | 426483 | `ports/426483_ema-quadruple-ema-indicators-trading-strategy/` | PineScript | ma_trend | none | ema_slow x2, ema_fast x2, length x2 | 8 |
@@ -382,6 +383,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426500 | `ports/426500_ao-moving-average-ao-indicator-trading-strategy/` | PineScript | momentum_oscillator_turn | none | fast_ma x2, slow_ma x2 | 4 |
 | 426502 | `ports/426502_momentum-moving-average-persistent-long-trading-strategy/` | PineScript | momentum_breakout | none | up_bars x2, down_bars x2 | 4 |
 | 426506 | `ports/426506_ema-intraday-fast-and-slow-ema-cross-intraday-trading-strate/` | PineScript | ma_trend | none | sl_atr x3 | 3 |
+| 426509 | `ports/426509_rsi-fast-rsi-breakout-trading-strategy/` | PineScript | rsi_oscillator | none | rsiperiod x2, limit x2 | 4 |
 | 426510 | `ports/426510_tema-tema-crossover-trading-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
 | 426511 | `ports/426511_buy-monday-sell-wednesday-trading-strategy/` | PineScript | calendar_seasonal | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
 | 426516 | `ports/426516_ema-ema-breakout-filter-long-only-trading-strategy/` | PineScript | volatility_channel_breakout | none | length x3 | 3 |
@@ -392,6 +394,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426579 | `ports/426579_dmi-dmi-moving-average-trading-strategy/` | PineScript | directional_movement | none | di_len x3, low_level x2 | 6 |
 | 426581 | `ports/426581_multi-factor-quantitative-trading-strategy/` | PineScript | multi_indicator_confluence | none | emas x2 | 2 |
 | 426587 | `ports/426587_multi-indicator-combined-reversal-trading-strategy/` | PineScript | multi_indicator_confluence | none | length x2, len_first x1, len_second x2, len_third x2 | 8 |
+| 426588 | `ports/426588_macd-rsi-trading-strategy-for-oscillating-markets-combining/` | PineScript | macd_momentum | none | over_sold x2, over_bought x2 | 4 |
 | 426593 | `ports/426593_rsi-trend-retracement-trading-strategy-based-on-rsi-indicato/` | PineScript | rsi_oscillator | trailing_stop_pending | rsi_len x2, extreme x2, take x2 | 8 |
 | 426598 | `ports/426598_atr-parabolic-sar-trailing-stop-strategy-based-on-atr-indica/` | PineScript | parabolic_sar | none | start x2, increment x2, entry_bars x2 | 8 |
 | 426604 | `ports/426604_rsi-dual-overbought-oversold-strategy-based-on-rsi-indicator/` | PineScript | rsi_oscillator | trailing_stop_pending, coarse_bar_stop | rsi_len x2, upper x2, tp_pct x2 | 8 |
@@ -428,7 +431,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426843 | `ports/426843_trend-following-strategy-based-on-retracement-percentage/` | PineScript | momentum_breakout | coarse_bar_stop | range_of_tops x3, take_profit_percent x2 | 6 |
 | 426844 | `ports/426844_quantitative-strategy-based-on-dual-exponential-moving-avera/` | PineScript | ma_trend | none | small_ema x2, long_ema x2 | 4 |
 | 426847 | `ports/426847_atr-atr-stop-loss-ichimoku-kijun-breakout-strategy/` | PineScript | ichimoku | trailing_stop_pending | ks_period x2, sl_atr x2, tp_atr x3 | 12 |
-| | **300 ports** | | | | | **2448** |
+| 426848 | `ports/426848_medium-long-term-quantitative-trading-strategy-based-on-boll/` | PineScript | bollinger_reversion | none | length x2, mult x2, tp_pct x2 | 8 |
+| 426852 | `ports/426852_rsi-quantitative-trading-strategy-based-on-rsi-indicator-sig/` | PineScript | rsi_oscillator | none | smooth x2, length x2, mult x2 | 8 |
+| 426854 | `ports/426854_quantitative-momentum-trend-trading-strategy/` | PineScript | momentum_breakout | none | stop_mult x2, target_mult x2, lookback x2 | 8 |
+| 426855 | `ports/426855_rsi-reversal-trading-strategy-based-on-multi-period-rsi/` | PineScript | rsi_oscillator | none | indi x2, accuracy x3 | 6 |
+| 426856 | `ports/426856_quantitative-strategy-combining-mean-reversion-and-trend-fol/` | PineScript | ma_trend | none | sma_len x2, rsi_buy x2, rsi_close x2 | 8 |
+| 426879 | `ports/426879_trend-following-strategy-based-on-dynamic-support-and-resist/` | PineScript | donchian_breakout | none | highest_length x2, atr_multiplier x2 | 4 |
+| 426883 | `ports/426883_quantitative-trading-strategy-based-on-gann-swing-oscillator/` | PineScript | pivot_reversal | none | length x3 | 3 |
+| 426884 | `ports/426884_k-simple-quantitative-trading-strategy-based-on-candle-direc/` | PineScript | candle_pattern | none |  | 0 |
+| 426885 | `ports/426885_breakout-strategy-based-on-swing-highs-and-lows/` | PineScript | pivot_reversal | coarse_bar_stop | sl_atr x3 | 3 |
+| 426886 | `ports/426886_ema-trend-following-strategy-based-on-ema-crossover/` | PineScript | ma_trend | none | length x3, ratio x2 | 6 |
+| | **313 ports** | | | | | **2514** |
 
 ## Rejected on reading
 
@@ -472,18 +485,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426361 | Composite-Entry-Signal-RSI-Trading-Strategy.md | 1 | The only exit is strategy.exit('close', 'buy') with no profit / loss / stop / limit / trail argument (an error on TradingView, no exit level on any runtime), so a long entered on the MA crossing 40 has no defined exit (as #368717). |
 | 426364 | KD-Dual-direction-Tracking-Strategy.md | 1 | KD inventory model: strategy.order adds or removes one default unit per bar until the position reaches a target share count (0.33 steps of 20 / -10 shares); the position size path is the strategy (as #380530). |
 | 426455 | Enhanced-Fish-Net-Strategy.md | 1 | Four strategy.exit calls share the id 'Exit' with no from_entry: two set a 300-tick stop with a 150 / 50-tick trailing stop, two (when= buy / sell) set no exit level at all. Which exit order is live on a bar depends on how the runtime merges re-issued ids; the exits are undefined. |
-| 426461 | Noros-Fast-RSI-Breakthrough-Strategy.md | 1 | pyramiding = 10 with entries repeated on every signal bar, the first long rule adding only below strategy.position_avg_price: a pyramided averaging ladder (as #395966, #422794). |
 | 426478 | 双Gann通道突破买卖策略Gann-Double-Channel-Breakout-Trading-Strategy.md | 1 | The signal is a crossover of security(tickerid, '375', close) and security(..., open) on the daily header chart: a 375-minute resolution below the chart's, whose value per daily bar (and 375-minute block alignment on a 24 h market) is undefined (as #426261). |
-| 426509 | 快速RSI指标突破交易策略Fast-RSI-Breakout-Trading-Strategy.md | 1 | pyramiding = 5 with entries repeated on every signal bar, the long rule adding only below strategy.position_avg_price: a pyramided averaging ladder (as #426461). |
 | 426556 | 周末区间震荡策略Weekend-Range-Trading-Strategy.md | 1 | Weekend range bot: leveraged entries plus 'Adding to Short / Long Entry' orders below / above the average price (a pyramided averaging ladder), and an exit when strategy.openprofit / initial capital exceeds 10 %, which depends on the position size (as #426461). |
 | 426570 | 海龟空头突破加仓策略Turtle-Short-Breakout-Pyramiding-Strategy.md | 1 | Turtle short with pyramiding = 5: up to five 'P' adds every pyramidInput x N below the last add, with the stop and the win / loss bookkeeping driven by the averaged price of the stacked units (a pyramided ladder, as #395966). |
-| 426588 | MACD和RSI指标融合的震荡市场交易策略Trading-Strategy-for-Oscillating-Markets-Combining-MACD-and-RSI-Indicators.md | 1 | pyramiding = 2 with strategy.entry repeated on every signal: a second MACD cross-up while long adds a second unit, so the position size path depends on stacking (as #426509). |
 | 426610 | 基于三重指数移动平均和线性回归的趋势跟踪策略Trend-Following-Strategy-Based-on-Triple-EMA-and-Linear-Regression.md | 1 | Exits are a partial take-profit ladder (strategy.exit qty_percent 20 % at +15 % and 20 % at +30 %) plus a full close: partial exits cannot be expressed as one net position's signals (as #365389). |
 | 426621 | 基于随机运气的简单交易策略Simple-Trading-Strategy-Based-on-Random-Luck.md | 1 | CoinFlip: the direction is int(math.random() + 0.5), a random draw each bar, so there is no deterministic rule to test (the ATR-scaled qty and bracket only frame the coin flip). |
 | 426781 | 双RSI指标突破策略Dual-RSI-Indicator-Breakout-Strategy.md | 1 | pyramiding = 2 with two long entry ids ('Fast Enter', 'Slow Enter') that fill together and exit separately (each with its own RSI exit and a 10 % stop under the averaged price): the position is a two-unit stack (as #426588). |
 | 426811 | 长线对冲策略Long-Term-Hedging-Strategy.md | 3 | The signal is a monthly SMA cross of another instrument (security('BMFBOVESPA:IBOV', 'M', close)): the strategy trades the chart symbol on the Bovespa index, which the project's bars do not carry. |
 | 426825 | 均线方向调整趋势策略Moving-Average-Directionality-Trend-Strategy.md | 1 | The only exit is strategy.exit(stop = buyStop / sellStop), a level recomputed every bar whose ratchet reads strategy.position_size (a moving stop, rule 2), and the entry rule itself reads that level (close - 3 ATR > buyStop). The position path cannot be produced until moving stops are expressible; port it then (decision owed). |
 | 426832 | 比较相对强度策略Comparative-Relative-Strength-Strategy.md | 3 | The signal is the SMA of the ratio of the chart symbol to a second instrument (security('BTC_USDT:swap', close)): a spread between two contracts the project's single-symbol bars do not carry. |
+| 426849 | 基于PSARZigZagMACDART多指标组合的量化策略Quantitative-Strategy-PSARZigZagMACDART-Based-on-Multi-Indicator-Combination.md | 1 | Exits are a partial take-profit (strategy.exit qty_percent = tp1 % at TP1) plus a second exit, with the stop moved to the entry price after the partial fill: partial exits cannot be expressed as one net position's signals (as #365389). |
+| 426850 | 基于超趋势指标多时间框架的量化策略Multi-Timeframe-Supertrend-Quantitative-Trading-Strategy.md | 1 | Exits are a three-step partial take-profit ladder (Exit1-Exit3 with qty 10 / 15 / 20 % at +5 / +10 / +15 %) plus the remainder: partial exits (as #365389). |
+| 426882 | 基于波动带反转的长线量化策略Long-Term-Quantitative-Strategy-Based-on-Volatility-Bands-Reversal.md | 1 | Every exit tests strategy.position_size >= 1 (at least one whole unit held), and the risk-based qty is a fraction of a coin on BTC, so whether any exit can fire depends on the sizing formula (as #425798). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -20,15 +20,16 @@ MARKS = ['bar_size_pending', 'trailing_stop_pending', 'coarse_bar_stop', 'stop_i
 
 # Ports whose direction or rule is a likely author slip, kept as written (decision owed).
 AS_WRITTEN = {
-    'direction inverted relative to the source\'s own names or colours': [
+    'direction inverted relative to the source\'s own names or colours': [426848, 
         207157, 361675, 361689, 361996, 362004, 362031, 362172, 362418, 362427, 362649, 362654, 362664,
         362898, 363582, 363590, 365080, 365381, 366941, 366946],
-    'formula slip kept': [192353, 345036, 188499],
+    'formula slip kept': [192353, 345036, 188499, 426854],
     'exit bound to a mis-typed entry id (so one side has no bracket)': [426300],
     'strategy.close naming ids no entry uses (positions end only at the opposite entry)': [426557],
     'bands that look swapped (long test covers most of the range)': [426780],
     'conditions written as bare statements (no effect)': [426816],
     'entry uses the take-profit percent instead of the retrace input': [426843],
+    'sell rule reads close > open[1] where the mirror would be close < open[1]': [426885],
     'short threshold +50 where -50 looks meant': [426794],
 }
 
@@ -77,6 +78,15 @@ DECISIONS = [
     'Confirm.',
     '426825 rejected because its entry reads its own moving stop; it can be ported once moving '
     '(trailing) stops are expressible.',
+    'Same-bar entry and exit: ports from batch A23 on resolve them in Pine\'s order inside '
+    'simulate(); earlier long-only ports that return raw le / lx leave a same-bar conflict to the '
+    'engine. Audit owed.',
+    'Correction (A27): 426461, 426509 and 426588 had been rejected as pyramided ladders, but '
+    'SURVEY_README classes pyramiding adds as sizing; they are now ported (net position). '
+    'Ladders whose exits read the averaged price or unit counts stay rejected (426570, 426882). '
+    'The earlier martingale / averaging rejections (395966, 416875, 422794) may likewise be '
+    'portable as a net position under that rule; re-read owed.',
+    '426856: a limit exit at the bar\'s close is ported as a close-based exit at the next open.',
     'strategy.exit with no price arguments is read as "no exit" (426361 rejected, 426455 '
     'rejected for re-issued exit ids).',
     '362214 is one-sided as written (the source never opens the other side).',

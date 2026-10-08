@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #426848 (基于布林带的中长期量化交易策略Medium-Long-Term-Quantitative-Trading-Strategy-Based-on-Bollinger-Bands)
+# Source: https://www.fmz.com/strategy/426848  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): initial capital (not active)  [lines 152-152]
+  152: // strategy(title = "『おすすめストラテジーSS１』", shorttitle="Strategy1", initial_capital=1200000, pyramiding=0, default_qty_type=strategy.percent_of_equity, default_qty_value=100, commission_type=strategy.commission.percent, commission_value=0.05, overlay=true)
+
+## Exit profit / loss in ticks scaled by 10  [lines 203-211]
+  203: 	strategy.exit("Long_Exit", "Long_Entry", profit = close*(Rikaku/100)*10, loss = close*(Songiri/100)*10, comment="LongClose")
+  204:  
+  205: if (short_cond)
+  206:  
+  207: 	strategy.entry("Short_Entry", strategy.short, oca_name="BollingerBands",  comment="Short")
+  208:  
+  209:     //BitFlyerのようなJPY建ての場合は以下のコードを使います。他の通貨ペアにする場合も１ティックが異なるため桁数の変更が必要です。
+  210:     //strategy.exit("SE Exit", "BBandSE", profit = close*(Rikaku/100)*100, loss = close*(Songiri/100)*100, comment="Close")
+  211:     strategy.exit("Short_Exit", "Short_Entry", profit = close*(Rikaku/100)*10, loss = close*(Songiri/100)*10, comment="ShortClose")

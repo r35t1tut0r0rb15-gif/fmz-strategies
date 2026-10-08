@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #426856 (结合均值回归和趋势跟踪的量化策略Quantitative-Strategy-Combining-Mean-Reversion-and-Trend-Following)
+# Source: https://www.fmz.com/strategy/426856  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): cash 100000, pyramiding 1  [lines 139-139]
+  139: strategy("Mean Reversion and Trendfollowing", overlay=true, pyramiding=1, default_qty_value=100000, initial_capital=100000, default_qty_type=strategy.cash, process_orders_on_close=false, calc_on_every_tick=false)
+
+## Position factors (trend 1, mean reversion 0.5)  [lines 145-146]
+  145: trendPositionFactor = input.float(1)
+  146: meanReversionPositionFactor = input.float(0.5)
+
+## Factor choice and entry qty  [lines 170-176]
+  170: positionSizeFactor = isSmaBuy ? trendPositionFactor : meanReversionPositionFactor
+  171: 
+  172: // Only execute the strategy after the starting date
+  173: if (start_condition)
+  174:     if (isBuy and strategy.opentrades == 0)
+  175:         tradeOrigin := isSmaBuy ? "SMA" : "RSI"
+  176:         strategy.entry("My Long Entry Id", strategy.long, qty=(strategy.equity / close) * positionSizeFactor, comment=str.tostring(positionSizeFactor))

@@ -1,0 +1,53 @@
+# Original sizing and money-management code, FMZ #426855 (基于多周期RSI指标的反转策略Reversal-Trading-Strategy-Based-on-Multi-Period-RSI)
+# Source: https://www.fmz.com/strategy/426855  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity, pyramiding 0  [lines 133-133]
+  133: strategy(title = "Noro's Triple RSI Top/Bottom v1.1", shorttitle = "3RSI Top/Bottom 1.1", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)
+
+## Leverage input and lot = equity / close x leverage  [lines 138-182]
+  138: leverage = input(1, defval = 1, minval = 1, maxval = 100, title = "leverage")
+  139: indi = input(3, defval = 3, minval = 1, maxval = 3, title = "Indicators")
+  140: accuracy = input(3, defval = 3, minval = 1, maxval = 10, title = "accuracy")
+  141: fromyear = input(1900, defval = 1900, minval = 1900, maxval = 2100, title = "From Year")
+  142: toyear = input(2100, defval = 2100, minval = 1900, maxval = 2100, title = "To Year")
+  143: frommonth = input(01, defval = 01, minval = 01, maxval = 12, title = "From Month")
+  144: tomonth = input(12, defval = 12, minval = 01, maxval = 12, title = "To Month")
+  145: fromday = input(01, defval = 01, minval = 01, maxval = 31, title = "From day")
+  146: today = input(31, defval = 31, minval = 01, maxval = 31, title = "To day")
+  147: 
+  148: //RSI-2
+  149: fastup = rma(max(change(close), 0), 2)
+  150: fastdown = rma(-min(change(close), 0), 2)
+  151: fastrsi = fastdown == 0 ? 100 : fastup == 0 ? 0 : 100 - (100 / (1 + fastup / fastdown))
+  152: 
+  153: //RSI-7
+  154: middleup = rma(max(change(close), 0), 7)
+  155: middledown = rma(-min(change(close), 0), 7)
+  156: middlersi = middledown == 0 ? 100 : middleup == 0 ? 0 : 100 - (100 / (1 + middleup / middledown))
+  157: 
+  158: //RSI-14
+  159: slowup = rma(max(change(close), 0), 14)
+  160: slowdown = rma(-min(change(close), 0), 14)
+  161: slowrsi = slowdown == 0 ? 100 : slowup == 0 ? 0 : 100 - (100 / (1 + slowup / slowdown))
+  162: 
+  163: //Body
+  164: body = abs(close - open)
+  165: abody = sma(body, 10)
+  166: 
+  167: //Signals
+  168: acc = 10 - accuracy
+  169: signalup1 = fastrsi < (5 + acc) ? 1 : 0
+  170: signalup2 = middlersi < (10 + acc * 2) ? 1 : 0
+  171: signalup3 = slowrsi < (15 + acc * 3) ? 1 : 0
+  172: 
+  173: signaldn1 = fastrsi > (95 - acc) ? 1 : 0
+  174: signaldn2 = middlersi > (90 - acc * 2) ? 1 : 0
+  175: signaldn3 = slowrsi > (85 - acc * 3) ? 1 : 0
+  176: 
+  177: up = signalup1 + signalup2 + signalup3 >= indi
+  178: dn = signaldn1 + signaldn2 + signaldn3 >= indi
+  179: exit = ((strategy.position_size > 0 and close > open) or (strategy.position_size < 0 and close < open)) and body > abody / 3
+  180: 
+  181: //Trading
+  182: lot = strategy.position_size == 0 ? strategy.equity / close * leverage : lot[1]

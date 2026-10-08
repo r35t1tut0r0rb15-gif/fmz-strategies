@@ -533,6 +533,38 @@ SIZING = {
         ("Balance / floating P/L, risk and equity-protection inputs", 181, 185),
         ("Equity protector and risk-based lot size", 191, 204),
     ],
+    # ---- worker A, batch A27 (2026-10-08)
+    426852: [], 426854: [], 426879: [], 426883: [], 426885: [],
+    426848: [
+        ("Commented-out strategy(): initial capital (not active)", 152, 152),
+        ("Exit profit / loss in ticks scaled by 10", 203, 211),
+    ],
+    426855: [
+        ("strategy(): percent of equity, pyramiding 0", 133, 133),
+        ("Leverage input and lot = equity / close x leverage", 138, 182),
+    ],
+    426856: [
+        ("strategy(): cash 100000, pyramiding 1", 139, 139),
+        ("Position factors (trend 1, mean reversion 0.5)", 145, 146),
+        ("Factor choice and entry qty", 170, 176),
+    ],
+    426884: [
+        ("strategy(): fixed qty 1, pyramiding 1", 118, 118),
+    ],
+    426886: [
+        ("strategy(): 10 % of equity, pyramiding 0", 150, 150),
+    ],
+    426461: [
+        ("strategy(): 100 % of equity, pyramiding 10", 158, 158),
+        ("Entries with qty 0 when a side is disabled", 236, 246),
+    ],
+    426509: [
+        ("strategy(): 100 % of equity, pyramiding 5", 116, 116),
+        ("Entries with qty 0 when a side is disabled", 177, 181),
+    ],
+    426588: [
+        ("strategy(): 100 % of equity, initial capital 100, pyramiding 2, commission", 82, 87),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -660,24 +692,19 @@ REJECTED_ON_READING = {
                   "with a 150 / 50-tick trailing stop, two (when= buy / sell) set no exit level at all. "
                   "Which exit order is live on a bar depends on how the runtime merges re-issued ids; the "
                   "exits are undefined."),
-    426461: ("1", "pyramiding = 10 with entries repeated on every signal bar, the first long rule adding only "
-                  "below strategy.position_avg_price: a pyramided averaging ladder (as #395966, #422794)."),
     426478: ("1", "The signal is a crossover of security(tickerid, '375', close) and security(..., open) on "
                   "the daily header chart: a 375-minute resolution below the chart's, whose value per daily "
                   "bar (and 375-minute block alignment on a 24 h market) is undefined (as #426261)."),
     # ---- worker A, batch A22 (2026-10-08)
-    426509: ("1", "pyramiding = 5 with entries repeated on every signal bar, the long rule adding only below "
-                  "strategy.position_avg_price: a pyramided averaging ladder (as #426461)."),
     # ---- worker A, batch A23 (2026-10-08)
-    426556: ("1", "Weekend range bot: leveraged entries plus 'Adding to Short / Long Entry' orders below / "
-                  "above the average price (a pyramided averaging ladder), and an exit when "
-                  "strategy.openprofit / initial capital exceeds 10 %, which depends on the position size "
-                  "(as #426461)."),
+    426556: ("1", "Weekend range bot on 2-day header bars: the reference is security(ticker, 'D', "
+                  "close[days_since_friday]), a daily (lower-than-chart) resolution whose value per 2-day "
+                  "bar is undefined (as #426261), and the weekday rules (Saturday / Sunday entries, Monday "
+                  "close) cannot be resolved on 2-day bars. (Its averaging adds and openprofit exit "
+                  "would be sizing; re-worded in A27.)"),
     426570: ("1", "Turtle short with pyramiding = 5: up to five 'P' adds every pyramidInput x N below the last "
                   "add, with the stop and the win / loss bookkeeping driven by the averaged price of the "
                   "stacked units (a pyramided ladder, as #395966)."),
-    426588: ("1", "pyramiding = 2 with strategy.entry repeated on every signal: a second MACD cross-up while "
-                  "long adds a second unit, so the position size path depends on stacking (as #426509)."),
     # ---- worker A, batch A24 (2026-10-08)
     426610: ("1", "Exits are a partial take-profit ladder (strategy.exit qty_percent 20 % at +15 % and 20 % "
                   "at +30 %) plus a full close: partial exits cannot be expressed as one net position's "
@@ -687,7 +714,8 @@ REJECTED_ON_READING = {
     # ---- worker A, batch A25 (2026-10-08)
     426781: ("1", "pyramiding = 2 with two long entry ids ('Fast Enter', 'Slow Enter') that fill together "
                   "and exit separately (each with its own RSI exit and a 10 % stop under the averaged "
-                  "price): the position is a two-unit stack (as #426588)."),
+                  "price): each unit leaves on its own exit, i.e. partial exits of the net position (as "
+                  "#365389)."),
     426811: ("3", "The signal is a monthly SMA cross of another instrument (security('BMFBOVESPA:IBOV', 'M', "
                   "close)): the strategy trades the chart symbol on the Bovespa index, which the project's "
                   "bars do not carry."),
@@ -699,6 +727,15 @@ REJECTED_ON_READING = {
     426832: ("3", "The signal is the SMA of the ratio of the chart symbol to a second instrument "
                   "(security('BTC_USDT:swap', close)): a spread between two contracts the project's "
                   "single-symbol bars do not carry."),
+    # ---- worker A, batch A27 (2026-10-08)
+    426849: ("1", "Exits are a partial take-profit (strategy.exit qty_percent = tp1 % at TP1) plus a "
+                  "second exit, with the stop moved to the entry price after the partial fill: partial "
+                  "exits cannot be expressed as one net position's signals (as #365389)."),
+    426850: ("1", "Exits are a three-step partial take-profit ladder (Exit1-Exit3 with qty 10 / 15 / 20 % "
+                  "at +5 / +10 / +15 %) plus the remainder: partial exits (as #365389)."),
+    426882: ("1", "Every exit tests strategy.position_size >= 1 (at least one whole unit held), and the "
+                  "risk-based qty is a fraction of a coin on BTC, so whether any exit can fire depends on "
+                  "the sizing formula (as #425798)."),
 }
 
 DUPLICATE_ON_READING = {
