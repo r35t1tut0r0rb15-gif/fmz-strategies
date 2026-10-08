@@ -39,6 +39,7 @@ fmz_id,file,final_outcome,criterion,reason
 426455,Enhanced-Fish-Net-Strategy.md,REJECTED_ON_READING,1,"Four strategy.exit calls share the id 'Exit' with no from_entry: two set a 300-tick stop with a 150 / 50-tick trailing stop, two (when= buy / sell) set no exit level at all. Which exit order is live on a bar depends on how the runtime merges re-issued ids; the exits are undefined."
 426461,Noros-Fast-RSI-Breakthrough-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 10 with entries repeated on every signal bar, the first long rule adding only below strategy.position_avg_price: a pyramided averaging ladder (as #395966, #422794)."
 426478,双Gann通道突破买卖策略Gann-Double-Channel-Breakout-Trading-Strategy.md,REJECTED_ON_READING,1,"The signal is a crossover of security(tickerid, '375', close) and security(..., open) on the daily header chart: a 375-minute resolution below the chart's, whose value per daily bar (and 375-minute block alignment on a 24 h market) is undefined (as #426261)."
+426509,快速RSI指标突破交易策略Fast-RSI-Breakout-Trading-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 5 with entries repeated on every signal bar, the long rule adding only below strategy.position_avg_price: a pyramided averaging ladder (as #426461)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -285,3 +286,15 @@ fmz_id,file,final_outcome,criterion,reason
 426391,Ultra-Long-Period-RSI-Reversal-Strategy.md,PORTED,,ports/426391_ultra-long-period-rsi-reversal-strategy/
 426460,Sell-in-May-Buy-in-September-Strategy.md,PORTED,,ports/426460_sell-in-may-buy-in-september-strategy/
 426477,Multi-Indicator-Convergence-Trading-Strategy.md,PORTED,,ports/426477_multi-indicator-convergence-trading-strategy/
+426482,双均线Stoch指标组合交易策略Dual-MA-Stoch-Indicators-Combo-Trading-Strategy.md,PORTED,,ports/426482_stoch-dual-ma-stoch-indicators-combo-trading-strategy/
+426483,四重EMA指标交易策略Quadruple-EMA-Indicators-Trading-Strategy.md,PORTED,,ports/426483_ema-quadruple-ema-indicators-trading-strategy/
+426486,SonicR均线通道突破策略SonicR-Mean-Reversion-Channel-Breakout-Strategy.md,PORTED,,ports/426486_sonicr-sonicr-mean-reversion-channel-breakout-strategy/
+426487,三重EMA回调突破交易策略Triple-EMA-Pullback-Breakout-Trading-Strategy.md,PORTED,,ports/426487_ema-triple-ema-pullback-breakout-trading-strategy/
+426489,均衡线PSAR指标交易策略Heikin-Ashi-PSAR-Trend-Trading-Strategy.md,PORTED,,ports/426489_psar-heikin-ashi-psar-trend-trading-strategy/
+426498,多因子组合交易策略Multi-factor-Combined-Trading-Strategy.md,PORTED,,ports/426498_multi-factor-combined-trading-strategy/
+426500,均线震荡AO指标交易策略Moving-Average-AO-Indicator-Trading-Strategy.md,PORTED,,ports/426500_ao-moving-average-ao-indicator-trading-strategy/
+426502,均线动量多头持续交易策略Momentum-Moving-Average-Persistent-Long-Trading-Strategy.md,PORTED,,ports/426502_momentum-moving-average-persistent-long-trading-strategy/
+426506,快慢EMA交叉intraday交易策略Fast-and-Slow-EMA-Cross-Intraday-Trading-Strategy.md,PORTED,,ports/426506_ema-intraday-fast-and-slow-ema-cross-intraday-trading-strate/
+426510,TEMA均线交叉交易策略TEMA-Crossover-Trading-Strategy.md,PORTED,,ports/426510_tema-tema-crossover-trading-strategy/
+426511,周一买入周三止盈策略Buy-Monday-Sell-Wednesday-Trading-Strategy.md,PORTED,,ports/426511_buy-monday-sell-wednesday-trading-strategy/
+426516,EMA多头突破过滤交易策略EMA-Breakout-Filter-Long-Only-Trading-Strategy.md,PORTED,,ports/426516_ema-ema-breakout-filter-long-only-trading-strategy/

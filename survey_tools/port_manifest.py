@@ -394,6 +394,37 @@ SIZING = {
     426391: [
         ("Commented-out strategy(): 100 % of equity (not active)", 60, 60),
     ],
+    # ---- worker A, batch A22 (2026-10-08)
+    426489: [], 426498: [], 426506: [], 426511: [],
+    426482: [
+        ("Commented-out strategy(): 20 % of equity (not active)", 116, 116),
+    ],
+    426483: [
+        ("Commented-out strategy(): initial capital, commission (not active)", 105, 105),
+        ("Unit orders (qty 1)", 131, 132),
+    ],
+    426486: [
+        ("Commented-out strategy(): qty 10000 (not active)", 105, 105),
+    ],
+    426487: [
+        ("strategy(): initial capital 1000, slippage", 112, 112),
+        ("Risk per trade input", 117, 119),
+        ("Lot sizes from equity risk and the EMA 100 distance", 180, 181),
+        ("Entries with qty lotB / lotS", 187, 193),
+    ],
+    426500: [
+        ("strategy(): 100 % of equity, commission", 112, 112),
+    ],
+    426502: [
+        ("Commented-out strategy(): 100 % of equity (not active)", 106, 106),
+        ("Risk input and commented-out max intraday loss", 126, 127),
+    ],
+    426510: [
+        ("strategy(): 100 % of equity, commission", 112, 112),
+    ],
+    426516: [
+        ("strategy(): 100 % of equity", 103, 103),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -526,6 +557,9 @@ REJECTED_ON_READING = {
     426478: ("1", "The signal is a crossover of security(tickerid, '375', close) and security(..., open) on "
                   "the daily header chart: a 375-minute resolution below the chart's, whose value per daily "
                   "bar (and 375-minute block alignment on a 24 h market) is undefined (as #426261)."),
+    # ---- worker A, batch A22 (2026-10-08)
+    426509: ("1", "pyramiding = 5 with entries repeated on every signal bar, the long rule adding only below "
+                  "strategy.position_avg_price: a pyramided averaging ladder (as #426461)."),
 }
 
 DUPLICATE_ON_READING = {

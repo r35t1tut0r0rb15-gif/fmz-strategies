@@ -52,6 +52,12 @@ DECISIONS = [
     '426368: an opposite cross issues a reversing entry plus close_all; the port fills them in '
     'issue order (the bar ends flat). If close_all is sized at issue time the reversal would '
     'stand (always-in). Confirm the broker-emulator reading.',
+    'Multi-day header periods: 426502 (3d) is built from broker days in fixed 3-date blocks counted '
+    'from 1970-01-01, 426516 (7d) from calendar weeks of broker-day dates. Confirm the block phase.',
+    'Session / weekday rules on crypto pairs are read in UTC (426511, TradingView\'s Binance time '
+    'zone); FMZ\'s exchange time zone is not documented.',
+    '426483 (unit strategy.order on alternating crosses) holds +1 / 0 or -1 / 0 depending on the '
+    'first cross in the data: data-start dependence as 366388 / 370711.',
     'strategy.exit with no price arguments is read as "no exit" (426361 rejected, 426455 '
     'rejected for re-issued exit ids).',
     '362214 is one-sided as written (the source never opens the other side).',

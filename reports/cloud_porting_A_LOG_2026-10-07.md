@@ -482,3 +482,23 @@ Rejected (criterion 1): 426361 (exit without levels), 426364 (strategy.order inv
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A21 committed (hash in next entry). Next id: 426482.
+
+Batch A21 commit: eae5f89 (pushed, verified).
+
+## Task 4, batch A22 (ids 426482 - 426516)
+
+origin/survey-b still absent at batch start. 12 ported, 1 rejected:
+426482 SMA / EMA cross with stochastic (1h); 426483 DEMA-change EMA cross with unit
+strategy.order (2h; data-start dependent side, decision owed); 426486 SonicR EMA 34 / 89 (4h);
+426487 triple-EMA pullback from flat with EMA-100-distance bracket mirrored in simulate, minimum
+distance -> ATR (5min); 426489 Heikin-Ashi PSAR (2h); 426498 combo 123 reversal + bear power
+(broker days, DG426498); 426500 MA + AO long only (30min); 426502 OHLC4 momentum long only (3-day
+bars from broker days, decision owed on block phase); 426506 EMA 110 / 40 cross with stop, ticks
+-> ATR (1h); 426510 TEMA cross long only (broker days); 426511 Monday-in / Wednesday-out with 4 / 3 %
+bracket, UTC session (4h, coarse_bar_stop, DG426511); 426516 EMA +- ATR breakout long only
+(weekly bars from broker days).
+Rejected (criterion 1): 426509 (pyramided averaging ladder).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A22 committed (hash in next entry). Next id: 426521.

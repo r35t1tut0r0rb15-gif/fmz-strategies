@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426482 (双均线Stoch指标组合交易策略Dual-MA-Stoch-Indicators-Combo-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/426482  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): 20 % of equity (not active)  [lines 116-116]
+  116: // strategy("PMB2", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value = 20, initial_capital=1000, currency=currency.USD)

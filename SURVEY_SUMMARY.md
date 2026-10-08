@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3474 |
+| PORT_CANDIDATE | 3461 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
+| PORTED | 257 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 245 |
-| REJECTED_ON_READING | 40 |
+| REJECTED_ON_READING | 41 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -373,7 +373,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426391 | `ports/426391_ultra-long-period-rsi-reversal-strategy/` | PineScript | rsi_oscillator | none | length x3, band x2 | 6 |
 | 426460 | `ports/426460_sell-in-may-buy-in-september-strategy/` | PineScript | calendar_seasonal | none | buy_month x3, sell_month x1 | 3 |
 | 426477 | `ports/426477_multi-indicator-convergence-trading-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | rsi_diff x2, tp_atr x3 | 6 |
-| | **245 ports** | | | | | **2097** |
+| 426482 | `ports/426482_stoch-dual-ma-stoch-indicators-combo-trading-strategy/` | PineScript | stochastic_oscillator | none | l_ma x2, l_ema x2, stk_long x2 | 8 |
+| 426483 | `ports/426483_ema-quadruple-ema-indicators-trading-strategy/` | PineScript | ma_trend | none | ema_slow x2, ema_fast x2, length x2 | 8 |
+| 426486 | `ports/426486_sonicr-sonicr-mean-reversion-channel-breakout-strategy/` | PineScript | ma_trend | none | hilo_len x2, ema_signal x2 | 4 |
+| 426487 | `ports/426487_ema-triple-ema-pullback-breakout-trading-strategy/` | PineScript | ma_trend_oscillator_pullback | none | rr x3, min_atr x3 | 9 |
+| 426489 | `ports/426489_psar-heikin-ashi-psar-trend-trading-strategy/` | PineScript | parabolic_sar | none | start x2, increment x2, maximum x1 | 4 |
+| 426498 | `ports/426498_multi-factor-combined-trading-strategy/` | PineScript | multi_indicator_confluence | none | length x2, length_bp x2 | 4 |
+| 426500 | `ports/426500_ao-moving-average-ao-indicator-trading-strategy/` | PineScript | momentum_oscillator_turn | none | fast_ma x2, slow_ma x2 | 4 |
+| 426502 | `ports/426502_momentum-moving-average-persistent-long-trading-strategy/` | PineScript | momentum_breakout | none | up_bars x2, down_bars x2 | 4 |
+| 426506 | `ports/426506_ema-intraday-fast-and-slow-ema-cross-intraday-trading-strate/` | PineScript | ma_trend | none | sl_atr x3 | 3 |
+| 426510 | `ports/426510_tema-tema-crossover-trading-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| 426511 | `ports/426511_buy-monday-sell-wednesday-trading-strategy/` | PineScript | calendar_seasonal | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
+| 426516 | `ports/426516_ema-ema-breakout-filter-long-only-trading-strategy/` | PineScript | volatility_channel_breakout | none | length x3 | 3 |
+| | **257 ports** | | | | | **2156** |
 
 ## Rejected on reading
 
@@ -419,6 +431,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426455 | Enhanced-Fish-Net-Strategy.md | 1 | Four strategy.exit calls share the id 'Exit' with no from_entry: two set a 300-tick stop with a 150 / 50-tick trailing stop, two (when= buy / sell) set no exit level at all. Which exit order is live on a bar depends on how the runtime merges re-issued ids; the exits are undefined. |
 | 426461 | Noros-Fast-RSI-Breakthrough-Strategy.md | 1 | pyramiding = 10 with entries repeated on every signal bar, the first long rule adding only below strategy.position_avg_price: a pyramided averaging ladder (as #395966, #422794). |
 | 426478 | 双Gann通道突破买卖策略Gann-Double-Channel-Breakout-Trading-Strategy.md | 1 | The signal is a crossover of security(tickerid, '375', close) and security(..., open) on the daily header chart: a 375-minute resolution below the chart's, whose value per daily bar (and 375-minute block alignment on a 24 h market) is undefined (as #426261). |
+| 426509 | 快速RSI指标突破交易策略Fast-RSI-Breakout-Trading-Strategy.md | 1 | pyramiding = 5 with entries repeated on every signal bar, the long rule adding only below strategy.position_avg_price: a pyramided averaging ladder (as #426461). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

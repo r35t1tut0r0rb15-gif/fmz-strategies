@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #426483 (四重EMA指标交易策略Quadruple-EMA-Indicators-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/426483  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): initial capital, commission (not active)  [lines 105-105]
+  105: // strategy(title = "Cuathro EMA Strategy", shorttitle = "Cuathro EMA",initial_capital=1000, commission_value=0.2, commission_type =strategy.commission.percent, default_qty_value=100 , overlay = false, pyramiding=10, default_qty_type=strategy.percent_of_equity)
+
+## Unit orders (qty 1)  [lines 131-132]
+  131: strategy.order("BUY", strategy.long, 1, when = ta.crossover(slowema, fastema))
+  132: strategy.order("SELL", strategy.short, 1, when = ta.crossunder(slowema, fastema)) 

@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #426487 (三重EMA回调突破交易策略Triple-EMA-Pullback-Breakout-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/426487  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital 1000, slippage  [lines 112-112]
+  112: strategy(title="Pullback", overlay=true, initial_capital=1000, slippage=25)
+
+## Risk per trade input  [lines 117-119]
+  117: risk = input.float(2, title="Risk per Trade %", group="Money Management")
+  118: 
+  119: riskt = risk / 100 + 1
+
+## Lot sizes from equity risk and the EMA 100 distance  [lines 180-181]
+  180: lotB = (strategy.equity*riskt-strategy.equity)/(close - ema2)
+  181: lotS = (strategy.equity*riskt-strategy.equity)/(ema2 - close)
+
+## Entries with qty lotB / lotS  [lines 187-193]
+  187:         strategy.entry("long", strategy.long, qty=lotB)
+  188:     
+  189: if strategy.position_size == 0 and SellZone and shortcondition and inTradeWindow
+  190:     risk_short := (ema2 - close) / close
+  191:     minp = ema2 - close
+  192:     if minp > security
+  193:         strategy.entry("short", strategy.short, qty=lotS)
