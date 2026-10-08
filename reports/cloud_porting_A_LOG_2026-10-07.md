@@ -402,3 +402,21 @@ Rejected: 370728 (criterion 1: nested request.security on a Heikin-Ashi ticker, 
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A17 committed (hash in next entry). Next id: 380446.
+
+Batch A17 commit: 7cd1890 (pushed, verified).
+
+## Task 4, batch A18 (ids 380446 - 416875)
+
+origin/survey-b still absent at batch start. 8 ported, 5 rejected:
+380525 Hull slope turn (4h); 385745 range filter + EMA from flat, ATR-adapted loss, tick trailing
+pending (15min, trailing_stop_pending); 391341 SSL + stoch RSI with ATR-adapted bracket (5min,
+ND365858); 395962 three closes with highest/lowest stop fixed at entry (bar_size_pending,
+trailing_stop_pending); 396182 red-turn long with ATR-adapted target (bar_size_pending);
+400134 SMA 10/200 with 5 % bracket (bar_size_pending); 402455 MACD zero cross with 1 % bracket
+(daily, coarse_bar_stop); 410112 Python RSI 30/70 long only (1min).
+Rejected (criterion 1): 380446, 392636 (partial take-profit ladders), 380530 (strategy.order
+accumulation by hour), 395966 (pyramided weekday ladder demo), 416875 (martingale).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A18 committed (hash in next entry). Next id: 422794.

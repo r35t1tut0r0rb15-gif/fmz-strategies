@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #385745 (来自油管大神的双EMA均线策略)
+# Source: https://www.fmz.com/strategy/385745  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Order amount input  [lines 156-156]
+  156: amount = input(1, "amount")
+
+## Long entry / exit with amount  [lines 165-166]
+  165:     strategy.entry("long", strategy.long, amount)
+  166:     strategy.exit("exit_long", "long", amount, loss=loss, trail_points=trailPoints, trail_offset=trailOffset)
+
+## Short entry / exit with amount  [lines 168-169]
+  168:     strategy.entry("short", strategy.short, amount)
+  169:     strategy.exit("exit_short", "short", amount, loss=loss, trail_points=trailPoints, trail_offset=trailOffset)

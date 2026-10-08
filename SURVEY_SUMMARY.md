@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3526 |
+| PORT_CANDIDATE | 3513 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 208 |
-| REJECTED_ON_READING | 25 |
+| PORTED | 216 |
+| REJECTED_ON_READING | 30 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -336,7 +336,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 380331 | `ports/380331_moving-average-cross/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
 | 380369 | `ports/380369_bullish-bearish-engulfing/` | PineScript | candle_pattern | bar_size_pending | scale x3, min_atr x3 | 9 |
 | 380396 | `ports/380396_simple-buy-sell-signals/` | PineScript | ma_trend_oscillator_pullback | none | rsi_len x2, ma2_len x2 | 4 |
-| | **208 ports** | | | | | **1848** |
+| 380525 | `ports/380525_rsi-trend/` | PineScript | ma_trend | none | trend_len x3 | 3 |
+| 385745 | `ports/385745_ema/` | PineScript | volatility_channel_breakout | trailing_stop_pending | rng_per x2, rng_qty x2, loss_atr x2 | 8 |
+| 391341 | `ports/391341_ssl-channel-stoch-rsi/` | PineScript | ma_envelope_breakout | none | ssl_slow x2, ssl_fast x2, bracket_atr x3 | 12 |
+| 395962 | `ports/395962_highest-high-lowest-low-stop/` | PineScript | momentum_breakout | bar_size_pending, trailing_stop_pending | hi_len x3, lo_len x3 | 9 |
+| 396182 | `ports/396182_strategy/` | PineScript | candle_pattern | bar_size_pending | tp_atr x3 | 3 |
+| 400134 | `ports/400134_sma-pine/` | PineScript | ma_trend | bar_size_pending | fast x2, slow x2, pct x2 | 8 |
+| 402455 | `ports/402455_with/` | PineScript | macd_momentum | coarse_bar_stop | stop_pct x3, tp_pct x3 | 9 |
+| 410112 | `ports/410112_rsi/` | python | rsi_oscillator | none | rsi_period x3, rsi_buy x2, rsi_sell x2 | 12 |
+| | **216 ports** | | | | | **1912** |
 
 ## Rejected on reading
 
@@ -367,6 +375,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 368734 | Brick-count-Renko.md | 1 | The orders test bar counts as booleans: `if brick_red` (non-green bars among the last 40) is true unless 40 green bars in a row, so the script is long on practically every bar; the brick cross it labels never reaches the orders. No defined signal to test. |
 | 369999 | Directional-Movement-Oscillator-DMI.md | 1 | The orders test a float and a plot handle as booleans: `if diosc` (DI+ - DI-, true whenever non-zero) -> long, `else if p2` (a plot id) -> short. Long on practically every bar; the short branch depends on how the runtime casts a plot handle. No defined signal to test. |
 | 370728 | Smooth-HA-Candles-MTF-v1.md | 1 | The orders read a nested request: security(heikinashi(ticker), 'D', x) where x is itself security(ticker, 'D', open[1], lookahead_on). Which daily bar (and whether Heikin-Ashi or regular prices) reaches the orders depends on how the runtime resolves a nested request on a different ticker; the higher-timeframe values are undefined without choosing (as #361719). |
+| 380446 | BTC-bot.md | 1 | The exit is a four-step take-profit ladder (25 % of the position at +3 %, +5 %, +7 %, the rest at +10 %, all with a 15 % stop, in ticks): partial exits cannot be expressed as one net position's signals (as #365389). |
+| 380530 | Trade-Hour-V3.md | 1 | strategy.order (not entry) adds a unit on every bar whose hour equals an hour estimated from cumulative ROC x hour statistics since the first bar, with no exit or reversal: the position is a running sum of orders, so the size path is the strategy. |
+| 392636 | MACD-Strategy.md | 1 | The exit is a partial take-profit ladder (10 % of the position at +2 %, 50 % at +5 %, the rest on a close below an ATR stop): partial exits cannot be expressed as one net position's signals (as #365389). pyramiding=2 also stacks entries. |
+| 395966 | Exit-from-specific-entries.md | 1 | A Pine documentation example: two pyramided units opened on Monday / Tuesday and closed by entry id on Thursday / Friday; the outcome is a position-size ladder by weekday, not entries/exits of one net position. |
+| 416875 | MartinGale-Strategy1.md | 1 | Martingale: every second it buys or sells a growing bet according to the last candle's colour, multiplying the size after wins and losses and stopping after four losses. The position size sequence is the strategy (tick loop as well). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

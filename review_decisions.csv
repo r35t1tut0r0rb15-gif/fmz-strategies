@@ -24,6 +24,11 @@ fmz_id,file,final_outcome,criterion,reason
 368734,Brick-count-Renko.md,REJECTED_ON_READING,1,"The orders test bar counts as booleans: `if brick_red` (non-green bars among the last 40) is true unless 40 green bars in a row, so the script is long on practically every bar; the brick cross it labels never reaches the orders. No defined signal to test."
 369999,Directional-Movement-Oscillator-DMI.md,REJECTED_ON_READING,1,"The orders test a float and a plot handle as booleans: `if diosc` (DI+ - DI-, true whenever non-zero) -> long, `else if p2` (a plot id) -> short. Long on practically every bar; the short branch depends on how the runtime casts a plot handle. No defined signal to test."
 370728,Smooth-HA-Candles-MTF-v1.md,REJECTED_ON_READING,1,"The orders read a nested request: security(heikinashi(ticker), 'D', x) where x is itself security(ticker, 'D', open[1], lookahead_on). Which daily bar (and whether Heikin-Ashi or regular prices) reaches the orders depends on how the runtime resolves a nested request on a different ticker; the higher-timeframe values are undefined without choosing (as #361719)."
+380446,BTC-bot.md,REJECTED_ON_READING,1,"The exit is a four-step take-profit ladder (25 % of the position at +3 %, +5 %, +7 %, the rest at +10 %, all with a 15 % stop, in ticks): partial exits cannot be expressed as one net position's signals (as #365389)."
+380530,Trade-Hour-V3.md,REJECTED_ON_READING,1,"strategy.order (not entry) adds a unit on every bar whose hour equals an hour estimated from cumulative ROC x hour statistics since the first bar, with no exit or reversal: the position is a running sum of orders, so the size path is the strategy."
+392636,MACD-Strategy.md,REJECTED_ON_READING,1,"The exit is a partial take-profit ladder (10 % of the position at +2 %, 50 % at +5 %, the rest on a close below an ATR stop): partial exits cannot be expressed as one net position's signals (as #365389). pyramiding=2 also stacks entries."
+395966,Exit-from-specific-entries.md,REJECTED_ON_READING,1,"A Pine documentation example: two pyramided units opened on Monday / Tuesday and closed by entry id on Thursday / Friday; the outcome is a position-size ladder by weekday, not entries/exits of one net position."
+416875,MartinGale-Strategy1.md,REJECTED_ON_READING,1,"Martingale: every second it buys or sells a growing bet according to the last candle's colour, multiplying the size after wins and losses and stopping after four losses. The position size sequence is the strategy (tick loop as well)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -233,3 +238,11 @@ fmz_id,file,final_outcome,criterion,reason
 380331,Moving-Average-Cross.md,PORTED,,ports/380331_moving-average-cross/
 380369,Bullish-Bearish-Engulfing.md,PORTED,,ports/380369_bullish-bearish-engulfing/
 380396,Simple-Buy-Sell-Signals.md,PORTED,,ports/380396_simple-buy-sell-signals/
+380525,RSI-Trend.md,PORTED,,ports/380525_rsi-trend/
+385745,来自油管大神的双EMA均线策略.md,PORTED,,ports/385745_ema/
+391341,SSL-CHANNEL-STOCH-RSI.md,PORTED,,ports/391341_ssl-channel-stoch-rsi/
+395962,Highest-high-lowest-low-stop.md,PORTED,,ports/395962_highest-high-lowest-low-stop/
+396182,定投止盈脚本.md,PORTED,,ports/396182_strategy/
+400134,SMA-pine语言教学策略脚本.md,PORTED,,ports/400134_sma-pine/
+402455,顶-底背离指标观察系统-with-止盈止损.md,PORTED,,ports/402455_with/
+410112,分享RSI超买超卖策略.md,PORTED,,ports/410112_rsi/

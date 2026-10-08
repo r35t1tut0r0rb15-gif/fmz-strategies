@@ -4,19 +4,19 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 
 ## Counts (worker A, ids 126968 and up)
 
-- Ported: **202** (9 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245)
-- Rejected on reading: **18** (criterion 1: 16, criterion 2: 2)
+- Ported: **210** (15 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245, 385745, 391341, 395962, 396182, 400134, 402455)
+- Rejected on reading: **23** (criterion 1: 21, criterion 2: 2)
 - Exact duplicate on reading (set aside, rule 7): **1** (128126 of 127691)
-- Last id reached: **380396**; next id in the queue: **380446**
+- Last id reached: **416875**; next id in the queue: **422794**
 - Existing batch-1 ports re-marked under rule 1 (logic unchanged): 11604, 42283, 42451, 119038 (bar_size_pending 4)
 
 ### Marks on worker A ports
 
 | Mark | Ports |
 |---|---|
-| bar_size_pending | 15 |
-| trailing_stop_pending | 4 |
-| coarse_bar_stop | 2 |
+| bar_size_pending | 18 |
+| trailing_stop_pending | 6 |
+| coarse_bar_stop | 3 |
 | stop_is_entry_condition | 0 |
 
 ### Rejections (criterion, id, reason)
@@ -39,9 +39,15 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - 368734 (criterion 1): The orders test bar counts as booleans: `if brick_red` (non-green bars among the last 40) is true unless 40 green bars in a row, so the script is long on practically every bar; the brick cross it labels never reaches the orders. No defined signal to test.
 - 369999 (criterion 1): The orders test a float and a plot handle as booleans: `if diosc` (DI+ - DI-, true whenever non-zero) -> long, `else if p2` (a plot id) -> short. Long on practically every bar; the short branch depends on how the runtime casts a plot handle. No defined signal to test.
 - 370728 (criterion 1): The orders read a nested request: security(heikinashi(ticker), 'D', x) where x is itself security(ticker, 'D', open[1], lookahead_on). Which daily bar (and whether Heikin-Ashi or regular prices) reaches the orders depends on how the runtime resolves a nested request on a different ticker; the higher-timeframe values are undefined without choosing (as #361719).
+- 380446 (criterion 1): The exit is a four-step take-profit ladder (25 % of the position at +3 %, +5 %, +7 %, the rest at +10 %, all with a 15 % stop, in ticks): partial exits cannot be expressed as one net position's signals (as #365389).
+- 380530 (criterion 1): strategy.order (not entry) adds a unit on every bar whose hour equals an hour estimated from cumulative ROC x hour statistics since the first bar, with no exit or reversal: the position is a running sum of orders, so the size path is the strategy.
+- 392636 (criterion 1): The exit is a partial take-profit ladder (10 % of the position at +2 %, 50 % at +5 %, the rest on a close below an ATR stop): partial exits cannot be expressed as one net position's signals (as #365389). pyramiding=2 also stacks entries.
+- 395966 (criterion 1): A Pine documentation example: two pyramided units opened on Monday / Tuesday and closed by entry id on Thursday / Friday; the outcome is a position-size ladder by weekday, not entries/exits of one net position.
+- 416875 (criterion 1): Martingale: every second it buys or sells a growing bet according to the last candle's colour, multiplying the size after wins and losses and stopping after four losses. The position size sequence is the strategy (tick loop as well).
 
 ### Commits (newest first)
 
+- `7cd1890 survey A batch A17: 12 ports, 1 rejected (ids 370728-380396)`
 - `8fc418c survey A batch A16: 10 ports, 3 rejected (ids 367643-370711)`
 - `1c121fa survey A batch A15: 13 ports (ids 366641-367572)`
 - `8d1813b survey A batch A14: 13 ports (ids 365858-366430)`
@@ -76,11 +82,11 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - Task 1: rules 2026-10-07 in SURVEY_README.md; check_ports.py extended (Marks line, bar_size_pending only with its mark, stop Series shifted inside stops(), coarse_bar_stop, left-labelled resampling); all ports pass.
 - Task 2: DUPLICATE 251 explained (reports/near_duplicates_2026-10-07.md); near_duplicate_groups.csv over all 3,747 PORT_CANDIDATE rows (5-token shingles, exact Jaccard; >= 0.80 none new, 0.65-0.80 band grouped as ND).
 - Task 3: no_bar_size.csv: 484 of 5,806 files have no bar size (85 with stop logic).
-- Task 4: 202 ported, 18 rejected, 1 duplicate on reading, ids 126968 to 380396.
+- Task 4: 210 ported, 23 rejected, 1 duplicate on reading, ids 126968 to 416875.
 
 **Failed / not done**
 
-- Task 4 is not complete: the queue continues at 380446; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
+- Task 4 is not complete: the queue continues at 422794; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
 - Rule 5 module (1) ("exactly as written") cannot be expressed by the contract; no stop_is_entry_condition port exists.
 
 **Decisions owed**

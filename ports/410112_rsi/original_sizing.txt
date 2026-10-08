@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #410112 (分享RSI超买超卖策略)
+# Source: https://www.fmz.com/strategy/410112  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Order amount (quote currency)  [lines 27-27]
+   27: amount = 0.01
+
+## Buy amount and order  [lines 52-54]
+   52:         buy_price = current_price
+   53:         buy_amount = amount / buy_price
+   54:         exchange.Buy(buy_price, buy_amount)
+
+## Sell amount and order  [lines 59-61]
+   59:         sell_price = current_price
+   60:         sell_amount = amount / sell_price
+   61:         exchange.Sell(sell_price, sell_amount)

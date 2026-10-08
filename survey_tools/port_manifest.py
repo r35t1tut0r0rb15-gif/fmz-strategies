@@ -307,6 +307,26 @@ SIZING = {
         ("strategy(): 100 % of equity, margin 1, commission", 42, 42),
     ],
     380369: [], 380396: [],
+    # ---- worker A, batch A18 (2026-10-08)
+    380525: [],
+    385745: [
+        ("Order amount input", 156, 156),
+        ("Long entry / exit with amount", 165, 166),
+        ("Short entry / exit with amount", 168, 169),
+    ],
+    391341: [
+        ("Order quantity input and entries with it", 170, 177),
+    ],
+    395962: [], 396182: [],
+    400134: [
+        ("Commented-out strategy(): 100 % of equity (not active)", 20, 20),
+    ],
+    402455: [],
+    410112: [
+        ("Order amount (quote currency)", 27, 27),
+        ("Buy amount and order", 52, 54),
+        ("Sell amount and order", 59, 61),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -386,6 +406,22 @@ REJECTED_ON_READING = {
                   "security(ticker, 'D', open[1], lookahead_on). Which daily bar (and whether Heikin-Ashi or "
                   "regular prices) reaches the orders depends on how the runtime resolves a nested request on "
                   "a different ticker; the higher-timeframe values are undefined without choosing (as #361719)."),
+    # ---- worker A, batch A18 (2026-10-08)
+    380446: ("1", "The exit is a four-step take-profit ladder (25 % of the position at +3 %, +5 %, +7 %, the rest at "
+                  "+10 %, all with a 15 % stop, in ticks): partial exits cannot be expressed as one net "
+                  "position's signals (as #365389)."),
+    380530: ("1", "strategy.order (not entry) adds a unit on every bar whose hour equals an hour estimated from "
+                  "cumulative ROC x hour statistics since the first bar, with no exit or reversal: the position "
+                  "is a running sum of orders, so the size path is the strategy."),
+    392636: ("1", "The exit is a partial take-profit ladder (10 % of the position at +2 %, 50 % at +5 %, the rest "
+                  "on a close below an ATR stop): partial exits cannot be expressed as one net position's "
+                  "signals (as #365389). pyramiding=2 also stacks entries."),
+    395966: ("1", "A Pine documentation example: two pyramided units opened on Monday / Tuesday and closed by "
+                  "entry id on Thursday / Friday; the outcome is a position-size ladder by weekday, not "
+                  "entries/exits of one net position."),
+    416875: ("1", "Martingale: every second it buys or sells a growing bet according to the last candle's colour, "
+                  "multiplying the size after wins and losses and stopping after four losses. The position "
+                  "size sequence is the strategy (tick loop as well)."),
 }
 
 DUPLICATE_ON_READING = {
