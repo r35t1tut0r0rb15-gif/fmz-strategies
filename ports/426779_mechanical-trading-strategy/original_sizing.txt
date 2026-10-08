@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #426779 (机械化交易策略Mechanical-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/426779  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## 2 % of equity position size (computed, unused by the order)  [lines 104-104]
+  104:     positionSize = strategy.equity * 0.02 // Example: 2% of equity
+
+## Bracket from the signal close, re-issued at each 16:00 bar  [lines 98-107]
+   98: entryPrice = close
+   99: takeProfitLevel = entryPrice + (entryPrice * profitTarget)
+  100: stopLossLevel =  entryPrice - (entryPrice * stopLoss)
+  101: // Entry condition
+  102: if (hour(time) == 16)
+  103:     // Calculate position size based on available capital and risk tolerance
+  104:     positionSize = strategy.equity * 0.02 // Example: 2% of equity
+  105: 
+  106:     strategy.entry("Buy", strategy.long)
+  107:     strategy.exit("Take Profit", "Buy", limit=takeProfitLevel,stop =stopLossLevel )

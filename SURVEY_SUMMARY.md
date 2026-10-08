@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3448 |
+| PORT_CANDIDATE | 3435 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
-| PORTED | 267 |
+| PORTED | 278 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 44 |
+| REJECTED_ON_READING | 46 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -395,7 +395,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426593 | `ports/426593_rsi-trend-retracement-trading-strategy-based-on-rsi-indicato/` | PineScript | rsi_oscillator | trailing_stop_pending | rsi_len x2, extreme x2, take x2 | 8 |
 | 426598 | `ports/426598_atr-parabolic-sar-trailing-stop-strategy-based-on-atr-indica/` | PineScript | parabolic_sar | none | start x2, increment x2, entry_bars x2 | 8 |
 | 426604 | `ports/426604_rsi-dual-overbought-oversold-strategy-based-on-rsi-indicator/` | PineScript | rsi_oscillator | trailing_stop_pending, coarse_bar_stop | rsi_len x2, upper x2, tp_pct x2 | 8 |
-| | **267 ports** | | | | | **2221** |
+| 426612 | `ports/426612_trend-following-strategy-based-on-multiple-indicator-integra/` | PineScript | multi_indicator_confluence | none | rsi_len x2, over_sold x2, over_bought x2 | 8 |
+| 426613 | `ports/426613_trend-following-strategy-based-on-pivot-point-breakout/` | PineScript | pivot_reversal | none | left x2, right x2 | 4 |
+| 426616 | `ports/426616_rsi-k-reversal-strategy-based-on-fast-rsi-and-candlestick-co/` | PineScript | rsi_oscillator | none | fast x2, limit x2, cbars x2 | 8 |
+| 426618 | `ports/426618_123-123-reversal-and-fisher-transform-indicator-combo-strate/` | PineScript | multi_indicator_confluence | none | length x3, length_fti x2 | 6 |
+| 426619 | `ports/426619_trend-following-strategy-based-on-triple-indicator-cloud-pat/` | PineScript | supertrend | none | kaufman_len x2, hull_len x2, atr_factor x2 | 8 |
+| 426625 | `ports/426625_ema-trend-following-strategy-based-on-dual-ema/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| 426626 | `ports/426626_k-trend-following-strategy-based-on-ma-candles-and-supertren/` | PineScript | supertrend | none | lookback x3, atr_length x2 | 6 |
+| 426774 | `ports/426774_moving-average-percentage-reversal-strategy/` | PineScript | ma_envelope_reversion | none | length x2, sell_zone x2, buy_zone x2 | 8 |
+| 426776 | `ports/426776_moving-average-crossover-strategy/` | PineScript | ma_trend | none | long_pair x2, short_pair x2 | 4 |
+| 426778 | `ports/426778_range-breakout-momentum-tracking-strategy/` | PineScript | volatility_stop_cross | none | bb_period x2, bb_dev x2, atr_period x2 | 8 |
+| 426779 | `ports/426779_mechanical-trading-strategy/` | PineScript | calendar_seasonal | trailing_stop_pending, coarse_bar_stop | tp_pct x2, sl_pct x2 | 4 |
+| | **278 ports** | | | | | **2289** |
 
 ## Rejected on reading
 
@@ -445,6 +456,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426556 | 周末区间震荡策略Weekend-Range-Trading-Strategy.md | 1 | Weekend range bot: leveraged entries plus 'Adding to Short / Long Entry' orders below / above the average price (a pyramided averaging ladder), and an exit when strategy.openprofit / initial capital exceeds 10 %, which depends on the position size (as #426461). |
 | 426570 | 海龟空头突破加仓策略Turtle-Short-Breakout-Pyramiding-Strategy.md | 1 | Turtle short with pyramiding = 5: up to five 'P' adds every pyramidInput x N below the last add, with the stop and the win / loss bookkeeping driven by the averaged price of the stacked units (a pyramided ladder, as #395966). |
 | 426588 | MACD和RSI指标融合的震荡市场交易策略Trading-Strategy-for-Oscillating-Markets-Combining-MACD-and-RSI-Indicators.md | 1 | pyramiding = 2 with strategy.entry repeated on every signal: a second MACD cross-up while long adds a second unit, so the position size path depends on stacking (as #426509). |
+| 426610 | 基于三重指数移动平均和线性回归的趋势跟踪策略Trend-Following-Strategy-Based-on-Triple-EMA-and-Linear-Regression.md | 1 | Exits are a partial take-profit ladder (strategy.exit qty_percent 20 % at +15 % and 20 % at +30 %) plus a full close: partial exits cannot be expressed as one net position's signals (as #365389). |
+| 426621 | 基于随机运气的简单交易策略Simple-Trading-Strategy-Based-on-Random-Luck.md | 1 | CoinFlip: the direction is int(math.random() + 0.5), a random draw each bar, so there is no deterministic rule to test (the ATR-scaled qty and bracket only frame the coin flip). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

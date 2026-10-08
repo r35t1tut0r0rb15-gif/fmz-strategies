@@ -58,8 +58,14 @@ DECISIONS = [
     'weeks of broker-day dates. Confirm the block phase.',
     '426561 has a bare word "Stochastic" on line 129 (does not compile as written); ported reading '
     'it as a lost comment.',
-    'Session / weekday rules on crypto pairs are read in UTC (426511, TradingView\'s Binance time '
-    'zone); FMZ\'s exchange time zone is not documented.',
+    'Session / weekday / hour rules on crypto pairs are read in UTC (426511, 426779; TradingView\'s '
+    'Binance time zone); FMZ\'s exchange time zone is not documented.',
+    '426625 passes qty = 0 on every entry (read literally, no order is sized); the signal rule is '
+    'ported. Confirm, or reject as no-trade.',
+    '426778 calls ta.atr inside if-blocks; the port follows TradingView\'s per-call-site history '
+    '(each ATR advances only on its own bars). FMZ\'s runtime may differ.',
+    'Data-start dependence also in 426619 (AMA from nz 0) and 426626 (previous-year high / low, '
+    'partial first year).',
     '426483 (unit strategy.order on alternating crosses) holds +1 / 0 or -1 / 0 depending on the '
     'first cross in the data: data-start dependence as 366388 / 370711.',
     'strategy.exit with no price arguments is read as "no exit" (426361 rejected, 426455 '

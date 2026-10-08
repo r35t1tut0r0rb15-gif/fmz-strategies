@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426619 (基于三重指标云形态的趋势跟踪策略Trend-Following-Strategy-Based-on-Triple-Indicator-Cloud-Pattern)
+# Source: https://www.fmz.com/strategy/426619  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 90-90]
+   90: strategy("HKST Cloud", overlay=true, default_qty_type= strategy.percent_of_equity, default_qty_value=100)

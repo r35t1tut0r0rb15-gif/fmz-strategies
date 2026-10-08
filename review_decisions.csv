@@ -43,6 +43,8 @@ fmz_id,file,final_outcome,criterion,reason
 426556,周末区间震荡策略Weekend-Range-Trading-Strategy.md,REJECTED_ON_READING,1,"Weekend range bot: leveraged entries plus 'Adding to Short / Long Entry' orders below / above the average price (a pyramided averaging ladder), and an exit when strategy.openprofit / initial capital exceeds 10 %, which depends on the position size (as #426461)."
 426570,海龟空头突破加仓策略Turtle-Short-Breakout-Pyramiding-Strategy.md,REJECTED_ON_READING,1,"Turtle short with pyramiding = 5: up to five 'P' adds every pyramidInput x N below the last add, with the stop and the win / loss bookkeeping driven by the averaged price of the stacked units (a pyramided ladder, as #395966)."
 426588,MACD和RSI指标融合的震荡市场交易策略Trading-Strategy-for-Oscillating-Markets-Combining-MACD-and-RSI-Indicators.md,REJECTED_ON_READING,1,"pyramiding = 2 with strategy.entry repeated on every signal: a second MACD cross-up while long adds a second unit, so the position size path depends on stacking (as #426509)."
+426610,基于三重指数移动平均和线性回归的趋势跟踪策略Trend-Following-Strategy-Based-on-Triple-EMA-and-Linear-Regression.md,REJECTED_ON_READING,1,Exits are a partial take-profit ladder (strategy.exit qty_percent 20 % at +15 % and 20 % at +30 %) plus a full close: partial exits cannot be expressed as one net position's signals (as #365389).
+426621,基于随机运气的简单交易策略Simple-Trading-Strategy-Based-on-Random-Luck.md,REJECTED_ON_READING,1,"CoinFlip: the direction is int(math.random() + 0.5), a random draw each bar, so there is no deterministic rule to test (the ATR-scaled qty and bracket only frame the coin flip)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -311,3 +313,14 @@ fmz_id,file,final_outcome,criterion,reason
 426593,基于RSI指标的趋势回调交易策略Trend-Retracement-Trading-Strategy-Based-on-RSI-Indicator.md,PORTED,,ports/426593_rsi-trend-retracement-trading-strategy-based-on-rsi-indicato/
 426598,基于ATR指标的抛物线止损策略Parabolic-SAR-Trailing-Stop-Strategy-Based-on-ATR-Indicator.md,PORTED,,ports/426598_atr-parabolic-sar-trailing-stop-strategy-based-on-atr-indica/
 426604,基于RSI指标的双重超买超卖策略Dual-Overbought-Oversold-Strategy-Based-on-RSI-Indicator.md,PORTED,,ports/426604_rsi-dual-overbought-oversold-strategy-based-on-rsi-indicator/
+426612,基于多指标集成的趋势追踪策略Trend-Following-Strategy-Based-on-Multiple-Indicator-Integration.md,PORTED,,ports/426612_trend-following-strategy-based-on-multiple-indicator-integra/
+426613,基于支撑阻力突破的趋势追踪策略Trend-Following-Strategy-Based-on-Pivot-Point-Breakout.md,PORTED,,ports/426613_trend-following-strategy-based-on-pivot-point-breakout/
+426616,基于快速RSI和K线颜色的反转策略Reversal-Strategy-Based-on-Fast-RSI-and-Candlestick-Colors.md,PORTED,,ports/426616_rsi-k-reversal-strategy-based-on-fast-rsi-and-candlestick-co/
+426618,123反转与费希尔变换指标组合策略123-Reversal-and-Fisher-Transform-Indicator-Combo-Strategy.md,PORTED,,ports/426618_123-123-reversal-and-fisher-transform-indicator-combo-strate/
+426619,基于三重指标云形态的趋势跟踪策略Trend-Following-Strategy-Based-on-Triple-Indicator-Cloud-Pattern.md,PORTED,,ports/426619_trend-following-strategy-based-on-triple-indicator-cloud-pat/
+426625,基于双EMA均线的趋势追踪策略Trend-Following-Strategy-Based-on-Dual-EMA.md,PORTED,,ports/426625_ema-trend-following-strategy-based-on-dual-ema/
+426626,基于移动均线K线与超趋止损的趋势追踪策略Trend-Following-Strategy-Based-on-MA-Candles-and-Supertrend.md,PORTED,,ports/426626_k-trend-following-strategy-based-on-ma-candles-and-supertren/
+426774,移动平均线百分比反转策略Moving-Average-Percentage-Reversal-Strategy.md,PORTED,,ports/426774_moving-average-percentage-reversal-strategy/
+426776,移动平均线金叉死叉策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/426776_moving-average-crossover-strategy/
+426778,范围突破动量跟踪策略Range-Breakout-Momentum-Tracking-Strategy.md,PORTED,,ports/426778_range-breakout-momentum-tracking-strategy/
+426779,机械化交易策略Mechanical-Trading-Strategy.md,PORTED,,ports/426779_mechanical-trading-strategy/

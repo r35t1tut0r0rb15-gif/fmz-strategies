@@ -523,3 +523,21 @@ closes, which SURVEY_README rule 2 ports as a close-based exit signal with no ma
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A23 committed (hash in next entry). Next id: 426610.
+
+Batch A23 commit: d70b46d (pushed, verified).
+
+## Task 4, batch A24 (ids 426610 - 426779)
+
+origin/survey-b still absent at batch start. 11 ported, 2 rejected:
+426612 Femi MACD / RSI long only (1min); 426613 pivot breakout long only (3-day bars); 426616
+Noro's Hundred with entry-price exits tracked in simulate (4-day bars); 426618 combo 123 reversal
++ Fisher (4h); 426619 HKST cloud long only (broker days; AMA from 0, data-start dependence);
+426625 EMA 50 / 200 state (2h; qty 0 as written, decision owed); 426626 MA-candle SuperTrend
+with previous-year filter, long only (broker days); 426774 percent distance from SMA (1h);
+426776 two SMA crosses (2h, ND426335); 426778 follow line with per-call-site ATR (4h; decision
+owed); 426779 16:00 UTC long with re-issued bracket (4h, trailing_stop_pending, coarse_bar_stop).
+Rejected (criterion 1): 426610 (partial take-profit ladder), 426621 (math.random coin flip).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A24 committed (hash in next entry). Next id: 426780.

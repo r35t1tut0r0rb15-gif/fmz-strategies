@@ -448,6 +448,33 @@ SIZING = {
         ("strategy(): 100 % of equity, initial capital 200", 82, 82),
         ("Take profit re-issued at 1.3 % of the current close", 107, 107),
     ],
+    # ---- worker A, batch A24 (2026-10-08)
+    426612: [], 426618: [], 426774: [], 426776: [],
+    426613: [
+        ("strategy(): initial capital, percent of equity", 80, 80),
+    ],
+    426616: [
+        ("strategy(): 100 % of equity, pyramiding 0", 96, 96),
+        ("Leverage input", 101, 101),
+        ("Lot = equity / close x leverage, held while in position", 138, 138),
+        ("Entries with qty lot (0 when a side is disabled)", 145, 151),
+    ],
+    426619: [
+        ("strategy(): 100 % of equity", 90, 90),
+    ],
+    426625: [
+        ("Entries with qty 0", 83, 84),
+    ],
+    426626: [
+        ("strategy(): initial capital 20000, 100 % of equity, commission", 93, 93),
+    ],
+    426778: [
+        ("strategy(): initial capital 50000", 140, 140),
+    ],
+    426779: [
+        ("2 % of equity position size (computed, unused by the order)", 104, 104),
+        ("Bracket from the signal close, re-issued at each 16:00 bar", 98, 107),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -593,6 +620,12 @@ REJECTED_ON_READING = {
                   "stacked units (a pyramided ladder, as #395966)."),
     426588: ("1", "pyramiding = 2 with strategy.entry repeated on every signal: a second MACD cross-up while "
                   "long adds a second unit, so the position size path depends on stacking (as #426509)."),
+    # ---- worker A, batch A24 (2026-10-08)
+    426610: ("1", "Exits are a partial take-profit ladder (strategy.exit qty_percent 20 % at +15 % and 20 % "
+                  "at +30 %) plus a full close: partial exits cannot be expressed as one net position's "
+                  "signals (as #365389)."),
+    426621: ("1", "CoinFlip: the direction is int(math.random() + 0.5), a random draw each bar, so there is "
+                  "no deterministic rule to test (the ATR-scaled qty and bracket only frame the coin flip)."),
 }
 
 DUPLICATE_ON_READING = {

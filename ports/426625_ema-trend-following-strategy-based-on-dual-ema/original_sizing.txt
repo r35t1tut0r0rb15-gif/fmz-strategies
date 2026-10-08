@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #426625 (基于双EMA均线的趋势追踪策略Trend-Following-Strategy-Based-on-Dual-EMA)
+# Source: https://www.fmz.com/strategy/426625  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Entries with qty 0  [lines 83-84]
+   83: strategy.entry('long', strategy.long,  0, when=long)
+   84: strategy.entry('short', strategy.short,  0, when=short)

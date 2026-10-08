@@ -4,10 +4,10 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 
 ## Counts (worker A, ids 126968 and up)
 
-- Ported: **261** (25 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245, 385745, 391341, 395962, 396182, 400134, 402455, 425773, 426142, 426145, 426300, 426359, 426477, 426487, 426506, 426511, 426604)
-- Rejected on reading: **37** (criterion 1: 35, criterion 2: 2)
+- Ported: **272** (26 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245, 385745, 391341, 395962, 396182, 400134, 402455, 425773, 426142, 426145, 426300, 426359, 426477, 426487, 426506, 426511, 426604, 426779)
+- Rejected on reading: **39** (criterion 1: 37, criterion 2: 2)
 - Exact duplicate on reading (set aside, rule 7): **1** (128126 of 127691)
-- Last id reached: **426604**; next id in the queue: **426610**
+- Last id reached: **426779**; next id in the queue: **426780**
 - Existing batch-1 ports re-marked under rule 1 (logic unchanged): 11604, 42283, 42451, 119038 (bar_size_pending 4)
 
 ### Marks on worker A ports
@@ -15,8 +15,8 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 | Mark | Ports |
 |---|---|
 | bar_size_pending | 18 |
-| trailing_stop_pending | 9 |
-| coarse_bar_stop | 7 |
+| trailing_stop_pending | 10 |
+| coarse_bar_stop | 8 |
 | stop_is_entry_condition | 0 |
 
 ### Rejections (criterion, id, reason)
@@ -58,9 +58,12 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - 426556 (criterion 1): Weekend range bot: leveraged entries plus 'Adding to Short / Long Entry' orders below / above the average price (a pyramided averaging ladder), and an exit when strategy.openprofit / initial capital exceeds 10 %, which depends on the position size (as #426461).
 - 426570 (criterion 1): Turtle short with pyramiding = 5: up to five 'P' adds every pyramidInput x N below the last add, with the stop and the win / loss bookkeeping driven by the averaged price of the stacked units (a pyramided ladder, as #395966).
 - 426588 (criterion 1): pyramiding = 2 with strategy.entry repeated on every signal: a second MACD cross-up while long adds a second unit, so the position size path depends on stacking (as #426509).
+- 426610 (criterion 1): Exits are a partial take-profit ladder (strategy.exit qty_percent 20 % at +15 % and 20 % at +30 %) plus a full close: partial exits cannot be expressed as one net position's signals (as #365389).
+- 426621 (criterion 1): CoinFlip: the direction is int(math.random() + 0.5), a random draw each bar, so there is no deterministic rule to test (the ATR-scaled qty and bracket only frame the coin flip).
 
 ### Commits (newest first)
 
+- `d70b46d survey A batch A23: 10 ports, 3 rejected (ids 426521-426604)`
 - `8dc3b4a survey A batch A22: 12 ports, 1 rejected (ids 426482-426516)`
 - `eae5f89 survey A batch A21: 8 ports, 5 rejected (ids 426361-426478)`
 - `3d6d6cf survey A batch A20: 10 ports, 3 rejected (ids 426261-426360)`
@@ -103,11 +106,11 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - Task 1: rules 2026-10-07 in SURVEY_README.md; check_ports.py extended (Marks line, bar_size_pending only with its mark, stop Series shifted inside stops(), coarse_bar_stop, left-labelled resampling); all ports pass.
 - Task 2: DUPLICATE 251 explained (reports/near_duplicates_2026-10-07.md); near_duplicate_groups.csv over all 3,747 PORT_CANDIDATE rows (5-token shingles, exact Jaccard; >= 0.80 none new, 0.65-0.80 band grouped as ND).
 - Task 3: no_bar_size.csv: 484 of 5,806 files have no bar size (85 with stop logic).
-- Task 4: 261 ported, 37 rejected, 1 duplicate on reading, ids 126968 to 426604.
+- Task 4: 272 ported, 39 rejected, 1 duplicate on reading, ids 126968 to 426779.
 
 **Failed / not done**
 
-- Task 4 is not complete: the queue continues at 426610; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
+- Task 4 is not complete: the queue continues at 426780; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
 - Rule 5 module (1) ("exactly as written") cannot be expressed by the contract; no stop_is_entry_condition port exists.
 
 **Decisions owed**
@@ -124,11 +127,14 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 10. 426368: an opposite cross issues a reversing entry plus close_all; the port fills them in issue order (the bar ends flat). If close_all is sized at issue time the reversal would stand (always-in). Confirm the broker-emulator reading.
 11. Multi-day header periods: 426502 / 426561 (3d), 426581 (2d), 426604 (4d) are built from broker days in fixed blocks of broker-day dates counted from 1970-01-01, 426516 (7d) from calendar weeks of broker-day dates. Confirm the block phase.
 12. 426561 has a bare word "Stochastic" on line 129 (does not compile as written); ported reading it as a lost comment.
-13. Session / weekday rules on crypto pairs are read in UTC (426511, TradingView's Binance time zone); FMZ's exchange time zone is not documented.
-14. 426483 (unit strategy.order on alternating crosses) holds +1 / 0 or -1 / 0 depending on the first cross in the data: data-start dependence as 366388 / 370711.
-15. strategy.exit with no price arguments is read as "no exit" (426361 rejected, 426455 rejected for re-issued exit ids).
-16. 362214 is one-sided as written (the source never opens the other side).
-17. 55839 keeps FREQ "1h" (author states hourly bars in the text); 103070 keeps PERIOD_M15 from the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source's bar size, not as a choice.
-18. FAMILY values are proposals ("user to confirm") in every port.
-19. Sources whose orders are degenerate were rejected on reading (criterion 1): 368717 (long entries, no exit at all), 368734 and 369999 (a count / plot handle tested as a boolean, so long on almost every bar). Confirm that "no testable rule" is a valid rejection, or port them as written.
-20. Some ports depend on where the data starts (Pine cum() / bar_index running means: 366388 cancels it, 370711 does not); acceptable?
+13. Session / weekday / hour rules on crypto pairs are read in UTC (426511, 426779; TradingView's Binance time zone); FMZ's exchange time zone is not documented.
+14. 426625 passes qty = 0 on every entry (read literally, no order is sized); the signal rule is ported. Confirm, or reject as no-trade.
+15. 426778 calls ta.atr inside if-blocks; the port follows TradingView's per-call-site history (each ATR advances only on its own bars). FMZ's runtime may differ.
+16. Data-start dependence also in 426619 (AMA from nz 0) and 426626 (previous-year high / low, partial first year).
+17. 426483 (unit strategy.order on alternating crosses) holds +1 / 0 or -1 / 0 depending on the first cross in the data: data-start dependence as 366388 / 370711.
+18. strategy.exit with no price arguments is read as "no exit" (426361 rejected, 426455 rejected for re-issued exit ids).
+19. 362214 is one-sided as written (the source never opens the other side).
+20. 55839 keeps FREQ "1h" (author states hourly bars in the text); 103070 keeps PERIOD_M15 from the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source's bar size, not as a choice.
+21. FAMILY values are proposals ("user to confirm") in every port.
+22. Sources whose orders are degenerate were rejected on reading (criterion 1): 368717 (long entries, no exit at all), 368734 and 369999 (a count / plot handle tested as a boolean, so long on almost every bar). Confirm that "no testable rule" is a valid rejection, or port them as written.
+23. Some ports depend on where the data starts (Pine cum() / bar_index running means: 366388 cancels it, 370711 does not); acceptable?
