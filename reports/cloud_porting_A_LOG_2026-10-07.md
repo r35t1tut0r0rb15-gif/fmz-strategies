@@ -334,3 +334,21 @@ DG365727 + ND365727).
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A13 committed (hash in next entry). Next id: 365858.
+
+Batch A13 commit: a0358a3 (pushed, verified).
+
+## Task 4, batch A14 (ids 365858 - 366430) (worker restarted mid-batch; resumed from the
+uncommitted files, nothing redone)
+
+origin/survey-b still absent at batch start. 13 ported, 0 rejected:
+365858 SSL channel 2 flips (45min, ND365858); 365859 range filter (10min, DG365859);
+365892 dual SuperTrend + ROC with fixed 5 % / 6 % sl_stop (10min, DG365892); 365898 EMA/RSI/ADX
+scalper (5min); 365905 Schaff trend cycle (45min); 365907 EMA/SMA swing cross (1min);
+366385 linear-regression band cross (4h); 366388 Bollinger lows swing line (4h); 366389 SMA swing
+trend, log(10) price offset -> ATR (4h); 366391 RSI extrapolated extremes (4h); 366404 regression
+peak detector (4h); 366407 SuperTREX (4h); 366430 MACD cross divergence (4h, DG366430).
+Authors: Zer3192 from 366385 on.
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A14 committed (hash in next entry). Next id: 366641.

@@ -11,12 +11,12 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3578 |
+| PORT_CANDIDATE | 3565 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 160 |
+| PORTED | 173 |
 | REJECTED_ON_READING | 21 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
@@ -288,7 +288,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 365719 | `ports/365719_pivot-based-trailing-maxima-minima/` | PineScript | pivot_reversal | none | length x4 | 4 |
 | 365722 | `ports/365722_parabolic-sar-buy-and-sell/` | PineScript | parabolic_sar | none | start x2, increment x2, maximum x2 | 8 |
 | 365727 | `ports/365727_hull-suite-strategy/` | PineScript | ma_trend | none | length x4 | 4 |
-| | **160 ports** | | | | | **1516** |
+| 365858 | `ports/365858_ssl-channel/` | PineScript | ma_envelope_breakout | none | length x3 | 3 |
+| 365859 | `ports/365859_range-filter-buy-and-sell/` | PineScript | volatility_channel_breakout | none | per x3, mult x3 | 9 |
+| 365892 | `ports/365892_super-trend-daily-20-bf/` | PineScript | supertrend | none | roc_len_l x2, roc_len_s x2, sl_long x2 | 8 |
+| 365898 | `ports/365898_scalping-ema-adx-rsi-with-buy-sell/` | PineScript | ma_trend_oscillator_pullback | none | ema_len x3, rsi_len x2, adx_limit x2 | 12 |
+| 365905 | `ports/365905_schaff-trend-cycle/` | PineScript | momentum_oscillator_turn | none | fast x2, slow x2, cycle x2 | 8 |
+| 365907 | `ports/365907_swing-trade-signals/` | PineScript | ma_trend | none | ema_len x2, sma_len x3 | 6 |
+| 366385 | `ports/366385_super-trend-b/` | PineScript | zscore_reversion | none | lin_len x3, dev x3 | 9 |
+| 366388 | `ports/366388_bollinger-lows/` | PineScript | bollinger_reversion | none | len5 x2, len x2, period x2 | 8 |
+| 366389 | `ports/366389_sma-trend/` | PineScript | ma_trend | none | len_c x3, factor x2, off_atr x2 | 12 |
+| 366391 | `ports/366391_low-finder/` | PineScript | rsi_oscillator | none | length x3 | 3 |
+| 366404 | `ports/366404_peak-detector/` | PineScript | zscore_reversion | none | length x2, dev x2, pct x2 | 8 |
+| 366407 | `ports/366407_supertrex/` | PineScript | supertrend | none | length x2, st_mult x2, st_period x2 | 8 |
+| 366430 | `ports/366430_blackcat-l2-reversal-labels-strategy/` | PineScript | macd_divergence | none | fast x2, slow x2, signal x2 | 8 |
+| | **173 ports** | | | | | **1618** |
 
 ## Rejected on reading
 

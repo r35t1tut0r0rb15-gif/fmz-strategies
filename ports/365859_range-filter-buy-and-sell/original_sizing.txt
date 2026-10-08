@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #365859 (Range-Filter-Buy-and-Sell)
+# Source: https://www.fmz.com/strategy/365859  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): commission 0.025 %, cash quantity  [lines 52-52]
+   52: strategy(title="Range Filter Buy and Sell 5min [Strategy]", overlay=true, commission_type=strategy.commission.percent, commission_value=0.025, default_qty_type=strategy.cash, default_qty_value=10000, initial_capital=10000, slippage=0)
+
+## Optional stop loss / take profit (off by default)  [lines 157-168]
+  157: useStopLoss = input(false, title='----- Use Stop Loss / Take profit -----', type=bool)
+  158: sl_inp = input(100, title='Stop Loss %', type=float, step=0.25)/100
+  159: tp_inp = input(1.5, title='Take Profit %', type=float, step=0.25)/100
+  160: stop_level = strategy.position_avg_price * (1 - sl_inp)
+  161: take_level = strategy.position_avg_price * (1 + tp_inp)
+  162: stop_level_short = strategy.position_avg_price * (1 + sl_inp)
+  163: take_level_short = strategy.position_avg_price * (1 - tp_inp)
+  164: // === Stop LOSS ===
+  165: 
+  166: if useStopLoss
+  167:     strategy.exit("Stop Loss/Profit Long","Long", stop=stop_level, limit=take_level)
+  168:     strategy.exit("Stop Loss/Profit Short","Short", stop=stop_level_short, limit=take_level_short)

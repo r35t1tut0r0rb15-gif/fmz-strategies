@@ -181,3 +181,16 @@ fmz_id,file,final_outcome,criterion,reason
 365719,Pivot-Based-Trailing-Maxima-Minima.md,PORTED,,ports/365719_pivot-based-trailing-maxima-minima/
 365722,Parabolic-SAR-Buy-And-Sell.md,PORTED,,ports/365722_parabolic-sar-buy-and-sell/
 365727,Hull-Suite-Strategy.md,PORTED,,ports/365727_hull-suite-strategy/
+365858,SSL-Channel.md,PORTED,,ports/365858_ssl-channel/
+365859,Range-Filter-Buy-and-Sell.md,PORTED,,ports/365859_range-filter-buy-and-sell/
+365892,Super-Trend-Daily-20-BF.md,PORTED,,ports/365892_super-trend-daily-20-bf/
+365898,Scalping-EMA-ADX-RSI-with-Buy-Sell.md,PORTED,,ports/365898_scalping-ema-adx-rsi-with-buy-sell/
+365905,Schaff-Trend-Cycle.md,PORTED,,ports/365905_schaff-trend-cycle/
+365907,SWING-TRADE-SIGNALS.md,PORTED,,ports/365907_swing-trade-signals/
+366385,Super-trend-B.md,PORTED,,ports/366385_super-trend-b/
+366388,Bollinger-lows.md,PORTED,,ports/366388_bollinger-lows/
+366389,SMA-Trend.md,PORTED,,ports/366389_sma-trend/
+366391,Low-finder.md,PORTED,,ports/366391_low-finder/
+366404,Peak-detector.md,PORTED,,ports/366404_peak-detector/
+366407,SuperTREX.md,PORTED,,ports/366407_supertrex/
+366430,blackcat-L2-Reversal-Labels-Strategy.md,PORTED,,ports/366430_blackcat-l2-reversal-labels-strategy/

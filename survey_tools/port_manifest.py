@@ -269,6 +269,17 @@ SIZING = {
     365727: [
         ("strategy(): 100 % of equity, pyramiding 1, commission 0", 56, 56),
     ],
+    # ---- worker A, batch A14 (2026-10-07/08)
+    365858: [],
+    365859: [
+        ("strategy(): commission 0.025 %, cash quantity", 52, 52),
+        ("Optional stop loss / take profit (off by default)", 157, 168),
+    ],
+    365892: [
+        ("strategy(): 100 % of equity, initial capital 10000, commission", 85, 85),
+    ],
+    365898: [], 365905: [], 365907: [], 366385: [], 366388: [], 366389: [], 366391: [], 366404: [], 366407: [],
+    366430: [],
 }
 
 REJECTED_ON_READING = {
