@@ -69,6 +69,7 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 
 ### Commits (newest first)
 
+- `ca39398 survey A batch A29: 11 ports, 2 rejected (ids 426928-427063)`
 - `e17001a survey A batch A28: 13 ports, 0 rejected (ids 426888-426925)`
 - `18ae16f survey A batch A27: 13 ports (3 re-reads), 3 rejected (ids 426848-426886)`
 - `a9e84b8 survey A batch A26: 11 ports, 2 rejected (ids 426812-426847)`

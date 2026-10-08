@@ -639,3 +639,5 @@ Rejected (criterion 1): 426936 (DCA accumulation, last_bar_index), 427063 (parti
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A29 committed (hash in next entry). Next id: 427064.
+
+Batch A29 commit: ca39398 (pushed, verified). Worker stopped here; resume at id 427064 (batch A30).
