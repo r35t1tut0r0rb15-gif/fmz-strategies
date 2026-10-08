@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #426847 (基于ATR止损的一目均衡策略ATR-Stop-Loss-Ichimoku-Kijun-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/426847  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Initial capital, balance and floating P/L  [lines 143-143]
+  143: strategy.initial_capital = 50000    
+
+## Balance / floating P/L, risk and equity-protection inputs  [lines 181-185]
+  181: balance = strategy.netprofit + strategy.initial_capital //current balance
+  182: floating = strategy.openprofit          //floating profit/loss
+  183: isTwoDigit = input(false,"Is this a 2 digit pair? (JPY, XAU, XPD...")
+  184: risk = input(5,"Risk %")/100           //risk % per trade
+  185: equity_protector = input(30,"Equity Protection %")/100  //equity protection %
+
+## Equity protector and risk-based lot size  [lines 191-204]
+  191: equity_stopout = false
+  192: if(floating<0 and abs(floating/balance)>equity_protector)
+  193:     equity_stopout := true
+  194:     
+  195:     //Calculate the size of the next trade
+  196: temp01 = balance * risk     //Risk in USD
+  197: temp02 = temp01/stop        //Risk in lots
+  198: temp03 = temp02*100000      //Convert to contracts
+  199: size = temp03 - temp03%1000 //Normalize to 1000s (Trade size)
+  200: if(size < 1000)
+  201:     size := 1000            //Set min. lot size
+  202: 
+  203: //TRADE EXECUTION---------------------------------------------------------------
+  204: strategy.close_all(equity_stopout)      //Close all trades w/equity protector

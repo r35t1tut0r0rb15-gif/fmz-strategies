@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #426829 (移动平均K线回归策略Moving-Average-Candle-Regression-Strategy)
+# Source: https://www.fmz.com/strategy/426829  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital, 100 % of equity, pyramiding 1, commission  [lines 141-144]
+  141: strategy("MACandles-LinearRegression-Strategy", shorttitle="MALinReg - Strategy",
+  142:                      overlay=false, initial_capital = 100000, 
+  143:                      default_qty_type = strategy.percent_of_equity, default_qty_value = 100, commission_type = strategy.commission.percent, pyramiding = 1, 
+  144:                      commission_value = 0.01)

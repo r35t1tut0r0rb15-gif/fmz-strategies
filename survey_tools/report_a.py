@@ -27,6 +27,8 @@ AS_WRITTEN = {
     'exit bound to a mis-typed entry id (so one side has no bracket)': [426300],
     'strategy.close naming ids no entry uses (positions end only at the opposite entry)': [426557],
     'bands that look swapped (long test covers most of the range)': [426780],
+    'conditions written as bare statements (no effect)': [426816],
+    'entry uses the take-profit percent instead of the retrace input': [426843],
     'short threshold +50 where -50 looks meant': [426794],
 }
 
@@ -70,6 +72,11 @@ DECISIONS = [
     'partial first year).',
     '426483 (unit strategy.order on alternating crosses) holds +1 / 0 or -1 / 0 depending on the '
     'first cross in the data: data-start dependence as 366388 / 370711.',
+    'Account-currency P/L exits and equity protectors (426842, 426847) are treated as balance '
+    'checks (sizing, README) and not ported; 426556 was rejected mainly for its averaging ladder. '
+    'Confirm.',
+    '426825 rejected because its entry reads its own moving stop; it can be ported once moving '
+    '(trailing) stops are expressible.',
     'strategy.exit with no price arguments is read as "no exit" (426361 rejected, 426455 '
     'rejected for re-issued exit ids).',
     '362214 is one-sided as written (the source never opens the other side).',

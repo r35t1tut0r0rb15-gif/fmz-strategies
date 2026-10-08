@@ -559,3 +559,26 @@ index).
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A25 committed (hash in next entry). Next id: 426812.
+
+Batch A25 commit: 82e0705 (pushed, verified).
+
+## Task 4, batch A26 (ids 426812 - 426847)
+
+origin/survey-b still absent at batch start. 11 ported, 2 rejected:
+426812 NR7 inside-day short (4h); 426816 MACD above signal long only, bare-statement conditions
+kept as written (30min); 426824 Hull slope (2h); 426829 MA-candle linear regression long only
+(15min); 426834 Millebot Hull + McGinley with 5 / 10 % bracket mirrored (4h, coarse_bar_stop);
+426836 bear MACD short with signal-bar bracket (2h, coarse_bar_stop); 426838 IIR / ALMA cross
+long only (5min, DG426838); 426842 Hull + Ichimoku + MACD with broker-day return filter (4h,
+DG426842); 426843 dip from the 90-bar high with 6 % target mirrored (broker days,
+coarse_bar_stop); 426844 EMA 29 / 86 state (4h); 426847 Kijun + %R with ATR bracket mirrored
+(15min, trailing_stop_pending).
+Rejected: 426825 (criterion 1, entry reads its own moving stop, the only exit), 426832
+(criterion 3, ratio to a second instrument).
+Also: 426521, 426613 and 426619 (batches A23 / A24) now resolve a same-bar entry and exit in
+Pine's order (entry from flat stands, a close while long goes flat) instead of leaving both
+signals to the engine.
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A26 committed (hash in next entry). Next id: 426848.

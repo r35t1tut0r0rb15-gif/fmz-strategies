@@ -25,6 +25,8 @@
 - Long only (short orders commented out).
 - Daily bars are broker days.
 
+- Same bar: from flat an entry stands; while long the close goes flat (Pine order).
+
 ## FAMILY (proposed, user to confirm)
 
 `FAMILY = "ma_trend"`.

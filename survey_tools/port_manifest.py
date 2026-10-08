@@ -495,6 +495,44 @@ SIZING = {
     426808: [
         ("Commented-out strategy(): qty 10000 (not active)", 135, 135),
     ],
+    # ---- worker A, batch A26 (2026-10-08)
+    426812: [], 426816: [],
+    426824: [
+        ("Commented-out strategy(): cash 10000 (not active)", 126, 126),
+        ("Stop input (unused) and Q", 185, 187),
+    ],
+    426829: [
+        ("strategy(): initial capital, 100 % of equity, pyramiding 1, commission", 141, 144),
+    ],
+    426834: [
+        ("strategy(): 100 % of equity, initial capital, commission", 132, 132),
+        ("Risk input", 136, 136),
+        ("Long contracts from equity risk and the stop distance", 177, 178),
+        ("Short contracts from equity risk and the stop distance", 189, 190),
+    ],
+    426836: [
+        ("strategy(): initial capital 10000, 30 % of equity", 118, 118),
+    ],
+    426838: [
+        ("strategy(): cash 1000, initial capital 1000", 191, 199),
+    ],
+    426842: [
+        ("Stop loss / target in $ inputs", 146, 147),
+        ("openprofit thresholds in the close conditions (balance checks)", 178, 181),
+    ],
+    426843: [
+        ("strategy(): cash 1000, pyramiding 0, commission", 122, 123),
+        ("Entry qty = equity / close", 136, 136),
+        ("Basis points input (tick scaling of the target)", 127, 127),
+    ],
+    426844: [
+        ("strategy(): initial capital 100, 100 % of equity, commission", 125, 125),
+    ],
+    426847: [
+        ("Initial capital, balance and floating P/L", 143, 143),
+        ("Balance / floating P/L, risk and equity-protection inputs", 181, 185),
+        ("Equity protector and risk-based lot size", 191, 204),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -653,6 +691,14 @@ REJECTED_ON_READING = {
     426811: ("3", "The signal is a monthly SMA cross of another instrument (security('BMFBOVESPA:IBOV', 'M', "
                   "close)): the strategy trades the chart symbol on the Bovespa index, which the project's "
                   "bars do not carry."),
+    # ---- worker A, batch A26 (2026-10-08)
+    426825: ("1", "The only exit is strategy.exit(stop = buyStop / sellStop), a level recomputed every bar "
+                  "whose ratchet reads strategy.position_size (a moving stop, rule 2), and the entry rule "
+                  "itself reads that level (close - 3 ATR > buyStop). The position path cannot be produced "
+                  "until moving stops are expressible; port it then (decision owed)."),
+    426832: ("3", "The signal is the SMA of the ratio of the chart symbol to a second instrument "
+                  "(security('BTC_USDT:swap', close)): a spread between two contracts the project's "
+                  "single-symbol bars do not carry."),
 }
 
 DUPLICATE_ON_READING = {

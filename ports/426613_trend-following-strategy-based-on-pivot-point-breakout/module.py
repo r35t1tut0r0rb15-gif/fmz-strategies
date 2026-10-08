@@ -17,6 +17,8 @@ Interpretation choices (Pine rules in SURVEY_README.md)
     * FREQ = "3D" from the backtest header (period 3d). Three-day bars are built from broker
       days (session ending 17:00 New York), in fixed blocks of three broker-day dates counted
       from 1970-01-01 (block phase: decision owed), stamped with the first session start.
+    * Same bar: from flat an entry stands (the close finds no position); while long the entry
+      is refused and the close goes flat.
 
 Marks: none
 """
@@ -92,6 +94,27 @@ def _last(v):
     return out
 
 
+def _emit(target, index):
+    """Signals from the position each bar's orders leave (1 / 0 / -1): a change to +-1 is an
+    entry (reversing an opposite position), a change to 0 an exit of the side held."""
+    m = len(target)
+    le, lx, se, sx = (np.zeros(m, dtype=bool) for _ in range(4))
+    prev = 0
+    for i in range(m):
+        n = target[i]
+        if n != prev:
+            if n == 1:
+                le[i] = True
+            elif n == -1:
+                se[i] = True
+            elif prev == 1:
+                lx[i] = True
+            else:
+                sx[i] = True
+        prev = n
+    return tuple(pd.Series(x, index=index) for x in (le, lx, se, sx))
+
+
 def precompute(raw_1m_df, symbol_key, **params):
     return _multiday(raw_1m_df, days=3)
 
@@ -105,8 +128,16 @@ def simulate(bars_df, **params):
     c = bars_df["close"]
     le = c > ph.shift(1)
     lx = c < pl.shift(1)
-    false = pd.Series(False, index=idx)
-    return le, lx, false, false.copy()
+    entry, out = le.to_numpy(), lx.to_numpy()
+    target = np.zeros(len(entry), dtype=int)
+    pos = 0
+    for i in range(len(entry)):  # Pine order: entry, then close of the position held at the close
+        if pos == 0 and entry[i]:
+            pos = 1
+        elif pos == 1 and out[i]:
+            pos = 0
+        target[i] = pos
+    return _emit(target, bars_df.index)
 
 
 def portfolio_kwargs(**params):

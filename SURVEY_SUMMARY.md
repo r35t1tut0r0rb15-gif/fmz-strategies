@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3422 |
+| PORT_CANDIDATE | 3409 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
-| PORTED | 289 |
+| PORTED | 300 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 48 |
+| REJECTED_ON_READING | 50 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -417,7 +417,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426807 | `ports/426807_inside-bar-failure-strategy/` | PineScript | candle_pattern | none | forward x3 | 3 |
 | 426808 | `ports/426808_enhanced-moving-average-convergence-trend-strategy/` | PineScript | macd_momentum | none | fast x2, slow x2, signal x2 | 8 |
 | 426810 | `ports/426810_moving-average-entry-optimization-strategy/` | PineScript | ma_trend | none | period x2, maxwait x2, thr_atr x3 | 12 |
-| | **289 ports** | | | | | **2375** |
+| 426812 | `ports/426812_narrow-range-inside-day-short-strategy/` | PineScript | candle_pattern | none | nr_bars x2, ma_length x2 | 4 |
+| 426816 | `ports/426816_macd-macd-moving-average-crossover-strategy/` | PineScript | macd_momentum | none | fast x2, slow x2, exit_pair x2 | 8 |
+| 426824 | `ports/426824_30-30-minute-swing-trading-strategy/` | PineScript | slope_momentum | none | period x3 | 3 |
+| 426829 | `ports/426829_k-moving-average-candle-regression-strategy/` | PineScript | momentum_oscillator_turn | none | loopback x2, m_length x2, st_length x2 | 8 |
+| 426834 | `ports/426834_simple-trend-following-strategy/` | PineScript | ma_trend | coarse_bar_stop | hma_len x2, mcg_len x2, sl_pct x2 | 8 |
+| 426836 | `ports/426836_macd-bear-market-macd-short-strategy/` | PineScript | macd_momentum | coarse_bar_stop | ema_len x2, stop_pct x2, target_pct x2 | 8 |
+| 426838 | `ports/426838_combining-simple-moving-average-and-adaptive-moving-average/` | PineScript | ma_trend | none | iirx x2, iirx2 x2, alma_period x2 | 8 |
+| 426842 | `ports/426842_multi-indicator-short-term-algorithmic-trading-strategy/` | PineScript | multi_indicator_confluence | none | keh x2, dt x2 | 4 |
+| 426843 | `ports/426843_trend-following-strategy-based-on-retracement-percentage/` | PineScript | momentum_breakout | coarse_bar_stop | range_of_tops x3, take_profit_percent x2 | 6 |
+| 426844 | `ports/426844_quantitative-strategy-based-on-dual-exponential-moving-avera/` | PineScript | ma_trend | none | small_ema x2, long_ema x2 | 4 |
+| 426847 | `ports/426847_atr-atr-stop-loss-ichimoku-kijun-breakout-strategy/` | PineScript | ichimoku | trailing_stop_pending | ks_period x2, sl_atr x2, tp_atr x3 | 12 |
+| | **300 ports** | | | | | **2448** |
 
 ## Rejected on reading
 
@@ -471,6 +482,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426621 | 基于随机运气的简单交易策略Simple-Trading-Strategy-Based-on-Random-Luck.md | 1 | CoinFlip: the direction is int(math.random() + 0.5), a random draw each bar, so there is no deterministic rule to test (the ATR-scaled qty and bracket only frame the coin flip). |
 | 426781 | 双RSI指标突破策略Dual-RSI-Indicator-Breakout-Strategy.md | 1 | pyramiding = 2 with two long entry ids ('Fast Enter', 'Slow Enter') that fill together and exit separately (each with its own RSI exit and a 10 % stop under the averaged price): the position is a two-unit stack (as #426588). |
 | 426811 | 长线对冲策略Long-Term-Hedging-Strategy.md | 3 | The signal is a monthly SMA cross of another instrument (security('BMFBOVESPA:IBOV', 'M', close)): the strategy trades the chart symbol on the Bovespa index, which the project's bars do not carry. |
+| 426825 | 均线方向调整趋势策略Moving-Average-Directionality-Trend-Strategy.md | 1 | The only exit is strategy.exit(stop = buyStop / sellStop), a level recomputed every bar whose ratchet reads strategy.position_size (a moving stop, rule 2), and the entry rule itself reads that level (close - 3 ATR > buyStop). The position path cannot be produced until moving stops are expressible; port it then (decision owed). |
+| 426832 | 比较相对强度策略Comparative-Relative-Strength-Strategy.md | 3 | The signal is the SMA of the ratio of the chart symbol to a second instrument (security('BTC_USDT:swap', close)): a spread between two contracts the project's single-symbol bars do not carry. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

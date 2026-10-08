@@ -27,6 +27,8 @@
 - `strategy.close("Up", shortCondition)`: second argument read as `when`.
 - Long only. Daily bars are broker days.
 
+- Same bar: from flat an entry stands; while long the close goes flat (Pine order).
+
 ## FAMILY (proposed, user to confirm)
 
 `FAMILY = "supertrend"`.

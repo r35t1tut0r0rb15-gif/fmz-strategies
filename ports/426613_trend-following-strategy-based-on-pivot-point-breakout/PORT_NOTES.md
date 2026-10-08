@@ -26,6 +26,8 @@
 - Long only.
 - 3-day bars from broker days in fixed blocks from 1970-01-01 (decision owed).
 
+- Same bar: from flat an entry stands; while long the close goes flat (Pine order).
+
 ## FAMILY (proposed, user to confirm)
 
 `FAMILY = "pivot_reversal"`.

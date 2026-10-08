@@ -47,6 +47,8 @@ fmz_id,file,final_outcome,criterion,reason
 426621,基于随机运气的简单交易策略Simple-Trading-Strategy-Based-on-Random-Luck.md,REJECTED_ON_READING,1,"CoinFlip: the direction is int(math.random() + 0.5), a random draw each bar, so there is no deterministic rule to test (the ATR-scaled qty and bracket only frame the coin flip)."
 426781,双RSI指标突破策略Dual-RSI-Indicator-Breakout-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 2 with two long entry ids ('Fast Enter', 'Slow Enter') that fill together and exit separately (each with its own RSI exit and a 10 % stop under the averaged price): the position is a two-unit stack (as #426588)."
 426811,长线对冲策略Long-Term-Hedging-Strategy.md,REJECTED_ON_READING,3,"The signal is a monthly SMA cross of another instrument (security('BMFBOVESPA:IBOV', 'M', close)): the strategy trades the chart symbol on the Bovespa index, which the project's bars do not carry."
+426825,均线方向调整趋势策略Moving-Average-Directionality-Trend-Strategy.md,REJECTED_ON_READING,1,"The only exit is strategy.exit(stop = buyStop / sellStop), a level recomputed every bar whose ratchet reads strategy.position_size (a moving stop, rule 2), and the entry rule itself reads that level (close - 3 ATR > buyStop). The position path cannot be produced until moving stops are expressible; port it then (decision owed)."
+426832,比较相对强度策略Comparative-Relative-Strength-Strategy.md,REJECTED_ON_READING,3,"The signal is the SMA of the ratio of the chart symbol to a second instrument (security('BTC_USDT:swap', close)): a spread between two contracts the project's single-symbol bars do not carry."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -337,3 +339,14 @@ fmz_id,file,final_outcome,criterion,reason
 426807,里向破坏策略Inside-Bar-Failure-Strategy.md,PORTED,,ports/426807_inside-bar-failure-strategy/
 426808,增强移动平均聚合趋势策略Enhanced-Moving-Average-Convergence-Trend-Strategy.md,PORTED,,ports/426808_enhanced-moving-average-convergence-trend-strategy/
 426810,移动均线进场优化策略Moving-Average-Entry-Optimization-Strategy.md,PORTED,,ports/426810_moving-average-entry-optimization-strategy/
+426812,窄幅里程策略Narrow-Range-Inside-Day-Short-Strategy.md,PORTED,,ports/426812_narrow-range-inside-day-short-strategy/
+426816,MACD均线交叉策略MACD-Moving-Average-Crossover-Strategy.md,PORTED,,ports/426816_macd-macd-moving-average-crossover-strategy/
+426824,30分钟震荡交易策略30-Minute-Swing-Trading-Strategy.md,PORTED,,ports/426824_30-30-minute-swing-trading-strategy/
+426829,移动平均K线回归策略Moving-Average-Candle-Regression-Strategy.md,PORTED,,ports/426829_k-moving-average-candle-regression-strategy/
+426834,简易跟踪趋势策略Simple-Trend-Following-Strategy.md,PORTED,,ports/426834_simple-trend-following-strategy/
+426836,熊市MACD做空策略Bear-Market-MACD-Short-Strategy.md,PORTED,,ports/426836_macd-bear-market-macd-short-strategy/
+426838,组合简单移动平均线与自适应移动平均线的策略Combining-Simple-Moving-Average-and-Adaptive-Moving-Average-Strategy.md,PORTED,,ports/426838_combining-simple-moving-average-and-adaptive-moving-average/
+426842,多指标组合的短线量化交易策略Multi-Indicator-Short-Term-Algorithmic-Trading-Strategy.md,PORTED,,ports/426842_multi-indicator-short-term-algorithmic-trading-strategy/
+426843,基于回调比例的趋势追踪策略Trend-Following-Strategy-Based-on-Retracement-Percentage.md,PORTED,,ports/426843_trend-following-strategy-based-on-retracement-percentage/
+426844,双指数移动平均线交叉的量化策略Quantitative-Strategy-Based-on-Dual-Exponential-Moving-Average-Crossover.md,PORTED,,ports/426844_quantitative-strategy-based-on-dual-exponential-moving-avera/
+426847,基于ATR止损的一目均衡策略ATR-Stop-Loss-Ichimoku-Kijun-Breakout-Strategy.md,PORTED,,ports/426847_atr-atr-stop-loss-ichimoku-kijun-breakout-strategy/

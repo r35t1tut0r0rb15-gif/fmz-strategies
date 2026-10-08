@@ -22,6 +22,8 @@ Interpretation choices (Pine rules in SURVEY_README.md)
     * strategy.close("Up", shortCondition): the second argument is `when` (Pine v5 of 2023).
     * Long only. Daily bars are broker days (session ending 17:00 New York), stamped with the
       session start.
+    * Same bar: from flat an entry stands (the close finds no position); while long the entry
+      is refused and the close goes flat.
 
 Marks: none
 """
@@ -133,6 +135,27 @@ def _kama(x, n):
     return pd.Series(out, index=x.index)
 
 
+def _emit(target, index):
+    """Signals from the position each bar's orders leave (1 / 0 / -1): a change to +-1 is an
+    entry (reversing an opposite position), a change to 0 an exit of the side held."""
+    m = len(target)
+    le, lx, se, sx = (np.zeros(m, dtype=bool) for _ in range(4))
+    prev = 0
+    for i in range(m):
+        n = target[i]
+        if n != prev:
+            if n == 1:
+                le[i] = True
+            elif n == -1:
+                se[i] = True
+            elif prev == 1:
+                lx[i] = True
+            else:
+                sx[i] = True
+        prev = n
+    return tuple(pd.Series(x, index=index) for x in (le, lx, se, sx))
+
+
 def precompute(raw_1m_df, symbol_key, **params):
     return _daily(raw_1m_df)
 
@@ -149,8 +172,16 @@ def simulate(bars_df, **params):
     band1, band2 = three.max(axis=1, skipna=False), three.min(axis=1, skipna=False)
     le = (h > band1) & (h.shift(1) <= band1.shift(1))
     lx = ((l < band2) & (l.shift(1) >= band2.shift(1))) | (c < band2)
-    false = pd.Series(False, index=bars_df.index)
-    return le, lx, false, false.copy()
+    entry, out = le.to_numpy(), lx.to_numpy()
+    target = np.zeros(len(entry), dtype=int)
+    pos = 0
+    for i in range(len(entry)):  # Pine order: entry, then close of the position held at the close
+        if pos == 0 and entry[i]:
+            pos = 1
+        elif pos == 1 and out[i]:
+            pos = 0
+        target[i] = pos
+    return _emit(target, bars_df.index)
 
 
 def portfolio_kwargs(**params):

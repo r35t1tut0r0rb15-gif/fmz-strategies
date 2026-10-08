@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #426838 (组合简单移动平均线与自适应移动平均线的策略Combining-Simple-Moving-Average-and-Adaptive-Moving-Average-Strategy)
+# Source: https://www.fmz.com/strategy/426838  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): cash 1000, initial capital 1000  [lines 191-199]
+  191: strategy(title = "Combination Parabolic MA/IIR/ALMA Strategy",
+  192:          shorttitle = "MA-QuickE", 
+  193:          overlay = true, 
+  194:          backtest_fill_limits_assumption = 0, 
+  195:          default_qty_type = strategy.cash, 
+  196:          default_qty_value = 1000, 
+  197:          initial_capital = 1000,
+  198:          currency = currency.USD,
+  199:          linktoseries = true)

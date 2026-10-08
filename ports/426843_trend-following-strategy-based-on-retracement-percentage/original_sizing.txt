@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #426843 (基于回调比例的趋势追踪策略Trend-Following-Strategy-Based-on-Retracement-Percentage)
+# Source: https://www.fmz.com/strategy/426843  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): cash 1000, pyramiding 0, commission  [lines 122-123]
+  122: strategy("test_%_down_up", overlay = false, initial_capital = 1000, pyramiding = 0, default_qty_value = 1000,
+  123:      default_qty_type = strategy.cash, precision = 8, commission_type = strategy.commission.percent, commission_value = 0.1)
+
+## Entry qty = equity / close  [lines 136-136]
+  136:     strategy.entry("Long1", strategy.long, qty = strategy.equity/close)
+
+## Basis points input (tick scaling of the target)  [lines 127-127]
+  127: basis_points = input(title="Basis points, if asset has two decimals use 100, three decimals 1000, etc.", defval=100, type=input.integer, minval=1)

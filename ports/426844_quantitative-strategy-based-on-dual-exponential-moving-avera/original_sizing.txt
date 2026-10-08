@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426844 (双指数移动平均线交叉的量化策略Quantitative-Strategy-Based-on-Dual-Exponential-Moving-Average-Crossover)
+# Source: https://www.fmz.com/strategy/426844  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital 100, 100 % of equity, commission  [lines 125-125]
+  125: strategy("EMA Cross Strategy", overlay=true, initial_capital=100, currency="USD", default_qty_type=strategy.percent_of_equity, default_qty_value=100, commission_type=strategy.commission.percent, commission_value=0.075)

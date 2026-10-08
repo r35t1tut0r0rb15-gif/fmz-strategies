@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #426824 (30分钟震荡交易策略30-Minute-Swing-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/426824  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): cash 10000 (not active)  [lines 126-126]
+  126: // strategy("cowboy30minswing", overlay=true,default_qty_type=strategy.cash,default_qty_value=10000,scale=true,initial_capital=10000,currency=currency.USD)
+
+## Stop input (unused) and Q  [lines 185-187]
+  185: sl = input(75)
+  186: Stop = sl * 10
+  187: Q = 100
