@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3539 |
+| PORT_CANDIDATE | 3526 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 196 |
-| REJECTED_ON_READING | 24 |
+| PORTED | 208 |
+| REJECTED_ON_READING | 25 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -324,7 +324,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 370653 | `ports/370653_supertrend/` | PineScript | supertrend | none | period x3, mult x3 | 9 |
 | 370655 | `ports/370655_gann-high-low/` | PineScript | ma_envelope_breakout | none | h_period x3, l_period x3 | 9 |
 | 370711 | `ports/370711_t-step-lsma/` | PineScript | slope_momentum | none | length x3, sc x3 | 9 |
-| | **196 ports** | | | | | **1767** |
+| 376314 | `ports/376314_bully-signals/` | PineScript | rsi_oscillator | none | rsi_len x2, sf x2, qqe x2 | 8 |
+| 379757 | `ports/379757_planb-quant-investing-101-v2/` | PineScript | rsi_oscillator | none | sell_level x2, drop x2, buy_level x2 | 8 |
+| 379760 | `ports/379760_rsi-zigzag22/` | PineScript | rsi_oscillator | none | length x3, zz_pct x3 | 9 |
+| 380007 | `ports/380007_simple-1m-scalper-by-thimblemunch/` | PineScript | multi_indicator_confluence | bar_size_pending | trend_len x2, trend_mult x2, stc_len x2 | 8 |
+| 380219 | `ports/380219_candle-strength/` | PineScript | candle_pattern | none |  | 0 |
+| 380245 | `ports/380245_tue-adx-macd-confluence-strategy/` | PineScript | directional_movement | coarse_bar_stop | di_len x2, stop_atr x3 | 6 |
+| 380251 | `ports/380251_ema-scalpeur-rsi-short/` | PineScript | ma_trend | none | ema_l x2, ema_l2 x2, rsi_len x2 | 8 |
+| 380277 | `ports/380277_gooners-btc-weekly-rsi-hack-strategy/` | PineScript | rsi_oscillator | none | length x3, level x3 | 9 |
+| 380291 | `ports/380291_ema-2155200/` | PineScript | ma_trend | none | fast x2, mid x2, slow x2 | 8 |
+| 380331 | `ports/380331_moving-average-cross/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| 380369 | `ports/380369_bullish-bearish-engulfing/` | PineScript | candle_pattern | bar_size_pending | scale x3, min_atr x3 | 9 |
+| 380396 | `ports/380396_simple-buy-sell-signals/` | PineScript | ma_trend_oscillator_pullback | none | rsi_len x2, ma2_len x2 | 4 |
+| | **208 ports** | | | | | **1848** |
 
 ## Rejected on reading
 
@@ -354,6 +366,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 368717 | Inverted-Hammer-Extended-Options.md | 1 | Long entries only (inverted hammer below EMA 10), with no exit, stop or reversal anywhere: after the first signal the position is held for the rest of the data, so there is no repeatable entry/exit rule to test (as #62163). |
 | 368734 | Brick-count-Renko.md | 1 | The orders test bar counts as booleans: `if brick_red` (non-green bars among the last 40) is true unless 40 green bars in a row, so the script is long on practically every bar; the brick cross it labels never reaches the orders. No defined signal to test. |
 | 369999 | Directional-Movement-Oscillator-DMI.md | 1 | The orders test a float and a plot handle as booleans: `if diosc` (DI+ - DI-, true whenever non-zero) -> long, `else if p2` (a plot id) -> short. Long on practically every bar; the short branch depends on how the runtime casts a plot handle. No defined signal to test. |
+| 370728 | Smooth-HA-Candles-MTF-v1.md | 1 | The orders read a nested request: security(heikinashi(ticker), 'D', x) where x is itself security(ticker, 'D', open[1], lookahead_on). Which daily bar (and whether Heikin-Ashi or regular prices) reaches the orders depends on how the runtime resolves a nested request on a different ticker; the higher-timeframe values are undefined without choosing (as #361719). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

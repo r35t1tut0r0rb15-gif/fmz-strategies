@@ -42,6 +42,8 @@ DECISIONS = [
     '200131 and 361827 compute the indicator change as a log return (as the source does).',
     '361719 rejected: request.security resolution "18000" is undefined; the project would have to '
     'define it before it can be ported.',
+    '370728 rejected: nested request.security on a Heikin-Ashi ticker (undefined which daily values '
+    'reach the orders); same kind of decision as 361719.',
     '362214 is one-sided as written (the source never opens the other side).',
     '55839 keeps FREQ "1h" (author states hourly bars in the text); 103070 keeps PERIOD_M15 from '
     'the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source\'s '

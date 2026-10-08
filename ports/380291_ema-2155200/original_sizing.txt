@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #380291 (EMA-2155200)
+# Source: https://www.fmz.com/strategy/380291  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Long entry with qty 100  [lines 55-55]
+   55: strategy.entry("Long", strategy.long, 100, when=longCondition)
+
+## Short entry with qty 100  [lines 62-62]
+   62: strategy.entry("Short", strategy.short, 100, when=shortCondition)

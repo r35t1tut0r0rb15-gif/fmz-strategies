@@ -286,6 +286,27 @@ SIZING = {
     # ---- worker A, batch A16 (2026-10-08): no sizing code in these sources
     367643: [], 368715: [], 368736: [], 368738: [], 368749: [], 368777: [], 369392: [], 370653: [], 370655: [],
     370711: [],
+    # ---- worker A, batch A17 (2026-10-08)
+    376314: [],
+    379757: [
+        ("strategy(): cash qty 1000, pyramiding 0", 41, 41),
+        ("Optional stop loss / take profit (off by default)", 92, 103),
+    ],
+    379760: [], 380007: [], 380219: [], 380245: [],
+    380251: [
+        ("strategy(): initial capital 1000", 39, 39),
+    ],
+    380277: [
+        ("strategy(): 100 % of equity, initial capital 1000000", 34, 34),
+    ],
+    380291: [
+        ("Long entry with qty 100", 55, 55),
+        ("Short entry with qty 100", 62, 62),
+    ],
+    380331: [
+        ("strategy(): 100 % of equity, margin 1, commission", 42, 42),
+    ],
+    380369: [], 380396: [],
 }
 
 REJECTED_ON_READING = {
@@ -360,6 +381,11 @@ REJECTED_ON_READING = {
     369999: ("1", "The orders test a float and a plot handle as booleans: `if diosc` (DI+ - DI-, true whenever "
                   "non-zero) -> long, `else if p2` (a plot id) -> short. Long on practically every bar; the short "
                   "branch depends on how the runtime casts a plot handle. No defined signal to test."),
+    # ---- worker A, batch A17 (2026-10-08)
+    370728: ("1", "The orders read a nested request: security(heikinashi(ticker), 'D', x) where x is itself "
+                  "security(ticker, 'D', open[1], lookahead_on). Which daily bar (and whether Heikin-Ashi or "
+                  "regular prices) reaches the orders depends on how the runtime resolves a nested request on "
+                  "a different ticker; the higher-timeframe values are undefined without choosing (as #361719)."),
 }
 
 DUPLICATE_ON_READING = {

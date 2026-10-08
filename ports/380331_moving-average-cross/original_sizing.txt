@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #380331 (Moving-Average-Cross)
+# Source: https://www.fmz.com/strategy/380331  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, margin 1, commission  [lines 42-42]
+   42: strategy("Moving Average Cross", overlay=true, commission_type= strategy.commission.percent, default_qty_value=100, default_qty_type=strategy.percent_of_equity, margin_long = 1, margin_short=1)

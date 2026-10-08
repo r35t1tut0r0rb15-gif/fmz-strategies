@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #380251 (EMA-SCALPEUR-RSi-SHORT)
+# Source: https://www.fmz.com/strategy/380251  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital 1000  [lines 39-39]
+   39: strategy(title="EMA SCALPEUR", overlay=true, initial_capital = 1000)

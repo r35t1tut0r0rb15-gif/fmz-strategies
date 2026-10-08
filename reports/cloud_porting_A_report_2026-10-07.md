@@ -4,19 +4,19 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 
 ## Counts (worker A, ids 126968 and up)
 
-- Ported: **190** (8 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892)
-- Rejected on reading: **17** (criterion 1: 15, criterion 2: 2)
+- Ported: **202** (9 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245)
+- Rejected on reading: **18** (criterion 1: 16, criterion 2: 2)
 - Exact duplicate on reading (set aside, rule 7): **1** (128126 of 127691)
-- Last id reached: **370711**; next id in the queue: **370728**
+- Last id reached: **380396**; next id in the queue: **380446**
 - Existing batch-1 ports re-marked under rule 1 (logic unchanged): 11604, 42283, 42451, 119038 (bar_size_pending 4)
 
 ### Marks on worker A ports
 
 | Mark | Ports |
 |---|---|
-| bar_size_pending | 13 |
+| bar_size_pending | 15 |
 | trailing_stop_pending | 4 |
-| coarse_bar_stop | 1 |
+| coarse_bar_stop | 2 |
 | stop_is_entry_condition | 0 |
 
 ### Rejections (criterion, id, reason)
@@ -38,9 +38,11 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - 368717 (criterion 1): Long entries only (inverted hammer below EMA 10), with no exit, stop or reversal anywhere: after the first signal the position is held for the rest of the data, so there is no repeatable entry/exit rule to test (as #62163).
 - 368734 (criterion 1): The orders test bar counts as booleans: `if brick_red` (non-green bars among the last 40) is true unless 40 green bars in a row, so the script is long on practically every bar; the brick cross it labels never reaches the orders. No defined signal to test.
 - 369999 (criterion 1): The orders test a float and a plot handle as booleans: `if diosc` (DI+ - DI-, true whenever non-zero) -> long, `else if p2` (a plot id) -> short. Long on practically every bar; the short branch depends on how the runtime casts a plot handle. No defined signal to test.
+- 370728 (criterion 1): The orders read a nested request: security(heikinashi(ticker), 'D', x) where x is itself security(ticker, 'D', open[1], lookahead_on). Which daily bar (and whether Heikin-Ashi or regular prices) reaches the orders depends on how the runtime resolves a nested request on a different ticker; the higher-timeframe values are undefined without choosing (as #361719).
 
 ### Commits (newest first)
 
+- `8fc418c survey A batch A16: 10 ports, 3 rejected (ids 367643-370711)`
 - `1c121fa survey A batch A15: 13 ports (ids 366641-367572)`
 - `8d1813b survey A batch A14: 13 ports (ids 365858-366430)`
 - `a0358a3 survey A batch A13: 13 ports (ids 365419-365727)`
@@ -74,11 +76,11 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - Task 1: rules 2026-10-07 in SURVEY_README.md; check_ports.py extended (Marks line, bar_size_pending only with its mark, stop Series shifted inside stops(), coarse_bar_stop, left-labelled resampling); all ports pass.
 - Task 2: DUPLICATE 251 explained (reports/near_duplicates_2026-10-07.md); near_duplicate_groups.csv over all 3,747 PORT_CANDIDATE rows (5-token shingles, exact Jaccard; >= 0.80 none new, 0.65-0.80 band grouped as ND).
 - Task 3: no_bar_size.csv: 484 of 5,806 files have no bar size (85 with stop logic).
-- Task 4: 190 ported, 17 rejected, 1 duplicate on reading, ids 126968 to 370711.
+- Task 4: 202 ported, 18 rejected, 1 duplicate on reading, ids 126968 to 380396.
 
 **Failed / not done**
 
-- Task 4 is not complete: the queue continues at 370728; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
+- Task 4 is not complete: the queue continues at 380446; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
 - Rule 5 module (1) ("exactly as written") cannot be expressed by the contract; no stop_is_entry_condition port exists.
 
 **Decisions owed**
@@ -90,8 +92,9 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 5. 333269 has no numeric defaults in the source (grid chosen from the argument table only).
 6. 200131 and 361827 compute the indicator change as a log return (as the source does).
 7. 361719 rejected: request.security resolution "18000" is undefined; the project would have to define it before it can be ported.
-8. 362214 is one-sided as written (the source never opens the other side).
-9. 55839 keeps FREQ "1h" (author states hourly bars in the text); 103070 keeps PERIOD_M15 from the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source's bar size, not as a choice.
-10. FAMILY values are proposals ("user to confirm") in every port.
-11. Sources whose orders are degenerate were rejected on reading (criterion 1): 368717 (long entries, no exit at all), 368734 and 369999 (a count / plot handle tested as a boolean, so long on almost every bar). Confirm that "no testable rule" is a valid rejection, or port them as written.
-12. Some ports depend on where the data starts (Pine cum() / bar_index running means: 366388 cancels it, 370711 does not); acceptable?
+8. 370728 rejected: nested request.security on a Heikin-Ashi ticker (undefined which daily values reach the orders); same kind of decision as 361719.
+9. 362214 is one-sided as written (the source never opens the other side).
+10. 55839 keeps FREQ "1h" (author states hourly bars in the text); 103070 keeps PERIOD_M15 from the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source's bar size, not as a choice.
+11. FAMILY values are proposals ("user to confirm") in every port.
+12. Sources whose orders are degenerate were rejected on reading (criterion 1): 368717 (long entries, no exit at all), 368734 and 369999 (a count / plot handle tested as a boolean, so long on almost every bar). Confirm that "no testable rule" is a valid rejection, or port them as written.
+13. Some ports depend on where the data starts (Pine cum() / bar_index running means: 366388 cancels it, 370711 does not); acceptable?

@@ -385,3 +385,20 @@ Rejected (criterion 1, no testable rule): 368717 (long entries, no exit), 368734
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A16 committed (hash in next entry). Next id: 370728.
+
+Batch A16 commit: 8fc418c (pushed, verified).
+
+## Task 4, batch A17 (ids 370728 - 380396)
+
+origin/survey-b still absent at batch start. 12 ported, 1 rejected:
+376314 Bully QQE (1h, ND365028 code); 379757 PlanB RSI bounce (4h); 379760 RSI(1) zigzag (4h,
+ND379760); 380007 STC + ATR trail scalper (bar_size_pending); 380219 candle colour (4h, 1 trial);
+380245 DMI/MACD with NY session filter and ATR-adapted stop (4h, coarse_bar_stop); 380251 EMA cross
+short only (4h, DG380251); 380277 RSI 52 long only (4h); 380291 EMA 21/55/200 with RSI closes (daily
+broker days, DG380291); 380331 SMA 29/69 cross (4h); 380369 scaled engulfing (bar_size_pending,
+min body -> ATR); 380396 MA cross with RSI side (4h).
+Rejected: 370728 (criterion 1: nested request.security on a Heikin-Ashi ticker, undefined).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A17 committed (hash in next entry). Next id: 380446.

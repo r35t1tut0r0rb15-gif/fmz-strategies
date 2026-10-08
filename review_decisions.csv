@@ -23,6 +23,7 @@ fmz_id,file,final_outcome,criterion,reason
 368717,Inverted-Hammer-Extended-Options.md,REJECTED_ON_READING,1,"Long entries only (inverted hammer below EMA 10), with no exit, stop or reversal anywhere: after the first signal the position is held for the rest of the data, so there is no repeatable entry/exit rule to test (as #62163)."
 368734,Brick-count-Renko.md,REJECTED_ON_READING,1,"The orders test bar counts as booleans: `if brick_red` (non-green bars among the last 40) is true unless 40 green bars in a row, so the script is long on practically every bar; the brick cross it labels never reaches the orders. No defined signal to test."
 369999,Directional-Movement-Oscillator-DMI.md,REJECTED_ON_READING,1,"The orders test a float and a plot handle as booleans: `if diosc` (DI+ - DI-, true whenever non-zero) -> long, `else if p2` (a plot id) -> short. Long on practically every bar; the short branch depends on how the runtime casts a plot handle. No defined signal to test."
+370728,Smooth-HA-Candles-MTF-v1.md,REJECTED_ON_READING,1,"The orders read a nested request: security(heikinashi(ticker), 'D', x) where x is itself security(ticker, 'D', open[1], lookahead_on). Which daily bar (and whether Heikin-Ashi or regular prices) reaches the orders depends on how the runtime resolves a nested request on a different ticker; the higher-timeframe values are undefined without choosing (as #361719)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -220,3 +221,15 @@ fmz_id,file,final_outcome,criterion,reason
 370653,SuperTrend.md,PORTED,,ports/370653_supertrend/
 370655,Gann-High-Low.md,PORTED,,ports/370655_gann-high-low/
 370711,T-Step-LSMA.md,PORTED,,ports/370711_t-step-lsma/
+376314,Bully-Signals.md,PORTED,,ports/376314_bully-signals/
+379757,PlanB-Quant-Investing-101-v2.md,PORTED,,ports/379757_planb-quant-investing-101-v2/
+379760,RSI-ZIGZAG22.md,PORTED,,ports/379760_rsi-zigzag22/
+380007,Simple-1m-Scalper-by-thimblemunch.md,PORTED,,ports/380007_simple-1m-scalper-by-thimblemunch/
+380219,Candle-Strength.md,PORTED,,ports/380219_candle-strength/
+380245,TUE-ADX-MACD-Confluence-Strategy.md,PORTED,,ports/380245_tue-adx-macd-confluence-strategy/
+380251,EMA-SCALPEUR-RSi-SHORT.md,PORTED,,ports/380251_ema-scalpeur-rsi-short/
+380277,Gooners-BTC-Weekly-RSI-Hack-Strategy.md,PORTED,,ports/380277_gooners-btc-weekly-rsi-hack-strategy/
+380291,EMA-2155200.md,PORTED,,ports/380291_ema-2155200/
+380331,Moving-Average-Cross.md,PORTED,,ports/380331_moving-average-cross/
+380369,Bullish-Bearish-Engulfing.md,PORTED,,ports/380369_bullish-bearish-engulfing/
+380396,Simple-Buy-Sell-Signals.md,PORTED,,ports/380396_simple-buy-sell-signals/
