@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #426904 (多因子融合反转追踪策略Multi-factor-Reversal-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/426904  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

@@ -605,3 +605,21 @@ other grounds).
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A27 committed (hash in next entry). Next id: 426888.
+
+Batch A27 commit: 18ae16f (pushed, verified).
+
+## Task 4, batch A28 (ids 426888 - 426925)
+
+origin/survey-b still absent at batch start (worker restarted after a usage limit while reading;
+nothing had been written). 13 ported, 0 rejected:
+426888 combo 123 + smoothed Williams A/D (1h, ND426888); 426889 Bagheri IG with ATR bracket
+(4min, DG426889); 426891 KST cross (3h); 426894 HHLL reversed (2h); 426895 Donchian breakout
+long only (5min, ND426895); 426901 Easymoku Ichimoku x 5.9 (5min; numeric reading of bool flags,
+decision owed); 426902 Gaan EMA (2min); 426904 combo 123 + reverse-engineered RSI (2h); 426905
+NR7 inside-day long (10min); 426906 close vs TEMA (broker days); 426908 EMA 9 / SMA 40 cross
+(1h); 426923 London breakout with re-issued 0.5 % bracket, UTC sessions (30min,
+trailing_stop_pending); 426925 golden cross long only (2min).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A28 committed (hash in next entry). Next id: 426928.

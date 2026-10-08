@@ -41,11 +41,12 @@ Last updated 2026-10-07 by cloud worker A (rules 2026-10-07; batches A1-).
 | A25 | 426780 - 426811 | 426780, 426783, 426786, 426794, 426797, 426799, 426801, 426806, 426807, 426808, 426810 | 426781, 426811 |
 | A26 | 426812 - 426847 | 426812, 426816, 426824, 426829, 426834, 426836, 426838, 426842, 426843, 426844, 426847 | 426825, 426832 |
 | A27 | 426848 - 426886 (+ re-read 426461, 426509, 426588) | 426848, 426852, 426854, 426855, 426856, 426879, 426883, 426884, 426885, 426886, 426461, 426509, 426588 | 426849, 426850, 426882 |
+| A28 | 426888 - 426925 | 426888, 426889, 426891, 426894, 426895, 426901, 426902, 426904, 426905, 426906, 426908, 426923, 426925 | - |
 
 ## Next
 
 1. Continue the queue: `overall == PORT_CANDIDATE` in `screening.csv`, ascending `fmz_id`,
-   skipping ids already in `review_decisions.csv`. **Next id: 426888** (worker A works upward
+   skipping ids already in `review_decisions.csv`. **Next id: 426928** (worker A works upward
    from 126968 on branch `survey`; worker B ports ids >= 439378 on `survey-b`, then works
    down from 439377; A stops when its next id is one B has done).
    Worker A's log with resume points: `reports/cloud_porting_A_LOG_2026-10-07.md`.

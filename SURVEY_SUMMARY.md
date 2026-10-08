@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3396 |
+| PORT_CANDIDATE | 3383 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
-| PORTED | 313 |
+| PORTED | 326 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | REJECTED_ON_READING | 50 |
@@ -441,7 +441,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426884 | `ports/426884_k-simple-quantitative-trading-strategy-based-on-candle-direc/` | PineScript | candle_pattern | none |  | 0 |
 | 426885 | `ports/426885_breakout-strategy-based-on-swing-highs-and-lows/` | PineScript | pivot_reversal | coarse_bar_stop | sl_atr x3 | 3 |
 | 426886 | `ports/426886_ema-trend-following-strategy-based-on-ema-crossover/` | PineScript | ma_trend | none | length x3, ratio x2 | 6 |
-| | **313 ports** | | | | | **2514** |
+| 426888 | `ports/426888_quantitative-trading-strategy-with-multi-indicator-confirmat/` | PineScript | multi_indicator_confluence | none | length x2, length_wad x2 | 4 |
+| 426889 | `ports/426889_multi-indicator-quantitative-strategy-for-cryptocurrencies/` | PineScript | multi_indicator_confluence | none | tp_atr x3 | 3 |
+| 426891 | `ports/426891_kst/` | PineScript | momentum_oscillator_turn | none | scale x3, siglen x2 | 6 |
+| 426894 | `ports/426894_called-the-dual-peak-reversal-trading-strategy/` | PineScript | ma_envelope_breakout | none | length x3, reverse x2 | 6 |
+| 426895 | `ports/426895_breakout-tracking-strategy/` | PineScript | donchian_breakout | none | length x2, exit_option x2 | 4 |
+| 426901 | `ports/426901_ichimoku-cloud-market-analysis-strategy/` | PineScript | ichimoku | none | multiplier x3 | 3 |
+| 426902 | `ports/426902_ema-gaan-ema-golden-cross-strategy/` | PineScript | ma_trend | none | fast x2, mid x2, slow x2 | 8 |
+| 426904 | `ports/426904_multi-factor-reversal-tracking-strategy/` | PineScript | multi_indicator_confluence | none | length x2, value x2, wild_per x2 | 8 |
+| 426905 | `ports/426905_narrow-range-inside-day-breakout-strategy/` | PineScript | candle_pattern | none | nr_bars x2, ma_length x2 | 4 |
+| 426906 | `ports/426906_ema-triple-ema-breakout-strategy/` | PineScript | ma_trend | none | length x3 | 3 |
+| 426908 | `ports/426908_fast-and-slow-moving-average-crossover-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| 426923 | `ports/426923_london-breakout-day-trading-strategy/` | PineScript | calendar_seasonal | trailing_stop_pending | sl x2, tp x2 | 4 |
+| 426925 | `ports/426925_golden-cross-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| | **326 ports** | | | | | **2575** |
 
 ## Rejected on reading
 
@@ -486,11 +499,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426364 | KD-Dual-direction-Tracking-Strategy.md | 1 | KD inventory model: strategy.order adds or removes one default unit per bar until the position reaches a target share count (0.33 steps of 20 / -10 shares); the position size path is the strategy (as #380530). |
 | 426455 | Enhanced-Fish-Net-Strategy.md | 1 | Four strategy.exit calls share the id 'Exit' with no from_entry: two set a 300-tick stop with a 150 / 50-tick trailing stop, two (when= buy / sell) set no exit level at all. Which exit order is live on a bar depends on how the runtime merges re-issued ids; the exits are undefined. |
 | 426478 | 双Gann通道突破买卖策略Gann-Double-Channel-Breakout-Trading-Strategy.md | 1 | The signal is a crossover of security(tickerid, '375', close) and security(..., open) on the daily header chart: a 375-minute resolution below the chart's, whose value per daily bar (and 375-minute block alignment on a 24 h market) is undefined (as #426261). |
-| 426556 | 周末区间震荡策略Weekend-Range-Trading-Strategy.md | 1 | Weekend range bot: leveraged entries plus 'Adding to Short / Long Entry' orders below / above the average price (a pyramided averaging ladder), and an exit when strategy.openprofit / initial capital exceeds 10 %, which depends on the position size (as #426461). |
+| 426556 | 周末区间震荡策略Weekend-Range-Trading-Strategy.md | 1 | Weekend range bot on 2-day header bars: the reference is security(ticker, 'D', close[days_since_friday]), a daily (lower-than-chart) resolution whose value per 2-day bar is undefined (as #426261), and the weekday rules (Saturday / Sunday entries, Monday close) cannot be resolved on 2-day bars. (Its averaging adds and openprofit exit would be sizing; re-worded in A27.) |
 | 426570 | 海龟空头突破加仓策略Turtle-Short-Breakout-Pyramiding-Strategy.md | 1 | Turtle short with pyramiding = 5: up to five 'P' adds every pyramidInput x N below the last add, with the stop and the win / loss bookkeeping driven by the averaged price of the stacked units (a pyramided ladder, as #395966). |
 | 426610 | 基于三重指数移动平均和线性回归的趋势跟踪策略Trend-Following-Strategy-Based-on-Triple-EMA-and-Linear-Regression.md | 1 | Exits are a partial take-profit ladder (strategy.exit qty_percent 20 % at +15 % and 20 % at +30 %) plus a full close: partial exits cannot be expressed as one net position's signals (as #365389). |
 | 426621 | 基于随机运气的简单交易策略Simple-Trading-Strategy-Based-on-Random-Luck.md | 1 | CoinFlip: the direction is int(math.random() + 0.5), a random draw each bar, so there is no deterministic rule to test (the ATR-scaled qty and bracket only frame the coin flip). |
-| 426781 | 双RSI指标突破策略Dual-RSI-Indicator-Breakout-Strategy.md | 1 | pyramiding = 2 with two long entry ids ('Fast Enter', 'Slow Enter') that fill together and exit separately (each with its own RSI exit and a 10 % stop under the averaged price): the position is a two-unit stack (as #426588). |
+| 426781 | 双RSI指标突破策略Dual-RSI-Indicator-Breakout-Strategy.md | 1 | pyramiding = 2 with two long entry ids ('Fast Enter', 'Slow Enter') that fill together and exit separately (each with its own RSI exit and a 10 % stop under the averaged price): each unit leaves on its own exit, i.e. partial exits of the net position (as #365389). |
 | 426811 | 长线对冲策略Long-Term-Hedging-Strategy.md | 3 | The signal is a monthly SMA cross of another instrument (security('BMFBOVESPA:IBOV', 'M', close)): the strategy trades the chart symbol on the Bovespa index, which the project's bars do not carry. |
 | 426825 | 均线方向调整趋势策略Moving-Average-Directionality-Trend-Strategy.md | 1 | The only exit is strategy.exit(stop = buyStop / sellStop), a level recomputed every bar whose ratchet reads strategy.position_size (a moving stop, rule 2), and the entry rule itself reads that level (close - 3 ATR > buyStop). The position path cannot be produced until moving stops are expressible; port it then (decision owed). |
 | 426832 | 比较相对强度策略Comparative-Relative-Strength-Strategy.md | 3 | The signal is the SMA of the ratio of the chart symbol to a second instrument (security('BTC_USDT:swap', close)): a spread between two contracts the project's single-symbol bars do not carry. |

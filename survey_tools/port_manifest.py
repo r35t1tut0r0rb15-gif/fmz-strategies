@@ -565,6 +565,28 @@ SIZING = {
     426588: [
         ("strategy(): 100 % of equity, initial capital 100, pyramiding 2, commission", 82, 87),
     ],
+    # ---- worker A, batch A28 (2026-10-08)
+    426888: [], 426891: [], 426894: [], 426902: [], 426904: [], 426906: [], 426908: [],
+    426889: [
+        ("strategy(): margin_long / margin_short 100", 136, 136),
+        ("Take profit / stop loss in ticks", 138, 139),
+    ],
+    426895: [
+        ("strategy(): 100 % of equity", 143, 143),
+    ],
+    426901: [
+        ("strategy(): initial capital 10000, commission", 179, 179),
+    ],
+    426905: [],
+    426923: [
+        ("strategy(): initial capital 1000", 151, 151),
+        ("Stop / target inputs", 199, 200),
+        ("Balance, risk and lot size", 210, 220),
+        ("Bracket in ticks from the current close", 269, 270),
+    ],
+    426925: [
+        ("strategy(): initial capital 10000, percent of equity", 129, 129),
+    ],
 }
 
 REJECTED_ON_READING = {

@@ -4,10 +4,10 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 
 ## Counts (worker A, ids 126968 and up)
 
-- Ported: **307** (34 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245, 385745, 391341, 395962, 396182, 400134, 402455, 425773, 426142, 426145, 426300, 426359, 426477, 426487, 426506, 426511, 426604, 426779, 426794, 426834, 426836, 426843, 426847, 426848, 426854, 426885)
+- Ported: **320** (36 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245, 385745, 391341, 395962, 396182, 400134, 402455, 425773, 426142, 426145, 426300, 426359, 426477, 426487, 426506, 426511, 426604, 426779, 426794, 426834, 426836, 426843, 426847, 426848, 426854, 426885, 426889, 426923)
 - Rejected on reading: **43** (criterion 1: 39, criterion 2: 2, criterion 3: 2)
 - Exact duplicate on reading (set aside, rule 7): **1** (128126 of 127691)
-- Last id reached: **426886**; next id in the queue: **426888**
+- Last id reached: **426925**; next id in the queue: **426928**
 - Existing batch-1 ports re-marked under rule 1 (logic unchanged): 11604, 42283, 42451, 119038 (bar_size_pending 4)
 
 ### Marks on worker A ports
@@ -15,7 +15,7 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 | Mark | Ports |
 |---|---|
 | bar_size_pending | 18 |
-| trailing_stop_pending | 12 |
+| trailing_stop_pending | 13 |
 | coarse_bar_stop | 12 |
 | stop_is_entry_condition | 0 |
 
@@ -67,6 +67,7 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 
 ### Commits (newest first)
 
+- `18ae16f survey A batch A27: 13 ports (3 re-reads), 3 rejected (ids 426848-426886)`
 - `a9e84b8 survey A batch A26: 11 ports, 2 rejected (ids 426812-426847)`
 - `82e0705 survey A batch A25: 11 ports, 2 rejected (ids 426780-426811)`
 - `59acf10 survey A batch A24: 11 ports, 2 rejected (ids 426610-426779)`
@@ -118,11 +119,11 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - Task 1: rules 2026-10-07 in SURVEY_README.md; check_ports.py extended (Marks line, bar_size_pending only with its mark, stop Series shifted inside stops(), coarse_bar_stop, left-labelled resampling); all ports pass.
 - Task 2: DUPLICATE 251 explained (reports/near_duplicates_2026-10-07.md); near_duplicate_groups.csv over all 3,747 PORT_CANDIDATE rows (5-token shingles, exact Jaccard; >= 0.80 none new, 0.65-0.80 band grouped as ND).
 - Task 3: no_bar_size.csv: 484 of 5,806 files have no bar size (85 with stop logic).
-- Task 4: 307 ported, 43 rejected, 1 duplicate on reading, ids 126968 to 426886.
+- Task 4: 320 ported, 43 rejected, 1 duplicate on reading, ids 126968 to 426925.
 
 **Failed / not done**
 
-- Task 4 is not complete: the queue continues at 426888; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
+- Task 4 is not complete: the queue continues at 426928; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
 - Rule 5 module (1) ("exactly as written") cannot be expressed by the contract; no stop_is_entry_condition port exists.
 
 **Decisions owed**
@@ -139,7 +140,7 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 10. 426368: an opposite cross issues a reversing entry plus close_all; the port fills them in issue order (the bar ends flat). If close_all is sized at issue time the reversal would stand (always-in). Confirm the broker-emulator reading.
 11. Multi-day header periods: 426502 / 426561 (3d), 426581 (2d), 426604 (4d) are built from broker days in fixed blocks of broker-day dates counted from 1970-01-01, 426516 (7d) from calendar weeks of broker-day dates. Confirm the block phase.
 12. 426561 has a bare word "Stochastic" on line 129 (does not compile as written); ported reading it as a lost comment.
-13. Session / weekday / hour rules on crypto pairs are read in UTC (426511, 426779; TradingView's Binance time zone); FMZ's exchange time zone is not documented.
+13. Session / weekday / hour rules on crypto pairs are read in UTC (426511, 426779, 426923; TradingView's Binance time zone); FMZ's exchange time zone is not documented.
 14. 426625 passes qty = 0 on every entry (read literally, no order is sized); the signal rule is ported. Confirm, or reject as no-trade.
 15. 426778 calls ta.atr inside if-blocks; the port follows TradingView's per-call-site history (each ATR advances only on its own bars). FMZ's runtime may differ.
 16. Data-start dependence also in 426619 (AMA from nz 0) and 426626 (previous-year high / low, partial first year).
@@ -148,10 +149,11 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 19. 426825 rejected because its entry reads its own moving stop; it can be ported once moving (trailing) stops are expressible.
 20. Same-bar entry and exit: ports from batch A23 on resolve them in Pine's order inside simulate(); earlier long-only ports that return raw le / lx leave a same-bar conflict to the engine. Audit owed.
 21. Correction (A27): 426461, 426509 and 426588 had been rejected as pyramided ladders, but SURVEY_README classes pyramiding adds as sizing; they are now ported (net position). Ladders whose exits read the averaged price or unit counts stay rejected (426570, 426882). The earlier martingale / averaging rejections (395966, 416875, 422794) may likewise be portable as a net position under that rule; re-read owed.
-22. 426856: a limit exit at the bar's close is ported as a close-based exit at the next open.
-23. strategy.exit with no price arguments is read as "no exit" (426361 rejected, 426455 rejected for re-issued exit ids).
-24. 362214 is one-sided as written (the source never opens the other side).
-25. 55839 keeps FREQ "1h" (author states hourly bars in the text); 103070 keeps PERIOD_M15 from the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source's bar size, not as a choice.
-26. FAMILY values are proposals ("user to confirm") in every port.
-27. Sources whose orders are degenerate were rejected on reading (criterion 1): 368717 (long entries, no exit at all), 368734 and 369999 (a count / plot handle tested as a boolean, so long on almost every bar). Confirm that "no testable rule" is a valid rejection, or port them as written.
-28. Some ports depend on where the data starts (Pine cum() / bar_index running means: 366388 cancels it, 370711 does not); acceptable?
+22. 426901 declares var bool flags but assigns 1 / 0 / na / -1; the numeric reading is used.
+23. 426856: a limit exit at the bar's close is ported as a close-based exit at the next open.
+24. strategy.exit with no price arguments is read as "no exit" (426361 rejected, 426455 rejected for re-issued exit ids).
+25. 362214 is one-sided as written (the source never opens the other side).
+26. 55839 keeps FREQ "1h" (author states hourly bars in the text); 103070 keeps PERIOD_M15 from the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source's bar size, not as a choice.
+27. FAMILY values are proposals ("user to confirm") in every port.
+28. Sources whose orders are degenerate were rejected on reading (criterion 1): 368717 (long entries, no exit at all), 368734 and 369999 (a count / plot handle tested as a boolean, so long on almost every bar). Confirm that "no testable rule" is a valid rejection, or port them as written.
+29. Some ports depend on where the data starts (Pine cum() / bar_index running means: 366388 cancels it, 370711 does not); acceptable?

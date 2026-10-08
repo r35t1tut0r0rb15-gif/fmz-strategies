@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426901 (易经模古市场分析策略Ichimoku-Cloud-Market-Analysis-Strategy)
+# Source: https://www.fmz.com/strategy/426901  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital 10000, commission  [lines 179-179]
+  179: strategy("EASYMOKU INDICATOR", overlay = true, initial_capital = 10000, currency = "USD", commission_value = 0.04)

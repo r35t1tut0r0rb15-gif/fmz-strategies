@@ -63,7 +63,7 @@ DECISIONS = [
     'weeks of broker-day dates. Confirm the block phase.',
     '426561 has a bare word "Stochastic" on line 129 (does not compile as written); ported reading '
     'it as a lost comment.',
-    'Session / weekday / hour rules on crypto pairs are read in UTC (426511, 426779; TradingView\'s '
+    'Session / weekday / hour rules on crypto pairs are read in UTC (426511, 426779, 426923; TradingView\'s '
     'Binance time zone); FMZ\'s exchange time zone is not documented.',
     '426625 passes qty = 0 on every entry (read literally, no order is sized); the signal rule is '
     'ported. Confirm, or reject as no-trade.',
@@ -86,6 +86,7 @@ DECISIONS = [
     'Ladders whose exits read the averaged price or unit counts stay rejected (426570, 426882). '
     'The earlier martingale / averaging rejections (395966, 416875, 422794) may likewise be '
     'portable as a net position under that rule; re-read owed.',
+    '426901 declares var bool flags but assigns 1 / 0 / na / -1; the numeric reading is used.',
     '426856: a limit exit at the bar\'s close is ported as a close-based exit at the next open.',
     'strategy.exit with no price arguments is read as "no exit" (426361 rejected, 426455 '
     'rejected for re-issued exit ids).',

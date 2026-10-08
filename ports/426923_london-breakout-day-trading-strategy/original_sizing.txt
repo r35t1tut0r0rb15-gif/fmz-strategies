@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #426923 (伦敦突破短线交易策略London-Breakout-Day-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/426923  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital 1000  [lines 151-151]
+  151: strategy("time zone", overlay=true, initial_capital=1000)
+
+## Stop / target inputs  [lines 199-200]
+  199: sl = input(0.005, title = "Stop Loss")
+  200: tp = input(0.005, title="Target Price")
+
+## Balance, risk and lot size  [lines 210-220]
+  210: balance = strategy.netprofit + 50000 //current balance
+  211: floating = strategy.openprofit          //floating profit/loss
+  212: risk = input(1,type=input.float,title="Risk % of equity ")           //risk % per trade
+  213: 
+  214: 
+  215: temp01 = (balance * risk)/100     //Risk in USD
+  216: temp02 = temp01/close*sl      //Risk in lots
+  217: temp03 = temp02*100000      //Convert to contracts
+  218: size = temp03 - temp03%1000 //Normalize to 1000s (Trade size)
+  219: if(size < 1000)
+  220:     size := 1000           //Set min. lot size
+
+## Bracket in ticks from the current close  [lines 269-270]
+  269: strategy.exit("sl","long", loss = close * sl / syminfo.mintick, profit = close * tp / syminfo.mintick)
+  270: strategy.exit("sl","short", loss=close * sl / syminfo.mintick, profit = close * tp / syminfo.mintick)
