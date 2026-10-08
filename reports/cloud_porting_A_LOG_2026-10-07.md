@@ -368,3 +368,20 @@ line (4h); 367572 SAR envelope cross (4h).
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A15 committed (hash in next entry). Next id: 367643.
+
+Batch A15 commit: 1c121fa (pushed, verified).
+
+## Task 4, batch A16 (ids 367643 - 370711)
+
+origin/survey-b still absent at batch start. 10 ported, 3 rejected:
+367643 twin range filter (4h); 368715 DMI + MACD confluence (4h, ND368715); 368736 Follow Line
+(4h, ND368736); 368738 Demark reversal points (4h, ND361719); 368749 bar reversal pattern (4h,
+1 trial); 368777 linear regression vs weekly hull (4h bars, completed weekly values);
+369392 RAVI FX Fisher (daily broker days); 370653 SuperTrend (4h); 370655 Gann HiLo (4h);
+370711 T-Step LSMA (4h; running mean from the first bar, data-start dependent, noted).
+Rejected (criterion 1, no testable rule): 368717 (long entries, no exit), 368734 and 369999
+(a count / plot handle tested as a boolean: long on almost every bar). Added to decisions owed.
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A16 committed (hash in next entry). Next id: 370728.

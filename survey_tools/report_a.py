@@ -47,6 +47,11 @@ DECISIONS = [
     'the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source\'s '
     'bar size, not as a choice.',
     'FAMILY values are proposals ("user to confirm") in every port.',
+    'Sources whose orders are degenerate were rejected on reading (criterion 1): 368717 (long entries, '
+    'no exit at all), 368734 and 369999 (a count / plot handle tested as a boolean, so long on almost '
+    'every bar). Confirm that "no testable rule" is a valid rejection, or port them as written.',
+    'Some ports depend on where the data starts (Pine cum() / bar_index running means: 366388 cancels '
+    'it, 370711 does not); acceptable?',
 ]
 
 

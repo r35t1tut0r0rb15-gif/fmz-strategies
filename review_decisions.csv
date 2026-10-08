@@ -20,6 +20,9 @@ fmz_id,file,final_outcome,criterion,reason
 363557,Pivot-Points-High-Low-Multi-Time-Frame.md,REJECTED_ON_READING,1,"Pivots come from request.security(syminfo.tickerid, '240', get_phpl(), lookahead_on) without [1]: on historical bars the 4 h pivot is visible from the first 5 m bar of the 4 h bar that confirms it, i.e. it reads the future (SURVEY_README request.security rule)."
 363572,OCC-Strategy-R51.md,REJECTED_ON_READING,1,"Both MA series are read through request.security(..., stratRes, lookahead_on) without [1] (alternate resolution on by default, 3x the chart period): on historical bars the higher-timeframe values are visible before that bar closes, i.e. they read the future."
 365389,TradingView-Alerts-to-MT4-MT5-dynamic-variables-NON-REPAINTING.md,REJECTED_ON_READING,1,"The exit is a two-step ladder: 50 % of the position at a 150-tick profit (qty_percent=50), the rest at 400 ticks or a pivot stop; a partial exit cannot be expressed as one net position's signals, and tick distances are instrument-specific (an MT4 alert template; criterion 2 too)."
+368717,Inverted-Hammer-Extended-Options.md,REJECTED_ON_READING,1,"Long entries only (inverted hammer below EMA 10), with no exit, stop or reversal anywhere: after the first signal the position is held for the rest of the data, so there is no repeatable entry/exit rule to test (as #62163)."
+368734,Brick-count-Renko.md,REJECTED_ON_READING,1,"The orders test bar counts as booleans: `if brick_red` (non-green bars among the last 40) is true unless 40 green bars in a row, so the script is long on practically every bar; the brick cross it labels never reaches the orders. No defined signal to test."
+369999,Directional-Movement-Oscillator-DMI.md,REJECTED_ON_READING,1,"The orders test a float and a plot handle as booleans: `if diosc` (DI+ - DI-, true whenever non-zero) -> long, `else if p2` (a plot id) -> short. Long on practically every bar; the short branch depends on how the runtime casts a plot handle. No defined signal to test."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -207,3 +210,13 @@ fmz_id,file,final_outcome,criterion,reason
 367476,Linear-trend.md,PORTED,,ports/367476_linear-trend/
 367565,Accurate-Swing-Trading-System.md,PORTED,,ports/367565_accurate-swing-trading-system/
 367572,SAR-high-and-low.md,PORTED,,ports/367572_sar-high-and-low/
+367643,Twin-Range-Filter.md,PORTED,,ports/367643_twin-range-filter/
+368715,TUE-ADX-MACD-Confluence-V10.md,PORTED,,ports/368715_tue-adx-macd-confluence-v10/
+368736,Follow-Line-Indicator.md,PORTED,,ports/368736_follow-line-indicator/
+368738,Demark-Reversal-Points-CC.md,PORTED,,ports/368738_demark-reversal-points-cc/
+368749,Renko-Reversal-Alert.md,PORTED,,ports/368749_renko-reversal-alert/
+368777,Easy-stock.md,PORTED,,ports/368777_easy-stock/
+369392,RAVI-FX-Fisher.md,PORTED,,ports/369392_ravi-fx-fisher/
+370653,SuperTrend.md,PORTED,,ports/370653_supertrend/
+370655,Gann-High-Low.md,PORTED,,ports/370655_gann-high-low/
+370711,T-Step-LSMA.md,PORTED,,ports/370711_t-step-lsma/

@@ -283,6 +283,9 @@ SIZING = {
     # ---- worker A, batch A15 (2026-10-08): no sizing code in these sources
     366641: [], 366930: [], 366936: [], 366941: [], 366942: [], 366943: [], 366946: [], 366947: [], 366948: [],
     366966: [], 367476: [], 367565: [], 367572: [],
+    # ---- worker A, batch A16 (2026-10-08): no sizing code in these sources
+    367643: [], 368715: [], 368736: [], 368738: [], 368749: [], 368777: [], 369392: [], 370653: [], 370655: [],
+    370711: [],
 }
 
 REJECTED_ON_READING = {
@@ -347,6 +350,16 @@ REJECTED_ON_READING = {
     365389: ("1", "The exit is a two-step ladder: 50 % of the position at a 150-tick profit (qty_percent=50), the "
                   "rest at 400 ticks or a pivot stop; a partial exit cannot be expressed as one net position's "
                   "signals, and tick distances are instrument-specific (an MT4 alert template; criterion 2 too)."),
+    # ---- worker A, batch A16 (2026-10-08)
+    368717: ("1", "Long entries only (inverted hammer below EMA 10), with no exit, stop or reversal anywhere: after "
+                  "the first signal the position is held for the rest of the data, so there is no repeatable "
+                  "entry/exit rule to test (as #62163)."),
+    368734: ("1", "The orders test bar counts as booleans: `if brick_red` (non-green bars among the last 40) is "
+                  "true unless 40 green bars in a row, so the script is long on practically every bar; the "
+                  "brick cross it labels never reaches the orders. No defined signal to test."),
+    369999: ("1", "The orders test a float and a plot handle as booleans: `if diosc` (DI+ - DI-, true whenever "
+                  "non-zero) -> long, `else if p2` (a plot id) -> short. Long on practically every bar; the short "
+                  "branch depends on how the runtime casts a plot handle. No defined signal to test."),
 }
 
 DUPLICATE_ON_READING = {

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3552 |
+| PORT_CANDIDATE | 3539 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 186 |
-| REJECTED_ON_READING | 21 |
+| PORTED | 196 |
+| REJECTED_ON_READING | 24 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -314,7 +314,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 367476 | `ports/367476_linear-trend/` | PineScript | volatility_stop_cross | none | length x2, dev x3 | 6 |
 | 367565 | `ports/367565_accurate-swing-trading-system/` | PineScript | donchian_breakout | none | swing x4 | 4 |
 | 367572 | `ports/367572_sar-high-and-low/` | PineScript | parabolic_sar | none | look_back x2, multi x2 | 4 |
-| | **186 ports** | | | | | **1698** |
+| 367643 | `ports/367643_twin-range-filter/` | PineScript | volatility_channel_breakout | none | per1 x2, per2 x2, mult2 x2 | 8 |
+| 368715 | `ports/368715_tue-adx-macd-confluence-v10/` | PineScript | directional_movement | none | di_len x3, macd_fast x2 | 6 |
+| 368736 | `ports/368736_follow-line-indicator/` | PineScript | volatility_stop_cross | none | bb_period x3, bb_dev x2, atr_period x2 | 12 |
+| 368738 | `ports/368738_demark-reversal-points-cc/` | PineScript | td_sequential | none | length x3, lb_length x2 | 6 |
+| 368749 | `ports/368749_renko-reversal-alert/` | PineScript | candle_pattern | none |  | 0 |
+| 368777 | `ports/368777_easy-stock/` | PineScript | multi_timeframe_ma | none | length x3, len x2 | 6 |
+| 369392 | `ports/369392_ravi-fx-fisher/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| 370653 | `ports/370653_supertrend/` | PineScript | supertrend | none | period x3, mult x3 | 9 |
+| 370655 | `ports/370655_gann-high-low/` | PineScript | ma_envelope_breakout | none | h_period x3, l_period x3 | 9 |
+| 370711 | `ports/370711_t-step-lsma/` | PineScript | slope_momentum | none | length x3, sc x3 | 9 |
+| | **196 ports** | | | | | **1767** |
 
 ## Rejected on reading
 
@@ -341,6 +351,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 363557 | Pivot-Points-High-Low-Multi-Time-Frame.md | 1 | Pivots come from request.security(syminfo.tickerid, '240', get_phpl(), lookahead_on) without [1]: on historical bars the 4 h pivot is visible from the first 5 m bar of the 4 h bar that confirms it, i.e. it reads the future (SURVEY_README request.security rule). |
 | 363572 | OCC-Strategy-R51.md | 1 | Both MA series are read through request.security(..., stratRes, lookahead_on) without [1] (alternate resolution on by default, 3x the chart period): on historical bars the higher-timeframe values are visible before that bar closes, i.e. they read the future. |
 | 365389 | TradingView-Alerts-to-MT4-MT5-dynamic-variables-NON-REPAINTING.md | 1 | The exit is a two-step ladder: 50 % of the position at a 150-tick profit (qty_percent=50), the rest at 400 ticks or a pivot stop; a partial exit cannot be expressed as one net position's signals, and tick distances are instrument-specific (an MT4 alert template; criterion 2 too). |
+| 368717 | Inverted-Hammer-Extended-Options.md | 1 | Long entries only (inverted hammer below EMA 10), with no exit, stop or reversal anywhere: after the first signal the position is held for the rest of the data, so there is no repeatable entry/exit rule to test (as #62163). |
+| 368734 | Brick-count-Renko.md | 1 | The orders test bar counts as booleans: `if brick_red` (non-green bars among the last 40) is true unless 40 green bars in a row, so the script is long on practically every bar; the brick cross it labels never reaches the orders. No defined signal to test. |
+| 369999 | Directional-Movement-Oscillator-DMI.md | 1 | The orders test a float and a plot handle as booleans: `if diosc` (DI+ - DI-, true whenever non-zero) -> long, `else if p2` (a plot id) -> short. Long on practically every bar; the short branch depends on how the runtime casts a plot handle. No defined signal to test. |
 
 ## Flagged and stored under criterion 3 (253 files)
 
