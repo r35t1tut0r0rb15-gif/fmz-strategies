@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3500 |
+| PORT_CANDIDATE | 3487 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 227 |
-| REJECTED_ON_READING | 32 |
+| PORTED | 237 |
+| REJECTED_ON_READING | 35 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -355,7 +355,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426145 | `ports/426145_internal-bar-strength-indicator-reversion-system/` | PineScript | candle_pattern | none | ibs_low x2, ibs_high x2, sl_atr x3 | 12 |
 | 426249 | `ports/426249_best-supertrend-strategy/` | PineScript | supertrend | none | factor x2, fast x2, slow x2 | 8 |
 | 426259 | `ports/426259_squeeze-momentum-on-reversal-strategy/` | PineScript | momentum_oscillator_turn | none | length_kc x2, strength_atr x3 | 6 |
-| | **227 ports** | | | | | **1993** |
+| 426262 | `ports/426262_pair-trading-strategy/` | PineScript | bollinger_reversion | none | length x2, zscore x3 | 6 |
+| 426298 | `ports/426298_the-gunbot-bands-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | tp_atr x3, sl_atr x3, ts_atr x2 | 18 |
+| 426300 | `ports/426300_the-genesis-crossover-trading-strategy/` | PineScript | ma_trend | coarse_bar_stop | sl_atr x3 | 3 |
+| 426322 | `ports/426322_combo-backtest-123-reversal-relative-volatility-index/` | PineScript | multi_indicator_confluence | none | length x2, rvi_period x2, buy_zone x2 | 8 |
+| 426335 | `ports/426335_sma-crossover-trading-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| 426338 | `ports/426338_ema-trading-strategy/` | PineScript | ma_trend | none | length x3 | 3 |
+| 426339 | `ports/426339_bollinger-band-breakout-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 426340 | `ports/426340_dual-moving-average-breakout-strategy/` | PineScript | ma_trend | none | len_sma x3, len_ema x3 | 9 |
+| 426359 | `ports/426359_multi-indicator-configurable-strategy-generator/` | PineScript | multi_indicator_confluence | none | sl_pct x2, tp_pct x2, max_in_row x2 | 8 |
+| 426360 | `ports/426360_zero-lag-macd-dema-breakout-strategy/` | PineScript | macd_momentum | none | fast x2, slow x2 | 4 |
+| | **237 ports** | | | | | **2060** |
 
 ## Rejected on reading
 
@@ -393,6 +403,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 416875 | MartinGale-Strategy1.md | 1 | Martingale: every second it buys or sells a growing bet according to the last candle's colour, multiplying the size after wins and losses and stopping after four losses. The position size sequence is the strategy (tick loop as well). |
 | 422794 | 布林带策略止盈和马丁格尔倍投.md | 1 | Martingale ladder: pyramiding=6 and strategy.order adds strategy.position_size * martinFactor to a losing position (lines 55-67); the position size depends on fills, not on a bar rule (as #395966, #416875). |
 | 425798 | Trade01高低轨道线均线.md | 1 | The entry and exit tests read BKVOL <> 1 / BKVOL = 1 / SKVOL = 1 (exactly one lot held), so the rules change with the sizing formula LOTS; and the stop multiplier LIQKA is a plain (non-VARIABLE) MyLanguage name decremented each held bar (lines 102-108), whose persistence across bars is undefined. No defined signal to test. |
+| 426261 | The-Open-Range-Strategy-with-Dynamic-Profit-Target.md | 1 | The opening range and the entry window come from session strings ('0930-1100', '0930-1000', '1000-1100') read through time() and security() at 1- and 30-minute resolutions on the 1h header chart: the exchange time zone of a crypto pair and what a lower-resolution time()/security() returns per chart bar are undefined, so the bars that may trade are not defined (as #361719). |
+| 426302 | The-Bollinger-Band-Automated-Trading-Strategy.md | 1 | 3Commas DCA bot: up to 6 safety orders add strategy.position_size * 1.55 below the entry (strategy.order), and the stop / target are fractions of the averaged position price; the position ladder is the strategy (as #422794). |
+| 426334 | Uptrend-and-Oversold-Index-Swing-Trading-System-strategy.md | 1 | The whole signal is SCORE, which calls ta.ema(close, n) for n = 1..21 inside one for-loop call site: the EMA's recursive state (its [1] value) is shared across the 21 calls, so what each length reads is defined by the runtime, not the script. Also a trailing stop order from highs and buys blocked for the rest of the calendar day after any fill. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

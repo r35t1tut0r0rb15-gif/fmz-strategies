@@ -441,3 +441,24 @@ lot held, so depend on sizing; LIQKA persistence undefined).
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A19 committed (hash in next entry). Next id: 426261.
+
+Batch A19 commit: d296684 (pushed, verified).
+
+## Task 4, batch A20 (ids 426261 - 426360)
+
+origin/survey-b still absent at batch start. 10 ported, 3 rejected:
+426262 Bollinger cross reversion, close_all at the mean (broker days); 426298 Gunbot Bbands with
+close-based tp / sl / trailing exits, price distances -> ATR (3min, trailing_stop_pending);
+426300 EMA 20 / 50 cross, bracket on shorts only as written (mis-typed exit id), ticks -> ATR
+(broker days, coarse_bar_stop); 426322 combo 123 reversal + RVI (30min, ND426322); 426335 SMA
+4 / 34 cross (10min, ND426335); 426338 close vs EMA 21 long only (broker days); 426339 Bollinger
+breakout long only (broker days, ND426339); 426340 Noro Multima (10min); 426359 Strategy Creator
+confluence from flat with 0.4 / 0.5 % bracket mirrored in simulate (5min); 426360 zero-lag MACD
+sign (broker days).
+Rejected (criterion 1): 426261 (session windows via lower-resolution time()/security(),
+undefined); 426302 (3Commas safety-order ladder); 426334 (ta.ema in a loop call site,
+runtime-defined state).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A20 committed (hash in next entry). Next id: 426361.

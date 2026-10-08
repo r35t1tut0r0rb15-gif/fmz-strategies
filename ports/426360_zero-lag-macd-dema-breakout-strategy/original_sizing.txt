@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426360 (Zero-Lag-MACD-DEMA-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/426360  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): 3500 % of equity (not active)  [lines 66-66]
+   66: // strategy(title="Patron04 MACD DEMA Strategy",default_qty_type = strategy.percent_of_equity,default_qty_value = 3500, overlay=true)

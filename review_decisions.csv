@@ -31,6 +31,9 @@ fmz_id,file,final_outcome,criterion,reason
 416875,MartinGale-Strategy1.md,REJECTED_ON_READING,1,"Martingale: every second it buys or sells a growing bet according to the last candle's colour, multiplying the size after wins and losses and stopping after four losses. The position size sequence is the strategy (tick loop as well)."
 422794,布林带策略止盈和马丁格尔倍投.md,REJECTED_ON_READING,1,"Martingale ladder: pyramiding=6 and strategy.order adds strategy.position_size * martinFactor to a losing position (lines 55-67); the position size depends on fills, not on a bar rule (as #395966, #416875)."
 425798,Trade01高低轨道线均线.md,REJECTED_ON_READING,1,"The entry and exit tests read BKVOL <> 1 / BKVOL = 1 / SKVOL = 1 (exactly one lot held), so the rules change with the sizing formula LOTS; and the stop multiplier LIQKA is a plain (non-VARIABLE) MyLanguage name decremented each held bar (lines 102-108), whose persistence across bars is undefined. No defined signal to test."
+426261,The-Open-Range-Strategy-with-Dynamic-Profit-Target.md,REJECTED_ON_READING,1,"The opening range and the entry window come from session strings ('0930-1100', '0930-1000', '1000-1100') read through time() and security() at 1- and 30-minute resolutions on the 1h header chart: the exchange time zone of a crypto pair and what a lower-resolution time()/security() returns per chart bar are undefined, so the bars that may trade are not defined (as #361719)."
+426302,The-Bollinger-Band-Automated-Trading-Strategy.md,REJECTED_ON_READING,1,"3Commas DCA bot: up to 6 safety orders add strategy.position_size * 1.55 below the entry (strategy.order), and the stop / target are fractions of the averaged position price; the position ladder is the strategy (as #422794)."
+426334,Uptrend-and-Oversold-Index-Swing-Trading-System-strategy.md,REJECTED_ON_READING,1,"The whole signal is SCORE, which calls ta.ema(close, n) for n = 1..21 inside one for-loop call site: the EMA's recursive state (its [1] value) is shared across the 21 calls, so what each length reads is defined by the runtime, not the script. Also a trailing stop order from highs and buys blocked for the rest of the calendar day after any fill."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -259,3 +262,13 @@ fmz_id,file,final_outcome,criterion,reason
 426145,Internal-Bar-Strength-Indicator-Reversion-system.md,PORTED,,ports/426145_internal-bar-strength-indicator-reversion-system/
 426249,BEST-Supertrend-Strategy.md,PORTED,,ports/426249_best-supertrend-strategy/
 426259,Squeeze-Momentum-on-Reversal-Strategy.md,PORTED,,ports/426259_squeeze-momentum-on-reversal-strategy/
+426262,Pair-trading-strategy.md,PORTED,,ports/426262_pair-trading-strategy/
+426298,The-Gunbot-Bands-Strategy.md,PORTED,,ports/426298_the-gunbot-bands-strategy/
+426300,The-Genesis-Crossover-Trading-Strategy.md,PORTED,,ports/426300_the-genesis-crossover-trading-strategy/
+426322,Combo-Backtest-123-Reversal-Relative-Volatility-Index.md,PORTED,,ports/426322_combo-backtest-123-reversal-relative-volatility-index/
+426335,SMA-Crossover-Trading-Strategy.md,PORTED,,ports/426335_sma-crossover-trading-strategy/
+426338,EMA-Trading-Strategy.md,PORTED,,ports/426338_ema-trading-strategy/
+426339,Bollinger-Band-Breakout-strategy.md,PORTED,,ports/426339_bollinger-band-breakout-strategy/
+426340,Dual-Moving-Average-Breakout-Strategy.md,PORTED,,ports/426340_dual-moving-average-breakout-strategy/
+426359,Multi-Indicator-Configurable-Strategy-Generator.md,PORTED,,ports/426359_multi-indicator-configurable-strategy-generator/
+426360,Zero-Lag-MACD-DEMA-Breakout-Strategy.md,PORTED,,ports/426360_zero-lag-macd-dema-breakout-strategy/

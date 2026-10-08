@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #426298 (The-Gunbot-Bands-Strategy)
+# Source: https://www.fmz.com/strategy/426298  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): pyramiding 100, qty 1e8 (not active)  [lines 78-78]
+   78: // strategy("Gunbot - Bbands", shorttitle="Strategy", overlay=true, pyramiding=100, default_qty_value=100000000, precision=8)
+
+## Martingale qty stacking (doubling per signal)  [lines 161-172]
+  161: stackingLongs = 100000000
+  162: stackingLongs := nz(stackingLongs[1])
+  163: stackingShorts = 100000000
+  164: stackingShorts := nz(stackingShorts[1])
+  165: 
+  166: if longCondition
+  167:     stackingLongs := stackingLongs * 2
+  168:     stackingShorts := 100000000
+  169:     
+  170: if shortCondition
+  171:     stackingLongs := 100000000 
+  172:     stackingShorts := stackingShorts * 2
+
+## isAdding input and the qty-sized entries it selects (off by default)  [lines 159-159]
+  159: isAdding = input(false, "WIP Feature", bool)
+
+## Entries with qty=stacking when isAdding  [lines 247-249]
+  247:     if isAdding
+  248:         strategy.entry("Long", strategy.long, qty=stackingLongs, when=longCondition)
+  249:         strategy.entry("Short", strategy.short, qty=stackingShorts, when=shortCondition)

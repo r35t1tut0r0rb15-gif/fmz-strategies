@@ -359,6 +359,30 @@ SIZING = {
         ("Commented-out strategy(): qty 100, initial capital (not active)", 67, 69),
     ],
     426259: [],
+    # ---- worker A, batch A20 (2026-10-08)
+    426262: [], 426300: [], 426322: [], 426335: [],
+    426298: [
+        ("Commented-out strategy(): pyramiding 100, qty 1e8 (not active)", 78, 78),
+        ("Martingale qty stacking (doubling per signal)", 161, 172),
+        ("isAdding input and the qty-sized entries it selects (off by default)", 159, 159),
+        ("Entries with qty=stacking when isAdding", 247, 249),
+    ],
+    426338: [
+        ("strategy(): margin_long / margin_short 100", 87, 87),
+    ],
+    426339: [
+        ("strategy(): 100 % of equity", 52, 52),
+    ],
+    426340: [
+        ("strategy(): 100 % of equity, pyramiding 0", 62, 62),
+        ("Entries with qty 0 when a side is disabled", 87, 90),
+    ],
+    426359: [
+        ("strategy(): margin 100, pyramiding 10, percent of equity", 105, 105),
+    ],
+    426360: [
+        ("Commented-out strategy(): 3500 % of equity (not active)", 66, 66),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -462,6 +486,19 @@ REJECTED_ON_READING = {
                   "the rules change with the sizing formula LOTS; and the stop multiplier LIQKA is a plain "
                   "(non-VARIABLE) MyLanguage name decremented each held bar (lines 102-108), whose persistence "
                   "across bars is undefined. No defined signal to test."),
+    # ---- worker A, batch A20 (2026-10-08)
+    426261: ("1", "The opening range and the entry window come from session strings ('0930-1100', "
+                  "'0930-1000', '1000-1100') read through time() and security() at 1- and 30-minute "
+                  "resolutions on the 1h header chart: the exchange time zone of a crypto pair and what a "
+                  "lower-resolution time()/security() returns per chart bar are undefined, so the bars "
+                  "that may trade are not defined (as #361719)."),
+    426302: ("1", "3Commas DCA bot: up to 6 safety orders add strategy.position_size * 1.55 below the entry "
+                  "(strategy.order), and the stop / target are fractions of the averaged position price; the "
+                  "position ladder is the strategy (as #422794)."),
+    426334: ("1", "The whole signal is SCORE, which calls ta.ema(close, n) for n = 1..21 inside one for-loop "
+                  "call site: the EMA's recursive state (its [1] value) is shared across the 21 calls, so "
+                  "what each length reads is defined by the runtime, not the script. Also a trailing stop "
+                  "order from highs and buys blocked for the rest of the calendar day after any fill."),
 }
 
 DUPLICATE_ON_READING = {

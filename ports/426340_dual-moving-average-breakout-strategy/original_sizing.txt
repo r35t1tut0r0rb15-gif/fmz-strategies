@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #426340 (Dual-Moving-Average-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/426340  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 0  [lines 62-62]
+   62: strategy(title = "Noro's Multima v1.0", shorttitle = "Multima 1.0", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value=100.0, pyramiding=0)
+
+## Entries with qty 0 when a side is disabled  [lines 87-90]
+   87:     strategy.entry("Long", strategy.long, needlong == false ? 0 : na)
+   88: 
+   89: if lots < 0 and (close > open or usecf == false)
+   90:     strategy.entry("Short", strategy.short, needshort == false ? 0 : na)

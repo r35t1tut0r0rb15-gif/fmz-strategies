@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426359 (Multi-Indicator-Configurable-Strategy-Generator)
+# Source: https://www.fmz.com/strategy/426359  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin 100, pyramiding 10, percent of equity  [lines 105-105]
+  105: strategy("Strategy Creator", overlay=true, margin_long=100, margin_short=100, pyramiding=10, default_qty_type=strategy.percent_of_equity)

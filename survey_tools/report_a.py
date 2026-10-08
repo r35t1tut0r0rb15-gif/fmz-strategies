@@ -24,6 +24,7 @@ AS_WRITTEN = {
         207157, 361675, 361689, 361996, 362004, 362031, 362172, 362418, 362427, 362649, 362654, 362664,
         362898, 363582, 363590, 365080, 365381, 366941, 366946],
     'formula slip kept': [192353, 345036, 188499],
+    'exit bound to a mis-typed entry id (so one side has no bracket)': [426300],
 }
 
 DECISIONS = [
@@ -44,6 +45,10 @@ DECISIONS = [
     'define it before it can be ported.',
     '370728 rejected: nested request.security on a Heikin-Ashi ticker (undefined which daily values '
     'reach the orders); same kind of decision as 361719.',
+    '426261 rejected: session windows read through time()/security() at 1- and 30-minute '
+    'resolutions on an hourly chart (time zone and lower-resolution semantics undefined); same '
+    'kind of decision as 361719. 426334 rejected: ta.ema called with 21 lengths at one loop call '
+    'site (runtime-defined state).',
     '362214 is one-sided as written (the source never opens the other side).',
     '55839 keeps FREQ "1h" (author states hourly bars in the text); 103070 keeps PERIOD_M15 from '
     'the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source\'s '
