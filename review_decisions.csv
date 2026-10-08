@@ -34,6 +34,11 @@ fmz_id,file,final_outcome,criterion,reason
 426261,The-Open-Range-Strategy-with-Dynamic-Profit-Target.md,REJECTED_ON_READING,1,"The opening range and the entry window come from session strings ('0930-1100', '0930-1000', '1000-1100') read through time() and security() at 1- and 30-minute resolutions on the 1h header chart: the exchange time zone of a crypto pair and what a lower-resolution time()/security() returns per chart bar are undefined, so the bars that may trade are not defined (as #361719)."
 426302,The-Bollinger-Band-Automated-Trading-Strategy.md,REJECTED_ON_READING,1,"3Commas DCA bot: up to 6 safety orders add strategy.position_size * 1.55 below the entry (strategy.order), and the stop / target are fractions of the averaged position price; the position ladder is the strategy (as #422794)."
 426334,Uptrend-and-Oversold-Index-Swing-Trading-System-strategy.md,REJECTED_ON_READING,1,"The whole signal is SCORE, which calls ta.ema(close, n) for n = 1..21 inside one for-loop call site: the EMA's recursive state (its [1] value) is shared across the 21 calls, so what each length reads is defined by the runtime, not the script. Also a trailing stop order from highs and buys blocked for the rest of the calendar day after any fill."
+426361,Composite-Entry-Signal-RSI-Trading-Strategy.md,REJECTED_ON_READING,1,"The only exit is strategy.exit('close', 'buy') with no profit / loss / stop / limit / trail argument (an error on TradingView, no exit level on any runtime), so a long entered on the MA crossing 40 has no defined exit (as #368717)."
+426364,KD-Dual-direction-Tracking-Strategy.md,REJECTED_ON_READING,1,KD inventory model: strategy.order adds or removes one default unit per bar until the position reaches a target share count (0.33 steps of 20 / -10 shares); the position size path is the strategy (as #380530).
+426455,Enhanced-Fish-Net-Strategy.md,REJECTED_ON_READING,1,"Four strategy.exit calls share the id 'Exit' with no from_entry: two set a 300-tick stop with a 150 / 50-tick trailing stop, two (when= buy / sell) set no exit level at all. Which exit order is live on a bar depends on how the runtime merges re-issued ids; the exits are undefined."
+426461,Noros-Fast-RSI-Breakthrough-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 10 with entries repeated on every signal bar, the first long rule adding only below strategy.position_avg_price: a pyramided averaging ladder (as #395966, #422794)."
+426478,双Gann通道突破买卖策略Gann-Double-Channel-Breakout-Trading-Strategy.md,REJECTED_ON_READING,1,"The signal is a crossover of security(tickerid, '375', close) and security(..., open) on the daily header chart: a 375-minute resolution below the chart's, whose value per daily bar (and 375-minute block alignment on a 24 h market) is undefined (as #426261)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -272,3 +277,11 @@ fmz_id,file,final_outcome,criterion,reason
 426340,Dual-Moving-Average-Breakout-Strategy.md,PORTED,,ports/426340_dual-moving-average-breakout-strategy/
 426359,Multi-Indicator-Configurable-Strategy-Generator.md,PORTED,,ports/426359_multi-indicator-configurable-strategy-generator/
 426360,Zero-Lag-MACD-DEMA-Breakout-Strategy.md,PORTED,,ports/426360_zero-lag-macd-dema-breakout-strategy/
+426363,HMA-and-CCI-Combo-Trend-Following-Strategy.md,PORTED,,ports/426363_hma-and-cci-combo-trend-following-strategy/
+426367,Vegas-Trend-Wave-Strategy.md,PORTED,,ports/426367_vegas-trend-wave-strategy/
+426368,Dual-Moving-Average-Crossover-Tracking-Strategy.md,PORTED,,ports/426368_dual-moving-average-crossover-tracking-strategy/
+426376,Bullish-Harami-Reversal-Strategy.md,PORTED,,ports/426376_bullish-harami-reversal-strategy/
+426377,Dual-Moving-Average-Indicators-Fusion-Strategy.md,PORTED,,ports/426377_dual-moving-average-indicators-fusion-strategy/
+426391,Ultra-Long-Period-RSI-Reversal-Strategy.md,PORTED,,ports/426391_ultra-long-period-rsi-reversal-strategy/
+426460,Sell-in-May-Buy-in-September-Strategy.md,PORTED,,ports/426460_sell-in-may-buy-in-september-strategy/
+426477,Multi-Indicator-Convergence-Trading-Strategy.md,PORTED,,ports/426477_multi-indicator-convergence-trading-strategy/

@@ -383,6 +383,17 @@ SIZING = {
     426360: [
         ("Commented-out strategy(): 3500 % of equity (not active)", 66, 66),
     ],
+    # ---- worker A, batch A21 (2026-10-08)
+    426367: [], 426376: [], 426377: [], 426460: [], 426477: [],
+    426363: [
+        ("Leverage input (unused by the orders)", 89, 89),
+    ],
+    426368: [
+        ("Commented-out strategy(): 20 % of equity, commission (not active)", 67, 67),
+    ],
+    426391: [
+        ("Commented-out strategy(): 100 % of equity (not active)", 60, 60),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -499,6 +510,22 @@ REJECTED_ON_READING = {
                   "call site: the EMA's recursive state (its [1] value) is shared across the 21 calls, so "
                   "what each length reads is defined by the runtime, not the script. Also a trailing stop "
                   "order from highs and buys blocked for the rest of the calendar day after any fill."),
+    # ---- worker A, batch A21 (2026-10-08)
+    426361: ("1", "The only exit is strategy.exit('close', 'buy') with no profit / loss / stop / limit / trail "
+                  "argument (an error on TradingView, no exit level on any runtime), so a long entered on "
+                  "the MA crossing 40 has no defined exit (as #368717)."),
+    426364: ("1", "KD inventory model: strategy.order adds or removes one default unit per bar until the "
+                  "position reaches a target share count (0.33 steps of 20 / -10 shares); the position "
+                  "size path is the strategy (as #380530)."),
+    426455: ("1", "Four strategy.exit calls share the id 'Exit' with no from_entry: two set a 300-tick stop "
+                  "with a 150 / 50-tick trailing stop, two (when= buy / sell) set no exit level at all. "
+                  "Which exit order is live on a bar depends on how the runtime merges re-issued ids; the "
+                  "exits are undefined."),
+    426461: ("1", "pyramiding = 10 with entries repeated on every signal bar, the first long rule adding only "
+                  "below strategy.position_avg_price: a pyramided averaging ladder (as #395966, #422794)."),
+    426478: ("1", "The signal is a crossover of security(tickerid, '375', close) and security(..., open) on "
+                  "the daily header chart: a 375-minute resolution below the chart's, whose value per daily "
+                  "bar (and 375-minute block alignment on a 24 h market) is undefined (as #426261)."),
 }
 
 DUPLICATE_ON_READING = {

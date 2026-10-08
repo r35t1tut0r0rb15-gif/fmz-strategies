@@ -462,3 +462,23 @@ runtime-defined state).
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A20 committed (hash in next entry). Next id: 426361.
+
+Batch A20 commit: 3d6d6cf (pushed, verified).
+
+## Task 4, batch A21 (ids 426361 - 426478)
+
+origin/survey-b still absent at batch start (worker restarted after a usage limit during the
+reading; nothing had been written, so the batch was read again from the start). 8 ported, 5 rejected:
+426363 HMA + CCI with CCI exits (3h); 426367 Vegas wave, shorts only by reversing a long (1min);
+426368 close / SMA 21 cross, opposite cross ends flat as written (broker days; decision owed);
+426376 bullish harami with close-based stop / target, price units -> ATR (broker days);
+426377 combo 2/20 EMA + APO (12h); 426391 RSI(65) 40 / 60 reversal (1min); 426460 sell in May /
+buy in September (broker days); 426477 TD + MACD + RSI + BB from flat with a target mirrored in
+simulate, ticks -> ATR (broker days, coarse_bar_stop, DG426477).
+Rejected (criterion 1): 426361 (exit without levels), 426364 (strategy.order inventory ladder),
+426455 (re-issued shared exit id, undefined), 426461 (pyramided averaging ladder), 426478
+(375-minute security on daily bars).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A21 committed (hash in next entry). Next id: 426482.

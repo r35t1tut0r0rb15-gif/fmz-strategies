@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426363 (HMA-and-CCI-Combo-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/426363  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Leverage input (unused by the orders)  [lines 89-89]
+   89: leverage = input(100)

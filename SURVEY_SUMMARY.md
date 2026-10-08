@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3487 |
+| PORT_CANDIDATE | 3474 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 237 |
-| REJECTED_ON_READING | 35 |
+| PORTED | 245 |
+| REJECTED_ON_READING | 40 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -365,7 +365,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426340 | `ports/426340_dual-moving-average-breakout-strategy/` | PineScript | ma_trend | none | len_sma x3, len_ema x3 | 9 |
 | 426359 | `ports/426359_multi-indicator-configurable-strategy-generator/` | PineScript | multi_indicator_confluence | none | sl_pct x2, tp_pct x2, max_in_row x2 | 8 |
 | 426360 | `ports/426360_zero-lag-macd-dema-breakout-strategy/` | PineScript | macd_momentum | none | fast x2, slow x2 | 4 |
-| | **237 ports** | | | | | **2060** |
+| 426363 | `ports/426363_hma-and-cci-combo-trend-following-strategy/` | PineScript | momentum_oscillator_turn | none | hma_len x3, cci_len x2 | 6 |
+| 426367 | `ports/426367_vegas-trend-wave-strategy/` | PineScript | ma_trend | none | upd x3 | 3 |
+| 426368 | `ports/426368_dual-moving-average-crossover-tracking-strategy/` | PineScript | ma_trend | none | lma1 x3, lma2 x2 | 6 |
+| 426376 | `ports/426376_bullish-harami-reversal-strategy/` | PineScript | candle_pattern | none | sl_atr x3 | 3 |
+| 426377 | `ports/426377_dual-moving-average-indicators-fusion-strategy/` | PineScript | multi_indicator_confluence | none | length x2, apo_short x1, apo_long x2 | 4 |
+| 426391 | `ports/426391_ultra-long-period-rsi-reversal-strategy/` | PineScript | rsi_oscillator | none | length x3, band x2 | 6 |
+| 426460 | `ports/426460_sell-in-may-buy-in-september-strategy/` | PineScript | calendar_seasonal | none | buy_month x3, sell_month x1 | 3 |
+| 426477 | `ports/426477_multi-indicator-convergence-trading-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | rsi_diff x2, tp_atr x3 | 6 |
+| | **245 ports** | | | | | **2097** |
 
 ## Rejected on reading
 
@@ -406,6 +414,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426261 | The-Open-Range-Strategy-with-Dynamic-Profit-Target.md | 1 | The opening range and the entry window come from session strings ('0930-1100', '0930-1000', '1000-1100') read through time() and security() at 1- and 30-minute resolutions on the 1h header chart: the exchange time zone of a crypto pair and what a lower-resolution time()/security() returns per chart bar are undefined, so the bars that may trade are not defined (as #361719). |
 | 426302 | The-Bollinger-Band-Automated-Trading-Strategy.md | 1 | 3Commas DCA bot: up to 6 safety orders add strategy.position_size * 1.55 below the entry (strategy.order), and the stop / target are fractions of the averaged position price; the position ladder is the strategy (as #422794). |
 | 426334 | Uptrend-and-Oversold-Index-Swing-Trading-System-strategy.md | 1 | The whole signal is SCORE, which calls ta.ema(close, n) for n = 1..21 inside one for-loop call site: the EMA's recursive state (its [1] value) is shared across the 21 calls, so what each length reads is defined by the runtime, not the script. Also a trailing stop order from highs and buys blocked for the rest of the calendar day after any fill. |
+| 426361 | Composite-Entry-Signal-RSI-Trading-Strategy.md | 1 | The only exit is strategy.exit('close', 'buy') with no profit / loss / stop / limit / trail argument (an error on TradingView, no exit level on any runtime), so a long entered on the MA crossing 40 has no defined exit (as #368717). |
+| 426364 | KD-Dual-direction-Tracking-Strategy.md | 1 | KD inventory model: strategy.order adds or removes one default unit per bar until the position reaches a target share count (0.33 steps of 20 / -10 shares); the position size path is the strategy (as #380530). |
+| 426455 | Enhanced-Fish-Net-Strategy.md | 1 | Four strategy.exit calls share the id 'Exit' with no from_entry: two set a 300-tick stop with a 150 / 50-tick trailing stop, two (when= buy / sell) set no exit level at all. Which exit order is live on a bar depends on how the runtime merges re-issued ids; the exits are undefined. |
+| 426461 | Noros-Fast-RSI-Breakthrough-Strategy.md | 1 | pyramiding = 10 with entries repeated on every signal bar, the first long rule adding only below strategy.position_avg_price: a pyramided averaging ladder (as #395966, #422794). |
+| 426478 | 双Gann通道突破买卖策略Gann-Double-Channel-Breakout-Trading-Strategy.md | 1 | The signal is a crossover of security(tickerid, '375', close) and security(..., open) on the daily header chart: a 375-minute resolution below the chart's, whose value per daily bar (and 375-minute block alignment on a 24 h market) is undefined (as #426261). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

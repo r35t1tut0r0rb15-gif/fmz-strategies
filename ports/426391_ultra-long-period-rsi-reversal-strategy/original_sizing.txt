@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426391 (Ultra-Long-Period-RSI-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/426391  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): 100 % of equity (not active)  [lines 60-60]
+   60: // strategy("Kozlod - RSI Strategy - 1 minute", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100)

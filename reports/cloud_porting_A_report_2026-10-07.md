@@ -4,10 +4,10 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 
 ## Counts (worker A, ids 126968 and up)
 
-- Ported: **231** (20 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245, 385745, 391341, 395962, 396182, 400134, 402455, 425773, 426142, 426145, 426300, 426359)
-- Rejected on reading: **28** (criterion 1: 26, criterion 2: 2)
+- Ported: **239** (21 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245, 385745, 391341, 395962, 396182, 400134, 402455, 425773, 426142, 426145, 426300, 426359, 426477)
+- Rejected on reading: **33** (criterion 1: 31, criterion 2: 2)
 - Exact duplicate on reading (set aside, rule 7): **1** (128126 of 127691)
-- Last id reached: **426360**; next id in the queue: **426361**
+- Last id reached: **426478**; next id in the queue: **426482**
 - Existing batch-1 ports re-marked under rule 1 (logic unchanged): 11604, 42283, 42451, 119038 (bar_size_pending 4)
 
 ### Marks on worker A ports
@@ -16,7 +16,7 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 |---|---|
 | bar_size_pending | 18 |
 | trailing_stop_pending | 8 |
-| coarse_bar_stop | 4 |
+| coarse_bar_stop | 5 |
 | stop_is_entry_condition | 0 |
 
 ### Rejections (criterion, id, reason)
@@ -49,9 +49,15 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - 426261 (criterion 1): The opening range and the entry window come from session strings ('0930-1100', '0930-1000', '1000-1100') read through time() and security() at 1- and 30-minute resolutions on the 1h header chart: the exchange time zone of a crypto pair and what a lower-resolution time()/security() returns per chart bar are undefined, so the bars that may trade are not defined (as #361719).
 - 426302 (criterion 1): 3Commas DCA bot: up to 6 safety orders add strategy.position_size * 1.55 below the entry (strategy.order), and the stop / target are fractions of the averaged position price; the position ladder is the strategy (as #422794).
 - 426334 (criterion 1): The whole signal is SCORE, which calls ta.ema(close, n) for n = 1..21 inside one for-loop call site: the EMA's recursive state (its [1] value) is shared across the 21 calls, so what each length reads is defined by the runtime, not the script. Also a trailing stop order from highs and buys blocked for the rest of the calendar day after any fill.
+- 426361 (criterion 1): The only exit is strategy.exit('close', 'buy') with no profit / loss / stop / limit / trail argument (an error on TradingView, no exit level on any runtime), so a long entered on the MA crossing 40 has no defined exit (as #368717).
+- 426364 (criterion 1): KD inventory model: strategy.order adds or removes one default unit per bar until the position reaches a target share count (0.33 steps of 20 / -10 shares); the position size path is the strategy (as #380530).
+- 426455 (criterion 1): Four strategy.exit calls share the id 'Exit' with no from_entry: two set a 300-tick stop with a 150 / 50-tick trailing stop, two (when= buy / sell) set no exit level at all. Which exit order is live on a bar depends on how the runtime merges re-issued ids; the exits are undefined.
+- 426461 (criterion 1): pyramiding = 10 with entries repeated on every signal bar, the first long rule adding only below strategy.position_avg_price: a pyramided averaging ladder (as #395966, #422794).
+- 426478 (criterion 1): The signal is a crossover of security(tickerid, '375', close) and security(..., open) on the daily header chart: a 375-minute resolution below the chart's, whose value per daily bar (and 375-minute block alignment on a 24 h market) is undefined (as #426261).
 
 ### Commits (newest first)
 
+- `3d6d6cf survey A batch A20: 10 ports, 3 rejected (ids 426261-426360)`
 - `d296684 survey A batch A19: 11 ports, 2 rejected (ids 422794-426259)`
 - `4bf67b5 survey A batch A18: 8 ports, 5 rejected (ids 380446-416875)`
 - `7cd1890 survey A batch A17: 12 ports, 1 rejected (ids 370728-380396)`
@@ -90,11 +96,11 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - Task 1: rules 2026-10-07 in SURVEY_README.md; check_ports.py extended (Marks line, bar_size_pending only with its mark, stop Series shifted inside stops(), coarse_bar_stop, left-labelled resampling); all ports pass.
 - Task 2: DUPLICATE 251 explained (reports/near_duplicates_2026-10-07.md); near_duplicate_groups.csv over all 3,747 PORT_CANDIDATE rows (5-token shingles, exact Jaccard; >= 0.80 none new, 0.65-0.80 band grouped as ND).
 - Task 3: no_bar_size.csv: 484 of 5,806 files have no bar size (85 with stop logic).
-- Task 4: 231 ported, 28 rejected, 1 duplicate on reading, ids 126968 to 426360.
+- Task 4: 239 ported, 33 rejected, 1 duplicate on reading, ids 126968 to 426478.
 
 **Failed / not done**
 
-- Task 4 is not complete: the queue continues at 426361; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
+- Task 4 is not complete: the queue continues at 426482; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
 - Rule 5 module (1) ("exactly as written") cannot be expressed by the contract; no stop_is_entry_condition port exists.
 
 **Decisions owed**
@@ -107,9 +113,11 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 6. 200131 and 361827 compute the indicator change as a log return (as the source does).
 7. 361719 rejected: request.security resolution "18000" is undefined; the project would have to define it before it can be ported.
 8. 370728 rejected: nested request.security on a Heikin-Ashi ticker (undefined which daily values reach the orders); same kind of decision as 361719.
-9. 426261 rejected: session windows read through time()/security() at 1- and 30-minute resolutions on an hourly chart (time zone and lower-resolution semantics undefined); same kind of decision as 361719. 426334 rejected: ta.ema called with 21 lengths at one loop call site (runtime-defined state).
-10. 362214 is one-sided as written (the source never opens the other side).
-11. 55839 keeps FREQ "1h" (author states hourly bars in the text); 103070 keeps PERIOD_M15 from the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source's bar size, not as a choice.
-12. FAMILY values are proposals ("user to confirm") in every port.
-13. Sources whose orders are degenerate were rejected on reading (criterion 1): 368717 (long entries, no exit at all), 368734 and 369999 (a count / plot handle tested as a boolean, so long on almost every bar). Confirm that "no testable rule" is a valid rejection, or port them as written.
-14. Some ports depend on where the data starts (Pine cum() / bar_index running means: 366388 cancels it, 370711 does not); acceptable?
+9. 426261 rejected: session windows read through time()/security() at 1- and 30-minute resolutions on an hourly chart (time zone and lower-resolution semantics undefined); same kind of decision as 361719. 426334 rejected: ta.ema called with 21 lengths at one loop call site (runtime-defined state). 426478 rejected likewise (375-minute security on daily bars).
+10. 426368: an opposite cross issues a reversing entry plus close_all; the port fills them in issue order (the bar ends flat). If close_all is sized at issue time the reversal would stand (always-in). Confirm the broker-emulator reading.
+11. strategy.exit with no price arguments is read as "no exit" (426361 rejected, 426455 rejected for re-issued exit ids).
+12. 362214 is one-sided as written (the source never opens the other side).
+13. 55839 keeps FREQ "1h" (author states hourly bars in the text); 103070 keeps PERIOD_M15 from the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source's bar size, not as a choice.
+14. FAMILY values are proposals ("user to confirm") in every port.
+15. Sources whose orders are degenerate were rejected on reading (criterion 1): 368717 (long entries, no exit at all), 368734 and 369999 (a count / plot handle tested as a boolean, so long on almost every bar). Confirm that "no testable rule" is a valid rejection, or port them as written.
+16. Some ports depend on where the data starts (Pine cum() / bar_index running means: 366388 cancels it, 370711 does not); acceptable?

@@ -48,7 +48,12 @@ DECISIONS = [
     '426261 rejected: session windows read through time()/security() at 1- and 30-minute '
     'resolutions on an hourly chart (time zone and lower-resolution semantics undefined); same '
     'kind of decision as 361719. 426334 rejected: ta.ema called with 21 lengths at one loop call '
-    'site (runtime-defined state).',
+    'site (runtime-defined state). 426478 rejected likewise (375-minute security on daily bars).',
+    '426368: an opposite cross issues a reversing entry plus close_all; the port fills them in '
+    'issue order (the bar ends flat). If close_all is sized at issue time the reversal would '
+    'stand (always-in). Confirm the broker-emulator reading.',
+    'strategy.exit with no price arguments is read as "no exit" (426361 rejected, 426455 '
+    'rejected for re-issued exit ids).',
     '362214 is one-sided as written (the source never opens the other side).',
     '55839 keeps FREQ "1h" (author states hourly bars in the text); 103070 keeps PERIOD_M15 from '
     'the code. Bar sizes requested in code (GetRecords(PERIOD_xx)) are treated as the source\'s '
