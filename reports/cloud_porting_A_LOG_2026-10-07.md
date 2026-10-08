@@ -623,3 +623,19 @@ trailing_stop_pending); 426925 golden cross long only (2min).
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A28 committed (hash in next entry). Next id: 426928.
+
+Batch A28 commit: e17001a (pushed, verified).
+
+## Task 4, batch A29 (ids 426928 - 427063)
+
+origin/survey-b still absent at batch start. 11 ported, 2 rejected:
+426928 three SuperTrends (2h); 426929 Super BitMoon long only (5min); 426932 four-bar reversal
+(1h); 426933 double Hull long only (15min); 426990 Noro CryptoBottom long only (1h); 426991 two
+EMA directions (1h, ND426991); 426993 PSAR on close (3h, ND426598); 426995 Noro bands scalper
+(2-day bars, ND426995); 426996 candle meter with ATR bracket (4h, coarse_bar_stop); 427001 Noro
+drawdown long only (1h); 427017 Keltner wick long with static bracket mirrored (1min).
+Rejected (criterion 1): 426936 (DCA accumulation, last_bar_index), 427063 (partial closes).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A29 committed (hash in next entry). Next id: 427064.

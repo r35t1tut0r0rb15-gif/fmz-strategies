@@ -4,10 +4,10 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 
 ## Counts (worker A, ids 126968 and up)
 
-- Ported: **320** (36 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245, 385745, 391341, 395962, 396182, 400134, 402455, 425773, 426142, 426145, 426300, 426359, 426477, 426487, 426506, 426511, 426604, 426779, 426794, 426834, 426836, 426843, 426847, 426848, 426854, 426885, 426889, 426923)
-- Rejected on reading: **43** (criterion 1: 39, criterion 2: 2, criterion 3: 2)
+- Ported: **331** (38 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892, 380245, 385745, 391341, 395962, 396182, 400134, 402455, 425773, 426142, 426145, 426300, 426359, 426477, 426487, 426506, 426511, 426604, 426779, 426794, 426834, 426836, 426843, 426847, 426848, 426854, 426885, 426889, 426923, 426996, 427017)
+- Rejected on reading: **45** (criterion 1: 41, criterion 2: 2, criterion 3: 2)
 - Exact duplicate on reading (set aside, rule 7): **1** (128126 of 127691)
-- Last id reached: **426925**; next id in the queue: **426928**
+- Last id reached: **427063**; next id in the queue: **427064**
 - Existing batch-1 ports re-marked under rule 1 (logic unchanged): 11604, 42283, 42451, 119038 (bar_size_pending 4)
 
 ### Marks on worker A ports
@@ -16,7 +16,7 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 |---|---|
 | bar_size_pending | 18 |
 | trailing_stop_pending | 13 |
-| coarse_bar_stop | 12 |
+| coarse_bar_stop | 13 |
 | stop_is_entry_condition | 0 |
 
 ### Rejections (criterion, id, reason)
@@ -64,9 +64,12 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - 426849 (criterion 1): Exits are a partial take-profit (strategy.exit qty_percent = tp1 % at TP1) plus a second exit, with the stop moved to the entry price after the partial fill: partial exits cannot be expressed as one net position's signals (as #365389).
 - 426850 (criterion 1): Exits are a three-step partial take-profit ladder (Exit1-Exit3 with qty 10 / 15 / 20 % at +5 / +10 / +15 %) plus the remainder: partial exits (as #365389).
 - 426882 (criterion 1): Every exit tests strategy.position_size >= 1 (at least one whole unit held), and the risk-based qty is a fraction of a coin on BTC, so whether any exit can fire depends on the sizing formula (as #425798).
+- 426936 (criterion 1): Dollar-cost averaging: strategy.order buys int(200 / close) units on every bar and sells the accumulated position on bar_index == last_bar_index - 2 (a read of where the data ends); the position is an accumulation, not a signal (as #380530).
+- 427063 (criterion 1): Exits include strategy.close(qty = position_size / 3) (a partial close) and adds via strategy.order below the average price, with stops on unit counts (position_size >= 1): partial exits (as #365389).
 
 ### Commits (newest first)
 
+- `e17001a survey A batch A28: 13 ports, 0 rejected (ids 426888-426925)`
 - `18ae16f survey A batch A27: 13 ports (3 re-reads), 3 rejected (ids 426848-426886)`
 - `a9e84b8 survey A batch A26: 11 ports, 2 rejected (ids 426812-426847)`
 - `82e0705 survey A batch A25: 11 ports, 2 rejected (ids 426780-426811)`
@@ -119,11 +122,11 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - Task 1: rules 2026-10-07 in SURVEY_README.md; check_ports.py extended (Marks line, bar_size_pending only with its mark, stop Series shifted inside stops(), coarse_bar_stop, left-labelled resampling); all ports pass.
 - Task 2: DUPLICATE 251 explained (reports/near_duplicates_2026-10-07.md); near_duplicate_groups.csv over all 3,747 PORT_CANDIDATE rows (5-token shingles, exact Jaccard; >= 0.80 none new, 0.65-0.80 band grouped as ND).
 - Task 3: no_bar_size.csv: 484 of 5,806 files have no bar size (85 with stop logic).
-- Task 4: 320 ported, 43 rejected, 1 duplicate on reading, ids 126968 to 426925.
+- Task 4: 331 ported, 45 rejected, 1 duplicate on reading, ids 126968 to 427063.
 
 **Failed / not done**
 
-- Task 4 is not complete: the queue continues at 426928; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
+- Task 4 is not complete: the queue continues at 427064; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
 - Rule 5 module (1) ("exactly as written") cannot be expressed by the contract; no stop_is_entry_condition port exists.
 
 **Decisions owed**

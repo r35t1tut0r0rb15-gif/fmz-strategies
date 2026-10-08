@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #426996 (顺势均线K线计数策略Moving-Average-Candle-Count-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/426996  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): qty 100 (not active)  [lines 152-153]
+  152: // strategy(title=StrategyName, shorttitle=ShortStrategyName, overlay=true, 
+  153: //  pyramiding=0, default_qty_value=100, precision=7, currency=currency.USD,

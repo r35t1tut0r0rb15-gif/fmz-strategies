@@ -1,0 +1,21 @@
+# Original sizing and money-management code, FMZ #427001 (回撤开仓策略Drawdown-Entry-Strategy)
+# Source: https://www.fmz.com/strategy/427001  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity; the qty-0 closing entry  [lines 143-158]
+  143: strategy(title = "Noro's DD Strategy", shorttitle = "DD str", overlay = false, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)
+  144: signal = input(-5.0, title = "Drawdown, %")
+  145: bull = close > close[1] ? 1 : 0
+  146: bear = close < close[1] ? 1 : 0
+  147: lastbull = 0.0
+  148: lastbull := bull ? close : lastbull[1]
+  149: dd = ((close / lastbull) - 1) * 100
+  150: plot(dd, color = black, transp = 20)
+  151: bottom = dd < signal
+  152: col = bottom ? lime : na
+  153: bgcolor(col, transp = 20)
+  154: 
+  155: if bottom
+  156:     strategy.entry("Long", strategy.long)
+  157: if strategy.position_size > 0 and close > open
+  158:     strategy.entry("Close", strategy.short, 0)

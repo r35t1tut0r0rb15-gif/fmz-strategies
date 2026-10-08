@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426991 (Hull-移动平均趋势跟踪策略Hull-Moving-Average-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/426991  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy() (not active)  [lines 141-141]
+  141: // strategy(title='HULLMiguel 2019/ Strategy v3', shorttitle='HULLMiguel_2019_Strategy', overlay=true, pyramiding=0, default_qty_value=1000, initial_capital=1000, currency=currency.USD)

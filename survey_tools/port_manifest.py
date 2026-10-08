@@ -587,6 +587,23 @@ SIZING = {
     426925: [
         ("strategy(): initial capital 10000, percent of equity", 129, 129),
     ],
+    # ---- worker A, batch A29 (2026-10-08)
+    426933: [], 426993: [],
+    426928: [("Commented-out strategy(): qty 15 (not active)", 156, 156)],
+    426929: [("strategy(): 100 % of equity, commission", 100, 100)],
+    426932: [("Trade size 1 and entries with it", 83, 91)],
+    426990: [("strategy(): percent of equity", 133, 133)],
+    426991: [("Commented-out strategy() (not active)", 141, 141)],
+    426995: [
+        ("strategy(): percent of equity", 142, 142),
+        ("Entries with qty 0 against the trend / when a side is disabled", 189, 193),
+    ],
+    426996: [("Commented-out strategy(): qty 100 (not active)", 152, 153)],
+    427001: [("strategy(): percent of equity; the qty-0 closing entry", 143, 158)],
+    427017: [
+        ("Commented-out strategy(): calc_on_order_fills (not active)", 173, 173),
+        ("Order delay inputs (off by default)", 179, 222),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -758,6 +775,13 @@ REJECTED_ON_READING = {
     426882: ("1", "Every exit tests strategy.position_size >= 1 (at least one whole unit held), and the "
                   "risk-based qty is a fraction of a coin on BTC, so whether any exit can fire depends on "
                   "the sizing formula (as #425798)."),
+    # ---- worker A, batch A29 (2026-10-08)
+    426936: ("1", "Dollar-cost averaging: strategy.order buys int(200 / close) units on every bar and sells "
+                  "the accumulated position on bar_index == last_bar_index - 2 (a read of where the data "
+                  "ends); the position is an accumulation, not a signal (as #380530)."),
+    427063: ("1", "Exits include strategy.close(qty = position_size / 3) (a partial close) and adds via "
+                  "strategy.order below the average price, with stops on unit counts "
+                  "(position_size >= 1): partial exits (as #365389)."),
 }
 
 DUPLICATE_ON_READING = {

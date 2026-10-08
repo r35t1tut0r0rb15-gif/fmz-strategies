@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426929 (Super-BitMoon量化动量交易策略Super-BitMoon-quantitative-momentum-trading-strategy)
+# Source: https://www.fmz.com/strategy/426929  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission  [lines 100-100]
+  100: strategy("Super BitMoon v1", overlay=false, commission_value = 0.25, default_qty_type=strategy.percent_of_equity, default_qty_value = 100)

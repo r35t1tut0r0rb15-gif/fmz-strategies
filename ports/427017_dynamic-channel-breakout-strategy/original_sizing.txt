@@ -1,0 +1,52 @@
+# Original sizing and money-management code, FMZ #427017 (动态通道突破策略Dynamic-Channel-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/427017  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): calc_on_order_fills (not active)  [lines 173-173]
+  173: // strategy("Channels Strategy [Dimkud - JoseMetal]", overlay=true, calc_on_order_fills=true, use_bar_magnifier=true, pyramiding=0, commission_type=strategy.commission.percent, commission_value=0.04, max_labels_count=500, default_qty_type=strategy.cash, default_qty_value=340, initial_capital=1000 )
+
+## Order delay inputs (off by default)  [lines 179-222]
+  179: i_qtyTimeUnits  = - input.float(1, "Delay between orders:", inline = "1", minval = 0, tooltip = "Use 0 for no delay", group="Time_Delay")
+  180: i_timeUnits     = input.string("minutes", "", inline = "1", options = ["seconds", "minutes", "hours", "days", "chart"], group="Time_Delay")
+  181: useDelay   = input.bool(false, "UseDelay", group="Time_Delay") 
+  182: 
+  183: // ————— Converts current chart timeframe into a float minutes value.
+  184: f_tfInMinutes() => 
+  185:     _tfInMinutes = timeframe.multiplier * (
+  186:       timeframe.isseconds ? 1. / 60             :
+  187:       timeframe.isminutes ? 1.                  :
+  188:       timeframe.isdaily   ? 60. * 24            :
+  189:       timeframe.isweekly  ? 60. * 24 * 7        :
+  190:       timeframe.ismonthly ? 60. * 24 * 30.4375  : na)
+  191: 
+  192: f_timeFrom(_from, _qty, _units) =>
+  193:     int _timeFrom = na
+  194:     // Remove any "s" letter in the _units argument, so we don't need to compare singular and plural unit names.
+  195:     _unit = str.replace_all(_units, "s", "")
+  196:     // Determine if we will calculate offset from the bar's time or from current time.
+  197:     _t = _from == "bar" ? time : _from == "close" ? time_close : timenow
+  198:     // Calculate time at offset.
+  199:     if _units == "chart"
+  200:         // Offset in chart res multiples.
+  201:         _timeFrom := int(_t + (f_tfInMinutes() * 60 * 1000 * _qty))
+  202:     else
+  203:         // Add the required _qty of time _units to the _from starting time.
+  204:         _year   = year(_t)       + (_unit == "year"   ? int(_qty) : 0)
+  205:         _month  = month(_t)      + (_unit == "month"  ? int(_qty) : 0)
+  206:         _day    = dayofmonth(_t) + (_unit == "day"    ? int(_qty) : 0)
+  207:         _hour   = hour(_t)       + (_unit == "hour"   ? int(_qty) : 0)
+  208:         _minute = minute(_t)     + (_unit == "minute" ? int(_qty) : 0)
+  209:         _second = second(_t)     + (_unit == "econd"  ? int(_qty) : 0)
+  210:         // Return the resulting time in ms Unix time format.
+  211:         _timeFrom := timestamp(_year, _month, _day, _hour, _minute, _second)
+  212: 
+  213: // Time delay filter
+  214: var float lastTradeTime = na
+  215: 
+  216: if nz(ta.change(strategy.position_size), time) != 0
+  217: 
+  218:     // An order has been executed; save the bar's time.
+  219:     lastTradeTime := time
+  220: // If user has chosen to do so, wait `i_qtyTimeUnits` `i_timeUnits` between orders
+  221: 
+  222: delayElapsed = useDelay ? f_timeFrom("close", i_qtyTimeUnits, i_timeUnits) >= lastTradeTime : true

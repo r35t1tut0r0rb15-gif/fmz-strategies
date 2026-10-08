@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3383 |
+| PORT_CANDIDATE | 3370 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
-| PORTED | 326 |
+| PORTED | 337 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 50 |
+| REJECTED_ON_READING | 52 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -454,7 +454,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426908 | `ports/426908_fast-and-slow-moving-average-crossover-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
 | 426923 | `ports/426923_london-breakout-day-trading-strategy/` | PineScript | calendar_seasonal | trailing_stop_pending | sl x2, tp x2 | 4 |
 | 426925 | `ports/426925_golden-cross-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
-| | **326 ports** | | | | | **2575** |
+| 426928 | `ports/426928_supertrend-three-supertrend-strategy/` | PineScript | supertrend | none | factor_scale x3 | 3 |
+| 426929 | `ports/426929_super-bitmoon-super-bitmoon-quantitative-momentum-trading-st/` | PineScript | multi_indicator_confluence | none | pd x2, rsi_len x2 | 4 |
+| 426932 | `ports/426932_renko-renko-reversal-price-breakout-trading-strategy/` | PineScript | candle_pattern | none | run x3 | 3 |
+| 426933 | `ports/426933_hull-double-hull-moving-average-strategy/` | PineScript | ma_trend | none | pds x2, pdl x2 | 4 |
+| 426990 | `ports/426990_bottom-following-trading-strategy/` | PineScript | rsi_oscillator | none | dist_mult x2, rsi_level x2 | 4 |
+| 426991 | `ports/426991_hull-hull-moving-average-trend-following-strategy/` | PineScript | ma_trend | none | len0 x2, len02 x2 | 4 |
+| 426993 | `ports/426993_parabolic-sar-parabolic-sar-trailing-stop-loss-strategy/` | PineScript | parabolic_sar | none | start x2, increment x2, maximum x1 | 4 |
+| 426995 | `ports/426995_dynamic-price-channel-trading-strategy/` | PineScript | volatility_channel_breakout | none | length x3 | 3 |
+| 426996 | `ports/426996_k-moving-average-candle-count-trend-following-strategy/` | PineScript | candle_pattern | coarse_bar_stop | bar_counter x2, sl_atr x3 | 6 |
+| 427001 | `ports/427001_drawdown-entry-strategy/` | PineScript | momentum_oscillator_turn | none | signal x3 | 3 |
+| 427017 | `ports/427017_dynamic-channel-breakout-strategy/` | PineScript | volatility_channel_breakout | none | kc_mult x2, tp_pct x2, sl_pct x2 | 8 |
+| | **337 ports** | | | | | **2621** |
 
 ## Rejected on reading
 
@@ -510,6 +521,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426849 | 基于PSARZigZagMACDART多指标组合的量化策略Quantitative-Strategy-PSARZigZagMACDART-Based-on-Multi-Indicator-Combination.md | 1 | Exits are a partial take-profit (strategy.exit qty_percent = tp1 % at TP1) plus a second exit, with the stop moved to the entry price after the partial fill: partial exits cannot be expressed as one net position's signals (as #365389). |
 | 426850 | 基于超趋势指标多时间框架的量化策略Multi-Timeframe-Supertrend-Quantitative-Trading-Strategy.md | 1 | Exits are a three-step partial take-profit ladder (Exit1-Exit3 with qty 10 / 15 / 20 % at +5 / +10 / +15 %) plus the remainder: partial exits (as #365389). |
 | 426882 | 基于波动带反转的长线量化策略Long-Term-Quantitative-Strategy-Based-on-Volatility-Bands-Reversal.md | 1 | Every exit tests strategy.position_size >= 1 (at least one whole unit held), and the risk-based qty is a fraction of a coin on BTC, so whether any exit can fire depends on the sizing formula (as #425798). |
+| 426936 | 定期定额累积均价策略Dollar-Cost-Averaging-Strategy.md | 1 | Dollar-cost averaging: strategy.order buys int(200 / close) units on every bar and sells the accumulated position on bar_index == last_bar_index - 2 (a read of where the data ends); the position is an accumulation, not a signal (as #380530). |
+| 427063 | 双向趋势追踪策略Dual-Trend-Tracking-Strategy.md | 1 | Exits include strategy.close(qty = position_size / 3) (a partial close) and adds via strategy.order below the average price, with stops on unit counts (position_size >= 1): partial exits (as #365389). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

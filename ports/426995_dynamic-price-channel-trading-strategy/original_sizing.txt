@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #426995 (动态价格通道交易策略Dynamic-Price-Channel-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/426995  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity  [lines 142-142]
+  142: strategy("Noro's Bands Scalper Strategy v1.1", shorttitle = "Scalper str 1.1", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value=100.0, pyramiding=0)
+
+## Entries with qty 0 against the trend / when a side is disabled  [lines 189-193]
+  189: if up7 == 1 or up8 == 1
+  190:     strategy.entry("Long", strategy.long, needlong == false ? 0 : trend == -1 and needct == false ? 0 : na)
+  191: 
+  192: if dn7 == 1 or dn8 == 1
+  193:     strategy.entry("Short", strategy.short, needshort == false ? 0 : trend == 1 and needct == false ? 0 : na)

@@ -49,6 +49,8 @@ fmz_id,file,final_outcome,criterion,reason
 426849,基于PSARZigZagMACDART多指标组合的量化策略Quantitative-Strategy-PSARZigZagMACDART-Based-on-Multi-Indicator-Combination.md,REJECTED_ON_READING,1,"Exits are a partial take-profit (strategy.exit qty_percent = tp1 % at TP1) plus a second exit, with the stop moved to the entry price after the partial fill: partial exits cannot be expressed as one net position's signals (as #365389)."
 426850,基于超趋势指标多时间框架的量化策略Multi-Timeframe-Supertrend-Quantitative-Trading-Strategy.md,REJECTED_ON_READING,1,Exits are a three-step partial take-profit ladder (Exit1-Exit3 with qty 10 / 15 / 20 % at +5 / +10 / +15 %) plus the remainder: partial exits (as #365389).
 426882,基于波动带反转的长线量化策略Long-Term-Quantitative-Strategy-Based-on-Volatility-Bands-Reversal.md,REJECTED_ON_READING,1,"Every exit tests strategy.position_size >= 1 (at least one whole unit held), and the risk-based qty is a fraction of a coin on BTC, so whether any exit can fire depends on the sizing formula (as #425798)."
+426936,定期定额累积均价策略Dollar-Cost-Averaging-Strategy.md,REJECTED_ON_READING,1,"Dollar-cost averaging: strategy.order buys int(200 / close) units on every bar and sells the accumulated position on bar_index == last_bar_index - 2 (a read of where the data ends); the position is an accumulation, not a signal (as #380530)."
+427063,双向趋势追踪策略Dual-Trend-Tracking-Strategy.md,REJECTED_ON_READING,1,"Exits include strategy.close(qty = position_size / 3) (a partial close) and adds via strategy.order below the average price, with stops on unit counts (position_size >= 1): partial exits (as #365389)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -376,3 +378,14 @@ fmz_id,file,final_outcome,criterion,reason
 426908,快慢均线金叉死叉策略Fast-and-Slow-Moving-Average-Crossover-Strategy.md,PORTED,,ports/426908_fast-and-slow-moving-average-crossover-strategy/
 426923,伦敦突破短线交易策略London-Breakout-Day-Trading-Strategy.md,PORTED,,ports/426923_london-breakout-day-trading-strategy/
 426925,双均线黄金交叉策略Golden-Cross-Strategy.md,PORTED,,ports/426925_golden-cross-strategy/
+426928,三条Supertrend策略Three-Supertrend-Strategy.md,PORTED,,ports/426928_supertrend-three-supertrend-strategy/
+426929,Super-BitMoon量化动量交易策略Super-BitMoon-quantitative-momentum-trading-strategy.md,PORTED,,ports/426929_super-bitmoon-super-bitmoon-quantitative-momentum-trading-st/
+426932,Renko反转价格突破交易策略Renko-Reversal-Price-Breakout-Trading-Strategy.md,PORTED,,ports/426932_renko-renko-reversal-price-breakout-trading-strategy/
+426933,双HULL移动平均策略Double-HULL-Moving-Average-Strategy.md,PORTED,,ports/426933_hull-double-hull-moving-average-strategy/
+426990,底部跟随交易策略Bottom-Following-Trading-Strategy.md,PORTED,,ports/426990_bottom-following-trading-strategy/
+426991,Hull-移动平均趋势跟踪策略Hull-Moving-Average-Trend-Following-Strategy.md,PORTED,,ports/426991_hull-hull-moving-average-trend-following-strategy/
+426993,Parabolic-SAR扇形跟踪止损策略Parabolic-SAR-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/426993_parabolic-sar-parabolic-sar-trailing-stop-loss-strategy/
+426995,动态价格通道交易策略Dynamic-Price-Channel-Trading-Strategy.md,PORTED,,ports/426995_dynamic-price-channel-trading-strategy/
+426996,顺势均线K线计数策略Moving-Average-Candle-Count-Trend-Following-Strategy.md,PORTED,,ports/426996_k-moving-average-candle-count-trend-following-strategy/
+427001,回撤开仓策略Drawdown-Entry-Strategy.md,PORTED,,ports/427001_drawdown-entry-strategy/
+427017,动态通道突破策略Dynamic-Channel-Breakout-Strategy.md,PORTED,,ports/427017_dynamic-channel-breakout-strategy/
