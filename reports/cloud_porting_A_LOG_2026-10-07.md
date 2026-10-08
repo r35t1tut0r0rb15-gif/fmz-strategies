@@ -352,3 +352,19 @@ Authors: Zer3192 from 366385 on.
 All ports pass py_compile and check_ports.py.
 
 Resume point: batch A14 committed (hash in next entry). Next id: 366641.
+
+Batch A14 commit: 8d1813b (pushed, verified).
+
+## Task 4, batch A15 (ids 366641 - 367572)
+
+origin/survey-b still absent at batch start. 13 ported, 0 rejected:
+366641 Delta-RSI polynomial slope (1h); 366930 SAMA slope colour (10min); 366936 pivot distance
+trend (30min); 366941 RSI divergence, bearish -> long as written (5min, ND366941); 366942 PSAR
+classic flips (5min); 366943 MACD Bollinger break (45min); 366946 BB + stoch-RSI extreme, Bear ->
+long as written (15min); 366947 Demark setup (30min); 366948 Darvas box (45min); 366966 Fibonacci
+timing pattern (4h, 1 trial); 367476 regression channel trend (4h, ND362178); 367565 swing stop
+line (4h); 367572 SAR envelope cross (4h).
+
+All ports pass py_compile and check_ports.py.
+
+Resume point: batch A15 committed (hash in next entry). Next id: 367643.

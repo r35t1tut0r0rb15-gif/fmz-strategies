@@ -11,12 +11,12 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3565 |
+| PORT_CANDIDATE | 3552 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORTED | 173 |
+| PORTED | 186 |
 | REJECTED_ON_READING | 21 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
@@ -301,7 +301,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 366404 | `ports/366404_peak-detector/` | PineScript | zscore_reversion | none | length x2, dev x2, pct x2 | 8 |
 | 366407 | `ports/366407_supertrex/` | PineScript | supertrend | none | length x2, st_mult x2, st_period x2 | 8 |
 | 366430 | `ports/366430_blackcat-l2-reversal-labels-strategy/` | PineScript | macd_divergence | none | fast x2, slow x2, signal x2 | 8 |
-| | **173 ports** | | | | | **1618** |
+| 366641 | `ports/366641_delta-rsi-oscillator-strategy/` | PineScript | rsi_oscillator | none | degree x3, rsi_len x2, window x2 | 12 |
+| 366930 | `ports/366930_slope-adaptive-moving-average/` | PineScript | slope_momentum | none | length x2, slope_period x2, flat x3 | 12 |
+| 366936 | `ports/366936_pivot-trend/` | PineScript | pivot_reversal | none | prd x3, pnum x2 | 6 |
+| 366941 | `ports/366941_rsi-divergence-indicator/` | PineScript | rsi_oscillator | none | rsi_len x2, lb x3 | 6 |
+| 366942 | `ports/366942_parabolic-sar/` | PineScript | parabolic_sar | none | start x2, increment x2, maximum x2 | 8 |
+| 366943 | `ports/366943_ak-macd-bb-indicator-v-100/` | PineScript | macd_momentum | none | length x2, dev x3 | 6 |
+| 366946 | `ports/366946_bollinger-bands-stochastic-rsi-extreme/` | PineScript | bollinger_reversion | none | length x2, mult x2, limit x2 | 8 |
+| 366947 | `ports/366947_demark-setup-indicator/` | PineScript | td_sequential | none | length x4 | 4 |
+| 366948 | `ports/366948_darvas-box-buy-sell/` | PineScript | donchian_breakout | none | boxp x4 | 4 |
+| 366966 | `ports/366966_fibonacci-timing-pattern/` | PineScript | td_sequential | none |  | 0 |
+| 367476 | `ports/367476_linear-trend/` | PineScript | volatility_stop_cross | none | length x2, dev x3 | 6 |
+| 367565 | `ports/367565_accurate-swing-trading-system/` | PineScript | donchian_breakout | none | swing x4 | 4 |
+| 367572 | `ports/367572_sar-high-and-low/` | PineScript | parabolic_sar | none | look_back x2, multi x2 | 4 |
+| | **186 ports** | | | | | **1698** |
 
 ## Rejected on reading
 

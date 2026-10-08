@@ -22,7 +22,7 @@ MARKS = ['bar_size_pending', 'trailing_stop_pending', 'coarse_bar_stop', 'stop_i
 AS_WRITTEN = {
     'direction inverted relative to the source\'s own names or colours': [
         207157, 361675, 361689, 361996, 362004, 362031, 362172, 362418, 362427, 362649, 362654, 362664,
-        362898, 363582, 363590, 365080, 365381],
+        362898, 363582, 363590, 365080, 365381, 366941, 366946],
     'formula slip kept': [192353, 345036, 188499],
 }
 

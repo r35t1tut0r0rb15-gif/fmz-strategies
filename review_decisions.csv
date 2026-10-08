@@ -194,3 +194,16 @@ fmz_id,file,final_outcome,criterion,reason
 366404,Peak-detector.md,PORTED,,ports/366404_peak-detector/
 366407,SuperTREX.md,PORTED,,ports/366407_supertrex/
 366430,blackcat-L2-Reversal-Labels-Strategy.md,PORTED,,ports/366430_blackcat-l2-reversal-labels-strategy/
+366641,Delta-RSI-Oscillator-Strategy.md,PORTED,,ports/366641_delta-rsi-oscillator-strategy/
+366930,Slope-Adaptive-Moving-Average.md,PORTED,,ports/366930_slope-adaptive-moving-average/
+366936,Pivot-Trend.md,PORTED,,ports/366936_pivot-trend/
+366941,RSI-Divergence-Indicator.md,PORTED,,ports/366941_rsi-divergence-indicator/
+366942,Parabolic-SAR.md,PORTED,,ports/366942_parabolic-sar/
+366943,AK-MACD-BB-INDICATOR-V-100.md,PORTED,,ports/366943_ak-macd-bb-indicator-v-100/
+366946,Bollinger-Bands-Stochastic-RSI-Extreme.md,PORTED,,ports/366946_bollinger-bands-stochastic-rsi-extreme/
+366947,Demark-Setup-Indicator.md,PORTED,,ports/366947_demark-setup-indicator/
+366948,Darvas-Box-Buy-Sell.md,PORTED,,ports/366948_darvas-box-buy-sell/
+366966,Fibonacci-Timing-Pattern.md,PORTED,,ports/366966_fibonacci-timing-pattern/
+367476,Linear-trend.md,PORTED,,ports/367476_linear-trend/
+367565,Accurate-Swing-Trading-System.md,PORTED,,ports/367565_accurate-swing-trading-system/
+367572,SAR-high-and-low.md,PORTED,,ports/367572_sar-high-and-low/

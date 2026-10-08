@@ -4,10 +4,10 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 
 ## Counts (worker A, ids 126968 and up)
 
-- Ported: **167** (8 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892)
+- Ported: **180** (8 with stops(): 361786, 361969, 362167, 362842, 364518, 365600, 365668, 365892)
 - Rejected on reading: **14** (criterion 1: 12, criterion 2: 2)
 - Exact duplicate on reading (set aside, rule 7): **1** (128126 of 127691)
-- Last id reached: **366430**; next id in the queue: **366641**
+- Last id reached: **367572**; next id in the queue: **367643**
 - Existing batch-1 ports re-marked under rule 1 (logic unchanged): 11604, 42283, 42451, 119038 (bar_size_pending 4)
 
 ### Marks on worker A ports
@@ -38,6 +38,7 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 
 ### Commits (newest first)
 
+- `8d1813b survey A batch A14: 13 ports (ids 365858-366430)`
 - `a0358a3 survey A batch A13: 13 ports (ids 365419-365727)`
 - `a625008 survey A batch A12: 12 ports, 1 rejected (ids 365078-365389)`
 - `70754b7 survey A batch A11: 13 ports (ids 363848-365075)`
@@ -59,7 +60,7 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 
 ## Kept as written
 
-- direction inverted relative to the source's own names or colours: 207157, 361675, 361689, 361996, 362004, 362031, 362172, 362418, 362427, 362649, 362654, 362664, 362898, 363582, 363590, 365080, 365381
+- direction inverted relative to the source's own names or colours: 207157, 361675, 361689, 361996, 362004, 362031, 362172, 362418, 362427, 362649, 362654, 362664, 362898, 363582, 363590, 365080, 365381, 366941, 366946
 - formula slip kept: 188499, 192353, 345036
 
 ## For the project chat
@@ -69,11 +70,11 @@ Branch `survey`. Rules of 2026-10-07 (SURVEY_README.md). Static work only: nothi
 - Task 1: rules 2026-10-07 in SURVEY_README.md; check_ports.py extended (Marks line, bar_size_pending only with its mark, stop Series shifted inside stops(), coarse_bar_stop, left-labelled resampling); all ports pass.
 - Task 2: DUPLICATE 251 explained (reports/near_duplicates_2026-10-07.md); near_duplicate_groups.csv over all 3,747 PORT_CANDIDATE rows (5-token shingles, exact Jaccard; >= 0.80 none new, 0.65-0.80 band grouped as ND).
 - Task 3: no_bar_size.csv: 484 of 5,806 files have no bar size (85 with stop logic).
-- Task 4: 167 ported, 14 rejected, 1 duplicate on reading, ids 126968 to 366430.
+- Task 4: 180 ported, 14 rejected, 1 duplicate on reading, ids 126968 to 367572.
 
 **Failed / not done**
 
-- Task 4 is not complete: the queue continues at 366641; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
+- Task 4 is not complete: the queue continues at 367643; worker B's branch `survey-b` did not exist on origin at any batch start, so the stop condition was never reached.
 - Rule 5 module (1) ("exactly as written") cannot be expressed by the contract; no stop_is_entry_condition port exists.
 
 **Decisions owed**
