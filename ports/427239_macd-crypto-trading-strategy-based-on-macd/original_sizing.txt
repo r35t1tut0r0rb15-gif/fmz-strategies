@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #427239 (基于MACD的加密货币交易策略Crypto-Trading-Strategy-Based-on-MACD)
+# Source: https://www.fmz.com/strategy/427239  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit / stop-loss / trailing inputs in ticks (TP and SL ported as ATR multiples via stops())  [lines 227-239]
+  227: inpTakeProfit   = input(defval = 20000, title = "Take Profit", minval = 0)
+  228: inpStopLoss     = input(defval = 1500, title = "Stop Loss", minval = 0)
+  229: inpTrailStop    = input(defval = 100, title = "Trailing Stop Loss", minval = 0)
+  230: inpTrailOffset  = input(defval = 0, title = "Trailing Stop Loss Offset", minval = 0)
+  231: 
+  232: // === RISK MANAGEMENT VALUE PREP ===
+  233: 
+  234: // if an input is less than 1, assuming not wanted so we assign 'na' value to disable it.
+  235: 
+  236: useTakeProfit   = inpTakeProfit  >= 1 ? inpTakeProfit  : na
+  237: useStopLoss     = inpStopLoss    >= 1 ? inpStopLoss    : na
+  238: useTrailStop    = inpTrailStop   >= 1 ? inpTrailStop   : na
+  239: useTrailOffset  = inpTrailOffset >= 1 ? inpTrailOffset : na
+
+## Bracket exits per side (trail_offset na: no trailing)  [lines 259-260]
+  259: strategy.exit("Exit Long", from_entry = "Long", profit = useTakeProfit, loss = useStopLoss, trail_points = useTrailStop, trail_offset = useTrailOffset)
+  260: strategy.exit("Exit Short", from_entry = "Short", profit = useTakeProfit, loss = useStopLoss, trail_points = useTrailStop, trail_offset = useTrailOffset)

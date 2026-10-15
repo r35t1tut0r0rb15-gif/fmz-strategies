@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #427186 (JMA指标交叉RSI指标交易策略JMA-Crossing-RSI-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427186  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): cash qty 5000 EUR per trade  [lines 163-163]
+  163: strategy("JMA(7,50,RSI) crossing RSI(14,close)", overlay=false, currency=currency.EUR, default_qty_type=strategy.cash, default_qty_value=5000)
+
+## Initial stop at the averaged price / 1.08 (x 1.08 for shorts), ported via stops()  [lines 243-245]
+  243: if (useStop)
+  244:     strategy.exit("XLS", from_entry ="Buy", stop = strategy.position_avg_price / 1.08)
+  245:     strategy.exit("XSS", from_entry ="Sell", stop = strategy.position_avg_price * 1.08)

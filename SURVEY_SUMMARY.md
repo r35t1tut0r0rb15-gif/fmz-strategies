@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3345 |
+| PORT_CANDIDATE | 3332 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
-| PORTED | 355 |
+| PORTED | 368 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | REJECTED_ON_READING | 59 |
@@ -480,10 +480,23 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427162 | `ports/427162_dual-rail-trend-tracking-strategy/` | PineScript | bollinger_reversion | none | length x3, mult x2 | 6 |
 | 427164 | `ports/427164_moving-average-crossover-strategy/` | PineScript | ma_trend | none | ma1_len x2, ma2_len x2, ma_type x2 | 8 |
 | 427185 | `ports/427185_momentum-breakout-trading-strategy/` | PineScript | volatility_channel_breakout | none | length x3, bodylen x2 | 6 |
+| 427186 | `ports/427186_jma-rsi-jma-crossing-rsi-trading-strategy/` | PineScript | rsi_oscillator | coarse_bar_stop | rsi_length x2, jma_length x2, stop_factor x2 | 8 |
 | 427187 | `ports/427187_moving-average-strategy-with-dynamic-profit-target/` | PineScript | ma_trend | trailing_stop_pending | period x3, pt_factor x2 | 6 |
 | 427188 | `ports/427188_multi-timeframe-heiken-ashi-crossover-strategy/` | PineScript | heikin_ashi_trend | none | short_on x2 | 2 |
 | 427189 | `ports/427189_dual-moving-average-trend-following-strategy/` | PineScript | ma_trend | none | length x3, ma_type x3 | 9 |
-| | **355 ports** | | | | | **2750** |
+| 427197 | `ports/427197_k-stochastic-rsi-renko-stochastic-rsi-trading-strategy/` | PineScript | stochastic_oscillator | none | rsi_length x2, stoch_length x2, smooth_k x2 | 8 |
+| 427239 | `ports/427239_macd-crypto-trading-strategy-based-on-macd/` | PineScript | macd_momentum | none | sl_atr x2, tp_atr x2, slow x2 | 8 |
+| 427257 | `ports/427257_tema-crossover-trading-strategy/` | PineScript | ma_trend | none | slow x3, fast x2 | 6 |
+| 427258 | `ports/427258_aroon-indicator-based-quantitative-strategy/` | PineScript | momentum_breakout | none | length x3 | 3 |
+| 427260 | `ports/427260_trend-breakout-strategy-based-on-adaptive-ma-and-trendlines/` | PineScript | volatility_channel_breakout | none | length_trama x2, pivot x2, rsi_exit x2 | 8 |
+| 427261 | `ports/427261_quantitative-trading-strategy-based-on-high-low-point-moving/` | PineScript | ma_envelope_breakout | none | length x3, displace x2 | 6 |
+| 427264 | `ports/427264_bollinger-bands-breakout-strategy/` | PineScript | bollinger_reversion | none | sma_length x2, lb_offset x2, ub_offset x2 | 8 |
+| 427266 | `ports/427266_gap-down-reversal-strategy/` | PineScript | candle_pattern | trailing_stop | trail_pct x3 | 3 |
+| 427267 | `ports/427267_dual-thrust-strategy/` | PineScript | volatility_channel_breakout | none | k1 x2, k2 x2, length x2 | 8 |
+| 427269 | `ports/427269_momentum-breakout-moving-average-strategy/` | PineScript | ma_trend | none | length x3, confirm_bars x2 | 6 |
+| 427272 | `ports/427272_rsi-cci-rsi-cci-fusion-strategy/` | PineScript | zscore_reversion | none | length x2, rsi_weight x2, enable_short x2 | 8 |
+| 427274 | `ports/427274_hull-ema-zero-lag-hull-ema-combo-trend-following-strategy/` | PineScript | ma_trend | none | period x3, s_period x2 | 6 |
+| | **368 ports** | | | | | **2836** |
 
 ## Rejected on reading
 

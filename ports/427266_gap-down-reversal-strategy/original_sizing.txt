@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #427266 (跳空缺口反转策略Gap-Down-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/427266  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 1, cash qty 10000  [lines 189-189]
+  189: strategy(title="Gap Down reversal strat", overlay=true, pyramiding=1, default_qty_type =  strategy.cash, default_qty_value = 10000, initial_capital = 10000 )
+
+## Trailing stop percent input  [lines 203-204]
+  203: longTrailPerc = input(title="Trail Long Loss (%)",
+  204:      type=float, minval=0.0, step=0.1, defval=5.0) * 0.01
+
+## Trailing stop level on closes (ported natively as the house percent trail, anchor close)  [lines 222-228]
+  222: longStopPrice = 0.0   ///, shortStopPrice = 0.0
+  223: 
+  224: longStopPrice := if (strategy.position_size > 0)
+  225:     stopValue = close * (1 - longTrailPerc)
+  226:     max(stopValue, longStopPrice[1])
+  227: else
+  228:     0
+
+## Stop exit order  [lines 243-244]
+  243: if (strategy.position_size > 0)
+  244:     strategy.exit(id="Stop out", stop=longStopPrice)

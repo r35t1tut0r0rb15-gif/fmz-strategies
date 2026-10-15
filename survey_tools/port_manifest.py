@@ -654,6 +654,41 @@ SIZING = {
         ("Percent stop inputs and levels (off by default: needstops false)", 163, 164),
         ("Stop levels and stop exits", 234, 245),
     ],
+    # ---- FMZ-C, batch C3 (2026-10-16)
+    427186: [
+        ("strategy(): cash qty 5000 EUR per trade", 163, 163),
+        ("Initial stop at the averaged price / 1.08 (x 1.08 for shorts), ported via stops()", 243, 245),
+    ],
+    427197: [
+        ("strategy(): pyramiding 0, commission 0.0675 %", 197, 197),
+    ],
+    427239: [
+        ("Take-profit / stop-loss / trailing inputs in ticks (TP and SL ported as ATR multiples via stops())", 227, 239),
+        ("Bracket exits per side (trail_offset na: no trailing)", 259, 260),
+    ],
+    427257: [],
+    427258: [
+        ("strategy(): 100 % of equity, pyramiding 0", 174, 174),
+        ("Entries with qty 0 when a side is off; the close_all of the backtest window", 198, 205),
+    ],
+    427260: [],
+    427261: [],
+    427264: [],
+    427266: [
+        ("strategy(): pyramiding 1, cash qty 10000", 189, 189),
+        ("Trailing stop percent input", 203, 204),
+        ("Trailing stop level on closes (ported natively as the house percent trail, anchor close)", 222, 228),
+        ("Stop exit order", 243, 244),
+    ],
+    427267: [
+        ("strategy(): initial capital 1000", 192, 192),
+        ("Entries with qty 1", 210, 211),
+    ],
+    427269: [],
+    427272: [
+        ("Commented-out strategy(): percent of equity sizing (not active)", 159, 159),
+    ],
+    427274: [],
 }
 
 REJECTED_ON_READING = {

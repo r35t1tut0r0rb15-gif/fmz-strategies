@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #427267 (双轨突破策略Dual-Thrust-Strategy)
+# Source: https://www.fmz.com/strategy/427267  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital 1000  [lines 192-192]
+  192: strategy("Dual Thrust Strategy",overlay=true,initial_capital=1000)
+
+## Entries with qty 1  [lines 210-211]
+  210: strategy.entry("enter long",true,1,when=LongCondition)
+  211: strategy.entry("enter short",false,1,when=ShortCondition)

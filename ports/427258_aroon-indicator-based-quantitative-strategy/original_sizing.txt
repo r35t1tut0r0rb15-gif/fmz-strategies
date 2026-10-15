@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #427258 (基于阿隆指标的量化策略Aroon-Indicator-Based-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/427258  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 0  [lines 174-174]
+  174: strategy(title = "Noro's Aroon Strategy v1.0", shorttitle = "Aroon str 1.0", overlay = false, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)
+
+## Entries with qty 0 when a side is off; the close_all of the backtest window  [lines 198-205]
+  198: if up
+  199:     strategy.entry("Long", strategy.long, needlong == false ? 0 : na)
+  200:     
+  201: if dn
+  202:     strategy.entry("Short", strategy.short, needshort == false ? 0 : na)
+  203:  
+  204: if true
+  205:     strategy.close_all()
