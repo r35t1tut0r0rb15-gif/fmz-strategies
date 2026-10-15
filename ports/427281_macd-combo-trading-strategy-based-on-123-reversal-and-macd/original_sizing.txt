@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #427281 (基于形态反转和MACD指标的组合交易策略Combo-Trading-Strategy-Based-on-123-Reversal-and-MACD)
+# Source: https://www.fmz.com/strategy/427281  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

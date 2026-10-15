@@ -1,0 +1,30 @@
+# Original sizing and money-management code, FMZ #427301 (百分比追踪止损策略Percent-Trailing-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/427301  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Percent trailing stop input, levels and stop orders (pending: ratchets on 2-hour closes)  [lines 158-182]
+  158: trailStop = input(title="Long Trailing Stop (%)", type=input.float, minval=0.0, step=0.1, defval=10) * 0.01
+  159: 
+  160: longStopPrice = 0.0
+  161: shortStopPrice = 0.0
+  162: longStopPrice := if strategy.position_size > 0
+  163:     stopValue = close * (1 - trailStop)
+  164:     max(stopValue, longStopPrice[1])
+  165: else
+  166:     0
+  167: shortStopPrice := if strategy.position_size < 0
+  168:     stopValue = close * (1 + trailStop)
+  169:     min(stopValue, shortStopPrice[1])
+  170: else
+  171:     999999
+  172: 
+  173: //PLOT TSL LINES
+  174: plot(series=strategy.position_size > 0 ? longStopPrice : na, color=color.red, style=plot.style_linebr, linewidth=1, title="Long Trail Stop", offset=1, title="Long Trail Stop")
+  175: plot(series=strategy.position_size < 0 ? shortStopPrice : na, color=color.red, style=plot.style_linebr, linewidth=1, title="Short Trail Stop", offset=1, title="Short Trail Stop")
+  176: 
+  177: 
+  178: //EXIT TRADE @ TSL
+  179: if strategy.position_size > 0
+  180:     strategy.exit(id="Close Long", stop=longStopPrice)
+  181: if strategy.position_size < 0
+  182:     strategy.exit(id="Close Short", stop=shortStopPrice)

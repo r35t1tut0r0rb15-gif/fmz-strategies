@@ -1,7 +1,7 @@
 # #427269 Momentum Breakout Moving Average Strategy -> `fmz_427269_mbit_ma_count_fade`
 
 - FMZ source id: 427269 (lineage).
-- Source: https://www.fmz.com/strategy/427269 (PineScript v5, author ChaoZhang, FMZ last
+- Source: https://www.fmz.com/strategy/427269 (PineScript, no @version line, v5 syntax; author ChaoZhang, FMZ last
   modified 2023-09-19 16:33:13). Verbatim here as `original_source.md`. Read 2026-10-15 (FMZ-C).
 - Status: PORTED (batch C3). Not run.
 

@@ -689,6 +689,32 @@ SIZING = {
         ("Commented-out strategy(): percent of equity sizing (not active)", 159, 159),
     ],
     427274: [],
+    # ---- FMZ-C, batch C4 (2026-10-16)
+    427275: [
+        ("Backtest window switch and dates (isPeriod is the constant true: never acts)", 278, 297),
+    ],
+    427276: [],
+    427280: [],
+    427281: [],
+    427282: [],
+    427290: [
+        ("strategy(): 100 % of equity, initial capital 100, commission 0.075 %", 162, 162),
+    ],
+    427291: [
+        ("strategy(): initial capital 1 BTC, commission", 160, 160),
+    ],
+    427292: [
+        ("Trailing / take-profit / stop-loss / pyramiding inputs in price units / 10000 (TP / SL ported as ATR multiples)", 200, 204),
+        ("Leverage input and liquidation levels (not ported: sizing)", 270, 274),
+        ("Close orders (liquidation, TP, SL, trailing)", 280, 287),
+    ],
+    427298: [],
+    427300: [],
+    427301: [
+        ("Percent trailing stop input, levels and stop orders (pending: ratchets on 2-hour closes)", 158, 182),
+    ],
+    427302: [],
+    427303: [],
 }
 
 REJECTED_ON_READING = {

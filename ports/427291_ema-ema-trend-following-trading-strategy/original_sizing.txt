@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427291 (EMA追踪趋势交易策略EMA-Trend-Following-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427291  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital 1 BTC, commission  [lines 160-160]
+  160: strategy("EMA12/26 with date backtest range (BTCpair)", overlay=true,initial_capital = 1,commission_type = strategy.commission.percent,currency = currency.BTC)

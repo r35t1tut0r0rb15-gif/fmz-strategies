@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3332 |
+| PORT_CANDIDATE | 3319 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
-| PORTED | 368 |
+| PORTED | 381 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | REJECTED_ON_READING | 59 |
@@ -496,7 +496,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427269 | `ports/427269_momentum-breakout-moving-average-strategy/` | PineScript | ma_trend | none | length x3, confirm_bars x2 | 6 |
 | 427272 | `ports/427272_rsi-cci-rsi-cci-fusion-strategy/` | PineScript | zscore_reversion | none | length x2, rsi_weight x2, enable_short x2 | 8 |
 | 427274 | `ports/427274_hull-ema-zero-lag-hull-ema-combo-trend-following-strategy/` | PineScript | ma_trend | none | period x3, s_period x2 | 6 |
-| | **368 ports** | | | | | **2836** |
+| 427275 | `ports/427275_voss-quantitative-trading-strategy-based-on-voss-filter-and/` | PineScript | momentum_oscillator_turn | none | period x2, predict x2, alpha x2 | 8 |
+| 427276 | `ports/427276_2-20-2-20-exponential-moving-average-strategy/` | PineScript | ma_trend | none | length x3 | 3 |
+| 427280 | `ports/427280_dual-moving-average-trading-strategy-based-on-detrended-synt/` | PineScript | ma_envelope_breakout | none | length x2, band_atr x3 | 6 |
+| 427281 | `ports/427281_macd-combo-trading-strategy-based-on-123-reversal-and-macd/` | PineScript | multi_indicator_confluence | none | length x2, level x2, r x2 | 8 |
+| 427282 | `ports/427282_long-breakout-range-trading-strategy/` | PineScript | donchian_breakout | none | look_back x3 | 3 |
+| 427290 | `ports/427290_ema-dual-ema-crossover-trading-strategy/` | PineScript | ma_trend | none | diff_atr x3, long_ema x2 | 6 |
+| 427291 | `ports/427291_ema-ema-trend-following-trading-strategy/` | PineScript | ma_trend | none | fast x2, slow x3 | 6 |
+| 427292 | `ports/427292_rsi-rsi-indicator-dual-strategy/` | PineScript | rsi_oscillator | none | rsi_band x2, tp_atr x2, sl_atr x2 | 8 |
+| 427298 | `ports/427298_multi-factor-reversal-trading-strategy/` | PineScript | multi_indicator_confluence | none | length x2, length_pfe x2, band x2 | 8 |
+| 427300 | `ports/427300_cmo-oscillator-trading-strategy/` | PineScript | momentum_oscillator_turn | none | top_band x3, low_band x2 | 6 |
+| 427301 | `ports/427301_percent-trailing-stop-loss-strategy/` | PineScript | ma_trend | trailing_stop_pending | fast x2, slow x3 | 6 |
+| 427302 | `ports/427302_stochastic-pure-stochastic-long-only-strategy/` | PineScript | stochastic_oscillator | none | length x2, over_sold x2, over_bought x2 | 8 |
+| 427303 | `ports/427303_dual-moving-average-crossover-strategy-with-multi-type-movin/` | PineScript | ma_trend | none | ma1_len x2, ma2_len x2, ma3_on x2 | 8 |
+| | **381 ports** | | | | | **2920** |
 
 ## Rejected on reading
 

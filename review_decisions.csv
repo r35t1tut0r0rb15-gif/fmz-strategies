@@ -427,3 +427,16 @@ fmz_id,file,final_outcome,criterion,reason
 427269,动量突破移动平均线策略Momentum-Breakout-Moving-Average-Strategy.md,PORTED,,ports/427269_momentum-breakout-moving-average-strategy/
 427272,RSI-CCI融合策略RSI-CCI-Fusion-Strategy.md,PORTED,,ports/427272_rsi-cci-rsi-cci-fusion-strategy/
 427274,零时滞后-Hull-EMA-组合-趋势跟踪策略Zero-Lag-Hull-EMA-Combo-Trend-Following-Strategy.md,PORTED,,ports/427274_hull-ema-zero-lag-hull-ema-combo-trend-following-strategy/
+427275,基于Voss滤波器和趋势指标的量化交易策略Quantitative-Trading-Strategy-Based-on-Voss-Filter-and-Trend-Indicator.md,PORTED,,ports/427275_voss-quantitative-trading-strategy-based-on-voss-filter-and/
+427276,2-20指数移动平均策略2-20-Exponential-Moving-Average-Strategy.md,PORTED,,ports/427276_2-20-2-20-exponential-moving-average-strategy/
+427280,基于去趋势合成价格的双均线交易策略Dual-Moving-Average-Trading-Strategy-Based-on-Detrended-Synthetic-Price.md,PORTED,,ports/427280_dual-moving-average-trading-strategy-based-on-detrended-synt/
+427281,基于形态反转和MACD指标的组合交易策略Combo-Trading-Strategy-Based-on-123-Reversal-and-MACD.md,PORTED,,ports/427281_macd-combo-trading-strategy-based-on-123-reversal-and-macd/
+427282,基于突破范围的多头交易策略Long-Breakout-Range-Trading-Strategy.md,PORTED,,ports/427282_long-breakout-range-trading-strategy/
+427290,双EMA跨度交易策略Dual-EMA-Crossover-Trading-Strategy.md,PORTED,,ports/427290_ema-dual-ema-crossover-trading-strategy/
+427291,EMA追踪趋势交易策略EMA-Trend-Following-Trading-Strategy.md,PORTED,,ports/427291_ema-ema-trend-following-trading-strategy/
+427292,RSI指标多空策略RSI-Indicator-Dual-Strategy.md,PORTED,,ports/427292_rsi-rsi-indicator-dual-strategy/
+427298,多因子反转交易策略Multi-factor-Reversal-Trading-Strategy.md,PORTED,,ports/427298_multi-factor-reversal-trading-strategy/
+427300,均线转换-发散指标交易策略CMO-Oscillator-Trading-Strategy.md,PORTED,,ports/427300_cmo-oscillator-trading-strategy/
+427301,百分比追踪止损策略Percent-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/427301_percent-trailing-stop-loss-strategy/
+427302,纯Stochastic多头交易策略Pure-Stochastic-Long-Only-Strategy.md,PORTED,,ports/427302_stochastic-pure-stochastic-long-only-strategy/
+427303,多类型移动平均线交易策略Dual-Moving-Average-Crossover-Strategy-with-Multi-Type-Moving-Averages.md,PORTED,,ports/427303_dual-moving-average-crossover-strategy-with-multi-type-movin/

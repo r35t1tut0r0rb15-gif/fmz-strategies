@@ -5,7 +5,7 @@ Port of FMZ strategy #427269 "Momentum Breakout Moving Average Strategy".
 FMZ source id: 427269
 
 Source
-    https://www.fmz.com/strategy/427269 (PineScript v5, FMZ last modified 2023-09-19 16:33:13).
+    https://www.fmz.com/strategy/427269 (PineScript, no @version line, v5 syntax; FMZ last modified 2023-09-19 16:33:13).
     Verbatim copy: original_source.md. Read 2026-10-15 (FMZ-C).
 
 Original signal (original_source.md lines 156-180), length 520, confirm bars 27

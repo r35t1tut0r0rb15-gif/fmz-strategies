@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427290 (双EMA跨度交易策略Dual-EMA-Crossover-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427290  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, initial capital 100, commission 0.075 %  [lines 162-162]
+  162: strategy("2-EMA Strategy", overlay=true, initial_capital=100, currency="USD", default_qty_type=strategy.percent_of_equity, default_qty_value=100, commission_type=strategy.commission.percent, commission_value=0.075)
