@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #427120 (Noro波带趋势跟踪策略Noro-Bands-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/427120  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity per trade, pyramiding 0; per-side qty 0 switch  [lines 174-174]
+  174: strategy("Noro's Bands Strategy v1.2", shorttitle = "NoroBands str 1.2", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value=100.0, pyramiding=0)
+
+## Entries with qty switched off by needlong / needshort  [lines 228-234]
+  228: longCondition = up == 1 or (up2 == 1 and usecb == true)
+  229: if (longCondition)
+  230:     strategy.entry("Long", strategy.long, needlong == false ? 0 : na)
+  231: 
+  232: shortCondition = dn == 1
+  233: if (shortCondition)
+  234:     strategy.entry("Short", strategy.short, needshort == false ? 0 : na)

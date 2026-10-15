@@ -604,6 +604,34 @@ SIZING = {
         ("Commented-out strategy(): calc_on_order_fills (not active)", 173, 173),
         ("Order delay inputs (off by default)", 179, 222),
     ],
+    # ---- FMZ-C, batch C1 (2026-10-15)
+    427064: [
+        ("strategy(): pyramiding = 2", 154, 154),
+        ("Pyramid add: a second entry while long when RSI crosses above 10 (not ported)", 203, 204),
+        ("Stop value from the averaged price (ported as a close-based exit on the entry fill)", 206, 207),
+        ("TP / SL closes with qty = position_size", 245, 251),
+    ],
+    427065: [],
+    427067: [],
+    427071: [],
+    427090: [
+        ("strategy(): 100 % of equity per trade, pyramiding 0", 118, 118),
+    ],
+    427120: [
+        ("strategy(): 100 % of equity per trade, pyramiding 0; per-side qty 0 switch", 174, 174),
+        ("Entries with qty switched off by needlong / needshort", 228, 234),
+    ],
+    427122: [],
+    427123: [
+        ("Commented-out strategy(): pyramiding 50, cash qty 1000, calc_on_every_tick (not active)", 147, 147),
+        ("TP / SL inputs and levels from the averaged price (ported via stops())", 170, 174),
+        ("Bracket and RSI exit orders", 182, 184),
+    ],
+    427125: [
+        ("strategy(): 100 % of equity, commission 0.1 %, slippage 1, initial capital 100", 117, 117),
+        ("Backtest date window (dropped)", 122, 126),
+    ],
+    427136: [],
 }
 
 REJECTED_ON_READING = {
@@ -782,6 +810,24 @@ REJECTED_ON_READING = {
     427063: ("1", "Exits include strategy.close(qty = position_size / 3) (a partial close) and adds via "
                   "strategy.order below the average price, with stops on unit counts "
                   "(position_size >= 1): partial exits (as #365389)."),
+    # ---- FMZ-C, batch C1 (2026-10-15)
+    427066: ("1", "Reads the future: Pine v2 security(syminfo.tickerid, 'D', close) without [1] "
+              "behaves as lookahead_on (the v2-to-v3 converter adds lookahead_on to keep it), so "
+              "on every intraday bar 'today' is the final close of the current day, which is not "
+              "known until the day ends (SURVEY_README request.security rule, as #363557). Its "
+              "DG427066 partner #428082 is read on its own."),
+    427119: ("1", "The only exit is strategy.exit('SL', limit = the signal bar's close) for both "
+              "sides: a resting limit at the signal close, which relative to the next-open fill "
+              "is at or beyond the market half of the time (an immediate exit on the fill bar) "
+              "and otherwise a tiny target. It cannot be expressed as a positive tp_stop fraction "
+              "of the fill, and the trade path depends on the open gap; named 'SL', the author "
+              "probably meant a breakeven stop (decision owed if the project wants that version)."),
+    427127: ("1", "The stop is low[barsSinceEntry] x (1 - range / avg price), i.e. built from the "
+              "ENTRY (fill) bar's own low and range, and it is placed only at that bar's close "
+              "(active from the next bar). A stop derived from the fill bar's data cannot be "
+              "expressed (skill section 7: a stop must be known at the fill bar's open); "
+              "trail_price without trail_offset adds no trailing. Porting it would change the "
+              "exit."),
 }
 
 DUPLICATE_ON_READING = {

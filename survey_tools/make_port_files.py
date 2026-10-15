@@ -36,7 +36,7 @@ def main():
             out.append(f"## {label}  [lines {a}-{b}]")
             out.extend(f"{i:>5}: {lines[i - 1]}" for i in range(a, b + 1))
             out.append("")
-        (d / 'original_sizing.txt').write_text('\n'.join(out), encoding='utf-8')
+        (d / 'original_sizing.txt').write_text('\n'.join(out), encoding='utf-8', newline='\n')
     with open(ROOT / 'review_decisions.csv', 'w', newline='', encoding='utf-8') as fh:
         w = csv.writer(fh)
         w.writerow(['fmz_id', 'file', 'final_outcome', 'criterion', 'reason'])

@@ -106,6 +106,36 @@ stops on a FREQ longer than 1 h without `coarse_bar_stop`; any `resample()` that
 `label="left", closed="left"`; a port whose id is in `near_duplicate_groups.csv` but whose
 PORT_NOTES.md does not name that group id (rule 7; added in batch A9).
 
+## Rules added 2026-10-15 (FMZ-C, desktop GAME_CHAMBER; they win over the 2026-10-07 rules where they differ)
+
+Porting resumed on 2026-10-15 by session FMZ-C (Austin's own account, from id 427064, batches C1-).
+The house skill `30-strategy-authoring` (version of 2026-10-15) is newer or stricter in these points:
+
+1. **Trailing stops are supported** (skill section 7): `stops()` may return `"trail"`: `{"type":
+   "percent", "pct": x}`, `{"type": "volatility", "atr_n": n, "k": k}` or `{"type": "lock_in",
+   "gain": g}`, each with a declared `"anchor"` (`"close"` or `"high_low"`) and optional
+   `"activate_after"`. A trail this can express is ported natively with the NEW mark
+   `trailing_stop`; only a trail it cannot express keeps `trailing_stop_pending` (rule 2 as before).
+   A trail checked on bar closes is still a close-based exit signal.
+2. **A stop module's `portfolio_kwargs` returns `{}`.** The mining driver refuses anything else for a
+   stop module (D4), so rule 6's exception (`upon_opposite_entry` in a stop port) is withdrawn: a stop
+   port that enters only from flat does so by its own state machine and says "Opposite entries
+   cannot occur" (or REVERSAL INTENDED). 13 earlier stop ports still return `upon_opposite_entry`
+   (listed in the FMZ-C report; to be re-done).
+3. **No bar size**: besides `FREQ = "bar_size_pending"` + mark, `precompute` builds its bars with
+   the house `bar_sizes.build_bars(raw_1m_df, params["bar_size"])` (skill section 5a; the driver
+   supplies `bar_size`, never in GRID / DEFAULT_PARAMS).
+4. **Admission criteria in the module docstring**, one line each (skill section 9 item 5), plus
+   `Volume: not used (check 8)` (volume users stay held, rule 8) and `Session open: ...` (check 9:
+   a session-open or clock-time rule names its time and time zone, DST included, never "the first
+   bar after a gap").
+5. **Lineage**: docstring and PORT_NOTES carry `FMZ source id: <id>`; NAME is `fmz_<id>_<slug>`.
+6. Crypto-exchange-only files found on reading are stored in `flagged/` and recorded as
+   REJECTED_ON_READING criterion 3.
+
+`check_ports.py` checks 1 for all ports and 2-5 for ids >= 427064. `make_port_files.py`,
+`summarize.py` and `store_flagged.py` now write LF line endings on Windows too (`newline='\n'`).
+
 **Broker days in a module.** A daily port defines `broker_day(index)` locally (session ends 17:00
 America/New_York; the desktop binds the name to `registry_schema.broker_day`) and groups 1-minute
 bars by it; each daily bar is stamped with its session's UTC start.

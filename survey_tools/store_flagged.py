@@ -27,7 +27,7 @@ def main():
             f"\n## Other screening notes\n\n- Criterion 1: {r['c1']} - {r['c1_why']}\n"
             f"- Duplicate group: {r['dup_group'] or 'none'}\n\n"
             "Not ported. Kept verbatim in `original_source.md` for future crypto-exchange work.\n",
-            encoding='utf-8')
+            encoding='utf-8', newline='\n')
     print(len(rows), 'stored')
 
 

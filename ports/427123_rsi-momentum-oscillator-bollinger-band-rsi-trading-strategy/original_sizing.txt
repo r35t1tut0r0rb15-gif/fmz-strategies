@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #427123 (动量震荡带RSI交易策略Momentum-Oscillator-Bollinger-Band-RSI-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427123  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): pyramiding 50, cash qty 1000, calc_on_every_tick (not active)  [lines 147-147]
+  147: //strategy(title="Bollinger Band with RSI", shorttitle="BB&RSI", format=format.price, precision=2, pyramiding=50, initial_capital=10000, calc_on_order_fills=false, calc_on_every_tick=true, default_qty_type=strategy.cash, default_qty_value=1000, currency="USD")
+
+## TP / SL inputs and levels from the averaged price (ported via stops())  [lines 170-174]
+  170: long_tp_inp = input(10, title='Long Take Profit %', step=0.1)/100
+  171: long_sl_inp = input(25, title='Long Stop Loss %', step=0.1)/100
+  172: // Take profit/stop loss
+  173: long_take_level = strategy.position_avg_price * (1 + long_tp_inp)
+  174: long_stop_level = strategy.position_avg_price * (1 - long_sl_inp)
+
+## Bracket and RSI exit orders  [lines 182-184]
+  182: strategy.entry("Long",true,when=entry_long)    
+  183: strategy.exit("TP/SL","Long", limit=long_take_level, stop=long_stop_level)
+  184: strategy.close("Long", when=exit_long, comment="Exit")

@@ -17,6 +17,16 @@ Added 2026-10-07 (SURVEY_README.md, "Rules added 2026-10-07"):
 - stops on bars longer than 1 h need the mark coarse_bar_stop;
 - every resample() is label="left", closed="left".
 - a port whose id is in near_duplicate_groups.csv names its group id in PORT_NOTES.md (rule 7).
+
+Added 2026-10-15 (FMZ-C; SURVEY_README.md, "Rules added 2026-10-15"):
+- stops() may also return "trail" (the house trailing stop, skill 30-strategy-authoring section 7):
+  type percent / volatility / lock_in, a declared anchor close / high_low; such a port carries the
+  mark trailing_stop, and the mark only with a trail;
+- ports with fmz_id >= 427064 (FMZ-C) also need: a stop module whose portfolio_kwargs returns {}
+  exactly (the mining driver refuses anything else, D4); docstring lines "FMZ source id: <id>",
+  "Admission criteria", "Volume:", "Session open:"; NAME starting fmz_<id>_; with
+  FREQ = "bar_size_pending", a precompute that builds its bars from params["bar_size"] and no
+  bar_size in GRID / DEFAULT_PARAMS.
 """
 import ast
 import csv
@@ -37,9 +47,14 @@ FORBIDDEN = [
     (r'\[["\'](open|high|low|close)["\']\]\.(mean|std|max|min|quantile|median|sum)\(', 'whole-column statistic'),
 ]
 COMPANIONS = ['original_source.md', 'original_sizing.txt', 'PORT_NOTES.md']
-MARKS = {'bar_size_pending', 'trailing_stop_pending', 'coarse_bar_stop', 'stop_is_entry_condition'}
+MARKS = {'bar_size_pending', 'trailing_stop_pending', 'coarse_bar_stop', 'stop_is_entry_condition',
+         'trailing_stop'}
 PENDING_FREQ = 'bar_size_pending'
-STOP_KEYS = {'sl_stop', 'tp_stop', 'max_hold_time'}
+STOP_KEYS = {'sl_stop', 'tp_stop', 'max_hold_time', 'trail'}
+TRAIL_KEYS = {'type', 'anchor', 'pct', 'atr_n', 'k', 'gain', 'activate_after'}
+TRAIL_TYPES = {'percent', 'volatility', 'lock_in'}
+TRAIL_ANCHORS = {'close', 'high_low'}
+FMZ_C_FROM = 427064
 
 
 def _groups():
@@ -92,9 +107,62 @@ def stop_problems(src, fn):
                     '.shift(k>=1) inside stops()')
     for n in ast.walk(fn):
         if isinstance(n, ast.Dict):
-            for k in n.keys:
-                if isinstance(k, ast.Constant) and isinstance(k.value, str) and k.value not in STOP_KEYS:
-                    errs.append(f'stops() key {k.value!r} not in {sorted(STOP_KEYS)}')
+            keys = {k.value: v for k, v in zip(n.keys, n.values)
+                    if isinstance(k, ast.Constant) and isinstance(k.value, str)}
+            if keys.keys() & {'type', 'anchor'}:   # a trail declaration (2026-10-15)
+                for k in sorted(set(keys) - TRAIL_KEYS):
+                    errs.append(f'trail key {k!r} not in {sorted(TRAIL_KEYS)}')
+                for k, allowed in (('type', TRAIL_TYPES), ('anchor', TRAIL_ANCHORS)):
+                    v = keys.get(k)
+                    if v is None:
+                        errs.append(f'trail without a declared {k!r}')
+                    elif isinstance(v, ast.Constant) and v.value not in allowed:
+                        errs.append(f'trail {k} {v.value!r} not in {sorted(allowed)}')
+                continue
+            for k in sorted(set(keys) - STOP_KEYS):
+                errs.append(f'stops() key {k!r} not in {sorted(STOP_KEYS)}')
+    return errs
+
+
+def uses_trail(fn):
+    """True when stops() names the key "trail" (a dict key or a subscript)."""
+    for n in ast.walk(fn):
+        if isinstance(n, ast.Dict) and any(isinstance(k, ast.Constant) and k.value == 'trail' for k in n.keys):
+            return True
+        if isinstance(n, ast.Subscript) and isinstance(n.slice, ast.Constant) and n.slice.value == 'trail':
+            return True
+    return False
+
+
+def fmz_c_problems(src, tree, names, fid, freq, uses_stops):
+    """Extra rules for FMZ-C ports (fmz_id >= 427064), SURVEY_README "Rules added 2026-10-15"."""
+    errs = []
+    doc = ast.get_docstring(tree) or ''
+    if not re.search(rf'^\s*FMZ source id:\s*{fid}\b', doc, re.M):
+        errs.append(f'docstring has no "FMZ source id: {fid}" line (lineage)')
+    for label in ('Admission criteria', 'Volume:', 'Session open:'):
+        if not re.search(rf'^\s*{re.escape(label)}', doc, re.M):
+            errs.append(f'docstring has no "{label}" line')
+    try:
+        name = ast.literal_eval(names['NAME'].value)
+        if not (isinstance(name, str) and name.startswith(f'fmz_{fid}_')):
+            errs.append(f'NAME must start with fmz_{fid}_')
+    except (KeyError, ValueError):
+        errs.append('NAME must be a string literal')
+    if uses_stops and 'portfolio_kwargs' in names:
+        rets = [n for n in ast.walk(names['portfolio_kwargs']) if isinstance(n, ast.Return)]
+        if not rets or not all(isinstance(r.value, ast.Dict) and not r.value.keys for r in rets):
+            errs.append('a stop module\'s portfolio_kwargs must return {} (mining driver D4)')
+    if freq == PENDING_FREQ:
+        body = ast.get_source_segment(src, names['precompute']) if 'precompute' in names else ''
+        if not re.search(r'params\[\s*["\']bar_size["\']\s*\]', body or ''):
+            errs.append('bar_size_pending: precompute must build its bars from params["bar_size"]')
+        for key in ('GRID', 'DEFAULT_PARAMS'):
+            try:
+                if 'bar_size' in ast.literal_eval(names[key].value):
+                    errs.append(f'bar_size must not be in {key} (reserved driver parameter)')
+            except (KeyError, ValueError):
+                pass
     return errs
 
 
@@ -156,6 +224,13 @@ def check(path):
             errs.append('stops on bars longer than 1 h need the mark coarse_bar_stop')
     if 'stops' in names and isinstance(names['stops'], ast.FunctionDef):
         errs += stop_problems(src, names['stops'])
+        if uses_trail(names['stops']) != ('trailing_stop' in marks):
+            errs.append('stops() "trail" and the mark trailing_stop must appear together')
+    elif 'trailing_stop' in marks:
+        errs.append('mark trailing_stop without a stops() "trail"')
+    fid = path.parent.name.split('_')[0]
+    if fid.isdigit() and int(fid) >= FMZ_C_FROM:
+        errs += fmz_c_problems(src, tree, names, fid, freq, uses_stops)
     for n in ast.walk(tree):
         if isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute) and n.func.attr == 'resample':
             kw = {k.arg: getattr(k.value, 'value', None) for k in n.keywords}

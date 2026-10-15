@@ -128,7 +128,7 @@ def main():
         name = r['name'].replace('|', '/')
         L.append(f"| [{r['fmz_id']}]({r['detail_url']}) | {name} | {r['lang']} | {kind} | "
                  f"{r['c3_why'].replace(' | ', '; ')} |")
-    (ROOT / 'SURVEY_SUMMARY.md').write_text('\n'.join(L) + '\n', encoding='utf-8')
+    (ROOT / 'SURVEY_SUMMARY.md').write_text('\n'.join(L) + '\n', encoding='utf-8', newline='\n')
     print('SURVEY_SUMMARY.md written;', dict(final))
 
 

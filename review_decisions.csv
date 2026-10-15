@@ -51,6 +51,9 @@ fmz_id,file,final_outcome,criterion,reason
 426882,基于波动带反转的长线量化策略Long-Term-Quantitative-Strategy-Based-on-Volatility-Bands-Reversal.md,REJECTED_ON_READING,1,"Every exit tests strategy.position_size >= 1 (at least one whole unit held), and the risk-based qty is a fraction of a coin on BTC, so whether any exit can fire depends on the sizing formula (as #425798)."
 426936,定期定额累积均价策略Dollar-Cost-Averaging-Strategy.md,REJECTED_ON_READING,1,"Dollar-cost averaging: strategy.order buys int(200 / close) units on every bar and sells the accumulated position on bar_index == last_bar_index - 2 (a read of where the data ends); the position is an accumulation, not a signal (as #380530)."
 427063,双向趋势追踪策略Dual-Trend-Tracking-Strategy.md,REJECTED_ON_READING,1,"Exits include strategy.close(qty = position_size / 3) (a partial close) and adds via strategy.order below the average price, with stops on unit counts (position_size >= 1): partial exits (as #365389)."
+427066,日线收盘价对比策略Daily-Close-Price-Comparison-Strategy.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 security(syminfo.tickerid, 'D', close) without [1] behaves as lookahead_on (the v2-to-v3 converter adds lookahead_on to keep it), so on every intraday bar 'today' is the final close of the current day, which is not known until the day ends (SURVEY_README request.security rule, as #363557). Its DG427066 partner #428082 is read on its own."
+427119,RSI差异反转策略RSI-Divergence-Reversal-Strategy.md,REJECTED_ON_READING,1,"The only exit is strategy.exit('SL', limit = the signal bar's close) for both sides: a resting limit at the signal close, which relative to the next-open fill is at or beyond the market half of the time (an immediate exit on the fill bar) and otherwise a tiny target. It cannot be expressed as a positive tp_stop fraction of the fill, and the trade path depends on the open gap; named 'SL', the author probably meant a breakeven stop (decision owed if the project wants that version)."
+427127,形态识别吊颈线交易策略Pattern-Recognition-Pinbar-Trading-Strategy.md,REJECTED_ON_READING,1,"The stop is low[barsSinceEntry] x (1 - range / avg price), i.e. built from the ENTRY (fill) bar's own low and range, and it is placed only at that bar's close (active from the next bar). A stop derived from the fill bar's data cannot be expressed (skill section 7: a stop must be known at the fill bar's open); trail_price without trail_offset adds no trailing. Porting it would change the exit."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -389,3 +392,13 @@ fmz_id,file,final_outcome,criterion,reason
 426996,顺势均线K线计数策略Moving-Average-Candle-Count-Trend-Following-Strategy.md,PORTED,,ports/426996_k-moving-average-candle-count-trend-following-strategy/
 427001,回撤开仓策略Drawdown-Entry-Strategy.md,PORTED,,ports/427001_drawdown-entry-strategy/
 427017,动态通道突破策略Dynamic-Channel-Breakout-Strategy.md,PORTED,,ports/427017_dynamic-channel-breakout-strategy/
+427064,RSI-W形态突破策略RSI-W-Pattern-Breakout-Strategy.md,PORTED,,ports/427064_rsi-w-rsi-w-pattern-breakout-strategy/
+427065,双随机震荡指数策略Dual-Stochastic-Oscillator-Strategy.md,PORTED,,ports/427065_dual-stochastic-oscillator-strategy/
+427067,ATR和T3均线策略ATR-and-T3-Moving-Average-Strategy.md,PORTED,,ports/427067_atr-t3-atr-and-t3-moving-average-strategy/
+427071,多时间框架价格通道策略Multi-Timeframe-Price-Channel-Strategy.md,PORTED,,ports/427071_multi-timeframe-price-channel-strategy/
+427090,双均线金叉死叉策略Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/427090_dual-moving-average-crossover-strategy/
+427120,Noro波带趋势跟踪策略Noro-Bands-Trend-Following-Strategy.md,PORTED,,ports/427120_noro-noro-bands-trend-following-strategy/
+427122,T7-JNSAR量化交易策略T7-JNSAR-Quantitative-Trading-Strategy.md,PORTED,,ports/427122_t7-jnsar-t7-jnsar-quantitative-trading-strategy/
+427123,动量震荡带RSI交易策略Momentum-Oscillator-Bollinger-Band-RSI-Trading-Strategy.md,PORTED,,ports/427123_rsi-momentum-oscillator-bollinger-band-rsi-trading-strategy/
+427125,动向指标DMI交易策略Directional-Movement-Index-DMI-Trading-Strategy.md,PORTED,,ports/427125_dmi-directional-movement-index-dmi-trading-strategy/
+427136,分形混沌震荡器交易策略Fractal-Chaos-Oscillator-Trading-Strategy.md,PORTED,,ports/427136_fractal-chaos-oscillator-trading-strategy/

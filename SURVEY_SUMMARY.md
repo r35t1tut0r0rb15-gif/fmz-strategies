@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3370 |
+| PORT_CANDIDATE | 3357 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
-| PORTED | 337 |
+| PORTED | 347 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 52 |
+| REJECTED_ON_READING | 55 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -465,7 +465,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426996 | `ports/426996_k-moving-average-candle-count-trend-following-strategy/` | PineScript | candle_pattern | coarse_bar_stop | bar_counter x2, sl_atr x3 | 6 |
 | 427001 | `ports/427001_drawdown-entry-strategy/` | PineScript | momentum_oscillator_turn | none | signal x3 | 3 |
 | 427017 | `ports/427017_dynamic-channel-breakout-strategy/` | PineScript | volatility_channel_breakout | none | kc_mult x2, tp_pct x2, sl_pct x2 | 8 |
-| | **337 ports** | | | | | **2621** |
+| 427064 | `ports/427064_rsi-w-rsi-w-pattern-breakout-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, buy_rsi_entry x2, stop_pct x2 | 8 |
+| 427065 | `ports/427065_dual-stochastic-oscillator-strategy/` | PineScript | stochastic_oscillator | none | fast_k x2, slow_k x2, exit_factor x2 | 8 |
+| 427067 | `ports/427067_atr-t3-atr-and-t3-moving-average-strategy/` | PineScript | supertrend | none | t3_length x2, factor x2, env_atr x3 | 12 |
+| 427071 | `ports/427071_multi-timeframe-price-channel-strategy/` | PineScript | donchian_breakout | none | channel x2, fast x2, slow x2 | 8 |
+| 427090 | `ports/427090_dual-moving-average-crossover-strategy/` | PineScript | ma_trend | none | length x3, ma_type x3 | 9 |
+| 427120 | `ports/427120_noro-noro-bands-trend-following-strategy/` | PineScript | volatility_channel_breakout | none | length x3, use_cb x2 | 6 |
+| 427122 | `ports/427122_t7-jnsar-t7-jnsar-quantitative-trading-strategy/` | PineScript | ma_trend | none | ema_length x3, lags x2 | 6 |
+| 427123 | `ports/427123_rsi-momentum-oscillator-bollinger-band-rsi-trading-strategy/` | PineScript | bollinger_reversion | none | bb_mult x2, tp_pct x2, sl_pct x2 | 8 |
+| 427125 | `ports/427125_dmi-directional-movement-index-dmi-trading-strategy/` | PineScript | directional_movement | none | di_length x2, adx_smoothing x2, adx_level x2 | 8 |
+| 427136 | `ports/427136_fractal-chaos-oscillator-trading-strategy/` | PineScript | pivot_reversal | none | pattern x3 | 3 |
+| | **347 ports** | | | | | **2697** |
 
 ## Rejected on reading
 
@@ -523,6 +533,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426882 | 基于波动带反转的长线量化策略Long-Term-Quantitative-Strategy-Based-on-Volatility-Bands-Reversal.md | 1 | Every exit tests strategy.position_size >= 1 (at least one whole unit held), and the risk-based qty is a fraction of a coin on BTC, so whether any exit can fire depends on the sizing formula (as #425798). |
 | 426936 | 定期定额累积均价策略Dollar-Cost-Averaging-Strategy.md | 1 | Dollar-cost averaging: strategy.order buys int(200 / close) units on every bar and sells the accumulated position on bar_index == last_bar_index - 2 (a read of where the data ends); the position is an accumulation, not a signal (as #380530). |
 | 427063 | 双向趋势追踪策略Dual-Trend-Tracking-Strategy.md | 1 | Exits include strategy.close(qty = position_size / 3) (a partial close) and adds via strategy.order below the average price, with stops on unit counts (position_size >= 1): partial exits (as #365389). |
+| 427066 | 日线收盘价对比策略Daily-Close-Price-Comparison-Strategy.md | 1 | Reads the future: Pine v2 security(syminfo.tickerid, 'D', close) without [1] behaves as lookahead_on (the v2-to-v3 converter adds lookahead_on to keep it), so on every intraday bar 'today' is the final close of the current day, which is not known until the day ends (SURVEY_README request.security rule, as #363557). Its DG427066 partner #428082 is read on its own. |
+| 427119 | RSI差异反转策略RSI-Divergence-Reversal-Strategy.md | 1 | The only exit is strategy.exit('SL', limit = the signal bar's close) for both sides: a resting limit at the signal close, which relative to the next-open fill is at or beyond the market half of the time (an immediate exit on the fill bar) and otherwise a tiny target. It cannot be expressed as a positive tp_stop fraction of the fill, and the trade path depends on the open gap; named 'SL', the author probably meant a breakeven stop (decision owed if the project wants that version). |
+| 427127 | 形态识别吊颈线交易策略Pattern-Recognition-Pinbar-Trading-Strategy.md | 1 | The stop is low[barsSinceEntry] x (1 - range / avg price), i.e. built from the ENTRY (fill) bar's own low and range, and it is placed only at that bar's close (active from the next bar). A stop derived from the fill bar's data cannot be expressed (skill section 7: a stop must be known at the fill bar's open); trail_price without trail_offset adds no trailing. Porting it would change the exit. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

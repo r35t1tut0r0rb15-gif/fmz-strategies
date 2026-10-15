@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #427064 (RSI-W形态突破策略RSI-W-Pattern-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/427064  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding = 2  [lines 154-154]
+  154: strategy(title="RSI W Pattern strategy", pyramiding=2, shorttitle="RSI W Pattern", overlay = false)
+
+## Pyramid add: a second entry while long when RSI crosses above 10 (not ported)  [lines 203-204]
+  203: //legging in to existing 
+  204: strategy.entry("RSI_W_LE",comment="Add", long=true, when=strategy.position_size>0 and crossover(myRsi,10 ))
+
+## Stop value from the averaged price (ported as a close-based exit on the entry fill)  [lines 206-207]
+  206: //calculate stoploss value
+  207: stopLossValue=strategy.position_avg_price -  (strategy.position_avg_price*stopLoss/100) 
+
+## TP / SL closes with qty = position_size  [lines 245-251]
+  245: //close when RSi reaches profit level 
+  246: strategy.close("RSI_W_LE", comment="TP Exit", qty=strategy.position_size,when=crossover(myRsi,75) and close>strategy.position_avg_price )
+  247: 
+  248: 
+  249: //close everything when stoploss hit  
+  250: longCloseCondition=close<(strategy.position_avg_price - (strategy.position_avg_price*stopLoss/100)  ) //or crossunder(myRsi,30)
+  251: strategy.close("RSI_W_LE", comment="SL Exit", qty=strategy.position_size,when=longCloseCondition )
