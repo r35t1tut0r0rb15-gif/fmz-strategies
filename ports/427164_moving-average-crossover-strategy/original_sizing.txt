@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #427164 (移动均线交叉策略Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/427164  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 2, 50 % of equity per unit, commission  [lines 201-202]
+  201: strategy(title="Moving Averages Testing", overlay=true, precision=2, calc_on_every_tick=false, max_bars_back=5000, pyramiding=2,  
+  202:  default_qty_type=strategy.percent_of_equity, default_qty_value=50, commission_type=strategy.commission.percent, initial_capital=10000)
+
+## Backtest month / year window inputs (dropped)  [lines 231-236]
+  231: start_month = input(defval=4, title="Strategy Start Month", type=input.integer, minval=1, maxval=12, step=1)
+  232: start_year = input(defval=2018, title="Strategy Start Year", type=input.integer, minval=2000, maxval=2025, step=1)
+  233: end_month = input(defval=12, title="Strategy End Month", type=input.integer, minval=1, maxval=12, step=1)
+  234: end_year = input(defval=2020, title="Strategy End Year", type=input.integer, minval=2000, maxval=2025, step=1)
+  235: 
+  236: in_time = true

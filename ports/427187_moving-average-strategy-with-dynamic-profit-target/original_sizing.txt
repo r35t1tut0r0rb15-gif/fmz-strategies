@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #427187 (移动平均线动态止盈策略Moving-Average-Strategy-with-Dynamic-Profit-Target)
+# Source: https://www.fmz.com/strategy/427187  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Lot size from ATR (investment / ATR x 0.1; computed, never passed to an order)  [lines 156-172]
+  156: trend = 0.0
+  157: signal = 0
+  158: size = 1.0
+  159: investment = 100000
+  160: atrange = 0.0
+  161: ptrange = 0.0
+  162: stoph = 0.0
+  163: stopl = 0.0
+  164: 
+  165: 
+  166: if sizeper != 0
+  167: 	atrange := atr(sizeper)
+  168: 
+  169: if atrange == 0 or sizeper == 0 
+  170: 	size := 1
+  171: else
+  172: 	size := investment/atrange * 0.1
+
+## Moving take-profit limit re-issued every bar (ported as a fixed tp_stop, mark trailing_stop_pending)  [lines 190-196]
+  190: ptrange := atr(ptper)
+  191: 
+  192: if strategy.position_size > 0
+  193: 	strategy.exit("exit_long", "long", qty = strategy.position_size, limit = close + ptfactor*ptrange , comment='trail_long') 
+  194: else
+  195: 	if strategy.position_size < 0
+  196: 		strategy.exit("exit_short", "short", qty = abs(strategy.position_size), limit = close - ptfactor*ptrange, comment='trail_short')

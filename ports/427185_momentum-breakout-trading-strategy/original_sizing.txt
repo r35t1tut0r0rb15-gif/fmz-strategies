@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #427185 (动量指标破位交易策略Momentum-Breakout-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427185  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity per trade, pyramiding 0  [lines 150-150]
+  150: strategy("Noro's Bands Scalper Strategy v1.6", shorttitle = "Scalper str 1.6", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100.0, pyramiding = 0)
+
+## Entries with qty 0 against the trend (needct off) and the year window  [lines 214-221]
+  214: if up7 == 1 or up8 == 1 
+  215:     strategy.entry("Long", strategy.long, needlong == false ? 0 : trend == -1 and needct == false ? 0 : na, when=(time > timestamp(fromyear, frommonth, 01, 00, 00) and time < timestamp(toyear, tomonth, 31, 00, 00)))
+  216: 
+  217: if dn7 == 1 or dn8 == 1
+  218:     strategy.entry("Short", strategy.short, needshort == false ? 0 : trend == 1 and needct == false ? 0 : na, when=(time > timestamp(fromyear, frommonth, 01, 00, 00) and time < timestamp(toyear, tomonth, 31, 00, 00)))
+  219:     
+  220: if time > timestamp(toyear, tomonth, 31, 00, 00)
+  221:     strategy.close_all()

@@ -632,6 +632,28 @@ SIZING = {
         ("Backtest date window (dropped)", 122, 126),
     ],
     427136: [],
+    # ---- FMZ-C, batch C2 (2026-10-15)
+    427142: [],
+    427157: [],
+    427162: [],
+    427164: [
+        ("strategy(): pyramiding 2, 50 % of equity per unit, commission", 201, 202),
+        ("Backtest month / year window inputs (dropped)", 231, 236),
+    ],
+    427185: [
+        ("strategy(): 100 % of equity per trade, pyramiding 0", 150, 150),
+        ("Entries with qty 0 against the trend (needct off) and the year window", 214, 221),
+    ],
+    427187: [
+        ("Lot size from ATR (investment / ATR x 0.1; computed, never passed to an order)", 156, 172),
+        ("Moving take-profit limit re-issued every bar (ported as a fixed tp_stop, mark trailing_stop_pending)", 190, 196),
+    ],
+    427188: [],
+    427189: [
+        ("strategy(): 100 % of equity per trade, pyramiding 0", 158, 158),
+        ("Percent stop inputs and levels (off by default: needstops false)", 163, 164),
+        ("Stop levels and stop exits", 234, 245),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -828,6 +850,25 @@ REJECTED_ON_READING = {
               "expressed (skill section 7: a stop must be known at the fill bar's open); "
               "trail_price without trail_offset adds no trailing. Porting it would change the "
               "exit."),
+    # ---- FMZ-C, batch C2 (2026-10-15)
+    427139: ("1", "The exit 'stoploss' tests strategy.openprofit against a share of strategy.equity "
+              "(it depends on the sizing), and the signals read security(ticker, '98', ...) on a "
+              "2-minute chart in Pine v2 (lookahead_on: a 98-minute bar's values are seen from "
+              "its first chart bar) shifted by sampling = resInteger / timeframe.period, an "
+              "integer divided by a string. The higher-timeframe values and the history offset "
+              "are undefined (as #361719)."),
+    427158: ("1", "Exits include strategy.exit(qty_percent = 50 %) at a take-profit plus a second "
+              "stop for the rest: partial exits cannot be expressed as one net position's signals "
+              "(as #365389); the risk-based entry quantity is also used by the exits."),
+    427161: ("1", "Exits are strategy.exit('XPartLong', qty_percent = 50, profit = 150 ticks) plus a "
+              "second exit for the rest at 400 ticks or a pivot stop: partial exits (as #365389); "
+              "tick distances are also instrument-specific."),
+    427182: ("1", "Two scripts pasted into one file: a Pine v5 breakout snippet (entries 'Enter Long' "
+              "/ 'Enter Short' on 5-bar highs / lows) placed before the strategy() line of a v3 "
+              "EMA 10/21 script (entry 'Buy', closed by id 'Buy'). Both act on one position and "
+              "the close only targets the 'Buy' id, so the position path depends on per-id "
+              "accounting that a net-position port cannot reproduce, and which script is meant is "
+              "undefined."),
 }
 
 DUPLICATE_ON_READING = {

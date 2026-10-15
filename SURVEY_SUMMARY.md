@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3357 |
+| PORT_CANDIDATE | 3345 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
-| PORTED | 347 |
+| PORTED | 355 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 55 |
+| REJECTED_ON_READING | 59 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -475,7 +475,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427123 | `ports/427123_rsi-momentum-oscillator-bollinger-band-rsi-trading-strategy/` | PineScript | bollinger_reversion | none | bb_mult x2, tp_pct x2, sl_pct x2 | 8 |
 | 427125 | `ports/427125_dmi-directional-movement-index-dmi-trading-strategy/` | PineScript | directional_movement | none | di_length x2, adx_smoothing x2, adx_level x2 | 8 |
 | 427136 | `ports/427136_fractal-chaos-oscillator-trading-strategy/` | PineScript | pivot_reversal | none | pattern x3 | 3 |
-| | **347 ports** | | | | | **2697** |
+| 427142 | `ports/427142_moving-average-bollinger-band-fusion-trading-strategy/` | PineScript | ma_trend | none | ma_long x2, bb_length x2, lookback x2 | 8 |
+| 427157 | `ports/427157_directional-trend-index-trading-strategy/` | PineScript | momentum_oscillator_turn | none | r x2, level x2, s x2 | 8 |
+| 427162 | `ports/427162_dual-rail-trend-tracking-strategy/` | PineScript | bollinger_reversion | none | length x3, mult x2 | 6 |
+| 427164 | `ports/427164_moving-average-crossover-strategy/` | PineScript | ma_trend | none | ma1_len x2, ma2_len x2, ma_type x2 | 8 |
+| 427185 | `ports/427185_momentum-breakout-trading-strategy/` | PineScript | volatility_channel_breakout | none | length x3, bodylen x2 | 6 |
+| 427187 | `ports/427187_moving-average-strategy-with-dynamic-profit-target/` | PineScript | ma_trend | trailing_stop_pending | period x3, pt_factor x2 | 6 |
+| 427188 | `ports/427188_multi-timeframe-heiken-ashi-crossover-strategy/` | PineScript | heikin_ashi_trend | none | short_on x2 | 2 |
+| 427189 | `ports/427189_dual-moving-average-trend-following-strategy/` | PineScript | ma_trend | none | length x3, ma_type x3 | 9 |
+| | **355 ports** | | | | | **2750** |
 
 ## Rejected on reading
 
@@ -536,6 +544,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427066 | 日线收盘价对比策略Daily-Close-Price-Comparison-Strategy.md | 1 | Reads the future: Pine v2 security(syminfo.tickerid, 'D', close) without [1] behaves as lookahead_on (the v2-to-v3 converter adds lookahead_on to keep it), so on every intraday bar 'today' is the final close of the current day, which is not known until the day ends (SURVEY_README request.security rule, as #363557). Its DG427066 partner #428082 is read on its own. |
 | 427119 | RSI差异反转策略RSI-Divergence-Reversal-Strategy.md | 1 | The only exit is strategy.exit('SL', limit = the signal bar's close) for both sides: a resting limit at the signal close, which relative to the next-open fill is at or beyond the market half of the time (an immediate exit on the fill bar) and otherwise a tiny target. It cannot be expressed as a positive tp_stop fraction of the fill, and the trade path depends on the open gap; named 'SL', the author probably meant a breakeven stop (decision owed if the project wants that version). |
 | 427127 | 形态识别吊颈线交易策略Pattern-Recognition-Pinbar-Trading-Strategy.md | 1 | The stop is low[barsSinceEntry] x (1 - range / avg price), i.e. built from the ENTRY (fill) bar's own low and range, and it is placed only at that bar's close (active from the next bar). A stop derived from the fill bar's data cannot be expressed (skill section 7: a stop must be known at the fill bar's open); trail_price without trail_offset adds no trailing. Porting it would change the exit. |
+| 427139 | 超级趋势止损追踪交易策略SuperTrend-with-Stop-Loss-Trailing-Strategy.md | 1 | The exit 'stoploss' tests strategy.openprofit against a share of strategy.equity (it depends on the sizing), and the signals read security(ticker, '98', ...) on a 2-minute chart in Pine v2 (lookahead_on: a 98-minute bar's values are seen from its first chart bar) shifted by sampling = resInteger / timeframe.period, an integer divided by a string. The higher-timeframe values and the history offset are undefined (as #361719). |
+| 427158 | 多重指标融合交易策略Multiple-Indicator-Fusion-Trading-Strategy.md | 1 | Exits include strategy.exit(qty_percent = 50 %) at a take-profit plus a second stop for the rest: partial exits cannot be expressed as one net position's signals (as #365389); the risk-based entry quantity is also used by the exits. |
+| 427161 | 动态止损交易视图策略Dynamic-Stop-Loss-Alert-TradingView-Strategy.md | 1 | Exits are strategy.exit('XPartLong', qty_percent = 50, profit = 150 ticks) plus a second exit for the rest at 400 ticks or a pivot stop: partial exits (as #365389); tick distances are also instrument-specific. |
+| 427182 | 均线黄金交叉策略EMA-Golden-Cross-Strategy.md | 1 | Two scripts pasted into one file: a Pine v5 breakout snippet (entries 'Enter Long' / 'Enter Short' on 5-bar highs / lows) placed before the strategy() line of a v3 EMA 10/21 script (entry 'Buy', closed by id 'Buy'). Both act on one position and the close only targets the 'Buy' id, so the position path depends on per-id accounting that a net-position port cannot reproduce, and which script is meant is undefined. |
 
 ## Flagged and stored under criterion 3 (253 files)
 
