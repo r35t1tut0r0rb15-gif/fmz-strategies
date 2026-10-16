@@ -93,12 +93,17 @@ fmz_id,file,final_outcome,criterion,reason
 430180,定投策略带止盈.md,REJECTED_ON_READING,1,"Dollar-cost averaging: strategy.entry adds investmentAmount / close on every bar the position did not shrink (pyramiding 5), with percentage closes of the whole position; the position is a running sum of orders, so the size path is the strategy (as #426302)."
 430248,均线回归交易策略Mean-Reversion-Trading-Strategy-Based-on-Moving-Average.md,REJECTED_ON_READING,1,Mode 8 is a ladder of strategy.order buys of 1 / 2 / 4 / 8 / 16 units at successive 5 % bands under the SMA 28 and matching unit sells above it: the position size path is the strategy (as #426302).
 430384,双重叠加平均线组合Stochastic异同K线交易策略Intraday-Stochastic-Oscillator-with-Double-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"On the 1-day header chart the entries need hour > 2 and hour < 13 of the bar's time, which a daily bar never has (its hour is the session start), so the script as written never trades; the author's M30 / M15 notes are not the declared chart (no repeatable rule at the source's bar size)."
+430557,多时间框架止盈策略Multi-Timeframe-Take-Profit-Strategy.md,REJECTED_ON_READING,1,Exits are four strategy.exit orders with qty_percent = 5 % each at TP1-TP4 plus a stop and a close_all: partial exits cannot be expressed as one net position's entry / exit signals (as #365389).
+430577,趋势跟踪止损策略Trend-Following-Strategy-with-Trailing-Stop-Loss.md,REJECTED_ON_READING,1,"An entry on every bar with strategy.exit('Take Profit 1 Long', limit = close x 1.12, qty_percent = 50): a partial exit (as #365389), and the trailing stops are at 0 % (inert)."
+430587,RSI多空平衡交易策略RSI-Long-Short-Balance-Trading-Strategy.md,REJECTED_ON_READING,1,"The signals use request.security(syminfo.tickerid, '5' / '15' / '1', ...) on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #427518); the position is also a doubling add ladder."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
 429562,双移动均线与RSI反转交易策略Dual-Moving-Average-and-RSI-Reversal-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter compares vwma(close, 30) with vwma(close, 200): volume-weighted averages (check 8, held with the other volume users)."
 430278,双Stochastics与成交量加权移动平均线组合指标Dual-Stochastics-and-Volume-Weighted-Moving-Average-Combination-Indicator-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend line is vwma(k + k_two, 30): a volume-weighted average (check 8, held with the other volume users)."
 430385,动量突破双向交易策略Momentum-Breakout-Reversal-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."
+430551,动态RSI矩形Grid策略RSI-Box-Grid-Strategy.md,HELD_NEEDS_VOLUME,8,"The grid lines are vwma(highest / lowest, 14): volume-weighted averages (check 8, held with the other volume users)."
+430588,均线交易策略Trend-Trading-Strategy-Based-on-Moving-Average.md,HELD_NEEDS_VOLUME,8,"The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -814,3 +819,12 @@ fmz_id,file,final_outcome,criterion,reason
 430544,基于多重指标的比特币日线交易策略Multi-Indicator-Bitcoin-Daily-Trading-Strategy.md,PORTED,,ports/430544_multi-indicator-bitcoin-daily-trading-strategy/
 430545,多时间段动量反转策略Momentum-Reversal-Multi-Timeframe-Strategy.md,PORTED,,ports/430545_momentum-reversal-multi-timeframe-strategy/
 430549,双均线交叉短线策略Dual-Moving-Average-Crossover-Scalping-Strategy.md,PORTED,,ports/430549_dual-moving-average-crossover-scalping-strategy/
+430555,动量反转组合策略Momentum-Reversal-Combo-Strategy.md,PORTED,,ports/430555_momentum-reversal-combo-strategy/
+430556,反转低点反弹策略Low-Point-Rebound-Strategy.md,PORTED,,ports/430556_low-point-rebound-strategy/
+430558,MACD-收盘中位海龟混合策略MACD-Closing-Turtle-Hybrid-Strategy.md,PORTED,,ports/430558_macd-macd-closing-turtle-hybrid-strategy/
+430569,金叉死叉均线交易策略Golden-Cross-Death-Cross-Moving-Average-Trading-Strategy.md,PORTED,,ports/430569_golden-cross-death-cross-moving-average-trading-strategy/
+430570,一目均衡策略Ichimoku-Equilibrium-Strategy.md,PORTED,,ports/430570_ichimoku-equilibrium-strategy/
+430573,强势趋势突破策略Strong-Trend-Breakout-Strategy.md,PORTED,,ports/430573_strong-trend-breakout-strategy/
+430576,基于RSI的阈值交易策略RSI-Threshold-Trading-Strategy.md,PORTED,,ports/430576_rsi-rsi-threshold-trading-strategy/
+430583,三内在上涨反转策略Three-Inside-Up-Reversal-Strategy.md,PORTED,,ports/430583_three-inside-up-reversal-strategy/
+430585,特斯拉超趋势策略Tesla-Supertrend-Strategy.md,PORTED,,ports/430585_tesla-supertrend-strategy/

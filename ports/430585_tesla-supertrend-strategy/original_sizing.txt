@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #430585 (特斯拉超趋势策略Tesla-Supertrend-Strategy)
+# Source: https://www.fmz.com/strategy/430585  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 179-179]
+  179: strategy("TSLA 1.8k Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

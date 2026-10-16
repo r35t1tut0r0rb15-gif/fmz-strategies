@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #430583 (三内在上涨反转策略Three-Inside-Up-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/430583  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit / stop-loss inputs (price units)  [lines 226-227]
+  226: input_takeprofit = input(20, title="Take Profit pip", step=0.01)
+  227: input_stoploss = input(20, title="Stop Loss pip", step=0.01)
+
+## Level checks  [lines 238-239]
+  238: posprice := iff(low <= posprice - input_takeprofit and posprice > 0, 0 ,  nz(posprice, 0))
+  239: posprice := iff(high >= posprice + input_stoploss and posprice > 0, 0 ,  nz(posprice, 0))

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #430576 (基于RSI的阈值交易策略RSI-Threshold-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/430576  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): 1,000 cash per order, pyramiding 1, commission  [lines 173-173]
+  173: // strategy("Simple RSI Buy/Sell at a level", shorttitle="Simple RSI Strategy", overlay=true,calc_on_every_tick=false,pyramiding=1, default_qty_type=strategy.cash,default_qty_value=1000, currency=currency.USD, initial_capital=1000,commission_type=strategy.commission.percent, commission_value=0.075)

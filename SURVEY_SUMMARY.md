@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2945 |
+| PORT_CANDIDATE | 2931 |
 | REJECTED | 994 |
-| PORTED | 714 |
-| HELD_NEEDS_VOLUME | 554 |
+| PORTED | 723 |
+| HELD_NEEDS_VOLUME | 556 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 94 |
+| REJECTED_ON_READING | 97 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -842,7 +842,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430544 | `ports/430544_multi-indicator-bitcoin-daily-trading-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | rsi_threshold x2, srsi_threshold x2 | 4 |
 | 430545 | `ports/430545_momentum-reversal-multi-timeframe-strategy/` | PineScript | combo_123_reversal | bar_size_pending | sma_length x2, bars_back x2 | 4 |
 | 430549 | `ports/430549_dual-moving-average-crossover-scalping-strategy/` | PineScript | ma_trend | none | length x3, confirm_bars x2 | 6 |
-| | **714 ports** | | | | | **4509** |
+| 430555 | `ports/430555_momentum-reversal-combo-strategy/` | PineScript | combo_123_reversal | none | length_dsp x2, zone_atr x2 | 4 |
+| 430556 | `ports/430556_low-point-rebound-strategy/` | PineScript | rsi_oscillator | none | low_len x2, time_stop x2 | 4 |
+| 430558 | `ports/430558_macd-macd-closing-turtle-hybrid-strategy/` | PineScript | macd_momentum | none | reenter_delay x2, sculp_delay x2 | 4 |
+| 430569 | `ports/430569_golden-cross-death-cross-moving-average-trading-strategy/` | PineScript | ma_cross | trailing_stop_pending, coarse_bar_stop | long_length x2, trend_length x2 | 4 |
+| 430570 | `ports/430570_ichimoku-equilibrium-strategy/` | PineScript | ichimoku | none | span x2, displacement x2 | 4 |
+| 430573 | `ports/430573_strong-trend-breakout-strategy/` | PineScript | donchian_breakout | trailing_stop_pending | length x2, stop_pct x2 | 4 |
+| 430576 | `ports/430576_rsi-rsi-threshold-trading-strategy/` | PineScript | rsi_oscillator | none | oversold x2, exit_bars x2 | 4 |
+| 430583 | `ports/430583_three-inside-up-reversal-strategy/` | PineScript | candle_pattern | none | dist_atr x2 | 2 |
+| 430585 | `ports/430585_tesla-supertrend-strategy/` | PineScript | supertrend | none | atr_period x2, factor x2 | 4 |
+| | **723 ports** | | | | | **4543** |
 
 ## Rejected on reading
 
@@ -942,6 +951,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430180 | 定投策略带止盈.md | 1 | Dollar-cost averaging: strategy.entry adds investmentAmount / close on every bar the position did not shrink (pyramiding 5), with percentage closes of the whole position; the position is a running sum of orders, so the size path is the strategy (as #426302). |
 | 430248 | 均线回归交易策略Mean-Reversion-Trading-Strategy-Based-on-Moving-Average.md | 1 | Mode 8 is a ladder of strategy.order buys of 1 / 2 / 4 / 8 / 16 units at successive 5 % bands under the SMA 28 and matching unit sells above it: the position size path is the strategy (as #426302). |
 | 430384 | 双重叠加平均线组合Stochastic异同K线交易策略Intraday-Stochastic-Oscillator-with-Double-Moving-Average-Crossover-Strategy.md | 1 | On the 1-day header chart the entries need hour > 2 and hour < 13 of the bar's time, which a daily bar never has (its hour is the session start), so the script as written never trades; the author's M30 / M15 notes are not the declared chart (no repeatable rule at the source's bar size). |
+| 430557 | 多时间框架止盈策略Multi-Timeframe-Take-Profit-Strategy.md | 1 | Exits are four strategy.exit orders with qty_percent = 5 % each at TP1-TP4 plus a stop and a close_all: partial exits cannot be expressed as one net position's entry / exit signals (as #365389). |
+| 430577 | 趋势跟踪止损策略Trend-Following-Strategy-with-Trailing-Stop-Loss.md | 1 | An entry on every bar with strategy.exit('Take Profit 1 Long', limit = close x 1.12, qty_percent = 50): a partial exit (as #365389), and the trailing stops are at 0 % (inert). |
+| 430587 | RSI多空平衡交易策略RSI-Long-Short-Balance-Trading-Strategy.md | 1 | The signals use request.security(syminfo.tickerid, '5' / '15' / '1', ...) on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #427518); the position is also a doubling add ladder. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

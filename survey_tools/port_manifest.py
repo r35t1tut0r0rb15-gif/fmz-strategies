@@ -1645,6 +1645,30 @@ SIZING = {
     ],
     430545: [],
     430549: [],
+    # ---- FMZ-C, batch C36 (2026-10-16)
+    430555: [],
+    430556: [],
+    430558: [
+        ("Commented-out strategy(): 10,000 cash per order", 243, 243),
+    ],
+    430569: [
+        ("Stop / target inputs and the shared-id exits", 191, 198),
+    ],
+    430570: [],
+    430573: [
+        ("Stop % input", 165, 165),
+        ("Target and stop exits", 186, 190),
+    ],
+    430576: [
+        ("Commented-out strategy(): 1,000 cash per order, pyramiding 1, commission", 173, 173),
+    ],
+    430583: [
+        ("Take-profit / stop-loss inputs (price units)", 226, 227),
+        ("Level checks", 238, 239),
+    ],
+    430585: [
+        ("strategy(): 100 % of equity", 179, 179),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2001,6 +2025,16 @@ REJECTED_ON_READING = {
               "time, which a daily bar never has (its hour is the session start), so the script "
               "as written never trades; the author's M30 / M15 notes are not the declared chart "
               "(no repeatable rule at the source's bar size)."),
+    # ---- FMZ-C, batch C36 (2026-10-16)
+    430557: ("1", "Exits are four strategy.exit orders with qty_percent = 5 % each at TP1-TP4 plus a "
+              "stop and a close_all: partial exits cannot be expressed as one net position's "
+              "entry / exit signals (as #365389)."),
+    430577: ("1", "An entry on every bar with strategy.exit('Take Profit 1 Long', limit = close x "
+              "1.12, qty_percent = 50): a partial exit (as #365389), and the trailing stops are "
+              "at 0 % (inert)."),
+    430587: ("1", "The signals use request.security(syminfo.tickerid, '5' / '15' / '1', ...) on the "
+              "1-hour header chart: resolutions below the chart's, whose value per bar is "
+              "undefined (as #427518); the position is also a doubling add ladder."),
 }
 
 DUPLICATE_ON_READING = {
@@ -2023,4 +2057,7 @@ HELD_ON_READING = {
     430278: ("8", "The trend line is vwma(k + k_two, 30): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C35 (2026-10-16)
     430385: ("8", "The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C36 (2026-10-16)
+    430551: ("8", "The grid lines are vwma(highest / lowest, 14): volume-weighted averages (check 8, held with the other volume users)."),
+    430588: ("8", "The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."),
 }
