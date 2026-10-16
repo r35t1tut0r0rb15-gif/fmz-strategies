@@ -78,9 +78,12 @@ fmz_id,file,final_outcome,criterion,reason
 429387,动态风险调整杠杆交易系统Dynamic-Risk-Adjusted-Leverage-Trading-System.md,REJECTED_ON_READING,1,"Leverage ladder: up to 25 stacked longs (pyramiding 25), opened while strategy.opentrades is below 10 / (ATR ratio) and closed last-in-first-out above it; the position size is the whole strategy (as #426302)."
 429401,魔改布林带策略止盈和马丁格尔倍投.md,REJECTED_ON_READING,1,"The source does not have a defined structure: `if useMartin` (line 68) has no body, and the martingale-add and exit lines (70-73, 80-83) sit at inconsistent indentation under unindented ifs, so which statements belong to which condition is undefined; the exits also pass prices as tick counts and the adds are a martingale ladder (ND422794)."
 429483,Hulk回撤反转策略The-Hulk-Pullback-Reversal-Strategy.md,REJECTED_ON_READING,1,"The MACD condition uses request.security(syminfo.tickerid, '1', Macdhist) on the 3-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
+429566,开敞包围式开高价交叉交易策略Open-High-Cross-Over-Trading-Strategy.md,REJECTED_ON_READING,1,"The open series is request.security(syminfo.tickerid, '120', DEMA(open, 14)) on the 1-day header chart: a 2-hour resolution below the chart's, whose value per bar is undefined (as #427518)."
+429568,动量突破纤维套利策略Incremental-Order-Size-Fibonacci-Retracement-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"Incremental-size ladder: up to ten long and short entries of growing quantity (1, 2, 4, 8, 5 ... 10; pyramiding 10) at Fibonacci levels, with per-tranche closes; the position ladder is the strategy (as #426302)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
+429562,双移动均线与RSI反转交易策略Dual-Moving-Average-and-RSI-Reversal-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter compares vwma(close, 30) with vwma(close, 200): volume-weighted averages (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -710,3 +713,11 @@ fmz_id,file,final_outcome,criterion,reason
 429499,移动均线金叉策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/429499_moving-average-crossover-strategy/
 429502,指数移动平均交叉策略Exponential-Moving-Average-Crossover-Strategy.md,PORTED,,ports/429502_exponential-moving-average-crossover-strategy/
 429504,TAM日内RSI交易策略TAM-Intraday-RSI-Trading-Strategy.md,PORTED,,ports/429504_tam-rsi-tam-intraday-rsi-trading-strategy/
+429505,均线斜率交叉趋势跟踪策略EMA-Slope-Cross-Trend-Following-Strategy.md,PORTED,,ports/429505_ema-slope-cross-trend-following-strategy/
+429506,RSI上升的加密趋势策略RSI-Rising-Crypto-Trending-Strategy.md,PORTED,,ports/429506_rsi-rsi-rising-crypto-trending-strategy/
+429509,Algorithm-RSI区间突破策略Algorithm-RSI-Range-Breakout-Strategy.md,PORTED,,ports/429509_algorithm-rsi-algorithm-rsi-range-breakout-strategy/
+429512,基于海龟交易法的突破策略Breakout-Strategy-Based-on-Turtle-Trading.md,PORTED,,ports/429512_breakout-strategy-based-on-turtle-trading/
+429561,双线性BB口系统策略Dual-Moving-Average-Bollinger-Band-System-Strategy.md,PORTED,,ports/429561_bb-dual-moving-average-bollinger-band-system-strategy/
+429564,相对笔涨幅均线交叉策略Relative-Body-Index-Crossover-Strategy.md,PORTED,,ports/429564_relative-body-index-crossover-strategy/
+429565,双K弹弓策略Double-K-Crossbow-Strategy.md,PORTED,,ports/429565_k-double-k-crossbow-strategy/
+429569,RSI金叉死叉策略RSI-Crossover-Strategy.md,PORTED,,ports/429569_rsi-rsi-crossover-strategy/

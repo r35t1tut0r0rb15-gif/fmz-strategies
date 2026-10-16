@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #429509 (Algorithm-RSI区间突破策略Algorithm-RSI-Range-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/429509  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target / stop / lot inputs  [lines 195-198]
+  195: takeProfit= input(title="target Pips", defval=2500, tooltip="Fixed pip stop loss distance")
+  196: stopLoss = input(title="Stop Pips", defval=5000, tooltip="Fixed pip stop loss distance")
+  197: 
+  198: lot = input(title = "Lot Size", defval = 1, tooltip="Trading Lot size")
+
+## Sized entries and the bracket exits  [lines 213-226]
+  213: if (long1 and strategy.position_size == 0)
+  214:     strategy.entry("Long", strategy.long, qty=lot, comment="Buy")
+  215:     if (long2 and  strategy.position_size == 0)
+  216:         strategy.entry("Long", strategy.long, qty=lot, comment="Buy")
+  217: 
+  218: // Short Orders
+  219: if (short1 and strategy.position_size == 0)
+  220:     strategy.entry("Short", strategy.short,qty=lot, comment="Sell")
+  221:     if (short2 and strategy.position_size == 0)
+  222:         strategy.entry("Short", strategy.short,qty=lot, comment="Sell")
+  223:     
+  224: // Exit our trade if our stop loss or take profit is hit
+  225: strategy.exit(id="Long Exit", from_entry="Long",qty = lot, profit=takeProfit, loss=stopLoss)
+  226: strategy.exit(id="Short Exit", from_entry="Short", qty = lot, profit=takeProfit, loss=stopLoss)

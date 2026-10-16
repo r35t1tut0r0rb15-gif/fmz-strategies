@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #429512 (基于海龟交易法的突破策略Breakout-Strategy-Based-on-Turtle-Trading)
+# Source: https://www.fmz.com/strategy/429512  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Sized entries and closes  [lines 243-254]
+  243: if break_up and dir_long
+  244:     strategy.entry("buy", strategy.long, 1)
+  245:     closed_pos :=false
+  246: if (break_down or stop_loss) and dir_long
+  247:     strategy.close("buy")
+  248:     
+  249: if break_down and not dir_long
+  250:     strategy.entry("sell", strategy.short, 1)
+  251:     closed_pos :=false
+  252: if (break_up or stop_loss) and not dir_long
+  253:     strategy.close("sell")
+  254:     closed_pos :=true

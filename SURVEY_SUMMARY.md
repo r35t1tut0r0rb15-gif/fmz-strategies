@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3049 |
+| PORT_CANDIDATE | 3038 |
 | REJECTED | 994 |
-| PORTED | 628 |
-| HELD_NEEDS_VOLUME | 551 |
+| PORTED | 636 |
+| HELD_NEEDS_VOLUME | 552 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 79 |
+| REJECTED_ON_READING | 81 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -756,7 +756,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 429499 | `ports/429499_moving-average-crossover-strategy/` | PineScript | ma_cross | none | sl_pct x2, tp_pct x2 | 4 |
 | 429502 | `ports/429502_exponential-moving-average-crossover-strategy/` | PineScript | multi_timeframe_ma | none | length x2 | 2 |
 | 429504 | `ports/429504_tam-rsi-tam-intraday-rsi-trading-strategy/` | PineScript | rsi_oscillator | none | buy_len2 x2, close_len2 x2 | 4 |
-| | **628 ports** | | | | | **4171** |
+| 429505 | `ports/429505_ema-slope-cross-trend-following-strategy/` | PineScript | slope_momentum | none | len1 x2, len2 x2 | 4 |
+| 429506 | `ports/429506_rsi-rsi-rising-crypto-trending-strategy/` | PineScript | rsi_oscillator | none | periods x2, smooth x2 | 4 |
+| 429509 | `ports/429509_algorithm-rsi-algorithm-rsi-range-breakout-strategy/` | PineScript | rsi_oscillator | none | tp_atr x2, sl_atr x2 | 4 |
+| 429512 | `ports/429512_breakout-strategy-based-on-turtle-trading/` | PineScript | donchian_breakout | none | enter_period x2, exit_period x2 | 4 |
+| 429561 | `ports/429561_bb-dual-moving-average-bollinger-band-system-strategy/` | PineScript | ma_cross | none | length x2 | 2 |
+| 429564 | `ports/429564_relative-body-index-crossover-strategy/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop | par1 x2, sl_atr x2 | 4 |
+| 429565 | `ports/429565_k-double-k-crossbow-strategy/` | PineScript | combo_123_reversal | none | length x2, smooth x2 | 4 |
+| 429569 | `ports/429569_rsi-rsi-crossover-strategy/` | PineScript | rsi_oscillator | none | fast x2, slow x2 | 4 |
+| | **636 ports** | | | | | **4201** |
 
 ## Rejected on reading
 
@@ -841,6 +849,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 429387 | 动态风险调整杠杆交易系统Dynamic-Risk-Adjusted-Leverage-Trading-System.md | 1 | Leverage ladder: up to 25 stacked longs (pyramiding 25), opened while strategy.opentrades is below 10 / (ATR ratio) and closed last-in-first-out above it; the position size is the whole strategy (as #426302). |
 | 429401 | 魔改布林带策略止盈和马丁格尔倍投.md | 1 | The source does not have a defined structure: `if useMartin` (line 68) has no body, and the martingale-add and exit lines (70-73, 80-83) sit at inconsistent indentation under unindented ifs, so which statements belong to which condition is undefined; the exits also pass prices as tick counts and the adds are a martingale ladder (ND422794). |
 | 429483 | Hulk回撤反转策略The-Hulk-Pullback-Reversal-Strategy.md | 1 | The MACD condition uses request.security(syminfo.tickerid, '1', Macdhist) on the 3-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
+| 429566 | 开敞包围式开高价交叉交易策略Open-High-Cross-Over-Trading-Strategy.md | 1 | The open series is request.security(syminfo.tickerid, '120', DEMA(open, 14)) on the 1-day header chart: a 2-hour resolution below the chart's, whose value per bar is undefined (as #427518). |
+| 429568 | 动量突破纤维套利策略Incremental-Order-Size-Fibonacci-Retracement-Trend-Following-Strategy.md | 1 | Incremental-size ladder: up to ten long and short entries of growing quantity (1, 2, 4, 8, 5 ... 10; pyramiding 10) at Fibonacci levels, with per-tranche closes; the position ladder is the strategy (as #426302). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

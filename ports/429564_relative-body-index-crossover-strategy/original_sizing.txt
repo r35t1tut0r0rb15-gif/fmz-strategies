@@ -1,0 +1,21 @@
+# Original sizing and money-management code, FMZ #429564 (相对笔涨幅均线交叉策略Relative-Body-Index-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/429564  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital, slippage  [lines 166-166]
+  166: strategy("RBI Backtest /w TSSL", shorttitle="RBI Strategy", overlay=false, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, initial_capital = 10000, slippage = 5)
+
+## Stop / trail inputs  [lines 205-208]
+  205: fixedSL = input(title="SL Activation", defval=300)
+  206: trailSL = input(title="SL Trigger", defval=1)
+  207: fixedTP = input(title="TP Activation", defval=120)
+  208: trailTP = input(title="TP Trigger", defval=1)
+
+## Entries and exits  [lines 243-249]
+  243: strategy.entry("Long", strategy.long, when= long and startTimeOk())
+  244: strategy.exit("Exit", qty_percent = 100, loss=fixedSL, trail_offset=trailTP, trail_points=fixedTP) 
+  245: strategy.exit("Exit", when= short)
+  246: // === STRATEGY - SHORT POSITION EXECUTION ===
+  247: strategy.entry("Short", strategy.short, when= short and startTimeOk())
+  248: strategy.exit("Exit", qty_percent = 100, loss=fixedSL, trail_offset=trailTP, trail_points=fixedTP)
+  249: strategy.exit("Exit", when= long)

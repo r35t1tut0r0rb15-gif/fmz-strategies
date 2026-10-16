@@ -1420,6 +1420,28 @@ SIZING = {
         ("Lot formula and sized entries", 199, 206),
     ],
     429504: [],
+    # ---- FMZ-C, batch C27 (2026-10-16)
+    429505: [
+        ("Commented-out strategy(): 30 % of equity, commission, slippage", 202, 202),
+    ],
+    429506: [
+        ("strategy(): capital, 100 % of equity, commission", 174, 174),
+    ],
+    429509: [
+        ("Target / stop / lot inputs", 195, 198),
+        ("Sized entries and the bracket exits", 213, 226),
+    ],
+    429512: [
+        ("Sized entries and closes", 243, 254),
+    ],
+    429561: [],
+    429564: [
+        ("strategy(): 100 % of equity, capital, slippage", 166, 166),
+        ("Stop / trail inputs", 205, 208),
+        ("Entries and exits", 243, 249),
+    ],
+    429565: [],
+    429569: [],
 }
 
 REJECTED_ON_READING = {
@@ -1720,6 +1742,13 @@ REJECTED_ON_READING = {
     429483: ("1", "The MACD condition uses request.security(syminfo.tickerid, '1', Macdhist) on the "
               "3-hour header chart: a 1-minute resolution below the chart's, whose value per bar "
               "is undefined (as #427518)."),
+    # ---- FMZ-C, batch C27 (2026-10-16)
+    429566: ("1", "The open series is request.security(syminfo.tickerid, '120', DEMA(open, 14)) on "
+              "the 1-day header chart: a 2-hour resolution below the chart's, whose value per bar "
+              "is undefined (as #427518)."),
+    429568: ("1", "Incremental-size ladder: up to ten long and short entries of growing quantity (1, "
+              "2, 4, 8, 5 ... 10; pyramiding 10) at Fibonacci levels, with per-tranche closes; "
+              "the position ladder is the strategy (as #426302)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -1736,4 +1765,6 @@ HELD_ON_READING = {
     427734: ("8", "The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C24 (2026-10-16)
     429461: ("8", "The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C27 (2026-10-16)
+    429562: ("8", "The trend filter compares vwma(close, 30) with vwma(close, 200): volume-weighted averages (check 8, held with the other volume users)."),
 }
