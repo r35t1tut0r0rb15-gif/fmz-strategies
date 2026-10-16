@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #429468 (趋势追踪突破策略Gold-Silver-30m-Trend-Following-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/429468  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): commission, pyramiding 1  [lines 245-245]
+  245: strategy("My Strategy", overlay = false, commission_value = 0.01, pyramiding = 1)
+
+## Sized entries and the inert exits  [lines 267-271]
+  267: strategy.entry("Buy", strategy.long, 1, when = close > ema(close, 162) and vrsi < RSIOverSold)
+  268: strategy.exit("Buy", when = vrsi > RSIOverBought and close < ema(close, 162))
+  269: 
+  270: strategy.entry("Sell", strategy.short, 1, when = close < ema(close, 162) and vrsi > RSIOverSold)
+  271: strategy.exit("Sell", when = vrsi > RSIOverBought and close > ema(close, 162))

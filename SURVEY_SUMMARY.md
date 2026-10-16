@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3070 |
+| PORT_CANDIDATE | 3059 |
 | REJECTED | 994 |
-| PORTED | 608 |
+| PORTED | 618 |
 | HELD_NEEDS_VOLUME | 551 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 78 |
+| REJECTED_ON_READING | 79 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -736,7 +736,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 429464 | `ports/429464_dual-moving-average-crossover-strategy/` | PineScript | ma_trend | none | len1 x2, len2 x2 | 4 |
 | 429466 | `ports/429466_short-term-bearish-strategy-based-on-ema-crossover-and-bear/` | PineScript | multi_indicator_confluence | none | length x2, sell_atr x2 | 4 |
 | 429467 | `ports/429467_adaptive-trend-tracking-stop-loss-strategy/` | PineScript | volatility_stop_cross | none | atr_mult x2, atr_length x2 | 4 |
-| | **608 ports** | | | | | **4093** |
+| 429468 | `ports/429468_gold-silver-30m-trend-following-breakout-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, ema_length x2 | 4 |
+| 429470 | `ports/429470_sma-short-mid-term-trend-following-strategy-based-on-sma-ind/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 429471 | `ports/429471_bull-trend-riding-strategy-based-on-stochastic-rsi-with-spec/` | PineScript | stochastic_oscillator | none | ema_donchian_len x2, lowerband x2 | 4 |
+| 429472 | `ports/429472_stc-ma-atr-stc-ma-atr-integrated-trend-trading-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | tp_mult x2, atr_mult x2 | 4 |
+| 429478 | `ports/429478_ema-triple-ema-with-trailing-stop-loss-strategy/` | PineScript | ma_cross | none | buffer_atr x2, ema3 x2 | 4 |
+| 429479 | `ports/429479_multifactor-dynamic-money-management-strategy/` | PineScript | multi_indicator_confluence | none | sl_atr x2, tp_atr x2 | 4 |
+| 429484 | `ports/429484_momentum-tracking-strategy-based-on-indicator-integration/` | PineScript | ma_trend | none | length x2, terms x2 | 4 |
+| 429485 | `ports/429485_surf-rider-strategy/` | PineScript | combo_123_reversal | none | r x2, s x2 | 4 |
+| 429488 | `ports/429488_dual-indicator-slight-reversal-trading-strategy/` | PineScript | combo_123_reversal | none | r x2, u x2 | 4 |
+| 429491 | `ports/429491_trend-following-long-only-strategy/` | PineScript | donchian_breakout | none | lookback x2, atr_mult x2 | 4 |
+| | **618 ports** | | | | | **4133** |
 
 ## Rejected on reading
 
@@ -820,6 +830,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 429163 | 海洋理论网格交易策略Ocean-Theory-Grid-Trading-Strategy.md | 1 | Grid ladder: up to 7 long lots (pyramiding 14, close_entries_rule ANY), one bought below each of 8 grid lines from a 250-bar high / low band and closed one line higher; the position ladder is the strategy (as #426302). |
 | 429387 | 动态风险调整杠杆交易系统Dynamic-Risk-Adjusted-Leverage-Trading-System.md | 1 | Leverage ladder: up to 25 stacked longs (pyramiding 25), opened while strategy.opentrades is below 10 / (ATR ratio) and closed last-in-first-out above it; the position size is the whole strategy (as #426302). |
 | 429401 | 魔改布林带策略止盈和马丁格尔倍投.md | 1 | The source does not have a defined structure: `if useMartin` (line 68) has no body, and the martingale-add and exit lines (70-73, 80-83) sit at inconsistent indentation under unindented ifs, so which statements belong to which condition is undefined; the exits also pass prices as tick counts and the adds are a martingale ladder (ND422794). |
+| 429483 | Hulk回撤反转策略The-Hulk-Pullback-Reversal-Strategy.md | 1 | The MACD condition uses request.security(syminfo.tickerid, '1', Macdhist) on the 3-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

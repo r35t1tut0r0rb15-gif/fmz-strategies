@@ -1,0 +1,55 @@
+# Original sizing and money-management code, FMZ #429479 (多因子动态资金管理策略Multifactor-Dynamic-Money-Management-Strategy)
+# Source: https://www.fmz.com/strategy/429479  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Money management: risk %, equity protection, ATR bracket, lot size  [lines 368-403]
+  368: atr_period = input(14, "Average True Range Period")
+  369: atr = atr(atr_period)
+  370: 
+  371: strategy.initial_capital = 50000
+  372: 
+  373: //MONEY MANAGEMENT--------------------------------------------------------------
+  374: balance = strategy.netprofit + strategy.initial_capital //current balance
+  375: floating = strategy.openprofit          //floating profit/loss
+  376: risk = input(2,type=input.float,title="Risk %")/100           //risk % per trade
+  377: isTwoDigit = input(false,"Is this a 2 digit pair? (JPY, XAU, XPD...")
+  378: 
+  379: equity_protector = input(1 ,type=input.float, title="Equity Protection %")/100  //equity protection %
+  380: equity_protectorTP = input(2 ,type=input.float, title="Equity TP %")/100  //equity protection %
+  381: multtp = input(5,type=input.float, title="multi atr tp")
+  382: multsl = input(5,type=input.float, title="multi atr sl")
+  383: stop = atr*100000*input(1,"SL X")* multsl    //Stop level
+  384: if(isTwoDigit)
+  385:     stop := stop/100
+  386: target = atr*100000*input(1,"TP X")*multtp    //Stop level
+  387:     //Calculate current DD and determine if stopout is necessary
+  388: equity_stopout = false
+  389: 
+  390: if(floating<0 and abs(floating/balance)>equity_protector)
+  391:     equity_stopout := true
+  392:     
+  393: equity_stopout2 = false
+  394: if(floating>0 and abs(floating/balance)>equity_protectorTP)
+  395:     equity_stopout2 := true
+  396:     
+  397:     //Calculate the size of the next trade
+  398: temp01 = balance * risk     //Risk in USD
+  399: temp02 = temp01/stop        //Risk in lots
+  400: temp03 = temp02*100000      //Convert to contracts
+  401: size = temp03 - temp03%1000 //Normalize to 1000s (Trade size)
+  402: if(size < 10000)
+  403:     size := 10000           //Set min. lot size
+
+## Orders: equity stop-out, entries, bracket exits, closes  [lines 406-417]
+  406: strategy.close_all(equity_stopout, comment="equity sl", alert_message = "equity_sl")      //Close all trades w/equity protector
+  407: //strategy.close_all(equity_stopout2, comment="equity tp", alert_message = "equity_tp")      //Close all trades w/equity protector
+  408: is_open = strategy.opentrades > 0
+  409: 
+  410: 
+  411: strategy.entry("long",true,oca_name="a",when=longCondition and not is_open)  //Long entry
+  412: strategy.entry("short",false,oca_name="a",when=shortCondition and not is_open) //Short entry
+  413:     
+  414: strategy.exit("exit_long","long",loss=stop, profit=target)      //Long exit (stop loss)
+  415: strategy.close("long",when=shortCondition)            //Long exit (exit condition)
+  416: strategy.exit("exit_short","short",loss=stop, profit=target)      //Short exit (stop loss)
+  417: strategy.close("short",when=longCondition)            //Short exit (exit condition)

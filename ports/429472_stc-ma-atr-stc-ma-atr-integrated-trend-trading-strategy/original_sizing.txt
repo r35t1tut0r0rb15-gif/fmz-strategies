@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #429472 (STC-MA-ATR综合趋势交易策略STC-MA-ATR-Integrated-Trend-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/429472  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margins  [lines 156-156]
+  156: strategy("My Strategy", overlay=true, margin_long=100, margin_short=100)
+
+## Target / stop multipliers, early stop, stop level  [lines 217-224]
+  217: tp_mult = input(2, title="Take Profit ATR Multiplier", group="Strategy")
+  218: sl_mult = input(1, title="Stop Loss ATR Multiplier", group="Strategy")
+  219: early_stop = input(true, title="Close position when ATR changes color")
+  220: 
+  221: atr_stop = if close < xATRTrailingStop
+  222:     close - (close - xATRTrailingStop) * sl_mult
+  223: else
+  224:     close + (xATRTrailingStop - close) * sl_mult
+
+## Entries with their bracket and early closes  [lines 229-239]
+  229: if (longCondition)
+  230:     strategy.entry("Long", strategy.long)
+  231:     strategy.exit("Exit Long", "Long", limit=close + xATR * tp_mult, stop=atr_stop)
+  232: else if atr_sig == false and early_stop
+  233:     strategy.close("Long")
+  234: 
+  235: if (shortCondition)
+  236:     strategy.entry("Short", strategy.short)
+  237:     strategy.exit("Exit Short", "Short", limit=close - xATR * tp_mult, stop=atr_stop)
+  238: else if atr_sig == true and early_stop
+  239:     strategy.close("Short")

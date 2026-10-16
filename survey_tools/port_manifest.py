@@ -1345,6 +1345,41 @@ SIZING = {
     ],
     429466: [],
     429467: [],
+    # ---- FMZ-C, batch C25 (2026-10-16)
+    429468: [
+        ("strategy(): commission, pyramiding 1", 245, 245),
+        ("Sized entries and the inert exits", 267, 271),
+    ],
+    429470: [
+        ("Sized entry (10 units)", 146, 147),
+    ],
+    429471: [
+        ("strategy(): 100 % of equity", 191, 191),
+    ],
+    429472: [
+        ("strategy(): margins", 156, 156),
+        ("Target / stop multipliers, early stop, stop level", 217, 224),
+        ("Entries with their bracket and early closes", 229, 239),
+    ],
+    429478: [
+        ("Capital, position, commission, pyramiding constants", 147, 151),
+        ("strategy(): cash quantity, capital, commission", 153, 156),
+        ("Stop / trail / buffer inputs", 163, 165),
+        ("Inert stop-loss bookkeeping and exits", 193, 213),
+    ],
+    429479: [
+        ("Money management: risk %, equity protection, ATR bracket, lot size", 368, 403),
+        ("Orders: equity stop-out, entries, bracket exits, closes", 406, 417),
+    ],
+    429484: [
+        ("strategy(): 100 % of equity, capital", 180, 180),
+        ("TP / SL / trail inputs (off by default) and exits", 196, 218),
+    ],
+    429485: [],
+    429488: [],
+    429491: [
+        ("strategy(): 100 % of equity", 119, 119),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -1641,6 +1676,10 @@ REJECTED_ON_READING = {
               "indentation under unindented ifs, so which statements belong to which condition is "
               "undefined; the exits also pass prices as tick counts and the adds are a martingale "
               "ladder (ND422794)."),
+    # ---- FMZ-C, batch C25 (2026-10-16)
+    429483: ("1", "The MACD condition uses request.security(syminfo.tickerid, '1', Macdhist) on the "
+              "3-hour header chart: a 1-minute resolution below the chart's, whose value per bar "
+              "is undefined (as #427518)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #429471 (牛市强劲趋势跟踪策略Bull-Trend-Riding-Strategy-Based-on-Stochastic-RSI-with-Special-Rules-for-Heavy-Bullish-Bias)
+# Source: https://www.fmz.com/strategy/429471  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 191-191]
+  191: strategy("Filtered Stoch", overlay=false, default_qty_value = 100, default_qty_type=strategy.percent_of_equity)

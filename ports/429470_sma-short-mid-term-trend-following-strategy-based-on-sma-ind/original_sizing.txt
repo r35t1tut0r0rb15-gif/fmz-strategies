@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #429470 (基于SMA指标的短中期趋势跟踪策略Short-Mid-Term-Trend-Following-Strategy-Based-on-SMA-Indicators)
+# Source: https://www.fmz.com/strategy/429470  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Sized entry (10 units)  [lines 146-147]
+  146: if time >= start
+  147:     strategy.entry("Long", strategy.long, 10.0, when=long)

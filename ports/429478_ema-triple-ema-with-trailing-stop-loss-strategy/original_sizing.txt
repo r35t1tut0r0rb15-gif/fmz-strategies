@@ -1,0 +1,44 @@
+# Original sizing and money-management code, FMZ #429478 (三重EMA追踪止损策略Triple-EMA-With-Trailing-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/429478  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Capital, position, commission, pyramiding constants  [lines 147-151]
+  147: InitPosition = 0
+  148: InitCapital = 50000
+  149: InitCommission = 0.004 //approx value to compensate for Oanda spreads
+  150: InitPyramidMax = 0
+  151: CalcOnorderFills = true
+
+## strategy(): cash quantity, capital, commission  [lines 153-156]
+  153: strategy(title=SystemName, shorttitle=ShortSystemName, overlay=true, pyramiding=InitPyramidMax, 
+  154:  default_qty_type=strategy.cash, default_qty_value=InitPosition, commission_type=strategy.commission.percent, 
+  155:  commission_value=InitCommission, initial_capital=InitCapital, max_lines_count=500, 
+  156:  max_labels_count=500, process_orders_on_close=false, calc_on_every_tick=false) 
+
+## Stop / trail / buffer inputs  [lines 163-165]
+  163: InitStopLoss = input(title="Stop Loss (ticks)", type=input.integer, defval=100, minval=0, maxval=1000) 
+  164: TrailingStopLoss = input(title="Trailing S/L (ticks)", type=input.integer, defval=130, minval=0, maxval=1000) 
+  165: InitBuffer = input(title="Buffer (ticks)", type=input.integer, defval=15, minval=0, maxval=1000) 
+
+## Inert stop-loss bookkeeping and exits  [lines 193-213]
+  193: if (strategy.position_size > 0 and (close > (StartPrice + (TrailingStopLoss / (100 * Multiplier)))))  
+  194:     StopLoss := max(StopLoss, close - (TrailingStopLoss / (100 * Multiplier))) 
+  195:     strategy.exit("Long Stoploss", "Long") 
+  196:     
+  197: if (strategy.position_size < 0 and (close < (StartPrice - (InitStopLoss / (100 * Multiplier))))) 
+  198:     StopLoss := min(StopLoss, close + (TrailingStopLoss / (100 * Multiplier)))
+  199:     strategy.exit("Short Stoploss", "Short") 
+  200:     
+  201: ///////////////////////////////////////////////////////// Setup entries /////////////////////////////////////////////////////////
+  202: 
+  203: if (longCondition)
+  204:     StartPrice := close
+  205:     StopLoss := StartPrice - (InitStopLoss / (100 * Multiplier)) 
+  206:     strategy.entry("Long", strategy.long, qty=OrderQty)
+  207:     strategy.exit("Long Stoploss", "Long")
+  208: 
+  209: if (shortCondition)
+  210:     StartPrice := close
+  211:     StopLoss := StartPrice + (InitStopLoss / (100 * Multiplier)) 
+  212:     strategy.entry("Short", strategy.short, qty=OrderQty)
+  213:     strategy.exit("Short Stoploss", "Short")

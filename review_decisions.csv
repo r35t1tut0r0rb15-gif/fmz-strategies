@@ -77,6 +77,7 @@ fmz_id,file,final_outcome,criterion,reason
 429163,海洋理论网格交易策略Ocean-Theory-Grid-Trading-Strategy.md,REJECTED_ON_READING,1,"Grid ladder: up to 7 long lots (pyramiding 14, close_entries_rule ANY), one bought below each of 8 grid lines from a 250-bar high / low band and closed one line higher; the position ladder is the strategy (as #426302)."
 429387,动态风险调整杠杆交易系统Dynamic-Risk-Adjusted-Leverage-Trading-System.md,REJECTED_ON_READING,1,"Leverage ladder: up to 25 stacked longs (pyramiding 25), opened while strategy.opentrades is below 10 / (ATR ratio) and closed last-in-first-out above it; the position size is the whole strategy (as #426302)."
 429401,魔改布林带策略止盈和马丁格尔倍投.md,REJECTED_ON_READING,1,"The source does not have a defined structure: `if useMartin` (line 68) has no body, and the martingale-add and exit lines (70-73, 80-83) sit at inconsistent indentation under unindented ifs, so which statements belong to which condition is undefined; the exits also pass prices as tick counts and the adds are a martingale ladder (ND422794)."
+429483,Hulk回撤反转策略The-Hulk-Pullback-Reversal-Strategy.md,REJECTED_ON_READING,1,"The MACD condition uses request.security(syminfo.tickerid, '1', Macdhist) on the 3-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -689,3 +690,13 @@ fmz_id,file,final_outcome,criterion,reason
 429464,双均线移动平均差值交易策略Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/429464_dual-moving-average-crossover-strategy/
 429466,均线先行指标短期做空策略Short-term-Bearish-Strategy-Based-on-EMA-Crossover-and-Bear-Power-Indicators.md,PORTED,,ports/429466_short-term-bearish-strategy-based-on-ema-crossover-and-bear/
 429467,适应性趋势跟踪止损策略Adaptive-Trend-Tracking-Stop-Loss-Strategy.md,PORTED,,ports/429467_adaptive-trend-tracking-stop-loss-strategy/
+429468,趋势追踪突破策略Gold-Silver-30m-Trend-Following-Breakout-Strategy.md,PORTED,,ports/429468_gold-silver-30m-trend-following-breakout-strategy/
+429470,基于SMA指标的短中期趋势跟踪策略Short-Mid-Term-Trend-Following-Strategy-Based-on-SMA-Indicators.md,PORTED,,ports/429470_sma-short-mid-term-trend-following-strategy-based-on-sma-ind/
+429471,牛市强劲趋势跟踪策略Bull-Trend-Riding-Strategy-Based-on-Stochastic-RSI-with-Special-Rules-for-Heavy-Bullish-Bias.md,PORTED,,ports/429471_bull-trend-riding-strategy-based-on-stochastic-rsi-with-spec/
+429472,STC-MA-ATR综合趋势交易策略STC-MA-ATR-Integrated-Trend-Trading-Strategy.md,PORTED,,ports/429472_stc-ma-atr-stc-ma-atr-integrated-trend-trading-strategy/
+429478,三重EMA追踪止损策略Triple-EMA-With-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/429478_ema-triple-ema-with-trailing-stop-loss-strategy/
+429479,多因子动态资金管理策略Multifactor-Dynamic-Money-Management-Strategy.md,PORTED,,ports/429479_multifactor-dynamic-money-management-strategy/
+429484,趋势动量跟踪策略Momentum-Tracking-Strategy-Based-on-Indicator-Integration.md,PORTED,,ports/429484_momentum-tracking-strategy-based-on-indicator-integration/
+429485,搏浪者策略Surf-Rider-Strategy.md,PORTED,,ports/429485_surf-rider-strategy/
+429488,双指标略逆反转交易策略Dual-Indicator-Slight-Reversal-Trading-Strategy.md,PORTED,,ports/429488_dual-indicator-slight-reversal-trading-strategy/
+429491,多空动态跟踪策略Trend-Following-Long-Only-Strategy.md,PORTED,,ports/429491_trend-following-long-only-strategy/
