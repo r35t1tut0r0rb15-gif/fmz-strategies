@@ -1455,6 +1455,25 @@ SIZING = {
     429777: [
         ("strategy(): capital, 25 % of equity, commission", 132, 132),
     ],
+    # ---- FMZ-C, batch C29 (2026-10-16)
+    429778: [
+        ("TP / SL / trail inputs (off by default) and exits", 263, 292),
+    ],
+    429780: [
+        ("Fixed-quantity entries (1 / 0)", 193, 194),
+    ],
+    429782: [
+        ("strategy(): capital, 100 % of equity", 180, 180),
+    ],
+    429784: [],
+    429786: [],
+    429787: [],
+    429948: [],
+    429949: [
+        ("strategy(): commission per contract", 155, 155),
+        ("Sized entries and the limit exits (pending, not emitted)", 294, 303),
+    ],
+    429951: [],
 }
 
 REJECTED_ON_READING = {

@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #429780 (振荡平衡策略Oscillation-Balance-Strategy)
+# Source: https://www.fmz.com/strategy/429780  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Fixed-quantity entries (1 / 0)  [lines 193-194]
+  193: strategy.entry("Long",true,1,when=crossover(projected,0))
+  194: strategy.entry("Short",false,0,when=crossunder(projected,0))

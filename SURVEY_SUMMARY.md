@@ -11,9 +11,9 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3031 |
+| PORT_CANDIDATE | 3022 |
 | REJECTED | 994 |
-| PORTED | 642 |
+| PORTED | 651 |
 | HELD_NEEDS_VOLUME | 552 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
@@ -770,7 +770,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 429651 | `ports/429651_atr-atr-trailing-stop-bands-strategy/` | PineScript | volatility_stop_cross | none | atr_period x2, mult x2 | 4 |
 | 429771 | `ports/429771_123-reversal-moving-average-envelope-strategy/` | PineScript | combo_123_reversal | none | length_ma x2, percent_shift x2 | 4 |
 | 429777 | `ports/429777_momentum-dual-moving-average-crossover-strategy/` | PineScript | ma_trend | none | mom_length x2, bias_slow x2 | 4 |
-| | **642 ports** | | | | | **4223** |
+| 429778 | `ports/429778_trend-following-strategy-with-moving-averages-and-supertrend/` | PineScript | ma_cross | none | length x2, frama_sc x2 | 4 |
+| 429780 | `ports/429780_oscillation-balance-strategy/` | PineScript | momentum_oscillator_turn | none | proj_lag x2, slowest x2 | 4 |
+| 429782 | `ports/429782_moving-average-tracking-strategy/` | PineScript | ma_trend | none | length x2 | 2 |
+| 429784 | `ports/429784_macd-momentum-breakdown-macd-strategy/` | PineScript | macd_momentum | none | mom_len x2, slow x2 | 4 |
+| 429786 | `ports/429786_ichimoku-lagging-cross-dual-line-trading-strategy/` | PineScript | ichimoku | none | conv x2, base x2 | 4 |
+| 429787 | `ports/429787_crossover-master-reversal-breakout-strategy/` | PineScript | ma_trend | none | prd1 x2, prd2 x2 | 4 |
+| 429948 | `ports/429948_momentum-reversal-combo-strategy/` | PineScript | combo_123_reversal | none | length_cmo x2, top_band x2 | 4 |
+| 429949 | `ports/429949_open-drive-strategy/` | PineScript | momentum_breakout | trailing_stop_pending | threshold x2, range_len x2 | 4 |
+| 429951 | `ports/429951_moving-average-trend-following-golden-cross-long-strategy/` | PineScript | macd_momentum | none | sma_len x2, ema_len x2 | 4 |
+| | **651 ports** | | | | | **4257** |
 
 ## Rejected on reading
 

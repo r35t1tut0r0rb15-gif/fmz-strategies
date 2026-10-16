@@ -728,3 +728,12 @@ fmz_id,file,final_outcome,criterion,reason
 429651,基于ATR指标的自适应跟踪止损策略ATR-Trailing-Stop-Bands-Strategy.md,PORTED,,ports/429651_atr-atr-trailing-stop-bands-strategy/
 429771,反转均线包络策略123-Reversal-Moving-Average-Envelope-Strategy.md,PORTED,,ports/429771_123-reversal-moving-average-envelope-strategy/
 429777,动量双均线交叉策略Momentum-Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/429777_momentum-dual-moving-average-crossover-strategy/
+429778,基于移动平均线和超级趋势的跟踪止损策略Trend-Following-Strategy-with-Moving-Averages-and-SuperTrend.md,PORTED,,ports/429778_trend-following-strategy-with-moving-averages-and-supertrend/
+429780,振荡平衡策略Oscillation-Balance-Strategy.md,PORTED,,ports/429780_oscillation-balance-strategy/
+429782,移动平均线跟踪策略Moving-Average-Tracking-Strategy.md,PORTED,,ports/429782_moving-average-tracking-strategy/
+429784,动量熔断MACD策略Momentum-Breakdown-MACD-Strategy.md,PORTED,,ports/429784_macd-momentum-breakdown-macd-strategy/
+429786,延迟交叉双线交易策略Ichimoku-Lagging-Cross-Dual-Line-Trading-Strategy.md,PORTED,,ports/429786_ichimoku-lagging-cross-dual-line-trading-strategy/
+429787,穿越大师-反转突破策略Crossover-Master-Reversal-Breakout-Strategy.md,PORTED,,ports/429787_crossover-master-reversal-breakout-strategy/
+429948,多因子动量和反转组合策略Momentum-Reversal-Combo-Strategy.md,PORTED,,ports/429948_momentum-reversal-combo-strategy/
+429949,开盘驱动策略Open-Drive-Strategy.md,PORTED,,ports/429949_open-drive-strategy/
+429951,移动平均趋势跟踪金叉做多策略Moving-Average-Trend-Following-Golden-Cross-Long-Strategy.md,PORTED,,ports/429951_moving-average-trend-following-golden-cross-long-strategy/

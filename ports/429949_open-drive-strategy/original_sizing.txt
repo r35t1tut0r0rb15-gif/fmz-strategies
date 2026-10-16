@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #429949 (开盘驱动策略Open-Drive-Strategy)
+# Source: https://www.fmz.com/strategy/429949  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): commission per contract  [lines 155-155]
+  155: strategy("Open Drive", commission_type =  strategy.commission.cash_per_contract, commission_value = 3.8 )
+
+## Sized entries and the limit exits (pending, not emitted)  [lines 294-303]
+  294: if OD_Up
+  295:     strategy.entry("el", strategy.long, 2)
+  296: if ta.barssince(OD_Up)> 3 
+  297:     strategy.exit(id = "ex" , from_entry = "el", limit = close)
+  298: 
+  299: // short 
+  300: if OD_Down
+  301:     strategy.entry("es", strategy.short, 2)
+  302: if ta.barssince(OD_Down)> 3
+  303:     strategy.exit(id = "ex" , from_entry = "es", limit = close)

@@ -1,0 +1,35 @@
+# Original sizing and money-management code, FMZ #429778 (基于移动平均线和超级趋势的跟踪止损策略Trend-Following-Strategy-with-Moving-Averages-and-SuperTrend)
+# Source: https://www.fmz.com/strategy/429778  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## TP / SL / trail inputs (off by default) and exits  [lines 263-292]
+  263: inpTakeProfit   = input(defval = 0, title = "Take Profit Points", minval = 0)
+  264: inpStopLoss     = input(defval = 0, title = "Stop Loss Points", minval = 0)
+  265: inpTrailStop    = input(defval = 0, title = "Trailing Stop Loss Points", minval = 0)
+  266: inpTrailOffset  = input(defval = 0, title = "Trailing Stop Loss Offset Points", minval = 0)
+  267: 
+  268: // === RISK MANAGEMENT VALUE PREP ===
+  269: // if an input is less than 1, assuming not wanted so we assign 'na' value to disable it.
+  270: useTakeProfit   = inpTakeProfit  >= 1 ? inpTakeProfit  : na
+  271: useStopLoss     = inpStopLoss    >= 1 ? inpStopLoss    : na
+  272: useTrailStop    = inpTrailStop   >= 1 ? inpTrailStop   : na
+  273: useTrailOffset  = inpTrailOffset >= 1 ? inpTrailOffset : na
+  274: 
+  275: // === STRATEGY - LONG POSITION EXECUTION ===
+  276: enterLong() => enterRule? (longCondition and Trend ==1):longCondition                                             // functions can be used to wrap up and work out complex conditions
+  277: exitLong() => exitRule and Trend == -1
+  278: 
+  279: strategy.entry(id = "Buy", long = true, when = enterLong() )             // use function or simple condition to decide when to get in
+  280: strategy.close(id = "Buy", when = exitLong() )                         // ...and when to get out
+  281: 
+  282: // === STRATEGY - SHORT POSITION EXECUTION ===
+  283: enterShort() => enterRule? (shortCondition and Trend ==-1):shortCondition
+  284: exitShort() => exitRule and Trend == 1
+  285: 
+  286: strategy.entry(id = "Sell", long = false, when = enterShort())
+  287: strategy.close(id = "Sell", when = exitShort() )
+  288: 
+  289: // === STRATEGY RISK MANAGEMENT EXECUTION ===
+  290: // finally, make use of all the earlier values we got prepped
+  291: strategy.exit("Exit Buy", from_entry = "Buy", profit = useTakeProfit, loss = useStopLoss, trail_points = useTrailStop, trail_offset = useTrailOffset)
+  292: strategy.exit("Exit Sell", from_entry = "Sell", profit = useTakeProfit, loss = useStopLoss, trail_points = useTrailStop, trail_offset = useTrailOffset)

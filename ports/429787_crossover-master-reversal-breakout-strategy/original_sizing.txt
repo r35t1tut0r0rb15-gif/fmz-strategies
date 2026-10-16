@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #429787 (穿越大师-反转突破策略Crossover-Master-Reversal-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/429787  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
