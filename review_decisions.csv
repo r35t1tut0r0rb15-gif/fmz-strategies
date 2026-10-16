@@ -63,6 +63,7 @@ fmz_id,file,final_outcome,criterion,reason
 427379,基于255-EMA-与-MACD-的反转交易策略255-EMA-and-MACD-Reversal-Trading-Strategy.md,REJECTED_ON_READING,1,"The stop and target come from valuewhen(position_size changed, lowest(20) / highest(20), 0), i.e. the 20-bar swing measured on the FILL bar itself (its own low / high included), and are active from the next bar: a stop from the fill bar's data cannot be expressed (as #427127)."
 427477,基于关键价格点的追踪策略Round-Number-Tracking-Strategy.md,REJECTED_ON_READING,2,"The signal is the distance to a round-number price level built in ticks (roundLevel = close[1] / mintick rounded to 500 ticks, distance in 100 ticks, 10-bar lows / highs against that level): hard-coded price levels and tick distances specific to the instrument and its tick size. Re-expressing them would remove the round-number idea itself. The exit is a trail_points-only strategy.exit (no offset)."
 427518,智能资金指数策略回测Smart-Money-Index-SMI-Strategy-Backtest.md,REJECTED_ON_READING,1,"The index adds security(syminfo.tickerid, '60', close[1] / open[1]) on the daily header chart: a 60-minute resolution below the chart's, whose value per daily bar is undefined (as #426261 / #426478)."
+427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -505,3 +506,15 @@ fmz_id,file,final_outcome,criterion,reason
 427516,布林带和斐波那契交易策略Bollinger-Bands-and-Fibonacci-Trading-Strategy.md,PORTED,,ports/427516_bollinger-bands-and-fibonacci-trading-strategy/
 427526,动量均线交叉策略Momentum-Moving-Average-Crossover-Strategy.md,PORTED,,ports/427526_momentum-moving-average-crossover-strategy/
 427528,基于EMA和斐波那契回撤的下跌趋势策略Short-term-Down-Trend-Strategy-Based-on-EMA-and-Adaptive-Fibonacci-Retracement.md,PORTED,,ports/427528_ema-short-term-down-trend-strategy-based-on-ema-and-adaptive/
+427529,基于stochastic和MACD指标的反转交易策略Reversal-Trading-Strategy-Based-on-Stochastic-and-MACD-Indicators.md,PORTED,,ports/427529_stochastic-macd-reversal-trading-strategy-based-on-stochasti/
+427588,基于Faytterro-Estimator的交易策略Trading-Strategy-Based-on-Faytterro-Estimator.md,PORTED,,ports/427588_faytterro-estimator-trading-strategy-based-on-faytterro-esti/
+427591,双时间框架超趋势跟踪策略Dual-Timeframe-Supertrend-Tracking-Strategy.md,PORTED,,ports/427591_dual-timeframe-supertrend-tracking-strategy/
+427592,布林带突破趋势跟踪策略Bollinger-Band-Breakout-Trend-Following-Strategy.md,PORTED,,ports/427592_bollinger-band-breakout-trend-following-strategy/
+427593,SMA移动平均线交叉策略SMA-Moving-Average-Crossover-Strategy.md,PORTED,,ports/427593_sma-sma-moving-average-crossover-strategy/
+427607,趋势SMA交易策略11Trend-SMA-Trading-Strategy-11.md,PORTED,,ports/427607_sma-11trend-sma-trading-strategy-11/
+427613,双MACD随机指标交易策略Dual-MACD-StochRSI-Trading-Strategy.md,PORTED,,ports/427613_macd-dual-macd-stochrsi-trading-strategy/
+427614,开放价格交易策略Open-Price-Trading-Strategy.md,PORTED,,ports/427614_open-price-trading-strategy/
+427615,HMA日线交叉交易策略HMA-Daily-Crossover-Trading-Strategy.md,PORTED,,ports/427615_hma-hma-daily-crossover-trading-strategy/
+427616,基于RSI和K线形态的交易策略RSI-Candlestick-Trading-Strategy.md,PORTED,,ports/427616_rsi-k-rsi-candlestick-trading-strategy/
+427666,Joker移动止盈策略Joker-Trailing-Take-Profit-Strategy.md,PORTED,,ports/427666_joker-joker-trailing-take-profit-strategy/
+427671,多指标组合趋势跟踪策略Multi-Indicator-Trend-Tracking-Strategy.md,PORTED,,ports/427671_multi-indicator-trend-tracking-strategy/

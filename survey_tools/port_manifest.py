@@ -869,6 +869,46 @@ SIZING = {
     427528: [
         ("strategy(): 100 % of equity, initial capital, commission", 156, 156),
     ],
+    # ---- FMZ-C, batch C10 (2026-10-16)
+    427529: [
+        ("strategy(): 100 % of equity, initial capital, commission", 243, 243),
+        ("Leverage and percent-of-equity inputs", 245, 246),
+        ("Leveraged quantity and the entries", 349, 354),
+    ],
+    427588: [
+        ("Commented-out strategy(): pyramiding 100", 207, 207),
+    ],
+    427591: [
+        ("Commented-out strategy(): default quantity 100", 210, 210),
+        ("Take-profit / stop-loss inputs in ticks", 222, 223),
+        ("Bracket exits", 264, 268),
+    ],
+    427592: [
+        ("strategy(): 10 % of equity, initial capital, commission", 218, 218),
+        ("Entries with the leveraged capital quantity", 267, 270),
+        ("Stop and trailing exits", 274, 275),
+    ],
+    427593: [],
+    427607: [
+        ("strategy(): 100 % of equity, pyramiding 0", 160, 160),
+        ("Short entry with the only-long quantity", 183, 183),
+    ],
+    427613: [
+        ("Stop-loss exit in ticks", 267, 267),
+    ],
+    427614: [
+        ("strategy(): 10 % of equity", 161, 161),
+    ],
+    427615: [
+        ("Commented-out strategy(): BTC capital, 1 % of equity, commission, slippage", 177, 177),
+        ("Open-profit close-all thresholds", 191, 193),
+    ],
+    427616: [],
+    427666: [
+        ("strategy(): 100 % of equity, initial capital, commission", 144, 144),
+        ("Trailing take-profit exits", 186, 187),
+    ],
+    427671: [],
 }
 
 REJECTED_ON_READING = {
@@ -1114,4 +1154,11 @@ REJECTED_ON_READING = {
 DUPLICATE_ON_READING = {
     128126: (127691, "Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead "
                      "of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."),
+}
+
+# FMZ-C (2026-10-16): candidates that read as volume users (rule 8 / skill check 8): held, not ported;
+# written to review_decisions.csv as HELD_NEEDS_VOLUME.
+HELD_ON_READING = {
+    # ---- FMZ-C, batch C10 (2026-10-16)
+    427574: ("8", "The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."),
 }

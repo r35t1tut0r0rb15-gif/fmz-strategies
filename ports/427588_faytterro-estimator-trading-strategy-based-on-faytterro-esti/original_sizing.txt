@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427588 (基于Faytterro-Estimator的交易策略Trading-Strategy-Based-on-Faytterro-Estimator)
+# Source: https://www.fmz.com/strategy/427588  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): pyramiding 100  [lines 207-207]
+  207: // strategy("Faytterro Estimator Strategy", overlay=true, pyramiding=100)

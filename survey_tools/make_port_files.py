@@ -12,6 +12,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 from port_manifest import DUPLICATE_ON_READING, REJECTED_ON_READING, SIZING  # noqa: E402
+try:  # FMZ-C 2026-10-16
+    from port_manifest import HELD_ON_READING  # noqa: E402
+except ImportError:
+    HELD_ON_READING = {}
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -42,6 +46,8 @@ def main():
         w.writerow(['fmz_id', 'file', 'final_outcome', 'criterion', 'reason'])
         for fid, (crit, why) in sorted(REJECTED_ON_READING.items()):
             w.writerow([fid, rows[fid]['file'], 'REJECTED_ON_READING', crit, why])
+        for fid, (crit, why) in sorted(HELD_ON_READING.items()):
+            w.writerow([fid, rows[fid]['file'], 'HELD_NEEDS_VOLUME', crit, why])
         for fid, (rep, why) in sorted(DUPLICATE_ON_READING.items()):
             w.writerow([fid, rows[fid]['file'], 'DUPLICATE_ON_READING', '6', f"of #{rep}: {why}"])
         for fid in sorted(SIZING):

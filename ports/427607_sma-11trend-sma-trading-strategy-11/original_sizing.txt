@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #427607 (趋势SMA交易策略11Trend-SMA-Trading-Strategy-11)
+# Source: https://www.fmz.com/strategy/427607  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 0  [lines 160-160]
+  160: strategy("Noro's Trend SMA Strategy v1.1", shorttitle = "Trend SMA str 1.1", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value=100.0, pyramiding=0)
+
+## Short entry with the only-long quantity  [lines 183-183]
+  183:     strategy.entry("Short", strategy.short, only == true ? 0 : na)

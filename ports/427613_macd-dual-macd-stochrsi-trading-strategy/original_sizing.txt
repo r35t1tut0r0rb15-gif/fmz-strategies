@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427613 (双MACD随机指标交易策略Dual-MACD-StochRSI-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427613  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop-loss exit in ticks  [lines 267-267]
+  267: 	strategy.exit("sell", loss = 9000)

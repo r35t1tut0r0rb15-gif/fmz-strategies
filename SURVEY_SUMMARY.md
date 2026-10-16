@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3254 |
+| PORT_CANDIDATE | 3241 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 548 |
-| PORTED | 441 |
+| HELD_NEEDS_VOLUME | 549 |
+| PORTED | 453 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | REJECTED_ON_READING | 64 |
@@ -569,7 +569,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427516 | `ports/427516_bollinger-bands-and-fibonacci-trading-strategy/` | PineScript | bollinger_breakout | none | length x3, mult x2 | 6 |
 | 427526 | `ports/427526_momentum-moving-average-crossover-strategy/` | PineScript | ma_trend | none | len_fast x2, len_slow x2, exit_tuner x2 | 8 |
 | 427528 | `ports/427528_ema-short-term-down-trend-strategy-based-on-ema-and-adaptive/` | PineScript | ma_trend | none | fib_len x3, retrace x2 | 6 |
-| | **441 ports** | | | | | **3332** |
+| 427529 | `ports/427529_stochastic-macd-reversal-trading-strategy-based-on-stochasti/` | PineScript | multi_indicator_confluence | coarse_bar_stop, trailing_stop_pending | length x2, level x2, sl_pct x2 | 8 |
+| 427588 | `ports/427588_faytterro-estimator-trading-strategy-based-on-faytterro-esti/` | PineScript | momentum_oscillator_turn | none | length x2, gap_atr x3 | 6 |
+| 427591 | `ports/427591_dual-timeframe-supertrend-tracking-strategy/` | PineScript | supertrend | coarse_bar_stop | factor x2, tp_atr x2, sl_atr x2 | 8 |
+| 427592 | `ports/427592_bollinger-band-breakout-trend-following-strategy/` | PineScript | bollinger_breakout | coarse_bar_stop, trailing_stop | mult x2, trail_pct x2, activate x2 | 8 |
+| 427593 | `ports/427593_sma-sma-moving-average-crossover-strategy/` | PineScript | ma_trend | none | ma1 x2, ma2 x2, ma_type x2 | 8 |
+| 427607 | `ports/427607_sma-11trend-sma-trading-strategy-11/` | PineScript | ma_pullback | none | fastlen x2, slowlen x2 | 4 |
+| 427613 | `ports/427613_macd-dual-macd-stochrsi-trading-strategy/` | PineScript | macd_cross | none | length_rsi x2, buy_trig x2, sl_atr x2 | 8 |
+| 427614 | `ports/427614_open-price-trading-strategy/` | PineScript | candle_pattern | none | n x4 | 4 |
+| 427615 | `ports/427615_hma-hma-daily-crossover-trading-strategy/` | PineScript | ma_trend | none | period x2, tp_atr x2, sl_atr x2 | 8 |
+| 427616 | `ports/427616_rsi-k-rsi-candlestick-trading-strategy/` | PineScript | candle_pattern | none | length x2, bull x2, bear x2 | 8 |
+| 427666 | `ports/427666_joker-joker-trailing-take-profit-strategy/` | PineScript | ma_cross | trailing_stop | fast x2, slow x2, tp_pct x2 | 8 |
+| 427671 | `ports/427671_multi-indicator-trend-tracking-strategy/` | PineScript | multi_indicator_vote | none | avg_len x2, avg_roc_len x2, stoch_len x2 | 8 |
+| | **453 ports** | | | | | **3418** |
 
 ## Rejected on reading
 

@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #427529 (基于stochastic和MACD指标的反转交易策略Reversal-Trading-Strategy-Based-on-Stochastic-and-MACD-Indicators)
+# Source: https://www.fmz.com/strategy/427529  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, initial capital, commission  [lines 243-243]
+  243: strategy(title="Combo Backtest 123 Reversal & MACD Crossover with Trail and Stop", shorttitle="ComboReversal123MACDWithStop", overlay = false, precision=8,default_qty_type=strategy.percent_of_equity, default_qty_value=100, initial_capital=100, currency="USD", commission_type=strategy.commission.percent, commission_value=0.075)
+
+## Leverage and percent-of-equity inputs  [lines 245-246]
+  245: leverage=input(2,"leverage",step=1)
+  246: percentOfEquity=input(100,"percentOfEquity",step=1)
+
+## Leveraged quantity and the entries  [lines 349-354]
+  349: quantity = max(0.000001,min(((strategy.equity*(percentOfEquity/100))*leverage/open),100000000))
+  350: 
+  351: if (possig == 1 and time_cond)
+  352:     strategy.entry("Long", strategy.long, qty=quantity)
+  353: if (possig == -1 and time_cond)
+  354:     strategy.entry("Short", strategy.short, qty=quantity) 

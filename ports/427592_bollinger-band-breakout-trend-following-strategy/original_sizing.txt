@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #427592 (布林带突破趋势跟踪策略Bollinger-Band-Breakout-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/427592  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity, initial capital, commission  [lines 218-218]
+  218: strategy(title="Bollinger Band Breakout", shorttitle = "BB Strategy",initial_capital=1000, default_qty_type = strategy.percent_of_equity, default_qty_value = 10, commission_type = strategy.commission.percent, commission_value = 0.3, max_bars_back = 1000, overlay=true)
+
+## Entries with the leveraged capital quantity  [lines 267-270]
+  267:     strategy.entry("long",  strategy.long, qty=strategy.initial_capital/close*leverage, when = long and barstate.isconfirmed, alert_message = message_long_entry)
+  268:     
+  269: if (short and term)
+  270:     strategy.entry("short",  strategy.short, qty=strategy.initial_capital/close*leverage, when = short and barstate.isconfirmed, alert_message = message_short_entry)
+
+## Stop and trailing exits  [lines 274-275]
+  274: strategy.exit("long tsl", "long", loss = close*0.075 / syminfo.mintick, trail_points = close*0.05 / syminfo.mintick, trail_offset = close*0.005 / syminfo.mintick)
+  275: strategy.exit("short tsl", "short", loss = close*0.075 / syminfo.mintick, trail_points = close*0.05 / syminfo.mintick, trail_offset = close*0.005 / syminfo.mintick)

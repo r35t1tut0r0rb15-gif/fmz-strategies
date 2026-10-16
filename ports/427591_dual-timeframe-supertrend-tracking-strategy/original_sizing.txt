@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #427591 (双时间框架超趋势跟踪策略Dual-Timeframe-Supertrend-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/427591  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): default quantity 100  [lines 210-210]
+  210: // strategy("Super Trend 2", overlay=true, default_qty_value=100)
+
+## Take-profit / stop-loss inputs in ticks  [lines 222-223]
+  222: tp = input(500,title="Take Profit")
+  223: sl = input(400,title="Stop Loss")
+
+## Bracket exits  [lines 264-268]
+  264: strategy.exit("Close Buy","Buy",profit=tp,loss=sl)
+  265:    
+  266:    
+  267: strategy.entry("Sell", strategy.short,when=goshort)
+  268: strategy.exit("Close Sell","Sell",profit=tp,loss=sl)
