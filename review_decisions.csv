@@ -102,6 +102,9 @@ fmz_id,file,final_outcome,criterion,reason
 430762,定期定额投资策略Dollar-Cost-Averaging-Investment-Strategy.md,REJECTED_ON_READING,1,"Dollar-cost averaging: strategy.order('DCA', long, contribution / close) every N bars by bar_index modulo and chart timeframe; the position is a running sum of orders, so the size path is the strategy (as #430180)."
 430765,麦克风散架与多时间框架均线策略MACD-Dissipation-and-Multi-Time-Frame-Moving-Average-Strategy.md,REJECTED_ON_READING,1,"The EMA filters are security(syminfo.tickerid, '15', ema(...)) on the 1-hour header chart: a 15-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
 430776,动量突破均线交易策略Momentum-Breakout-Moving-Average-Trading-Strategy.md,REJECTED_ON_READING,1,"The three exits share the id 'SELL' and are re-issued every bar, the last bound to entry 'Pump' (as read in #426300): a position opened by the 'Cross' or 'MACD' entry has no exit and, with no pyramiding, is held for the rest of the data, so there is no repeatable entry / exit rule (as #368717)."
+430841,双移动平均交叉交易策略Dual-Moving-Average-Crossover-Trading-Strategy.md,REJECTED_ON_READING,1,"The ATR stop distance is request.security(syminfo.tickerid, '15', atr(14)) on the 1-hour header chart: a 15-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
+430847,基于质数震荡的交易策略Prime-Number-Oscillator-Trading-Strategy.md,REJECTED_ON_READING,2,"The oscillator is the distance from the price to the nearest prime number of the price itself (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (on fractional prices it is always 0); it cannot be made generic."
+430856,短线双均线策略Dual-Moving-Average-Strategy.md,REJECTED_ON_READING,1,"The signal is crossover(request.security(syminfo.tickerid, '370', close), request.security(..., '370', open)) on the 1-day header chart: a 370-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -870,3 +873,14 @@ fmz_id,file,final_outcome,criterion,reason
 430834,基于趋势跟踪止损的动量交易策略Momentum-Trading-Strategy-Based-on-Trend-Tracking-Stop-Loss.md,PORTED,,ports/430834_momentum-trading-strategy-based-on-trend-tracking-stop-loss/
 430836,基于ATR的跟踪止损策略仅做多ATR-Trailing-Stop-Strategy-Long-Only.md,PORTED,,ports/430836_atr-atr-trailing-stop-strategy-long-only/
 430840,折线交易策略Trend-Line-Trading-Strategy.md,PORTED,,ports/430840_trend-line-trading-strategy/
+430842,月初买入月末平仓策略Monthly-Opening-Long-and-Month-end-Closing-Strategy.md,PORTED,,ports/430842_monthly-opening-long-and-month-end-closing-strategy/
+430843,黄金交叉凯尔特通道趋势跟踪策略Golden-Cross-Keltner-Channel-Trend-Following-Strategy.md,PORTED,,ports/430843_golden-cross-keltner-channel-trend-following-strategy/
+430844,三重RSI极值交易策略Triple-RSI-Extremum-Trading-Strategy.md,PORTED,,ports/430844_rsi-triple-rsi-extremum-trading-strategy/
+430846,动量突破识别策略Momentum-Breakout-Identifies-Strategy.md,PORTED,,ports/430846_momentum-breakout-identifies-strategy/
+430849,三重移动平均线交易策略Triple-Moving-Average-Trading-Strategy.md,PORTED,,ports/430849_triple-moving-average-trading-strategy/
+430850,RSI敢死队融合策略RSI-Daredevil-Squadron-Fusion-Strategy.md,PORTED,,ports/430850_rsi-rsi-daredevil-squadron-fusion-strategy/
+430853,Hull移动平均的趋势跟踪策略Hull-Moving-Average-Trend-Following-Strategy.md,PORTED,,ports/430853_hull-hull-moving-average-trend-following-strategy/
+430855,均自适应通道价格突破策略Adaptive-Moving-Average-Channel-Breakout-Strategy.md,PORTED,,ports/430855_adaptive-moving-average-channel-breakout-strategy/
+430858,基于CCI和EMA的趋势跟随交易策略CCI-and-EMA-Trend-Following-Trading-Strategy.md,PORTED,,ports/430858_cci-ema-cci-and-ema-trend-following-trading-strategy/
+430859,均线带趋势策略Moving-Average-Ribbon-Trend-Strategy.md,PORTED,,ports/430859_moving-average-ribbon-trend-strategy/
+430860,MACD趋势预测策略MACD-Trend-Prediction-Strategy.md,PORTED,,ports/430860_macd-macd-trend-prediction-strategy/

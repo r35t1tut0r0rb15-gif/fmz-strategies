@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #430842 (月初买入月末平仓策略Monthly-Opening-Long-and-Month-end-Closing-Strategy)
+# Source: https://www.fmz.com/strategy/430842  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 0, commission  [lines 164-164]
+  164: strategy("Buurmans Tutorial", overlay=true, initial_capital=1000, pyramiding=0, default_qty_type=strategy.percent_of_equity, default_qty_value=100, commission_value=0.2)
+
+## Stop option (price units, off)  [lines 181-183]
+  181: Use_stoploss=input(false, title="Use stoploss ?")
+  182: stoploss_input=input(150, title="Stoploss in $")
+  183: Stoploss = Use_stoploss ? strategy.position_size>0 ? iff(strategy.position_size>0,strategy.position_avg_price - stoploss_input, na) : strategy.position_size<0 ? iff(strategy.position_size<0,strategy.position_avg_price + stoploss_input, na) : na : na

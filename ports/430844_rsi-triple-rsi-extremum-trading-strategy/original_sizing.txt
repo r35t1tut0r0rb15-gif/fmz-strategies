@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #430844 (三重RSI极值交易策略Triple-RSI-Extremum-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/430844  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 0  [lines 141-141]
+  141: strategy(title = "Noro's Triple RSI Top/Bottom", shorttitle = "3RSI Top/Bottom", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)

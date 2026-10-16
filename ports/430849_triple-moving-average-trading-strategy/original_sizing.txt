@@ -1,0 +1,38 @@
+# Original sizing and money-management code, FMZ #430849 (三重移动平均线交易策略Triple-Moving-Average-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/430849  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 1  [lines 179-179]
+  179: strategy(shorttitle = "TManyMA Strategy - STA - Stops", title="Triple Many Moving Averages", overlay=true, pyramiding=1, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+
+## TP / SL inputs  [lines 214-215]
+  214: TakeProfitPercent = input(30, title="Take Profit Percent", minval=0.01, step=0.5)
+  215: StopLossPercent = input(15, title="Stop Loss Percent", minval=0.01, step=0.5)
+
+## Tick targets, entries and exits  [lines 445-470]
+  445: ProfitTarget = (close * (TakeProfitPercent / 100)) / syminfo.mintick
+  446: LossTarget = (close * (StopLossPercent / 100)) / syminfo.mintick
+  447: 
+  448: if MA12Crossover and TradeMA12Crosses
+  449:     //https://www.tradingview.com/pine-script-reference/#fun_strategy{dot}entry
+  450:     strategy.entry("1 over 2", true) // buy by market
+  451:     strategy.exit("profit or loss", "1 over 2", profit = ProfitTarget, loss = LossTarget)
+  452: if MA12Crossunder and TradeMA12Crosses
+  453:     //https://www.tradingview.com/pine-script-reference/#fun_strategy{dot}close
+  454:     strategy.close("1 over 2") // sell by market
+  455:     
+  456: if MA13Crossover and TradeMA13Crosses
+  457:     //https://www.tradingview.com/pine-script-reference/#fun_strategy{dot}entry
+  458:     strategy.entry("1 over 3", true) // buy by market
+  459:     strategy.exit("profit or loss", "1 over 3", profit = ProfitTarget, loss = LossTarget)
+  460: if MA13Crossunder and TradeMA13Crosses
+  461:     //https://www.tradingview.com/pine-script-reference/#fun_strategy{dot}close
+  462:     strategy.close("1 over 3") // sell by market
+  463:     
+  464: if MA23Crossover and TradeMA23Crosses
+  465:     //https://www.tradingview.com/pine-script-reference/#fun_strategy{dot}entry
+  466:     strategy.entry("2 over 3", true) // buy by market
+  467:     strategy.exit("profit or loss", "2 over 3", profit = ProfitTarget, loss = LossTarget)
+  468: if MA23Crossunder and TradeMA23Crosses
+  469:     //https://www.tradingview.com/pine-script-reference/#fun_strategy{dot}close
+  470:     strategy.close("2 over 3") // sell by market

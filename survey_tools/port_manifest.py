@@ -1765,6 +1765,43 @@ SIZING = {
         ("ATR stop levels", 243, 253),
         ("Shared-id exits", 408, 410),
     ],
+    # ---- FMZ-C, batch C40 (2026-10-16)
+    430842: [
+        ("strategy(): 100 % of equity, pyramiding 0, commission", 164, 164),
+        ("Stop option (price units, off)", 181, 183),
+    ],
+    430843: [
+        ("Commented-out strategy(): 10 % of equity, cash commission", 185, 185),
+    ],
+    430844: [
+        ("strategy(): 100 % of equity, pyramiding 0", 141, 141),
+    ],
+    430846: [
+        ("strategy(): 50 % of equity, pyramiding 1000, commission", 180, 181),
+        ("Take-profit input and the exit", 224, 226),
+        ("Entry and the re-issued target", 295, 296),
+    ],
+    430849: [
+        ("strategy(): 100 % of equity, pyramiding 1", 179, 179),
+        ("TP / SL inputs", 214, 215),
+        ("Tick targets, entries and exits", 445, 470),
+    ],
+    430850: [],
+    430853: [
+        ("strategy(): 100 % of equity, pyramiding 0", 174, 174),
+        ("Capital % input", 179, 179),
+        ("Lot formula", 203, 204),
+    ],
+    430855: [
+        ("strategy(): capital, pyramiding 0, commission", 201, 201),
+    ],
+    430858: [
+        ("strategy(): 100 % of equity, pyramiding 1, commission", 147, 147),
+    ],
+    430859: [
+        ("strategy(): 100 % of equity, pyramiding 0, commission", 192, 192),
+    ],
+    430860: [],
 }
 
 REJECTED_ON_READING = {
@@ -2155,6 +2192,17 @@ REJECTED_ON_READING = {
               "entry 'Pump' (as read in #426300): a position opened by the 'Cross' or 'MACD' "
               "entry has no exit and, with no pyramiding, is held for the rest of the data, so "
               "there is no repeatable entry / exit rule (as #368717)."),
+    # ---- FMZ-C, batch C40 (2026-10-16)
+    430841: ("1", "The ATR stop distance is request.security(syminfo.tickerid, '15', atr(14)) on the "
+              "1-hour header chart: a 15-minute resolution below the chart's, whose value per bar "
+              "is undefined (as #427518)."),
+    430847: ("2", "The oscillator is the distance from the price to the nearest prime number of the "
+              "price itself (integer steps of the quote unit): a property of the quote's numeric "
+              "scale, not of the market (on fractional prices it is always 0); it cannot be made "
+              "generic."),
+    430856: ("1", "The signal is crossover(request.security(syminfo.tickerid, '370', close), "
+              "request.security(..., '370', open)) on the 1-day header chart: a 370-minute "
+              "resolution below the chart's, whose value per bar is undefined (as #427518)."),
 }
 
 DUPLICATE_ON_READING = {

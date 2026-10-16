@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2889 |
+| PORT_CANDIDATE | 2875 |
 | REJECTED | 994 |
-| PORTED | 759 |
+| PORTED | 770 |
 | HELD_NEEDS_VOLUME | 556 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 103 |
+| REJECTED_ON_READING | 106 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -887,7 +887,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430834 | `ports/430834_momentum-trading-strategy-based-on-trend-tracking-stop-loss/` | PineScript | supertrend | none | factor x2, rsi_level x2 | 4 |
 | 430836 | `ports/430836_atr-atr-trailing-stop-strategy-long-only/` | PineScript | volatility_stop_cross | trailing_stop | af2 x2, ap2 x2 | 4 |
 | 430840 | `ports/430840_trend-line-trading-strategy/` | PineScript | pivot_reversal | coarse_bar_stop | leftbars x2, rightbars x2 | 4 |
-| | **759 ports** | | | | | **4683** |
+| 430842 | `ports/430842_monthly-opening-long-and-month-end-closing-strategy/` | PineScript | calendar_seasonal | none | entry_day x2, exit_day x2 | 4 |
+| 430843 | `ports/430843_golden-cross-keltner-channel-trend-following-strategy/` | PineScript | volatility_channel_breakout | none | length x2, profit_mult x2 | 4 |
+| 430844 | `ports/430844_rsi-triple-rsi-extremum-trading-strategy/` | PineScript | rsi_oscillator | none | accuracy x3 | 3 |
+| 430846 | `ports/430846_momentum-breakout-identifies-strategy/` | PineScript | volatility_spike_reversal | trailing_stop_pending, coarse_bar_stop | tp_pct x2, body_mult x2 | 4 |
+| 430849 | `ports/430849_triple-moving-average-trading-strategy/` | PineScript | ma_cross | none | tp_pct x2, sl_pct x2 | 4 |
+| 430850 | `ports/430850_rsi-rsi-daredevil-squadron-fusion-strategy/` | PineScript | macd_divergence | none | lb x2, tp_long x2 | 4 |
+| 430853 | `ports/430853_hull-hull-moving-average-trend-following-strategy/` | PineScript | hull_ma | none | n x3 | 3 |
+| 430855 | `ports/430855_adaptive-moving-average-channel-breakout-strategy/` | PineScript | volatility_channel_breakout | none | beta x2, snr_factor x2 | 4 |
+| 430858 | `ports/430858_cci-ema-cci-and-ema-trend-following-trading-strategy/` | PineScript | momentum_oscillator_turn | none | length x2, length_cci_ema x2 | 4 |
+| 430859 | `ports/430859_moving-average-ribbon-trend-strategy/` | PineScript | ma_envelope_breakout | none | length x3 | 3 |
+| 430860 | `ports/430860_macd-macd-trend-prediction-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| | **770 ports** | | | | | **4724** |
 
 ## Rejected on reading
 
@@ -996,6 +1007,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430762 | 定期定额投资策略Dollar-Cost-Averaging-Investment-Strategy.md | 1 | Dollar-cost averaging: strategy.order('DCA', long, contribution / close) every N bars by bar_index modulo and chart timeframe; the position is a running sum of orders, so the size path is the strategy (as #430180). |
 | 430765 | 麦克风散架与多时间框架均线策略MACD-Dissipation-and-Multi-Time-Frame-Moving-Average-Strategy.md | 1 | The EMA filters are security(syminfo.tickerid, '15', ema(...)) on the 1-hour header chart: a 15-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
 | 430776 | 动量突破均线交易策略Momentum-Breakout-Moving-Average-Trading-Strategy.md | 1 | The three exits share the id 'SELL' and are re-issued every bar, the last bound to entry 'Pump' (as read in #426300): a position opened by the 'Cross' or 'MACD' entry has no exit and, with no pyramiding, is held for the rest of the data, so there is no repeatable entry / exit rule (as #368717). |
+| 430841 | 双移动平均交叉交易策略Dual-Moving-Average-Crossover-Trading-Strategy.md | 1 | The ATR stop distance is request.security(syminfo.tickerid, '15', atr(14)) on the 1-hour header chart: a 15-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
+| 430847 | 基于质数震荡的交易策略Prime-Number-Oscillator-Trading-Strategy.md | 2 | The oscillator is the distance from the price to the nearest prime number of the price itself (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (on fractional prices it is always 0); it cannot be made generic. |
+| 430856 | 短线双均线策略Dual-Moving-Average-Strategy.md | 1 | The signal is crossover(request.security(syminfo.tickerid, '370', close), request.security(..., '370', open)) on the 1-day header chart: a 370-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
