@@ -993,6 +993,32 @@ SIZING = {
         ("Exit levels and the trail variable", 227, 234),
         ("Risk rules, the entry quantity and the exit", 275, 291),
     ],
+    # ---- FMZ-C, batch C14 (2026-10-16)
+    427895: [],
+    427910: [
+        ("Commented-out strategy(): 10 % of equity, commission, slippage", 300, 302),
+    ],
+    427921: [
+        ("strategy(): 100 % of equity, initial capital", 237, 237),
+        ("Stop / take-profit inputs", 241, 244),
+        ("Stop / take-profit exits", 350, 351),
+    ],
+    427923: [
+        ("strategy(): 100 % of equity, initial capital, commission", 178, 178),
+    ],
+    427925: [
+        ("strategy(): 100 % of equity", 153, 153),
+    ],
+    427930: [],
+    427932: [],
+    427933: [],
+    427985: [],
+    427986: [
+        ("strategy(): margin settings", 179, 179),
+    ],
+    427987: [
+        ("strategy(): 100 % of equity", 155, 155),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -1237,6 +1263,14 @@ REJECTED_ON_READING = {
     427890: ("1", "The buy / sell filter is security(syminfo.tickerid, '60', swap4[1], lookahead_on) "
               "on the 3-hour header chart: a 60-minute resolution below the chart's, whose value "
               "per 3-hour bar is undefined (as #427518)."),
+    # ---- FMZ-C, batch C14 (2026-10-16)
+    427899: ("1", "The signals use security(syminfo.tickerid, TF_, close, lookahead_off) with TF_ = "
+              "\"1\" (the if-chain uses == instead of :=, so TF_ never changes) on the 1-hour "
+              "header chart: a 1-minute resolution below the chart's, whose value per bar is "
+              "undefined (as #427518)."),
+    427926: ("1", "Both DEMAs are request.security(syminfo.tickerid, '120', ...) on the daily header "
+              "chart: a 120-minute resolution below the chart's, whose value per daily bar is "
+              "undefined (as #427518)."),
 }
 
 DUPLICATE_ON_READING = {

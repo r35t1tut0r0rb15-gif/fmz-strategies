@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427925 (ATR跟踪止损策略ATR-Trailing-Stop-Strategy)
+# Source: https://www.fmz.com/strategy/427925  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 153-153]
+  153: strategy("ATR Strategy FOREX", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

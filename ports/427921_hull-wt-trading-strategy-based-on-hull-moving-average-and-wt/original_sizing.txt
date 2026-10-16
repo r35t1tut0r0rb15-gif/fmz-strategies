@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #427921 (基于Hull移动平均线和WT指标交叉的交易策略Trading-Strategy-Based-on-Hull-Moving-Average-and-WT-Cross)
+# Source: https://www.fmz.com/strategy/427921  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, initial capital  [lines 237-237]
+  237: strategy("Kahlman HullMA / WT Cross Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100, initial_capital=100)
+
+## Stop / take-profit inputs  [lines 241-244]
+  241: stoploss1 = input(title='Stop Loss On/Off?', defval=true)
+  242: stoploss = input.float(5, "Stop Loss", minval = 1, step = 1)/100
+  243: takeprofit1 = input(title='Take Profit On/Off?', defval=true)
+  244: takeprofit = input.float(10, "Take Profit", minval = 1, step = 1)/100
+
+## Stop / take-profit exits  [lines 350-351]
+  350: strategy.exit("LONG", when=strategy.position_size > 0, stop=stoploss1 == true ? strategy.position_avg_price * (1 - stoploss):na, limit=takeprofit1 == true ? strategy.position_avg_price * (1 + takeprofit):na, comment="Exit Long")
+  351: strategy.exit("SHORT", when=strategy.position_size < 0, stop=stoploss1 == true ? strategy.position_avg_price * (1 + stoploss):na, limit=takeprofit1 == true ? strategy.position_avg_price * (1 - takeprofit):na, comment ="Exit Short")

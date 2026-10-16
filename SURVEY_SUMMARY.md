@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3209 |
+| PORT_CANDIDATE | 3196 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 550 |
-| PORTED | 483 |
+| PORTED | 494 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 65 |
+| REJECTED_ON_READING | 67 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -611,7 +611,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427886 | `ports/427886_level-by-level-build-up-moving-average-strategy/` | PineScript | renko_bricks | none | atr_length x4 | 4 |
 | 427893 | `ports/427893_relative-volatility-index-backtesting-strategy/` | PineScript | momentum_oscillator_turn | none | period x4 | 4 |
 | 427894 | `ports/427894_moving-average-breakout-strategy/` | PineScript | candle_pattern | none | validation x2, tp_pct x2, sl_pct x2 | 8 |
-| | **483 ports** | | | | | **3574** |
+| 427895 | `ports/427895_ema-long-only-triple-ema-golden-cross-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 427910 | `ports/427910_supertend-macd-dual-supertrend-with-macd-combination-trading/` | PineScript | supertrend | none | factor1 x2, factor2 x2, atr1 x2 | 8 |
+| 427921 | `ports/427921_hull-wt-trading-strategy-based-on-hull-moving-average-and-wt/` | PineScript | hull_ma | none | lookback x2, sl_pct x2, tp_pct x2 | 8 |
+| 427923 | `ports/427923_ema-ema-close-strategy/` | PineScript | ma_trend | none | len4 x2, len3 x2 | 4 |
+| 427925 | `ports/427925_atr-atr-trailing-stop-strategy/` | PineScript | mean_reversion_band | none | len x2, mul x2, mullow x2 | 8 |
+| 427930 | `ports/427930_day-of-the-week-custom-trading-strategy/` | PineScript | calendar_effect | none | start_day x2, n_days x2 | 4 |
+| 427932 | `ports/427932_customizable-backtest-start-time-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 427933 | `ports/427933_stochastic-ema-4-hour-stochastic-ema-trend-strategy/` | PineScript | ma_cross | none | period3 x2, period_k x2 | 4 |
+| 427985 | `ports/427985_dual-trend-tracking-strategy/` | PineScript | combo_123_reversal | none | length x2, length_oo x2 | 4 |
+| 427986 | `ports/427986_dual-bollinger-quant-options-strategy/` | PineScript | mean_reversion_band | none | length2 x2, mult2 x2 | 4 |
+| 427987 | `ports/427987_golden-cross-strategy/` | PineScript | ma_cross | none | l_short x2, l_long x2 | 4 |
+| | **494 ports** | | | | | **3630** |
 
 ## Rejected on reading
 
@@ -682,6 +693,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427477 | 基于关键价格点的追踪策略Round-Number-Tracking-Strategy.md | 2 | The signal is the distance to a round-number price level built in ticks (roundLevel = close[1] / mintick rounded to 500 ticks, distance in 100 ticks, 10-bar lows / highs against that level): hard-coded price levels and tick distances specific to the instrument and its tick size. Re-expressing them would remove the round-number idea itself. The exit is a trail_points-only strategy.exit (no offset). |
 | 427518 | 智能资金指数策略回测Smart-Money-Index-SMI-Strategy-Backtest.md | 1 | The index adds security(syminfo.tickerid, '60', close[1] / open[1]) on the daily header chart: a 60-minute resolution below the chart's, whose value per daily bar is undefined (as #426261 / #426478). |
 | 427890 | 基于ATR和CCI的趋势跟踪策略CCI-and-ATR-Based-Trend-Following-Strategy.md | 1 | The buy / sell filter is security(syminfo.tickerid, '60', swap4[1], lookahead_on) on the 3-hour header chart: a 60-minute resolution below the chart's, whose value per 3-hour bar is undefined (as #427518). |
+| 427899 | 均线交叉与平均真实波幅混合策略ATR-and-Moving-Average-Crossover-Hybrid-Strategy.md | 1 | The signals use security(syminfo.tickerid, TF_, close, lookahead_off) with TF_ = "1" (the if-chain uses == instead of :=, so TF_ never changes) on the 1-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
+| 427926 | DEMA快速双指数移动平均策略DEMA-Double-Exponential-Moving-Average-Strategy.md | 1 | Both DEMAs are request.security(syminfo.tickerid, '120', ...) on the daily header chart: a 120-minute resolution below the chart's, whose value per daily bar is undefined (as #427518). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

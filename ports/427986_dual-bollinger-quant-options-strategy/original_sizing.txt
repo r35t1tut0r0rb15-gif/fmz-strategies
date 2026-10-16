@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427986 (双波尔线量化期权策略Dual-Bollinger-Quant-Options-Strategy)
+# Source: https://www.fmz.com/strategy/427986  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin settings  [lines 179-179]
+  179: strategy("Double Bollinger Binary Options", overlay=true, margin_long=100, margin_short=100)

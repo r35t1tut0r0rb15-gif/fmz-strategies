@@ -1,0 +1,8 @@
+# Original sizing and money-management code, FMZ #427910 (双SuperTend与MACD组合交易策略Dual-SuperTrend-with-MACD-Combination-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427910  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): 10 % of equity, commission, slippage  [lines 300-302]
+  300: // strategy("Dual-Supertrend with MACD - Strategy [presentTrading]", overlay=true, precision=3, default_qty_type=strategy.cash, 
+  301: //  commission_value= 0.1, commission_type=strategy.commission.percent, slippage= 1, 
+  302: //   currency=currency.USD, default_qty_type = strategy.percent_of_equity, default_qty_value = 10, initial_capital= 10000)
