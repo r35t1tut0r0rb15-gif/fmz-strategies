@@ -99,6 +99,9 @@ fmz_id,file,final_outcome,criterion,reason
 430596,RSI-多空自动交易策略RSI-Long-Short-Automated-Trading-Strategy.md,REJECTED_ON_READING,1,"Positions are built with strategy.order('Rsi long' / 'Rsi short', qty 1), which adds or removes one unit per signal instead of entering or reversing, each with a 1600-tick bracket: the net position is a running sum of orders (as #426364)."
 430661,埃勒斯引领指标交易策略Ehlers-Leading-Indicator-Trading-Strategy.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 request.security(syminfo.tickerid, 'D', hl2) without [1] behaves as lookahead_on, so on every intraday bar the day's hl2 is the final value of the current day, not known until the day ends (SURVEY_README request.security rule, as #427066)."
 430742,基于华尔街捕鼠光环指标的加密货币看涨看跌策略Correlation-based-Bullish-Bearish-Crypto-Trading-Strategy-Based-on-Wall-Street-CCI-Index.md,REJECTED_ON_READING,3,"The signal is a WMA 200 of request.security('BTC_USDT:swap', timeframe.period, hlc3): a crypto-exchange perpetual contract used as the signal source for the chart symbol, which the project's single-symbol bars do not carry (as #426832). Stored in flagged/ (rule C7)."
+430762,定期定额投资策略Dollar-Cost-Averaging-Investment-Strategy.md,REJECTED_ON_READING,1,"Dollar-cost averaging: strategy.order('DCA', long, contribution / close) every N bars by bar_index modulo and chart timeframe; the position is a running sum of orders, so the size path is the strategy (as #430180)."
+430765,麦克风散架与多时间框架均线策略MACD-Dissipation-and-Multi-Time-Frame-Moving-Average-Strategy.md,REJECTED_ON_READING,1,"The EMA filters are security(syminfo.tickerid, '15', ema(...)) on the 1-hour header chart: a 15-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
+430776,动量突破均线交易策略Momentum-Breakout-Moving-Average-Trading-Strategy.md,REJECTED_ON_READING,1,"The three exits share the id 'SELL' and are re-issued every bar, the last bound to entry 'Pump' (as read in #426300): a position opened by the 'Cross' or 'MACD' entry has no exit and, with no pyramiding, is held for the rest of the data, so there is no repeatable entry / exit rule (as #368717)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -856,3 +859,14 @@ fmz_id,file,final_outcome,criterion,reason
 430757,动量跟随的Schaff趋势循环策略Schaff-Trend-Cycle-Momentum-Following-Strategy.md,PORTED,,ports/430757_schaff-schaff-trend-cycle-momentum-following-strategy/
 430760,基于RSI指标的短线反转交易策略RSI-Mean-Reversion-Trading-Strategy.md,PORTED,,ports/430760_rsi-rsi-mean-reversion-trading-strategy/
 430761,趋势跟踪均值回归通道策略CCI-Mean-Reversion-Channel-Strategy.md,PORTED,,ports/430761_cci-mean-reversion-channel-strategy/
+430763,创富综合策略Wealth-Creation-Composite-Strategy.md,PORTED,,ports/430763_wealth-creation-composite-strategy/
+430766,黄金交叉均线输入策略Fibonacci-Moving-Averages-Input-Strategy.md,PORTED,,ports/430766_fibonacci-moving-averages-input-strategy/
+430767,Bollinger带震荡型突破策略Bollinger-Bands-Oscillation-Breakthrough-Strategy.md,PORTED,,ports/430767_bollinger-bollinger-bands-oscillation-breakthrough-strategy/
+430768,双重反转交易策略Dual-Reversal-Trading-Strategy.md,PORTED,,ports/430768_dual-reversal-trading-strategy/
+430771,经典双重趋势追踪策略Classic-Dual-Trend-Tracking-Strategy.md,PORTED,,ports/430771_classic-dual-trend-tracking-strategy/
+430772,双重震荡反转信噪比优化组合策略Dual-Oscillation-Reversal-Signal-to-Noise-Ratio-Optimization-Combo-Strategy.md,PORTED,,ports/430772_dual-oscillation-reversal-signal-to-noise-ratio-optimization/
+430775,基于霍尔速度均线和卡尔曼滤波的趋势跟踪策略Hull-Moving-Average-and-Kalman-Filter-Based-Trend-Tracking-Strategy.md,PORTED,,ports/430775_hull-moving-average-and-kalman-filter-based-trend-tracking-s/
+430777,趋势跟踪均线交叉策略Trend-Following-Moving-Average-Crossover-Strategy.md,PORTED,,ports/430777_trend-following-moving-average-crossover-strategy/
+430834,基于趋势跟踪止损的动量交易策略Momentum-Trading-Strategy-Based-on-Trend-Tracking-Stop-Loss.md,PORTED,,ports/430834_momentum-trading-strategy-based-on-trend-tracking-stop-loss/
+430836,基于ATR的跟踪止损策略仅做多ATR-Trailing-Stop-Strategy-Long-Only.md,PORTED,,ports/430836_atr-atr-trailing-stop-strategy-long-only/
+430840,折线交易策略Trend-Line-Trading-Strategy.md,PORTED,,ports/430840_trend-line-trading-strategy/

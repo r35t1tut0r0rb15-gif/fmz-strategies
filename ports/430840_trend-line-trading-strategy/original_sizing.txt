@@ -1,0 +1,42 @@
+# Original sizing and money-management code, FMZ #430840 (折线交易策略Trend-Line-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/430840  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital, commission  [lines 191-198]
+  191: strategy("Trendlines Strategy", 
+  192:      overlay=true, 
+  193:      default_qty_type=strategy.percent_of_equity, 
+  194:      default_qty_value=100, 
+  195:      initial_capital=10000, 
+  196:      commission_value=0.04, 
+  197:      calc_on_every_tick=false, 
+  198:      slippage=0)
+
+## Stop / target inputs  [lines 219-227]
+  219: i_SL=input(true, title="Use Stop Loss and Take Profit")
+  220: TS=input(false, title="Use Trailing Stop")
+  221: i_SLType=input(defval="ATR Stop", title="Type Of Stop", options=["Strategy Stop", "Swing Lo/Hi", "ATR Stop"])
+  222: i_SPL=input(defval=10, title="Swing Point Lookback")
+  223: i_PercIncrement=input(defval=3, step=.1, title="Swing Point SL Perc Increment")*0.01
+  224: i_ATR = input(14, title="ATR Length")
+  225: i_ATRMult = input(4, step=.1, title="ATR Multiple")
+  226: i_TPRRR = input(2, step=.1, title="Take Profit Risk Reward Ratio")
+  227: DPR=input(true, "Allow Direct Position Reverse")
+
+## ATR stop levels  [lines 243-253]
+  243: ATRStop() =>
+  244:     ATR=atr(i_ATR)*i_ATRMult
+  245:     ATRLong = ohlc4 - ATR
+  246:     ATRShort = ohlc4 + ATR
+  247:     ATRLongStop = valuewhen(bought, ATRLong, 0)
+  248:     ATRShortStop = valuewhen(bought, ATRShort, 0)
+  249:     LongSL_ATR_price = strategy.position_size > 0 ? ATRLongStop : na 
+  250:     ShortSL_ATR_price = strategy.position_size < 0 ? ATRShortStop : na 
+  251:     ATRtp=strategy.position_avg_price + (strategy.position_avg_price - LongSL_ATR_price)*i_TPRRR
+  252:     ATRstp=strategy.position_avg_price - (ShortSL_ATR_price - strategy.position_avg_price)*i_TPRRR
+  253:     [LongSL_ATR_price, ShortSL_ATR_price, ATRtp, ATRstp]
+
+## Shared-id exits  [lines 408-410]
+  408: if i_SL
+  409:     strategy.exit("TP & SL", "long", limit=TP, stop=TS? tstop : SL)
+  410:     strategy.exit("TP & SL", "short", limit=STP, stop=TS? Ststop : SSL)

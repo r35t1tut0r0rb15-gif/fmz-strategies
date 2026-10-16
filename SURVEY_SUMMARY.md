@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2903 |
+| PORT_CANDIDATE | 2889 |
 | REJECTED | 994 |
-| PORTED | 748 |
+| PORTED | 759 |
 | HELD_NEEDS_VOLUME | 556 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 100 |
+| REJECTED_ON_READING | 103 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -876,7 +876,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430757 | `ports/430757_schaff-schaff-trend-cycle-momentum-following-strategy/` | PineScript | momentum_oscillator_turn | none | fast_length x2, cycle_length x2 | 4 |
 | 430760 | `ports/430760_rsi-rsi-mean-reversion-trading-strategy/` | PineScript | rsi_oscillator | none | ema_len x2, tp_pct x2 | 4 |
 | 430761 | `ports/430761_cci-mean-reversion-channel-strategy/` | PineScript | momentum_oscillator_turn | none | length x3 | 3 |
-| | **748 ports** | | | | | **4641** |
+| 430763 | `ports/430763_wealth-creation-composite-strategy/` | PineScript | combo_123_reversal | none | length_slow x2, length_fast x2 | 4 |
+| 430766 | `ports/430766_fibonacci-moving-averages-input-strategy/` | PineScript | ma_cross | none | long_len x2, cross_len x2 | 4 |
+| 430767 | `ports/430767_bollinger-bollinger-bands-oscillation-breakthrough-strategy/` | PineScript | bollinger_reversion | none | length_ar x2, confirmation x2 | 4 |
+| 430768 | `ports/430768_dual-reversal-trading-strategy/` | PineScript | combo_123_reversal | none | length x2, n_length x2 | 4 |
+| 430771 | `ports/430771_classic-dual-trend-tracking-strategy/` | PineScript | pivot_levels | none | r2_mult x2 | 2 |
+| 430772 | `ports/430772_dual-oscillation-reversal-signal-to-noise-ratio-optimization/` | PineScript | combo_123_reversal | none | length_stn x2, smooth_stn x2 | 4 |
+| 430775 | `ports/430775_hull-moving-average-and-kalman-filter-based-trend-tracking-s/` | PineScript | hull_ma | none | length x2, gain x2 | 4 |
+| 430777 | `ports/430777_trend-following-moving-average-crossover-strategy/` | PineScript | ma_cross | trailing_stop_pending | sl_long x2, sl_short x2 | 4 |
+| 430834 | `ports/430834_momentum-trading-strategy-based-on-trend-tracking-stop-loss/` | PineScript | supertrend | none | factor x2, rsi_level x2 | 4 |
+| 430836 | `ports/430836_atr-atr-trailing-stop-strategy-long-only/` | PineScript | volatility_stop_cross | trailing_stop | af2 x2, ap2 x2 | 4 |
+| 430840 | `ports/430840_trend-line-trading-strategy/` | PineScript | pivot_reversal | coarse_bar_stop | leftbars x2, rightbars x2 | 4 |
+| | **759 ports** | | | | | **4683** |
 
 ## Rejected on reading
 
@@ -982,6 +993,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430596 | RSI-多空自动交易策略RSI-Long-Short-Automated-Trading-Strategy.md | 1 | Positions are built with strategy.order('Rsi long' / 'Rsi short', qty 1), which adds or removes one unit per signal instead of entering or reversing, each with a 1600-tick bracket: the net position is a running sum of orders (as #426364). |
 | 430661 | 埃勒斯引领指标交易策略Ehlers-Leading-Indicator-Trading-Strategy.md | 1 | Reads the future: Pine v2 request.security(syminfo.tickerid, 'D', hl2) without [1] behaves as lookahead_on, so on every intraday bar the day's hl2 is the final value of the current day, not known until the day ends (SURVEY_README request.security rule, as #427066). |
 | 430742 | 基于华尔街捕鼠光环指标的加密货币看涨看跌策略Correlation-based-Bullish-Bearish-Crypto-Trading-Strategy-Based-on-Wall-Street-CCI-Index.md | 3 | The signal is a WMA 200 of request.security('BTC_USDT:swap', timeframe.period, hlc3): a crypto-exchange perpetual contract used as the signal source for the chart symbol, which the project's single-symbol bars do not carry (as #426832). Stored in flagged/ (rule C7). |
+| 430762 | 定期定额投资策略Dollar-Cost-Averaging-Investment-Strategy.md | 1 | Dollar-cost averaging: strategy.order('DCA', long, contribution / close) every N bars by bar_index modulo and chart timeframe; the position is a running sum of orders, so the size path is the strategy (as #430180). |
+| 430765 | 麦克风散架与多时间框架均线策略MACD-Dissipation-and-Multi-Time-Frame-Moving-Average-Strategy.md | 1 | The EMA filters are security(syminfo.tickerid, '15', ema(...)) on the 1-hour header chart: a 15-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
+| 430776 | 动量突破均线交易策略Momentum-Breakout-Moving-Average-Trading-Strategy.md | 1 | The three exits share the id 'SELL' and are re-issued every bar, the last bound to entry 'Pump' (as read in #426300): a position opened by the 'Cross' or 'MACD' entry has no exit and, with no pyramiding, is held for the rest of the data, so there is no repeatable entry / exit rule (as #368717). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

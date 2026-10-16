@@ -1740,6 +1740,31 @@ SIZING = {
         ("strategy(): 10,000 cash per entry", 192, 192),
         ("Stop / target options (off)", 244, 252),
     ],
+    # ---- FMZ-C, batch C39 (2026-10-16)
+    430763: [],
+    430766: [],
+    430767: [
+        ("Commented-out strategy(): 30 % of equity, commission, process_orders_on_close", 158, 158),
+    ],
+    430768: [],
+    430771: [],
+    430772: [],
+    430775: [],
+    430777: [
+        ("Entries (qty 1) and the percentage exits", 321, 337),
+    ],
+    430834: [
+        ("strategy(): 10 % of equity", 228, 228),
+    ],
+    430836: [
+        ("Trailing stop price and exit", 227, 234),
+    ],
+    430840: [
+        ("strategy(): 100 % of equity, capital, commission", 191, 198),
+        ("Stop / target inputs", 219, 227),
+        ("ATR stop levels", 243, 253),
+        ("Shared-id exits", 408, 410),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2119,6 +2144,17 @@ REJECTED_ON_READING = {
               "hlc3): a crypto-exchange perpetual contract used as the signal source for the "
               "chart symbol, which the project's single-symbol bars do not carry (as #426832). "
               "Stored in flagged/ (rule C7)."),
+    # ---- FMZ-C, batch C39 (2026-10-16)
+    430762: ("1", "Dollar-cost averaging: strategy.order('DCA', long, contribution / close) every N "
+              "bars by bar_index modulo and chart timeframe; the position is a running sum of "
+              "orders, so the size path is the strategy (as #430180)."),
+    430765: ("1", "The EMA filters are security(syminfo.tickerid, '15', ema(...)) on the 1-hour "
+              "header chart: a 15-minute resolution below the chart's, whose value per bar is "
+              "undefined (as #427518)."),
+    430776: ("1", "The three exits share the id 'SELL' and are re-issued every bar, the last bound to "
+              "entry 'Pump' (as read in #426300): a position opened by the 'Cross' or 'MACD' "
+              "entry has no exit and, with no pyramiding, is held for the rest of the data, so "
+              "there is no repeatable entry / exit rule (as #368717)."),
 }
 
 DUPLICATE_ON_READING = {

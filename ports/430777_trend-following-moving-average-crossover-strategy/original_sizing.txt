@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #430777 (趋势跟踪均线交叉策略Trend-Following-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/430777  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Entries (qty 1) and the percentage exits  [lines 321-337]
+  321: if Go_Short
+  322:     strategy.entry("enter short", strategy.short,1, alert_message=short_open) 
+  323:   
+  324: strategy.exit("cerrar short", "enter short", 1, profit=close*profit_short/100/syminfo.mintick, loss=close*stop_short/100/syminfo.mintick, alert_message=short_close)
+  325: 
+  326: 
+  327: 
+  328: 
+  329: strategy.close("enter short", (Go_Long),alert_message=short_close)
+  330: cancelar=((ta.crossunder(ta.ema(close,12),ta.ema(close,30))))
+  331: 
+  332: 
+  333: 
+  334: if Go_Long
+  335:     strategy.entry("enter long", strategy.long,1,alert_message=long_open)
+  336: 
+  337: strategy.exit("cerrar long", "enter long", 1, profit=close*profit_long/100/syminfo.mintick, loss=close*stop_long/100/syminfo.mintick, alert_message=long_close)
