@@ -1501,6 +1501,23 @@ SIZING = {
         ("Static target inputs", 205, 206),
         ("Entries with their bracket exits", 212, 255),
     ],
+    # ---- FMZ-C, batch C31 (2026-10-16)
+    430007: [
+        ("strategy(): 100 % of equity, pyramiding 0", 185, 185),
+        ("Entries with the counter-trend qty 0", 239, 243),
+    ],
+    430009: [
+        ("strategy(): 100 % of equity", 177, 177),
+        ("Leverage input", 184, 184),
+        ("Lot formula", 221, 221),
+    ],
+    430017: [
+        ("strategy(): 100 % of equity, pyramiding 5", 184, 184),
+    ],
+    430020: [],
+    430023: [],
+    430036: [],
+    430039: [],
 }
 
 REJECTED_ON_READING = {
@@ -1812,6 +1829,27 @@ REJECTED_ON_READING = {
     429581: ("1", "Partial exits: each entry places three exits of 25 % / 25 % / the rest at three "
               "targets with a shared stop (qty_percent); a partial scale-out cannot be expressed "
               "by the all-or-nothing contract (as #427161)."),
+    # ---- FMZ-C, batch C31 (2026-10-16)
+    429969: ("1", "Exits are strategy.exit('Long TP / SL', qty_percent = 50, limit = TP, stop = SL) "
+              "plus a second exit for the rest at the stop, with a SuperTrend-flip close and "
+              "risk-based quantities: partial exits (as #365389)."),
+    430011: ("1", "The signal is crossover(request.security(syminfo.tickerid, '720', close), "
+              "request.security(syminfo.tickerid, '720', open)) on the 1-day header chart: a "
+              "12-hour resolution below the chart's, whose value per bar is undefined (as "
+              "#427518)."),
+    430022: ("1", "Every moving-average and oscillator vote of the rating is "
+              "request.security(syminfo.tickerid, '240', ...) on the 1-day header chart: a 4-hour "
+              "resolution below the chart's, whose value per bar is undefined (as #427518)."),
+    430030: ("1", "Entries only from flat (strategy.opentrades < 1) with every exit commented out: "
+              "after the first signal the position is held for the rest of the data, so there is "
+              "no repeatable entry/exit rule to test (as #368717)."),
+    430034: ("1", "Alert-message demo: the position flips long / short on the parity of bar_index "
+              "(long on even bars, short on odd), which depends only on where the data starts; no "
+              "market rule (as #62163)."),
+    430040: ("1", "The Heikin Ashi candles are request.security(heikinashi, '30', ...) and the EMA "
+              "source request.security(heikinashi, '180', ...) on the 3-hour header chart: a "
+              "30-minute resolution below the chart's, whose value per bar is undefined (as "
+              "#427518)."),
 }
 
 DUPLICATE_ON_READING = {

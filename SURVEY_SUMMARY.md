@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3014 |
+| PORT_CANDIDATE | 3001 |
 | REJECTED | 994 |
-| PORTED | 659 |
+| PORTED | 666 |
 | HELD_NEEDS_VOLUME | 552 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 82 |
+| REJECTED_ON_READING | 88 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -787,7 +787,14 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 429963 | `ports/429963_rsi-rsi-trend-reversal-strategy/` | PineScript | macd_divergence | none | rsi_len x2, lb x2 | 4 |
 | 429964 | `ports/429964_sma-channel-breakout-sma-strategy/` | PineScript | donchian_breakout | none | length x2, slow x2 | 4 |
 | 429967 | `ports/429967_trend-reversal-system/` | PineScript | multi_indicator_confluence | coarse_bar_stop | tp_atr x2, mult x2 | 4 |
-| | **659 ports** | | | | | **4289** |
+| 430007 | `ports/430007_dual-moving-average-reversal-strategy/` | PineScript | volatility_channel_breakout | none | length x3, body_mult x2 | 6 |
+| 430009 | `ports/430009_noros-v11noros-price-channel-strategy-v11/` | PineScript | channel_reversal | none | pch x3, rsi_limit x2 | 6 |
+| 430017 | `ports/430017_fast-rsi-breakthrough-strategy/` | PineScript | rsi_oscillator | none | rsi_period x2, limit x2 | 4 |
+| 430020 | `ports/430020_dual-moving-average-turning-point-strategy/` | PineScript | hull_ma | none | ma_len x3, strength x2 | 6 |
+| 430023 | `ports/430023_momentum-moving-average-crossover-trend-following-strategy/` | PineScript | hull_ma | none | ma1 x2, adx_threshold x2 | 4 |
+| 430036 | `ports/430036_trend-reversal-volatility-combination-strategy/` | PineScript | combo_123_reversal | none | length_sv x2, top_band x2 | 4 |
+| 430039 | `ports/430039_rsi-sma-crossing-rsi-golden-cross-death-cross-trading-strate/` | PineScript | rsi_oscillator | none | rsi_len x2, sma_len x2 | 4 |
+| | **666 ports** | | | | | **4323** |
 
 ## Rejected on reading
 
@@ -875,6 +882,12 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 429566 | 开敞包围式开高价交叉交易策略Open-High-Cross-Over-Trading-Strategy.md | 1 | The open series is request.security(syminfo.tickerid, '120', DEMA(open, 14)) on the 1-day header chart: a 2-hour resolution below the chart's, whose value per bar is undefined (as #427518). |
 | 429568 | 动量突破纤维套利策略Incremental-Order-Size-Fibonacci-Retracement-Trend-Following-Strategy.md | 1 | Incremental-size ladder: up to ten long and short entries of growing quantity (1, 2, 4, 8, 5 ... 10; pyramiding 10) at Fibonacci levels, with per-tranche closes; the position ladder is the strategy (as #426302). |
 | 429581 | 霍尔指标与随机指标组合交易策略Hull-Moving-Average-and-Stochastic-RSI-Combination-Trading-Strategy.md | 1 | Partial exits: each entry places three exits of 25 % / 25 % / the rest at three targets with a shared stop (qty_percent); a partial scale-out cannot be expressed by the all-or-nothing contract (as #427161). |
+| 429969 | 三重模式震荡交易策略Triple-Pattern-Oscillation-Trading-Strategy.md | 1 | Exits are strategy.exit('Long TP / SL', qty_percent = 50, limit = TP, stop = SL) plus a second exit for the rest at the stop, with a SuperTrend-flip close and risk-based quantities: partial exits (as #365389). |
+| 430011 | 均线穿越多空策略Trend-Following-Strategy-Based-on-Moving-Average-Crossover.md | 1 | The signal is crossover(request.security(syminfo.tickerid, '720', close), request.security(syminfo.tickerid, '720', open)) on the 1-day header chart: a 12-hour resolution below the chart's, whose value per bar is undefined (as #427518). |
+| 430022 | 均线穿越策略Trend-Following-Strategy-Based-on-Moving-Average-Crossover.md | 1 | Every moving-average and oscillator vote of the rating is request.security(syminfo.tickerid, '240', ...) on the 1-day header chart: a 4-hour resolution below the chart's, whose value per bar is undefined (as #427518). |
+| 430030 | 均线交叉与MACD组合策略Moving-Average-Crossover-and-MACD-Combination-Strategy.md | 1 | Entries only from flat (strategy.opentrades < 1) with every exit commented out: after the first signal the position is held for the rest of the data, so there is no repeatable entry/exit rule to test (as #368717). |
+| 430034 | 双仓突破策略Dual-position-Breakthrough-Strategy.md | 1 | Alert-message demo: the position flips long / short on the parity of bar_index (long on even bars, short on odd), which depends only on where the data starts; no market rule (as #62163). |
+| 430040 | 追踪移动均线交易策略Moving-Average-Tracking-Trading-Strategy.md | 1 | The Heikin Ashi candles are request.security(heikinashi, '30', ...) and the EMA source request.security(heikinashi, '180', ...) on the 3-hour header chart: a 30-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
