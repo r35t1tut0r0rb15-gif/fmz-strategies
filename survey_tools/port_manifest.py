@@ -1174,6 +1174,40 @@ SIZING = {
         ("Long exit or add, with the level variables", 98, 112),
         ("Short exit or add, with the level variables", 114, 128),
     ],
+    # ---- FMZ-C, batch C20 (2026-10-16)
+    428782: [
+        ("strategy(): pyramiding, 100 % of equity, initial capital", 279, 285),
+    ],
+    428783: [
+        ("Commented-out strategy(): initial capital, quantity", 157, 157),
+    ],
+    428785: [
+        ("Commented-out strategy(): 100 % of equity, capital", 198, 198),
+    ],
+    428790: [],
+    428793: [],
+    428794: [
+        ("strategy(): pyramiding, commission, 100 % of equity", 155, 155),
+    ],
+    428795: [
+        ("Take-profit / stop / trailing inputs and their na handling", 194, 206),
+        ("strategy.exit with profit / loss / trail_points / trail_offset", 226, 227),
+    ],
+    428797: [],
+    428801: [
+        ("strategy(): pyramiding 1, commission, capital", 169, 169),
+    ],
+    428802: [],
+    428805: [
+        ("strategy(): 100 % of equity", 184, 184),
+        ("Stop-loss / take-profit inputs", 193, 194),
+        ("strategy.exit, percent of the close in ticks", 205, 205),
+    ],
+    428810: [
+        ("strategy(): 100 % of equity, capital, commission", 231, 231),
+        ("Pyramiding count inputs and conditions", 354, 359),
+        ("Trailing stop, take profit, stop loss (off by default) and close signals", 427, 466),
+    ],
 }
 
 REJECTED_ON_READING = {

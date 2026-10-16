@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #428795 (基于MACD和RSI的长短双向交易策略MACD-and-RSI-Based-Long-Short-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/428795  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit / stop / trailing inputs and their na handling  [lines 194-206]
+  194: inpTakeProfit   = input(defval = 2500, title = "Take Profit", minval = 28)
+  195: inpStopLoss     = input(defval = 600, title = "Stop Loss", minval = 15)
+  196: inpTrailStop    = input(defval = 300, title = "Trailing Stop Loss", minval = 5)
+  197: inpTrailOffset  = input(defval = 50, title = "Trailing Stop Loss Offset", minval = 1)
+  198: 
+  199: // === RISK MANAGEMENT VALUE PREP ===
+  200: 
+  201: // if an input is less than 1, assuming not wanted so we assign 'na' value to disable it.
+  202: 
+  203: useTakeProfit   = inpTakeProfit  >= 1 ? inpTakeProfit  : na
+  204: useStopLoss     = inpStopLoss    >= 1 ? inpStopLoss    : na
+  205: useTrailStop    = inpTrailStop   >= 1 ? inpTrailStop   : na
+  206: useTrailOffset  = inpTrailOffset >= 1 ? inpTrailOffset : na
+
+## strategy.exit with profit / loss / trail_points / trail_offset  [lines 226-227]
+  226: strategy.exit("Vente", from_entry = "Vente", profit = useTakeProfit, loss = useStopLoss, trail_points = useTrailStop, trail_offset = useTrailOffset)
+  227: strategy.exit("Short", from_entry = "Achat", profit = useTakeProfit, loss = useStopLoss, trail_points = useTrailStop, trail_offset = useTrailOffset)

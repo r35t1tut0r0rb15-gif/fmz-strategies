@@ -11,9 +11,9 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3131 |
+| PORT_CANDIDATE | 3119 |
 | REJECTED | 994 |
-| PORTED | 552 |
+| PORTED | 564 |
 | HELD_NEEDS_VOLUME | 550 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
@@ -680,7 +680,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 428708 | `ports/428708_double-tops-smart-breakout-strategy/` | PineScript | combo_123_reversal | none | length x2, length_ma x2 | 4 |
 | 428719 | `ports/428719_momentum-trend-continuation-factor-strategy/` | PineScript | momentum_oscillator_turn | none | length x3 | 3 |
 | 428756 | `ports/428756_blackcat-l1-martingale-scalping-strategy/` | PineScript | ma_cross | bar_size_pending | fast x2, slow x2 | 4 |
-| | **552 ports** | | | | | **3881** |
+| 428782 | `ports/428782_trailing-buy-strategy/` | PineScript | ma_cross | none | deviation x2, fast x2 | 4 |
+| 428783 | `ports/428783_adaptive-multi-timeframe-moving-average-crossover-strategy/` | PineScript | macd_momentum | none | tol_atr x2, lookback x2 | 4 |
+| 428785 | `ports/428785_dual-momentum-strategy/` | PineScript | momentum_breakout | none | enter_after x2, exit_after x2 | 4 |
+| 428790 | `ports/428790_a-momentum-breakout-strategy/` | PineScript | pivot_levels | none | frac x2 | 2 |
+| 428793 | `ports/428793_mbo-trend-following-strategy-based-on-mbo-indicator/` | PineScript | macd_momentum | none | fast x2, length x2 | 4 |
+| 428794 | `ports/428794_atr-dynamic-stop-loss-strategy-adaptive-to-atr-fluctuations/` | PineScript | stochastic_oscillator | none | length x2, offset x2 | 4 |
+| 428795 | `ports/428795_macd-rsi-macd-and-rsi-based-long-short-trading-strategy/` | PineScript | macd_momentum | trailing_stop | sl_atr x2, tp_atr x2 | 4 |
+| 428797 | `ports/428797_heiken-ashi-bar-color-change-strategy/` | PineScript | heikin_ashi_trend | none | confirm x2 | 2 |
+| 428801 | `ports/428801_r-dual-r-indicators-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, trend_length x2 | 4 |
+| 428802 | `ports/428802_vstop-rsi-vstop-and-rsi-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, mult x2 | 4 |
+| 428805 | `ports/428805_random-walk-strategy/` | PineScript | stop_and_reverse_bracket | coarse_bar_stop | seed x2, stop_loss x2 | 4 |
+| 428810 | `ports/428810_moving-average-crossover-multi-timeframe-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| | **564 ports** | | | | | **3925** |
 
 ## Rejected on reading
 

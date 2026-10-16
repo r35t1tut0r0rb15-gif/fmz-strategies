@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #428782 (跟踪买入策略Trailing-Buy-Strategy)
+# Source: https://www.fmz.com/strategy/428782  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding, 100 % of equity, initial capital  [lines 279-285]
+  279: strategy(title = 'Trailing Buy',
+  280:          shorttitle = 'TB',
+  281:          overlay = true,
+  282:          pyramiding = 0,
+  283:          default_qty_type = strategy.percent_of_equity,
+  284:          default_qty_value = 100,
+  285:          initial_capital = 100000)

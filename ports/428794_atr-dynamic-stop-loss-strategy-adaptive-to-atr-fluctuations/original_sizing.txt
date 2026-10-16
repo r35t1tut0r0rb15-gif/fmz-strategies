@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #428794 (动态止损随ATR波动自适应的动量敲入策略Dynamic-Stop-Loss-Strategy-Adaptive-to-ATR-Fluctuations)
+# Source: https://www.fmz.com/strategy/428794  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding, commission, 100 % of equity  [lines 155-155]
+  155: strategy("Stoch + ATR", overlay=false, pyramiding = 0, calc_on_order_fills = false, commission_type =  strategy.commission.percent, commission_value = 0.0454, default_qty_type = strategy.percent_of_equity, default_qty_value = 100)

@@ -1,0 +1,56 @@
+# Original sizing and money-management code, FMZ #428810 (移动平均线交叉多周期策略Moving-Average-Crossover-Multi-Timeframe-Strategy)
+# Source: https://www.fmz.com/strategy/428810  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital, commission  [lines 231-231]
+  231: strategy("Moving Averages Cross - MTF - Strategy", "MA Cross", overlay=true, pyramiding=0, initial_capital=100000, currency=currency.USD, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, commission_type=strategy.commission.percent, commission_value=0.1)
+
+## Pyramiding count inputs and conditions  [lines 354-359]
+  354: pyrl = input(1, "Pyramiding less than") // If your count is less than this number
+  355: pyre = input(0, "Pyramiding equal to") // If your count is equal to this number
+  356: pyrg = input(1000000, "Pyramiding greater than") // If your count is greater than this number
+  357: 
+  358: longCondition = long and sectionLongs <= pyrl or long and sectionLongs >= pyrg or long and sectionLongs == pyre ? 1 : 0
+  359: shortCondition = short and sectionShorts <= pyrl or short and sectionShorts >= pyrg or short and sectionShorts == pyre ? 1 : 0
+
+## Trailing stop, take profit, stop loss (off by default) and close signals  [lines 427-466]
+  427: isTS = input(false, "Trailing Stop")
+  428: tsi = input(1000, "Activate Trailing Stop Price (%). Divided by 100 (1 = 0.01%)") / 100 
+  429: ts = input(575, "Trailing Stop (%). Divided by 100 (1 = 0.01%)") / 100
+  430: 
+  431: last_high = na
+  432: last_low = na
+  433: last_high_short = na
+  434: last_low_short = na
+  435: last_high := not in_longCondition ? na : in_longCondition and (na(last_high[1]) or high > nz(last_high[1])) ? high : nz(last_high[1])
+  436: last_high_short := not in_shortCondition ? na : in_shortCondition and (na(last_high[1]) or high > nz(last_high[1])) ? high : nz(last_high[1])
+  437: last_low := not in_shortCondition ? na : in_shortCondition and (na(last_low[1]) or low < nz(last_low[1])) ? low : nz(last_low[1])
+  438: last_low_short := not in_longCondition ? na : in_longCondition and (na(last_low[1]) or low < nz(last_low[1])) ? low : nz(last_low[1])
+  439: 
+  440: long_ts = isTS and not na(last_high) and low <= last_high - last_high / 100 * ts and longCondition == 0 and last_high >= averageLongs + averageLongs / 100 * tsi
+  441: short_ts = isTS and not na(last_low) and high >= last_low + last_low / 100 * ts and shortCondition == 0 and last_low <= averageShorts - averageShorts/ 100 * tsi
+  442: 
+  443: ///////////////////////////////
+  444: //======[ Take Profit ]======//
+  445: ///////////////////////////////
+  446: 
+  447: isTP = input(false, "Take Profit")
+  448: tp = input(300, "Take Profit (%). Divided by 100 (1 = 0.01%)") / 100
+  449: long_tp = isTP and close > averageLongs + averageLongs / 100 * tp and not longCondition
+  450: short_tp = isTP and close < averageShorts - averageShorts / 100 * tp and not shortCondition
+  451: 
+  452: /////////////////////////////
+  453: //======[ Stop Loss ]======//
+  454: /////////////////////////////
+  455: 
+  456: isSL = input(false, "Stop Loss")
+  457: sl = input(575, "Stop Loss (%). Divided by 100 (1 = 0.01%)") / 100
+  458: long_sl = isSL and close < averageLongs - averageLongs / 100 * sl and longCondition == 0
+  459: short_sl = isSL and close > averageShorts + averageShorts / 100 * sl and shortCondition == 0
+  460: 
+  461: /////////////////////////////////
+  462: //======[ Close Signals ]======//
+  463: /////////////////////////////////
+  464: 
+  465: longClose = long_tp or long_sl or long_ts  ? 1 : 0
+  466: shortClose = short_tp or short_sl or short_ts ? 1: 0

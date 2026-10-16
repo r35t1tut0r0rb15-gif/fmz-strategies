@@ -628,3 +628,15 @@ fmz_id,file,final_outcome,criterion,reason
 428708,双接头智能突破策略Double-Tops-Smart-Breakout-Strategy.md,PORTED,,ports/428708_double-tops-smart-breakout-strategy/
 428719,动量趋势延续因子策略Momentum-Trend-Continuation-Factor-Strategy.md,PORTED,,ports/428719_momentum-trend-continuation-factor-strategy/
 428756,blackcat-L1-MartinGale-Scalping-Strategy.md,PORTED,,ports/428756_blackcat-l1-martingale-scalping-strategy/
+428782,跟踪买入策略Trailing-Buy-Strategy.md,PORTED,,ports/428782_trailing-buy-strategy/
+428783,多时间框架自适应移动均线交叉策略Adaptive-Multi-Timeframe-Moving-Average-Crossover-Strategy.md,PORTED,,ports/428783_adaptive-multi-timeframe-moving-average-crossover-strategy/
+428785,双重动量策略Dual-Momentum-Strategy.md,PORTED,,ports/428785_dual-momentum-strategy/
+428790,动量顺势突破策略A-Momentum-Breakout-Strategy.md,PORTED,,ports/428790_a-momentum-breakout-strategy/
+428793,基于MBO指标的趋势跟随策略Trend-Following-Strategy-Based-on-MBO-Indicator.md,PORTED,,ports/428793_mbo-trend-following-strategy-based-on-mbo-indicator/
+428794,动态止损随ATR波动自适应的动量敲入策略Dynamic-Stop-Loss-Strategy-Adaptive-to-ATR-Fluctuations.md,PORTED,,ports/428794_atr-dynamic-stop-loss-strategy-adaptive-to-atr-fluctuations/
+428795,基于MACD和RSI的长短双向交易策略MACD-and-RSI-Based-Long-Short-Trading-Strategy.md,PORTED,,ports/428795_macd-rsi-macd-and-rsi-based-long-short-trading-strategy/
+428797,海银-阿契蜡烛颜色变化策略Heiken-Ashi-Bar-Color-Change-Strategy.md,PORTED,,ports/428797_heiken-ashi-bar-color-change-strategy/
+428801,双R指标策略Dual-R-Indicators-Strategy.md,PORTED,,ports/428801_r-dual-r-indicators-strategy/
+428802,基于VSTOP和RSI的交易策略VSTOP-and-RSI-Trading-Strategy.md,PORTED,,ports/428802_vstop-rsi-vstop-and-rsi-trading-strategy/
+428805,随机游走策略Random-Walk-Strategy.md,PORTED,,ports/428805_random-walk-strategy/
+428810,移动平均线交叉多周期策略Moving-Average-Crossover-Multi-Timeframe-Strategy.md,PORTED,,ports/428810_moving-average-crossover-multi-timeframe-strategy/
