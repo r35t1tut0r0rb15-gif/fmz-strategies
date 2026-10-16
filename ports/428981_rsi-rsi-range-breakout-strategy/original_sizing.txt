@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #428981 (RSI区间突破策略RSI-Range-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/428981  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): pyramiding, capital, 100 % of equity  [lines 131-131]
+  131: //strategy("Strategy RSI | Fadior", shorttitle="Strategy RSI", pyramiding=10, calc_on_order_fills=false, initial_capital=10000, default_qty_type=strategy.percent_of_equity, currency="USD", default_qty_value=100, overlay=false)
+
+## Stop-loss / take-profit inputs  [lines 138-139]
+  138: SL = input(title="Stop loss %", type=float, defval=.026, step=.001)
+  139: TP = input( defval=300)
+
+## Entries with their exits  [lines 160-169]
+  160: longCondition = sma(rsi,rsiLength1) < threshLow and sma(rsi,rsiLength2) > sma(rsi,rsiLength2)[1] 
+  161: 
+  162: if (longCondition)
+  163:     strategy.entry("Long", strategy.long) //, qty=10)
+  164:     strategy.exit("Close Long", "Long", stop=src-close*SL, profit=TP)
+  165:     
+  166: shortCondition = sma(rsi,rsiLength1) > threshHigh and sma(rsi,rsiLength2) < sma(rsi,rsiLength2)[1]
+  167: if (shortCondition)
+  168:     strategy.entry("Short", strategy.short) //, qty=10)
+  169:     strategy.exit("Close Short", "Short") //, stop=src-close*SL, profit=TP)

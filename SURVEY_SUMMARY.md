@@ -11,9 +11,9 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3107 |
+| PORT_CANDIDATE | 3096 |
 | REJECTED | 994 |
-| PORTED | 575 |
+| PORTED | 586 |
 | HELD_NEEDS_VOLUME | 550 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
@@ -703,7 +703,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 428856 | `ports/428856_moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 428893 | `ports/428893_trend-following-adaptive-moving-average-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 428966 | `ports/428966_trend-tracking-maximized-profit-strategy/` | PineScript | ma_trend | none | length x2 | 2 |
-| | **575 ports** | | | | | **3967** |
+| 428968 | `ports/428968_dual-oscillation-tracking-reversal-trading-strategy/` | PineScript | combo_123_reversal | none | length x2, roc_length x2 | 4 |
+| 428969 | `ports/428969_double-hull-moving-average-crossover-trading-strategy/` | PineScript | hull_ma | none | length x2, alength x2 | 4 |
+| 428970 | `ports/428970_k-dual-color-k-line-tracking-strategy/` | PineScript | candle_pattern | none | bq x2 | 2 |
+| 428973 | `ports/428973_supertrend-basic-strategy/` | PineScript | supertrend | coarse_bar_stop | factor x2, bracket_pct x2 | 4 |
+| 428974 | `ports/428974_random-entry-and-exit-strategy/` | PineScript | random_benchmark | none | seed x2, exit_frequency x2 | 4 |
+| 428975 | `ports/428975_pb-sar-backtest-strategy-with-elastic-stop-loss/` | PineScript | parabolic_sar | none | trigger_buffer_atr x2 | 2 |
+| 428981 | `ports/428981_rsi-rsi-range-breakout-strategy/` | PineScript | rsi_oscillator | trailing_stop_pending | thresh_low x2, tp_atr x2 | 4 |
+| 428982 | `ports/428982_price-volatility-mean-reversion-strategy/` | PineScript | volatility_spike_reversal | none | limit x2, pd x2 | 4 |
+| 428985 | `ports/428985_swing-trading-strategy/` | PineScript | ma_cross | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
+| 428986 | `ports/428986_golden-cross-death-cross-strategy/` | PineScript | ma_cross | none | length1 x2, length2 x2 | 4 |
+| 429085 | `ports/429085_tema-dual-tema-crossover-trading-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| | **586 ports** | | | | | **4007** |
 
 ## Rejected on reading
 

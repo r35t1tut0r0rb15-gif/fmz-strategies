@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #428985 (摆动交易策略Swing-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/428985  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): 100 % of equity, margins  [lines 167-167]
+  167: // strategy("Bozz Strategy", "", true, default_qty_type=strategy.percent_of_equity, default_qty_value=100, margin_long=0, margin_short=0)
+
+## Stop / take-profit / leverage inputs and quantity  [lines 205-213]
+  205: sl_perc = input(1.0, "Stop Loss (in %)", group="Backtest Control")/100
+  206: tp_perc = input(1.0, "Take Profit (in %)", group="Backtest Control")/100
+  207: leverage = input(10, "Leverage", maxval=100, group="Backtest Control")
+  208: bt_start_time = input(timestamp("2021 01 01"), "Backtest Start Time", input.time, group="Backtest Control")
+  209: bt_end_time = input(timestamp("2021 12 31"), "Backtest End Time", input.time, group="Backtest Control")
+  210: 
+  211: // Trading Window
+  212: in_trading_window = true
+  213: trade_qty = (strategy.equity * leverage) / close 
+
+## Entries and bracket exits  [lines 215-227]
+  215: // Long Side
+  216: strategy.entry("Long Entry", strategy.long,  when=buy_cond and in_trading_window)
+  217: long_tp = strategy.position_avg_price * (1 + tp_perc)
+  218: long_sl = strategy.position_avg_price * (1 - sl_perc)
+  219: if not swing_trading_mode
+  220:     strategy.exit("Long Exit", "Long Entry", limit=long_tp, stop=long_sl)
+  221: 
+  222: // Short Side
+  223: strategy.entry("Short Entry", strategy.short, when=sell_cond and in_trading_window)
+  224: short_tp = strategy.position_avg_price * (1 - tp_perc)
+  225: short_sl = strategy.position_avg_price * (1 + sl_perc)
+  226: if not swing_trading_mode
+  227:     strategy.exit("Short Exit", "Short Entry", limit=short_tp, stop=short_sl)

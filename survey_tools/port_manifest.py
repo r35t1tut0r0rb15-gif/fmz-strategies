@@ -1240,6 +1240,41 @@ SIZING = {
     ],
     428893: [],
     428966: [],
+    # ---- FMZ-C, batch C22 (2026-10-16)
+    428968: [],
+    428969: [],
+    428970: [
+        ("strategy(): 100 % of equity, pyramiding", 162, 162),
+    ],
+    428973: [
+        ("Commented-out strategy(): percent of equity", 254, 254),
+        ("Stop-loss / take-profit inputs, levels and exits", 344, 357),
+    ],
+    428974: [
+        ("strategy(): pyramiding, 100 % of equity, commission", 208, 208),
+    ],
+    428975: [],
+    428981: [
+        ("Commented-out strategy(): pyramiding, capital, 100 % of equity", 131, 131),
+        ("Stop-loss / take-profit inputs", 138, 139),
+        ("Entries with their exits", 160, 169),
+    ],
+    428982: [
+        ("strategy(): 100 % of equity, pyramiding 5", 190, 190),
+        ("Leverage input", 195, 195),
+        ("Lot formula and sized entries", 240, 252),
+    ],
+    428985: [
+        ("Commented-out strategy(): 100 % of equity, margins", 167, 167),
+        ("Stop / take-profit / leverage inputs and quantity", 205, 213),
+        ("Entries and bracket exits", 215, 227),
+    ],
+    428986: [
+        ("Commented-out strategy(): capital, 100 % of equity, commission", 180, 180),
+    ],
+    429085: [
+        ("strategy(): commission, capital, 100 % of equity", 210, 210),
+    ],
 }
 
 REJECTED_ON_READING = {

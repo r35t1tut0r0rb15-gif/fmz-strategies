@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #428982 (价格异常波动反转策略Price-Volatility-Mean-Reversion-Strategy)
+# Source: https://www.fmz.com/strategy/428982  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 5  [lines 190-190]
+  190: strategy(title = "Noro's VixFix + RSI Strategy v1.0", shorttitle = "VixFix + RSI str 1.0", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 5)
+
+## Leverage input  [lines 195-195]
+  195: leverage = input(1, defval = 1, minval = 1, maxval = 100, title = "leverage")
+
+## Lot formula and sized entries  [lines 240-252]
+  240: lot = strategy.position_size == 0 ? strategy.equity / close * leverage : lot[1]
+  241: 
+  242: if up
+  243:     if strategy.position_size < 0
+  244:         strategy.close_all()
+  245:         
+  246:     strategy.entry("Bottom", strategy.long, needlong == false ? 0 : lot, when=(time > timestamp(fromyear, frommonth, fromday, 00, 00) and time < timestamp(toyear, tomonth, today, 23, 59)))
+  247: 
+  248: if dn
+  249:     if strategy.position_size > 0
+  250:         strategy.close_all()
+  251:         
+  252:     strategy.entry("Top", strategy.short, needshort == false ? 0 : lot, when=(time > timestamp(fromyear, frommonth, fromday, 00, 00) and time < timestamp(toyear, tomonth, today, 23, 59)))

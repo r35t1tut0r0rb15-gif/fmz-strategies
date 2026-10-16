@@ -652,3 +652,14 @@ fmz_id,file,final_outcome,criterion,reason
 428856,均线交叉策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/428856_moving-average-crossover-strategy/
 428893,趋势追踪自动调整移动均线策略Trend-Following-Adaptive-Moving-Average-Strategy.md,PORTED,,ports/428893_trend-following-adaptive-moving-average-strategy/
 428966,趋势追踪利润最大化策略Trend-Tracking-Maximized-Profit-Strategy.md,PORTED,,ports/428966_trend-tracking-maximized-profit-strategy/
+428968,双重震荡追踪反转交易策略Dual-Oscillation-Tracking-Reversal-Trading-Strategy.md,PORTED,,ports/428968_dual-oscillation-tracking-reversal-trading-strategy/
+428969,黄金交叉与死叉双均线交叉交易策略Double-Hull-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/428969_double-hull-moving-average-crossover-trading-strategy/
+428970,双色K线追踪策略Dual-Color-K-line-Tracking-Strategy.md,PORTED,,ports/428970_k-dual-color-k-line-tracking-strategy/
+428973,超级趋势基础策略SuperTrend-Basic-Strategy.md,PORTED,,ports/428973_supertrend-basic-strategy/
+428974,随机入场出场策略Random-Entry-and-Exit-Strategy.md,PORTED,,ports/428974_random-entry-and-exit-strategy/
+428975,基于弹性停损的追踪止损策略PB-SAR-Backtest-Strategy-with-Elastic-Stop-Loss.md,PORTED,,ports/428975_pb-sar-backtest-strategy-with-elastic-stop-loss/
+428981,RSI区间突破策略RSI-Range-Breakout-Strategy.md,PORTED,,ports/428981_rsi-rsi-range-breakout-strategy/
+428982,价格异常波动反转策略Price-Volatility-Mean-Reversion-Strategy.md,PORTED,,ports/428982_price-volatility-mean-reversion-strategy/
+428985,摆动交易策略Swing-Trading-Strategy.md,PORTED,,ports/428985_swing-trading-strategy/
+428986,黄金交叉死叉策略Golden-Cross-Death-Cross-Strategy.md,PORTED,,ports/428986_golden-cross-death-cross-strategy/
+429085,双TEMA叉死叉交易策略Dual-TEMA-Crossover-Trading-Strategy.md,PORTED,,ports/429085_tema-dual-tema-crossover-trading-strategy/
