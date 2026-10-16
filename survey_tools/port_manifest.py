@@ -1669,6 +1669,36 @@ SIZING = {
     430585: [
         ("strategy(): 100 % of equity", 179, 179),
     ],
+    # ---- FMZ-C, batch C37 (2026-10-16)
+    430589: [
+        ("Stop / target inputs and the bracket exit", 182, 190),
+    ],
+    430590: [],
+    430592: [],
+    430597: [],
+    430598: [
+        ("Commented-out strategy(): 10 % of equity, commission, pyramiding 0", 165, 165),
+        ("Re-issued 5 % targets", 213, 217),
+    ],
+    430648: [],
+    430651: [
+        ("strategy(): 10 % of equity, commission", 175, 175),
+    ],
+    430658: [
+        ("Stop % input", 168, 168),
+        ("Shared-id stop exits", 190, 194),
+    ],
+    430662: [],
+    430664: [
+        ("strategy(): cash order, capital, commission", 184, 184),
+        ("Fixed-ratio inputs", 204, 205),
+        ("Fixed-ratio order sizing", 221, 245),
+        ("Entry quantities", 264, 270),
+    ],
+    430667: [
+        ("strategy(): 100 % of equity, commission", 200, 200),
+    ],
+    430669: [],
 }
 
 REJECTED_ON_READING = {
@@ -2035,6 +2065,14 @@ REJECTED_ON_READING = {
     430587: ("1", "The signals use request.security(syminfo.tickerid, '5' / '15' / '1', ...) on the "
               "1-hour header chart: resolutions below the chart's, whose value per bar is "
               "undefined (as #427518); the position is also a doubling add ladder."),
+    # ---- FMZ-C, batch C37 (2026-10-16)
+    430596: ("1", "Positions are built with strategy.order('Rsi long' / 'Rsi short', qty 1), which "
+              "adds or removes one unit per signal instead of entering or reversing, each with a "
+              "1600-tick bracket: the net position is a running sum of orders (as #426364)."),
+    430661: ("1", "Reads the future: Pine v2 request.security(syminfo.tickerid, 'D', hl2) without [1] "
+              "behaves as lookahead_on, so on every intraday bar the day's hl2 is the final value "
+              "of the current day, not known until the day ends (SURVEY_README request.security "
+              "rule, as #427066)."),
 }
 
 DUPLICATE_ON_READING = {

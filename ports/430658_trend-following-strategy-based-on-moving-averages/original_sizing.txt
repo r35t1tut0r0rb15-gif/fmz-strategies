@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #430658 (移动平均线的趋势跟踪策略trend-following-strategy-based-on-moving-averages)
+# Source: https://www.fmz.com/strategy/430658  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop % input  [lines 168-168]
+  168: stop_loss_pct = input(1, title="Stop Loss Percentage", minval=0, maxval=5) / 100
+
+## Shared-id stop exits  [lines 190-194]
+  190: long_stop_price = close * (1 - stop_loss_pct)
+  191: short_stop_price = close * (1 + stop_loss_pct)
+  192: 
+  193: strategy.exit("Stop Loss/Profit", from_entry="Long", stop=long_stop_price)
+  194: strategy.exit("Stop Loss/Profit", from_entry="Short", stop=short_stop_price)

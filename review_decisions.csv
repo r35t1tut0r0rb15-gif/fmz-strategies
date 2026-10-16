@@ -96,6 +96,8 @@ fmz_id,file,final_outcome,criterion,reason
 430557,多时间框架止盈策略Multi-Timeframe-Take-Profit-Strategy.md,REJECTED_ON_READING,1,Exits are four strategy.exit orders with qty_percent = 5 % each at TP1-TP4 plus a stop and a close_all: partial exits cannot be expressed as one net position's entry / exit signals (as #365389).
 430577,趋势跟踪止损策略Trend-Following-Strategy-with-Trailing-Stop-Loss.md,REJECTED_ON_READING,1,"An entry on every bar with strategy.exit('Take Profit 1 Long', limit = close x 1.12, qty_percent = 50): a partial exit (as #365389), and the trailing stops are at 0 % (inert)."
 430587,RSI多空平衡交易策略RSI-Long-Short-Balance-Trading-Strategy.md,REJECTED_ON_READING,1,"The signals use request.security(syminfo.tickerid, '5' / '15' / '1', ...) on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #427518); the position is also a doubling add ladder."
+430596,RSI-多空自动交易策略RSI-Long-Short-Automated-Trading-Strategy.md,REJECTED_ON_READING,1,"Positions are built with strategy.order('Rsi long' / 'Rsi short', qty 1), which adds or removes one unit per signal instead of entering or reversing, each with a 1600-tick bracket: the net position is a running sum of orders (as #426364)."
+430661,埃勒斯引领指标交易策略Ehlers-Leading-Indicator-Trading-Strategy.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 request.security(syminfo.tickerid, 'D', hl2) without [1] behaves as lookahead_on, so on every intraday bar the day's hl2 is the final value of the current day, not known until the day ends (SURVEY_README request.security rule, as #427066)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -828,3 +830,15 @@ fmz_id,file,final_outcome,criterion,reason
 430576,基于RSI的阈值交易策略RSI-Threshold-Trading-Strategy.md,PORTED,,ports/430576_rsi-rsi-threshold-trading-strategy/
 430583,三内在上涨反转策略Three-Inside-Up-Reversal-Strategy.md,PORTED,,ports/430583_three-inside-up-reversal-strategy/
 430585,特斯拉超趋势策略Tesla-Supertrend-Strategy.md,PORTED,,ports/430585_tesla-supertrend-strategy/
+430589,支撑阻力与MACD长线策略Strategy-of-Support-Resistance-with-MACD-LONG.md,PORTED,,ports/430589_macd-strategy-of-support-resistance-with-macd-long/
+430590,三平滑移动平均线策略Triple-Moving-Average-Crossover-Strategy.md,PORTED,,ports/430590_triple-moving-average-crossover-strategy/
+430592,突破交易策略Volatility-Breakout-Trading-Strategy.md,PORTED,,ports/430592_volatility-breakout-trading-strategy/
+430597,布林线与StochRSI动量策略Bollinger-Bands-and-StochRSI-Momentum-Strategy.md,PORTED,,ports/430597_stochrsi-bollinger-bands-and-stochrsi-momentum-strategy/
+430598,可扩展突破交易策略Breakout-Trading-Strategy-with-Scalability.md,PORTED,,ports/430598_breakout-trading-strategy-with-scalability/
+430648,基于随机-RSI-和-EMA-的自主买入式震荡Scalper策略Stochastic-RSI-with-Auto-Buy-Scalper-Strategy.md,PORTED,,ports/430648_rsi-ema-scalper-stochastic-rsi-with-auto-buy-scalper-strateg/
+430651,DEC策略Leledec-DEC-Strategy.md,PORTED,,ports/430651_dec-leledec-dec-strategy/
+430658,移动平均线的趋势跟踪策略trend-following-strategy-based-on-moving-averages.md,PORTED,,ports/430658_trend-following-strategy-based-on-moving-averages/
+430662,基于EMA和MAMA指标的交易策略EMA-and-MAMA-Indicators-Based-Trading-Strategy.md,PORTED,,ports/430662_ema-mama-ema-and-mama-indicators-based-trading-strategy/
+430664,反转型布林带通道震荡趋势策略Bollinger-Bands-Reversal-Oscillation-Trend-Strategy.md,PORTED,,ports/430664_bollinger-bands-reversal-oscillation-trend-strategy/
+430667,金叉死叉交易策略Trend-Trading-Strategy-Based-on-EMA-Crossover.md,PORTED,,ports/430667_trend-trading-strategy-based-on-ema-crossover/
+430669,基于枢轴指标的趋势操纵策略Pivot-Detector-Oscillator-Trend-Trading-Strategy.md,PORTED,,ports/430669_pivot-detector-oscillator-trend-trading-strategy/

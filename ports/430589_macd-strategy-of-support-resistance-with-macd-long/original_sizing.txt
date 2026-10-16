@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #430589 (支撑阻力与MACD长线策略Strategy-of-Support-Resistance-with-MACD-LONG)
+# Source: https://www.fmz.com/strategy/430589  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target inputs and the bracket exit  [lines 182-190]
+  182: stopLossLevel = input(5, title="Stop Loss Level (%)", minval=0.1, step=0.1)
+  183: takeProfitLevel = input(7.5, title="Take Profit Level (%)", minval=0.1, step=0.1)
+  184: 
+  185: // Execute Long Trades
+  186: if bullishSetup
+  187:     stopLossPrice = close * (1 - stopLossLevel / 100)
+  188:     takeProfitPrice = close * (1 + takeProfitLevel / 100)
+  189:     strategy.entry("Long", strategy.long)
+  190:     strategy.exit("Exit", "Long", stop=stopLossPrice, limit=takeProfitPrice)

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2931 |
+| PORT_CANDIDATE | 2917 |
 | REJECTED | 994 |
-| PORTED | 723 |
+| PORTED | 735 |
 | HELD_NEEDS_VOLUME | 556 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 97 |
+| REJECTED_ON_READING | 99 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -851,7 +851,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430576 | `ports/430576_rsi-rsi-threshold-trading-strategy/` | PineScript | rsi_oscillator | none | oversold x2, exit_bars x2 | 4 |
 | 430583 | `ports/430583_three-inside-up-reversal-strategy/` | PineScript | candle_pattern | none | dist_atr x2 | 2 |
 | 430585 | `ports/430585_tesla-supertrend-strategy/` | PineScript | supertrend | none | atr_period x2, factor x2 | 4 |
-| | **723 ports** | | | | | **4543** |
+| 430589 | `ports/430589_macd-strategy-of-support-resistance-with-macd-long/` | PineScript | macd_cross | trailing_stop_pending, coarse_bar_stop | slow x2, sl_pct x2 | 4 |
+| 430590 | `ports/430590_triple-moving-average-crossover-strategy/` | PineScript | alligator | none | l_length x2, l_offset x2 | 4 |
+| 430592 | `ports/430592_volatility-breakout-trading-strategy/` | PineScript | atr_band_breakout | none | length x3 | 3 |
+| 430597 | `ports/430597_stochrsi-bollinger-bands-and-stochrsi-momentum-strategy/` | PineScript | bollinger_reversion | none | bb_length x2, bb_dev x2 | 4 |
+| 430598 | `ports/430598_breakout-trading-strategy-with-scalability/` | PineScript | pivot_reversal | trailing_stop_pending | swing_lookback x2, target_pct x2 | 4 |
+| 430648 | `ports/430648_rsi-ema-scalper-stochastic-rsi-with-auto-buy-scalper-strateg/` | PineScript | stochastic_oscillator | none | k_entry x2, stop_pct x2 | 4 |
+| 430651 | `ports/430651_dec-leledec-dec-strategy/` | PineScript | td_sequential | none | maj_qual x2, maj_len x2 | 4 |
+| 430658 | `ports/430658_trend-following-strategy-based-on-moving-averages/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 430662 | `ports/430662_ema-mama-ema-and-mama-indicators-based-trading-strategy/` | PineScript | ma_cross | none | fast_limit x2, slow_limit x2 | 4 |
+| 430664 | `ports/430664_bollinger-bands-reversal-oscillation-trend-strategy/` | PineScript | bollinger_breakout | none | bb_length x2, mult x2 | 4 |
+| 430667 | `ports/430667_trend-trading-strategy-based-on-ema-crossover/` | PineScript | ma_cross | none | short_ema x2, long_ema x2 | 4 |
+| 430669 | `ports/430669_pivot-detector-oscillator-trend-trading-strategy/` | PineScript | rsi_oscillator | none | length_ma x2, length_rsi x2 | 4 |
+| | **735 ports** | | | | | **4590** |
 
 ## Rejected on reading
 
@@ -954,6 +966,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430557 | 多时间框架止盈策略Multi-Timeframe-Take-Profit-Strategy.md | 1 | Exits are four strategy.exit orders with qty_percent = 5 % each at TP1-TP4 plus a stop and a close_all: partial exits cannot be expressed as one net position's entry / exit signals (as #365389). |
 | 430577 | 趋势跟踪止损策略Trend-Following-Strategy-with-Trailing-Stop-Loss.md | 1 | An entry on every bar with strategy.exit('Take Profit 1 Long', limit = close x 1.12, qty_percent = 50): a partial exit (as #365389), and the trailing stops are at 0 % (inert). |
 | 430587 | RSI多空平衡交易策略RSI-Long-Short-Balance-Trading-Strategy.md | 1 | The signals use request.security(syminfo.tickerid, '5' / '15' / '1', ...) on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #427518); the position is also a doubling add ladder. |
+| 430596 | RSI-多空自动交易策略RSI-Long-Short-Automated-Trading-Strategy.md | 1 | Positions are built with strategy.order('Rsi long' / 'Rsi short', qty 1), which adds or removes one unit per signal instead of entering or reversing, each with a 1600-tick bracket: the net position is a running sum of orders (as #426364). |
+| 430661 | 埃勒斯引领指标交易策略Ehlers-Leading-Indicator-Trading-Strategy.md | 1 | Reads the future: Pine v2 request.security(syminfo.tickerid, 'D', hl2) without [1] behaves as lookahead_on, so on every intraday bar the day's hl2 is the final value of the current day, not known until the day ends (SURVEY_README request.security rule, as #427066). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
