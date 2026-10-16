@@ -1442,6 +1442,19 @@ SIZING = {
     ],
     429565: [],
     429569: [],
+    # ---- FMZ-C, batch C28 (2026-10-16)
+    429575: [
+        ("strategy(): pyramiding 15", 219, 219),
+    ],
+    429576: [
+        ("strategy(): close_entries_rule", 179, 179),
+    ],
+    429577: [],
+    429651: [],
+    429771: [],
+    429777: [
+        ("strategy(): capital, 25 % of equity, commission", 132, 132),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -1749,6 +1762,10 @@ REJECTED_ON_READING = {
     429568: ("1", "Incremental-size ladder: up to ten long and short entries of growing quantity (1, "
               "2, 4, 8, 5 ... 10; pyramiding 10) at Fibonacci levels, with per-tranche closes; "
               "the position ladder is the strategy (as #426302)."),
+    # ---- FMZ-C, batch C28 (2026-10-16)
+    429581: ("1", "Partial exits: each entry places three exits of 25 % / 25 % / the rest at three "
+              "targets with a shared stop (qty_percent); a partial scale-out cannot be expressed "
+              "by the all-or-nothing contract (as #427161)."),
 }
 
 DUPLICATE_ON_READING = {

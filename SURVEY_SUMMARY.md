@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3038 |
+| PORT_CANDIDATE | 3031 |
 | REJECTED | 994 |
-| PORTED | 636 |
+| PORTED | 642 |
 | HELD_NEEDS_VOLUME | 552 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 81 |
+| REJECTED_ON_READING | 82 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -764,7 +764,13 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 429564 | `ports/429564_relative-body-index-crossover-strategy/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop | par1 x2, sl_atr x2 | 4 |
 | 429565 | `ports/429565_k-double-k-crossbow-strategy/` | PineScript | combo_123_reversal | none | length x2, smooth x2 | 4 |
 | 429569 | `ports/429569_rsi-rsi-crossover-strategy/` | PineScript | rsi_oscillator | none | fast x2, slow x2 | 4 |
-| | **636 ports** | | | | | **4201** |
+| 429575 | `ports/429575_bar-multi-bar-direction-strategy/` | PineScript | candle_pattern | none | threshold x2 | 2 |
+| 429576 | `ports/429576_ema-oscillation-reversal-system-strategy/` | PineScript | volatility_squeeze | none | thresh x2, f x2 | 4 |
+| 429577 | `ports/429577_the-multi-timeframe-bottom-reversal-strategy/` | PineScript | multi_indicator_vote | none | botsens x2, oversold x2 | 4 |
+| 429651 | `ports/429651_atr-atr-trailing-stop-bands-strategy/` | PineScript | volatility_stop_cross | none | atr_period x2, mult x2 | 4 |
+| 429771 | `ports/429771_123-reversal-moving-average-envelope-strategy/` | PineScript | combo_123_reversal | none | length_ma x2, percent_shift x2 | 4 |
+| 429777 | `ports/429777_momentum-dual-moving-average-crossover-strategy/` | PineScript | ma_trend | none | mom_length x2, bias_slow x2 | 4 |
+| | **642 ports** | | | | | **4223** |
 
 ## Rejected on reading
 
@@ -851,6 +857,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 429483 | Hulk回撤反转策略The-Hulk-Pullback-Reversal-Strategy.md | 1 | The MACD condition uses request.security(syminfo.tickerid, '1', Macdhist) on the 3-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
 | 429566 | 开敞包围式开高价交叉交易策略Open-High-Cross-Over-Trading-Strategy.md | 1 | The open series is request.security(syminfo.tickerid, '120', DEMA(open, 14)) on the 1-day header chart: a 2-hour resolution below the chart's, whose value per bar is undefined (as #427518). |
 | 429568 | 动量突破纤维套利策略Incremental-Order-Size-Fibonacci-Retracement-Trend-Following-Strategy.md | 1 | Incremental-size ladder: up to ten long and short entries of growing quantity (1, 2, 4, 8, 5 ... 10; pyramiding 10) at Fibonacci levels, with per-tranche closes; the position ladder is the strategy (as #426302). |
+| 429581 | 霍尔指标与随机指标组合交易策略Hull-Moving-Average-and-Stochastic-RSI-Combination-Trading-Strategy.md | 1 | Partial exits: each entry places three exits of 25 % / 25 % / the rest at three targets with a shared stop (qty_percent); a partial scale-out cannot be expressed by the all-or-nothing contract (as #427161). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

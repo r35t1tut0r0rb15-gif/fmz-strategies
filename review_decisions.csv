@@ -80,6 +80,7 @@ fmz_id,file,final_outcome,criterion,reason
 429483,Hulk回撤反转策略The-Hulk-Pullback-Reversal-Strategy.md,REJECTED_ON_READING,1,"The MACD condition uses request.security(syminfo.tickerid, '1', Macdhist) on the 3-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
 429566,开敞包围式开高价交叉交易策略Open-High-Cross-Over-Trading-Strategy.md,REJECTED_ON_READING,1,"The open series is request.security(syminfo.tickerid, '120', DEMA(open, 14)) on the 1-day header chart: a 2-hour resolution below the chart's, whose value per bar is undefined (as #427518)."
 429568,动量突破纤维套利策略Incremental-Order-Size-Fibonacci-Retracement-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"Incremental-size ladder: up to ten long and short entries of growing quantity (1, 2, 4, 8, 5 ... 10; pyramiding 10) at Fibonacci levels, with per-tranche closes; the position ladder is the strategy (as #426302)."
+429581,霍尔指标与随机指标组合交易策略Hull-Moving-Average-and-Stochastic-RSI-Combination-Trading-Strategy.md,REJECTED_ON_READING,1,Partial exits: each entry places three exits of 25 % / 25 % / the rest at three targets with a shared stop (qty_percent); a partial scale-out cannot be expressed by the all-or-nothing contract (as #427161).
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -721,3 +722,9 @@ fmz_id,file,final_outcome,criterion,reason
 429564,相对笔涨幅均线交叉策略Relative-Body-Index-Crossover-Strategy.md,PORTED,,ports/429564_relative-body-index-crossover-strategy/
 429565,双K弹弓策略Double-K-Crossbow-Strategy.md,PORTED,,ports/429565_k-double-k-crossbow-strategy/
 429569,RSI金叉死叉策略RSI-Crossover-Strategy.md,PORTED,,ports/429569_rsi-rsi-crossover-strategy/
+429575,多Bar同向策略Multi-Bar-Direction-Strategy.md,PORTED,,ports/429575_bar-multi-bar-direction-strategy/
+429576,震荡反转均线系统策略EMA-Oscillation-Reversal-System-Strategy.md,PORTED,,ports/429576_ema-oscillation-reversal-system-strategy/
+429577,多时间框架底部反转策略The-Multi-Timeframe-Bottom-Reversal-Strategy.md,PORTED,,ports/429577_the-multi-timeframe-bottom-reversal-strategy/
+429651,基于ATR指标的自适应跟踪止损策略ATR-Trailing-Stop-Bands-Strategy.md,PORTED,,ports/429651_atr-atr-trailing-stop-bands-strategy/
+429771,反转均线包络策略123-Reversal-Moving-Average-Envelope-Strategy.md,PORTED,,ports/429771_123-reversal-moving-average-envelope-strategy/
+429777,动量双均线交叉策略Momentum-Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/429777_momentum-dual-moving-average-crossover-strategy/
