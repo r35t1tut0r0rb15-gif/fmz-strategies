@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3083 |
+| PORT_CANDIDATE | 3070 |
 | REJECTED | 994 |
-| PORTED | 598 |
-| HELD_NEEDS_VOLUME | 550 |
+| PORTED | 608 |
+| HELD_NEEDS_VOLUME | 551 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 76 |
+| REJECTED_ON_READING | 78 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -726,7 +726,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 429382 | `ports/429382_ichimoku-sma-ichimoku-crossover-strategy/` | PineScript | ichimoku | none | sma_long x2, sma_short x2 | 4 |
 | 429383 | `ports/429383_dual-moving-average-reversal-trading-strategy/` | PineScript | ma_trend | none | length x2 | 2 |
 | 429385 | `ports/429385_macd-macd-momentum-strategy/` | PineScript | macd_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
-| | **598 ports** | | | | | **4053** |
+| 429388 | `ports/429388_ichimoku-cloud-day-trading-strategy/` | PineScript | ichimoku | trailing_stop_pending | base x2, sar_max x2 | 4 |
+| 429389 | `ports/429389_ema-dual-ema-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 429390 | `ports/429390_atr-dynamic-atr-stop-loss-center-line-strategy/` | PineScript | mean_reversion_band | coarse_bar_stop | percent x2, atr_mult x2 | 4 |
+| 429392 | `ports/429392_123-rsi-combo-strategy-of-123-reversal-and-smoothed-rsi/` | PineScript | combo_123_reversal | none | length_rsi x2, top_band x2 | 4 |
+| 429393 | `ports/429393_rsi-rsi-and-moving-average-crossover-multi-timeframe-trading/` | PineScript | rsi_oscillator | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
+| 429459 | `ports/429459_trend-following-buy-and-sell-strategy/` | PineScript | momentum_breakout | none | period_a x2, period_k x2 | 4 |
+| 429460 | `ports/429460_trend-following-maximized-moving-average-crossover-strategy/` | PineScript | ma_cross | none | inshort x2, rsi_signal x2 | 4 |
+| 429464 | `ports/429464_dual-moving-average-crossover-strategy/` | PineScript | ma_trend | none | len1 x2, len2 x2 | 4 |
+| 429466 | `ports/429466_short-term-bearish-strategy-based-on-ema-crossover-and-bear/` | PineScript | multi_indicator_confluence | none | length x2, sell_atr x2 | 4 |
+| 429467 | `ports/429467_adaptive-trend-tracking-stop-loss-strategy/` | PineScript | volatility_stop_cross | none | atr_mult x2, atr_length x2 | 4 |
+| | **608 ports** | | | | | **4093** |
 
 ## Rejected on reading
 
@@ -808,6 +818,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 428718 | 月末反转DCA策略Monthly-Reversal-DCA-Strategy.md | 1 | DCA ladder: pyramiding 100 (commented-out strategy()), a new long about every 240 bars after an EMA-CD crossover, and the only exit is strategy.close_all() on barstate.islast, the last bar of the data; the ladder held to the data's end is the strategy (as #426302). |
 | 428894 | 双通道算法自动交易策略Double-Channel-Kitchen-Algorithm-Trading-Strategy-Focusing-on-Wealth-Growth.md | 1 | The short supertrend uses request.security(syminfo.tickerid, '60', ...) on the 4-hour header chart: a 1-hour resolution below the chart's, whose value per bar is undefined (as #427518). |
 | 429163 | 海洋理论网格交易策略Ocean-Theory-Grid-Trading-Strategy.md | 1 | Grid ladder: up to 7 long lots (pyramiding 14, close_entries_rule ANY), one bought below each of 8 grid lines from a 250-bar high / low band and closed one line higher; the position ladder is the strategy (as #426302). |
+| 429387 | 动态风险调整杠杆交易系统Dynamic-Risk-Adjusted-Leverage-Trading-System.md | 1 | Leverage ladder: up to 25 stacked longs (pyramiding 25), opened while strategy.opentrades is below 10 / (ATR ratio) and closed last-in-first-out above it; the position size is the whole strategy (as #426302). |
+| 429401 | 魔改布林带策略止盈和马丁格尔倍投.md | 1 | The source does not have a defined structure: `if useMartin` (line 68) has no body, and the martingale-add and exit lines (70-73, 80-83) sit at inconsistent indentation under unindented ifs, so which statements belong to which condition is undefined; the exits also pass prices as tick counts and the adds are a martingale ladder (ND422794). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

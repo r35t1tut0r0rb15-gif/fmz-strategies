@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #429388 (基于一目均衡的日内交易策略Ichimoku-Cloud-Day-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/429388  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 3  [lines 219-219]
+  219: strategy(title="Ichimoku Cloud Strategy", shorttitle="Ichimoku Strategy", overlay=true, pyramiding=3)
+
+## SAR trailing-stop inputs  [lines 226-229]
+  226: usePSARTrailStop    = input(true, title="Use Parabolic SAR for Trailing Stop")
+  227: psarStart           = input(0.02, title="Parabolic SAR Start")
+  228: psarIncrement       = input(0.02, title="Parabolic SAR Increment")
+  229: psarMaximum         = input(0.2,  title="Parabolic SAR Maximum")
+
+## SAR trailing-stop exits (pending, not emitted)  [lines 263-271]
+  263: hasLong  = strategy.position_size > 0
+  264: hasShort = strategy.position_size < 0
+  265: 
+  266: 
+  267: strategy.entry("ichimoku-long", strategy.long, when = buySignal)
+  268: strategy.entry("ichimoku-short", strategy.short, when = sellSignal)
+  269: 
+  270: strategy.exit("trailstop-long", "ichimoku-long", stop = psar, when = hasLong and usePSARTrailStop)
+  271: strategy.exit("trailstop-short", "ichimoku-short", stop = psar, when = hasShort and usePSARTrailStop)

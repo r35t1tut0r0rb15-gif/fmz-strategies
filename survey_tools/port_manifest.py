@@ -1315,6 +1315,36 @@ SIZING = {
     429385: [
         ("Per-bar tick bracket (pending, not emitted)", 127, 138),
     ],
+    # ---- FMZ-C, batch C24 (2026-10-16)
+    429388: [
+        ("strategy(): pyramiding 3", 219, 219),
+        ("SAR trailing-stop inputs", 226, 229),
+        ("SAR trailing-stop exits (pending, not emitted)", 263, 271),
+    ],
+    429389: [
+        ("strategy(): 100 % of equity", 264, 264),
+        ("Shorting / stop / trailing inputs (off by default)", 277, 284),
+        ("Initial stop exits (off by default)", 315, 317),
+    ],
+    429390: [
+        ("strategy(): capital, 100 % of equity, commission", 121, 121),
+        ("ATR stop inputs, levels and exits", 183, 197),
+    ],
+    429392: [],
+    429393: [
+        ("Commented-out strategy(): cash quantity, capital, commission", 160, 160),
+        ("Stop / target inputs and levels", 353, 358),
+        ("Bracket exit", 386, 387),
+    ],
+    429459: [],
+    429460: [
+        ("strategy(): capital, 30 % of equity, commission", 133, 133),
+    ],
+    429464: [
+        ("strategy(): capital, 100 % of equity, commission", 115, 115),
+    ],
+    429466: [],
+    429467: [],
 }
 
 REJECTED_ON_READING = {
@@ -1602,6 +1632,15 @@ REJECTED_ON_READING = {
     429163: ("1", "Grid ladder: up to 7 long lots (pyramiding 14, close_entries_rule ANY), one bought "
               "below each of 8 grid lines from a 250-bar high / low band and closed one line "
               "higher; the position ladder is the strategy (as #426302)."),
+    # ---- FMZ-C, batch C24 (2026-10-16)
+    429387: ("1", "Leverage ladder: up to 25 stacked longs (pyramiding 25), opened while "
+              "strategy.opentrades is below 10 / (ATR ratio) and closed last-in-first-out above "
+              "it; the position size is the whole strategy (as #426302)."),
+    429401: ("1", "The source does not have a defined structure: `if useMartin` (line 68) has no "
+              "body, and the martingale-add and exit lines (70-73, 80-83) sit at inconsistent "
+              "indentation under unindented ifs, so which statements belong to which condition is "
+              "undefined; the exits also pass prices as tick counts and the adds are a martingale "
+              "ladder (ND422794)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -1616,4 +1655,6 @@ HELD_ON_READING = {
     427574: ("8", "The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C11 (2026-10-16)
     427734: ("8", "The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C24 (2026-10-16)
+    429461: ("8", "The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."),
 }

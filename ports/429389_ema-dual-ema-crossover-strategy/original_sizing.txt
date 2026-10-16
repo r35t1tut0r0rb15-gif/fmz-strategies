@@ -1,0 +1,21 @@
+# Original sizing and money-management code, FMZ #429389 (双EMA金叉死叉策略Dual-EMA-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/429389  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 264-264]
+  264: strategy("EMA Strategy", shorttitle="EMA Strategy", overlay=true, pyramiding=0, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+
+## Shorting / stop / trailing inputs (off by default)  [lines 277-284]
+  277: shorting = input(defval=false, title="Allow Shorting?")
+  278: // risk management
+  279: useStop = input(defval=false, title="Use Initial Stop Loss?")
+  280: slPoints = input(defval=25, title="Initial Stop Loss Points", minval=1)
+  281: useTS = input(defval=false, title="Use Trailing Stop?")
+  282: tslPoints = input(defval=120, title="Trail Points", minval=1)
+  283: useTSO = input(defval=false, title="Use Offset For Trailing Stop?")
+  284: tslOffset = input(defval=20, title="Trail Offset Points", minval=1)
+
+## Initial stop exits (off by default)  [lines 315-317]
+  315: if useStop
+  316:     strategy.exit("XLS", from_entry="Buy", stop=strategy.position_avg_price / 1.08)
+  317:     strategy.exit("XSS", from_entry="Sell", stop=strategy.position_avg_price * 1.08)

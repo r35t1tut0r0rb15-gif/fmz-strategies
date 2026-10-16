@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #429460 (趋势追踪型最大移动平均线交叉策略Trend-Following-Maximized-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/429460  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, 30 % of equity, commission  [lines 133-133]
+  133: strategy(shorttitle='Maximized Moving Average Crossing ',title='Maximized Moving Average Crossing (by Coinrule)', overlay=true, initial_capital=1000,  default_qty_type = strategy.percent_of_equity, default_qty_value = 30, commission_type=strategy.commission.percent, commission_value=0.1)

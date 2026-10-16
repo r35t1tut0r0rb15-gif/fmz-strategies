@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #429393 (基于RSI和移动平均线的多时间框架交易策略RSI-and-Moving-Average-Crossover-Multi-Timeframe-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/429393  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): cash quantity, capital, commission  [lines 160-160]
+  160: // strategy("H-M By HamidBox-YT", default_qty_type=strategy.cash, default_qty_value= 100, initial_capital=100, currency='USD', commission_type=strategy.commission.percent, commission_value=0.1)
+
+## Stop / target inputs and levels  [lines 353-358]
+  353: Stop_Take_Vis   = input(true, "TP-SL")
+  354: LongSLValue     = input(title="SL %", type=input.float, defval=3, minval=0.5) * 0.01
+  355: LongTPValue     = input(title="TP %", type=input.float, defval=15, minval=0.5) * 0.01
+  356: 
+  357: LongSLDetermine = strategy.position_avg_price * (1 - LongSLValue)
+  358: LongTPDetermine = strategy.position_avg_price * (1 + LongTPValue)
+
+## Bracket exit  [lines 386-387]
+  386: if (strategy.position_size > 0) and Stop_Take_Vis
+  387:     strategy.exit("BUY", stop=LongSLDetermine, limit=LongTPDetermine)
