@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #430262 (平均随机指标交易策略Average-Stochastic-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/430262  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 3  [lines 192-192]
+  192: strategy(title="AVG Stochastic Strategy [M30 Backtesting]", overlay=true, pyramiding=3)

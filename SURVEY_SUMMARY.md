@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2973 |
+| PORT_CANDIDATE | 2959 |
 | REJECTED | 994 |
-| PORTED | 690 |
-| HELD_NEEDS_VOLUME | 552 |
+| PORTED | 702 |
+| HELD_NEEDS_VOLUME | 553 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 92 |
+| REJECTED_ON_READING | 93 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -818,7 +818,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430174 | `ports/430174_ema-ema-crossover-tracking-strategy/` | PineScript | supertrend | none | periods x2, multiplier x2 | 4 |
 | 430176 | `ports/430176_price-gap-and-trend-following-trading-strategy/` | PineScript | mean_reversion_band | none | ema_period x2, band_mult x2 | 4 |
 | 430244 | `ports/430244_multi-factor-strategy-combination/` | PineScript | stochastic_oscillator | none | length_stoch x2, rsi_len x2 | 4 |
-| | **690 ports** | | | | | **4419** |
+| 430245 | `ports/430245_multi-indicator-combination-trading-strategy/` | PineScript | directional_movement | none | adx_above x2, di_below x2 | 4 |
+| 430254 | `ports/430254_macd-macd-controlled-risk-trading-strategy/` | PineScript | macd_cross | coarse_bar_stop | wma_length x2, r_exit x2 | 4 |
+| 430259 | `ports/430259_gap-trading-moving-average-strategy/` | PineScript | ma_envelope_reversion | none | limit x3 | 3 |
+| 430262 | `ports/430262_average-stochastic-trading-strategy/` | PineScript | stochastic_oscillator | none | period_k x2, smooth_k x2 | 4 |
+| 430264 | `ports/430264_dual-moving-average-reversal-and-triple-bottom-flash-combo-t/` | PineScript | multi_indicator_confluence | none | length x3 | 3 |
+| 430268 | `ports/430268_dual-reversal-overlap-selective-strategy/` | PineScript | combo_123_reversal | none | pds x2, ema_len x2 | 4 |
+| 430269 | `ports/430269_stochastic-combined-stochastic-oscillator-and-123-reversal-s/` | PineScript | combo_123_reversal | none | length_s x2, up_band x2 | 4 |
+| 430271 | `ports/430271_rsi-rsi-momentum-long-short-strategy/` | PineScript | rsi_oscillator | none | over_sold x2, ma_long x2 | 4 |
+| 430276 | `ports/430276_ema-trend-trading-with-double-ema-crossover-system/` | PineScript | ma_trend | none | ema_fast x2, ema_slow x2 | 4 |
+| 430280 | `ports/430280_cryptocurrency-cryptocurrency-momentum-breakout-strategy/` | PineScript | momentum_breakout | none | length x2, multiplier x2 | 4 |
+| 430285 | `ports/430285_momentum-stacking-strategy-of-different-timeframes/` | PineScript | momentum_oscillator_turn | none | smooth x3 | 3 |
+| 430322 | `ports/430322_macd-high-frequency-hedging-strategy-based-on-macd-bar-color/` | PineScript | multi_indicator_confluence | none | ema_signal x2, hilo_len x2 | 4 |
+| | **702 ports** | | | | | **4464** |
 
 ## Rejected on reading
 
@@ -916,6 +928,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430149 | Bollinger带宽缩放双均线筛选趋势策略Bollinger-Band-Width-Scaling-Double-Moving-Average-Trend-Filter-Strategy.md | 1 | The trend filter is request.security(syminfo.tickerid, tostring(60), close / sma(close, 20)) on the 1-day header chart: a 1-hour resolution below the chart's, whose value per bar is undefined (as #427518). |
 | 430178 | 两阶段止损策略Two-stage-Stop-Loss-Strategy.md | 1 | Exits are strategy.exit('TP1/SL', qty_percent = 50, limit = TP1) plus a second exit for the rest at TP2, with the stop moved to the entry price after the partial fill (and price-unit targets): partial exits (as #365389). |
 | 430180 | 定投策略带止盈.md | 1 | Dollar-cost averaging: strategy.entry adds investmentAmount / close on every bar the position did not shrink (pyramiding 5), with percentage closes of the whole position; the position is a running sum of orders, so the size path is the strategy (as #426302). |
+| 430248 | 均线回归交易策略Mean-Reversion-Trading-Strategy-Based-on-Moving-Average.md | 1 | Mode 8 is a ladder of strategy.order buys of 1 / 2 / 4 / 8 / 16 units at successive 5 % bands under the SMA 28 and matching unit sells above it: the position size path is the strategy (as #426302). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

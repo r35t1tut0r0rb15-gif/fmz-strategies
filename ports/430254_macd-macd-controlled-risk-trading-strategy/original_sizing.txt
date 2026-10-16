@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #430254 (基于MACD指标的止损策略MACD-Controlled-Risk-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/430254  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk input  [lines 121-121]
+  121: capital_risk    = input( 1.0, "% capital risk per trade" ) / 100
+
+## Risk-based quantity and the bracket entry  [lines 141-150]
+  141: how_much_willing_to_lose = strategy.equity * capital_risk
+  142: // Spread the risk across the stop range 
+  143: position_size_in_usd = how_much_willing_to_lose / (range / close)
+  144: // Sized specified in base contract
+  145: position_size_in_contracts = position_size_in_usd / close
+  146: 
+  147: // Enter the position
+  148: if golong
+  149:     strategy.entry("long", strategy.long, qty=position_size_in_contracts)
+  150:     strategy.exit("long exit","long", stop=stop, limit=tp)

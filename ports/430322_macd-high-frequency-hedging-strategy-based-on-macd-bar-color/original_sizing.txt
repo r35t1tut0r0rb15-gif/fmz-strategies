@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #430322 (基于MACD柱色和线性回归的高频对冲策略High-Frequency-Hedging-Strategy-Based-on-MACD-Bar-Color-and-Linear-Regression)
+# Source: https://www.fmz.com/strategy/430322  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): order size, capital, pyramiding 1  [lines 189-189]
+  189: // strategy("Sonic R + Linear Reg + Kumo Cloud + Barcolor MACD", overlay=true,default_qty_value=10000,initial_capital=200,currency=currency.USD, pyramiding=1)

@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #430280 (Cryptocurrency动量突破策略Cryptocurrency-Momentum-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/430280  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 186-186]
+  186: strategy("[BoTo] Pump&Dump Strategy", shorttitle = "[BoTo] P&D Strategy", default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)
+
+## Stop % input  [lines 191-191]
+  191: stop = input(100.0, title = "Stop loss, %")
+
+## Stop levels  [lines 206-210]
+  206: size = strategy.position_size
+  207: autostop = 0.0
+  208: autostop := pump and size == 0 ? low : autostop[1]
+  209: userstop = 0.0
+  210: userstop := pump and size == 0 ? close - (close / 100 * stop) : userstop[1]

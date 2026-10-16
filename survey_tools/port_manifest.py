@@ -1578,6 +1578,36 @@ SIZING = {
     430174: [],
     430176: [],
     430244: [],
+    # ---- FMZ-C, batch C34 (2026-10-16)
+    430245: [
+        ("Equity-based order size and entry", 231, 232),
+    ],
+    430254: [
+        ("Risk input", 121, 121),
+        ("Risk-based quantity and the bracket entry", 141, 150),
+    ],
+    430259: [
+        ("strategy(): 100 % of equity, pyramiding 5", 154, 154),
+        ("Lot % input", 159, 159),
+        ("Lot fixed while in a position", 189, 190),
+    ],
+    430262: [
+        ("strategy(): pyramiding 3", 192, 192),
+    ],
+    430264: [],
+    430268: [],
+    430269: [],
+    430271: [],
+    430276: [],
+    430280: [
+        ("strategy(): 100 % of equity", 186, 186),
+        ("Stop % input", 191, 191),
+        ("Stop levels", 206, 210),
+    ],
+    430285: [],
+    430322: [
+        ("Commented-out strategy(): order size, capital, pyramiding 1", 189, 189),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -1925,6 +1955,10 @@ REJECTED_ON_READING = {
               "the position did not shrink (pyramiding 5), with percentage closes of the whole "
               "position; the position is a running sum of orders, so the size path is the "
               "strategy (as #426302)."),
+    # ---- FMZ-C, batch C34 (2026-10-16)
+    430248: ("1", "Mode 8 is a ladder of strategy.order buys of 1 / 2 / 4 / 8 / 16 units at "
+              "successive 5 % bands under the SMA 28 and matching unit sells above it: the "
+              "position size path is the strategy (as #426302)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -1943,4 +1977,6 @@ HELD_ON_READING = {
     429461: ("8", "The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C27 (2026-10-16)
     429562: ("8", "The trend filter compares vwma(close, 30) with vwma(close, 200): volume-weighted averages (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C34 (2026-10-16)
+    430278: ("8", "The trend line is vwma(k + k_two, 30): a volume-weighted average (check 8, held with the other volume users)."),
 }

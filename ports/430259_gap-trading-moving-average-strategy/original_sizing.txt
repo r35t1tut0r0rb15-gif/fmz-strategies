@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #430259 (追踪移动平均跳空策略Gap-Trading-Moving-Average-Strategy)
+# Source: https://www.fmz.com/strategy/430259  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 5  [lines 154-154]
+  154: strategy(title = "Noro's Shift Close Strategy v1.0", shorttitle = "Shift Close 1.0", default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 5)
+
+## Lot % input  [lines 159-159]
+  159: capital = input(100, defval = 100, minval = 1, maxval = 10000, title = "Lot, %")
+
+## Lot fixed while in a position  [lines 189-190]
+  189: lot = 0.0 
+  190: lot := size == 0 ? strategy.equity / close * capital / 100 : lot[1]
