@@ -35,7 +35,7 @@ Admission criteria
     2 generic: PASS, bar counts only (the 1.0 slope never acts, see above).
     3 crypto-exchange-only: no (exchange pair in the header only).
     4 signals only: no sizing code.
-    5 ranges declared: GRID below (6 trials), before any backtest.
+    5 ranges declared: GRID below (8 trials), before any backtest.
     6 near-duplicates: DG427260 (2 members, with #430051, Jaccard 0.940); ported (rule 7).
     7 FMZ performance claims: ignored.
 Volume: not used (check 8).

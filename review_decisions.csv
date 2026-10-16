@@ -466,3 +466,16 @@ fmz_id,file,final_outcome,criterion,reason
 427384,基于RSI均值回归的交易策略RSI-Average-Reversion-Trading-Strategy.md,PORTED,,ports/427384_rsi-rsi-average-reversion-trading-strategy/
 427385,基于一目均衡表的趋势反转交易策略Ichimoku-and-MACD-Trend-Reversal-Trading-Strategy.md,PORTED,,ports/427385_ichimoku-and-macd-trend-reversal-trading-strategy/
 427386,基于波带通道的多时间框架交易策略Multi-timeframe-Trading-Strategy-with-Bollinger-Bands.md,PORTED,,ports/427386_multi-timeframe-trading-strategy-with-bollinger-bands/
+427387,基于WaveTrend指标的趋势追踪策略WaveTrend-Trend-Following-Trading-Strategy.md,PORTED,,ports/427387_wavetrend-wavetrend-trend-following-trading-strategy/
+427388,基于历史新高突破的买入策略Buying-Strategy-Based-on-Historical-High-Breakout.md,PORTED,,ports/427388_buying-strategy-based-on-historical-high-breakout/
+427390,基于多均线系统的组合交易策略Combined-Moving-Average-Crossover-Strategy.md,PORTED,,ports/427390_combined-moving-average-crossover-strategy/
+427391,基于价格摩擦区的趋势追踪策略Trend-Following-Strategy-Based-on-Price-Friction-Zones.md,PORTED,,ports/427391_trend-following-strategy-based-on-price-friction-zones/
+427396,基于随机指标交叉的交易策略Stochastics-Crossover-Trading-Strategy.md,PORTED,,ports/427396_stochastics-crossover-trading-strategy/
+427397,基于Woodie支撑阻力的回测交易策略Woodie-Pivot-Points-Backtest-Strategy.md,PORTED,,ports/427397_woodie-woodie-pivot-points-backtest-strategy/
+427398,基于周线EMA的日内交易策略Daily-Trading-Strategy-Based-on-Weekly-EMAs.md,PORTED,,ports/427398_ema-daily-trading-strategy-based-on-weekly-emas/
+427399,基于SuperTrend的长线交易策略Long-Term-Trading-Strategy-Based-on-SuperTrend.md,PORTED,,ports/427399_supertrend-long-term-trading-strategy-based-on-supertrend/
+427436,移动平均线交叉策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/427436_moving-average-crossover-strategy/
+427437,基于霍尔移动平均线与K线的交易策略Trading-Strategy-Based-on-Hull-Moving-Average-and-Candlestick.md,PORTED,,ports/427437_k-trading-strategy-based-on-hull-moving-average-and-candlest/
+427438,买盘中的均线突破策略Mean-Reversal-Breakout-Strategy.md,PORTED,,ports/427438_mean-reversal-breakout-strategy/
+427440,玻尔带附近突破策略Bollinger-Breakout-Strategy.md,PORTED,,ports/427440_bollinger-breakout-strategy/
+427445,移动平均线金叉死叉策略Simple-Moving-Average-Crossover-Strategy.md,PORTED,,ports/427445_simple-moving-average-crossover-strategy/

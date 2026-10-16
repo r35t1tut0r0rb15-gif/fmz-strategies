@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #427396 (基于随机指标交叉的交易策略Stochastics-Crossover-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427396  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

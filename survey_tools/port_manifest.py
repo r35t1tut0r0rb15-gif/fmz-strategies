@@ -780,6 +780,37 @@ SIZING = {
         ("Order size floor(50000 / close)", 216, 216),
         ("Entries with the order size and the 100 % closes", 218, 238),
     ],
+    # ---- FMZ-C, batch C7 (2026-10-16)
+    427387: [],
+    427388: [
+        ("Entry with qty 1", 175, 175),
+    ],
+    427390: [
+        ("strategy(): 75 % of equity, initial capital 100", 170, 170),
+        ("Stop-loss percent input", 171, 171),
+        ("Orders and the 3 % stop exits (ported via stops())", 322, 328),
+    ],
+    427391: [
+        ("Leverage input and the leveraged contract quantity", 215, 221),
+        ("Orders with the quantity", 222, 228),
+    ],
+    427396: [],
+    427397: [],
+    427398: [
+        ("strategy(): pyramiding 100", 198, 198),
+    ],
+    427399: [
+        ("strategy(): cash qty 50000, initial capital 50000", 210, 210),
+    ],
+    427436: [],
+    427437: [
+        ("strategy(): 100 % of equity, per-order commission, slippage", 126, 126),
+    ],
+    427438: [],
+    427440: [
+        ("strategy(): 100 % of equity, pyramiding 5", 140, 140),
+    ],
+    427445: [],
 }
 
 REJECTED_ON_READING = {

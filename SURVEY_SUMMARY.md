@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3293 |
+| PORT_CANDIDATE | 3280 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
-| PORTED | 404 |
+| PORTED | 417 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | REJECTED_ON_READING | 62 |
@@ -532,7 +532,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427384 | `ports/427384_rsi-rsi-average-reversion-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, long_exit x2, short_exit x2 | 8 |
 | 427385 | `ports/427385_ichimoku-and-macd-trend-reversal-trading-strategy/` | PineScript | multi_timeframe_ma | none | tenkan x2, macd_fast x2, macd_slow x2 | 8 |
 | 427386 | `ports/427386_multi-timeframe-trading-strategy-with-bollinger-bands/` | PineScript | bollinger_breakout | none | length x3, mult x2 | 6 |
-| | **404 ports** | | | | | **3079** |
+| 427387 | `ports/427387_wavetrend-wavetrend-trend-following-trading-strategy/` | PineScript | wavetrend_oscillator | none | channel x2, average x2, only_long x2 | 8 |
+| 427388 | `ports/427388_buying-strategy-based-on-historical-high-breakout/` | PineScript | donchian_breakout | none | bars x3, range_ema x2 | 6 |
+| 427390 | `ports/427390_combined-moving-average-crossover-strategy/` | PineScript | ma_trend | coarse_bar_stop | length1 x2, length12 x2, stop_loss x2 | 8 |
+| 427391 | `ports/427391_trend-following-strategy-based-on-price-friction-zones/` | PineScript | momentum_breakout | none | barsback x2, range x2, tlevel x2 | 8 |
+| 427396 | `ports/427396_stochastics-crossover-trading-strategy/` | PineScript | stochastic_oscillator | none | period_k x2, period_d x2, smooth_k x2 | 8 |
+| 427397 | `ports/427397_woodie-woodie-pivot-points-backtest-strategy/` | PineScript | pivot_reversal | none | close_weight x2 | 2 |
+| 427398 | `ports/427398_ema-daily-trading-strategy-based-on-weekly-emas/` | PineScript | ma_trend | none | fast x2, mid x2, slow x2 | 8 |
+| 427399 | `ports/427399_supertrend-long-term-trading-strategy-based-on-supertrend/` | PineScript | supertrend | none | periods x2, multiplier x2, ma_period x2 | 8 |
+| 427436 | `ports/427436_moving-average-crossover-strategy/` | PineScript | ma_trend | none | fast_ma x2, slow_ma x2, ma_type x2 | 8 |
+| 427437 | `ports/427437_k-trading-strategy-based-on-hull-moving-average-and-candlest/` | PineScript | multi_timeframe_ma | none | period x3 | 3 |
+| 427438 | `ports/427438_mean-reversal-breakout-strategy/` | PineScript | volatility_channel_breakout | bar_size_pending | dipness x2, smoothness x2, lookforward x2 | 8 |
+| 427440 | `ports/427440_bollinger-breakout-strategy/` | PineScript | bollinger_reversion | none | length x3, mult x2 | 6 |
+| 427445 | `ports/427445_simple-moving-average-crossover-strategy/` | PineScript | ma_trend | none | bars_wait x3, sma_low x2 | 6 |
+| | **417 ports** | | | | | **3166** |
 
 ## Rejected on reading
 

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427388 (基于历史新高突破的买入策略Buying-Strategy-Based-on-Historical-High-Breakout)
+# Source: https://www.fmz.com/strategy/427388  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Entry with qty 1  [lines 175-175]
+  175: strategy.entry("Buy", strategy.long, 1, when = close > ath_price) // enter long by market if current open great then previous high
