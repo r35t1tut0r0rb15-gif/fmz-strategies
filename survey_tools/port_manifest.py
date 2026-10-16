@@ -1474,6 +1474,33 @@ SIZING = {
         ("Sized entries and the limit exits (pending, not emitted)", 294, 303),
     ],
     429951: [],
+    # ---- FMZ-C, batch C30 (2026-10-16)
+    429953: [
+        ("Exit criteria, trail, stop and target inputs", 321, 333),
+        ("Trailing stop prices and bracket levels", 336, 355),
+        ("Exit branches (default: SL + TGT%)", 360, 383),
+    ],
+    429954: [
+        ("Repeated orders and the close", 214, 220),
+    ],
+    429956: [
+        ("Stop-loss input (unused)", 103, 103),
+    ],
+    429958: [
+        ("strategy(): 100 % of equity, pyramiding 100", 143, 143),
+        ("Lot input and formula", 148, 148),
+        ("Lot formula", 199, 199),
+    ],
+    429960: [],
+    429963: [
+        ("strategy(): pyramiding 1, fixed quantity 2, capital", 185, 185),
+    ],
+    429964: [],
+    429967: [
+        ("Spread, capital and order size", 193, 197),
+        ("Static target inputs", 205, 206),
+        ("Entries with their bracket exits", 212, 255),
+    ],
 }
 
 REJECTED_ON_READING = {

@@ -11,9 +11,9 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3022 |
+| PORT_CANDIDATE | 3014 |
 | REJECTED | 994 |
-| PORTED | 651 |
+| PORTED | 659 |
 | HELD_NEEDS_VOLUME | 552 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
@@ -779,7 +779,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 429948 | `ports/429948_momentum-reversal-combo-strategy/` | PineScript | combo_123_reversal | none | length_cmo x2, top_band x2 | 4 |
 | 429949 | `ports/429949_open-drive-strategy/` | PineScript | momentum_breakout | trailing_stop_pending | threshold x2, range_len x2 | 4 |
 | 429951 | `ports/429951_moving-average-trend-following-golden-cross-long-strategy/` | PineScript | macd_momentum | none | sma_len x2, ema_len x2 | 4 |
-| | **651 ports** | | | | | **4257** |
+| 429953 | `ports/429953_snap-back-moving-average-counter-trend-strategy/` | PineScript | ma_pullback | coarse_bar_stop | gap x2, sl_pct x2 | 4 |
+| 429954 | `ports/429954_trend-breakout-strategy-based-on-moving-average-deviation/` | PineScript | zscore_reversion | none | length x2, band x2 | 4 |
+| 429956 | `ports/429956_heikin-ashi-roc-heikin-ashi-roc-percentile-trading-strategy/` | PineScript | momentum_oscillator_turn | none | roc_length x2, hl_len x2 | 4 |
+| 429958 | `ports/429958_rsi-the-dual-rsi-mean-reversion-strategy/` | PineScript | rsi_oscillator | none | rsi_limit x2, rsi_bars x2 | 4 |
+| 429960 | `ports/429960_multiple-timeframe-trend-strategy/` | PineScript | multi_timeframe_ma | none | entry_minutes x2, ma_trend x2 | 4 |
+| 429963 | `ports/429963_rsi-rsi-trend-reversal-strategy/` | PineScript | macd_divergence | none | rsi_len x2, lb x2 | 4 |
+| 429964 | `ports/429964_sma-channel-breakout-sma-strategy/` | PineScript | donchian_breakout | none | length x2, slow x2 | 4 |
+| 429967 | `ports/429967_trend-reversal-system/` | PineScript | multi_indicator_confluence | coarse_bar_stop | tp_atr x2, mult x2 | 4 |
+| | **659 ports** | | | | | **4289** |
 
 ## Rejected on reading
 

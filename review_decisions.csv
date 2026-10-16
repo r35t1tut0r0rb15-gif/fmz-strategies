@@ -737,3 +737,11 @@ fmz_id,file,final_outcome,criterion,reason
 429948,多因子动量和反转组合策略Momentum-Reversal-Combo-Strategy.md,PORTED,,ports/429948_momentum-reversal-combo-strategy/
 429949,开盘驱动策略Open-Drive-Strategy.md,PORTED,,ports/429949_open-drive-strategy/
 429951,移动平均趋势跟踪金叉做多策略Moving-Average-Trend-Following-Golden-Cross-Long-Strategy.md,PORTED,,ports/429951_moving-average-trend-following-golden-cross-long-strategy/
+429953,移动平均线回抽策略Snap-Back-Moving-Average-Counter-trend-Strategy.md,PORTED,,ports/429953_snap-back-moving-average-counter-trend-strategy/
+429954,基于离散运动平均值的趋势突破策略Trend-Breakout-Strategy-Based-on-Moving-Average-Deviation.md,PORTED,,ports/429954_trend-breakout-strategy-based-on-moving-average-deviation/
+429956,基于Heikin-Ashi-ROC百分位数的交易策略Heikin-Ashi-ROC-Percentile-Trading-Strategy.md,PORTED,,ports/429956_heikin-ashi-roc-heikin-ashi-roc-percentile-trading-strategy/
+429958,双向RSI均线回复策略The-Dual-RSI-Mean-Reversion-Strategy.md,PORTED,,ports/429958_rsi-the-dual-rsi-mean-reversion-strategy/
+429960,多时间框架趋势策略Multiple-Timeframe-Trend-Strategy.md,PORTED,,ports/429960_multiple-timeframe-trend-strategy/
+429963,RSI趋势反转策略RSI-Trend-Reversal-Strategy.md,PORTED,,ports/429963_rsi-rsi-trend-reversal-strategy/
+429964,双均线通道突破SMA策略Channel-Breakout-SMA-Strategy.md,PORTED,,ports/429964_sma-channel-breakout-sma-strategy/
+429967,趋势震荡转折点系统Trend-Reversal-System.md,PORTED,,ports/429967_trend-reversal-system/

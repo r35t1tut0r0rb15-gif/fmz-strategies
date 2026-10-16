@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #429954 (基于离散运动平均值的趋势突破策略Trend-Breakout-Strategy-Based-on-Moving-Average-Deviation)
+# Source: https://www.fmz.com/strategy/429954  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Repeated orders and the close  [lines 214-220]
+  214: if (BUYSIGNAL)
+  215:     strategy.order("LONG1",true)
+  216:     //strategy.close("SHORT1")
+  217: 
+  218: if (SELLSIGNAL)
+  219:    // strategy.order("SHORT1",false)
+  220:     strategy.close("LONG1")

@@ -1,0 +1,66 @@
+# Original sizing and money-management code, FMZ #429953 (移动平均线回抽策略Snap-Back-Moving-Average-Counter-trend-Strategy)
+# Source: https://www.fmz.com/strategy/429953  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Exit criteria, trail, stop and target inputs  [lines 321-333]
+  321: StpCri=input(title="Stop Criteria: SL or SH_EMA", defval="SL", options=["SL", "SH_EMA"])
+  322: //Profit Criteria
+  323: ProCri=input(title="Profit Criteria: TGT% or MD_EMA", defval="TGT%", options=["TGT%", "MD_EMA"])
+  324: 
+  325: // User Options to Change Inputs (%)
+  326: TrailPerc = input(title="Trail Loss %", type=input.float, minval=0, step=1, defval=6) /100
+  327: stopPer = input(4, title='Stop Loss %', type=input.float) / 100
+  328: takePer = input(6, title='Take Profit %', type=input.float) / 100
+  329: 
+  330: //Percent of SH_EMA to use for StopLoss
+  331: SH_EMA_percent = input(96, title="% of SH_EMA for Stop")/100
+  332: //Percent of MD_EMA to use for Take Profit
+  333: MD_EMA_percent = input(100, title="% of MD_EMA for Profit")/100
+
+## Trailing stop prices and bracket levels  [lines 336-355]
+  336: longStopPrice=0.0//long side entry stop variable
+  337: longStopPrice := if (strategy.position_size > 0)
+  338:     stopValue = close * (1 - TrailPerc)  
+  339:     max(stopValue, longStopPrice[1])
+  340: else
+  341:     0
+  342:     
+  343: shortStopPrice=0.0//short side entry stop variable
+  344: shortStopPrice := if (strategy.position_size < 0)
+  345:     shortStopValue = close * (1 + TrailPerc)  
+  346:     min(shortStopValue, shortStopPrice[1])
+  347: else
+  348:     999999 
+  349:     
+  350: 
+  351: // Determine where you've entered and in what direction
+  352: longStop = strategy.position_avg_price * (1 - stopPer)
+  353: shortStop = strategy.position_avg_price * (1 + stopPer)
+  354: shortTake = strategy.position_avg_price * (1 - takePer)
+  355: longTake = strategy.position_avg_price * (1 + takePer)
+
+## Exit branches (default: SL + TGT%)  [lines 360-383]
+  360: if strategy.position_size > 0 //long side exit conditions
+  361:     if StpCri=="SL" and ProCri=="TGT%"
+  362:         strategy.exit(id="Close Long", when = window(), stop=longStop, limit=longTake)// sell when either the TGT or the SL is hit
+  363:     if StpCri=="SL" and ProCri=="MD_EMA"
+  364:         strategy.exit(id="Close Long (50%)", when = window(), stop=longStop, limit=MD_EMA_percent*MD_EMA, qty_percent=50)// sell 50% when MD_EMA hit or SL then transition to a trailing stop loss
+  365:         strategy.exit(id="Close Long Trailing Stop", when = window(), stop=longStopPrice, qty_percent=100)
+  366:     if StpCri=="SH_EMA" and ProCri=="MD_EMA"
+  367:         strategy.exit(id="Close Long (50%)", when = window(), stop=SH_EMA*SH_EMA_percent, limit=MD_EMA_percent*MD_EMA, qty_percent=50)// sell 50% when MD_EMA hit or SH_EMA hit then transition to a trailing stop loss
+  368:         strategy.exit(id="Close Long Trailing Stop", when = window(), stop=longStopPrice, qty_percent=100)
+  369:     if StpCri=="SH_EMA" and ProCri=="TGT%"
+  370:         strategy.exit(id="Close Long", when = window(), stop=SH_EMA*SH_EMA_percent, limit=longTake)// sell when either the TGT or the SH_EMA is hit
+  371:         
+  372:         
+  373: if strategy.position_size < 0 //short side exit conditions
+  374:     if StpCri=="SL" and ProCri=="TGT%"
+  375:         strategy.exit(id="Close Short", when = window(), stop=shortStop, limit=shortTake)// sell when either the TGT or the SL is hit
+  376:     if StpCri=="SL" and ProCri=="MD_EMA"
+  377:         strategy.exit(id="Close Short (50%)", when = window(), stop=shortStop, limit=(2-MD_EMA_percent)*MD_EMA, qty_percent=50)// sell 50% when MD_EMA hit or SL then transition to a trailing stop loss
+  378:         strategy.exit(id="Close Short Trailing Stop", when = window(), stop=shortStopPrice, qty_percent=100)
+  379:     if StpCri=="SH_EMA" and ProCri=="MD_EMA"
+  380:         strategy.exit(id="Close Short (50%)", when = window(), stop=SH_EMA*(2-SH_EMA_percent), limit=(2-MD_EMA_percent)*MD_EMA, qty_percent=50)// sell 50% when MD_EMA hit or SH_EMA hit then transition to a trailing stop loss
+  381:         strategy.exit(id="Close Short Trailing Stop", when = window(), stop=shortStopPrice, qty_percent=100)
+  382:     if StpCri=="SH_EMA" and ProCri=="TGT%"
+  383:         strategy.exit(id="Close Short", when = window(), stop=SH_EMA*(2-SH_EMA_percent), limit=shortTake)// sell when either the TGT or the SH_EMA is hit

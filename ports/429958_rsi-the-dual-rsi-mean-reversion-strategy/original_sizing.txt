@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #429958 (双向RSI均线回复策略The-Dual-RSI-Mean-Reversion-Strategy)
+# Source: https://www.fmz.com/strategy/429958  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 100  [lines 143-143]
+  143: strategy(title = "Gidra's Vchain Strategy v0.1", shorttitle = "Gidra's Vchain Strategy v0.1", overlay = false, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 100)
+
+## Lot input and formula  [lines 148-148]
+  148: capital = input(100, defval = 100, minval = 1, maxval = 10000, title = "Lot, %")
+
+## Lot formula  [lines 199-199]
+  199: lot = strategy.position_size == 0 ? strategy.equity / close * capital / 100 : lot[1]

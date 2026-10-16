@@ -1,0 +1,60 @@
+# Original sizing and money-management code, FMZ #429967 (趋势震荡转折点系统Trend-Reversal-System)
+# Source: https://www.fmz.com/strategy/429967  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Spread, capital and order size  [lines 193-197]
+  193: spread = input (0.00020, title="Spread")
+  194: upstoploss = longStop - spread
+  195: downstoploss = shortStop + spread
+  196: strategy.initial_capital = 50000
+  197: ordersize=floor(strategy.initial_capital/close)
+
+## Static target inputs  [lines 205-206]
+  205: statictarget = input(title="Use static target", type=input.bool, defval=true)
+  206: statictargetvalue = input(title="Static target in pips", type=input.integer, defval=400)
+
+## Entries with their bracket exits  [lines 212-255]
+  212: buy1 = uptrend and upsignal and strategy.opentrades==0 and testlong and degree
+  213: x1 = barssince (buy1)
+  214: if (buy1)
+  215: //bodlo by zakázat atrtarget v tomto případě
+  216:     if (statictarget)
+  217:         strategy.entry("Oath1", strategy.long, ordersize)
+  218:         strategy.exit( "Oath1 Close", from_entry="Oath1" , profit=statictargetvalue,stop=upstoploss[x1])
+  219:  
+  220: buy2 = uptrend and upsignal2 and strategy.opentrades==0 and testlong and degree2
+  221: x2 = barssince (buy2)
+  222: if (buy2)
+  223: //bodlo by zakázat atrtarget v tomto případě
+  224:     if (statictarget)
+  225:         strategy.entry("Oath2", strategy.long, ordersize)
+  226:         strategy.exit( "Oath2 Close", from_entry="Oath2" , profit=statictargetvalue,stop=upstoploss[x2])
+  227:   
+  228: buy3 = uptrend and upsignal3 and strategy.opentrades==0 and testlong and degree3
+  229: x3 = barssince (buy3)
+  230: if (buy3)
+  231: //bodlo by zakázat atrtarget v tomto případě
+  232:     if (statictarget)
+  233:         strategy.entry("Oath3", strategy.long, ordersize)
+  234:         strategy.exit( "Oath3 Close", from_entry="Oath3" , profit=statictargetvalue,stop=upstoploss[x3])
+  235: 
+  236: sell1 = downtrend and downsignal and strategy.opentrades==0 and testshort and degree
+  237: y1 = barssince (sell1)
+  238: if (sell1)
+  239:     if (statictarget)
+  240:         strategy.entry("Oath1.s", strategy.short, ordersize)
+  241:         strategy.exit( "Oath1 Close", from_entry="Oath1.s" , profit=statictargetvalue,stop=downstoploss[y1])
+  242: 
+  243: sell2 = downtrend and downsignal2 and strategy.opentrades==0 and testshort and degree2
+  244: y2 = barssince (sell2)
+  245: if (sell2)
+  246:     if (statictarget)
+  247:         strategy.entry("Oath2.s", strategy.short, ordersize)
+  248:         strategy.exit( "Oath2 Close", from_entry="Oath2.s" , profit=statictargetvalue,stop=downstoploss[y2])
+  249: 
+  250: sell3 = downtrend and downsignal3 and strategy.opentrades==0 and testshort and degree3
+  251: y3 = barssince (sell3)
+  252: if (sell3)
+  253:     if (statictarget)
+  254:         strategy.entry("Oath3.s", strategy.short, ordersize)
+  255:         strategy.exit( "Oath3 Close", from_entry="Oath3.s" , profit=statictargetvalue,stop=downstoploss[y3])

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #429963 (RSI趋势反转策略RSI-Trend-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/429963  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 1, fixed quantity 2, capital  [lines 185-185]
+  185: strategy(title="RSI Divergence Indicator", overlay=false,pyramiding=1, default_qty_value=2,   default_qty_type=strategy.fixed, initial_capital=10000, currency=currency.USD)
