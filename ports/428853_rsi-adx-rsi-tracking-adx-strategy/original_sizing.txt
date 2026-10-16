@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #428853 (RSI追踪ADX策略RSI-Tracking-ADX-Strategy)
+# Source: https://www.fmz.com/strategy/428853  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Conditional stop exits (pending, not emitted)  [lines 284-292]
+  284: longStop1 = strategy.position_avg_price + 4 * tr
+  285: longExitCondition3 = longExit5
+  286: longStop2 = sma(close, 20)
+  287: 
+  288: strategy.close_all(when = longExitCondition1)
+  289: if (longExitCondition2)
+  290:     strategy.exit("exit", "long", stop = longStop1)
+  291: if (longExitCondition3)
+  292:     strategy.exit("exit", "long", stop = longStop2)

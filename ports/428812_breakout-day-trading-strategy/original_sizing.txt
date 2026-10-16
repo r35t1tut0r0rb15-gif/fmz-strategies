@@ -1,0 +1,37 @@
+# Original sizing and money-management code, FMZ #428812 (收盘突破日内交易策略Breakout-Day-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/428812  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): capital, commission  [lines 185-185]
+  185: // strategy(title="2 ma breakout",shorttitle="2 ma breakout", initial_capital=10000,overlay=true, commission_type = strategy.commission.cash_per_contract, commission_value = 0.00008 )
+
+## Stop input  [lines 269-269]
+  269: sl = input(66, title="sl")
+
+## Money management: risk % of equity -> size  [lines 296-308]
+  296: strategy.initial_capital = 50000
+  297: 
+  298: //MONEY MANAGEMENT--------------------------------------------------------------
+  299: balance = strategy.netprofit + strategy.initial_capital //current balance
+  300: floating = strategy.openprofit          //floating profit/loss
+  301: risk = input(1,type=input.float,title="Risk % of equity ")/100           //risk % per trade
+  302: 
+  303: temp01 = balance * risk     //Risk in USD
+  304: temp02 = temp01/sl        //Risk in lots
+  305: temp03 = temp02*100      //Convert to contracts
+  306: size = temp03 - temp03%1 //Normalize to 1000s (Trade size)
+  307: if(size < 1)
+  308:     size := 1         //Set min. lot size
+
+## Orders: entries, time closes and stop exits  [lines 311-321]
+  311: strategy.entry("long",1,when=longC)
+  312: //strategy.close("long", when = crossunder(close,out) or not (timeinrange(timeframe.period, "0300-1000")))
+  313: strategy.close("long", when =  not (timeinrange(timeframe.period, "0300-0945")))
+  314: strategy.exit("x_long","long", loss = sl)
+  315:      
+  316:     
+  317: strategy.entry("short",0,when=shortC)
+  318: //strategy.close("short",when = crossover(close,out) or not (timeinrange(timeframe.period, "0300-1000")))
+  319: strategy.close("short",when = not (timeinrange(timeframe.period, "0300-0945")))
+  320: 
+  321: strategy.exit("x_short","short", loss = sl)

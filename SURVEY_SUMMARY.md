@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3119 |
+| PORT_CANDIDATE | 3107 |
 | REJECTED | 994 |
-| PORTED | 564 |
+| PORTED | 575 |
 | HELD_NEEDS_VOLUME | 550 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 74 |
+| REJECTED_ON_READING | 75 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -692,7 +692,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 428802 | `ports/428802_vstop-rsi-vstop-and-rsi-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, mult x2 | 4 |
 | 428805 | `ports/428805_random-walk-strategy/` | PineScript | stop_and_reverse_bracket | coarse_bar_stop | seed x2, stop_loss x2 | 4 |
 | 428810 | `ports/428810_moving-average-crossover-multi-timeframe-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
-| | **564 ports** | | | | | **3925** |
+| 428811 | `ports/428811_macd-dual-moving-average-and-macd-combination-short-term-tra/` | PineScript | multi_indicator_confluence | none | tp_atr x2, sl_atr x2 | 4 |
+| 428812 | `ports/428812_breakout-day-trading-strategy/` | PineScript | momentum_breakout | none | sl_atr x2, trend_length x2 | 4 |
+| 428813 | `ports/428813_atr-trailing-stops-strategy/` | PineScript | volatility_stop_cross | none | atr_period x2, mult x2 | 4 |
+| 428814 | `ports/428814_moving-average-crossover-strategy/` | PineScript | ma_cross | none | ma1 x2, ma2 x2 | 4 |
+| 428816 | `ports/428816_momentum-reversal-trading-strategy/` | PineScript | combo_123_reversal | none | length_cmo x2, filter_atr x2 | 4 |
+| 428853 | `ports/428853_rsi-adx-rsi-tracking-adx-strategy/` | PineScript | directional_movement | trailing_stop_pending | adx_step x2, rsi_exit x2 | 4 |
+| 428854 | `ports/428854_trend-following-moving-stop-loss-ma-strategy/` | PineScript | rsi_oscillator | none | rsin x2, tp x2 | 4 |
+| 428855 | `ports/428855_reversal-prediction-and-oscillator-combo-strategy/` | PineScript | combo_123_reversal | none | length x2, length_cfo x2 | 4 |
+| 428856 | `ports/428856_moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 428893 | `ports/428893_trend-following-adaptive-moving-average-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 428966 | `ports/428966_trend-tracking-maximized-profit-strategy/` | PineScript | ma_trend | none | length x2 | 2 |
+| | **575 ports** | | | | | **3967** |
 
 ## Rejected on reading
 
@@ -772,6 +783,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 428618 | 延迟-RSI-交易策略Delayed-RSI-Trading-Strategy.md | 1 | The stop and target come from valuewhen(bought, ohlc4 - 3 atr(14), 0) with bought = position size changed, i.e. the FILL bar's own ohlc4 and ATR (as #427127); swing-stop option likewise. |
 | 428624 | 基于MACD和RSI的短线突破策略MACD-RSI-Short-Term-Breakout-Strategy.md | 1 | The entries use request.security(syminfo.tickerid, '1', hist) on the 1-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
 | 428718 | 月末反转DCA策略Monthly-Reversal-DCA-Strategy.md | 1 | DCA ladder: pyramiding 100 (commented-out strategy()), a new long about every 240 bars after an EMA-CD crossover, and the only exit is strategy.close_all() on barstate.islast, the last bar of the data; the ladder held to the data's end is the strategy (as #426302). |
+| 428894 | 双通道算法自动交易策略Double-Channel-Kitchen-Algorithm-Trading-Strategy-Focusing-on-Wealth-Growth.md | 1 | The short supertrend uses request.security(syminfo.tickerid, '60', ...) on the 4-hour header chart: a 1-hour resolution below the chart's, whose value per bar is undefined (as #427518). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

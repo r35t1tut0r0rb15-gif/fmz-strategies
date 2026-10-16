@@ -1,0 +1,33 @@
+# Original sizing and money-management code, FMZ #428856 (均线交叉策略Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/428856  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): commission, capital, 100 % of equity  [lines 187-187]
+  187: strategy("Backtest Engine", "Backtest", overlay=true, commission_type=strategy.commission.percent, commission_value=0.07, initial_capital = 1000, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, currency = currency.USD)
+
+## Take-profit / stop-loss inputs and levels (off by default)  [lines 230-245]
+  230: longTP = input(title="Long Take Profit (%)", type=input.float, minval=0.0, step=0.1, defval=0) * 0.01 // Set levels with input options
+  231: longSL = input(title="Long Stop Loss (%)", type=input.float, minval=0.0, step=0.1, defval=0) * 0.01 // Set levels with input options
+  232: shortTP = input(title="Short Take Profit (%)", type=input.float, minval=0.0, step=0.1, defval=0) * 0.01 // Set levels with input options
+  233: shortSL = input(title="Short Stop Loss (%)", type=input.float, minval=0.0, step=0.1, defval=0) * 0.01 // Set levels with input options
+  234: 
+  235: // 0% TP/SL = OFF (a value of 0 turns off TP/SL feature)
+  236: longProfitPerc = longTP == 0 ? 1000 : longTP
+  237: longStopPerc = longSL == 0 ? 1 : longSL
+  238: shortProfitPerc = shortTP == 0 ? 1 : shortTP
+  239: shortStopPerc = shortSL == 0 ? 1000 : shortSL
+  240: 
+  241: // Determine TP/SL price based on percentage given
+  242: longProfitPrice  = strategy.position_avg_price * (1 + longProfitPerc)
+  243: longStopPrice  = strategy.position_avg_price * (1 - longStopPerc)
+  244: shortProfitPrice  = strategy.position_avg_price * (1 - shortProfitPerc)
+  245: shortStopPrice  = strategy.position_avg_price * (1 + shortStopPerc)
+
+## TP / SL execution  [lines 284-290]
+  284: if (strategy.position_size > 0)
+  285:     strategy.exit(id="Long SL/TP", from_entry="Long", limit=longProfitPrice, stop=longStopPrice)
+  286:     strategy.close(id="Long", when=exitLong, comment=botCLOSELONG) // {{strategy.order.comment}}
+  287: 
+  288: if (strategy.position_size < 0)
+  289:     strategy.exit(id="Short TP/SL", from_entry="Short", limit=shortProfitPrice, stop=shortStopPrice)
+  290:     strategy.close(id="Short", when=exitShort, comment=botCLOSESHORT) // {{strategy.order.comment}}

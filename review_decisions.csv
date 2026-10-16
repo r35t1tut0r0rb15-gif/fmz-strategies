@@ -73,6 +73,7 @@ fmz_id,file,final_outcome,criterion,reason
 428618,延迟-RSI-交易策略Delayed-RSI-Trading-Strategy.md,REJECTED_ON_READING,1,"The stop and target come from valuewhen(bought, ohlc4 - 3 atr(14), 0) with bought = position size changed, i.e. the FILL bar's own ohlc4 and ATR (as #427127); swing-stop option likewise."
 428624,基于MACD和RSI的短线突破策略MACD-RSI-Short-Term-Breakout-Strategy.md,REJECTED_ON_READING,1,"The entries use request.security(syminfo.tickerid, '1', hist) on the 1-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
 428718,月末反转DCA策略Monthly-Reversal-DCA-Strategy.md,REJECTED_ON_READING,1,"DCA ladder: pyramiding 100 (commented-out strategy()), a new long about every 240 bars after an EMA-CD crossover, and the only exit is strategy.close_all() on barstate.islast, the last bar of the data; the ladder held to the data's end is the strategy (as #426302)."
+428894,双通道算法自动交易策略Double-Channel-Kitchen-Algorithm-Trading-Strategy-Focusing-on-Wealth-Growth.md,REJECTED_ON_READING,1,"The short supertrend uses request.security(syminfo.tickerid, '60', ...) on the 4-hour header chart: a 1-hour resolution below the chart's, whose value per bar is undefined (as #427518)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
@@ -640,3 +641,14 @@ fmz_id,file,final_outcome,criterion,reason
 428802,基于VSTOP和RSI的交易策略VSTOP-and-RSI-Trading-Strategy.md,PORTED,,ports/428802_vstop-rsi-vstop-and-rsi-trading-strategy/
 428805,随机游走策略Random-Walk-Strategy.md,PORTED,,ports/428805_random-walk-strategy/
 428810,移动平均线交叉多周期策略Moving-Average-Crossover-Multi-Timeframe-Strategy.md,PORTED,,ports/428810_moving-average-crossover-multi-timeframe-strategy/
+428811,双重均线与MACD组合短线策略Dual-Moving-Average-and-MACD-Combination-Short-term-Trading-Strategy.md,PORTED,,ports/428811_macd-dual-moving-average-and-macd-combination-short-term-tra/
+428812,收盘突破日内交易策略Breakout-Day-Trading-Strategy.md,PORTED,,ports/428812_breakout-day-trading-strategy/
+428813,动态止损追踪交易策略ATR-Trailing-Stops-Strategy.md,PORTED,,ports/428813_atr-trailing-stops-strategy/
+428814,移动平均交叉多空策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/428814_moving-average-crossover-strategy/
+428816,双动量反转策略Momentum-Reversal-Trading-Strategy.md,PORTED,,ports/428816_momentum-reversal-trading-strategy/
+428853,RSI追踪ADX策略RSI-Tracking-ADX-Strategy.md,PORTED,,ports/428853_rsi-adx-rsi-tracking-adx-strategy/
+428854,趋势跟踪移动止损均线策略Trend-Following-Moving-Stop-Loss-MA-Strategy.md,PORTED,,ports/428854_trend-following-moving-stop-loss-ma-strategy/
+428855,反转预判与振荡器组合策略Reversal-Prediction-and-Oscillator-Combo-Strategy.md,PORTED,,ports/428855_reversal-prediction-and-oscillator-combo-strategy/
+428856,均线交叉策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/428856_moving-average-crossover-strategy/
+428893,趋势追踪自动调整移动均线策略Trend-Following-Adaptive-Moving-Average-Strategy.md,PORTED,,ports/428893_trend-following-adaptive-moving-average-strategy/
+428966,趋势追踪利润最大化策略Trend-Tracking-Maximized-Profit-Strategy.md,PORTED,,ports/428966_trend-tracking-maximized-profit-strategy/

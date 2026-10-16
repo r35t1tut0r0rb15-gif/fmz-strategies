@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #428811 (双重均线与MACD组合短线策略Dual-Moving-Average-and-MACD-Combination-Short-term-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/428811  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit / stop-loss inputs  [lines 304-305]
+  304: tp=input(200)
+  305: sl=input(200)
+
+## strategy.exit with profit / loss when touch  [lines 310-311]
+  310: strategy.exit("X_long", "long", profit=tp,  loss=sl, when=touch  )
+  311: strategy.exit("x_short", "short",profit=tp, loss=sl,when = touch )

@@ -1208,6 +1208,38 @@ SIZING = {
         ("Pyramiding count inputs and conditions", 354, 359),
         ("Trailing stop, take profit, stop loss (off by default) and close signals", 427, 466),
     ],
+    # ---- FMZ-C, batch C21 (2026-10-16)
+    428811: [
+        ("Take-profit / stop-loss inputs", 304, 305),
+        ("strategy.exit with profit / loss when touch", 310, 311),
+    ],
+    428812: [
+        ("Commented-out strategy(): capital, commission", 185, 185),
+        ("Stop input", 269, 269),
+        ("Money management: risk % of equity -> size", 296, 308),
+        ("Orders: entries, time closes and stop exits", 311, 321),
+    ],
+    428813: [
+        ("strategy(): capital, 100 % of equity, commission", 146, 147),
+    ],
+    428814: [],
+    428816: [],
+    428853: [
+        ("Conditional stop exits (pending, not emitted)", 284, 292),
+    ],
+    428854: [
+        ("Commented-out strategy(): pyramiding, quantity", 135, 135),
+        ("Pyramiding count inputs and conditions", 226, 231),
+        ("Trailing stop (off by default), take profit, stop loss and close signals", 299, 338),
+    ],
+    428855: [],
+    428856: [
+        ("strategy(): commission, capital, 100 % of equity", 187, 187),
+        ("Take-profit / stop-loss inputs and levels (off by default)", 230, 245),
+        ("TP / SL execution", 284, 290),
+    ],
+    428893: [],
+    428966: [],
 }
 
 REJECTED_ON_READING = {
@@ -1487,6 +1519,10 @@ REJECTED_ON_READING = {
               "bars after an EMA-CD crossover, and the only exit is strategy.close_all() on "
               "barstate.islast, the last bar of the data; the ladder held to the data's end is "
               "the strategy (as #426302)."),
+    # ---- FMZ-C, batch C21 (2026-10-16)
+    428894: ("1", "The short supertrend uses request.security(syminfo.tickerid, '60', ...) on the "
+              "4-hour header chart: a 1-hour resolution below the chart's, whose value per bar is "
+              "undefined (as #427518)."),
 }
 
 DUPLICATE_ON_READING = {
