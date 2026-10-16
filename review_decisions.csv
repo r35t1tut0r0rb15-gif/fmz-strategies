@@ -61,6 +61,7 @@ fmz_id,file,final_outcome,criterion,reason
 427306,SuperTrend双均线交叉策略SuperTrend-Dual-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"Both signal lines are request.security(syminfo.tickerid, '30', ...) on the daily header chart: a 30-minute resolution below the chart's, whose value per daily bar is undefined (as #426261 / #426478)."
 427366,基于EMA和RSI的趋势交易策略EMA-and-RSI-Trend-Trading-Strategy.md,REJECTED_ON_READING,1,"The stop, target and trailing distances are set on the bar the position appears (strategy.position_size changes, i.e. the FILL bar), from that bar's ta.lowest(14) / ta.highest(14) and ATR, and the trailing points are scaled by 100000 (5-digit FX points). A stop built from the fill bar's own data cannot be expressed (skill section 7; as #427127)."
 427379,基于255-EMA-与-MACD-的反转交易策略255-EMA-and-MACD-Reversal-Trading-Strategy.md,REJECTED_ON_READING,1,"The stop and target come from valuewhen(position_size changed, lowest(20) / highest(20), 0), i.e. the 20-bar swing measured on the FILL bar itself (its own low / high included), and are active from the next bar: a stop from the fill bar's data cannot be expressed (as #427127)."
+427477,基于关键价格点的追踪策略Round-Number-Tracking-Strategy.md,REJECTED_ON_READING,2,"The signal is the distance to a round-number price level built in ticks (roundLevel = close[1] / mintick rounded to 500 ticks, distance in 100 ticks, 10-bar lows / highs against that level): hard-coded price levels and tick distances specific to the instrument and its tick size. Re-expressing them would remove the round-number idea itself. The exit is a trail_points-only strategy.exit (no offset)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -479,3 +480,15 @@ fmz_id,file,final_outcome,criterion,reason
 427438,买盘中的均线突破策略Mean-Reversal-Breakout-Strategy.md,PORTED,,ports/427438_mean-reversal-breakout-strategy/
 427440,玻尔带附近突破策略Bollinger-Breakout-Strategy.md,PORTED,,ports/427440_bollinger-breakout-strategy/
 427445,移动平均线金叉死叉策略Simple-Moving-Average-Crossover-Strategy.md,PORTED,,ports/427445_simple-moving-average-crossover-strategy/
+427449,TEMADEMAHMA组合趋势跟随策略TEMA-DEMA-HMA-Trend-Following-Strategy.md,PORTED,,ports/427449_temademahma-tema-dema-hma-trend-following-strategy/
+427453,KPL波动跟踪策略KPL-Swing-Trading-Strategy.md,PORTED,,ports/427453_kpl-kpl-swing-trading-strategy/
+427455,均值恢复ATR趋势策略Mean-Reversion-ATR-Trend-Strategy.md,PORTED,,ports/427455_atr-mean-reversion-atr-trend-strategy/
+427458,AK双RSI突破策略AK-Dual-RSI-Breakout-Strategy.md,PORTED,,ports/427458_ak-rsi-ak-dual-rsi-breakout-strategy/
+427460,CM多重EMA金叉死叉策略CM-Multiple-EMA-Crossover-Strategy.md,PORTED,,ports/427460_cm-ema-cm-multiple-ema-crossover-strategy/
+427461,五日移动平均线金叉追涨策略5-day-Moving-Average-Golden-Cross-Momentum-Strategy.md,PORTED,,ports/427461_5-day-moving-average-golden-cross-momentum-strategy/
+427467,平滑RSI回测策略V2Smoothed-RSI-Backtesting-Strategy-V2.md,PORTED,,ports/427467_rsi-v2smoothed-rsi-backtesting-strategy-v2/
+427468,可配置BBRSIAroon策略Configurable-BBRSIAroon-Strategy-Backtest.md,PORTED,,ports/427468_bbrsiaroon-configurable-bbrsiaroon-strategy-backtest/
+427470,ATR趋势跟踪策略ATR-Trend-Following-Strategy.md,PORTED,,ports/427470_atr-atr-trend-following-strategy/
+427471,PPO多空分歧交易策略PPO-Bull-Bear-Divergence-Trading-Strategy.md,PORTED,,ports/427471_ppo-ppo-bull-bear-divergence-trading-strategy/
+427479,绝对价格振荡器趋势跟踪策略Absolute-Price-Oscillator-Trend-Following-Strategy.md,PORTED,,ports/427479_absolute-price-oscillator-trend-following-strategy/
+427482,对数移动平均聚合散策略Logarithmic-Moving-Average-Convergence-Divergence-Strategy.md,PORTED,,ports/427482_logarithmic-moving-average-convergence-divergence-strategy/

@@ -811,6 +811,30 @@ SIZING = {
         ("strategy(): 100 % of equity, pyramiding 5", 140, 140),
     ],
     427445: [],
+    # ---- FMZ-C, batch C8 (2026-10-16)
+    427449: [
+        ("strategy(): 100 % of equity, initial capital, commission 0.1 %", 121, 121),
+    ],
+    427453: [],
+    427455: [
+        ("strategy(): pyramiding 1; the add while long", 141, 141),
+        ("Entry / add and the trailing-line close", 187, 202),
+    ],
+    427458: [],
+    427460: [],
+    427461: [
+        ("strategy(): pyramiding 2, cash qty", 165, 165),
+        ("Two entries with cash quantities 30000 / close and 20000 / close", 192, 198),
+        ("Profit-gated stop on openprofit in cash", 205, 205),
+    ],
+    427467: [],
+    427468: [],
+    427470: [
+        ("strategy(): commission 0.075 %", 121, 121),
+    ],
+    427471: [],
+    427479: [],
+    427482: [],
 }
 
 REJECTED_ON_READING = {
@@ -1040,6 +1064,13 @@ REJECTED_ON_READING = {
               "highest(20), 0), i.e. the 20-bar swing measured on the FILL bar itself (its own "
               "low / high included), and are active from the next bar: a stop from the fill bar's "
               "data cannot be expressed (as #427127)."),
+    # ---- FMZ-C, batch C8 (2026-10-16)
+    427477: ("2", "The signal is the distance to a round-number price level built in ticks "
+              "(roundLevel = close[1] / mintick rounded to 500 ticks, distance in 100 ticks, "
+              "10-bar lows / highs against that level): hard-coded price levels and tick "
+              "distances specific to the instrument and its tick size. Re-expressing them would "
+              "remove the round-number idea itself. The exit is a trail_points-only strategy.exit "
+              "(no offset)."),
 }
 
 DUPLICATE_ON_READING = {

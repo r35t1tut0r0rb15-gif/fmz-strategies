@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #427461 (五日移动平均线金叉追涨策略5-day-Moving-Average-Golden-Cross-Momentum-Strategy)
+# Source: https://www.fmz.com/strategy/427461  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 2, cash qty  [lines 165-165]
+  165: strategy("MA5X_L", overlay=true, pyramiding=2,default_qty_type=strategy.cash, default_qty_value=100000)
+
+## Two entries with cash quantities 30000 / close and 20000 / close  [lines 192-198]
+  192: if crossover(s_ma, l_ma) and condition100
+  193:     strategy.entry("X Up", strategy.long, qty = 30000/close, comment="X Up")
+  194: 
+  195: //Long Entry Condition 2 : s_ma > m_ma > l_ma
+  196: condition31 = s_ma>m_ma and m_ma>l_ma
+  197: condition32 = condition31[1]==false and condition31 == true and condition100
+  198: strategy.entry("UTA", strategy.long, qty = 20000/close, when = condition32, comment="UTA")
+
+## Profit-gated stop on openprofit in cash  [lines 205-205]
+  205: strategy.close_all(when = crossunder(close,sl) and strategy.openprofit>30000*0.2, comment="Stop")

@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #427455 (均值恢复ATR趋势策略Mean-Reversion-ATR-Trend-Strategy)
+# Source: https://www.fmz.com/strategy/427455  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 1; the add while long  [lines 141-141]
+  141: strategy("Mean Reversion (ATR) Strategy [KL]",overlay=true,pyramiding=1)
+
+## Entry / add and the trailing-line close  [lines 187-202]
+  187: if within_timeframe
+  188: 
+  189:     if strategy.position_size > 0 and strategy.position_size[1] > 0 and (stop_loss_price/stop_loss_price[1]-1) > 0.005
+  190:         alert_per_bar("TSL raised to " + tostring(stop_loss_price))
+  191: 
+  192:     // EXIT:
+  193: 	if strategy.position_size > 0 and TSL_source <= stop_loss_price
+  194: 	    exit_msg = close <= strategy.position_avg_price ? "stop loss" : "take profit"
+  195:         strategy.close(ENUM_LONG, comment=exit_msg)
+  196:     // ENTRY:
+  197:     else if entry_signal_all and (strategy.position_size == 0 or (strategy.position_size > 0 and close > stop_loss_price))
+  198: 		entry_msg = strategy.position_size > 0 ? "adding" : "initial"
+  199: 		strategy.entry(ENUM_LONG, strategy.long, comment=entry_msg)
+  200: 
+  201: if strategy.position_size == 0
+  202:     stop_loss_price := float(0)

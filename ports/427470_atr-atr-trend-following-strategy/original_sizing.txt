@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427470 (ATR趋势跟踪策略ATR-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/427470  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): commission 0.075 %  [lines 121-121]
+  121: strategy(title="ATR Strategy", overlay = true,  commission_type=strategy.commission.percent,commission_value=0.075)

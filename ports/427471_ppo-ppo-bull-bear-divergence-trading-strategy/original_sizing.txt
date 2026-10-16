@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #427471 (PPO多空分歧交易策略PPO-Bull-Bear-Divergence-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427471  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

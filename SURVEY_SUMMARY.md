@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3280 |
+| PORT_CANDIDATE | 3267 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
-| PORTED | 417 |
+| PORTED | 429 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 62 |
+| REJECTED_ON_READING | 63 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -545,7 +545,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427438 | `ports/427438_mean-reversal-breakout-strategy/` | PineScript | volatility_channel_breakout | bar_size_pending | dipness x2, smoothness x2, lookforward x2 | 8 |
 | 427440 | `ports/427440_bollinger-breakout-strategy/` | PineScript | bollinger_reversion | none | length x3, mult x2 | 6 |
 | 427445 | `ports/427445_simple-moving-average-crossover-strategy/` | PineScript | ma_trend | none | bars_wait x3, sma_low x2 | 6 |
-| | **417 ports** | | | | | **3166** |
+| 427449 | `ports/427449_temademahma-tema-dema-hma-trend-following-strategy/` | PineScript | ma_trend | bar_size_pending | t_length x2, d_length x2, h_length x2 | 8 |
+| 427453 | `ports/427453_kpl-kpl-swing-trading-strategy/` | PineScript | donchian_breakout | none | length x3 | 3 |
+| 427455 | `ports/427455_atr-mean-reversion-atr-trend-strategy/` | PineScript | volatility_stop_cross | none | tsl_mult x2, len_volat x2, len_drift x2 | 8 |
+| 427458 | `ports/427458_ak-rsi-ak-dual-rsi-breakout-strategy/` | PineScript | rsi_oscillator | none | long_level x2, short_level x2, ma_long x2 | 8 |
+| 427460 | `ports/427460_cm-ema-cm-multiple-ema-crossover-strategy/` | PineScript | ma_trend | none | mid x2, slow x2, filt x2 | 8 |
+| 427461 | `ports/427461_5-day-moving-average-golden-cross-momentum-strategy/` | PineScript | ma_trend | none | l_len x2, multiplier x2, profit_gate x2 | 8 |
+| 427467 | `ports/427467_rsi-v2smoothed-rsi-backtesting-strategy-v2/` | PineScript | rsi_oscillator | none | length x3, top_band x2 | 6 |
+| 427468 | `ports/427468_bbrsiaroon-configurable-bbrsiaroon-strategy-backtest/` | PineScript | multi_indicator_confluence | none | bb_mult x2, rsi_length x2, n_bars x2 | 8 |
+| 427470 | `ports/427470_atr-atr-trend-following-strategy/` | PineScript | volatility_stop_cross | none | atr_period x3, atr_mult x2 | 6 |
+| 427471 | `ports/427471_ppo-ppo-bull-bear-divergence-trading-strategy/` | PineScript | macd_divergence | none | lookback x2, fast x2, long_term_div x2 | 8 |
+| 427479 | `ports/427479_absolute-price-oscillator-trend-following-strategy/` | PineScript | macd_momentum | none | zone_atr x3, long_ema x2 | 6 |
+| 427482 | `ports/427482_logarithmic-moving-average-convergence-divergence-strategy/` | PineScript | macd_momentum | none | fast x2, slow x2, sma_source x2 | 8 |
+| | **429 ports** | | | | | **3251** |
 
 ## Rejected on reading
 
@@ -613,6 +625,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427306 | SuperTrend双均线交叉策略SuperTrend-Dual-Moving-Average-Crossover-Strategy.md | 1 | Both signal lines are request.security(syminfo.tickerid, '30', ...) on the daily header chart: a 30-minute resolution below the chart's, whose value per daily bar is undefined (as #426261 / #426478). |
 | 427366 | 基于EMA和RSI的趋势交易策略EMA-and-RSI-Trend-Trading-Strategy.md | 1 | The stop, target and trailing distances are set on the bar the position appears (strategy.position_size changes, i.e. the FILL bar), from that bar's ta.lowest(14) / ta.highest(14) and ATR, and the trailing points are scaled by 100000 (5-digit FX points). A stop built from the fill bar's own data cannot be expressed (skill section 7; as #427127). |
 | 427379 | 基于255-EMA-与-MACD-的反转交易策略255-EMA-and-MACD-Reversal-Trading-Strategy.md | 1 | The stop and target come from valuewhen(position_size changed, lowest(20) / highest(20), 0), i.e. the 20-bar swing measured on the FILL bar itself (its own low / high included), and are active from the next bar: a stop from the fill bar's data cannot be expressed (as #427127). |
+| 427477 | 基于关键价格点的追踪策略Round-Number-Tracking-Strategy.md | 2 | The signal is the distance to a round-number price level built in ticks (roundLevel = close[1] / mintick rounded to 500 ticks, distance in 100 ticks, 10-bar lows / highs against that level): hard-coded price levels and tick distances specific to the instrument and its tick size. Re-expressing them would remove the round-number idea itself. The exit is a trail_points-only strategy.exit (no offset). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
