@@ -1,0 +1,65 @@
+# Original sizing and money-management code, FMZ #427894 (均线突破策略Moving-Average-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/427894  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantity, position cap and exit inputs  [lines 189-219]
+  189: qtyOrder = input.float(
+  190:      defval = 1.0,
+  191:      title = 'Qty', 
+  192:      group = 'Order')
+  193: 
+  194: maxActive = input.float(
+  195:      defval = 1.0,
+  196:      title = 'Maximum Active Open Position', 
+  197:      group = 'Order')
+  198: 
+  199: // Long Strategy
+  200: tpLong = input.float(
+  201:      defval = 1,
+  202:      title = "Take Profit (%)",
+  203:      minval = 0.0, 
+  204:      step = 0.1, 
+  205:      group = "Long") * 0.01
+  206: 
+  207: slLong = input.float(
+  208:      defval = 25,
+  209:      title = "Stop Loss (%)", 
+  210:      minval=0.0, 
+  211:      step=0.1,
+  212:      group="Long") * 0.01
+  213: 
+  214: trailingStopLong = input.float(
+  215:      defval = 0.2,
+  216:      title = "Trailing Stop (%)",
+  217:      minval = 0.0, 
+  218:      step = 0.1,
+  219:      group = 'Long') * 0.01
+
+## Exit levels and the trail variable  [lines 227-234]
+  227: limitLong = tpLong > 0.0 ? strategy.position_avg_price * (1 + tpLong) : na
+  228: stopLong = slLong > 0.0 ? strategy.position_avg_price * (1 - slLong) : na
+  229: float trailLong = 0.0
+  230: trailLong := if strategy.position_size > 0
+  231:     trailClose = close * (1 - trailLong)
+  232:     math.max(trailClose, trailLong[1])
+  233: else
+  234:     0
+
+## Risk rules, the entry quantity and the exit  [lines 275-291]
+  275: strategy.risk.max_position_size(maxActive)
+  276: strategy.risk.allow_entry_in(strategy.direction.long)
+  277: 
+  278: strategy.entry(
+  279:      id = "Long", 
+  280:      direction = strategy.long, 
+  281:      qty = qtyOrder,  
+  282:      when = isLong,       
+  283:      alert_message = "LN")
+  284: if (strategy.position_size > 0)
+  285:     strategy.exit(
+  286:          id = "Long Exit",
+  287:          from_entry = "Long",
+  288:          limit = limitLong,
+  289:          stop = stopLong,
+  290:          trail_price = trailLong,
+  291:          alert_message = "LX")      

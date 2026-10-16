@@ -1,0 +1,57 @@
+# Original sizing and money-management code, FMZ #427871 (基于多重EMA交叉的自适应交易策略Adaptive-Trading-Strategy-Based-on-Multiple-EMA-Crossovers)
+# Source: https://www.fmz.com/strategy/427871  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): 75 % of equity, initial capital, commission  [lines 116-116]
+  116: // strategy(title="BTC - 4hr - Long/Short", shorttitle="BTC - 4hr - Long/Short", overlay=true, initial_capital=1000, default_qty_type=strategy.percent_of_equity, default_qty_value=75,commission_type=strategy.commission.percent, commission_value=0.075)//////<---Uses a percentage of starting equity
+
+## Percent stop inputs, levels and the stop exits  [lines 163-211]
+  163: long_loss_percent = input(title="Long Stop Loss (%)", type=input.float, minval=0.0, step=0.1, defval=1.7) * 0.01
+  164: long_stop_price = strategy.position_avg_price * (1 - long_loss_percent)
+  165: //SHORT
+  166: openshort = crossover(ema_short_open_slow, ema_short_open_fast)
+  167: closeshort = crossover(ema_short_close_fast, ema_short_close_slow)
+  168: //0.4%
+  169: short_loss_percent = input(title="Short Stop Loss (%)", type=input.float, minval=0.0, step=0.1, defval=0.4) * 0.01
+  170: short_stop_price = strategy.position_avg_price * (1 + short_loss_percent)
+  171: 
+  172: 
+  173: //PLOT EMAs////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  174: //LONG
+  175: plot(ema_long_open_fast, "Long EMA open lower", linewidth=1, color=color.green)
+  176: plot(ema_long_open_slow, "Long EMA close upper", linewidth=1, color=color.green)
+  177: plot(ema_long_close_fast, "Long close lower", linewidth=1, color=color.red)
+  178: plot(ema_long_close_slow, "Long close upper", linewidth=1, color=color.red)
+  179: //SHORT
+  180: plot(ema_short_open_fast, "Short open fast", linewidth=1, color=color.green)
+  181: plot(ema_short_open_slow, "Short open slow", linewidth=1, color=color.green)
+  182: plot(ema_short_close_fast, "Short close fast", linewidth=1, color=color.red)
+  183: plot(ema_short_close_slow, "Short close slow", linewidth=1, color=color.red)
+  184: 
+  185: 
+  186: //LONG-TERM TRENDS
+  187: //LONG 144
+  188: long_term_trend_longs= input(144, title="Long-term trend - Longs", step=1)
+  189: lttl= ema(close, long_term_trend_longs)
+  190: plot(lttl, "Long-term trend - Longs", linewidth=2, color=color.blue)
+  191: //SHORT 89
+  192: long_term_trend_shorts= input(89, title="Long-term trend - Shorts", step=1)
+  193: ltts = ema(close, long_term_trend_shorts)
+  194: plot(ltts, "Long-term trend - Shorts", linewidth=2, color=color.blue)
+  195: 
+  196: 
+  197: //STRATEGY//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  198: //LONG
+  199: if (inDateRange and openlong and (close > lttl))
+  200:     strategy.entry("OL", long=true, comment="##insert open long comment here##")
+  201: if (inDateRange and closelong)
+  202:     strategy.close("OL", comment="##insert close long comment here##")
+  203: if strategy.position_size > 0
+  204:     strategy.exit("L-SL", stop=long_stop_price, comment="##insert long stop-loss comment here##")
+  205: //SHORT  
+  206: if (inDateRange and openshort and (close < ltts))
+  207:     strategy.entry("OS", long=false, comment="##insert open short comment here##")
+  208: if (inDateRange and closeshort)
+  209:     strategy.close("OS", comment="##insert close short comment here##")
+  210: if strategy.position_size < 0
+  211:     strategy.exit("S-SL", stop=short_stop_price, comment="##inster short stop-loss comment here##")

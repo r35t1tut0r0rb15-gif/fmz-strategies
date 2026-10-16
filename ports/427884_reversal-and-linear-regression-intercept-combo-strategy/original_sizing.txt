@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #427884 (逆转与线性回归截距组合策略Reversal-and-Linear-Regression-Intercept-Combo-Strategy)
+# Source: https://www.fmz.com/strategy/427884  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

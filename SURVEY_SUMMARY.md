@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3222 |
+| PORT_CANDIDATE | 3209 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 550 |
-| PORTED | 471 |
+| PORTED | 483 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 64 |
+| REJECTED_ON_READING | 65 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -599,7 +599,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427814 | `ports/427814_trend-following-strategy/` | PineScript | channel_trend_pullback | none | len x4 | 4 |
 | 427816 | `ports/427816_bbb-bbb-strategy/` | PineScript | mean_reversion_band | none | length x2, mult x2 | 4 |
 | 427821 | `ports/427821_percentage-stop-loss-take-profit-trailing-strategy/` | PineScript | ma_cross | none | sma_per x2, sl_pct x2, tp_pct x2 | 8 |
-| | **471 ports** | | | | | **3510** |
+| 427822 | `ports/427822_bitcoin-multi-factor-trading-strategy/` | PineScript | ma_trend | trailing_stop_pending | short x2, tp_pct x2, sl_pct x2 | 8 |
+| 427823 | `ports/427823_repanocha-repanocha-quantitative-trading-strategy/` | PineScript | range_filter_trend | trailing_stop_pending | per x2, mult x2, adx_th x2 | 8 |
+| 427861 | `ports/427861_ema-sma-moving-average-cross-ema-sma-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| 427862 | `ports/427862_rb-ssl-auto-trading-strategy-based-on-rb-ssl-channel/` | PineScript | ssl_channel | none | len x4 | 4 |
+| 427871 | `ports/427871_ema-adaptive-trading-strategy-based-on-multiple-ema-crossove/` | PineScript | ma_cross | coarse_bar_stop | lttl x2, long_sl x2, short_sl x2 | 8 |
+| 427878 | `ports/427878_dual-moving-average-reversal-strategy/` | PineScript | combo_123_reversal | none | length x2, length_ma x2 | 4 |
+| 427881 | `ports/427881_ema-rsi-trend-following-ema-and-rsi-strategy/` | PineScript | ma_cross | none | x_bars x2, len_c x2 | 4 |
+| 427883 | `ports/427883_rsi-double-reversal-rsi-momentum-strategy/` | PineScript | combo_123_reversal | none | length x2, rsi_length x2 | 4 |
+| 427884 | `ports/427884_reversal-and-linear-regression-intercept-combo-strategy/` | PineScript | combo_123_reversal | none | length x2, length_lri x2 | 4 |
+| 427886 | `ports/427886_level-by-level-build-up-moving-average-strategy/` | PineScript | renko_bricks | none | atr_length x4 | 4 |
+| 427893 | `ports/427893_relative-volatility-index-backtesting-strategy/` | PineScript | momentum_oscillator_turn | none | period x4 | 4 |
+| 427894 | `ports/427894_moving-average-breakout-strategy/` | PineScript | candle_pattern | none | validation x2, tp_pct x2, sl_pct x2 | 8 |
+| | **483 ports** | | | | | **3574** |
 
 ## Rejected on reading
 
@@ -669,6 +681,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427379 | 基于255-EMA-与-MACD-的反转交易策略255-EMA-and-MACD-Reversal-Trading-Strategy.md | 1 | The stop and target come from valuewhen(position_size changed, lowest(20) / highest(20), 0), i.e. the 20-bar swing measured on the FILL bar itself (its own low / high included), and are active from the next bar: a stop from the fill bar's data cannot be expressed (as #427127). |
 | 427477 | 基于关键价格点的追踪策略Round-Number-Tracking-Strategy.md | 2 | The signal is the distance to a round-number price level built in ticks (roundLevel = close[1] / mintick rounded to 500 ticks, distance in 100 ticks, 10-bar lows / highs against that level): hard-coded price levels and tick distances specific to the instrument and its tick size. Re-expressing them would remove the round-number idea itself. The exit is a trail_points-only strategy.exit (no offset). |
 | 427518 | 智能资金指数策略回测Smart-Money-Index-SMI-Strategy-Backtest.md | 1 | The index adds security(syminfo.tickerid, '60', close[1] / open[1]) on the daily header chart: a 60-minute resolution below the chart's, whose value per daily bar is undefined (as #426261 / #426478). |
+| 427890 | 基于ATR和CCI的趋势跟踪策略CCI-and-ATR-Based-Trend-Following-Strategy.md | 1 | The buy / sell filter is security(syminfo.tickerid, '60', swap4[1], lookahead_on) on the 3-hour header chart: a 60-minute resolution below the chart's, whose value per 3-hour bar is undefined (as #427518). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

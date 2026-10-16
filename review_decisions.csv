@@ -63,6 +63,7 @@ fmz_id,file,final_outcome,criterion,reason
 427379,基于255-EMA-与-MACD-的反转交易策略255-EMA-and-MACD-Reversal-Trading-Strategy.md,REJECTED_ON_READING,1,"The stop and target come from valuewhen(position_size changed, lowest(20) / highest(20), 0), i.e. the 20-bar swing measured on the FILL bar itself (its own low / high included), and are active from the next bar: a stop from the fill bar's data cannot be expressed (as #427127)."
 427477,基于关键价格点的追踪策略Round-Number-Tracking-Strategy.md,REJECTED_ON_READING,2,"The signal is the distance to a round-number price level built in ticks (roundLevel = close[1] / mintick rounded to 500 ticks, distance in 100 ticks, 10-bar lows / highs against that level): hard-coded price levels and tick distances specific to the instrument and its tick size. Re-expressing them would remove the round-number idea itself. The exit is a trail_points-only strategy.exit (no offset)."
 427518,智能资金指数策略回测Smart-Money-Index-SMI-Strategy-Backtest.md,REJECTED_ON_READING,1,"The index adds security(syminfo.tickerid, '60', close[1] / open[1]) on the daily header chart: a 60-minute resolution below the chart's, whose value per daily bar is undefined (as #426261 / #426478)."
+427890,基于ATR和CCI的趋势跟踪策略CCI-and-ATR-Based-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"The buy / sell filter is security(syminfo.tickerid, '60', swap4[1], lookahead_on) on the 3-hour header chart: a 60-minute resolution below the chart's, whose value per 3-hour bar is undefined (as #427518)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
@@ -537,3 +538,15 @@ fmz_id,file,final_outcome,criterion,reason
 427814,趋势追踪交易策略Trend-Following-Strategy.md,PORTED,,ports/427814_trend-following-strategy/
 427816,BBB策略BBB-Strategy.md,PORTED,,ports/427816_bbb-bbb-strategy/
 427821,百分比止盈止损跟踪策略Percentage-Stop-Loss-Take-Profit-Trailing-Strategy.md,PORTED,,ports/427821_percentage-stop-loss-take-profit-trailing-strategy/
+427822,比特币多因子交易策略Bitcoin-Multi-factor-Trading-Strategy.md,PORTED,,ports/427822_bitcoin-multi-factor-trading-strategy/
+427823,RePaNoCHa量化交易策略RePaNoCHa-Quantitative-Trading-Strategy.md,PORTED,,ports/427823_repanocha-repanocha-quantitative-trading-strategy/
+427861,移动平均线交叉EMA-SMA策略Moving-Average-Cross-EMA-SMA-Strategy.md,PORTED,,ports/427861_ema-sma-moving-average-cross-ema-sma-strategy/
+427862,基于RB-SSL通道的自动交易策略Auto-Trading-Strategy-Based-on-RB-SSL-Channel.md,PORTED,,ports/427862_rb-ssl-auto-trading-strategy-based-on-rb-ssl-channel/
+427871,基于多重EMA交叉的自适应交易策略Adaptive-Trading-Strategy-Based-on-Multiple-EMA-Crossovers.md,PORTED,,ports/427871_ema-adaptive-trading-strategy-based-on-multiple-ema-crossove/
+427878,双重均线反转策略Dual-Moving-Average-Reversal-Strategy.md,PORTED,,ports/427878_dual-moving-average-reversal-strategy/
+427881,趋势跟踪EMA和RSI策略Trend-Following-EMA-and-RSI-Strategy.md,PORTED,,ports/427881_ema-rsi-trend-following-ema-and-rsi-strategy/
+427883,双重反转RSI动量策略Double-Reversal-RSI-Momentum-Strategy.md,PORTED,,ports/427883_rsi-double-reversal-rsi-momentum-strategy/
+427884,逆转与线性回归截距组合策略Reversal-and-Linear-Regression-Intercept-Combo-Strategy.md,PORTED,,ports/427884_reversal-and-linear-regression-intercept-combo-strategy/
+427886,逐级铺垫的均线兼顾策略Level-by-Level-Build-Up-Moving-Average-Strategy.md,PORTED,,ports/427886_level-by-level-build-up-moving-average-strategy/
+427893,相对波动指数回测策略Relative-Volatility-Index-Backtesting-Strategy.md,PORTED,,ports/427893_relative-volatility-index-backtesting-strategy/
+427894,均线突破策略Moving-Average-Breakout-Strategy.md,PORTED,,ports/427894_moving-average-breakout-strategy/

@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #427822 (比特币多因子交易策略Bitcoin-Multi-factor-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427822  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity, initial capital, commission, pyramiding 0  [lines 206-206]
+  206: strategy('3kilos', shorttitle='3kilos BTC 15m', overlay=true, initial_capital=100000, max_bars_back=5000, default_qty_type=strategy.percent_of_equity, default_qty_value=10, commission_type=strategy.commission.percent, commission_value=0.07, pyramiding=0)
+
+## Take-profit / stop inputs  [lines 222-223]
+  222: takeProfitPercent = input.float(1, title="Take Profit (%)", minval=0.1) / 100
+  223: stopLossPercent = input.float(3, title="Stop Loss (%)", minval=0.1) / 100
+
+## Bracket exits re-issued on each signal bar  [lines 293-299]
+  293: if inTradeWindow and longC
+  294:     strategy.entry('Long', strategy.long, comment='Long')
+  295:     strategy.exit("TP Long", "Long", limit=longTakeProfitLevel, stop=longStopLossLevel, comment="TP/SL Long")
+  296: 
+  297: if inTradeWindow and shortC
+  298:     strategy.entry('Short', strategy.short, comment='Short')
+  299:     strategy.exit("TP Short", "Short", limit=shortTakeProfitLevel, stop=shortStopLossLevel, comment="TP/SL Short")

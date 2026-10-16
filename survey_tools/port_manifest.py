@@ -958,6 +958,41 @@ SIZING = {
         ("Stop / take-profit percent inputs and levels", 185, 191),
         ("Bracket exit", 195, 195),
     ],
+    # ---- FMZ-C, batch C13 (2026-10-16)
+    427822: [
+        ("strategy(): 10 % of equity, initial capital, commission, pyramiding 0", 206, 206),
+        ("Take-profit / stop inputs", 222, 223),
+        ("Bracket exits re-issued on each signal bar", 293, 299),
+    ],
+    427823: [
+        ("strategy(): pyramiding 100, 100 % of equity, initial capital, commission", 220, 221),
+        ("Trailing stop inputs", 495, 500),
+        ("Stop-loss inputs", 594, 597),
+        ("Pips correction and the trailing exits", 770, 775),
+    ],
+    427861: [
+        ("strategy(): 100 % of equity, initial capital", 165, 165),
+    ],
+    427862: [],
+    427871: [
+        ("Commented-out strategy(): 75 % of equity, initial capital, commission", 116, 116),
+        ("Percent stop inputs, levels and the stop exits", 163, 211),
+    ],
+    427878: [],
+    427881: [
+        ("Commented-out strategy(): 20 % of equity, pyramiding 0, commission", 132, 132),
+    ],
+    427883: [],
+    427884: [],
+    427886: [
+        ("strategy(): pyramiding 2, 50 % of equity, initial capital", 192, 192),
+    ],
+    427893: [],
+    427894: [
+        ("Quantity, position cap and exit inputs", 189, 219),
+        ("Exit levels and the trail variable", 227, 234),
+        ("Risk rules, the entry quantity and the exit", 275, 291),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -1198,6 +1233,10 @@ REJECTED_ON_READING = {
     427518: ("1", "The index adds security(syminfo.tickerid, '60', close[1] / open[1]) on the daily "
               "header chart: a 60-minute resolution below the chart's, whose value per daily bar "
               "is undefined (as #426261 / #426478)."),
+    # ---- FMZ-C, batch C13 (2026-10-16)
+    427890: ("1", "The buy / sell filter is security(syminfo.tickerid, '60', swap4[1], lookahead_on) "
+              "on the 3-hour header chart: a 60-minute resolution below the chart's, whose value "
+              "per 3-hour bar is undefined (as #427518)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427861 (移动平均线交叉EMA-SMA策略Moving-Average-Cross-EMA-SMA-Strategy)
+# Source: https://www.fmz.com/strategy/427861  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, initial capital  [lines 165-165]
+  165: strategy(title="Moving Average Cross EMA SMA", overlay=true, initial_capital=10000, currency='USD',default_qty_type=strategy.percent_of_equity,default_qty_value=100)

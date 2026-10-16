@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427886 (逐级铺垫的均线兼顾策略Level-by-Level-Build-Up-Moving-Average-Strategy)
+# Source: https://www.fmz.com/strategy/427886  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 2, 50 % of equity, initial capital  [lines 192-192]
+  192: strategy("Renko Level Strategy 2", shorttitle="RLS2", overlay=true, pyramiding=2, currency=currency.USD, default_qty_value=50, initial_capital=2000, default_qty_type=strategy.percent_of_equity) 

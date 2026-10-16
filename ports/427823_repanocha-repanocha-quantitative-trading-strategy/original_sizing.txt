@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #427823 (RePaNoCHa量化交易策略RePaNoCHa-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427823  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 100, 100 % of equity, initial capital, commission  [lines 220-221]
+  220: strategy(title = "RePaNoCHa V4 [Backtest]", overlay = true, initial_capital = 1000, pyramiding = 100,
+  221:    calc_on_order_fills = false, calc_on_every_tick = false, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, commission_value = 0.075)
+
+## Trailing stop inputs  [lines 495-500]
+  495: isTSl = Position == "SHORT" ? na : true
+  496: isTSs = Position == "LONG" ? na : true
+  497: tsi = input(0.5, "TRAILING STOP ACTIVATION %", type = input.float, step = 0.1) 
+  498: ts_low_profit = input(0.25, "TRAILING STOP OFFSET % --> WHEN PROFIT=0.5% (MINIMUM)", type = input.float, step = 0.05, minval = 0.01)
+  499: ts_high_profit = input(1.0, "TRAILING STOP OFFSET % --> WHEN PROFIT=10% (LINEAR_EXTRAPOLATION)", type = input.float, step = 0.1, minval = 0.1)
+  500: delay = input(120, "TRAILING STOP DELAY (SECONDS BETWEEN SNAPSHOTS)", type = input.integer, minval = 30, maxval = 300, step = 30)*1000
+
+## Stop-loss inputs  [lines 594-597]
+  594: Act_sl = input(false, "STOP LOSS")
+  595: isSLl = Position == "SHORT" ? na : true
+  596: isSLs = Position == "LONG" ? na : true
+  597: sl = input(3.0, "STOP LOSS %", type = input.float, step = 0.1)
+
+## Pips correction and the trailing exits  [lines 770-775]
+  770: pips_corection = input(2, "(TICKS/PIPS CORRECTION)")
+  771: 
+  772: strategy.exit("Tsl", "long", trail_points = (abs((last_open_longCondition*(1+(tsi/100)))-last_open_longCondition)*pips_corection),
+  773:    trail_offset = (high*(ts/100))*pips_corection, loss = Act_sl ? (abs((last_open_longCondition*(1-(sl/100)))-last_open_longCondition)*pips_corection) : na) 
+  774: strategy.exit("Tss", "short", trail_points = (abs((last_open_shortCondition*(1-(tsi/100)))-last_open_shortCondition)*pips_corection),
+  775:    trail_offset = (low*(ts/100))*pips_corection, loss = Act_sl ? (abs((last_open_shortCondition*(1+(sl/100)))-last_open_shortCondition)*pips_corection) : na) 
