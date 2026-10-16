@@ -64,6 +64,7 @@ fmz_id,file,final_outcome,criterion,reason
 427477,基于关键价格点的追踪策略Round-Number-Tracking-Strategy.md,REJECTED_ON_READING,2,"The signal is the distance to a round-number price level built in ticks (roundLevel = close[1] / mintick rounded to 500 ticks, distance in 100 ticks, 10-bar lows / highs against that level): hard-coded price levels and tick distances specific to the instrument and its tick size. Re-expressing them would remove the round-number idea itself. The exit is a trail_points-only strategy.exit (no offset)."
 427518,智能资金指数策略回测Smart-Money-Index-SMI-Strategy-Backtest.md,REJECTED_ON_READING,1,"The index adds security(syminfo.tickerid, '60', close[1] / open[1]) on the daily header chart: a 60-minute resolution below the chart's, whose value per daily bar is undefined (as #426261 / #426478)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
+427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -518,3 +519,15 @@ fmz_id,file,final_outcome,criterion,reason
 427616,基于RSI和K线形态的交易策略RSI-Candlestick-Trading-Strategy.md,PORTED,,ports/427616_rsi-k-rsi-candlestick-trading-strategy/
 427666,Joker移动止盈策略Joker-Trailing-Take-Profit-Strategy.md,PORTED,,ports/427666_joker-joker-trailing-take-profit-strategy/
 427671,多指标组合趋势跟踪策略Multi-Indicator-Trend-Tracking-Strategy.md,PORTED,,ports/427671_multi-indicator-trend-tracking-strategy/
+427672,MACD震荡器与EMA均线交叉策略MACD-Oscillator-with-EMA-Crossover-Strategy.md,PORTED,,ports/427672_macd-ema-macd-oscillator-with-ema-crossover-strategy/
+427673,峰度快慢线交易策略Fast-and-Slow-Kurtosis-Trading-Strategy.md,PORTED,,ports/427673_fast-and-slow-kurtosis-trading-strategy/
+427674,威尔德趋势均衡点系统Welles-Wilders-Trend-Balance-Point-System.md,PORTED,,ports/427674_welles-wilders-trend-balance-point-system/
+427679,迪纳波利去趋势震荡器策略DiNapoli-Detrended-Oscillator-Strategy.md,PORTED,,ports/427679_dinapoli-detrended-oscillator-strategy/
+427680,配置化多均线投票交易策略Configurable-Multi-MA-Crossover-Voting-System.md,PORTED,,ports/427680_configurable-multi-ma-crossover-voting-system/
+427683,Stochastic-RSI交易策略Stochastic-RSI-Trading-Strategy.md,PORTED,,ports/427683_stochastic-rsi-stochastic-rsi-trading-strategy/
+427684,三线形态突破策略Three-Line-Breakout-Strategy.md,PORTED,,ports/427684_three-line-breakout-strategy/
+427727,动量ABCD形态策略Momentum-ABCD-Pattern-Strategy.md,PORTED,,ports/427727_abcd-momentum-abcd-pattern-strategy/
+427729,双均线趋势跟踪策略Dual-Moving-Average-Trend-Following-Strategy.md,PORTED,,ports/427729_dual-moving-average-trend-following-strategy/
+427733,MACD动量指标回测策略MACD-Momentum-Indicator-Backtest-Strategy.md,PORTED,,ports/427733_macd-macd-momentum-indicator-backtest-strategy/
+427806,基于市场真势波动的云图交叉策略Cloud-Crossover-Strategy-Based-on-Market-Momentum.md,PORTED,,ports/427806_cloud-crossover-strategy-based-on-market-momentum/
+427809,多空指标策略Dual-Thrust-Indicator-Strategy.md,PORTED,,ports/427809_dual-thrust-indicator-strategy/

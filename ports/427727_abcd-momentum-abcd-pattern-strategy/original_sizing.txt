@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #427727 (动量ABCD形态策略Momentum-ABCD-Pattern-Strategy)
+# Source: https://www.fmz.com/strategy/427727  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): pyramiding 2, fixed quantity 100, commission  [lines 176-179]
+  176: // strategy(title=StrategyName, shorttitle=ShortStrategyName, overlay=true, 
+  177: //  pyramiding=2, default_qty_value=100, precision=7, currency=currency.USD,
+  178: //  commission_value=0.2,commission_type=strategy.commission.percent, initial_capital=1000000,
+  179: //  default_qty_type=strategy.fixed)
+
+## USD profit / stop goals  [lines 273-276]
+  273: fx_pips_value = syminfo.type == "forex" ? syminfo.mintick*10 : 1
+  274: 
+  275: input_tp_pips = input(100, "Backtest Profit Goal (in USD)",minval=0)*fx_pips_value
+  276: input_sl_pips = input(20, "Backtest STOP Goal (in USD)",minval=0)*fx_pips_value
+
+## Bracket exits  [lines 293-298]
+  293: strategy.exit("XL","Long", limit=tp,  when=buy_trend, stop=sl)
+  294: 
+  295: 
+  296: strategy.entry("Short", 0,  when=isShort)
+  297: // strategy.close("Short", when=shortClose )
+  298: strategy.exit("XS","Short", when=sell_trend, limit=tp, stop=sl)

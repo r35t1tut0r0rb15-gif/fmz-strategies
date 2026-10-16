@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3241 |
+| PORT_CANDIDATE | 3228 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 549 |
-| PORTED | 453 |
+| HELD_NEEDS_VOLUME | 550 |
+| PORTED | 465 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | REJECTED_ON_READING | 64 |
@@ -581,7 +581,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427616 | `ports/427616_rsi-k-rsi-candlestick-trading-strategy/` | PineScript | candle_pattern | none | length x2, bull x2, bear x2 | 8 |
 | 427666 | `ports/427666_joker-joker-trailing-take-profit-strategy/` | PineScript | ma_cross | trailing_stop | fast x2, slow x2, tp_pct x2 | 8 |
 | 427671 | `ports/427671_multi-indicator-trend-tracking-strategy/` | PineScript | multi_indicator_vote | none | avg_len x2, avg_roc_len x2, stoch_len x2 | 8 |
-| | **453 ports** | | | | | **3418** |
+| 427672 | `ports/427672_macd-ema-macd-oscillator-with-ema-crossover-strategy/` | PineScript | macd_cross | bar_size_pending | len x2, signal_length x2 | 4 |
+| 427673 | `ports/427673_fast-and-slow-kurtosis-trading-strategy/` | PineScript | momentum_oscillator_turn | none | mom_len x2, ema_len x2 | 4 |
+| 427674 | `ports/427674_welles-wilders-trend-balance-point-system/` | PineScript | momentum_breakout | none | mom_per x2, bracket_pct x2 | 4 |
+| 427679 | `ports/427679_dinapoli-detrended-oscillator-strategy/` | PineScript | mean_reversion_band | none | length x4 | 4 |
+| 427680 | `ports/427680_configurable-multi-ma-crossover-voting-system/` | PineScript | multi_indicator_vote | none | profit_atr x2, loss_atr x2, ma_type x2 | 8 |
+| 427683 | `ports/427683_stochastic-rsi-stochastic-rsi-trading-strategy/` | PineScript | momentum_oscillator_turn | none | top x2, low x2, length_rsi x2 | 8 |
+| 427684 | `ports/427684_three-line-breakout-strategy/` | PineScript | price_action_breakout | none |  | 0 |
+| 427727 | `ports/427727_abcd-momentum-abcd-pattern-strategy/` | PineScript | harmonic_pattern | none | tp_atr x2, sl_atr x2 | 4 |
+| 427729 | `ports/427729_dual-moving-average-trend-following-strategy/` | PineScript | ma_pullback | coarse_bar_stop | tp_pct x2, zone x2, longma x2 | 8 |
+| 427733 | `ports/427733_macd-macd-momentum-indicator-backtest-strategy/` | PineScript | macd_cross | none | rsi_lookback x2, loss_pct x2 | 4 |
+| 427806 | `ports/427806_cloud-crossover-strategy-based-on-market-momentum/` | PineScript | ichimoku | none | base_periods x2, lag x2 | 4 |
+| 427809 | `ports/427809_dual-thrust-indicator-strategy/` | PineScript | pivot_levels | none | factor x2, pd x2, ma x2 | 8 |
+| | **465 ports** | | | | | **3478** |
 
 ## Rejected on reading
 

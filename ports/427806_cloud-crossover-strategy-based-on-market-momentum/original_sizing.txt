@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #427806 (基于市场真势波动的云图交叉策略Cloud-Crossover-Strategy-Based-on-Market-Momentum)
+# Source: https://www.fmz.com/strategy/427806  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

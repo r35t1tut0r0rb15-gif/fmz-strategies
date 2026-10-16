@@ -1,0 +1,36 @@
+# Original sizing and money-management code, FMZ #427729 (双均线趋势跟踪策略Dual-Moving-Average-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/427729  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Leverage input  [lines 179-179]
+  179: lev = input.int(3, title="leverage")
+
+## Leveraged position size and the entries  [lines 205-222]
+  205: positionSize = (strategy.equity*lev) / EntryPrice
+  206: 
+  207: //plot(strategy.equity)
+  208: 
+  209: 
+  210: //standard short
+  211: 
+  212: if ema55h < ema200l and close[2] < ema55l and close[1] > ema55l and high[1] < ema55h and close < ema55h and ema55h < emadistshort and strategy.opentrades == 0// and stock > 85 
+  213:     strategy.entry("short", strategy.short, qty=positionSize, comment="short")
+  214:     downtrade := 1
+  215: 
+  216: //reset count    
+  217: if (ta.crossunder(ema55h, ema200l)) and downtrade == 1
+  218:     downtrade := 0
+  219: 
+  220: //standard long    
+  221: if ema55l > ema200h and close[2] > ema55h and close[1] < ema55h and low[1] > ema55l and close > ema55l and ema55l > emadistlong and strategy.opentrades <= 1// and stock < 15 
+  222:     strategy.entry("long", strategy.long, qty=positionSize, comment="long")
+
+## Take-profit exits in ticks  [lines 237-244]
+  237: strategy.exit("long exit", "long", profit = (strategy.position_avg_price*(tp)))//, loss = (strategy.position_avg_price*(sl)))
+  238: strategy.close("long", when = longclose2, comment = "long exit")
+  239: //strategy.close("long", when = (downtrade == 1), comment = "long exit")
+  240: //strategy.exit("long exit", "long2", profit = (strategy.position_avg_price*(tp2)))//, loss = (strategy.position_avg_price*(sl)))
+  241: //strategy.close ("long2", when = longclose2, comment = "long exit")
+  242: //strategy.close("long", when = (downtrade == 1), comment = "long exit")
+  243: 
+  244: strategy.exit("short exit", "short", profit = (strategy.position_avg_price*(tp)))//, loss = (strategy.position_avg_price*(sl)))//, loss = 300)

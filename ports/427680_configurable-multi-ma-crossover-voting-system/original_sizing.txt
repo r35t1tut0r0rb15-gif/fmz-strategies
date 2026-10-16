@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427680 (配置化多均线投票交易策略Configurable-Multi-MA-Crossover-Voting-System)
+# Source: https://www.fmz.com/strategy/427680  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, initial capital, commission  [lines 215-215]
+  215: strategy(title='Configurable Multi MA Crossover Voting System', shorttitle='Configurable Multi MA Crossover Voting System', initial_capital=1000, overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100, commission_type=strategy.commission.percent, commission_value=0.1)

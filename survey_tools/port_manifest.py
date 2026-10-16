@@ -909,6 +909,35 @@ SIZING = {
         ("Trailing take-profit exits", 186, 187),
     ],
     427671: [],
+    # ---- FMZ-C, batch C11 (2026-10-16)
+    427672: [],
+    427673: [],
+    427674: [
+        ("strategy(): 100 % of equity, initial capital", 223, 223),
+        ("Bracket exits with prices passed as tick counts", 242, 245),
+    ],
+    427679: [],
+    427680: [
+        ("strategy(): 100 % of equity, initial capital, commission", 215, 215),
+    ],
+    427683: [],
+    427684: [],
+    427727: [
+        ("Commented-out strategy(): pyramiding 2, fixed quantity 100, commission", 176, 179),
+        ("USD profit / stop goals", 273, 276),
+        ("Bracket exits", 293, 298),
+    ],
+    427729: [
+        ("Leverage input", 179, 179),
+        ("Leveraged position size and the entries", 205, 222),
+        ("Take-profit exits in ticks", 237, 244),
+    ],
+    427733: [
+        ("Commented-out strategy(): 10 % of equity, pyramiding 2, commission", 174, 179),
+        ("Percent stop inputs and the stop exits", 230, 250),
+    ],
+    427806: [],
+    427809: [],
 }
 
 REJECTED_ON_READING = {
@@ -1161,4 +1190,6 @@ DUPLICATE_ON_READING = {
 HELD_ON_READING = {
     # ---- FMZ-C, batch C10 (2026-10-16)
     427574: ("8", "The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C11 (2026-10-16)
+    427734: ("8", "The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."),
 }

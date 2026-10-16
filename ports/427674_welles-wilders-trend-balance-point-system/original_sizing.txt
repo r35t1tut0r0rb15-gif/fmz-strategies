@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #427674 (威尔德趋势均衡点系统Welles-Wilders-Trend-Balance-Point-System)
+# Source: https://www.fmz.com/strategy/427674  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, initial capital  [lines 223-223]
+  223: strategy("Trend Balance Point System by Welles Wilder", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, initial_capital = 10000)
+
+## Bracket exits with prices passed as tick counts  [lines 242-245]
+  242: strategy.exit("Exit Long", "Long", profit = longTP, loss = longStop, when = isLong) 
+  243: 
+  244: strategy.entry(id = "Short", long = false, when = shortEntry)
+  245: strategy.exit("Exit Short", "Short", profit = shortTP, loss = shortStop, when = isShort) 
