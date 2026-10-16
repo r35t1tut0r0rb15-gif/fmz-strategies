@@ -531,3 +531,9 @@ fmz_id,file,final_outcome,criterion,reason
 427733,MACD动量指标回测策略MACD-Momentum-Indicator-Backtest-Strategy.md,PORTED,,ports/427733_macd-macd-momentum-indicator-backtest-strategy/
 427806,基于市场真势波动的云图交叉策略Cloud-Crossover-Strategy-Based-on-Market-Momentum.md,PORTED,,ports/427806_cloud-crossover-strategy-based-on-market-momentum/
 427809,多空指标策略Dual-Thrust-Indicator-Strategy.md,PORTED,,ports/427809_dual-thrust-indicator-strategy/
+427810,BB-Keltner-Squeeze交易策略BB-Keltner-Squeeze-Trading-Strategy.md,PORTED,,ports/427810_bb-keltner-squeeze-bb-keltner-squeeze-trading-strategy/
+427811,威廉姆斯鳄鱼点差交易策略Williams-Alligator-Scalping-Strategy.md,PORTED,,ports/427811_williams-alligator-scalping-strategy/
+427813,多指标反转交易策略Dual-Indicator-Reversal-Trading-Strategy.md,PORTED,,ports/427813_dual-indicator-reversal-trading-strategy/
+427814,趋势追踪交易策略Trend-Following-Strategy.md,PORTED,,ports/427814_trend-following-strategy/
+427816,BBB策略BBB-Strategy.md,PORTED,,ports/427816_bbb-bbb-strategy/
+427821,百分比止盈止损跟踪策略Percentage-Stop-Loss-Take-Profit-Trailing-Strategy.md,PORTED,,ports/427821_percentage-stop-loss-take-profit-trailing-strategy/

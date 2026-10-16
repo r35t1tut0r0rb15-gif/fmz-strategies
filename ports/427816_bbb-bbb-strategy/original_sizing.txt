@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427816 (BBB策略BBB-Strategy)
+# Source: https://www.fmz.com/strategy/427816  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy() line  [lines 186-186]
+  186: // strategy(title = "BB%B Strat", shorttitle = "BB%B Strat", format=format.price, precision=2, default_qty_type=strategy.percent_of_equity, default_qty_value=20)

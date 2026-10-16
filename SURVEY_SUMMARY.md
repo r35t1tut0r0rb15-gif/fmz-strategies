@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3228 |
+| PORT_CANDIDATE | 3222 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 550 |
-| PORTED | 465 |
+| PORTED | 471 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | REJECTED_ON_READING | 64 |
@@ -593,7 +593,13 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427733 | `ports/427733_macd-macd-momentum-indicator-backtest-strategy/` | PineScript | macd_cross | none | rsi_lookback x2, loss_pct x2 | 4 |
 | 427806 | `ports/427806_cloud-crossover-strategy-based-on-market-momentum/` | PineScript | ichimoku | none | base_periods x2, lag x2 | 4 |
 | 427809 | `ports/427809_dual-thrust-indicator-strategy/` | PineScript | pivot_levels | none | factor x2, pd x2, ma x2 | 8 |
-| | **465 ports** | | | | | **3478** |
+| 427810 | `ports/427810_bb-keltner-squeeze-bb-keltner-squeeze-trading-strategy/` | PineScript | volatility_squeeze | none | length x2, bb_mult x2, k_mult x2 | 8 |
+| 427811 | `ports/427811_williams-alligator-scalping-strategy/` | PineScript | alligator | none | jaw x2, ma_type x2 | 4 |
+| 427813 | `ports/427813_dual-indicator-reversal-trading-strategy/` | PineScript | combo_123_reversal | none | length x2, fast_ma x2 | 4 |
+| 427814 | `ports/427814_trend-following-strategy/` | PineScript | channel_trend_pullback | none | len x4 | 4 |
+| 427816 | `ports/427816_bbb-bbb-strategy/` | PineScript | mean_reversion_band | none | length x2, mult x2 | 4 |
+| 427821 | `ports/427821_percentage-stop-loss-take-profit-trailing-strategy/` | PineScript | ma_cross | none | sma_per x2, sl_pct x2, tp_pct x2 | 8 |
+| | **471 ports** | | | | | **3510** |
 
 ## Rejected on reading
 

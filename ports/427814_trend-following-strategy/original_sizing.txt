@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #427814 (趋势追踪交易策略Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/427814  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 0  [lines 221-221]
+  221: strategy(title = "Noro's TrendMaster Strategy v1.0", shorttitle = "TrendMaster str 1.0", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)
+
+## Entries with the long / short switch quantities  [lines 270-273]
+  270:     strategy.entry("Long", strategy.long, needlong == false ? 0 : na, when=(time > timestamp(fromyear, frommonth, fromday, 00, 00) and time < timestamp(toyear, tomonth, today, 23, 59)))
+  271: 
+  272: if dn1
+  273:     strategy.entry("Short", strategy.short, needshort == false ? 0 : na, when=(time > timestamp(fromyear, frommonth, fromday, 00, 00) and time < timestamp(toyear, tomonth, today, 23, 59)))

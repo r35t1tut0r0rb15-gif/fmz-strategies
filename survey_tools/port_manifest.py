@@ -938,6 +938,26 @@ SIZING = {
     ],
     427806: [],
     427809: [],
+    # ---- FMZ-C, batch C12 (2026-10-16)
+    427810: [
+        ("strategy(): initial capital", 200, 200),
+    ],
+    427811: [
+        ("Take-profit / stop / trail inputs (0 = off)", 266, 276),
+        ("Exits with the off inputs", 292, 293),
+    ],
+    427813: [],
+    427814: [
+        ("strategy(): 100 % of equity, pyramiding 0", 221, 221),
+        ("Entries with the long / short switch quantities", 270, 273),
+    ],
+    427816: [
+        ("Commented-out strategy() line", 186, 186),
+    ],
+    427821: [
+        ("Stop / take-profit percent inputs and levels", 185, 191),
+        ("Bracket exit", 195, 195),
+    ],
 }
 
 REJECTED_ON_READING = {

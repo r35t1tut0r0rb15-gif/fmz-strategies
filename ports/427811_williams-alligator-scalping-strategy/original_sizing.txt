@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #427811 (威廉姆斯鳄鱼点差交易策略Williams-Alligator-Scalping-Strategy)
+# Source: https://www.fmz.com/strategy/427811  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit / stop / trail inputs (0 = off)  [lines 266-276]
+  266: inpTakeProfit   = input(defval = 0, title = "Take Profit Points", minval = 0)
+  267: inpStopLoss     = input(defval = 0, title = "Stop Loss Points", minval = 0)
+  268: inpTrailStop    = input(defval = 0, title = "Trailing Stop Loss Points", minval = 0)
+  269: inpTrailOffset  = input(defval = 0, title = "Trailing Stop Loss Offset Points", minval = 0)
+  270: 
+  271: // === RISK MANAGEMENT VALUE PREP ===
+  272: // if an input is less than 1, assuming not wanted so we assign 'na' value to disable it.
+  273: useTakeProfit   = inpTakeProfit  >= 1 ? inpTakeProfit  : na
+  274: useStopLoss     = inpStopLoss    >= 1 ? inpStopLoss    : na
+  275: useTrailStop    = inpTrailStop   >= 1 ? inpTrailStop   : na
+  276: useTrailOffset  = inpTrailOffset >= 1 ? inpTrailOffset : na
+
+## Exits with the off inputs  [lines 292-293]
+  292: strategy.exit("Exit Buy", from_entry = "Buy", profit = useTakeProfit, loss = useStopLoss, trail_points = useTrailStop, trail_offset = useTrailOffset)
+  293: strategy.exit("Exit Sell", from_entry = "Sell", profit = useTakeProfit, loss = useStopLoss, trail_points = useTrailStop, trail_offset = useTrailOffset)
