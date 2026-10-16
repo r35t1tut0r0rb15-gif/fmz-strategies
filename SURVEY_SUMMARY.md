@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3096 |
+| PORT_CANDIDATE | 3083 |
 | REJECTED | 994 |
-| PORTED | 586 |
+| PORTED | 598 |
 | HELD_NEEDS_VOLUME | 550 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 75 |
+| REJECTED_ON_READING | 76 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -714,7 +714,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 428985 | `ports/428985_swing-trading-strategy/` | PineScript | ma_cross | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
 | 428986 | `ports/428986_golden-cross-death-cross-strategy/` | PineScript | ma_cross | none | length1 x2, length2 x2 | 4 |
 | 429085 | `ports/429085_tema-dual-tema-crossover-trading-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
-| | **586 ports** | | | | | **4007** |
+| 429086 | `ports/429086_bitcoin-volatility-band-reversion-strategy/` | PineScript | mean_reversion_band | trailing_stop_pending | ma_len x2, inner x2 | 4 |
+| 429145 | `ports/429145_4-cci-4-hour-cci-reversal-strategy/` | PineScript | momentum_oscillator_turn | coarse_bar_stop | tp_atr x2, sl_atr x2 | 4 |
+| 429147 | `ports/429147_double-moving-average-crossover-trading-strategy/` | PineScript | ma_cross | none | ma_len1 x2, ma_len2 x2 | 4 |
+| 429148 | `ports/429148_dual-smooth-moving-average-trading-strategy/` | PineScript | ssl_channel | trailing_stop_pending | ssl1 x2, ssl2 x2 | 4 |
+| 429149 | `ports/429149_mini-pullback-supertrend-strategy/` | PineScript | supertrend | trailing_stop_pending | multiplier x2, look_for x2 | 4 |
+| 429150 | `ports/429150_dynamic-strategy-analytics-tool/` | PineScript | rsi_oscillator | none | rsi_length x2, upper x2 | 4 |
+| 429159 | `ports/429159_ichimoku-breakout-strategy/` | PineScript | ichimoku | none | ten x2, kij x2 | 4 |
+| 429161 | `ports/429161_supertrend-strategy/` | PineScript | supertrend | none | length x2, mult x2 | 4 |
+| 429333 | `ports/429333_wick-reversal-pattern-strategy/` | PineScript | candle_pattern | none | wick_mult x2, body_mult x2 | 4 |
+| 429382 | `ports/429382_ichimoku-sma-ichimoku-crossover-strategy/` | PineScript | ichimoku | none | sma_long x2, sma_short x2 | 4 |
+| 429383 | `ports/429383_dual-moving-average-reversal-trading-strategy/` | PineScript | ma_trend | none | length x2 | 2 |
+| 429385 | `ports/429385_macd-macd-momentum-strategy/` | PineScript | macd_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| | **598 ports** | | | | | **4053** |
 
 ## Rejected on reading
 
@@ -795,6 +807,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 428624 | 基于MACD和RSI的短线突破策略MACD-RSI-Short-Term-Breakout-Strategy.md | 1 | The entries use request.security(syminfo.tickerid, '1', hist) on the 1-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
 | 428718 | 月末反转DCA策略Monthly-Reversal-DCA-Strategy.md | 1 | DCA ladder: pyramiding 100 (commented-out strategy()), a new long about every 240 bars after an EMA-CD crossover, and the only exit is strategy.close_all() on barstate.islast, the last bar of the data; the ladder held to the data's end is the strategy (as #426302). |
 | 428894 | 双通道算法自动交易策略Double-Channel-Kitchen-Algorithm-Trading-Strategy-Focusing-on-Wealth-Growth.md | 1 | The short supertrend uses request.security(syminfo.tickerid, '60', ...) on the 4-hour header chart: a 1-hour resolution below the chart's, whose value per bar is undefined (as #427518). |
+| 429163 | 海洋理论网格交易策略Ocean-Theory-Grid-Trading-Strategy.md | 1 | Grid ladder: up to 7 long lots (pyramiding 14, close_entries_rule ANY), one bought below each of 8 grid lines from a 250-bar high / low band and closed one line higher; the position ladder is the strategy (as #426302). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

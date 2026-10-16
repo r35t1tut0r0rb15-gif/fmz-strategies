@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #429086 (比特币波动带反转策略Bitcoin-Volatility-Band-Reversion-Strategy)
+# Source: https://www.fmz.com/strategy/429086  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margins  [lines 173-173]
+  173: strategy("BTC Volatility Band Strategy", shorttitle="Vol Band Strategy", overlay=false, margin_long=100, margin_short=100)
+
+## Risk-based bracket on signal bars (pending, not emitted)  [lines 231-249]
+  231: Risk = (high[7] - low[7])/ 7
+  232: Profit = Risk*1.15
+  233: Loss = Risk*0.65
+  234: 
+  235: AlertMSG = "New stategy position" + tostring(strategy.position_size)
+  236: 
+  237: if (time_condition) 
+  238:     strategy.entry("Long", strategy.long, when = LongFilter, alert_message=AlertMSG)
+  239:     if (LongFilter)
+  240:         LongStop = strategy.position_avg_price - Loss
+  241:         LongProfit = strategy.position_avg_price + Profit 
+  242:         strategy.exit("TP/SL", "Long", stop=LongStop, limit=LongProfit)
+  243: 
+  244: if (time_condition)
+  245:     strategy.entry("Short", strategy.short, when = ShortFilter, alert_message=AlertMSG)
+  246:     if (ShortFilter)
+  247:         ShortStop = strategy.position_avg_price + Loss
+  248:         ShortProfit = strategy.position_avg_price - Profit 
+  249:         strategy.exit("TP/SL", "Short", stop=ShortStop, limit=ShortProfit)

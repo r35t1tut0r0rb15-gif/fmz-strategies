@@ -1,0 +1,54 @@
+# Original sizing and money-management code, FMZ #429147 (双均线交叉交易策略Double-Moving-Average-Crossover-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/429147  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): capital, commission per contract  [lines 246-246]
+  246: // strategy( title="Arch1tect's New Toy (Strategy Tester Version)", shorttitle="Arch1tect's New Toy (Strategy Tester Version)", overlay=true, initial_capital = 100000, commission_value=0.07, commission_type=strategy.commission.cash_per_contract)
+
+## Strategy-tester inputs: sessions, loss limits, contract size, fixed TP / SL  [lines 290-301]
+  290: stratTesterOn    = input( title="Strategy Tester [ON/OFF]", group="Strategy Tester", type=input.bool, defval=true)
+  291: entryTime        = input( "2200-1200", title = "Daily trading time session (in Exchange GMT)", group="Strategy Tester", type = input.session )
+  292: startTime        = input( "2200-2201", title = "Start Time", group="Strategy Tester", type = input.session )
+  293: maxDailyLoss     = input( 2500, title = "Max daily loss", group="Strategy Tester", type = input.integer )
+  294: maxTotalDrawdown = input( 12000, title = "Max daily loss", group="Strategy Tester", type = input.integer )
+  295: contractSize     = input( 1, title = "Contract size", group="Strategy Tester", type = input.integer )
+  296: 
+  297: tradeOnStartSess = input( title="First trade on session start [ON/OFF]", group="Strategy Tester", type=input.bool, defval=true)
+  298: 
+  299: fixedTPSL        = input( title="Fixed TP/SL PIPS [ON/OFF]", group="Strategy Tester", type=input.bool, defval=false)
+  300: fixedTPValue     = input ( 10.00, minval=0.01, type=input.float, title="TP", group="Strategy Tester" )
+  301: fixedSLValue     = input ( 10.00, minval=0.01, type=input.float, title="SL", group="Strategy Tester" )
+
+## Orders and the off-by-default TP / SL  [lines 321-352]
+  321: if ( stratTesterOn and window() )
+  322:     if ( buySignal and isTime( entryTime ) )
+  323:         if ( not fixedTPSL )
+  324:             strategy.close_all()
+  325:             strategy.entry( "Buy", strategy.long, contractSize )
+  326:         
+  327:         if ( fixedTPSL and strategy.position_size == 0 )
+  328:             strategy.entry( "Buy", strategy.long, contractSize )
+  329:             strategy.exit( "TP/SL", "Buy", stop=close[0]-fixedSLValue, limit=close[0]+fixedTPValue )
+  330:         
+  331:     if ( sellSignal and isTime( entryTime ))
+  332:         if ( not fixedTPSL )
+  333:             strategy.close_all()
+  334:             strategy.entry( "Sell", strategy.short, contractSize )
+  335:         
+  336:         if ( fixedTPSL and strategy.position_size == 0  )
+  337:             strategy.entry( "Sell", strategy.short, contractSize )
+  338:             strategy.exit( "TP/SL", "Sell", stop=close[0]+fixedSLValue, limit=close[0]-fixedTPValue )
+  339:     
+  340:     if ( isTime( startTime ) and tradeOnStartSess and strategy.position_size == 0 )
+  341:         if ( maValue1 > maValue2 )
+  342:             strategy.entry( "Buy", strategy.long, contractSize )
+  343:             
+  344:             if ( fixedTPSL )
+  345:                 strategy.exit( "TP/SL", "Buy", stop=close[0]-fixedSLValue, limit=close[0]+fixedTPValue )
+  346:         else
+  347:             strategy.entry( "Sell", strategy.short, contractSize ) 
+  348:             
+  349:             if ( fixedTPSL )
+  350:                 strategy.exit( "TP/SL", "Sell", stop=close[0]+fixedSLValue, limit=close[0]-fixedTPValue )
+  351:     
+  352:     strategy.close_all( when=not isTime( entryTime ) )

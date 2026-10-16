@@ -1,0 +1,30 @@
+# Original sizing and money-management code, FMZ #429148 (双重平滑移动平均线交易策略Dual-Smooth-Moving-Average-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/429148  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): fixed quantity, capital  [lines 162-162]
+  162: // strategy(title="NNFX Strategy 3 Indicator Template | jh", overlay = true, pyramiding=0, initial_capital=20000, currency=currency.USD, calc_on_order_fills=0,default_qty_type=strategy.fixed, default_qty_value=10000)
+
+## ATR multipliers  [lines 175-176]
+  175: slMultiplier = input(1.5, "SL")
+  176: tpMultiplier = input(1, "TP")
+
+## Per-bar bracket and orders (bracket pending, not emitted)  [lines 336-353]
+  336: if (year>2009)
+  337: 
+  338:     //Long entries with standard 1.5 ATR for SL, 1 ATR for TP
+  339:     long_sl = price - (atr * slMultiplier)
+  340:     long_tp = price + (atr * tpMultiplier)
+  341: 
+  342:     //Short entries with standard 1.5 ATR for SL, 1 ATR for TP
+  343:     short_sl = price + (atr * slMultiplier)
+  344:     short_tp = price - (atr * tpMultiplier)
+  345: 
+  346:     strategy.close("L1", when = exitLong)
+  347:     strategy.close("S1", when = exitShort)
+  348: 
+  349:     strategy.exit("L Limit Exit", "L1", stop = long_sl, limit = long_tp)
+  350:     strategy.exit("S Limit Exit", "S1", stop = short_sl, limit = short_tp)
+  351: 
+  352:     strategy.order("L1", strategy.long, when = enterLong)
+  353:     strategy.order("S1", strategy.short, when = enterShort)

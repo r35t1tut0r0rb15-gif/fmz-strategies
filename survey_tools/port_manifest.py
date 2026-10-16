@@ -1275,6 +1275,46 @@ SIZING = {
     429085: [
         ("strategy(): commission, capital, 100 % of equity", 210, 210),
     ],
+    # ---- FMZ-C, batch C23 (2026-10-16)
+    429086: [
+        ("strategy(): margins", 173, 173),
+        ("Risk-based bracket on signal bars (pending, not emitted)", 231, 249),
+    ],
+    429145: [
+        ("Entries with their tick exits", 176, 182),
+    ],
+    429147: [
+        ("Commented-out strategy(): capital, commission per contract", 246, 246),
+        ("Strategy-tester inputs: sessions, loss limits, contract size, fixed TP / SL", 290, 301),
+        ("Orders and the off-by-default TP / SL", 321, 352),
+    ],
+    429148: [
+        ("Commented-out strategy(): fixed quantity, capital", 162, 162),
+        ("ATR multipliers", 175, 176),
+        ("Per-bar bracket and orders (bracket pending, not emitted)", 336, 353),
+    ],
+    429149: [
+        ("strategy(): capital, 100 % of equity", 155, 155),
+        ("ATR bracket and orders", 261, 266),
+    ],
+    429150: [
+        ("Commented-out strategy(): 25 % of equity, commission", 214, 214),
+    ],
+    429159: [],
+    429161: [
+        ("Commented-out strategy(): 100 % of equity, capital", 212, 212),
+    ],
+    429333: [],
+    429382: [
+        ("Commented-out strategy(): 100 % of equity, intrabar settings", 182, 182),
+    ],
+    429383: [
+        ("Take-profit / stop-loss inputs (off by default)", 157, 159),
+        ("TP / SL closes (off by default)", 184, 188),
+    ],
+    429385: [
+        ("Per-bar tick bracket (pending, not emitted)", 127, 138),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -1558,6 +1598,10 @@ REJECTED_ON_READING = {
     428894: ("1", "The short supertrend uses request.security(syminfo.tickerid, '60', ...) on the "
               "4-hour header chart: a 1-hour resolution below the chart's, whose value per bar is "
               "undefined (as #427518)."),
+    # ---- FMZ-C, batch C23 (2026-10-16)
+    429163: ("1", "Grid ladder: up to 7 long lots (pyramiding 14, close_entries_rule ANY), one bought "
+              "below each of 8 grid lines from a 250-bar high / low band and closed one line "
+              "higher; the position ladder is the strategy (as #426302)."),
 }
 
 DUPLICATE_ON_READING = {
