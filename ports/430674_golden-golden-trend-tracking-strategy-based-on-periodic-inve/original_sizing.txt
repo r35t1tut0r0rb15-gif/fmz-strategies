@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #430674 (定投Golden趋势追踪策略Golden-Trend-Tracking-Strategy-Based-on-Periodic-Investment)
+# Source: https://www.fmz.com/strategy/430674  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): cash order, pyramiding 10000  [lines 184-184]
+  184: // strategy("Buy and Hold entry finder Strategy",pyramiding=10000, overlay=true,initial_capital=0,default_qty_type=strategy.cash,default_qty_value=1000,currency = currency.EUR,commission_type=strategy.commission.cash_per_order,commission_value=0)
+
+## Maximum EMA distance input (price units)  [lines 188-188]
+  188: maxEmaDistance = input(title="Maximum EMA Distance", type=input.float, step=0.01, defval=50000)

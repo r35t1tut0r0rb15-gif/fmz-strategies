@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #430761 (趋势跟踪均值回归通道策略CCI-Mean-Reversion-Channel-Strategy)
+# Source: https://www.fmz.com/strategy/430761  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10,000 cash per entry  [lines 192-192]
+  192: strategy(title="CCI Strategy", overlay=true, initial_capital = 10000, default_qty_value = 10000, default_qty_type = strategy.cash)
+
+## Stop / target options (off)  [lines 244-252]
+  244: enablesl = input(false, title='Enable Stop Loss')
+  245: enabletp = input(false, title='Enable Take Profit')
+  246: stopTick = input(5.0, title='Stop Loss %', type=input.float, step=0.1) / 100
+  247: takeTick = input(10.0, title='Take Profit %', type=input.float, step=0.1) / 100
+  248: 
+  249: longStop = strategy.position_avg_price * (1 - stopTick)
+  250: shortStop = strategy.position_avg_price * (1 + stopTick)
+  251: shortTake = strategy.position_avg_price * (1 - takeTick)
+  252: longTake = strategy.position_avg_price * (1 + takeTick)

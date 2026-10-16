@@ -1,0 +1,35 @@
+# Original sizing and money-management code, FMZ #430678 (波尔带通道动量波动策略Bollinger-Band-Momentum-Burst-Strategy)
+# Source: https://www.fmz.com/strategy/430678  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy()  [lines 171-171]
+  171: // strategy(title="[EURUSD60] BB Expansion Strategy", shorttitle="[EURUSD60] BBEXP",overlay=true, max_bars_back=5000, max_labels_count=500)
+
+## Risk-management inputs  [lines 189-196]
+  189: //Lisk Management
+  190: var riskManagementRule1 = "ATR"
+  191: var riskManagementRule2 = "Bracket"
+  192: riskManagementRule = input(riskManagementRule1, "Detect Risk Management Based On", options=[riskManagementRule1, riskManagementRule2, "No detection"], group="Trade")
+  193: atrMulti = input(3.0, title="ATR Multiple", type=input.float, minval = 1.0, group="ATR")
+  194: riskRewardRatio = input(1.5, title="Risk Reward Ratio for ATR", type=input.float, minval = 0.01, group="ATR")
+  195: stopLossPoint = input(100, title="Stop Loss Point for Braket(tick)", type=input.float, minval = 1.0, group="Bracket")
+  196: takeProfitPoint = input(200, title="Take Profit Point for Braket(tick)", type=input.float, minval = 1.0, group="Bracket")
+
+## Stop / target lines  [lines 257-273]
+  257: float stopLossLineForLong = na
+  258: float stopLossLineForShort = na
+  259: float takeProfitLineForLong = na
+  260: float takeProfitLineForShort = na
+  261: atr_ = atr(14) * atrMulti
+  262: 
+  263: if riskManagementRule == riskManagementRule1
+  264:     stopLossLineForLong := strategy.position_size > 0 ? stopLossLineForLong[1] ? stopLossLineForLong[1] : round(close[index] - atr_,3) : na
+  265:     stopLossLineForShort := strategy.position_size < 0 ? stopLossLineForShort[1] ? stopLossLineForShort[1] : round(close[index] + atr_,3) : na
+  266:     takeProfitLineForLong := strategy.position_size > 0 ? takeProfitLineForLong[1] ? takeProfitLineForLong[1] : close[index] + atr_*riskRewardRatio : na
+  267:     takeProfitLineForShort := strategy.position_size < 0 ? takeProfitLineForShort[1] ? takeProfitLineForShort[1] :close[index] - atr_*riskRewardRatio : na
+  268: 
+  269: if riskManagementRule == riskManagementRule2
+  270:     stopLossLineForLong := strategy.position_size > 0 ? stopLossLineForLong[1] ? stopLossLineForLong[1] : close[index] - stopLossPoint * syminfo.mintick : na
+  271:     stopLossLineForShort := strategy.position_size < 0 ? stopLossLineForShort[1] ? stopLossLineForShort[1] : close[index] + stopLossPoint * syminfo.mintick : na
+  272:     takeProfitLineForLong := strategy.position_size > 0 ? takeProfitLineForLong[1] ? takeProfitLineForLong[1] : close[index] +takeProfitPoint * syminfo.mintick : na
+  273:     takeProfitLineForShort := strategy.position_size < 0 ? takeProfitLineForShort[1] ? takeProfitLineForShort[1] :close[index] - takeProfitPoint * syminfo.mintick : na

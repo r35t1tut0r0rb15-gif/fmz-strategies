@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2917 |
+| PORT_CANDIDATE | 2903 |
 | REJECTED | 994 |
-| PORTED | 735 |
+| PORTED | 748 |
 | HELD_NEEDS_VOLUME | 556 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 99 |
+| REJECTED_ON_READING | 100 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -863,7 +863,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430664 | `ports/430664_bollinger-bands-reversal-oscillation-trend-strategy/` | PineScript | bollinger_breakout | none | bb_length x2, mult x2 | 4 |
 | 430667 | `ports/430667_trend-trading-strategy-based-on-ema-crossover/` | PineScript | ma_cross | none | short_ema x2, long_ema x2 | 4 |
 | 430669 | `ports/430669_pivot-detector-oscillator-trend-trading-strategy/` | PineScript | rsi_oscillator | none | length_ma x2, length_rsi x2 | 4 |
-| | **735 ports** | | | | | **4590** |
+| 430671 | `ports/430671_polygon-moving-average-strategy/` | PineScript | ma_trend | trailing_stop | trail_pct x2, activate x2 | 4 |
+| 430672 | `ports/430672_ichimoku-kinko-hyo-cross-strategy/` | PineScript | ichimoku | none | ts_bars x2, ks_bars x2 | 4 |
+| 430674 | `ports/430674_golden-golden-trend-tracking-strategy-based-on-periodic-inve/` | PineScript | macd_momentum | none | ema_length x2, macd_fast x2 | 4 |
+| 430678 | `ports/430678_bollinger-band-momentum-burst-strategy/` | PineScript | volatility_squeeze | none | atr_multi x2, rr x2 | 4 |
+| 430740 | `ports/430740_smi-ergodic-oscillator-momentum-trading-strategy/` | PineScript | momentum_oscillator_turn | none | slow_period x2, band x2 | 4 |
+| 430743 | `ports/430743_bollinger-bands-trend-reversal-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | length x2, riskreward x2 | 4 |
+| 430744 | `ports/430744_atr-dual-atr-channel-trend-following-strategy/` | PineScript | multi_indicator_confluence | none | sl_atr x2, tp_atr x2 | 4 |
+| 430748 | `ports/430748_trend-following-strategy-with-dynamic-stops/` | PineScript | volatility_stop_cross | none | key x2, atr_period x2 | 4 |
+| 430749 | `ports/430749_dual-moving-average-bollinger-bands-trend-following-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | periods x2, stop_loss x2 | 4 |
+| 430753 | `ports/430753_momentum-capture-strategy-based-on-moving-average/` | PineScript | heikin_ashi_trend | none | sloma x2, length x2 | 4 |
+| 430757 | `ports/430757_schaff-schaff-trend-cycle-momentum-following-strategy/` | PineScript | momentum_oscillator_turn | none | fast_length x2, cycle_length x2 | 4 |
+| 430760 | `ports/430760_rsi-rsi-mean-reversion-trading-strategy/` | PineScript | rsi_oscillator | none | ema_len x2, tp_pct x2 | 4 |
+| 430761 | `ports/430761_cci-mean-reversion-channel-strategy/` | PineScript | momentum_oscillator_turn | none | length x3 | 3 |
+| | **748 ports** | | | | | **4641** |
 
 ## Rejected on reading
 
@@ -968,6 +981,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430587 | RSI多空平衡交易策略RSI-Long-Short-Balance-Trading-Strategy.md | 1 | The signals use request.security(syminfo.tickerid, '5' / '15' / '1', ...) on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #427518); the position is also a doubling add ladder. |
 | 430596 | RSI-多空自动交易策略RSI-Long-Short-Automated-Trading-Strategy.md | 1 | Positions are built with strategy.order('Rsi long' / 'Rsi short', qty 1), which adds or removes one unit per signal instead of entering or reversing, each with a 1600-tick bracket: the net position is a running sum of orders (as #426364). |
 | 430661 | 埃勒斯引领指标交易策略Ehlers-Leading-Indicator-Trading-Strategy.md | 1 | Reads the future: Pine v2 request.security(syminfo.tickerid, 'D', hl2) without [1] behaves as lookahead_on, so on every intraday bar the day's hl2 is the final value of the current day, not known until the day ends (SURVEY_README request.security rule, as #427066). |
+| 430742 | 基于华尔街捕鼠光环指标的加密货币看涨看跌策略Correlation-based-Bullish-Bearish-Crypto-Trading-Strategy-Based-on-Wall-Street-CCI-Index.md | 3 | The signal is a WMA 200 of request.security('BTC_USDT:swap', timeframe.period, hlc3): a crypto-exchange perpetual contract used as the signal source for the chart symbol, which the project's single-symbol bars do not carry (as #426832). Stored in flagged/ (rule C7). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -1699,6 +1699,47 @@ SIZING = {
         ("strategy(): 100 % of equity, commission", 200, 200),
     ],
     430669: [],
+    # ---- FMZ-C, batch C38 (2026-10-16)
+    430671: [
+        ("strategy(): 100 % of equity, pyramiding 1, commission", 121, 121),
+        ("Trailing exits", 169, 175),
+    ],
+    430672: [],
+    430674: [
+        ("Commented-out strategy(): cash order, pyramiding 10000", 184, 184),
+        ("Maximum EMA distance input (price units)", 188, 188),
+    ],
+    430678: [
+        ("Commented-out strategy()", 171, 171),
+        ("Risk-management inputs", 189, 196),
+        ("Stop / target lines", 257, 273),
+    ],
+    430740: [],
+    430743: [
+        ("Commented-out strategy(): cash order, commission", 157, 157),
+        ("Stops, entries and the band-target exits", 181, 191),
+    ],
+    430744: [
+        ("Commented-out strategy(): order size, capital", 141, 141),
+        ("Price-unit SL / TP and the exits", 274, 280),
+    ],
+    430748: [],
+    430749: [
+        ("strategy(): capital, commission, slippage", 224, 224),
+        ("Spread cap and stop / trailing inputs", 233, 240),
+        ("Augmented entry size, stop and exits", 339, 359),
+    ],
+    430753: [
+        ("Commented-out strategy(): order size, capital", 196, 196),
+    ],
+    430757: [],
+    430760: [
+        ("Take-profit / stop inputs and the exits", 184, 214),
+    ],
+    430761: [
+        ("strategy(): 10,000 cash per entry", 192, 192),
+        ("Stop / target options (off)", 244, 252),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2073,6 +2114,11 @@ REJECTED_ON_READING = {
               "behaves as lookahead_on, so on every intraday bar the day's hl2 is the final value "
               "of the current day, not known until the day ends (SURVEY_README request.security "
               "rule, as #427066)."),
+    # ---- FMZ-C, batch C38 (2026-10-16)
+    430742: ("3", "The signal is a WMA 200 of request.security('BTC_USDT:swap', timeframe.period, "
+              "hlc3): a crypto-exchange perpetual contract used as the signal source for the "
+              "chart symbol, which the project's single-symbol bars do not carry (as #426832). "
+              "Stored in flagged/ (rule C7)."),
 }
 
 DUPLICATE_ON_READING = {

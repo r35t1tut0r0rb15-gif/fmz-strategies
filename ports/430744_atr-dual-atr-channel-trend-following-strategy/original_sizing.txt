@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #430744 (双向ATR波浪交易策略Dual-ATR-Channel-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/430744  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): order size, capital  [lines 141-141]
+  141: // strategy(title="NoNonsense Forex", overlay=true, default_qty_value=100000, initial_capital=100)
+
+## Price-unit SL / TP and the exits  [lines 274-280]
+  274: SL=input(0.5, step=0.1)/syminfo.mintick
+  275: TP=input(0.005, step=0.001)/syminfo.mintick
+  276: 
+  277: strategy.entry("nnL", strategy.long, when = GoLong)
+  278: strategy.entry("nnS", strategy.short, when = GoShort)
+  279: strategy.exit("XL-nn", from_entry = "nnL", loss = SL, profit=TP)
+  280: strategy.exit("XS-nn", from_entry = "nnS", loss = SL, profit=TP)

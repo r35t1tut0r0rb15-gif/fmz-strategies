@@ -1,0 +1,36 @@
+# Original sizing and money-management code, FMZ #430760 (基于RSI指标的短线反转交易策略RSI-Mean-Reversion-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/430760  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit / stop inputs and the exits  [lines 184-214]
+  184: longProfitPerc = input.float(title="Long Take Profit", group='Take Profit Percentage',
+  185:      minval=0.0, step=0.1, defval=1) / 100
+  186: shortProfitPerc = input.float(title="Short Take Profit",
+  187:      minval=0.0, step=0.1, defval=1) / 100
+  188: 
+  189: // Figure out take profit price 1
+  190: longExitPrice  = strategy.position_avg_price * (1 + longProfitPerc)
+  191: shortExitPrice = strategy.position_avg_price * (1 - shortProfitPerc)
+  192: 
+  193: // Make inputs that set the stop %  1
+  194: longStopPerc = input.float(title="Long Stop Loss", group='Stop Percentage',
+  195:      minval=0.0, step=0.1, defval=1.5) / 100
+  196: shortStopPerc = input.float(title="Short Stop Loss",
+  197:      minval=0.0, step=0.1, defval=1.5) / 100
+  198: 
+  199: // Figure Out Stop Price
+  200: longStopPrice  = strategy.position_avg_price * (1 - longStopPerc)
+  201: shortStopPrice = strategy.position_avg_price * (1 + shortStopPerc)
+  202: 
+  203: // Submit entry orders
+  204: if buySignal and long_entry
+  205:     strategy.entry(id="Long", direction=strategy.long, alert_message="Enter Long")
+  206:     
+  207: if sellSignal and short_entry
+  208:     strategy.entry(id="Short", direction=strategy.short, alert_message="Enter Short")
+  209:     
+  210: //Submit exit orders based on take profit price
+  211: if (strategy.position_size > 0)
+  212:     strategy.exit(id="Long TP/SL", limit=longExitPrice, stop=longStopPrice, alert_message="Long Exit 1 at {{close}}")
+  213: if (strategy.position_size < 0)
+  214:     strategy.exit(id="Short TP/SL", limit=shortExitPrice, stop=shortStopPrice, alert_message="Short Exit 1 at {{close}}")

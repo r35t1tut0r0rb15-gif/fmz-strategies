@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #430753 (滑动平均线捕捉策略Momentum-Capture-Strategy-Based-on-Moving-Average)
+# Source: https://www.fmz.com/strategy/430753  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): order size, capital  [lines 196-196]
+  196: // strategy('Heikin Ashi EMA v5 no repaint ', shorttitle='Heikin Ashi EMA v5 no repaint', overlay=true, max_bars_back=500, default_qty_value=1000, initial_capital=100000, currency=currency.EUR)

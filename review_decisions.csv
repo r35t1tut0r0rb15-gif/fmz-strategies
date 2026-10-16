@@ -98,6 +98,7 @@ fmz_id,file,final_outcome,criterion,reason
 430587,RSI多空平衡交易策略RSI-Long-Short-Balance-Trading-Strategy.md,REJECTED_ON_READING,1,"The signals use request.security(syminfo.tickerid, '5' / '15' / '1', ...) on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #427518); the position is also a doubling add ladder."
 430596,RSI-多空自动交易策略RSI-Long-Short-Automated-Trading-Strategy.md,REJECTED_ON_READING,1,"Positions are built with strategy.order('Rsi long' / 'Rsi short', qty 1), which adds or removes one unit per signal instead of entering or reversing, each with a 1600-tick bracket: the net position is a running sum of orders (as #426364)."
 430661,埃勒斯引领指标交易策略Ehlers-Leading-Indicator-Trading-Strategy.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 request.security(syminfo.tickerid, 'D', hl2) without [1] behaves as lookahead_on, so on every intraday bar the day's hl2 is the final value of the current day, not known until the day ends (SURVEY_README request.security rule, as #427066)."
+430742,基于华尔街捕鼠光环指标的加密货币看涨看跌策略Correlation-based-Bullish-Bearish-Crypto-Trading-Strategy-Based-on-Wall-Street-CCI-Index.md,REJECTED_ON_READING,3,"The signal is a WMA 200 of request.security('BTC_USDT:swap', timeframe.period, hlc3): a crypto-exchange perpetual contract used as the signal source for the chart symbol, which the project's single-symbol bars do not carry (as #426832). Stored in flagged/ (rule C7)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -842,3 +843,16 @@ fmz_id,file,final_outcome,criterion,reason
 430664,反转型布林带通道震荡趋势策略Bollinger-Bands-Reversal-Oscillation-Trend-Strategy.md,PORTED,,ports/430664_bollinger-bands-reversal-oscillation-trend-strategy/
 430667,金叉死叉交易策略Trend-Trading-Strategy-Based-on-EMA-Crossover.md,PORTED,,ports/430667_trend-trading-strategy-based-on-ema-crossover/
 430669,基于枢轴指标的趋势操纵策略Pivot-Detector-Oscillator-Trend-Trading-Strategy.md,PORTED,,ports/430669_pivot-detector-oscillator-trend-trading-strategy/
+430671,移动均线多边形策略Polygon-Moving-Average-Strategy.md,PORTED,,ports/430671_polygon-moving-average-strategy/
+430672,一目均衡异同交叉交易策略Ichimoku-Kinko-Hyo-Cross-Strategy.md,PORTED,,ports/430672_ichimoku-kinko-hyo-cross-strategy/
+430674,定投Golden趋势追踪策略Golden-Trend-Tracking-Strategy-Based-on-Periodic-Investment.md,PORTED,,ports/430674_golden-golden-trend-tracking-strategy-based-on-periodic-inve/
+430678,波尔带通道动量波动策略Bollinger-Band-Momentum-Burst-Strategy.md,PORTED,,ports/430678_bollinger-band-momentum-burst-strategy/
+430740,超越指标动量系统交易策略SMI-Ergodic-Oscillator-Momentum-Trading-Strategy.md,PORTED,,ports/430740_smi-ergodic-oscillator-momentum-trading-strategy/
+430743,基于布林带的趋势反转策略Bollinger-Bands-Trend-Reversal-Strategy.md,PORTED,,ports/430743_bollinger-bands-trend-reversal-strategy/
+430744,双向ATR波浪交易策略Dual-ATR-Channel-Trend-Following-Strategy.md,PORTED,,ports/430744_atr-dual-atr-channel-trend-following-strategy/
+430748,金叉死叉动态止损策略Trend-Following-Strategy-with-Dynamic-Stops.md,PORTED,,ports/430748_trend-following-strategy-with-dynamic-stops/
+430749,双重均线布林带趋势跟随策略Dual-Moving-Average-Bollinger-Bands-Trend-Following-Strategy.md,PORTED,,ports/430749_dual-moving-average-bollinger-bands-trend-following-strategy/
+430753,滑动平均线捕捉策略Momentum-Capture-Strategy-Based-on-Moving-Average.md,PORTED,,ports/430753_momentum-capture-strategy-based-on-moving-average/
+430757,动量跟随的Schaff趋势循环策略Schaff-Trend-Cycle-Momentum-Following-Strategy.md,PORTED,,ports/430757_schaff-schaff-trend-cycle-momentum-following-strategy/
+430760,基于RSI指标的短线反转交易策略RSI-Mean-Reversion-Trading-Strategy.md,PORTED,,ports/430760_rsi-rsi-mean-reversion-trading-strategy/
+430761,趋势跟踪均值回归通道策略CCI-Mean-Reversion-Channel-Strategy.md,PORTED,,ports/430761_cci-mean-reversion-channel-strategy/
