@@ -1,0 +1,44 @@
+# Original sizing and money-management code, FMZ #428756 (blackcat-L1-MartinGale-Scalping-Strategy)
+# Source: https://www.fmz.com/strategy/428756  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 5  [lines 55-55]
+   55:  strategy('[blackcat] L1 MartinGale Scalping Strategy', overlay=true, pyramiding = 5)
+
+## Take-profit / stop multipliers (inert as written)  [lines 59-60]
+   59:  takeProfit = input(1.03, title='Take Profit')
+   60:  stopLoss = input(0.95, title='Stop Loss')
+
+## Long exit or add, with the level variables  [lines 98-112]
+   98: if strategy.position_size > 0
+   99:     if (close > takeProfitPrice or close < stopLossPrice) and crossunderState
+  100:         strategy.close('Buy')
+  101:         entryPrice := 0.0
+  102:         stopPrice := 0.0
+  103:         takeProfitPrice := 0.0
+  104:         stopLossPrice := 0.0
+  105:         stopLossPrice
+  106:     else
+  107:         strategy.entry('Buy', strategy.long)
+  108:         entryPrice := close
+  109:         stopPrice := close - stopLoss *  sma8[1]
+  110:         takeProfitPrice := close + takeProfit *  sma8[1]
+  111:         stopLossPrice := stopPrice
+  112:         stopLossPrice
+
+## Short exit or add, with the level variables  [lines 114-128]
+  114: if strategy.position_size < 0
+  115:     if (close > takeProfitPrice or close < stopLossPrice) and crossoverState
+  116:         strategy.close('Sell')
+  117:         entryPrice := 0.0
+  118:         stopPrice := 0.0
+  119:         takeProfitPrice := 0.0
+  120:         stopLossPrice := 0.0
+  121:         stopLossPrice
+  122:     else
+  123:         strategy.entry('Sell', strategy.short)
+  124:         entryPrice := close
+  125:         stopPrice := close + stopLoss *  sma8[1]
+  126:         takeProfitPrice := close - takeProfit *  sma8[1]
+  127:         stopLossPrice := stopPrice
+  128:         stopLossPrice

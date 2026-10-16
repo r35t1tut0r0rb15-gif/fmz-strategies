@@ -1146,6 +1146,34 @@ SIZING = {
         ("Tick target / stop and quantity percent", 166, 168),
         ("Tick exits", 172, 173),
     ],
+    # ---- FMZ-C, batch C19 (2026-10-16)
+    428693: [],
+    428696: [],
+    428698: [
+        ("Commented-out strategy(): initial capital, quantity", 195, 195),
+        ("Quantity input", 197, 197),
+    ],
+    428699: [
+        ("Commented-out strategy(): 100 % of equity, pyramiding, commission, capital, intrabar settings", 179, 179),
+    ],
+    428700: [
+        ("strategy(): initial capital, cash quantity, slippage, commission, pyramiding", 186, 186),
+    ],
+    428703: [
+        ("Capital, position, commission, pyramiding and intrabar constants", 131, 138),
+        ("Commented-out strategy()", 141, 142),
+    ],
+    428704: [],
+    428705: [],
+    428706: [],
+    428708: [],
+    428719: [],
+    428756: [
+        ("strategy(): pyramiding 5", 55, 55),
+        ("Take-profit / stop multipliers (inert as written)", 59, 60),
+        ("Long exit or add, with the level variables", 98, 112),
+        ("Short exit or add, with the level variables", 114, 128),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -1420,6 +1448,11 @@ REJECTED_ON_READING = {
     428624: ("1", "The entries use request.security(syminfo.tickerid, '1', hist) on the 1-hour header "
               "chart: a 1-minute resolution below the chart's, whose value per bar is undefined "
               "(as #427518)."),
+    # ---- FMZ-C, batch C19 (2026-10-16)
+    428718: ("1", "DCA ladder: pyramiding 100 (commented-out strategy()), a new long about every 240 "
+              "bars after an EMA-CD crossover, and the only exit is strategy.close_all() on "
+              "barstate.islast, the last bar of the data; the ladder held to the data's end is "
+              "the strategy (as #426302)."),
 }
 
 DUPLICATE_ON_READING = {

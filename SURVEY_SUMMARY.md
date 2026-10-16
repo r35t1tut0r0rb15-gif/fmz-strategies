@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3144 |
+| PORT_CANDIDATE | 3131 |
 | REJECTED | 994 |
+| PORTED | 552 |
 | HELD_NEEDS_VOLUME | 550 |
-| PORTED | 540 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 73 |
+| REJECTED_ON_READING | 74 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -668,7 +668,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 428684 | `ports/428684_ichimoku-cloud-trading-strategy/` | PineScript | ichimoku | none | conversion x2, base x2 | 4 |
 | 428691 | `ports/428691_consecutive-candlestick-reversal-strategy/` | PineScript | candle_pattern | none | body_atr x2, rvi_period x2 | 4 |
 | 428692 | `ports/428692_dual-moving-average-breakout-strategy/` | PineScript | ma_cross | none | tp_atr x2, sl_atr x2 | 4 |
-| | **540 ports** | | | | | **3834** |
+| 428693 | `ports/428693_macd-rsi-multiple-macd-and-rsi-strategy/` | PineScript | macd_momentum | none | overbought x2, oversold x2 | 4 |
+| 428696 | `ports/428696_cci-momentum-dual-cci-filtered-momentum-explosion-trading-st/` | PineScript | multi_indicator_confluence | none | cci_fast x2, rsi_level x2 | 4 |
+| 428698 | `ports/428698_rsi-rsi-reversal-breakout-strategy/` | PineScript | rsi_oscillator | none | rsi_min x3, ema_length x2 | 6 |
+| 428699 | `ports/428699_parabolic-sar-rsi-reversal-strategy/` | PineScript | parabolic_sar | none | sar_start x2, sar_max x2 | 4 |
+| 428700 | `ports/428700_dual-moving-average-trend-following-strategy/` | PineScript | donchian_breakout | none | p1 x2, p2 x2 | 4 |
+| 428703 | `ports/428703_supertrend-dual-direction-strategy/` | PineScript | supertrend | none | periods x2, multiplier x2 | 4 |
+| 428704 | `ports/428704_adaptive-trailing-stop-strategy/` | PineScript | volatility_stop_cross | none | key x2, atr_period x2 | 4 |
+| 428705 | `ports/428705_ott-twin-optimized-trend-tracker-strategy/` | PineScript | ma_trend | none | length x2, percent x2 | 4 |
+| 428706 | `ports/428706_developing-a-2-20-exponential-moving-average-strategy/` | PineScript | ma_trend | none | length x2 | 2 |
+| 428708 | `ports/428708_double-tops-smart-breakout-strategy/` | PineScript | combo_123_reversal | none | length x2, length_ma x2 | 4 |
+| 428719 | `ports/428719_momentum-trend-continuation-factor-strategy/` | PineScript | momentum_oscillator_turn | none | length x3 | 3 |
+| 428756 | `ports/428756_blackcat-l1-martingale-scalping-strategy/` | PineScript | ma_cross | bar_size_pending | fast x2, slow x2 | 4 |
+| | **552 ports** | | | | | **3881** |
 
 ## Rejected on reading
 
@@ -747,6 +759,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 428611 | 基于真实强弱指标的比特币短线交易策略Bitcoin-Short-Term-Trading-Strategy-Based-on-True-Strength-Index.md | 1 | The TSI runs on request.security(syminfo.tickerid, '15', close) on the daily header chart: a 15-minute resolution below the chart's, whose value per daily bar is undefined (as #427518). |
 | 428618 | 延迟-RSI-交易策略Delayed-RSI-Trading-Strategy.md | 1 | The stop and target come from valuewhen(bought, ohlc4 - 3 atr(14), 0) with bought = position size changed, i.e. the FILL bar's own ohlc4 and ATR (as #427127); swing-stop option likewise. |
 | 428624 | 基于MACD和RSI的短线突破策略MACD-RSI-Short-Term-Breakout-Strategy.md | 1 | The entries use request.security(syminfo.tickerid, '1', hist) on the 1-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
+| 428718 | 月末反转DCA策略Monthly-Reversal-DCA-Strategy.md | 1 | DCA ladder: pyramiding 100 (commented-out strategy()), a new long about every 240 bars after an EMA-CD crossover, and the only exit is strategy.close_all() on barstate.islast, the last bar of the data; the ladder held to the data's end is the strategy (as #426302). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
