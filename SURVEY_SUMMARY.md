@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3267 |
+| PORT_CANDIDATE | 3254 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
-| PORTED | 429 |
+| PORTED | 441 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 63 |
+| REJECTED_ON_READING | 64 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -557,7 +557,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427471 | `ports/427471_ppo-ppo-bull-bear-divergence-trading-strategy/` | PineScript | macd_divergence | none | lookback x2, fast x2, long_term_div x2 | 8 |
 | 427479 | `ports/427479_absolute-price-oscillator-trend-following-strategy/` | PineScript | macd_momentum | none | zone_atr x3, long_ema x2 | 6 |
 | 427482 | `ports/427482_logarithmic-moving-average-convergence-divergence-strategy/` | PineScript | macd_momentum | none | fast x2, slow x2, sma_source x2 | 8 |
-| | **429 ports** | | | | | **3251** |
+| 427483 | `ports/427483_macd-rsi-macd-rsi-combo-trend-strategy/` | PineScript | macd_momentum | none | over_bought x2, over_sold x2, rsi_length x2 | 8 |
+| 427485 | `ports/427485_price-performance-index-strategy/` | PineScript | slope_momentum | none | period x3 | 3 |
+| 427487 | `ports/427487_dual-moving-average-crossover-strategy/` | PineScript | ma_trend | none | fast x2, slow x2, min_gain_pct x2 | 8 |
+| 427506 | `ports/427506_trend-moving-average-trading-strategy/` | PineScript | ma_trend | none | slow_len x3, need_ex x2 | 6 |
+| 427507 | `ports/427507_volatility-range-breakout-trading-strategy/` | PineScript | volatility_channel_breakout | none | avg_length x2, vol_length x2, exit_type x2 | 8 |
+| 427508 | `ports/427508_scalping-moving-average-scalping-strategy/` | PineScript | ma_trend | none | signal x3, fast x2 | 6 |
+| 427510 | `ports/427510_multi-timeframe-moving-average-trading-strategy/` | PineScript | ma_trend | none | length x3, ma_type x2 | 6 |
+| 427512 | `ports/427512_rsi-rsi-long-term-trading-strategy/` | PineScript | candle_pattern | none | up_sum_atr x2, down_sum_atr x2, atr_length x2 | 8 |
+| 427513 | `ports/427513_best-trailing-stop-strategy/` | PineScript | ma_trend | none | trail_pct x2, trigger_pct x2, slow x2 | 8 |
+| 427516 | `ports/427516_bollinger-bands-and-fibonacci-trading-strategy/` | PineScript | bollinger_breakout | none | length x3, mult x2 | 6 |
+| 427526 | `ports/427526_momentum-moving-average-crossover-strategy/` | PineScript | ma_trend | none | len_fast x2, len_slow x2, exit_tuner x2 | 8 |
+| 427528 | `ports/427528_ema-short-term-down-trend-strategy-based-on-ema-and-adaptive/` | PineScript | ma_trend | none | fib_len x3, retrace x2 | 6 |
+| | **441 ports** | | | | | **3332** |
 
 ## Rejected on reading
 
@@ -626,6 +638,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427366 | 基于EMA和RSI的趋势交易策略EMA-and-RSI-Trend-Trading-Strategy.md | 1 | The stop, target and trailing distances are set on the bar the position appears (strategy.position_size changes, i.e. the FILL bar), from that bar's ta.lowest(14) / ta.highest(14) and ATR, and the trailing points are scaled by 100000 (5-digit FX points). A stop built from the fill bar's own data cannot be expressed (skill section 7; as #427127). |
 | 427379 | 基于255-EMA-与-MACD-的反转交易策略255-EMA-and-MACD-Reversal-Trading-Strategy.md | 1 | The stop and target come from valuewhen(position_size changed, lowest(20) / highest(20), 0), i.e. the 20-bar swing measured on the FILL bar itself (its own low / high included), and are active from the next bar: a stop from the fill bar's data cannot be expressed (as #427127). |
 | 427477 | 基于关键价格点的追踪策略Round-Number-Tracking-Strategy.md | 2 | The signal is the distance to a round-number price level built in ticks (roundLevel = close[1] / mintick rounded to 500 ticks, distance in 100 ticks, 10-bar lows / highs against that level): hard-coded price levels and tick distances specific to the instrument and its tick size. Re-expressing them would remove the round-number idea itself. The exit is a trail_points-only strategy.exit (no offset). |
+| 427518 | 智能资金指数策略回测Smart-Money-Index-SMI-Strategy-Backtest.md | 1 | The index adds security(syminfo.tickerid, '60', close[1] / open[1]) on the daily header chart: a 60-minute resolution below the chart's, whose value per daily bar is undefined (as #426261 / #426478). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

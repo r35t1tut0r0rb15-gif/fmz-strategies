@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427528 (基于EMA和斐波那契回撤的下跌趋势策略Short-term-Down-Trend-Strategy-Based-on-EMA-and-Adaptive-Fibonacci-Retracement)
+# Source: https://www.fmz.com/strategy/427528  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, initial capital, commission  [lines 156-156]
+  156: strategy("CC-Trend strategy 2", overlay=true, initial_capital = 10000, commission_type = strategy.commission.percent, commission_value = 0.01, default_qty_type =  strategy.percent_of_equity, default_qty_value = 100 )

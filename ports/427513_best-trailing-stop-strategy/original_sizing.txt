@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #427513 (最佳滑点追踪止损策略Best-Trailing-Stop-Strategy)
+# Source: https://www.fmz.com/strategy/427513  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Capital, position, commission, pyramiding, tick settings  [lines 185-199]
+  185: InitCapital = 100000
+  186: InitPosition = 100
+  187: InitCommission = 0.075
+  188: InitPyramidMax = 1
+  189: CalcOnorderFills = true
+  190: CalcOnTick = true
+  191: DefaultQtyType = strategy.fixed
+  192: DefaultQtyValue = strategy.fixed
+  193: Precision = 2
+  194: Overlay=true
+  195: 
+  196: 
+  197: // strategy(title=SystemName, shorttitle=SystemName, overlay=Overlay, 
+  198: //  pyramiding=InitPyramidMax, initial_capital=InitCapital, default_qty_type=DefaultQtyType, default_qty_value=InitPosition, commission_type=strategy.commission.percent, 
+  199: //  commission_value=InitCommission, calc_on_order_fills=CalcOnorderFills, calc_on_every_tick=CalcOnTick, precision=2)

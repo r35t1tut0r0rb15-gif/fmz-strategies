@@ -835,6 +835,40 @@ SIZING = {
     427471: [],
     427479: [],
     427482: [],
+    # ---- FMZ-C, batch C9 (2026-10-16)
+    427483: [],
+    427485: [],
+    427487: [
+        ("Commented-out strategy(): pyramiding 50, cash qty 20, commission 0.25 %", 203, 203),
+        ("Entry with the averaging protection and the gain-protected close_all", 217, 218),
+    ],
+    427506: [
+        ("strategy(): 100 % of equity, pyramiding 0", 196, 196),
+        ("Percent stop inputs (off by default)", 201, 202),
+        ("Orders, stops and the window close_all", 264, 276),
+    ],
+    427507: [
+        ("strategy(): pyramiding 20, initial capital", 212, 213),
+    ],
+    427508: [
+        ("Stop-loss / take-profit inputs and levels (never used by an order)", 224, 228),
+    ],
+    427510: [],
+    427512: [
+        ("strategy(): 10 % of equity", 192, 192),
+        ("Max intraday loss input and the commented-out risk rule", 202, 204),
+    ],
+    427513: [
+        ("Capital, position, commission, pyramiding, tick settings", 185, 199),
+    ],
+    427516: [],
+    427526: [
+        ("strategy(): pyramiding 0, initial capital, commission", 197, 197),
+        ("Entries with qty 4 / 1 and the closes", 314, 320),
+    ],
+    427528: [
+        ("strategy(): 100 % of equity, initial capital, commission", 156, 156),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -1071,6 +1105,10 @@ REJECTED_ON_READING = {
               "distances specific to the instrument and its tick size. Re-expressing them would "
               "remove the round-number idea itself. The exit is a trail_points-only strategy.exit "
               "(no offset)."),
+    # ---- FMZ-C, batch C9 (2026-10-16)
+    427518: ("1", "The index adds security(syminfo.tickerid, '60', close[1] / open[1]) on the daily "
+              "header chart: a 60-minute resolution below the chart's, whose value per daily bar "
+              "is undefined (as #426261 / #426478)."),
 }
 
 DUPLICATE_ON_READING = {

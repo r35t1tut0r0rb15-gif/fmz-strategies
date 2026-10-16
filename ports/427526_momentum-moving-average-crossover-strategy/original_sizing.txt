@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #427526 (动量均线交叉策略Momentum-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/427526  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 0, initial capital, commission  [lines 197-197]
+  197: strategy("Tale Indicators Strategy", overlay=true, precision=8, max_bars_back=200, pyramiding=0, initial_capital=20000, commission_type="percent", commission_value=0.1)
+
+## Entries with qty 4 / 1 and the closes  [lines 314-320]
+  314: if(run_strategy)
+  315:     strategy.entry("LO", strategy.long, when=(window() and enter_long), qty=4)
+  316:     strategy.entry("LO", strategy.long, when=(window() and bull_reenter and not(long_position_open)), qty=1)
+  317:     strategy.close("LO", when=(window() and bull_exit and long_position_open))
+  318:     strategy.entry("SO", strategy.short, when=(window() and enter_short), qty=4)
+  319:     strategy.entry("SO", strategy.short, when=(window() and bear_reenter and not(short_position_open)), qty=1)
+  320:     strategy.close("SO", when=(window() and bear_exit and short_position_open))

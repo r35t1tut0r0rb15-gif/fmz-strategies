@@ -62,6 +62,7 @@ fmz_id,file,final_outcome,criterion,reason
 427366,基于EMA和RSI的趋势交易策略EMA-and-RSI-Trend-Trading-Strategy.md,REJECTED_ON_READING,1,"The stop, target and trailing distances are set on the bar the position appears (strategy.position_size changes, i.e. the FILL bar), from that bar's ta.lowest(14) / ta.highest(14) and ATR, and the trailing points are scaled by 100000 (5-digit FX points). A stop built from the fill bar's own data cannot be expressed (skill section 7; as #427127)."
 427379,基于255-EMA-与-MACD-的反转交易策略255-EMA-and-MACD-Reversal-Trading-Strategy.md,REJECTED_ON_READING,1,"The stop and target come from valuewhen(position_size changed, lowest(20) / highest(20), 0), i.e. the 20-bar swing measured on the FILL bar itself (its own low / high included), and are active from the next bar: a stop from the fill bar's data cannot be expressed (as #427127)."
 427477,基于关键价格点的追踪策略Round-Number-Tracking-Strategy.md,REJECTED_ON_READING,2,"The signal is the distance to a round-number price level built in ticks (roundLevel = close[1] / mintick rounded to 500 ticks, distance in 100 ticks, 10-bar lows / highs against that level): hard-coded price levels and tick distances specific to the instrument and its tick size. Re-expressing them would remove the round-number idea itself. The exit is a trail_points-only strategy.exit (no offset)."
+427518,智能资金指数策略回测Smart-Money-Index-SMI-Strategy-Backtest.md,REJECTED_ON_READING,1,"The index adds security(syminfo.tickerid, '60', close[1] / open[1]) on the daily header chart: a 60-minute resolution below the chart's, whose value per daily bar is undefined (as #426261 / #426478)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -492,3 +493,15 @@ fmz_id,file,final_outcome,criterion,reason
 427471,PPO多空分歧交易策略PPO-Bull-Bear-Divergence-Trading-Strategy.md,PORTED,,ports/427471_ppo-ppo-bull-bear-divergence-trading-strategy/
 427479,绝对价格振荡器趋势跟踪策略Absolute-Price-Oscillator-Trend-Following-Strategy.md,PORTED,,ports/427479_absolute-price-oscillator-trend-following-strategy/
 427482,对数移动平均聚合散策略Logarithmic-Moving-Average-Convergence-Divergence-Strategy.md,PORTED,,ports/427482_logarithmic-moving-average-convergence-divergence-strategy/
+427483,MACD-RSI-组合趋势策略MACD-RSI-Combo-Trend-Strategy.md,PORTED,,ports/427483_macd-rsi-macd-rsi-combo-trend-strategy/
+427485,价格表现指数策略Price-Performance-Index-Strategy.md,PORTED,,ports/427485_price-performance-index-strategy/
+427487,双均线反转策略Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/427487_dual-moving-average-crossover-strategy/
+427506,趋势均线交易策略Trend-Moving-Average-Trading-Strategy.md,PORTED,,ports/427506_trend-moving-average-trading-strategy/
+427507,历史波动率区间突破交易策略Volatility-Range-Breakout-Trading-Strategy.md,PORTED,,ports/427507_volatility-range-breakout-trading-strategy/
+427508,移动均线短线-scalping-策略Moving-Average-Scalping-Strategy.md,PORTED,,ports/427508_scalping-moving-average-scalping-strategy/
+427510,多时间框架移动平均交易策略Multi-Timeframe-Moving-Average-Trading-Strategy.md,PORTED,,ports/427510_multi-timeframe-moving-average-trading-strategy/
+427512,RSI长线交易策略RSI-Long-Term-Trading-Strategy.md,PORTED,,ports/427512_rsi-rsi-long-term-trading-strategy/
+427513,最佳滑点追踪止损策略Best-Trailing-Stop-Strategy.md,PORTED,,ports/427513_best-trailing-stop-strategy/
+427516,布林带和斐波那契交易策略Bollinger-Bands-and-Fibonacci-Trading-Strategy.md,PORTED,,ports/427516_bollinger-bands-and-fibonacci-trading-strategy/
+427526,动量均线交叉策略Momentum-Moving-Average-Crossover-Strategy.md,PORTED,,ports/427526_momentum-moving-average-crossover-strategy/
+427528,基于EMA和斐波那契回撤的下跌趋势策略Short-term-Down-Trend-Strategy-Based-on-EMA-and-Adaptive-Fibonacci-Retracement.md,PORTED,,ports/427528_ema-short-term-down-trend-strategy-based-on-ema-and-adaptive/

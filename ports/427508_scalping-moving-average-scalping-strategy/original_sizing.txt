@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #427508 (移动均线短线-scalping-策略Moving-Average-Scalping-Strategy)
+# Source: https://www.fmz.com/strategy/427508  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop-loss / take-profit inputs and levels (never used by an order)  [lines 224-228]
+  224: Stop_loss= ((input (2))/100)
+  225: Take_profit= ((input (8))/100)
+  226: 
+  227: longStopPrice  = strategy.position_avg_price * (1 - Stop_loss)
+  228: longTakeProfit = strategy.position_avg_price * (1 + Take_profit)

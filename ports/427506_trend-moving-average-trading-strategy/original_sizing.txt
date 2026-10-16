@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #427506 (趋势均线交易策略Trend-Moving-Average-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427506  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 0  [lines 196-196]
+  196: strategy(title = "Noro's Trend MAs Strategy v2.3", shorttitle = "Trend MAs str 2.3", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value=100.0, pyramiding=0)
+
+## Percent stop inputs (off by default)  [lines 201-202]
+  201: needstops = input(false, "stops")
+  202: stoppercent = input(5, defval = 5, minval = 1, maxval = 50, title = "Stop, %")
+
+## Orders, stops and the window close_all  [lines 264-276]
+  264: stoplong = up1 == 1 and needstops == true ? close - (close / 100 * stoppercent) : stoplong[1]
+  265: stopshort = dn1 == 1 and needstops == true ? close + (close / 100 * stoppercent) : stopshort[1]
+  266: 
+  267: if up1 or up2 or up3
+  268:     strategy.entry("Long", strategy.long, needlong == false ? 0 : na, when=(time > timestamp(fromyear, frommonth, fromday, 00, 00) and time < timestamp(toyear, tomonth, today, 23, 59)))
+  269:     strategy.exit("Stop Long", "Long", stop = stoplong)
+  270: 
+  271: if dn1
+  272:     strategy.entry("Short", strategy.short, needshort == false ? 0 : na, when=(time > timestamp(fromyear, frommonth, fromday, 00, 00) and time < timestamp(toyear, tomonth, today, 23, 59)))
+  273:     strategy.exit("Stop Short", "Short", stop = stopshort)
+  274:     
+  275: if time > timestamp(toyear, tomonth, today, 23, 59)
+  276:     strategy.close_all()
