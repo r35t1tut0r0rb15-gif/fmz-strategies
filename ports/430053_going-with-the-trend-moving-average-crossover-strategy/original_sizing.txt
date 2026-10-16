@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #430053 (顺势而为的移动平均线交叉策略Going-with-the-Trend-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/430053  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Entries with the ATR bracket exits  [lines 186-196]
+  186: if (longCondition)
+  187:     stopLoss = low - atr * 2
+  188:     takeProfit = high + atr * 2
+  189:     strategy.entry("long", strategy.long, when = rsi > 50)
+  190:     strategy.exit("exit", "long", stop=stopLoss, limit=takeProfit)
+  191: 
+  192: if (shortCondition)
+  193:     stopLoss = high + atr * 2
+  194:     takeProfit = low - atr * 2
+  195:     strategy.entry("short", strategy.short, when = rsi < 50)
+  196:     strategy.exit("exit", "short", stop=stopLoss, limit=takeProfit)

@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #430067 (双移动平均线跨市交易策略Dual-Moving-Average-Cross-Market-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/430067  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## TP / SL inputs and the tick exits  [lines 184-196]
+  184: tplong=input(0.08, title="TP Long", step=0.01)
+  185: sllong=input(1.0, title="SL Long", step=0.01)
+  186: 
+  187: tpshort=input(0.03, title="TP Short", step=0.01)
+  188: slshort=input(0.06, title="SL Short", step=0.01)
+  189: 
+  190: 
+  191: if(time_cond)
+  192:     strategy.entry("long",1,when=long)
+  193:     strategy.exit("closelong", "long" , profit = close * tplong / syminfo.mintick, loss = close * sllong / syminfo.mintick, alert_message = "closelong")
+  194:     
+  195:     strategy.entry("short",0,when=short)
+  196:     strategy.exit("closeshort", "short" , profit = close * tpshort / syminfo.mintick, loss = close * slshort / syminfo.mintick, alert_message = "closeshort")

@@ -87,6 +87,7 @@ fmz_id,file,final_outcome,criterion,reason
 430030,均线交叉与MACD组合策略Moving-Average-Crossover-and-MACD-Combination-Strategy.md,REJECTED_ON_READING,1,"Entries only from flat (strategy.opentrades < 1) with every exit commented out: after the first signal the position is held for the rest of the data, so there is no repeatable entry/exit rule to test (as #368717)."
 430034,双仓突破策略Dual-position-Breakthrough-Strategy.md,REJECTED_ON_READING,1,"Alert-message demo: the position flips long / short on the parity of bar_index (long on even bars, short on odd), which depends only on where the data starts; no market rule (as #62163)."
 430040,追踪移动均线交易策略Moving-Average-Tracking-Trading-Strategy.md,REJECTED_ON_READING,1,"The Heikin Ashi candles are request.security(heikinashi, '30', ...) and the EMA source request.security(heikinashi, '180', ...) on the 3-hour header chart: a 30-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
+430113,均线回归交易策略Linear-Regression-Moving-Average-Trading-Strategy.md,REJECTED_ON_READING,1,"The trend filter is request.security(syminfo.tickerid, '240', sma(close, 200)) on the 1-day header chart: a 4-hour resolution below the chart's, whose value per bar is undefined (as #427518)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -758,3 +759,16 @@ fmz_id,file,final_outcome,criterion,reason
 430023,动量指标移动平均线交叉趋势跟踪策略Momentum-Moving-Average-Crossover-Trend-Following-Strategy.md,PORTED,,ports/430023_momentum-moving-average-crossover-trend-following-strategy/
 430036,趋势反转波动率联合策略Trend-Reversal-Volatility-Combination-Strategy.md,PORTED,,ports/430036_trend-reversal-volatility-combination-strategy/
 430039,均线穿越RSI金叉死叉交易策略SMA-Crossing-RSI-Golden-Cross-Death-Cross-Trading-Strategy.md,PORTED,,ports/430039_rsi-sma-crossing-rsi-golden-cross-death-cross-trading-strate/
+430044,基于RSI极值与SMA均线过滤的趋势跟踪策略A-Trend-Following-Strategy.md,PORTED,,ports/430044_rsi-sma-a-trend-following-strategy/
+430053,顺势而为的移动平均线交叉策略Going-with-the-Trend-Moving-Average-Crossover-Strategy.md,PORTED,,ports/430053_going-with-the-trend-moving-average-crossover-strategy/
+430060,Stochastic动量突破策略Stochastic-Momentum-Breakout-Strategy.md,PORTED,,ports/430060_stochastic-stochastic-momentum-breakout-strategy/
+430065,多空力量策略回测Bull-and-Bear-Power-Backtest-Strategy.md,PORTED,,ports/430065_bull-and-bear-power-backtest-strategy/
+430066,平滑均线拟合策略Bollinger-Band-Fitting-Strategy.md,PORTED,,ports/430066_bollinger-band-fitting-strategy/
+430067,双移动平均线跨市交易策略Dual-Moving-Average-Cross-Market-Trading-Strategy.md,PORTED,,ports/430067_dual-moving-average-cross-market-trading-strategy/
+430069,双边波段过滤策略Dual-Bandpass-Filter-Strategy.md,PORTED,,ports/430069_dual-bandpass-filter-strategy/
+430117,动量套利策略回测分析Momentum-Arbitrage-Strategy-Backtest-Analysis.md,PORTED,,ports/430117_momentum-arbitrage-strategy-backtest-analysis/
+430120,RSI跨周期交易策略RSI-Cross-Cycle-Trading-Strategy.md,PORTED,,ports/430120_rsi-rsi-cross-cycle-trading-strategy/
+430124,光环突破策略Glory-Hole-Breakout-Strategy.md,PORTED,,ports/430124_glory-hole-breakout-strategy/
+430125,趋势跟踪型双均线策略Trend-Following-Dual-Moving-Average-Strategy.md,PORTED,,ports/430125_trend-following-dual-moving-average-strategy/
+430126,RSI均线交叉策略RSI-EMA-Crossover-Strategy.md,PORTED,,ports/430126_rsi-rsi-ema-crossover-strategy/
+430142,一目均衡趋势跟踪策略Ichimoku-Balance-Line-trend-following-Strategy.md,PORTED,,ports/430142_ichimoku-balance-line-trend-following-strategy/

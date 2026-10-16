@@ -1518,6 +1518,38 @@ SIZING = {
     430023: [],
     430036: [],
     430039: [],
+    # ---- FMZ-C, batch C32 (2026-10-16)
+    430044: [
+        ("strategy(): 36,000 cash per order, pyramiding 1, commission", 175, 175),
+        ("Stop input and the 5 % stop exit", 204, 209),
+    ],
+    430053: [
+        ("Entries with the ATR bracket exits", 186, 196),
+    ],
+    430060: [
+        ("Commented-out strategy(): 1,000 cash per order, commission", 243, 246),
+    ],
+    430065: [],
+    430066: [
+        ("strategy(): 100 % of equity, pyramiding 10", 182, 182),
+        ("Capital % input", 185, 185),
+        ("Lot fixed at the first entry", 226, 226),
+    ],
+    430067: [
+        ("TP / SL inputs and the tick exits", 184, 196),
+    ],
+    430069: [],
+    430117: [],
+    430120: [
+        ("Long entry size and close levels", 206, 211),
+        ("Short entry size and close levels", 224, 229),
+    ],
+    430124: [],
+    430125: [],
+    430126: [],
+    430142: [
+        ("initial_capital and the entry quantity", 202, 203),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -1850,6 +1882,10 @@ REJECTED_ON_READING = {
               "source request.security(heikinashi, '180', ...) on the 3-hour header chart: a "
               "30-minute resolution below the chart's, whose value per bar is undefined (as "
               "#427518)."),
+    # ---- FMZ-C, batch C32 (2026-10-16)
+    430113: ("1", "The trend filter is request.security(syminfo.tickerid, '240', sma(close, 200)) on "
+              "the 1-day header chart: a 4-hour resolution below the chart's, whose value per bar "
+              "is undefined (as #427518)."),
 }
 
 DUPLICATE_ON_READING = {

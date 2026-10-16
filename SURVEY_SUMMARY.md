@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3001 |
+| PORT_CANDIDATE | 2987 |
 | REJECTED | 994 |
-| PORTED | 666 |
+| PORTED | 679 |
 | HELD_NEEDS_VOLUME | 552 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 88 |
+| REJECTED_ON_READING | 89 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -794,7 +794,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430023 | `ports/430023_momentum-moving-average-crossover-trend-following-strategy/` | PineScript | hull_ma | none | ma1 x2, adx_threshold x2 | 4 |
 | 430036 | `ports/430036_trend-reversal-volatility-combination-strategy/` | PineScript | combo_123_reversal | none | length_sv x2, top_band x2 | 4 |
 | 430039 | `ports/430039_rsi-sma-crossing-rsi-golden-cross-death-cross-trading-strate/` | PineScript | rsi_oscillator | none | rsi_len x2, sma_len x2 | 4 |
-| | **666 ports** | | | | | **4323** |
+| 430044 | `ports/430044_rsi-sma-a-trend-following-strategy/` | PineScript | rsi_oscillator | coarse_bar_stop | rsi_len x2, sl_pct x2 | 4 |
+| 430053 | `ports/430053_going-with-the-trend-moving-average-crossover-strategy/` | PineScript | ma_cross | coarse_bar_stop | fast x2, atr_mult x2 | 4 |
+| 430060 | `ports/430060_stochastic-stochastic-momentum-breakout-strategy/` | PineScript | stochastic_oscillator | none | osc_len x2, band x2 | 4 |
+| 430065 | `ports/430065_bull-and-bear-power-backtest-strategy/` | PineScript | momentum_oscillator_turn | none | length x3 | 3 |
+| 430066 | `ports/430066_bollinger-band-fitting-strategy/` | PineScript | bollinger_reversion | none | length x2, rsi_limit x2 | 4 |
+| 430067 | `ports/430067_dual-moving-average-cross-market-trading-strategy/` | PineScript | hull_ma | trailing_stop_pending | length x2, tp_long x2 | 4 |
+| 430069 | `ports/430069_dual-bandpass-filter-strategy/` | PineScript | momentum_oscillator_turn | none | length x2, zone_atr x2 | 4 |
+| 430117 | `ports/430117_momentum-arbitrage-strategy-backtest-analysis/` | PineScript | momentum_oscillator_turn | none | length x3, band x2 | 6 |
+| 430120 | `ports/430120_rsi-rsi-cross-cycle-trading-strategy/` | PineScript | rsi_oscillator | none | sl_pct x2, tp_pct x2 | 4 |
+| 430124 | `ports/430124_glory-hole-breakout-strategy/` | PineScript | directional_movement | none | length x2, adx_level x2 | 4 |
+| 430125 | `ports/430125_trend-following-dual-moving-average-strategy/` | PineScript | directional_movement | none | length_adx x2, signal1 x2 | 4 |
+| 430126 | `ports/430126_rsi-rsi-ema-crossover-strategy/` | PineScript | ma_trend | none | rsi_len x2, m_line x2 | 4 |
+| 430142 | `ports/430142_ichimoku-balance-line-trend-following-strategy/` | PineScript | ichimoku | none | conversion x2, base x2 | 4 |
+| | **679 ports** | | | | | **4376** |
 
 ## Rejected on reading
 
@@ -888,6 +901,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430030 | 均线交叉与MACD组合策略Moving-Average-Crossover-and-MACD-Combination-Strategy.md | 1 | Entries only from flat (strategy.opentrades < 1) with every exit commented out: after the first signal the position is held for the rest of the data, so there is no repeatable entry/exit rule to test (as #368717). |
 | 430034 | 双仓突破策略Dual-position-Breakthrough-Strategy.md | 1 | Alert-message demo: the position flips long / short on the parity of bar_index (long on even bars, short on odd), which depends only on where the data starts; no market rule (as #62163). |
 | 430040 | 追踪移动均线交易策略Moving-Average-Tracking-Trading-Strategy.md | 1 | The Heikin Ashi candles are request.security(heikinashi, '30', ...) and the EMA source request.security(heikinashi, '180', ...) on the 3-hour header chart: a 30-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
+| 430113 | 均线回归交易策略Linear-Regression-Moving-Average-Trading-Strategy.md | 1 | The trend filter is request.security(syminfo.tickerid, '240', sma(close, 200)) on the 1-day header chart: a 4-hour resolution below the chart's, whose value per bar is undefined (as #427518). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

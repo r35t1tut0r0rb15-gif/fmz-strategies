@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #430120 (RSI跨周期交易策略RSI-Cross-Cycle-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/430120  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Long entry size and close levels  [lines 206-211]
+  206: if (not comprado and Es_compra and dateFilter  )
+  207:     // realizar long
+  208:     cantidad = strategy.equity/hlc3
+  209:     strategy.entry ("compra", strategy.long , cantidad)
+  210:     SL := close*(1-(StopLoss/100))
+  211:     TP := close*(1+(TakeProfit/100))
+
+## Short entry size and close levels  [lines 224-229]
+  224: if (not vendido and Es_venta and dateFilter  )
+  225:     // realizar short
+  226:     cantidad = strategy.equity/hlc3
+  227:     strategy.entry ("venta", strategy.short , cantidad)
+  228:     SL := close*(1+(StopLoss/100))
+  229:     TP := close*(1-(TakeProfit/100))
