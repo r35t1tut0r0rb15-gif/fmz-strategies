@@ -1608,6 +1608,43 @@ SIZING = {
     430322: [
         ("Commented-out strategy(): order size, capital, pyramiding 1", 189, 189),
     ],
+    # ---- FMZ-C, batch C35 (2026-10-16)
+    430364: [
+        ("strategy(): 100 % of equity", 163, 163),
+        ("Stop / target levels and the exit", 176, 190),
+    ],
+    430366: [
+        ("Buy quantity input (unused)", 177, 177),
+        ("Equity-based order size and entry", 232, 235),
+    ],
+    430368: [
+        ("Tick target / stop inputs and the exits", 154, 168),
+    ],
+    430372: [],
+    430374: [
+        ("strategy(): 100 % of equity", 178, 178),
+        ("Stop option (off) and its level", 191, 206),
+    ],
+    430377: [
+        ("strategy(): 100 % of equity", 185, 185),
+        ("Stop / trailing options (off)", 201, 206),
+        ("Stop exits (off)", 246, 248),
+    ],
+    430380: [
+        ("Commented-out strategy(): 20 % of equity, commission", 210, 210),
+    ],
+    430383: [
+        ("strategy(): 30 % of equity, commission", 276, 276),
+        ("Stop / target levels and the close", 311, 317),
+    ],
+    430543: [],
+    430544: [
+        ("strategy(): 100 % of equity, commission", 184, 184),
+        ("Loss tolerances and stop levels", 211, 215),
+        ("Stop exits", 238, 239),
+    ],
+    430545: [],
+    430549: [],
 }
 
 REJECTED_ON_READING = {
@@ -1959,6 +1996,11 @@ REJECTED_ON_READING = {
     430248: ("1", "Mode 8 is a ladder of strategy.order buys of 1 / 2 / 4 / 8 / 16 units at "
               "successive 5 % bands under the SMA 28 and matching unit sells above it: the "
               "position size path is the strategy (as #426302)."),
+    # ---- FMZ-C, batch C35 (2026-10-16)
+    430384: ("1", "On the 1-day header chart the entries need hour > 2 and hour < 13 of the bar's "
+              "time, which a daily bar never has (its hour is the session start), so the script "
+              "as written never trades; the author's M30 / M15 notes are not the declared chart "
+              "(no repeatable rule at the source's bar size)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -1979,4 +2021,6 @@ HELD_ON_READING = {
     429562: ("8", "The trend filter compares vwma(close, 30) with vwma(close, 200): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C34 (2026-10-16)
     430278: ("8", "The trend line is vwma(k + k_two, 30): a volume-weighted average (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C35 (2026-10-16)
+    430385: ("8", "The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."),
 }

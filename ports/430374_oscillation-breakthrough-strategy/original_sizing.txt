@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #430374 (基于拉里康诺斯的经典策略Oscillation-Breakthrough-Strategy)
+# Source: https://www.fmz.com/strategy/430374  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 178-178]
+  178: strategy("RSI Strategy", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100)
+
+## Stop option (off) and its level  [lines 191-206]
+  191: Rulestop=input(title="Apply Stop Loss", defval=false)
+  192: stop_percentual=input(title="% Stop Loss",  defval=10)
+  193: 
+  194: //RSI
+  195: 
+  196: vrsi = rsi(close, length)
+  197: 
+  198: //Moving Averages
+  199: 
+  200: longma = sma(close,longLength)
+  201: shortma = sma(close,shortLength)
+  202: mrsi=sma(vrsi,lengthmrsi)
+  203: 
+  204: //Stop Loss
+  205: 
+  206: stop_level = strategy.position_avg_price*((100-stop_percentual)/100)

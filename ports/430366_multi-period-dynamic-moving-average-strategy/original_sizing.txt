@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #430366 (多周期动态均线策略Multi-Period-Dynamic-Moving-Average-Strategy)
+# Source: https://www.fmz.com/strategy/430366  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Buy quantity input (unused)  [lines 177-177]
+  177: qty = input(100000000, "Buy quantity")
+
+## Equity-based order size and entry  [lines 232-235]
+  232: ordersize=floor(strategy.equity/close)
+  233: 
+  234: if testPeriod()
+  235:     strategy.entry("long",strategy.long,ordersize,when=buy)

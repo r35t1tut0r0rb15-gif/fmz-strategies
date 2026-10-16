@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #430544 (基于多重指标的比特币日线交易策略Multi-Indicator-Bitcoin-Daily-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/430544  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission  [lines 184-184]
+  184: strategy("BTC Daily Strategy BF", overlay=false, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=100, commission_type=strategy.commission.percent, commission_value=0.075)
+
+## Loss tolerances and stop levels  [lines 211-215]
+  211: short_loss_tol = input(5)
+  212: long_loss_tol = input(5)
+  213: 
+  214: stop_level_long = strategy.position_avg_price * (1 - long_loss_tol / 100.0)
+  215: stop_level_short = strategy.position_avg_price * (1 + short_loss_tol / 100.0)
+
+## Stop exits  [lines 238-239]
+  238:     strategy.exit("stop loss L", from_entry = "L", stop = stop_level_long)
+  239:     strategy.exit("stop loss S", from_entry = "S", stop = stop_level_short)

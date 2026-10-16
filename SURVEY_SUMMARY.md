@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2959 |
+| PORT_CANDIDATE | 2945 |
 | REJECTED | 994 |
-| PORTED | 702 |
-| HELD_NEEDS_VOLUME | 553 |
+| PORTED | 714 |
+| HELD_NEEDS_VOLUME | 554 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 93 |
+| REJECTED_ON_READING | 94 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -830,7 +830,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430280 | `ports/430280_cryptocurrency-cryptocurrency-momentum-breakout-strategy/` | PineScript | momentum_breakout | none | length x2, multiplier x2 | 4 |
 | 430285 | `ports/430285_momentum-stacking-strategy-of-different-timeframes/` | PineScript | momentum_oscillator_turn | none | smooth x3 | 3 |
 | 430322 | `ports/430322_macd-high-frequency-hedging-strategy-based-on-macd-bar-color/` | PineScript | multi_indicator_confluence | none | ema_signal x2, hilo_len x2 | 4 |
-| | **702 ports** | | | | | **4464** |
+| 430364 | `ports/430364_1-3-1-k-1-3-1-red-green-candlestick-reversal-strategy/` | PineScript | candle_pattern | none | rr x2 | 2 |
+| 430366 | `ports/430366_multi-period-dynamic-moving-average-strategy/` | PineScript | ma_trend | none | length x3 | 3 |
+| 430368 | `ports/430368_reversal-breakout-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending, coarse_bar_stop | sl_atr x2, tp_atr x2 | 4 |
+| 430372 | `ports/430372_a-powerful-system-combining-reversal-and-trend-following-str/` | PineScript | combo_123_reversal | none | length_t3 x2, b x2 | 4 |
+| 430374 | `ports/430374_oscillation-breakthrough-strategy/` | PineScript | rsi_oscillator | none | rsi_level x2, long_ma x2 | 4 |
+| 430377 | `ports/430377_fast-slow-dual-moving-average-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 430380 | `ports/430380_classic-dual-moving-average-crossover-strategy/` | PineScript | stochastic_oscillator | none | length x2, bottom x2 | 4 |
+| 430383 | `ports/430383_multi-timeframe-buy-the-dip-strategy/` | PineScript | momentum_breakout | none | lkb_long x2, stop_pct x2 | 4 |
+| 430543 | `ports/430543_dual-balanced-bulls-and-bears-strategy/` | PineScript | combo_123_reversal | none | zone_atr x2 | 2 |
+| 430544 | `ports/430544_multi-indicator-bitcoin-daily-trading-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | rsi_threshold x2, srsi_threshold x2 | 4 |
+| 430545 | `ports/430545_momentum-reversal-multi-timeframe-strategy/` | PineScript | combo_123_reversal | bar_size_pending | sma_length x2, bars_back x2 | 4 |
+| 430549 | `ports/430549_dual-moving-average-crossover-scalping-strategy/` | PineScript | ma_trend | none | length x3, confirm_bars x2 | 6 |
+| | **714 ports** | | | | | **4509** |
 
 ## Rejected on reading
 
@@ -929,6 +941,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430178 | 两阶段止损策略Two-stage-Stop-Loss-Strategy.md | 1 | Exits are strategy.exit('TP1/SL', qty_percent = 50, limit = TP1) plus a second exit for the rest at TP2, with the stop moved to the entry price after the partial fill (and price-unit targets): partial exits (as #365389). |
 | 430180 | 定投策略带止盈.md | 1 | Dollar-cost averaging: strategy.entry adds investmentAmount / close on every bar the position did not shrink (pyramiding 5), with percentage closes of the whole position; the position is a running sum of orders, so the size path is the strategy (as #426302). |
 | 430248 | 均线回归交易策略Mean-Reversion-Trading-Strategy-Based-on-Moving-Average.md | 1 | Mode 8 is a ladder of strategy.order buys of 1 / 2 / 4 / 8 / 16 units at successive 5 % bands under the SMA 28 and matching unit sells above it: the position size path is the strategy (as #426302). |
+| 430384 | 双重叠加平均线组合Stochastic异同K线交易策略Intraday-Stochastic-Oscillator-with-Double-Moving-Average-Crossover-Strategy.md | 1 | On the 1-day header chart the entries need hour > 2 and hour < 13 of the bar's time, which a daily bar never has (its hour is the session start), so the script as written never trades; the author's M30 / M15 notes are not the declared chart (no repeatable rule at the source's bar size). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

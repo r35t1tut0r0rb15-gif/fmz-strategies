@@ -92,11 +92,13 @@ fmz_id,file,final_outcome,criterion,reason
 430178,两阶段止损策略Two-stage-Stop-Loss-Strategy.md,REJECTED_ON_READING,1,"Exits are strategy.exit('TP1/SL', qty_percent = 50, limit = TP1) plus a second exit for the rest at TP2, with the stop moved to the entry price after the partial fill (and price-unit targets): partial exits (as #365389)."
 430180,定投策略带止盈.md,REJECTED_ON_READING,1,"Dollar-cost averaging: strategy.entry adds investmentAmount / close on every bar the position did not shrink (pyramiding 5), with percentage closes of the whole position; the position is a running sum of orders, so the size path is the strategy (as #426302)."
 430248,均线回归交易策略Mean-Reversion-Trading-Strategy-Based-on-Moving-Average.md,REJECTED_ON_READING,1,Mode 8 is a ladder of strategy.order buys of 1 / 2 / 4 / 8 / 16 units at successive 5 % bands under the SMA 28 and matching unit sells above it: the position size path is the strategy (as #426302).
+430384,双重叠加平均线组合Stochastic异同K线交易策略Intraday-Stochastic-Oscillator-with-Double-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"On the 1-day header chart the entries need hour > 2 and hour < 13 of the bar's time, which a daily bar never has (its hour is the session start), so the script as written never trades; the author's M30 / M15 notes are not the declared chart (no repeatable rule at the source's bar size)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
 429562,双移动均线与RSI反转交易策略Dual-Moving-Average-and-RSI-Reversal-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter compares vwma(close, 30) with vwma(close, 200): volume-weighted averages (check 8, held with the other volume users)."
 430278,双Stochastics与成交量加权移动平均线组合指标Dual-Stochastics-and-Volume-Weighted-Moving-Average-Combination-Indicator-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend line is vwma(k + k_two, 30): a volume-weighted average (check 8, held with the other volume users)."
+430385,动量突破双向交易策略Momentum-Breakout-Reversal-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -800,3 +802,15 @@ fmz_id,file,final_outcome,criterion,reason
 430280,Cryptocurrency动量突破策略Cryptocurrency-Momentum-Breakout-Strategy.md,PORTED,,ports/430280_cryptocurrency-cryptocurrency-momentum-breakout-strategy/
 430285,叠加动量策略Momentum-Stacking-Strategy-of-Different-Timeframes.md,PORTED,,ports/430285_momentum-stacking-strategy-of-different-timeframes/
 430322,基于MACD柱色和线性回归的高频对冲策略High-Frequency-Hedging-Strategy-Based-on-MACD-Bar-Color-and-Linear-Regression.md,PORTED,,ports/430322_macd-high-frequency-hedging-strategy-based-on-macd-bar-color/
+430364,1-3-1-红绿K线反转策略1-3-1-Red-Green-Candlestick-Reversal-Strategy.md,PORTED,,ports/430364_1-3-1-k-1-3-1-red-green-candlestick-reversal-strategy/
+430366,多周期动态均线策略Multi-Period-Dynamic-Moving-Average-Strategy.md,PORTED,,ports/430366_multi-period-dynamic-moving-average-strategy/
+430368,震荡突破策略Reversal-Breakout-Strategy.md,PORTED,,ports/430368_reversal-breakout-strategy/
+430372,双重超跌翻转突破系统A-Powerful-System-Combining-Reversal-and-Trend-Following-Strategies.md,PORTED,,ports/430372_a-powerful-system-combining-reversal-and-trend-following-str/
+430374,基于拉里康诺斯的经典策略Oscillation-Breakthrough-Strategy.md,PORTED,,ports/430374_oscillation-breakthrough-strategy/
+430377,速慢双均线交易策略Fast-Slow-Dual-Moving-Average-Trading-Strategy.md,PORTED,,ports/430377_fast-slow-dual-moving-average-trading-strategy/
+430380,经典双均线交叉策略Classic-Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/430380_classic-dual-moving-average-crossover-strategy/
+430383,多时间框架买入价格下跌策略Multi-Timeframe-Buy-the-Dip-Strategy.md,PORTED,,ports/430383_multi-timeframe-buy-the-dip-strategy/
+430543,双重均衡牛熊策略Dual-Balanced-Bulls-and-Bears-Strategy.md,PORTED,,ports/430543_dual-balanced-bulls-and-bears-strategy/
+430544,基于多重指标的比特币日线交易策略Multi-Indicator-Bitcoin-Daily-Trading-Strategy.md,PORTED,,ports/430544_multi-indicator-bitcoin-daily-trading-strategy/
+430545,多时间段动量反转策略Momentum-Reversal-Multi-Timeframe-Strategy.md,PORTED,,ports/430545_momentum-reversal-multi-timeframe-strategy/
+430549,双均线交叉短线策略Dual-Moving-Average-Crossover-Scalping-Strategy.md,PORTED,,ports/430549_dual-moving-average-crossover-scalping-strategy/

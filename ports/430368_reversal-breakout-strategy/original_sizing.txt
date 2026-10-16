@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #430368 (震荡突破策略Reversal-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/430368  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Tick target / stop inputs and the exits  [lines 154-168]
+  154: takeProfit = input(50, title="Take Profit (pips)")
+  155: 
+  156: plotshape(series=longCondition, title="Long Entry Signal", location=location.belowbar, color=color.green, style=shape.triangleup, size=size.small)
+  157: plotshape(series=shortCondition, title="Short Entry Signal", location=location.abovebar, color=color.red, style=shape.triangledown, size=size.small)
+  158: 
+  159: // Stop Loss
+  160: stopLossPips = input(3, title="Stop Loss (pips)")
+  161: stopLossLong = close - stopLossPips * syminfo.mintick
+  162: stopLossShort = close + stopLossPips * syminfo.mintick
+  163: 
+  164: strategy.entry("Long", strategy.long, when=longCondition)
+  165: strategy.entry("Short", strategy.short, when=shortCondition)
+  166: 
+  167: strategy.exit("Take Profit/Stop Loss", from_entry="Long", profit=takeProfit, stop=stopLossLong)
+  168: strategy.exit("Take Profit/Stop Loss", from_entry="Short", profit=takeProfit, stop=stopLossShort)

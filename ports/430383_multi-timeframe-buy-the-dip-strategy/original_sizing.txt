@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #430383 (多时间框架买入价格下跌策略Multi-Timeframe-Buy-the-Dip-Strategy)
+# Source: https://www.fmz.com/strategy/430383  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 30 % of equity, commission  [lines 276-276]
+  276: strategy(shorttitle='Multi Time Frame Buy the Dips',title='Multi Time Frame Buy the Dips (by Coinrule)', overlay=true, initial_capital = 1000, default_qty_type = strategy.percent_of_equity, default_qty_value = 30, commission_type=strategy.commission.percent, commission_value=0.1)
+
+## Stop / target levels and the close  [lines 311-317]
+  311: Stop_loss= ((input (3))/100)
+  312: Take_profit= ((input (4))/100)
+  313: 
+  314: longStopPrice  = strategy.position_avg_price * (1 - Stop_loss)
+  315: longTakeProfit = strategy.position_avg_price * (1 + Take_profit)
+  316: 
+  317: strategy.close("long", when = close < longStopPrice or close > longTakeProfit and window())
