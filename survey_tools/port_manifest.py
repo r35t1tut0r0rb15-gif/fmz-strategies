@@ -1090,6 +1090,32 @@ SIZING = {
     428100: [
         ("Equity-based order size and the entries", 241, 244),
     ],
+    # ---- FMZ-C, batch C17 (2026-10-16)
+    428101: [
+        ("Exit, margin and leverage inputs (exits off)", 206, 218),
+        ("Tick exits", 220, 229),
+        ("RSI exits with the profit read-outs (off)", 232, 241),
+    ],
+    428103: [],
+    428106: [
+        ("Commented-out strategy(): cash quantity, initial capital, commission", 157, 164),
+    ],
+    428575: [],
+    428577: [],
+    428578: [],
+    428579: [
+        ("strategy(): initial capital, commission", 172, 172),
+        ("Leverage and the fixed USD position size", 184, 202),
+        ("Position size at entry", 289, 289),
+    ],
+    428581: [],
+    428582: [],
+    428583: [
+        ("Commented-out strategy() settings", 179, 197),
+    ],
+    428608: [
+        ("strategy(): 100 % of equity, initial capital", 128, 129),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -1350,6 +1376,13 @@ REJECTED_ON_READING = {
     428066: ("1", "Exits include strategy.exit('XPartLong', qty_percent = 50, profit = 150 ticks) "
               "plus a second exit for the rest: partial exits cannot be expressed as one net "
               "position (as #427161)."),
+    # ---- FMZ-C, batch C17 (2026-10-16)
+    428102: ("1", "The higher-timeframe RSIs are request.security(syminfo.tickerid, '3' / '5', "
+              "rsi[1], lookahead_on) on the daily header chart: 3- and 5-minute resolutions below "
+              "the chart's, whose value per daily bar is undefined (as #427518)."),
+    428611: ("1", "The TSI runs on request.security(syminfo.tickerid, '15', close) on the daily "
+              "header chart: a 15-minute resolution below the chart's, whose value per daily bar "
+              "is undefined (as #427518)."),
 }
 
 DUPLICATE_ON_READING = {

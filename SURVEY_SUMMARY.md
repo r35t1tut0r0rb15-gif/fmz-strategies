@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3170 |
+| PORT_CANDIDATE | 3157 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 550 |
-| PORTED | 518 |
+| PORTED | 529 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 69 |
+| REJECTED_ON_READING | 71 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -646,7 +646,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 428089 | `ports/428089_triple-moving-average-crossover-system/` | PineScript | ma_trend | none | length1 x2, length3 x2 | 4 |
 | 428093 | `ports/428093_moving-average-direction-reversal-trading-strategy/` | PineScript | momentum_breakout | none | consecutive x4 | 4 |
 | 428100 | `ports/428100_clear-trend-tracking-strategy/` | PineScript | wavetrend | none | n1 x2, n2 x2 | 4 |
-| | **518 ports** | | | | | **3746** |
+| 428101 | `ports/428101_rsi-rsi-reversal-trading-strategy/` | PineScript | momentum_oscillator_turn | none | length x2, over_sold x2 | 4 |
+| 428103 | `ports/428103_ema-rsi-dual-ema-with-rsi-trend-following-strategy/` | PineScript | macd_cross | none | rsi_threshold x2, len x2 | 4 |
+| 428106 | `ports/428106_bull-market-chasing-strategy/` | PineScript | ma_cross | none | ema_fast x2, ema_slow x2 | 4 |
+| 428575 | `ports/428575_trend-bull-bear-crossover-trading-strategy/` | PineScript | ma_cross | none | gbar x2, abar x2 | 4 |
+| 428577 | `ports/428577_rsi-rsi-trend-following-strategy/` | PineScript | momentum_oscillator_turn | none | rsi_period x2, rsi_top x2 | 4 |
+| 428578 | `ports/428578_ema-ema-enhanced-supertrend-strategy/` | PineScript | supertrend | none | periods x2, multiplier x2 | 4 |
+| 428579 | `ports/428579_btc-and-eth-long-trend-strategy/` | PineScript | ma_trend | none | stop_loss x2, vol_max x2 | 4 |
+| 428581 | `ports/428581_macd-macd-truelevel-strategy/` | PineScript | macd_cross | none | entry_band x2, exit_band x2 | 4 |
+| 428582 | `ports/428582_combo-strategy-with-multiple-indicators/` | PineScript | combo_123_reversal | none | length x2, length_tema x2 | 4 |
+| 428583 | `ports/428583_best-trailing-take-profit-strategy/` | PineScript | ma_cross | none | trail_pct x2, trigger_pct x2 | 4 |
+| 428608 | `ports/428608_heikin-ashi-smoothed-buy-and-sell-strategy/` | PineScript | heikin_ashi | none | ma_period x4 | 4 |
+| | **529 ports** | | | | | **3790** |
 
 ## Rejected on reading
 
@@ -721,6 +732,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427926 | DEMA快速双指数移动平均策略DEMA-Double-Exponential-Moving-Average-Strategy.md | 1 | Both DEMAs are request.security(syminfo.tickerid, '120', ...) on the daily header chart: a 120-minute resolution below the chart's, whose value per daily bar is undefined (as #427518). |
 | 427997 | 多元指标聚合策略Diversified-Indicators-Aggregation-Strategy.md | 1 | Every open and close rule (30 band / %B / band-width events) defaults to 'Not Used', so at the defaults the strategy places no order; choosing rules would be authoring a new strategy, not a port. |
 | 428066 | 基于STOCH交易策略的自动交易-Auto-Trading-Strategy-Based-on-STOCH.md | 1 | Exits include strategy.exit('XPartLong', qty_percent = 50, profit = 150 ticks) plus a second exit for the rest: partial exits cannot be expressed as one net position (as #427161). |
+| 428102 | 多时间框架对角层叠RSI策略Multi-Timeframe-Diagonally-Layered-RSI-Strategy.md | 1 | The higher-timeframe RSIs are request.security(syminfo.tickerid, '3' / '5', rsi[1], lookahead_on) on the daily header chart: 3- and 5-minute resolutions below the chart's, whose value per daily bar is undefined (as #427518). |
+| 428611 | 基于真实强弱指标的比特币短线交易策略Bitcoin-Short-Term-Trading-Strategy-Based-on-True-Strength-Index.md | 1 | The TSI runs on request.security(syminfo.tickerid, '15', close) on the daily header chart: a 15-minute resolution below the chart's, whose value per daily bar is undefined (as #427518). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

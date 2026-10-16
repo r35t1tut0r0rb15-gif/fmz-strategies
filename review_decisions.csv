@@ -68,6 +68,8 @@ fmz_id,file,final_outcome,criterion,reason
 427926,DEMA快速双指数移动平均策略DEMA-Double-Exponential-Moving-Average-Strategy.md,REJECTED_ON_READING,1,"Both DEMAs are request.security(syminfo.tickerid, '120', ...) on the daily header chart: a 120-minute resolution below the chart's, whose value per daily bar is undefined (as #427518)."
 427997,多元指标聚合策略Diversified-Indicators-Aggregation-Strategy.md,REJECTED_ON_READING,1,"Every open and close rule (30 band / %B / band-width events) defaults to 'Not Used', so at the defaults the strategy places no order; choosing rules would be authoring a new strategy, not a port."
 428066,基于STOCH交易策略的自动交易-Auto-Trading-Strategy-Based-on-STOCH.md,REJECTED_ON_READING,1,"Exits include strategy.exit('XPartLong', qty_percent = 50, profit = 150 ticks) plus a second exit for the rest: partial exits cannot be expressed as one net position (as #427161)."
+428102,多时间框架对角层叠RSI策略Multi-Timeframe-Diagonally-Layered-RSI-Strategy.md,REJECTED_ON_READING,1,"The higher-timeframe RSIs are request.security(syminfo.tickerid, '3' / '5', rsi[1], lookahead_on) on the daily header chart: 3- and 5-minute resolutions below the chart's, whose value per daily bar is undefined (as #427518)."
+428611,基于真实强弱指标的比特币短线交易策略Bitcoin-Short-Term-Trading-Strategy-Based-on-True-Strength-Index.md,REJECTED_ON_READING,1,"The TSI runs on request.security(syminfo.tickerid, '15', close) on the daily header chart: a 15-minute resolution below the chart's, whose value per daily bar is undefined (as #427518)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
@@ -589,3 +591,14 @@ fmz_id,file,final_outcome,criterion,reason
 428089,三重移动平均线交叉系统Triple-Moving-Average-Crossover-System.md,PORTED,,ports/428089_triple-moving-average-crossover-system/
 428093,移动平均线方向反转交易策略Moving-Average-Direction-Reversal-Trading-Strategy.md,PORTED,,ports/428093_moving-average-direction-reversal-trading-strategy/
 428100,清晰趋势追踪策略Clear-Trend-Tracking-Strategy.md,PORTED,,ports/428100_clear-trend-tracking-strategy/
+428101,RSI进退市双向交易策略RSI-Reversal-Trading-Strategy.md,PORTED,,ports/428101_rsi-rsi-reversal-trading-strategy/
+428103,双EMA配以RSI的趋势交易策略Dual-EMA-with-RSI-Trend-Following-Strategy.md,PORTED,,ports/428103_ema-rsi-dual-ema-with-rsi-trend-following-strategy/
+428106,牛市追踪策略Bull-Market-Chasing-Strategy.md,PORTED,,ports/428106_bull-market-chasing-strategy/
+428575,趋势交叉交易策略Trend-Bull-Bear-Crossover-Trading-Strategy.md,PORTED,,ports/428575_trend-bull-bear-crossover-trading-strategy/
+428577,基于RSI的纯多头交易策略RSI-Trend-Following-Strategy.md,PORTED,,ports/428577_rsi-rsi-trend-following-strategy/
+428578,EMA增强超级趋势策略EMA-Enhanced-SuperTrend-Strategy.md,PORTED,,ports/428578_ema-ema-enhanced-supertrend-strategy/
+428579,比特币和以太坊多头趋势策略BTC-and-ETH-Long-Trend-Strategy.md,PORTED,,ports/428579_btc-and-eth-long-trend-strategy/
+428581,MACD真级别策略MACD-TrueLevel-Strategy.md,PORTED,,ports/428581_macd-macd-truelevel-strategy/
+428582,多重指标组合策略Combo-Strategy-with-Multiple-Indicators.md,PORTED,,ports/428582_combo-strategy-with-multiple-indicators/
+428583,最佳追踪止盈策略Best-Trailing-Take-Profit-Strategy.md,PORTED,,ports/428583_best-trailing-take-profit-strategy/
+428608,平滑海坚线买卖策略Heikin-Ashi-Smoothed-Buy-and-Sell-Strategy.md,PORTED,,ports/428608_heikin-ashi-smoothed-buy-and-sell-strategy/

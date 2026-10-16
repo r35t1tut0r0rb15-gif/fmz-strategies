@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #428583 (最佳追踪止盈策略Best-Trailing-Take-Profit-Strategy)
+# Source: https://www.fmz.com/strategy/428583  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy() settings  [lines 179-197]
+  179: InitCapital = 1000000
+  180: InitPosition = 100
+  181: InitCommission = 0.075
+  182: InitPyramidMax = 1
+  183: CalcOnorderFills = true
+  184: CalcOnTick = true
+  185: DefaultQtyType = strategy.fixed
+  186: DefaultQtyValue = strategy.fixed
+  187: Precision = 2
+  188: Overlay=true
+  189: 
+  190: // strategy(title=SystemName, shorttitle=SystemName, overlay=Overlay, 
+  191: //  pyramiding=InitPyramidMax, initial_capital=InitCapital, default_qty_type=DefaultQtyType, default_qty_value=InitPosition, commission_type=strategy.commission.percent, 
+  192: //  commission_value=InitCommission, calc_on_order_fills=CalcOnorderFills, calc_on_every_tick=CalcOnTick, precision=2)
+  193: 
+  194: 
+  195: // strategy(title=SystemName, shorttitle=SystemName, overlay=true, 
+  196: //  pyramiding=0, default_qty_value=100, precision=7, currency=currency.USD,
+  197: //  commission_value=0.2,commission_type=strategy.commission.percent, initial_capital=10000)

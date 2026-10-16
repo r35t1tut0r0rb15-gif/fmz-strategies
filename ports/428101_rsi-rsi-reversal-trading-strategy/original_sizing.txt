@@ -1,0 +1,42 @@
+# Original sizing and money-management code, FMZ #428101 (RSI进退市双向交易策略RSI-Reversal-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/428101  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Exit, margin and leverage inputs (exits off)  [lines 206-218]
+  206: rsion = input(defval = false, title = "Тейк-профіт по RSI")
+  207: rcl = input(defval = 73.0, title = "RSI тейк по лонгу")
+  208: rcs = input(defval = 44.0, title = "RSI тейк по шорту")
+  209: possize = input(defval = 250.0, title = "Маржа")
+  210: posp = input(defval = 3.0, title = "Плече")
+  211: 
+  212: //tick
+  213: ut = input(defval = false, title = "Тейк-профіт")
+  214: tar = input(defval = 4500.0, title = "Тейк-профіт у тіках")
+  215: us = input(defval = false, title = "Стоп-лосс")
+  216: stop = input(defval = 0.0, title = "Стоп-лосс у тіках")
+  217: tar:=tar/syminfo.mintick
+  218: stop:=stop/syminfo.mintick
+
+## Tick exits  [lines 220-229]
+  220: if(ut==true and us==false)
+  221:     strategy.exit(id="LX", from_entry = "LONG", profit = tar, comment = "ТейкL")
+  222:     strategy.exit(id="SX", from_entry = "SHORT", profit = tar, comment = "ТейкS")
+  223: if(us==true and ut==false)
+  224:     strategy.exit(id="LX", from_entry = "LONG", loss = stop, comment = "СтопL")
+  225:     strategy.exit(id="SX", from_entry = "SHORT", loss = stop, comment = "СтопS")
+  226:     
+  227: if(ut==true and us==true)
+  228:     strategy.exit(id="LX", from_entry = "LONG", profit = tar, loss = stop, comment ="Тейк/СтопL")
+  229:     strategy.exit(id="SX", from_entry = "SHORT", profit = tar, loss = stop, comment ="Тейк/СтопS")
+
+## RSI exits with the profit read-outs (off)  [lines 232-241]
+  232: if(rsion == 1 )
+  233:     pr = round(((a / strategy.position_avg_price - 1) * possize * posp), 2)
+  234:     ppr = round(((a / strategy.position_avg_price - 1) * 100 * posp), 2)
+  235:     spr = round((1 - (a / strategy.position_avg_price)) * possize * posp, 2)
+  236:     sppr = round((100 - (a / strategy.position_avg_price * 100)) * posp, 2)
+  237:     
+  238:     if(rsi > rcl)
+  239:         strategy.close(id="LONG", comment = "LT\n" + tostring(ppr) + "%\n" + tostring(pr) + "$\n" + tostring(a))
+  240:     if(rsi < rcs)
+  241:         strategy.close(id="SHORT", comment = "ST\n" + tostring(sppr) + "%\n" + tostring(spr) + "$\n" + tostring(a))
