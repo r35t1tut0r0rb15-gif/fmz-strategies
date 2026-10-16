@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #427312 (基于Uhl-MA的自适应均线交叉策略Adaptive-Moving-Average-Crossover-Strategy-Based-on-Uhl-MA)
+# Source: https://www.fmz.com/strategy/427312  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Equity / drawdown display lines (no orders)  [lines 132-139]
+  132: cap = 50000
+  133: eq = strategy.equity
+  134: rmax = 0.
+  135: rmax := max(eq,nz(rmax[1]))
+  136: //----
+  137: css = eq > cap ? #0cb51a : #e65100
+  138: a = plot(eq,"Equity",#2196f3,2,transp=0)
+  139: b = plot(rmax,"Maximum",css,2,transp=0)

@@ -715,6 +715,40 @@ SIZING = {
     ],
     427302: [],
     427303: [],
+    # ---- FMZ-C, batch C5 (2026-10-16)
+    427304: [
+        ("strategy(): 100 % of equity, commission 0.075 %", 179, 179),
+        ("ATR stop inputs and levels (ported via stops(), re-based on each fill)", 265, 273),
+        ("Orders and stop exits", 276, 280),
+    ],
+    427305: [
+        ("strategy(): 100 % of equity, initial capital 1000", 177, 177),
+    ],
+    427308: [
+        ("strategy(): 100 % of equity, per-contract commission", 183, 183),
+    ],
+    427309: [],
+    427310: [
+        ("Take-profit / stop-loss inputs in pips (ported as ATR multiples)", 178, 180),
+        ("Close-based TP / SL exits from the averaged price", 195, 196),
+    ],
+    427312: [
+        ("Equity / drawdown display lines (no orders)", 132, 139),
+    ],
+    427313: [
+        ("strategy(): 10 % of equity, pyramiding 0", 124, 124),
+    ],
+    427314: [
+        ("Pyramiding, stop and trailing inputs in pips", 158, 161),
+        ("Per-unit bookkeeping for the pyramiding gate", 164, 353),
+        ("Entries and the stop / trailing exits in ticks (ported as ATR stop + house volatility trail)", 358, 362),
+    ],
+    427342: [],
+    427346: [],
+    427347: [
+        ("strategy(): 100 % of equity, pyramiding 0", 125, 125),
+    ],
+    427348: [],
 }
 
 REJECTED_ON_READING = {
@@ -930,6 +964,10 @@ REJECTED_ON_READING = {
               "the close only targets the 'Buy' id, so the position path depends on per-id "
               "accounting that a net-position port cannot reproduce, and which script is meant is "
               "undefined."),
+    # ---- FMZ-C, batch C5 (2026-10-16)
+    427306: ("1", "Both signal lines are request.security(syminfo.tickerid, '30', ...) on the daily "
+              "header chart: a 30-minute resolution below the chart's, whose value per daily bar "
+              "is undefined (as #426261 / #426478)."),
 }
 
 DUPLICATE_ON_READING = {

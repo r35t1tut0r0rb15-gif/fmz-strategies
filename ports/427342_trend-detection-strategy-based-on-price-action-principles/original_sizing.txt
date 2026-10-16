@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #427342 (基于价格动作原理的趋势检测策略Trend-Detection-Strategy-Based-on-Price-Action-Principles)
+# Source: https://www.fmz.com/strategy/427342  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

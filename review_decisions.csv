@@ -58,6 +58,7 @@ fmz_id,file,final_outcome,criterion,reason
 427158,多重指标融合交易策略Multiple-Indicator-Fusion-Trading-Strategy.md,REJECTED_ON_READING,1,Exits include strategy.exit(qty_percent = 50 %) at a take-profit plus a second stop for the rest: partial exits cannot be expressed as one net position's signals (as #365389); the risk-based entry quantity is also used by the exits.
 427161,动态止损交易视图策略Dynamic-Stop-Loss-Alert-TradingView-Strategy.md,REJECTED_ON_READING,1,"Exits are strategy.exit('XPartLong', qty_percent = 50, profit = 150 ticks) plus a second exit for the rest at 400 ticks or a pivot stop: partial exits (as #365389); tick distances are also instrument-specific."
 427182,均线黄金交叉策略EMA-Golden-Cross-Strategy.md,REJECTED_ON_READING,1,"Two scripts pasted into one file: a Pine v5 breakout snippet (entries 'Enter Long' / 'Enter Short' on 5-bar highs / lows) placed before the strategy() line of a v3 EMA 10/21 script (entry 'Buy', closed by id 'Buy'). Both act on one position and the close only targets the 'Buy' id, so the position path depends on per-id accounting that a net-position port cannot reproduce, and which script is meant is undefined."
+427306,SuperTrend双均线交叉策略SuperTrend-Dual-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"Both signal lines are request.security(syminfo.tickerid, '30', ...) on the daily header chart: a 30-minute resolution below the chart's, whose value per daily bar is undefined (as #426261 / #426478)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -440,3 +441,15 @@ fmz_id,file,final_outcome,criterion,reason
 427301,百分比追踪止损策略Percent-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/427301_percent-trailing-stop-loss-strategy/
 427302,纯Stochastic多头交易策略Pure-Stochastic-Long-Only-Strategy.md,PORTED,,ports/427302_stochastic-pure-stochastic-long-only-strategy/
 427303,多类型移动平均线交易策略Dual-Moving-Average-Crossover-Strategy-with-Multi-Type-Moving-Averages.md,PORTED,,ports/427303_dual-moving-average-crossover-strategy-with-multi-type-movin/
+427304,中心引力通道趋势跟踪策略Center-of-Gravity-SSL-Channel-Trend-Following-Strategy.md,PORTED,,ports/427304_center-of-gravity-ssl-channel-trend-following-strategy/
+427305,移动平均跟踪止损策略Moving-Average-Trailing-Stop-Strategy.md,PORTED,,ports/427305_moving-average-trailing-stop-strategy/
+427308,顿希安通道突破策略Donchian-Channel-Breakout-Strategy.md,PORTED,,ports/427308_donchian-channel-breakout-strategy/
+427309,DMI与移动平均线的聚合交易策略DMI-and-Moving-Average-Combination-Strategy.md,PORTED,,ports/427309_dmi-dmi-and-moving-average-combination-strategy/
+427310,威廉指标交叉结合移动平均线过滤的交易策略Williams-R-Crossover-Strategy-with-Moving-Average-Filter.md,PORTED,,ports/427310_williams-r-crossover-strategy-with-moving-average-filter/
+427312,基于Uhl-MA的自适应均线交叉策略Adaptive-Moving-Average-Crossover-Strategy-Based-on-Uhl-MA.md,PORTED,,ports/427312_uhl-ma-adaptive-moving-average-crossover-strategy-based-on-u/
+427313,双RSI配合布林带的趋势追踪策略Dual-RSI-Combined-with-Bollinger-Band-for-Trend-Following.md,PORTED,,ports/427313_rsi-dual-rsi-combined-with-bollinger-band-for-trend-followin/
+427314,基于动量轮动的股票策略Momentum-Rotation-Stock-Trading-Strategy.md,PORTED,,ports/427314_momentum-rotation-stock-trading-strategy/
+427342,基于价格动作原理的趋势检测策略Trend-Detection-Strategy-Based-on-Price-Action-Principles.md,PORTED,,ports/427342_trend-detection-strategy-based-on-price-action-principles/
+427346,基于价格波动率的跟踪止损策略Volatility-Tracking-Stop-Loss-Strategy.md,PORTED,,ports/427346_volatility-tracking-stop-loss-strategy/
+427347,基于双SMA系统的趋势跟踪策略Dual-SMA-Trend-Following-Strategy.md,PORTED,,ports/427347_sma-dual-sma-trend-following-strategy/
+427348,基于双EMA系统的跨度交易策略Crossover-Trading-Strategy-Based-on-Dual-EMA-System.md,PORTED,,ports/427348_ema-crossover-trading-strategy-based-on-dual-ema-system/

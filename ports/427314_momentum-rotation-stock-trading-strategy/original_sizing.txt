@@ -1,0 +1,208 @@
+# Original sizing and money-management code, FMZ #427314 (基于动量轮动的股票策略Momentum-Rotation-Stock-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427314  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Pyramiding, stop and trailing inputs in pips  [lines 158-161]
+  158: int pyramiding            = input(1,  'Pyramiding', minval=1, maxval=5)
+  159: int slPips                = input(80, 'SL Pips')
+  160: int ttPips                = input(60, 'Trail Trig')
+  161: int trailOffset           = input(60, 'Trail Offset')
+
+## Per-unit bookkeeping for the pyramiding gate  [lines 164-353]
+  164: var int   longPyramiding  = 0
+  165: var int   shortPyramiding = 0
+  166: 
+  167: // To save init of operation price
+  168: var float close1          = na
+  169: var float close2          = na
+  170: var float close3          = na
+  171: var float close4          = na
+  172: var float close5          = na
+  173: 
+  174: // How far did the Trailing Stop Get?
+  175: var float far1            = na
+  176: var float far2            = na
+  177: var float far3            = na
+  178: var float far4            = na
+  179: var float far5            = na
+  180: // }
+  181: 
+  182: // === STOCHASTIC RSI === {
+  183: smoothK                   = input(3, minval=1)
+  184: smoothD                   = input(1, minval=1)
+  185: lengthRSI                 = input(14, minval=1)
+  186: lengthStoch               = input(14, minval=1)
+  187: src                       = input(close, title="RSI Source")
+  188: 
+  189: rsi1                      = rsi(src, lengthRSI)
+  190: k                         = sma(stoch(rsi1, rsi1, rsi1, lengthStoch), smoothK)
+  191: d                         = sma(k, smoothD)
+  192: // }
+  193: 
+  194: // === SOME CONDITION TO TAKE A POSITION === {
+  195: goLong  = k[1] < 80 and k >= 80 and longPyramiding  < pyramiding
+  196: goShort = k[1] > 20 and k <= 20 and shortPyramiding < pyramiding
+  197: // }
+  198: 
+  199: // === PYRAMIDING SIMULATION === {
+  200: var string lastOperation = ''
+  201: if (goLong  and lastOperation != 'LONG') or (goShort and lastOperation != 'SHORT')
+  202:     // RESET
+  203:     longPyramiding           := 0
+  204:     shortPyramiding          := 0
+  205:     far1                     := na
+  206:     far2                     := na
+  207:     far3                     := na
+  208:     far4                     := na
+  209:     far5                     := na
+  210:     close1                   := na
+  211:     close2                   := na
+  212:     close3                   := na
+  213:     close4                   := na
+  214:     close5                   := na
+  215: 
+  216: // === SUM ONE INTO 'LONG' OR 'SHORT' PYRAMIDING AND REMEMBER LAST OPERATION TYPE === {
+  217: isCallOrShort = if goLong and longPyramiding < pyramiding
+  218:     lastOperation := 'LONG'
+  219:     longPyramiding := longPyramiding + 1
+  220: 
+  221:     true
+  222: else
+  223:     isShort = if goShort and shortPyramiding < pyramiding
+  224:         lastOperation := 'SHORT'
+  225:         shortPyramiding := shortPyramiding + 1
+  226: 
+  227:         true
+  228:     else
+  229:         false
+  230: 
+  231:     isShort
+  232: // }
+  233: 
+  234: // === SAVE CURRENT PRICE === {
+  235: if isCallOrShort
+  236:     if na(close1)
+  237:         close1 := close
+  238:     else
+  239:         if na(close2)
+  240:             close2 := close
+  241:         else
+  242:             if na(close3)
+  243:                 close3 := close
+  244:             else
+  245:                 if na(close4)
+  246:                     close4 := close
+  247:                 else
+  248:                     if na(close5)
+  249:                         close5 := close
+  250: // }
+  251: 
+  252: if longPyramiding > 0
+  253:     // If Trail Stop was not triggered and distance is achieved saved it
+  254:     if na(far1) and high > close1 + syminfo.mintick * 10 * ttPips
+  255:         far1 := high
+  256:     if na(far2) and high > close2 + syminfo.mintick * 10 * ttPips
+  257:         far2 := high
+  258:     if na(far3) and high > close3 + syminfo.mintick * 10 * ttPips
+  259:         far3 := high
+  260:     if na(far4) and high > close4 + syminfo.mintick * 10 * ttPips
+  261:         far4 := high
+  262:     if na(far5) and high > close5 + syminfo.mintick * 10 * ttPips
+  263:         far5 := high
+  264:     
+  265:     // Update how far our position went
+  266:     if not na(far1) and high > far1
+  267:         far1 := high
+  268:     if not na(far2) and high > far2
+  269:         far2 := high
+  270:     if not na(far3) and high > far3
+  271:         far3 := high
+  272:     if not na(far4) and high > far4
+  273:         far4 := high
+  274:     if not na(far5) and high > far5
+  275:         far5 := high
+  276:         
+  277:     /// === SL not na(trailing stop) ? Use Trailing Stop : Use Default Stop Loss === {
+  278:     if not na(close1) and (not na(far1) ? low <= far1 - syminfo.mintick * 10 * trailOffset : low <= close1 - syminfo.mintick * 10 * slPips)
+  279:         longPyramiding := longPyramiding - 1
+  280:         close1         := na
+  281:         far1           := na
+  282:     if not na(close2) and (not na(far2) ? low <= far2 - syminfo.mintick * 10 * trailOffset : low <= close2 - syminfo.mintick * 10 * slPips)
+  283:         longPyramiding := longPyramiding - 1
+  284:         close2         := na
+  285:         far2           := na
+  286:     if not na(close3) and (not na(far3) ? low <= far3 - syminfo.mintick * 10 * trailOffset : low <= close3 - syminfo.mintick * 10 * slPips)
+  287:         longPyramiding := longPyramiding - 1
+  288:         close3         := na
+  289:         far3           := na
+  290:     if not na(close4) and (not na(far4) ? low <= far4 - syminfo.mintick * 10 * trailOffset : low <= close4 - syminfo.mintick * 10 * slPips)
+  291:         longPyramiding := longPyramiding - 1
+  292:         close4         := na
+  293:         far4           := na
+  294:     if not na(close5) and (not na(far5) ? low <= far5 - syminfo.mintick * 10 * trailOffset : low <= close5 - syminfo.mintick * 10 * slPips)
+  295:         longPyramiding := longPyramiding - 1
+  296:         close5         := na
+  297:         far5           := na
+  298:     // }
+  299: 
+  300: // Log when long pyramiding changed
+  301: if longPyramiding[1] != longPyramiding[2]
+  302:     label.new(bar_index, high, tostring(longPyramiding[1]), xloc.bar_index, yloc.price, size = size.normal, color=color.blue, textcolor=color.white)
+  303: 
+  304: if shortPyramiding > 0
+  305:     // If Trail Stop was not triggered and distance is achieved saved it
+  306:     if na(far1) and low < close1 - syminfo.mintick * 10 * ttPips
+  307:         far1 := low
+  308:     if na(far2) and low < close2 - syminfo.mintick * 10 * ttPips
+  309:         far2 := low
+  310:     if na(far3) and low < close3 - syminfo.mintick * 10 * ttPips
+  311:         far3 := low
+  312:     if na(far4) and low < close4 - syminfo.mintick * 10 * ttPips
+  313:         far4 := low
+  314:     if na(far5) and low < close5 - syminfo.mintick * 10 * ttPips
+  315:         far5 := low
+  316:     
+  317:     // Update how far our position went
+  318:     if not na(far1) and low < far1
+  319:         far1 := low
+  320:     if not na(far2) and low < far2
+  321:         far2 := low
+  322:     if not na(far3) and low < far3
+  323:         far3 := low
+  324:     if not na(far4) and low < far4
+  325:         far4 := low
+  326:     if not na(far5) and low < far5
+  327:         far5 := low
+  328:         
+  329:     /// === SL not na(trailing stop) ? Use Trailing Stop : Use Default Stop Loss === {
+  330:     if not na(close1) and (not na(far1) ? high >= far1 + syminfo.mintick * 10 * trailOffset : high >= close1 + syminfo.mintick * 10 * slPips)
+  331:         shortPyramiding := shortPyramiding - 1
+  332:         close1          := na
+  333:         far1            := na
+  334:     if not na(close2) and (not na(far2) ? high >= far2 + syminfo.mintick * 10 * trailOffset : high >= close2 + syminfo.mintick * 10 * slPips)
+  335:         shortPyramiding := shortPyramiding - 1
+  336:         close2          := na
+  337:         far2            := na
+  338:     if not na(close3) and (not na(far3) ? high >= far3 + syminfo.mintick * 10 * trailOffset : high >= close3 + syminfo.mintick * 10 * slPips)
+  339:         shortPyramiding := shortPyramiding - 1
+  340:         close3          := na
+  341:         far3            := na
+  342:     if not na(close4) and (not na(far4) ? high >= far4 + syminfo.mintick * 10 * trailOffset : high >= close4 + syminfo.mintick * 10 * slPips)
+  343:         shortPyramiding := shortPyramiding - 1
+  344:         close4          := na
+  345:         far4            := na
+  346:     if not na(close5) and (not na(far5) ? high >= far5 + syminfo.mintick * 10 * trailOffset : high >= close5 + syminfo.mintick * 10 * slPips)
+  347:         shortPyramiding := shortPyramiding - 1
+  348:         close5          := na
+  349:         far5            := na
+  350:     // }
+  351: 
+  352: // Log when long pyramiding changed
+  353: if shortPyramiding[1] != shortPyramiding[2]
+
+## Entries and the stop / trailing exits in ticks (ported as ATR stop + house volatility trail)  [lines 358-362]
+  358: strategy.entry("Long",  strategy.long,  when = goLong  and longPyramiding  <= pyramiding)
+  359: strategy.entry("Short", strategy.short, when = goShort and shortPyramiding <= pyramiding)
+  360: 
+  361: strategy.exit("Exit Long",  "Long",  loss=slPips * 10, trail_points=ttPips * 10, trail_offset=trailOffset * 10)
+  362: strategy.exit("Exit Short", "Short", loss=slPips * 10, trail_points=ttPips * 10, trail_offset=trailOffset * 10)

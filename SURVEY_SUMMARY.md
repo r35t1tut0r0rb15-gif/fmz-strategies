@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3319 |
+| PORT_CANDIDATE | 3306 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
-| PORTED | 381 |
+| PORTED | 393 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 59 |
+| REJECTED_ON_READING | 60 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -509,7 +509,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427301 | `ports/427301_percent-trailing-stop-loss-strategy/` | PineScript | ma_trend | trailing_stop_pending | fast x2, slow x3 | 6 |
 | 427302 | `ports/427302_stochastic-pure-stochastic-long-only-strategy/` | PineScript | stochastic_oscillator | none | length x2, over_sold x2, over_bought x2 | 8 |
 | 427303 | `ports/427303_dual-moving-average-crossover-strategy-with-multi-type-movin/` | PineScript | ma_trend | none | ma1_len x2, ma2_len x2, ma3_on x2 | 8 |
-| | **381 ports** | | | | | **2920** |
+| 427304 | `ports/427304_center-of-gravity-ssl-channel-trend-following-strategy/` | PineScript | multi_indicator_confluence | none | cog_atr x2, pcnt_change x2, atr_mult x2 | 8 |
+| 427305 | `ports/427305_moving-average-trailing-stop-strategy/` | PineScript | ma_trend | none | strength1 x2, strength2 x2, delta x2 | 8 |
+| 427308 | `ports/427308_donchian-channel-breakout-strategy/` | PineScript | donchian_breakout | none | period x3 | 3 |
+| 427309 | `ports/427309_dmi-dmi-and-moving-average-combination-strategy/` | PineScript | multi_indicator_confluence | none | length x2, length_ma x2, length_dmi x2 | 8 |
+| 427310 | `ports/427310_williams-r-crossover-strategy-with-moving-average-filter/` | PineScript | williams_r_oscillator | none | cross x2, tp_atr x2, sl_atr x2 | 8 |
+| 427312 | `ports/427312_uhl-ma-adaptive-moving-average-crossover-strategy-based-on-u/` | PineScript | ma_trend | none | length x3 | 3 |
+| 427313 | `ports/427313_rsi-dual-rsi-combined-with-bollinger-band-for-trend-followin/` | PineScript | bollinger_reversion | none | bb_length x2, bb_mult x2, rsi1_length x2 | 8 |
+| 427314 | `ports/427314_momentum-rotation-stock-trading-strategy/` | PineScript | stochastic_oscillator | trailing_stop | sl_atr x2, trail_atr x2, activate x2 | 8 |
+| 427342 | `ports/427342_trend-detection-strategy-based-on-price-action-principles/` | PineScript | candle_pattern | none | length x3, ema_smooth x2 | 6 |
+| 427346 | `ports/427346_volatility-tracking-stop-loss-strategy/` | PineScript | volatility_stop_cross | none | length x2, length_ma x3 | 6 |
+| 427347 | `ports/427347_sma-dual-sma-trend-following-strategy/` | PineScript | ma_trend | none | slow_len x3, bars x2 | 6 |
+| 427348 | `ports/427348_ema-crossover-trading-strategy-based-on-dual-ema-system/` | PineScript | ma_trend | none | short_len x2, long_len x3 | 6 |
+| | **393 ports** | | | | | **2998** |
 
 ## Rejected on reading
 
@@ -574,6 +586,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427158 | 多重指标融合交易策略Multiple-Indicator-Fusion-Trading-Strategy.md | 1 | Exits include strategy.exit(qty_percent = 50 %) at a take-profit plus a second stop for the rest: partial exits cannot be expressed as one net position's signals (as #365389); the risk-based entry quantity is also used by the exits. |
 | 427161 | 动态止损交易视图策略Dynamic-Stop-Loss-Alert-TradingView-Strategy.md | 1 | Exits are strategy.exit('XPartLong', qty_percent = 50, profit = 150 ticks) plus a second exit for the rest at 400 ticks or a pivot stop: partial exits (as #365389); tick distances are also instrument-specific. |
 | 427182 | 均线黄金交叉策略EMA-Golden-Cross-Strategy.md | 1 | Two scripts pasted into one file: a Pine v5 breakout snippet (entries 'Enter Long' / 'Enter Short' on 5-bar highs / lows) placed before the strategy() line of a v3 EMA 10/21 script (entry 'Buy', closed by id 'Buy'). Both act on one position and the close only targets the 'Buy' id, so the position path depends on per-id accounting that a net-position port cannot reproduce, and which script is meant is undefined. |
+| 427306 | SuperTrend双均线交叉策略SuperTrend-Dual-Moving-Average-Crossover-Strategy.md | 1 | Both signal lines are request.security(syminfo.tickerid, '30', ...) on the daily header chart: a 30-minute resolution below the chart's, whose value per daily bar is undefined (as #426261 / #426478). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
