@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #428086 (基于移动平均线的支撐阻力突破策略Moving-Average-Support-and-Resistance-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/428086  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 0, 100 % of equity, initial capital, slippage, commission  [lines 163-176]
+  163: strategy("[LunaOwl] 支撐壓力策略 [回測]",
+  164:      shorttitle          = "支撐壓力策略 [回測]",
+  165:      overlay             = true,
+  166:      calc_on_order_fills = false,
+  167:      calc_on_every_tick  = false,
+  168:      pyramiding          = 0,
+  169:      currency            = currency.NONE,
+  170:      initial_capital     = 10000,
+  171:      slippage            = 5,
+  172:      default_qty_value   = 100,
+  173:      default_qty_type    = strategy.percent_of_equity,
+  174:      commission_type     = strategy.commission.percent,
+  175:      commission_value    = 0.05
+  176:      )

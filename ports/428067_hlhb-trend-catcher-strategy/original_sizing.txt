@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #428067 (捕捉小趋势的高低均线交叉策略HLHB-Trend-Catcher-Strategy)
+# Source: https://www.fmz.com/strategy/428067  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 199-200]
+  199: strategy("Hucklekiwi Pip - HLHB Trend-Catcher System", shorttitle="HLHB TCS", overlay=true,
+  200:   default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+
+## Profit / stop point inputs  [lines 261-262]
+  261: profit_target = input(400, title='Profit Target (Pips/Points)')
+  262: trailing_stop_dist = input(150, title='Trailing Stop Distance (Pips/Points)')
+
+## Point exits  [lines 308-309]
+  308: strategy.exit("SL/TP", "Long", profit=profit_target,  loss=trailing_stop_dist, trail_points=trailing_stop_dist)  
+  309: strategy.exit("SL/TP", "Short", profit=profit_target, loss=trailing_stop_dist, trail_points=trailing_stop_dist)  

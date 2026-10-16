@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3183 |
+| PORT_CANDIDATE | 3170 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 550 |
-| PORTED | 506 |
+| PORTED | 518 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 68 |
+| REJECTED_ON_READING | 69 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -634,7 +634,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 428056 | `ports/428056_hammer-and-shooting-star-pattern-trading-strategy/` | PineScript | candle_pattern | coarse_bar_stop | stop_mult x2, rr x2, fib x2 | 8 |
 | 428059 | `ports/428059_ema-ema-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 428060 | `ports/428060_rate-of-change-trading-strategy/` | PineScript | momentum_breakout | trailing_stop_pending | trail_pct x2, lookback x2 | 4 |
-| | **506 ports** | | | | | **3694** |
+| 428067 | `ports/428067_hlhb-trend-catcher-strategy/` | PineScript | ma_cross | coarse_bar_stop | tp_atr x2, sl_atr x2, adx_min x2 | 8 |
+| 428068 | `ports/428068_dual-moving-average-crossover-trend-tracking-strategy/` | PineScript | ma_cross | none | par1 x2, par2 x2 | 4 |
+| 428071 | `ports/428071_multivariate-indicator-fusion-strategy/` | PineScript | multi_indicator_vote | none | vi_pm x2, roc_k x2 | 4 |
+| 428075 | `ports/428075_dmi-combining-dmi-and-moving-average-trading-strategy/` | PineScript | dmi_trend | none | length_ma x2, length_dmi x2 | 4 |
+| 428081 | `ports/428081_dual-momentum-strategy/` | PineScript | momentum_breakout | none | fast_period x2, slow_period x2 | 4 |
+| 428083 | `ports/428083_dual-moving-average-and-supertrend-strategy/` | PineScript | ma_trend | none | len1 x2, len2 x2 | 4 |
+| 428084 | `ports/428084_moving-average-crossover-strategy/` | PineScript | ma_cross | none | ma1 x2, ma2 x2 | 4 |
+| 428086 | `ports/428086_moving-average-support-and-resistance-breakout-strategy/` | PineScript | channel_breakout | none | lb x4 | 4 |
+| 428088 | `ports/428088_williams-vix-williams-vix-fix-strategy/` | PineScript | volatility_spike_reversal | none | pd x2, ph x2 | 4 |
+| 428089 | `ports/428089_triple-moving-average-crossover-system/` | PineScript | ma_trend | none | length1 x2, length3 x2 | 4 |
+| 428093 | `ports/428093_moving-average-direction-reversal-trading-strategy/` | PineScript | momentum_breakout | none | consecutive x4 | 4 |
+| 428100 | `ports/428100_clear-trend-tracking-strategy/` | PineScript | wavetrend | none | n1 x2, n2 x2 | 4 |
+| | **518 ports** | | | | | **3746** |
 
 ## Rejected on reading
 
@@ -708,6 +720,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427899 | 均线交叉与平均真实波幅混合策略ATR-and-Moving-Average-Crossover-Hybrid-Strategy.md | 1 | The signals use security(syminfo.tickerid, TF_, close, lookahead_off) with TF_ = "1" (the if-chain uses == instead of :=, so TF_ never changes) on the 1-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
 | 427926 | DEMA快速双指数移动平均策略DEMA-Double-Exponential-Moving-Average-Strategy.md | 1 | Both DEMAs are request.security(syminfo.tickerid, '120', ...) on the daily header chart: a 120-minute resolution below the chart's, whose value per daily bar is undefined (as #427518). |
 | 427997 | 多元指标聚合策略Diversified-Indicators-Aggregation-Strategy.md | 1 | Every open and close rule (30 band / %B / band-width events) defaults to 'Not Used', so at the defaults the strategy places no order; choosing rules would be authoring a new strategy, not a port. |
+| 428066 | 基于STOCH交易策略的自动交易-Auto-Trading-Strategy-Based-on-STOCH.md | 1 | Exits include strategy.exit('XPartLong', qty_percent = 50, profit = 150 ticks) plus a second exit for the rest: partial exits cannot be expressed as one net position (as #427161). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

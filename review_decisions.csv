@@ -67,6 +67,7 @@ fmz_id,file,final_outcome,criterion,reason
 427899,均线交叉与平均真实波幅混合策略ATR-and-Moving-Average-Crossover-Hybrid-Strategy.md,REJECTED_ON_READING,1,"The signals use security(syminfo.tickerid, TF_, close, lookahead_off) with TF_ = ""1"" (the if-chain uses == instead of :=, so TF_ never changes) on the 1-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
 427926,DEMA快速双指数移动平均策略DEMA-Double-Exponential-Moving-Average-Strategy.md,REJECTED_ON_READING,1,"Both DEMAs are request.security(syminfo.tickerid, '120', ...) on the daily header chart: a 120-minute resolution below the chart's, whose value per daily bar is undefined (as #427518)."
 427997,多元指标聚合策略Diversified-Indicators-Aggregation-Strategy.md,REJECTED_ON_READING,1,"Every open and close rule (30 band / %B / band-width events) defaults to 'Not Used', so at the defaults the strategy places no order; choosing rules would be authoring a new strategy, not a port."
+428066,基于STOCH交易策略的自动交易-Auto-Trading-Strategy-Based-on-STOCH.md,REJECTED_ON_READING,1,"Exits include strategy.exit('XPartLong', qty_percent = 50, profit = 150 ticks) plus a second exit for the rest: partial exits cannot be expressed as one net position (as #427161)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
@@ -576,3 +577,15 @@ fmz_id,file,final_outcome,criterion,reason
 428056,形态预测策略Hammer-and-Shooting-Star-Pattern-Trading-Strategy.md,PORTED,,ports/428056_hammer-and-shooting-star-pattern-trading-strategy/
 428059,EMA交叉系统策略EMA-Crossover-Strategy.md,PORTED,,ports/428059_ema-ema-crossover-strategy/
 428060,基于变化率的交易策略Rate-of-Change-Trading-Strategy.md,PORTED,,ports/428060_rate-of-change-trading-strategy/
+428067,捕捉小趋势的高低均线交叉策略HLHB-Trend-Catcher-Strategy.md,PORTED,,ports/428067_hlhb-trend-catcher-strategy/
+428068,双均线交叉趋势跟踪策略Dual-Moving-Average-Crossover-Trend-Tracking-Strategy.md,PORTED,,ports/428068_dual-moving-average-crossover-trend-tracking-strategy/
+428071,多元指标融合策略Multivariate-Indicator-Fusion-Strategy.md,PORTED,,ports/428071_multivariate-indicator-fusion-strategy/
+428075,基于DMI和移动平均线的交易策略Combining-DMI-and-Moving-Average-Trading-Strategy.md,PORTED,,ports/428075_dmi-combining-dmi-and-moving-average-trading-strategy/
+428081,双动量策略Dual-Momentum-Strategy.md,PORTED,,ports/428081_dual-momentum-strategy/
+428083,双移动均线与超级趋势策略Dual-Moving-Average-and-Supertrend-Strategy.md,PORTED,,ports/428083_dual-moving-average-and-supertrend-strategy/
+428084,移动平均线穿越策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/428084_moving-average-crossover-strategy/
+428086,基于移动平均线的支撐阻力突破策略Moving-Average-Support-and-Resistance-Breakout-Strategy.md,PORTED,,ports/428086_moving-average-support-and-resistance-breakout-strategy/
+428088,Williams-VIX修复策略Williams-VIX-Fix-Strategy.md,PORTED,,ports/428088_williams-vix-williams-vix-fix-strategy/
+428089,三重移动平均线交叉系统Triple-Moving-Average-Crossover-System.md,PORTED,,ports/428089_triple-moving-average-crossover-system/
+428093,移动平均线方向反转交易策略Moving-Average-Direction-Reversal-Trading-Strategy.md,PORTED,,ports/428093_moving-average-direction-reversal-trading-strategy/
+428100,清晰趋势追踪策略Clear-Trend-Tracking-Strategy.md,PORTED,,ports/428100_clear-trend-tracking-strategy/

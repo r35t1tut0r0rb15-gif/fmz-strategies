@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #428081 (双动量策略Dual-Momentum-Strategy)
+# Source: https://www.fmz.com/strategy/428081  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 0, 100 % of equity, initial capital, commission  [lines 170-178]
+  170: strategy("Momentum Strategy Idea",
+  171:          shorttitle="Momentum", 
+  172:          overlay=false,
+  173:          pyramiding=0,     
+  174:          default_qty_type=strategy.percent_of_equity, 
+  175:          default_qty_value=100, 
+  176:          initial_capital=1000,           
+  177:          commission_type=strategy.commission.percent, 
+  178:          commission_value=0.075)
+
+## Stop inputs (off by default)  [lines 185-186]
+  185: slp = input(title="Stop-loss (%)", minval=1.0, maxval=25.0, defval=5.0)
+  186: use_sl = input(title="Use Stop-Loss", defval=false)
+
+## Stop levels and exits  [lines 206-210]
+  206: sl_long = strategy.position_avg_price * (1- (slp/100))
+  207: sl_short = strategy.position_avg_price * (1 + (slp/100))
+  208: if (use_sl)
+  209:     strategy.exit(id="SL", from_entry="Long", stop=sl_long)
+  210:     strategy.exit(id="SL", from_entry="Short", stop=sl_short)

@@ -1063,6 +1063,33 @@ SIZING = {
         ("Order stake input", 219, 219),
         ("Order size, trailing stop and orders", 263, 282),
     ],
+    # ---- FMZ-C, batch C16 (2026-10-16)
+    428067: [
+        ("strategy(): 100 % of equity", 199, 200),
+        ("Profit / stop point inputs", 261, 262),
+        ("Point exits", 308, 309),
+    ],
+    428068: [],
+    428071: [],
+    428075: [],
+    428081: [
+        ("strategy(): pyramiding 0, 100 % of equity, initial capital, commission", 170, 178),
+        ("Stop inputs (off by default)", 185, 186),
+        ("Stop levels and exits", 206, 210),
+    ],
+    428083: [],
+    428084: [],
+    428086: [
+        ("strategy(): pyramiding 0, 100 % of equity, initial capital, slippage, commission", 163, 176),
+    ],
+    428088: [
+        ("strategy(): pyramiding 9, initial capital, percent of equity", 183, 183),
+    ],
+    428089: [],
+    428093: [],
+    428100: [
+        ("Equity-based order size and the entries", 241, 244),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -1319,6 +1346,10 @@ REJECTED_ON_READING = {
     427997: ("1", "Every open and close rule (30 band / %B / band-width events) defaults to 'Not "
               "Used', so at the defaults the strategy places no order; choosing rules would be "
               "authoring a new strategy, not a port."),
+    # ---- FMZ-C, batch C16 (2026-10-16)
+    428066: ("1", "Exits include strategy.exit('XPartLong', qty_percent = 50, profit = 150 ticks) "
+              "plus a second exit for the rest: partial exits cannot be expressed as one net "
+              "position (as #427161)."),
 }
 
 DUPLICATE_ON_READING = {
