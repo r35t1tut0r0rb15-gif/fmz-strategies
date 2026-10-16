@@ -1,0 +1,36 @@
+# Original sizing and money-management code, FMZ #427989 (ADX-RSI策略ADX-RSI-Strategy)
+# Source: https://www.fmz.com/strategy/427989  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, initial capital, commission  [lines 192-192]
+  192: strategy("ADX + RSI Strat", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100, initial_capital=100, commission_value=0.04, calc_on_every_tick=false)
+
+## Direction rule and swing stop / target inputs  [lines 194-216]
+  194: direction = input(0, title = "Strategy Direction", type=input.integer, minval=-1, maxval=1)
+  195: strategy.risk.allow_entry_in(direction == 0 ? strategy.direction.all : (direction < 0 ? strategy.direction.short : strategy.direction.long))
+  196: 
+  197: 
+  198: //SL & TP Inputs
+  199: i_SL=input(false, title="Use Swing Lo/Hi Stop Loss & Take Profit")
+  200: i_SwingLookback=input(20, title="Swing Lo/Hi Lookback")
+  201: i_SLExpander=input(defval=0, step=.2, title="SL Expander")
+  202: i_TPExpander=input(defval=0, step=.2, title="TP Expander")
+  203: i_reverse=input(true, title="Reverse Trades")
+  204: 
+  205: //SL & TP Calculations
+  206: SwingLow=lowest(i_SwingLookback)
+  207: SwingHigh=highest(i_SwingLookback)
+  208: bought=strategy.position_size != strategy.position_size[1]
+  209: LSL=valuewhen(bought, SwingLow, 0)-((valuewhen(bought, atr(14), 0))*i_SLExpander)
+  210: SSL=valuewhen(bought, SwingHigh, 0)+((valuewhen(bought, atr(14), 0))*i_SLExpander)
+  211: lTP=strategy.position_avg_price + (strategy.position_avg_price-(valuewhen(bought, SwingLow, 0))+((valuewhen(bought, atr(14), 0))*i_TPExpander))
+  212: sTP=strategy.position_avg_price - (valuewhen(bought, SwingHigh, 0)-strategy.position_avg_price)-((valuewhen(bought, atr(14), 0))*i_TPExpander)
+  213: islong=strategy.position_size > 0
+  214: isshort=strategy.position_size < 0
+  215: SL= islong ? LSL : isshort ? SSL : na
+  216: TP= islong ? lTP : isshort ? sTP : na
+
+## Swing exits (off by default)  [lines 251-253]
+  251: if i_SL
+  252:     strategy.exit("longexit", "long", stop=SL, limit=TP)
+  253:     strategy.exit("shortexit", "short", stop=SL, limit=TP)

@@ -1019,6 +1019,50 @@ SIZING = {
     427987: [
         ("strategy(): 100 % of equity", 155, 155),
     ],
+    # ---- FMZ-C, batch C15 (2026-10-16)
+    427989: [
+        ("strategy(): 100 % of equity, initial capital, commission", 192, 192),
+        ("Direction rule and swing stop / target inputs", 194, 216),
+        ("Swing exits (off by default)", 251, 253),
+    ],
+    427990: [
+        ("strategy(): pyramiding 0, percent of equity, slippage, commission", 146, 146),
+        ("Percent stop / target inputs, levels and exits", 237, 249),
+    ],
+    427992: [],
+    427994: [],
+    427998: [
+        ("strategy(): cash quantity 10000, initial capital, commission", 142, 142),
+    ],
+    428000: [
+        ("Initial capital", 191, 191),
+        ("TP / SL tick inputs", 223, 224),
+        ("Risk-based lot size", 230, 238),
+        ("Entries with the tick exits", 240, 252),
+    ],
+    428051: [
+        ("strategy(): 100 % of equity, pyramiding 0", 195, 195),
+        ("Martingale and capital inputs", 200, 201),
+        ("Profit, martingale multiplier and lot", 248, 250),
+    ],
+    428052: [
+        ("strategy(): 100 % of equity, commission", 176, 176),
+        ("Stop / target inputs", 182, 183),
+        ("Percent exits", 297, 300),
+    ],
+    428053: [],
+    428056: [
+        ("Risk, AutoView and account inputs", 209, 214),
+        ("Conversion security and position-size functions", 248, 272),
+        ("Stop / target levels", 276, 282),
+        ("Exits", 330, 331),
+    ],
+    428059: [],
+    428060: [
+        ("strategy(): initial capital", 209, 211),
+        ("Order stake input", 219, 219),
+        ("Order size, trailing stop and orders", 263, 282),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -1271,6 +1315,10 @@ REJECTED_ON_READING = {
     427926: ("1", "Both DEMAs are request.security(syminfo.tickerid, '120', ...) on the daily header "
               "chart: a 120-minute resolution below the chart's, whose value per daily bar is "
               "undefined (as #427518)."),
+    # ---- FMZ-C, batch C15 (2026-10-16)
+    427997: ("1", "Every open and close rule (30 band / %B / band-width events) defaults to 'Not "
+              "Used', so at the defaults the strategy places no order; choosing rules would be "
+              "authoring a new strategy, not a port."),
 }
 
 DUPLICATE_ON_READING = {

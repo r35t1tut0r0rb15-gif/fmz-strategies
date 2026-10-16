@@ -66,6 +66,7 @@ fmz_id,file,final_outcome,criterion,reason
 427890,基于ATR和CCI的趋势跟踪策略CCI-and-ATR-Based-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"The buy / sell filter is security(syminfo.tickerid, '60', swap4[1], lookahead_on) on the 3-hour header chart: a 60-minute resolution below the chart's, whose value per 3-hour bar is undefined (as #427518)."
 427899,均线交叉与平均真实波幅混合策略ATR-and-Moving-Average-Crossover-Hybrid-Strategy.md,REJECTED_ON_READING,1,"The signals use security(syminfo.tickerid, TF_, close, lookahead_off) with TF_ = ""1"" (the if-chain uses == instead of :=, so TF_ never changes) on the 1-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
 427926,DEMA快速双指数移动平均策略DEMA-Double-Exponential-Moving-Average-Strategy.md,REJECTED_ON_READING,1,"Both DEMAs are request.security(syminfo.tickerid, '120', ...) on the daily header chart: a 120-minute resolution below the chart's, whose value per daily bar is undefined (as #427518)."
+427997,多元指标聚合策略Diversified-Indicators-Aggregation-Strategy.md,REJECTED_ON_READING,1,"Every open and close rule (30 band / %B / band-width events) defaults to 'Not Used', so at the defaults the strategy places no order; choosing rules would be authoring a new strategy, not a port."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
@@ -563,3 +564,15 @@ fmz_id,file,final_outcome,criterion,reason
 427985,双重趋势追踪策略Dual-Trend-Tracking-Strategy.md,PORTED,,ports/427985_dual-trend-tracking-strategy/
 427986,双波尔线量化期权策略Dual-Bollinger-Quant-Options-Strategy.md,PORTED,,ports/427986_dual-bollinger-quant-options-strategy/
 427987,黄金交叉策略Golden-Cross-Strategy.md,PORTED,,ports/427987_golden-cross-strategy/
+427989,ADX-RSI策略ADX-RSI-Strategy.md,PORTED,,ports/427989_adx-rsi-adx-rsi-strategy/
+427990,跨周期方向策略Eltrut-Turtle-Reversal-Strategy.md,PORTED,,ports/427990_eltrut-turtle-reversal-strategy/
+427992,形态反转交易策略Doji-Candlestick-Reversal-Trading-Strategy.md,PORTED,,ports/427992_doji-candlestick-reversal-trading-strategy/
+427994,基于布林带和斐波那契回撤比的交易策略Bollinger-Bands-Fibonacci-Retracement-Trading-Strategy.md,PORTED,,ports/427994_bollinger-bands-fibonacci-retracement-trading-strategy/
+427998,克隆阴阳数量化交易策略Renko-Yin-Yang-Quant-Trading-Strategy.md,PORTED,,ports/427998_renko-yin-yang-quant-trading-strategy/
+428000,三重EMA顺势策略Triple-EMA-Momentum-Strategy.md,PORTED,,ports/428000_ema-triple-ema-momentum-strategy/
+428051,基于反转RSI的错过信号追踪交易策略RSI-Signal-Tracking-Reversal-Trading-Strategy.md,PORTED,,ports/428051_rsi-rsi-signal-tracking-reversal-trading-strategy/
+428052,三均线交叉William指标的量化交易策略Triple-Moving-Average-Crossover-and-Williams-Indicator-Strategy.md,PORTED,,ports/428052_william-triple-moving-average-crossover-and-williams-indicat/
+428053,彩虹移动平均线交易策略Rainbow-Moving-Average-Trading-Strategy.md,PORTED,,ports/428053_rainbow-moving-average-trading-strategy/
+428056,形态预测策略Hammer-and-Shooting-Star-Pattern-Trading-Strategy.md,PORTED,,ports/428056_hammer-and-shooting-star-pattern-trading-strategy/
+428059,EMA交叉系统策略EMA-Crossover-Strategy.md,PORTED,,ports/428059_ema-ema-crossover-strategy/
+428060,基于变化率的交易策略Rate-of-Change-Trading-Strategy.md,PORTED,,ports/428060_rate-of-change-trading-strategy/

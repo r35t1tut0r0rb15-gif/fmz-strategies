@@ -1,0 +1,21 @@
+# Original sizing and money-management code, FMZ #427990 (跨周期方向策略Eltrut-Turtle-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/427990  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 0, percent of equity, slippage, commission  [lines 146-146]
+  146: strategy("Eltrut", shorttitle="Eltrut Strat", overlay=true, pyramiding=0, default_qty_type= strategy.percent_of_equity,calc_on_order_fills=false, slippage=25,commission_type=strategy.commission.percent,commission_value=0.075)
+
+## Percent stop / target inputs, levels and exits  [lines 237-249]
+  237: stopPer = input(3, title='Stop Loss %', type=input.float) / 100
+  238: takePer = input(9, title='Take Profit %', type=input.float) / 100
+  239: 
+  240: // Determine where you've entered and in what direction
+  241: longStop = strategy.position_avg_price * (1 - stopPer)
+  242: shortStop = strategy.position_avg_price * (1 + stopPer)
+  243: shortTake = strategy.position_avg_price * (1 - takePer)
+  244: longTake = strategy.position_avg_price * (1 + takePer)
+  245: 
+  246: if strategy.position_size > 0 
+  247:     strategy.exit(id="Exit Long", stop=longStop, limit=longTake)
+  248: if strategy.position_size < 0 
+  249:     strategy.exit(id="Exit Short", stop=shortStop, limit=shortTake)

@@ -1,0 +1,51 @@
+# Original sizing and money-management code, FMZ #428056 (形态预测策略Hammer-and-Shooting-Star-Pattern-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/428056  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk, AutoView and account inputs  [lines 209-214]
+  209: oandaDemo        = input(title="Use Oanda Demo?", type=input.bool, defval=false, tooltip="If turned on then oandapractice broker prefix will be used for AutoView alerts (demo account). If turned off then live account will be used", group="AutoView Oanda Settings")
+  210: limitOrder       = input(title="Use Limit Order?", type=input.bool, defval=true, tooltip="If turned on then AutoView will use limit orders. If turned off then market orders will be used", group="AutoView Oanda Settings")
+  211: gtdOrder         = input(title="Days To Leave Limit Order", type=input.integer, minval=0, defval=2, tooltip="This is your GTD setting (good til day)", group="AutoView Oanda Settings")
+  212: accountBalance   = input(title="Account Balance", type=input.float, defval=1000.0, step=100, tooltip="Your account balance (used for calculating position size)", group="AutoView Oanda Settings")
+  213: accountCurrency  = input(title="Account Currency", type=input.string, defval="USD", options=["AUD", "CAD", "CHF", "EUR", "GBP", "JPY", "NZD", "USD"], tooltip="Your account balance currency (used for calculating position size)", group="AutoView Oanda Settings")
+  214: riskPerTrade     = input(title="Risk Per Trade %", type=input.float, defval=2.0, step=0.5, tooltip="Your risk per trade as a % of your account balance", group="AutoView Oanda Settings")
+
+## Conversion security and position-size functions  [lines 248-272]
+  248: var tradePositionSize = 0.0
+  249: var pair = syminfo.basecurrency + "/" + syminfo.currency
+  250: 
+  251: // Check if our account currency is the same as the base or quote currency (for risk $ conversion purposes)
+  252: accountSameAsCounterCurrency = accountCurrency == syminfo.currency
+  253: accountSameAsBaseCurrency = accountCurrency == syminfo.basecurrency
+  254: 
+  255: // Check if our account currency is neither the base or quote currency (for risk $ conversion purposes)
+  256: accountNeitherCurrency = not accountSameAsCounterCurrency and not accountSameAsBaseCurrency
+  257: 
+  258: // Get currency conversion rates if applicable
+  259: conversionCurrencyPair = accountSameAsCounterCurrency ? syminfo.tickerid : accountNeitherCurrency ? accountCurrency + syminfo.currency : accountCurrency + syminfo.currency
+  260: conversionCurrencyRate = security(symbol=syminfo.type == "forex" ? "BTC_USDT:swap" : "BTC_USDT:swap", resolution="D", expression=close)
+  261: 
+  262: // Calculate position size
+  263: getPositionSize(stopLossSizePoints) =>
+  264:     riskAmount = (accountBalance * (riskPerTrade / 100)) * (accountSameAsBaseCurrency or accountNeitherCurrency ? conversionCurrencyRate : 1.0)
+  265:     riskPerPoint = (stopLossSizePoints * syminfo.pointvalue)
+  266:     positionSize = (riskAmount / riskPerPoint) / syminfo.mintick
+  267:     round(positionSize)
+  268:     
+  269: // Custom function to convert pips into whole numbers
+  270: toWhole(number) =>
+  271:     return = atr(14) < 1.0 ? (number / syminfo.mintick) / (10 / syminfo.pointvalue) : number
+  272:     return := atr(14) >= 1.0 and atr(14) < 100.0 and syminfo.currency == "JPY" ? return * 100 : return
+
+## Stop / target levels  [lines 276-282]
+  276: stopSize = atr * stopMultiplier
+  277: longStopPrice = low < low[1] ? low - stopSize : low[1] - stopSize
+  278: longStopDistance = close - longStopPrice
+  279: longTargetPrice = close + (longStopDistance * rr)
+  280: shortStopPrice = high > high[1] ? high + stopSize : high[1] + stopSize
+  281: shortStopDistance = shortStopPrice - close
+  282: shortTargetPrice = close - (shortStopDistance * rr)
+
+## Exits  [lines 330-331]
+  330: strategy.exit(id="Long Exit", from_entry="Long", limit=tradeTargetPrice, stop=tradeStopPrice, when=strategy.position_size > 0)
+  331: strategy.exit(id="Short Exit", from_entry="Short", limit=tradeTargetPrice, stop=tradeStopPrice, when=strategy.position_size < 0)

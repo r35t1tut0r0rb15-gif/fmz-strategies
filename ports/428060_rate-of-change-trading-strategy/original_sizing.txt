@@ -1,0 +1,33 @@
+# Original sizing and money-management code, FMZ #428060 (基于变化率的交易策略Rate-of-Change-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/428060  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital  [lines 209-211]
+  209: strategy(shorttitle="ROC+Strategy", title="Rate of Change Strategy",
+  210:                                       overlay=true,  currency=currency.USD,
+  211:                                       initial_capital=10000)
+
+## Order stake input  [lines 219-219]
+  219: orderStake = input(0.96, "Order Stake (%)", minval=0, step=0.01)
+
+## Order size, trailing stop and orders  [lines 263-282]
+  263: orderSize = (strategy.equity * orderStake) / close
+  264: 
+  265: // Trailing Stoploss
+  266: // I'm using 2.62 as my default value, play with this for different results.
+  267: longTrailPerc = input(title="Trailing Stoploss (%)",
+  268:      type=input.float, minval=0.0, step=0.1, defval=3.62) * 0.01
+  269:      
+  270: longStopPrice = 0.0
+  271: 
+  272: longStopPrice := if (strategy.position_size > 0)
+  273:     stopValue = close * (1 - longTrailPerc)
+  274:     max(stopValue, longStopPrice[1])
+  275: else
+  276:     0
+  277: 
+  278: if (enterLong)
+  279:     strategy.entry("Open Long Position", strategy.long, orderSize, when=strategy.position_size <= 0)
+  280:     
+  281: if (enterShort)
+  282:     strategy.exit(id="Close Long Position", stop=longStopPrice)

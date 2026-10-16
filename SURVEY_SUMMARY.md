@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3196 |
+| PORT_CANDIDATE | 3183 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 550 |
-| PORTED | 494 |
+| PORTED | 506 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 67 |
+| REJECTED_ON_READING | 68 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -622,7 +622,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427985 | `ports/427985_dual-trend-tracking-strategy/` | PineScript | combo_123_reversal | none | length x2, length_oo x2 | 4 |
 | 427986 | `ports/427986_dual-bollinger-quant-options-strategy/` | PineScript | mean_reversion_band | none | length2 x2, mult2 x2 | 4 |
 | 427987 | `ports/427987_golden-cross-strategy/` | PineScript | ma_cross | none | l_short x2, l_long x2 | 4 |
-| | **494 ports** | | | | | **3630** |
+| 427989 | `ports/427989_adx-rsi-adx-rsi-strategy/` | PineScript | momentum_oscillator_turn | none | adx_level x2, ob x2, os x2 | 8 |
+| 427990 | `ports/427990_eltrut-turtle-reversal-strategy/` | PineScript | channel_reversal | coarse_bar_stop | stop_pct x2, take_pct x2 | 4 |
+| 427992 | `ports/427992_doji-candlestick-reversal-trading-strategy/` | PineScript | candle_pattern | none | sma_period x2, tolerance x2 | 4 |
+| 427994 | `ports/427994_bollinger-bands-fibonacci-retracement-trading-strategy/` | PineScript | atr_band_breakout | none | length x2, fibo x2 | 4 |
+| 427998 | `ports/427998_renko-yin-yang-quant-trading-strategy/` | PineScript | renko_bricks | none | atr_len x4 | 4 |
+| 428000 | `ports/428000_ema-triple-ema-momentum-strategy/` | PineScript | ma_cross | none | tp_atr x2, sl_atr x2, len1 x2 | 8 |
+| 428051 | `ports/428051_rsi-rsi-signal-tracking-reversal-trading-strategy/` | PineScript | momentum_oscillator_turn | none | rsi_period x2, rsi_limit x2 | 4 |
+| 428052 | `ports/428052_william-triple-moving-average-crossover-and-williams-indicat/` | PineScript | ma_trend | coarse_bar_stop | n x2, stop_loss x2, target_profit x2 | 8 |
+| 428053 | `ports/428053_rainbow-moving-average-trading-strategy/` | PineScript | ma_trend | none | ma1_len x2, dis_len x2 | 4 |
+| 428056 | `ports/428056_hammer-and-shooting-star-pattern-trading-strategy/` | PineScript | candle_pattern | coarse_bar_stop | stop_mult x2, rr x2, fib x2 | 8 |
+| 428059 | `ports/428059_ema-ema-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 428060 | `ports/428060_rate-of-change-trading-strategy/` | PineScript | momentum_breakout | trailing_stop_pending | trail_pct x2, lookback x2 | 4 |
+| | **506 ports** | | | | | **3694** |
 
 ## Rejected on reading
 
@@ -695,6 +707,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427890 | 基于ATR和CCI的趋势跟踪策略CCI-and-ATR-Based-Trend-Following-Strategy.md | 1 | The buy / sell filter is security(syminfo.tickerid, '60', swap4[1], lookahead_on) on the 3-hour header chart: a 60-minute resolution below the chart's, whose value per 3-hour bar is undefined (as #427518). |
 | 427899 | 均线交叉与平均真实波幅混合策略ATR-and-Moving-Average-Crossover-Hybrid-Strategy.md | 1 | The signals use security(syminfo.tickerid, TF_, close, lookahead_off) with TF_ = "1" (the if-chain uses == instead of :=, so TF_ never changes) on the 1-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
 | 427926 | DEMA快速双指数移动平均策略DEMA-Double-Exponential-Moving-Average-Strategy.md | 1 | Both DEMAs are request.security(syminfo.tickerid, '120', ...) on the daily header chart: a 120-minute resolution below the chart's, whose value per daily bar is undefined (as #427518). |
+| 427997 | 多元指标聚合策略Diversified-Indicators-Aggregation-Strategy.md | 1 | Every open and close rule (30 band / %B / band-width events) defaults to 'Not Used', so at the defaults the strategy places no order; choosing rules would be authoring a new strategy, not a port. |
 
 ## Flagged and stored under criterion 3 (253 files)
 
