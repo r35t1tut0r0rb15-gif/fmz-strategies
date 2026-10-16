@@ -749,6 +749,37 @@ SIZING = {
         ("strategy(): 100 % of equity, pyramiding 0", 125, 125),
     ],
     427348: [],
+    # ---- FMZ-C, batch C6 (2026-10-16)
+    427367: [
+        ("strategy(): pyramiding 2, fixed qty 3, initial capital", 154, 154),
+        ("Add while below the average price (not ported)", 186, 186),
+    ],
+    427369: [
+        ("strategy(): 100 % of equity, commission 0.1 %", 164, 164),
+        ("Pyramiding gate inputs (section counters)", 264, 266),
+    ],
+    427370: [],
+    427372: [
+        ("strategy(): pyramiding 100, commission 0.25 %", 152, 152),
+        ("Entry qty 1 with the averaging protection; the gain-protected close_all", 183, 184),
+    ],
+    427375: [],
+    427381: [],
+    427382: [
+        ("strategy(): 100 % of equity, initial capital 1000", 164, 164),
+    ],
+    427383: [
+        ("strategy(): 100 % of equity, initial capital", 166, 166),
+        ("ATR stop inputs and levels (ported via stops())", 224, 231),
+    ],
+    427384: [],
+    427385: [
+        ("Orders with qty 1 (strategy.order nets units)", 252, 253),
+    ],
+    427386: [
+        ("Order size floor(50000 / close)", 216, 216),
+        ("Entries with the order size and the 100 % closes", 218, 238),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -968,6 +999,16 @@ REJECTED_ON_READING = {
     427306: ("1", "Both signal lines are request.security(syminfo.tickerid, '30', ...) on the daily "
               "header chart: a 30-minute resolution below the chart's, whose value per daily bar "
               "is undefined (as #426261 / #426478)."),
+    # ---- FMZ-C, batch C6 (2026-10-16)
+    427366: ("1", "The stop, target and trailing distances are set on the bar the position appears "
+              "(strategy.position_size changes, i.e. the FILL bar), from that bar's ta.lowest(14) "
+              "/ ta.highest(14) and ATR, and the trailing points are scaled by 100000 (5-digit FX "
+              "points). A stop built from the fill bar's own data cannot be expressed (skill "
+              "section 7; as #427127)."),
+    427379: ("1", "The stop and target come from valuewhen(position_size changed, lowest(20) / "
+              "highest(20), 0), i.e. the 20-bar swing measured on the FILL bar itself (its own "
+              "low / high included), and are active from the next bar: a stop from the fill bar's "
+              "data cannot be expressed (as #427127)."),
 }
 
 DUPLICATE_ON_READING = {

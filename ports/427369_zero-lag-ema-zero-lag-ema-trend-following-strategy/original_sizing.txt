@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #427369 (基于Zero-Lag-EMA的趋势跟踪策略Zero-Lag-EMA-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/427369  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission 0.1 %  [lines 164-164]
+  164: strategy("MP ZeroLag EMA", "MP 0 Strat", overlay=true, pyramiding=0, initial_capital=100000, currency=currency.USD, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, commission_type=strategy.commission.percent, commission_value=0.1)
+
+## Pyramiding gate inputs (section counters)  [lines 264-266]
+  264: pyrl = input(1, "Pyramiding less than") // If your count is less than this number
+  265: pyre = input(0, "Pyramiding equal to") // If your count is equal to this number
+  266: pyrg = input(1000000, "Pyramiding greater than") // If your count is greater than this number

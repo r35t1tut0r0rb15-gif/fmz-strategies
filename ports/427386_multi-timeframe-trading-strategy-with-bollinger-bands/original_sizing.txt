@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #427386 (基于波带通道的多时间框架交易策略Multi-timeframe-Trading-Strategy-with-Bollinger-Bands)
+# Source: https://www.fmz.com/strategy/427386  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Order size floor(50000 / close)  [lines 216-216]
+  216: ordersize=floor(50000/close)
+
+## Entries with the order size and the 100 % closes  [lines 218-238]
+  218: if(close>upper and strategy.opentrades==0 and not mean and test)
+  219:     strategy.entry("Hunt Up", strategy.long, ordersize)
+  220: if (close<upper and close[1]<upper and close[2]<upper)
+  221:     strategy.close("Hunt Up", qty_percent = 100, comment = "Hunt End")
+  222: 
+  223: if(close<lower and strategy.opentrades==0 and not mean and test)
+  224:     strategy.entry("Hunt Down", strategy.short, ordersize)
+  225: if (close>lower and close[1]>lower and close[2]>lower)
+  226:     strategy.close("Hunt Down", qty_percent = 100, comment = "Hunt End")
+  227: 
+  228: //bounce of bands
+  229: 
+  230: if(close>upper and strategy.opentrades==0 and mean and test)
+  231:     strategy.entry("Sneak Down", strategy.short, ordersize)
+  232: if (close<upper and close[1]<upper and close[2]<upper and close>high[1])
+  233:     strategy.close("Sneak Down", qty_percent = 100, comment = "SneakEnd")
+  234: 
+  235: if(close<lower and strategy.opentrades==0 and mean and test)
+  236:     strategy.entry("Sneak Up", strategy.long, ordersize)
+  237: if (close>lower and close[1]>lower and close[2]>lower and close<low[1])
+  238:     strategy.close("Sneak Up", qty_percent = 100, comment = "Sneak End")

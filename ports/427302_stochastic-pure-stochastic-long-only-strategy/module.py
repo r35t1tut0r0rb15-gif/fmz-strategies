@@ -6,7 +6,7 @@ Port of FMZ strategy #427302 "Pure Stochastic Long Only Strategy".
 FMZ source id: 427302
 
 Source
-    https://www.fmz.com/strategy/427302 (PineScript (no @version line, v1 syntax), FMZ last modified 2023-09-19 21:22:11).
+    https://www.fmz.com/strategy/427302 (PineScript v4, FMZ last modified 2023-09-19 21:22:11).
     Verbatim copy: original_source.md. Read 2026-10-15 (FMZ-C).
 
 Original signal (original_source.md lines 152-176), length 10, OB 80, OS 20, K 7, D 4, EMA 5

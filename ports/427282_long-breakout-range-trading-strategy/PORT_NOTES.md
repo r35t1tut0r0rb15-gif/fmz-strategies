@@ -1,7 +1,7 @@
 # #427282 Long Breakout Range Trading Strategy -> `fmz_427282_breakout_range_long`
 
 - FMZ source id: 427282 (lineage).
-- Source: https://www.fmz.com/strategy/427282 (PineScript (no @version line, v1 syntax), author ChaoZhang, FMZ last
+- Source: https://www.fmz.com/strategy/427282 (PineScript v2, author ChaoZhang, FMZ last
   modified 2023-09-19 17:19:55). Verbatim here as `original_source.md`. Read 2026-10-15 (FMZ-C).
 - Status: PORTED (batch C4). Not run.
 

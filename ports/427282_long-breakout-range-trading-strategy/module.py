@@ -5,7 +5,7 @@ Port of FMZ strategy #427282 "Long Breakout Range Trading Strategy".
 FMZ source id: 427282
 
 Source
-    https://www.fmz.com/strategy/427282 (PineScript (no @version line, v1 syntax), FMZ last modified 2023-09-19 17:19:55).
+    https://www.fmz.com/strategy/427282 (PineScript v2, FMZ last modified 2023-09-19 17:19:55).
     Verbatim copy: original_source.md. Read 2026-10-15 (FMZ-C).
 
 Original signal (original_source.md lines 176-188), look back 4, reverse off

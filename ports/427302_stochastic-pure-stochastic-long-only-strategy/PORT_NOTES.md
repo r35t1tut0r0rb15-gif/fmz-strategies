@@ -1,7 +1,7 @@
 # #427302 Pure Stochastic Long Only Strategy -> `fmz_427302_pure_stochastic_long`
 
 - FMZ source id: 427302 (lineage).
-- Source: https://www.fmz.com/strategy/427302 (PineScript (no @version line, v1 syntax), author ChaoZhang, FMZ last
+- Source: https://www.fmz.com/strategy/427302 (PineScript v4, author ChaoZhang, FMZ last
   modified 2023-09-19 21:22:11). Verbatim here as `original_source.md`. Read 2026-10-15 (FMZ-C).
 - Status: PORTED (batch C4). Not run.
 

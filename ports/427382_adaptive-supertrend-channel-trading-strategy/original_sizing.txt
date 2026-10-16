@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427382 (基于自适应超趋势通道的交易策略Adaptive-Supertrend-Channel-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427382  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, initial capital 1000  [lines 164-164]
+  164: strategy("SuperTrend Cloud Strategy", shorttitle="SuperTrend Cloud Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100, initial_capital = 1000)

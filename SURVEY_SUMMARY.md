@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3306 |
+| PORT_CANDIDATE | 3293 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 548 |
-| PORTED | 393 |
+| PORTED | 404 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 60 |
+| REJECTED_ON_READING | 62 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -521,7 +521,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427346 | `ports/427346_volatility-tracking-stop-loss-strategy/` | PineScript | volatility_stop_cross | none | length x2, length_ma x3 | 6 |
 | 427347 | `ports/427347_sma-dual-sma-trend-following-strategy/` | PineScript | ma_trend | none | slow_len x3, bars x2 | 6 |
 | 427348 | `ports/427348_ema-crossover-trading-strategy-based-on-dual-ema-system/` | PineScript | ma_trend | none | short_len x2, long_len x3 | 6 |
-| | **393 ports** | | | | | **2998** |
+| 427367 | `ports/427367_triangle-breakout-trend-following-strategy/` | PineScript | candle_pattern | none | num_periods x2, slow_ema x2, stop_pct x2 | 8 |
+| 427369 | `ports/427369_zero-lag-ema-zero-lag-ema-trend-following-strategy/` | PineScript | ma_trend | none | fast x2, slow x2, tp_pct x2 | 8 |
+| 427370 | `ports/427370_ema-slope-and-cross-trend-trading-strategy/` | PineScript | ma_trend | none | ma1 x2, ma2 x2, ma3 x2 | 8 |
+| 427372 | `ports/427372_renko-tema-renko-boxes-and-tema-indicator-micro-profit-strat/` | PineScript | ma_trend | none | tema_length x2, smma_length x2, min_gain_pct x2 | 8 |
+| 427375 | `ports/427375_psychological-line-trading-strategy/` | PineScript | momentum_oscillator_turn | none | length x3 | 3 |
+| 427381 | `ports/427381_multi-factor-reversal-trading-combo-strategy/` | PineScript | multi_indicator_confluence | none | length x2, level x2, fsk_ema x2 | 8 |
+| 427382 | `ports/427382_adaptive-supertrend-channel-trading-strategy/` | PineScript | supertrend | none | multi x2, period x2, self_adjust x2 | 8 |
+| 427383 | `ports/427383_atr-macd-macd-trading-strategy-with-adaptive-atr-stop-loss/` | PineScript | macd_momentum | coarse_bar_stop | fast x2, slow x2, atr_mult x2 | 8 |
+| 427384 | `ports/427384_rsi-rsi-average-reversion-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, long_exit x2, short_exit x2 | 8 |
+| 427385 | `ports/427385_ichimoku-and-macd-trend-reversal-trading-strategy/` | PineScript | multi_timeframe_ma | none | tenkan x2, macd_fast x2, macd_slow x2 | 8 |
+| 427386 | `ports/427386_multi-timeframe-trading-strategy-with-bollinger-bands/` | PineScript | bollinger_breakout | none | length x3, mult x2 | 6 |
+| | **404 ports** | | | | | **3079** |
 
 ## Rejected on reading
 
@@ -587,6 +598,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 427161 | 动态止损交易视图策略Dynamic-Stop-Loss-Alert-TradingView-Strategy.md | 1 | Exits are strategy.exit('XPartLong', qty_percent = 50, profit = 150 ticks) plus a second exit for the rest at 400 ticks or a pivot stop: partial exits (as #365389); tick distances are also instrument-specific. |
 | 427182 | 均线黄金交叉策略EMA-Golden-Cross-Strategy.md | 1 | Two scripts pasted into one file: a Pine v5 breakout snippet (entries 'Enter Long' / 'Enter Short' on 5-bar highs / lows) placed before the strategy() line of a v3 EMA 10/21 script (entry 'Buy', closed by id 'Buy'). Both act on one position and the close only targets the 'Buy' id, so the position path depends on per-id accounting that a net-position port cannot reproduce, and which script is meant is undefined. |
 | 427306 | SuperTrend双均线交叉策略SuperTrend-Dual-Moving-Average-Crossover-Strategy.md | 1 | Both signal lines are request.security(syminfo.tickerid, '30', ...) on the daily header chart: a 30-minute resolution below the chart's, whose value per daily bar is undefined (as #426261 / #426478). |
+| 427366 | 基于EMA和RSI的趋势交易策略EMA-and-RSI-Trend-Trading-Strategy.md | 1 | The stop, target and trailing distances are set on the bar the position appears (strategy.position_size changes, i.e. the FILL bar), from that bar's ta.lowest(14) / ta.highest(14) and ATR, and the trailing points are scaled by 100000 (5-digit FX points). A stop built from the fill bar's own data cannot be expressed (skill section 7; as #427127). |
+| 427379 | 基于255-EMA-与-MACD-的反转交易策略255-EMA-and-MACD-Reversal-Trading-Strategy.md | 1 | The stop and target come from valuewhen(position_size changed, lowest(20) / highest(20), 0), i.e. the 20-bar swing measured on the FILL bar itself (its own low / high included), and are active from the next bar: a stop from the fill bar's data cannot be expressed (as #427127). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

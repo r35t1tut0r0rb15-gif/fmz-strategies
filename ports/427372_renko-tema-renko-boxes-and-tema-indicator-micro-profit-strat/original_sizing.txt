@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #427372 (基于Renko砖和TEMA指标的微利策略Renko-Boxes-and-TEMA-Indicator-Micro-Profit-Strategy)
+# Source: https://www.fmz.com/strategy/427372  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 100, commission 0.25 %  [lines 152-152]
+  152: strategy("TEMA Cross", overlay = true, precision = 7, overlay=true, pyramiding = 100, commission_type = strategy.commission.percent, commission_value = 0.25)
+
+## Entry qty 1 with the averaging protection; the gain-protected close_all  [lines 183-184]
+  183: strategy.entry("Buy", strategy.long, qty = 1, when = longCondition and time > timestamp(2017, 9, 22, 4, 20)  and (avg_protection >= 1 ? (na(strategy.position_avg_price) ? true : close <= strategy.position_avg_price) : true))
+  184: strategy.close_all(when = shortCondition and time > timestamp(2017, 9, 22, 4, 20) and (gain_protection >=1 ? (close >= gainMultiplier * strategy.position_avg_price) : true))

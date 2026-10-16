@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #427367 (三角形突破趋势追踪策略Triangle-Breakout-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/427367  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 2, fixed qty 3, initial capital  [lines 154-154]
+  154: strategy(title="TrianglePoint strategy", overlay=true,pyramiding=2, default_qty_value=3, default_qty_type=strategy.fixed,    initial_capital=10000, currency=currency.USD)
+
+## Add while below the average price (not ported)  [lines 186-186]
+  186: strategy.entry(id="TBT LE", comment="Add" , long=true,  when= longCondition and strategy.position_size>=1 and close<strategy.position_avg_price)   
