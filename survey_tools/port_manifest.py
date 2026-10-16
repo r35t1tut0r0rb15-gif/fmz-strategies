@@ -1550,6 +1550,34 @@ SIZING = {
     430142: [
         ("initial_capital and the entry quantity", 202, 203),
     ],
+    # ---- FMZ-C, batch C33 (2026-10-16)
+    430148: [
+        ("strategy(): 15 % of equity", 130, 130),
+    ],
+    430150: [],
+    430152: [],
+    430162: [
+        ("TP / stop / trail inputs", 210, 215),
+        ("Entries with their bracket and trail exits", 320, 327),
+    ],
+    430164: [
+        ("Fixed quantity 1 entries", 193, 194),
+    ],
+    430169: [
+        ("strategy(): 10 % of equity, capital", 160, 160),
+        ("Stop levels and exits", 199, 203),
+    ],
+    430170: [
+        ("Commented-out strategy(): 10 % of equity, commission", 236, 237),
+        ("TP / SL methods and levels", 254, 276),
+        ("Bracket exits", 289, 294),
+    ],
+    430171: [
+        ("Trailing size input and the (inert) stop exits", 204, 230),
+    ],
+    430174: [],
+    430176: [],
+    430244: [],
 }
 
 REJECTED_ON_READING = {
@@ -1886,6 +1914,17 @@ REJECTED_ON_READING = {
     430113: ("1", "The trend filter is request.security(syminfo.tickerid, '240', sma(close, 200)) on "
               "the 1-day header chart: a 4-hour resolution below the chart's, whose value per bar "
               "is undefined (as #427518)."),
+    # ---- FMZ-C, batch C33 (2026-10-16)
+    430149: ("1", "The trend filter is request.security(syminfo.tickerid, tostring(60), close / "
+              "sma(close, 20)) on the 1-day header chart: a 1-hour resolution below the chart's, "
+              "whose value per bar is undefined (as #427518)."),
+    430178: ("1", "Exits are strategy.exit('TP1/SL', qty_percent = 50, limit = TP1) plus a second "
+              "exit for the rest at TP2, with the stop moved to the entry price after the partial "
+              "fill (and price-unit targets): partial exits (as #365389)."),
+    430180: ("1", "Dollar-cost averaging: strategy.entry adds investmentAmount / close on every bar "
+              "the position did not shrink (pyramiding 5), with percentage closes of the whole "
+              "position; the position is a running sum of orders, so the size path is the "
+              "strategy (as #426302)."),
 }
 
 DUPLICATE_ON_READING = {

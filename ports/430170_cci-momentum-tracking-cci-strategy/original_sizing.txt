@@ -1,0 +1,40 @@
+# Original sizing and money-management code, FMZ #430170 (动量追踪CCI策略Momentum-Tracking-CCI-Strategy)
+# Source: https://www.fmz.com/strategy/430170  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): 10 % of equity, commission  [lines 236-237]
+  236: // strategy("CCI+EMA Strategy with Percentage or ATR TP/SL [Alifer]", shorttitle = "CCI_EMA_%/ATR_TP/SL", overlay=false,
+  237: //      initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=10, commission_type=strategy.commission.percent, commission_value=0.045)
+
+## TP / SL methods and levels  [lines 254-276]
+  254: tpSlMethod_percentage = input(true, "Percentage TP/SL", group="TP/SL Method")
+  255: tpSlMethod_atr = input(false, "ATR TP/SL", group="TP/SL Method")
+  256: 
+  257: // Percentage-based Take Profit and Stop Loss
+  258: tp_percentage = input.float(10.0, title="Take Profit (%)", step=0.1, group="TP/SL Method")
+  259: sl_percentage = input.float(10.0, title="Stop Loss (%)", step=0.1, group="TP/SL Method")
+  260: 
+  261: // ATR-based Take Profit and Stop Loss
+  262: atrLength = input(20, title="ATR Length", group="TP/SL Method")
+  263: atrMultiplier = input(4, title="ATR SL Multiplier", group="TP/SL Method")
+  264: riskRewardRatio = input(2, title="Risk Reward Ratio", group="TP/SL Method")
+  265: 
+  266: // Calculate TP/SL levels based on the selected method, or leave them undefined if neither method is selected
+  267: longTP = tpSlMethod_percentage ? strategy.position_avg_price * (1 + tp_percentage / 100) : na
+  268: longSL = tpSlMethod_percentage ? strategy.position_avg_price * (1 - sl_percentage / 100) : na
+  269: shortTP = tpSlMethod_percentage ? strategy.position_avg_price * (1 - tp_percentage / 100) : na
+  270: shortSL = tpSlMethod_percentage ? strategy.position_avg_price * (1 + sl_percentage / 100) : na
+  271: 
+  272: if tpSlMethod_atr
+  273:     longSL := strategy.position_avg_price - ta.atr(atrLength) * atrMultiplier
+  274:     longTP := ((strategy.position_avg_price - longSL) * riskRewardRatio) + strategy.position_avg_price
+  275:     shortSL := strategy.position_avg_price + ta.atr(atrLength) * atrMultiplier
+  276:     shortTP := ((strategy.position_avg_price - shortSL) * riskRewardRatio) - strategy.position_avg_price
+
+## Bracket exits  [lines 289-294]
+  289: if strategy.position_size > 0
+  290:     strategy.exit("Long Exit", "Buy", limit=longTP, stop=longSL)
+  291: 
+  292: // Close short positions with Take Profit or Stop Loss
+  293: if strategy.position_size < 0
+  294:     strategy.exit("Short Exit", "Sell", limit=shortTP, stop=shortSL)

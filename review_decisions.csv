@@ -88,6 +88,9 @@ fmz_id,file,final_outcome,criterion,reason
 430034,双仓突破策略Dual-position-Breakthrough-Strategy.md,REJECTED_ON_READING,1,"Alert-message demo: the position flips long / short on the parity of bar_index (long on even bars, short on odd), which depends only on where the data starts; no market rule (as #62163)."
 430040,追踪移动均线交易策略Moving-Average-Tracking-Trading-Strategy.md,REJECTED_ON_READING,1,"The Heikin Ashi candles are request.security(heikinashi, '30', ...) and the EMA source request.security(heikinashi, '180', ...) on the 3-hour header chart: a 30-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
 430113,均线回归交易策略Linear-Regression-Moving-Average-Trading-Strategy.md,REJECTED_ON_READING,1,"The trend filter is request.security(syminfo.tickerid, '240', sma(close, 200)) on the 1-day header chart: a 4-hour resolution below the chart's, whose value per bar is undefined (as #427518)."
+430149,Bollinger带宽缩放双均线筛选趋势策略Bollinger-Band-Width-Scaling-Double-Moving-Average-Trend-Filter-Strategy.md,REJECTED_ON_READING,1,"The trend filter is request.security(syminfo.tickerid, tostring(60), close / sma(close, 20)) on the 1-day header chart: a 1-hour resolution below the chart's, whose value per bar is undefined (as #427518)."
+430178,两阶段止损策略Two-stage-Stop-Loss-Strategy.md,REJECTED_ON_READING,1,"Exits are strategy.exit('TP1/SL', qty_percent = 50, limit = TP1) plus a second exit for the rest at TP2, with the stop moved to the entry price after the partial fill (and price-unit targets): partial exits (as #365389)."
+430180,定投策略带止盈.md,REJECTED_ON_READING,1,"Dollar-cost averaging: strategy.entry adds investmentAmount / close on every bar the position did not shrink (pyramiding 5), with percentage closes of the whole position; the position is a running sum of orders, so the size path is the strategy (as #426302)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -772,3 +775,14 @@ fmz_id,file,final_outcome,criterion,reason
 430125,趋势跟踪型双均线策略Trend-Following-Dual-Moving-Average-Strategy.md,PORTED,,ports/430125_trend-following-dual-moving-average-strategy/
 430126,RSI均线交叉策略RSI-EMA-Crossover-Strategy.md,PORTED,,ports/430126_rsi-rsi-ema-crossover-strategy/
 430142,一目均衡趋势跟踪策略Ichimoku-Balance-Line-trend-following-Strategy.md,PORTED,,ports/430142_ichimoku-balance-line-trend-following-strategy/
+430148,渐变追踪止损策略Gradient-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/430148_gradient-trailing-stop-loss-strategy/
+430150,ATR可调节跟踪止损策略ATR-Adjustable-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/430150_atr-atr-adjustable-trailing-stop-loss-strategy/
+430152,双轨跟踪均线策略Double-Moving-Average-Crossover-Strategy.md,PORTED,,ports/430152_double-moving-average-crossover-strategy/
+430162,RSI指标背离交易策略RSI-Divergence-Trading-Strategy.md,PORTED,,ports/430162_rsi-rsi-divergence-trading-strategy/
+430164,动态K线方向策略Dynamic-Candle-Direction-Strategy.md,PORTED,,ports/430164_k-dynamic-candle-direction-strategy/
+430169,渐积突破交易策略Gradual-Accumulation-Breakout-Trading-Strategy.md,PORTED,,ports/430169_gradual-accumulation-breakout-trading-strategy/
+430170,动量追踪CCI策略Momentum-Tracking-CCI-Strategy.md,PORTED,,ports/430170_cci-momentum-tracking-cci-strategy/
+430171,超短期动量突破交易策略SSL-Channel-Breakout-Strategy-with-Trailing-Stop-Loss.md,PORTED,,ports/430171_ssl-channel-breakout-strategy-with-trailing-stop-loss/
+430174,EMA交叉追踪策略EMA-Crossover-tracking-Strategy.md,PORTED,,ports/430174_ema-ema-crossover-tracking-strategy/
+430176,中央跳空与趋势追踪交易策略Price-Gap-and-Trend-Following-Trading-Strategy.md,PORTED,,ports/430176_price-gap-and-trend-following-trading-strategy/
+430244,多因子策略组合Multi-Factor-Strategy-Combination.md,PORTED,,ports/430244_multi-factor-strategy-combination/

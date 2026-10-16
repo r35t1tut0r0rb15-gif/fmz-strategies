@@ -1,0 +1,21 @@
+# Original sizing and money-management code, FMZ #430162 (RSI指标背离交易策略RSI-Divergence-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/430162  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## TP / stop / trail inputs  [lines 210-215]
+  210: tpb = input.float(25, title="take profit", group = "buy", step = 0.5)
+  211: sb = input.float(5, title="stop", group = "buy", step = 0.5)
+  212: tsb = input.float(0.25, title="trailing stop", group = "buy", step = 0.5)
+  213: tps = input.float(25, title="take profit", group = "sell", step = 0.5)
+  214: ss =input.float(5, title="stop", group = "sell", step = 0.5)
+  215: tss = input.float(0.25, title="trailing stop", group = "sell", step = 0.5)
+
+## Entries with their bracket and trail exits  [lines 320-327]
+  320: if (longCondition)
+  321:     strategy.entry("Long", strategy.long)
+  322:     strategy.exit("exit long", "Long", limit = close*(100+tpb)/100 , stop =close*(100-sb)/100 , trail_price = close , trail_offset = close*tsb)
+  323: 
+  324: shortCondition = cr and ta.lowest(ttk[1],len/2)>-1 
+  325: if (shortCondition)
+  326:     strategy.entry("Short", strategy.short)
+  327:     strategy.exit("exit short", "Short", limit = close*(100-tps)/100, stop = close*(100+ss)/100, trail_price = close , trail_offset = close*tss)

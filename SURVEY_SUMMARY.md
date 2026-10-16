@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2987 |
+| PORT_CANDIDATE | 2973 |
 | REJECTED | 994 |
-| PORTED | 679 |
+| PORTED | 690 |
 | HELD_NEEDS_VOLUME | 552 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 89 |
+| REJECTED_ON_READING | 92 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -807,7 +807,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430125 | `ports/430125_trend-following-dual-moving-average-strategy/` | PineScript | directional_movement | none | length_adx x2, signal1 x2 | 4 |
 | 430126 | `ports/430126_rsi-rsi-ema-crossover-strategy/` | PineScript | ma_trend | none | rsi_len x2, m_line x2 | 4 |
 | 430142 | `ports/430142_ichimoku-balance-line-trend-following-strategy/` | PineScript | ichimoku | none | conversion x2, base x2 | 4 |
-| | **679 ports** | | | | | **4376** |
+| 430148 | `ports/430148_gradient-trailing-stop-loss-strategy/` | PineScript | supertrend | none | atr_period x2, factor x2 | 4 |
+| 430150 | `ports/430150_atr-atr-adjustable-trailing-stop-loss-strategy/` | PineScript | volatility_stop_cross | none | hhv x2, mult x2 | 4 |
+| 430152 | `ports/430152_double-moving-average-crossover-strategy/` | PineScript | ma_cross | none | delay x2, slow x2 | 4 |
+| 430162 | `ports/430162_rsi-rsi-divergence-trading-strategy/` | PineScript | macd_divergence | trailing_stop, coarse_bar_stop | length x2, trail_pct x2 | 4 |
+| 430164 | `ports/430164_k-dynamic-candle-direction-strategy/` | PineScript | candle_pattern | none | num_candles x2, doji_atr x2 | 4 |
+| 430169 | `ports/430169_gradual-accumulation-breakout-trading-strategy/` | PineScript | ma_cross | trailing_stop_pending, coarse_bar_stop | accumulation x2, stop_pct x2 | 4 |
+| 430170 | `ports/430170_cci-momentum-tracking-cci-strategy/` | PineScript | momentum_oscillator_turn | none | length x2, tp_sl_pct x2 | 4 |
+| 430171 | `ports/430171_ssl-channel-breakout-strategy-with-trailing-stop-loss/` | PineScript | ssl_channel | none | length x3 | 3 |
+| 430174 | `ports/430174_ema-ema-crossover-tracking-strategy/` | PineScript | supertrend | none | periods x2, multiplier x2 | 4 |
+| 430176 | `ports/430176_price-gap-and-trend-following-trading-strategy/` | PineScript | mean_reversion_band | none | ema_period x2, band_mult x2 | 4 |
+| 430244 | `ports/430244_multi-factor-strategy-combination/` | PineScript | stochastic_oscillator | none | length_stoch x2, rsi_len x2 | 4 |
+| | **690 ports** | | | | | **4419** |
 
 ## Rejected on reading
 
@@ -902,6 +913,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430034 | 双仓突破策略Dual-position-Breakthrough-Strategy.md | 1 | Alert-message demo: the position flips long / short on the parity of bar_index (long on even bars, short on odd), which depends only on where the data starts; no market rule (as #62163). |
 | 430040 | 追踪移动均线交易策略Moving-Average-Tracking-Trading-Strategy.md | 1 | The Heikin Ashi candles are request.security(heikinashi, '30', ...) and the EMA source request.security(heikinashi, '180', ...) on the 3-hour header chart: a 30-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
 | 430113 | 均线回归交易策略Linear-Regression-Moving-Average-Trading-Strategy.md | 1 | The trend filter is request.security(syminfo.tickerid, '240', sma(close, 200)) on the 1-day header chart: a 4-hour resolution below the chart's, whose value per bar is undefined (as #427518). |
+| 430149 | Bollinger带宽缩放双均线筛选趋势策略Bollinger-Band-Width-Scaling-Double-Moving-Average-Trend-Filter-Strategy.md | 1 | The trend filter is request.security(syminfo.tickerid, tostring(60), close / sma(close, 20)) on the 1-day header chart: a 1-hour resolution below the chart's, whose value per bar is undefined (as #427518). |
+| 430178 | 两阶段止损策略Two-stage-Stop-Loss-Strategy.md | 1 | Exits are strategy.exit('TP1/SL', qty_percent = 50, limit = TP1) plus a second exit for the rest at TP2, with the stop moved to the entry price after the partial fill (and price-unit targets): partial exits (as #365389). |
+| 430180 | 定投策略带止盈.md | 1 | Dollar-cost averaging: strategy.entry adds investmentAmount / close on every bar the position did not shrink (pyramiding 5), with percentage closes of the whole position; the position is a running sum of orders, so the size path is the strategy (as #426302). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

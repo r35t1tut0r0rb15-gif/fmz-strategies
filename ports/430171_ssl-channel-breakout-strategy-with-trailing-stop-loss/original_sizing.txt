@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #430171 (超短期动量突破交易策略SSL-Channel-Breakout-Strategy-with-Trailing-Stop-Loss)
+# Source: https://www.fmz.com/strategy/430171  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trailing size input and the (inert) stop exits  [lines 204-230]
+  204: trailingStopSize = input(title="Trailing Stop Size (in Points)", defval=10)
+  205: 
+  206: var float trailingStopPrice = na
+  207: var float stopLossPrice = na
+  208: 
+  209: if (longCondition)
+  210:     // Si se cumple la condición de compra, configura la posición larga, el trailing stop y el stop loss
+  211:     strategy.entry("Long", strategy.long)
+  212:     trailingStopPrice := low - trailingStopSize
+  213:     stopLossPrice := sslDown
+  214: 
+  215: if (shortCondition)
+  216:     // Si se cumple la condición de venta corta, configura la posición corta, el trailing stop y el stop loss
+  217:     strategy.entry("Short", strategy.short)
+  218:     trailingStopPrice := high + trailingStopSize
+  219:     stopLossPrice := sslUp
+  220: 
+  221: // Calcula el trailing stop
+  222: if (strategy.position_size > 0)
+  223:     trailingStopPrice := max(trailingStopPrice, stopLossPrice)
+  224:     if (close < trailingStopPrice)
+  225:         strategy.close("ExitLong", comment="Trailing Stop Long")
+  226: 
+  227: if (strategy.position_size < 0)
+  228:     trailingStopPrice := min(trailingStopPrice, stopLossPrice)
+  229:     if (close > trailingStopPrice)
+  230:         strategy.close("ExitShort", comment="Trailing Stop Short")
