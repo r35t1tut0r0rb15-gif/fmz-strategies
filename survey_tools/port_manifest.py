@@ -1116,6 +1116,36 @@ SIZING = {
     428608: [
         ("strategy(): 100 % of equity, initial capital", 128, 129),
     ],
+    # ---- FMZ-C, batch C18 (2026-10-16)
+    428616: [],
+    428619: [
+        ("Commented-out strategy(): initial capital, quantity", 202, 202),
+    ],
+    428625: [
+        ("Commented-out strategy() line", 182, 182),
+        ("Take-profit / stop inputs", 197, 198),
+        ("Percent exits", 317, 336),
+    ],
+    428626: [],
+    428629: [],
+    428630: [
+        ("Commented-out strategy() line", 140, 140),
+        ("Martingale and capital inputs", 145, 146),
+        ("Profit, martingale multiplier and lot", 197, 199),
+    ],
+    428681: [
+        ("Commented-out strategy(): initial capital, quantity", 156, 156),
+    ],
+    428683: [],
+    428684: [
+        ("strategy(): 100 % of equity, initial capital, commission", 216, 216),
+    ],
+    428691: [],
+    428692: [
+        ("strategy(): pyramiding 0, cash quantity 20000, initial capital", 145, 145),
+        ("Tick target / stop and quantity percent", 166, 168),
+        ("Tick exits", 172, 173),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -1383,6 +1413,13 @@ REJECTED_ON_READING = {
     428611: ("1", "The TSI runs on request.security(syminfo.tickerid, '15', close) on the daily "
               "header chart: a 15-minute resolution below the chart's, whose value per daily bar "
               "is undefined (as #427518)."),
+    # ---- FMZ-C, batch C18 (2026-10-16)
+    428618: ("1", "The stop and target come from valuewhen(bought, ohlc4 - 3 atr(14), 0) with bought "
+              "= position size changed, i.e. the FILL bar's own ohlc4 and ATR (as #427127); "
+              "swing-stop option likewise."),
+    428624: ("1", "The entries use request.security(syminfo.tickerid, '1', hist) on the 1-hour header "
+              "chart: a 1-minute resolution below the chart's, whose value per bar is undefined "
+              "(as #427518)."),
 }
 
 DUPLICATE_ON_READING = {

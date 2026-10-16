@@ -70,6 +70,8 @@ fmz_id,file,final_outcome,criterion,reason
 428066,基于STOCH交易策略的自动交易-Auto-Trading-Strategy-Based-on-STOCH.md,REJECTED_ON_READING,1,"Exits include strategy.exit('XPartLong', qty_percent = 50, profit = 150 ticks) plus a second exit for the rest: partial exits cannot be expressed as one net position (as #427161)."
 428102,多时间框架对角层叠RSI策略Multi-Timeframe-Diagonally-Layered-RSI-Strategy.md,REJECTED_ON_READING,1,"The higher-timeframe RSIs are request.security(syminfo.tickerid, '3' / '5', rsi[1], lookahead_on) on the daily header chart: 3- and 5-minute resolutions below the chart's, whose value per daily bar is undefined (as #427518)."
 428611,基于真实强弱指标的比特币短线交易策略Bitcoin-Short-Term-Trading-Strategy-Based-on-True-Strength-Index.md,REJECTED_ON_READING,1,"The TSI runs on request.security(syminfo.tickerid, '15', close) on the daily header chart: a 15-minute resolution below the chart's, whose value per daily bar is undefined (as #427518)."
+428618,延迟-RSI-交易策略Delayed-RSI-Trading-Strategy.md,REJECTED_ON_READING,1,"The stop and target come from valuewhen(bought, ohlc4 - 3 atr(14), 0) with bought = position size changed, i.e. the FILL bar's own ohlc4 and ATR (as #427127); swing-stop option likewise."
+428624,基于MACD和RSI的短线突破策略MACD-RSI-Short-Term-Breakout-Strategy.md,REJECTED_ON_READING,1,"The entries use request.security(syminfo.tickerid, '1', hist) on the 1-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
@@ -602,3 +604,14 @@ fmz_id,file,final_outcome,criterion,reason
 428582,多重指标组合策略Combo-Strategy-with-Multiple-Indicators.md,PORTED,,ports/428582_combo-strategy-with-multiple-indicators/
 428583,最佳追踪止盈策略Best-Trailing-Take-Profit-Strategy.md,PORTED,,ports/428583_best-trailing-take-profit-strategy/
 428608,平滑海坚线买卖策略Heikin-Ashi-Smoothed-Buy-and-Sell-Strategy.md,PORTED,,ports/428608_heikin-ashi-smoothed-buy-and-sell-strategy/
+428616,双线波动带均线博弈交易策略TrumpBollingerEMAcandlestick-Strategy.md,PORTED,,ports/428616_trumpbollingeremacandlestick-strategy/
+428619,RSI指标突破交易策略Alpha-RSI-Breakout-Trading-Strategy.md,PORTED,,ports/428619_rsi-alpha-rsi-breakout-trading-strategy/
+428625,滑行止损策略Loft-Stop-Strategy.md,PORTED,,ports/428625_loft-stop-strategy/
+428626,反转趋势突破策略Reversal-Breakout-Trend-Strategy.md,PORTED,,ports/428626_reversal-breakout-trend-strategy/
+428629,双移动平均线金叉死叉交易策略Dual-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/428629_dual-moving-average-crossover-trading-strategy/
+428630,双随机动能指标筛选策略Stochastic-Momentum-Dual-Indicators-Strategy.md,PORTED,,ports/428630_stochastic-momentum-dual-indicators-strategy/
+428681,SMA-和-RSI-组合交易策略SMA-and-RSI-Combination-Trading-Strategy.md,PORTED,,ports/428681_sma-rsi-sma-and-rsi-combination-trading-strategy/
+428683,Trix简单趋势跟踪策略Trix-Simple-Trend-Following-Strategy.md,PORTED,,ports/428683_trix-trix-simple-trend-following-strategy/
+428684,基于云图的交易策略Ichimoku-Cloud-Trading-Strategy.md,PORTED,,ports/428684_ichimoku-cloud-trading-strategy/
+428691,连续阳线短期反转策略Consecutive-Candlestick-Reversal-Strategy.md,PORTED,,ports/428691_consecutive-candlestick-reversal-strategy/
+428692,双均线突破策略Dual-Moving-Average-Breakout-Strategy.md,PORTED,,ports/428692_dual-moving-average-breakout-strategy/

@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #428692 (双均线突破策略Dual-Moving-Average-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/428692  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 0, cash quantity 20000, initial capital  [lines 145-145]
+  145: strategy("OptimizedSisy4x", overlay=true,pyramiding=0,default_qty_type=strategy.cash,default_qty_value=20000,scale=true,initial_capital=10000,currency=currency.USD)
+
+## Tick target / stop and quantity percent  [lines 166-168]
+  166: Target = 6250 
+  167: Stop = 3500
+  168: Q = 100
+
+## Tick exits  [lines 172-173]
+  172: strategy.exit("Out Long", "SYS-LONG", qty_percent=Q, profit=Target, loss=Stop)
+  173: strategy.exit("Out Short", "SYS-SHORT", qty_percent=Q, profit=Target ,loss=Stop)

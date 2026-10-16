@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3157 |
+| PORT_CANDIDATE | 3144 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 550 |
-| PORTED | 529 |
+| PORTED | 540 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 71 |
+| REJECTED_ON_READING | 73 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -657,7 +657,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 428582 | `ports/428582_combo-strategy-with-multiple-indicators/` | PineScript | combo_123_reversal | none | length x2, length_tema x2 | 4 |
 | 428583 | `ports/428583_best-trailing-take-profit-strategy/` | PineScript | ma_cross | none | trail_pct x2, trigger_pct x2 | 4 |
 | 428608 | `ports/428608_heikin-ashi-smoothed-buy-and-sell-strategy/` | PineScript | heikin_ashi | none | ma_period x4 | 4 |
-| | **529 ports** | | | | | **3790** |
+| 428616 | `ports/428616_trumpbollingeremacandlestick-strategy/` | PineScript | momentum_breakout | none | dt x4 | 4 |
+| 428619 | `ports/428619_rsi-alpha-rsi-breakout-trading-strategy/` | PineScript | momentum_oscillator_turn | none | rsi_entry x2, sma_length x2 | 4 |
+| 428625 | `ports/428625_loft-stop-strategy/` | PineScript | kalman_trend | coarse_bar_stop | stop_max x2, tp x2 | 4 |
+| 428626 | `ports/428626_reversal-breakout-trend-strategy/` | PineScript | combo_123_reversal | none | length x2, look_bak x2 | 4 |
+| 428629 | `ports/428629_dual-moving-average-crossover-trading-strategy/` | PineScript | hull_ma | none | length x2, lagg x2 | 4 |
+| 428630 | `ports/428630_stochastic-momentum-dual-indicators-strategy/` | PineScript | momentum_oscillator_turn | none | limit x2, a x2 | 4 |
+| 428681 | `ports/428681_sma-rsi-sma-and-rsi-combination-trading-strategy/` | PineScript | momentum_oscillator_turn | none | rsi_entry x2, sma_length x2 | 4 |
+| 428683 | `ports/428683_trix-trix-simple-trend-following-strategy/` | PineScript | trix | none | lengtha x2, lengtha1 x2 | 4 |
+| 428684 | `ports/428684_ichimoku-cloud-trading-strategy/` | PineScript | ichimoku | none | conversion x2, base x2 | 4 |
+| 428691 | `ports/428691_consecutive-candlestick-reversal-strategy/` | PineScript | candle_pattern | none | body_atr x2, rvi_period x2 | 4 |
+| 428692 | `ports/428692_dual-moving-average-breakout-strategy/` | PineScript | ma_cross | none | tp_atr x2, sl_atr x2 | 4 |
+| | **540 ports** | | | | | **3834** |
 
 ## Rejected on reading
 
@@ -734,6 +745,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 428066 | 基于STOCH交易策略的自动交易-Auto-Trading-Strategy-Based-on-STOCH.md | 1 | Exits include strategy.exit('XPartLong', qty_percent = 50, profit = 150 ticks) plus a second exit for the rest: partial exits cannot be expressed as one net position (as #427161). |
 | 428102 | 多时间框架对角层叠RSI策略Multi-Timeframe-Diagonally-Layered-RSI-Strategy.md | 1 | The higher-timeframe RSIs are request.security(syminfo.tickerid, '3' / '5', rsi[1], lookahead_on) on the daily header chart: 3- and 5-minute resolutions below the chart's, whose value per daily bar is undefined (as #427518). |
 | 428611 | 基于真实强弱指标的比特币短线交易策略Bitcoin-Short-Term-Trading-Strategy-Based-on-True-Strength-Index.md | 1 | The TSI runs on request.security(syminfo.tickerid, '15', close) on the daily header chart: a 15-minute resolution below the chart's, whose value per daily bar is undefined (as #427518). |
+| 428618 | 延迟-RSI-交易策略Delayed-RSI-Trading-Strategy.md | 1 | The stop and target come from valuewhen(bought, ohlc4 - 3 atr(14), 0) with bought = position size changed, i.e. the FILL bar's own ohlc4 and ATR (as #427127); swing-stop option likewise. |
+| 428624 | 基于MACD和RSI的短线突破策略MACD-RSI-Short-Term-Breakout-Strategy.md | 1 | The entries use request.security(syminfo.tickerid, '1', hist) on the 1-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
