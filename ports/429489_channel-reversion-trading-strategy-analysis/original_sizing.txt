@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #429489 (通道回归交易策略分析Channel-Reversion-Trading-Strategy-Analysis)
+# Source: https://www.fmz.com/strategy/429489  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, 10 % of equity  [lines 204-204]
+  204: strategy("Estrategia de Canales [JoseMetal]", shorttitle="Estrategia de Canales [JoseMetal]", overlay=true, initial_capital=10000, pyramiding=0, default_qty_value=10, default_qty_type=strategy.percent_of_equity, commission_type=strategy.commission.percent, commission_value=0.0, max_labels_count=500, max_bars_back=1000)
+
+## Entries with their bracket  [lines 306-315]
+  306: if (entrar_en_LONG)
+  307:     LONG_stop_loss   := TP_SL_tipo_SL == "Mecha anterior" ? (P_cond_entrada == "Mecha fuera de la banda" or P_cond_entrada == "Cierre fuera de la banda" ? low[1] : low) : TP_SL_tipo_SL == "Banda extendida" ? banda_extendida_inf_SL : ATR_LONG_sl
+  308:     LONG_take_profit := TP_SL_tipo_TP == "Banda contraria" ? banda_superior : TP_SL_tipo_TP == "Media móvil" ? media_movil : ATR_LONG_tp
+  309:     strategy.entry("Abrir Long", strategy.long)
+  310:     strategy.exit("Cerrar Long", "Abrir Long", limit=LONG_take_profit, stop=LONG_stop_loss)
+  311: else if (entrar_en_SHORT)
+  312:     SHORT_stop_loss   := TP_SL_tipo_SL == "Mecha anterior" ? (P_cond_entrada == "Mecha fuera de la banda" or P_cond_entrada == "Cierre fuera de la banda" ? high[1] : high) : TP_SL_tipo_SL == "Banda extendida" ? banda_extendida_sup_SL : ATR_SHORT_sl
+  313:     SHORT_take_profit := TP_SL_tipo_TP == "Banda contraria" ? banda_inferior : TP_SL_tipo_TP == "Media móvil" ? media_movil : ATR_SHORT_tp
+  314:     strategy.entry("Abrir Short", strategy.short)
+  315:     strategy.exit("Cerrar Short", "Abrir Short", limit=SHORT_take_profit, stop=SHORT_stop_loss)

@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #429499 (移动均线金叉策略Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/429499  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target inputs  [lines 131-132]
+  131: stopLossPercent = input.float(1.0, title="Stop Loss %", step=0.1)
+  132: takeProfitPercent = input.float(1.0, title="Take Profit %", step=0.1)
+
+## Levels, entries and the bracket exit  [lines 148-160]
+  148: var stopLossPrice = 0.0
+  149: var takeProfitPrice = 0.0
+  150: 
+  151: if (longCondition)
+  152:     stopLossPrice := close * (1.0 - stopLossPercent / 100)
+  153:     takeProfitPrice := close * (1.0 + takeProfitPercent / 100)
+  154:     strategy.entry("Long", strategy.long)
+  155: 
+  156: if (shortCondition)
+  157:     strategy.close("Long")
+  158: 
+  159: // Set stop loss and take profit for open positions
+  160: strategy.exit("Stop Loss/Profit", stop=stopLossPrice, limit=takeProfitPrice)

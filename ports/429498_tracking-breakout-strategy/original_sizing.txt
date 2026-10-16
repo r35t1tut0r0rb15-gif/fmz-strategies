@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #429498 (追踪型突破策略Tracking-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/429498  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): cash quantity, capital  [lines 195-195]
+  195: // strategy(title="Donchian Channels", shorttitle="DC", overlay=true, default_qty_type = strategy.cash, default_qty_value = 150, initial_capital = 1000, currency = currency.USD, commission_type = "percent", commission_value = 0.036)
+
+## Risk / reward and pullback inputs  [lines 203-205]
+  203: riskreward      = input(title = "Risk/Reward Ratio", type = input.float, defval = 1.50, minval = 0.01, maxval = 100, step = 0.01, group = "Risk/Reward")
+  204: pullbackLong    = input(title = "Distance from Long pullback %", type = input.float, defval = 0.995, minval = 0.001, maxval = 2, step = 0.001, group = "Risk/Reward")
+  205: pullbackShort   = input(title = "Distance from Short pullback %", type = input.float, defval = 1.005, minval = 0.001, maxval = 2, step = 0.001, group = "Risk/Reward")
+
+## Entries with their bracket  [lines 243-254]
+  243: if previousislow == true and longcond and strategy.position_size == 0 and inDataRange
+  244:     strategy.entry("Long Entry", strategy.long, comment = "Entry Long")
+  245:     stoplossLong := lower * pullbackLong
+  246:     longprofit := ((((1 - stoplossLong / close) * riskreward) + 1) * close)
+  247:     strategy.exit("Long Exit", "Long Entry", limit = longprofit, stop = stoplossLong, comment = "Long Exit")
+  248: 
+  249: // Short - Previous 'breakout' has to be a high, current price has to be a new low and lowe than the 200EMA, we're not allowed to trade when we're in a position and it has to be within our given data for backtesting purposes
+  250: if previousishigh == true and shortcond and strategy.position_size == 0 and inDataRange
+  251:     strategy.entry("Short Entry", strategy.short, comment = "Entry Short")
+  252:     stoplossShort := upper * pullbackShort
+  253:     shortprofit := (close - ((((1 - close / stoplossShort) * riskreward) * close)))
+  254:     strategy.exit("Short Exit", "Short Entry", limit = shortprofit, stop = stoplossShort, comment = "Short Exit")

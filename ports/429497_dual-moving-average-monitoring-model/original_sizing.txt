@@ -1,0 +1,36 @@
+# Original sizing and money-management code, FMZ #429497 (双均线均值监控模型Dual-Moving-Average-Monitoring-Model)
+# Source: https://www.fmz.com/strategy/429497  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): capital, 30 % of equity, process_orders_on_close  [lines 146-153]
+  146: // strategy('Fast EMA above Slow EMA with MACD (by Coinrule)',
+  147: //          overlay=true,
+  148: //          initial_capital=1000,
+  149: //          process_orders_on_close=true,
+  150: //          default_qty_type=strategy.percent_of_equity,
+  151: //          default_qty_value=30,
+  152: //          commission_type=strategy.commission.percent,
+  153: //          commission_value=0.1)
+
+## Trailing stop inputs and levels  [lines 174-191]
+  174: longTrailPerc = input.float(title='Trail Long Loss (%)', minval=0.0, step=0.1, defval=3) * 0.01
+  175: shortTrailPerc = input.float(title='Trail Short Loss (%)', minval=0.0, step=0.1, defval=1) * 0.01
+  176: 
+  177: // Determine trail stop loss prices
+  178: longStopPrice = 0.0
+  179: shortStopPrice = 0.0
+  180: 
+  181: longStopPrice := if strategy.position_size > 0
+  182:     stopValue = close * (1 - longTrailPerc)
+  183:     math.max(stopValue, longStopPrice[1])
+  184: else
+  185:     0
+  186: 
+  187: shortStopPrice := if strategy.position_size < 0
+  188:     stopValue = close * (1 + shortTrailPerc)
+  189:     math.min(stopValue, shortStopPrice[1])
+  190: else
+  191:     999999
+
+## Exit  [lines 197-197]
+  197: strategy.exit(id="Exit", stop = longStopPrice, limit = shortStopPrice)

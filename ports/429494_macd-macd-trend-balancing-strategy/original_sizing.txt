@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #429494 (MACD多空平衡跟踪策略MACD-Trend-Balancing-Strategy)
+# Source: https://www.fmz.com/strategy/429494  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, 100 % of equity  [lines 153-153]
+  153: strategy("MACD BF", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=100, commission_type=strategy.commission.percent, commission_value=0.0)
+
+## Stop input  [lines 203-203]
+  203: sl_inp = input(5.0, title='Stop Loss %', type=float)/100
+
+## Stop levels and exits  [lines 211-222]
+  211: since_longEntry = barssince(last_open_long_signal != last_open_long_signal[1]) // LONG SL
+  212: since_shortEntry = barssince(last_open_short_signal != last_open_short_signal[1]) // SHORT SL
+  213: 
+  214: slLong = in_long_signal ? strategy.position_avg_price * (1 - sl_inp) : na
+  215: slShort = strategy.position_avg_price * (1 + sl_inp)
+  216: long_sl = in_long_signal ? slLong : na
+  217: short_sl = in_short_signal ? slShort : na
+  218: 
+  219: // Strategy SL Exit
+  220: if testPeriod()
+  221:     strategy.exit("Long SL", "Long Entry", stop=long_sl, when=since_longEntry > 1)
+  222:     strategy.exit("Short SL", "Short Entry", stop=short_sl, when=since_shortEntry > 1)

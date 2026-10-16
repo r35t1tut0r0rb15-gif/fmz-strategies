@@ -1380,6 +1380,46 @@ SIZING = {
     429491: [
         ("strategy(): 100 % of equity", 119, 119),
     ],
+    # ---- FMZ-C, batch C26 (2026-10-16)
+    429489: [
+        ("strategy(): capital, 10 % of equity", 204, 204),
+        ("Entries with their bracket", 306, 315),
+    ],
+    429490: [
+        ("strategy(): 100 % of equity", 175, 175),
+    ],
+    429493: [
+        ("strategy(): capital", 139, 139),
+    ],
+    429494: [
+        ("strategy(): capital, 100 % of equity", 153, 153),
+        ("Stop input", 203, 203),
+        ("Stop levels and exits", 211, 222),
+    ],
+    429496: [
+        ("strategy(): pyramiding 1", 156, 156),
+        ("Trailing stop level", 166, 177),
+        ("Trailing stop exit", 213, 214),
+    ],
+    429497: [
+        ("Commented-out strategy(): capital, 30 % of equity, process_orders_on_close", 146, 153),
+        ("Trailing stop inputs and levels", 174, 191),
+        ("Exit", 197, 197),
+    ],
+    429498: [
+        ("Commented-out strategy(): cash quantity, capital", 195, 195),
+        ("Risk / reward and pullback inputs", 203, 205),
+        ("Entries with their bracket", 243, 254),
+    ],
+    429499: [
+        ("Stop / target inputs", 131, 132),
+        ("Levels, entries and the bracket exit", 148, 160),
+    ],
+    429502: [
+        ("Lot input", 181, 181),
+        ("Lot formula and sized entries", 199, 206),
+    ],
+    429504: [],
 }
 
 REJECTED_ON_READING = {

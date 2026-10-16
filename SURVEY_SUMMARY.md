@@ -11,9 +11,9 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 3059 |
+| PORT_CANDIDATE | 3049 |
 | REJECTED | 994 |
-| PORTED | 618 |
+| PORTED | 628 |
 | HELD_NEEDS_VOLUME | 551 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
@@ -745,8 +745,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 429484 | `ports/429484_momentum-tracking-strategy-based-on-indicator-integration/` | PineScript | ma_trend | none | length x2, terms x2 | 4 |
 | 429485 | `ports/429485_surf-rider-strategy/` | PineScript | combo_123_reversal | none | r x2, s x2 | 4 |
 | 429488 | `ports/429488_dual-indicator-slight-reversal-trading-strategy/` | PineScript | combo_123_reversal | none | r x2, u x2 | 4 |
+| 429489 | `ports/429489_channel-reversion-trading-strategy-analysis/` | PineScript | bollinger_reversion | coarse_bar_stop | kc_mult x2, kc_sl_mult x2 | 4 |
+| 429490 | `ports/429490_multi-model-candlestick-pattern-combination-strategy/` | PineScript | candle_pattern | none | body_len x2, exit_frac x2 | 4 |
 | 429491 | `ports/429491_trend-following-long-only-strategy/` | PineScript | donchian_breakout | none | lookback x2, atr_mult x2 | 4 |
-| | **618 ports** | | | | | **4133** |
+| 429493 | `ports/429493_ema-and-heikin-ashi-trading-strategy/` | PineScript | heikin_ashi_trend | none | ma1 x2, ma2 x2 | 4 |
+| 429494 | `ports/429494_macd-macd-trend-balancing-strategy/` | PineScript | macd_cross | coarse_bar_stop | macd_length x2, sl_pct x2 | 4 |
+| 429496 | `ports/429496_atr-mean-reversion-strategy-based-on-atr/` | PineScript | volatility_spike_reversal | coarse_bar_stop, trailing_stop | z x2, trail_k x2 | 4 |
+| 429497 | `ports/429497_dual-moving-average-monitoring-model/` | PineScript | macd_cross | trailing_stop | trail_pct x2, slow x2 | 4 |
+| 429498 | `ports/429498_tracking-breakout-strategy/` | PineScript | donchian_breakout | coarse_bar_stop | length x2, riskreward x2 | 4 |
+| 429499 | `ports/429499_moving-average-crossover-strategy/` | PineScript | ma_cross | none | sl_pct x2, tp_pct x2 | 4 |
+| 429502 | `ports/429502_exponential-moving-average-crossover-strategy/` | PineScript | multi_timeframe_ma | none | length x2 | 2 |
+| 429504 | `ports/429504_tam-rsi-tam-intraday-rsi-trading-strategy/` | PineScript | rsi_oscillator | none | buy_len2 x2, close_len2 x2 | 4 |
+| | **628 ports** | | | | | **4171** |
 
 ## Rejected on reading
 

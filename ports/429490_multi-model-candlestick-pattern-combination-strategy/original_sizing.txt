@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #429490 (多模型组合蜡烛形态策略Multi-model-Candlestick-Pattern-Combination-Strategy)
+# Source: https://www.fmz.com/strategy/429490  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 175-175]
+  175: strategy(title = "Noro's CandleModels Tests", shorttitle = "CandleModels tests", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)

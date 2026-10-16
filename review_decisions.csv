@@ -699,4 +699,14 @@ fmz_id,file,final_outcome,criterion,reason
 429484,趋势动量跟踪策略Momentum-Tracking-Strategy-Based-on-Indicator-Integration.md,PORTED,,ports/429484_momentum-tracking-strategy-based-on-indicator-integration/
 429485,搏浪者策略Surf-Rider-Strategy.md,PORTED,,ports/429485_surf-rider-strategy/
 429488,双指标略逆反转交易策略Dual-Indicator-Slight-Reversal-Trading-Strategy.md,PORTED,,ports/429488_dual-indicator-slight-reversal-trading-strategy/
+429489,通道回归交易策略分析Channel-Reversion-Trading-Strategy-Analysis.md,PORTED,,ports/429489_channel-reversion-trading-strategy-analysis/
+429490,多模型组合蜡烛形态策略Multi-model-Candlestick-Pattern-Combination-Strategy.md,PORTED,,ports/429490_multi-model-candlestick-pattern-combination-strategy/
 429491,多空动态跟踪策略Trend-Following-Long-Only-Strategy.md,PORTED,,ports/429491_trend-following-long-only-strategy/
+429493,平滑移动平均线与均线交易策略EMA-and-Heikin-Ashi-Trading-Strategy.md,PORTED,,ports/429493_ema-and-heikin-ashi-trading-strategy/
+429494,MACD多空平衡跟踪策略MACD-Trend-Balancing-Strategy.md,PORTED,,ports/429494_macd-macd-trend-balancing-strategy/
+429496,基于ATR的均值回复策略Mean-Reversion-Strategy-Based-on-ATR.md,PORTED,,ports/429496_atr-mean-reversion-strategy-based-on-atr/
+429497,双均线均值监控模型Dual-Moving-Average-Monitoring-Model.md,PORTED,,ports/429497_dual-moving-average-monitoring-model/
+429498,追踪型突破策略Tracking-Breakout-Strategy.md,PORTED,,ports/429498_tracking-breakout-strategy/
+429499,移动均线金叉策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/429499_moving-average-crossover-strategy/
+429502,指数移动平均交叉策略Exponential-Moving-Average-Crossover-Strategy.md,PORTED,,ports/429502_exponential-moving-average-crossover-strategy/
+429504,TAM日内RSI交易策略TAM-Intraday-RSI-Trading-Strategy.md,PORTED,,ports/429504_tam-rsi-tam-intraday-rsi-trading-strategy/

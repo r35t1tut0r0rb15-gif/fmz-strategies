@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #429496 (基于ATR的均值回复策略Mean-Reversion-Strategy-Based-on-ATR)
+# Source: https://www.fmz.com/strategy/429496  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 1  [lines 156-156]
+  156: strategy("Mean Reversion (ATR) Strategy v2 [KL] ", overlay=true, pyramiding=1)
+
+## Trailing stop level  [lines 166-177]
+  166: ATR_TSL      = ta.atr(input(14, title="Length of ATR for trailing stop loss", group=GROUP_TSL)) * input(2.0, title="ATR Multiplier for trailing stop loss", group=GROUP_TSL)
+  167: TSL_source      = low
+  168: TSL_line_color  = color.green
+  169: TSL_transp      = 100
+  170: var stop_loss_price = float(0)
+  171: 
+  172: if strategy.position_size == 0 or not within_timeframe
+  173:     TSL_line_color := color.black
+  174:     stop_loss_price := TSL_source - ATR_TSL
+  175: else if strategy.position_size > 0
+  176:     stop_loss_price := math.max(stop_loss_price, TSL_source - ATR_TSL)
+  177:     TSL_transp := 0
+
+## Trailing stop exit  [lines 213-214]
+  213: if strategy.position_size > 0 and ta.change(stop_loss_price)
+  214:     strategy.exit(ENUM_LONG, comment="sl", stop=stop_loss_price)
