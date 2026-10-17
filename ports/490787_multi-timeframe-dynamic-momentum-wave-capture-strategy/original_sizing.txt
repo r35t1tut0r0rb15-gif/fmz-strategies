@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #490787 (多时段动态动量波动捕捉策略-Multi-Timeframe-Dynamic-Momentum-Wave-Capture-Strategy)
+# Source: https://www.fmz.com/strategy/490787  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): fixed cash 10000  [lines 179-183]
+  179: strategy("Enhanced Momentum Wave Catcher", overlay=true,
+  180:   default_qty_type=strategy.cash,
+  181:   default_qty_value=10000,
+  182:   initial_capital=10000,
+  183:   currency="USD")
+
+## Risk amount and reward ratio inputs  [lines 191-192]
+  191: riskAmount = input.float(100.0, "Risk Amount ($)", minval=1.0)
+  192: rrRatio = input.float(3.0, "Risk-Reward Ratio", minval=0.1)
+
+## Stops and risk-based position size  [lines 254-260]
+  254: longStop = math.min(extremeLow, slowEmaLow * 0.998)
+  255: shortStop = math.max(extremeHigh, slowEmaHigh * 1.002)
+  256: 
+  257: // Position Sizing
+  258: calculatePositionSize(entryPrice, stopPrice) =>
+  259:     riskPerUnit = math.abs(entryPrice - stopPrice)
+  260:     riskPerUnit > 0 ? riskAmount / riskPerUnit : na
+
+## Entries with quantity and bracket  [lines 263-269]
+  263: if longCondition and not na(longStop)
+  264:     strategy.entry("Long", strategy.long, qty=calculatePositionSize(close, longStop))
+  265:     strategy.exit("Long Exit", "Long", stop=longStop, limit=close + (rrRatio * (close - longStop)))
+  266: 
+  267: if shortCondition and not na(shortStop)
+  268:     strategy.entry("Short", strategy.short, qty=calculatePositionSize(close, shortStop))
+  269:     strategy.exit("Short Exit", "Short", stop=shortStop, limit=close - (rrRatio * (shortStop - close)))

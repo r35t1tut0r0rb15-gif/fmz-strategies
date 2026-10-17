@@ -1920,6 +1920,58 @@ SIZING = {
         ("strategy(): 100 % of equity", 151, 151),
         ("Trailing stop + price-unit take profit, every bar", 199, 206),
     ],
+    # ---- FMZ-C, batch L2 (2026-10-17)
+    490060: [
+        ("strategy(): 10 % of equity, commission 0.01 %", 179, 179),
+        ("Profit factor", 185, 185),
+        ("Swing stops and targets", 205, 213),
+        ("Entries with the bracket", 224, 230),
+    ],
+    490517: [
+        ("strategy(): 100 % of equity", 212, 212),
+    ],
+    490570: [
+        ("strategy(): fixed quantity, initial capital 4000, commission", 184, 193),
+        ("Trail, lock-in, ATR spacing, cooldown and order-size inputs", 203, 223),
+        ("Base order with a USD quantity", 248, 252),
+        ("Safety orders 1 / 2 (averaging in)", 257, 283),
+        ("Close-checked trails and the exit", 288, 343),
+    ],
+    490787: [
+        ("strategy(): fixed cash 10000", 179, 183),
+        ("Risk amount and reward ratio inputs", 191, 192),
+        ("Stops and risk-based position size", 254, 260),
+        ("Entries with quantity and bracket", 263, 269),
+    ],
+    490794: [
+        ("strategy(): 10 % of equity, no margin", 152, 152),
+    ],
+    490795: [],
+    490798: [
+        ("strategy(): 10 % of equity", 218, 218),
+        ("Pip offset", 221, 222),
+        ("Entries with the zone bracket", 296, 306),
+    ],
+    490804: [
+        ("strategy(): 100 % of equity", 164, 164),
+        ("Target and trail inputs", 168, 170),
+        ("Entries with target and trail", 188, 194),
+    ],
+    490805: [
+        ("strategy(): 10 % of equity", 173, 173),
+        ("SL / TP pip inputs", 178, 180),
+        ("Pip distances", 196, 198),
+        ("Flat-only entries with the bracket", 204, 212),
+    ],
+    490914: [
+        ("strategy(): 10 % of equity, commission 0.75 %", 173, 173),
+    ],
+    491035: [
+        ("strategy(): 100 % of equity", 208, 208),
+        ("Risk-reward and trail inputs", 216, 217),
+        ("Trail distance in ticks", 242, 244),
+        ("Entries with band stop, target and trail", 250, 258),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2340,6 +2392,13 @@ REJECTED_ON_READING = {
     491510: ("1", "time windows shorter than the bars: a 90-second opening window and a 600-second "
               "hold measured from 09:30 GMT-4 on 7-minute bars; no 7-minute bar starts at 09:30 "
               "GMT-4, so as written it never trades"),
+    # ---- FMZ-C, batch L2 (2026-10-17)
+    490908: ("1", "1-minute security on a daily chart (request.security(..., \"1\", stoch(...))); as "
+              "#430765"),
+    490919: ("1", "the long target is the slow RMA, below the price whenever a long fires (RMA 9 > 21 "
+              "> 50 and the close crossing above the mid RMA), shorts mirrored, so every trade "
+              "exits at its own fill; the contract cannot express an exit at the entry fill "
+              "(10-tick stop in price units too)"),
 }
 
 DUPLICATE_ON_READING = {

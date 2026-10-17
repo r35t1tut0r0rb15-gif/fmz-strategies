@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #490060 (多指标交叉动量趋势追踪策略Hull与EMA结合RSI和双重随机震荡器的量化交易系统-Multi-Indicator-Crossover-Momentum-Trend-Following-Strategy-Quantitative-Trading-System-Combining-Hull-with-EMA-RSI-and-Dual-Stochastic-Oscillators)
+# Source: https://www.fmz.com/strategy/490060  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity, commission 0.01 %  [lines 179-179]
+  179: strategy("TrendTwisterV1.5 (Forex Ready + Indicators)", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10, commission_type=strategy.commission.percent, commission_value=0.01)
+
+## Profit factor  [lines 185-185]
+  185: profitFactor = 1.65
+
+## Swing stops and targets  [lines 205-213]
+  205: longStop = ta.lowest(low[1], 2)
+  206: shortStop = ta.highest(high[1], 2)
+  207: 
+  208: longSL_pips = close - longStop
+  209: shortSL_pips = shortStop - close
+  210: 
+  211: pip = syminfo.mintick
+  212: longTP = close + (longSL_pips * profitFactor)
+  213: shortTP = close - (shortSL_pips * profitFactor)
+
+## Entries with the bracket  [lines 224-230]
+  224: if (longCondition)
+  225:     strategy.entry("Long", strategy.long)
+  226:     strategy.exit("Long Exit", from_entry="Long", stop=longStop, limit=longTP)
+  227: 
+  228: if (shortCondition)
+  229:     strategy.entry("Short", strategy.short)
+  230:     strategy.exit("Short Exit", from_entry="Short", stop=shortStop, limit=shortTP)

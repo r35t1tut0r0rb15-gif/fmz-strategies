@@ -1,0 +1,132 @@
+# Original sizing and money-management code, FMZ #490570 (智能波动跟踪型DCA策略与双轨止损系统-Intelligent-Volatility-Responsive-DCA-Strategy-with-Dual-Trailing-Stop-System)
+# Source: https://www.fmz.com/strategy/490570  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): fixed quantity, initial capital 4000, commission  [lines 184-193]
+  184: strategy(
+  185:      title="BONK/USD (1H) - $4k DCA + Dual Trailing + Date Filter", // Updated Title
+  186:      overlay=true,
+  187:      initial_capital=4000,
+  188:      currency=currency.USD,
+  189:      default_qty_type=strategy.fixed,
+  190:      default_qty_value=0, // Quantity calculated dynamically based on USD value
+  191:      commission_type=strategy.commission.percent, // Example: Add commission settings
+  192:      commission_value=0.1 // Example: 0.1% commission
+  193:      )
+
+## Trail, lock-in, ATR spacing, cooldown and order-size inputs  [lines 203-223]
+  203: trailStopPerc   = input.float(8.0, title="Standard Trailing Stop (%) (Default for 1H)", minval=0.1) / 100
+  204: lockInThreshold = input.float(2.5,  title="Profit Lock-In Trigger (%) (Default for 1H)", minval=0.1) / 100
+  205: lockInTrailPct  = input.float(1.5,  title="Lock-In Trail (%) after Trigger (Default for 1H)", minval=0.1) / 100
+  206: 
+  207: // --- Safety Orders (SO) ---
+  208: useATRSpacing     = input.bool(true, title="Use ATR-Based Spacing?")
+  209: atrLength         = input.int(14,   title="ATR Length", minval=1)
+  210: atrSo1Multiplier  = input.float(1.2, title="ATR SO1 Multiplier (Default for 1H)", minval=0.1)
+  211: atrSo2Multiplier  = input.float(2.5, title="ATR SO2 Multiplier (Default for 1H)", minval=0.1)
+  212: 
+  213: // --- Fallback SO Spacing (if not using ATR) ---
+  214: fallbackSo1Perc = input.float(4.0,  title="Fallback SO1 Drop (%) (Default for 1H)", minval=0.1) / 100
+  215: fallbackSo2Perc = input.float(8.0, title="Fallback SO2 Drop (%) (Default for 1H)", minval=0.1) / 100
+  216: 
+  217: // --- Entry Cooldown ---
+  218: cooldownBars = input.int(4, "Cooldown Bars After Base Entry (Default for 1H)", minval=0)
+  219: 
+  220: // --- Order Sizes in USD ---
+  221: baseUsd = input.float(1000.0, title="Base Order Size (USD)", minval=1.0)
+  222: so1Usd  = input.float(1250.0, title="Safety Order 1 Size (USD)", minval=1.0)
+  223: so2Usd  = input.float(1750.0, title="Safety Order 2 Size (USD)", minval=1.0)
+
+## Base order with a USD quantity  [lines 248-252]
+  248: if baseBuySignal and strategy.position_size == 0 and not inCooldown
+  249:     baseQty = baseUsd / close // Calculate quantity based on USD
+  250:     strategy.entry("Base Order", strategy.long, qty=baseQty, comment="Base Entry")
+  251:     baseEntryPrice := close
+  252:     lastBuyBar     := bar_index
+
+## Safety orders 1 / 2 (averaging in)  [lines 257-283]
+  257: float so1TriggerPrice = na
+  258: float so2TriggerPrice = na
+  259: 
+  260: if not na(baseEntryPrice) // Only calculate if a base order has been placed
+  261:     so1TriggerPrice := useATRSpacing ?
+  262:          (baseEntryPrice - atrValue * atrSo1Multiplier) :
+  263:          (baseEntryPrice * (1 - fallbackSo1Perc))
+  264: 
+  265:     so2TriggerPrice := useATRSpacing ?
+  266:          (baseEntryPrice - atrValue * atrSo2Multiplier) :
+  267:          (baseEntryPrice * (1 - fallbackSo2Perc))
+  268: 
+  269: // --- Conditions for SO Execution ---
+  270: // Added 'inDateRange' check
+  271: // Ensure base order exists, price trigger hit, and the specific SO hasn't filled yet
+  272: bool so1Condition = not na(baseEntryPrice) and strategy.position_size > 0 and close <= so1TriggerPrice and strategy.opentrades == 1
+  273: bool so2Condition = not na(baseEntryPrice) and strategy.position_size > 0 and close <= so2TriggerPrice and strategy.opentrades == 2
+  274: 
+  275: // --- Execute SO1 ---
+  276: if so1Condition
+  277:     so1Qty = so1Usd / close // Calculate quantity based on USD
+  278:     strategy.entry("Safety Order 1", strategy.long, qty=so1Qty, comment="SO1")
+  279: 
+  280: // --- Execute SO2 ---
+  281: if so2Condition
+  282:     so2Qty = so2Usd / close // Calculate quantity based on USD
+  283:     strategy.entry("Safety Order 2", strategy.long, qty=so2Qty, comment="SO2")
+
+## Close-checked trails and the exit  [lines 288-343]
+  288: avgEntryPrice = strategy.position_avg_price
+  289: 
+  290: // 6) DUAL TRAILING STOP LOGIC
+  291: 
+  292: // Variables to track trailing stop levels and states
+  293: var float highestSinceEntry = na
+  294: var float trailStopPrice    = na
+  295: var bool  stopHitNormal     = false
+  296: 
+  297: var bool  lockInTriggered = false
+  298: var float lockInPeak      = na
+  299: var float lockInStopPrice = na
+  300: var bool  stopHitLockIn   = false
+  301: 
+  302: // --- Update Trailing Logic when in a Position ---
+  303: if strategy.position_size > 0
+  304:     // --- Standard Trail ---
+  305:     highestSinceEntry := na(highestSinceEntry) ? close : math.max(highestSinceEntry, close)
+  306:     trailStopPrice    := highestSinceEntry * (1 - trailStopPerc)
+  307:     stopHitNormal     := close < trailStopPrice
+  308: 
+  309:     // --- Lock-In Trail ---
+  310:     if not lockInTriggered and close >= avgEntryPrice * (1 + lockInThreshold)
+  311:         lockInTriggered := true
+  312:         lockInPeak      := close
+  313: 
+  314:     if lockInTriggered
+  315:         lockInPeak      := math.max(lockInPeak, close)
+  316:         lockInStopPrice := lockInPeak * (1 - lockInTrailPct)
+  317:         stopHitLockIn   := close < lockInStopPrice
+  318:     else
+  319:         stopHitLockIn   := false
+  320:         lockInStopPrice := na
+  321: 
+  322: // --- Reset Variables when Flat ---
+  323: else
+  324:     highestSinceEntry := na
+  325:     trailStopPrice    := na
+  326:     stopHitNormal     := false
+  327: 
+  328:     lockInTriggered   := false
+  329:     lockInPeak        := na
+  330:     lockInStopPrice   := na
+  331:     stopHitLockIn     := false
+  332: 
+  333:     baseEntryPrice    := na
+  334:     // lastBuyBar is intentionally NOT reset here, cooldown depends on it
+  335: 
+  336: // 7) EXIT CONDITIONS
+  337: 
+  338: // Added 'inDateRange' check
+  339: // Exit if either trailing stop is hit OR if the trend reverses downward, within the active date range
+  340: exitCondition = (stopHitNormal or stopHitLockIn or trendDown) and strategy.position_size > 0
+  341: 
+  342: if exitCondition
+  343:     strategy.close_all(comment="Exit: SL / LockIn / TrendDown")

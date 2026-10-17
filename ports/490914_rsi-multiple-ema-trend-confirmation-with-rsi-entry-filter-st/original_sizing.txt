@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #490914 (多重指数移动平均线趋势确认与RSI过滤入场策略-Multiple-EMA-Trend-Confirmation-with-RSI-Entry-Filter-Strategy)
+# Source: https://www.fmz.com/strategy/490914  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity, commission 0.75 %  [lines 173-173]
+  173: strategy("4 EMAs with Entry and Exit Strategy", overlay=true, initial_capital=1000000, default_qty_value=10, default_qty_type=strategy.percent_of_equity,commission_type=strategy.commission.percent, commission_value=0.75)

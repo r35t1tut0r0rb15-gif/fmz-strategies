@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #490805 (移动平均与动量蜡烛趋势跟踪系统-Moving-Average-and-Momentum-Candle-Trend-Following-System)
+# Source: https://www.fmz.com/strategy/490805  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 173-173]
+  173: strategy("MA200 + Momentum Candle Strategy (No Duplicate Entry)", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## SL / TP pip inputs  [lines 178-180]
+  178: useSLTP = input.bool(true, title="Gunakan SL/TP?")
+  179: slPips = input.int(50, title="Stop Loss (pips)")
+  180: tpPips = input.int(100, title="Take Profit (pips)")
+
+## Pip distances  [lines 196-198]
+  196: pipSize = syminfo.mintick * 10
+  197: sl = slPips * pipSize
+  198: tp = tpPips * pipSize
+
+## Flat-only entries with the bracket  [lines 204-212]
+  204: if isBuySignal and noOpenTrade
+  205:     strategy.entry("Buy", strategy.long)
+  206:     if useSLTP
+  207:         strategy.exit("Exit Buy", from_entry="Buy", stop=close - sl, limit=close + tp)
+  208: 
+  209: if isSellSignal and noOpenTrade
+  210:     strategy.entry("Sell", strategy.short)
+  211:     if useSLTP
+  212:         strategy.exit("Exit Sell", from_entry="Sell", stop=close + sl, limit=close - tp)
