@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #482861 (多维度动态ICT交易策略结合吞没形态与供需区域分析系统-Multi-Dimensional-Dynamic-ICT-Trading-Strategy-with-Engulfing-Patterns-and-Supply-Demand-Zone-Analysis-System)
+# Source: https://www.fmz.com/strategy/482861  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 111-111]
+  111: strategy("ICT + Engulfing + Supply & Demand", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## SL / TP inputs  [lines 116-117]
+  116: stopLossPerc = input(1.5, title="Stop Loss %")
+  117: takeProfitPerc = input(3, title="Take Profit %")
+
+## Entries with the bracket  [lines 134-146]
+  134: longSL = close * (1 - stopLossPerc / 100)
+  135: longTP = close * (1 + takeProfitPerc / 100)
+  136: shortSL = close * (1 + stopLossPerc / 100)
+  137: shortTP = close * (1 - takeProfitPerc / 100)
+  138: 
+  139: // Execute trades
+  140: if (longCondition)
+  141:     strategy.entry("Long", strategy.long)
+  142:     strategy.exit("Long Exit", from_entry="Long", stop=longSL, limit=longTP)
+  143: 
+  144: if (shortCondition)
+  145:     strategy.entry("Short", strategy.short)
+  146:     strategy.exit("Short Exit", from_entry="Short", stop=shortSL, limit=shortTP)

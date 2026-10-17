@@ -2943,6 +2943,18 @@ SIZING = {
         ("SL / TP / trail inputs", 127, 129),
         ("Entries with the exits", 150, 156),
     ],
+    # ---- FMZ-C, batch L27 (2026-10-17)
+    482849: [
+        ("strategy(): 10 % of equity", 93, 93),
+        ("RR / risk inputs", 98, 99),
+        ("Stops, targets and risk qty", 114, 124),
+        ("Entries with the bracket", 127, 134),
+    ],
+    482861: [
+        ("strategy(): 10 % of equity", 111, 111),
+        ("SL / TP inputs", 116, 117),
+        ("Entries with the bracket", 134, 146),
+    ],
 }
 
 REJECTED_ON_READING = {
