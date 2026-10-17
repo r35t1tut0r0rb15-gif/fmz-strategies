@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #483682 (波动率过滤双均线交叉高夏普比策略-Volatility-Filtered-Dual-EMA-Crossover-High-Sharpe-Ratio-Strategy)
+# Source: https://www.fmz.com/strategy/483682  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Bracket levels  [lines 178-181]
+  178: long_stop_loss = close - 2 * atr_value  // 基于ATR的止损
+  179: long_take_profit = close + 4 * atr_value  // 基于ATR的止盈
+  180: short_stop_loss = close + 2 * atr_value  // 基于ATR的止损
+  181: short_take_profit = close - 4 * atr_value  // 基于ATR的止盈
+
+## Risk-based qty  [lines 184-185]
+  184: position_size_calc = (strategy.equity * risk_factor) / (2 * atr_value)
+  185: position_size = math.min(position_size_calc, strategy.equity)  // 限制仓位不能大于账户总值
+
+## Entries and exits  [lines 188-196]
+  188: if (long_condition)
+  189:     strategy.entry("Long", strategy.long, qty=position_size)
+  190: 
+  191: if (short_condition)
+  192:     strategy.entry("Short", strategy.short, qty=position_size)
+  193: 
+  194: // 止损与止盈
+  195: strategy.exit("Take Profit/Stop Loss Long", "Long", stop=long_stop_loss, limit=long_take_profit)
+  196: strategy.exit("Take Profit/Stop Loss Short", "Short", stop=short_stop_loss, limit=short_take_profit)

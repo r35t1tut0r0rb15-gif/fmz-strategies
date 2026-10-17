@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #483514 (动态供需区间中线反转策略-Dynamic-Supply-Demand-Zone-Midline-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/483514  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 130-130]
+  130: strategy("Midline Rejection Entry with TP/SL at Supply/Demand", overlay=true)
+
+## Exits at the stored zones  [lines 178-188]
+  178: if (strategy.opentrades > 0)
+  179:     // For Long trades, use Supply Zone for Take Profit and Demand Zone for Stop Loss
+  180:     if (strategy.position_size > 0)
+  181:         strategy.exit("Take Profit", "Long", limit=entrySupplyZone)  // Take Profit at Supply Zone
+  182:         strategy.exit("Stop Loss", "Long", stop=entryDemandZone)    // Stop Loss at Demand Zone
+  183: 
+  184: 
+  185:     // For Short trades, use Demand Zone for Take Profit and Supply Zone for Stop Loss
+  186:     if (strategy.position_size < 0)
+  187:         strategy.exit("Take Profit", "Short", limit=entryDemandZone)  // Take Profit at Demand Zone
+  188:         strategy.exit("Stop Loss", "Short", stop=entrySupplyZone)     // Stop Loss at Supply Zone

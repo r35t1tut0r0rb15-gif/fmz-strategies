@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #483528 (动态RSI与PSAR交叉策略结合风险管理系统-Dynamic-RSI-and-PSAR-Crossover-Strategy-with-Risk-Management-System)
+# Source: https://www.fmz.com/strategy/483528  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 103-103]
+  103: strategy("PSAR & RSI Strategy with Risk Management", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## TP / SL inputs  [lines 113-114]
+  113: tp_percent = input.float(5, title="Take Profit %") / 100  // Take Profit Level
+  114: sl_percent = input.float(3, title="Stop Loss %") / 100    // Stop Loss Level
+
+## Entry with the bracket  [lines 144-146]
+  144: if buy_signal
+  145:     strategy.entry("Buy", strategy.long)
+  146:     strategy.exit("Take Profit / Stop Loss", from_entry="Buy", limit=close * (1 + tp_percent), stop=close * (1 - sl_percent))

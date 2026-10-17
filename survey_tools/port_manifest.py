@@ -2548,6 +2548,56 @@ SIZING = {
     483794: [
         ("strategy(): initial capital", 274, 274),
     ],
+    # ---- FMZ-C, batch L18 (2026-10-17)
+    483509: [
+        ("strategy(): 10 % of equity", 91, 91),
+        ("Entries with the bracket", 130, 148),
+        ("Bracket re-placed at +0.8 %", 152, 170),
+    ],
+    483510: [
+        ("strategy(): defaults", 106, 106),
+    ],
+    483514: [
+        ("strategy(): defaults", 130, 130),
+        ("Exits at the stored zones", 178, 188),
+    ],
+    483518: [
+        ("strategy(): defaults", 93, 93),
+        ("SL / TP inputs", 101, 102),
+        ("Exits re-issued every bar", 123, 131),
+    ],
+    483525: [
+        ("strategy(): defaults", 99, 99),
+        ("SL / TP from position_avg_price", 143, 152),
+    ],
+    483528: [
+        ("strategy(): 10 % of equity", 103, 103),
+        ("TP / SL inputs", 113, 114),
+        ("Entry with the bracket", 144, 146),
+    ],
+    483674: [
+        ("strategy(): defaults", 173, 173),
+    ],
+    483676: [
+        ("strategy(): initial capital", 205, 205),
+    ],
+    483679: [
+        ("strategy(): 10 % of equity", 169, 169),
+        ("SL / TP / break-even inputs", 181, 183),
+        ("Bracket levels from position_avg_price", 202, 212),
+        ("Entries with the exits", 215, 221),
+    ],
+    483682: [
+        ("Bracket levels", 178, 181),
+        ("Risk-based qty", 184, 185),
+        ("Entries and exits", 188, 196),
+    ],
+    483790: [
+        ("strategy(): 100 % of equity", 161, 161),
+        ("Tick SL / TP / break-even inputs", 169, 171),
+        ("Entries with the bracket", 200, 208),
+        ("Break-even exits", 211, 218),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3043,6 +3093,14 @@ REJECTED_ON_READING = {
               "#365389, #426302)"),
     484095: ("1", "partial exits: strategy.exit('TP1', qty_percent = 50) at 1 ATR with the rest on a "
               "3 ATR target and a trail (as #365389)"),
+    # ---- FMZ-C, batch L18 (2026-10-17)
+    483508: ("1", "never exits as written: the only exit, strategy.close('MacdLE'), names no entry "
+              "(the entry id is '多头'), and there are no shorts, so the strategy enters once and "
+              "holds forever"),
+    483526: ("1", "partial exits: strategy.close(qty = partialLot), half the position, at a 200-tick "
+              "profit, the rest on the opposite cross (as #365389)"),
+    483681: ("1", "partial exits: strategy.exit('TP1', qty_percent = 50) at 1.5 ATR and 'TP2' "
+              "(qty_percent = 50) at 3 ATR (as #365389)"),
 }
 
 DUPLICATE_ON_READING = {
