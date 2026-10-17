@@ -1,0 +1,64 @@
+# Original sizing and money-management code, FMZ #488536 (动态流动性驱动市场结构自适应交易策略-Dynamic-Liquidity-Driven-Market-Structure-Adaptive-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/488536  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target tick inputs  [lines 121-123]
+  121: enableTakeProfit = input.bool(true, title="Enable Custom Take Profit")  // Option to enable/disable take profit
+  122: stopLossPips = input.int(10, title="Stop Loss (in pips)", minval=1)  // Stop loss in pips
+  123: takeProfitPips = input.int(20, title="Take Profit (in pips)", minval=1)  // Take profit in pips
+
+## Tick levels and close-checked exits (Both)  [lines 265-290]
+  265:     stopLossPriceLong = entryPrice - stopLossPips * syminfo.mintick
+  266:     takeProfitPriceLong = entryPrice + takeProfitPips * syminfo.mintick
+  267:     stopLossPriceShort = entryPrice + stopLossPips * syminfo.mintick
+  268:     takeProfitPriceShort = entryPrice - takeProfitPips * syminfo.mintick
+  269:     
+  270:     // Long Stop-Loss and Take-Profit Conditions
+  271:     if (positionSide == "long" and close <= stopLossPriceLong)
+  272:         strategy.close("Long", comment="Stop Loss Triggered")
+  273:         entryPrice := na
+  274:         positionSide := ""
+  275: 
+  276:     if (positionSide == "long" and enableTakeProfit and close >= takeProfitPriceLong)
+  277:         strategy.close("Long", comment="Take Profit Triggered")
+  278:         entryPrice := na
+  279:         positionSide := ""
+  280: 
+  281:     // Short Stop-Loss and Take-Profit Conditions
+  282:     if (positionSide == "short" and close >= stopLossPriceShort)
+  283:         strategy.close("Short", comment="Stop Loss Triggered")
+  284:         entryPrice := na
+  285:         positionSide := ""
+  286: 
+  287:     if (positionSide == "short" and enableTakeProfit and close <= takeProfitPriceShort)
+  288:         strategy.close("Short", comment="Take Profit Triggered")
+  289:         entryPrice := na
+  290:         positionSide := ""
+
+## Tick levels and exits (Bullish Only)  [lines 305-316]
+  305:     stopLossPriceLong = entryPrice - stopLossPips * syminfo.mintick
+  306:     takeProfitPriceLong = entryPrice + takeProfitPips * syminfo.mintick
+  307:     
+  308:     if (positionSide == "long" and close <= stopLossPriceLong)
+  309:         strategy.close("Long", comment="Stop Loss Triggered")
+  310:         entryPrice := na
+  311:         positionSide := ""
+  312: 
+  313:     if (positionSide == "long" and enableTakeProfit and close >= takeProfitPriceLong)
+  314:         strategy.close("Long", comment="Take Profit Triggered")
+  315:         entryPrice := na
+  316:         positionSide := ""
+
+## Tick levels and exits (Bearish Only)  [lines 331-342]
+  331:     stopLossPriceShort = entryPrice + stopLossPips * syminfo.mintick
+  332:     takeProfitPriceShort = entryPrice - takeProfitPips * syminfo.mintick
+  333:     
+  334:     if (positionSide == "short" and close >= stopLossPriceShort)
+  335:         strategy.close("Short", comment="Stop Loss Triggered")
+  336:         entryPrice := na
+  337:         positionSide := ""
+  338: 
+  339:     if (positionSide == "short" and enableTakeProfit and close <= takeProfitPriceShort)
+  340:         strategy.close("Short", comment="Take Profit Triggered")
+  341:         entryPrice := na
+  342:         positionSide := ""

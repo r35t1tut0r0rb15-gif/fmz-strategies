@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #488284 (动态双EMA趋势捕捉与ATR风控量化策略-Dynamic-Dual-EMA-Trend-Capture-with-ATR-Risk-Management-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/488284  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 172-172]
+  172: strategy("9 & 15 EMA Scalping Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+
+## RR / SL inputs  [lines 177-178]
+  177: riskRewardRatio = input.float(1.5, title="Risk-Reward Ratio") // 1:1.5 RR
+  178: slMultiplier = input.float(1.0, title="SL Multiplier") // Adjust SL distance
+
+## ATR bracket levels  [lines 191-196]
+  191: atrValue = ta.atr(14) // ATR for dynamic SL
+  192: longSL = close - (atrValue * slMultiplier)
+  193: longTP = close + ((close - longSL) * riskRewardRatio)
+  194: 
+  195: shortSL = close + (atrValue * slMultiplier)
+  196: shortTP = close - ((shortSL - close) * riskRewardRatio)
+
+## Entries with the bracket  [lines 199-205]
+  199: if buyCondition
+  200:     strategy.entry("BUY", strategy.long)
+  201:     strategy.exit("TP/SL Long", from_entry="BUY", stop=longSL, limit=longTP)
+  202: 
+  203: if sellCondition
+  204:     strategy.entry("SELL", strategy.short)
+  205:     strategy.exit("TP/SL Short", from_entry="SELL", stop=shortSL, limit=shortTP)

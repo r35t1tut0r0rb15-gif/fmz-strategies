@@ -2257,6 +2257,54 @@ SIZING = {
         ("Stop and target distances", 136, 137),
         ("Gated entries with the bracket", 143, 156),
     ],
+    # ---- FMZ-C, batch L10 (2026-10-17)
+    488283: [
+        ("Short tick bracket", 216, 222),
+        ("Long tick bracket", 225, 228),
+        ("Asia short tick bracket", 231, 234),
+    ],
+    488284: [
+        ("strategy(): 100 % of equity", 172, 172),
+        ("RR / SL inputs", 177, 178),
+        ("ATR bracket levels", 191, 196),
+        ("Entries with the bracket", 199, 205),
+    ],
+    488288: [
+        ("Emergency stop input", 211, 211),
+        ("Emergency stop", 239, 241),
+    ],
+    488382: [
+        ("strategy(): 10 % of equity", 184, 184),
+        ("Entries with the bracket", 213, 227),
+    ],
+    488417: [],
+    488517: [
+        ("strategy(): 100 % of equity", 176, 176),
+        ("Trail / target / hard stop inputs", 289, 305),
+        ("Hard stop and target levels", 438, 457),
+        ("Trail updates", 460, 488),
+        ("Exits with the trail", 502, 532),
+    ],
+    488518: [],
+    488521: [
+        ("ATR bracket inputs", 228, 231),
+        ("Entries with the bracket", 234, 240),
+    ],
+    488523: [
+        ("strategy(): 100 % of equity", 137, 137),
+        ("RR / ATR inputs", 146, 148),
+        ("ATR bracket levels", 181, 185),
+        ("Entries with the bracket", 188, 194),
+    ],
+    488527: [
+        ("strategy(): 10 % of equity", 171, 171),
+    ],
+    488536: [
+        ("Stop / target tick inputs", 121, 123),
+        ("Tick levels and close-checked exits (Both)", 265, 290),
+        ("Tick levels and exits (Bullish Only)", 305, 316),
+        ("Tick levels and exits (Bearish Only)", 331, 342),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2703,6 +2751,15 @@ REJECTED_ON_READING = {
     # ---- FMZ-C, batch L8 (2026-10-17)
     488908: ("1", "partial exits: four strategy.exit tranches with qty = 25 % each at different "
               "targets"),
+    # ---- FMZ-C, batch L10 (2026-10-17)
+    488280: ("1", "pyramiding 5: each fair-value-gap retest opens its own entry with its own stop and "
+              "2 R target, so the net position leaves in tranches at different levels, a partial "
+              "exit (as #365389); the 15:15 close_all never matches the 2-day bars"),
+    488287: ("1", "partial exits: strategy.close(qty_percent = 25) at the 2 ATR target and again when "
+              "overextended, the rest at the SMA 10 cross (as #365389)"),
+    488513: ("1", "time('1', '0930-1600:1234567') is na outside the 09:30-16:00 session, so hour(t) "
+              "and minute(t) never equal 9:15-9:20 and the opening range is never established: as "
+              "written it never trades (as #430384)"),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,111 @@
+# Original sizing and money-management code, FMZ #488517 (基于核平滑多重均线的自适应趋势追踪系统-Adaptive-Trend-Following-System-with-Kernel-Smoothed-Multiple-Moving-Averages)
+# Source: https://www.fmz.com/strategy/488517  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 176-176]
+  176: strategy("B4100 - NW Trend Ribbon Strategy", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, commission_type = strategy.commission.percent, commission_value = 0.02)
+
+## Trail / target / hard stop inputs  [lines 289-305]
+  289: useTrailingStop = input.bool(true, title="Use Percentage Trailing Stop", tooltip="Enable a percentage-based trailing stop loss.", group=trailingStopGroup)
+  290: trailingStopActivationPercent = input.float(2.0, title="Activation (%)", minval=0.1, step=0.1, tooltip="Percentage above/below the entry price at which the trailing stop activates.", group=trailingStopGroup) / 100
+  291: trailingStopOffsetPercent     = input.float(1.0, title="Offset (%)", minval=0.1, step=0.1, tooltip="Percentage offset from the highest/lowest price reached since entry. This determines how tightly the stop trails the price.", group=trailingStopGroup) / 100
+  292: 
+  293: useAtrTrailingStop    = input.bool(true, title="Use ATR Trailing Stop", tooltip="Enable a trailing stop based on the Average True Range (ATR).", group=atrTrailingStopGroup)
+  294: atrTrailingStopLength = input.int(1, title="ATR Length", minval=1, tooltip="Number of bars used to calculate the ATR.", group=atrTrailingStopGroup)
+  295: atrTrailingStopMult   = input.float(200.0, title="ATR Multiplier", minval=0.1, tooltip="Multiplier for the ATR value.  A larger multiplier creates a wider stop.", group=atrTrailingStopGroup)
+  296: 
+  297: useAtrTakeProfit              = input.bool(false, title="Use ATR Take Profit", tooltip="Enable a take profit level based on the Average True Range (ATR).", group=atrTakeProfitGroup)
+  298: atrTakeProfitLength           = input.int(14, title="ATR Length", minval=1, tooltip="Number of bars used to calculate the ATR for take profit.", group=atrTakeProfitGroup)
+  299: atrTakeProfitMultiplier       = input.float(3.0, title="ATR Multiplier", minval=0.1, tooltip="Multiplier for the ATR value. A larger multiplier sets a further take profit target.", group=atrTakeProfitGroup)
+  300: 
+  301: useHardStopLoss     = input.bool(false, title="Use Hard Stop Loss", tooltip="Enable a fixed stop loss.", group=hardStopGroup)
+  302: hardStopLossPercent = input.float(0.0, title="Hard Stop Loss (%)", minval=0.0, step=0.1, tooltip="Percentage below (long) or above (short) the entry price for the hard stop loss.", group=hardStopGroup) / 100
+  303: useAtrHardStopLoss  = input.bool(false, title="Use ATR Hard Stop Loss", tooltip="Use ATR to calculate hard stop loss", group=hardStopGroup)
+  304: atrHardStopLossLength = input.int(14, title="ATR Hard Stop Loss Length", minval=1, tooltip="Length of the ATR for the hard stop loss", group=hardStopGroup)
+  305: atrHardStopLossMult   = input.float(1.5, title="ATR Hard Stop Loss Multiplier", minval=0.1, tooltip="Multiplier of ATR for the hard stop loss", group=hardStopGroup)
+
+## Hard stop and target levels  [lines 438-457]
+  438: if longCondition or shortCondition
+  439:     // Calculate Hard Stop Loss
+  440:     if useHardStopLoss
+  441:         if useAtrHardStopLoss
+  442:             longHardStopLossPrice  := close - (atrHardStopLossValue * atrHardStopLossMult)
+  443:             shortHardStopLossPrice := close + (atrHardStopLossValue * atrHardStopLossMult)
+  444:         else
+  445:             longHardStopLossPrice  := close * (1 - hardStopLossPercent)
+  446:             shortHardStopLossPrice := close * (1 + hardStopLossPercent)
+  447:     else
+  448:         longHardStopLossPrice := na
+  449:         shortHardStopLossPrice := na
+  450: 
+  451:     // Calculate Take Profit
+  452:     if useAtrTakeProfit
+  453:         longTakeProfitPrice  := close + (atrTakeProfitValue * atrTakeProfitMultiplier)
+  454:         shortTakeProfitPrice := close - (atrTakeProfitValue * atrTakeProfitMultiplier)
+  455:     else
+  456:         longTakeProfitPrice := na
+  457:         shortTakeProfitPrice := na
+
+## Trail updates  [lines 460-488]
+  460: if strategy.position_size > 0
+  461:     // Calculate trailing stop
+  462:     float tempTrail = na
+  463: 
+  464:     if useTrailingStop
+  465:         if close > strategy.position_avg_price * (1 + trailingStopActivationPercent)
+  466:             tempTrail := close * (1 - trailingStopOffsetPercent)
+  467:             if na(longTrail) or tempTrail > longTrail
+  468:                 longTrail := tempTrail
+  469: 
+  470:     if useAtrTrailingStop
+  471:         float atrTrail = close - (atrTrailingValue * atrTrailingStopMult)
+  472:         if na(longTrail) or atrTrail > longTrail
+  473:             longTrail := atrTrail
+  474: 
+  475: if strategy.position_size < 0
+  476:     // Calculate trailing stop
+  477:     float tempTrail = na
+  478: 
+  479:     if useTrailingStop
+  480:         if close < strategy.position_avg_price * (1 - trailingStopActivationPercent)
+  481:             tempTrail := close * (1 + trailingStopOffsetPercent)
+  482:             if na(shortTrail) or tempTrail < shortTrail
+  483:                 shortTrail := tempTrail
+  484: 
+  485:     if useAtrTrailingStop
+  486:         float atrTrail = close + (atrTrailingValue * atrTrailingStopMult)
+  487:         if na(shortTrail) or atrTrail < shortTrail
+  488:             shortTrail := atrTrail
+
+## Exits with the trail  [lines 502-532]
+  502: if strategy.position_size > 0
+  503:     // Define effective stop level (combining hard stop and trailing stop)
+  504:     float effectiveStopLevel = na
+  505: 
+  506:     if not na(longHardStopLossPrice) and useHardStopLoss
+  507:         effectiveStopLevel := longHardStopLossPrice
+  508: 
+  509:     if not na(longTrail) and (useTrailingStop or useAtrTrailingStop)
+  510:         if na(effectiveStopLevel) or longTrail > effectiveStopLevel
+  511:             effectiveStopLevel := longTrail
+  512: 
+  513:     // Combined exit strategy with proper parameters
+  514:     strategy.exit("Long Exit", "Long",
+  515:                  limit = useAtrTakeProfit ? longTakeProfitPrice : na,
+  516:                  stop = effectiveStopLevel)
+  517: 
+  518: if strategy.position_size < 0
+  519:     // Define effective stop level (combining hard stop and trailing stop)
+  520:     float effectiveStopLevel = na
+  521: 
+  522:     if not na(shortHardStopLossPrice) and useHardStopLoss
+  523:         effectiveStopLevel := shortHardStopLossPrice
+  524: 
+  525:     if not na(shortTrail) and (useTrailingStop or useAtrTrailingStop)
+  526:         if na(effectiveStopLevel) or shortTrail < effectiveStopLevel
+  527:             effectiveStopLevel := shortTrail
+  528: 
+  529:     // Combined exit strategy with proper parameters
+  530:     strategy.exit("Short Exit", "Short",
+  531:                  limit = useAtrTakeProfit ? shortTakeProfitPrice : na,
+  532:                  stop = effectiveStopLevel)

@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #488283 (多时段价格行为机构交易策略基于ICT理念的日内做空系统-Multi-Session-Price-Action-Institutional-Trading-Strategy-ICT-Based-Intraday-Short-System)
+# Source: https://www.fmz.com/strategy/488283  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Short tick bracket  [lines 216-222]
+  216: shortEntry = judasSwing and close < open
+  217: stopLoss = high + 10 * syminfo.mintick
+  218: profitTarget = low - 20 * syminfo.mintick
+  219: 
+  220: if shortEntry
+  221:     strategy.entry("Short", strategy.short)
+  222:     strategy.exit("Take Profit", from_entry="Short", limit=profitTarget, stop=stopLoss)
+
+## Long tick bracket  [lines 225-228]
+  225: londonCloseBuy = time >= timestamp(currentYear, currentMonth, currentDay, 10, 30) and time <= timestamp(currentYear, currentMonth, currentDay, 13, 00) and close < londonLow
+  226: if londonCloseBuy
+  227:     strategy.entry("Buy", strategy.long)
+  228:     strategy.exit("Take Profit Buy", from_entry="Buy", limit=close + 20 * syminfo.mintick, stop=low - 10 * syminfo.mintick)
+
+## Asia short tick bracket  [lines 231-234]
+  231: asiaSell = time >= sessionAsia and time < sessionLondon and close > asiaHigh
+  232: if asiaSell
+  233:     strategy.entry("Asia Short", strategy.short)
+  234:     strategy.exit("Asia Profit", from_entry="Asia Short", limit=close - 15 * syminfo.mintick, stop=high + 10 * syminfo.mintick)

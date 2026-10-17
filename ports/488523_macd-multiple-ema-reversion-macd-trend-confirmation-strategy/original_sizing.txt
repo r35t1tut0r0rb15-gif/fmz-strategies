@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #488523 (多重均线回归MACD趋势确认策略-Multiple-EMA-Reversion-MACD-Trend-Confirmation-Strategy)
+# Source: https://www.fmz.com/strategy/488523  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 137-137]
+  137: strategy("Price Near 200 EMA", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+
+## RR / ATR inputs  [lines 146-148]
+  146: rrRatio = input.float(1.5, title="Risk to Reward Ratio", minval=1, step=0.1)
+  147: atrMultiplier = input.float(5, title="ATR Multiplier for SL", minval=1, step=0.1)  // Default to 5x ATR
+  148: atrLength = input(14, title="ATR Length")  // User-defined ATR length
+
+## ATR bracket levels  [lines 181-185]
+  181: longStopLoss = close - atrValue * atrMultiplier
+  182: longTargetPrice = close + (close - longStopLoss) * rrRatio
+  183: 
+  184: shortStopLoss = close + atrValue * atrMultiplier
+  185: shortTargetPrice = close - (shortStopLoss - close) * rrRatio
+
+## Entries with the bracket  [lines 188-194]
+  188: if bullishEntry
+  189:     strategy.entry("Buy", strategy.long)
+  190:     strategy.exit("TP Long", "Buy", limit=longTargetPrice, stop=longStopLoss, comment="SL/TP Long")
+  191: 
+  192: if bearishEntry
+  193:     strategy.entry("Sell", strategy.short)
+  194:     strategy.exit("TP Short", "Sell", limit=shortTargetPrice, stop=shortStopLoss, comment="SL/TP Short")

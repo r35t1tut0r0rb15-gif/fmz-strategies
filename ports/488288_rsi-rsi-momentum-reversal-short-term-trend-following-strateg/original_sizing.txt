@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #488288 (RSI动量反转短期趋势跟踪策略与移动平均线聚合-RSI-Momentum-Reversal-Short-Term-Trend-Following-Strategy-with-Moving-Average-Confluence)
+# Source: https://www.fmz.com/strategy/488288  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Emergency stop input  [lines 211-211]
+  211: stopLossPerc = input.float(0.0, "Emergency Stop-Loss (%)", minval=0.0, step=0.1)
+
+## Emergency stop  [lines 239-241]
+  239: if (strategy.position_size > 0 and stopLossPerc > 0)
+  240:     if (close < strategy.position_avg_price * (1 - stopLossPerc/100))
+  241:         strategy.close(id="Long", comment="StopLoss")
