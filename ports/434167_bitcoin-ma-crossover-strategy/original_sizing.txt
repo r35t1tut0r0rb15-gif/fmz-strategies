@@ -1,0 +1,42 @@
+# Original sizing and money-management code, FMZ #434167 (比特币-移动平均线交叉策略-Bitcoin-MA-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/434167  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Equity-risk unit count and opposite-size exit orders  [lines 161-197]
+  161: usr_risk = input(title="Equity Risk (%)",type=input.integer,minval=1,maxval=100,step=1,defval=10,confirm=false)
+  162: sma_fast = input(title="Fast MA (Period)",type=input.integer,minval=1,maxval=500,step=1,defval=20,confirm=false)
+  163: sma_slow = input(title="Slow MA (Period)",type=input.integer,minval=1,maxval=500,step=1,defval=40,confirm=false)
+  164: rsi_valu = input(title="RSI (Period)",type=input.integer,minval=1,maxval=500,step=1,defval=14,confirm=false)
+  165: 
+  166: // Create Indicator's
+  167: shortSMA = sma(close, sma_fast)
+  168: longSMA = sma(close, sma_slow)
+  169: rsi = rsi(close, rsi_valu)
+  170: strategy.initial_capital = 50000
+  171: // Units to buy
+  172: amount = usr_risk / 100 * (strategy.initial_capital + strategy.netprofit)
+  173: units = floor(amount / close)
+  174: 
+  175: // Specify entry conditions
+  176: longEntry = crossover(shortSMA, longSMA)
+  177: shortEntry = crossunder(shortSMA, longSMA)
+  178: 
+  179: // Specify exit conditions
+  180: longExit = crossunder(shortSMA, longSMA)
+  181: shortExit = crossover(shortSMA, longSMA)
+  182: 
+  183: // Execute long trade
+  184: if (longEntry)
+  185:     strategy.entry("long", strategy.long, units, when = rsi > 50)
+  186: 
+  187: // Exit long trade
+  188: if(longExit and strategy.position_size > 0)    
+  189:     strategy.order("exit long", strategy.short, abs(strategy.position_size))
+  190: 
+  191: // Execute short trade
+  192: if (shortEntry)
+  193:     strategy.entry("short", strategy.short, units, when = rsi < 50)
+  194:     
+  195: // Exit short trade
+  196: if(shortExit and strategy.position_size < 0)    
+  197:     strategy.order("exit short", strategy.long, abs(strategy.position_size))

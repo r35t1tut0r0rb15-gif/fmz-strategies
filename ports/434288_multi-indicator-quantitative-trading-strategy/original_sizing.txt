@@ -1,0 +1,291 @@
+# Original sizing and money-management code, FMZ #434288 (基于多重指标的量化交易策略Multi-Indicator-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/434288  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; SL / TP options  [lines 214-499]
+  214: strategy("Strategy Tester EMA-SMA-RSI-MACD", shorttitle="Strat-test", overlay=true, max_bars_back=5000, 
+  215:  default_qty_type= strategy.percent_of_equity, calc_on_order_fills=false, calc_on_every_tick=false, 
+  216:  pyramiding=0, default_qty_value=100, initial_capital=100)
+  217: 
+  218: Tiny     = "Tiny"
+  219: Small    = "Small"
+  220: Normal   = "Normal"
+  221: Large    = "Large"
+  222: 
+  223: cl      = "close" , op  = "open" , hi  = "high" , lo  = "low"
+  224: c4      = "ohlc4" , c3  = "hlc3" , hl  = "hl2"
+  225: 
+  226: co      = "(E)MA 1 > (E)MA 2" 
+  227: cu      = "(E)MA 3 < (E)MA 4"
+  228: 
+  229: co_HTF  = "(E)MA 1 (HTF) > (E)MA 2 (HTF)" 
+  230: cu_HTF  = "(E)MA 3 (HTF) < (E)MA 4 (HTF)"
+  231: 
+  232: L_S     = "Long & Short"                , _L_  = "Long Only"                , _S_ = "Short Only"
+  233: 
+  234: cla     = "Close above (E)MA 1"         
+  235: clu     = "Close under (E)MA 3"
+  236: 
+  237: cla_HTF = "Close above (E)MA 1 (HTF)"
+  238: clu_HTF = "Close under (E)MA 3 (HTF)"
+  239: 
+  240: rsi     = "RSI strategy"
+  241: 
+  242: none    = "NONE"
+  243: mch     = "macd > signal"               , mcl     = "macd < signal"
+  244: mch0    = "macd > 0"                    , mcl0    = "macd < 0"
+  245: sgh0    = "signal > 0"                  , sgl0    = "signal < 0"
+  246: 
+  247: mch_HTF = "macd (HTF) > signal (HTF)"   , mcl_HTF = "macd (HTF) < signal (HTF)"
+  248: mch0HTF = "macd (HTF) > 0"              , mcl0HTF = "macd (HTF) < 0"
+  249: sgh0HTF = "signal (HTF) > 0"            , sgl0HTF = "signal (HTF) < 0"
+  250: 
+  251: EMA     = "EMA"                         , SMA = "SMA"       
+  252: 
+  253: s       = input(cl,   "Source" , options=[cl, op, hi, lo, c4, c3, hl])
+  254: 
+  255: src     =
+  256:  s  == cl ? close :
+  257:  s  == op ? open  :
+  258:  s  == hi ? high  :
+  259:  s  == lo ? low   :
+  260:  s  == c4 ? ohlc4 :
+  261:  s  == c3 ? hlc3  : 
+  262:  s  == hl ? hl2   :
+  263:  close
+  264: 
+  265: __1_    = input(false, ">=< >=< [STRATEGIES] >=< >=<")
+  266: 
+  267: Type    = input(_L_,  "Type Strategy", options=[L_S, _L_, _S_])
+  268: 
+  269: _1a_    = input(false, ">=< >=< [BUY/LONG] >=< >=<")
+  270: 
+  271: ENT     = input(co,   "Pick your poison:", options=[co, cla, rsi, mch, mch0, sgh0])
+  272: EH      = input(0,    " if RSI >")
+  273: EL      = input(100,  " if RSI <")
+  274: EH_HTF  = input(0,    " if RSI (HTF) >")
+  275: EL_HTF  = input(100,  " if RSI (HTF) <")
+  276: 
+  277: EX      = input(none, " Extra argument", options=[none, mch, mch0, sgh0])
+  278: EX2     = input(none, " Second argument", options=[none, mch_HTF, mch0HTF, sgh0HTF, co_HTF, cla_HTF])
+  279: 
+  280: _1b_    = input(false, ">=< [(E)MA settings (Buy/Long)] >=<")
+  281: 
+  282: ma1     = input(SMA,  "  (E)MA 1", options=[EMA, SMA])
+  283: len1    = input(50,   "     Length"  )
+  284: ma2     = input(SMA,  "  (E)MA 2", options=[EMA, SMA])
+  285: len2    = input(100,  "     Length"  )
+  286: ma1HTF  = input(SMA,  "  (E)MA 1 - HTF", options=[EMA, SMA])
+  287: len1HTF = input(50,   "     Length"  )
+  288: ma2HTF  = input(SMA,  "  (E)MA 2 - HTF", options=[EMA, SMA])
+  289: len2HTF = input(100,  "     Length"  )
+  290: 
+  291: _2a_    = input(false, ">=< >=< [SELL/SHORT] >=< >=<")
+  292: 
+  293: CLO     = input(cu,   "Pick your poison:", options=[cu, clu, rsi, mcl, mcl0, sgl0])
+  294: CH      = input(0,    " if RSI >")
+  295: CL      = input(100,  " if RSI <")
+  296: CH_HTF  = input(0,    " if RSI (HTF) >")
+  297: CL_HTF  = input(100,  " if RSI (HTF) <")
+  298: 
+  299: CX      = input(none, " Extra argument", options=[none, mcl, mcl0, sgl0])
+  300: CX2     = input(none, " Second argument", options=[none, mcl_HTF, mcl0HTF, sgl0HTF, cu_HTF, clu_HTF])
+  301: 
+  302: _2b_    = input(false, ">=< [(E)MA settings (Sell/Short)] >=<")
+  303: 
+  304: ma3     = input(SMA,  "  (E)MA 3", options=[EMA, SMA])
+  305: len3    = input(50,   "     Length"  )
+  306: ma4     = input(SMA,  "  (E)MA 4", options=[EMA, SMA])
+  307: len4    = input(100,  "     Length"  )
+  308: ma3HTF  = input(SMA,  "  (E)MA 3 - HTF", options=[EMA, SMA])
+  309: len3HTF = input(50,   "     Length"  )
+  310: ma4HTF  = input(SMA,  "  (E)MA 4 - HTF", options=[EMA, SMA])
+  311: len4HTF = input(100,  "     Length"  )
+  312: 
+  313: __3_    = input(false, ">=< >=< [RSI]  >=< >=< >=<")
+  314: 
+  315: ler     = input(20 , "  RSI Length")
+  316: 
+  317: __4_    = input(false, ">=< >=< [MACD] >=< >=< >=<")
+  318: 
+  319: fst     = input(12, "  Fast Length")
+  320: slw     = input(26, "  Slow Length")
+  321: sgn     = input(9 , "  Signal Smoothing")
+  322: sma_source = input(false, "Simple MA(Oscillator)")
+  323: sma_signal = input(false, "Simple MA(Signal Line)")
+  324: 
+  325: __5_    = input(false, ">=< >=< [HTF settings] >=< >=<")
+  326: 
+  327: MA_HTF  = input("D", "  (E)MA HTF", type = input.resolution)
+  328: RSI_HTF = input("D", "  RSI HTF"  , type = input.resolution)
+  329: MACD_HTF= input("D", "  MACD HTF" , type = input.resolution)
+  330: 
+  331: __6_    = input(false, ">=< >=< [SL/TP] >=< >=< >=<")
+  332: 
+  333: sl      = input(false, "Stop Loss?")
+  334: SL      = input(10.0, title="  Stop Loss %"  ) / 100
+  335: tp      = input(false, "Take Profit?")
+  336: TP      = input(20.0, title="  Take Profit %") / 100
+  337:  
+  338: SL_     = strategy.position_avg_price * (1 - SL)
+  339: TP_     = strategy.position_avg_price * (1 + TP)
+  340: 
+  341: // Limitation in time
+  342: // (= inspired from a script of "Che_Trader")
+  343: 
+  344: xox     = input(false, ">=< >=< [TIME] >=< >=< >=<")
+  345: 
+  346: ystr1   = input(2010, "  Since Year" )
+  347: ystp1   = input(2099, "  Till Year"  )
+  348: mstr1   = input(1   , "  Since Month")
+  349: mstp1   = input(12  , "  Till Month" )
+  350: dstr1   = input(1   , "  Since Day"  )
+  351: dstp1   = input(31  , "  Till Day"   )
+  352:  
+  353: _Str1   = timestamp(ystr1, mstr1, dstr1,  1,  1)
+  354: Stp1_   = timestamp(ystp1, mstp1, dstp1, 23, 59)
+  355: 
+  356: TIME    = time >= _Str1 and time <= Stp1_ ? true : false
+  357: 
+  358: ////////////////////////////////////////////////////////////////////////////////////////////
+  359: 
+  360: _1      = 
+  361:  ma1 == SMA ? sma(src, len1) : 
+  362:  ma1 == EMA ? ema(src, len1) : 
+  363:  na
+  364: _2      = 
+  365:  ma2 == SMA ? sma(src, len2) :
+  366:  ma2 == EMA ? ema(src, len2) :
+  367:  na
+  368: _3      = 
+  369:  ma3 == SMA ? sma(src, len3) :
+  370:  ma3 == EMA ? ema(src, len3) :
+  371:  na
+  372: _4      = 
+  373:  ma4 == SMA ? sma(src, len4) :
+  374:  ma4 == EMA ? ema(src, len4) :
+  375:  na
+  376: 
+  377: _1b  = 
+  378:  ma1HTF == SMA ? sma(src, len1HTF) :
+  379:  ma1HTF == EMA ? ema(src, len1HTF) :
+  380:  na
+  381: _2b  = 
+  382:  ma2HTF == SMA ? sma(src, len2HTF) :
+  383:  ma2HTF == EMA ? ema(src, len2HTF) :
+  384:  na
+  385: _3b  = 
+  386:  ma3HTF == SMA ? sma(src, len3HTF) :
+  387:  ma3HTF == EMA ? ema(src, len3HTF) :
+  388:  na
+  389: _4b  = 
+  390:  ma4HTF == SMA ? sma(src, len4HTF) :
+  391:  ma4HTF == EMA ? ema(src, len4HTF) :
+  392:  na
+  393: 
+  394: _1_HTF = security(syminfo.tickerid, MA_HTF,  _1b)
+  395: _2_HTF = security(syminfo.tickerid, MA_HTF,  _2b)
+  396: _3_HTF = security(syminfo.tickerid, MA_HTF,  _3b)
+  397: _4_HTF = security(syminfo.tickerid, MA_HTF,  _4b)
+  398: cl_HTF = security(syminfo.tickerid, MA_HTF,  close)
+  399: 
+  400: ////////////////////////////////////////////////////////////////////////////////////////////
+  401: 
+  402: plot(ENT == co or ENT == cla ? _1 : na            , title="(E)MA 1", color=color.lime                           )
+  403: plot(ENT == co               ? _2 : na            , title="(E)MA 2", color=color.red                            )
+  404: plot(CLO == cu or CLO == clu ? _3 : na            , title="(E)MA 3", color= _3 == _1 ? color.lime : color.yellow)
+  405: plot(CLO == cu               ? _4 : na            , title="(E)MA 4", color= _4 == _2 ? color.red  : color.blue  )
+  406: plot(EX2 == co_HTF or EX2 == cla_HTF ? _1_HTF : na, title="(E)MA 1 HTF", color=color.lime, linewidth=2, transp=50)
+  407: plot(EX2 == co_HTF                   ? _2_HTF : na, title="(E)MA 2 HTF", color=color.red , linewidth=2, transp=50)
+  408: plot(CX2 == cu_HTF or CX2 == clu_HTF ? _3_HTF : na, title="(E)MA 3 HTF", color= _3_HTF == _1_HTF ? color.lime : color.yellow, linewidth=2, transp=50)
+  409: plot(CX2 == cu_HTF                   ? _4_HTF : na, title="(E)MA 4 HTF", color= _4_HTF == _2_HTF ? color.red  : color.blue  , linewidth=2, transp=50)
+  410: 
+  411: ////////////////////////////////////////////////////////////////////////////////////////////
+  412: 
+  413: // RSI
+  414: 
+  415: rsi_       = rsi(src, ler)
+  416: rsi_HTF    = security(syminfo.tickerid, RSI_HTF,  rsi_)
+  417: 
+  418: ////////////////////////////////////////////////////////////////////////////////////////////
+  419: 
+  420: // MACD
+  421: 
+  422: fast_ma    = sma_source ? sma(src, fst) : ema(src, fst)
+  423: slow_ma    = sma_source ? sma(src, slw) : ema(src, slw)
+  424: macd       = fast_ma - slow_ma
+  425: signal     = sma_signal ? sma(macd, sgn) : ema(macd, sgn)
+  426: hist       = macd - signal
+  427: 
+  428: macd_HTF   = security(syminfo.tickerid, MACD_HTF, macd  )
+  429: signal_HTF = security(syminfo.tickerid, MACD_HTF, signal)
+  430: 
+  431: ////////////////////////////////////////////////////////////////////////////////////////////
+  432: 
+  433: extra = 
+  434:  EX  == none    ? true                   :
+  435:  EX  == mch     ? macd >  signal         :
+  436:  EX  == mch0    ? macd >  0              :
+  437:  EX  == sgh0    ? signal >  0            :
+  438:  false
+  439: 
+  440: cxtra = 
+  441:  CX  == none    ? true                   :
+  442:  CX  == mcl     ? macd <= signal         :
+  443:  CX  == mcl0    ? macd <= 0              :
+  444:  CX  == sgl0    ? signal <= 0            :
+  445:  false
+  446: 
+  447: EXTRA = 
+  448:  EX2 == none    ? true                   :
+  449:  EX2 == mch_HTF ? macd_HTF >  signal_HTF :
+  450:  EX2 == mch0HTF ? macd_HTF >  0          :
+  451:  EX2 == sgh0HTF ? signal_HTF >  0        :
+  452:  EX2 == co_HTF  ? _1_HTF >  _2_HTF       :
+  453:  EX2 == cla_HTF ? cl_HTF >  _1_HTF       : 
+  454:  false
+  455:  
+  456: CXTRA =
+  457:  CX2 == none    ? true                   :
+  458:  CX2 == mcl_HTF ? macd_HTF <= signal_HTF :
+  459:  CX2 == mcl0HTF ? macd_HTF <= 0          :
+  460:  CX2 == sgl0HTF ? signal_HTF <= 0        :
+  461:  CX2 == cu_HTF  ? _3_HTF <= _4_HTF       :
+  462:  CX2 == clu_HTF ? cl_HTF <= _3_HTF       : 
+  463:  false
+  464: 
+  465: RSI = rsi_ > EH and rsi_ <= EL and rsi_HTF > EH_HTF and rsi_HTF <= EL_HTF
+  466: 
+  467: /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  468: 
+  469: BUY = 
+  470:  ENT == co    and TIME and extra and EXTRA and RSI ? _1 > _2        : 
+  471:  ENT == cla   and TIME and extra and EXTRA and RSI ? src > _1       : 
+  472:  ENT == rsi   and TIME and extra and EXTRA         ? RSI            : 
+  473:  ENT == mch   and TIME and extra and EXTRA and RSI ? macd > signal  : 
+  474:  ENT == mch0  and TIME and extra and EXTRA and RSI ? macd > 0       : 
+  475:  ENT == sgh0  and TIME and extra and EXTRA and RSI ? signal > 0     : 
+  476:  na
+  477: 
+  478: SELL = 
+  479:  CLO == cu    and TIME and cxtra and CXTRA and RSI ? _3 <= _4       : 
+  480:  CLO == clu   and TIME and cxtra and CXTRA and RSI ? src <= _3      : 
+  481:  CLO == rsi   and TIME and cxtra and CXTRA         ? RSI            :
+  482:  CLO == mcl   and TIME and cxtra and CXTRA and RSI ? macd <= signal : 
+  483:  CLO == mcl0  and TIME and cxtra and CXTRA and RSI ? macd <= 0      : 
+  484:  CLO == sgl0  and TIME and cxtra and CXTRA and RSI ? signal <= 0    : 
+  485:  na
+  486: 
+  487: if BUY
+  488:     if (Type == _S_)
+  489:         strategy.close("[S]")
+  490:     else
+  491:         strategy.entry("[B]", strategy.long)
+  492: 
+  493: if SELL
+  494:     if (Type == _L_)
+  495:         strategy.close("[B]")
+  496:     else
+  497:         strategy.entry("[S]", strategy.short)
+  498: 
+  499: strategy.exit("[SL/TP]", "[B]", stop= sl ? SL_ : na, limit= tp ? TP_ : na)

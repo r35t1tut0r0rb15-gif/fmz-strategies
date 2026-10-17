@@ -2489,6 +2489,26 @@ SIZING = {
         ("Tick bracket on the stacked entries", 141, 147),
     ],
     434159: [],
+    # ---- FMZ-C, batch C65 (2026-10-17)
+    434165: [],
+    434166: [],
+    434167: [
+        ("Equity-risk unit count and opposite-size exit orders", 161, 197),
+    ],
+    434175: [],
+    434183: [],
+    434187: [],
+    434192: [],
+    434194: [],
+    434196: [],
+    434285: [
+        ("strategy(): 100 % of equity, commission", 138, 138),
+        ("Close-sized exits", 185, 194),
+    ],
+    434288: [
+        ("strategy(): 100 % of equity; SL / TP options", 214, 499),
+    ],
+    434289: [],
 }
 
 REJECTED_ON_READING = {
@@ -3070,6 +3090,11 @@ REJECTED_ON_READING = {
               "strategy.openprofit / (position_avg_price x position_size) above a threshold, so "
               "the exit depends on the averaged price and P&L of the stacked units (as #426570); "
               "the trailing stop arms at the averaged price + 15 %."),
+    # ---- FMZ-C, batch C65 (2026-10-17)
+    434185: ("1", "Grid ladder: pyramiding 1000 with up to 15 buy and sell levels around a monthly "
+              "pivot, each buying a cash quantity and selling a contract count, with the levels "
+              "re-anchored on the average price of the stacked buys; the position is a sum of "
+              "grid units (as #430596)."),
 }
 
 DUPLICATE_ON_READING = {

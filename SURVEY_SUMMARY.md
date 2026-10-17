@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2548 |
-| PORTED | 1046 |
+| PORT_CANDIDATE | 2535 |
+| PORTED | 1058 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 560 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 153 |
+| REJECTED_ON_READING | 154 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1174,7 +1174,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433970 | `ports/433970_momentum-exponential-moving-average-crossover-trading-strate/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 433971 | `ports/433971_quadriple-exponential-moving-average-trading-strategy/` | PineScript | ma_cross | coarse_bar_stop | sl_atr x2, slow x2 | 4 |
 | 434159 | `ports/434159_the-great-delight-multifactor-quantitative-strategy/` | PineScript | ichimoku | none | ema_len x2, conv x2 | 4 |
-| | **1046 ports** | | | | | **5792** |
+| 434165 | `ports/434165_123-starc-123-reversal-and-starc-bands-combo-strategy/` | PineScript | combo_123_reversal | none | length x2, k x2 | 4 |
+| 434166 | `ports/434166_fisher-fisher-transform-backtest-strategy/` | PineScript | momentum_oscillator_turn | none | length x3 | 3 |
+| 434167 | `ports/434167_bitcoin-ma-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 434175 | `ports/434175_high-minus-exponential-moving-average-stock-strategy/` | PineScript | ma_trend | none | length x3 | 3 |
+| 434183 | `ports/434183_double-moving-average-oscillation-trading-strategy/` | PineScript | multi_indicator_confluence | none | length x2, band_pct x2 | 4 |
+| 434187 | `ports/434187_momentum-breakout-moving-average-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_fast x2, rsi_slow x2 | 4 |
+| 434192 | `ports/434192_turtle-breakout-strategy/` | PineScript | donchian_breakout | none | enter_len x2, exit_len x2 | 4 |
+| 434194 | `ports/434194_adaptive-price-channel-strategy/` | PineScript | donchian_breakout | none | length x2, atr_mult x2 | 4 |
+| 434196 | `ports/434196_dual-moving-average-reversal-trading-strategy/` | PineScript | hull_ma | none | ma_len x2, reaction x2 | 4 |
+| 434285 | `ports/434285_full-crypto-swing-alma-cross-macd-quantitative-strategy/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 434288 | `ports/434288_multi-indicator-quantitative-trading-strategy/` | PineScript | ma_trend | none | len1 x2, len2 x2 | 4 |
+| 434289 | `ports/434289_golden-cross-moving-average-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| | **1058 ports** | | | | | **5838** |
 
 ## Rejected on reading
 
@@ -1333,6 +1345,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433932 | 多个百分比止盈exit策略Multiple-Percentage-Profit-Exits-Strategy.md | 1 | Four exits close 25 % / 25 % / 25 % / the rest at 1 / 2 / 3 / 4 % (qty_percent): partial exits of the net position (as #365389). |
 | 433951 | 基于RSI均线的低买高卖短线量化交易策略RSI-Mean-Reversion-Quantitative-Trading-Strategy-Based-on-RSI-Average-Crossing.md | 1 | pyramiding 3 with adds allowed only while the close is below strategy.position_avg_price minus a sum of ATRs (an averaging-down ladder keyed on the averaged price, as #426570), and the only exit is a resting limit at the signal close (as #427119). |
 | 434164 | 基于TFO和ATR的趋势跟踪止损策略TFO-and-ATR-Based-Trend-Tracking-Stop-Loss-Strategy.md | 1 | pyramiding 15 cash adds, and the strategy's sell signal requires strategy.openprofit / (position_avg_price x position_size) above a threshold, so the exit depends on the averaged price and P&L of the stacked units (as #426570); the trailing stop arms at the averaged price + 15 %. |
+| 434185 | 动态网格交易管理策略Dynamic-Grid-Trading-Management-Strategy.md | 1 | Grid ladder: pyramiding 1000 with up to 15 buy and sell levels around a monthly pivot, each buying a cash quantity and selling a contract count, with the levels re-anchored on the average price of the stacked buys; the position is a sum of grid units (as #430596). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
