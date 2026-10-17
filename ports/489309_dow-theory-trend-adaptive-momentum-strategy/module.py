@@ -84,6 +84,10 @@ def _atr(bars_df, n):
     return _rma(tr, n)
 
 
+def precompute(raw_1m_df, symbol_key, **params):
+    return _resample(raw_1m_df, FREQ)
+
+
 def _pivot_at(x, t, n, high):
     j = t - n
     if j - n < 0:

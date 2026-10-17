@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2808 |
+| PORT_CANDIDATE | 2795 |
 | REJECTED | 994 |
-| PORTED | 828 |
+| PORTED | 840 |
 | HELD_NEEDS_VOLUME | 556 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 115 |
+| REJECTED_ON_READING | 116 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -922,6 +922,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430988 | `ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/` | PineScript | supertrend | none | mult x2, fisher_level x2 | 4 |
 | 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
 | 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
+| 489300 | `ports/489300_configurable-moving-average-crossover-strategy/` | PineScript | ma_trend | none | ma_type x2, enable_shorts x2 | 4 |
+| 489301 | `ports/489301_quantitative-long-short-trend-tracking-dynamic-stop-loss-str/` | PineScript | volatility_stop_cross | none | key x2, heikin x2 | 4 |
+| 489304 | `ports/489304_multi-ema-crossover-strategy/` | PineScript | ma_cross | none |  | 0 |
+| 489309 | `ports/489309_dow-theory-trend-adaptive-momentum-strategy/` | PineScript | pivot_reversal | none | pivot x2, sl_atr x2 | 4 |
+| 489311 | `ports/489311_dynamic-trend-identification-strategy-with-exponential-movin/` | PineScript | ma_trend | none | ema_fast x2, atr_mult_strong x2 | 4 |
+| 489324 | `ports/489324_ema-ema-assisted-extreme-point-reversal-trading-strategy/` | PineScript | momentum_oscillator_turn | none | rsi_oversold x2, use_divergence x2 | 4 |
+| 489332 | `ports/489332_dynamic-ema-crossover-with-rsi-trend-confirmation-quantitati/` | PineScript | ma_cross | none | sl_atr x2, tp_ratio x2 | 4 |
+| 489333 | `ports/489333_advanced-price-action-breakout-and-reversal-detection-strate/` | PineScript | price_action_breakout | coarse_bar_stop | sl_atr x2, rr x2 | 4 |
+| 489634 | `ports/489634_atr-15-multi-indicator-adaptive-volatility-atr-dynamic-sl-tp/` | PineScript | multi_indicator_confluence | trailing_stop_pending | sl_atr x2, tp_atr x2 | 4 |
+| 489638 | `ports/489638_ema-34-ema-34-dynamic-stop-loss-crossover-strategy-intellige/` | PineScript | ma_cross | none | rr x2, be_r x2 | 4 |
+| 489646 | `ports/489646_dual-ema-cross-with-directional-exit-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 489650 | `ports/489650_emaxrsi-dynamic-volatility-adaptive-ema-rsi-crossover-strate/` | PineScript | ma_cross | coarse_bar_stop | sl_atr x2, tp_atr x2 | 4 |
 | 489651 | `ports/489651_atm-ema-rsi-dynamic-trend-filtered-atm-option-selling-strate/` | PineScript | ma_cross | coarse_bar_stop | bracket_atr x2, rsi_len x2 | 4 |
 | 489653 | `ports/489653_dual-ema-crossover-strategy-with-dynamic-trailing-stop-mecha/` | PineScript | ma_trend | coarse_bar_stop, trailing_stop | trail_pct x2, long_ema x2 | 4 |
 | 489654 | `ports/489654_triple-ema-and-triple-rma-adaptive-channel-crossover-strateg/` | PineScript | atr_band_breakout | coarse_bar_stop | ema_mult x2, rma_mult x2 | 4 |
@@ -956,7 +968,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491914 | `ports/491914_price-action-structural-breakout-strategy-with-trailing-stop/` | PineScript | price_action_breakout | trailing_stop | trail_k x2, trail_activate x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | macd_divergence | coarse_bar_stop, trailing_stop_pending | method x2, lb x2 | 4 |
 | 492009 | `ports/492009_atr-dual-ema-filtered-atr-adaptive-trend-following-strategy/` | PineScript | volatility_stop_cross | trailing_stop | atr_mult x2, trail_k x2 | 4 |
-| | **828 ports** | | | | | **4947** |
+| | **840 ports** | | | | | **4991** |
 
 ## Rejected on reading
 
@@ -1072,6 +1084,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430974 | 基于RSI和SuperTrend的双向交易策略RSI-and-SuperTrend-Based-Dual-Direction-Trading-Strategy.md | 1 | The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit cannot be expressed as one net position's signals (as #365389). Its momentum line also uses ta.vwma (volume, check 8). |
 | 430985 | 双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md | 2 | The second signal is a band of the nearest prime numbers above / below the high and low (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (as #430847). |
 | 430992 | 趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md | 1 | A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389). |
+| 489320 | 多重时间框架自适应动态KDJ指标策略-Multi-Timeframe-Adaptive-Dynamic-KDJ-Indicator-Strategy.md | 1 | 1-, 5- and 15-minute securities on a daily chart (request.security for the KDJ inputs and the ATR); as #430765 |
 | 489893 | 多因子均值回归策略结合随机相对强弱指标与布林带的均值回归交易系统-Multi-Factor-Mean-Reversion-Strategy-A-Mean-Reversion-Trading-System-Combining-Stochastic-RSI-and-Bollinger-Bands.md | 1 | 5-minute security on a daily chart (request.security(..., "5", close) for the RSI and the bands); as #430765 |
 | 490059 | 多指标确认均线突破DCA动态止盈策略-Multi-Indicator-Confirmation-EMA-Breakout-with-DCA-and-Dynamic-Take-Profit-Strategy.md | 1 | partial exits: strategy.order takes 25 % and 50 % of the position at two targets (qty fractions); as #430864 |
 | 490908 | 多时间尺度动量趋势追踪与风险管理量化交易策略-Multi-Timeframe-Momentum-Trend-Tracking-and-Risk-Management-Quantitative-Trading-Strategy.md | 1 | 1-minute security on a daily chart (request.security(..., "1", stoch(...))); as #430765 |

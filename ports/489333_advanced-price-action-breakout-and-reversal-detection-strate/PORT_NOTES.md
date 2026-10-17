@@ -1,7 +1,7 @@
 # #489333 高级价格行情突破与反转检测策略-Advanced-Price-Action-Breakout-and-Reversal-Detection-Strategy -> `fmz_489333_pin_bar_or_close_breakout_bracket`
 
 - FMZ source id: 489333 (lineage).
-- Source: https://www.fmz.com/strategy/489333 (PineScript v6, author ianzeng123, FMZ last
+- Source: https://www.fmz.com/strategy/489333 (PineScript v5, author ianzeng123, FMZ last
   modified 2025-04-03 15:09:31). Verbatim here as `original_source.md`. Read 2026-10-17 (FMZ-C laptop lane).
 - Status: PORTED (batch L4). Not run.
 

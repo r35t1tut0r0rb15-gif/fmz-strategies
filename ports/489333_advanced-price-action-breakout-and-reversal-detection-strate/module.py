@@ -6,7 +6,7 @@ Port of FMZ strategy #489333 "高级价格行情突破与反转检测策略-Adva
 FMZ source id: 489333
 
 Source
-    https://www.fmz.com/strategy/489333 (PineScript v6, FMZ last modified 2025-04-03 15:09:31).
+    https://www.fmz.com/strategy/489333 (PineScript v5, FMZ last modified 2025-04-03 15:09:31).
     Verbatim copy: original_source.md. Read 2026-10-17 (FMZ-C laptop lane).
 
 Original signal (original_source.md lines 180-210), RR 3, SL 10 pips (pip = 10 ticks), trail switch on
