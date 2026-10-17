@@ -2804,6 +2804,50 @@ SIZING = {
         ("Bracket levels", 104, 107),
         ("Entries with the bracket", 110, 116),
     ],
+    # ---- FMZ-C, batch L23 (2026-10-17)
+    482921: [
+        ("strategy(): 100 % of equity", 98, 104),
+        ("ATR bracket levels", 181, 184),
+        ("Entries with the bracket", 189, 195),
+    ],
+    483020: [
+        ("strategy(): 10 % of equity", 99, 99),
+    ],
+    483021: [
+        ("strategy(): defaults", 137, 137),
+    ],
+    483023: [
+        ("strategy(): initial capital", 101, 101),
+    ],
+    483026: [
+        ("Risk percentage input", 102, 102),
+        ("Stop / target / risk amount", 113, 117),
+        ("Entries with the bracket", 124, 134),
+    ],
+    483027: [
+        ("strategy(): defaults", 107, 107),
+    ],
+    483029: [
+        ("strategy(): 2 % of equity", 94, 94),
+        ("RR / trailing inputs", 103, 105),
+        ("Entries with the exits", 126, 132),
+    ],
+    483032: [
+        ("SL / TP multipliers", 132, 133),
+        ("Bracket levels", 147, 150),
+        ("Entries with the bracket", 153, 167),
+    ],
+    483035: [
+        ("strategy(): defaults", 103, 103),
+    ],
+    483037: [
+        ("strategy(): 2 % of equity", 101, 101),
+        ("Trailing stop tick inputs", 117, 119),
+        ("Trailing exits", 140, 142),
+    ],
+    483038: [
+        ("strategy(): defaults", 90, 90),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3326,6 +3370,17 @@ REJECTED_ON_READING = {
     # ---- FMZ-C, batch L22 (2026-10-17)
     483049: ("1", "partial exits: strategy.exit('Partial Exit', qty_percent = 50) at 5 ATR with the "
               "rest at 10 ATR or the stop (as #365389)"),
+    # ---- FMZ-C, batch L23 (2026-10-17)
+    483022: ("1", "not a market strategy: the 'fear and greed' values are a hard-coded 8-number "
+              "placeholder array cycled by bar_index, so the signals are a fixed 8-bar cycle "
+              "unrelated to prices"),
+    483033: ("1", "never trades on history as written: the 07:00-09:15 window is built with "
+              "timestamp(year(timenow), month(timenow), dayofmonth(timenow), ...), i.e. only on "
+              "the day the script runs; also tick distances on DOGE_USDT"),
+    483034: ("1", "the exits are re-placed on every bar from the CURRENT close with a 0 % stop "
+              "(stoppct = 0): the long's stop and the short's limit sit at the latest close, so "
+              "every trade ends at the next touch of the previous close; a 0 % stop of the fill "
+              "is not a bracket the house engine can express"),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483021 (高级双均线与超级趋势组合交易策略-Advanced-Dual-EMA-and-Supertrend-Combination-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483021  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 137-137]
+  137: strategy("Advanced Supertrend + EMA Strategy", overlay=true)

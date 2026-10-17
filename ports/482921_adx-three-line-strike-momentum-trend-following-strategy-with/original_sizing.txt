@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #482921 (三线突破动量趋势跟踪策略结合ADX过滤器-Three-Line-Strike-Momentum-Trend-Following-Strategy-with-ADX-Filter)
+# Source: https://www.fmz.com/strategy/482921  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 98-104]
+   98: strategy(title='3 Line Strike [TTF] - Strategy with ATR and ADX Filter',
+   99:      shorttitle='3LS Strategy [TTF]',
+  100:      overlay=true,
+  101:      initial_capital=100000,
+  102:      default_qty_type=strategy.percent_of_equity,
+  103:      default_qty_value=100,
+  104:      pyramiding=0)
+
+## ATR bracket levels  [lines 181-184]
+  181: longTP = close + 2 * atr
+  182: longSL = close - 1 * atr
+  183: shortTP = close - 2 * atr
+  184: shortSL = close + 1 * atr
+
+## Entries with the bracket  [lines 189-195]
+  189: if (showBull3LS and is3LSBullSig)
+  190:     strategy.entry("3LS_Bull", strategy.long, comment="3LS Bullish")
+  191:     strategy.exit("Exit Bull", from_entry="3LS_Bull", limit=longTP, stop=longSL)
+  192: 
+  193: if (showBear3LS and is3LSBearSig)
+  194:     strategy.entry("3LS_Bear", strategy.short, comment="3LS Bearish")
+  195:     strategy.exit("Exit Bear", from_entry="3LS_Bear", limit=shortTP, stop=shortSL)

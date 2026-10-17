@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #483026 (智能双均线交叉风险管理交易系统-Intelligent-Dual-SMA-Crossover-Risk-Management-Trading-System)
+# Source: https://www.fmz.com/strategy/483026  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk percentage input  [lines 102-102]
+  102: riskPercent = input.float(1.0, title="Risk Percentage", step=0.1)
+
+## Stop / target / risk amount  [lines 113-117]
+  113: stopLossPercent = riskPercent / 100
+  114: takeProfitPercent = stopLossPercent * 2
+  115: 
+  116: // Calculate position size based on risk management
+  117: riskAmount = strategy.equity * riskPercent / 100
+
+## Entries with the bracket  [lines 124-134]
+  124: if (bullishSignal)
+  125:     buyStopLossPrice := close * (1 - stopLossPercent)
+  126:     buyTakeProfitPrice := close * (1 + takeProfitPercent)
+  127:     strategy.entry("Buy", strategy.long)
+  128:     strategy.exit("Take Profit/Stop Loss", from_entry="Buy", limit=buyTakeProfitPrice, stop=buyStopLossPrice)
+  129: 
+  130: if (bearishSignal)
+  131:     sellStopLossPrice := close * (1 + stopLossPercent)
+  132:     sellTakeProfitPrice := close * (1 - takeProfitPercent)
+  133:     strategy.entry("Sell", strategy.short)
+  134:     strategy.exit("Take Profit/Stop Loss", from_entry="Sell", limit=sellTakeProfitPrice, stop=sellStopLossPrice)

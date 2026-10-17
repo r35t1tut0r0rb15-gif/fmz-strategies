@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483035 (基于布林带和相对强弱指数的动态区间突破交易策略-Dynamic-Range-Breakout-Trading-Strategy-Based-on-Bollinger-Bands-and-RSI)
+# Source: https://www.fmz.com/strategy/483035  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 103-103]
+  103: strategy("Bollinger Bands + RSI Strategy", overlay=true)

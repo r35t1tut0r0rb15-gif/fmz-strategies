@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #483037 (多重指标趋势跟踪策略基于SMA双线交叉结合RSI和ADX的动态波动率优化系统-Multi-Indicator-Trend-Following-Strategy-SMA-Dual-Line-Crossover-with-RSI-and-ADX-Dynamic-Volatility-Optimization-System)
+# Source: https://www.fmz.com/strategy/483037  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 2 % of equity  [lines 101-101]
+  101: strategy("SMA + RSI + ADX + ATR Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=2)
+
+## Trailing stop tick inputs  [lines 117-119]
+  117: use_trailing_stop = input(true, title="Enable Trailing Stop")
+  118: trailing_stop_pips = input(30, title="Trailing Stop (Pips)")
+  119: trailing_step_pips = input(5, title="Trailing Step (Pips)")
+
+## Trailing exits  [lines 140-142]
+  140: if use_trailing_stop
+  141:     strategy.exit("Exit Long", from_entry="BUY", trail_points=trailing_stop_pips, trail_offset=trailing_step_pips)
+  142:     strategy.exit("Exit Short", from_entry="SELL", trail_points=trailing_stop_pips, trail_offset=trailing_step_pips)
