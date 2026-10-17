@@ -109,6 +109,7 @@ fmz_id,file,final_outcome,criterion,reason
 430974,基于RSI和SuperTrend的双向交易策略RSI-and-SuperTrend-Based-Dual-Direction-Trading-Strategy.md,REJECTED_ON_READING,1,"The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit cannot be expressed as one net position's signals (as #365389). Its momentum line also uses ta.vwma (volume, check 8)."
 430985,双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md,REJECTED_ON_READING,2,"The second signal is a band of the nearest prime numbers above / below the high and low (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (as #430847)."
 430992,趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md,REJECTED_ON_READING,1,A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389).
+491510,开盘价势动量反转-RSI-交易策略-Market-Open-Momentum-Reversal-RSI-Trading-Strategy.md,REJECTED_ON_READING,1,"time windows shorter than the bars: a 90-second opening window and a 600-second hold measured from 09:30 GMT-4 on 7-minute bars; no 7-minute bar starts at 09:30 GMT-4, so as written it never trades"
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -912,3 +913,15 @@ fmz_id,file,final_outcome,criterion,reason
 430988,基于SuperTrend和Fisher变换的趋势跟随长线策略Trend-Following-Long-Term-Strategy-Based-on-SuperTrend-and-Fisher-Transform.md,PORTED,,ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/
 430998,木星与土星动能MA交叉过滤策略Jupiter-and-Saturn-Momentum-MA-Crossover-Filtered-Strategy.md,PORTED,,ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/
 431000,跨时间段移动量策略Intraday-Pivot-Breakout-Strategy.md,PORTED,,ports/431000_intraday-pivot-breakout-strategy/
+491038,多指标动态趋势捕捉与均值回归策略-Multi-Indicator-Dynamic-Trend-Capture-and-Mean-Reversion-Strategy.md,PORTED,,ports/491038_multi-indicator-dynamic-trend-capture-and-mean-reversion-str/
+491505,指数移动平均线交叉动态跟踪止损策略-EMA-Crossover-Dynamic-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/491505_ema-crossover-dynamic-trailing-stop-loss-strategy/
+491506,双均线回调反转交易策略基于EMA穿越与回测容差的趋势跟踪系统-Dual-EMA-Retest-Reversal-Strategy-A-Trend-Following-System-Based-on-EMA-Crossovers-and-Retest-Tolerance.md,PORTED,,ports/491506_ema-dual-ema-retest-reversal-strategy-a-trend-following-syst/
+491508,均线交叉与多指标动量风险控制策略-Multi-Indicator-Momentum-Strategy-with-EMA-Crossover-and-Risk-Management.md,PORTED,,ports/491508_multi-indicator-momentum-strategy-with-ema-crossover-and-ris/
+491514,RSI与SuperTrend过滤策略组合系统趋势确认下的动量反转交易框架-RSI-and-SuperTrend-Filter-Combination-System-Momentum-Reversal-Trading-Framework-with-Trend-Confirmation.md,PORTED,,ports/491514_rsi-supertrend-rsi-and-supertrend-filter-combination-system/
+491890,RSI-MA-交叉摆动交易策略与追踪止损系统-RSI-MA-Crossover-Swing-Trading-Strategy-with-Trailing-Stop-System.md,PORTED,,ports/491890_rsi-ma-rsi-ma-crossover-swing-trading-strategy-with-trailing/
+491891,多时间框架趋势突破策略与RSI过滤及ATR风险管理-Multi-Timeframe-Trend-Breakout-Strategy-with-RSI-Filter-and-ATR-Based-Risk-Management.md,PORTED,,ports/491891_rsi-atr-multi-timeframe-trend-breakout-strategy-with-rsi-fil/
+491892,EMA双重交叉动态止损量化策略-EMA-Dual-Crossover-Dynamic-Stop-Loss-Quantitative-Strategy.md,PORTED,,ports/491892_ema-ema-dual-crossover-dynamic-stop-loss-quantitative-strate/
+491897,多因子趋势追踪量化策略-Multi-Factor-Trend-Following-Quantitative-Strategy.md,PORTED,,ports/491897_multi-factor-trend-following-quantitative-strategy/
+491914,价格行为结构突破-跟踪止损策略-Price-Action-Structural-Breakout-Strategy-with-Trailing-Stop.md,PORTED,,ports/491914_price-action-structural-breakout-strategy-with-trailing-stop/
+492007,RSI动态背离量化策略-RSI-Dynamic-Divergence-Quantitative-Strategy.md,PORTED,,ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/
+492009,双均线过滤的ATR自适应趋势跟踪策略-Dual-EMA-Filtered-ATR-Adaptive-Trend-Following-Strategy.md,PORTED,,ports/492009_atr-dual-ema-filtered-atr-adaptive-trend-following-strategy/

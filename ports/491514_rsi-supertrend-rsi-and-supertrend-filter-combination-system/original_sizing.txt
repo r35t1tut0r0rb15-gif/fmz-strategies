@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #491514 (RSI与SuperTrend过滤策略组合系统趋势确认下的动量反转交易框架-RSI-and-SuperTrend-Filter-Combination-System-Momentum-Reversal-Trading-Framework-with-Trend-Confirmation)
+# Source: https://www.fmz.com/strategy/491514  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 158-158]
+  158: strategy("RSI + SuperTrend Filter Strategy (45m BTCUSDT)", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+
+## TP / SL percent inputs  [lines 164-165]
+  164: tpPerc = input.float(1.5, "TP %") / 100
+  165: slPerc = input.float(1.0, "SL %") / 100
+
+## Bracket re-issued every bar  [lines 191-197]
+  191: longTP = close * (1 + tpPerc)
+  192: longSL = close * (1 - slPerc)
+  193: shortTP = close * (1 - tpPerc)
+  194: shortSL = close * (1 + slPerc)
+  195: 
+  196: strategy.exit("Long Exit", from_entry="Long", limit=longTP, stop=longSL)
+  197: strategy.exit("Short Exit", from_entry="Short", limit=shortTP, stop=shortSL)

@@ -1867,6 +1867,59 @@ SIZING = {
         ("Commented-out strategy(): 60 units, cash commission", 172, 172),
         ("Risk per trade input", 183, 183),
     ],
+    # ---- FMZ-C, batch L1 (2026-10-17)
+    491038: [],
+    491505: [],
+    491506: [
+        ("strategy(): 1 % of equity", 169, 169),
+        ("Risk-reward, stop and trades-per-day inputs", 175, 177),
+        ("Entries with the bracket and the daily count", 213, 223),
+    ],
+    491508: [
+        ("strategy(): 10 % of equity", 197, 197),
+        ("SL / TP percent", 207, 208),
+        ("Bracket levels from the signal bar", 221, 224),
+        ("Entries with the bracket", 227, 233),
+    ],
+    491514: [
+        ("strategy(): 100 % of equity", 158, 158),
+        ("TP / SL percent inputs", 164, 165),
+        ("Bracket re-issued every bar", 191, 197),
+    ],
+    491890: [
+        ("strategy(): 1 % of equity", 121, 121),
+        ("Stop / target / capital / lot / trail inputs", 128, 132),
+        ("Option-lot position size", 158, 158),
+        ("Entries with the quantity", 161, 174),
+        ("Close-checked trail, reversal, target and stop exits; daily counter reset", 177, 250),
+    ],
+    491891: [
+        ("strategy(): 100 % of equity, initial capital 10", 93, 93),
+        ("Risk and exit settings", 96, 103),
+        ("Risk-based size, bracket and trail distances", 120, 133),
+        ("Entries with the bracket and trail", 136, 142),
+    ],
+    491892: [
+        ("strategy(): 100 % of equity", 116, 116),
+    ],
+    491897: [
+        ("Risk input and ATR multiplier", 110, 117),
+        ("Risk-based quantity, entries and bracket", 158, 168),
+    ],
+    491914: [
+        ("strategy(): 10 % of equity", 98, 98),
+        ("ATR trail distances", 114, 119),
+        ("Entries with the trailing exits", 157, 164),
+    ],
+    492007: [
+        ("strategy(): 10 % of equity", 120, 120),
+        ("SL / TP method inputs", 133, 143),
+        ("Moving stop / target, re-issued every bar", 182, 211),
+    ],
+    492009: [
+        ("strategy(): 100 % of equity", 151, 151),
+        ("Trailing stop + price-unit take profit, every bar", 199, 206),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2283,6 +2336,10 @@ REJECTED_ON_READING = {
     430992: ("1", "A template whose take-profit exit closes 50 % of the position (qty_percent = "
               "takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a "
               "partial exit cannot be expressed as one net position's signals (as #365389)."),
+    # ---- FMZ-C, batch L1 (2026-10-17)
+    491510: ("1", "time windows shorter than the bars: a 90-second opening window and a 600-second "
+              "hold measured from 09:30 GMT-4 on 7-minute bars; no 7-minute bar starts at 09:30 "
+              "GMT-4, so as written it never trades"),
 }
 
 DUPLICATE_ON_READING = {

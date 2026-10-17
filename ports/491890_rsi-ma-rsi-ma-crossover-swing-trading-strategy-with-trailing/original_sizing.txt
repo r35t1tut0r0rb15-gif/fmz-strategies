@@ -1,0 +1,108 @@
+# Original sizing and money-management code, FMZ #491890 (RSI-MA-交叉摆动交易策略与追踪止损系统-RSI-MA-Crossover-Swing-Trading-Strategy-with-Trailing-Stop-System)
+# Source: https://www.fmz.com/strategy/491890  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 1 % of equity  [lines 121-121]
+  121: strategy("? RX Swing ", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=1)
+
+## Stop / target / capital / lot / trail inputs  [lines 128-132]
+  128: sl_pct        = input.float(1.5, title="Stop Loss %", minval=0.0)
+  129: tp_pct        = input.float(2.5, title="Take Profit %", minval=0.0)
+  130: capitalPerTrade = input.float(15000, title="Capital Per Trade (INR)", minval=1)
+  131: lotSize       = input.int(50, title="Lot Size (Nifty Options Lot)", minval=1)
+  132: trail_points  = input.float(10, title="Trailing SL Points", minval=0.1)
+
+## Option-lot position size  [lines 158-158]
+  158: positionSize = (capitalPerTrade / close) * lotSize
+
+## Entries with the quantity  [lines 161-174]
+  161: if (canTrade and lossCount < 2)
+  162:     if (longSignal and not inTrade and barstate.isconfirmed)  // Ensure the signal happens after candle close
+  163:         strategy.entry("Buy Call", strategy.long, qty=positionSize)
+  164:         entryPrice := close
+  165:         trailHigh := close
+  166:         inTrade := true
+  167:         tradeDir := "CALL"
+  168: 
+  169:     else if (shortSignal and not inTrade and barstate.isconfirmed)  // Ensure the signal happens after candle close
+  170:         strategy.entry("Buy Put", strategy.short, qty=positionSize)
+  171:         entryPrice := close
+  172:         trailLow := close
+  173:         inTrade := true
+  174:         tradeDir := "PUT"
+
+## Close-checked trail, reversal, target and stop exits; daily counter reset  [lines 177-250]
+  177: if (inTrade)
+  178:     if (tradeDir == "CALL")
+  179:         trailHigh := math.max(trailHigh, close)
+  180:         if (close <= trailHigh - trail_points)
+  181:             strategy.close("Buy Call", comment="CALL Trailing SL Hit")
+  182:             exitNow := true
+  183:             exitReason := "Trail SL"
+  184:             inTrade := false
+  185:             lossCount := lossCount + 1
+  186: 
+  187:     if (tradeDir == "PUT")
+  188:         trailLow := math.min(trailLow, close)
+  189:         if (close >= trailLow + trail_points)
+  190:             strategy.close("Buy Put", comment="PUT Trailing SL Hit")
+  191:             exitNow := true
+  192:             exitReason := "Trail SL"
+  193:             inTrade := false
+  194:             lossCount := lossCount + 1
+  195: 
+  196: // === REVERSAL EXIT LOGIC ===
+  197: if (inTrade)
+  198:     if (tradeDir == "CALL" and shortSignal)
+  199:         strategy.close("Buy Call", comment="CALL Exit on Reversal")
+  200:         exitNow := true
+  201:         exitReason := "Reversal"
+  202:         inTrade := false
+  203:         if (strategy.position_size < 0)
+  204:             lossCount := lossCount + 1
+  205: 
+  206:     if (tradeDir == "PUT" and longSignal)
+  207:         strategy.close("Buy Put", comment="PUT Exit on Reversal")
+  208:         exitNow := true
+  209:         exitReason := "Reversal"
+  210:         inTrade := false
+  211:         if (strategy.position_size > 0)
+  212:             lossCount := lossCount + 1
+  213: 
+  214: // === TP/SL EXIT LOGIC ===
+  215: if (inTrade)
+  216:     tpLevel = entryPrice * (1 + tp_pct / 100)
+  217:     slLevel = entryPrice * (1 - sl_pct / 100)
+  218: 
+  219:     if (strategy.position_size > 0)
+  220:         if (close >= tpLevel)
+  221:             strategy.close("Buy Call", comment="CALL TP Hit")
+  222:             exitNow := true
+  223:             exitReason := "TP"
+  224:             inTrade := false
+  225:         else if (close <= slLevel)
+  226:             strategy.close("Buy Call", comment="CALL SL Hit")
+  227:             exitNow := true
+  228:             exitReason := "SL"
+  229:             inTrade := false
+  230:             lossCount := lossCount + 1
+  231: 
+  232:     if (strategy.position_size < 0)
+  233:         tpLevel = entryPrice * (1 - tp_pct / 100)
+  234:         slLevel = entryPrice * (1 + sl_pct / 100)
+  235: 
+  236:         if (close <= tpLevel)
+  237:             strategy.close("Buy Put", comment="PUT TP Hit")
+  238:             exitNow := true
+  239:             exitReason := "TP"
+  240:             inTrade := false
+  241:         else if (close >= slLevel)
+  242:             strategy.close("Buy Put", comment="PUT SL Hit")
+  243:             exitNow := true
+  244:             exitReason := "SL"
+  245:             inTrade := false
+  246:             lossCount := lossCount + 1
+  247: 
+  248: // === RESET LOSS COUNT ON NEW DAY ===
+  249: if (hour == 9 and minute == 15)
+  250:     lossCount := 0

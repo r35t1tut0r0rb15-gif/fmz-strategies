@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2847 |
+| PORT_CANDIDATE | 2834 |
 | REJECTED | 994 |
-| PORTED | 794 |
+| PORTED | 806 |
 | HELD_NEEDS_VOLUME | 556 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 110 |
+| REJECTED_ON_READING | 111 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -922,7 +922,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430988 | `ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/` | PineScript | supertrend | none | mult x2, fisher_level x2 | 4 |
 | 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
 | 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
-| | **794 ports** | | | | | **4815** |
+| 491038 | `ports/491038_multi-indicator-dynamic-trend-capture-and-mean-reversion-str/` | PineScript | ma_trend | none | ema_fast x2, sma_short x2 | 4 |
+| 491505 | `ports/491505_ema-crossover-dynamic-trailing-stop-loss-strategy/` | PineScript | ma_cross | none | trail_pct x2, ema_long x2 | 4 |
+| 491506 | `ports/491506_ema-dual-ema-retest-reversal-strategy-a-trend-following-syst/` | PineScript | ma_pullback | trailing_stop_pending | retest_tolerance x2, risk_reward x2 | 4 |
+| 491508 | `ports/491508_multi-indicator-momentum-strategy-with-ema-crossover-and-ris/` | PineScript | ma_cross | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
+| 491514 | `ports/491514_rsi-supertrend-rsi-and-supertrend-filter-combination-system/` | PineScript | rsi_oscillator | coarse_bar_stop, trailing_stop_pending | rsi_oversold x2, atr_mult x2 | 4 |
+| 491890 | `ports/491890_rsi-ma-rsi-ma-crossover-swing-trading-strategy-with-trailing/` | PineScript | rsi_oscillator | none | trail_atr x2, daily_reset x2 | 4 |
+| 491891 | `ports/491891_rsi-atr-multi-timeframe-trend-breakout-strategy-with-rsi-fil/` | PineScript | momentum_breakout | bar_size_pending, trailing_stop_pending | sl_atr x2, tp_ratio x2 | 4 |
+| 491892 | `ports/491892_ema-ema-dual-crossover-dynamic-stop-loss-quantitative-strate/` | PineScript | ma_cross | none | fast x2, trend x2 | 4 |
+| 491897 | `ports/491897_multi-factor-trend-following-quantitative-strategy/` | PineScript | parabolic_sar | coarse_bar_stop | adx_threshold x2, atr_mult x2 | 4 |
+| 491914 | `ports/491914_price-action-structural-breakout-strategy-with-trailing-stop/` | PineScript | price_action_breakout | trailing_stop | trail_k x2, trail_activate x2 | 4 |
+| 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | macd_divergence | coarse_bar_stop, trailing_stop_pending | method x2, lb x2 | 4 |
+| 492009 | `ports/492009_atr-dual-ema-filtered-atr-adaptive-trend-following-strategy/` | PineScript | volatility_stop_cross | trailing_stop | atr_mult x2, trail_k x2 | 4 |
+| | **806 ports** | | | | | **4863** |
 
 ## Rejected on reading
 
@@ -1038,6 +1050,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430974 | 基于RSI和SuperTrend的双向交易策略RSI-and-SuperTrend-Based-Dual-Direction-Trading-Strategy.md | 1 | The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit cannot be expressed as one net position's signals (as #365389). Its momentum line also uses ta.vwma (volume, check 8). |
 | 430985 | 双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md | 2 | The second signal is a band of the nearest prime numbers above / below the high and low (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (as #430847). |
 | 430992 | 趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md | 1 | A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389). |
+| 491510 | 开盘价势动量反转-RSI-交易策略-Market-Open-Momentum-Reversal-RSI-Trading-Strategy.md | 1 | time windows shorter than the bars: a 90-second opening window and a 600-second hold measured from 09:30 GMT-4 on 7-minute bars; no 7-minute bar starts at 09:30 GMT-4, so as written it never trades |
 
 ## Flagged and stored under criterion 3 (253 files)
 

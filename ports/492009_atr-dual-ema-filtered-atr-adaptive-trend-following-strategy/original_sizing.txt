@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #492009 (双均线过滤的ATR自适应趋势跟踪策略-Dual-EMA-Filtered-ATR-Adaptive-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/492009  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 151-151]
+  151: strategy("UTBot + EMA Filter (HA + ATR Logic)", overlay = true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+
+## Trailing stop + price-unit take profit, every bar  [lines 199-206]
+  199: // === TRAILING STOP + TAKE PROFIT ===
+  200: // Long
+  201: if strategy.position_size > 0
+  202:     strategy.exit("Exit Long", from_entry="Buy", trail_points=trail_step, trail_offset=trail_offset, limit=sr + take_profit_points)
+  203: 
+  204: // Short
+  205: if strategy.position_size < 0
+  206:     strategy.exit("Exit Short", from_entry="Sell", trail_points=trail_step, trail_offset=trail_offset, limit=sr - take_profit_points)

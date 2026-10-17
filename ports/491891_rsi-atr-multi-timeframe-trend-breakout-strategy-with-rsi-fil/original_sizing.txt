@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #491891 (多时间框架趋势突破策略与RSI过滤及ATR风险管理-Multi-Timeframe-Trend-Breakout-Strategy-with-RSI-Filter-and-ATR-Based-Risk-Management)
+# Source: https://www.fmz.com/strategy/491891  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, initial capital 10  [lines 93-93]
+   93: strategy("Trend Breakout Strategy with Separated Alerts", overlay=true, initial_capital=10, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+
+## Risk and exit settings  [lines 96-103]
+   96: var float risk_per_trade = 0.02 // 2% risk per trade
+   97: var int ema_fast = 9
+   98: var int ema_slow = 21
+   99: var int rsi_length = 14
+  100: var int atr_length = 14
+  101: var float atr_multiplier_sl = 2.0 // ATR multiplier for SL
+  102: var float tp_ratio = 3.0 // TP to SL ratio = 3:1
+  103: var float trail_trigger_ratio = 0.5 // Trailing stop triggers at 50% of TP
+
+## Risk-based size, bracket and trail distances  [lines 120-133]
+  120: equity = strategy.equity
+  121: stop_loss_distance = atr * atr_multiplier_sl
+  122: risk_amount = equity * risk_per_trade
+  123: position_size = risk_amount / stop_loss_distance
+  124: 
+  125: // --- SL and TP Levels ---
+  126: long_sl = close - stop_loss_distance
+  127: long_tp = close + stop_loss_distance * tp_ratio
+  128: short_sl = close + stop_loss_distance
+  129: short_tp = close - stop_loss_distance * tp_ratio
+  130: 
+  131: // --- Trailing Stop (activated after 50% of TP) ---
+  132: trail_points = atr * atr_multiplier_sl * tp_ratio * trail_trigger_ratio
+  133: trail_offset = atr * atr_multiplier_sl
+
+## Entries with the bracket and trail  [lines 136-142]
+  136: if long_entry
+  137:     strategy.entry("Long", strategy.long, qty=position_size)
+  138:     strategy.exit("Long Exit", "Long", stop=long_sl, limit=long_tp, trail_points=trail_points, trail_offset=trail_offset)
+  139: 
+  140: if short_entry
+  141:     strategy.entry("Short", strategy.short, qty=position_size)
+  142:     strategy.exit("Short Exit", "Short", stop=short_sl, limit=short_tp, trail_points=trail_points, trail_offset=trail_offset)

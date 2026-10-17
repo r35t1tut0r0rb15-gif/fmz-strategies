@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #491914 (价格行为结构突破-跟踪止损策略-Price-Action-Structural-Breakout-Strategy-with-Trailing-Stop)
+# Source: https://www.fmz.com/strategy/491914  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 98-98]
+   98: strategy("SMC + EMA + Candles + RSI/CCI + BOS + Trailing", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## ATR trail distances  [lines 114-119]
+  114: // === ATR
+  115: atr = ta.atr(14)
+  116: tp_mult = 2.0
+  117: sl_mult = 1.0
+  118: trail_offset = atr * 1.0
+  119: trail_step = atr * 0.5
+
+## Entries with the trailing exits  [lines 157-164]
+  157: // === Entry and Exit (with Trailing Stop)
+  158: if (longCondition)
+  159:     strategy.entry("Long", strategy.long)
+  160:     strategy.exit("Long Exit", from_entry="Long", trail_points=trail_offset, trail_offset=trail_step)
+  161: 
+  162: if (shortCondition)
+  163:     strategy.entry("Short", strategy.short)
+  164:     strategy.exit("Short Exit", from_entry="Short", trail_points=trail_offset, trail_offset=trail_step)

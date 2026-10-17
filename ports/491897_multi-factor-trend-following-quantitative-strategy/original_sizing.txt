@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #491897 (多因子趋势追踪量化策略-Multi-Factor-Trend-Following-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/491897  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk input and ATR multiplier  [lines 110-117]
+  110: riskPerTrade = input.float(2.0, title="Riesgo por operación (%)", minval=0.5, step=0.5)
+  111: sarStart = input.float(0.02, title="SAR Start", minval=0.001)
+  112: sarIncrement = input.float(0.02, title="SAR Increment", minval=0.001)
+  113: sarMax = input.float(0.2, title="SAR Max", minval=0.1)
+  114: rsiLength = input.int(6, title="RSI Length", minval=3, maxval=10)
+  115: emaFastLength = input.int(2, title="EMA Rápida", minval=1, maxval=5)
+  116: adxThreshold = input.int(30, title="ADX mínimo", minval=20, maxval=50)
+  117: atrMultiplier = input.float(1.5, title="Multiplicador ATR para SL", step=0.1)
+
+## Risk-based quantity, entries and bracket  [lines 158-168]
+  158: riskAmount = strategy.equity * (riskPerTrade / 100)
+  159: slPoints = atr * atrMultiplier
+  160: qty = riskAmount / close
+  161: 
+  162: if (longCondition)
+  163:     strategy.entry("Long", strategy.long, qty=qty)
+  164:     strategy.exit("Exit Long", "Long", stop=close - slPoints, limit=close + slPoints * 2)
+  165: 
+  166: if (shortCondition)
+  167:     strategy.entry("Short", strategy.short, qty=qty)
+  168:     strategy.exit("Exit Short", "Short", stop=close + slPoints, limit=close - slPoints * 2)
