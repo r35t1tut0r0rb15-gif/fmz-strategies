@@ -116,13 +116,14 @@ Last updated 2026-10-17 by FMZ-C (desktop GAME_CHAMBER, batches C1-; rules 2026-
 | L29 | 482838 - 482848 | 482838, 482843, 482846, 482848 | - |
 | L30 | 482817 - 482841 | 482820, 482822, 482824, 482826, 482830, 482831, 482832, 482833, 482836, 482840, 482841 | 482817, 482835, 482837 |
 | L31 | 482786 - 482816 | 482786, 482787, 482788, 482789, 482792, 482793, 482800, 482803, 482804, 482805, 482806, 482809, 482816 | 482802 |
+| L32 | 482678 - 482785 | 482678, 482684, 482687, 482764, 482767, 482769, 482771, 482773, 482774, 482775, 482778, 482779, 482785 | 482783 |
 
 ## Next
 
 1. Continue the queue: `overall == PORT_CANDIDATE` in `screening.csv`, ascending `fmz_id`,
    skipping ids already in `review_decisions.csv`. **Next id: 431003** (worker A works upward
 
-**Laptop lane (survey-laptop, batches L1-, top down): next id 482785; last updated 2026-10-17 by FMZ-C on LAPTOP-HU32FL5L.**
+**Laptop lane (survey-laptop, batches L1-, top down): next id 482673; last updated 2026-10-17 by FMZ-C on LAPTOP-HU32FL5L.**
    from 126968 on branch `survey`; worker B ports ids >= 439378 on `survey-b`, then works
    down from 439377; A stops when its next id is one B has done).
    Worker A's log with resume points: `reports/cloud_porting_A_LOG_2026-10-07.md`.

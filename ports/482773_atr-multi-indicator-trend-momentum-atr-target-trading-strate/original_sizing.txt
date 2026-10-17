@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #482773 (多指标趋势动量ATR目标价交易策略-Multi-Indicator-Trend-Momentum-ATR-Target-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482773  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 97-97]
+   97: strategy("ADX & RSI Strategy with ATR Targets", overlay=true)
+
+## ATR target / stop inputs  [lines 105-106]
+  105: atrMultiplierTarget = input.float(2.5, title="ATR Multiplier for Target")
+  106: atrMultiplierStop = input.float(1.5, title="ATR Multiplier for Stop Loss")
+
+## Levels and close-based exits  [lines 140-150]
+  140: if (longEntry)
+  141:     entryPrice := close
+  142:     targetLevel := entryPrice + atr * atrMultiplierTarget
+  143:     stopLossLevel := entryPrice - atr * atrMultiplierStop
+  144:     strategy.entry("Long", strategy.long)
+  145: 
+  146: if (strategy.position_size > 0)
+  147:     if (close >= targetLevel)
+  148:         strategy.close("Long", comment="Tgt Hit")
+  149:     if (close <= stopLossLevel)
+  150:         strategy.close("Long", comment="SL Hit")

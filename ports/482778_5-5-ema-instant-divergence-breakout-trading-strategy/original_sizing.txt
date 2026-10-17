@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #482778 (5均线即时背离突破交易策略-5-EMA-Instant-Divergence-Breakout-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482778  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults, margin 100  [lines 111-111]
+  111: strategy("5 EMA (Instant Execution)", overlay=true, margin_long=100, margin_short=100)
+
+## Entries with the bracket  [lines 140-150]
+  140: if buy_signal
+  141:     strategy.entry("Long", strategy.long)
+  142:     candle_size = trigger_high - low
+  143:     strategy.exit("Long Exit", "Long", limit=trigger_high + (candle_size * target_multiplier), stop=low)
+  144:     trigger_high := na  // Reset trigger
+  145: 
+  146: if sell_signal
+  147:     strategy.entry("Short", strategy.short)
+  148:     candle_size = high - trigger_low
+  149:     strategy.exit("Short Exit", "Short", limit=trigger_low - (candle_size * target_multiplier), stop=high)
+  150:     trigger_low := na  // Reset trigger

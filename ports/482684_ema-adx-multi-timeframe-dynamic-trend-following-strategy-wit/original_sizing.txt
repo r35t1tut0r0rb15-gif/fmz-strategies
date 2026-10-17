@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #482684 (多重时间框架动态趋势跟踪策略结合EMA与ADX指标-Multi-Timeframe-Dynamic-Trend-Following-Strategy-with-EMA-and-ADX-Integration)
+# Source: https://www.fmz.com/strategy/482684  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 5 % of equity, commission, slippage  [lines 89-94]
+   89: strategy("DOGE Enhanced Trend Following Strategy", 
+   90:          overlay=true, 
+   91:          default_qty_type=strategy.percent_of_equity, 
+   92:          default_qty_value=5, 
+   93:          commission_value=0.1, 
+   94:          slippage=2)
+
+## TP / SL multipliers  [lines 105-106]
+  105: takeProfitMultiplier = input.float(1.03, title="Take Profit Multiplier", tooltip="Set a dynamic take profit level, e.g., 1.03 = 3% profit")
+  106: stopLossMultiplier = input.float(0.97, title="Stop Loss Multiplier", tooltip="Set stop loss level, e.g., 0.97 = 3% below entry price")
+
+## Entries with the bracket  [lines 123-129]
+  123: if (bullishTrend)
+  124:     strategy.entry("Long", strategy.long)
+  125:     strategy.exit("TakeProfit_Long", from_entry="Long", limit=close * takeProfitMultiplier, stop=close * stopLossMultiplier)
+  126: 
+  127: if (bearishTrend)
+  128:     strategy.entry("Short", strategy.short)
+  129:     strategy.exit("TakeProfit_Short", from_entry="Short", limit=close * (2 - takeProfitMultiplier), stop=close * (2 - stopLossMultiplier))

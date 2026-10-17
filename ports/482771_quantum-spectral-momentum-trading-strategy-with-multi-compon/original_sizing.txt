@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #482771 (基于量子谱分析的多维动量交易策略-Quantum-Spectral-Momentum-Trading-Strategy-with-Multi-Component-Analysis)
+# Source: https://www.fmz.com/strategy/482771  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 106-106]
+  106: strategy("Quantum Spectral Crypto Trading", shorttitle="QSCT", overlay=true, precision=2)
+
+## Bar-extreme stops  [lines 194-198]
+  194: if (crypto_outlook_index < 50)
+  195:     strategy.exit("Exit Long", from_entry="Long", stop=low)
+  196: 
+  197: if (crypto_outlook_index > 50)
+  198:     strategy.exit("Exit Short", from_entry="Short", stop=high)

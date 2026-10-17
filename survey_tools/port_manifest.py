@@ -3074,6 +3074,62 @@ SIZING = {
         ("Stop / target inputs", 105, 107),
         ("Bracket from the average price", 134, 155),
     ],
+    # ---- FMZ-C, batch L32 (2026-10-17)
+    482678: [
+        ("strategy(): defaults", 108, 108),
+        ("RR / buffer inputs", 112, 113),
+        ("Entries with the bracket", 130, 140),
+    ],
+    482684: [
+        ("strategy(): 5 % of equity, commission, slippage", 89, 94),
+        ("TP / SL multipliers", 105, 106),
+        ("Entries with the bracket", 123, 129),
+    ],
+    482687: [
+        ("strategy(): defaults", 29, 29),
+    ],
+    482764: [
+        ("strategy(): defaults", 96, 96),
+    ],
+    482767: [
+        ("strategy(): 10 % of equity, 0.1 % commission", 104, 104),
+        ("ATR inputs", 116, 118),
+        ("Entry with bracket and trail", 147, 151),
+    ],
+    482769: [
+        ("strategy(): defaults", 109, 109),
+    ],
+    482771: [
+        ("strategy(): defaults", 106, 106),
+        ("Bar-extreme stops", 194, 198),
+    ],
+    482773: [
+        ("strategy(): defaults", 97, 97),
+        ("ATR target / stop inputs", 105, 106),
+        ("Levels and close-based exits", 140, 150),
+    ],
+    482774: [
+        ("strategy(): 100 % of equity", 114, 114),
+        ("ATR / target inputs", 119, 121),
+        ("Stop and target every bar", 132, 153),
+    ],
+    482775: [
+        ("strategy(): 10 % of equity", 103, 103),
+    ],
+    482778: [
+        ("strategy(): defaults, margin 100", 111, 111),
+        ("Entries with the bracket", 140, 150),
+    ],
+    482779: [
+        ("strategy(): 10 % of equity", 106, 106),
+        ("ATR inputs", 111, 112),
+        ("Bracket every bar", 125, 141),
+    ],
+    482785: [
+        ("strategy(): 10 % of equity, pyramiding 0", 82, 87),
+        ("SL / TP point inputs (0 = off)", 99, 100),
+        ("Exit (inert at 0)", 190, 191),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3623,6 +3679,11 @@ REJECTED_ON_READING = {
               "input.source links to other indicators; with the defaults (close > 0) every bar is "
               "both a long and a short entry from flat, with the targets at the signal bar's high "
               "/ low"),
+    # ---- FMZ-C, batch L32 (2026-10-17)
+    482783: ("1", "martingale adds: strategy.order doubles the quantity on every bar 5 % below the "
+              "15-bar high close, the take-profit sits 5 % above the quantity-weighted average of "
+              "those adds and a forced close comes after 10 adds; without the adds (sizing, not "
+              "ported) the exits have no meaning (as #483086)"),
 }
 
 DUPLICATE_ON_READING = {
