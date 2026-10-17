@@ -952,6 +952,10 @@ fmz_id,file,final_outcome,criterion,reason
 430988,基于SuperTrend和Fisher变换的趋势跟随长线策略Trend-Following-Long-Term-Strategy-Based-on-SuperTrend-and-Fisher-Transform.md,PORTED,,ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/
 430998,木星与土星动能MA交叉过滤策略Jupiter-and-Saturn-Momentum-MA-Crossover-Filtered-Strategy.md,PORTED,,ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/
 431000,跨时间段移动量策略Intraday-Pivot-Breakout-Strategy.md,PORTED,,ports/431000_intraday-pivot-breakout-strategy/
+482870,动态-EMA-交叉摆动高低点自适应策略-Dynamic-EMA-Crossover-with-Adaptive-Swing-High-Low-Strategy.md,PORTED,,ports/482870_ema-dynamic-ema-crossover-with-adaptive-swing-high-low-strat/
+482872,双向MACD动量与EMA趋势判定交易策略-Bidirectional-MACD-Momentum-and-EMA-Trend-Trading-Strategy.md,PORTED,,ports/482872_macd-ema-bidirectional-macd-momentum-and-ema-trend-trading-s/
+482873,基于支撑阻力位突破和回测的多级量化趋势交易策略-Multi-Level-Quantitative-Trend-Trading-Strategy-Based-on-Support-Resistance-Breakout-and-Retest.md,PORTED,,ports/482873_multi-level-quantitative-trend-trading-strategy-based-on-sup/
+482876,多重指标协同交易系统-基于趋势动量复合信号策略-Multi-Indicator-Synergy-Trading-System-Trend-Momentum-Composite-Signal-Strategy.md,PORTED,,ports/482876_multi-indicator-synergy-trading-system-trend-momentum-compos/
 482878,三重布林带标准差趋势跟踪策略-Triple-Bollinger-Band-Standard-Deviation-Trend-Following-Strategy.md,PORTED,,ports/482878_triple-bollinger-band-standard-deviation-trend-following-str/
 482879,多指标综合趋势跟踪策略结合ADX动态交易系统-Multi-Indicator-Trend-Following-Strategy-with-ADX-Dynamic-Trading-System.md,PORTED,,ports/482879_adx-multi-indicator-trend-following-strategy-with-adx-dynami/
 482886,高频量化多周期热图狙击策略-High-Frequency-Quantitative-Multi-Timeframe-Heatmap-Sniper-Strategy.md,PORTED,,ports/482886_high-frequency-quantitative-multi-timeframe-heatmap-sniper-s/
