@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482786 (高斯通道趋势跟踪与随机相对强弱指标交易策略-Gaussian-Channel-Trend-Following-with-Stochastic-RSI-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482786  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, 0.1 % commission  [lines 98-98]
+   98: strategy("Gaussian Channel + Stoch RSI Strategy", overlay=true, margin_long=100, margin_short=100, initial_capital=100000, commission_type=strategy.commission.percent, commission_value=0.1, default_qty_type=strategy.percent_of_equity, default_qty_value=100, pyramiding=1)

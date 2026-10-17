@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482792 (多重指数移动平均线黄金交叉趋势跟踪策略-Multi-Exponential-Moving-Average-Golden-Cross-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/482792  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission 0.1, slippage 3  [lines 91-91]
+   91: strategy("EMA2050150 Crossover Strategy#ganges", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100, commission_value=0.1, slippage=3)

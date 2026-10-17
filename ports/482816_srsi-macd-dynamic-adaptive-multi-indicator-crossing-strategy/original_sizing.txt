@@ -1,0 +1,35 @@
+# Original sizing and money-management code, FMZ #482816 (动态自适应多指标交叉策略结合SRSI和MACD的智能风控系统-Dynamic-Adaptive-Multi-Indicator-Crossing-Strategy-with-SRSI-MACD-Smart-Risk-Control-System)
+# Source: https://www.fmz.com/strategy/482816  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 97-97]
+   97: strategy(title="SRSI + MACD Strategy with Dynamic Stop-Loss and Take-Profit", shorttitle="SRSI + MACD Strategy", overlay=false, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## Stop / target inputs  [lines 105-107]
+  105: enableStopLoss = input.bool(true, "Enable Stop-Loss")  
+  106: enableTakeProfit = input.bool(true, "Enable Take-Profit")  
+  107: riskFactor = input.float(2.5, "Risk Factor", minval=0.1, step=1)  
+
+## Bracket from the average price  [lines 134-155]
+  134: atrValue = ta.atr(14)  
+  135: stopLossDistance = atrValue * riskFactor  
+  136: takeProfitDistance = atrValue * riskFactor  
+  137: 
+  138: // Variables for stop-loss and take-profit levels
+  139: var float longStopPrice = na
+  140: var float longTakeProfitPrice = na
+  141: 
+  142: // Buy and sell conditions with differenceKD added
+  143: buyCondition = ((differenceTotal > 0 or differenceKD > 0) and (isKdRising or isMacdRising) and k < 20 )  
+  144: sellCondition = ((differenceTotal <= 0 or differenceKD <= 0) and (isKFalling or isMacdFalling) and k > 80)  
+  145: 
+  146: // Execute strategy orders with conditional stop-loss and take-profit
+  147: if buyCondition and strategy.position_size == 0
+  148:     strategy.entry("Buy", strategy.long)
+  149: 
+  150: if strategy.position_size > 0
+  151:     longStopPrice := strategy.position_avg_price - stopLossDistance  
+  152:     longTakeProfitPrice := strategy.position_avg_price + takeProfitDistance  
+  153: 
+  154:     if enableStopLoss or enableTakeProfit
+  155:         strategy.exit("Sell/Exit", "Buy", stop=(enableStopLoss ? longStopPrice : na), limit=(enableTakeProfit ? longTakeProfitPrice : na))

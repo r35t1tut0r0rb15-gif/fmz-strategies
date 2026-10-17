@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482804 (基于价格区间和突破的高效量化交易策略Price-Range-and-Breakout-Based-Efficient-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482804  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 107-107]
+  107: strategy("Consolidation Zones - Live [Strategy]", overlay=true, max_bars_back=1100)

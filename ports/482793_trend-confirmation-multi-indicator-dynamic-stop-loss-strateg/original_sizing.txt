@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #482793 (基于趋势确认的多重指标动态止损策略-Trend-Confirmation-Multi-Indicator-Dynamic-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/482793  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 101-101]
+  101: strategy("Invest SMA|MACD|ADX Long Weekly Strategy (BtTL)", overlay=true)
+
+## Swing-low stop  [lines 142-148]
+  142: if (isBelowSMA and na(secondLastSwingLow) == false)
+  143:     strategy.exit("Exit", from_entry="Long", stop=secondLastSwingLow)
+  144: 
+  145: // Reset bei Position schließen
+  146: if(strategy.position_size <= 0)
+  147:     secondLastSwingLow := na
+  148:     lastSwingLow := na

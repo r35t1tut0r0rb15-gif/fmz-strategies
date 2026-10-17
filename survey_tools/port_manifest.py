@@ -3030,6 +3030,50 @@ SIZING = {
         ("ATR stop inputs", 121, 122),
         ("Entries with the stops", 163, 177),
     ],
+    # ---- FMZ-C, batch L31 (2026-10-17)
+    482786: [
+        ("strategy(): 100 % of equity, 0.1 % commission", 98, 98),
+    ],
+    482787: [
+        ("strategy(): 10 % of equity", 103, 103),
+    ],
+    482788: [
+        ("strategy(): defaults", 107, 107),
+    ],
+    482789: [
+        ("strategy(): defaults", 93, 93),
+    ],
+    482792: [
+        ("strategy(): 100 % of equity, commission 0.1, slippage 3", 91, 91),
+    ],
+    482793: [
+        ("strategy(): defaults", 101, 101),
+        ("Swing-low stop", 142, 148),
+    ],
+    482800: [
+        ("strategy(): defaults", 90, 90),
+    ],
+    482803: [
+        ("strategy(): 10 % of equity", 99, 99),
+        ("Entry with the exit", 151, 156),
+    ],
+    482804: [
+        ("strategy(): defaults", 107, 107),
+    ],
+    482805: [
+        ("strategy(): 10 % of equity", 107, 107),
+    ],
+    482806: [
+        ("strategy(): defaults", 125, 125),
+    ],
+    482809: [
+        ("strategy(): 10 % of equity", 109, 109),
+    ],
+    482816: [
+        ("strategy(): 10 % of equity", 97, 97),
+        ("Stop / target inputs", 105, 107),
+        ("Bracket from the average price", 134, 155),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3574,6 +3618,11 @@ REJECTED_ON_READING = {
               "entries are random draws, not reproducible (as #483022)"),
     482837: ("1", "a LOWER timeframe on a higher chart: the higher-timeframe stochastic is "
               "request.security(..., '30', ...) on the 1-day chart (as #430765)"),
+    # ---- FMZ-C, batch L31 (2026-10-17)
+    482802: ("1", "not a strategy: a strategy-tester template whose entries, targets and stop are "
+              "input.source links to other indicators; with the defaults (close > 0) every bar is "
+              "both a long and a short entry from flat, with the targets at the signal bar's high "
+              "/ low"),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482787 (多重技术指标趋势反转量化交易策略结合动态SAR参数优化系统-Multi-Technical-Indicator-Trend-Reversal-Quantitative-Trading-Strategy-with-Dynamic-SAR-Parameter-Optimization-System)
+# Source: https://www.fmz.com/strategy/482787  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 103-103]
+  103: strategy("ZigZag + Fractals + SAR Crossover Stratégiia", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)

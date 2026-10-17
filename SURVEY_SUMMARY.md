@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2524 |
-| PORTED | 1074 |
+| PORT_CANDIDATE | 2510 |
+| PORTED | 1087 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 558 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 151 |
+| REJECTED_ON_READING | 152 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -922,6 +922,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430988 | `ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/` | PineScript | supertrend | none | mult x2, fisher_level x2 | 4 |
 | 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
 | 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
+| 482786 | `ports/482786_gaussian-channel-trend-following-with-stochastic-rsi-trading/` | PineScript | breakout | none | length x2, multiplier x2 | 4 |
+| 482787 | `ports/482787_sar-multi-technical-indicator-trend-reversal-quantitative-tr/` | PineScript | trend_following | none | sar_max x2, depth x2 | 4 |
+| 482788 | `ports/482788_ema-sma-multi-moving-average-trend-reversal-quantitative-str/` | PineScript | trend_following | none | fast x2, slow x2 | 4 |
+| 482789 | `ports/482789_dual-moving-average-trend-crossover-quantitative-trading-str/` | PineScript | trend_following | none | fast x2, slow x2 | 4 |
+| 482792 | `ports/482792_multi-exponential-moving-average-golden-cross-trend-followin/` | PineScript | trend_following | none | fast x2, slow x2 | 4 |
+| 482793 | `ports/482793_trend-confirmation-multi-indicator-dynamic-stop-loss-strateg/` | PineScript | trend_following | trailing_stop_pending | sma_len x2, adx_min x2 | 4 |
+| 482800 | `ports/482800_multiple-moving-average-crossover-trend-capture-strategy/` | PineScript | trend_following | none | t_len x2, f_len x2 | 4 |
+| 482803 | `ports/482803_granville-macd-trend-following-trading-strategy-based-on-gra/` | PineScript | trend_following | coarse_bar_stop, trailing_stop_pending | ema_len x2, tp_mult x2 | 4 |
+| 482804 | `ports/482804_price-range-and-breakout-based-efficient-quantitative-tradin/` | PineScript | breakout | none | prd x2, conslen x2 | 4 |
+| 482805 | `ports/482805_supertrend-momentum-trend-following-supertrend-and-stochasti/` | PineScript | mean_reversion | none | factor x2, k_len x2 | 4 |
+| 482806 | `ports/482806_macd-sar-momentum-trend-following-dual-indicator-macd-and-pa/` | PineScript | trend_following | none | af_max x2, slow x2 | 4 |
+| 482809 | `ports/482809_nadaraya-watson-intelligent-trend-following-strategy-system/` | PineScript | trend_following | none | bandwidth x2, lookback x2 | 4 |
+| 482816 | `ports/482816_srsi-macd-dynamic-adaptive-multi-indicator-crossing-strategy/` | PineScript | mean_reversion | coarse_bar_stop, trailing_stop_pending | risk x2, rsi_len x2 | 4 |
 | 482820 | `ports/482820_multi-moving-average-and-bollinger-bands-crossover-options-q/` | PineScript | mean_reversion | trailing_stop_pending | sl_mult x2, tp_mult x2 | 4 |
 | 482822 | `ports/482822_atr-atr-dynamic-trailing-stop-trend-following-trading-system/` | PineScript | trend_following | coarse_bar_stop, trailing_stop, trailing_stop_pending | key x2, atr_len x2 | 4 |
 | 482824 | `ports/482824_advanced-bollinger-bands-multi-indicator-dynamic-trend-break/` | PineScript | breakout | trailing_stop | sl_mult x2, trail_k x2 | 4 |
@@ -1202,7 +1215,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491914 | `ports/491914_price-action-structural-breakout-strategy-with-trailing-stop/` | PineScript | price_action_breakout | trailing_stop | trail_k x2, trail_activate x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | macd_divergence | coarse_bar_stop, trailing_stop_pending | method x2, lb x2 | 4 |
 | 492009 | `ports/492009_atr-dual-ema-filtered-atr-adaptive-trend-following-strategy/` | PineScript | volatility_stop_cross | trailing_stop | atr_mult x2, trail_k x2 | 4 |
-| | **1074 ports** | | | | | **5891** |
+| | **1087 ports** | | | | | **5943** |
 
 ## Rejected on reading
 
@@ -1318,6 +1331,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430974 | 基于RSI和SuperTrend的双向交易策略RSI-and-SuperTrend-Based-Dual-Direction-Trading-Strategy.md | 1 | The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit cannot be expressed as one net position's signals (as #365389). Its momentum line also uses ta.vwma (volume, check 8). |
 | 430985 | 双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md | 2 | The second signal is a band of the nearest prime numbers above / below the high and low (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (as #430847). |
 | 430992 | 趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md | 1 | A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389). |
+| 482802 | 多级利润目标与动态止损增强型量化策略-Multi-Level-Take-Profit-and-Dynamic-Stop-Loss-Enhanced-Quantitative-Strategy.md | 1 | not a strategy: a strategy-tester template whose entries, targets and stop are input.source links to other indicators; with the defaults (close > 0) every bar is both a long and a short entry from flat, with the targets at the signal bar's high / low |
 | 482817 | 波动尖峰指标智能交易策略-Volatility-Spike-Indicator-Smart-Trading-Strategy.md | 1 | a LOWER timeframe on a higher chart: the spike test runs through request.security(..., '60', ...) on the 3-hour chart (as #430765); the bracket also comes from strategy.position_avg_price |
 | 482835 | 动态多周期趋势预测结合移动均线过滤策略-Dynamic-Multi-Period-Trend-Prediction-with-Moving-Average-Filter-Strategy.md | 1 | not a market strategy: the signal is prediction = math.random() x 2 - 1, so the entries are random draws, not reproducible (as #483022) |
 | 482837 | 多时间框架随机指标波段交易策略与动态止盈止损系统-Multi-Timeframe-Stochastic-Oscillator-Swing-Trading-Strategy-with-Dynamic-Take-Profit-and-Stop-Loss.md | 1 | a LOWER timeframe on a higher chart: the higher-timeframe stochastic is request.security(..., '30', ...) on the 1-day chart (as #430765) |

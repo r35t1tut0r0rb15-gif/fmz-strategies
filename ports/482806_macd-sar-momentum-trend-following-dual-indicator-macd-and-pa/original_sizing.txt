@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482806 (动量趋势跟踪型双指标MACD与抛物线SAR结合策略-Momentum-Trend-Following-Dual-Indicator-MACD-and-Parabolic-SAR-Combination-Strategy)
+# Source: https://www.fmz.com/strategy/482806  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 125-125]
+  125: strategy("MACD + Parabolic SAR Strategy", shorttitle="MACD+SAR", overlay=true)
