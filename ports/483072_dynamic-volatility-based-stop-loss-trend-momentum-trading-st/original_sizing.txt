@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #483072 (动态波动率止损的趋势动量交易策略-Dynamic-Volatility-Based-Stop-Loss-Trend-Momentum-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483072  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / trail inputs  [lines 101-103]
+  101: stopLossMultiplier = input.float(1.0, title="Stop-Loss ATR Multiplier")
+  102: useTrailingStop = input.bool(true, title="Use Trailing Stop")
+  103: trailATRMultiplier = input.float(2.0, title="Trailing Stop ATR Multiplier")
+
+## Stop and trailing levels  [lines 124-135]
+  124: var float stopLossLevel = na
+  125: var float trailingStopLevel = na
+  126: 
+  127: if (buyCondition)
+  128:     stopLossLevel := close - atr * stopLossMultiplier
+  129:     trailingStopLevel := close - atr * trailATRMultiplier
+  130: 
+  131: if (strategy.position_size > 0)
+  132:     if (useTrailingStop)
+  133:         trailingStopLevel := math.max(trailingStopLevel, close - atr * trailATRMultiplier)
+  134:         stopLossLevel := trailingStopLevel
+  135:     strategy.exit("Trailing Stop", stop=stopLossLevel)

@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #483066 (动态趋势突破型指数平滑移动均线交叉策略-Dynamic-Trend-Breakthrough-Exponential-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/483066  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Swing targets and stops  [lines 111-122]
+  111: swing_high_length = input.int(14, title="Swing High Lookback")
+  112: swing_low_length = input.int(14, title="Swing Low Lookback")
+  113: swing_high = ta.highest(high, swing_high_length) // Previous swing high
+  114: swing_low = ta.lowest(low, swing_low_length)    // Previous swing low
+  115: 
+  116: // Profit target and stop loss for buys
+  117: buy_profit_target = swing_high
+  118: buy_stop_loss = swing_low
+  119: 
+  120: // Profit target and stop loss for sells
+  121: sell_profit_target = swing_low
+  122: sell_stop_loss = swing_high
+
+## Entries with the bracket  [lines 129-135]
+  129: if (buy_condition)
+  130:     strategy.entry("Buy", strategy.long)
+  131:     strategy.exit("Take Profit/Stop Loss", "Buy", limit=buy_profit_target, stop=buy_stop_loss)
+  132: 
+  133: if (sell_condition)
+  134:     strategy.entry("Sell", strategy.short)
+  135:     strategy.exit("Take Profit/Stop Loss", "Sell", limit=sell_profit_target, stop=sell_stop_loss)

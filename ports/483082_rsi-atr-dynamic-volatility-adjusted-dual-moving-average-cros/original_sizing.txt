@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #483082 (基于动态波动率调整的双均线交叉与RSI-ATR复合过滤交易系统-Dynamic-Volatility-Adjusted-Dual-Moving-Average-Crossover-System-with-RSI-ATR-Composite-Filter)
+# Source: https://www.fmz.com/strategy/483082  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 95-95]
+   95: strategy("Simplified MA Crossover Strategy with Disable Options", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## SL / RR / risk inputs  [lines 113-115]
+  113: stopLossPerc = input.float(0.5, title="Stop Loss (%)", minval=0.1) / 100
+  114: riskRewardRatio = input.float(2, title="Risk-Reward Ratio", minval=1)
+  115: riskPercentage = input.float(2, title="Risk Percentage", minval=0.1) / 100
+
+## Risk-based qty and levels  [lines 138-140]
+  138: positionSize = strategy.equity * riskPercentage / (stopLossPerc * close)
+  139: takeProfitLevel = strategy.position_avg_price * (1 + stopLossPerc * riskRewardRatio)
+  140: stopLossLevel = strategy.position_avg_price * (1 - stopLossPerc)
+
+## Entries with the bracket  [lines 143-149]
+  143: if (longCondition)
+  144:     strategy.entry("Long", strategy.long, qty=positionSize)
+  145:     strategy.exit("Take Profit/Stop Loss", "Long", limit=takeProfitLevel, stop=stopLossLevel)
+  146: 
+  147: if (shortCondition)
+  148:     strategy.entry("Short", strategy.short, qty=positionSize)
+  149:     strategy.exit("Take Profit/Stop Loss", "Short", limit=strategy.position_avg_price * (1 - stopLossPerc * riskRewardRatio), stop=strategy.position_avg_price * (1 + stopLossPerc))

@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #483092 (基于日内价格区间突破的动量交易策略结合EMAs指标优化-Price-Range-Breakout-Momentum-Trading-Strategy-with-EMAs-Optimization)
+# Source: https://www.fmz.com/strategy/483092  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 1 % of equity  [lines 103-103]
+  103: strategy("GER40 Momentum Breakout Scalping", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=1)
+
+## SL / RR inputs  [lines 106-107]
+  106: stopLossPoints = input.int(30, title="Stop Loss (Pips)", minval=1)  // Updated to 30 pips
+  107: riskReward    = input.float(2.0, title="Risk Reward Ratio", step=0.1)
+
+## Entries with the tick bracket  [lines 137-148]
+  137:     if (longCondition)
+  138:         strategy.entry("Long", strategy.long)
+  139:         strategy.exit("Exit Long", "Long", 
+  140:           stop = strategy.position_avg_price - stopLossPoints * syminfo.mintick, 
+  141:           limit = strategy.position_avg_price + stopLossPoints * riskReward * syminfo.mintick)
+  142:     
+  143:     // Short breakout: Price breaks below previous day's low
+  144:     if (shortCondition)
+  145:         strategy.entry("Short", strategy.short)
+  146:         strategy.exit("Exit Short", "Short", 
+  147:           stop = strategy.position_avg_price + stopLossPoints * syminfo.mintick, 
+  148:           limit = strategy.position_avg_price - stopLossPoints * riskReward * syminfo.mintick)

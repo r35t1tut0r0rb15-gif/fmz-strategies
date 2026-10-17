@@ -2707,6 +2707,56 @@ SIZING = {
         ("SL / target inputs", 105, 106),
         ("Entries with the bracket", 110, 123),
     ],
+    # ---- FMZ-C, batch L21 (2026-10-17)
+    483064: [
+        ("strategy(): 100 % of equity", 100, 100),
+    ],
+    483066: [
+        ("Swing targets and stops", 111, 122),
+        ("Entries with the bracket", 129, 135),
+    ],
+    483072: [
+        ("Stop / trail inputs", 101, 103),
+        ("Stop and trailing levels", 124, 135),
+    ],
+    483073: [
+        ("strategy(): margin settings", 120, 120),
+    ],
+    483080: [
+        ("strategy(): defaults", 102, 102),
+    ],
+    483081: [
+        ("Point stop and 3 R", 152, 153),
+        ("Entries with the bracket", 155, 161),
+        ("Trailing exits", 167, 176),
+    ],
+    483082: [
+        ("strategy(): 10 % of equity", 95, 95),
+        ("SL / RR / risk inputs", 113, 115),
+        ("Risk-based qty and levels", 138, 140),
+        ("Entries with the bracket", 143, 149),
+    ],
+    483087: [
+        ("strategy(): defaults", 89, 89),
+    ],
+    483089: [
+        ("TP / SL inputs", 113, 114),
+        ("Entry with the bracket", 166, 169),
+    ],
+    483092: [
+        ("strategy(): 1 % of equity", 103, 103),
+        ("SL / RR inputs", 106, 107),
+        ("Entries with the tick bracket", 137, 148),
+    ],
+    483096: [
+        ("Swing stops and 2 R targets", 129, 132),
+        ("Entries with the bracket", 135, 141),
+    ],
+    483102: [
+        ("SL / TP pip inputs", 211, 212),
+        ("Tick bracket levels", 215, 218),
+        ("Entries with the bracket", 224, 230),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3218,6 +3268,14 @@ REJECTED_ON_READING = {
               "a trail (as #365389)"),
     483500: ("1", "partial exits: three strategy.exit take-profits with qty_percent 33 / 33 / 34 at "
               "1.5 / 3 / 4.5 % (as #365389)"),
+    # ---- FMZ-C, batch L21 (2026-10-17)
+    483067: ("1", "the exits come from a stale price: avgPrice is a var updated only while a position "
+              "is open, so on an entry from flat the stop, target and breakeven stop are set from "
+              "the PREVIOUS trade's average price (the long's breakeven sell stop at 1.01 x that "
+              "price can sit above the market); not a bracket of this trade, and the trail_points "
+              "without trail_offset is inert"),
+    483086: ("1", "partial exits: five strategy.exit take-profits of 20 % each (qty = position_size x "
+              "0.2) plus adds while held (allowAddToPosition) (as #365389)"),
 }
 
 DUPLICATE_ON_READING = {

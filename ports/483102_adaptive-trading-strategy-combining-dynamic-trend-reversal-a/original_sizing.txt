@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #483102 (动态趋势反转与随机指标结合的自适应交易策略-Adaptive-Trading-Strategy-Combining-Dynamic-Trend-Reversal-and-Stochastic-Indicator)
+# Source: https://www.fmz.com/strategy/483102  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## SL / TP pip inputs  [lines 211-212]
+  211: stop_loss_pips = input.int(100, title="Stop Loss (pips)", minval=1)  // Stop Loss
+  212: take_profit_pips = input.int(300, title="Take Profit (pips)", minval=1)  // Take Profit
+
+## Tick bracket levels  [lines 215-218]
+  215: long_stop_loss = close - stop_loss_pips * syminfo.mintick
+  216: long_take_profit = close + take_profit_pips * syminfo.mintick
+  217: short_stop_loss = close + stop_loss_pips * syminfo.mintick
+  218: short_take_profit = close - take_profit_pips * syminfo.mintick
+
+## Entries with the bracket  [lines 224-230]
+  224: if buy_signal
+  225:     strategy.entry("Buy", strategy.long)
+  226:     strategy.exit("TP/SL", "Buy", stop=long_stop_loss, limit=long_take_profit)
+  227: 
+  228: if sell_signal
+  229:     strategy.entry("Sell", strategy.short)
+  230:     strategy.exit("TP/SL", "Sell", stop=short_stop_loss, limit=short_take_profit)

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2612 |
-| PORTED | 996 |
+| PORT_CANDIDATE | 2598 |
+| PORTED | 1008 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 558 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 141 |
+| REJECTED_ON_READING | 143 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -922,6 +922,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430988 | `ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/` | PineScript | supertrend | none | mult x2, fisher_level x2 | 4 |
 | 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
 | 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
+| 483064 | `ports/483064_rsi-multi-indicator-adaptive-trading-strategy-based-on-gauss/` | PineScript | channel_breakout | none | period x2, mult x2 | 4 |
+| 483066 | `ports/483066_dynamic-trend-breakthrough-exponential-moving-average-crosso/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | ema_len x2, swing_len x2 | 4 |
+| 483072 | `ports/483072_dynamic-volatility-based-stop-loss-trend-momentum-trading-st/` | PineScript | macd | coarse_bar_stop, trailing_stop_pending | trail_mult x2, ema_len x2 | 4 |
+| 483073 | `ports/483073_trend-detection-strategy-based-on-gaussian-channel-and-stoch/` | PineScript | mean_reversion | none | length x2, mult x2 | 4 |
+| 483080 | `ports/483080_adaptive-bollinger-bands-grid-trading-strategy-with-dynamic/` | PineScript | mean_reversion | none | grid_pct x2, mult x2 | 4 |
+| 483081 | `ports/483081_dynamic-trend-confirmed-inverted-fair-value-gap-quantitative/` | PineScript | price_action | none | fast x2, slow x2 | 4 |
+| 483082 | `ports/483082_rsi-atr-dynamic-volatility-adjusted-dual-moving-average-cros/` | PineScript | ma_cross | none | sl_pct x2, rr x2 | 4 |
+| 483087 | `ports/483087_multi-period-bollinger-bands-crossover-trend-following-strat/` | PineScript | mean_reversion | none | mult x2, len1 x2 | 4 |
+| 483089 | `ports/483089_dynamic-breakout-falling-wedge-trendline-quantitative-tradin/` | PineScript | pivot_levels | coarse_bar_stop, trailing_stop_pending | pivot_bars x2, tp_pct x2 | 4 |
+| 483092 | `ports/483092_emas-price-range-breakout-momentum-trading-strategy-with-ema/` | PineScript | breakout | none | sl_k x2, rr x2 | 4 |
+| 483096 | `ports/483096_rsi-rsi-overbought-oversold-crossover-with-bollinger-bands-d/` | PineScript | mean_reversion | coarse_bar_stop, trailing_stop_pending | rr x2, swing_len x2 | 4 |
+| 483102 | `ports/483102_adaptive-trading-strategy-combining-dynamic-trend-reversal-a/` | PineScript | zigzag | coarse_bar_stop, trailing_stop_pending | sl_k x2, tp_k x2 | 4 |
 | 483103 | `ports/483103_multi-technical-indicator-smart-volatility-breakout-strategy/` | PineScript | mean_reversion | trailing_stop_pending | atr_mult x2, bb_mult x2 | 4 |
 | 483104 | `ports/483104_rsi-atr-multi-sma-and-rsi-crossover-strategy-with-dynamic-at/` | PineScript | breakout | trailing_stop_pending | sl_mult x2, tp_mult x2 | 4 |
 | 483106 | `ports/483106_rsi-adx-enhanced-trend-rsi-adx-linear-regression-prediction/` | PineScript | mean_reversion | none | adx_min x2, lookback x2 | 4 |
@@ -1124,7 +1136,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491914 | `ports/491914_price-action-structural-breakout-strategy-with-trailing-stop/` | PineScript | price_action_breakout | trailing_stop | trail_k x2, trail_activate x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | macd_divergence | coarse_bar_stop, trailing_stop_pending | method x2, lb x2 | 4 |
 | 492009 | `ports/492009_atr-dual-ema-filtered-atr-adaptive-trend-following-strategy/` | PineScript | volatility_stop_cross | trailing_stop | atr_mult x2, trail_k x2 | 4 |
-| | **996 ports** | | | | | **5593** |
+| | **1008 ports** | | | | | **5641** |
 
 ## Rejected on reading
 
@@ -1240,6 +1252,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430974 | 基于RSI和SuperTrend的双向交易策略RSI-and-SuperTrend-Based-Dual-Direction-Trading-Strategy.md | 1 | The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit cannot be expressed as one net position's signals (as #365389). Its momentum line also uses ta.vwma (volume, check 8). |
 | 430985 | 双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md | 2 | The second signal is a band of the nearest prime numbers above / below the high and low (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (as #430847). |
 | 430992 | 趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md | 1 | A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389). |
+| 483067 | 多指标融合自适应趋势交易策略-Multi-Indicator-Adaptive-Trend-Trading-Strategy.md | 1 | the exits come from a stale price: avgPrice is a var updated only while a position is open, so on an entry from flat the stop, target and breakeven stop are set from the PREVIOUS trade's average price (the long's breakeven sell stop at 1.01 x that price can sit above the market); not a bracket of this trade, and the trail_points without trail_offset is inert |
+| 483086 | 多级布林带回归交易策略-Multi-Level-Bollinger-Bands-Mean-Reversion-Trading-Strategy.md | 1 | partial exits: five strategy.exit take-profits of 20 % each (qty = position_size x 0.2) plus adds while held (allowAddToPosition) (as #365389) |
 | 483125 | 动态ATR优化的日内高低点突破交易策略-Dynamic-ATR-Optimized-Intraday-High-Low-Breakout-Trading-Strategy.md | 1 | never trades as written: the long needs close <= min(previous-day low, today's lowest low including this bar) - 10 points, but the close is never below its own bar's low (the short mirrored), so neither condition can be true |
 | 483498 | 多核心回归动态反应器趋势跟踪策略-Multi-Kernel-Regression-Dynamic-Reactor-Trend-Following-Strategy.md | 1 | partial exits: strategy.exit('Long_TP1', qty_percent = 50) at 1 R with the rest on a trail (as #365389) |
 | 483500 | 多核心回归动态趋势跟踪交易策略-Multi-Kernel-Regression-Dynamic-Trend-Trading-Strategy.md | 1 | partial exits: three strategy.exit take-profits with qty_percent 33 / 33 / 34 at 1.5 / 3 / 4.5 % (as #365389) |

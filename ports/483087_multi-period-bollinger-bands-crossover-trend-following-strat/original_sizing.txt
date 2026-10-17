@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483087 (多周期布林带交叉趋势跟踪策略-Multi-Period-Bollinger-Bands-Crossover-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/483087  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 89-89]
+   89: strategy(title="Bollinger Bands Strategy (Buy Below, Sell Above)", shorttitle="BB Strategy", overlay=true)
