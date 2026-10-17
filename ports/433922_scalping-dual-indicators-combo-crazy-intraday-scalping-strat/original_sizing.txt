@@ -1,0 +1,36 @@
+# Original sizing and money-management code, FMZ #433922 (双指标组合疯狂日内scalping策略Dual-Indicators-Combo-Crazy-Intraday-Scalping-Strategy)
+# Source: https://www.fmz.com/strategy/433922  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Swing stop in ticks and its exits  [lines 297-327]
+  297: recentSwingHigh = ta.highest(high, slLength) // highest high of last candles
+  298: recentSwingLow  = ta.lowest(low,   slLength) // lowest low of recent candles
+  299: 
+  300: bgcolor(longEntry  ? color.rgb(76, 175, 79, 90) : na)
+  301: bgcolor(shortEntry ? color.rgb(255, 82, 82, 90) : na)
+  302: 
+  303: slLong          = (close - recentSwingLow) / syminfo.mintick  // stop loss in ticks
+  304: slShort         = (recentSwingHigh - close) / syminfo.mintick // stop loss in ticks
+  305: 
+  306: newOrderID         = str.tostring(strategy.closedtrades + strategy.opentrades + 1)
+  307: curOrderID         = str.tostring(strategy.closedtrades + strategy.opentrades)
+  308: 
+  309: alertMessageForEntry = "Trade {0} - New {1} Entry at price: {2} with stop loss at: {3}"
+  310: 
+  311: if (longEntry)
+  312:     alertMessage = str.format(alertMessageForEntry, newOrderID, "Long", close, recentSwingLow)
+  313:     
+  314:     strategy.entry(newOrderID, strategy.long, alert_message = alertMessage)
+  315:     strategy.exit("Stop Loss Long", newOrderID, loss = slLong, alert_message = "Stop Loss for Trade " + newOrderID)
+  316: 
+  317: if(longExit)
+  318:     strategy.close(curOrderID, alert_message = "Close Trade " + curOrderID)
+  319: 
+  320: if (shortEntry)
+  321:     alertMessage = str.format(alertMessageForEntry, newOrderID, "Short", close, recentSwingLow)
+  322: 
+  323:     strategy.entry(newOrderID, strategy.short, alert_message = alertMessage)
+  324:     strategy.exit("Stop Loss Short", newOrderID, loss = slShort, alert_message = "Stop Loss for Trade " + newOrderID)
+  325: 
+  326: if(shortExit)
+  327:     strategy.close(curOrderID, alert_message = "Close Trade " + curOrderID)

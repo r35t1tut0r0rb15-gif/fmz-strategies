@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2574 |
-| PORTED | 1028 |
+| PORT_CANDIDATE | 2561 |
+| PORTED | 1036 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 559 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 146 |
+| REJECTED_ON_READING | 151 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1156,7 +1156,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433589 | `ports/433589_dynamic-support-and-resistance-strategy-based-on-historical/` | PineScript | pivot_levels | none | level x2 | 2 |
 | 433590 | `ports/433590_rsi-rsi-moving-average-crossover-trend-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, price_ema x2 | 4 |
 | 433901 | `ports/433901_rsi-fast-rsi-reversal-strategy/` | PineScript | rsi_oscillator | none | limit x2, rsi_len x2 | 4 |
-| | **1028 ports** | | | | | **5720** |
+| 433910 | `ports/433910_fibobull-fibobull-wave-strategy-based-on-bollinger-bands-bre/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 433911 | `ports/433911_reverse-triad-quantitative-strategy/` | PineScript | combo_123_reversal | none | length x2, slow x2 | 4 |
+| 433912 | `ports/433912_rsi-volatility-capture-rsi-bollinger-band-strategy/` | PineScript | volatility_stop_cross | none | length x2, mult x2 | 4 |
+| 433914 | `ports/433914_rsi-ma-rsi-and-moving-average-based-quantitative-trading-str/` | PineScript | rsi_oscillator | none | rsi_len x2, ma_len x2 | 4 |
+| 433922 | `ports/433922_scalping-dual-indicators-combo-crazy-intraday-scalping-strat/` | PineScript | multi_indicator_confluence | none | ama_len x2, sl_len x2 | 4 |
+| 433923 | `ports/433923_dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | short x2, long x2 | 4 |
+| 433936 | `ports/433936_holy-grail-strategy/` | PineScript | directional_movement | none | ema_len x2, target x2 | 4 |
+| 433946 | `ports/433946_atr-ma-supertrend-trading-strategy-based-on-atr-and-ma-combi/` | PineScript | supertrend | none | factor x2, pd x2 | 4 |
+| | **1036 ports** | | | | | **5752** |
 
 ## Rejected on reading
 
@@ -1308,6 +1316,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433565 | 多时间框架MACD策略Multi-Timeframe-MACD-Strategy.md | 1 | The signals are the candle colours of request.security(syminfo.tickerid, '3' / '5' / '15' / '30', open / close) on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #430587). |
 | 433581 | P-Signal多时间框架交易策略P-Signal-Multi-Timeframe-Trading-Strategy.md | 1 | Three long entries ('long_D', 'long_W', 'long_M', one unit each, pyramiding 3) open and close on their own daily, weekly and monthly P-signals: each unit leaves on its own exit, i.e. partial exits of the net position (as #426781). |
 | 433588 | 动量波动追踪策略Noros-Bollinger-Tracking-Strategy.md | 1 | pyramiding 5 with trend entries allowed only while the close is beyond strategy.position_avg_price of the stacked position: the signals depend on the averaged price of the ladder (as #426570, #433015). |
+| 433904 | 轨迹追踪指数移动均线策略Trend-Following-Exponential-Moving-Average-Strategy.md | 1 | Two long entry ids with different exits: the pullback entry's target and trailing stop are re-placed every bar a fixed number of ticks around the latest close, and the initial entry's exit is a resting stop at the close of the exit-signal bar; the exit rule depends on which id opened the position, with moving tick levels, which one module's signals and stops cannot express. |
+| 433916 | 月度抛物线突破策略Monthly-Parabolic-Breakout-Strategy.md | 1 | No exit: strategy.exit('Sell', 'Buy', bar_index[30]) passes bar_index[30] as a quantity with no price or time level, so the first entry is held to the end of the data, a single buy-and-hold trade (as #428718). |
+| 433918 | 先机获利的移动平均早盘退出策略Early-Profit-Taking-Moving-Average-Opening-Bell-Exit-Strategy.md | 1 | The exit order 'Close Long' is a 2000-tick target outside 10:00-16:00 and is replaced by a 500-tick stop inside that window (same id, re-issued by the clock), so the bracket of an open trade switches by time of day, which fixed per-trade stops cannot express. |
+| 433920 | 动态网格交易策略Dynamic-Grid-Trading-Strategy.md | 1 | Grid ladder: fifteen entry ids on levels around an SMA 300, each bought below its level and closed above the next one; the position is a sum of grid units (as #430596). |
+| 433932 | 多个百分比止盈exit策略Multiple-Percentage-Profit-Exits-Strategy.md | 1 | Four exits close 25 % / 25 % / 25 % / the rest at 1 / 2 / 3 / 4 % (qty_percent): partial exits of the net position (as #365389). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -2452,6 +2452,21 @@ SIZING = {
     433901: [
         ("strategy(): 100 % of equity, pyramiding 5", 171, 171),
     ],
+    # ---- FMZ-C, batch C63 (2026-10-17)
+    433910: [
+        ("strategy(): 100 % of equity", 189, 189),
+    ],
+    433911: [],
+    433912: [],
+    433914: [],
+    433922: [
+        ("Swing stop in ticks and its exits", 297, 327),
+    ],
+    433923: [],
+    433936: [],
+    433946: [
+        ("Decimal-scaled ATR bracket", 250, 341),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3006,6 +3021,24 @@ REJECTED_ON_READING = {
     433588: ("1", "pyramiding 5 with trend entries allowed only while the close is beyond "
               "strategy.position_avg_price of the stacked position: the signals depend on the "
               "averaged price of the ladder (as #426570, #433015)."),
+    # ---- FMZ-C, batch C63 (2026-10-17)
+    433904: ("1", "Two long entry ids with different exits: the pullback entry's target and trailing "
+              "stop are re-placed every bar a fixed number of ticks around the latest close, and "
+              "the initial entry's exit is a resting stop at the close of the exit-signal bar; "
+              "the exit rule depends on which id opened the position, with moving tick levels, "
+              "which one module's signals and stops cannot express."),
+    433916: ("1", "No exit: strategy.exit('Sell', 'Buy', bar_index[30]) passes bar_index[30] as a "
+              "quantity with no price or time level, so the first entry is held to the end of the "
+              "data, a single buy-and-hold trade (as #428718)."),
+    433918: ("1", "The exit order 'Close Long' is a 2000-tick target outside 10:00-16:00 and is "
+              "replaced by a 500-tick stop inside that window (same id, re-issued by the clock), "
+              "so the bracket of an open trade switches by time of day, which fixed per-trade "
+              "stops cannot express."),
+    433920: ("1", "Grid ladder: fifteen entry ids on levels around an SMA 300, each bought below its "
+              "level and closed above the next one; the position is a sum of grid units (as "
+              "#430596)."),
+    433932: ("1", "Four exits close 25 % / 25 % / 25 % / the rest at 1 / 2 / 3 / 4 % (qty_percent): "
+              "partial exits of the net position (as #365389)."),
 }
 
 DUPLICATE_ON_READING = {

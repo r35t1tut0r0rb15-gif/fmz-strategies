@@ -1,0 +1,97 @@
+# Original sizing and money-management code, FMZ #433946 (基于ATR和MA组合的超级趋势交易策略Supertrend-Trading-Strategy-Based-on-ATR-and-MA-Combination)
+# Source: https://www.fmz.com/strategy/433946  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Decimal-scaled ATR bracket  [lines 250-341]
+  250: atrValue=atr(atrLength)
+  251: decimals = abs(log(syminfo.mintick) / log(10)) 
+  252: Atr = atrValue
+  253: if(decimals == 5)
+  254:     Atr := atrValue * 10000
+  255: if(decimals == 4)
+  256:     Atr := atrValue * 1000
+  257: if(decimals == 3)
+  258:     Atr := atrValue * 100
+  259: if(decimals == 2)
+  260:     Atr := atrValue * 10
+  261: 
+  262: 
+  263: //VJ2 Supertrend
+  264: 
+  265: Up=hl2-(Factor*atr(Pd))
+  266: Dn=hl2+(Factor*atr(Pd))
+  267: 
+  268: TrendUp = 0.0
+  269: TrendUp:=close[1]>TrendUp[1]? max(Up,TrendUp[1]) : Up
+  270: TrendDown = 0.0
+  271: TrendDown:=close[1]<TrendDown[1]? min(Dn,TrendDown[1]) : Dn
+  272: 
+  273: Trend = 0.0
+  274: Trend := close > TrendDown[1] ? 1: close< TrendUp[1]? -1: nz(Trend[1],1)
+  275: Tsl = 0.0
+  276: Tsl := Trend==1? TrendUp: TrendDown
+  277: 
+  278: linecolor = Trend == 1 ? green : red
+  279: 
+  280: plot(Tsl, color = linecolor , style = line , linewidth = 2,title = "SuperTrend")
+  281: 
+  282: plotshape(cross(close,Tsl) and close>Tsl , "Up Arrow", shape.triangleup,location.belowbar,green,0,0)
+  283: plotshape(cross(Tsl,close) and close<Tsl , "Down Arrow", shape.triangledown , location.abovebar, red,0,0)
+  284: //plot(Trend==1 and Trend[1]==-1,color = linecolor, style = circles, linewidth = 3,title="Trend")
+  285: 
+  286: plotarrow(Trend == 1 and Trend[1] == -1 ? Trend : na, title="Up Entry Arrow", colorup=lime, maxheight=60, minheight=50, transp=0)
+  287: plotarrow(Trend == -1 and Trend[1] == 1 ? Trend : na, title="Down Entry Arrow", colordown=red, maxheight=60, minheight=50, transp=0)
+  288: 
+  289: 
+  290: 
+  291: 
+  292: //Strategy 
+  293: Trend_buy = Trend == 1 
+  294: Trend_buy_prev = Trend[1] == -1
+  295: algo_buy_pre = Trend_buy and Trend_buy_prev
+  296: algo_buy = algo_buy_pre == 1 ? 1 : na
+  297: Trend_sell= Trend == -1 
+  298: Trend_sell_prev = Trend[1] == 1
+  299: algo_sell_pre = Trend_sell and Trend_sell_prev
+  300: algo_sell = algo_sell_pre == 1 ? 1:na
+  301: 
+  302: strategy.entry("Long1", strategy.long, when= window() and algo_buy==1)
+  303: 
+  304: strategy.entry("Short1", strategy.short, when=window() and algo_sell==1)
+  305: 
+  306: bought = strategy.position_size > strategy.position_size 
+  307: sold = strategy.position_size < strategy.position_size 
+  308: 
+  309: longStop = Stop_Loss_Factor * valuewhen(bought, Atr, 0) 
+  310: shortStop = Stop_Loss_Factor * valuewhen(sold, Atr, 0) 
+  311: longProfit = factor_profit * longStop 
+  312: shortProfit = factor_profit * shortStop 
+  313: 
+  314: 
+  315: if(decimals == 5) 
+  316:     longStop := longStop *100000 
+  317:     longProfit := longProfit *100000 
+  318: if(decimals == 4) 
+  319:     longStop := longStop * 10000 
+  320:     longProfit := longProfit * 10000 
+  321: if(decimals == 3) 
+  322:     longStop := longStop * 1000 
+  323:     longProfit := longProfit * 1000 
+  324: if(decimals == 2) 
+  325:     longStop := longStop * 100 
+  326:     longProfit := longProfit *100 
+  327: if(decimals == 5) 
+  328:     shortStop := shortStop * 100000 
+  329:     shortProfit := shortProfit * 100000 
+  330: if(decimals == 4) 
+  331:     shortStop := shortStop * 10000 
+  332:     shortProfit := shortProfit * 10000 
+  333: if(decimals == 3) 
+  334:     shortStop := shortStop * 1000 
+  335:     shortProfit := shortProfit * 1000 
+  336: if(decimals == 2) 
+  337:     shortStop := shortStop * 100 
+  338:     shortProfit := shortProfit * 100 
+  339: 
+  340: strategy.exit("Exit Long", from_entry = "Long1", loss =longStop, profit = longProfit) 
+  341: strategy.exit("Exit Short", from_entry = "Short1", loss =shortStop, profit = shortProfit) 
