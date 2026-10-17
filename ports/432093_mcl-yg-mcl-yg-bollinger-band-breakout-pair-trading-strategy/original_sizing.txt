@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #432093 (MCL-YG波动率突破交易策略MCL-YG-Bollinger-Band-Breakout-Pair-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/432093  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Position sizing inputs  [lines 141-142]
+  141: usePosSize = input.bool(title="Use Position Sizing?", defval=true)
+  142: riskPerc   = input.float(title="Risk %", defval=0.5, step=0.25)
+
+## ATR risk quantity  [lines 152-154]
+  152: riskEquity  = (riskPerc / 100) * strategy.equity
+  153: atrCurrency = (ta.atr(20) * syminfo.pointvalue)
+  154: posSize     = usePosSize ? math.floor(riskEquity / atrCurrency) : 1

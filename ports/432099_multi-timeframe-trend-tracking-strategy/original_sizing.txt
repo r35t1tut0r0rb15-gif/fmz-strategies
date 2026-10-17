@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #432099 (多时间框架趋势追踪策略Multi-Timeframe-Trend-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/432099  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Entries with qty 1  [lines 223-227]
+  223: if (buySignal)
+  224:     strategy.entry("LONG", strategy.long, 1)
+  225: 
+  226: if (shortSignal)
+  227:     strategy.entry("SHORT", strategy.short, 1)

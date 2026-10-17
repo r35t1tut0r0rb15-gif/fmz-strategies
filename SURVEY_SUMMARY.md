@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2777 |
+| PORT_CANDIDATE | 2763 |
 | REJECTED | 994 |
-| PORTED | 856 |
+| PORTED | 869 |
 | HELD_NEEDS_VOLUME | 557 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 117 |
+| REJECTED_ON_READING | 118 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -984,7 +984,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 431923 | `ports/431923_di-dual-di-crossover-daily-trading-strategy/` | PineScript | directional_movement | trailing_stop_pending, coarse_bar_stop | length x2, atr_mult x2 | 4 |
 | 431924 | `ports/431924_rsi-fast-rsi-risk-control-compound-futures-trading-strategy/` | PineScript | rsi_oscillator | none | limit x2, open_bars x2 | 4 |
 | 431956 | `ports/431956_fx-strategy-based-on-fractal-waves-and-smma/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | smma_len x2, stop_coef x2 | 4 |
-| | **856 ports** | | | | | **5063** |
+| 431960 | `ports/431960_extreme-distribution-swing-strategy/` | PineScript | momentum_oscillator_turn | none | length x2, pct x2 | 4 |
+| 431964 | `ports/431964_gradual-stop-loss-movement-strategy/` | PineScript | ma_cross | trailing_stop_pending | fast x2, first_step x2 | 4 |
+| 431966 | `ports/431966_ema-dual-ema-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 431967 | `ports/431967_ema-ema-percentage-channel-with-bollinger-band-range-trading/` | PineScript | bollinger_reversion | trailing_stop_pending | channel_pct x2, atr_mult x2 | 4 |
+| 431971 | `ports/431971_dual-reversal-entry-strategy/` | PineScript | macd_cross | none | stoch_period x2, k_period x2 | 4 |
+| 431973 | `ports/431973_corn-moving-average-balance-trading-strategy/` | PineScript | ma_cross | none | len1 x2, len2 x2 | 4 |
+| 432076 | `ports/432076_momentum-breakout-strategy/` | PineScript | volatility_stop_cross | none | key x2, atr_len x2 | 4 |
+| 432077 | `ports/432077_ann-based-quantitative-trading-strategy/` | PineScript | multi_indicator_vote | none |  | 0 |
+| 432092 | `ports/432092_dual-confirmation-reversal-trading-strategy/` | PineScript | combo_123_reversal | none | length x2, top_band x2 | 4 |
+| 432093 | `ports/432093_mcl-yg-mcl-yg-bollinger-band-breakout-pair-trading-strategy/` | PineScript | bollinger_breakout | none | length x2, offset x2 | 4 |
+| 432096 | `ports/432096_dual-track-oscillator-pattern-strategy/` | PineScript | ma_cross | none | length x2, ema_len x2 | 4 |
+| 432099 | `ports/432099_multi-timeframe-trend-tracking-strategy/` | PineScript | multi_indicator_confluence | none | sma_len x2, np_len x2 | 4 |
+| 432100 | `ports/432100_quantitative-trading-strategy-based-on-improved-vortex-indic/` | PineScript | directional_movement | none | period x2, thresh x2 | 4 |
+| | **869 ports** | | | | | **5111** |
 
 ## Rejected on reading
 
@@ -1107,6 +1120,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 431888 | 动态交易者指数策略Traders-Dynamic-Index-Strategy.md | 1 | The TDI lines come from request.security(tickerid, '15', ...) on the 1-day header chart: a 15-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
 | 431926 | 基于Coppock曲线的量化交易策略Coppock-Curve-Based-Quantitative-Trading-Strategy.md | 3 | The Coppock curve is computed on another instrument (security('SPY', 'D', close)): the strategy trades the chart symbol on the S&P 500 ETF, which the project's bars do not carry (as #426811). |
 | 431958 | 基于价格突破与回归的动量短线交易策略Momentum-Breakout-Trading-Strategy-Based-on-Price-Breakout-and-Mean-Reversion.md | 1 | The exit orders are mis-bound: 'S1 SL Exit' names the entry 'Short1', which never exists, and 'S2 Exit' has no from_entry, so it binds every open entry, longs included, to a stop above the price; the net effect depends on how the broker emulator treats a sell stop above the market (as #426455). |
+| 432078 | 周末交易策略Weekend-Trading-Strategy.md | 1 | The profit-taking exit compares strategy.openprofit (account currency, with a fixed qty of 10 units) with 10 % of the initial capital, and shorts are added to on a further 4.5 % rise: the exit and the position path depend on the order size (as #426882). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -2013,6 +2013,31 @@ SIZING = {
         ("Lot formula (martingale multiplier)", 222, 224),
     ],
     431956: [],
+    # ---- FMZ-C, batch C48 (2026-10-17)
+    431960: [],
+    431964: [],
+    431966: [
+        ("strategy(): 100 % of equity", 183, 183),
+    ],
+    431967: [],
+    431971: [],
+    431973: [
+        ("strategy(): 100 % of equity", 145, 145),
+    ],
+    432076: [],
+    432077: [],
+    432092: [],
+    432093: [
+        ("Position sizing inputs", 141, 142),
+        ("ATR risk quantity", 152, 154),
+    ],
+    432096: [
+        ("strategy(): 100 % of equity", 182, 182),
+    ],
+    432099: [
+        ("Entries with qty 1", 223, 227),
+    ],
+    432100: [],
 }
 
 REJECTED_ON_READING = {
@@ -2455,6 +2480,11 @@ REJECTED_ON_READING = {
               "exists, and 'S2 Exit' has no from_entry, so it binds every open entry, longs "
               "included, to a stop above the price; the net effect depends on how the broker "
               "emulator treats a sell stop above the market (as #426455)."),
+    # ---- FMZ-C, batch C48 (2026-10-17)
+    432078: ("1", "The profit-taking exit compares strategy.openprofit (account currency, with a "
+              "fixed qty of 10 units) with 10 % of the initial capital, and shorts are added to "
+              "on a further 4.5 % rise: the exit and the position path depend on the order size "
+              "(as #426882)."),
 }
 
 DUPLICATE_ON_READING = {
