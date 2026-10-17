@@ -2479,6 +2479,39 @@ SIZING = {
         ("TP / SL pip inputs", 182, 187),
         ("Entries with the bracket", 634, 641),
     ],
+    # ---- FMZ-C, batch L15 (2026-10-17)
+    484101: [
+        ("ATR bracket", 229, 232),
+        ("Entries with the bracket", 239, 245),
+    ],
+    484109: [
+        ("strategy(): 1 % of equity", 150, 150),
+        ("Risk / SL / TP inputs", 153, 155),
+        ("Risk-based quantity", 183, 185),
+        ("Entries with qty and the bracket", 188, 194),
+    ],
+    484571: [
+        ("strategy(): margin", 183, 183),
+        ("Trail offset input", 186, 186),
+        ("Trail levels", 211, 236),
+        ("Trail exits", 251, 252),
+    ],
+    484578: [
+        ("strategy(): 100 % of equity", 192, 192),
+        ("ATR stop input", 197, 198),
+        ("Entries with the bracket", 224, 237),
+    ],
+    484580: [
+        ("ATR / RR inputs", 190, 191),
+        ("Bracket levels", 205, 208),
+        ("Entries with the bracket", 211, 217),
+    ],
+    484583: [
+        ("strategy(): 2 % of equity", 185, 185),
+        ("SL / TP inputs", 198, 201),
+        ("Entries with the bracket", 225, 251),
+    ],
+    484584: [],
 }
 
 REJECTED_ON_READING = {
@@ -2960,6 +2993,12 @@ REJECTED_ON_READING = {
     484769: ("2", "a 3.0-price-unit Renko brick with no backtest header (no market or bar size to "
               "judge it against as an ATR multiple), and history offsets by the float brick size "
               "([3.0] bars): no generic, repeatable reading"),
+    # ---- FMZ-C, batch L15 (2026-10-17)
+    484582: ("1", "smoothK is var 0.0 but its first update takes ta.stoch's na (no 14-bar history "
+              "yet) and na never recovers in the recursion, so bullZone / bearZone are never true "
+              "and as written it never trades (as #430384)"),
+    484588: ("1", "partial exits: seven strategy.exit take-profit tranches with qty_percent = 14.28 "
+              "each at +0.5 % steps (as #365389)"),
 }
 
 DUPLICATE_ON_READING = {

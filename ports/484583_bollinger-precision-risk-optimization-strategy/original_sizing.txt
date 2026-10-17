@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #484583 (布林带精准风险优化策略-Bollinger-Precision-Risk-Optimization-Strategy)
+# Source: https://www.fmz.com/strategy/484583  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 2 % of equity  [lines 185-185]
+  185: strategy("Bollinger Precision Strategy", overlay=true, initial_capital=10000, currency=currency.USD, default_qty_type=strategy.percent_of_equity, default_qty_value=2)
+
+## SL / TP inputs  [lines 198-201]
+  198: enable_stop_loss   = input.bool(true, title="Enable Stop-Loss")
+  199: enable_take_profit = input.bool(true, title="Enable Take-Profit")
+  200: stop_loss_percent  = input.float(4.0, title="Stop-Loss (%)", step=0.1)
+  201: take_profit_percent = input.float(8.0, title="Take-Profit (%)", step=0.1)
+
+## Entries with the bracket  [lines 225-251]
+  225: if buySignal
+  226:     entry_price := close
+  227:     strategy.entry("Long", strategy.long)
+  228:     strategy.close("Short")
+  229:     
+  230:     // Risk–Reward Management for Long Trades
+  231:     sl_long = enable_stop_loss ? entry_price * (1 - stop_loss_percent / 100) : na
+  232:     tp_long = enable_take_profit ? entry_price * (1 + take_profit_percent / 100) : na
+  233:     strategy.exit("Exit Long", from_entry="Long", stop=sl_long, limit=tp_long)
+  234:     
+  235:     // If both SL and TP are disabled, close the Long position on signal
+  236:     if not enable_stop_loss and not enable_take_profit
+  237:         strategy.close("Long")
+  238: 
+  239: if sellSignal
+  240:     entry_price := close
+  241:     strategy.entry("Short", strategy.short)
+  242:     strategy.close("Long")
+  243:     
+  244:     // Risk–Reward Management for Short Trades
+  245:     sl_short = enable_stop_loss ? entry_price * (1 + stop_loss_percent / 100) : na
+  246:     tp_short = enable_take_profit ? entry_price * (1 - take_profit_percent / 100) : na
+  247:     strategy.exit("Exit Short", from_entry="Short", stop=sl_short, limit=tp_short)
+  248:     
+  249:     // If both SL and TP are disabled, close the Short position on signal
+  250:     if not enable_stop_loss and not enable_take_profit
+  251:         strategy.close("Short")

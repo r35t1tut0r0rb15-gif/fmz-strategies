@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #484571 (多重时框EMA交叉趋势跟踪策略结合支阻力与智能追踪止损系统-Multi-Timeframe-EMA-Crossover-Trend-Following-Strategy-with-Support-Resistance-and-Smart-Trailing-Stop-System)
+# Source: https://www.fmz.com/strategy/484571  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin  [lines 183-183]
+  183: strategy("EMA Crossover Strategy with S/R and Cross Exits v6", overlay=true, margin_long=100, margin_short=100)
+
+## Trail offset input  [lines 186-186]
+  186: trailOffset = input.float(0.10, "Trailing Stop Offset (%)", minval=0.01, maxval=1, step=0.01)
+
+## Trail levels  [lines 211-236]
+  211: var float longStop = na
+  212: var float shortStop = na
+  213: var float maxHigh = na
+  214: var float minLow = na
+  215: 
+  216: if strategy.position_size > 0
+  217:     if strategy.position_size[1] <= 0
+  218:         maxHigh := high
+  219:         longStop := high * (1 - trailOffset)
+  220:     else
+  221:         maxHigh := math.max(maxHigh, high)
+  222:         longStop := math.max(longStop, maxHigh * (1 - trailOffset))
+  223: else
+  224:     maxHigh := na
+  225:     longStop := na
+  226: 
+  227: if strategy.position_size < 0
+  228:     if strategy.position_size[1] >= 0
+  229:         minLow := low
+  230:         shortStop := low * (1 + trailOffset)
+  231:     else
+  232:         minLow := math.min(minLow, low)
+  233:         shortStop := math.min(shortStop, minLow * (1 + trailOffset))
+  234: else
+  235:     minLow := na
+  236:     shortStop := na
+
+## Trail exits  [lines 251-252]
+  251: strategy.exit("Long Exit", "Long", stop = longStop)
+  252: strategy.exit("Short Exit", "Short", stop = shortStop)

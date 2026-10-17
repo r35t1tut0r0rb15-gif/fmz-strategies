@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #484580 (布林带ATR风险回报比交易策略-Bollinger-Bands-ATR-Risk-Reward-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/484580  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## ATR / RR inputs  [lines 190-191]
+  190: atrLength = input.int(14, title="ATR Periyodu")
+  191: riskRewardRatio = input.float(2.0, title="Risk/Ödül Oranı", minval=1.0)
+
+## Bracket levels  [lines 205-208]
+  205: longStopLoss = close - 2 * atrValue
+  206: shortStopLoss = close + 2 * atrValue
+  207: longTakeProfit = close + (close - longStopLoss) * riskRewardRatio
+  208: shortTakeProfit = close - (shortStopLoss - close) * riskRewardRatio
+
+## Entries with the bracket  [lines 211-217]
+  211: if (longCondition)
+  212:     strategy.entry("Long", strategy.long)
+  213:     strategy.exit("Long TP", "Long", limit=longTakeProfit, stop=longStopLoss)
+  214: 
+  215: if (shortCondition)
+  216:     strategy.entry("Short", strategy.short)
+  217:     strategy.exit("Short TP", "Short", limit=shortTakeProfit, stop=shortStopLoss)

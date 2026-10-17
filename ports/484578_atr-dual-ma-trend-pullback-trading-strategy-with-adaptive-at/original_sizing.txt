@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #484578 (双均线趋势回调自适应ATR止盈止损量化交易策略-Dual-MA-Trend-Pullback-Trading-Strategy-with-Adaptive-ATR-Based-Risk-Management)
+# Source: https://www.fmz.com/strategy/484578  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 192-192]
+  192: strategy("Pullback Strategy", overlay=true, initial_capital=100000, default_qty_type=strategy.percent_of_equity, default_qty_value=100, commission_type=strategy.commission.percent, commission_value=0.01)
+
+## ATR stop input  [lines 197-198]
+  197: i_atr_period = input.int(14, "ATR Period", minval=1)
+  198: i_sl_multiplier = input.float(2.0, "Stop Loss Multiplier", minval=0.1, step=0.1)
+
+## Entries with the bracket  [lines 224-237]
+  224: if long_entry
+  225:     entry_price = close
+  226:     stop_loss_price = entry_price - (atr * i_sl_multiplier)
+  227:     take_profit_price = entry_price + (2 * (entry_price - stop_loss_price))
+  228:     strategy.entry("Long", strategy.long)
+  229:     strategy.exit("Long Exit", "Long", stop=stop_loss_price, limit=take_profit_price)
+  230: 
+  231: // Short Entry and Exit
+  232: if short_entry
+  233:     entry_price = close
+  234:     stop_loss_price = entry_price + (atr * i_sl_multiplier)
+  235:     take_profit_price = entry_price - (2 * (stop_loss_price - entry_price))
+  236:     strategy.entry("Short", strategy.short)
+  237:     strategy.exit("Short Exit", "Short", stop=stop_loss_price, limit=take_profit_price)
