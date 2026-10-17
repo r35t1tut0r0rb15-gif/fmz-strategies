@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #434705 (超趋势吞噬弹策略SuperTrend-Engulfing-Strategy)
+# Source: https://www.fmz.com/strategy/434705  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop level in ticks  [lines 158-174]
+  158: stopLevel = input.int(200, title="Stop Level (Pips)", minval=1)
+  159: 
+  160: // Boring Candle (Inside Bar) and Engulfing Candlestick Conditions
+  161: isBoringCandle = math.abs(open[1] - close[1]) * 100 / math.abs(high[1] - low[1]) <= boringThreshold
+  162: isEngulfingCandle = math.abs(open - close) * 100 / math.abs(high - low) <= engulfingThreshold
+  163: 
+  164: // Bullish and Bearish Engulfing Conditions
+  165: bullEngulfing = uptrend and close[1] < open[1] and close > open[1] and not isBoringCandle and not isEngulfingCandle
+  166: bearEngulfing = downtrend and close[1] > open[1] and close < open[1] and not isBoringCandle and not isEngulfingCandle
+  167: 
+  168: // Stop Loss, Take Profit, and Entry Price Calculation
+  169: bullStop = close + (stopLevel * syminfo.mintick)
+  170: bearStop = close - (stopLevel * syminfo.mintick)
+  171: bullSL = low 
+  172: bearSL = high
+  173: bullTP = bullStop + (bullStop - low)
+  174: bearTP = bearStop - (high - bearStop)

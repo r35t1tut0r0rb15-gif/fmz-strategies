@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2483 |
-| PORTED | 1104 |
+| PORT_CANDIDATE | 2470 |
+| PORTED | 1116 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 561 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 159 |
+| REJECTED_ON_READING | 160 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1232,7 +1232,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 434609 | `ports/434609_williams-moving-average-aggregation-williams-commercial-bid/` | PineScript | momentum_oscillator_turn | none | length x2, reverse x2 | 4 |
 | 434610 | `ports/434610_moving-average-pullback-trading-strategy/` | PineScript | ma_pullback | coarse_bar_stop | long_len x2, sl_pct x2 | 4 |
 | 434611 | `ports/434611_dual-moving-average-price-reversal-breakout-strategy/` | PineScript | combo_123_reversal | none | length x2, pct x2 | 4 |
-| | **1104 ports** | | | | | **6018** |
+| 434674 | `ports/434674_n-consecutive-higher-closes-breakout-strategy/` | PineScript | momentum_breakout | none | n_len x2, sl_atr x2 | 4 |
+| 434675 | `ports/434675_donchian-channels-breakout-quantitative-trading-strategy/` | PineScript | donchian_breakout | coarse_bar_stop | period x2, sl_pct x2 | 4 |
+| 434678 | `ports/434678_reversal-dynamic-pivot-points-exponential-moving-average-str/` | PineScript | combo_123_reversal | none | length x2, level x2 | 4 |
+| 434682 | `ports/434682_quantitative-trading-strategy-integrating-reversal-and-futur/` | PineScript | combo_123_reversal | none | length x2, period x2 | 4 |
+| 434687 | `ports/434687_trend-and-moving-average-crossover-based-multi-functional-al/` | PineScript | volatility_stop_cross | none | key x2, lvl_scale x2 | 4 |
+| 434691 | `ports/434691_moving-average-crossover-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 434695 | `ports/434695_binomial-moving-average-trend-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 434699 | `ports/434699_macd-price-channel-and-macd-based-multi-timeframe-trading-st/` | PineScript | macd_momentum | none | hilo_len x2, fast x2 | 4 |
+| 434701 | `ports/434701_moving-average-crossover-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| 434704 | `ports/434704_tenkan-kijun-adx-adx-based-one-hour-tenkan-kijun-cross-trend/` | PineScript | ichimoku | none | tenkan x2, adx_min x2 | 4 |
+| 434705 | `ports/434705_supertrend-engulfing-strategy/` | PineScript | candle_pattern | trailing_stop_pending | mult x2, pad_atr x2 | 4 |
+| 434706 | `ports/434706_crypto-bull-run-tracking-strategy/` | PineScript | ma_cross | none | dema_len x2, tema_len x2 | 4 |
+| | **1116 ports** | | | | | **6066** |
 
 ## Rejected on reading
 
@@ -1397,6 +1409,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 434575 | 量化交易精准多空策略Fibonacci-Zone-DCA-Strategy.md | 1 | DCA ladder: up to 5 safety orders averaging down at thresholds keyed on the first entry price, with growing volumes, and a take profit on the averaged position price; the position is a sum of grid units (as #426570). |
 | 434594 | 基于SAR指标-CCI指标的EMA黄金交易策略Parabolic-SAR-and-CCI-Strategy-with-EMA-Exit-for-Gold-Trading.md | 1 | The '5-minute EMA' is an ema() called only on bars whose bar_index is a multiple of 5, so its value depends on how many bars the chart holds before the first trade (the phase of the count), and the exits are a 7-tick target with a stop re-placed every bar at the EMA 50 (above the price for some longs, which fills at once); the signal is not defined independently of the chart's start. |
 | 434600 | 基于随机数字的量化交易策略Quantitative-Trading-Strategy-Based-on-Random-Numbers.md | 1 | Coin flip: the direction is coinLabel = random(1, 10) and the gap between flips is round(random(3, 25)), new draws each run; no deterministic signal to port (as #426621). |
+| 434679 | RSI趋势跟踪移动止损策略RSI-Trend-Following-Strategy-with-Trailing-Stop-Loss.md | 1 | Partial exits: two take-profit orders close 50 % and then the rest of the position (qty_percent 50 / 100), with levels re-placed every bar from the current high / low (as #365389). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

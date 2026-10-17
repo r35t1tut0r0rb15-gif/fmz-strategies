@@ -158,6 +158,7 @@ fmz_id,file,final_outcome,criterion,reason
 434575,量化交易精准多空策略Fibonacci-Zone-DCA-Strategy.md,REJECTED_ON_READING,1,"DCA ladder: up to 5 safety orders averaging down at thresholds keyed on the first entry price, with growing volumes, and a take profit on the averaged position price; the position is a sum of grid units (as #426570)."
 434594,基于SAR指标-CCI指标的EMA黄金交易策略Parabolic-SAR-and-CCI-Strategy-with-EMA-Exit-for-Gold-Trading.md,REJECTED_ON_READING,1,"The '5-minute EMA' is an ema() called only on bars whose bar_index is a multiple of 5, so its value depends on how many bars the chart holds before the first trade (the phase of the count), and the exits are a 7-tick target with a stop re-placed every bar at the EMA 50 (above the price for some longs, which fills at once); the signal is not defined independently of the chart's start."
 434600,基于随机数字的量化交易策略Quantitative-Trading-Strategy-Based-on-Random-Numbers.md,REJECTED_ON_READING,1,"Coin flip: the direction is coinLabel = random(1, 10) and the gap between flips is round(random(3, 25)), new draws each run; no deterministic signal to port (as #426621)."
+434679,RSI趋势跟踪移动止损策略RSI-Trend-Following-Strategy-with-Trailing-Stop-Loss.md,REJECTED_ON_READING,1,"Partial exits: two take-profit orders close 50 % and then the rest of the position (qty_percent 50 / 100), with levels re-placed every bar from the current high / low (as #365389)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1276,3 +1277,15 @@ fmz_id,file,final_outcome,criterion,reason
 434609,移动平均聚合Williams商业区买卖压力指标策略Moving-Average-Aggregation-Williams-Commercial-Bid-Ask-Pressure-Indicator-Strategy.md,PORTED,,ports/434609_williams-moving-average-aggregation-williams-commercial-bid/
 434610,移动平均回拉交易策略Moving-Average-Pullback-Trading-Strategy.md,PORTED,,ports/434610_moving-average-pullback-trading-strategy/
 434611,双均线再反转价格突破策略Dual-Moving-Average-Price-Reversal-Breakout-Strategy.md,PORTED,,ports/434611_dual-moving-average-price-reversal-breakout-strategy/
+434674,连续高点突破策略N-Consecutive-Higher-Closes-Breakout-Strategy.md,PORTED,,ports/434674_n-consecutive-higher-closes-breakout-strategy/
+434675,唐奇安基于价格通道突破的量化交易策略Donchian-Channels-Breakout-Quantitative-Trading-Strategy.md,PORTED,,ports/434675_donchian-channels-breakout-quantitative-trading-strategy/
+434678,双重反转动点指数均线策略Reversal-Dynamic-Pivot-Points-Exponential-Moving-Average-Strategy.md,PORTED,,ports/434678_reversal-dynamic-pivot-points-exponential-moving-average-str/
+434682,融合反转与未来推移均线的量化交易策略Quantitative-Trading-Strategy-Integrating-Reversal-and-Future-Lines-of-Demarcation.md,PORTED,,ports/434682_quantitative-trading-strategy-integrating-reversal-and-futur/
+434687,基于趋势和均线交叉的多功能量化交易策略Trend-and-Moving-Average-Crossover-Based-Multi-Functional-Algorithmic-Trading-Strategy.md,PORTED,,ports/434687_trend-and-moving-average-crossover-based-multi-functional-al/
+434691,基于不同周期移动平均线交叉策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/434691_moving-average-crossover-strategy/
+434695,二项式移动平均趋势策略Binomial-Moving-Average-Trend-Strategy.md,PORTED,,ports/434695_binomial-moving-average-trend-strategy/
+434699,基于价格通道和MACD的多时间框架交易策略Price-Channel-and-MACD-Based-Multi-Timeframe-Trading-Strategy.md,PORTED,,ports/434699_macd-price-channel-and-macd-based-multi-timeframe-trading-st/
+434701,移动平均线金叉死叉趋势跟踪策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/434701_moving-average-crossover-strategy/
+434704,基于一小时TENKAN-KIJUN交叉的ADX趋势跟踪策略ADX-Based-One-Hour-TENKAN-KIJUN-Cross-Trend-Tracking-Strategy.md,PORTED,,ports/434704_tenkan-kijun-adx-adx-based-one-hour-tenkan-kijun-cross-trend/
+434705,超趋势吞噬弹策略SuperTrend-Engulfing-Strategy.md,PORTED,,ports/434705_supertrend-engulfing-strategy/
+434706,动态均线交叉趋势跟踪策略Crypto-Bull-Run-Tracking-Strategy.md,PORTED,,ports/434706_crypto-bull-run-tracking-strategy/

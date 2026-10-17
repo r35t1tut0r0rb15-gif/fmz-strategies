@@ -2599,6 +2599,33 @@ SIZING = {
         ("strategy(): 100 % of equity", 152, 153),
     ],
     434611: [],
+    # ---- FMZ-C, batch C70 (2026-10-17)
+    434674: [],
+    434675: [
+        ("Money-per-trade quantity and the monetary stop", 167, 199),
+    ],
+    434678: [],
+    434682: [],
+    434687: [
+        ("Profit / loss inputs (unused)", 170, 171),
+    ],
+    434691: [],
+    434695: [
+        ("strategy(): margins", 149, 149),
+    ],
+    434699: [
+        ("Exit-order inputs (off by default)", 197, 205),
+    ],
+    434701: [
+        ("Fixed quantity 1 entries and closes", 143, 158),
+    ],
+    434704: [
+        ("strategy(): 100 % of equity", 181, 181),
+    ],
+    434705: [
+        ("Stop level in ticks", 158, 174),
+    ],
+    434706: [],
 }
 
 REJECTED_ON_READING = {
@@ -3205,6 +3232,10 @@ REJECTED_ON_READING = {
     434600: ("1", "Coin flip: the direction is coinLabel = random(1, 10) and the gap between flips is "
               "round(random(3, 25)), new draws each run; no deterministic signal to port (as "
               "#426621)."),
+    # ---- FMZ-C, batch C70 (2026-10-17)
+    434679: ("1", "Partial exits: two take-profit orders close 50 % and then the rest of the position "
+              "(qty_percent 50 / 100), with levels re-placed every bar from the current high / "
+              "low (as #365389)."),
 }
 
 DUPLICATE_ON_READING = {

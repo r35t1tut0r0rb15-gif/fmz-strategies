@@ -1,0 +1,21 @@
+# Original sizing and money-management code, FMZ #434701 (移动平均线金叉死叉趋势跟踪策略Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/434701  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Fixed quantity 1 entries and closes  [lines 143-158]
+  143: if (longCondition) and time >= start_time
+  144:     strategy.entry("open long20", strategy.long, qty=1, comment="站上m20做多")
+  145: 
+  146: 
+  147: shortCondition = ta.crossunder(close, ta.sma(close, 20))
+  148: if (shortCondition) and time >= start_time
+  149:     strategy.close("open long20",comment="跌破m20平倉", qty=1)     
+  150:     
+  151: longCondition1 = ta.crossover(close, ta.sma(close, 60))
+  152: if (longCondition1) and time >= start_time
+  153:     strategy.entry("open long60", strategy.long, qty=1, comment="站上m60做多")
+  154: 
+  155: 
+  156: shortCondition1 = ta.crossunder(close, ta.sma(close, 60))
+  157: if (shortCondition1) and time >= start_time
+  158:     strategy.close("open long60",comment="跌破m60平倉", qty=1)     

@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #434687 (基于趋势和均线交叉的多功能量化交易策略Trend-and-Moving-Average-Crossover-Based-Multi-Functional-Algorithmic-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/434687  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Profit / loss inputs (unused)  [lines 170-171]
+  170: min_profit = input(0.5, title="Minimum Profit Target")
+  171: max_loss = input(0.5, title="Maximum Loss Stop")

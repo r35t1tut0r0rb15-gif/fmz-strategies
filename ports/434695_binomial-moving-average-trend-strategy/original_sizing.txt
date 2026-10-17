@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #434695 (二项式移动平均趋势策略Binomial-Moving-Average-Trend-Strategy)
+# Source: https://www.fmz.com/strategy/434695  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margins  [lines 149-149]
+  149: strategy("Binomial Moving Average","BMA", overlay=true, margin_long=100, margin_short=100 ,max_bars_back=96)
