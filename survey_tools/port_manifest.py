@@ -3185,6 +3185,53 @@ SIZING = {
         ("ATR stop inputs", 106, 107),
         ("Entries with the stop", 125, 133),
     ],
+    # ---- FMZ-C, batch L34 (2026-10-17)
+    482473: [
+        ("strategy(): defaults", 117, 117),
+        ("Entries with the bracket", 155, 181),
+    ],
+    482474: [
+        ("strategy(): 50000 cash per trade", 85, 87),
+    ],
+    482477: [
+        ("strategy(): defaults", 121, 121),
+        ("ATR stop inputs", 125, 126),
+        ("Stop every bar", 148, 155),
+    ],
+    482489: [
+        ("strategy(): defaults, margin 100", 87, 87),
+        ("Bracket levels and entries", 111, 123),
+    ],
+    482500: [
+        ("strategy(): defaults", 113, 113),
+        ("SL / TP inputs", 120, 121),
+        ("Entries with the bracket", 146, 152),
+    ],
+    482501: [
+        ("strategy(): defaults, margin 100", 107, 107),
+        ("Tick body and RR inputs", 111, 112),
+        ("Entries with the stop and tick target", 177, 183),
+    ],
+    482502: [
+        ("strategy(): 200 % of equity", 97, 97),
+    ],
+    482504: [
+        ("strategy(): defaults", 99, 99),
+        ("Risk inputs", 107, 111),
+        ("Risk sizing and entries with the bracket", 128, 158),
+    ],
+    482510: [
+        ("strategy(): 100 % of equity", 79, 79),
+        ("SL / TP inputs and entries with the bracket", 99, 115),
+    ],
+    482512: [
+        ("strategy(): defaults", 89, 89),
+        ("Entry and cooldown", 160, 163),
+        ("Take-profit options", 178, 207),
+    ],
+    482515: [
+        ("strategy(): defaults", 136, 136),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3743,6 +3790,13 @@ REJECTED_ON_READING = {
     482672: ("1", "no entry signal: a DCA bot that buys whenever flat and adds up to 30 scaled safety "
               "orders (pyramiding 999, sizing) and takes profit 1 % above their average; without "
               "the adds (not ported) nothing but a buy-and-take-1 % loop remains (as #483086)"),
+    # ---- FMZ-C, batch L34 (2026-10-17)
+    482499: ("1", "partial exits: strategy.exit('止盈一半', qty_percent = 50) takes half at the 50-bar "
+              "extreme (as #430864)"),
+    482506: ("1", "adds with per-add exits: pyramiding 50, up to four long entries a week at fixed "
+              "point offsets (155-775) below the weekly pivot, each with its own limit target; "
+              "the net position is closed piece by piece (partial exits, as #430864); the point "
+              "offsets are also price units"),
 }
 
 DUPLICATE_ON_READING = {
@@ -3772,4 +3826,6 @@ HELD_ON_READING = {
     489134: ("8", "The basis is vwma(hlc3, 200): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch L14 (2026-10-17)
     484920: ("8", "The signal is the close crossing vwma(close, 100) with vwma(close, 100) > ema(close, 200): a volume-weighted average (check 8, held with the other volume users); the entries are also a martingale add ladder."),
+    # ---- FMZ-C, batch L34 (2026-10-17)
+    482509: ("8", "The entry and exit use vwma(close, 200) and a weekly vwma(close, 50): volume-weighted averages (check 8, held with the other volume users)."),
 }

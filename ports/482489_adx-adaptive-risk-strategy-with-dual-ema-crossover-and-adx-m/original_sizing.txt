@@ -1,0 +1,21 @@
+# Original sizing and money-management code, FMZ #482489 (双均线趋势交叉结合ADX动量过滤的自适应风险策略-Adaptive-Risk-Strategy-with-Dual-EMA-Crossover-and-ADX-Momentum-Filter)
+# Source: https://www.fmz.com/strategy/482489  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults, margin 100  [lines 87-87]
+   87: strategy("XAUUSD 15m Trend Strategy", overlay=true, margin_long=100, margin_short=100)
+
+## Bracket levels and entries  [lines 111-123]
+  111: longStop = ta.lowest(low, lookback) - atr * 0.5
+  112: longProfit = close + (close - longStop) * riskReward
+  113: shortStop = ta.highest(high, lookback) + atr * 0.5
+  114: shortProfit = close - (shortStop - close) * riskReward
+  115: 
+  116: // Execute trades
+  117: if (longCondition)
+  118:     strategy.entry("Long", strategy.long)
+  119:     strategy.exit("Exit Long", "Long", stop=longStop, limit=longProfit)
+  120: 
+  121: if (shortCondition)
+  122:     strategy.entry("Short", strategy.short)
+  123:     strategy.exit("Exit Short", "Short", stop=shortStop, limit=shortProfit)

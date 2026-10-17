@@ -1,0 +1,35 @@
+# Original sizing and money-management code, FMZ #482473 (基于价格结构的高比例回报突破交易策略-High-Reward-to-Risk-Price-Structure-Breakout-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482473  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 117-117]
+  117: strategy("Filtered Price Action Breakout", overlay=true)
+
+## Entries with the bracket  [lines 155-181]
+  155: if bullBreakoutSignal and tradeCount < maxTradesPerDay
+  156:     entryPrice = close
+  157:     stopLevel = longStop
+  158:     risk = entryPrice - stopLevel
+  159:     if risk > 0
+  160:         target = entryPrice + rrMultiplier * risk
+  161:         strategy.entry("Long", strategy.long)
+  162:         strategy.exit("Long Exit", from_entry="Long", stop=stopLevel, limit=target)
+  163:         tradeCount := tradeCount + 1
+  164:         
+  165:         // // Draw Markups
+  166:         // label.new(bar_index, entryPrice, text="Long Entry", color=color.green, textcolor=color.white, size=size.small, style=label.style_label_down)
+  167:         // line.new(x1=bar_index, y1=entryPrice, x2=bar_index + 5, y2=entryPrice, color=color.green, width=2)
+  168:         // line.new(x1=bar_index, y1=stopLevel, x2=bar_index + 5, y2=stopLevel, color=color.red, width=2, style=line.style_dotted)
+  169:         // line.new(x1=bar_index, y1=target, x2=bar_index + 5, y2=target, color=color.blue, width=2, style=line.style_dashed)
+  170:         // label.new(bar_index, stopLevel, text="Stop Loss", color=color.red, textcolor=color.white, size=size.small, style=label.style_label_down)
+  171:         // label.new(bar_index, target, text="Target", color=color.blue, textcolor=color.white, size=size.small, style=label.style_label_up)
+  172: 
+  173: if bearBreakoutSignal and tradeCount < maxTradesPerDay
+  174:     entryPrice = close
+  175:     stopLevel = shortStop
+  176:     risk = stopLevel - entryPrice
+  177:     if risk > 0
+  178:         target = entryPrice - rrMultiplier * risk
+  179:         strategy.entry("Short", strategy.short)
+  180:         strategy.exit("Short Exit", from_entry="Short", stop=stopLevel, limit=target)
+  181:         tradeCount := tradeCount + 1

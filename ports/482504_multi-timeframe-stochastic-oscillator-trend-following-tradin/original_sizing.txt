@@ -1,0 +1,46 @@
+# Original sizing and money-management code, FMZ #482504 (多时框随机震荡趋势跟踪交易策略-Multi-Timeframe-Stochastic-Oscillator-Trend-Following-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482504  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 99-99]
+   99: strategy("Ultimate fairas Oil", overlay=true)
+
+## Risk inputs  [lines 107-111]
+  107: atrMult = input(1.5, "ATR Multiplier")
+  108: use_trailing_stop = input(true, "Enable Trailing Stop")
+  109: ema_length = input(50, "EMA Length")
+  110: risk_percent = input(2, "Risk per Trade (%)") / 100
+  111: account_balance = input(50000, "Account Balance")
+
+## Risk sizing and entries with the bracket  [lines 128-158]
+  128: atrValue = ta.atr(14)
+  129: stopLoss = atrMult * atrValue
+  130: takeProfit = 2 * stopLoss
+  131: 
+  132: // === Dynamic Lot Sizing (Risk Management) ===
+  133: risk_amount = account_balance * risk_percent
+  134: position_size = risk_amount / stopLoss
+  135: 
+  136: // === Trailing Stop Calculation ===
+  137: trailOffset = atrValue * 1.5
+  138: trailStopLong = use_trailing_stop ? close - trailOffset : na
+  139: trailStopShort = use_trailing_stop ? close + trailOffset : na
+  140: 
+  141: // === Execute Trades ===
+  142: if longCondition
+  143:     strategy.entry("Long", strategy.long, qty=position_size)
+  144:     strategy.exit("Exit Long", from_entry="Long", stop=close - stopLoss, limit=close + takeProfit, trail_points=use_trailing_stop ? trailOffset : na)
+  145: 
+  146:     // // Labels & Lines
+  147:     // label.new(x=bar_index, y=close, text="BUY", color=color.green, textcolor=color.white, size=size.small, style=label.style_label_down)
+  148:     // label.new(x=bar_index, y=close + takeProfit, text="TP ?", color=color.blue, textcolor=color.white, size=size.tiny)
+  149:     // label.new(x=bar_index, y=close - stopLoss, text="SL ❌", color=color.red, textcolor=color.white, size=size.tiny)
+  150:     // line.new(x1=bar_index, y1=close + takeProfit, x2=bar_index + 5, y2=close + takeProfit, width=2, color=color.blue)
+  151:     // line.new(x1=bar_index, y1=close - stopLoss, x2=bar_index + 5, y2=close - stopLoss, width=2, color=color.red)
+  152: 
+  153:     // Alert
+  154:     alert("BUY Signal! TP: " + str.tostring(close + takeProfit) + ", SL: " + str.tostring(close - stopLoss) + ", Lot Size: " + str.tostring(position_size), alert.freq_once_per_bar_close)
+  155: 
+  156: if shortCondition
+  157:     strategy.entry("Short", strategy.short, qty=position_size)
+  158:     strategy.exit("Exit Short", from_entry="Short", stop=close + stopLoss, limit=close - takeProfit, trail_points=use_trailing_stop ? trailOffset : na)

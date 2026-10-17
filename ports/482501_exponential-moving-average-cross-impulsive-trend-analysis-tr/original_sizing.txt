@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #482501 (指数移动平均线交叉脉冲趋势分析交易策略-Exponential-Moving-Average-Cross-Impulsive-Trend-Analysis-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482501  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults, margin 100  [lines 107-107]
+  107: strategy("EMA Cross Impulsive Strategy", overlay=true, margin_long=100, margin_short=100)
+
+## Tick body and RR inputs  [lines 111-112]
+  111: impulsiveBodyTicks = input.int(10, title="Minimum Impulsive Candle Body (Ticks)")
+  112: rMultiplier = input.int(3, title="Risk Reward Multiplier")
+
+## Entries with the stop and tick target  [lines 177-183]
+  177: if barsSinceLongCross == 3 and impulsive1Long and correctionLong and impulsive2Long
+  178:     strategy.entry("Long", strategy.long)
+  179:     strategy.exit("Exit Long", "Long", stop=low, profit=close + (close - low) * rMultiplier)
+  180: 
+  181: if barsSinceShortCross == 3 and impulsive1Short and correctionShort and impulsive2Short
+  182:     strategy.entry("Short", strategy.short)
+  183:     strategy.exit("Exit Short", "Short", stop=high, profit=close - (high - close) * rMultiplier)

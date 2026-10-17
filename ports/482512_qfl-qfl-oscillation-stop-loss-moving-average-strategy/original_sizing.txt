@@ -1,0 +1,44 @@
+# Original sizing and money-management code, FMZ #482512 (QFL震荡条件止损均线策略-QFL-Oscillation-Stop-Loss-Moving-Average-Strategy)
+# Source: https://www.fmz.com/strategy/482512  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 89-89]
+   89: strategy("Jackson Quickfingersluc (QFL) Strategy", overlay=true)
+
+## Entry and cooldown  [lines 160-163]
+  160: entry_cond = isPanicSell and (na(lastEntryBar) or (bar_index - lastEntryBar) > cooldownBars)
+  161: if entry_cond
+  162:     strategy.entry("Buy", strategy.long)
+  163:     lastEntryBar := bar_index  // Set last entry bar to current bar index
+
+## Take-profit options  [lines 178-207]
+  178: if takeProfitOption == "avg_price"
+  179:     avgEntryPrice = strategy.position_avg_price
+  180:     if isTakeProfitCondition(avgEntryPrice)
+  181:         exit_cond := true
+  182:         strategy.close("Buy")
+  183: else if takeProfitOption == "first_entry"
+  184:     firstEntryPrice = strategy.opentrades.entry_price(0)
+  185:     if isTakeProfitCondition(firstEntryPrice)
+  186:         exit_cond := true
+  187:         strategy.close("Buy")
+  188: else if takeProfitOption == "each_position"
+  189:     // Ensure we only check when there is at least one entry
+  190:     if array.size(entryPrices) > 0
+  191:         // Loop until there are no more entries left
+  192:         i = 0
+  193:         while i < array.size(entryPrices)
+  194:             entryPrice = array.get(entryPrices, i)
+  195:             positionSize = array.get(entrySizes, i)
+  196:             
+  197:             // Check profit condition for each position
+  198:             if isTakeProfitCondition(entryPrice)
+  199:                 exit_cond := true
+  200:                 // Remove the entry price and size from the arrays once the position is closed
+  201:                 array.remove(entryPrices, i)
+  202:                 array.remove(entrySizes, i)
+  203:                 strategy.close("Buy", qty=positionSize) // Close only the position that reached the target
+  204:             else
+  205:                 // Only increment the index if the current entry is not closed
+  206:                 i := i + 1
+  207: 

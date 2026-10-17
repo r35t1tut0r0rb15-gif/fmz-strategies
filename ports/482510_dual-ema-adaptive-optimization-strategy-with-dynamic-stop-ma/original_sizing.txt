@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #482510 (双均线自适应优化策略与动态止盈止损系统-Dual-EMA-Adaptive-Optimization-Strategy-with-Dynamic-Stop-Management-System)
+# Source: https://www.fmz.com/strategy/482510  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 79-79]
+   79: strategy("Evolutivna Strategija - AI Optimizacija", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+
+## SL / TP inputs and entries with the bracket  [lines 99-115]
+   99: sl_input = input.float(1.0, "Početni Stop Loss (%)", step=0.1)
+  100: tp_input = input.float(1.0, "Početni Take Profit (%)", step=0.1)
+  101: 
+  102: // Dinamično prilagođavanje parametara SL i TP
+  103: if (na(bestProfit) or strategy.netprofit > bestProfit)
+  104:     bestProfit := strategy.netprofit
+  105:     bestStopLoss := sl_input
+  106:     bestTakeProfit := tp_input
+  107: 
+  108: // Otvaranje pozicija
+  109: if (buy_signal)
+  110:     strategy.entry("BUY", strategy.long)
+  111:     strategy.exit("TP/SL", "BUY", stop=close * (1 - bestStopLoss / 100), limit=close * (1 + bestTakeProfit / 100))
+  112: 
+  113: if (sell_signal)
+  114:     strategy.entry("SELL", strategy.short)
+  115:     strategy.exit("TP/SL", "SELL", stop=close * (1 + bestStopLoss / 100), limit=close * (1 - bestTakeProfit / 100))

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482515 (神经均线交叉趋势跟踪策略结合EMA过滤系统-Neural-Moving-Average-Crossover-Trend-Following-Strategy-with-EMA-Filtering-System)
+# Source: https://www.fmz.com/strategy/482515  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 136-136]
+  136: strategy("SMA Crossover with EMA Filter", overlay=true)
