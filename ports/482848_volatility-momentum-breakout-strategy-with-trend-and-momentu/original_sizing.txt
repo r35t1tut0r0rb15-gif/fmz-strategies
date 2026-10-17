@@ -1,0 +1,38 @@
+# Original sizing and money-management code, FMZ #482848 (波动率动量突破交易策略结合趋势和动量过滤-Volatility-Momentum-Breakout-Strategy-with-Trend-and-Momentum-Filters)
+# Source: https://www.fmz.com/strategy/482848  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 5 % of equity  [lines 130-130]
+  130: strategy("Volatility Momentum Breakout Strategy", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=5, commission_type=strategy.commission.percent, commission_value=0.1, slippage=1)
+
+## Risk / RR / stop inputs  [lines 142-144]
+  142: riskPercent     = input.float(2.0, "Risk Percent per Trade (%)", step=0.1) * 0.01   // 2% risk per trade
+  143: riskReward      = input.float(2.0, "Risk-Reward Ratio", step=0.1)                    // Target profit is 2x risk
+  144: atrStopMult     = input.float(1.0, "ATR Multiplier for Stop Loss", step=0.1)         // Stop loss distance in ATRs
+
+## Exits from the entry price  [lines 176-200]
+  176: var float longEntryPrice  = na
+  177: var float shortEntryPrice = na
+  178: 
+  179: // Record entry prices when a trade is opened.
+  180: if (strategy.position_size > 0 and na(longEntryPrice))
+  181:     longEntryPrice := strategy.position_avg_price
+  182: if (strategy.position_size < 0 and na(shortEntryPrice))
+  183:     shortEntryPrice := strategy.position_avg_price
+  184: 
+  185: // Calculate stop loss and take profit levels based on ATR.
+  186: longStop   = longEntryPrice - atrStopMult * atrVal
+  187: longTarget = longEntryPrice + (longEntryPrice - longStop) * riskReward
+  188: shortStop  = shortEntryPrice + atrStopMult * atrVal
+  189: shortTarget= shortEntryPrice - (shortStop - shortEntryPrice) * riskReward
+  190: 
+  191: // Issue exit orders if a position is open.
+  192: if (strategy.position_size > 0 and not na(longEntryPrice))
+  193:     strategy.exit("Long Exit", from_entry="Long", stop=longStop, limit=longTarget)
+  194: if (strategy.position_size < 0 and not na(shortEntryPrice))
+  195:     strategy.exit("Short Exit", from_entry="Short", stop=shortStop, limit=shortTarget)
+  196: 
+  197: // Reset recorded entry prices when the position is closed.
+  198: if (strategy.position_size == 0)
+  199:     longEntryPrice  := na
+  200:     shortEntryPrice := na

@@ -2970,6 +2970,22 @@ SIZING = {
         ("Bracket levels", 134, 138),
         ("Entries with the exits", 141, 145),
     ],
+    # ---- FMZ-C, batch L29 (2026-10-17)
+    482838: [
+        ("strategy(): defaults", 99, 99),
+    ],
+    482843: [
+        ("strategy(): 10 % of equity", 105, 105),
+    ],
+    482846: [
+        ("SL / TP inputs", 98, 99),
+        ("Entry with the exit", 114, 119),
+    ],
+    482848: [
+        ("strategy(): 5 % of equity", 130, 130),
+        ("Risk / RR / stop inputs", 142, 144),
+        ("Exits from the entry price", 176, 200),
+    ],
 }
 
 REJECTED_ON_READING = {

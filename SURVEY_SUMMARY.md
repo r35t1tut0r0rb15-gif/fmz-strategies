@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2542 |
-| PORTED | 1059 |
+| PORT_CANDIDATE | 2538 |
+| PORTED | 1063 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 558 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -922,6 +922,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430988 | `ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/` | PineScript | supertrend | none | mult x2, fisher_level x2 | 4 |
 | 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
 | 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
+| 482838 | `ports/482838_rsi2-rsi2-based-dynamic-breakout-trading-strategy-with-movin/` | PineScript | mean_reversion | none | max_bars x2, use_ma_filter x2 | 4 |
+| 482843 | `ports/482843_multi-ema-cloud-trend-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 482846 | `ports/482846_dual-moving-average-trend-trading-strategy-with-stop-loss-an/` | PineScript | ma_cross | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
+| 482848 | `ports/482848_volatility-momentum-breakout-strategy-with-trend-and-momentu/` | PineScript | breakout | trailing_stop_pending | atr_mult x2, rr x2 | 4 |
 | 482849 | `ports/482849_adaptive-ema-crossover-dynamic-position-risk-management-stra/` | PineScript | ma_cross | none | rr x2, stop_bars x2 | 4 |
 | 482859 | `ports/482859_moving-average-based-supply-demand-zone-trading-system-with/` | PineScript | ma_cross | none | zone_lookback x2, tp_pct x2 | 4 |
 | 482860 | `ports/482860_exponential-moving-average-and-relative-strength-index-cross/` | PineScript | ma_cross | none | stop_k x2, ema_len x2 | 4 |
@@ -1187,7 +1191,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491914 | `ports/491914_price-action-structural-breakout-strategy-with-trailing-stop/` | PineScript | price_action_breakout | trailing_stop | trail_k x2, trail_activate x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | macd_divergence | coarse_bar_stop, trailing_stop_pending | method x2, lb x2 | 4 |
 | 492009 | `ports/492009_atr-dual-ema-filtered-atr-adaptive-trend-following-strategy/` | PineScript | volatility_stop_cross | trailing_stop | atr_mult x2, trail_k x2 | 4 |
-| | **1059 ports** | | | | | **5837** |
+| | **1063 ports** | | | | | **5853** |
 
 ## Rejected on reading
 
