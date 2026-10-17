@@ -1,0 +1,21 @@
+# Original sizing and money-management code, FMZ #486561 (多时间框架趋势跟踪与超级趋势动量优化策略-Multi-Timeframe-Trend-Following-with-Supertrend-Momentum-Optimization-Strategy)
+# Source: https://www.fmz.com/strategy/486561  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 183-183]
+  183: strategy("1H EMA 200 + 15M Supertrend Strategy ", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## SuperTrend stop and 2 R target (long)  [lines 208-209]
+  208:     stopLossPrice := supertrend // Set SL to Supertrend value at entry
+  209:     takeProfitPrice := close + 2 * (close - stopLossPrice) // TP = 2x SL distance
+
+## SuperTrend stop and 2 R target (short)  [lines 217-218]
+  217:     stopLossPrice := supertrend // Set SL to Supertrend value at entry
+  218:     takeProfitPrice := close - 2 * (stopLossPrice - close) // TP = 2x SL distance
+
+## Exits with the bracket  [lines 222-226]
+  222: if (strategy.position_size > 0) // For Buy Trades
+  223:     strategy.exit("Take Profit/Stop Loss", from_entry="Buy", stop=stopLossPrice, limit=takeProfitPrice)
+  224: 
+  225: if (strategy.position_size < 0) // For Sell Trades
+  226:     strategy.exit("Take Profit/Stop Loss", from_entry="Sell", stop=stopLossPrice, limit=takeProfitPrice)

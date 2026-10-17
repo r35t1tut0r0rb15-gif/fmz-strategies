@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #485283 (RSI反转斐波那契布林带量化策略-RSI-Reversal-Fibonacci-Bollinger-Bands-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/485283  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## SL / TP inputs  [lines 186-187]
+  186: stopLossDistance = input.float(1.0, title="Stop Loss (%)", minval=0.1, maxval=10, step=0.1) // Stop loss as a percentage
+  187: takeProfitDistance = input.float(2.0, title="Take Profit (%)", minval=0.1, maxval=10, step=0.1) // Take profit as a percentage
+
+## Bracket re-issued every bar  [lines 208-212]
+  208: if (strategy.position_size > 0)
+  209:     strategy.exit("Take Profit/Stop Loss", from_entry="Long", limit=close * (1 + takeProfitDistance / 100), stop=close * (1 - stopLossDistance / 100))
+  210: 
+  211: if (strategy.position_size < 0)
+  212:     strategy.exit("Take Profit/Stop Loss", from_entry="Short", limit=close * (1 - takeProfitDistance / 100), stop=close * (1 + stopLossDistance / 100))

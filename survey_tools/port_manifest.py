@@ -2405,6 +2405,38 @@ SIZING = {
         ("Stop re-issued every bar", 329, 330),
     ],
     488134: [],
+    # ---- FMZ-C, batch L13 (2026-10-17)
+    485123: [
+        ("Entries with qty 1", 259, 267),
+    ],
+    485125: [
+        ("strategy(): 100 % of equity", 174, 174),
+    ],
+    485126: [
+        ("strategy(): 10 % of equity", 138, 138),
+    ],
+    485283: [
+        ("SL / TP inputs", 186, 187),
+        ("Bracket re-issued every bar", 208, 212),
+    ],
+    485288: [
+        ("Profit target input", 165, 165),
+        ("Profit-target closes", 176, 177),
+    ],
+    485293: [],
+    486561: [
+        ("strategy(): 10 % of equity", 183, 183),
+        ("SuperTrend stop and 2 R target (long)", 208, 209),
+        ("SuperTrend stop and 2 R target (short)", 217, 218),
+        ("Exits with the bracket", 222, 226),
+    ],
+    486564: [],
+    486566: [
+        ("Take-profit inputs (half position off)", 176, 178),
+        ("Take-profit level", 211, 211),
+        ("Partial / full take-profit closes", 218, 224),
+    ],
+    486567: [],
 }
 
 REJECTED_ON_READING = {
@@ -2867,6 +2899,21 @@ REJECTED_ON_READING = {
     488279: ("1", "the trend bias is request.security(syminfo.tickerid, '240', high / low) on the "
               "1-day header chart: a 4-hour resolution below the chart's, whose value per bar is "
               "undefined (as #430765)"),
+    # ---- FMZ-C, batch L13 (2026-10-17)
+    485292: ("1", "the trend test is request.security(syminfo.tickerid, '15', close) on the 1-day "
+              "header chart: a 15-minute resolution below the chart's, whose value per bar is "
+              "undefined (as #430765)"),
+    486562: ("1", "the trend filter is request.security(syminfo.tickerid, '15', close > ta.sma(close, "
+              "50)) on the 1-hour header chart: a 15-minute resolution below the chart's, whose "
+              "value per bar is undefined (as #430765)"),
+    486563: ("1", "the only exits are a 20-price-unit target and a 10-unit stop on the author's ~12 "
+              "USD TRUMP_USDT (about 400 / 200 two-minute ATRs: inert there, as #490798); with "
+              "them dropped a long is never closed, so there is no repeatable exit rule (as "
+              "#430776)"),
+    486570: ("1", "the daily and weekly RSI filters are request.security(..., 'D' / 'W', "
+              "ta.rsi(close, 14), lookahead = barmerge.lookahead_on) without [1]: on every 3-hour "
+              "bar they hold the current day's / week's final RSI, not known until it closes "
+              "(reads the future, as #430661)"),
 }
 
 DUPLICATE_ON_READING = {

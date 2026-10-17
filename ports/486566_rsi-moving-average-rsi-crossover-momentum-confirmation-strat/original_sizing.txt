@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #486566 (滑动平均-RSI-交叉动量确认策略-Moving-Average-RSI-Crossover-Momentum-Confirmation-Strategy)
+# Source: https://www.fmz.com/strategy/486566  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit inputs (half position off)  [lines 176-178]
+  176: takeProfitPerc = input.float(2.0, title="Take Profit (%)", minval=0.1, step=0.1) / 100  // Target profit percentage
+  177: enableTakeProfit = input.bool(true, title="Enable Take Profit")  // Enable/disable take profit option
+  178: halfPositionTakeProfit = input.bool(false, title="Enable Half Position Take Profit")  // Option to take profit on half position
+
+## Take-profit level  [lines 211-211]
+  211: takeProfitLevel = inBuyState ? entryPrice * (1 + takeProfitPerc) : na
+
+## Partial / full take-profit closes  [lines 218-224]
+  218: if (inBuyState and enableTakeProfit and halfPositionTakeProfit and close >= takeProfitLevel and not halfPositionTaken)
+  219:     strategy.close("Buy", qty_percent=50, comment="partialClose")  // Close half position
+  220:     halfPositionTaken := true  // Update state to prevent re-execution
+  221: 
+  222: // Close full position at target if half position take profit is disabled
+  223: if (inBuyState and enableTakeProfit and not halfPositionTakeProfit and close >= takeProfitLevel)
+  224:     strategy.close("Buy", comment="Close")  // Close full position
