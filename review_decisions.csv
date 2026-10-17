@@ -174,6 +174,7 @@ fmz_id,file,final_outcome,criterion,reason
 432773,均线金叉死叉策略Cross-Moving-Average-Strategy.md,HELD_NEEDS_VOLUME,8,"The fast line is vwma(close, 3): a volume-weighted average (check 8, held with the other volume users)."
 433969,双重均线交叉移动平均策略Dual-Moving-Average-Crossover-Strategy.md,HELD_NEEDS_VOLUME,8,"The slow line is vwma(high, 7): a volume-weighted average (check 8, held with the other volume users)."
 434606,移动平均线聚合MACD策略Moving-Average-Aggregation-MACD-Strategy.md,HELD_NEEDS_VOLUME,8,"One of the five averages is vwma(close, 136): a volume-weighted average (check 8, held with the other volume users)."
+434977,RSI拉升突破策略RSI-Breakout-Strategy.md,HELD_NEEDS_VOLUME,8,"The long and short exits test the close against vwma(close, 20): a volume-weighted average (check 8, held with the other volume users). (Also, on the 1-hour header chart no bar opens inside the 09:15-09:16 session window, so the day-range anchor is never set.)"
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -1302,3 +1303,15 @@ fmz_id,file,final_outcome,criterion,reason
 434960,MACD-Stochastics波段震荡突破策略MACD-Stochastics-Range-Breakout-Strategy.md,PORTED,,ports/434960_macd-stochastics-macd-stochastics-range-breakout-strategy/
 434966,基于趋势交易者平均线的布林带回测策略Trend-Trader-Bands-Backtest-Strategy-Based-on-Trend-Trader-Moving-Average.md,PORTED,,ports/434966_trend-trader-bands-backtest-strategy-based-on-trend-trader-m/
 434968,随机超买超卖区间RSI策略Stochastic-Oversold-and-Overbought-Range-RSI-Strategy.md,PORTED,,ports/434968_rsi-stochastic-oversold-and-overbought-range-rsi-strategy/
+434970,动量反转趋势跟踪策略Momentum-Reversal-Trend-Tracking-Strategy.md,PORTED,,ports/434970_momentum-reversal-trend-tracking-strategy/
+434976,动态ATR追踪止损策略Dynamic-ATR-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/434976_atr-dynamic-atr-trailing-stop-loss-strategy/
+434979,52周高低盒子交易策略52-Week-High-Low-Box-Trading-Strategy.md,PORTED,,ports/434979_52-52-week-high-low-box-trading-strategy/
+434981,平滑移动平均带策略The-Smooth-Moving-Average-Ribbon-Strategy.md,PORTED,,ports/434981_the-smooth-moving-average-ribbon-strategy/
+434983,MACD趋势跟踪策略MACD-Trend-Following-Strategy.md,PORTED,,ports/434983_macd-macd-trend-following-strategy/
+434984,基于一目均衡表的趋势追踪策略Ichimoku-Trend-Following-Strategy.md,PORTED,,ports/434984_ichimoku-trend-following-strategy/
+434989,突破重叠K线高低位策略Inside-Bar-Range-Breakout-Strategy.md,PORTED,,ports/434989_k-inside-bar-range-breakout-strategy/
+434995,基于ATR通道均线反转的量化交易策略ATR-Channel-Mean-Reversion-Quantitative-Trading-Strategy.md,PORTED,,ports/434995_atr-atr-channel-mean-reversion-quantitative-trading-strategy/
+434997,EMA与SuperTrend组合趋势跟踪策略EMA-and-SuperTrend-Combined-Trend-Following-Strategy.md,PORTED,,ports/434997_ema-supertrend-ema-and-supertrend-combined-trend-following-s/
+434998,基于价格内部波动通道的看涨看跌策略Look-Up-and-Look-Down-Strategy-Based-on-Internal-Price-Channels.md,PORTED,,ports/434998_look-up-and-look-down-strategy-based-on-internal-price-chann/
+434999,基于EMA和ATR止损的趋势跟踪策略EMA-Strategy-with-ATR-Stop-Loss.md,PORTED,,ports/434999_ema-atr-ema-strategy-with-atr-stop-loss/
+435002,基于RSI指标和MA均线的趋势跟踪策略RSI-MA-Trend-Following-Strategy.md,PORTED,,ports/435002_rsi-ma-rsi-ma-trend-following-strategy/

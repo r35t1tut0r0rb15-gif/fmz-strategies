@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #434983 (MACD趋势跟踪策略MACD-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/434983  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop-loss and minimum-profit constants  [lines 167-168]
+  167: var float stoploss = 0.04 // To be adjust for different investment
+  168: var float minProfit = 0.05 // To be adjust for different investment

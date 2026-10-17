@@ -2642,6 +2642,29 @@ SIZING = {
     434960: [],
     434966: [],
     434968: [],
+    # ---- FMZ-C, batch C72 (2026-10-17)
+    434970: [],
+    434976: [],
+    434979: [],
+    434981: [],
+    434983: [
+        ("Stop-loss and minimum-profit constants", 167, 168),
+    ],
+    434984: [
+        ("strategy(): 100 % of equity, capital", 144, 144),
+    ],
+    434989: [],
+    434995: [
+        ("strategy(): 100 % of equity, capital, commission", 155, 155),
+    ],
+    434997: [],
+    434998: [
+        ("strategy(): 100 % of equity, capital, commission", 174, 181),
+    ],
+    434999: [],
+    435002: [
+        ("Tick bracket inputs", 161, 171),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3294,4 +3317,6 @@ HELD_ON_READING = {
     433969: ("8", "The slow line is vwma(high, 7): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C69 (2026-10-17)
     434606: ("8", "One of the five averages is vwma(close, 136): a volume-weighted average (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C72 (2026-10-17)
+    434977: ("8", "The long and short exits test the close against vwma(close, 20): a volume-weighted average (check 8, held with the other volume users). (Also, on the 1-hour header chart no bar opens inside the 09:15-09:16 session window, so the day-range anchor is never set.)"),
 }

@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2457 |
-| PORTED | 1127 |
+| PORT_CANDIDATE | 2444 |
+| PORTED | 1139 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 561 |
+| HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | REJECTED_ON_READING | 162 |
@@ -1255,7 +1255,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 434960 | `ports/434960_macd-stochastics-macd-stochastics-range-breakout-strategy/` | PineScript | stochastic_oscillator | coarse_bar_stop | k_len x2, tp_pct x2 | 4 |
 | 434966 | `ports/434966_trend-trader-bands-backtest-strategy-based-on-trend-trader-m/` | PineScript | volatility_stop_cross | none | mult x2, step_atr x2 | 4 |
 | 434968 | `ports/434968_rsi-stochastic-oversold-and-overbought-range-rsi-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2 | 2 |
-| | **1127 ports** | | | | | **6108** |
+| 434970 | `ports/434970_momentum-reversal-trend-tracking-strategy/` | PineScript | multi_indicator_confluence | bar_size_pending | rsi_lvl x2, fast x2 | 4 |
+| 434976 | `ports/434976_atr-dynamic-atr-trailing-stop-loss-strategy/` | PineScript | volatility_stop_cross | none | fast_mult x2, slow_mult x2 | 4 |
+| 434979 | `ports/434979_52-52-week-high-low-box-trading-strategy/` | PineScript | channel_breakout | none | boxp x2 | 2 |
+| 434981 | `ports/434981_the-smooth-moving-average-ribbon-strategy/` | PineScript | heikin_ashi_trend | none | length x2, ma_length x2 | 4 |
+| 434983 | `ports/434983_macd-macd-trend-following-strategy/` | PineScript | macd_cross | none | sl_pct x2, min_profit x2 | 4 |
+| 434984 | `ports/434984_ichimoku-trend-following-strategy/` | PineScript | ichimoku | none | kijun_lag x2, count_max x2 | 4 |
+| 434989 | `ports/434989_k-inside-bar-range-breakout-strategy/` | PineScript | momentum_breakout | trailing_stop_pending, coarse_bar_stop | sl_mult x2, tp_mult x2 | 4 |
+| 434995 | `ports/434995_atr-atr-channel-mean-reversion-quantitative-trading-strategy/` | PineScript | mean_reversion_band | none | period x2, sl_mult x2 | 4 |
+| 434997 | `ports/434997_ema-supertrend-ema-and-supertrend-combined-trend-following-s/` | PineScript | supertrend | none | factor x2, atr_len x2 | 4 |
+| 434998 | `ports/434998_look-up-and-look-down-strategy-based-on-internal-price-chann/` | PineScript | candle_pattern | none | ma_len x2, atr_mult x2 | 4 |
+| 434999 | `ports/434999_ema-atr-ema-strategy-with-atr-stop-loss/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 435002 | `ports/435002_rsi-ma-rsi-ma-trend-following-strategy/` | PineScript | rsi_oscillator | none | rsin x2, atr_scale x2 | 4 |
+| | **1139 ports** | | | | | **6154** |
 
 ## Rejected on reading
 

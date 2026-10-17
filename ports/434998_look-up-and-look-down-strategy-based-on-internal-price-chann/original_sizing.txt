@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #434998 (基于价格内部波动通道的看涨看跌策略Look-Up-and-Look-Down-Strategy-Based-on-Internal-Price-Channels)
+# Source: https://www.fmz.com/strategy/434998  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital, commission  [lines 174-181]
+  174: strategy("Inside Bar Strategy w/ SL", 
+  175:      overlay=true, 
+  176:      default_qty_type=strategy.percent_of_equity, 
+  177:      default_qty_value=100, 
+  178:      initial_capital=10000, 
+  179:      commission_value=0.04, 
+  180:      calc_on_every_tick=false, 
+  181:      slippage=0)

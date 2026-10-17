@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #435002 (基于RSI指标和MA均线的趋势跟踪策略RSI-MA-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/435002  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Tick bracket inputs  [lines 161-171]
+  161: TP = input(15) * 10
+  162: SL = input(23) * 10
+  163: TS = input(0) * 10
+  164: CQ = 100
+  165: 
+  166: TPP = (TP > 0) ? TP : na
+  167: SLP = (SL > 0) ? SL : na
+  168: TSP = (TS > 0) ? TS : na
+  169: 
+  170: strategy.exit("Close Long", "long", qty_percent=CQ, profit=TPP, loss=SLP, trail_points=TSP)
+  171: strategy.exit("Close Short", "short", qty_percent=CQ, profit=TPP, loss=SLP, trail_points=TSP)
