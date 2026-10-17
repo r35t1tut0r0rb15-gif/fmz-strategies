@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #488021 (动态阻力与支撑的双K线形态ATR风险控制量化交易策略-Dynamic-Resistance-and-Support-Dual-Candlestick-Pattern-ATR-Risk-Management-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/488021  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## ATR stop inputs  [lines 166-167]
+  166: atrLength = input(14, title="ATR Length")
+  167: atrMultiplier = input(1.5, title="ATR Multiplier for Stop Loss")
+
+## Stop / target distances  [lines 195-196]
+  195: stopLoss = atr * atrMultiplier
+  196: takeProfit = stopLoss * 2  // Risk-Reward Ratio 1:2
+
+## Entries with the bracket  [lines 199-205]
+  199: if (buyCondition)
+  200:     strategy.entry("Buy", strategy.long)
+  201:     strategy.exit("Take Profit/Stop Loss", "Buy", stop=close - stopLoss, limit=close + takeProfit)
+  202: 
+  203: if (sellCondition)
+  204:     strategy.entry("Sell", strategy.short)
+  205:     strategy.exit("Take Profit/Stop Loss", "Sell", stop=close + stopLoss, limit=close - takeProfit)

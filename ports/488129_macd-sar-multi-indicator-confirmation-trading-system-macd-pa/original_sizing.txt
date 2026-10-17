@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #488129 (多指标协同确认交易策略MACD抛物线SAR与超级趋势三重验证系统-Multi-Indicator-Confirmation-Trading-System-MACD-Parabolic-SAR-and-Supertrend-Triple-Verification-Framework)
+# Source: https://www.fmz.com/strategy/488129  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 207-213]
+  207: strategy("Vinay Strategy", 
+  208:      overlay=true,
+  209:      default_qty_type=strategy.percent_of_equity, 
+  210:      default_qty_value=100, 
+  211:      commission_type=strategy.commission.percent, 
+  212:      commission_value=0,    // No commissions
+  213:      slippage=0)            // No slippage

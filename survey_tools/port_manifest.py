@@ -2347,6 +2347,64 @@ SIZING = {
         ("Trail or bracket exits", 270, 288),
     ],
     488276: [],
+    # ---- FMZ-C, batch L12 (2026-10-17)
+    486571: [
+        ("ATR inputs", 251, 253),
+        ("Bracket levels", 274, 277),
+        ("Exits re-issued every bar", 280, 281),
+    ],
+    486573: [],
+    487999: [
+        ("strategy(): cash quantity", 210, 210),
+        ("Risk / leverage inputs", 216, 217),
+        ("Leveraged quantity and stop distance", 238, 239),
+        ("Entries with qty, stop and trail", 242, 256),
+    ],
+    488004: [
+        ("ATR multiplier input", 144, 144),
+        ("Bracket levels", 160, 164),
+        ("Entries with the bracket", 171, 177),
+    ],
+    488008: [
+        ("Decaying ATR stop / target", 174, 179),
+        ("Entries with the bracket", 182, 188),
+    ],
+    488010: [
+        ("strategy(): initial capital", 153, 153),
+    ],
+    488014: [
+        ("Risk-based quantity", 185, 188),
+        ("Entry with qty and the candle-low stop", 195, 197),
+    ],
+    488020: [
+        ("strategy(): margin", 232, 232),
+        ("Risk / leverage / fee / hold inputs", 238, 241),
+        ("Risk-based quantity", 272, 276),
+        ("Stop levels and ratchet", 279, 294),
+        ("Time exit", 297, 299),
+        ("Entries with qty and the stop", 302, 308),
+    ],
+    488021: [
+        ("ATR stop inputs", 166, 167),
+        ("Stop / target distances", 195, 196),
+        ("Entries with the bracket", 199, 205),
+    ],
+    488023: [],
+    488034: [
+        ("strategy(): cash quantity", 186, 186),
+        ("Wallet / TP / SL inputs", 190, 200),
+        ("Bracket levels", 274, 278),
+        ("Entries with qty and the bracket", 281, 288),
+    ],
+    488129: [
+        ("strategy(): 100 % of equity", 207, 213),
+    ],
+    488133: [
+        ("strategy(): 10 % of equity", 292, 292),
+        ("15 % stop", 313, 313),
+        ("Stop re-issued every bar", 329, 330),
+    ],
+    488134: [],
 }
 
 REJECTED_ON_READING = {

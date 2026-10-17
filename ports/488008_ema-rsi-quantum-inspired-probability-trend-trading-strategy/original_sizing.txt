@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #488008 (量子启发式概率趋势交易策略基于EMA和RSI的量化模型-Quantum-Inspired-Probability-Trend-Trading-Strategy-EMA-RSI-Based-Quantitative-Model)
+# Source: https://www.fmz.com/strategy/488008  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Decaying ATR stop / target  [lines 174-179]
+  174: atr = ta.atr(atrLength)
+  175: timeDecay = bar_index % 50 // Use bar_index directly
+  176: 
+  177: decayFactor = math.exp(-0.02 * timeDecay)
+  178: stopLoss = atr / decayFactor
+  179: takeProfit = atr * 1.5 / decayFactor
+
+## Entries with the bracket  [lines 182-188]
+  182: if longCondition
+  183:     strategy.entry("Long", strategy.long)
+  184:     strategy.exit("Exit Long", from_entry="Long", stop=close - stopLoss, limit=close + takeProfit)
+  185: 
+  186: if shortCondition
+  187:     strategy.entry("Short", strategy.short)
+  188:     strategy.exit("Exit Short", from_entry="Short", stop=close + stopLoss, limit=close - takeProfit)

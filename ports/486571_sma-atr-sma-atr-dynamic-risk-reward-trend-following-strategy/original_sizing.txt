@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #486571 (SMA-ATR动态风险回报比趋势跟踪策略-SMA-ATR-Dynamic-Risk-Reward-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/486571  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## ATR inputs  [lines 251-253]
+  251: atrLength = input.int(14, title="ATR Length")
+  252: atrMultiplier = input.float(1.0, title="ATR Multiplier")
+  253: atr = ta.atr(atrLength) * atrMultiplier
+
+## Bracket levels  [lines 274-277]
+  274: longStopLoss = low - atr
+  275: shortStopLoss = high + atr
+  276: longTakeProfit = close + (atr * riskRewardRatio)
+  277: shortTakeProfit = close - (atr * riskRewardRatio)
+
+## Exits re-issued every bar  [lines 280-281]
+  280: strategy.exit("Exit Long", "Long", stop=longStopLoss, limit=longTakeProfit)
+  281: strategy.exit("Exit Short", "Short", stop=shortStopLoss, limit=shortTakeProfit)
