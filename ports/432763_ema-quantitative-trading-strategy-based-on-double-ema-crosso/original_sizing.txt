@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #432763 (基于双EMA交叉的量化交易策略Quantitative-Trading-Strategy-Based-on-Double-EMA-Crossover)
+# Source: https://www.fmz.com/strategy/432763  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission  [lines 123-123]
+  123: strategy(title="ema(ema10-21)", overlay=true, pyramiding = 0, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, initial_capital = 15000, commission_type = strategy.commission.percent, commission_value = 0.2)

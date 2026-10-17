@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #432766 (双向波动吞噬策略Dual-direction-Volatility-Swallowing-Strategy)
+# Source: https://www.fmz.com/strategy/432766  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission  [lines 114-114]
+  114: strategy("BCH Swinger v1", overlay=true, commission_value = 0.25, default_qty_type=strategy.percent_of_equity, default_qty_value = 100)
+
+## Direction setting (allow_entry_in)  [lines 162-163]
+  162: direction = input(defval=1, title = "Strategy Direction",  minval=-1, maxval=1)
+  163: strategy.risk.allow_entry_in(direction == 0 ? strategy.direction.all : (direction < 0 ? strategy.direction.short : strategy.direction.long))

@@ -2178,6 +2178,37 @@ SIZING = {
         ("strategy(): 10,000 USD cash per trade", 171, 171),
     ],
     432423: [],
+    # ---- FMZ-C, batch C53 (2026-10-17)
+    432657: [],
+    432757: [],
+    432759: [],
+    432760: [],
+    432763: [
+        ("strategy(): 100 % of equity, commission", 123, 123),
+    ],
+    432766: [
+        ("strategy(): 100 % of equity, commission", 114, 114),
+        ("Direction setting (allow_entry_in)", 162, 163),
+    ],
+    432768: [
+        ("strategy(): pyramiding 1, commission", 200, 200),
+        ("Compounding and position size", 226, 229),
+        ("Entries with the computed size", 242, 259),
+        ("Long / short bracket orders", 267, 288),
+    ],
+    432775: [
+        ("Bracket inputs and orders", 272, 294),
+    ],
+    432776: [
+        ("Stop-loss inputs and orders", 203, 228),
+    ],
+    432778: [
+        ("strategy(): 100 % of equity", 167, 168),
+    ],
+    432780: [
+        ("Close-checked stop levels and closes", 164, 178),
+    ],
+    432782: [],
 }
 
 REJECTED_ON_READING = {
@@ -2657,6 +2688,10 @@ REJECTED_ON_READING = {
     432420: ("1", "The only exit is strategy.exit('Exit', limit = close) placed when the close "
               "condition holds: a resting limit at the signal bar's close, filled inside the next "
               "bar at its own price (as #427119)."),
+    # ---- FMZ-C, batch C53 (2026-10-17)
+    432781: ("1", "The only exit is strategy.close('long', qty_percent = 20): a partial exit that "
+              "takes 20 % of the position off at a time cannot be expressed as one net position "
+              "(as #428066)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -2686,4 +2721,6 @@ HELD_ON_READING = {
     431414: ("8", "The trend line is vwma(close, 33) and its RSI: a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C52 (2026-10-17)
     432347: ("8", "The band basis is vwma(hlc3, 50): a volume-weighted average (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C53 (2026-10-17)
+    432773: ("8", "The fast line is vwma(close, 3): a volume-weighted average (check 8, held with the other volume users)."),
 }

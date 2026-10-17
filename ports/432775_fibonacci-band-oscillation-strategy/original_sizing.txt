@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #432775 (黄金分割波段震荡策略Fibonacci-Band-Oscillation-Strategy)
+# Source: https://www.fmz.com/strategy/432775  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Bracket inputs and orders  [lines 272-294]
+  272: sl_inp = input.float(4, title='Stop %', step=0.1, group="Long") / 100
+  273: tp_inp = input.float(1.5, title='TP %', step=0.1, group="Long") / 100
+  274: 
+  275: sl_inp2 = input.float(4, title='Stop %', step=0.1, group="Short") / 100
+  276: tp_inp2 = input.float(1.5, title='TP %', step=0.1, group="Short") / 100
+  277: 
+  278: longtp = strategy.position_avg_price * (1 + tp_inp) 
+  279: longstop=  strategy.position_avg_price * (1 - sl_inp)
+  280: 
+  281: shortstop=  strategy.position_avg_price * (1 + sl_inp2)
+  282: shorttp = strategy.position_avg_price * (1 - tp_inp2) 
+  283: ////////////////////////////////////////////////////////////////////////////////////////////
+  284: if window() and strategy.position_size==0 and longOK
+  285:     strategy.entry("Long", strategy.long, when= long2, alert_message=enterlong, comment="Long")
+  286:     
+  287: if strategy.position_size>0
+  288:     strategy.exit("Long", stop= longstop, limit=longtp, alert_message=exitlong, comment="TPSL")
+  289: ////////////////////////////////////////////////////////////////////////////////////////////SHORT
+  290: if window() and strategy.position_size==0 and shortOK 
+  291:     strategy.entry("Short", strategy.short, when= short2, alert_message=entershort, comment="Short")
+  292:     
+  293: if strategy.position_size<0
+  294:     strategy.exit("Short", stop= shortstop, limit= shorttp, alert_message=exitshort, comment="TPSL")

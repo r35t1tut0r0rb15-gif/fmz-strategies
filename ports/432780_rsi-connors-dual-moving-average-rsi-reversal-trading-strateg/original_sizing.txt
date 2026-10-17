@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #432780 (康纳双均线RSI反转交易策略Connors-Dual-Moving-Average-RSI-Reversal-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/432780  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Close-checked stop levels and closes  [lines 164-178]
+  164: stopLossLevelLong = strategy.position_avg_price * (1 - stopLossPercentage / 100)
+  165: stopLossLevelShort = strategy.position_avg_price * (1 + stopLossPercentage / 100)
+  166: 
+  167: // Strategy logic
+  168: if (buyCondition)
+  169:     strategy.entry("Buy", strategy.long)
+  170: 
+  171: if (sellCondition)
+  172:     strategy.entry("Sell", strategy.short)
+  173: 
+  174: if (exitLongCondition or close >= stopLossLevelLong)
+  175:     strategy.close("Buy")
+  176: 
+  177: if (exitShortCondition or close <= stopLossLevelShort)
+  178:     strategy.close("Sell")

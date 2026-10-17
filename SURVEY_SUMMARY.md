@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2707 |
+| PORT_CANDIDATE | 2693 |
 | REJECTED | 994 |
-| PORTED | 915 |
-| HELD_NEEDS_VOLUME | 558 |
+| PORTED | 927 |
+| HELD_NEEDS_VOLUME | 559 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 127 |
+| REJECTED_ON_READING | 128 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1043,7 +1043,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 432416 | `ports/432416_bilinear-regression-trend-following-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 432421 | `ports/432421_adaptive-moving-average-quantitative-strategy/` | PineScript | ma_trend | none | lookback x2, smoothing x2 | 4 |
 | 432423 | `ports/432423_multiple-trend-tracking-strategy/` | PineScript | multi_indicator_confluence | none | rsi_len x2, fast x2 | 4 |
-| | **915 ports** | | | | | **5289** |
+| 432657 | `ports/432657_double-strong-indicators-strategy/` | PineScript | macd_cross | none | oversold x2, overbought x2 | 4 |
+| 432757 | `ports/432757_multi-factor-momentum-reversal-combo-strategy/` | PineScript | combo_123_reversal | none | length x2, smth x2 | 4 |
+| 432759 | `ports/432759_dual-cross-moving-average-reversal-strategy/` | PineScript | combo_123_reversal | none | sell_atr x2, buy_atr x2 | 4 |
+| 432760 | `ports/432760_dual-moving-average-crossover-strategy/` | PineScript | ma_trend | none | ma1 x2, ma2 x2 | 4 |
+| 432763 | `ports/432763_ema-quantitative-trading-strategy-based-on-double-ema-crosso/` | PineScript | ma_cross | none | len0 x2, len1 x2 | 4 |
+| 432766 | `ports/432766_dual-direction-volatility-swallowing-strategy/` | PineScript | volatility_stop_cross | none | length x2, mult x2 | 4 |
+| 432768 | `ports/432768_sma-dual-moving-average-crossover-trading-strategy/` | PineScript | ma_cross | coarse_bar_stop | tp_pct x2, sl_pct x2 | 4 |
+| 432775 | `ports/432775_fibonacci-band-oscillation-strategy/` | PineScript | volatility_channel_breakout | coarse_bar_stop | long_ratio x2, sl_pct x2 | 4 |
+| 432776 | `ports/432776_moonshot-dual-triangle-breakout-strategy/` | PineScript | supertrend | none | ema_len x2, sl_pct x2 | 4 |
+| 432778 | `ports/432778_super-guppy-moving-average-trading-strategy/` | PineScript | ma_trend | none | step x2, first x2 | 4 |
+| 432780 | `ports/432780_rsi-connors-dual-moving-average-rsi-reversal-trading-strateg/` | PineScript | rsi_oscillator | none | rsi_len x2, exit_ma x2 | 4 |
+| 432782 | `ports/432782_quantitative-trading-strategy-based-on-daily-close-price-com/` | PineScript | momentum_breakout | none | threshold x3 | 3 |
+| | **927 ports** | | | | | **5336** |
 
 ## Rejected on reading
 
@@ -1176,6 +1188,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 432362 | 多时间框架趋势追踪日内scalping策略Multi-Timeframe-Trend-Tracking-Intraday-Scalping-Strategy.md | 1 | The trend filters are request.security(syminfo.tickerid, '1' / '5' / '15' / '30' / '60', ema(...)) on the 1-day header chart: resolutions below the chart's, whose value per bar is undefined (as #430587). |
 | 432363 | 双移动均线交叉策略Dual-Moving-Average-Crossover-Strategy.md | 1 | Every entry needs strategy.equity >= ema(strategy.equity, 40): an equity-curve filter on the account's own P&L, which depends on the order size and the commission (as #427139). |
 | 432420 | 基于趋势的循环交易策略Cycle-Position-Trend-Following-Strategy.md | 1 | The only exit is strategy.exit('Exit', limit = close) placed when the close condition holds: a resting limit at the signal bar's close, filled inside the next bar at its own price (as #427119). |
+| 432781 | 双均线价格跃动策略Dual-Moving-Average-Price-Leaping-Strategy.md | 1 | The only exit is strategy.close('long', qty_percent = 20): a partial exit that takes 20 % of the position off at a time cannot be expressed as one net position (as #428066). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

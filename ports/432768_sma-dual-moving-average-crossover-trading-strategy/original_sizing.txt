@@ -1,0 +1,56 @@
+# Original sizing and money-management code, FMZ #432768 (双SMA均线交叉交易策略Dual-Moving-Average-Crossover-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/432768  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 1, commission  [lines 200-200]
+  200: strategy(title = "Strategy Template", shorttitle = "ST v1.0", overlay = true, pyramiding = 1, initial_capital = 1000, commission_type = strategy.commission.percent, commission_value = 0.1, max_labels_count = 500)
+
+## Compounding and position size  [lines 226-229]
+  226: if compoundingSelected // set the tradingCapital available to the strategy based on wither Compounding has been selected or not.  This will be used to determine the position size.
+  227:     tradingCapital := strategy.initial_capital + strategy.netprofit
+  228: else
+  229:     tradingCapital := strategy.initial_capital
+
+## Entries with the computed size  [lines 242-259]
+  242: if longCondition and inTradeWindow
+  243:     //close any prior short positions
+  244:     if strategy.position_size < 0 //if in a short position
+  245:         strategy.close_all(comment = "Buy to Close")
+  246:     //set position size
+  247:     positionSize := tradingCapital / close
+  248:     //enter long position
+  249:     strategy.entry(id = "Buy to Open", direction =  strategy.long, qty = positionSize)
+  250: 
+  251: //Enter Short
+  252: if shortCondition and inTradeWindow
+  253:     //close any prior long positions
+  254:     if strategy.position_size > 0 //if in a long position
+  255:         strategy.close_all(comment = "Sell to Close")
+  256:     //set position size
+  257:     positionSize := tradingCapital / close
+  258:     //enter short position
+  259:     strategy.entry(id = "Sell to Open", direction =  strategy.short, qty = positionSize)
+
+## Long / short bracket orders  [lines 267-288]
+  267: if strategy.opentrades > 0 and strategy.position_size > 0 and (takeProfitSelected or stopLossSelected)   //if there is an open position and it is a long position and either a take profit or sto ploss is selected.
+  268:     if takeProfitSelected
+  269:         takeProfitPrice := strategy.position_avg_price * (1 + (takeProfitPercent / 100))
+  270:     else
+  271:         takeProfitPrice := na
+  272:     if stopLossSelected
+  273:         stopLossPrice := strategy.position_avg_price * (1 - (stopLossPercent / 100))
+  274:     else
+  275:         stopLossPrice := na
+  276:     strategy.exit(id = "Exit", from_entry = "Buy to Open", qty_percent = 100, profit = takeProfitPrice, loss = stopLossPrice, comment_profit = "Take Profit", comment_loss = "Stop Loss")
+  277: 
+  278: //Stop Loss and Take Profit for Short Positions
+  279: if strategy.opentrades > 0 and strategy.position_size < 0 and (takeProfitSelected or stopLossSelected)   //if there is an open position and it is a short position and either a take profit or sto ploss is selected.
+  280:     if takeProfitSelected
+  281:         takeProfitPrice := strategy.position_avg_price * (1 - (takeProfitPercent / 100))
+  282:     else
+  283:         takeProfitPrice := na
+  284:     if stopLossSelected
+  285:         stopLossPrice := strategy.position_avg_price * (1 + (stopLossPercent / 100))
+  286:     else
+  287:         stopLossPrice := na
+  288:     strategy.exit(id = "Exit", from_entry = "Buy to Open", qty_percent = 100, profit = takeProfitPrice, loss = stopLossPrice, comment_profit = "Take Profit", comment_loss = "Stop Loss")

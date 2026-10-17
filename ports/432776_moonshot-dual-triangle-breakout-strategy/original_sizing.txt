@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #432776 (月光追踪者双三角突破策略Moonshot-Dual-Triangle-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/432776  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop-loss inputs and orders  [lines 203-228]
+  203: longLossPerc = input.float(title="Long Stop Loss (%)",
+  204:      minval=0.0, step=0.1, defval=1) * 0.01
+  205: 
+  206: shortLossPerc = input.float(title="Short Stop Loss (%)",
+  207:      minval=0.0, step=0.1, defval=1) * 0.01
+  208:      
+  209: // Determine stop loss price
+  210: longStopPrice  = strategy.position_avg_price * (1 - longLossPerc)
+  211: shortStopPrice = strategy.position_avg_price * (1 + shortLossPerc)
+  212: 
+  213: openlong = (((bullish and not bullish[1]) or (extremebullish and not extremebullish[1])) and (emacolor==color.green))
+  214: openshort = (((bearish and not bearish[1]) or (extremebearish and not extremebearish[1])) and (emacolor==color.red))
+  215: exitlong = (extremebearish and not extremebearish[1] or bearish and not bearish[1]) or TP10long
+  216: exitshort = (extremebullish and not extremebullish[1] or bullish and not bullish[1]) or TP10short
+  217: strategy.entry("buy", strategy.long, when=openlong)
+  218: strategy.entry("sell", strategy.short, when=openshort)
+  219: 
+  220: strategy.close("buy", when=exitlong)
+  221: strategy.close("sell", when=exitshort)
+  222: 
+  223: // Submit exit orders based on calculated stop loss price
+  224: if (strategy.position_size > 0)
+  225:     strategy.exit(id="Long Stop", stop=longStopPrice)
+  226: 
+  227: if (strategy.position_size < 0)
+  228:     strategy.exit(id="Short Stop", stop=shortStopPrice)
