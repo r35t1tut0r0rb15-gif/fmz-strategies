@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2625 |
+| PORT_CANDIDATE | 2613 |
+| PORTED | 996 |
 | REJECTED | 994 |
-| PORTED | 986 |
 | HELD_NEEDS_VOLUME | 559 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 137 |
+| REJECTED_ON_READING | 139 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1114,7 +1114,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433117 | `ports/433117_inverse-las-vegas-algorithmic-trading-strategy/` | PineScript | momentum_breakout | none | lag_days x2 | 2 |
 | 433122 | `ports/433122_ema-traffic-light-trading-strategy-based-on-ema/` | PineScript | ma_trend | trailing_stop_pending | atr_mult x2, filter_len x2 | 4 |
 | 433123 | `ports/433123_ichimoku-momentum-analysis-ichimoku-cloud-fog-lightning-trad/` | PineScript | ichimoku | none | sl_pct x2, tp_pct x2 | 4 |
-| | **986 ports** | | | | | **5561** |
+| 433124 | `ports/433124_macd-macd-trend-following-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| 433126 | `ports/433126_3-min-short-only-expert-advisor-strategy/` | PineScript | candle_pattern | none | tp_atr x2, t3_len x2 | 4 |
+| 433128 | `ports/433128_rsi-rsi-gap-reversal-strategy/` | PineScript | rsi_oscillator | coarse_bar_stop | atr_per_100_ticks x2, length x2 | 4 |
+| 433137 | `ports/433137_dynamic-moving-average-tracking-strategy/` | PineScript | volatility_stop_cross | none | sens x2, atr_len x2 | 4 |
+| 433138 | `ports/433138_dual-moving-average-crossover-reversal-strategy/` | PineScript | combo_123_reversal | none | length x2, din_len x2 | 4 |
+| 433148 | `ports/433148_ichimoku-backtester-with-tp-sl-and-cloud-confirmation/` | PineScript | ichimoku | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
+| 433394 | `ports/433394_kdj-rsi-kdj-rsi-crossover-buy-sell-signals-strategy/` | PineScript | stochastic_oscillator | none | kdj_len x2, rsi_fast x2 | 4 |
+| 433398 | `ports/433398_relative-strength-index-flat-reversal-strategy/` | PineScript | rsi_oscillator | none | length x2, levels x2 | 4 |
+| 433401 | `ports/433401_kst-kst-indicator-profit-strategy/` | PineScript | momentum_oscillator_turn | none | siglen x2, roc4 x2 | 4 |
+| 433403 | `ports/433403_price-reversal-strategy-guided-by-price-channel/` | PineScript | donchian_breakout | none | slowlen x2, pcbars x2 | 4 |
+| | **996 ports** | | | | | **5601** |
 
 ## Rejected on reading
 
@@ -1257,6 +1267,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433015 | 基于均线的原始趋势跟踪策略ORIGINAL-PRIMITIVE-TREND-TRACKING-STRATEGY-BASED-ON-MOVING-AVERAGE.md | 1 | pyramiding = 10: the long and short signals add further units only while the close is beyond strategy.position_avg_price of the stacked position (useus), so the signals depend on the averaged price of the ladder (a pyramided ladder, as #426570). |
 | 433074 | 跨时间框架超级趋势震荡突破策略Cross-Timeframe-SuperTrend-Breakout-Strategy.md | 1 | The signals compare the close with request.security(syminfo.tickerid, '1', ...) and request.security(syminfo.tickerid, '5', ...) supertrends on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #430587). |
 | 433108 | 高级布林带均线网格趋势追踪策略Advanced-Bollinger-Band-Moving-Average-Grid-Trend-Tracking-Strategy.md | 1 | Entries are strategy.order('多(buy)' / '空(sell)') calls on four grid levels with no pyramiding limit, so each level touched adds a unit and an opposite order reduces rather than reverses: the position path depends on the order sizes (as #430596). |
+| 433125 | 动能区ATR反转订单量化策略Action-Zone-ATR-Reverse-Order-Quant-Strategy.md | 1 | After the minimum hold the reverse-order flag is armed on every bar (unless the over-band test clears it), so the opposite entry fires on the bar after the position goes flat, which is usually when the ratcheting EMA - 2 ATR stop order fills inside a bar: the entries depend on an intrabar stop fill the house trail cannot express. |
+| 433400 | 动态双向补仓策略Dynamic-Two-way-Add-Position-Strategy.md | 1 | Entries are allowed only while strategy.netprofit < 150000 (a profit target of the account), so the signals depend on the position size and the P&L path (as #427139); the bracket is 3 / 8 ticks. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

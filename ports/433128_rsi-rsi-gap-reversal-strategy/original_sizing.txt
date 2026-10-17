@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #433128 (RSI跳空反转策略RSI-Gap-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/433128  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Tick brackets per side  [lines 160-185]
+  160: ProfitL = input(406)
+  161: LossL = input(189)
+  162: ProfitS = input(370)
+  163: LossS = input(152)
+  164: BarssinceL = input(16)
+  165: BarssinceS = input(26)
+  166: 
+  167: vrsi = rsi(price, length)
+  168: 
+  169: longCondition() => crossunder(vrsi, overSold)
+  170: closeLPLCondition() => crossover(vrsi, overBoughtP)
+  171: closeLCondition() => barssince(longCondition())>BarssinceL
+  172: 
+  173: shortCondition() => crossover (vrsi, overBought)
+  174: closeLPSCondition() => crossunder(vrsi, overSoldP)
+  175: closeSCondition() => barssince(shortCondition())>BarssinceS
+  176: 
+  177: if (longCondition())
+  178:     strategy.entry("Long", strategy.long)
+  179:     strategy.exit ("Exit", "Long", profit=ProfitL,loss=LossL)
+  180: strategy.close("Long", when = closeLPLCondition() or closeLCondition())
+  181: 
+  182: if (shortCondition())
+  183:     strategy.entry("Short", strategy.short)
+  184:     strategy.exit ("Exit", "Short", profit=ProfitS,loss=LossS)
+  185: strategy.close("Short", when = closeLPSCondition() or closeSCondition())

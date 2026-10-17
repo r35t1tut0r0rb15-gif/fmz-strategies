@@ -1,0 +1,39 @@
+# Original sizing and money-management code, FMZ #433137 (动态移动平均线跟踪策略Dynamic-Moving-Average-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/433137  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Open-profit close-outs ($)  [lines 136-169]
+  136: TakeProfit = input.int(defval=50000, title='Take Profit ($)', minval=1)
+  137: StopLoss = input.int(defval=50000, title='Stop Loss ($)', minval=1)
+  138: xATR = ta.atr(c)
+  139: nLoss = a * xATR
+  140: src = h ? request.security(ticker.heikinashi(syminfo.tickerid), timeframe.period, Price, lookahead=barmerge.lookahead_off) : Price
+  141: xATRTrailingStop = 0.0
+  142: iff_1 = src > nz(xATRTrailingStop[1], 0) ? src - nLoss : src + nLoss
+  143: iff_2 = src < nz(xATRTrailingStop[1], 0) and src[1] < nz(xATRTrailingStop[1], 0) ? math.min(nz(xATRTrailingStop[1]), src + nLoss) : iff_1
+  144: xATRTrailingStop := src > nz(xATRTrailingStop[1], 0) and src[1] > nz(xATRTrailingStop[1], 0) ? math.max(nz(xATRTrailingStop[1]), src - nLoss) : iff_2
+  145: pos = 0
+  146: iff_3 = src[1] > nz(xATRTrailingStop[1], 0) and src < nz(xATRTrailingStop[1], 0) ? -1 : nz(pos[1], 0)
+  147: pos := src[1] < nz(xATRTrailingStop[1], 0) and src > nz(xATRTrailingStop[1], 0) ? 1 : iff_3
+  148: xcolor = pos == -1 ? color.red : pos == 1 ? color.green : color.blue
+  149: ma_function(src, MA_Period) =>
+  150:     switch smoothing
+  151:         "SMA" => ta.sma(src, MA_Period)
+  152:         "EMA" => ta.ema(src, MA_Period)
+  153:         "WMA" => ta.wma(src, MA_Period)
+  154:         => ta.hma(src, MA_Period)
+  155: thema = ma_function(src, MA_Period)
+  156: above = ta.crossover(thema, xATRTrailingStop)
+  157: below = ta.crossover(xATRTrailingStop, thema)
+  158: buy = src > xATRTrailingStop and above
+  159: sell = src < xATRTrailingStop and below
+  160: barbuy = src > xATRTrailingStop
+  161: barsell = src < xATRTrailingStop
+  162: plot(thema,title="The M.A.",color=color.green,linewidth=2)
+  163: plot(xATRTrailingStop,title="The M.A.",color=color.red,linewidth=2)
+  164: plotshape(buy,  title = "Buy",  text = "Buy",  style = shape.labelup,   location = location.belowbar, color= color.green, textcolor = color.white, size = size.tiny)
+  165: plotshape(sell, title = "Sell", text = "Sell", style = shape.labeldown, location = location.abovebar, color= color.red,   textcolor = color.white, size = size.tiny)
+  166: barcolor(barbuy ? color.green : na)
+  167: barcolor(barsell ? color.red : na)
+  168: strategy.close_all(when=strategy.openprofit>TakeProfit,alert_message="Close- TakeProfit", comment = "TP")
+  169: strategy.close_all(when=strategy.openprofit<StopLoss-(StopLoss*2),alert_message="Close- StopLoss", comment = "SL")

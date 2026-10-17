@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #433126 (三分钟短仓专家顾问策略3-Min-Short-Only-Expert-Advisor-Strategy)
+# Source: https://www.fmz.com/strategy/433126  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Alert account / ticker / quantity and the tick bracket  [lines 138-156]
+  138: acct = "Sim101"
+  139: ticker = "ES 12-23"
+  140: qty = 1
+  141: takeProfitTicks = 4
+  142: stopLossTicks = 16
+  143: tickSize = 0.25
+  144: 
+  145: takeProfitShort = close - takeProfitTicks * tickSize
+  146: stopLossShort = close + stopLossTicks * tickSize
+  147: 
+  148: OCOMarketShort = '{ "alert": "OCO Market Short", "account": "' + str.tostring(acct) + '", "ticker": "' + str.tostring(ticker) + '", "qty": "' + str.tostring(qty) + '", "take_profit_price": "' + str.tostring(takeProfitShort) + '", "stop_price": "' + str.tostring(stopLossShort) + '", "tif": "DAY" }'
+  149: CloseAll = '{ "alert": "Close All", "account": "' + str.tostring(acct) + '", "ticker": "' + str.tostring(ticker) + '" }'
+  150: 
+  151: IsUp = close > open
+  152: IsDown = close < open
+  153: PatternPlot = IsDown[2] and IsDown[1] and IsDown and close[1] <= high[0] and close[1] > close[0] and low[1] > low[0] and high[2] > high[1] and low[2] <= low[1]
+  154: if (PatternPlot and sellSignal3)
+  155:     strategy.entry('Short', strategy.short, alert_message=OCOMarketShort)
+  156:     strategy.exit('Close Short', 'Short', profit=takeProfitTicks, loss=stopLossTicks, alert_message=CloseAll)

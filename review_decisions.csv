@@ -136,6 +136,8 @@ fmz_id,file,final_outcome,criterion,reason
 433015,基于均线的原始趋势跟踪策略ORIGINAL-PRIMITIVE-TREND-TRACKING-STRATEGY-BASED-ON-MOVING-AVERAGE.md,REJECTED_ON_READING,1,"pyramiding = 10: the long and short signals add further units only while the close is beyond strategy.position_avg_price of the stacked position (useus), so the signals depend on the averaged price of the ladder (a pyramided ladder, as #426570)."
 433074,跨时间框架超级趋势震荡突破策略Cross-Timeframe-SuperTrend-Breakout-Strategy.md,REJECTED_ON_READING,1,"The signals compare the close with request.security(syminfo.tickerid, '1', ...) and request.security(syminfo.tickerid, '5', ...) supertrends on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #430587)."
 433108,高级布林带均线网格趋势追踪策略Advanced-Bollinger-Band-Moving-Average-Grid-Trend-Tracking-Strategy.md,REJECTED_ON_READING,1,"Entries are strategy.order('多(buy)' / '空(sell)') calls on four grid levels with no pyramiding limit, so each level touched adds a unit and an opposite order reduces rather than reverses: the position path depends on the order sizes (as #430596)."
+433125,动能区ATR反转订单量化策略Action-Zone-ATR-Reverse-Order-Quant-Strategy.md,REJECTED_ON_READING,1,"After the minimum hold the reverse-order flag is armed on every bar (unless the over-band test clears it), so the opposite entry fires on the bar after the position goes flat, which is usually when the ratcheting EMA - 2 ATR stop order fills inside a bar: the entries depend on an intrabar stop fill the house trail cannot express."
+433400,动态双向补仓策略Dynamic-Two-way-Add-Position-Strategy.md,REJECTED_ON_READING,1,"Entries are allowed only while strategy.netprofit < 150000 (a profit target of the account), so the signals depend on the position size and the P&L path (as #427139); the bracket is 3 / 8 ticks."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1134,3 +1136,13 @@ fmz_id,file,final_outcome,criterion,reason
 433117,反向拉斯维加斯定量交易策略Inverse-Las-Vegas-Algorithmic-Trading-Strategy.md,PORTED,,ports/433117_inverse-las-vegas-algorithmic-trading-strategy/
 433122,基于EMA均线的交易策略Traffic-Light-Trading-Strategy-Based-on-EMA.md,PORTED,,ports/433122_ema-traffic-light-trading-strategy-based-on-ema/
 433123,动量分析式Ichimoku云雾闪电交易策略Momentum-Analysis-Ichimoku-Cloud-Fog-Lightning-Trading-Strategy.md,PORTED,,ports/433123_ichimoku-momentum-analysis-ichimoku-cloud-fog-lightning-trad/
+433124,MACD趋势追踪策略MACD-Trend-Following-Strategy.md,PORTED,,ports/433124_macd-macd-trend-following-strategy/
+433126,三分钟短仓专家顾问策略3-Min-Short-Only-Expert-Advisor-Strategy.md,PORTED,,ports/433126_3-min-short-only-expert-advisor-strategy/
+433128,RSI跳空反转策略RSI-Gap-Reversal-Strategy.md,PORTED,,ports/433128_rsi-rsi-gap-reversal-strategy/
+433137,动态移动平均线跟踪策略Dynamic-Moving-Average-Tracking-Strategy.md,PORTED,,ports/433137_dynamic-moving-average-tracking-strategy/
+433138,双线交叉反转策略Dual-Moving-Average-Crossover-Reversal-Strategy.md,PORTED,,ports/433138_dual-moving-average-crossover-reversal-strategy/
+433148,一目均衡移动平均趋势追踪策略Ichimoku-Backtester-with-TP-SL-and-Cloud-Confirmation.md,PORTED,,ports/433148_ichimoku-backtester-with-tp-sl-and-cloud-confirmation/
+433394,基于KDJ和RSI的买卖点策略KDJ-RSI-Crossover-Buy-Sell-Signals-Strategy.md,PORTED,,ports/433394_kdj-rsi-kdj-rsi-crossover-buy-sell-signals-strategy/
+433398,相对强度指数平盘反转策略Relative-Strength-Index-Flat-Reversal-Strategy.md,PORTED,,ports/433398_relative-strength-index-flat-reversal-strategy/
+433401,KST指标获利策略KST-Indicator-Profit-Strategy.md,PORTED,,ports/433401_kst-kst-indicator-profit-strategy/
+433403,空间导向价格反转策略Price-Reversal-Strategy-Guided-by-Price-Channel.md,PORTED,,ports/433403_price-reversal-strategy-guided-by-price-channel/

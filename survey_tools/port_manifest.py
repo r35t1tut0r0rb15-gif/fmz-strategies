@@ -2348,6 +2348,28 @@ SIZING = {
     433123: [
         ("Stop / target inputs and exits", 166, 177),
     ],
+    # ---- FMZ-C, batch C59 (2026-10-17)
+    433124: [],
+    433126: [
+        ("Alert account / ticker / quantity and the tick bracket", 138, 156),
+    ],
+    433128: [
+        ("Tick brackets per side", 160, 185),
+    ],
+    433137: [
+        ("Open-profit close-outs ($)", 136, 169),
+    ],
+    433138: [],
+    433148: [
+        ("strategy(): 95 % of equity", 147, 149),
+        ("Stop / target inputs and exits", 163, 266),
+    ],
+    433394: [],
+    433398: [],
+    433401: [],
+    433403: [
+        ("strategy(): 100 % of equity", 139, 139),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2868,6 +2890,15 @@ REJECTED_ON_READING = {
     433108: ("1", "Entries are strategy.order('多(buy)' / '空(sell)') calls on four grid levels with no "
               "pyramiding limit, so each level touched adds a unit and an opposite order reduces "
               "rather than reverses: the position path depends on the order sizes (as #430596)."),
+    # ---- FMZ-C, batch C59 (2026-10-17)
+    433125: ("1", "After the minimum hold the reverse-order flag is armed on every bar (unless the "
+              "over-band test clears it), so the opposite entry fires on the bar after the "
+              "position goes flat, which is usually when the ratcheting EMA - 2 ATR stop order "
+              "fills inside a bar: the entries depend on an intrabar stop fill the house trail "
+              "cannot express."),
+    433400: ("1", "Entries are allowed only while strategy.netprofit < 150000 (a profit target of the "
+              "account), so the signals depend on the position size and the P&L path (as "
+              "#427139); the bracket is 3 / 8 ticks."),
 }
 
 DUPLICATE_ON_READING = {

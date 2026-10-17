@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #433403 (空间导向价格反转策略Price-Reversal-Strategy-Guided-by-Price-Channel)
+# Source: https://www.fmz.com/strategy/433403  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 139-139]
+  139: strategy(title = "Noro's PriceChannel for D1 v1.0", shorttitle = "PriceChannel D1", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100.0, pyramiding = 0)
