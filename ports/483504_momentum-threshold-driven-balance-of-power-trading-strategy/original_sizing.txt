@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #483504 (动量阈值驱动的平衡力量交易策略-Momentum-Threshold-Driven-Balance-of-Power-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483504  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 93-93]
+   93: strategy(title="Balance of Power for US30 4H", format=format.price, precision=2, default_qty_type=strategy.percent_of_equity, default_qty_value=100, overlay=true, commission_value=0.01, max_labels_count=500, max_lines_count = 500)
+
+## Leverage qty  [lines 95-98]
+   95: leverage = input.float(5, "Leverage 1:", tooltip="Multiply your equity (100%) times the leverage.")
+   96: 
+   97: p = (close - open) / (high - low)
+   98: qty = strategy.equity * leverage / close
+
+## Entries with the qty  [lines 100-104]
+  100: if ta.crossover(p, 0.8)
+  101:     strategy.entry("L", strategy.long, qty=qty)
+  102: 
+  103: if ta.crossunder(p, -0.8)
+  104:     strategy.close("L")

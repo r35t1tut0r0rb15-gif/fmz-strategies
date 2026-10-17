@@ -2598,6 +2598,55 @@ SIZING = {
         ("Entries with the bracket", 200, 208),
         ("Break-even exits", 211, 218),
     ],
+    # ---- FMZ-C, batch L19 (2026-10-17)
+    483121: [
+        ("strategy(): 10 % of equity", 86, 86),
+        ("SL / TP inputs", 94, 95),
+        ("Entries with the bracket", 113, 125),
+    ],
+    483122: [
+        ("strategy(): defaults", 95, 95),
+    ],
+    483123: [
+        ("strategy(): defaults", 97, 97),
+        ("Entries with the bar-extreme bracket", 126, 136),
+    ],
+    483124: [
+        ("strategy(): 10 % of equity", 138, 138),
+        ("TP / SL inputs", 143, 144),
+        ("Exits from position_avg_price", 188, 198),
+    ],
+    483126: [
+        ("strategy(): 10 % of equity", 103, 103),
+    ],
+    483130: [
+        ("Risk input", 102, 102),
+        ("ATR bracket", 115, 118),
+        ("Risk-based qty", 121, 124),
+        ("Entries with the bracket", 127, 133),
+    ],
+    483495: [
+        ("strategy(): 10 % of equity", 91, 91),
+    ],
+    483496: [
+        ("SL / RR inputs", 128, 130),
+        ("Tick bracket from position_avg_price", 132, 139),
+    ],
+    483503: [
+        ("Risk per trade input", 97, 97),
+        ("Band stops and risk-based qty", 118, 129),
+        ("Entries and band stops", 132, 139),
+    ],
+    483504: [
+        ("strategy(): 100 % of equity", 93, 93),
+        ("Leverage qty", 95, 98),
+        ("Entries with the qty", 100, 104),
+    ],
+    483505: [
+        ("strategy(): 100 % of equity", 97, 97),
+        ("Stop / target inputs", 105, 106),
+        ("Exits from position_avg_price", 186, 191),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3101,6 +3150,14 @@ REJECTED_ON_READING = {
               "profit, the rest on the opposite cross (as #365389)"),
     483681: ("1", "partial exits: strategy.exit('TP1', qty_percent = 50) at 1.5 ATR and 'TP2' "
               "(qty_percent = 50) at 3 ATR (as #365389)"),
+    # ---- FMZ-C, batch L19 (2026-10-17)
+    483125: ("1", "never trades as written: the long needs close <= min(previous-day low, today's "
+              "lowest low including this bar) - 10 points, but the close is never below its own "
+              "bar's low (the short mirrored), so neither condition can be true"),
+    483498: ("1", "partial exits: strategy.exit('Long_TP1', qty_percent = 50) at 1 R with the rest on "
+              "a trail (as #365389)"),
+    483500: ("1", "partial exits: three strategy.exit take-profits with qty_percent 33 / 33 / 34 at "
+              "1.5 / 3 / 4.5 % (as #365389)"),
 }
 
 DUPLICATE_ON_READING = {

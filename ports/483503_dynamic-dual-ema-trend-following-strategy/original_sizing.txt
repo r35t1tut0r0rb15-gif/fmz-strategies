@@ -1,0 +1,30 @@
+# Original sizing and money-management code, FMZ #483503 (动态双均线趋势跟踪策略-Dynamic-Dual-EMA-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/483503  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk per trade input  [lines 97-97]
+   97: riskPerTrade = input.float(1.0, title="Risk per Trade (%)", minval=0.1, maxval=10.0)
+
+## Band stops and risk-based qty  [lines 118-129]
+  118: longStop = emaLow
+  119: shortStop = emaHigh
+  120: riskPerShareLong = close - longStop
+  121: riskPerShareShort = shortStop - close
+  122: equity = strategy.equity
+  123: 
+  124: // Ensure risk per share is positive for calculations
+  125: riskPerShareLong := riskPerShareLong > 0 ? riskPerShareLong : 0.01
+  126: riskPerShareShort := riskPerShareShort > 0 ? riskPerShareShort : 0.01
+  127: 
+  128: positionSizeLong = (equity * riskPerTrade / 100) / riskPerShareLong
+  129: positionSizeShort = (equity * riskPerTrade / 100) / riskPerShareShort
+
+## Entries and band stops  [lines 132-139]
+  132: if (longCondition and (tradeDirection == "Long" or tradeDirection == "Both") and positionSizeLong > 0)
+  133:     strategy.entry("Long", strategy.long, qty= positionSizeLong)
+  134: if (shortCondition and (tradeDirection == "Short" or tradeDirection == "Both") and positionSizeShort > 0)
+  135:     strategy.entry("Short", strategy.short, qty=positionSizeShort)
+  136: 
+  137: // Applying the stop-loss to strategy
+  138: strategy.exit("Exit Long", "Long", stop=longStop)
+  139: strategy.exit("Exit Short", "Short", stop=shortStop) 

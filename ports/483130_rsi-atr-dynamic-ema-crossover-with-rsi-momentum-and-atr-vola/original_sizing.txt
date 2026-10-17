@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #483130 (动态均线交叉结合RSI动量和ATR波动率的多层级确认交易策略-Dynamic-EMA-Crossover-with-RSI-Momentum-and-ATR-Volatility-Multi-Level-Confirmation-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483130  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk input  [lines 102-102]
+  102: riskPercent = input.float(1, "Risk Percentage", step=0.5)
+
+## ATR bracket  [lines 115-118]
+  115: takeProfitLevelLong = close + (atr * 3)
+  116: stopLossLevelLong = close - (atr * 1.5)
+  117: takeProfitLevelShort = close - (atr * 3)
+  118: stopLossLevelShort = close + (atr * 1.5)
+
+## Risk-based qty  [lines 121-124]
+  121: equity = strategy.equity
+  122: riskAmount = equity * (riskPercent / 100)
+  123: positionSizeLong = riskAmount / (close - stopLossLevelLong)
+  124: positionSizeShort = riskAmount / (stopLossLevelShort - close)
+
+## Entries with the bracket  [lines 127-133]
+  127: if (longCondition)
+  128:     strategy.entry("Long", strategy.long, qty=positionSizeLong)
+  129:     strategy.exit("Exit Long", "Long", limit=takeProfitLevelLong, stop=stopLossLevelLong)
+  130: 
+  131: if (shortCondition)
+  132:     strategy.entry("Short", strategy.short, qty=positionSizeShort)
+  133:     strategy.exit("Exit Short", "Short", limit=takeProfitLevelShort, stop=stopLossLevelShort)

@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #483121 (动态趋势动量交叉策略-基于双重EMA与MACD指标的量化交易系统-Dynamic-Trend-Momentum-Crossover-Strategy-Quantitative-Trading-System-Based-on-Dual-EMA-and-MACD-Indicators)
+# Source: https://www.fmz.com/strategy/483121  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 86-86]
+   86: strategy("EMA + MACD Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## SL / TP inputs  [lines 94-95]
+   94: stopLossPerc = input.float(2.0, title="Stop-Loss (%)", minval=0.1, step=0.1)
+   95: takeProfitPerc = input.float(5.0, title="Take-Profit (%)", minval=0.1, step=0.1)
+
+## Entries with the bracket  [lines 113-125]
+  113: if (longCondition)
+  114:     strategy.entry("Long", strategy.long)
+  115:     // Calculate Stop-Loss and Take-Profit
+  116:     stopPrice = close * (1 - stopLossPerc / 100)
+  117:     takePrice = close * (1 + takeProfitPerc / 100)
+  118:     strategy.exit("Long Exit", from_entry="Long", stop=stopPrice, limit=takePrice)
+  119: 
+  120: if (shortCondition)
+  121:     strategy.entry("Short", strategy.short)
+  122:     // Calculate Stop-Loss and Take-Profit
+  123:     stopPrice = close * (1 + stopLossPerc / 100)
+  124:     takePrice = close * (1 - takeProfitPerc / 100)
+  125:     strategy.exit("Short Exit", from_entry="Short", stop=stopPrice, limit=takePrice)

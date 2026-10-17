@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #483496 (多重指标动量突破趋势交易策略-Multi-Indicator-Momentum-Breakout-Trend-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483496  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## SL / RR inputs  [lines 128-130]
+  128: riskRewardRatio = input(1.5, title="Risk-Reward Ratio")
+  129: stopLossPerc = input(2, title="Stop Loss %") / 100
+  130: takeProfitPerc = stopLossPerc * riskRewardRatio
+
+## Tick bracket from position_avg_price  [lines 132-139]
+  132: longSL = strategy.position_avg_price * (1 - stopLossPerc)
+  133: longTP = strategy.position_avg_price * (1 + takeProfitPerc)
+  134: 
+  135: shortSL = strategy.position_avg_price * (1 + stopLossPerc)
+  136: shortTP = strategy.position_avg_price * (1 - takeProfitPerc)
+  137: 
+  138: strategy.exit("Take Profit / Stop Loss", from_entry="Long", loss=longSL, profit=longTP)
+  139: strategy.exit("Take Profit / Stop Loss", from_entry="Short", loss=shortSL, profit=shortTP)
