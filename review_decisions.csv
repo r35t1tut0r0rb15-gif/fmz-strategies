@@ -109,6 +109,8 @@ fmz_id,file,final_outcome,criterion,reason
 430974,基于RSI和SuperTrend的双向交易策略RSI-and-SuperTrend-Based-Dual-Direction-Trading-Strategy.md,REJECTED_ON_READING,1,"The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit cannot be expressed as one net position's signals (as #365389). Its momentum line also uses ta.vwma (volume, check 8)."
 430985,双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md,REJECTED_ON_READING,2,"The second signal is a band of the nearest prime numbers above / below the high and low (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (as #430847)."
 430992,趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md,REJECTED_ON_READING,1,A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389).
+489135,多重技术指标动态止损期货交易策略-Multi-Technical-Indicator-Dynamic-Stop-Loss-Futures-Trading-Strategy.md,REJECTED_ON_READING,1,partial exits (strategy.exit qty_percent = 50 at the first target) and 15- / 60-minute securities on a 2-day chart (lower timeframes; as #430765)
+489150,多周期唐奇安通道与ATR动态间隔波动跟踪交易策略-Multi-Timeframe-Donchian-Channel-and-ATR-Dynamic-Interval-Volatility-Following-Trading-Strategy.md,REJECTED_ON_READING,1,"grid / averaging-in with partial exits: strategy.close(""Buy"", qty=...) sells part of the position at each grid step"
 489320,多重时间框架自适应动态KDJ指标策略-Multi-Timeframe-Adaptive-Dynamic-KDJ-Indicator-Strategy.md,REJECTED_ON_READING,1,"1-, 5- and 15-minute securities on a daily chart (request.security for the KDJ inputs and the ATR); as #430765"
 489893,多因子均值回归策略结合随机相对强弱指标与布林带的均值回归交易系统-Multi-Factor-Mean-Reversion-Strategy-A-Mean-Reversion-Trading-System-Combining-Stochastic-RSI-and-Bollinger-Bands.md,REJECTED_ON_READING,1,"5-minute security on a daily chart (request.security(..., ""5"", close) for the RSI and the bands); as #430765"
 490059,多指标确认均线突破DCA动态止盈策略-Multi-Indicator-Confirmation-EMA-Breakout-with-DCA-and-Dynamic-Take-Profit-Strategy.md,REJECTED_ON_READING,1,partial exits: strategy.order takes 25 % and 50 % of the position at two targets (qty fractions); as #430864
@@ -123,6 +125,7 @@ fmz_id,file,final_outcome,criterion,reason
 430385,动量突破双向交易策略Momentum-Breakout-Reversal-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."
 430551,动态RSI矩形Grid策略RSI-Box-Grid-Strategy.md,HELD_NEEDS_VOLUME,8,"The grid lines are vwma(highest / lowest, 14): volume-weighted averages (check 8, held with the other volume users)."
 430588,均线交易策略Trend-Trading-Strategy-Based-on-Moving-Average.md,HELD_NEEDS_VOLUME,8,"The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."
+489134,斐波那契布林带与相对强弱指数组合动态止盈策略-Fibonacci-Bollinger-Bands-with-RSI-Dynamic-Take-Profit-Strategy.md,HELD_NEEDS_VOLUME,8,"The basis is vwma(hlc3, 200): a volume-weighted average (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -918,6 +921,16 @@ fmz_id,file,final_outcome,criterion,reason
 430988,基于SuperTrend和Fisher变换的趋势跟随长线策略Trend-Following-Long-Term-Strategy-Based-on-SuperTrend-and-Fisher-Transform.md,PORTED,,ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/
 430998,木星与土星动能MA交叉过滤策略Jupiter-and-Saturn-Momentum-MA-Crossover-Filtered-Strategy.md,PORTED,,ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/
 431000,跨时间段移动量策略Intraday-Pivot-Breakout-Strategy.md,PORTED,,ports/431000_intraday-pivot-breakout-strategy/
+489056,多层布林通道支撑阻力价格突破交易策略-Multi-Layer-Bollinger-Bands-Support-Resistance-Price-Breakout-Trading-Strategy.md,PORTED,,ports/489056_multi-layer-bollinger-bands-support-resistance-price-breakou/
+489133,BTST高概率突破策略与精选股票筛选系统-BTST-High-Probability-Breakout-Strategy-with-Selective-Stock-Screening-System.md,PORTED,,ports/489133_btst-btst-high-probability-breakout-strategy-with-selective/
+489149,多周期波动跟踪量化策略-Multi-Timeframe-Volatility-Tracking-Quantitative-Strategy.md,PORTED,,ports/489149_multi-timeframe-volatility-tracking-quantitative-strategy/
+489152,移动平均线交叉与动态波动率止损量化策略-Moving-Average-Crossover-with-Dynamic-Volatility-Based-Stop-Loss-Strategy.md,PORTED,,ports/489152_moving-average-crossover-with-dynamic-volatility-based-stop/
+489153,小时周期价格开口策略追踪开盘与收盘价差的智能对比量化交易系统-Hourly-Open-Close-Price-Differential-Smart-Comparison-Quantitative-Trading-System.md,PORTED,,ports/489153_hourly-open-close-price-differential-smart-comparison-quanti/
+489154,多重均线交叉动量风险比优化策略-Multi-EMA-Crossover-Momentum-Strategy-with-Risk-Reward-Optimization.md,PORTED,,ports/489154_multi-ema-crossover-momentum-strategy-with-risk-reward-optim/
+489156,布林带结合快速与慢速移动平均线的多维趋势强化量化交易策略-Bollinger-Bands-with-Dual-SMA-Momentum-Enhanced-Quantitative-Trading-Strategy.md,PORTED,,ports/489156_bollinger-bands-with-dual-sma-momentum-enhanced-quantitative/
+489157,20均线趋势突破量化交易策略-EMA-20-Breakout-Trend-Following-Quantitative-Trading-Strategy.md,PORTED,,ports/489157_20-ema-20-breakout-trend-following-quantitative-trading-stra/
+489158,高级双均线策略交叉交易系统-Advanced-Dual-Moving-Average-Crossover-Trading-System.md,PORTED,,ports/489158_advanced-dual-moving-average-crossover-trading-system/
+489186,高级多功能SuperTrend趋势跟踪策略与自动止盈止损系统-Advanced-Multi-functional-SuperTrend-Trend-Following-Strategy-with-Automated-Take-Profit-and-Stop-Loss-System.md,PORTED,,ports/489186_supertrend-advanced-multi-functional-supertrend-trend-follow/
 489187,幽灵移动平均与动量结合的斐波那契目标价与止损策略-Ghost-Moving-Average-with-Momentum-Integration-and-Fibonacci-Target-Stop-Loss-Strategy.md,PORTED,,ports/489187_ghost-moving-average-with-momentum-integration-and-fibonacci/
 489189,TrendSync-Pro-SMC-多时间框架趋势跟随策略-TrendSync-Pro-SMC-Multi-Timeframe-Trend-Following-Strategy.md,PORTED,,ports/489189_trendsync-pro-smc-trendsync-pro-smc-multi-timeframe-trend-fo/
 489198,多重动量指标趋势追踪量化交易策略-Multi-Momentum-Indicator-Trend-Tracking-Quantitative-Trading-Strategy.md,PORTED,,ports/489198_multi-momentum-indicator-trend-tracking-quantitative-trading/

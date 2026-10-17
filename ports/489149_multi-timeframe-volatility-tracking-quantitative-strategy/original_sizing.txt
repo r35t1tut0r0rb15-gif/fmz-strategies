@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #489149 (多周期波动跟踪量化策略-Multi-Timeframe-Volatility-Tracking-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/489149  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin settings  [lines 166-166]
+  166: strategy("DOGE/USDT 5X Scalping Strategy", overlay=true, margin_long=20, margin_short=0)
+
+## Stop / target / risk inputs and leverage  [lines 176-179]
+  176: slMultiplier = input.float(1.2, "Stop-Loss (ATR Multiple)", minval=0.5, maxval=5.0, step=0.1)
+  177: tpMultiplier = input.float(2.0, "Take-Profit (ATR Multiple)", minval=0.5, maxval=10.0, step=0.1)
+  178: riskPct = input.float(1.0, "Risk Per Trade (%)", minval=0.1, maxval=10.0, step=0.1)
+  179: leverage = 5.0  // Fixed 5x leverage
+
+## Risk-based, leveraged position size  [lines 215-218]
+  215: equity = strategy.equity
+  216: riskAmount = equity * (riskPct / 100)
+  217: stopDistance = atrValue * slMultiplier
+  218: positionSize = math.round((riskAmount / stopDistance) * leverage) // Round to whole tokens for DOGE
+
+## Entry with the bracket  [lines 224-234]
+  224: if (validEntry)
+  225:     // Entry
+  226:     strategy.entry("Long", strategy.long, qty=positionSize)
+  227:     
+  228:     // Set exit points
+  229:     stopPrice = close - (atrValue * slMultiplier)
+  230:     targetPrice = close + (atrValue * tpMultiplier)
+  231:     strategy.exit("Exit", "Long", stop=stopPrice, limit=targetPrice)
+  232:     
+  233:     // Reset cooldown timer
+  234:     lastTradeBarIndex := bar_index

@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #489154 (多重均线交叉动量风险比优化策略-Multi-EMA-Crossover-Momentum-Strategy-with-Risk-Reward-Optimization)
+# Source: https://www.fmz.com/strategy/489154  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk-reward, stop and target levels  [lines 198-206]
+  198: riskRewardRatio = 2  // Set desired risk-reward ratio (1:2 by default)
+  199: stopLossPercent = 1  // Set SL as 1% of entry price
+  200: takeProfitPercent = stopLossPercent * riskRewardRatio  // TP = 2x SL
+  201: 
+  202: // Calculate Stop-Loss & Take-Profit
+  203: longStopLoss = close * (1 - stopLossPercent / 100)
+  204: longTakeProfit = close * (1 + takeProfitPercent / 100)
+  205: shortStopLoss = close * (1 + stopLossPercent / 100)
+  206: shortTakeProfit = close * (1 - takeProfitPercent / 100)
+
+## Entries with the bracket  [lines 209-216]
+  209: if (goldenCross)
+  210:     strategy.entry("Buy", strategy.long)
+  211:     strategy.exit("TakeProfit_Long", from_entry="Buy", stop=longStopLoss, limit=longTakeProfit)
+  212: 
+  213: // Sell Signal (Death Cross)
+  214: if (deathCross)
+  215:     strategy.entry("Sell", strategy.short)
+  216:     strategy.exit("TakeProfit_Short", from_entry="Sell", stop=shortStopLoss, limit=shortTakeProfit)

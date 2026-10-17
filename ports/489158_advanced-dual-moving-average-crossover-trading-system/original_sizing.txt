@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #489158 (高级双均线策略交叉交易系统-Advanced-Dual-Moving-Average-Crossover-Trading-System)
+# Source: https://www.fmz.com/strategy/489158  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target percent inputs  [lines 231-232]
+  231: stopLossPercent = input.float(1, title="Stop Loss (%)") / 100
+  232: takeProfitPercent = input.float(2, title="Take Profit (%)") / 100
+
+## Bracket re-issued every bar  [lines 234-234]
+  234: strategy.exit("Exit Buy", "Buy", stop=close * (1 - stopLossPercent), limit=close * (1 + takeProfitPercent))

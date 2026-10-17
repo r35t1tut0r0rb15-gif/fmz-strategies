@@ -2125,6 +2125,44 @@ SIZING = {
     489297: [
         ("strategy(): 100 % of equity", 177, 177),
     ],
+    # ---- FMZ-C, batch L6 (2026-10-17)
+    489056: [
+        ("Pip inputs", 168, 170),
+        ("Pip distances", 173, 175),
+        ("Stop and (na) target levels", 196, 200),
+        ("Flat-only entries with the bracket", 203, 209),
+    ],
+    489133: [],
+    489149: [
+        ("strategy(): margin settings", 166, 166),
+        ("Stop / target / risk inputs and leverage", 176, 179),
+        ("Risk-based, leveraged position size", 215, 218),
+        ("Entry with the bracket", 224, 234),
+    ],
+    489152: [
+        ("strategy(): 100 % of equity, initial capital", 159, 159),
+        ("ATR stop and reward inputs", 165, 167),
+        ("Bracket re-issued every bar", 195, 212),
+    ],
+    489153: [
+        ("strategy(): 100 % of equity", 202, 202),
+        ("3 % target from the average price", 224, 224),
+    ],
+    489154: [
+        ("Risk-reward, stop and target levels", 198, 206),
+        ("Entries with the bracket", 209, 216),
+    ],
+    489156: [
+        ("strategy(): 100 % of equity, commission, slippage", 163, 163),
+    ],
+    489157: [
+        ("strategy(): 100 % of equity", 187, 187),
+    ],
+    489158: [
+        ("Stop / target percent inputs", 231, 232),
+        ("Bracket re-issued every bar", 234, 234),
+    ],
+    489186: [],
 }
 
 REJECTED_ON_READING = {
@@ -2560,6 +2598,11 @@ REJECTED_ON_READING = {
     # ---- FMZ-C, batch L4 (2026-10-17)
     489320: ("1", "1-, 5- and 15-minute securities on a daily chart (request.security for the KDJ "
               "inputs and the ATR); as #430765"),
+    # ---- FMZ-C, batch L6 (2026-10-17)
+    489135: ("1", "partial exits (strategy.exit qty_percent = 50 at the first target) and 15- / "
+              "60-minute securities on a 2-day chart (lower timeframes; as #430765)"),
+    489150: ("1", "grid / averaging-in with partial exits: strategy.close(\"Buy\", qty=...) sells part "
+              "of the position at each grid step"),
 }
 
 DUPLICATE_ON_READING = {
@@ -2585,4 +2628,6 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C36 (2026-10-16)
     430551: ("8", "The grid lines are vwma(highest / lowest, 14): volume-weighted averages (check 8, held with the other volume users)."),
     430588: ("8", "The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch L6 (2026-10-17)
+    489134: ("8", "The basis is vwma(hlc3, 200): a volume-weighted average (check 8, held with the other volume users)."),
 }

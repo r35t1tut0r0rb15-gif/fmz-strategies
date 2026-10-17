@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #489056 (多层布林通道支撑阻力价格突破交易策略-Multi-Layer-Bollinger-Bands-Support-Resistance-Price-Breakout-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/489056  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Pip inputs  [lines 168-170]
+  168: supportResistancePips = input(25, title="Support/Resistance Distance (pips)")
+  169: stopLossPips = input(15, title="Stop Loss (pips)")
+  170: takeProfitRatio = input(2.0, title="Take Profit (x risk)")
+
+## Pip distances  [lines 173-175]
+  173: pipSize = syminfo.mintick * 10  // 0.1 for XAU/USD
+  174: supportDistance = supportResistancePips * pipSize
+  175: stopLossDistance = stopLossPips * pipSize
+
+## Stop and (na) target levels  [lines 196-200]
+  196: stopLossPriceLong = low - stopLossDistance
+  197: takeProfitPriceLong = strategy.position_avg_price + (stopLossDistance * takeProfitRatio)
+  198: 
+  199: stopLossPriceShort = high + stopLossDistance
+  200: takeProfitPriceShort = strategy.position_avg_price - (stopLossDistance * takeProfitRatio)
+
+## Flat-only entries with the bracket  [lines 203-209]
+  203: if (longCondition)
+  204:     strategy.entry("BB Long", strategy.long)
+  205:     strategy.exit("Exit Long", "BB Long", stop=stopLossPriceLong, limit=takeProfitPriceLong)
+  206: 
+  207: if (shortCondition)
+  208:     strategy.entry("BB Short", strategy.short)
+  209:     strategy.exit("Exit Short", "BB Short", stop=stopLossPriceShort, limit=takeProfitPriceShort)

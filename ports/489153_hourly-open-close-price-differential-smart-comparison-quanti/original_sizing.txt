@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #489153 (小时周期价格开口策略追踪开盘与收盘价差的智能对比量化交易系统-Hourly-Open-Close-Price-Differential-Smart-Comparison-Quantitative-Trading-System)
+# Source: https://www.fmz.com/strategy/489153  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 202-202]
+  202: strategy("1 Hour Open vs Close Buy Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+
+## 3 % target from the average price  [lines 224-224]
+  224: targetPrice = strategy.position_avg_price * 1.03
