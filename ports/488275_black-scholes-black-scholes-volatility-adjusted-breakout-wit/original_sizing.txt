@@ -1,0 +1,39 @@
+# Original sizing and money-management code, FMZ #488275 (Black-Scholes波动率自适应突破策略与动态阈值优化-Black-Scholes-Volatility-Adjusted-Breakout-with-Dynamic-Threshold-Optimization)
+# Source: https://www.fmz.com/strategy/488275  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 5  [lines 219-219]
+  219: strategy("Black-Scholes Expected Breakout Enhanced Bias-Free", overlay=true, initial_capital=15000, currency=currency.USD, pyramiding=5, calc_on_order_fills=false, calc_on_every_tick=false, commission_type=strategy.commission.cash_per_contract, commission_value=0.12)
+
+## Stop / target / trail inputs  [lines 224-229]
+  224: stopLossPerc    = input.float(title="Stop Loss (%)", defval=1.0, minval=0.1, step=0.1)
+  225: takeProfitPerc  = input.float(title="Take Profit (%)", defval=2.0, minval=0.1, step=0.1)
+  226: useMAFilter     = input.bool(title="Use MA Trend Filter", defval=true)
+  227: maLength        = input.int(title="MA Length", defval=20, minval=1)
+  228: useTrailingStop = input.bool(title="Use Trailing Stop", defval=true)
+  229: trailMultiplier = input.float(title="Trailing Stop Multiplier (Expected Move)", defval=1.0, minval=0.1, step=0.1)
+
+## Fixed qty 5  [lines 254-255]
+  254: longQty  = 5
+  255: shortQty = 5
+
+## Trail or bracket exits  [lines 270-288]
+  270: if strategy.position_size > 0
+  271:     if useTrailingStop
+  272:         // Trailing stop needs both trail_offset & trail_points
+  273:         trailOffset = expectedMove * trailMultiplier
+  274:         strategy.exit("Exit Long", from_entry="Long", trail_offset=trailOffset, trail_points=trailOffset)
+  275:     else
+  276:         stopPrice = strategy.position_avg_price * (1 - stopLossPerc / 100)
+  277:         takePrice = strategy.position_avg_price * (1 + takeProfitPerc / 100)
+  278:         strategy.exit("Exit Long", from_entry="Long", stop=stopPrice, limit=takePrice)
+  279: 
+  280: // Exit Orders for Short Positions
+  281: if strategy.position_size < 0
+  282:     if useTrailingStop
+  283:         trailOffset = expectedMove * trailMultiplier
+  284:         strategy.exit("Exit Short", from_entry="Short", trail_offset=trailOffset, trail_points=trailOffset)
+  285:     else
+  286:         stopPrice = strategy.position_avg_price * (1 + stopLossPerc / 100)
+  287:         takePrice = strategy.position_avg_price * (1 - takeProfitPerc / 100)
+  288:         strategy.exit("Exit Short", from_entry="Short", stop=stopPrice, limit=takePrice)

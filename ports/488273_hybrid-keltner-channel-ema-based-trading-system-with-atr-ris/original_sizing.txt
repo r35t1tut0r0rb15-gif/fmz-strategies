@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #488273 (尺度移动均线与双布林线动量混合交易系统-Hybrid-Keltner-Channel-EMA-Based-Trading-System-with-ATR-Risk-Management)
+# Source: https://www.fmz.com/strategy/488273  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 170-170]
+  170: strategy("Keltner Channel Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## ATR bracket levels  [lines 189-193]
+  189: atrMultiplier = 1.5
+  190: stopLossLong = close - (atrMultiplier * atrVal)
+  191: stopLossShort = close + (atrMultiplier * atrVal)
+  192: takeProfitLong = close + (2 * atrMultiplier * atrVal)
+  193: takeProfitShort = close - (2 * atrMultiplier * atrVal)
+
+## Bracket exits re-issued every bar  [lines 218-221]
+  218: strategy.exit("Long_KC_Exit", from_entry="Long_KC", stop=stopLossLong, limit=takeProfitLong)
+  219: strategy.exit("Short_KC_Exit", from_entry="Short_KC", stop=stopLossShort, limit=takeProfitShort)
+  220: strategy.exit("Long_Trend_Exit", from_entry="Long_Trend", stop=stopLossLong, limit=takeProfitLong)
+  221: strategy.exit("Short_Trend_Exit", from_entry="Short_Trend", stop=stopLossShort, limit=takeProfitShort)

@@ -2305,6 +2305,48 @@ SIZING = {
         ("Tick levels and exits (Bullish Only)", 305, 316),
         ("Tick levels and exits (Bearish Only)", 331, 342),
     ],
+    # ---- FMZ-C, batch L11 (2026-10-17)
+    488140: [],
+    488143: [
+        ("MT4 lot input", 161, 161),
+        ("strategy(): 5 % of equity", 173, 173),
+    ],
+    488152: [
+        ("strategy(): 1 % of equity", 153, 153),
+        ("Risk / ATR / RR / trail inputs", 156, 161),
+        ("Stop, target and lot size", 175, 180),
+        ("Bracket and trail exits re-issued every bar", 190, 196),
+    ],
+    488156: [
+        ("strategy(): 1 % of equity", 177, 177),
+        ("ATR stop input", 185, 185),
+        ("Entries with the bracket", 212, 217),
+    ],
+    488165: [
+        ("Tick target / stop", 204, 205),
+        ("Entries with the tick bracket", 207, 215),
+    ],
+    488239: [
+        ("strategy(): 100 % of equity", 186, 186),
+    ],
+    488241: [],
+    488244: [],
+    488268: [
+        ("ATR stop / target multipliers", 220, 222),
+        ("Entries with the locked-ATR bracket", 235, 249),
+    ],
+    488273: [
+        ("strategy(): 10 % of equity", 170, 170),
+        ("ATR bracket levels", 189, 193),
+        ("Bracket exits re-issued every bar", 218, 221),
+    ],
+    488275: [
+        ("strategy(): pyramiding 5", 219, 219),
+        ("Stop / target / trail inputs", 224, 229),
+        ("Fixed qty 5", 254, 255),
+        ("Trail or bracket exits", 270, 288),
+    ],
+    488276: [],
 }
 
 REJECTED_ON_READING = {
@@ -2760,6 +2802,13 @@ REJECTED_ON_READING = {
     488513: ("1", "time('1', '0930-1600:1234567') is na outside the 09:30-16:00 session, so hour(t) "
               "and minute(t) never equal 9:15-9:20 and the opening range is never established: as "
               "written it never trades (as #430384)"),
+    # ---- FMZ-C, batch L11 (2026-10-17)
+    488136: ("1", "strategy.entry('Buy', when = buy_signal) with no exit of any kind: the first long "
+              "is held for the rest of the data, so there is no repeatable entry / exit rule (as "
+              "#430776)"),
+    488279: ("1", "the trend bias is request.security(syminfo.tickerid, '240', high / low) on the "
+              "1-day header chart: a 4-hour resolution below the chart's, whose value per bar is "
+              "undefined (as #430765)"),
 }
 
 DUPLICATE_ON_READING = {

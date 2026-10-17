@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #488156 (流动性捕捉与智能资金分歧指标结合策略-Liquidity-Grab-Smart-Money-Divergence-Indicator-Combination-Strategy)
+# Source: https://www.fmz.com/strategy/488156  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 1 % of equity  [lines 177-177]
+  177: strategy("Liquidity Grab + Smart Money Divergence Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=1)
+
+## ATR stop input  [lines 185-185]
+  185: atrMultiplier = input(1.5, "ATR Multiplier")
+
+## Entries with the bracket  [lines 212-217]
+  212: if buySignal
+  213:     strategy.entry("Buy", strategy.long)
+  214:     strategy.exit("Sell", from_entry="Buy", stop=close - sl, limit=close + sl * 2)
+  215: if sellSignal
+  216:     strategy.entry("Sell", strategy.short)
+  217:     strategy.exit("Buy", from_entry="Sell", stop=close + sl, limit=close - sl * 2)

@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #488268 (趋势过滤多均线交叉ATR风控量化策略-Multi-Moving-Average-Crossover-Strategy-with-Trend-Filter-and-ATR-Risk-Management)
+# Source: https://www.fmz.com/strategy/488268  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## ATR stop / target multipliers  [lines 220-222]
+  220: atrValue = ta.atr(14)
+  221: stopLossMultiplier  = 2.0   // Stop Loss: ATR × 2
+  222: takeProfitMultiplier = 3.0   // Take Profit: ATR × 3
+
+## Entries with the locked-ATR bracket  [lines 235-249]
+  235: if longSignal
+  236:     entryPrice = close
+  237:     lockedATR  = atrValue
+  238:     longStopPrice = entryPrice - lockedATR * stopLossMultiplier
+  239:     longTakeProfitPrice = entryPrice + lockedATR * takeProfitMultiplier
+  240:     strategy.entry("Long", strategy.long)
+  241:     strategy.exit("Long_Exit", "Long", stop=longStopPrice, limit=longTakeProfitPrice)
+  242: 
+  243: if shortSignal
+  244:     entryPrice = close
+  245:     lockedATR  = atrValue
+  246:     shortStopPrice = entryPrice + lockedATR * stopLossMultiplier
+  247:     shortTakeProfitPrice = entryPrice - lockedATR * takeProfitMultiplier
+  248:     strategy.entry("Short", strategy.short)
+  249:     strategy.exit("Short_Exit", "Short", stop=shortStopPrice, limit=shortTakeProfitPrice)
