@@ -1,0 +1,21 @@
+# Original sizing and money-management code, FMZ #482863 (五分钟开盘突破ATR动态止盈止损量化交易策略-Five-Minute-Opening-Breakout-Strategy-with-Dynamic-ATR-Based-Stop-Loss-and-Take-Profit)
+# Source: https://www.fmz.com/strategy/482863  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## SL / TP factors  [lines 129-130]
+  129: slFactor = 1.0  // Stop Loss Multiplier
+  130: tpFactor = 1.5  // Take Profit Multiplier
+
+## Bracket levels  [lines 134-138]
+  134: longSL = lowPrice - atrValue * slFactor
+  135: longTP = highPrice + (highPrice - lowPrice) * tpFactor
+  136: 
+  137: shortSL = highPrice + atrValue * slFactor
+  138: shortTP = lowPrice - (highPrice - lowPrice) * tpFactor
+
+## Entries with the exits  [lines 141-145]
+  141: strategy.entry("Long", strategy.long, when=longEntry)
+  142: strategy.exit("Exit Long", from_entry="Long", stop=longSL, limit=longTP)
+  143: 
+  144: strategy.entry("Short", strategy.short, when=shortEntry)
+  145: strategy.exit("Exit Short", from_entry="Short", stop=shortSL, limit=shortTP)

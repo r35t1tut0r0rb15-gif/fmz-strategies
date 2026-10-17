@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #482859 (基于移动平均线和供需区域的动态风险管理交易系统-Moving-Average-Based-Supply-Demand-Zone-Trading-System-with-Dynamic-Risk-Management)
+# Source: https://www.fmz.com/strategy/482859  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## SL / TP inputs  [lines 106-107]
+  106: stopLossPerc = input.float(1.0, title="Stop Loss (%)", minval=0.1) / 100
+  107: takeProfitPerc = input.float(2.0, title="Take Profit (%)", minval=0.1) / 100
+
+## Levels from position_avg_price  [lines 139-143]
+  139: stopLossLevel = strategy.position_avg_price * (1 - stopLossPerc)  // Stop loss for long positions
+  140: takeProfitLevel = strategy.position_avg_price * (1 + takeProfitPerc)  // Take profit for long positions
+  141: 
+  142: stopLossLevelShort = strategy.position_avg_price * (1 + stopLossPerc)  // Stop loss for short positions
+  143: takeProfitLevelShort = strategy.position_avg_price * (1 - takeProfitPerc)  // Take profit for short positions
+
+## Entries with the bracket  [lines 146-152]
+  146: if (ta.crossover(shortMA, longMA) and isNearDemand)
+  147:     strategy.entry("Buy", strategy.long)
+  148:     strategy.exit("Take Profit/Stop Loss", from_entry="Buy", stop=stopLossLevel, limit=takeProfitLevel)
+  149: 
+  150: if (ta.crossunder(shortMA, longMA) and isNearSupply)
+  151:     strategy.entry("Sell", strategy.short)
+  152:     strategy.exit("Take Profit/Stop Loss", from_entry="Sell", stop=stopLossLevelShort, limit=takeProfitLevelShort)

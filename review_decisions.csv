@@ -953,7 +953,10 @@ fmz_id,file,final_outcome,criterion,reason
 430998,木星与土星动能MA交叉过滤策略Jupiter-and-Saturn-Momentum-MA-Crossover-Filtered-Strategy.md,PORTED,,ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/
 431000,跨时间段移动量策略Intraday-Pivot-Breakout-Strategy.md,PORTED,,ports/431000_intraday-pivot-breakout-strategy/
 482849,自适应均线交叉动态头寸风险管理策略-Adaptive-EMA-Crossover-Dynamic-Position-Risk-Management-Strategy.md,PORTED,,ports/482849_adaptive-ema-crossover-dynamic-position-risk-management-stra/
+482859,基于移动平均线和供需区域的动态风险管理交易系统-Moving-Average-Based-Supply-Demand-Zone-Trading-System-with-Dynamic-Risk-Management.md,PORTED,,ports/482859_moving-average-based-supply-demand-zone-trading-system-with/
+482860,指数移动平均与相对强弱指数交叉策略-Exponential-Moving-Average-and-Relative-Strength-Index-Crossover-Strategy.md,PORTED,,ports/482860_exponential-moving-average-and-relative-strength-index-cross/
 482861,多维度动态ICT交易策略结合吞没形态与供需区域分析系统-Multi-Dimensional-Dynamic-ICT-Trading-Strategy-with-Engulfing-Patterns-and-Supply-Demand-Zone-Analysis-System.md,PORTED,,ports/482861_ict-multi-dimensional-dynamic-ict-trading-strategy-with-engu/
+482863,五分钟开盘突破ATR动态止盈止损量化交易策略-Five-Minute-Opening-Breakout-Strategy-with-Dynamic-ATR-Based-Stop-Loss-and-Take-Profit.md,PORTED,,ports/482863_atr-five-minute-opening-breakout-strategy-with-dynamic-atr-b/
 482870,动态-EMA-交叉摆动高低点自适应策略-Dynamic-EMA-Crossover-with-Adaptive-Swing-High-Low-Strategy.md,PORTED,,ports/482870_ema-dynamic-ema-crossover-with-adaptive-swing-high-low-strat/
 482872,双向MACD动量与EMA趋势判定交易策略-Bidirectional-MACD-Momentum-and-EMA-Trend-Trading-Strategy.md,PORTED,,ports/482872_macd-ema-bidirectional-macd-momentum-and-ema-trend-trading-s/
 482873,基于支撑阻力位突破和回测的多级量化趋势交易策略-Multi-Level-Quantitative-Trend-Trading-Strategy-Based-on-Support-Resistance-Breakout-and-Retest.md,PORTED,,ports/482873_multi-level-quantitative-trend-trading-strategy-based-on-sup/

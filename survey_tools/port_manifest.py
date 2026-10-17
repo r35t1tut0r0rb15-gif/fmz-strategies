@@ -2955,6 +2955,21 @@ SIZING = {
         ("SL / TP inputs", 116, 117),
         ("Entries with the bracket", 134, 146),
     ],
+    # ---- FMZ-C, batch L28 (2026-10-17)
+    482859: [
+        ("SL / TP inputs", 106, 107),
+        ("Levels from position_avg_price", 139, 143),
+        ("Entries with the bracket", 146, 152),
+    ],
+    482860: [
+        ("Offset / stop point inputs", 96, 98),
+        ("Point stops and RSI exits", 113, 130),
+    ],
+    482863: [
+        ("SL / TP factors", 129, 130),
+        ("Bracket levels", 134, 138),
+        ("Entries with the exits", 141, 145),
+    ],
 }
 
 REJECTED_ON_READING = {

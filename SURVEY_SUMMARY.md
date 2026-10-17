@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2545 |
-| PORTED | 1056 |
+| PORT_CANDIDATE | 2542 |
+| PORTED | 1059 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 558 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -923,7 +923,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
 | 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
 | 482849 | `ports/482849_adaptive-ema-crossover-dynamic-position-risk-management-stra/` | PineScript | ma_cross | none | rr x2, stop_bars x2 | 4 |
+| 482859 | `ports/482859_moving-average-based-supply-demand-zone-trading-system-with/` | PineScript | ma_cross | none | zone_lookback x2, tp_pct x2 | 4 |
+| 482860 | `ports/482860_exponential-moving-average-and-relative-strength-index-cross/` | PineScript | ma_cross | none | stop_k x2, ema_len x2 | 4 |
 | 482861 | `ports/482861_ict-multi-dimensional-dynamic-ict-trading-strategy-with-engu/` | PineScript | candlestick | trailing_stop_pending | sl_pct x2, tp_pct x2 | 4 |
+| 482863 | `ports/482863_atr-five-minute-opening-breakout-strategy-with-dynamic-atr-b/` | PineScript | opening_range_breakout | trailing_stop_pending | session_tz x2, tp_factor x2 | 4 |
 | 482870 | `ports/482870_ema-dynamic-ema-crossover-with-adaptive-swing-high-low-strat/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | ema_len x2, swing_len x2 | 4 |
 | 482872 | `ports/482872_macd-ema-bidirectional-macd-momentum-and-ema-trend-trading-s/` | PineScript | macd | trailing_stop_pending | operation x2, tp_pct x2 | 4 |
 | 482873 | `ports/482873_multi-level-quantitative-trend-trading-strategy-based-on-sup/` | PineScript | pivot_levels | none | pivot_bars x2, tolerance x2 | 4 |
@@ -1184,7 +1187,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491914 | `ports/491914_price-action-structural-breakout-strategy-with-trailing-stop/` | PineScript | price_action_breakout | trailing_stop | trail_k x2, trail_activate x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | macd_divergence | coarse_bar_stop, trailing_stop_pending | method x2, lb x2 | 4 |
 | 492009 | `ports/492009_atr-dual-ema-filtered-atr-adaptive-trend-following-strategy/` | PineScript | volatility_stop_cross | trailing_stop | atr_mult x2, trail_k x2 | 4 |
-| | **1056 ports** | | | | | **5825** |
+| | **1059 ports** | | | | | **5837** |
 
 ## Rejected on reading
 
