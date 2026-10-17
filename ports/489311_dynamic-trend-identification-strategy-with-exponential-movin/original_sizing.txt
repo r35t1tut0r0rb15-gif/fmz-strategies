@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #489311 (动态趋势识别策略与指数移动平均线和自适应波动阈值-Dynamic-Trend-Identification-Strategy-with-Exponential-Moving-Average-and-Adaptive-Volatility-Threshold)
+# Source: https://www.fmz.com/strategy/489311  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 151-151]
+  151: strategy("OneTrend Lite EMA", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100, initial_capital = 10000)

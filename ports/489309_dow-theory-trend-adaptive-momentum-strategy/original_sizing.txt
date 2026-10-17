@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #489309 (道氏理论趋势自适应动量策略Dow-Theory-Trend-Adaptive-Momentum-Strategy)
+# Source: https://www.fmz.com/strategy/489309  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target tick inputs  [lines 135-138]
+  135: useStopLoss = input.bool(true, title="Use Stop Loss", group="Risk Management")
+  136: stopLossTicks = input.float(100, title="Stop Loss (Ticks)", minval=1, group="Risk Management", tooltip="エントリー価格からのストップロスまでのティック（最小値動き）数。例：EURUSDで20 pips (tick=0.00001)なら200。")
+  137: useTakeProfit = input.bool(true, title="Use Take Profit", group="Risk Management")
+  138: takeProfitTicks = input.float(200, title="Take Profit (Ticks)", minval=1, group="Risk Management", tooltip="エントリー価格からのテイクプロフィットまでのティック（最小値動き）数。例：EURUSDで40 pips (tick=0.00001)なら400。")
+
+## Entries with the tick bracket  [lines 205-217]
+  205: if (changedToUp and allowLong)
+  206:     strategy.entry("L", strategy.long, comment="Go Long")
+  207:     if (useStopLoss or useTakeProfit)
+  208:         float slValue = useStopLoss and stopLossTicks > 0 ? stopLossTicks : na
+  209:         float tpValue = useTakeProfit and takeProfitTicks > 0 ? takeProfitTicks : na
+  210:         strategy.exit("LX", from_entry="L", loss=slValue, profit=tpValue, comment_loss="SL Long", comment_profit="TP Long")
+  211: 
+  212: if (changedToDown and allowShort)
+  213:     strategy.entry("S", strategy.short, comment="Go Short")
+  214:     if (useStopLoss or useTakeProfit)
+  215:         float slValue = useStopLoss and stopLossTicks > 0 ? stopLossTicks : na
+  216:         float tpValue = useTakeProfit and takeProfitTicks > 0 ? takeProfitTicks : na
+  217:         strategy.exit("SX", from_entry="S", loss=slValue, profit=tpValue, comment_loss="SL Short", comment_profit="TP Short")

@@ -109,6 +109,7 @@ fmz_id,file,final_outcome,criterion,reason
 430974,基于RSI和SuperTrend的双向交易策略RSI-and-SuperTrend-Based-Dual-Direction-Trading-Strategy.md,REJECTED_ON_READING,1,"The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit cannot be expressed as one net position's signals (as #365389). Its momentum line also uses ta.vwma (volume, check 8)."
 430985,双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md,REJECTED_ON_READING,2,"The second signal is a band of the nearest prime numbers above / below the high and low (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (as #430847)."
 430992,趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md,REJECTED_ON_READING,1,A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389).
+489320,多重时间框架自适应动态KDJ指标策略-Multi-Timeframe-Adaptive-Dynamic-KDJ-Indicator-Strategy.md,REJECTED_ON_READING,1,"1-, 5- and 15-minute securities on a daily chart (request.security for the KDJ inputs and the ATR); as #430765"
 489893,多因子均值回归策略结合随机相对强弱指标与布林带的均值回归交易系统-Multi-Factor-Mean-Reversion-Strategy-A-Mean-Reversion-Trading-System-Combining-Stochastic-RSI-and-Bollinger-Bands.md,REJECTED_ON_READING,1,"5-minute security on a daily chart (request.security(..., ""5"", close) for the RSI and the bands); as #430765"
 490059,多指标确认均线突破DCA动态止盈策略-Multi-Indicator-Confirmation-EMA-Breakout-with-DCA-and-Dynamic-Take-Profit-Strategy.md,REJECTED_ON_READING,1,partial exits: strategy.order takes 25 % and 50 % of the position at two targets (qty fractions); as #430864
 490908,多时间尺度动量趋势追踪与风险管理量化交易策略-Multi-Timeframe-Momentum-Trend-Tracking-and-Risk-Management-Quantitative-Trading-Strategy.md,REJECTED_ON_READING,1,"1-minute security on a daily chart (request.security(..., ""1"", stoch(...))); as #430765"
@@ -917,6 +918,18 @@ fmz_id,file,final_outcome,criterion,reason
 430988,基于SuperTrend和Fisher变换的趋势跟随长线策略Trend-Following-Long-Term-Strategy-Based-on-SuperTrend-and-Fisher-Transform.md,PORTED,,ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/
 430998,木星与土星动能MA交叉过滤策略Jupiter-and-Saturn-Momentum-MA-Crossover-Filtered-Strategy.md,PORTED,,ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/
 431000,跨时间段移动量策略Intraday-Pivot-Breakout-Strategy.md,PORTED,,ports/431000_intraday-pivot-breakout-strategy/
+489300,可配置移动平均线交叉策略-Configurable-Moving-Average-Crossover-Strategy.md,PORTED,,ports/489300_configurable-moving-average-crossover-strategy/
+489301,量化多空趋势追踪动态止损策略-Quantitative-Long-Short-Trend-Tracking-Dynamic-Stop-Loss-Strategy.md,PORTED,,ports/489301_quantitative-long-short-trend-tracking-dynamic-stop-loss-str/
+489304,多重指数移动平均线交叉策略-Multi-EMA-Crossover-Strategy.md,PORTED,,ports/489304_multi-ema-crossover-strategy/
+489309,道氏理论趋势自适应动量策略Dow-Theory-Trend-Adaptive-Momentum-Strategy.md,PORTED,,ports/489309_dow-theory-trend-adaptive-momentum-strategy/
+489311,动态趋势识别策略与指数移动平均线和自适应波动阈值-Dynamic-Trend-Identification-Strategy-with-Exponential-Moving-Average-and-Adaptive-Volatility-Threshold.md,PORTED,,ports/489311_dynamic-trend-identification-strategy-with-exponential-movin/
+489324,EMA辅助极点反转交易策略-EMA-Assisted-Extreme-Point-Reversal-Trading-Strategy.md,PORTED,,ports/489324_ema-ema-assisted-extreme-point-reversal-trading-strategy/
+489332,动态均线交叉结合超买超卖趋势确认量化交易策略-Dynamic-EMA-Crossover-with-RSI-Trend-Confirmation-Quantitative-Trading-Strategy.md,PORTED,,ports/489332_dynamic-ema-crossover-with-rsi-trend-confirmation-quantitati/
+489333,高级价格行情突破与反转检测策略-Advanced-Price-Action-Breakout-and-Reversal-Detection-Strategy.md,PORTED,,ports/489333_advanced-price-action-breakout-and-reversal-detection-strate/
+489634,多指标结合的自适应波动ATR动态止盈止损15分钟图表趋势跟踪策略-Multi-Indicator-Adaptive-Volatility-ATR-Dynamic-SL-TP-15-Minute-Chart-Trend-Following-Strategy.md,PORTED,,ports/489634_atr-15-multi-indicator-adaptive-volatility-atr-dynamic-sl-tp/
+489638,EMA-34-动态止损交叉策略趋势跟踪与风险管理的智能结合-EMA-34-Dynamic-Stop-Loss-Crossover-Strategy-Intelligent-Combination-of-Trend-Following-and-Risk-Management.md,PORTED,,ports/489638_ema-34-ema-34-dynamic-stop-loss-crossover-strategy-intellige/
+489646,双指数移动平均交叉转向退出策略-Dual-EMA-Cross-with-Directional-Exit-Strategy.md,PORTED,,ports/489646_dual-ema-cross-with-directional-exit-strategy/
+489650,动态波动率自适应EMAxRSI交叉策略-Dynamic-Volatility-Adaptive-EMA-RSI-Crossover-Strategy.md,PORTED,,ports/489650_emaxrsi-dynamic-volatility-adaptive-ema-rsi-crossover-strate/
 489651,动态趋势过滤ATM期权卖出策略结合EMA交叉与RSI动量确认-Dynamic-Trend-Filtered-ATM-Option-Selling-Strategy-with-EMA-Crossover-and-RSI-Momentum-Confirmation.md,PORTED,,ports/489651_atm-ema-rsi-dynamic-trend-filtered-atm-option-selling-strate/
 489653,双指数均线交叉与尾随止损结合的量化交易策略-Dual-EMA-Crossover-Strategy-with-Dynamic-Trailing-Stop-Mechanism.md,PORTED,,ports/489653_dual-ema-crossover-strategy-with-dynamic-trailing-stop-mecha/
 489654,三重指数移动平均与三重相对移动平均自适应通道交叉策略-Triple-EMA-and-Triple-RMA-Adaptive-Channel-Crossover-Strategy.md,PORTED,,ports/489654_triple-ema-and-triple-rma-adaptive-channel-crossover-strateg/

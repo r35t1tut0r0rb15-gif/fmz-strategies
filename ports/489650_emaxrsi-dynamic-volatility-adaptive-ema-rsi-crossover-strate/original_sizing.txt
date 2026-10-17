@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #489650 (动态波动率自适应EMAxRSI交叉策略-Dynamic-Volatility-Adaptive-EMA-RSI-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/489650  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Capital, risk and ATR multiplier inputs  [lines 194-197]
+  194: capital = input.float(1000, title="Capital Total ($)", minval=1)  // Capital total alloué
+  195: risqueParTrade = input.float(1, title="Risque par Trade (%)", minval=0.1, maxval=100)  // Risque par trade en %
+  196: stopLossMultiplier = input.float(1, title="Multiplier Stop Loss (en ATR)", minval=0.1, maxval=10)  // Multiplier du stop-loss basé sur l'ATR
+  197: takeProfitMultiplier = input.float(2, title="Multiplier Take Profit (en ATR)", minval=0.1, maxval=10)  // Multiplier du take-profit basé sur l'ATR
+
+## Risk-based lot size  [lines 200-206]
+  200: atr = ta.atr(14)
+  201: stopLossDistance = atr * stopLossMultiplier  // Distance du stop-loss en pips, ajustée par ATR
+  202: takeProfitDistance = atr * takeProfitMultiplier  // Distance du take-profit en pips, ajustée par ATR
+  203: 
+  204: // === Calcul de la Taille de Lot ===
+  205: montantRisque = capital * (risqueParTrade / 100)  // Risque par trade en $ (capital * pourcentage de risque)
+  206: tailleLot = montantRisque / stopLossDistance  // Taille du lot en fonction du risque et de la distance du stop-loss
+
+## Entries with lot and bracket  [lines 227-234]
+  227: if (confirmedBuySignal)
+  228:     strategy.entry("Buy", strategy.long, qty=tailleLot, comment="Buy")
+  229:     strategy.exit("Exit", "Buy", stop=close - stopLossDistance, limit=close + takeProfitDistance)
+  230: 
+  231: // Entrée Sell lorsque les conditions sont validées
+  232: if (confirmedSellSignal)
+  233:     strategy.entry("Sell", strategy.short, qty=tailleLot, comment="Sell")
+  234:     strategy.exit("Exit", "Sell", stop=close + stopLossDistance, limit=close - takeProfitDistance )

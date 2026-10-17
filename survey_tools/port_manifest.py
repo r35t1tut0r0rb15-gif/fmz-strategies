@@ -2023,6 +2023,53 @@ SIZING = {
         ("Stop / target / trail inputs", 219, 222),
         ("Bracket from the average price with the tick trail, every bar", 258, 262),
     ],
+    # ---- FMZ-C, batch L4 (2026-10-17)
+    489300: [
+        ("strategy(): 10 % of equity, commission", 126, 126),
+    ],
+    489301: [
+        ("strategy(): 100 % of equity, commission, slippage", 142, 142),
+    ],
+    489304: [
+        ("strategy(): 25 % of equity, pyramiding 4", 117, 117),
+    ],
+    489309: [
+        ("Stop / target tick inputs", 135, 138),
+        ("Entries with the tick bracket", 205, 217),
+    ],
+    489311: [
+        ("strategy(): 100 % of equity", 151, 151),
+    ],
+    489324: [],
+    489332: [
+        ("strategy(): 10 % of equity", 247, 247),
+        ("Stop pips and TP ratio inputs", 272, 273),
+        ("Stop / target levels", 276, 277),
+        ("Entries with the bracket", 280, 286),
+    ],
+    489333: [
+        ("strategy(): 2 % of equity", 177, 177),
+        ("Risk-reward, stop pips and trail inputs", 180, 182),
+        ("Pip size and stop", 201, 202),
+        ("Entries with the bracket", 204, 210),
+    ],
+    489634: [
+        ("strategy(): 10 % of equity", 173, 173),
+        ("ATR stop / target inputs", 183, 185),
+        ("Bracket re-computed every bar", 205, 215),
+    ],
+    489638: [
+        ("strategy(): 100 % of equity", 186, 186),
+        ("Entry with previous-low stop, 10 R target and break-even (ported as close-checked signals)", 204, 224),
+    ],
+    489646: [
+        ("strategy(): 100 % of equity, pyramiding 0", 175, 175),
+    ],
+    489650: [
+        ("Capital, risk and ATR multiplier inputs", 194, 197),
+        ("Risk-based lot size", 200, 206),
+        ("Entries with lot and bracket", 227, 234),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2455,6 +2502,9 @@ REJECTED_ON_READING = {
               "and the bands); as #430765"),
     490059: ("1", "partial exits: strategy.order takes 25 % and 50 % of the position at two targets "
               "(qty fractions); as #430864"),
+    # ---- FMZ-C, batch L4 (2026-10-17)
+    489320: ("1", "1-, 5- and 15-minute securities on a daily chart (request.security for the KDJ "
+              "inputs and the ATR); as #430765"),
 }
 
 DUPLICATE_ON_READING = {

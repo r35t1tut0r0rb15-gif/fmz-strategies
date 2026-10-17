@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #489332 (动态均线交叉结合超买超卖趋势确认量化交易策略-Dynamic-EMA-Crossover-with-RSI-Trend-Confirmation-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/489332  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 247-247]
+  247: strategy("Estrategia EMA + RSI", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## Stop pips and TP ratio inputs  [lines 272-273]
+  272: tf_stop_loss_pips = input(50, title="Stop Loss en Pips") // Valor en pips del Stop Loss
+  273: tf_take_profit_ratio = input(2.0, title="Relación TP/SL") // Relación TP/SL (ej. 2:1)
+
+## Stop / target levels  [lines 276-277]
+  276: stop_loss = close - (tf_stop_loss_pips * syminfo.mintick) // Nivel de Stop Loss
+  277: take_profit = close + ((tf_stop_loss_pips * tf_take_profit_ratio) * syminfo.mintick) // Nivel de Take Profit
+
+## Entries with the bracket  [lines 280-286]
+  280: if long_condition
+  281:     strategy.entry("Compra", strategy.long)  // Entrada en largo
+  282:     strategy.exit("Salida Compra", from_entry="Compra", stop=stop_loss, limit=take_profit) // Salida con SL/TP
+  283: 
+  284: if short_condition
+  285:     strategy.entry("Venta", strategy.short)  // Entrada en corto
+  286:     strategy.exit("Salida Venta", from_entry="Venta", stop=stop_loss, limit=take_profit) // Salida con SL/TP

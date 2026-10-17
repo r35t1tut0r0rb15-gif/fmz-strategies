@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #489333 (高级价格行情突破与反转检测策略-Advanced-Price-Action-Breakout-and-Reversal-Detection-Strategy)
+# Source: https://www.fmz.com/strategy/489333  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 2 % of equity  [lines 177-177]
+  177: strategy("Price Action Bot - EUR/USD", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=2)
+
+## Risk-reward, stop pips and trail inputs  [lines 180-182]
+  180: riskRewardRatio = input.float(3.0, "Risk/Reward Ratio", minval=1.0)
+  181: stopLossPips = input.float(10, "Stop Loss (pips)", minval=1)
+  182: trailingStop = input.bool(true, "Enable Trailing Stop")
+
+## Pip size and stop  [lines 201-202]
+  201: pip = syminfo.mintick * 10
+  202: sl = stopLossPips * pip
+
+## Entries with the bracket  [lines 204-210]
+  204: if (longCondition)
+  205:     strategy.entry("Long", strategy.long)
+  206:     strategy.exit("TP/SL", "Long", stop=close - sl, limit=close + (sl * riskRewardRatio), trail_points=trailingStop ? sl/2 : na)
+  207: 
+  208: if (shortCondition)
+  209:     strategy.entry("Short", strategy.short)
+  210:     strategy.exit("TP/SL", "Short", stop=close + sl, limit=close - (sl * riskRewardRatio), trail_points=trailingStop ? sl/2 : na)
