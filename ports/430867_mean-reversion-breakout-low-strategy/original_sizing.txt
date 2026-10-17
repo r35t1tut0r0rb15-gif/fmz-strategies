@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #430867 (突破新低回归均线策略Mean-Reversion-Breakout-Low-Strategy)
+# Source: https://www.fmz.com/strategy/430867  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity, commission  [lines 157-163]
+  157: strategy(title="Merovinh - Mean Reversion Lowest low",
+  158:      overlay = true,
+  159:      default_qty_type = strategy.percent_of_equity,
+  160:      initial_capital = 10000,
+  161:      default_qty_value = 10,
+  162:      commission_type = strategy.commission.percent,
+  163:      slippage = 1,

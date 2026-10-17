@@ -1802,6 +1802,43 @@ SIZING = {
         ("strategy(): 100 % of equity, pyramiding 0, commission", 192, 192),
     ],
     430860: [],
+    # ---- FMZ-C, batch C41 (2026-10-17)
+    430867: [
+        ("strategy(): 10 % of equity, commission", 157, 163),
+    ],
+    430868: [],
+    430871: [],
+    430872: [
+        ("Stop / take-profit tick inputs", 133, 134),
+    ],
+    430874: [
+        ("strategy(): 100 % of equity, pyramiding 3", 175, 175),
+        ("Capital % input", 180, 180),
+        ("Lot formula", 214, 214),
+    ],
+    430876: [
+        ("strategy(): 100 % of equity, pyramiding 1, commission", 132, 132),
+    ],
+    430877: [
+        ("buyAmount input", 133, 133),
+        ("strategy.order of buyAmount units", 196, 196),
+    ],
+    430878: [
+        ("strategy(): 30 % of equity, commission", 153, 153),
+    ],
+    430880: [
+        ("strategy(): 100 % of equity", 179, 179),
+        ("Stop loss / take profit % inputs", 243, 244),
+    ],
+    430881: [
+        ("strategy(): 100 % of equity", 220, 220),
+        ("Stop loss / take profit % inputs", 299, 300),
+    ],
+    430887: [],
+    430893: [
+        ("Commented-out strategy(): 5 % of equity, commission", 184, 184),
+    ],
+    430896: [],
 }
 
 REJECTED_ON_READING = {
@@ -2203,6 +2240,10 @@ REJECTED_ON_READING = {
     430856: ("1", "The signal is crossover(request.security(syminfo.tickerid, '370', close), "
               "request.security(..., '370', open)) on the 1-day header chart: a 370-minute "
               "resolution below the chart's, whose value per bar is undefined (as #427518)."),
+    # ---- FMZ-C, batch C41 (2026-10-17)
+    430864: ("1", "Each side exits 0.5 % of the position at +9 % (strategy.exit with qty_percent = "
+              "0.5) and the rest at +21 %, and the entry is a fixed qty of 10 units: a partial "
+              "exit cannot be expressed as one net position's signals (as #365389)."),
 }
 
 DUPLICATE_ON_READING = {

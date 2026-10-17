@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #430877 (DAKELAX-XRPUSDT-波尔带回归均线策略DAKELAX-XRPUSDT-Bollinger-Band-Mean-Reversion-Strategy)
+# Source: https://www.fmz.com/strategy/430877  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## buyAmount input  [lines 133-133]
+  133: buyAmount = input(20, minval=1)
+
+## strategy.order of buyAmount units  [lines 196-196]
+  196:     strategy.order('Buy', strategy.long, buyAmount)

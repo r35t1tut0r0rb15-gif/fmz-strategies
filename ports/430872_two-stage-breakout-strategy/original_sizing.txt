@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #430872 (两阶跨度突破策略Two-Stage-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/430872  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / take-profit tick inputs  [lines 133-134]
+  133: stopLossPips = input.int(200, title="Stop Loss Pips", minval=1)
+  134: takeProfitPips = input.int(400, title="Take Profit Pips", minval=1)

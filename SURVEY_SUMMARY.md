@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2875 |
+| PORT_CANDIDATE | 2861 |
 | REJECTED | 994 |
-| PORTED | 770 |
+| PORTED | 783 |
 | HELD_NEEDS_VOLUME | 556 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 106 |
+| REJECTED_ON_READING | 107 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -898,7 +898,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430858 | `ports/430858_cci-ema-cci-and-ema-trend-following-trading-strategy/` | PineScript | momentum_oscillator_turn | none | length x2, length_cci_ema x2 | 4 |
 | 430859 | `ports/430859_moving-average-ribbon-trend-strategy/` | PineScript | ma_envelope_breakout | none | length x3 | 3 |
 | 430860 | `ports/430860_macd-macd-trend-prediction-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
-| | **770 ports** | | | | | **4724** |
+| 430867 | `ports/430867_mean-reversion-breakout-low-strategy/` | PineScript | donchian_breakout | none | bars x3 | 3 |
+| 430868 | `ports/430868_bb-bb-dual-long-and-short-trading-strategy/` | PineScript | bollinger_reversion | none | length x2, take_p x2 | 4 |
+| 430871 | `ports/430871_rsi-relative-strength-index-rsi-strategy/` | PineScript | rsi_oscillator | none | length x2, overbought x2 | 4 |
+| 430872 | `ports/430872_two-stage-breakout-strategy/` | PineScript | stop_and_reverse_bracket | none | sl_atr x2, tp_atr x2 | 4 |
+| 430874 | `ports/430874_rsi-dynamic-rsi-oscillation-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, rsi_limit x2 | 4 |
+| 430876 | `ports/430876_heiken-ashi-and-super-trend-strategy/` | PineScript | supertrend | coarse_bar_stop | factor x2, tp_pct x2 | 4 |
+| 430877 | `ports/430877_dakelax-xrpusdt-dakelax-xrpusdt-bollinger-band-mean-reversio/` | PineScript | bollinger_reversion | none | length x2, lower_mult x2 | 4 |
+| 430878 | `ports/430878_bull-market-buy-dips-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, rsi_buy x2 | 4 |
+| 430880 | `ports/430880_coordinate-sliding-stop-loss-strategy/` | PineScript | stochastic_oscillator | coarse_bar_stop | roc_len x2, sl_pct x2 | 4 |
+| 430881 | `ports/430881_dual-channel-tracking-reversal-strategy/` | PineScript | momentum_oscillator_turn | none | roc_len x2, pcnt x2 | 4 |
+| 430887 | `ports/430887_combo-strategy-of-123-reversal-and-fractal-chaos-oscillator/` | PineScript | combo_123_reversal | none | length x2, pattern x2 | 4 |
+| 430893 | `ports/430893_lion-fissure-balance-strategy/` | PineScript | ma_envelope_reversion | none | big_len x2, pct_below x2 | 4 |
+| 430896 | `ports/430896_dual-signal-trend-tracking-strategy/` | PineScript | multi_indicator_confluence | none | length x2, wma_len x2 | 4 |
+| | **783 ports** | | | | | **4775** |
 
 ## Rejected on reading
 
@@ -1010,6 +1023,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430841 | 双移动平均交叉交易策略Dual-Moving-Average-Crossover-Trading-Strategy.md | 1 | The ATR stop distance is request.security(syminfo.tickerid, '15', atr(14)) on the 1-hour header chart: a 15-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
 | 430847 | 基于质数震荡的交易策略Prime-Number-Oscillator-Trading-Strategy.md | 2 | The oscillator is the distance from the price to the nearest prime number of the price itself (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (on fractional prices it is always 0); it cannot be made generic. |
 | 430856 | 短线双均线策略Dual-Moving-Average-Strategy.md | 1 | The signal is crossover(request.security(syminfo.tickerid, '370', close), request.security(..., '370', open)) on the 1-day header chart: a 370-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
+| 430864 | 双重指标策略Dual-Indicator-Strategy.md | 1 | Each side exits 0.5 % of the position at +9 % (strategy.exit with qty_percent = 0.5) and the rest at +21 %, and the entry is a fixed qty of 10 units: a partial exit cannot be expressed as one net position's signals (as #365389). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

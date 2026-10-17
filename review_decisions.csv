@@ -105,6 +105,7 @@ fmz_id,file,final_outcome,criterion,reason
 430841,双移动平均交叉交易策略Dual-Moving-Average-Crossover-Trading-Strategy.md,REJECTED_ON_READING,1,"The ATR stop distance is request.security(syminfo.tickerid, '15', atr(14)) on the 1-hour header chart: a 15-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
 430847,基于质数震荡的交易策略Prime-Number-Oscillator-Trading-Strategy.md,REJECTED_ON_READING,2,"The oscillator is the distance from the price to the nearest prime number of the price itself (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (on fractional prices it is always 0); it cannot be made generic."
 430856,短线双均线策略Dual-Moving-Average-Strategy.md,REJECTED_ON_READING,1,"The signal is crossover(request.security(syminfo.tickerid, '370', close), request.security(..., '370', open)) on the 1-day header chart: a 370-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
+430864,双重指标策略Dual-Indicator-Strategy.md,REJECTED_ON_READING,1,"Each side exits 0.5 % of the position at +9 % (strategy.exit with qty_percent = 0.5) and the rest at +21 %, and the entry is a fixed qty of 10 units: a partial exit cannot be expressed as one net position's signals (as #365389)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -884,3 +885,16 @@ fmz_id,file,final_outcome,criterion,reason
 430858,基于CCI和EMA的趋势跟随交易策略CCI-and-EMA-Trend-Following-Trading-Strategy.md,PORTED,,ports/430858_cci-ema-cci-and-ema-trend-following-trading-strategy/
 430859,均线带趋势策略Moving-Average-Ribbon-Trend-Strategy.md,PORTED,,ports/430859_moving-average-ribbon-trend-strategy/
 430860,MACD趋势预测策略MACD-Trend-Prediction-Strategy.md,PORTED,,ports/430860_macd-macd-trend-prediction-strategy/
+430867,突破新低回归均线策略Mean-Reversion-Breakout-Low-Strategy.md,PORTED,,ports/430867_mean-reversion-breakout-low-strategy/
+430868,BB双重多空头交易策略BB-Dual-Long-and-Short-Trading-Strategy.md,PORTED,,ports/430868_bb-bb-dual-long-and-short-trading-strategy/
+430871,相对强弱指标RSI策略Relative-Strength-Index-RSI-Strategy.md,PORTED,,ports/430871_rsi-relative-strength-index-rsi-strategy/
+430872,两阶跨度突破策略Two-Stage-Breakout-Strategy.md,PORTED,,ports/430872_two-stage-breakout-strategy/
+430874,动态RSI震荡操作策略Dynamic-RSI-Oscillation-Trading-Strategy.md,PORTED,,ports/430874_rsi-dynamic-rsi-oscillation-trading-strategy/
+430876,海因阿修与超级趋势策略Heiken-Ashi-and-Super-Trend-Strategy.md,PORTED,,ports/430876_heiken-ashi-and-super-trend-strategy/
+430877,DAKELAX-XRPUSDT-波尔带回归均线策略DAKELAX-XRPUSDT-Bollinger-Band-Mean-Reversion-Strategy.md,PORTED,,ports/430877_dakelax-xrpusdt-dakelax-xrpusdt-bollinger-band-mean-reversio/
+430878,牛市追涨杀跌策略Bull-Market-Buy-Dips-Strategy.md,PORTED,,ports/430878_bull-market-buy-dips-strategy/
+430880,坐标滑动止损策略Coordinate-Sliding-Stop-Loss-Strategy.md,PORTED,,ports/430880_coordinate-sliding-stop-loss-strategy/
+430881,双轨跟踪反转策略Dual-Channel-Tracking-Reversal-Strategy.md,PORTED,,ports/430881_dual-channel-tracking-reversal-strategy/
+430887,反转复活振荡指标组合策略Combo-Strategy-of-123-Reversal-and-Fractal-Chaos-Oscillator.md,PORTED,,ports/430887_combo-strategy-of-123-reversal-and-fractal-chaos-oscillator/
+430893,狮子裂缝均衡策略Lion-Fissure-Balance-Strategy.md,PORTED,,ports/430893_lion-fissure-balance-strategy/
+430896,双信号趋势跟踪策略Dual-Signal-Trend-Tracking-Strategy.md,PORTED,,ports/430896_dual-signal-trend-tracking-strategy/
