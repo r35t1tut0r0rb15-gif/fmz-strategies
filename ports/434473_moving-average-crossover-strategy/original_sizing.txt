@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #434473 (移动平均线交叉趋势跟踪策略Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/434473  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Percent bracket on the average price  [lines 148-149]
+  148: SL = 0.004
+  149: TP = 0.007

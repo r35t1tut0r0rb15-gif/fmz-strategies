@@ -1237,3 +1237,16 @@ fmz_id,file,final_outcome,criterion,reason
 434336,平均最高最低波动交易策略Average-Highest-High-and-Lowest-Low-Swinger-Strategy.md,PORTED,,ports/434336_average-highest-high-and-lowest-low-swinger-strategy/
 434344,双因子循环交易策略Dual-factor-Cycle-Trading-Strategy.md,PORTED,,ports/434344_dual-factor-cycle-trading-strategy/
 434345,自适应ATR-ADX趋势策略V2An-Adaptive-ATR-ADX-Trend-Strategy-V2.md,PORTED,,ports/434345_atr-adx-v2an-adaptive-atr-adx-trend-strategy-v2/
+434428,Reversal-Bollinger-Bands-Strategy反转波动带策略.md,PORTED,,ports/434428_reversal-bollinger-bands-strategy/
+434434,双均线交叉趋势策略Dual-Moving-Average-Crossover-Trend-Strategy.md,PORTED,,ports/434434_dual-moving-average-crossover-trend-strategy/
+434445,均线黄金交叉1止盈策略1-Profit-Moving-Average-Cross-Strategy.md,PORTED,,ports/434445_1-1-profit-moving-average-cross-strategy/
+434446,三重SuperTrend和Stoch-RSI策略Triple-SuperTrend-and-Stoch-RSI-Strategy.md,PORTED,,ports/434446_supertrend-stoch-rsi-triple-supertrend-and-stoch-rsi-strateg/
+434458,双均线ADX择时策略Dual-Moving-Average-ADX-Timing-Strategy.md,PORTED,,ports/434458_adx-dual-moving-average-adx-timing-strategy/
+434466,动态K线大阳线交易策略Dynamic-Candlestick-Big-Yang-Line-Trading-Strategy.md,PORTED,,ports/434466_k-dynamic-candlestick-big-yang-line-trading-strategy/
+434467,三重移动平均线顺势交易策略Improved-Moving-Average-Crossover-Strategy-with-Market-Trend-Guidance.md,PORTED,,ports/434467_improved-moving-average-crossover-strategy-with-market-trend/
+434470,自动支撑-阻力策略Auto-S-R-Breakout-Strategy.md,PORTED,,ports/434470_auto-s-r-breakout-strategy/
+434473,移动平均线交叉趋势跟踪策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/434473_moving-average-crossover-strategy/
+434478,移动平均线指标交易策略Multi-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/434478_multi-moving-average-crossover-trading-strategy/
+434480,基于RSI的量化交易策略RSI-Based-Quantitative-Trading-Strategy.md,PORTED,,ports/434480_rsi-rsi-based-quantitative-trading-strategy/
+434482,布林带反转与移动平均线趋势过滤Bollinger-Bands-Reversal-with-MA-Trend-Filter.md,PORTED,,ports/434482_bollinger-bands-reversal-with-ma-trend-filter/
+434484,双重反转百分比变化柱形图量化策略Double-Reversal-Percentage-Change-Bar-Quantitative-Strategy.md,PORTED,,ports/434484_double-reversal-percentage-change-bar-quantitative-strategy/

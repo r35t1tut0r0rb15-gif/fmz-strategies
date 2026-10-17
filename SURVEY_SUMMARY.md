@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2522 |
-| PORTED | 1071 |
+| PORT_CANDIDATE | 2509 |
+| PORTED | 1084 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 560 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1199,7 +1199,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 434336 | `ports/434336_average-highest-high-and-lowest-low-swinger-strategy/` | PineScript | ichimoku | none | fast x2, slow x2 | 4 |
 | 434344 | `ports/434344_dual-factor-cycle-trading-strategy/` | PineScript | combo_123_reversal | none | length x2, to_line x2 | 4 |
 | 434345 | `ports/434345_atr-adx-v2an-adaptive-atr-adx-trend-strategy-v2/` | PineScript | volatility_stop_cross | none | m1 x2, adx_thresh x2 | 4 |
-| | **1071 ports** | | | | | **5887** |
+| 434428 | `ports/434428_reversal-bollinger-bands-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending, coarse_bar_stop | bb_len x2, range_len x2 | 4 |
+| 434434 | `ports/434434_dual-moving-average-crossover-trend-strategy/` | PineScript | macd_cross | trailing_stop_pending, coarse_bar_stop | ema_len x2, tp_pct x2 | 4 |
+| 434445 | `ports/434445_1-1-profit-moving-average-cross-strategy/` | PineScript | ma_cross | coarse_bar_stop | fast x2, slow x2 | 4 |
+| 434446 | `ports/434446_supertrend-stoch-rsi-triple-supertrend-and-stoch-rsi-strateg/` | PineScript | supertrend | coarse_bar_stop | ema_len x2, tp_mult x2 | 4 |
+| 434458 | `ports/434458_adx-dual-moving-average-adx-timing-strategy/` | PineScript | combo_123_reversal | none | length x2, signal2 x2 | 4 |
+| 434466 | `ports/434466_k-dynamic-candlestick-big-yang-line-trading-strategy/` | PineScript | candle_pattern | trailing_stop_pending | bull_th x2, bear_th x2 | 4 |
+| 434467 | `ports/434467_improved-moving-average-crossover-strategy-with-market-trend/` | PineScript | ma_cross | none | fast x2, trend x2 | 4 |
+| 434470 | `ports/434470_auto-s-r-breakout-strategy/` | PineScript | pivot_reversal | none | left x2, right x2 | 4 |
+| 434473 | `ports/434473_moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 434478 | `ports/434478_multi-moving-average-crossover-trading-strategy/` | PineScript | ma_trend | none | short_len x2, long_len x2 | 4 |
+| 434480 | `ports/434480_rsi-rsi-based-quantitative-trading-strategy/` | PineScript | rsi_oscillator | none | slen x2, tp x2 | 4 |
+| 434482 | `ports/434482_bollinger-bands-reversal-with-ma-trend-filter/` | PineScript | bollinger_reversion | none | bb_len x2, ma_len x2 | 4 |
+| 434484 | `ports/434484_double-reversal-percentage-change-bar-quantitative-strategy/` | PineScript | combo_123_reversal | none | length x2, zone x2 | 4 |
+| | **1084 ports** | | | | | **5939** |
 
 ## Rejected on reading
 

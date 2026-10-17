@@ -2533,6 +2533,30 @@ SIZING = {
     434336: [],
     434344: [],
     434345: [],
+    # ---- FMZ-C, batch C67 (2026-10-17)
+    434428: [],
+    434434: [
+        ("TP / SL percent inputs (exits in ticks of the close)", 246, 249),
+    ],
+    434445: [],
+    434446: [
+        ("Fixed-quantity entries (10)", 269, 282),
+    ],
+    434458: [],
+    434466: [
+        ("Tick bracket from the average price", 172, 173),
+    ],
+    434467: [],
+    434470: [],
+    434473: [
+        ("Percent bracket on the average price", 148, 149),
+    ],
+    434478: [
+        ("strategy(): 100 % of equity, capital", 122, 122),
+    ],
+    434480: [],
+    434482: [],
+    434484: [],
 }
 
 REJECTED_ON_READING = {

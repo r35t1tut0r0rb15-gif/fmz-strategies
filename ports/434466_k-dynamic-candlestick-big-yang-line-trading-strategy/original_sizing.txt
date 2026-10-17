@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #434466 (动态K线大阳线交易策略Dynamic-Candlestick-Big-Yang-Line-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/434466  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Tick bracket from the average price  [lines 172-173]
+  172: stop_loss = strategy.position_avg_price - stop_loss_points * syminfo.mintick
+  173: take_profit = strategy.position_avg_price + target_points * syminfo.mintick

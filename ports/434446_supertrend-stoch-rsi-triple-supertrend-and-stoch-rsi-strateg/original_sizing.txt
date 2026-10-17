@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #434446 (三重SuperTrend和Stoch-RSI策略Triple-SuperTrend-and-Stoch-RSI-Strategy)
+# Source: https://www.fmz.com/strategy/434446  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Fixed-quantity entries (10)  [lines 269-282]
+  269:     strategy.entry("Long", strategy.long, 10)
+  270:     strategy.exit("Long exit","Long", limit = TP, stop = SL)
+  271:     alert("Long signal Supertrend \n Profit:"+tostring(TP)+"\Curret price:"+tostring(close)+"\Stop:"+tostring(SL),alert.freq_once_per_bar_close)
+  272:     //label.new(bar_index,low,text = "Long\nTP:"+tostring(TP)+"\nSL:"+tostring(SL)+"\nAbierto:"+tostring(current), yloc = yloc.belowbar, textcolor = color.white, color = color.green, size = size.small,  style = label.style_label_up)
+  273: 
+  274: if shortCondition
+  275:     short := true
+  276:     long := false
+  277:     drawing := true
+  278:     TP := shortProfit
+  279:     middle := current
+  280:     SL := shortStop
+  281:     initial := barInitial
+  282:     strategy.entry("Short", strategy.short, 10)
