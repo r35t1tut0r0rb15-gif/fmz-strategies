@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #434713 (移动平均线反弹策略Exponential-Moving-Average-Bounce-Strategy)
+# Source: https://www.fmz.com/strategy/434713  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital, commission  [lines 182-188]
+  182: strategy("EMA Bounce", overlay=true, 
+  183:      default_qty_type=strategy.percent_of_equity, 
+  184:      default_qty_value=100, 
+  185:      initial_capital=10000, 
+  186:      commission_value=0.04, 
+  187:      calc_on_every_tick=false, 
+  188:      slippage=0)

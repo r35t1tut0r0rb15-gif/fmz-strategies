@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2470 |
-| PORTED | 1116 |
+| PORT_CANDIDATE | 2457 |
+| PORTED | 1127 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 561 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 160 |
+| REJECTED_ON_READING | 162 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1244,7 +1244,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 434704 | `ports/434704_tenkan-kijun-adx-adx-based-one-hour-tenkan-kijun-cross-trend/` | PineScript | ichimoku | none | tenkan x2, adx_min x2 | 4 |
 | 434705 | `ports/434705_supertrend-engulfing-strategy/` | PineScript | candle_pattern | trailing_stop_pending | mult x2, pad_atr x2 | 4 |
 | 434706 | `ports/434706_crypto-bull-run-tracking-strategy/` | PineScript | ma_cross | none | dema_len x2, tema_len x2 | 4 |
-| | **1116 ports** | | | | | **6066** |
+| 434708 | `ports/434708_quantitative-trading-based-on-moving-average-envelope-and-at/` | PineScript | ma_envelope_breakout | none | pct x2, atr_mult x2 | 4 |
+| 434710 | `ports/434710_200-end-of-month-breakout-on-200-day-moving-average-strategy/` | PineScript | calendar_seasonal | none | dom x2, sma_len x2 | 4 |
+| 434711 | `ports/434711_supertrend-dema-supertrend-and-dema-based-trend-following-st/` | PineScript | supertrend | none | mult x2, ema_len x2 | 4 |
+| 434712 | `ports/434712_price-volatility-breakout-strategy-based-on-double-moving-av/` | PineScript | momentum_oscillator_turn | none | len1 x2, siglen x2 | 4 |
+| 434713 | `ports/434713_exponential-moving-average-bounce-strategy/` | PineScript | ma_pullback | coarse_bar_stop | ema_len x2, rr x2 | 4 |
+| 434715 | `ports/434715_macd-strategy-based-on-exponential-moving-average-and-macd-i/` | PineScript | macd_cross | trailing_stop_pending, coarse_bar_stop | len_ma x2, rr x2 | 4 |
+| 434718 | `ports/434718_supertrend-based-trend-tracking-strategy/` | PineScript | supertrend | none | mult x2, atr_len x2 | 4 |
+| 434957 | `ports/434957_golden-cross-moving-average-trading-strategy/` | PineScript | ma_cross | none | fast x2, sl_pct x2 | 4 |
+| 434960 | `ports/434960_macd-stochastics-macd-stochastics-range-breakout-strategy/` | PineScript | stochastic_oscillator | coarse_bar_stop | k_len x2, tp_pct x2 | 4 |
+| 434966 | `ports/434966_trend-trader-bands-backtest-strategy-based-on-trend-trader-m/` | PineScript | volatility_stop_cross | none | mult x2, step_atr x2 | 4 |
+| 434968 | `ports/434968_rsi-stochastic-oversold-and-overbought-range-rsi-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2 | 2 |
+| | **1127 ports** | | | | | **6108** |
 
 ## Rejected on reading
 
@@ -1410,6 +1421,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 434594 | 基于SAR指标-CCI指标的EMA黄金交易策略Parabolic-SAR-and-CCI-Strategy-with-EMA-Exit-for-Gold-Trading.md | 1 | The '5-minute EMA' is an ema() called only on bars whose bar_index is a multiple of 5, so its value depends on how many bars the chart holds before the first trade (the phase of the count), and the exits are a 7-tick target with a stop re-placed every bar at the EMA 50 (above the price for some longs, which fills at once); the signal is not defined independently of the chart's start. |
 | 434600 | 基于随机数字的量化交易策略Quantitative-Trading-Strategy-Based-on-Random-Numbers.md | 1 | Coin flip: the direction is coinLabel = random(1, 10) and the gap between flips is round(random(3, 25)), new draws each run; no deterministic signal to port (as #426621). |
 | 434679 | RSI趋势跟踪移动止损策略RSI-Trend-Following-Strategy-with-Trailing-Stop-Loss.md | 1 | Partial exits: two take-profit orders close 50 % and then the rest of the position (qty_percent 50 / 100), with levels re-placed every bar from the current high / low (as #365389). |
+| 434707 | 动向指数平均线交叉ADX交易策略ADX-Crossover-Trend-Trading-Strategy.md | 1 | Pyramiding 3 with adds when the close is under the averaged position price, and a stop and exits keyed on that averaged price; the position is a sum of units (as #426570). |
+| 434936 | Y-Profit-Maximizer策略Y-Profit-Maximizer-Strategy.md | 1 | Partial exits: the long is scaled out with limit orders for 33.3 %, then 50 %, then the rest (qty_percent), driven by counters of the script's own take-profit levels (as #365389). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

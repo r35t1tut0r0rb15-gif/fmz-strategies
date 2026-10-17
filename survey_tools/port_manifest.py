@@ -2626,6 +2626,22 @@ SIZING = {
         ("Stop level in ticks", 158, 174),
     ],
     434706: [],
+    # ---- FMZ-C, batch C71 (2026-10-17)
+    434708: [],
+    434710: [
+        ("strategy(): 100 % of equity", 117, 117),
+    ],
+    434711: [],
+    434712: [],
+    434713: [
+        ("strategy(): 100 % of equity, capital, commission", 182, 188),
+    ],
+    434715: [],
+    434718: [],
+    434957: [],
+    434960: [],
+    434966: [],
+    434968: [],
 }
 
 REJECTED_ON_READING = {
@@ -3236,6 +3252,13 @@ REJECTED_ON_READING = {
     434679: ("1", "Partial exits: two take-profit orders close 50 % and then the rest of the position "
               "(qty_percent 50 / 100), with levels re-placed every bar from the current high / "
               "low (as #365389)."),
+    # ---- FMZ-C, batch C71 (2026-10-17)
+    434707: ("1", "Pyramiding 3 with adds when the close is under the averaged position price, and a "
+              "stop and exits keyed on that averaged price; the position is a sum of units (as "
+              "#426570)."),
+    434936: ("1", "Partial exits: the long is scaled out with limit orders for 33.3 %, then 50 %, "
+              "then the rest (qty_percent), driven by counters of the script's own take-profit "
+              "levels (as #365389)."),
 }
 
 DUPLICATE_ON_READING = {
