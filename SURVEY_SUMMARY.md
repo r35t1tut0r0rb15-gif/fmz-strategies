@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2665 |
+| PORT_CANDIDATE | 2657 |
 | REJECTED | 994 |
-| PORTED | 952 |
+| PORTED | 957 |
 | HELD_NEEDS_VOLUME | 558 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 132 |
+| REJECTED_ON_READING | 135 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -922,6 +922,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430988 | `ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/` | PineScript | supertrend | none | mult x2, fisher_level x2 | 4 |
 | 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
 | 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
+| 484090 | `ports/484090_adaptive-volatility-based-trend-following-short-strategy-wit/` | PineScript | ma_trend_filter | none | stop_pct x2, delay_min x2 | 4 |
+| 484092 | `ports/484092_atr-atr-enhanced-candlestick-reversal-pattern-recognition-an/` | PineScript | candlestick_pattern | coarse_bar_stop, trailing_stop_pending | range_atr x2, tp_atr x2 | 4 |
+| 484094 | `ports/484094_technical-chart-pattern-confirmation-momentum-strategy/` | PineScript | chart_pattern | coarse_bar_stop, trailing_stop_pending | sl_mult x2, atr_len x2 | 4 |
+| 484096 | `ports/484096_dynamic-color-threshold-volatility-analysis-trading-strategy/` | PineScript | heikin_ashi | coarse_bar_stop, trailing_stop_pending | sl_atr x2, trade_type x2 | 4 |
+| 484098 | `ports/484098_multi-indicator-trend-reversal-volatility-conditional-select/` | PineScript | bollinger_reversion | trailing_stop_pending | session_tz x2, sl_atr x2 | 4 |
 | 484101 | `ports/484101_multi-dimensional-chart-pattern-quantitative-strategy-a-tech/` | PineScript | chart_pattern | coarse_bar_stop, trailing_stop_pending | sl_mult x2, atr_len x2 | 4 |
 | 484109 | `ports/484109_dynamic-risk-managed-rapid-sma-crossover-momentum-capture-st/` | PineScript | multi_indicator_confluence | coarse_bar_stop, trailing_stop_pending | sl_mult x2, tp_mult x2 | 4 |
 | 484571 | `ports/484571_ema-multi-timeframe-ema-crossover-trend-following-strategy-w/` | PineScript | ma_cross | trailing_stop | trail_frac x2, slow x2 | 4 |
@@ -1080,7 +1085,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491914 | `ports/491914_price-action-structural-breakout-strategy-with-trailing-stop/` | PineScript | price_action_breakout | trailing_stop | trail_k x2, trail_activate x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | macd_divergence | coarse_bar_stop, trailing_stop_pending | method x2, lb x2 | 4 |
 | 492009 | `ports/492009_atr-dual-ema-filtered-atr-adaptive-trend-following-strategy/` | PineScript | volatility_stop_cross | trailing_stop | atr_mult x2, trail_k x2 | 4 |
-| | **952 ports** | | | | | **5417** |
+| | **957 ports** | | | | | **5437** |
 
 ## Rejected on reading
 
@@ -1196,6 +1201,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430974 | 基于RSI和SuperTrend的双向交易策略RSI-and-SuperTrend-Based-Dual-Direction-Trading-Strategy.md | 1 | The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit cannot be expressed as one net position's signals (as #365389). Its momentum line also uses ta.vwma (volume, check 8). |
 | 430985 | 双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md | 2 | The second signal is a band of the nearest prime numbers above / below the high and low (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (as #430847). |
 | 430992 | 趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md | 1 | A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389). |
+| 483937 | SSL通道双阶梯利润策略-SSL-Channel-Dual-Tranche-Profit-Strategy.md | 1 | partial exits: the first tranche (qty = half the entry) leaves at entry + 1 ATR and the rest on a moving stop (as #365389) |
+| 483943 | 多重均线追踪策略与动态仓位管理系统-Multi-EMA-Trend-Following-Strategy-with-Dynamic-Position-Management-System.md | 1 | partial exits (strategy.exit qty_percent = 50 at a 1 R target for each tranche) on a ladder of up to five strategy.order adds: the size path is the strategy (as #365389, #426302) |
+| 484095 | 多时间框架趋势追踪与动量确认量化交易策略-Multi-Timeframe-Trend-Following-and-Momentum-Confirmation-Quantitative-Trading-Strategy.md | 1 | partial exits: strategy.exit('TP1', qty_percent = 50) at 1 ATR with the rest on a 3 ATR target and a trail (as #365389) |
 | 484582 | 基于随机指标与烛台模式的自动化市场反转交易策略-Automated-Market-Reversal-Trading-Strategy-Based-on-Stochastic-Indicator-and-Candlestick-Patterns.md | 1 | smoothK is var 0.0 but its first update takes ta.stoch's na (no 14-bar history yet) and na never recovers in the recursion, so bullZone / bearZone are never true and as written it never trades (as #430384) |
 | 484588 | 斐波那契模式统计分析策略-Fibonacci-Pattern-Statistical-Analysis-Strategy.md | 1 | partial exits: seven strategy.exit take-profit tranches with qty_percent = 14.28 each at +0.5 % steps (as #365389) |
 | 484769 | 多步骤非重绘Renko仿真趋势反转量化交易策略-Multi-Step-Non-Repainting-Renko-Emulation-Trend-Reversal-Quantitative-Trading-Strategy.md | 2 | a 3.0-price-unit Renko brick with no backtest header (no market or bar size to judge it against as an ATR multiple), and history offsets by the float brick size ([3.0] bars): no generic, repeatable reading |

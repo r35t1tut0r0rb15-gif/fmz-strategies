@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #484092 (ATR增强型蜡烛反转模式识别与风险管理策略-ATR-Enhanced-Candlestick-Reversal-Pattern-Recognition-and-Risk-Management-Strategy)
+# Source: https://www.fmz.com/strategy/484092  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 2 % of equity  [lines 213-213]
+  213: strategy("Hammers & Stars Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=2)
+
+## Bracket levels re-issued every bar  [lines 241-249]
+  241: slMultiplier = 1.5
+  242: tlMultiplier = 2.5
+  243: longStopLoss = low - slMultiplier * atrValue
+  244: longTakeProfit = close + tlMultiplier * atrValue
+  245: shortStopLoss = high + slMultiplier * atrValue
+  246: shortTakeProfit = close - tlMultiplier * atrValue
+  247: 
+  248: strategy.exit("Take Profit / Stop Loss", from_entry="Hammer Buy", stop=longStopLoss, limit=longTakeProfit)
+  249: strategy.exit("Take Profit / Stop Loss", from_entry="ShootingStar Sell", stop=shortStopLoss, limit=shortTakeProfit)

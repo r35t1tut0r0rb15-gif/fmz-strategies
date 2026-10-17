@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #484096 (动态色彩阈值波动分析交易策略-Dynamic-Color-Threshold-Volatility-Analysis-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/484096  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## SL / TP pip inputs  [lines 257-262]
+  257: stop_loss_pips = input.int(20, title="Stop Loss (pips)", minval=1)
+  258: // Input for take profit in pips
+  259: take_profit_pips = input.int(40, title="Take Profit (pips)", minval=1)
+  260: 
+  261: // Dynamically calculate the pip value based on the symbol's minimum tick size
+  262: pip_value = syminfo.mintick
+
+## Entries with the pip bracket  [lines 314-332]
+  314: if trade_type == "Both" or trade_type == "Long Only"
+  315:     if color_change_red_to_green
+  316:         strategy.entry("Long", strategy.long)
+  317:         // Set the stop loss for long trades (x pips below entry)
+  318:         long_stop_loss = close - stop_loss_pips * pip_value
+  319:         long_take_profit = close + take_profit_pips * pip_value
+  320:         strategy.exit("Long Exit", "Long", stop=long_stop_loss, limit=long_take_profit)
+  321:     if color_change_green_to_red
+  322:         strategy.close("Long")
+  323: 
+  324: if trade_type == "Both" or trade_type == "Short Only"
+  325:     if color_change_green_to_red
+  326:         strategy.entry("Short", strategy.short)
+  327:         // Set the stop loss for short trades (x pips above entry)
+  328:         short_stop_loss = close + stop_loss_pips * pip_value
+  329:         short_take_profit = close - take_profit_pips * pip_value
+  330:         strategy.exit("Short Exit", "Short", stop=short_stop_loss, limit=short_take_profit)
+  331:     if color_change_red_to_green
+  332:         strategy.close("Short")

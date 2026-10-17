@@ -2512,6 +2512,27 @@ SIZING = {
         ("Entries with the bracket", 225, 251),
     ],
     484584: [],
+    # ---- FMZ-C, batch L16 (2026-10-17)
+    484090: [
+        ("Stop / delay inputs", 219, 220),
+        ("Stop and delayed exits", 255, 267),
+    ],
+    484092: [
+        ("strategy(): 2 % of equity", 213, 213),
+        ("Bracket levels re-issued every bar", 241, 249),
+    ],
+    484094: [
+        ("ATR bracket", 224, 227),
+        ("Entries with the bracket", 271, 277),
+    ],
+    484096: [
+        ("SL / TP pip inputs", 257, 262),
+        ("Entries with the pip bracket", 314, 332),
+    ],
+    484098: [
+        ("strategy(): 100 % of equity", 173, 173),
+        ("ATR stop / target re-issued every bar", 227, 231),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2999,6 +3020,14 @@ REJECTED_ON_READING = {
               "and as written it never trades (as #430384)"),
     484588: ("1", "partial exits: seven strategy.exit take-profit tranches with qty_percent = 14.28 "
               "each at +0.5 % steps (as #365389)"),
+    # ---- FMZ-C, batch L16 (2026-10-17)
+    483937: ("1", "partial exits: the first tranche (qty = half the entry) leaves at entry + 1 ATR "
+              "and the rest on a moving stop (as #365389)"),
+    483943: ("1", "partial exits (strategy.exit qty_percent = 50 at a 1 R target for each tranche) on "
+              "a ladder of up to five strategy.order adds: the size path is the strategy (as "
+              "#365389, #426302)"),
+    484095: ("1", "partial exits: strategy.exit('TP1', qty_percent = 50) at 1 ATR with the rest on a "
+              "3 ATR target and a trail (as #365389)"),
 }
 
 DUPLICATE_ON_READING = {

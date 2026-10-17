@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #484090 (时间延迟与止损保护的自适应波动率趋势跟踪空头策略-Adaptive-Volatility-Based-Trend-Following-Short-Strategy-with-Time-Delay-and-Stop-Loss-Protection)
+# Source: https://www.fmz.com/strategy/484090  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / delay inputs  [lines 219-220]
+  219: delayMinutes = input.int(10, title="Delay Before Close (Minutes)")
+  220: stopLossPercent = input.float(0.5, title="Stop Loss (%)")
+
+## Stop and delayed exits  [lines 255-267]
+  255:     if (shortPositionOpen)
+  256:         stopLossPrice = shortEntryPrice * (1 + stopLossPercent / 100)
+  257:         if (high >= stopLossPrice)
+  258:             strategy.close("Short", comment="Stop Loss")
+  259:             shortPositionOpen := false
+  260:             shortEntryPrice := na
+  261:             entryTime := na
+  262:         else if (time >= entryTime + delayMinutes * 60 * 1000)
+  263:             if (crossUpSma or smaCrossUp)
+  264:                 strategy.close("Short", comment="Close")
+  265:                 shortPositionOpen := false
+  266:                 shortEntryPrice := na
+  267:                 entryTime := na
