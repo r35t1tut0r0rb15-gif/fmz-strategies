@@ -2577,6 +2577,28 @@ SIZING = {
     434562: [
         ("Long bracket percent inputs", 159, 165),
     ],
+    # ---- FMZ-C, batch C69 (2026-10-17)
+    434581: [
+        ("Fixed quantity 1 entries; the tick-sized max loss", 238, 247),
+    ],
+    434585: [],
+    434586: [],
+    434593: [
+        ("Quantity and stop-loss inputs (ticks)", 143, 144),
+        ("Fixed-quantity entries and exits", 162, 170),
+    ],
+    434598: [
+        ("Fixed quantity 1 entries", 185, 192),
+    ],
+    434602: [
+        ("Close-sized exits in ticks", 208, 225),
+    ],
+    434608: [],
+    434609: [],
+    434610: [
+        ("strategy(): 100 % of equity", 152, 153),
+    ],
+    434611: [],
 }
 
 REJECTED_ON_READING = {
@@ -3174,6 +3196,15 @@ REJECTED_ON_READING = {
     434575: ("1", "DCA ladder: up to 5 safety orders averaging down at thresholds keyed on the first "
               "entry price, with growing volumes, and a take profit on the averaged position "
               "price; the position is a sum of grid units (as #426570)."),
+    # ---- FMZ-C, batch C69 (2026-10-17)
+    434594: ("1", "The '5-minute EMA' is an ema() called only on bars whose bar_index is a multiple "
+              "of 5, so its value depends on how many bars the chart holds before the first trade "
+              "(the phase of the count), and the exits are a 7-tick target with a stop re-placed "
+              "every bar at the EMA 50 (above the price for some longs, which fills at once); the "
+              "signal is not defined independently of the chart's start."),
+    434600: ("1", "Coin flip: the direction is coinLabel = random(1, 10) and the gap between flips is "
+              "round(random(3, 25)), new draws each run; no deterministic signal to port (as "
+              "#426621)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -3207,4 +3238,6 @@ HELD_ON_READING = {
     432773: ("8", "The fast line is vwma(close, 3): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C64 (2026-10-17)
     433969: ("8", "The slow line is vwma(high, 7): a volume-weighted average (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C69 (2026-10-17)
+    434606: ("8", "One of the five averages is vwma(close, 136): a volume-weighted average (check 8, held with the other volume users)."),
 }

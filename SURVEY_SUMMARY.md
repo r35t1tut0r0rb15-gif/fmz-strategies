@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2496 |
-| PORTED | 1094 |
+| PORT_CANDIDATE | 2483 |
+| PORTED | 1104 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 560 |
+| HELD_NEEDS_VOLUME | 561 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 157 |
+| REJECTED_ON_READING | 159 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1222,7 +1222,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 434556 | `ports/434556_dynamic-momentum-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 434558 | `ports/434558_sma-ema-short-term-trading-strategy-based-on-sma-and-ema/` | PineScript | ma_cross | trailing_stop_pending, coarse_bar_stop | ema_len x2, tp_pct x2 | 4 |
 | 434562 | `ports/434562_rsi-alligator-rsi-trading-strategy/` | PineScript | rsi_oscillator | coarse_bar_stop | jaw x2, sl_pct x2 | 4 |
-| | **1094 ports** | | | | | **5978** |
+| 434581 | `ports/434581_intraday-pivot-points-trading-strategy/` | PineScript | pivot_levels | coarse_bar_stop | level x2, sl_pct x2 | 4 |
+| 434585 | `ports/434585_donchian-channel-with-trailing-stop-loss-strategy/` | PineScript | donchian_breakout | none | period x2, atr_div x2 | 4 |
+| 434586 | `ports/434586_camarilla-pivot-points-breakthrough-and-momentum-reversal-lo/` | PineScript | pivot_levels | none | level x2, reverse x2 | 4 |
+| 434593 | `ports/434593_ema-ema-momentum-moving-average-crossover-strategy/` | PineScript | ma_cross | coarse_bar_stop | fast x2, sl_atr x2 | 4 |
+| 434598 | `ports/434598_macd-macd-based-dual-trading-strategy/` | PineScript | macd_momentum | none | fast x2, slow x2 | 4 |
+| 434602 | `ports/434602_emaherokuapp-emaskeletonstrategy/` | PineScript | ma_trend | trailing_stop_pending | ema_len x2, safety_len x2 | 4 |
+| 434608 | `ports/434608_dual-moving-average-reversal-tracking-strategy/` | PineScript | pivot_levels | none | length x2, reverse x2 | 4 |
+| 434609 | `ports/434609_williams-moving-average-aggregation-williams-commercial-bid/` | PineScript | momentum_oscillator_turn | none | length x2, reverse x2 | 4 |
+| 434610 | `ports/434610_moving-average-pullback-trading-strategy/` | PineScript | ma_pullback | coarse_bar_stop | long_len x2, sl_pct x2 | 4 |
+| 434611 | `ports/434611_dual-moving-average-price-reversal-breakout-strategy/` | PineScript | combo_123_reversal | none | length x2, pct x2 | 4 |
+| | **1104 ports** | | | | | **6018** |
 
 ## Rejected on reading
 
@@ -1385,6 +1395,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 434485 | 基于趋势和均线的量化交易策略Trend-Following-Strategy-with-EMA.md | 1 | Reads the future: Pine v2 security(syminfo.tickerid, '180', close) without [1] behaves as lookahead_on, so on every 5-minute bar the 3-hour close is the final close of the current 3-hour bar, not known until it ends (SURVEY_README request.security rule, as #427066). |
 | 434549 | 双因子量化交易策略Dual-factor-Quant-Trading-Strategy.md | 2 | The second signal is the distance from the close to the nearest prime number of the price itself (integer steps of the quote unit): a property of the quote's numeric scale, not of the market; it cannot be made generic (as #430847). |
 | 434575 | 量化交易精准多空策略Fibonacci-Zone-DCA-Strategy.md | 1 | DCA ladder: up to 5 safety orders averaging down at thresholds keyed on the first entry price, with growing volumes, and a take profit on the averaged position price; the position is a sum of grid units (as #426570). |
+| 434594 | 基于SAR指标-CCI指标的EMA黄金交易策略Parabolic-SAR-and-CCI-Strategy-with-EMA-Exit-for-Gold-Trading.md | 1 | The '5-minute EMA' is an ema() called only on bars whose bar_index is a multiple of 5, so its value depends on how many bars the chart holds before the first trade (the phase of the count), and the exits are a 7-tick target with a stop re-placed every bar at the EMA 50 (above the price for some longs, which fills at once); the signal is not defined independently of the chart's start. |
+| 434600 | 基于随机数字的量化交易策略Quantitative-Trading-Strategy-Based-on-Random-Numbers.md | 1 | Coin flip: the direction is coinLabel = random(1, 10) and the gap between flips is round(random(3, 25)), new draws each run; no deterministic signal to port (as #426621). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

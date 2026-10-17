@@ -156,6 +156,8 @@ fmz_id,file,final_outcome,criterion,reason
 434485,基于趋势和均线的量化交易策略Trend-Following-Strategy-with-EMA.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 security(syminfo.tickerid, '180', close) without [1] behaves as lookahead_on, so on every 5-minute bar the 3-hour close is the final close of the current 3-hour bar, not known until it ends (SURVEY_README request.security rule, as #427066)."
 434549,双因子量化交易策略Dual-factor-Quant-Trading-Strategy.md,REJECTED_ON_READING,2,"The second signal is the distance from the close to the nearest prime number of the price itself (integer steps of the quote unit): a property of the quote's numeric scale, not of the market; it cannot be made generic (as #430847)."
 434575,量化交易精准多空策略Fibonacci-Zone-DCA-Strategy.md,REJECTED_ON_READING,1,"DCA ladder: up to 5 safety orders averaging down at thresholds keyed on the first entry price, with growing volumes, and a take profit on the averaged position price; the position is a sum of grid units (as #426570)."
+434594,基于SAR指标-CCI指标的EMA黄金交易策略Parabolic-SAR-and-CCI-Strategy-with-EMA-Exit-for-Gold-Trading.md,REJECTED_ON_READING,1,"The '5-minute EMA' is an ema() called only on bars whose bar_index is a multiple of 5, so its value depends on how many bars the chart holds before the first trade (the phase of the count), and the exits are a 7-tick target with a stop re-placed every bar at the EMA 50 (above the price for some longs, which fills at once); the signal is not defined independently of the chart's start."
+434600,基于随机数字的量化交易策略Quantitative-Trading-Strategy-Based-on-Random-Numbers.md,REJECTED_ON_READING,1,"Coin flip: the direction is coinLabel = random(1, 10) and the gap between flips is round(random(3, 25)), new draws each run; no deterministic signal to port (as #426621)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -168,6 +170,7 @@ fmz_id,file,final_outcome,criterion,reason
 432347,基于布林带黄金分割法的均衡回归交易策略Mean-Reversion-Trading-Strategy-Based-on-Bollinger-Bands-and-Golden-Ratio.md,HELD_NEEDS_VOLUME,8,"The band basis is vwma(hlc3, 50): a volume-weighted average (check 8, held with the other volume users)."
 432773,均线金叉死叉策略Cross-Moving-Average-Strategy.md,HELD_NEEDS_VOLUME,8,"The fast line is vwma(close, 3): a volume-weighted average (check 8, held with the other volume users)."
 433969,双重均线交叉移动平均策略Dual-Moving-Average-Crossover-Strategy.md,HELD_NEEDS_VOLUME,8,"The slow line is vwma(high, 7): a volume-weighted average (check 8, held with the other volume users)."
+434606,移动平均线聚合MACD策略Moving-Average-Aggregation-MACD-Strategy.md,HELD_NEEDS_VOLUME,8,"One of the five averages is vwma(close, 136): a volume-weighted average (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -1263,3 +1266,13 @@ fmz_id,file,final_outcome,criterion,reason
 434556,动量交叉均线策略Dynamic-Momentum-Strategy.md,PORTED,,ports/434556_dynamic-momentum-strategy/
 434558,基于SMA和EMA指标的短线交易策略Short-term-Trading-Strategy-Based-on-SMA-and-EMA.md,PORTED,,ports/434558_sma-ema-short-term-trading-strategy-based-on-sma-and-ema/
 434562,RSI鳄鱼交易策略Alligator-RSI-Trading-Strategy.md,PORTED,,ports/434562_rsi-alligator-rsi-trading-strategy/
+434581,日内交易关键点策略Intraday-Pivot-Points-Trading-Strategy.md,PORTED,,ports/434581_intraday-pivot-points-trading-strategy/
+434585,唐奇安通道带跟踪止损策略Donchian-Channel-With-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/434585_donchian-channel-with-trailing-stop-loss-strategy/
+434586,动量反转缩量突破型低吸金叉策略Camarilla-Pivot-Points-Breakthrough-and-Momentum-Reversal-Low-Absorption-Golden-Cross-Strategy.md,PORTED,,ports/434586_camarilla-pivot-points-breakthrough-and-momentum-reversal-lo/
+434593,EMA动量均线交叉策略EMA-Momentum-Moving-Average-Crossover-Strategy.md,PORTED,,ports/434593_ema-ema-momentum-moving-average-crossover-strategy/
+434598,基于MACD指标的双向交易策略MACD-based-Dual-Trading-Strategy.md,PORTED,,ports/434598_macd-macd-based-dual-trading-strategy/
+434602,动态EMAherokuapp俯瞰策略EMAskeletonstrategy.md,PORTED,,ports/434602_emaherokuapp-emaskeletonstrategy/
+434608,双均线反转跟踪策略Dual-Moving-Average-Reversal-Tracking-Strategy.md,PORTED,,ports/434608_dual-moving-average-reversal-tracking-strategy/
+434609,移动平均聚合Williams商业区买卖压力指标策略Moving-Average-Aggregation-Williams-Commercial-Bid-Ask-Pressure-Indicator-Strategy.md,PORTED,,ports/434609_williams-moving-average-aggregation-williams-commercial-bid/
+434610,移动平均回拉交易策略Moving-Average-Pullback-Trading-Strategy.md,PORTED,,ports/434610_moving-average-pullback-trading-strategy/
+434611,双均线再反转价格突破策略Dual-Moving-Average-Price-Reversal-Breakout-Strategy.md,PORTED,,ports/434611_dual-moving-average-price-reversal-breakout-strategy/

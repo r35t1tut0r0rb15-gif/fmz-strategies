@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #434581 (日内交易关键点策略Intraday-Pivot-Points-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/434581  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Fixed quantity 1 entries; the tick-sized max loss  [lines 238-247]
+  238: if (open < tradeEventPrice) and ( close >tradeEventPrice ) and ( hour < 13 ) and tradeLong
+  239: 	strategy.entry("buy", strategy.long, 1, when=strategy.position_size <= 0)
+  240: 
+  241: if (open > tradeEventPrice) and ( close <tradeEventPrice ) and ( hour < 13 ) and  tradeShort
+  242: 	strategy.entry("Sell", strategy.short, 1, when=strategy.position_size <= 0)
+  243: 
+  244: mxloss=orbPrevDayClose*maxLoss
+  245: 
+  246: strategy.exit("exit", "buy",  loss = mxloss) 
+  247: strategy.exit("exit", "Sell",  loss = mxloss) 
