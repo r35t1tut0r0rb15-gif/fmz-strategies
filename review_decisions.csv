@@ -153,6 +153,9 @@ fmz_id,file,final_outcome,criterion,reason
 433951,基于RSI均线的低买高卖短线量化交易策略RSI-Mean-Reversion-Quantitative-Trading-Strategy-Based-on-RSI-Average-Crossing.md,REJECTED_ON_READING,1,"pyramiding 3 with adds allowed only while the close is below strategy.position_avg_price minus a sum of ATRs (an averaging-down ladder keyed on the averaged price, as #426570), and the only exit is a resting limit at the signal close (as #427119)."
 434164,基于TFO和ATR的趋势跟踪止损策略TFO-and-ATR-Based-Trend-Tracking-Stop-Loss-Strategy.md,REJECTED_ON_READING,1,"pyramiding 15 cash adds, and the strategy's sell signal requires strategy.openprofit / (position_avg_price x position_size) above a threshold, so the exit depends on the averaged price and P&L of the stacked units (as #426570); the trailing stop arms at the averaged price + 15 %."
 434185,动态网格交易管理策略Dynamic-Grid-Trading-Management-Strategy.md,REJECTED_ON_READING,1,"Grid ladder: pyramiding 1000 with up to 15 buy and sell levels around a monthly pivot, each buying a cash quantity and selling a contract count, with the levels re-anchored on the average price of the stacked buys; the position is a sum of grid units (as #430596)."
+434485,基于趋势和均线的量化交易策略Trend-Following-Strategy-with-EMA.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 security(syminfo.tickerid, '180', close) without [1] behaves as lookahead_on, so on every 5-minute bar the 3-hour close is the final close of the current 3-hour bar, not known until it ends (SURVEY_README request.security rule, as #427066)."
+434549,双因子量化交易策略Dual-factor-Quant-Trading-Strategy.md,REJECTED_ON_READING,2,"The second signal is the distance from the close to the nearest prime number of the price itself (integer steps of the quote unit): a property of the quote's numeric scale, not of the market; it cannot be made generic (as #430847)."
+434575,量化交易精准多空策略Fibonacci-Zone-DCA-Strategy.md,REJECTED_ON_READING,1,"DCA ladder: up to 5 safety orders averaging down at thresholds keyed on the first entry price, with growing volumes, and a take profit on the averaged position price; the position is a sum of grid units (as #426570)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1250,3 +1253,13 @@ fmz_id,file,final_outcome,criterion,reason
 434480,基于RSI的量化交易策略RSI-Based-Quantitative-Trading-Strategy.md,PORTED,,ports/434480_rsi-rsi-based-quantitative-trading-strategy/
 434482,布林带反转与移动平均线趋势过滤Bollinger-Bands-Reversal-with-MA-Trend-Filter.md,PORTED,,ports/434482_bollinger-bands-reversal-with-ma-trend-filter/
 434484,双重反转百分比变化柱形图量化策略Double-Reversal-Percentage-Change-Bar-Quantitative-Strategy.md,PORTED,,ports/434484_double-reversal-percentage-change-bar-quantitative-strategy/
+434486,趋势ATR横向突破策略Honey-Trend-ATR-Breakout-Strategy.md,PORTED,,ports/434486_atr-honey-trend-atr-breakout-strategy/
+434487,动量突破卡玛拉支撑策略Momentum-Breakout-Camarilla-Support-Strategy.md,PORTED,,ports/434487_momentum-breakout-camarilla-support-strategy/
+434523,双均线交叉交易策略Dual-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/434523_dual-moving-average-crossover-trading-strategy/
+434525,基于多重移动平均线的趋势交易策略Trend-Trading-Strategy-Based-on-Multiple-Moving-Averages.md,PORTED,,ports/434525_trend-trading-strategy-based-on-multiple-moving-averages/
+434527,自适应移动平均线策略Malas-Adaptive-Moving-Average-Strategy.md,PORTED,,ports/434527_malas-adaptive-moving-average-strategy/
+434551,黄金通道反转策略Fibonacci-Retracement-Reversal-Strategy.md,PORTED,,ports/434551_fibonacci-retracement-reversal-strategy/
+434552,标准分数价格突破策略Z-Score-Price-Breakout-Strategy.md,PORTED,,ports/434552_z-score-price-breakout-strategy/
+434556,动量交叉均线策略Dynamic-Momentum-Strategy.md,PORTED,,ports/434556_dynamic-momentum-strategy/
+434558,基于SMA和EMA指标的短线交易策略Short-term-Trading-Strategy-Based-on-SMA-and-EMA.md,PORTED,,ports/434558_sma-ema-short-term-trading-strategy-based-on-sma-and-ema/
+434562,RSI鳄鱼交易策略Alligator-RSI-Trading-Strategy.md,PORTED,,ports/434562_rsi-alligator-rsi-trading-strategy/

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2509 |
-| PORTED | 1084 |
+| PORT_CANDIDATE | 2496 |
+| PORTED | 1094 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 560 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 154 |
+| REJECTED_ON_READING | 157 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1212,7 +1212,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 434480 | `ports/434480_rsi-rsi-based-quantitative-trading-strategy/` | PineScript | rsi_oscillator | none | slen x2, tp x2 | 4 |
 | 434482 | `ports/434482_bollinger-bands-reversal-with-ma-trend-filter/` | PineScript | bollinger_reversion | none | bb_len x2, ma_len x2 | 4 |
 | 434484 | `ports/434484_double-reversal-percentage-change-bar-quantitative-strategy/` | PineScript | combo_123_reversal | none | length x2, zone x2 | 4 |
-| | **1084 ports** | | | | | **5939** |
+| 434486 | `ports/434486_atr-honey-trend-atr-breakout-strategy/` | PineScript | pivot_reversal | none | atrdiv x2, sl_atr x2 | 4 |
+| 434487 | `ports/434487_momentum-breakout-camarilla-support-strategy/` | PineScript | pivot_levels | none | men_div x2, l_mult x2 | 4 |
+| 434523 | `ports/434523_dual-moving-average-crossover-trading-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| 434525 | `ports/434525_trend-trading-strategy-based-on-multiple-moving-averages/` | PineScript | ma_trend | none | length x3 | 3 |
+| 434527 | `ports/434527_malas-adaptive-moving-average-strategy/` | PineScript | ma_trend | none | fast_limit x2, slow_limit x2 | 4 |
+| 434551 | `ports/434551_fibonacci-retracement-reversal-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, pct x2 | 4 |
+| 434552 | `ports/434552_z-score-price-breakout-strategy/` | PineScript | zscore_reversion | none | period x2, trigger x2 | 4 |
+| 434556 | `ports/434556_dynamic-momentum-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 434558 | `ports/434558_sma-ema-short-term-trading-strategy-based-on-sma-and-ema/` | PineScript | ma_cross | trailing_stop_pending, coarse_bar_stop | ema_len x2, tp_pct x2 | 4 |
+| 434562 | `ports/434562_rsi-alligator-rsi-trading-strategy/` | PineScript | rsi_oscillator | coarse_bar_stop | jaw x2, sl_pct x2 | 4 |
+| | **1094 ports** | | | | | **5978** |
 
 ## Rejected on reading
 
@@ -1372,6 +1382,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433951 | 基于RSI均线的低买高卖短线量化交易策略RSI-Mean-Reversion-Quantitative-Trading-Strategy-Based-on-RSI-Average-Crossing.md | 1 | pyramiding 3 with adds allowed only while the close is below strategy.position_avg_price minus a sum of ATRs (an averaging-down ladder keyed on the averaged price, as #426570), and the only exit is a resting limit at the signal close (as #427119). |
 | 434164 | 基于TFO和ATR的趋势跟踪止损策略TFO-and-ATR-Based-Trend-Tracking-Stop-Loss-Strategy.md | 1 | pyramiding 15 cash adds, and the strategy's sell signal requires strategy.openprofit / (position_avg_price x position_size) above a threshold, so the exit depends on the averaged price and P&L of the stacked units (as #426570); the trailing stop arms at the averaged price + 15 %. |
 | 434185 | 动态网格交易管理策略Dynamic-Grid-Trading-Management-Strategy.md | 1 | Grid ladder: pyramiding 1000 with up to 15 buy and sell levels around a monthly pivot, each buying a cash quantity and selling a contract count, with the levels re-anchored on the average price of the stacked buys; the position is a sum of grid units (as #430596). |
+| 434485 | 基于趋势和均线的量化交易策略Trend-Following-Strategy-with-EMA.md | 1 | Reads the future: Pine v2 security(syminfo.tickerid, '180', close) without [1] behaves as lookahead_on, so on every 5-minute bar the 3-hour close is the final close of the current 3-hour bar, not known until it ends (SURVEY_README request.security rule, as #427066). |
+| 434549 | 双因子量化交易策略Dual-factor-Quant-Trading-Strategy.md | 2 | The second signal is the distance from the close to the nearest prime number of the price itself (integer steps of the quote unit): a property of the quote's numeric scale, not of the market; it cannot be made generic (as #430847). |
+| 434575 | 量化交易精准多空策略Fibonacci-Zone-DCA-Strategy.md | 1 | DCA ladder: up to 5 safety orders averaging down at thresholds keyed on the first entry price, with growing volumes, and a take profit on the averaged position price; the position is a sum of grid units (as #426570). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

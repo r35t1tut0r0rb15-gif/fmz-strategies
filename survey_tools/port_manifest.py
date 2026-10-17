@@ -2557,6 +2557,26 @@ SIZING = {
     434480: [],
     434482: [],
     434484: [],
+    # ---- FMZ-C, batch C68 (2026-10-17)
+    434486: [
+        ("strategy(): fixed quantity 1, capital", 187, 187),
+        ("Stop loss in ticks", 222, 228),
+    ],
+    434487: [],
+    434523: [],
+    434525: [],
+    434527: [],
+    434551: [
+        ("TP / SL percent inputs", 153, 155),
+    ],
+    434552: [],
+    434556: [],
+    434558: [
+        ("Close-sized exits", 169, 177),
+    ],
+    434562: [
+        ("Long bracket percent inputs", 159, 165),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3143,6 +3163,17 @@ REJECTED_ON_READING = {
               "pivot, each buying a cash quantity and selling a contract count, with the levels "
               "re-anchored on the average price of the stacked buys; the position is a sum of "
               "grid units (as #430596)."),
+    # ---- FMZ-C, batch C68 (2026-10-17)
+    434485: ("1", "Reads the future: Pine v2 security(syminfo.tickerid, '180', close) without [1] "
+              "behaves as lookahead_on, so on every 5-minute bar the 3-hour close is the final "
+              "close of the current 3-hour bar, not known until it ends (SURVEY_README "
+              "request.security rule, as #427066)."),
+    434549: ("2", "The second signal is the distance from the close to the nearest prime number of "
+              "the price itself (integer steps of the quote unit): a property of the quote's "
+              "numeric scale, not of the market; it cannot be made generic (as #430847)."),
+    434575: ("1", "DCA ladder: up to 5 safety orders averaging down at thresholds keyed on the first "
+              "entry price, with growing volumes, and a take profit on the averaged position "
+              "price; the position is a sum of grid units (as #426570)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #434486 (趋势ATR横向突破策略Honey-Trend-ATR-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/434486  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): fixed quantity 1, capital  [lines 187-187]
+  187: strategy(title="Strategy - Bobo PATR Swing", overlay=true, default_qty_type = strategy.fixed, default_qty_value = 1, initial_capital = 10000)
+
+## Stop loss in ticks  [lines 222-228]
+  222: inpTakeProfit   = input(defval = 0, title = "Take Profit (In Market MinTick Value)", minval = 0)
+  223: inpStopLoss     = input(defval = 100, title = "Stop Loss (In Market MinTick Value)", minval = 0)
+  224: 
+  225: // === RISK MANAGEMENT VALUE PREP ===
+  226: // if an input is less than 1, assuming not wanted so we assign 'na' value to disable it.
+  227: useTakeProfit   = inpTakeProfit  >= 1 ? inpTakeProfit  : na
+  228: useStopLoss     = inpStopLoss    >= 1 ? inpStopLoss    : na

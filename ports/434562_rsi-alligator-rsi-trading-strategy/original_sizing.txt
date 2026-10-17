@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #434562 (RSI鳄鱼交易策略Alligator-RSI-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/434562  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Long bracket percent inputs  [lines 159-165]
+  159: sl_inp = input(10, title='Stop Loss %', type=float)/100
+  160: tp_inp = input(90, title='Take Profit %', type=float)/100
+  161: 
+  162: stop_level = strategy.position_avg_price * (1 - sl_inp)
+  163: take_level = strategy.position_avg_price * (1 + tp_inp)
+  164: 
+  165: strategy.exit("Stop Loss/Profit", "Long", stop=stop_level, limit=take_level)
