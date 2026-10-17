@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #483115 (量子精确多指标趋势交叉交易策略-Quantum-Precision-Multi-Indicator-Trend-Crossover-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483115  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 106-106]
+  106: strategy("Quantum Precision Forex Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## ATR / RR inputs  [lines 109-111]
+  109: atrLength = input(14, "ATR Length")
+  110: atrMultiplier = input(2.0, "ATR Multiplier")
+  111: riskRewardRatio = input(3, "Risk-Reward Ratio")
+
+## Bracket distances  [lines 115-117]
+  115: aTR = ta.atr(atrLength)
+  116: stopLoss = atrMultiplier * aTR
+  117: takeProfit = stopLoss * riskRewardRatio
+
+## Entries with the bracket  [lines 129-135]
+  129: if (longCondition)
+  130:     strategy.entry("Quantum Long", strategy.long)
+  131:     strategy.exit("Quantum Exit Long", from_entry="Quantum Long", stop=close - stopLoss, limit=close + takeProfit)
+  132: 
+  133: if (shortCondition)
+  134:     strategy.entry("Quantum Short", strategy.short)
+  135:     strategy.exit("Quantum Exit Short", from_entry="Quantum Short", stop=close + stopLoss, limit=close - takeProfit)

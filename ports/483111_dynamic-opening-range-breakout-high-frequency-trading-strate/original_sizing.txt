@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #483111 (高频动态开盘区间突破交易策略-Dynamic-Opening-Range-Breakout-High-Frequency-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483111  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target sizes  [lines 164-165]
+  164:             float stopSize   = 0.5 * (orHigh - orLow)      // half the OR size
+  165:             float targetSize = 3 * stopSize      // 3x the stop => 1.5x the entire OR
+
+## Entries with the exits  [lines 168-183]
+  168:             if close > orHigh 
+  169:             // Only enter a new long if not already in a long position (optional)
+  170:                 if strategy.position_size <= 0
+  171:                     strategy.entry("ORB Long", strategy.long)
+  172:                     strategy.exit("Long Exit", from_entry = "ORB Long", stop = orHigh - stopSize, limit  = strategy.position_avg_price + targetSize)
+  173:                 // Flag that we've taken a trade today
+  174:                     tradeTakenToday := true
+  175:     
+  176:         // 3) Check if price breaks below OR => go short
+  177:             if close < orLow 
+  178:             // Only enter a new short if not already in a short position (optional)
+  179:                 if strategy.position_size >= 0
+  180:                     strategy.entry("ORB Short", strategy.short)
+  181:                     strategy.exit("Short Exit", from_entry = "ORB Short", stop = orLow + stopSize, limit  = strategy.position_avg_price - targetSize)
+  182:                 // Flag that we've taken a trade today
+  183:                     tradeTakenToday := true
+
+## 16:00 close_all  [lines 184-185]
+  184: if hour(time, "America/New_York") == 16 and minute(time, "America/New_York") == 0
+  185:     strategy.close_all()

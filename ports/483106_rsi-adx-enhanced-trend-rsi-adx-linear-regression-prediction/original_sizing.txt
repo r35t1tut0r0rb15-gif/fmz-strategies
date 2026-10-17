@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483106 (趋势增强型RSI-ADX线性回归预测交易策略-Enhanced-Trend-RSI-ADX-Linear-Regression-Prediction-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483106  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 101-101]
+  101: strategy("RSI + ADX + ML-like Strategy (5min)", overlay=true)

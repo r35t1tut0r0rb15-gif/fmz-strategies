@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #483104 (多重均线与RSI交叉动态ATR止盈止损策略-Multi-SMA-and-RSI-Crossover-Strategy-with-Dynamic-ATR-based-Take-Profit-and-Stop-Loss)
+# Source: https://www.fmz.com/strategy/483104  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 99-99]
+   99: strategy("Virat Bharat Auto Trade", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## ATR multiplier inputs  [lines 106-107]
+  106: atrMultiplierSL = input(1.5, title="ATR Multiplier for Stop Loss")
+  107: atrMultiplierTP = input(2.5, title="ATR Multiplier for Target")
+
+## Entry with the tick exit  [lines 142-144]
+  142: if buySignal
+  143:     strategy.entry("BUY", strategy.long)
+  144:     strategy.exit("SELL", from_entry="BUY", loss=atrValue * atrMultiplierSL, profit=atrValue * atrMultiplierTP)

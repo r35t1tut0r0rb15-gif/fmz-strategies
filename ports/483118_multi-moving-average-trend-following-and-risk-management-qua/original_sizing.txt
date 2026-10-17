@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #483118 (多重均线趋势追踪与风控优化量化交易策略-Multi-Moving-Average-Trend-Following-and-Risk-Management-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483118  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk per trade input  [lines 110-110]
+  110: riskPerTrade = input.float(1.0, title="Risk % per Trade", minval=0.1, maxval=5.0, step=0.1)  // Risk % of equity
+
+## Risk-based qty  [lines 122-123]
+  122: riskAmount = strategy.equity * (riskPerTrade / 100)  // Risk % of account equity
+  123: positionSize = riskAmount / (atr * atrMultiplier)  // ATR-based stop-loss distance
+
+## Trailing exit  [lines 131-131]
+  131: strategy.exit("Trailing Stop", from_entry="Buy", trail_points=atr * 1.5, trail_offset=atr * 1.5)  // Trailing stop
+
+## Entry with the qty  [lines 134-135]
+  134: if (longCondition)
+  135:     strategy.entry("Buy", strategy.long, qty=positionSize)

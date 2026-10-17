@@ -2647,6 +2647,66 @@ SIZING = {
         ("Stop / target inputs", 105, 106),
         ("Exits from position_avg_price", 186, 191),
     ],
+    # ---- FMZ-C, batch L20 (2026-10-17)
+    483103: [
+        ("strategy(): 10 % of equity", 119, 119),
+        ("Bracket levels and exit", 187, 191),
+    ],
+    483104: [
+        ("strategy(): 10 % of equity", 99, 99),
+        ("ATR multiplier inputs", 106, 107),
+        ("Entry with the tick exit", 142, 144),
+    ],
+    483106: [
+        ("strategy(): defaults", 101, 101),
+    ],
+    483108: [
+        ("strategy(): commission / slippage", 101, 101),
+        ("Entries with qty = 1", 123, 144),
+    ],
+    483111: [
+        ("Stop / target sizes", 164, 165),
+        ("Entries with the exits", 168, 183),
+        ("16:00 close_all", 184, 185),
+    ],
+    483112: [
+        ("strategy(): 100 % of equity", 116, 118),
+    ],
+    483113: [
+        ("strategy(): 100 % of equity", 108, 108),
+    ],
+    483114: [
+        ("Bracket levels", 118, 119),
+        ("Entries with the bracket", 144, 150),
+    ],
+    483115: [
+        ("strategy(): 10 % of equity", 106, 106),
+        ("ATR / RR inputs", 109, 111),
+        ("Bracket distances", 115, 117),
+        ("Entries with the bracket", 129, 135),
+    ],
+    483116: [
+        ("strategy(): defaults", 106, 106),
+    ],
+    483117: [
+        ("strategy(): 100 % of equity", 105, 105),
+    ],
+    483118: [
+        ("Risk per trade input", 110, 110),
+        ("Risk-based qty", 122, 123),
+        ("Trailing exit", 131, 131),
+        ("Entry with the qty", 134, 135),
+    ],
+    483119: [
+        ("SL / TP dollar inputs", 100, 101),
+        ("Equity-scaled lot size", 104, 104),
+        ("Entries with the lot size", 188, 192),
+        ("Exits from position_avg_price", 199, 206),
+    ],
+    483120: [
+        ("SL / target inputs", 105, 106),
+        ("Entries with the bracket", 110, 123),
+    ],
 }
 
 REJECTED_ON_READING = {

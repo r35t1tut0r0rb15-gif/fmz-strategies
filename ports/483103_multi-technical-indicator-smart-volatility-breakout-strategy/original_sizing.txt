@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #483103 (多重技术指标智能波动突破策略-Multi-Technical-Indicator-Smart-Volatility-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/483103  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 119-119]
+  119: strategy("Bollinger Bands + Stochastic Oscillator + ATR Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## Bracket levels and exit  [lines 187-191]
+  187: stop_level = close - atr_mult * atr
+  188: take_level = close + atr_mult * atr
+  189: 
+  190: if (buyCondition)
+  191:     strategy.exit("Take Profit/Stop Loss", from_entry="Long", stop=stop_level, limit=take_level)

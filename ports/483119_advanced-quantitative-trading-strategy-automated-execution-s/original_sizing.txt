@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #483119 (高级量化交易策略基于日内动量与风险管理的自动化执行系统-Advanced-Quantitative-Trading-Strategy-Automated-Execution-System-Based-on-Intraday-Momentum-and-Risk-Management)
+# Source: https://www.fmz.com/strategy/483119  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## SL / TP dollar inputs  [lines 100-101]
+  100: sl = input.float(title="Stop Loss ($)", defval=5, step=0.1)
+  101: tp = input.float(title="Take Profit ($)", defval=15, step=0.1)
+
+## Equity-scaled lot size  [lines 104-104]
+  104: lotSize = strategy.equity / strategy.initial_capital
+
+## Entries with the lot size  [lines 188-192]
+  188: if (strategy.position_size == 0) and tradingAllowed and (not dailyTPHit)
+  189:     if buySignal
+  190:         strategy.entry("Long", strategy.long, qty=lotSize)
+  191:     if sellSignal
+  192:         strategy.entry("Short", strategy.short, qty=lotSize)
+
+## Exits from position_avg_price  [lines 199-206]
+  199: if strategy.position_size > 0
+  200:     longSL = strategy.position_avg_price - sl
+  201:     longTP = strategy.position_avg_price + tp
+  202:     strategy.exit("Exit Long", from_entry="Long", stop=longSL, limit=longTP)
+  203: if strategy.position_size < 0
+  204:     shortSL = strategy.position_avg_price + sl
+  205:     shortTP = strategy.position_avg_price - tp
+  206:     strategy.exit("Exit Short", from_entry="Short", stop=shortSL, limit=shortTP)

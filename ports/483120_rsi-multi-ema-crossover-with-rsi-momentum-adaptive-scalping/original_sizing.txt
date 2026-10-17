@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #483120 (多重均线交叉与RSI动量联动短线自适应交易策略-Multi-EMA-Crossover-with-RSI-Momentum-Adaptive-Scalping-Strategy)
+# Source: https://www.fmz.com/strategy/483120  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## SL / target inputs  [lines 105-106]
+  105: stop_loss_percent = input.float(0.5, "Stop Loss (%)", step=0.1)
+  106: target_percent = input.float(1.0, "Target (%)", step=0.1)
+
+## Entries with the bracket  [lines 110-123]
+  110: if (longCondition)
+  111:     strategy.entry("Buy", strategy.long)
+  112:     stopLossPrice = close * (1 - stop_loss_percent / 100)
+  113:     takeProfitPrice = close * (1 + target_percent / 100)
+  114:     strategy.exit("Exit Buy", "Buy", stop=stopLossPrice, limit=takeProfitPrice)
+  115: 
+  116: 
+  117: // Short condition
+  118: shortCondition = ta.crossunder(ema9, ema21) and close < ema50 and rsi < 60 and rsi > 30
+  119: if (shortCondition)
+  120:     strategy.entry("Sell", strategy.short)
+  121:     stopLossPrice = close * (1 + stop_loss_percent / 100)
+  122:     takeProfitPrice = close * (1 - target_percent / 100)
+  123:     strategy.exit("Exit Sell", "Sell", stop=stopLossPrice, limit=takeProfitPrice)
