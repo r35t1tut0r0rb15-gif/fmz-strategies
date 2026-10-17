@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #489284 (多时间框架动量突破交易策略结合趋势跟踪与ATR风险管理-Multi-Timeframe-Momentum-Breakout-Trading-Strategy-with-Trend-Following-and-ATR-Risk-Management)
+# Source: https://www.fmz.com/strategy/489284  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 210-210]
+  210: strategy("Ruben.Ramiro - Momentum Breakout Strategy", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## ATR stop and trail inputs  [lines 223-225]
+  223: atrLen       = input.int(14, "ATR Period", minval=1)
+  224: atrMultSL    = input.float(1.5, "ATR Stop-Loss Multiplier", step=0.1)
+  225: atrMultTrail = input.float(1.5, "ATR Trailing Stop Multiplier", step=0.1)
+
+## Stop and trail re-issued every bar  [lines 255-261]
+  255: if (strategy.position_size > 0)  // If a Long position is open
+  256:     stopLong = strategy.position_avg_price - atr * atrMultSL
+  257:     strategy.exit("Exit Long", from_entry="Long", stop=stopLong, trail_points=atr * atrMultTrail, trail_offset=atr * atrMultTrail)
+  258:     
+  259: if (strategy.position_size < 0)  // If a Short position is open
+  260:     stopShort = strategy.position_avg_price + atr * atrMultSL
+  261:     strategy.exit("Exit Short", from_entry="Short", stop=stopShort, trail_points=atr * atrMultTrail, trail_offset=atr * atrMultTrail)

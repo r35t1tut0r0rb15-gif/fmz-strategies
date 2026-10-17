@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #489289 (多周期指数移动平均云趋势跟踪做空策略-Multi-Timeframe-EMA-Cloud-Trend-Following-Short-Strategy)
+# Source: https://www.fmz.com/strategy/489289  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 198-198]
+  198: strategy(title="Short-Only MTF EMA Cloud Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100, currency=currency.USD)
+
+## Stop / target percent inputs  [lines 210-211]
+  210: sl_percent = input.float(1.0, title="Stop Loss (%)", minval=0.1, step=0.1, group="Risk Management") / 100
+  211: tp_percent = input.float(2.0, title="Take Profit (%)", minval=0.1, step=0.1, group="Risk Management") / 100
+
+## Bracket from the average price with the entry  [lines 235-241]
+  235: short_stop_price = strategy.position_avg_price * (1 + sl_percent)
+  236: short_take_profit = strategy.position_avg_price * (1 - tp_percent)
+  237: 
+  238: // Strategy Execution
+  239: if (short_entry)
+  240:     strategy.entry("Short", strategy.short)
+  241:     strategy.exit("Take Profit/Stop Loss", from_entry="Short", stop=short_stop_price, limit=short_take_profit)

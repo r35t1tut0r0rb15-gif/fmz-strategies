@@ -1,0 +1,33 @@
+# Original sizing and money-management code, FMZ #489294 (多指标趋势动量融合策略-RSI-MACD-双重超趋势跟踪系统-Multi-Indicator-Trend-Momentum-Fusion-Strategy-RSI-MACD-Dual-Supertrend-Tracking-System)
+# Source: https://www.fmz.com/strategy/489294  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / break-even / target / trail inputs  [lines 182-185]
+  182: atrSLMultiplier = input.float(1, title="ATR Multiplier for Stop Loss")  // Updated
+  183: atrBETrigger = input.float(1, title="Move SL to Breakeven at X ATR")    // Updated
+  184: atrTPMultiplier = input.float(2.5, title="Take Profit at X ATR")  
+  185: atrTrailMultiplier = input.float(1, title="Trailing Stop ATR Multiplier") // Updated
+
+## Exit levels  [lines 219-231]
+  219: longStopLoss = close - (atrSLMultiplier * atr)
+  220: shortStopLoss = close + (atrSLMultiplier * atr)
+  221: 
+  222: longTakeProfit = close + (atrTPMultiplier * atr)
+  223: shortTakeProfit = close - (atrTPMultiplier * atr)
+  224: 
+  225: // Move SL to Breakeven
+  226: longBreakEven = close + (atrBETrigger * atr)
+  227: shortBreakEven = close - (atrBETrigger * atr)
+  228: 
+  229: // Trailing Stop Loss (Convert to Points)
+  230: longTrailingStop = atrTrailMultiplier * atr
+  231: shortTrailingStop = atrTrailMultiplier * atr
+
+## Entries and exits re-issued every bar  [lines 234-240]
+  234: if longCondition
+  235:     strategy.entry("Long", strategy.long)
+  236: if shortCondition
+  237:     strategy.entry("Short", strategy.short)
+  238: 
+  239: strategy.exit("Long Exit", from_entry="Long", stop=longStopLoss, limit=longTakeProfit, trail_points=longTrailingStop)
+  240: strategy.exit("Short Exit", from_entry="Short", stop=shortStopLoss, limit=shortTakeProfit, trail_points=shortTrailingStop)

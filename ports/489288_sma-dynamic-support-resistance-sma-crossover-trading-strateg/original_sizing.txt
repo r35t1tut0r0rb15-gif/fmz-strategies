@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #489288 (动态支撑阻力SMA交叉黄金交易策略三重确认与风险管理优化框架-Dynamic-Support-Resistance-SMA-Crossover-Trading-Strategy-Triple-Confirmation-with-Risk-Management-Optimization-Framework)
+# Source: https://www.fmz.com/strategy/489288  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 1 % of equity  [lines 181-181]
+  181: strategy("Gold Scalping 3M 10-20 SMA", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=1)
+
+## Swing stops and 2 R targets  [lines 204-211]
+  204: longSL = recentLow  // SL for Buy = Last 10-bar Low
+  205: shortSL = recentHigh  // SL for Sell = Last 10-bar High
+  206: 
+  207: riskSizeLong = close - longSL  // Risk for Buy
+  208: riskSizeShort = shortSL - close  // Risk for Sell
+  209: 
+  210: longTP = close + (riskSizeLong * 2)  // 1:2 RR TP for Buy
+  211: shortTP = close - (riskSizeShort * 2)  // 1:2 RR TP for Sell
+
+## Entries and exits re-issued every bar  [lines 218-222]
+  218: strategy.entry("Long", strategy.long, when=buyCondition)
+  219: strategy.exit("Exit Long", from_entry="Long", stop=longSL, limit=longTP)
+  220: 
+  221: strategy.entry("Short", strategy.short, when=sellCondition)
+  222: strategy.exit("Exit Short", from_entry="Short", stop=shortSL, limit=shortTP)

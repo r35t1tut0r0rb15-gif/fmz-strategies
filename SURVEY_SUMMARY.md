@@ -11,9 +11,9 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2795 |
+| PORT_CANDIDATE | 2782 |
 | REJECTED | 994 |
-| PORTED | 840 |
+| PORTED | 853 |
 | HELD_NEEDS_VOLUME | 556 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
@@ -922,6 +922,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430988 | `ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/` | PineScript | supertrend | none | mult x2, fisher_level x2 | 4 |
 | 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
 | 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
+| 489187 | `ports/489187_ghost-moving-average-with-momentum-integration-and-fibonacci/` | PineScript | hull_ma | coarse_bar_stop | gma_len x2, swing x2 | 4 |
+| 489189 | `ports/489189_trendsync-pro-smc-trendsync-pro-smc-multi-timeframe-trend-fo/` | PineScript | pivot_levels | none | trend_period x2, tp_pct x2 | 4 |
+| 489198 | `ports/489198_multi-momentum-indicator-trend-tracking-quantitative-trading/` | PineScript | ma_cross | none | ema_fast x2, ema_slow x2 | 4 |
+| 489281 | `ports/489281_multi-timeframe-bollinger-band-breakout-reversion-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | mult x2, rr x2 | 4 |
+| 489284 | `ports/489284_atr-multi-timeframe-momentum-breakout-trading-strategy-with/` | PineScript | donchian_breakout | coarse_bar_stop, trailing_stop, trailing_stop_pending | breakout x2, atr_mult x2 | 4 |
+| 489285 | `ports/489285_smart-trading-momentum-and-moving-average-hybrid-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 489288 | `ports/489288_sma-dynamic-support-resistance-sma-crossover-trading-strateg/` | PineScript | ma_cross | trailing_stop_pending | swing x2, rr x2 | 4 |
+| 489289 | `ports/489289_multi-timeframe-ema-cloud-trend-following-short-strategy/` | PineScript | ma_cross | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
+| 489292 | `ports/489292_macd-important-zone-macd-crossover-momentum-trend-capture-st/` | PineScript | macd_cross | none | zone_atr x2, slow x2 | 4 |
+| 489294 | `ports/489294_rsi-macd-multi-indicator-trend-momentum-fusion-strategy-rsi/` | PineScript | multi_indicator_confluence | trailing_stop_pending | rsi_low x2, tp_atr x2 | 4 |
+| 489295 | `ports/489295_multi-candlestick-pattern-recognition-and-automated-trading/` | PineScript | candle_pattern | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
+| 489296 | `ports/489296_triple-candle-breakout-momentum-heikin-ashi-trading-system/` | PineScript | heikin_ashi_trend | none | n_opposite x2 | 2 |
+| 489297 | `ports/489297_ema-supertrend-multi-timeframe-trend-following-strategy-base/` | PineScript | supertrend | none | multiplier x2, slow x2 | 4 |
 | 489300 | `ports/489300_configurable-moving-average-crossover-strategy/` | PineScript | ma_trend | none | ma_type x2, enable_shorts x2 | 4 |
 | 489301 | `ports/489301_quantitative-long-short-trend-tracking-dynamic-stop-loss-str/` | PineScript | volatility_stop_cross | none | key x2, heikin x2 | 4 |
 | 489304 | `ports/489304_multi-ema-crossover-strategy/` | PineScript | ma_cross | none |  | 0 |
@@ -968,7 +981,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491914 | `ports/491914_price-action-structural-breakout-strategy-with-trailing-stop/` | PineScript | price_action_breakout | trailing_stop | trail_k x2, trail_activate x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | macd_divergence | coarse_bar_stop, trailing_stop_pending | method x2, lb x2 | 4 |
 | 492009 | `ports/492009_atr-dual-ema-filtered-atr-adaptive-trend-following-strategy/` | PineScript | volatility_stop_cross | trailing_stop | atr_mult x2, trail_k x2 | 4 |
-| | **840 ports** | | | | | **4991** |
+| | **853 ports** | | | | | **5041** |
 
 ## Rejected on reading
 

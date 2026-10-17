@@ -1,0 +1,30 @@
+# Original sizing and money-management code, FMZ #489285 (智能交易动量均线混合策略-Smart-Trading-Momentum-and-Moving-Average-Hybrid-Strategy)
+# Source: https://www.fmz.com/strategy/489285  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 157-157]
+  157: strategy("Smart Trade By Amit Roy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+
+## Risk, reward, capital and ATR inputs  [lines 160-163]
+  160: riskPercent = input.float(3, title="Risk Percentage per Trade (%)", minval=0.1, step=0.1)
+  161: rewardRatio = input.float(3, title="Risk-Reward Ratio", minval=1.0)
+  162: capital = input.float(10000, title="Starting Capital ($)", minval=1)
+  163: atrMultiplier = input.float(1.5, title="ATR Multiplier for Stop Loss")
+
+## Stop distance and risk-based size  [lines 169-175]
+  169: atrValue = ta.atr(atrLength)
+  170: stopLossDistance = atrValue * atrMultiplier
+  171: takeProfitDistance = stopLossDistance * rewardRatio
+  172: 
+  173: // Position Sizing Calculation
+  174: riskAmount = capital * (riskPercent / 100)
+  175: positionSize = riskAmount / stopLossDistance
+
+## Entries with qty and the (inert) exits  [lines 222-228]
+  222: if (longCondition)
+  223:     strategy.entry("उड़ाओ ", strategy.long, qty=positionSize)
+  224:     strategy.exit("Take Profit", from_entry="Long", limit=close + takeProfitDistance, stop=close - stopLossDistance)
+  225: 
+  226: if (shortCondition)
+  227:     strategy.entry("गिराओ", strategy.short, qty=positionSize)
+  228:     strategy.exit("Take Profit", from_entry="Short", limit=close - takeProfitDistance, stop=close + stopLossDistance)

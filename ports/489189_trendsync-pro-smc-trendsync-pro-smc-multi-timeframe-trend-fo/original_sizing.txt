@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #489189 (TrendSync-Pro-SMC-多时间框架趋势跟随策略-TrendSync-Pro-SMC-Multi-Timeframe-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/489189  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 1 % of equity  [lines 182-182]
+  182: strategy('TrendSync Pro (SMC)', overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=1)
+
+## Stop / target percent inputs  [lines 192-193]
+  192: float sl_percent = input.float(1.0, "Stop Loss (%)", minval=0.1, maxval=10, step=0.1, group="Risk Management")
+  193: float tp_percent = input.float(2.0, "Take Profit (%)", minval=0.1, maxval=10, step=0.1, group="Risk Management")
+
+## Flat-only entries with the bracket  [lines 228-235]
+  228: if strategy.position_size == 0
+  229:     if long_condition
+  230:         strategy.entry("Long", strategy.long)
+  231:         strategy.exit("Long Exit", "Long", stop=close*(1-sl_percent/100), limit=close*(1+tp_percent/100))
+  232:     
+  233:     if short_condition
+  234:         strategy.entry("Short", strategy.short)
+  235:         strategy.exit("Short Exit", "Short", stop=close*(1+sl_percent/100), limit=close*(1-tp_percent/100))

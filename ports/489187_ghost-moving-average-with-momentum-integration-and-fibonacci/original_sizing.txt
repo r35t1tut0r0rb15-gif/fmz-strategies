@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #489187 (幽灵移动平均与动量结合的斐波那契目标价与止损策略-Ghost-Moving-Average-with-Momentum-Integration-and-Fibonacci-Target-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/489187  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 141-141]
+  141: strategy("Ghost MA + Momentum + Fib TP/SL + Dashboard", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## Fibonacci targets and stops  [lines 164-178]
+  164: highestHigh = ta.highest(high, swingLookback)
+  165: lowestLow = ta.lowest(low, swingLookback)
+  166: fibRange = highestHigh - lowestLow
+  167: entryPrice = close
+  168: 
+  169: // === FIBONACCI TP/SL LEVELS ===
+  170: tp1_long = entryPrice + (fibRange * 0.618)
+  171: tp2_long = entryPrice + (fibRange * 1.0)
+  172: tp3_long = entryPrice + (fibRange * 1.618)
+  173: sl_long  = entryPrice - (fibRange * 0.382)
+  174: 
+  175: tp1_short = entryPrice - (fibRange * 0.618)
+  176: tp2_short = entryPrice - (fibRange * 1.0)
+  177: tp3_short = entryPrice - (fibRange * 1.618)
+  178: sl_short  = entryPrice + (fibRange * 0.382)
+
+## Entries with the bracket  [lines 184-190]
+  184: if (longCond)
+  185:     strategy.entry("Long", strategy.long)
+  186:     strategy.exit("TP/SL Long", from_entry="Long", limit=tp1_long, stop=sl_long)
+  187: 
+  188: if (shortCond)
+  189:     strategy.entry("Short", strategy.short)
+  190:     strategy.exit("TP/SL Short", from_entry="Short", limit=tp1_short, stop=sl_short)

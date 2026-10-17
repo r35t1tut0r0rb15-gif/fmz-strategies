@@ -2070,6 +2070,61 @@ SIZING = {
         ("Risk-based lot size", 200, 206),
         ("Entries with lot and bracket", 227, 234),
     ],
+    # ---- FMZ-C, batch L5 (2026-10-17)
+    489187: [
+        ("strategy(): 10 % of equity", 141, 141),
+        ("Fibonacci targets and stops", 164, 178),
+        ("Entries with the bracket", 184, 190),
+    ],
+    489189: [
+        ("strategy(): 1 % of equity", 182, 182),
+        ("Stop / target percent inputs", 192, 193),
+        ("Flat-only entries with the bracket", 228, 235),
+    ],
+    489198: [],
+    489281: [
+        ("Fixed-loss cap", 215, 215),
+        ("Short setup: levels, quantity, entry", 218, 226),
+        ("Short break-even stop and target", 229, 234),
+        ("Long setup: levels, quantity, entry", 237, 245),
+        ("Long break-even stop and target", 248, 253),
+    ],
+    489284: [
+        ("strategy(): 10 % of equity", 210, 210),
+        ("ATR stop and trail inputs", 223, 225),
+        ("Stop and trail re-issued every bar", 255, 261),
+    ],
+    489285: [
+        ("strategy(): 100 % of equity", 157, 157),
+        ("Risk, reward, capital and ATR inputs", 160, 163),
+        ("Stop distance and risk-based size", 169, 175),
+        ("Entries with qty and the (inert) exits", 222, 228),
+    ],
+    489288: [
+        ("strategy(): 1 % of equity", 181, 181),
+        ("Swing stops and 2 R targets", 204, 211),
+        ("Entries and exits re-issued every bar", 218, 222),
+    ],
+    489289: [
+        ("strategy(): 100 % of equity", 198, 198),
+        ("Stop / target percent inputs", 210, 211),
+        ("Bracket from the average price with the entry", 235, 241),
+    ],
+    489292: [],
+    489294: [
+        ("Stop / break-even / target / trail inputs", 182, 185),
+        ("Exit levels", 219, 231),
+        ("Entries and exits re-issued every bar", 234, 240),
+    ],
+    489295: [
+        ("strategy(): 10 % of equity", 180, 180),
+        ("SL / TP percent", 183, 184),
+        ("Entries with loss / profit", 233, 239),
+    ],
+    489296: [],
+    489297: [
+        ("strategy(): 100 % of equity", 177, 177),
+    ],
 }
 
 REJECTED_ON_READING = {
