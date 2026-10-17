@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2749 |
+| PORT_CANDIDATE | 2735 |
 | REJECTED | 994 |
-| PORTED | 883 |
+| PORTED | 896 |
 | HELD_NEEDS_VOLUME | 557 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 118 |
+| REJECTED_ON_READING | 119 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1011,7 +1011,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 432185 | `ports/432185_macd-trend-following-strategy-with-macd-and-donchian-channel/` | PineScript | donchian_breakout | trailing_stop_pending | channel x2, sl_atr x2 | 4 |
 | 432207 | `ports/432207_multi-indicator-bollinger-bands-trading-strategy/` | PineScript | bollinger_breakout | none | length x3 | 3 |
 | 432210 | `ports/432210_percent-change-bar-chart-backtest-strategy/` | PineScript | momentum_breakout | none | zone x2, lookback x2 | 4 |
-| | **883 ports** | | | | | **5165** |
+| 432213 | `ports/432213_macd-trend-following-strategy-based-on-moving-average-and-ma/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| 432215 | `ports/432215_ct-ttm-ct-ttm-squeeze-based-quantitative-trading-strategy/` | PineScript | volatility_squeeze | none | length x3 | 3 |
+| 432217 | `ports/432217_williams-fractals-dual-direction-trading-strategy/` | PineScript | pivot_reversal | none | tp_pct x2, sl_pct x2 | 4 |
+| 432219 | `ports/432219_rsi-momentum-reversal-rsi-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, limit x2 | 4 |
+| 432221 | `ports/432221_dual-supertrend-strategy/` | PineScript | supertrend | none | length x2, mult x2 | 4 |
+| 432225 | `ports/432225_cci-cci-strong-breakthrough-strategy/` | PineScript | momentum_oscillator_turn | none | length x2, loss_pct x2 | 4 |
+| 432228 | `ports/432228_stoch-dual-moving-average-stochastic-indicator-binary-option/` | PineScript | stochastic_oscillator | none | band_len x2, ema_len x2 | 4 |
+| 432230 | `ports/432230_macd-macd-trend-following-strategy/` | PineScript | macd_momentum | none | fast x2, slow x2 | 4 |
+| 432231 | `ports/432231_cycle-reversal-trend-following-strategy-after-pullback/` | PineScript | combo_123_reversal | none | length x2, dpo_len x2 | 4 |
+| 432232 | `ports/432232_cross-timeframe-double-breakout-levels-strategy/` | PineScript | pivot_levels | none | antipila x2, color_filter x2 | 4 |
+| 432234 | `ports/432234_trend-following-energy-indicator-trading-strategy/` | PineScript | macd_cross | trailing_stop | smear x2, sl_atr x2 | 4 |
+| 432235 | `ports/432235_mean-reversion-momentum-strategy/` | PineScript | zscore_reversion | trailing_stop_pending | lookback x2, thr x2 | 4 |
+| 432237 | `ports/432237_dynamic-moving-average-trend-trading-strategy/` | PineScript | volatility_channel_breakout | none | sensitivity x2, rsi_filter x2 | 4 |
+| | **896 ports** | | | | | **5216** |
 
 ## Rejected on reading
 
@@ -1135,6 +1148,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 431926 | 基于Coppock曲线的量化交易策略Coppock-Curve-Based-Quantitative-Trading-Strategy.md | 3 | The Coppock curve is computed on another instrument (security('SPY', 'D', close)): the strategy trades the chart symbol on the S&P 500 ETF, which the project's bars do not carry (as #426811). |
 | 431958 | 基于价格突破与回归的动量短线交易策略Momentum-Breakout-Trading-Strategy-Based-on-Price-Breakout-and-Mean-Reversion.md | 1 | The exit orders are mis-bound: 'S1 SL Exit' names the entry 'Short1', which never exists, and 'S2 Exit' has no from_entry, so it binds every open entry, longs included, to a stop above the price; the net effect depends on how the broker emulator treats a sell stop above the market (as #426455). |
 | 432078 | 周末交易策略Weekend-Trading-Strategy.md | 1 | The profit-taking exit compares strategy.openprofit (account currency, with a fixed qty of 10 units) with 10 % of the initial capital, and shorts are added to on a further 4.5 % rise: the exit and the position path depend on the order size (as #426882). |
+| 432224 | 双均线交叉日间交易期货策略Dual-Moving-Average-Crossover-Intraday-Futures-Trading-Strategy.md | 1 | Both entries are long (strategy.entry('Short', 1, ...) passes long = 1, i.e. true) and every exit is commented out: after the first signal the position is held for the rest of the data (as #430030). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

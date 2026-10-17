@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #432219 (基于相对强弱指标RSI策略Momentum-Reversal-RSI-Strategy)
+# Source: https://www.fmz.com/strategy/432219  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 197-197]
+  197: strategy(title = "Noro's FRSI Strategy v1.21", shorttitle = "FRSI str 1.21", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0, commission_type = strategy.commission.percent, commission_value = 0.0)

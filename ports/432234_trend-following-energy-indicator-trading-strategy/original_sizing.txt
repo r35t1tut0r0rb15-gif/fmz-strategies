@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #432234 (趋势跟踪型能量指标交易策略Trend-Following-Energy-Indicator-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/432234  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, slippage 5  [lines 183-183]
+  183: strategy("Smeared VCI Backtest", overlay=false, shorttitle="SVCI Backtest", default_qty_type = strategy.percent_of_equity, default_qty_value = 100, initial_capital = 10000, slippage = 5)
+
+## Entries and exits (stop, trail)  [lines 234-240]
+  234: strategy.entry("Long", strategy.long, when= long and startTimeOk())
+  235: strategy.exit("Exit", qty_percent = 100, loss=fixedSL, trail_offset=trailTP, trail_points=fixedTP) 
+  236: strategy.exit("Exit", when= short)
+  237: // === STRATEGY - SHORT POSITION EXECUTION ===
+  238: strategy.entry("Short", strategy.short, when= short and startTimeOk())
+  239: strategy.exit("Exit", qty_percent = 100, loss=fixedSL, trail_offset=trailTP, trail_points=fixedTP)
+  240: strategy.exit("Exit", when= long)

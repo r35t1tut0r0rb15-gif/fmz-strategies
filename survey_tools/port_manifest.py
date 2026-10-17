@@ -2093,6 +2093,39 @@ SIZING = {
         ("strategy(): 100 % of equity, commission", 192, 192),
     ],
     432210: [],
+    # ---- FMZ-C, batch C50 (2026-10-17)
+    432213: [],
+    432215: [],
+    432217: [
+        ("strategy(): 1000 USD cash per trade", 187, 187),
+        ("Percentage bracket from the fill", 356, 360),
+    ],
+    432219: [
+        ("strategy(): 100 % of equity", 197, 197),
+    ],
+    432221: [],
+    432225: [
+        ("Close-checked 8 % stop", 259, 262),
+    ],
+    432228: [],
+    432230: [
+        ("strategy(): 100 % of equity", 174, 174),
+        ("Short entry with qty 0 (needshort false)", 201, 202),
+    ],
+    432231: [],
+    432232: [
+        ("strategy(): 100 % of equity", 235, 235),
+        ("Capital % input", 240, 240),
+        ("Lot formula and entries with the lot", 264, 270),
+    ],
+    432234: [
+        ("strategy(): 100 % of equity, slippage 5", 183, 183),
+        ("Entries and exits (stop, trail)", 234, 240),
+    ],
+    432235: [
+        ("Profit target and stop in ticks of the close", 206, 215),
+    ],
+    432237: [],
 }
 
 REJECTED_ON_READING = {
@@ -2540,6 +2573,10 @@ REJECTED_ON_READING = {
               "fixed qty of 10 units) with 10 % of the initial capital, and shorts are added to "
               "on a further 4.5 % rise: the exit and the position path depend on the order size "
               "(as #426882)."),
+    # ---- FMZ-C, batch C50 (2026-10-17)
+    432224: ("1", "Both entries are long (strategy.entry('Short', 1, ...) passes long = 1, i.e. true) "
+              "and every exit is commented out: after the first signal the position is held for "
+              "the rest of the data (as #430030)."),
 }
 
 DUPLICATE_ON_READING = {

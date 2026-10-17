@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #432225 (CCI强势突破策略CCI-Strong-Breakthrough-Strategy)
+# Source: https://www.fmz.com/strategy/432225  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Close-checked 8 % stop  [lines 259-262]
+  259: // money management (only stop loss)
+  260: losspel = strategy.position_avg_price * (1 - lossp / 100)
+  261: fixed_stop_long = close < losspel
+  262: strategy.close('Long', when=fixed_stop_long, comment='Stop Loss')

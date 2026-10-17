@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #432232 (跨时间轴双重突破价位策略Cross-Timeframe-Double-Breakout-Levels-Strategy)
+# Source: https://www.fmz.com/strategy/432232  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 235-235]
+  235: strategy(title = "Noro's Levels Strategy v1.0", shorttitle = "Levels str 1.0", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)
+
+## Capital % input  [lines 240-240]
+  240: capital = input(100, defval = 100, minval = 1, maxval = 10000, title = "Capital, %")
+
+## Lot formula and entries with the lot  [lines 264-270]
+  264: lot = strategy.position_size != strategy.position_size[1] ? strategy.equity / close * capital / 100 : lot[1]
+  265: 
+  266: if up1 and up2 and (close < open or cf == false)
+  267:     strategy.entry("Long", strategy.long, needlong == false ? 0 : lot, when = (time > timestamp(fromyear, frommonth, fromday, 00, 00) and time < timestamp(toyear, tomonth, today, 23, 59)))
+  268:     
+  269: if dn1 and dn2 and (close > open or cf == false)
+  270:     strategy.entry("Short", strategy.short, needshort == false ? 0 : lot, when = (time > timestamp(fromyear, frommonth, fromday, 00, 00) and time < timestamp(toyear, tomonth, today, 23, 59)))

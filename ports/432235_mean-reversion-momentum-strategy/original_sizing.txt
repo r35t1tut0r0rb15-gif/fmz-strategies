@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #432235 (均值回归动量策略Mean-Reversion-Momentum-Strategy)
+# Source: https://www.fmz.com/strategy/432235  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Profit target and stop in ticks of the close  [lines 206-215]
+  206: if PTbutton == true and SLbutton == true
+  207:     strategy.exit("EXIT", profit=((close*(ProfitTarget*0.01))/syminfo.mintick), loss=((close*(StopLoss*-0.01))/syminfo.mintick))
+  208: else
+  209:     if PTbutton == true and SLbutton == false
+  210:         strategy.exit("PT EXIT", profit=((close*(ProfitTarget*0.01))/syminfo.mintick))
+  211:     else
+  212:         if PTbutton == false and SLbutton == true
+  213:             strategy.exit("SL EXIT", loss=((close*(StopLoss*-0.01))/syminfo.mintick))
+  214:         else    
+  215:             strategy.cancel("PT EXIT")

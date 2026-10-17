@@ -117,6 +117,7 @@ fmz_id,file,final_outcome,criterion,reason
 431926,基于Coppock曲线的量化交易策略Coppock-Curve-Based-Quantitative-Trading-Strategy.md,REJECTED_ON_READING,3,"The Coppock curve is computed on another instrument (security('SPY', 'D', close)): the strategy trades the chart symbol on the S&P 500 ETF, which the project's bars do not carry (as #426811)."
 431958,基于价格突破与回归的动量短线交易策略Momentum-Breakout-Trading-Strategy-Based-on-Price-Breakout-and-Mean-Reversion.md,REJECTED_ON_READING,1,"The exit orders are mis-bound: 'S1 SL Exit' names the entry 'Short1', which never exists, and 'S2 Exit' has no from_entry, so it binds every open entry, longs included, to a stop above the price; the net effect depends on how the broker emulator treats a sell stop above the market (as #426455)."
 432078,周末交易策略Weekend-Trading-Strategy.md,REJECTED_ON_READING,1,"The profit-taking exit compares strategy.openprofit (account currency, with a fixed qty of 10 units) with 10 % of the initial capital, and shorts are added to on a further 4.5 % rise: the exit and the position path depend on the order size (as #426882)."
+432224,双均线交叉日间交易期货策略Dual-Moving-Average-Crossover-Intraday-Futures-Trading-Strategy.md,REJECTED_ON_READING,1,"Both entries are long (strategy.entry('Short', 1, ...) passes long = 1, i.e. true) and every exit is commented out: after the first signal the position is held for the rest of the data (as #430030)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1010,3 +1011,16 @@ fmz_id,file,final_outcome,criterion,reason
 432185,基于MACD的扩散通道趋势跟踪策略Trend-Following-Strategy-with-MACD-and-Donchian-Channel.md,PORTED,,ports/432185_macd-trend-following-strategy-with-macd-and-donchian-channel/
 432207,多指标波动带交易策略Multi-Indicator-Bollinger-Bands-Trading-Strategy.md,PORTED,,ports/432207_multi-indicator-bollinger-bands-trading-strategy/
 432210,基于百分比变化的价值棒图回测策略Percent-Change-Bar-Chart-Backtest-Strategy.md,PORTED,,ports/432210_percent-change-bar-chart-backtest-strategy/
+432213,基于均线和MACD指标的量化交易策略Trend-Following-Strategy-Based-on-Moving-Average-and-MACD.md,PORTED,,ports/432213_macd-trend-following-strategy-based-on-moving-average-and-ma/
+432215,基于CT-TTM指标的量化交易策略CT-TTM-Squeeze-Based-Quantitative-Trading-Strategy.md,PORTED,,ports/432215_ct-ttm-ct-ttm-squeeze-based-quantitative-trading-strategy/
+432217,多均线裂缝双向交易策略Williams-Fractals-Dual-Direction-Trading-Strategy.md,PORTED,,ports/432217_williams-fractals-dual-direction-trading-strategy/
+432219,基于相对强弱指标RSI策略Momentum-Reversal-RSI-Strategy.md,PORTED,,ports/432219_rsi-momentum-reversal-rsi-strategy/
+432221,双超趋势策略Dual-SuperTrend-Strategy.md,PORTED,,ports/432221_dual-supertrend-strategy/
+432225,CCI强势突破策略CCI-Strong-Breakthrough-Strategy.md,PORTED,,ports/432225_cci-cci-strong-breakthrough-strategy/
+432228,双均线Stoch指标二元期权交易策略Dual-Moving-Average-Stochastic-Indicator-Binary-Options-Trading-Strategy.md,PORTED,,ports/432228_stoch-dual-moving-average-stochastic-indicator-binary-option/
+432230,MACD-趋势跟随策略MACD-Trend-Following-Strategy.md,PORTED,,ports/432230_macd-macd-trend-following-strategy/
+432231,回调后周期反转趋势跟随策略Cycle-Reversal-Trend-Following-Strategy-after-Pullback.md,PORTED,,ports/432231_cycle-reversal-trend-following-strategy-after-pullback/
+432232,跨时间轴双重突破价位策略Cross-Timeframe-Double-Breakout-Levels-Strategy.md,PORTED,,ports/432232_cross-timeframe-double-breakout-levels-strategy/
+432234,趋势跟踪型能量指标交易策略Trend-Following-Energy-Indicator-Trading-Strategy.md,PORTED,,ports/432234_trend-following-energy-indicator-trading-strategy/
+432235,均值回归动量策略Mean-Reversion-Momentum-Strategy.md,PORTED,,ports/432235_mean-reversion-momentum-strategy/
+432237,动态马克平均线趋势策略Dynamic-Moving-Average-Trend-Trading-Strategy.md,PORTED,,ports/432237_dynamic-moving-average-trend-trading-strategy/

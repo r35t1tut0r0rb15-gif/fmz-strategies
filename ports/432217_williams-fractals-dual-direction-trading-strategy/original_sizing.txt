@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #432217 (多均线裂缝双向交易策略Williams-Fractals-Dual-Direction-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/432217  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 1000 USD cash per trade  [lines 187-187]
+  187: strategy("Williams Fractals Strategy by ȼhąţhµяąɲǥą", overlay=true, default_qty_type=strategy.cash, default_qty_value=1000, currency='USD')
+
+## Percentage bracket from the fill  [lines 356-360]
+  356: if (strategy.position_size > 0)
+  357:     strategy.exit(id="ExL",limit=longExitPrice, stop=longStopPrice)
+  358: 
+  359: if (strategy.position_size < 0)
+  360:     strategy.exit(id="ExS", limit=shortExitPrice, stop=shortStopPrice)
