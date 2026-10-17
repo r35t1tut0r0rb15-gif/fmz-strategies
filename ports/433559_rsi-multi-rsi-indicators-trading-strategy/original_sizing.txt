@@ -1,0 +1,62 @@
+# Original sizing and money-management code, FMZ #433559 (多重RSI指标交易策略Multi-RSI-Indicators-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/433559  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Lot %, pyramiding 20 and the lot formula  [lines 112-168]
+  112: strategy(title = "Noro's Symphony Strategy v1.1", shorttitle = "Symphony str 1.1", overlay = false, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 20)
+  113: 
+  114: //Settings
+  115: 
+  116: //needlong = input(true, defval = true, title = "Long")
+  117: //needshort = input(true, defval = true, title = "Short")
+  118: 
+  119: capital = input(100, defval = 100, minval = 1, maxval = 10000, title = "Lot, %")
+  120: usersi1 = input(true, defval = true, title = "Use RSI 1")
+  121: rsiperiod1 = input(4, defval = 4, minval = 2, maxval = 100, title = "RSI 1 Period")
+  122: rsilimit1 = input(20, defval = 20, minval = 2, maxval = 50, title = "RSI 1 Limit")
+  123: usersi2 = input(true, defval = true, title = "Use RSI 2")
+  124: rsiperiod2 = input(7, defval = 7, minval = 2, maxval = 100, title = "RSI 2 Period")
+  125: rsilimit2 = input(25, defval = 25, minval = 2, maxval = 50, title = "RSI 2 Limit")
+  126: usersi3 = input(true, defval = true, title = "Use RSI 3")
+  127: rsiperiod3 = input(14, defval = 14, minval = 2, maxval = 100, title = "RSI 3 Period")
+  128: rsilimit3 = input(30, defval = 30, minval = 2, maxval = 50, title = "RSI 3 Limit")
+  129: usersi4 = input(false, defval = false, title = "Use RSI 4")
+  130: rsiperiod4 = input(21, defval = 21, minval = 2, maxval = 100, title = "RSI 4 Period")
+  131: rsilimit4 = input(35, defval = 35, minval = 2, maxval = 50, title = "RSI 4 Limit")
+  132: usersi5 = input(false, defval = false, title = "Use RSI 5")
+  133: rsiperiod5 = input(28, defval = 28, minval = 2, maxval = 100, title = "RSI 5 Period")
+  134: rsilimit5 = input(40, defval = 40, minval = 2, maxval = 50, title = "RSI 5 Limit")
+  135: cf = input(false, defval = false, title = "Use color filter")
+  136: fromyear = input(1900, defval = 1900, minval = 1900, maxval = 2100, title = "From Year")
+  137: toyear = input(2100, defval = 2100, minval = 1900, maxval = 2100, title = "To Year")
+  138: frommonth = input(01, defval = 01, minval = 01, maxval = 12, title = "From Month")
+  139: tomonth = input(12, defval = 12, minval = 01, maxval = 12, title = "To Month")
+  140: fromday = input(01, defval = 01, minval = 01, maxval = 31, title = "From Day")
+  141: today = input(31, defval = 31, minval = 01, maxval = 31, title = "To Day")
+  142: 
+  143: //RSI
+  144: rsi1 = rsi(close, rsiperiod1)
+  145: rsi2 = rsi(close, rsiperiod2)
+  146: rsi3 = rsi(close, rsiperiod3)
+  147: rsi4 = rsi(close, rsiperiod4)
+  148: rsi5 = rsi(close, rsiperiod5)
+  149: 
+  150: //Signals
+  151: up1 = rsi1 < rsilimit1 and usersi1  
+  152: up2 = rsi2 < rsilimit2 and usersi2
+  153: up3 = rsi3 < rsilimit3 and usersi3
+  154: up4 = rsi4 < rsilimit4 and usersi4
+  155: up5 = rsi5 < rsilimit5 and usersi5
+  156: 
+  157: str = up5 ? 5 : up4 ? 4 : up3 ? 3 : up2 ? 2 : up1 ? 1 : str[1]
+  158: up = up1 or up2 or up3 or up4 or up5
+  159: exit = (rsi1 > rsilimit1 and str == 1) or (rsi2 > rsilimit2 and str == 2) or (rsi3 > rsilimit3 and str == 3) or (rsi4 > rsilimit4 and str == 4) or (rsi5 > rsilimit5 and str == 5)
+  160: lot = strategy.position_size == 0 ? strategy.equity / close * capital / 100 : lot[1]
+  161: 
+  162: //Background
+  163: col = up ? lime : na
+  164: bgcolor(col, transp = 0)
+  165: 
+  166: //Trading
+  167: if up and (close < open or cf == false)
+  168:     strategy.entry("Long", strategy.long, lot, when=(time > timestamp(fromyear, frommonth, fromday, 00, 00) and time < timestamp(toyear, tomonth, today, 23, 59)))

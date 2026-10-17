@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #433456 (动态RSI与CCI结合的多因子量化交易策略Dynamic-RSI-and-CCI-Combined-Multi-factor-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/433456  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): cash quantity, pyramiding 10  [lines 144-144]
+  144: strategy(title="ATOM2.0", shorttitle="ATOM V2.0", overlay=false, default_qty_type=strategy.cash, currency=currency.USD, initial_capital=200, default_qty_type=strategy.cash, default_qty_value=100, pyramiding=10)
+
+## Fund x leverage quantity  [lines 215-226]
+  215: fund = 10           // Fund per Contract in USD
+  216: leverage = 100     // Leverage
+  217: // Buy Condition
+  218: buyCondition = (ma12>ma26 and cci<100 and k<80 and d<80 and k_2<80 and d_2<80 and crossover(k_2, d_2))
+  219: buy = (buyCondition == input(1))
+  220: alertcondition(buy, title='time to Long', message='Long!!!')
+  221: //closeBuy = (cci>100 and cci<cci[1] and cci<cci[2])
+  222: closeBuy = (crossunder(R, Hiline) and k>80)
+  223: alertcondition(closeBuy, title='Time to Close', message='Close Long')
+  224: 
+  225: // Submit Orders
+  226: strategy.entry(id="Long", qty=(fund*leverage)/close, long=true, when=buyCondition)

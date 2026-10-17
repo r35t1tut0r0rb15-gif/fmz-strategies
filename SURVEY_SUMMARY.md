@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2600 |
-| PORTED | 1008 |
+| PORT_CANDIDATE | 2587 |
+| PORTED | 1018 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 559 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 140 |
+| REJECTED_ON_READING | 143 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1136,7 +1136,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433442 | `ports/433442_range-breakthrough-dual-moving-average-filtering-strategy/` | PineScript | range_filter_trend | none | per x2, sensitivity x2 | 4 |
 | 433447 | `ports/433447_momentum-smooth-moving-average-line-and-moving-average-line/` | PineScript | ma_cross | coarse_bar_stop | slow x2, alma_len x2 | 4 |
 | 433452 | `ports/433452_candlestick-pattern-strategy/` | PineScript | candle_pattern | none | sl_atr x2, tp_atr x2 | 4 |
-| | **1008 ports** | | | | | **5648** |
+| 433456 | `ports/433456_rsi-cci-dynamic-rsi-and-cci-combined-multi-factor-quantitati/` | PineScript | stochastic_oscillator | none | fast_ma x2, slow_ma x2 | 4 |
+| 433540 | `ports/433540_combo-trend-reversal-moving-average-crossover-strategy/` | PineScript | combo_123_reversal | none | length x2, l_len x2 | 4 |
+| 433544 | `ports/433544_rsi-rsi-momentum-aggregation-strategy/` | PineScript | rsi_oscillator | none | length x2, oversold x2 | 4 |
+| 433545 | `ports/433545_adx-adx-intelligent-trend-tracking-strategy/` | PineScript | donchian_breakout | none | box_len x2, adx_level x2 | 4 |
+| 433547 | `ports/433547_moving-average-relative-strength-index-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, ma_len x2 | 4 |
+| 433548 | `ports/433548_weighted-moving-average-breakout-reversal-strategy/` | PineScript | ma_envelope_reversion | trailing_stop | tz x2, trail_k x2 | 4 |
+| 433559 | `ports/433559_rsi-multi-rsi-indicators-trading-strategy/` | PineScript | rsi_oscillator | none | limit_shift x2, use_rsi4 x2 | 4 |
+| 433560 | `ports/433560_multi-sma-multi-sma-moving-average-crossover-strategy/` | PineScript | ma_trend | none | scale x2 | 2 |
+| 433561 | `ports/433561_donchian-trend-strategy/` | PineScript | donchian_breakout | none | length x2, slow x2 | 4 |
+| 433562 | `ports/433562_rsi-atr-scalping/` | PineScript | momentum_breakout | none | atr_mult x2, atr_len x2 | 4 |
+| | **1018 ports** | | | | | **5686** |
 
 ## Rejected on reading
 
@@ -1282,6 +1292,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433125 | 动能区ATR反转订单量化策略Action-Zone-ATR-Reverse-Order-Quant-Strategy.md | 1 | After the minimum hold the reverse-order flag is armed on every bar (unless the over-band test clears it), so the opposite entry fires on the bar after the position goes flat, which is usually when the ratcheting EMA - 2 ATR stop order fills inside a bar: the entries depend on an intrabar stop fill the house trail cannot express. |
 | 433400 | 动态双向补仓策略Dynamic-Two-way-Add-Position-Strategy.md | 1 | Entries are allowed only while strategy.netprofit < 150000 (a profit target of the account), so the signals depend on the position size and the P&L path (as #427139); the bracket is 3 / 8 ticks. |
 | 433448 | 双均线震荡突破策略Dual-Moving-Average-Oscillation-Breakthrough-Strategy.md | 1 | The trend filter reads request.security(syminfo.tickerid, '120', ...) on the 1-day header chart: a resolution below the chart's, whose value per bar is undefined (as #430587); the bracket is also in ticks. |
+| 433521 | 基于RSI均线交叉策略RSI-Moving-Average-Crossover-Strategy.md | 1 | The only exit is strategy.exit(profit = close x 1.20, loss = close x 0.95) in ticks, placed only once the exit condition fires (12 % / 9.5 % at BTC's 0.1 tick, a different size on any other tick): a bracket armed by a later signal, from the entry price, which the stops (live from the entry) cannot express, and whose size depends on the symbol's tick. |
+| 433539 | 基于转折点的RSI背离策略Pivot-based-RSI-Divergence-Strategy.md | 1 | The take-profits close 3/4 or 1/2 of the position at four RSI levels (strategy.close with qty), with pyramiding 2: partial exits cannot be expressed as one net position's signals (as #365389). |
+| 433541 | 基于移动均线的突破交易策略Moving-Average-Breakout-Strategy.md | 1 | strategy.order entries with a 50 % partial exit at half the target and the rest at the full target (qty_percent): partial exits of the net position (as #365389). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

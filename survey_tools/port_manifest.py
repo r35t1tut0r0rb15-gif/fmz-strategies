@@ -2402,6 +2402,35 @@ SIZING = {
     433452: [
         ("Tick stop / target / trail inputs and exits", 171, 260),
     ],
+    # ---- FMZ-C, batch C61 (2026-10-17)
+    433456: [
+        ("strategy(): cash quantity, pyramiding 10", 144, 144),
+        ("Fund x leverage quantity", 215, 226),
+    ],
+    433540: [],
+    433544: [],
+    433545: [
+        ("strategy(): 100000 cash quantity", 135, 135),
+        ("Box-width target / stop and exits", 141, 216),
+    ],
+    433547: [
+        ("strategy(): 10 % of equity", 184, 184),
+        ("Stop / trail inputs and exits", 205, 264),
+    ],
+    433548: [
+        ("Quantity 1 and the per-contract commission", 118, 118),
+        ("Tick stop / limit inputs and exits", 124, 162),
+    ],
+    433559: [
+        ("Lot %, pyramiding 20 and the lot formula", 112, 168),
+    ],
+    433560: [],
+    433561: [
+        ("strategy(): 100 % of equity, commission", 138, 138),
+    ],
+    433562: [
+        ("Quantity 1 and the unused stop / target variables", 124, 133),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2935,6 +2964,17 @@ REJECTED_ON_READING = {
     433448: ("1", "The trend filter reads request.security(syminfo.tickerid, '120', ...) on the 1-day "
               "header chart: a resolution below the chart's, whose value per bar is undefined (as "
               "#430587); the bracket is also in ticks."),
+    # ---- FMZ-C, batch C61 (2026-10-17)
+    433521: ("1", "The only exit is strategy.exit(profit = close x 1.20, loss = close x 0.95) in "
+              "ticks, placed only once the exit condition fires (12 % / 9.5 % at BTC's 0.1 tick, "
+              "a different size on any other tick): a bracket armed by a later signal, from the "
+              "entry price, which the stops (live from the entry) cannot express, and whose size "
+              "depends on the symbol's tick."),
+    433539: ("1", "The take-profits close 3/4 or 1/2 of the position at four RSI levels "
+              "(strategy.close with qty), with pyramiding 2: partial exits cannot be expressed as "
+              "one net position's signals (as #365389)."),
+    433541: ("1", "strategy.order entries with a 50 % partial exit at half the target and the rest at "
+              "the full target (qty_percent): partial exits of the net position (as #365389)."),
 }
 
 DUPLICATE_ON_READING = {

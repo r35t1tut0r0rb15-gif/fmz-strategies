@@ -1,0 +1,84 @@
+# Original sizing and money-management code, FMZ #433545 (ADX智能趋势跟踪策略ADX-Intelligent-Trend-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/433545  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100000 cash quantity  [lines 135-135]
+  135: strategy("Rob Booker - ADX Breakout", shorttitle="ADX Breakout V5", overlay=true, default_qty_type = strategy.cash, default_qty_value = 100000, initial_capital = 100000)
+
+## Box-width target / stop and exits  [lines 141-216]
+  141: profitTargetMultiple = input(1.0, title="Profit Target Box Width Multiple", group = "Take Profit and Stop Loss")
+  142: stopLossMultiple = input(0.5, title="Stop Loss Box Width Multiple", group = "Take Profit and Stop Loss")
+  143: enableDirection = input(0, title="Both(0), Long(1), Short(-1)", group = "Trade Direction")
+  144: 
+  145: 
+  146: // When the ADX drops below threshold limit, then we consider the pair in consolidation. 
+  147: // Set Box around highs and lows of the last 20 candles. with upper and lower boundaries. 
+  148: // When price breaks outside of box, a trade is taken. (on close or on touch?)
+  149: // Stop is placed, default 50%, of the size of the box. So if box is 200 pips, stop is at 100 pips. 
+  150: // Profit target is 100% of the size of the box. Default. User can set a profit target of 0.5, 1 full size, 2 or 3. 
+  151: 
+  152: 
+  153: dirmov(len) =>
+  154: 	up = ta.change(high)
+  155: 	down = -ta.change(low)
+  156: 	truerange = ta.rma(ta.tr, len)
+  157: 	plus = fixnan(100 * ta.rma(up > down and up > 0 ? up : 0, len) / truerange)
+  158: 	minus = fixnan(100 * ta.rma(down > up and down > 0 ? down : 0, len) / truerange)
+  159: 	[plus, minus]
+  160: 
+  161: adx(dilen, adxlen) => 
+  162: 	[plus, minus] = dirmov(dilen)
+  163: 	sum = plus + minus
+  164: 	adx = 100 * ta.rma(math.abs(plus - minus) / (sum == 0 ? 1 : sum), adxlen)
+  165: 
+  166: adxHigh(dilen, adxlen) => 
+  167: 	[plus, minus] = dirmov(dilen)
+  168: 	plus
+  169: 	
+  170: adxLow(dilen, adxlen) => 
+  171: 	[plus, minus] = dirmov(dilen)
+  172: 	minus
+  173: 	
+  174: sig = adx(adxSmoothPeriod, adxPeriod)
+  175: //sigHigh = adxHigh(dilen, adxlen)
+  176: //sigLow = adxLow(dilen, adxlen)
+  177: 
+  178: isADXLow = sig < adxLowerLevel
+  179: 
+  180: //boxUpperLevel = ta.highest(high, boxLookBack)[1]
+  181: //boxLowerLevel = ta.lowest(low, boxLookBack)[1]
+  182: 
+  183: var float boxUpperLevelCarry = 0
+  184: var float boxLowerLevelCarry = 0
+  185: 
+  186: boxUpperLevel = strategy.position_size == 0 ? ta.highest(high, boxLookBack)[1] : boxUpperLevelCarry
+  187: boxUpperLevelCarry := boxUpperLevel
+  188: boxLowerLevel = strategy.position_size == 0 ? ta.lowest(low, boxLookBack)[1] : boxLowerLevelCarry
+  189: boxLowerLevelCarry := boxLowerLevel
+  190: 
+  191: boxWidth = boxUpperLevel - boxLowerLevel
+  192: 
+  193: profitTarget = strategy.position_size > 0  ? strategy.position_avg_price + profitTargetMultiple*boxWidth : strategy.position_size < 0 ?  strategy.position_avg_price - profitTargetMultiple*boxWidth : na
+  194: stopLoss = strategy.position_size > 0 ? strategy.position_avg_price - stopLossMultiple*boxWidth : strategy.position_size < 0 ? strategy.position_avg_price + stopLossMultiple*boxWidth : na
+  195: 
+  196: plot(strategy.position_size == 0 ? boxUpperLevel : na, color=color.white, style = plot.style_linebr)
+  197: plot(strategy.position_size == 0 ? boxLowerLevel : na, color=color.white, style = plot.style_linebr)
+  198: 
+  199: 
+  200: bgcolor(isADXLow ? color.purple : na, transp=72, title = "ADX limit")
+  201: plot(stopLoss, color=color.red, linewidth=2, style = plot.style_linebr, title="StopLossLine")
+  202: plot(profitTarget, color=color.blue, linewidth=2, style = plot.style_linebr, title="ProfitTargetLine")
+  203: 
+  204: isBuyValid = strategy.position_size == 0 and ta.cross(close, boxUpperLevel) and isADXLow
+  205: 
+  206: //Long Entry Condition
+  207: strategy.exit("close_long", from_entry="open_long", limit = profitTarget, stop = stopLoss)
+  208: if isBuyValid and strategy.opentrades == 0 and (enableDirection == -1 or enableDirection == 0)
+  209:     strategy.entry("open_long", strategy.long)
+  210: 
+  211: isSellValid = strategy.position_size == 0 and ta.cross(close, boxLowerLevel) and isADXLow
+  212: 
+  213: //Short Entry condition
+  214: strategy.exit(id="close_short", from_entry="open_short", limit = profitTarget, stop = stopLoss)
+  215: if isSellValid and strategy.opentrades == 0 and (enableDirection == 1 or enableDirection == 0)
+  216:     strategy.entry("open_short", strategy.short)

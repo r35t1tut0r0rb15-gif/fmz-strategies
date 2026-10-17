@@ -1,0 +1,68 @@
+# Original sizing and money-management code, FMZ #433547 (移动平均与相对强弱指标策略Moving-Average-Relative-Strength-Index-Strategy)
+# Source: https://www.fmz.com/strategy/433547  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 184-184]
+  184: strategy(title = "RSI versus SMA", shorttitle = "RSI vs SMA", overlay = false, pyramiding = 0, default_qty_type = strategy.percent_of_equity, default_qty_value = 10, currency = currency.GBP)
+
+## Stop / trail inputs and exits  [lines 205-264]
+  205: useStop     = input(defval = false, title = "Use Initial Stop Loss?")
+  206: slPoints    = input(defval = 25, title = "Initial Stop Loss Points", minval = 1)
+  207: useTS       = input(defval = true, title = "Use Trailing Stop?")
+  208: tslPoints   = input(defval = 120, title = "Trail Points", minval = 1)
+  209: useTSO      = input(defval = false, title = "Use Offset For Trailing Stop?")
+  210: tslOffset   = input(defval = 20, title = "Trail Offset Points", minval = 1)
+  211: // === /INPUTS ===
+  212: 
+  213: // === BASE FUNCTIONS ===
+  214: // delay for direction change actions
+  215: switchDelay(exp, len) =>
+  216:     average = len >= 2 ? sum(exp, len) / len : exp[1]
+  217:     up      = exp > average
+  218:     down    = exp < average
+  219:     state   = up ? true : down ? false : up[1]
+  220: // === /BASE FUNCTIONS ===
+  221: 
+  222: // === SERIES and VAR ===
+  223: // rsi
+  224: shunt = rsiSource == open ? 0 : 1
+  225: rsiUp = rma(max(change(rsiSource[shunt]), 0), rsiLength)
+  226: rsiDown = rma(-min(change(rsiSource[shunt]), 0), rsiLength)
+  227: rsi = (rsiDown == 0 ? 100 : rsiUp == 0 ? 0 : 100 - (100 / (1 + rsiUp / rsiDown))) - 50 // shifted 50 points to make 0 median
+  228: // sma of rsi
+  229: rsiMa   = sma(rsi, maLength)
+  230: // self explanatory..
+  231: tradeDirection = tradeInvert ? 0 <= rsiMa ? true : false : 0 >= rsiMa ? true : false
+  232: // === /SERIES ===
+  233: 
+  234: // === PLOTTING ===
+  235: barcolor(color = tradeDirection ? green : red, title = "Bar Colours")
+  236: // hlines
+  237: medianLine  = hline(0, title = 'Median', color = #996600,  linewidth = 1)
+  238: limitUp     = hline(25, title = 'Limit Up', color = silver,  linewidth = 1)
+  239: limitDown   = hline(-25, title = 'Limit Down', color = silver,  linewidth = 1)
+  240: // rsi and ma
+  241: rsiLine     = plot(rsi, title = 'RSI', color = purple, linewidth = 2, style = line, transp = 50)
+  242: areaLine    = plot(rsiMa, title = 'Area MA', color = silver, linewidth = 1, style = area, transp = 70)
+  243: // === /PLOTTING ===
+  244: 
+  245: goLong() => not tradeDirection[1] and tradeDirection
+  246: killLong() => tradeDirection[1] and not tradeDirection
+  247: strategy.entry(id = "Buy", long = true, when = goLong())
+  248: strategy.close(id = "Buy", when = killLong())
+  249: 
+  250: goShort() => tradeDirection[1] and not tradeDirection
+  251: killShort() => not tradeDirection[1] and tradeDirection
+  252: strategy.entry(id = "Sell", long = false, when = goShort())
+  253: strategy.close(id = "Sell", when = killShort())
+  254: 
+  255: if (useStop)
+  256:     strategy.exit("XSL", from_entry = "Buy", loss = slPoints)
+  257:     strategy.exit("XSS", from_entry = "Sell", loss = slPoints)
+  258: // if we're using the trailing stop
+  259: if (useTS and useTSO) // with offset
+  260:     strategy.exit("XSL", from_entry = "Buy", trail_points = tslPoints, trail_offset = tslOffset)
+  261:     strategy.exit("XSS", from_entry = "Sell", trail_points = tslPoints, trail_offset = tslOffset)
+  262: if (useTS and not useTSO) // without offset
+  263:     strategy.exit("XSL", from_entry = "Buy", trail_points = tslPoints)
+  264:     strategy.exit("XSS", from_entry = "Sell", trail_points = tslPoints)
