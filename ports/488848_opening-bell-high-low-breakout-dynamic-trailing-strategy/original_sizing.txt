@@ -1,0 +1,49 @@
+# Original sizing and money-management code, FMZ #488848 (早盘高低点突破动态追踪策略-Opening-Bell-High-Low-Breakout-Dynamic-Trailing-Strategy)
+# Source: https://www.fmz.com/strategy/488848  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trail and target tick inputs  [lines 227-228]
+  227: ticks = input.int(15, title="Trailing Stop Loss Ticks", minval=1) // Trailing stop in ticks
+  228: takeProfit = input.int(30, title="Take Profit (in Ticks)", minval=1) // Take profit in ticks
+
+## Close-checked tick trail  [lines 231-256]
+  231: var float longTrailingStop = na
+  232: var float shortTrailingStop = na
+  233: 
+  234: // Update trailing stop levels for long trades
+  235: if (longEntry)
+  236:     longTrailingStop := close - ticks * syminfo.mintick // Initialize trailing stop for long
+  237: 
+  238: // Update trailing stop levels for short trades
+  239: if (shortEntry)
+  240:     shortTrailingStop := close + ticks * syminfo.mintick // Initialize trailing stop for short
+  241: 
+  242: // Update trailing stop levels during the trade
+  243: if (not na(longTrailingStop))
+  244:     longTrailingStop := math.max(longTrailingStop, close - ticks * syminfo.mintick) // Move trailing stop up for long
+  245: if (not na(shortTrailingStop))
+  246:     shortTrailingStop := math.min(shortTrailingStop, close + ticks * syminfo.mintick) // Move trailing stop down for short
+  247: 
+  248: // Exit Conditions (Trailing Stop)
+  249: endLongTrade = not na(longTrailingStop) and close <= longTrailingStop
+  250: endShortTrade = not na(shortTrailingStop) and close >= shortTrailingStop
+  251: 
+  252: // Reset trailing stop levels after exit
+  253: if (endLongTrade)
+  254:     longTrailingStop := na
+  255: if (endShortTrade)
+  256:     shortTrailingStop := na
+
+## Price-unit stop and entries with the bracket  [lines 259-270]
+  259: stopLoss = 100
+  260: 
+  261: // Execute trades (only one per day)
+  262: if longEntry
+  263:     strategy.entry("Long", strategy.long, comment="Breakout Long")
+  264:     strategy.exit("Long TP/SL", from_entry="Long", stop=close - stopLoss, limit=close + takeProfit * syminfo.mintick)
+  265:     tradeTakenToday := true
+  266: 
+  267: if shortEntry
+  268:     strategy.entry("Short", strategy.short, comment="Breakout Short")
+  269:     strategy.exit("Short TP/SL", from_entry="Short", stop=close + stopLoss, limit=close - takeProfit * syminfo.mintick)
+  270:     tradeTakenToday := true

@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #488883 (高级动态范围突破趋势追踪策略-Advanced-Dynamic-Range-Breakout-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/488883  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## ATR bracket levels  [lines 220-224]
+  220: atrValue = ta.atr(14)
+  221: stopLossLong = close - 1.5 * atrValue
+  222: takeProfitLong = close + 2 * atrValue
+  223: stopLossShort = close + 1.5 * atrValue
+  224: takeProfitShort = close - 2 * atrValue
+
+## Entries with the bracket  [lines 227-233]
+  227: if longCondition
+  228:     strategy.entry("Long", strategy.long)
+  229:     strategy.exit("Take Profit/Stop Loss", "Long", stop=stopLossLong, limit=takeProfitLong)
+  230: 
+  231: if shortCondition
+  232:     strategy.entry("Short", strategy.short)
+  233:     strategy.exit("Take Profit/Stop Loss", "Short", stop=stopLossShort, limit=takeProfitShort)

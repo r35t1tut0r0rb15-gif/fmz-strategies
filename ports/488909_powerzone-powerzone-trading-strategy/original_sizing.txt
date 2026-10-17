@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #488909 (PowerZone交易策略-PowerZone-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/488909  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 143-143]
+  143: strategy("PowerZone Trading Strategy", overlay=true, shorttitle="PZStrat", default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+
+## TP / SL factor inputs  [lines 150-151]
+  150: tp_factor  = input.float(1.5, title="Take Profit Factor", step=0.1, minval=0.5)
+  151: sl_factor  = input.float(1.0, title="Stop Loss Factor", step=0.1, minval=0.5)
+
+## Flat-only entries with the zone bracket  [lines 196-208]
+  196: if PZ_bull and close > PZ_bull_high and strategy.position_size == 0
+  197:     bull_entry := close
+  198:     bull_tp    := bull_entry + (PZ_bull_high - PZ_bull_low) * tp_factor
+  199:     bull_sl    := PZ_bull_low - (PZ_bull_high - PZ_bull_low) * sl_factor
+  200:     strategy.entry("BullPZ", strategy.long)
+  201:     strategy.exit("BullExit", "BullPZ", limit=bull_tp, stop=bull_sl)
+  202: 
+  203: if PZ_bear and close < PZ_bear_low and strategy.position_size == 0
+  204:     bear_entry := close
+  205:     bear_tp    := bear_entry - (PZ_bear_high - PZ_bear_low) * tp_factor
+  206:     bear_sl    := PZ_bear_high + (PZ_bear_high - PZ_bear_low) * sl_factor
+  207:     strategy.entry("BearPZ", strategy.short)
+  208:     strategy.exit("BearExit", "BearPZ", limit=bear_tp, stop=bear_sl)

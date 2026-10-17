@@ -109,6 +109,7 @@ fmz_id,file,final_outcome,criterion,reason
 430974,基于RSI和SuperTrend的双向交易策略RSI-and-SuperTrend-Based-Dual-Direction-Trading-Strategy.md,REJECTED_ON_READING,1,"The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit cannot be expressed as one net position's signals (as #365389). Its momentum line also uses ta.vwma (volume, check 8)."
 430985,双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md,REJECTED_ON_READING,2,"The second signal is a band of the nearest prime numbers above / below the high and low (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (as #430847)."
 430992,趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md,REJECTED_ON_READING,1,A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389).
+488908,动态多周期中轴趋势突破策略-Dynamic-Multi-Timeframe-Pivot-Trend-Breakthrough-Strategy.md,REJECTED_ON_READING,1,partial exits: four strategy.exit tranches with qty = 25 % each at different targets
 489006,多时间框架智能资金概念支撑压力动态交易策略-Multi-Timeframe-Smart-Money-Concept-Support-and-Resistance-Dynamic-Trading-Strategy.md,REJECTED_ON_READING,1,"5- and 15-minute securities on a 2-day chart (request.security(..., ""5"" / ""15"", sma(close, 50))); as #430765"
 489135,多重技术指标动态止损期货交易策略-Multi-Technical-Indicator-Dynamic-Stop-Loss-Futures-Trading-Strategy.md,REJECTED_ON_READING,1,partial exits (strategy.exit qty_percent = 50 at the first target) and 15- / 60-minute securities on a 2-day chart (lower timeframes; as #430765)
 489150,多周期唐奇安通道与ATR动态间隔波动跟踪交易策略-Multi-Timeframe-Donchian-Channel-and-ATR-Dynamic-Interval-Volatility-Following-Trading-Strategy.md,REJECTED_ON_READING,1,"grid / averaging-in with partial exits: strategy.close(""Buy"", qty=...) sells part of the position at each grid step"
@@ -922,6 +923,14 @@ fmz_id,file,final_outcome,criterion,reason
 430988,基于SuperTrend和Fisher变换的趋势跟随长线策略Trend-Following-Long-Term-Strategy-Based-on-SuperTrend-and-Fisher-Transform.md,PORTED,,ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/
 430998,木星与土星动能MA交叉过滤策略Jupiter-and-Saturn-Momentum-MA-Crossover-Filtered-Strategy.md,PORTED,,ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/
 431000,跨时间段移动量策略Intraday-Pivot-Breakout-Strategy.md,PORTED,,ports/431000_intraday-pivot-breakout-strategy/
+488848,早盘高低点突破动态追踪策略-Opening-Bell-High-Low-Breakout-Dynamic-Trailing-Strategy.md,PORTED,,ports/488848_opening-bell-high-low-breakout-dynamic-trailing-strategy/
+488850,15分钟突破多周期协同策略基于风险收益比优化模型15-Minute-Breakout-Multi-Timeframe-Synergy-Strategy-with-Risk-Reward-Optimization-Model.md,PORTED,,ports/488850_15-15-minute-breakout-multi-timeframe-synergy-strategy-with/
+488883,高级动态范围突破趋势追踪策略-Advanced-Dynamic-Range-Breakout-Trend-Following-Strategy.md,PORTED,,ports/488883_advanced-dynamic-range-breakout-trend-following-strategy/
+488886,多层级目标和尾随止损策略-Multi-Tiered-Target-and-Trailing-Stop-Strategy.md,PORTED,,ports/488886_multi-tiered-target-and-trailing-stop-strategy/
+488889,5分钟K线KDJ指标动态响应交易策略-5-Minute-KDJ-Indicator-Dynamic-Response-Trading-Strategy.md,PORTED,,ports/488889_5-k-kdj-5-minute-kdj-indicator-dynamic-response-trading-stra/
+488901,优化的基于平均真实波动范围的趋势策略v6固定趋势捕捉-Optimized-ATR-Based-Trend-Strategy-v6-Fixed-Trend-Capture.md,PORTED,,ports/488901_v6-optimized-atr-based-trend-strategy-v6-fixed-trend-capture/
+488907,动态RSI低高点背离趋势策略-Dynamic-RSI-Low-High-Point-Divergence-Trend-Strategy.md,PORTED,,ports/488907_rsi-dynamic-rsi-low-high-point-divergence-trend-strategy/
+488909,PowerZone交易策略-PowerZone-Trading-Strategy.md,PORTED,,ports/488909_powerzone-powerzone-trading-strategy/
 489007,多重指数移动平均线趋势反转交易策略-Multi-EMA-Trend-Reversal-Trading-Strategy.md,PORTED,,ports/489007_multi-ema-trend-reversal-trading-strategy/
 489009,多重动态指标组合策略-Multi-Dynamic-Indicator-Combination-Strategy.md,PORTED,,ports/489009_multi-dynamic-indicator-combination-strategy/
 489010,多层级布林带趋势跟踪与反转交易策略-Multi-level-Bollinger-Bands-Trend-Following-and-Reversal-Trading-Strategy.md,PORTED,,ports/489010_multi-level-bollinger-bands-trend-following-and-reversal-tra/

@@ -1,0 +1,34 @@
+# Original sizing and money-management code, FMZ #488901 (优化的基于平均真实波动范围的趋势策略v6固定趋势捕捉-Optimized-ATR-Based-Trend-Strategy-v6-Fixed-Trend-Capture)
+# Source: https://www.fmz.com/strategy/488901  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## ATR multiplier inputs  [lines 144-147]
+  144: atrMultiplierTP = input.float(5.0, title="ATR Multiplier for Take-Profit", minval=1.0, step=0.5)  
+  145: atrMultiplierTSL = input.float(3.5, title="ATR Multiplier for Trailing Stop-Loss", minval=1.0, step=0.5)  // ? Increased to ride trends
+  146: atrStopMultiplier = input.float(0.8, title="ATR Stop Multiplier", minval=0.5, step=0.1)  
+  147: breakEvenMultiplier = input.float(2.0, title="Break-Even Trigger ATR Multiplier", minval=1.0, step=0.1)
+
+## Target, trail, stop and break-even levels  [lines 189-200]
+  189: longTakeProfit = close + (atrValue * atrMultiplierTP)  
+  190: shortTakeProfit = close - (atrValue * atrMultiplierTP)  
+  191: longTrailStop = atrValue * atrMultiplierTSL  
+  192: shortTrailStop = atrValue * atrMultiplierTSL  
+  193: 
+  194: // ✅ Adjusted SL to Reduce Drawdown
+  195: longStopLoss = close - (atrValue * atrMultiplierTSL * atrStopMultiplier)
+  196: shortStopLoss = close + (atrValue * atrMultiplierTSL * atrStopMultiplier)
+  197: 
+  198: // ✅ Break-Even Stop Trigger (More Room for Trends)
+  199: longBreakEven = strategy.position_avg_price + (atrValue * breakEvenMultiplier)
+  200: shortBreakEven = strategy.position_avg_price - (atrValue * breakEvenMultiplier)
+
+## Entries with the two exits  [lines 203-211]
+  203: if (bullishEntry)
+  204:     strategy.entry("Buy", strategy.long)
+  205:     strategy.exit("TSL/TP", from_entry="Buy", stop=longStopLoss, trail_offset=longTrailStop, limit=longTakeProfit)
+  206:     strategy.exit("BreakEven", from_entry="Buy", stop=longBreakEven)
+  207: 
+  208: if (bearishEntry)
+  209:     strategy.entry("Sell", strategy.short)
+  210:     strategy.exit("TSL/TP", from_entry="Sell", stop=shortStopLoss, trail_offset=shortTrailStop, limit=shortTakeProfit)
+  211:     strategy.exit("BreakEven", from_entry="Sell", stop=shortBreakEven)

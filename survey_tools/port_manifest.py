@@ -2208,6 +2208,40 @@ SIZING = {
         ("Stop / target levels", 189, 190),
         ("Entry with the bracket", 193, 195),
     ],
+    # ---- FMZ-C, batch L8 (2026-10-17)
+    488848: [
+        ("Trail and target tick inputs", 227, 228),
+        ("Close-checked tick trail", 231, 256),
+        ("Price-unit stop and entries with the bracket", 259, 270),
+    ],
+    488850: [
+        ("strategy(): 10 % of equity", 176, 180),
+        ("Entries with the 3 R bracket", 209, 229),
+    ],
+    488883: [
+        ("ATR bracket levels", 220, 224),
+        ("Entries with the bracket", 227, 233),
+    ],
+    488886: [
+        ("strategy(): pyramiding 100", 170, 170),
+        ("Dollar target / stop / trail inputs", 174, 190),
+        ("Stop, break-even and trail management", 223, 336),
+    ],
+    488889: [
+        ("Full-equity quantity", 221, 221),
+        ("Entries with the quantity", 230, 236),
+    ],
+    488901: [
+        ("ATR multiplier inputs", 144, 147),
+        ("Target, trail, stop and break-even levels", 189, 200),
+        ("Entries with the two exits", 203, 211),
+    ],
+    488907: [],
+    488909: [
+        ("strategy(): 100 % of equity", 143, 143),
+        ("TP / SL factor inputs", 150, 151),
+        ("Flat-only entries with the zone bracket", 196, 208),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2651,6 +2685,9 @@ REJECTED_ON_READING = {
     # ---- FMZ-C, batch L7 (2026-10-17)
     489006: ("1", "5- and 15-minute securities on a 2-day chart (request.security(..., \"5\" / \"15\", "
               "sma(close, 50))); as #430765"),
+    # ---- FMZ-C, batch L8 (2026-10-17)
+    488908: ("1", "partial exits: four strategy.exit tranches with qty = 25 % each at different "
+              "targets"),
 }
 
 DUPLICATE_ON_READING = {

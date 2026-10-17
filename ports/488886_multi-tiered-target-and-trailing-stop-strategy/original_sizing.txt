@@ -1,0 +1,141 @@
+# Original sizing and money-management code, FMZ #488886 (多层级目标和尾随止损策略-Multi-Tiered-Target-and-Trailing-Stop-Strategy)
+# Source: https://www.fmz.com/strategy/488886  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 100  [lines 170-170]
+  170: strategy("Algo Trading v1 | SUNNY GUHA By OIESU", overlay=true, margin_long=100, margin_short=100, pyramiding=100)
+
+## Dollar target / stop / trail inputs  [lines 174-190]
+  174: float initialTarget  = input.float(10000, "First Entry: Target ($)", minval=1, tooltip="First target level")
+  175: float initialStopLoss = input.float(3000, "First Entry: Stop Loss ($)", minval=1, tooltip="Initial stop loss distance")
+  176: bool  useTrailFirst = input.bool(true, "First Entry: Enable Trail", tooltip="Enable trailing features after first target hit")
+  177: float profitTrailStepFirst = input.float(1500, "First Entry: Trail Amount ($)", minval=1, tooltip="Trail amount after first target hit")
+  178: bool  useTargetZoneFirst = input.bool(true, "First Entry: Enable Target Zone", tooltip="Enable target zone feature")
+  179: float targetZoneThresholdFirst = input.float(1000, "First Entry: Target Zone Threshold ($)", minval=1, tooltip="Distance to activate target zone")
+  180: float targetIncreaseStepFirst = input.float(2000, "First Entry: Target Increase ($)", minval=1, tooltip="Amount to increase target")
+  181: 
+  182: // Second Entry Settings
+  183: bool  enableSecondEntries = input.bool(true, "Enable Second Entries", tooltip="Allow re-entries after first target hit")
+  184: float secondTarget = input.float(5000, "Second Entry: Target ($)", minval=1, tooltip="Target for second entries")
+  185: float secondStopLoss = input.float(2000, "Second Entry: Stop Loss ($)", minval=1, tooltip="Stop loss for second entries")
+  186: bool  useTrailSecond = input.bool(true, "Second Entry: Enable Trail", tooltip="Enable trailing for second entries")
+  187: float profitTrailStepSecond = input.float(1500, "Second Entry: Trail Amount ($)", minval=1, tooltip="Trail amount for second entries")
+  188: bool  useTargetZoneSecond = input.bool(true, "Second Entry: Enable Target Zone", tooltip="Enable target zone")
+  189: float targetZoneThresholdSecond = input.float(1000, "Second Entry: Target Zone Threshold ($)", minval=1)
+  190: float targetIncreaseStepSecond = input.float(2000, "Second Entry: Target Increase ($)", minval=1)
+
+## Stop, break-even and trail management  [lines 223-336]
+  223: if strategy.position_size > 0
+  224:     highestPrice := math.max(high, nz(highestPrice, high))
+  225: 
+  226:     if isSecondEntry
+  227:         // Second Entry Management
+  228:         inTargetZone := useTargetZoneSecond and high >= targetLevel - targetZoneThresholdSecond
+  229: 
+  230:         if inTargetZone and useTargetZoneSecond
+  231:             targetLevel := targetLevel + targetIncreaseStepSecond
+  232: 
+  233:         if useTrailSecond
+  234:             stopLevel := math.max(stopLevel, highestPrice - profitTrailStepSecond)
+  235: 
+  236:         if low <= stopLevel
+  237:             strategy.close_all("Second Entry Stop")
+  238:             basePrice := na
+  239:             targetLevel := na
+  240:             stopLevel := na
+  241:             highestPrice := na
+  242:             lowestPrice := na
+  243:             firstTargetHit := false
+  244:             isSecondEntry := false
+  245:             inTargetZone := false
+  246:             tradeDirection := "none"
+  247:     else
+  248:         // First Entry Management - improved profit locking
+  249:         if not firstTargetHit and high >= basePrice + initialTarget
+  250:             // First target hit - ALWAYS lock profit at break-even
+  251:             firstTargetHit := true
+  252:             stopLevel := basePrice  // Move stop to break-even
+  253:             targetLevel := useTrailFirst ? high + targetIncreaseStepFirst : basePrice + initialTarget
+  254:         else if firstTargetHit
+  255:             // Only modify target if trailing is enabled
+  256:             if useTrailFirst
+  257:                 inTargetZone := useTargetZoneFirst and high >= targetLevel - targetZoneThresholdFirst
+  258:                 if inTargetZone and useTargetZoneFirst
+  259:                     targetLevel := targetLevel + targetIncreaseStepFirst
+  260:                 // Trail stop-loss but never below break-even
+  261:                 stopLevel := math.max(basePrice, highestPrice - profitTrailStepFirst)
+  262:         else
+  263:             // Before first target hit
+  264:             targetLevel := basePrice + initialTarget
+  265:             stopLevel := basePrice - initialStopLoss
+  266: 
+  267:         // Exit on stop hit - this could only be at break-even or better after first target
+  268:         if low <= stopLevel
+  269:             strategy.close_all("First Entry Stop")
+  270:             basePrice := na
+  271:             targetLevel := na
+  272:             stopLevel := na
+  273:             highestPrice := na
+  274:             lowestPrice := na
+  275:             firstTargetHit := false
+  276:             isSecondEntry := false
+  277:             inTargetZone := false
+  278:             tradeDirection := "none"
+  279: 
+  280: // Position Management - Short Positions
+  281: if strategy.position_size < 0
+  282:     lowestPrice := math.min(low, nz(lowestPrice, low))
+  283: 
+  284:     if isSecondEntry
+  285:         // Second Entry Management
+  286:         inTargetZone := useTargetZoneSecond and low <= targetLevel + targetZoneThresholdSecond
+  287: 
+  288:         if inTargetZone and useTargetZoneSecond
+  289:             targetLevel := targetLevel - targetIncreaseStepSecond
+  290: 
+  291:         if useTrailSecond
+  292:             stopLevel := math.min(stopLevel, lowestPrice + profitTrailStepSecond)
+  293: 
+  294:         if high >= stopLevel
+  295:             strategy.close_all("Second Entry Stop")
+  296:             basePrice := na
+  297:             targetLevel := na
+  298:             stopLevel := na
+  299:             highestPrice := na
+  300:             lowestPrice := na
+  301:             firstTargetHit := false
+  302:             isSecondEntry := false
+  303:             inTargetZone := false
+  304:             tradeDirection := "none"
+  305:     else
+  306:         // First Entry Management - improved profit locking
+  307:         if not firstTargetHit and low <= basePrice - initialTarget
+  308:             // First target hit - ALWAYS lock profit at break-even
+  309:             firstTargetHit := true
+  310:             stopLevel := basePrice  // Move stop to break-even
+  311:             targetLevel := useTrailFirst ? low - targetIncreaseStepFirst : basePrice - initialTarget
+  312:         else if firstTargetHit
+  313:             // Only modify target if trailing is enabled
+  314:             if useTrailFirst
+  315:                 inTargetZone := useTargetZoneFirst and low <= targetLevel + targetZoneThresholdFirst
+  316:                 if inTargetZone and useTargetZoneFirst
+  317:                     targetLevel := targetLevel - targetIncreaseStepFirst
+  318:                 // Trail stop-loss but never above break-even
+  319:                 stopLevel := math.min(basePrice, lowestPrice + profitTrailStepFirst)
+  320:         else
+  321:             // Before first target hit
+  322:             targetLevel := basePrice - initialTarget
+  323:             stopLevel := basePrice + initialStopLoss
+  324: 
+  325:         // Exit on stop hit - this could only be at break-even or better after first target
+  326:         if high >= stopLevel
+  327:             strategy.close_all("First Entry Stop")
+  328:             basePrice := na
+  329:             targetLevel := na
+  330:             stopLevel := na
+  331:             highestPrice := na
+  332:             lowestPrice := na
+  333:             firstTargetHit := false
+  334:             isSecondEntry := false
+  335:             inTargetZone := false
+  336:             tradeDirection := "none"
