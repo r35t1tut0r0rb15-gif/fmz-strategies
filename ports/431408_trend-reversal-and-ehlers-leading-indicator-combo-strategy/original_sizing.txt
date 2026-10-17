@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #431408 (趋势追踪反转与埃勒斯先导指标联合策略Trend-Reversal-and-Ehlers-Leading-Indicator-Combo-Strategy)
+# Source: https://www.fmz.com/strategy/431408  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #431415 (混沌交易规则止损策略Chaotic-Trading-Rules-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/431415  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Leverage input  [lines 279-279]
+  279: leverage = input(200, "Leverage")

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2819 |
+| PORT_CANDIDATE | 2805 |
 | REJECTED | 994 |
-| PORTED | 819 |
-| HELD_NEEDS_VOLUME | 556 |
+| PORTED | 831 |
+| HELD_NEEDS_VOLUME | 557 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 113 |
+| REJECTED_ON_READING | 114 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -947,7 +947,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 431287 | `ports/431287_crossing-moving-average-strategy/` | PineScript | ma_cross | none | fast x2, mid x2 | 4 |
 | 431392 | `ports/431392_gaussian-detrended-reversion-trading-strategy/` | PineScript | zscore_reversion | none | period x2, lag x2 | 4 |
 | 431394 | `ports/431394_bollinger-band-breakout-strategy/` | PineScript | bollinger_reversion | none | length x2, tp_pct x2 | 4 |
-| | **819 ports** | | | | | **4915** |
+| 431396 | `ports/431396_dual-stochastics-strategy/` | PineScript | stochastic_oscillator | trailing_stop_pending | length x2, smooth_k x2 | 4 |
+| 431400 | `ports/431400_ema-turtle-breakout-ema-cross-strategy/` | PineScript | ma_cross | coarse_bar_stop | sl_atr x2, tp_atr x2 | 4 |
+| 431401 | `ports/431401_rsi-rsi-momentum-reversal-strategy/` | PineScript | rsi_oscillator | none | limit x2, fast_len x2 | 4 |
+| 431404 | `ports/431404_moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, n x2 | 4 |
+| 431407 | `ports/431407_dual-moving-average-reversal-tracking-system/` | PineScript | combo_123_reversal | none | length x2, displacement x2 | 4 |
+| 431408 | `ports/431408_trend-reversal-and-ehlers-leading-indicator-combo-strategy/` | PineScript | combo_123_reversal | none | length x2, eli_len x2 | 4 |
+| 431409 | `ports/431409_multi-indicator-scoring-trading-strategy/` | PineScript | multi_indicator_vote | trailing_stop, coarse_bar_stop | min_strength x2, activate x2 | 4 |
+| 431410 | `ports/431410_di-dual-timeframe-di-trend-following-strategy/` | PineScript | directional_movement | trailing_stop_pending | adx_len x2, tsl_mult x2 | 4 |
+| 431411 | `ports/431411_rsi-rsi-trend-following-strategy/` | PineScript | rsi_oscillator | none | length x2, sl_atr x2 | 4 |
+| 431413 | `ports/431413_kst-ema-kst-ema-momentum-trend-following-strategy/` | PineScript | momentum_oscillator_turn | trailing_stop, coarse_bar_stop | trail_pct x2, ema_len x2 | 4 |
+| 431415 | `ports/431415_chaotic-trading-rules-stop-loss-strategy/` | PineScript | rsi_oscillator | none | leverage x2, length x2 | 4 |
+| 431422 | `ports/431422_rsi-double-fast-rsi-breakthrough-strategy/` | PineScript | rsi_oscillator | none | limit x2, rsi2_len x2 | 4 |
+| | **831 ports** | | | | | **4963** |
 
 ## Rejected on reading
 
@@ -1066,6 +1078,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 431005 | 基于趋势的开尔特纳通道策略Keltner-Channel-Trend-Based-Strategy.md | 1 | The long exits in steps: TP1 closes 15 % of the position at +4.5 % (qty_percent = 15), TP2 the rest at +20 %, beside a close-checked exit: a partial exit cannot be expressed as one net position's signals (as #365389). |
 | 431018 | 停顿回转策略Turnaround-After-Consolidation-Strategy.md | 1 | Positions of 2 units are closed one unit at a time (strategy.exit with qty = 1 at point targets, the rest with qty = 2): a partial exit cannot be expressed as one net position's signals (as #365389); the targets are also point distances. |
 | 431270 | 趋势追随型MA均线交叉交易策略Trend-Following-Moving-Average-Crossover-Trading-Strategy.md | 1 | The take-profit orders are strategy.order sells of 25 % of the long (LTP1 / LTP2, mirror for shorts) on MA colour changes, beside the full entries and a stop: partial exits cannot be expressed as one net position's signals (as #365389). |
+| 431419 | 跨时间轴Hull移动平均线买卖策略Cross-Timeframe-Hull-Moving-Average-Buy-Sell-Strategy.md | 1 | The signal needs HMA rises from request.security(tickerid, '60' / '240', ...) on the 1-day header chart: resolutions below the chart's, whose value per bar is undefined (as #427518). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

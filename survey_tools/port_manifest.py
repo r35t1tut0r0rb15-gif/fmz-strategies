@@ -1924,6 +1924,38 @@ SIZING = {
         ("strategy(): 15 % of equity", 130, 130),
     ],
     431394: [],
+    # ---- FMZ-C, batch C45 (2026-10-17)
+    431396: [
+        ("strategy(): 100 % of equity", 212, 212),
+    ],
+    431400: [
+        ("Lot size input", 158, 158),
+    ],
+    431401: [
+        ("strategy(): 100 % of equity, pyramiding 10", 276, 276),
+        ("Capital % input", 282, 282),
+        ("Lot formula (martingale multiplier)", 343, 345),
+    ],
+    431404: [],
+    431407: [],
+    431408: [],
+    431409: [
+        ("strategy(): 50 % of equity, commission", 201, 201),
+    ],
+    431410: [
+        ("strategy(): 5 % of equity, pyramiding 1", 187, 187),
+    ],
+    431411: [],
+    431413: [
+        ("strategy(): 100 % of equity", 166, 166),
+    ],
+    431415: [
+        ("Leverage input", 279, 279),
+    ],
+    431422: [
+        ("Capital % input", 175, 175),
+        ("Lot formula (martingale multiplier)", 229, 231),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2351,6 +2383,10 @@ REJECTED_ON_READING = {
     431270: ("1", "The take-profit orders are strategy.order sells of 25 % of the long (LTP1 / LTP2, "
               "mirror for shorts) on MA colour changes, beside the full entries and a stop: "
               "partial exits cannot be expressed as one net position's signals (as #365389)."),
+    # ---- FMZ-C, batch C45 (2026-10-17)
+    431419: ("1", "The signal needs HMA rises from request.security(tickerid, '60' / '240', ...) on "
+              "the 1-day header chart: resolutions below the chart's, whose value per bar is "
+              "undefined (as #427518)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -2376,4 +2412,6 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C36 (2026-10-16)
     430551: ("8", "The grid lines are vwma(highest / lowest, 14): volume-weighted averages (check 8, held with the other volume users)."),
     430588: ("8", "The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C45 (2026-10-17)
+    431414: ("8", "The trend line is vwma(close, 33) and its RSI: a volume-weighted average (check 8, held with the other volume users)."),
 }

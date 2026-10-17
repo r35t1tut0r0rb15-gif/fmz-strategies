@@ -112,6 +112,7 @@ fmz_id,file,final_outcome,criterion,reason
 431005,基于趋势的开尔特纳通道策略Keltner-Channel-Trend-Based-Strategy.md,REJECTED_ON_READING,1,"The long exits in steps: TP1 closes 15 % of the position at +4.5 % (qty_percent = 15), TP2 the rest at +20 %, beside a close-checked exit: a partial exit cannot be expressed as one net position's signals (as #365389)."
 431018,停顿回转策略Turnaround-After-Consolidation-Strategy.md,REJECTED_ON_READING,1,"Positions of 2 units are closed one unit at a time (strategy.exit with qty = 1 at point targets, the rest with qty = 2): a partial exit cannot be expressed as one net position's signals (as #365389); the targets are also point distances."
 431270,趋势追随型MA均线交叉交易策略Trend-Following-Moving-Average-Crossover-Trading-Strategy.md,REJECTED_ON_READING,1,"The take-profit orders are strategy.order sells of 25 % of the long (LTP1 / LTP2, mirror for shorts) on MA colour changes, beside the full entries and a stop: partial exits cannot be expressed as one net position's signals (as #365389)."
+431419,跨时间轴Hull移动平均线买卖策略Cross-Timeframe-Hull-Moving-Average-Buy-Sell-Strategy.md,REJECTED_ON_READING,1,"The signal needs HMA rises from request.security(tickerid, '60' / '240', ...) on the 1-day header chart: resolutions below the chart's, whose value per bar is undefined (as #427518)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -120,6 +121,7 @@ fmz_id,file,final_outcome,criterion,reason
 430385,动量突破双向交易策略Momentum-Breakout-Reversal-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."
 430551,动态RSI矩形Grid策略RSI-Box-Grid-Strategy.md,HELD_NEEDS_VOLUME,8,"The grid lines are vwma(highest / lowest, 14): volume-weighted averages (check 8, held with the other volume users)."
 430588,均线交易策略Trend-Trading-Strategy-Based-on-Moving-Average.md,HELD_NEEDS_VOLUME,8,"The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."
+431414,基于VWMA及ATR的趋势跟踪策略VWMA-and-ATR-Trend-Following-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend line is vwma(close, 33) and its RSI: a volume-weighted average (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -940,3 +942,15 @@ fmz_id,file,final_outcome,criterion,reason
 431287,移动平均线穿越策略Crossing-Moving-Average-Strategy.md,PORTED,,ports/431287_crossing-moving-average-strategy/
 431392,基于高斯平滑去趋势反转策略Gaussian-Detrended-Reversion-Trading-Strategy.md,PORTED,,ports/431392_gaussian-detrended-reversion-trading-strategy/
 431394,玻尔布林震荡突破策略Bollinger-Band-Breakout-Strategy.md,PORTED,,ports/431394_bollinger-band-breakout-strategy/
+431396,双重随机策略Dual-Stochastics-Strategy.md,PORTED,,ports/431396_dual-stochastics-strategy/
+431400,海龟突破EMA交叉策略Turtle-Breakout-EMA-Cross-Strategy.md,PORTED,,ports/431400_ema-turtle-breakout-ema-cross-strategy/
+431401,RSI动量反转策略RSI-Momentum-Reversal-Strategy.md,PORTED,,ports/431401_rsi-rsi-momentum-reversal-strategy/
+431404,经典移动平均线交叉策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/431404_moving-average-crossover-strategy/
+431407,双线追踪反转均线系统Dual-Moving-Average-Reversal-Tracking-System.md,PORTED,,ports/431407_dual-moving-average-reversal-tracking-system/
+431408,趋势追踪反转与埃勒斯先导指标联合策略Trend-Reversal-and-Ehlers-Leading-Indicator-Combo-Strategy.md,PORTED,,ports/431408_trend-reversal-and-ehlers-leading-indicator-combo-strategy/
+431409,多指标评分交易策略Multi-Indicator-Scoring-Trading-Strategy.md,PORTED,,ports/431409_multi-indicator-scoring-trading-strategy/
+431410,多时间框架趋势跟踪DI策略Dual-Timeframe-DI-Trend-Following-Strategy.md,PORTED,,ports/431410_di-dual-timeframe-di-trend-following-strategy/
+431411,基于RSI的趋势追踪策略RSI-Trend-Following-Strategy.md,PORTED,,ports/431411_rsi-rsi-trend-following-strategy/
+431413,基于KST指标和EMA指标的交易策略KST-EMA-Momentum-Trend-Following-Strategy.md,PORTED,,ports/431413_kst-ema-kst-ema-momentum-trend-following-strategy/
+431415,混沌交易规则止损策略Chaotic-Trading-Rules-Stop-Loss-Strategy.md,PORTED,,ports/431415_chaotic-trading-rules-stop-loss-strategy/
+431422,快速RSI指标二次突破策略Double-Fast-RSI-Breakthrough-Strategy.md,PORTED,,ports/431422_rsi-double-fast-rsi-breakthrough-strategy/
