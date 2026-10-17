@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2665 |
+| PORT_CANDIDATE | 2651 |
 | REJECTED | 994 |
-| PORTED | 952 |
+| PORTED | 963 |
 | HELD_NEEDS_VOLUME | 559 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 131 |
+| REJECTED_ON_READING | 134 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1080,7 +1080,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 432914 | `ports/432914_bollinger-band-trend-chaser/` | PineScript | multi_indicator_confluence | none | mult x2, ma_len x2 | 4 |
 | 432920 | `ports/432920_modern-laguerre-transform-relative-strength-index-optimizati/` | PineScript | rsi_oscillator | none | gamma x2, band x2 | 4 |
 | 432921 | `ports/432921_dual-reversal-tracking-strategy/` | PineScript | combo_123_reversal | none | length x2, n_len x2 | 4 |
-| | **952 ports** | | | | | **5430** |
+| 432923 | `ports/432923_bollinger-bollinger-band-reversal-based-quantitative-strateg/` | PineScript | bollinger_reversion | none | length x2, since_max x2 | 4 |
+| 432965 | `ports/432965_atr-ssl-ssl-channel-backtester-strategy-with-atr-and-money-m/` | PineScript | ssl_channel | coarse_bar_stop | sl_atr x2, tp_atr x2 | 4 |
+| 432967 | `ports/432967_dual-rate-of-change-momentum-indicator-trading-strategy/` | PineScript | momentum_oscillator_turn | none | roc1 x2, roc4 x2 | 4 |
+| 432969 | `ports/432969_bollinger-trend-shock-trading-strategy/` | PineScript | bollinger_reversion | none | boll_len x2, boll_mult x2 | 4 |
+| 432970 | `ports/432970_cloud-soaring-high-yield-daily-trading-strategy/` | PineScript | ichimoku | none | tenkan x2, kijun x2 | 4 |
+| 432977 | `ports/432977_bearish-harami-reversal-backtest-strategy/` | PineScript | candle_pattern | none | tp_atr x2, sl_atr x2 | 4 |
+| 432979 | `ports/432979_momentum-turtle-trend-tracking-strategy/` | PineScript | heikin_ashi_trend | none | roc_len x2, sl_pct x2 | 4 |
+| 432989 | `ports/432989_momentum-tracking-strategy/` | PineScript | ma_trend | none | crumb_atr x2, ema_len x2 | 4 |
+| 433002 | `ports/433002_momentum-combined-with-trend-judgment-multi-factor-quantitat/` | PineScript | multi_indicator_confluence | none | harmonic x3 | 3 |
+| 433008 | `ports/433008_bi-directional-trend-tracking-moving-average-crossover-strat/` | PineScript | ma_cross | none | basis_len x2, alma_offset x2 | 4 |
+| 433009 | `ports/433009_timeframe-power-trading-strategy/` | PineScript | calendar_seasonal | none | tz x2, exit_hour x2 | 4 |
+| | **963 ports** | | | | | **5473** |
 
 ## Rejected on reading
 
@@ -1217,6 +1228,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 432807 | 多时间框架动态回溯策略Multi-Timeframe-Dynamic-Backtesting-Strategy.md | 1 | Reads the future: the HTF high / low are security(tickerid, '3M', high[0] / low[0], lookahead = barmerge.lookahead_on) (the lookahead input is true): without [1], lookahead_on hands every daily bar the final high and low of its three-month bar (as #430661). |
 | 432894 | 动量突破GetString策略GetString-Momentum-Breakthrough-Strategy.md | 1 | Positions are built with strategy.order('Long Signal' / 'Short Signal'), which adds or removes one unit per signal instead of entering or reversing: the position path depends on the order size (as #430596). |
 | 432900 | 多种技术指标动量突破策略multiple-technical-indicators-Momentum-Breakout-Strategy.md | 1 | The MACD filters are request.security(syminfo.tickerid, '5' / '15' / '60', macdLine) on the 1-day header chart: resolutions below the chart's, whose value per bar is undefined (as #430587). |
+| 432974 | Momentum-Alpha策略Momentum-Alpha-Strategy.md | 3 | The alpha and beta are measured against request.security('BTC_USDT:swap', timeframe.period, close), a crypto-exchange perpetual contract used as the benchmark for the chart symbol, which the project's single-symbol bars do not carry (as #430742). Stored in flagged/ (rule C7). |
+| 432988 | 基于波动带震荡器的反转跟踪策略CCTBBO-Reversal-Tracking-Strategy.md | 1 | Reads the future: Pine v2 request.security(syminfo.tickerid, '1440', high) without [1] behaves as lookahead_on, so on every 45-minute bar the oscillator uses the final high of the current day, not known until the day ends (SURVEY_README request.security rule, as #430661). |
+| 432992 | 布林带金叉死叉策略Bollinger-Break-Out-Strategy-with-Pyramiding.md | 1 | pyramiding = 4: further entries are added while the price is below the averaged-down level, and the stop, target and add levels are all measured from strategy.position_avg_price of the stacked units (a pyramided ladder, as #426570). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

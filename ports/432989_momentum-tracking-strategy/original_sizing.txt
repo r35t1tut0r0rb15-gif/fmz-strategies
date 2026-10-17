@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #432989 (动量跟踪策略Momentum-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/432989  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission  [lines 96-96]
+   96: strategy(title='Trend Follower Strategy v2 [divonn1994]', shorttitle='TrendFollowStrategyV2', overlay=false, pyramiding=0, default_qty_value=100, default_qty_type=strategy.percent_of_equity, precision=7, currency=currency.USD, commission_value=0.1, commission_type=strategy.commission.percent, initial_capital=100)

@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #432965 (基于ATR和资金管理的SSL通道回测策略SSL-Channel-Backtester-Strategy-With-ATR-and-Money-Management)
+# Source: https://www.fmz.com/strategy/432965  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk management (money-management lot)  [lines 211-220]
+  211: //--RISK MANAGMENT-------------------------------------------------------
+  212: strategy.initial_capital = 50000
+  213: balance = strategy.netprofit + strategy.initial_capital
+  214: risk_pips = atr*10000*atr_stop_factor
+  215: if(two_digit)
+  216:     risk_pips := risk_pips / 100
+  217: risk_in_value = balance * risk
+  218: point_value = syminfo.pointvalue
+  219: risk_lots = risk_in_value / point_value / risk_pips
+  220: final_risk = use_mm ? risk_lots * 10000 : position_size
+
+## Entries with the lot and their ATR exits  [lines 224-233]
+  224: if (signal_long)
+  225:     stop_loss = close - atr * atr_stop_factor
+  226:     target = close + atr * atr_target_factor
+  227:     strategy.entry("Long", strategy.long, final_risk)
+  228:     strategy.exit("X", "Long", stop=stop_loss, limit=target)
+  229: if (signal_short)
+  230:     stop_loss = close + atr * atr_stop_factor
+  231:     target = close - atr * atr_target_factor
+  232:     strategy.entry("Short", strategy.short, final_risk)
+  233:     strategy.exit("X", "Short", stop=stop_loss, limit=target)

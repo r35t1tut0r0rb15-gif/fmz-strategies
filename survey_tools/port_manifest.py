@@ -2269,6 +2269,32 @@ SIZING = {
     ],
     432920: [],
     432921: [],
+    # ---- FMZ-C, batch C56 (2026-10-17)
+    432923: [
+        ("strategy(): 10000 SEK cash quantity", 124, 124),
+    ],
+    432965: [
+        ("Risk management (money-management lot)", 211, 220),
+        ("Entries with the lot and their ATR exits", 224, 233),
+    ],
+    432967: [],
+    432969: [
+        ("strategy(): fixed quantity 1", 131, 131),
+    ],
+    432970: [],
+    432977: [],
+    432979: [
+        ("strategy(): 100 % of equity, commission", 134, 134),
+        ("Stop / target inputs and exits", 194, 213),
+    ],
+    432989: [
+        ("strategy(): 100 % of equity, commission", 96, 96),
+    ],
+    433002: [],
+    433008: [
+        ("strategy(): 100 % of equity, commission", 133, 133),
+    ],
+    433009: [],
 }
 
 REJECTED_ON_READING = {
@@ -2764,6 +2790,18 @@ REJECTED_ON_READING = {
     432900: ("1", "The MACD filters are request.security(syminfo.tickerid, '5' / '15' / '60', "
               "macdLine) on the 1-day header chart: resolutions below the chart's, whose value "
               "per bar is undefined (as #430587)."),
+    # ---- FMZ-C, batch C56 (2026-10-17)
+    432974: ("3", "The alpha and beta are measured against request.security('BTC_USDT:swap', "
+              "timeframe.period, close), a crypto-exchange perpetual contract used as the "
+              "benchmark for the chart symbol, which the project's single-symbol bars do not "
+              "carry (as #430742). Stored in flagged/ (rule C7)."),
+    432988: ("1", "Reads the future: Pine v2 request.security(syminfo.tickerid, '1440', high) without "
+              "[1] behaves as lookahead_on, so on every 45-minute bar the oscillator uses the "
+              "final high of the current day, not known until the day ends (SURVEY_README "
+              "request.security rule, as #430661)."),
+    432992: ("1", "pyramiding = 4: further entries are added while the price is below the "
+              "averaged-down level, and the stop, target and add levels are all measured from "
+              "strategy.position_avg_price of the stacked units (a pyramided ladder, as #426570)."),
 }
 
 DUPLICATE_ON_READING = {
