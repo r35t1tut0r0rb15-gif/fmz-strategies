@@ -3340,6 +3340,10 @@ SIZING = {
         ("strategy(): 10 % of equity, pyramiding 0", 92, 93),
         ("SL / TP points (0 = off), bar window and exits", 197, 221),
     ],
+    # ---- FMZ-C, batch L38 (2026-10-17)
+    481364: [
+        ("strategy(): 200 % of equity", 147, 147),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3923,6 +3927,11 @@ REJECTED_ON_READING = {
     481371: ("1", "a LOWER timeframe on a higher chart (request.security '60' on the 3-hour chart, as "
               "#430765), plus grid adds with a 1.5x lot multiplier and exits on account equity "
               "(daily profit target, 2 % equity drawdown)"),
+    # ---- FMZ-C, batch L38 (2026-10-17)
+    481365: ("1", "the exits come from a stale price: stop / limit = strategy.position_avg_price x (1 "
+              "-/+ ...) are computed on the signal bar, where a trade from flat has no average "
+              "price (na: no exit at all) and a reversal uses the PREVIOUS trade's average, the "
+              "long's levels also given to the short (as #483067)"),
 }
 
 DUPLICATE_ON_READING = {
