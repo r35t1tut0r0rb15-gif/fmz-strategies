@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #482889 (多指标交叉趋势跟踪策略结合斐波那契回调及止盈止损优化系统-Multi-Indicator-Crossover-Trend-Following-Strategy-with-Fibonacci-Retracement-and-Stop-Loss-Take-Profit-Optimization-System)
+# Source: https://www.fmz.com/strategy/482889  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## SL / TP inputs  [lines 106-107]
+  106: stopLossPercentage = input.int(2, title="Stop Loss (%)") // Stop loss percentage
+  107: takeProfitPercentage = input.int(4, title="Take Profit (%)") // Take profit percentage
+
+## Entries with the bracket  [lines 151-166]
+  151: if (longCondition)
+  152:     stopLossLevel = close * (1 - stopLossPercentage / 100)
+  153:     takeProfitLevel = close * (1 + takeProfitPercentage / 100)
+  154:     strategy.entry("BUY", strategy.long)
+  155:     strategy.exit("Sell", "BUY", stop=stopLossLevel, limit=takeProfitLevel)
+  156:     
+  157:     // Display TP, SL, and Buy label (Left of candle near price)
+  158:     label.new(bar_index, takeProfitLevel, text="TP\n" + str.tostring(takeProfitLevel, "#.##"), style=label.style_label_left, color=color.green, textcolor=color.white, size=size.small)
+  159:     label.new(bar_index, stopLossLevel, text="SL\n" + str.tostring(stopLossLevel, "#.##"), style=label.style_label_left, color=color.red, textcolor=color.white, size=size.small)
+  160:     label.new(bar_index, close, text="BUY\n" + str.tostring(close, "#.##"), style=label.style_label_left, color=color.blue, textcolor=color.white, size=size.small)
+  161: 
+  162: if (shortCondition)
+  163:     stopLossLevel = close * (1 + stopLossPercentage / 100)
+  164:     takeProfitLevel = close * (1 - takeProfitPercentage / 100)
+  165:     strategy.entry("SELL", strategy.short)
+  166:     strategy.exit("Cover", "SELL", stop=stopLossLevel, limit=takeProfitLevel)

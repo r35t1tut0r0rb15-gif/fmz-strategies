@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #482878 (三重布林带标准差趋势跟踪策略-Triple-Bollinger-Band-Standard-Deviation-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/482878  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 97-97]
+   97: strategy("Bollinger Band Buy and Sell Strategy (Entry at Close of 3rd Candle)", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10, pyramiding=0)
+
+## Entries with the bracket  [lines 129-147]
+  129: if buyCondition and strategy.position_size == 0
+  130:     buyEntryPrice := close  // Entry at the close of the 3rd candle
+  131:     buyStopLoss := low[2]   // Low of the earliest candle in the 3-candle sequence
+  132:     buyTargetPrice := buyEntryPrice + (buyEntryPrice - buyStopLoss)
+  133:     
+  134:     strategy.entry("Buy", strategy.long)
+  135:     strategy.exit("Buy Exit", "Buy", stop=buyStopLoss, limit=buyTargetPrice)
+  136:     
+  137:     // Plot buy signal arrow on the entry candle
+  138:     label.new(bar_index, low, "▲", color=color.green, style=label.style_label_up, yloc=yloc.belowbar)
+  139: 
+  140: // Sell Logic
+  141: if sellCondition and strategy.position_size == 0
+  142:     sellEntryPrice := close  // Entry at the close of the 3rd candle
+  143:     sellStopLoss := high[2]  // High of the earliest candle in the 3-candle sequence
+  144:     sellTargetPrice := sellEntryPrice - (sellStopLoss - sellEntryPrice)
+  145:     
+  146:     strategy.entry("Sell", strategy.short)
+  147:     strategy.exit("Sell Exit", "Sell", stop=sellStopLoss, limit=sellTargetPrice)

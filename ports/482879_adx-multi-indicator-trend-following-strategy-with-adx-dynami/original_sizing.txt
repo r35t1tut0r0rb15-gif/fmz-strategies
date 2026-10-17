@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #482879 (多指标综合趋势跟踪策略结合ADX动态交易系统-Multi-Indicator-Trend-Following-Strategy-with-ADX-Dynamic-Trading-System)
+# Source: https://www.fmz.com/strategy/482879  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 1 % of equity  [lines 99-99]
+   99: strategy("Enhanced GBP/USD Strategy with ADX", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=1)
+
+## RR / SL inputs  [lines 109-110]
+  109: riskToReward = input.float(2.0, title="Risk-Reward Ratio (R:R)") 
+  110: slMultiplier = input.float(1.5, title="SL Multiplier (ATR)") 
+
+## Bracket distances and levels  [lines 136-142]
+  136: slDistance = atr * slMultiplier
+  137: tpDistance = slDistance * riskToReward
+  138: 
+  139: buySL = buySignal ? close - slDistance : na
+  140: buyTP = buySignal ? close + tpDistance : na
+  141: sellSL = sellSignal ? close + slDistance : na
+  142: sellTP = sellSignal ? close - tpDistance : na
+
+## Entries with the bracket  [lines 145-151]
+  145: if buySignal
+  146:     strategy.entry("Buy", strategy.long)
+  147:     strategy.exit("Buy TP/SL", from_entry="Buy", stop=buySL, limit=buyTP)
+  148: 
+  149: if sellSignal
+  150:     strategy.entry("Sell", strategy.short)
+  151:     strategy.exit("Sell TP/SL", from_entry="Sell", stop=sellSL, limit=sellTP)

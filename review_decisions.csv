@@ -952,6 +952,11 @@ fmz_id,file,final_outcome,criterion,reason
 430988,基于SuperTrend和Fisher变换的趋势跟随长线策略Trend-Following-Long-Term-Strategy-Based-on-SuperTrend-and-Fisher-Transform.md,PORTED,,ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/
 430998,木星与土星动能MA交叉过滤策略Jupiter-and-Saturn-Momentum-MA-Crossover-Filtered-Strategy.md,PORTED,,ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/
 431000,跨时间段移动量策略Intraday-Pivot-Breakout-Strategy.md,PORTED,,ports/431000_intraday-pivot-breakout-strategy/
+482878,三重布林带标准差趋势跟踪策略-Triple-Bollinger-Band-Standard-Deviation-Trend-Following-Strategy.md,PORTED,,ports/482878_triple-bollinger-band-standard-deviation-trend-following-str/
+482879,多指标综合趋势跟踪策略结合ADX动态交易系统-Multi-Indicator-Trend-Following-Strategy-with-ADX-Dynamic-Trading-System.md,PORTED,,ports/482879_adx-multi-indicator-trend-following-strategy-with-adx-dynami/
+482886,高频量化多周期热图狙击策略-High-Frequency-Quantitative-Multi-Timeframe-Heatmap-Sniper-Strategy.md,PORTED,,ports/482886_high-frequency-quantitative-multi-timeframe-heatmap-sniper-s/
+482887,Bollinger-Bands与RSI结合的动量反转量化交易策略-Momentum-Reversal-Quantitative-Trading-Strategy-Combining-Bollinger-Bands-and-RSI.md,PORTED,,ports/482887_bollinger-bands-rsi-momentum-reversal-quantitative-trading-s/
+482889,多指标交叉趋势跟踪策略结合斐波那契回调及止盈止损优化系统-Multi-Indicator-Crossover-Trend-Following-Strategy-with-Fibonacci-Retracement-and-Stop-Loss-Take-Profit-Optimization-System.md,PORTED,,ports/482889_multi-indicator-crossover-trend-following-strategy-with-fibo/
 482890,多波段统计趋势分析策略-Multi-Band-Statistical-Trend-Analysis-Strategy.md,PORTED,,ports/482890_multi-band-statistical-trend-analysis-strategy/
 482891,使用RSI和MACD双重过滤的动态止损趋势跟踪策略-Dynamic-Stop-Loss-Trend-Following-Strategy-with-RSI-and-MACD-Dual-Filtering.md,PORTED,,ports/482891_rsi-macd-dynamic-stop-loss-trend-following-strategy-with-rsi/
 482895,基于RSI超买超卖的自适应市场交易策略-Adaptive-Market-Trading-Strategy-Based-on-RSI-Overbought-Oversold.md,PORTED,,ports/482895_rsi-adaptive-market-trading-strategy-based-on-rsi-overbought/

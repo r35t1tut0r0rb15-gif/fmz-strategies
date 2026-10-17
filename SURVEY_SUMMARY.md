@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2556 |
-| PORTED | 1045 |
+| PORT_CANDIDATE | 2551 |
+| PORTED | 1050 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 558 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -922,6 +922,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430988 | `ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/` | PineScript | supertrend | none | mult x2, fisher_level x2 | 4 |
 | 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
 | 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
+| 482878 | `ports/482878_triple-bollinger-band-standard-deviation-trend-following-str/` | PineScript | breakout | none | mult x2, rr x2 | 4 |
+| 482879 | `ports/482879_adx-multi-indicator-trend-following-strategy-with-adx-dynami/` | PineScript | mean_reversion | trailing_stop_pending | sl_mult x2, rr x2 | 4 |
+| 482886 | `ports/482886_high-frequency-quantitative-multi-timeframe-heatmap-sniper-s/` | PineScript | channel_breakout | none | sensitivity x2, lookback x2 | 4 |
+| 482887 | `ports/482887_bollinger-bands-rsi-momentum-reversal-quantitative-trading-s/` | PineScript | mean_reversion | none | mult x2, rsi_os x2 | 4 |
+| 482889 | `ports/482889_multi-indicator-crossover-trend-following-strategy-with-fibo/` | PineScript | ma_cross | none | sl_pct x2, tp_pct x2 | 4 |
 | 482890 | `ports/482890_multi-band-statistical-trend-analysis-strategy/` | PineScript | channel_breakout | none | length x2, confirm_bars x2 | 4 |
 | 482891 | `ports/482891_rsi-macd-dynamic-stop-loss-trend-following-strategy-with-rsi/` | PineScript | macd | none | stop_pct x2, rsi_ob x2 | 4 |
 | 482895 | `ports/482895_rsi-adaptive-market-trading-strategy-based-on-rsi-overbought/` | PineScript | mean_reversion | trailing_stop_pending | sl_pct x2, tp_pct x2 | 4 |
@@ -1173,7 +1178,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491914 | `ports/491914_price-action-structural-breakout-strategy-with-trailing-stop/` | PineScript | price_action_breakout | trailing_stop | trail_k x2, trail_activate x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | macd_divergence | coarse_bar_stop, trailing_stop_pending | method x2, lb x2 | 4 |
 | 492009 | `ports/492009_atr-dual-ema-filtered-atr-adaptive-trend-following-strategy/` | PineScript | volatility_stop_cross | trailing_stop | atr_mult x2, trail_k x2 | 4 |
-| | **1045 ports** | | | | | **5781** |
+| | **1050 ports** | | | | | **5801** |
 
 ## Rejected on reading
 

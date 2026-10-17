@@ -2904,6 +2904,27 @@ SIZING = {
     482920: [
         ("strategy(): 100 % of equity", 96, 96),
     ],
+    # ---- FMZ-C, batch L25 (2026-10-17)
+    482878: [
+        ("strategy(): 10 % of equity", 97, 97),
+        ("Entries with the bracket", 129, 147),
+    ],
+    482879: [
+        ("strategy(): 1 % of equity", 99, 99),
+        ("RR / SL inputs", 109, 110),
+        ("Bracket distances and levels", 136, 142),
+        ("Entries with the bracket", 145, 151),
+    ],
+    482886: [
+        ("strategy(): 1 % of equity", 106, 106),
+    ],
+    482887: [
+        ("strategy(): defaults", 129, 129),
+    ],
+    482889: [
+        ("SL / TP inputs", 106, 107),
+        ("Entries with the bracket", 151, 166),
+    ],
 }
 
 REJECTED_ON_READING = {
