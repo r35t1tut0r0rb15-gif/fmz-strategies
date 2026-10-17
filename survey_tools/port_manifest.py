@@ -2209,6 +2209,38 @@ SIZING = {
         ("Close-checked stop levels and closes", 164, 178),
     ],
     432782: [],
+    # ---- FMZ-C, batch C54 (2026-10-17)
+    432783: [],
+    432784: [],
+    432785: [
+        ("Position size from equity and ATR", 310, 333),
+    ],
+    432786: [
+        ("strategy(): 100 % of equity, pyramiding 10", 243, 243),
+        ("Capital % input", 246, 246),
+        ("Lot formula and entry with the lot", 280, 286),
+    ],
+    432788: [
+        ("strategy(): pyramiding 1999, initial capital", 131, 131),
+    ],
+    432789: [
+        ("ATR and fixed-percent exit orders", 200, 220),
+    ],
+    432797: [
+        ("Stop / target inputs and orders re-placed every bar", 110, 113),
+    ],
+    432804: [
+        ("Close-checked target and stop", 131, 141),
+    ],
+    432810: [],
+    432811: [],
+    432874: [
+        ("Stop / target levels and their (unreachable) exit orders", 125, 156),
+    ],
+    432880: [
+        ("strategy(): 100 % of equity", 113, 113),
+    ],
+    432883: [],
 }
 
 REJECTED_ON_READING = {
@@ -2692,6 +2724,11 @@ REJECTED_ON_READING = {
     432781: ("1", "The only exit is strategy.close('long', qty_percent = 20): a partial exit that "
               "takes 20 % of the position off at a time cannot be expressed as one net position "
               "(as #428066)."),
+    # ---- FMZ-C, batch C54 (2026-10-17)
+    432807: ("1", "Reads the future: the HTF high / low are security(tickerid, '3M', high[0] / "
+              "low[0], lookahead = barmerge.lookahead_on) (the lookahead input is true): without "
+              "[1], lookahead_on hands every daily bar the final high and low of its three-month "
+              "bar (as #430661)."),
 }
 
 DUPLICATE_ON_READING = {

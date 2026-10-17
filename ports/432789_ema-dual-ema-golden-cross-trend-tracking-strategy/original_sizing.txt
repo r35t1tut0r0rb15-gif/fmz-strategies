@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #432789 (双EMA黄金交叉趋势追踪策略Dual-EMA-Golden-Cross-Trend-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/432789  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## ATR and fixed-percent exit orders  [lines 200-220]
+  200: if (long_condition and window() )
+  201:     strategy.entry("Long Entry",  strategy.long)
+  202:     if strategy.position_size <= 0 // Less than as in both direction strat - Could be long before switching
+  203:         if atsp
+  204:             atr_stop = open  - atr_stp_dst_sl
+  205:             atr_profit = open + atr_stp_dst_tp
+  206:             strategy.exit('ATR Long Exit', "Long Entry", stop=atr_stop, limit = atr_profit)
+  207:         if fstp
+  208:             stop = open - (open * fper)
+  209:             strategy.exit('Perc Fixed Long Stop Exit', "Long Entry", stop=stop)
+  210:  
+  211: if (short_condition and window() )
+  212:     strategy.entry("Short Entry",strategy.short)
+  213:     if strategy.position_size >= 0 // Greater than as in both direction strat - Could be long before switching
+  214:         if atsp
+  215:             atr_stop = open  + atr_stp_dst_sl
+  216:             atr_profit = open - atr_stp_dst_tp
+  217:             strategy.exit('ATR Short Exit', "Short Entry", stop=atr_stop, limit = atr_profit)
+  218:         if fstp
+  219:             stop = open + (open * fper)
+  220:             strategy.exit('Perc Fixed Short Stop Exit', "Short Entry", stop=stop)

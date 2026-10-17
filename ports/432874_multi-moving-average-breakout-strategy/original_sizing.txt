@@ -1,0 +1,37 @@
+# Original sizing and money-management code, FMZ #432874 (多重均线突破策略Multi-Moving-Average-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/432874  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target levels and their (unreachable) exit orders  [lines 125-156]
+  125: lowestLow = ta.lowest(low, 2)
+  126: 
+  127: // Calculate the highest point of the previous candle for stop loss
+  128: highestHigh = ta.highest(high, 2)
+  129: 
+  130: // Calculate take profit levels
+  131: takeProfitLong = lowestLow - 3 * (lowestLow - highestHigh)
+  132: takeProfitShort = highestHigh + 3 * (lowestLow - highestHigh)
+  133: 
+  134: // Entry Conditions
+  135: longCondition = ta.crossover(close, ma21) or ta.crossover(close, ma50) or ta.crossover(close, ma100) or ta.crossover(close, ma200)
+  136: shortCondition = ta.crossunder(close, ma21) or ta.crossunder(close, ma50) or ta.crossunder(close, ma100) or ta.crossunder(close, ma200)
+  137: 
+  138: // Stop Loss Levels
+  139: stopLossLong = lowestLow * 0.995
+  140: stopLossShort = highestHigh * 1.005
+  141: 
+  142: // Exit Conditions
+  143: longExitCondition = low < stopLossLong or high > takeProfitLong
+  144: shortExitCondition = high > stopLossShort or low < takeProfitShort
+  145: 
+  146: if (longCondition)
+  147:     strategy.entry("Long", strategy.long)
+  148: 
+  149: if (shortCondition)
+  150:     strategy.entry("Short", strategy.short)
+  151: 
+  152: if (longExitCondition)
+  153:     strategy.exit("Long Exit", from_entry="Long", stop=stopLossLong, limit=takeProfitLong)
+  154: 
+  155: if (shortExitCondition)
+  156:     strategy.exit("Short Exit", from_entry="Short", stop=stopLossShort, limit=takeProfitShort)

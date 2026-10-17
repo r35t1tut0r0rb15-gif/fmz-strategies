@@ -127,6 +127,7 @@ fmz_id,file,final_outcome,criterion,reason
 432363,双移动均线交叉策略Dual-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"Every entry needs strategy.equity >= ema(strategy.equity, 40): an equity-curve filter on the account's own P&L, which depends on the order size and the commission (as #427139)."
 432420,基于趋势的循环交易策略Cycle-Position-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"The only exit is strategy.exit('Exit', limit = close) placed when the close condition holds: a resting limit at the signal bar's close, filled inside the next bar at its own price (as #427119)."
 432781,双均线价格跃动策略Dual-Moving-Average-Price-Leaping-Strategy.md,REJECTED_ON_READING,1,"The only exit is strategy.close('long', qty_percent = 20): a partial exit that takes 20 % of the position off at a time cannot be expressed as one net position (as #428066)."
+432807,多时间框架动态回溯策略Multi-Timeframe-Dynamic-Backtesting-Strategy.md,REJECTED_ON_READING,1,"Reads the future: the HTF high / low are security(tickerid, '3M', high[0] / low[0], lookahead = barmerge.lookahead_on) (the lookahead input is true): without [1], lookahead_on hands every daily bar the final high and low of its three-month bar (as #430661)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1066,3 +1067,16 @@ fmz_id,file,final_outcome,criterion,reason
 432778,超级鹅倒三角移动平均线交易策略Super-Guppy-Moving-Average-Trading-Strategy.md,PORTED,,ports/432778_super-guppy-moving-average-trading-strategy/
 432780,康纳双均线RSI反转交易策略Connors-Dual-Moving-Average-RSI-Reversal-Trading-Strategy.md,PORTED,,ports/432780_rsi-connors-dual-moving-average-rsi-reversal-trading-strateg/
 432782,基于日线收盘价比较的量化交易策略Quantitative-Trading-Strategy-Based-on-Daily-Close-Price-Comparison.md,PORTED,,ports/432782_quantitative-trading-strategy-based-on-daily-close-price-com/
+432783,逆向费希尔RSI平均真实范围多时间框架策略Inverse-Fisher-RSI-Moving-Average-Multi-Timeframe-Strategy.md,PORTED,,ports/432783_rsi-inverse-fisher-rsi-moving-average-multi-timeframe-strate/
+432784,基于中国农历的比特币交易策略Bitcoin-Trading-Strategy-Based-on-Chinese-Zodiac-Calendar.md,PORTED,,ports/432784_bitcoin-trading-strategy-based-on-chinese-zodiac-calendar/
+432785,基于趋势平均线的多重反转策略Trend-Reversal-Strategy-Based-on-Multiple-Moving-Averages.md,PORTED,,ports/432785_trend-reversal-strategy-based-on-multiple-moving-averages/
+432786,动态区间突破策略Dynamic-Range-Breakout-Strategy.md,PORTED,,ports/432786_dynamic-range-breakout-strategy/
+432788,动量突破TTM策略Momentum-Breakthrough-TTM-Strategy.md,PORTED,,ports/432788_ttm-momentum-breakthrough-ttm-strategy/
+432789,双EMA黄金交叉趋势追踪策略Dual-EMA-Golden-Cross-Trend-Tracking-Strategy.md,PORTED,,ports/432789_ema-dual-ema-golden-cross-trend-tracking-strategy/
+432797,双重指标震荡策略-Dual-Indicator-Oscillation-Strategy.md,PORTED,,ports/432797_dual-indicator-oscillation-strategy/
+432804,动量震荡交易策略Momentum-Oscillation-Trading-Strategy.md,PORTED,,ports/432804_momentum-oscillation-trading-strategy/
+432810,动态均线趋势交叉策略Dynamic-Moving-Average-Trend-Crossover-Strategy.md,PORTED,,ports/432810_dynamic-moving-average-trend-crossover-strategy/
+432811,基于斐波那契通道的K线反转策略Fibonacci-Channel-Based-Candlestick-Reversal-Trading-Strategy.md,PORTED,,ports/432811_k-fibonacci-channel-based-candlestick-reversal-trading-strat/
+432874,多重均线突破策略Multi-Moving-Average-Breakout-Strategy.md,PORTED,,ports/432874_multi-moving-average-breakout-strategy/
+432880,Heikin-Ashi-HighLow通道动态均线交易策略Heikin-Ashi-HighLow-Channel-Dynamic-Moving-Average-Trading-Strategy.md,PORTED,,ports/432880_heikin-ashi-highlow-heikin-ashi-highlow-channel-dynamic-movi/
+432883,双线性反转均线振荡器组合策略123-Reversal-Moving-Average-Convergence-Divergence-Combination-Strategy.md,PORTED,,ports/432883_123-reversal-moving-average-convergence-divergence-combinati/

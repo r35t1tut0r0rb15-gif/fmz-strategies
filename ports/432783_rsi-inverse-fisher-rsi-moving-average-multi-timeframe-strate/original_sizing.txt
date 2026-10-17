@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #432783 (逆向费希尔RSI平均真实范围多时间框架策略Inverse-Fisher-RSI-Moving-Average-Multi-Timeframe-Strategy)
+# Source: https://www.fmz.com/strategy/432783  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

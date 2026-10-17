@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2693 |
+| PORT_CANDIDATE | 2679 |
 | REJECTED | 994 |
-| PORTED | 927 |
+| PORTED | 940 |
 | HELD_NEEDS_VOLUME | 559 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 128 |
+| REJECTED_ON_READING | 129 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1055,7 +1055,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 432778 | `ports/432778_super-guppy-moving-average-trading-strategy/` | PineScript | ma_trend | none | step x2, first x2 | 4 |
 | 432780 | `ports/432780_rsi-connors-dual-moving-average-rsi-reversal-trading-strateg/` | PineScript | rsi_oscillator | none | rsi_len x2, exit_ma x2 | 4 |
 | 432782 | `ports/432782_quantitative-trading-strategy-based-on-daily-close-price-com/` | PineScript | momentum_breakout | none | threshold x3 | 3 |
-| | **927 ports** | | | | | **5336** |
+| 432783 | `ports/432783_rsi-inverse-fisher-rsi-moving-average-multi-timeframe-strate/` | PineScript | rsi_oscillator | none | rsi_len x2, scale x2 | 4 |
+| 432784 | `ports/432784_bitcoin-trading-strategy-based-on-chinese-zodiac-calendar/` | PineScript | calendar_seasonal | none | year_offset x1 | 1 |
+| 432785 | `ports/432785_trend-reversal-strategy-based-on-multiple-moving-averages/` | PineScript | momentum_breakout | none | length x3 | 3 |
+| 432786 | `ports/432786_dynamic-range-breakout-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 432788 | `ports/432788_ttm-momentum-breakthrough-ttm-strategy/` | PineScript | volatility_squeeze | none | osc_atr x2, hold x2 | 4 |
+| 432789 | `ports/432789_ema-dual-ema-golden-cross-trend-tracking-strategy/` | PineScript | ma_cross | none | sl_atr x2, tp_atr x2 | 4 |
+| 432797 | `ports/432797_dual-indicator-oscillation-strategy/` | PineScript | stochastic_oscillator | trailing_stop_pending | sl_atr x2, tp_atr x2 | 4 |
+| 432804 | `ports/432804_momentum-oscillation-trading-strategy/` | PineScript | bollinger_reversion | none | length x2, target_pct x2 | 4 |
+| 432810 | `ports/432810_dynamic-moving-average-trend-crossover-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| 432811 | `ports/432811_k-fibonacci-channel-based-candlestick-reversal-trading-strat/` | PineScript | volatility_channel_breakout | none | fib x2, ma_len x2 | 4 |
+| 432874 | `ports/432874_multi-moving-average-breakout-strategy/` | PineScript | ma_cross | none | set x2 | 2 |
+| 432880 | `ports/432880_heikin-ashi-highlow-heikin-ashi-highlow-channel-dynamic-movi/` | PineScript | heikin_ashi_trend | bar_size_pending | len_h x2, len_l x2 | 4 |
+| 432883 | `ports/432883_123-reversal-moving-average-convergence-divergence-combinati/` | PineScript | combo_123_reversal | none | length x2, level x2 | 4 |
+| | **940 ports** | | | | | **5382** |
 
 ## Rejected on reading
 
@@ -1189,6 +1202,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 432363 | 双移动均线交叉策略Dual-Moving-Average-Crossover-Strategy.md | 1 | Every entry needs strategy.equity >= ema(strategy.equity, 40): an equity-curve filter on the account's own P&L, which depends on the order size and the commission (as #427139). |
 | 432420 | 基于趋势的循环交易策略Cycle-Position-Trend-Following-Strategy.md | 1 | The only exit is strategy.exit('Exit', limit = close) placed when the close condition holds: a resting limit at the signal bar's close, filled inside the next bar at its own price (as #427119). |
 | 432781 | 双均线价格跃动策略Dual-Moving-Average-Price-Leaping-Strategy.md | 1 | The only exit is strategy.close('long', qty_percent = 20): a partial exit that takes 20 % of the position off at a time cannot be expressed as one net position (as #428066). |
+| 432807 | 多时间框架动态回溯策略Multi-Timeframe-Dynamic-Backtesting-Strategy.md | 1 | Reads the future: the HTF high / low are security(tickerid, '3M', high[0] / low[0], lookahead = barmerge.lookahead_on) (the lookahead input is true): without [1], lookahead_on hands every daily bar the final high and low of its three-month bar (as #430661). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

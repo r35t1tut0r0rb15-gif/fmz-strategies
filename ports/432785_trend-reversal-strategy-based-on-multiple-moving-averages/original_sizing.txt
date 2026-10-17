@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #432785 (基于趋势平均线的多重反转策略Trend-Reversal-Strategy-Based-on-Multiple-Moving-Averages)
+# Source: https://www.fmz.com/strategy/432785  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Position size from equity and ATR  [lines 310-333]
+  310: riskPerc     = input(title="Max Position  %", type=input.float, defval=20, step=0.5)
+  311: maxLossPerc  = input(title="Max Loss Risk %", type=input.float, defval=5, step=0.25)
+  312: 
+  313: // Average True Range (ATR) measures market volatility.
+  314: // We use it for calculating position sizes.
+  315: atrLen   = input(title="ATR Length", type=input.integer, defval=14)
+  316: stopOffset = input(title="Stop Offset", type=input.float, defval=1.5, step=0.25)
+  317: limitOffset = input(title="Limit Offset", type=input.float, defval=1.0, step=0.25)
+  318: atrValue = atr(atrLen)
+  319: 
+  320: 
+  321: // Calculate position size
+  322: maxPos = floor((strategy.equity * (riskPerc/100)) / src)
+  323: // The position sizing algorithm is based on two parts:
+  324: // a certain percentage of the strategy's equity and
+  325: // the ATR in currency value.
+  326: riskEquity  = (riskPerc / 100) * strategy.equity
+  327: // Translate the ATR into the instrument's currency value.
+  328: atrCurrency = (atrValue * syminfo.pointvalue)
+  329: posSize0    = min(floor(riskEquity / atrCurrency), maxPos)
+  330: posSize     = posSize0 < 1 ? 1 : posSize0
+  331: 
+  332: if (window())
+  333:     strategy.entry("Long", long=true, qty=posSize0, when=enterLong)
