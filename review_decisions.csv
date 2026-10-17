@@ -113,6 +113,9 @@ fmz_id,file,final_outcome,criterion,reason
 431018,停顿回转策略Turnaround-After-Consolidation-Strategy.md,REJECTED_ON_READING,1,"Positions of 2 units are closed one unit at a time (strategy.exit with qty = 1 at point targets, the rest with qty = 2): a partial exit cannot be expressed as one net position's signals (as #365389); the targets are also point distances."
 431270,趋势追随型MA均线交叉交易策略Trend-Following-Moving-Average-Crossover-Trading-Strategy.md,REJECTED_ON_READING,1,"The take-profit orders are strategy.order sells of 25 % of the long (LTP1 / LTP2, mirror for shorts) on MA colour changes, beside the full entries and a stop: partial exits cannot be expressed as one net position's signals (as #365389)."
 431419,跨时间轴Hull移动平均线买卖策略Cross-Timeframe-Hull-Moving-Average-Buy-Sell-Strategy.md,REJECTED_ON_READING,1,"The signal needs HMA rises from request.security(tickerid, '60' / '240', ...) on the 1-day header chart: resolutions below the chart's, whose value per bar is undefined (as #427518)."
+431888,动态交易者指数策略Traders-Dynamic-Index-Strategy.md,REJECTED_ON_READING,1,"The TDI lines come from request.security(tickerid, '15', ...) on the 1-day header chart: a 15-minute resolution below the chart's, whose value per bar is undefined (as #427518)."
+431926,基于Coppock曲线的量化交易策略Coppock-Curve-Based-Quantitative-Trading-Strategy.md,REJECTED_ON_READING,3,"The Coppock curve is computed on another instrument (security('SPY', 'D', close)): the strategy trades the chart symbol on the S&P 500 ETF, which the project's bars do not carry (as #426811)."
+431958,基于价格突破与回归的动量短线交易策略Momentum-Breakout-Trading-Strategy-Based-on-Price-Breakout-and-Mean-Reversion.md,REJECTED_ON_READING,1,"The exit orders are mis-bound: 'S1 SL Exit' names the entry 'Short1', which never exists, and 'S2 Exit' has no from_entry, so it binds every open entry, longs included, to a stop above the price; the net effect depends on how the broker emulator treats a sell stop above the market (as #426455)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -968,3 +971,14 @@ fmz_id,file,final_outcome,criterion,reason
 431678,EMA均线交叉策略EMA-Crossover-Strategy.md,PORTED,,ports/431678_ema-ema-crossover-strategy/
 431693,双均线RSI指标组合反转策略Dual-Moving-Average-RSI-Indicator-Combination-Reversal-Strategy.md,PORTED,,ports/431693_rsi-dual-moving-average-rsi-indicator-combination-reversal-s/
 431885,短线动量反转策略Momentum-Reversal-Strategy.md,PORTED,,ports/431885_momentum-reversal-strategy/
+431889,RSI回调突破策略RSI-Pullback-Breakout-Strategy.md,PORTED,,ports/431889_rsi-rsi-pullback-breakout-strategy/
+431891,基于布林带的突破策略Bollinger-Breakout-Strategy.md,PORTED,,ports/431891_bollinger-breakout-strategy/
+431896,双波震动过滤交易策略Twin-Range-Filter-Trading-Strategy.md,PORTED,,ports/431896_twin-range-filter-trading-strategy/
+431898,全方位自动交易移动平均彩虹策略Comprehensive-Automated-Trading-Moving-Average-Rainbow-Strategy.md,PORTED,,ports/431898_comprehensive-automated-trading-moving-average-rainbow-strat/
+431901,移动平均线双击金叉持续上涨策略Dual-Moving-Average-Crossover-Persistent-Uptrend-Strategy.md,PORTED,,ports/431901_dual-moving-average-crossover-persistent-uptrend-strategy/
+431903,长期趋势反转策略Long-Term-Trend-Reversal-Strategy.md,PORTED,,ports/431903_long-term-trend-reversal-strategy/
+431911,威廉姆斯鳄鱼策略Williams-Alligator-Strategy.md,PORTED,,ports/431911_williams-alligator-strategy/
+431919,移动均线交叉系统交易策略Moving-Average-Trading-Strategy.md,PORTED,,ports/431919_moving-average-trading-strategy/
+431923,基于DI交叉的日内交易策略Dual-DI-Crossover-Daily-Trading-Strategy.md,PORTED,,ports/431923_di-dual-di-crossover-daily-trading-strategy/
+431924,基于快速RSI的风控复合交易策略Fast-RSI-Risk-Control-Compound-Futures-Trading-Strategy.md,PORTED,,ports/431924_rsi-fast-rsi-risk-control-compound-futures-trading-strategy/
+431956,基于价格波浪理论和平移平均线策略FX-Strategy-Based-on-Fractal-Waves-and-SMMA.md,PORTED,,ports/431956_fx-strategy-based-on-fractal-waves-and-smma/

@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #431896 (双波震动过滤交易策略Twin-Range-Filter-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/431896  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Order size floor(capital / close)  [lines 262-263]
+  262: strategy.initial_capital = 50000
+  263: ordersize=floor(strategy.initial_capital/close)

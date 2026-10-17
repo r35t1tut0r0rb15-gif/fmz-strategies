@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2791 |
+| PORT_CANDIDATE | 2777 |
 | REJECTED | 994 |
-| PORTED | 845 |
+| PORTED | 856 |
 | HELD_NEEDS_VOLUME | 557 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 114 |
+| REJECTED_ON_READING | 117 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -973,7 +973,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 431678 | `ports/431678_ema-ema-crossover-strategy/` | PineScript | ma_cross | none | buy_len x2, sell_len x2 | 4 |
 | 431693 | `ports/431693_rsi-dual-moving-average-rsi-indicator-combination-reversal-s/` | PineScript | multi_indicator_confluence | none | adx_max x2, hold x2 | 4 |
 | 431885 | `ports/431885_momentum-reversal-strategy/` | PineScript | momentum_breakout | none | x x2, pct x2 | 4 |
-| | **845 ports** | | | | | **5019** |
+| 431889 | `ports/431889_rsi-rsi-pullback-breakout-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, jump_to x2 | 4 |
+| 431891 | `ports/431891_bollinger-breakout-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 431896 | `ports/431896_twin-range-filter-trading-strategy/` | PineScript | range_filter_trend | none | tp_atr x2, max_bars x2 | 4 |
+| 431898 | `ports/431898_comprehensive-automated-trading-moving-average-rainbow-strat/` | PineScript | ma_trend_oscillator_pullback | trailing_stop_pending | target_factor x2, scale x2 | 4 |
+| 431901 | `ports/431901_dual-moving-average-crossover-persistent-uptrend-strategy/` | PineScript | ma_cross | none | angle x2, tp_sl x2 | 4 |
+| 431903 | `ports/431903_long-term-trend-reversal-strategy/` | PineScript | donchian_breakout | none | nn x2, slm x2 | 4 |
+| 431911 | `ports/431911_williams-alligator-strategy/` | PineScript | ma_trend | none | len1 x2, len3 x2 | 4 |
+| 431919 | `ports/431919_moving-average-trading-strategy/` | PineScript | ma_trend_oscillator_pullback | trailing_stop_pending, coarse_bar_stop | sl_mult x2, tp_mult x2 | 4 |
+| 431923 | `ports/431923_di-dual-di-crossover-daily-trading-strategy/` | PineScript | directional_movement | trailing_stop_pending, coarse_bar_stop | length x2, atr_mult x2 | 4 |
+| 431924 | `ports/431924_rsi-fast-rsi-risk-control-compound-futures-trading-strategy/` | PineScript | rsi_oscillator | none | limit x2, open_bars x2 | 4 |
+| 431956 | `ports/431956_fx-strategy-based-on-fractal-waves-and-smma/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | smma_len x2, stop_coef x2 | 4 |
+| | **856 ports** | | | | | **5063** |
 
 ## Rejected on reading
 
@@ -1093,6 +1104,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 431018 | 停顿回转策略Turnaround-After-Consolidation-Strategy.md | 1 | Positions of 2 units are closed one unit at a time (strategy.exit with qty = 1 at point targets, the rest with qty = 2): a partial exit cannot be expressed as one net position's signals (as #365389); the targets are also point distances. |
 | 431270 | 趋势追随型MA均线交叉交易策略Trend-Following-Moving-Average-Crossover-Trading-Strategy.md | 1 | The take-profit orders are strategy.order sells of 25 % of the long (LTP1 / LTP2, mirror for shorts) on MA colour changes, beside the full entries and a stop: partial exits cannot be expressed as one net position's signals (as #365389). |
 | 431419 | 跨时间轴Hull移动平均线买卖策略Cross-Timeframe-Hull-Moving-Average-Buy-Sell-Strategy.md | 1 | The signal needs HMA rises from request.security(tickerid, '60' / '240', ...) on the 1-day header chart: resolutions below the chart's, whose value per bar is undefined (as #427518). |
+| 431888 | 动态交易者指数策略Traders-Dynamic-Index-Strategy.md | 1 | The TDI lines come from request.security(tickerid, '15', ...) on the 1-day header chart: a 15-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
+| 431926 | 基于Coppock曲线的量化交易策略Coppock-Curve-Based-Quantitative-Trading-Strategy.md | 3 | The Coppock curve is computed on another instrument (security('SPY', 'D', close)): the strategy trades the chart symbol on the S&P 500 ETF, which the project's bars do not carry (as #426811). |
+| 431958 | 基于价格突破与回归的动量短线交易策略Momentum-Breakout-Trading-Strategy-Based-on-Price-Breakout-and-Mean-Reversion.md | 1 | The exit orders are mis-bound: 'S1 SL Exit' names the entry 'Short1', which never exists, and 'S2 Exit' has no from_entry, so it binds every open entry, longs included, to a stop above the price; the net effect depends on how the broker emulator treats a sell stop above the market (as #426455). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -1988,6 +1988,31 @@ SIZING = {
         ("Entries with qty 10", 261, 262),
     ],
     431885: [],
+    # ---- FMZ-C, batch C47 (2026-10-17)
+    431889: [],
+    431891: [
+        ("strategy(): 100 % of equity, pyramiding 5", 191, 191),
+    ],
+    431896: [
+        ("Order size floor(capital / close)", 262, 263),
+    ],
+    431898: [],
+    431901: [],
+    431903: [],
+    431911: [
+        ("Lot input", 191, 191),
+        ("Lot formula", 223, 225),
+    ],
+    431919: [
+        ("strategy(): 3 % of equity, pyramiding 3", 212, 212),
+    ],
+    431923: [],
+    431924: [
+        ("strategy(): 100 % of equity, pyramiding 10", 155, 155),
+        ("Capital % and martingale inputs", 160, 161),
+        ("Lot formula (martingale multiplier)", 222, 224),
+    ],
+    431956: [],
 }
 
 REJECTED_ON_READING = {
@@ -2419,6 +2444,17 @@ REJECTED_ON_READING = {
     431419: ("1", "The signal needs HMA rises from request.security(tickerid, '60' / '240', ...) on "
               "the 1-day header chart: resolutions below the chart's, whose value per bar is "
               "undefined (as #427518)."),
+    # ---- FMZ-C, batch C47 (2026-10-17)
+    431888: ("1", "The TDI lines come from request.security(tickerid, '15', ...) on the 1-day header "
+              "chart: a 15-minute resolution below the chart's, whose value per bar is undefined "
+              "(as #427518)."),
+    431926: ("3", "The Coppock curve is computed on another instrument (security('SPY', 'D', close)): "
+              "the strategy trades the chart symbol on the S&P 500 ETF, which the project's bars "
+              "do not carry (as #426811)."),
+    431958: ("1", "The exit orders are mis-bound: 'S1 SL Exit' names the entry 'Short1', which never "
+              "exists, and 'S2 Exit' has no from_entry, so it binds every open entry, longs "
+              "included, to a stop above the price; the net effect depends on how the broker "
+              "emulator treats a sell stop above the market (as #426455)."),
 }
 
 DUPLICATE_ON_READING = {

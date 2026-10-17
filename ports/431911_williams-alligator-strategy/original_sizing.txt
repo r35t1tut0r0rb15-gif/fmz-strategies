@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #431911 (威廉姆斯鳄鱼策略Williams-Alligator-Strategy)
+# Source: https://www.fmz.com/strategy/431911  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Lot input  [lines 191-191]
+  191: capital = input(100, defval = 100, minval = 1, maxval = 10000, title = "Lot")
+
+## Lot formula  [lines 223-225]
+  223: size = strategy.position_size
+  224: lot = 0.0
+  225: lot := size != size[1] ? strategy.equity / close * capital / 100 : lot[1]

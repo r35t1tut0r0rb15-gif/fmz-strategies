@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #431924 (基于快速RSI的风控复合交易策略Fast-RSI-Risk-Control-Compound-Futures-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/431924  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 10  [lines 155-155]
+  155: strategy(title = "Robot BitMEX Fast RSI v1.0", shorttitle = "Robot BitMEX Fast RSI v1.0", overlay = false, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 10)
+
+## Capital % and martingale inputs  [lines 160-161]
+  160: usemar = input(true, defval = true, title = "Use Martingale")
+  161: capital = input(100, defval = 100, minval = 1, maxval = 10000, title = "Capital, %")
+
+## Lot formula (martingale multiplier)  [lines 222-224]
+  222: profit = exit ? ((strategy.position_size > 0 and close > strategy.position_avg_price) or (strategy.position_size < 0 and close < strategy.position_avg_price)) ? 1 : -1 : profit[1]
+  223: mult = usemar ? exit ? profit == -1 ? mult[1] * 2 : 1 : mult[1] : 1
+  224: lot = strategy.position_size == 0 ? strategy.equity / close * capital / 100 * mult : lot[1]
