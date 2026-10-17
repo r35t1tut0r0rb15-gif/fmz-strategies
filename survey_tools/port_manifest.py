@@ -3232,6 +3232,50 @@ SIZING = {
     482515: [
         ("strategy(): defaults", 136, 136),
     ],
+    # ---- FMZ-C, batch L35 (2026-10-17)
+    482450: [
+        ("strategy(): defaults", 105, 105),
+        ("Capital, risk, target and point-stop inputs", 108, 112),
+        ("Risk sizing and entries with the bracket", 137, 153),
+    ],
+    482451: [
+        ("strategy(): 200 % of equity, 0.1 % commission", 91, 91),
+    ],
+    482453: [
+        ("strategy(): 100 % of equity", 103, 103),
+    ],
+    482454: [
+        ("strategy(): 100 % of equity, pyramiding 0", 102, 108),
+    ],
+    482457: [
+        ("strategy(): defaults", 101, 101),
+        ("Band, entry with the bracket, inTrade and re-entry", 116, 150),
+    ],
+    482458: [
+        ("strategy(): defaults", 89, 89),
+        ("EMA 34 stop and limit every bar", 133, 138),
+    ],
+    482459: [
+        ("strategy(): 200 % of equity", 102, 102),
+    ],
+    482461: [
+        ("strategy(): defaults", 99, 99),
+        ("RR input", 110, 110),
+        ("Bracket levels and entries", 124, 138),
+    ],
+    482463: [
+        ("strategy(): defaults", 105, 105),
+    ],
+    482466: [
+        ("strategy(): 100 % of equity, pyramiding 0", 93, 99),
+        ("Bracket levels and entries", 164, 178),
+    ],
+    482468: [
+        ("strategy(): defaults", 94, 94),
+    ],
+    482472: [
+        ("strategy(): defaults", 153, 153),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3797,6 +3841,12 @@ REJECTED_ON_READING = {
               "point offsets (155-775) below the weekly pivot, each with its own limit target; "
               "the net position is closed piece by piece (partial exits, as #430864); the point "
               "offsets are also price units"),
+    # ---- FMZ-C, batch L35 (2026-10-17)
+    482456: ("1", "partial exits: two strategy.exit orders of qty 1 each out of a 2-lot entry at "
+              "different targets, plus a 1-lot break-even exit (as #430864)"),
+    482460: ("1", "a LOWER timeframe on a higher chart: the short trigger reads request.security(..., "
+              "'3', close[1]) on the 12-hour chart (as #430765); the bracket also comes from "
+              "strategy.position_avg_price"),
 }
 
 DUPLICATE_ON_READING = {

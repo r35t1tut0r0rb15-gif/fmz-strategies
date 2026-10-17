@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #482458 (Multi-EMA趋势追踪型RSI-MACD动量验证策略-Multi-EMA-Trend-Following-Strategy-with-RSI-MACD-Momentum-Validation)
+# Source: https://www.fmz.com/strategy/482458  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 89-89]
+   89: strategy("EMA + MACD + RSI Strategy", overlay=true)
+
+## EMA 34 stop and limit every bar  [lines 133-138]
+  133: stopLoss = ema34
+  134: takeProfit = stopLoss * 3
+  135: 
+  136: // Stop-loss ve Take-profit Stratejisi
+  137: strategy.exit("Exit Long", from_entry="Long", stop=stopLoss, limit=takeProfit)
+  138: strategy.exit("Exit Short", from_entry="Short", stop=stopLoss, limit=takeProfit)

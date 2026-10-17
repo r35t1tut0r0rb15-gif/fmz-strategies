@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #482450 (动态EMA交叉与RSI协同交易系统-Dynamic-EMA-Crossover-with-RSI-Synergy-Trading-System)
+# Source: https://www.fmz.com/strategy/482450  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 105-105]
+  105: strategy("Lukhi EMA Crossover_TWL Strategy" , overlay=true)
+
+## Capital, risk, target and point-stop inputs  [lines 108-112]
+  108: capital = 15000  // Capital: ₹15,000
+  109: risk_per_trade = 1000  // Risk per Trade: ₹1,000
+  110: target_per_trade = 5000  // Take Profit per Trade: ₹5,000
+  111: lot_size = input.int(1, title="Lot Size")  // Nifty option lot size (adjust as per your instrument)
+  112: stop_loss_distance = input.float(25, title="Stop Loss Distance (Points)")  // Fixed stop-loss in points (adjustable)
+
+## Risk sizing and entries with the bracket  [lines 137-153]
+  137: position_size = risk_per_trade / stop_loss_distance
+  138: 
+  139: // Stop Loss and Take Profit Levels
+  140: long_stop_loss = close - stop_loss_distance
+  141: long_take_profit = close + (target_per_trade / position_size)
+  142: 
+  143: short_stop_loss = close + stop_loss_distance
+  144: short_take_profit = close - (target_per_trade / position_size)
+  145: 
+  146: // Strategy Logic: Entry, Stop Loss, and Take Profit
+  147: if (buy_signal)
+  148:     strategy.entry("Buy", strategy.long, qty=lot_size)
+  149:     strategy.exit("Exit Buy", "Buy", stop=long_stop_loss, limit=long_take_profit)
+  150: 
+  151: if (sell_signal)
+  152:     strategy.entry("Sell", strategy.short, qty=lot_size)
+  153:     strategy.exit("Exit Sell", "Sell", stop=short_stop_loss, limit=short_take_profit)

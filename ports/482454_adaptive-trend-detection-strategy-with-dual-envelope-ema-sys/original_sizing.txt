@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #482454 (Adaptive-Trend-Detection-Strategy-with-Dual-Envelope-EMA-System-基于双包络EMA系统的自适应趋势检测策略)
+# Source: https://www.fmz.com/strategy/482454  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 0  [lines 102-108]
+  102: strategy(title="Andean Oscillator [Strategy]",
+  103:      shorttitle="AndeanOsc_Strategy",
+  104:      overlay=false,              // Zobraziť sa môže v samostatnom okne
+  105:      initial_capital=10000,      // Počiatočný kapitál
+  106:      default_qty_type=strategy.percent_of_equity,
+  107:      default_qty_value=100,      // Použiť 100% z účtu na jeden obchod
+  108:      pyramiding=0)               // Nenavyšovať pozície

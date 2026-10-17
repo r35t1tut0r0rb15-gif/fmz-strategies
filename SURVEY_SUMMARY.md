@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2468 |
-| PORTED | 1124 |
+| PORT_CANDIDATE | 2454 |
+| PORTED | 1136 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 559 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 156 |
+| REJECTED_ON_READING | 158 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -922,6 +922,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430988 | `ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/` | PineScript | supertrend | none | mult x2, fisher_level x2 | 4 |
 | 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
 | 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
+| 482450 | `ports/482450_ema-rsi-dynamic-ema-crossover-with-rsi-synergy-trading-syste/` | PineScript | trend_following | coarse_bar_stop | sl_atr x2, tp_atr x2 | 4 |
+| 482451 | `ports/482451_rsi-gaussian-channel-with-stochastic-rsi-quantitative-tradin/` | PineScript | mean_reversion | none | gc_mult x2, gc_length x2 | 4 |
+| 482453 | `ports/482453_rsi-multi-period-rsi-signal-line-crossover-trend-following-s/` | PineScript | mean_reversion | none | length x2, smooth x2 | 4 |
+| 482454 | `ports/482454_adaptive-trend-detection-strategy-with-dual-envelope-ema-sys/` | PineScript | trend_following | none | length x2 | 2 |
+| 482457 | `ports/482457_atr-atr-dynamic-trend-following-with-re-entry-trading-strate/` | PineScript | breakout | coarse_bar_stop | length x2, tp_band x2 | 4 |
+| 482458 | `ports/482458_multi-ema-rsi-macd-multi-ema-trend-following-strategy-with-r/` | PineScript | trend_following | coarse_bar_stop, trailing_stop_pending | stop_ema x2, rsi_mid x2 | 4 |
+| 482459 | `ports/482459_dynamic-trend-channel-and-relative-strength-momentum-trading/` | PineScript | mean_reversion | none | multiplier x2, rsi_len x2 | 4 |
+| 482461 | `ports/482461_dynamic-wave-indicator-combination-strategy/` | PineScript | trend_following | coarse_bar_stop | adx_min x2, rr x2 | 4 |
+| 482463 | `ports/482463_multi-indicator-dynamic-trend-prediction-trading-system/` | PineScript | mean_reversion | none | rsi_len x2, stoch_len x2 | 4 |
+| 482466 | `ports/482466_ema-atr-three-line-strike-trend-following-strategy-with-ema/` | PineScript | mean_reversion | coarse_bar_stop | ema_len x2, tp_mult x2 | 4 |
+| 482468 | `ports/482468_atr-adaptive-trend-following-strategy-based-on-kernel-regres/` | PineScript | mean_reversion | none | coef x2, h x2 | 4 |
+| 482472 | `ports/482472_k-multi-indicator-momentum-breakout-with-smoothed-candlestic/` | PineScript | breakout | none | bb_mult x2, rsi_exit x2 | 4 |
 | 482473 | `ports/482473_high-reward-to-risk-price-structure-breakout-trading-strateg/` | PineScript | breakout | coarse_bar_stop | lookback x2, rr x2 | 4 |
 | 482474 | `ports/482474_gamma-weighted-momentum-based-bitcoin-futures-intelligent-tr/` | PineScript | trend_following | none | gamma x2, length x2 | 4 |
 | 482477 | `ports/482477_multi-period-ema-trend-following-with-support-resistance-hyb/` | PineScript | trend_following | trailing_stop_pending | lookback x2, stop_mult x2 | 4 |
@@ -1252,7 +1264,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491914 | `ports/491914_price-action-structural-breakout-strategy-with-trailing-stop/` | PineScript | price_action_breakout | trailing_stop | trail_k x2, trail_activate x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | macd_divergence | coarse_bar_stop, trailing_stop_pending | method x2, lb x2 | 4 |
 | 492009 | `ports/492009_atr-dual-ema-filtered-atr-adaptive-trend-following-strategy/` | PineScript | volatility_stop_cross | trailing_stop | atr_mult x2, trail_k x2 | 4 |
-| | **1124 ports** | | | | | **6089** |
+| | **1136 ports** | | | | | **6135** |
 
 ## Rejected on reading
 
@@ -1368,6 +1380,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430974 | 基于RSI和SuperTrend的双向交易策略RSI-and-SuperTrend-Based-Dual-Direction-Trading-Strategy.md | 1 | The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit cannot be expressed as one net position's signals (as #365389). Its momentum line also uses ta.vwma (volume, check 8). |
 | 430985 | 双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md | 2 | The second signal is a band of the nearest prime numbers above / below the high and low (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (as #430847). |
 | 430992 | 趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md | 1 | A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389). |
+| 482456 | 多周期趋势跟踪与随机震荡优化策略-Multi-Timeframe-Trend-Following-with-Stochastic-Oscillator-Strategy.md | 1 | partial exits: two strategy.exit orders of qty 1 each out of a 2-lot entry at different targets, plus a 1-lot break-even exit (as #430864) |
+| 482460 | 动态线性回归通道与海因安士出场优化交易策略-Advanced-Linear-Regression-Channel-Trading-Strategy-with-Dynamic-Exit-System.md | 1 | a LOWER timeframe on a higher chart: the short trigger reads request.security(..., '3', close[1]) on the 12-hour chart (as #430765); the bracket also comes from strategy.position_avg_price |
 | 482499 | 多重技术指标动态波段交易策略-Multi-Technical-Indicator-Dynamic-Wave-Trading-Strategy.md | 1 | partial exits: strategy.exit('止盈一半', qty_percent = 50) takes half at the 50-bar extreme (as #430864) |
 | 482506 | 基于均值回归的多层级支撑阻力周线交易策略-Multi-Level-Support-Resistance-Weekly-Mean-Reversion-Trading-Strategy.md | 1 | adds with per-add exits: pyramiding 50, up to four long entries a week at fixed point offsets (155-775) below the weekly pivot, each with its own limit target; the net position is closed piece by piece (partial exits, as #430864); the point offsets are also price units |
 | 482672 | 基于动态DCA的加密货币量化交易策略-Dynamic-DCA-based-Cryptocurrency-Quantitative-Trading-Strategy.md | 1 | no entry signal: a DCA bot that buys whenever flat and adds up to 30 scaled safety orders (pyramiding 999, sizing) and takes profit 1 % above their average; without the adds (not ported) nothing but a buy-and-take-1 % loop remains (as #483086) |

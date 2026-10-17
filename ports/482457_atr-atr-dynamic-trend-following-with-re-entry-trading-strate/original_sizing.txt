@@ -1,0 +1,43 @@
+# Original sizing and money-management code, FMZ #482457 (ATR动态趋势跟踪与重入场交易策略-ATR-Dynamic-Trend-Following-with-Re-entry-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482457  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 101-101]
+  101: strategy("KON SET By Sai", overlay=true, max_lines_count=40)
+
+## Band, entry with the bracket, inTrade and re-entry  [lines 116-150]
+  116: atr_value = ta.sma(ta.atr(200), 200) * 0.8
+  117: 
+  118: // Moving averages for trend detection
+  119: sma_high = ta.sma(high, length) + atr_value
+  120: sma_low = ta.sma(low, length) - atr_value
+  121: 
+  122: // Signal conditions for trend changes
+  123: signal_up = ta.crossover(close, sma_high)
+  124: signal_down = ta.crossunder(close, sma_low)
+  125: 
+  126: // Entry conditions
+  127: if not inTrade and signal_up
+  128:     entryPrice := close
+  129:     stopLoss := close - atr_value * 2
+  130:     targetPrice := close + atr_value * (5 + target_multiplier)
+  131:     strategy.entry("Long", strategy.long)
+  132:     strategy.exit("Exit Long", "Long", stop=stopLoss, limit=targetPrice)
+  133:     inTrade := true
+  134:     barCount := 0  // Reset bar count when signal occurs
+  135: 
+  136: // Exit conditions
+  137: if inTrade and (close <= stopLoss or close >= targetPrice)
+  138:     inTrade := false
+  139:     entryPrice := na
+  140:     stopLoss := na
+  141:     targetPrice := na
+  142:     barCount := na  // Reset bar count on exit
+  143: 
+  144: // Re-entry logic
+  145: if not inTrade and close == entryPrice
+  146:     entryPrice := close
+  147:     stopLoss := close - atr_value * 2
+  148:     targetPrice := close + atr_value * (5 + target_multiplier)
+  149:     strategy.entry("Re-Long", strategy.long)
+  150:     strategy.exit("Re-Exit Long", "Re-Long", stop=stopLoss, limit=targetPrice)

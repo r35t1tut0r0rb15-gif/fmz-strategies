@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #482466 (三线突破趋势跟踪策略结合EMA动态过滤和ATR风险管理系统-Three-Line-Strike-Trend-Following-Strategy-with-EMA-Dynamic-Filter-and-ATR-Risk-Management-System)
+# Source: https://www.fmz.com/strategy/482466  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 0  [lines 93-99]
+   93: strategy(title='3 Line Strike [TTF] - Strategy with ATR and EMA Filter',
+   94:      shorttitle='3LS Strategy [TTF]',
+   95:      overlay=true,
+   96:      initial_capital=100000,
+   97:      default_qty_type=strategy.percent_of_equity,
+   98:      default_qty_value=100,
+   99:      pyramiding=0)
+
+## Bracket levels and entries  [lines 164-178]
+  164: longTP = close + 2 * atr
+  165: longSL = close - 1 * atr
+  166: shortTP = close - 2 * atr
+  167: shortSL = close + 1 * atr
+  168: 
+  169: // -----------------------------------------------------------------------------
+  170: //                          STRATEGY ENTRY PRÍKAZY
+  171: // -----------------------------------------------------------------------------
+  172: if (showBull3LS and is3LSBullSig)
+  173:     strategy.entry("3LS_Bull", strategy.long, comment="3LS Bullish")
+  174:     strategy.exit("Exit Bull", from_entry="3LS_Bull", limit=longTP, stop=longSL)
+  175: 
+  176: if (showBear3LS and is3LSBearSig)
+  177:     strategy.entry("3LS_Bear", strategy.short, comment="3LS Bearish")
+  178:     strategy.exit("Exit Bear", from_entry="3LS_Bear", limit=shortTP, stop=shortSL)
