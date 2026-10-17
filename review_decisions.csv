@@ -138,6 +138,7 @@ fmz_id,file,final_outcome,criterion,reason
 433108,高级布林带均线网格趋势追踪策略Advanced-Bollinger-Band-Moving-Average-Grid-Trend-Tracking-Strategy.md,REJECTED_ON_READING,1,"Entries are strategy.order('多(buy)' / '空(sell)') calls on four grid levels with no pyramiding limit, so each level touched adds a unit and an opposite order reduces rather than reverses: the position path depends on the order sizes (as #430596)."
 433125,动能区ATR反转订单量化策略Action-Zone-ATR-Reverse-Order-Quant-Strategy.md,REJECTED_ON_READING,1,"After the minimum hold the reverse-order flag is armed on every bar (unless the over-band test clears it), so the opposite entry fires on the bar after the position goes flat, which is usually when the ratcheting EMA - 2 ATR stop order fills inside a bar: the entries depend on an intrabar stop fill the house trail cannot express."
 433400,动态双向补仓策略Dynamic-Two-way-Add-Position-Strategy.md,REJECTED_ON_READING,1,"Entries are allowed only while strategy.netprofit < 150000 (a profit target of the account), so the signals depend on the position size and the P&L path (as #427139); the bracket is 3 / 8 ticks."
+433448,双均线震荡突破策略Dual-Moving-Average-Oscillation-Breakthrough-Strategy.md,REJECTED_ON_READING,1,"The trend filter reads request.security(syminfo.tickerid, '120', ...) on the 1-day header chart: a resolution below the chart's, whose value per bar is undefined (as #430587); the bracket is also in ticks."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1146,3 +1147,15 @@ fmz_id,file,final_outcome,criterion,reason
 433398,相对强度指数平盘反转策略Relative-Strength-Index-Flat-Reversal-Strategy.md,PORTED,,ports/433398_relative-strength-index-flat-reversal-strategy/
 433401,KST指标获利策略KST-Indicator-Profit-Strategy.md,PORTED,,ports/433401_kst-kst-indicator-profit-strategy/
 433403,空间导向价格反转策略Price-Reversal-Strategy-Guided-by-Price-Channel.md,PORTED,,ports/433403_price-reversal-strategy-guided-by-price-channel/
+433424,基于EMA指标的旗形趋势追踪策略Trend-Tracking-Flag-Pattern-Strategy-Based-on-EMA-Indicators.md,PORTED,,ports/433424_ema-trend-tracking-flag-pattern-strategy-based-on-ema-indica/
+433425,基于双均线交叉交易策略-A-Double-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/433425_a-double-moving-average-crossover-trading-strategy/
+433426,高低突破回测策略High-Low-Breaker-Backtest-Strategy.md,PORTED,,ports/433426_high-low-breaker-backtest-strategy/
+433430,基于MACD和RSI的交易策略London-MACD-RSI-Bitcoin-Trading-Strategy.md,PORTED,,ports/433430_macd-rsi-london-macd-rsi-bitcoin-trading-strategy/
+433431,四重指标均线回转策略Four-Indicator-Momentum-Reversal-Strategy.md,PORTED,,ports/433431_four-indicator-momentum-reversal-strategy/
+433433,基于均线的趋势追踪型策略Trend-Following-Strategy-Based-on-Moving-Averages.md,PORTED,,ports/433433_trend-following-strategy-based-on-moving-averages/
+433434,基于RSI指标的量化交易策略Quantitative-Trading-Strategy-Based-on-RSI-Indicator.md,PORTED,,ports/433434_rsi-quantitative-trading-strategy-based-on-rsi-indicator/
+433439,基于SSL通道指标的趋势跟踪策略No-Nonsense-SSL-Channel-Trading-Strategy.md,PORTED,,ports/433439_ssl-no-nonsense-ssl-channel-trading-strategy/
+433441,价格平均线交叉策略Cross-Moving-Average-Price-Strategy.md,PORTED,,ports/433441_cross-moving-average-price-strategy/
+433442,趋势突破双均线过滤策略Range-Breakthrough-Dual-Moving-Average-Filtering-Strategy.md,PORTED,,ports/433442_range-breakthrough-dual-moving-average-filtering-strategy/
+433447,动量平滑移动平均线与移动平均线交叉策略Momentum-Smooth-Moving-Average-Line-and-Moving-Average-Line-Crossover-Strategy.md,PORTED,,ports/433447_momentum-smooth-moving-average-line-and-moving-average-line/
+433452,蜡烛形态策略-Candlestick-Pattern-Strategy.md,PORTED,,ports/433452_candlestick-pattern-strategy/

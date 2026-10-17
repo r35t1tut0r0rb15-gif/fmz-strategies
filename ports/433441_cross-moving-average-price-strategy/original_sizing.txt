@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #433441 (价格平均线交叉策略Cross-Moving-Average-Price-Strategy)
+# Source: https://www.fmz.com/strategy/433441  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Lot % of equity and the commission  [lines 183-187]
+  183: strategy(title = "Noro's CrossMA", shorttitle = "CrossMA", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100.0, pyramiding = 0, commission_value = 0.1)
+  184: 
+  185: needlong = input(true, "long")
+  186: needshort = input(true, "short")
+  187: lotsize = input(100, defval = 100, minval = 1, maxval = 10000, title = "Lot, %")
+
+## Lot formula  [lines 244-251]
+  244: size = strategy.position_size
+  245: truetime = time > timestamp(fromyear, frommonth, fromday, 00, 00) and time < timestamp(toyear, tomonth, today, 23, 59)
+  246: lot = 0.0
+  247: lot := size != size[1] ? strategy.equity / close * lotsize / 100 : lot[1]
+  248: if trend == 1 and trend[1] == -1
+  249:     strategy.entry("Long", strategy.long, lot, when = needlong and truetime)
+  250: if trend == -1 and trend[1] == 1
+  251:     strategy.entry("Short", strategy.short, lot, when = needshort and truetime)

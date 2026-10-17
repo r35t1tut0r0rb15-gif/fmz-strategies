@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2613 |
-| PORTED | 996 |
+| PORT_CANDIDATE | 2600 |
+| PORTED | 1008 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 559 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 139 |
+| REJECTED_ON_READING | 140 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1124,7 +1124,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433398 | `ports/433398_relative-strength-index-flat-reversal-strategy/` | PineScript | rsi_oscillator | none | length x2, levels x2 | 4 |
 | 433401 | `ports/433401_kst-kst-indicator-profit-strategy/` | PineScript | momentum_oscillator_turn | none | siglen x2, roc4 x2 | 4 |
 | 433403 | `ports/433403_price-reversal-strategy-guided-by-price-channel/` | PineScript | donchian_breakout | none | slowlen x2, pcbars x2 | 4 |
-| | **996 ports** | | | | | **5601** |
+| 433424 | `ports/433424_ema-trend-tracking-flag-pattern-strategy-based-on-ema-indica/` | PineScript | momentum_oscillator_turn | none | th_atr x2, slow x2 | 4 |
+| 433425 | `ports/433425_a-double-moving-average-crossover-trading-strategy/` | PineScript | ma_cross | none | len1 x2, len2 x2 | 4 |
+| 433426 | `ports/433426_high-low-breaker-backtest-strategy/` | PineScript | donchian_breakout | none | sl_pct x2, tp_pct x2 | 4 |
+| 433430 | `ports/433430_macd-rsi-london-macd-rsi-bitcoin-trading-strategy/` | PineScript | macd_cross | none | tz x2, rsi_band x2 | 4 |
+| 433431 | `ports/433431_four-indicator-momentum-reversal-strategy/` | PineScript | multi_indicator_confluence | none | tp_atr x2, sl_atr x2 | 4 |
+| 433433 | `ports/433433_trend-following-strategy-based-on-moving-averages/` | PineScript | ichimoku | none | conv x2, ema_len x2 | 4 |
+| 433434 | `ports/433434_rsi-quantitative-trading-strategy-based-on-rsi-indicator/` | PineScript | rsi_oscillator | none | sell_level x2, window x2 | 4 |
+| 433439 | `ports/433439_ssl-no-nonsense-ssl-channel-trading-strategy/` | PineScript | ssl_channel | coarse_bar_stop, trailing_stop_pending | sl_mult x2, tp_mult x2 | 4 |
+| 433441 | `ports/433441_cross-moving-average-price-strategy/` | PineScript | ma_trend | none | length x3 | 3 |
+| 433442 | `ports/433442_range-breakthrough-dual-moving-average-filtering-strategy/` | PineScript | range_filter_trend | none | per x2, sensitivity x2 | 4 |
+| 433447 | `ports/433447_momentum-smooth-moving-average-line-and-moving-average-line/` | PineScript | ma_cross | coarse_bar_stop | slow x2, alma_len x2 | 4 |
+| 433452 | `ports/433452_candlestick-pattern-strategy/` | PineScript | candle_pattern | none | sl_atr x2, tp_atr x2 | 4 |
+| | **1008 ports** | | | | | **5648** |
 
 ## Rejected on reading
 
@@ -1269,6 +1281,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433108 | 高级布林带均线网格趋势追踪策略Advanced-Bollinger-Band-Moving-Average-Grid-Trend-Tracking-Strategy.md | 1 | Entries are strategy.order('多(buy)' / '空(sell)') calls on four grid levels with no pyramiding limit, so each level touched adds a unit and an opposite order reduces rather than reverses: the position path depends on the order sizes (as #430596). |
 | 433125 | 动能区ATR反转订单量化策略Action-Zone-ATR-Reverse-Order-Quant-Strategy.md | 1 | After the minimum hold the reverse-order flag is armed on every bar (unless the over-band test clears it), so the opposite entry fires on the bar after the position goes flat, which is usually when the ratcheting EMA - 2 ATR stop order fills inside a bar: the entries depend on an intrabar stop fill the house trail cannot express. |
 | 433400 | 动态双向补仓策略Dynamic-Two-way-Add-Position-Strategy.md | 1 | Entries are allowed only while strategy.netprofit < 150000 (a profit target of the account), so the signals depend on the position size and the P&L path (as #427139); the bracket is 3 / 8 ticks. |
+| 433448 | 双均线震荡突破策略Dual-Moving-Average-Oscillation-Breakthrough-Strategy.md | 1 | The trend filter reads request.security(syminfo.tickerid, '120', ...) on the 1-day header chart: a resolution below the chart's, whose value per bar is undefined (as #430587); the bracket is also in ticks. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

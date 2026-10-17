@@ -1,0 +1,188 @@
+# Original sizing and money-management code, FMZ #433442 (趋势突破双均线过滤策略Range-Breakthrough-Dual-Moving-Average-Filtering-Strategy)
+# Source: https://www.fmz.com/strategy/433442  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 5; percent TP / SL inputs and exits  [lines 174-356]
+  174: strategy(title="Range Filter Buy and Sell Strategies", shorttitle="Range Filter Strategies", overlay=true,pyramiding = 5)
+  175: 
+  176: // Original Script > @DonovanWall
+  177: // Adapted Version > @guikroth
+  178: // 
+  179: // Updated PineScript to version 5
+  180: // Republished by > @tvenn
+  181: // Strategizing by > @RonLeigh
+  182: //////////////////////////////////////////////////////////////////////////
+  183: // Settings for 5min chart, BTCUSDC. For Other coin, change the parameters
+  184: //////////////////////////////////////////////////////////////////////////
+  185: 
+  186: 
+  187: 
+  188: SS = input.bool(false,"Percentage Take Profit Stop Loss")
+  189: 
+  190: 
+  191: longProfitPerc = input.float(title='LongProfit(%)', minval=0.0, step=0.1, defval=1.5) * 0.01
+  192: 
+  193: shortProfitPerc = input.float(title='ShortProfit(%)', minval=0.0, step=0.1, defval=1.5) * 0.01
+  194: 
+  195: 
+  196: longLossPerc = input.float(title='LongStop(%)', minval=0.0, step=0.1, defval=1.5) * 0.01
+  197: 
+  198: shortLossPerc = input.float(title='ShortStop(%)', minval=0.0, step=0.1, defval=1.5) * 0.01
+  199: 
+  200: 
+  201: // Color variables
+  202: upColor   = color.white
+  203: midColor  = #90bff9
+  204: downColor = color.blue
+  205: 
+  206: // Source
+  207: src = input(defval=close, title="Source")
+  208: 
+  209: // Sampling Period
+  210: // Settings for 5min chart, BTCUSDC. For Other coin, change the paremeters
+  211: per = input.int(defval=100, minval=1, title="Sampling Period")
+  212: 
+  213: // Range Multiplier
+  214: mult = input.float(defval=3.0, minval=0.1, title="Range Multiplier")
+  215: 
+  216: // Smooth Average Range
+  217: smoothrng(x, t, m) =>
+  218:     wper = t * 2 - 1
+  219:     avrng = ta.ema(math.abs(x - x[1]), t)
+  220:     smoothrng = ta.ema(avrng, wper) * m
+  221:     smoothrng
+  222: smrng = smoothrng(src, per, mult)
+  223: 
+  224: // Range Filter
+  225: rngfilt(x, r) =>
+  226:     rngfilt = x
+  227:     rngfilt := x > nz(rngfilt[1]) ? x - r < nz(rngfilt[1]) ? nz(rngfilt[1]) : x - r : 
+  228:        x + r > nz(rngfilt[1]) ? nz(rngfilt[1]) : x + r
+  229:     rngfilt
+  230: filt = rngfilt(src, smrng)
+  231: 
+  232: // Filter Direction
+  233: upward = 0.0
+  234: upward := filt > filt[1] ? nz(upward[1]) + 1 : filt < filt[1] ? 0 : nz(upward[1])
+  235: downward = 0.0
+  236: downward := filt < filt[1] ? nz(downward[1]) + 1 : filt > filt[1] ? 0 : nz(downward[1])
+  237: 
+  238: // Target Bands
+  239: hband = filt + smrng
+  240: lband = filt - smrng
+  241: 
+  242: // Colors
+  243: filtcolor = upward > 0 ? upColor : downward > 0 ? downColor : midColor
+  244: barcolor = src > filt and src > src[1] and upward > 0 ? upColor :
+  245:    src > filt and src < src[1] and upward > 0 ? upColor : 
+  246:    src < filt and src < src[1] and downward > 0 ? downColor : 
+  247:    src < filt and src > src[1] and downward > 0 ? downColor : midColor
+  248: 
+  249: filtplot = plot(filt, color=filtcolor, linewidth=2, title="Range Filter")
+  250: 
+  251: // Target
+  252: hbandplot = plot(hband, color=color.new(upColor, 70), title="High Target")
+  253: lbandplot = plot(lband, color=color.new(downColor, 70), title="Low Target")
+  254: 
+  255: // Fills
+  256: fill(hbandplot, filtplot, color=color.new(upColor, 90), title="High Target Range")
+  257: fill(lbandplot, filtplot, color=color.new(downColor, 90), title="Low Target Range")
+  258: 
+  259: // Bar Color
+  260: barcolor(barcolor)
+  261: 
+  262: // Break Outs
+  263: longCond = bool(na)
+  264: shortCond = bool(na)
+  265: longCond := src > filt and src > src[1] and upward > 0 or 
+  266:    src > filt and src < src[1] and upward > 0
+  267: shortCond := src < filt and src < src[1] and downward > 0 or 
+  268:    src < filt and src > src[1] and downward > 0
+  269: 
+  270: CondIni = 0
+  271: CondIni := longCond ? 1 : shortCond ? -1 : CondIni[1]
+  272: longCondition = longCond and CondIni[1] == -1
+  273: shortCondition = shortCond and CondIni[1] == 1
+  274: 
+  275: 
+  276: 
+  277: // alertcondition(longCondition, title="Buy alert on Range Filter", message="Buy alert on Range Filter")
+  278: // alertcondition(shortCondition, title="Sell alert on Range Filter", message="Sell alert on Range Filter")
+  279: // alertcondition(longCondition or shortCondition, title="Buy and Sell alert on Range Filter", message="Buy and Sell alert on Range Filter")
+  280: 
+  281: 
+  282: ////////////// 副
+  283: 
+  284: sensitivity = input(150, title='Sensitivity')
+  285: fastLength = input(20, title='FastEMA Length')
+  286: slowLength = input(40, title='SlowEMA Length')
+  287: channelLength = input(20, title='BB Channel Length')
+  288: multt = input(2.0, title='BB Stdev Multiplier')
+  289: 
+  290: DEAD_ZONE = nz(ta.rma(ta.tr(true), 100)) * 3.7
+  291: 
+  292: calc_macd(source, fastLength, slowLength) =>
+  293:     fastMA = ta.ema(source, fastLength)
+  294:     slowMA = ta.ema(source, slowLength)
+  295:     fastMA - slowMA
+  296: 
+  297: calc_BBUpper(source, length, multt) =>
+  298:     basis = ta.sma(source, length)
+  299:     dev = multt * ta.stdev(source, length)
+  300:     basis + dev
+  301: 
+  302: calc_BBLower(source, length, multt) =>
+  303:     basis = ta.sma(source, length)
+  304:     dev = multt * ta.stdev(source, length)
+  305:     basis - dev
+  306: 
+  307: t1 = (calc_macd(close, fastLength, slowLength) - calc_macd(close[1], fastLength, slowLength)) * sensitivity
+  308: 
+  309: e1 = calc_BBUpper(close, channelLength, multt) - calc_BBLower(close, channelLength, multt)
+  310: 
+  311: trendUp = t1 >= 0 ? t1 : 0
+  312: trendDown = t1 < 0 ? -1 * t1 : 0
+  313: 
+  314: duoad = trendUp > 0 and trendUp > e1
+  315: 
+  316: kongad = trendDown > 0 and trendDown > e1
+  317: 
+  318: 
+  319: 
+  320: duo =  longCondition and duoad
+  321: 
+  322: kong = shortCondition and kongad
+  323: 
+  324: 
+  325: //Alerts
+  326: plotshape(longCondition  and trendUp > e1 and  trendUp > 0 , title="Buy Signal", text="Buy", textcolor=color.white, style=shape.labelup, size=size.small, location=location.belowbar, color=color.new(#aaaaaa, 20))
+  327: plotshape(shortCondition  and trendDown > e1 and  trendDown > 0 , title="Sell Signal", text="Sell", textcolor=color.white, style=shape.labeldown, size=size.small, location=location.abovebar, color=color.new(downColor, 20))
+  328: 
+  329: 
+  330: 
+  331: 
+  332: if  longCondition and trendUp > e1 and  trendUp > 0 
+  333:     strategy.entry('Long',strategy.long, comment = "buy" )
+  334: 
+  335: if  shortCondition and trendDown > e1 and  trendDown > 0 
+  336:     strategy.entry('Short',strategy.short, comment = "sell" )
+  337: 
+  338: 
+  339: 
+  340: 
+  341: longlimtPrice  = strategy.position_avg_price * (1 + longProfitPerc)
+  342: shortlimtPrice = strategy.position_avg_price * (1 - shortProfitPerc)
+  343:    
+  344: longStopPrice  = strategy.position_avg_price * (1 - longLossPerc)
+  345: shortStopPrice = strategy.position_avg_price * (1 + shortLossPerc)
+  346: 
+  347: 
+  348: 
+  349: if (strategy.position_size > 0)  and SS == true
+  350:     
+  351:     strategy.exit(id="Long",comment_profit = "Profit",comment_loss = "StopLoss", stop=longStopPrice,limit = longlimtPrice)
+  352:     
+  353: 
+  354: if (strategy.position_size < 0)  and SS == true
+  355:     
+  356:     strategy.exit(id="Short",comment_profit = "Profit",comment_loss = "StopLoss", stop=shortStopPrice,limit = shortlimtPrice)

@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #433447 (动量平滑移动平均线与移动平均线交叉策略Momentum-Smooth-Moving-Average-Line-and-Moving-Average-Line-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/433447  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take profit / stop loss and exits  [lines 259-277]
+  259: takeP = input.float(3, title='Take Profit', group = 'Take Profit and Stop Loss') / 100
+  260: stopL = input.float(5.49, title = 'Stop Loss', group = 'Take Profit and Stop Loss')/100
+  261: // Pre Directionality
+  262: 
+  263: Stop_L = strategy.position_avg_price * (1 - stopL)
+  264: 
+  265: Stop_S = strategy.position_avg_price * (1 + stopL)
+  266: 
+  267: Take_S= strategy.position_avg_price * (1 - takeP)
+  268: 
+  269: Take_L = strategy.position_avg_price * (1 + takeP)
+  270:      
+  271:      
+  272: //Post Excecution
+  273: if strategy.position_size > 0
+  274:     strategy.exit("Flat", limit=Take_L, stop = Stop_L)
+  275: 
+  276: if strategy.position_size < 0
+  277:     strategy.exit("Flat", limit=Take_S, stop = Stop_S)

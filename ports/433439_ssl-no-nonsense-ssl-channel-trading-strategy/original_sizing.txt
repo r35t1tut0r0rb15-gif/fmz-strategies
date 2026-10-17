@@ -1,0 +1,84 @@
+# Original sizing and money-management code, FMZ #433439 (基于SSL通道指标的趋势跟踪策略No-Nonsense-SSL-Channel-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/433439  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## ATR stop / target inputs and exits  [lines 178-256]
+  178: slMultiplier = input(1.5, "SL")
+  179: tpMultiplier = input(1, "TP")
+  180: 
+  181: atrlength = input(title="ATR Length", defval=14, minval=1)
+  182: atrsmoothing = input(title="Smoothing", defval="SMA", options=["RMA", "SMA", "EMA", "WMA"])
+  183: 
+  184: ma_function(source, atrlength) => 
+  185:     if atrsmoothing == "RMA"
+  186:         rma(source, atrlength)
+  187:     else
+  188:         if atrsmoothing == "SMA"
+  189:             sma(source, atrlength)
+  190:         else
+  191:             if atrsmoothing == "EMA"
+  192:                 ema(source, atrlength)
+  193:             else
+  194:                 wma(source, atrlength)
+  195: 
+  196: //plot(ma_function(tr(true), atrlength), title = "ATR", color=#991515, transp=0)
+  197: 
+  198: atr = ma_function(tr(true), atrlength)
+  199: 
+  200: //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  201: //  **** Confirmation ****
+  202: ///////////////////////////////////////////////////
+  203: 
+  204: ssllen=input(title="SSL Length Period", defval=10)
+  205: smaHigh=sma(high, ssllen)
+  206: smaLow=sma(low, ssllen)
+  207: Hlv = na
+  208: Hlv := close > smaHigh ? 1 : close < smaLow ? -1 : Hlv[1]
+  209: sslDown = Hlv < 0 ? smaHigh: smaLow
+  210: sslUp   = Hlv < 0 ? smaLow : smaHigh
+  211: 
+  212: plot(sslDown, "SSL Down", linewidth=1, color=red)
+  213: plot(sslUp, "SSL Up", linewidth=1, color=lime)
+  214: 
+  215: ///////////////////////////////////////////////////
+  216: //Confirm Signals
+  217: ///////////////////////////////////////////////////
+  218: 
+  219: c_Up = sslUp
+  220: c_Down = sslDown
+  221: 
+  222: //Signals based on crossover
+  223: c_Long = crossover(c_Up, c_Down)
+  224: c_Short = crossover(c_Down, c_Up)
+  225: 
+  226: //Signals based on signal position
+  227: trendLong = c_Up > c_Down ? 1 : 0
+  228: trendShort = c_Down > c_Up ? 1 : 0
+  229: 
+  230: confirmLong = c_Long
+  231: confirmShort = c_Short
+  232: 
+  233: plotshape(trendLong, color = green, style=shape.triangleup, location=location.bottom)
+  234: plotshape(trendShort, color = red, style=shape.triangledown, location=location.bottom)
+  235: 
+  236: 
+  237: //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  238: //Entries and Exits
+  239: //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  240: 
+  241: if (year>2009)
+  242: 
+  243:     //Long entries with standard 1.5 ATR for SL, 1 ATR for TP
+  244:     long_sl = price - (atr * slMultiplier)
+  245:     long_tp = price + (atr * tpMultiplier)
+  246:     strategy.order("L1", strategy.long, when = confirmLong)
+  247:     strategy.close("L1", when = confirmShort)
+  248:     strategy.exit("L Limit Exit", "L1", stop = long_sl, limit = long_tp)
+  249: 
+  250:     
+  251:     //Short entries with standard 1.5 ATR for SL, 1 ATR for TP
+  252:     short_sl = price + (atr * slMultiplier)
+  253:     short_tp = price - (atr * tpMultiplier)
+  254:     strategy.order("S1", strategy.short, when = confirmShort)
+  255:     strategy.close("S1", when = confirmLong)
+  256:     strategy.exit("S Limit Exit", "S1", stop = short_sl, limit = short_tp)

@@ -2370,6 +2370,38 @@ SIZING = {
     433403: [
         ("strategy(): 100 % of equity", 139, 139),
     ],
+    # ---- FMZ-C, batch C60 (2026-10-17)
+    433424: [],
+    433425: [],
+    433426: [
+        ("strategy(): 100 % of equity; percent stop / target inputs and exits", 154, 225),
+    ],
+    433430: [],
+    433431: [
+        ("Tick level lines and the tick bracket", 190, 263),
+    ],
+    433433: [
+        ("initial_capital / close quantity", 145, 147),
+    ],
+    433434: [
+        ("strategy(): 1000 cash quantity", 213, 213),
+    ],
+    433439: [
+        ("ATR stop / target inputs and exits", 178, 256),
+    ],
+    433441: [
+        ("Lot % of equity and the commission", 183, 187),
+        ("Lot formula", 244, 251),
+    ],
+    433442: [
+        ("strategy(): pyramiding 5; percent TP / SL inputs and exits", 174, 356),
+    ],
+    433447: [
+        ("Take profit / stop loss and exits", 259, 277),
+    ],
+    433452: [
+        ("Tick stop / target / trail inputs and exits", 171, 260),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2899,6 +2931,10 @@ REJECTED_ON_READING = {
     433400: ("1", "Entries are allowed only while strategy.netprofit < 150000 (a profit target of the "
               "account), so the signals depend on the position size and the P&L path (as "
               "#427139); the bracket is 3 / 8 ticks."),
+    # ---- FMZ-C, batch C60 (2026-10-17)
+    433448: ("1", "The trend filter reads request.security(syminfo.tickerid, '120', ...) on the 1-day "
+              "header chart: a resolution below the chart's, whose value per bar is undefined (as "
+              "#430587); the bracket is also in ticks."),
 }
 
 DUPLICATE_ON_READING = {
