@@ -1892,6 +1892,38 @@ SIZING = {
     431250: [
         ("strategy(): 100 % of equity", 138, 138),
     ],
+    # ---- FMZ-C, batch C44 (2026-10-17)
+    431263: [
+        ("MM block: capital / close lots", 233, 238),
+    ],
+    431264: [],
+    431267: [],
+    431272: [],
+    431274: [
+        ("Risk inputs", 157, 158),
+        ("maxRiskValue", 163, 163),
+    ],
+    431278: [
+        ("Account risk % input", 286, 286),
+        ("Risk-based quantities", 423, 425),
+    ],
+    431280: [],
+    431282: [
+        ("Money management: risk lots and the equity protector", 221, 238),
+    ],
+    431284: [
+        ("qty = equity / close (long)", 206, 206),
+        ("qty = equity / close (short)", 222, 222),
+    ],
+    431286: [
+        ("strategy(): initial capital, commission", 134, 134),
+        ("qty = equity / close", 183, 183),
+    ],
+    431287: [],
+    431392: [
+        ("strategy(): 15 % of equity", 130, 130),
+    ],
+    431394: [],
 }
 
 REJECTED_ON_READING = {
@@ -2315,6 +2347,10 @@ REJECTED_ON_READING = {
     431018: ("1", "Positions of 2 units are closed one unit at a time (strategy.exit with qty = 1 at "
               "point targets, the rest with qty = 2): a partial exit cannot be expressed as one "
               "net position's signals (as #365389); the targets are also point distances."),
+    # ---- FMZ-C, batch C44 (2026-10-17)
+    431270: ("1", "The take-profit orders are strategy.order sells of 25 % of the long (LTP1 / LTP2, "
+              "mirror for shorts) on MA colour changes, beside the full entries and a stop: "
+              "partial exits cannot be expressed as one net position's signals (as #365389)."),
 }
 
 DUPLICATE_ON_READING = {

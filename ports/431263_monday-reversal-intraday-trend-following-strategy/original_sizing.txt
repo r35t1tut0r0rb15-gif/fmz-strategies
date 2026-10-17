@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #431263 (日内反转趋势追踪策略Monday-Reversal-Intraday-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/431263  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## MM block: capital / close lots  [lines 233-238]
+  233: lots = if MM < 2 
+  234:     strategy.initial_capital 
+  235: else 
+  236:     strategy.equity
+  237: 
+  238: lots := lots/close

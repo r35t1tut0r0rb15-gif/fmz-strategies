@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #431274 (RSI区间震荡交易策略RSI-Range-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/431274  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk inputs  [lines 157-158]
+  157: var float maxRisk =  input(.05, title="Maximum risk/ trade")
+  158: var chartEntryStop = input(.005, title="Max Movment in the opposite direction / trade")
+
+## maxRiskValue  [lines 163-163]
+  163: var float maxRiskValue = (strategy.equity * maxRisk) / chartEntryStop

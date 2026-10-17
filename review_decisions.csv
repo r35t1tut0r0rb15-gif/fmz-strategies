@@ -111,6 +111,7 @@ fmz_id,file,final_outcome,criterion,reason
 430992,趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md,REJECTED_ON_READING,1,A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389).
 431005,基于趋势的开尔特纳通道策略Keltner-Channel-Trend-Based-Strategy.md,REJECTED_ON_READING,1,"The long exits in steps: TP1 closes 15 % of the position at +4.5 % (qty_percent = 15), TP2 the rest at +20 %, beside a close-checked exit: a partial exit cannot be expressed as one net position's signals (as #365389)."
 431018,停顿回转策略Turnaround-After-Consolidation-Strategy.md,REJECTED_ON_READING,1,"Positions of 2 units are closed one unit at a time (strategy.exit with qty = 1 at point targets, the rest with qty = 2): a partial exit cannot be expressed as one net position's signals (as #365389); the targets are also point distances."
+431270,趋势追随型MA均线交叉交易策略Trend-Following-Moving-Average-Crossover-Trading-Strategy.md,REJECTED_ON_READING,1,"The take-profit orders are strategy.order sells of 25 % of the long (LTP1 / LTP2, mirror for shorts) on MA colour changes, beside the full entries and a stop: partial exits cannot be expressed as one net position's signals (as #365389)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -926,3 +927,16 @@ fmz_id,file,final_outcome,criterion,reason
 431235,双轨道趋势捕捉融合策略Dual-track-Trend-Capturing-Fusion-Strategy.md,PORTED,,ports/431235_dual-track-trend-capturing-fusion-strategy/
 431249,指标积分策略Momentum-Integral-Indicator-Strategy.md,PORTED,,ports/431249_momentum-integral-indicator-strategy/
 431250,趋势偏离指标K线结合移动平均线波浪策略Trend-Deviation-Index-with-Moving-Average-Strategy.md,PORTED,,ports/431250_k-trend-deviation-index-with-moving-average-strategy/
+431263,日内反转趋势追踪策略Monday-Reversal-Intraday-Trend-Following-Strategy.md,PORTED,,ports/431263_monday-reversal-intraday-trend-following-strategy/
+431264,移动平均线双轨与趋势跟踪策略Dual-Moving-Average-Channel-with-Trend-Tracking-Strategy.md,PORTED,,ports/431264_dual-moving-average-channel-with-trend-tracking-strategy/
+431267,大涨大跌策略Big-Surge-Big-Fall-Strategy.md,PORTED,,ports/431267_big-surge-big-fall-strategy/
+431272,多重MA带动量交易策略Multi-Timeframe-Moving-Average-Momentum-Trading-Strategy.md,PORTED,,ports/431272_ma-multi-timeframe-moving-average-momentum-trading-strategy/
+431274,RSI区间震荡交易策略RSI-Range-Trading-Strategy.md,PORTED,,ports/431274_rsi-rsi-range-trading-strategy/
+431278,超一目趋势策略Super-Ichi-Strategy.md,PORTED,,ports/431278_super-ichi-strategy/
+431280,移动平均线金叉交易策略Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/431280_moving-average-crossover-trading-strategy/
+431282,基均线回环策略Kijun-Loopback-Strategy.md,PORTED,,ports/431282_kijun-loopback-strategy/
+431284,双顺势破坏均线止损策略Dual-SSL-Strategy-with-EMA-Stop-Loss.md,PORTED,,ports/431284_dual-ssl-strategy-with-ema-stop-loss/
+431286,三重移动平均通道趋势跟随策略Triple-Moving-Average-Channel-Trend-Following-Strategy.md,PORTED,,ports/431286_triple-moving-average-channel-trend-following-strategy/
+431287,移动平均线穿越策略Crossing-Moving-Average-Strategy.md,PORTED,,ports/431287_crossing-moving-average-strategy/
+431392,基于高斯平滑去趋势反转策略Gaussian-Detrended-Reversion-Trading-Strategy.md,PORTED,,ports/431392_gaussian-detrended-reversion-trading-strategy/
+431394,玻尔布林震荡突破策略Bollinger-Band-Breakout-Strategy.md,PORTED,,ports/431394_bollinger-band-breakout-strategy/

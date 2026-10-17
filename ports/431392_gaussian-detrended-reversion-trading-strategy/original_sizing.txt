@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #431392 (基于高斯平滑去趋势反转策略Gaussian-Detrended-Reversion-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/431392  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 15 % of equity  [lines 130-130]
+  130: strategy(title="Gaussian Detrended Reversion Strategy", overlay=false, default_qty_type=strategy.percent_of_equity, default_qty_value=15)

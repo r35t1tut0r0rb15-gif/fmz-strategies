@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2833 |
+| PORT_CANDIDATE | 2819 |
 | REJECTED | 994 |
-| PORTED | 806 |
+| PORTED | 819 |
 | HELD_NEEDS_VOLUME | 556 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 112 |
+| REJECTED_ON_READING | 113 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -934,7 +934,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 431235 | `ports/431235_dual-track-trend-capturing-fusion-strategy/` | PineScript | combo_123_reversal | none | length x2, band x2 | 4 |
 | 431249 | `ports/431249_momentum-integral-indicator-strategy/` | PineScript | ma_trend | none | length x2, terms x2 | 4 |
 | 431250 | `ports/431250_k-trend-deviation-index-with-moving-average-strategy/` | PineScript | momentum_oscillator_turn | none | length x2, signal x2 | 4 |
-| | **806 ports** | | | | | **4863** |
+| 431263 | `ports/431263_monday-reversal-intraday-trend-following-strategy/` | PineScript | calendar_seasonal | none | down_bars x2, weekday x2 | 4 |
+| 431264 | `ports/431264_dual-moving-average-channel-with-trend-tracking-strategy/` | PineScript | directional_movement | none | slow x2, key_level x2 | 4 |
+| 431267 | `ports/431267_big-surge-big-fall-strategy/` | PineScript | volatility_spike_reversal | none | period x2, mult x2 | 4 |
+| 431272 | `ports/431272_ma-multi-timeframe-moving-average-momentum-trading-strategy/` | PineScript | ma_trend | none | ts_pct x2, tp_pct x2 | 4 |
+| 431274 | `ports/431274_rsi-rsi-range-trading-strategy/` | PineScript | rsi_oscillator | none | buy_level x2, stop_pct x2 | 4 |
+| 431278 | `ports/431278_super-ichi-strategy/` | PineScript | ichimoku | coarse_bar_stop | swing_len x2, rr x2 | 4 |
+| 431280 | `ports/431280_moving-average-crossover-trading-strategy/` | PineScript | ma_cross | none | long_len x2, exit_len x2 | 4 |
+| 431282 | `ports/431282_kijun-loopback-strategy/` | PineScript | ichimoku | none | ks_len x2, tp_atr x2 | 4 |
+| 431284 | `ports/431284_dual-ssl-strategy-with-ema-stop-loss/` | PineScript | ssl_channel | coarse_bar_stop | length x2, ema_len x2 | 4 |
+| 431286 | `ports/431286_triple-moving-average-channel-trend-following-strategy/` | PineScript | ma_trend | none | p2 x2, p3 x2 | 4 |
+| 431287 | `ports/431287_crossing-moving-average-strategy/` | PineScript | ma_cross | none | fast x2, mid x2 | 4 |
+| 431392 | `ports/431392_gaussian-detrended-reversion-trading-strategy/` | PineScript | zscore_reversion | none | period x2, lag x2 | 4 |
+| 431394 | `ports/431394_bollinger-band-breakout-strategy/` | PineScript | bollinger_reversion | none | length x2, tp_pct x2 | 4 |
+| | **819 ports** | | | | | **4915** |
 
 ## Rejected on reading
 
@@ -1052,6 +1065,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430992 | 趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md | 1 | A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389). |
 | 431005 | 基于趋势的开尔特纳通道策略Keltner-Channel-Trend-Based-Strategy.md | 1 | The long exits in steps: TP1 closes 15 % of the position at +4.5 % (qty_percent = 15), TP2 the rest at +20 %, beside a close-checked exit: a partial exit cannot be expressed as one net position's signals (as #365389). |
 | 431018 | 停顿回转策略Turnaround-After-Consolidation-Strategy.md | 1 | Positions of 2 units are closed one unit at a time (strategy.exit with qty = 1 at point targets, the rest with qty = 2): a partial exit cannot be expressed as one net position's signals (as #365389); the targets are also point distances. |
+| 431270 | 趋势追随型MA均线交叉交易策略Trend-Following-Moving-Average-Crossover-Trading-Strategy.md | 1 | The take-profit orders are strategy.order sells of 25 % of the long (LTP1 / LTP2, mirror for shorts) on MA colour changes, beside the full entries and a stop: partial exits cannot be expressed as one net position's signals (as #365389). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
