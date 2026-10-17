@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #432342 (自适应布林通道趋势跟踪策略Adaptive-Bollinger-Trend-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/432342  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Entries with qty 10 and their exits  [lines 262-266]
+  262: strategy.entry("BUY", strategy.long, qty=10, oca_name="BUY",  when=zz and window())
+  263: strategy.exit("B.Exit", "BUY", qty_percent = 100, loss=fixedSL, trail_offset=trailTP, trail_points=fixedTP)
+  264: 
+  265: strategy.entry("SELL", strategy.short, qty=10, oca_name="SELL",  when=kp and window())
+  266: strategy.exit("S.Exit", "SELL", qty_percent = 100, loss=fixedSL, trail_offset=trailSL, trail_points=fixedTP)

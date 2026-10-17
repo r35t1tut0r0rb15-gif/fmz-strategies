@@ -2126,6 +2126,36 @@ SIZING = {
         ("Profit target and stop in ticks of the close", 206, 215),
     ],
     432237: [],
+    # ---- FMZ-C, batch C51 (2026-10-17)
+    432305: [],
+    432309: [],
+    432310: [],
+    432315: [
+        ("strategy(): fixed quantity 2, pyramiding 2", 177, 177),
+    ],
+    432330: [
+        ("strategy(): fixed quantity, commission", 149, 149),
+        ("Money management inputs", 198, 199),
+        ("Fixed-ratio order amount", 232, 243),
+        ("Long entry, stop and trail", 310, 317),
+        ("Short entry, stop and trail", 329, 336),
+    ],
+    432332: [
+        ("strategy(): margin settings", 136, 136),
+        ("Long entry and stop", 161, 165),
+    ],
+    432333: [],
+    432334: [
+        ("strategy(): 100 % of equity, pyramiding 3, commission", 151, 151),
+    ],
+    432340: [
+        ("strategy(): 100 % of equity", 244, 244),
+        ("Entries with qty 0 against the trend", 293, 297),
+    ],
+    432342: [
+        ("Entries with qty 10 and their exits", 262, 266),
+    ],
+    432346: [],
 }
 
 REJECTED_ON_READING = {
@@ -2577,6 +2607,17 @@ REJECTED_ON_READING = {
     432224: ("1", "Both entries are long (strategy.entry('Short', 1, ...) passes long = 1, i.e. true) "
               "and every exit is commented out: after the first signal the position is held for "
               "the rest of the data (as #430030)."),
+    # ---- FMZ-C, batch C51 (2026-10-17)
+    432308: ("1", "Besides the full exits, strategy.close(qty_percent = 30) takes 30 % of the long "
+              "off at a target: a partial exit cannot be expressed as one net position (as "
+              "#428066)."),
+    432339: ("2", "The signal is a min-max scaling of pow(close x 5, -close): it depends on the "
+              "absolute price level and underflows to a constant for prices above a few hundred "
+              "(BTC on the header), so scaleMinimax divides 0 by 0; not generic across "
+              "instruments."),
+    432341: ("1", "The signal averages request.security(tickerid, '1' / '5' / '15' / '30' / '45' / "
+              "'60', vwma(rsi, 15)) on the 1-hour header chart: resolutions below the chart's, "
+              "whose value per bar is undefined (as #430587); it also weights by volume (vwma)."),
 }
 
 DUPLICATE_ON_READING = {

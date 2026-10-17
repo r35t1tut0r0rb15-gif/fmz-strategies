@@ -1,0 +1,44 @@
+# Original sizing and money-management code, FMZ #432330 (RSI趋势跟踪策略RSI-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/432330  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): fixed quantity, commission  [lines 149-149]
+  149: strategy("RSI + MA BACKTESTING", overlay=true, initial_capital=1000, default_qty_type=strategy.fixed, commission_type=strategy.commission.percent, commission_value=0.18)
+
+## Money management inputs  [lines 198-199]
+  198: fixedRatio = input.int(defval=400, minval=1, title="Fixed Ratio Value ($)", group="Money Management")
+  199: increasingOrderAmount = input.int(defval=200, minval=1, title="Increasing Order Amount ($)", group="Money Management")
+
+## Fixed-ratio order amount  [lines 232-243]
+  232: if equity > capital_ref + fixedRatio
+  233:     spread = (equity - capital_ref)/fixedRatio
+  234:     nb_level = int(spread)
+  235:     increasingOrder = nb_level * increasingOrderAmount
+  236:     cashOrder := cashOrder + increasingOrder
+  237:     capital_ref := capital_ref + nb_level*fixedRatio
+  238: if equity < capital_ref - fixedRatio
+  239:     spread = (capital_ref - equity)/fixedRatio
+  240:     nb_level = int(spread)
+  241:     decreasingOrder = nb_level * increasingOrderAmount
+  242:     cashOrder := cashOrder - decreasingOrder
+  243:     capital_ref := capital_ref - nb_level*fixedRatio
+
+## Long entry, stop and trail  [lines 310-317]
+  310:     trailingStopActivation := close + takeProfitActivationInput*atr
+  311:     trailingStopOffset := (trailingStopActivation * trailingStopInput/100) / syminfo.mintick
+  312:     stopLoss := close - 3*atr
+  313:     long := true
+  314:     qty = cashOrder/close
+  315:     strategy.entry("Long", strategy.long, qty)
+  316:     strategy.exit("Exit Long", "Long", stop = stopLoss, trail_price = trailingStopActivation,
+  317:                  trail_offset = trailingStopOffset)
+
+## Short entry, stop and trail  [lines 329-336]
+  329:     trailingStopActivation := close - takeProfitActivationInput*atr
+  330:     trailingStopOffset := (trailingStopActivation * trailingStopInput/100) / syminfo.mintick
+  331:     stopLoss := close + 3*atr
+  332:     short := true
+  333:     qty = cashOrder/close
+  334:     strategy.entry("Short", strategy.short, qty)
+  335:     strategy.exit("Exit Short", "Short", stop = stopLoss, trail_price = trailingStopActivation,
+  336:                  trail_offset = trailingStopOffset)

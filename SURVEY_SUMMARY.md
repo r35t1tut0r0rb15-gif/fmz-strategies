@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2735 |
+| PORT_CANDIDATE | 2721 |
 | REJECTED | 994 |
-| PORTED | 896 |
+| PORTED | 907 |
 | HELD_NEEDS_VOLUME | 557 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 119 |
+| REJECTED_ON_READING | 122 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1024,7 +1024,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 432234 | `ports/432234_trend-following-energy-indicator-trading-strategy/` | PineScript | macd_cross | trailing_stop | smear x2, sl_atr x2 | 4 |
 | 432235 | `ports/432235_mean-reversion-momentum-strategy/` | PineScript | zscore_reversion | trailing_stop_pending | lookback x2, thr x2 | 4 |
 | 432237 | `ports/432237_dynamic-moving-average-trend-trading-strategy/` | PineScript | volatility_channel_breakout | none | sensitivity x2, rsi_filter x2 | 4 |
-| | **896 ports** | | | | | **5216** |
+| 432305 | `ports/432305_momentum-ichimoku-cloud-trading-strategy/` | PineScript | ichimoku | none | conv x2, disp x2 | 4 |
+| 432309 | `ports/432309_trend-following-short-term-trading-strategy/` | PineScript | multi_indicator_vote | none | sens x2, wow_len x2 | 4 |
+| 432310 | `ports/432310_break-even-price-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 432315 | `ports/432315_rsi-rsi-divergence-strategy/` | PineScript | macd_divergence | none | rsi_len x2, tp_level x2 | 4 |
+| 432330 | `ports/432330_rsi-rsi-trend-following-strategy/` | PineScript | rsi_oscillator | trailing_stop, coarse_bar_stop | activate x2, sl_atr x2 | 4 |
+| 432332 | `ports/432332_dynamic-oscillation-breakout-strategy/` | PineScript | donchian_breakout | trailing_stop_pending, coarse_bar_stop | channel x2, sl_atr x2 | 4 |
+| 432333 | `ports/432333_heikin-ashi-reverse-strategy/` | PineScript | heikin_ashi_trend | none | passes x2 | 2 |
+| 432334 | `ports/432334_momentum-indicator-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| 432340 | `ports/432340_trend-breakout-strategy-based-on-bollinger-bands/` | PineScript | volatility_channel_breakout | none | length x3 | 3 |
+| 432342 | `ports/432342_adaptive-bollinger-trend-tracking-strategy/` | PineScript | mean_reversion_band | trailing_stop | length x2, sl_atr x2 | 4 |
+| 432346 | `ports/432346_momentum-trend-following-oscillation-strategy/` | PineScript | combo_123_reversal | none | length x2, sig2 x2 | 4 |
+| | **907 ports** | | | | | **5257** |
 
 ## Rejected on reading
 
@@ -1149,6 +1160,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 431958 | 基于价格突破与回归的动量短线交易策略Momentum-Breakout-Trading-Strategy-Based-on-Price-Breakout-and-Mean-Reversion.md | 1 | The exit orders are mis-bound: 'S1 SL Exit' names the entry 'Short1', which never exists, and 'S2 Exit' has no from_entry, so it binds every open entry, longs included, to a stop above the price; the net effect depends on how the broker emulator treats a sell stop above the market (as #426455). |
 | 432078 | 周末交易策略Weekend-Trading-Strategy.md | 1 | The profit-taking exit compares strategy.openprofit (account currency, with a fixed qty of 10 units) with 10 % of the initial capital, and shorts are added to on a further 4.5 % rise: the exit and the position path depend on the order size (as #426882). |
 | 432224 | 双均线交叉日间交易期货策略Dual-Moving-Average-Crossover-Intraday-Futures-Trading-Strategy.md | 1 | Both entries are long (strategy.entry('Short', 1, ...) passes long = 1, i.e. true) and every exit is commented out: after the first signal the position is held for the rest of the data (as #430030). |
+| 432308 | 穿越BB通道突破SMA200均线的趋势跟踪策略BB21_SMA200-Trend-Following-Strategy.md | 1 | Besides the full exits, strategy.close(qty_percent = 30) takes 30 % of the long off at a target: a partial exit cannot be expressed as one net position (as #428066). |
+| 432339 | 基于适应性正则化移动平均线的跨市场套利策略Adaptive-Regularized-Moving-Average-Cross-Market-Arbitrage-Strategy.md | 2 | The signal is a min-max scaling of pow(close x 5, -close): it depends on the absolute price level and underflows to a constant for prices above a few hundred (BTC on the header), so scaleMinimax divides 0 by 0; not generic across instruments. |
+| 432341 | 多时间框架RSI均线交叉策略Multi-Timeframe-RSI-Moving-Average-Crossover-Strategy.md | 1 | The signal averages request.security(tickerid, '1' / '5' / '15' / '30' / '45' / '60', vwma(rsi, 15)) on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #430587); it also weights by volume (vwma). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
