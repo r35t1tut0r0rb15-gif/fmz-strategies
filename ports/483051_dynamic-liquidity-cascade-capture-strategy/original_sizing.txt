@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483051 (动态流动性级联捕捉策略-Dynamic-Liquidity-Cascade-Capture-Strategy)
+# Source: https://www.fmz.com/strategy/483051  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 103-103]
+  103: strategy("Liquidation Cascade Strategy", overlay=true)

@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #483054 (动态波动率跟踪均线趋势交易策略与智能止损系统-Dynamic-Volatility-Adjusted-EMA-Trend-Trading-Strategy-with-Smart-Stop-Loss-System)
+# Source: https://www.fmz.com/strategy/483054  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop % input  [lines 124-124]
+  124: stopLossPercent = input.float(1.0, title="Stop Loss %", minval=0.1) / 100  // Convert percentage to decimal
+
+## Entries with the stop levels  [lines 156-170]
+  156: if (longCondition)
+  157:     strategy.close("Short")
+  158:     strategy.entry("Long", strategy.long)
+  159:     entryPrice := close
+  160:     stopLossLevel := close * (1 - stopLossPercent)  // 1% below entry for long trades
+  161:     inLongTrade := true
+  162:     inShortTrade := false
+  163: 
+  164: if (shortCondition)
+  165:     strategy.close("Long")
+  166:     strategy.entry("Short", strategy.short)
+  167:     entryPrice := close
+  168:     stopLossLevel := close * (1 + stopLossPercent)  // 1% above entry for short trades
+  169:     inShortTrade := true
+  170:     inLongTrade := false

@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #483061 (基于唐奇安通道和移动平均线的趋势突破交易策略-Trend-Breakout-Trading-Strategy-Based-on-Donchian-Channel-and-Moving-Average)
+# Source: https://www.fmz.com/strategy/483061  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Channel stop levels  [lines 171-172]
+  171: longSL = mid - 0.45 * (mid - lower)  // SL for Long when price crosses down mid line
+  172: shortSL = mid + 0.45 * (upper - mid) // SL for Short when price crosses up mid line
+
+## Exits re-issued every bar  [lines 182-183]
+  182: strategy.exit("Exit Long", from_entry="Long", stop=longSL)
+  183: strategy.exit("Exit Short", from_entry="Short", stop=shortSL)

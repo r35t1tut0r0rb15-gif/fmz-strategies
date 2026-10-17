@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #483063 (基于EMA交叉与RSI过滤的自适应动态止盈止损策略-Adaptive-Dynamic-Stop-Loss-and-Take-Profit-Strategy-Based-on-EMA-Crossover-and-RSI-Filter)
+# Source: https://www.fmz.com/strategy/483063  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 82-82]
+   82: strategy("High Win Rate Dogecoin Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+
+## ATR inputs  [lines 87-88]
+   87: atrLength = input(14, title="ATR Length")
+   88: atrMultiplier = input(2.5, title="ATR Multiplier")
+
+## Bracket levels  [lines 104-107]
+  104: longStopLoss = close - (atr * atrMultiplier)
+  105: longTakeProfit = close + (atr * atrMultiplier * 2)
+  106: shortStopLoss = close + (atr * atrMultiplier)
+  107: shortTakeProfit = close - (atr * atrMultiplier * 2)
+
+## Entries with the bracket  [lines 110-116]
+  110: if longCondition
+  111:     strategy.entry("Long", strategy.long)
+  112:     strategy.exit("TakeProfitLong", from_entry="Long", limit=longTakeProfit, stop=longStopLoss)
+  113: 
+  114: if shortCondition
+  115:     strategy.entry("Short", strategy.short)
+  116:     strategy.exit("TakeProfitShort", from_entry="Short", limit=shortTakeProfit, stop=shortStopLoss)

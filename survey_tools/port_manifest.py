@@ -2757,6 +2757,53 @@ SIZING = {
         ("Tick bracket levels", 215, 218),
         ("Entries with the bracket", 224, 230),
     ],
+    # ---- FMZ-C, batch L22 (2026-10-17)
+    483040: [
+        ("strategy(): defaults", 101, 101),
+    ],
+    483042: [
+        ("strategy(): defaults", 92, 92),
+    ],
+    483044: [
+        ("ATR inputs", 89, 90),
+        ("Stop levels", 114, 118),
+        ("Entries with the stop", 125, 131),
+    ],
+    483045: [
+        ("strategy(): defaults", 130, 130),
+    ],
+    483047: [
+        ("strategy(): defaults", 86, 86),
+    ],
+    483048: [
+        ("strategy(): 1000 % of equity", 100, 100),
+    ],
+    483050: [
+        ("strategy(): 100 % of equity", 92, 98),
+    ],
+    483051: [
+        ("strategy(): defaults", 103, 103),
+    ],
+    483052: [
+        ("strategy(): defaults", 117, 117),
+    ],
+    483054: [
+        ("Stop % input", 124, 124),
+        ("Entries with the stop levels", 156, 170),
+    ],
+    483055: [
+        ("strategy(): defaults", 116, 116),
+    ],
+    483061: [
+        ("Channel stop levels", 171, 172),
+        ("Exits re-issued every bar", 182, 183),
+    ],
+    483063: [
+        ("strategy(): 100 % of equity", 82, 82),
+        ("ATR inputs", 87, 88),
+        ("Bracket levels", 104, 107),
+        ("Entries with the bracket", 110, 116),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3276,6 +3323,9 @@ REJECTED_ON_READING = {
               "without trail_offset is inert"),
     483086: ("1", "partial exits: five strategy.exit take-profits of 20 % each (qty = position_size x "
               "0.2) plus adds while held (allowAddToPosition) (as #365389)"),
+    # ---- FMZ-C, batch L22 (2026-10-17)
+    483049: ("1", "partial exits: strategy.exit('Partial Exit', qty_percent = 50) at 5 ATR with the "
+              "rest at 10 ATR or the stop (as #365389)"),
 }
 
 DUPLICATE_ON_READING = {
