@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #489651 (动态趋势过滤ATM期权卖出策略结合EMA交叉与RSI动量确认-Dynamic-Trend-Filtered-ATM-Option-Selling-Strategy-with-EMA-Crossover-and-RSI-Momentum-Confirmation)
+# Source: https://www.fmz.com/strategy/489651  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): fixed quantity 375  [lines 177-177]
+  177: strategy("ATM Option Selling Strategy", overlay=true, default_qty_type=strategy.fixed, default_qty_value=375)
+
+## Point distances  [lines 194-196]
+  194: pointValue = syminfo.mintick * 100  // Assuming 1 point = 1 price unit
+  195: takeProfit = 50 * pointValue
+  196: stopLoss = 50 * pointValue
+
+## 15:24 exit time  [lines 199-199]
+  199: exitTime = (hour == 15 and minute == 24)
+
+## Entries with the bracket  [lines 208-215]
+  208: if sellCallCondition
+  209:     strategy.entry("Sell ATM Call", strategy.short, qty=375)
+  210:     strategy.exit("Exit Call", from_entry="Sell ATM Call", limit=close - takeProfit, stop=close + stopLoss)
+  211: 
+  212: // Sell ATM Put Option when Buy Condition Triggers
+  213: if sellPutCondition
+  214:     strategy.entry("Sell ATM Put", strategy.short, qty=375)
+  215:     strategy.exit("Exit Put", from_entry="Sell ATM Put", limit=close - takeProfit, stop=close + stopLoss)
+
+## Close-all at 15:24  [lines 218-219]
+  218: if exitTime
+  219:     strategy.close_all(comment="Market Close Exit")

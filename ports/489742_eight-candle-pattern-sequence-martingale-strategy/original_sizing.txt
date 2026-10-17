@@ -1,0 +1,34 @@
+# Original sizing and money-management code, FMZ #489742 (八阶蜡烛模式序列马丁格尔策略-Eight-Candle-Pattern-Sequence-Martingale-Strategy)
+# Source: https://www.fmz.com/strategy/489742  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Martingale inputs  [lines 193-195]
+  193: initial_bet = input.float(1, title="Initial Bet")         // Initial bet amount
+  194: multiplier = input.float(2, title="Martingale Multiplier") // Multiplier in case of loss
+  195: max_capital = input.float(100, title="Maximum Capital")    // Loss limit
+
+## Martingale bet  [lines 206-220]
+  206: var float bet = initial_bet
+  207: var float current_capital = max_capital
+  208: 
+  209: // Counters for buy and sell signals
+  210: var int total_buys = 0
+  211: var int total_sells = 0
+  212: 
+  213: // If the last trade was a loss, double the bet (within capital limit)
+  214: new_bet = bet * multiplier
+  215: if strategy.opentrades > 0 and strategy.position_size == 0
+  216:     bet := new_bet < current_capital ? new_bet : current_capital // Ensure bet doesn't exceed capital
+  217: 
+  218: // If won, reset to initial bet
+  219: if strategy.opentrades == 0
+  220:     bet := initial_bet
+
+## Entries with the bet  [lines 223-229]
+  223: if sequence_green_red
+  224:     strategy.entry("Buy", strategy.long, bet)
+  225:     total_buys := total_buys + 1
+  226: 
+  227: if sequence_red_green
+  228:     strategy.entry("Sell", strategy.short, bet)
+  229:     total_sells := total_sells + 1

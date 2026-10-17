@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #489653 (双指数均线交叉与尾随止损结合的量化交易策略-Dual-EMA-Crossover-Strategy-with-Dynamic-Trailing-Stop-Mechanism)
+# Source: https://www.fmz.com/strategy/489653  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 20 % of equity  [lines 173-173]
+  173: strategy("EMA Crossover (Short Focus with Trailing Stop)", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=20)
+
+## Tick trail re-placed every bar  [lines 217-226]
+  217: trailOffsetPts = 2
+  218: trail = 10
+  219: 
+  220: // Trailing Stop for Longs
+  221: if (strategy.position_size > 0)
+  222:     strategy.exit("Long Trail Exit", from_entry="Long", trail_offset=trailOffsetPts, trail_price=high - trail, comment="Long Trailing Stop")
+  223: 
+  224: // Trailing Stop for Shorts
+  225: if (strategy.position_size < 0)
+  226:     strategy.exit("Short Trail Exit", from_entry="Short", trail_offset=trailOffsetPts, trail_price=low + trail, comment="Short Trailing Stop")

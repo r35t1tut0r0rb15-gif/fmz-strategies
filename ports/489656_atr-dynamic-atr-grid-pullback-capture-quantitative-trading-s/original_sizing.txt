@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #489656 (动态ATR网格回撤捕捉量化交易策略-Dynamic-ATR-Grid-Pullback-Capture-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/489656  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target and trail re-placed every bar  [lines 196-206]
+  196: if (strategy.position_size > 0)
+  197:     strategy.exit("Take Profit", "Long", 
+  198:                   limit=close * (1 + profitTarget), 
+  199:                   trail_price=close * (1 + profitTarget * 0.5), 
+  200:                   trail_offset=atrValue)
+  201: 
+  202: if (strategy.position_size < 0)
+  203:     strategy.exit("Take Profit", "Short", 
+  204:                   limit=close * (1 - profitTarget), 
+  205:                   trail_price=close * (1 - profitTarget * 0.5), 
+  206:                   trail_offset=atrValue)

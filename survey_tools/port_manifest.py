@@ -1972,6 +1972,57 @@ SIZING = {
         ("Trail distance in ticks", 242, 244),
         ("Entries with band stop, target and trail", 250, 258),
     ],
+    # ---- FMZ-C, batch L3 (2026-10-17)
+    489651: [
+        ("strategy(): fixed quantity 375", 177, 177),
+        ("Point distances", 194, 196),
+        ("15:24 exit time", 199, 199),
+        ("Entries with the bracket", 208, 215),
+        ("Close-all at 15:24", 218, 219),
+    ],
+    489653: [
+        ("strategy(): 20 % of equity", 173, 173),
+        ("Tick trail re-placed every bar", 217, 226),
+    ],
+    489654: [
+        ("strategy(): initial capital", 228, 228),
+        ("0.5 %-risk position size", 254, 257),
+        ("Flat-only entries with the open stop", 265, 278),
+    ],
+    489656: [
+        ("Target and trail re-placed every bar", 196, 206),
+    ],
+    489658: [
+        ("strategy(): 100 % of equity", 204, 204),
+        ("TP / SL percent inputs", 215, 216),
+        ("Entries with the bracket", 229, 235),
+    ],
+    489734: [
+        ("strategy(): 100 % of equity, commission", 196, 196),
+    ],
+    489737: [
+        ("strategy(): 20 % of equity, slippage 5", 242, 242),
+        ("Tick trail re-placed every bar", 289, 300),
+    ],
+    489742: [
+        ("Martingale inputs", 193, 195),
+        ("Martingale bet", 206, 220),
+        ("Entries with the bet", 223, 229),
+    ],
+    489966: [
+        ("strategy(): 10 % of equity", 179, 179),
+        ("ATR stop / target inputs", 189, 191),
+        ("Bracket re-computed every bar", 235, 245),
+    ],
+    489975: [
+        ("5 %-of-equity quantity", 247, 250),
+        ("Entries with the quantity", 253, 256),
+    ],
+    490042: [
+        ("strategy(): 10 % of equity", 211, 211),
+        ("Stop / target / trail inputs", 219, 222),
+        ("Bracket from the average price with the tick trail, every bar", 258, 262),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2399,6 +2450,11 @@ REJECTED_ON_READING = {
               "> 50 and the close crossing above the mid RMA), shorts mirrored, so every trade "
               "exits at its own fill; the contract cannot express an exit at the entry fill "
               "(10-tick stop in price units too)"),
+    # ---- FMZ-C, batch L3 (2026-10-17)
+    489893: ("1", "5-minute security on a daily chart (request.security(..., \"5\", close) for the RSI "
+              "and the bands); as #430765"),
+    490059: ("1", "partial exits: strategy.order takes 25 % and 50 % of the position at two targets "
+              "(qty fractions); as #430864"),
 }
 
 DUPLICATE_ON_READING = {

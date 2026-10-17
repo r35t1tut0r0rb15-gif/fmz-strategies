@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #489737 (高效趋势捕捉型指数移动平均线交叉与动态追踪止损策略-Advanced-Trend-Capture-EMA-Crossover-Strategy-with-Dynamic-Trailing-Stop)
+# Source: https://www.fmz.com/strategy/489737  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 20 % of equity, slippage 5  [lines 242-242]
+  242: strategy("EMA Crossover (New Trailing Stop)", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=20, slippage=5)
+
+## Tick trail re-placed every bar  [lines 289-300]
+  289: trailOffsetPts = 2
+  290: trail = 10
+  291: 
+  292: // Trailing Stop for Longs
+  293: if (strategy.position_size > 0 and not isExiting)
+  294:     strategy.exit("Long Trail Exit", from_entry="Long", trail_offset=trailOffsetPts, trail_price=high - trail, comment="Long Trailing Stop")
+  295:     isExiting := true
+  296: 
+  297: // Trailing Stop for Shorts
+  298: if (strategy.position_size < 0 and not isExiting)
+  299:     strategy.exit("Short Trail Exit", from_entry="Short", trail_offset=trailOffsetPts, trail_price=low + trail, comment="Short Trailing Stop")
+  300:     isExiting := true

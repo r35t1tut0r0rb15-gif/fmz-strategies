@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #489975 (动量驱动型布林带突破与智能资金概念融合策略-Momentum-Driven-Bollinger-Breakout-with-Smart-Money-Concepts-Integration-Strategy)
+# Source: https://www.fmz.com/strategy/489975  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## 5 %-of-equity quantity  [lines 247-250]
+  247: risk_percent = 5.0 // Use float for percentage calculation
+  248: capital_per_trade = (strategy.equity * risk_percent) / 100
+  249: trade_qty = capital_per_trade / close
+  250: trade_qty := trade_qty < 0.000001 ? 0.000001 : trade_qty // Ensure minimum trade quantity if calculated qty is too small
+
+## Entries with the quantity  [lines 253-256]
+  253: if long_condition
+  254:     strategy.entry('Long', strategy.long, qty=trade_qty)
+  255: if short_condition
+  256:     strategy.entry('Short', strategy.short, qty=trade_qty)

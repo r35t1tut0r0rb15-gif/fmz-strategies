@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #489654 (三重指数移动平均与三重相对移动平均自适应通道交叉策略-Triple-EMA-and-Triple-RMA-Adaptive-Channel-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/489654  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital  [lines 228-228]
+  228: strategy("EMA3 & RMA3 ATR Strategy", overlay=true, initial_capital=10000, currency=currency.USD)
+
+## 0.5 %-risk position size  [lines 254-257]
+  254: risk_percent = 0.5 // 单次风险0.5%
+  255: position_size(price, stop_price) => 
+  256:     risk_amount = strategy.equity * risk_percent / 100
+  257:     math.abs(price - stop_price) > 0 ? (risk_amount / math.abs(price - stop_price)) : na
+
+## Flat-only entries with the open stop  [lines 265-278]
+  265: if (ema_buy or rma_buy) and strategy.position_size == 0
+  266:     stop_price = open
+  267:     qty = position_size(close, stop_price)
+  268:     if not na(qty)
+  269:         strategy.entry("Long", strategy.long, qty=qty)
+  270:         strategy.exit("Long Stop", "Long", stop=stop_price)
+  271: 
+  272: // 空单逻辑
+  273: if (ema_sell or rma_sell) and strategy.position_size == 0
+  274:     stop_price = open
+  275:     qty = position_size(close, stop_price)
+  276:     if not na(qty)
+  277:         strategy.entry("Short", strategy.short, qty=qty)
+  278:         strategy.exit("Short Stop", "Short", stop=stop_price)
