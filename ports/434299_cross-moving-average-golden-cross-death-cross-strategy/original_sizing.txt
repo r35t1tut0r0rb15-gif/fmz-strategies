@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #434299 (交叉均线金叉死叉策略Cross-Moving-Average-Golden-Cross-Death-Cross-Strategy)
+# Source: https://www.fmz.com/strategy/434299  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital, commission  [lines 158-169]
+  158: strategy(
+  159:      title="Ichimoku Kinko Hyo Strategy", 
+  160:      shorttitle="Ichimoku Strategy", 
+  161:      overlay=true,
+  162:      pyramiding=0,
+  163:      default_qty_type=strategy.percent_of_equity,
+  164:      default_qty_value=100,
+  165:      initial_capital=1000,
+  166:      currency="USD",
+  167:      commission_type=strategy.commission.percent,
+  168:      commission_value=0.0
+  169:      )

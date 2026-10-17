@@ -2509,6 +2509,30 @@ SIZING = {
         ("strategy(): 100 % of equity; SL / TP options", 214, 499),
     ],
     434289: [],
+    # ---- FMZ-C, batch C66 (2026-10-17)
+    434293: [],
+    434294: [
+        ("strategy(): initial capital, commission", 117, 117),
+    ],
+    434295: [
+        ("strategy(): 300 % of equity", 130, 130),
+    ],
+    434299: [
+        ("strategy(): 100 % of equity, capital, commission", 158, 169),
+    ],
+    434304: [],
+    434305: [
+        ("Order size computed, never passed", 165, 165),
+    ],
+    434325: [],
+    434326: [],
+    434330: [],
+    434332: [
+        ("Risk-percent unit count", 148, 151),
+    ],
+    434336: [],
+    434344: [],
+    434345: [],
 }
 
 REJECTED_ON_READING = {

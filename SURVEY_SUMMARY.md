@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2535 |
-| PORTED | 1058 |
+| PORT_CANDIDATE | 2522 |
+| PORTED | 1071 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 560 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1186,7 +1186,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 434285 | `ports/434285_full-crypto-swing-alma-cross-macd-quantitative-strategy/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
 | 434288 | `ports/434288_multi-indicator-quantitative-trading-strategy/` | PineScript | ma_trend | none | len1 x2, len2 x2 | 4 |
 | 434289 | `ports/434289_golden-cross-moving-average-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
-| | **1058 ports** | | | | | **5838** |
+| 434293 | `ports/434293_dual-moving-average-breakthrough-strategy/` | PineScript | ma_cross | coarse_bar_stop | fast x2, pump x2 | 4 |
+| 434294 | `ports/434294_eight-days-reversal-momentum-strategy/` | PineScript | ma_pullback | none | sma_len x2, run x2 | 4 |
+| 434295 | `ports/434295_supertrend-multi-timeframe-backtest-strategy/` | PineScript | supertrend | none | mult x2, atr_len x2 | 4 |
+| 434299 | `ports/434299_cross-moving-average-golden-cross-death-cross-strategy/` | PineScript | ichimoku | none | tenkan x2, cooldown x2 | 4 |
+| 434304 | `ports/434304_moving-average-crossover-strategy/` | PineScript | ma_trend | none | sma_len x3 | 3 |
+| 434305 | `ports/434305_percentr-percentr-reversa-channe-strategy/` | PineScript | williams_r_oscillator | none | length x2, low_marker x2 | 4 |
+| 434325 | `ports/434325_starc-starc-channel-backtest-strategy/` | PineScript | volatility_channel_breakout | none | ma_len x2, k x2 | 4 |
+| 434326 | `ports/434326_low-frequency-fourier-transform-trend-following-moving-avera/` | PineScript | ma_trend | none | n_fourier x2, slow x2 | 4 |
+| 434330 | `ports/434330_ttm-ttm-falcon-oscillator-reversal-strategy-based-on-price-r/` | PineScript | candle_pattern | none | reverse x2 | 2 |
+| 434332 | `ports/434332_momentum-index-etf-trend-following-strategy/` | PineScript | ma_trend | none | fast x2, slope_deg x2 | 4 |
+| 434336 | `ports/434336_average-highest-high-and-lowest-low-swinger-strategy/` | PineScript | ichimoku | none | fast x2, slow x2 | 4 |
+| 434344 | `ports/434344_dual-factor-cycle-trading-strategy/` | PineScript | combo_123_reversal | none | length x2, to_line x2 | 4 |
+| 434345 | `ports/434345_atr-adx-v2an-adaptive-atr-adx-trend-strategy-v2/` | PineScript | volatility_stop_cross | none | m1 x2, adx_thresh x2 | 4 |
+| | **1071 ports** | | | | | **5887** |
 
 ## Rejected on reading
 

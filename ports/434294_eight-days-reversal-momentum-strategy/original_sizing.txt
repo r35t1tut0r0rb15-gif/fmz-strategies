@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #434294 (八日反转动量策略Eight-Days-Reversal-Momentum-Strategy)
+# Source: https://www.fmz.com/strategy/434294  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital, commission  [lines 117-117]
+  117: strategy("8D Run", initial_capital = 50000, commission_value = 0.0004) 

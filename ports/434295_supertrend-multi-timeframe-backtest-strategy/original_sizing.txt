@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #434295 (超级趋势多时间框架回测策略SuperTrend-Multi-Timeframe-Backtest-Strategy)
+# Source: https://www.fmz.com/strategy/434295  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 300 % of equity  [lines 130-130]
+  130: strategy("SupterTrend ", overlay=true, initial_capital=100000, default_qty_type=strategy.percent_of_equity, default_qty_value=300, calc_on_order_fills=false, calc_on_every_tick=false)

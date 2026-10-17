@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #434332 (动量型指数趋势跟随策略Momentum-Index-ETF-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/434332  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk-percent unit count  [lines 148-151]
+  148: strategy.initial_capital = 50000
+  149: //units to buy
+  150: amount = (risk / 100) * (strategy.initial_capital + strategy.netprofit)
+  151: units = floor(amount / close)

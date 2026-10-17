@@ -1224,3 +1224,16 @@ fmz_id,file,final_outcome,criterion,reason
 434285,双移动均线金叉死叉量化策略Full-Crypto-Swing-ALMA-Cross-MACD-Quantitative-Strategy.md,PORTED,,ports/434285_full-crypto-swing-alma-cross-macd-quantitative-strategy/
 434288,基于多重指标的量化交易策略Multi-Indicator-Quantitative-Trading-Strategy.md,PORTED,,ports/434288_multi-indicator-quantitative-trading-strategy/
 434289,黄金交叉均线交易策略Golden-Cross-Moving-Average-Trading-Strategy.md,PORTED,,ports/434289_golden-cross-moving-average-trading-strategy/
+434293,双均线突破策略Dual-Moving-Average-Breakthrough-Strategy.md,PORTED,,ports/434293_dual-moving-average-breakthrough-strategy/
+434294,八日反转动量策略Eight-Days-Reversal-Momentum-Strategy.md,PORTED,,ports/434294_eight-days-reversal-momentum-strategy/
+434295,超级趋势多时间框架回测策略SuperTrend-Multi-Timeframe-Backtest-Strategy.md,PORTED,,ports/434295_supertrend-multi-timeframe-backtest-strategy/
+434299,交叉均线金叉死叉策略Cross-Moving-Average-Golden-Cross-Death-Cross-Strategy.md,PORTED,,ports/434299_cross-moving-average-golden-cross-death-cross-strategy/
+434304,移动平均线交叉穿越策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/434304_moving-average-crossover-strategy/
+434305,反转PercentR连费通道策略PercentR-Reversa-Channe-Strategy.md,PORTED,,ports/434305_percentr-percentr-reversa-channe-strategy/
+434325,STARC通道回测策略STARC-Channel-Backtest-Strategy.md,PORTED,,ports/434325_starc-starc-channel-backtest-strategy/
+434326,低频傅里叶变换趋势跟踪移动平均线策略Low-Frequency-Fourier-Transform-Trend-Following-Moving-Average-Strategy.md,PORTED,,ports/434326_low-frequency-fourier-transform-trend-following-moving-avera/
+434330,基于价格反转的TTM银隼震荡策略TTM-Falcon-Oscillator-Reversal-Strategy-Based-on-Price-Reversion.md,PORTED,,ports/434330_ttm-ttm-falcon-oscillator-reversal-strategy-based-on-price-r/
+434332,动量型指数趋势跟随策略Momentum-Index-ETF-Trend-Following-Strategy.md,PORTED,,ports/434332_momentum-index-etf-trend-following-strategy/
+434336,平均最高最低波动交易策略Average-Highest-High-and-Lowest-Low-Swinger-Strategy.md,PORTED,,ports/434336_average-highest-high-and-lowest-low-swinger-strategy/
+434344,双因子循环交易策略Dual-factor-Cycle-Trading-Strategy.md,PORTED,,ports/434344_dual-factor-cycle-trading-strategy/
+434345,自适应ATR-ADX趋势策略V2An-Adaptive-ATR-ADX-Trend-Strategy-V2.md,PORTED,,ports/434345_atr-adx-v2an-adaptive-atr-adx-trend-strategy-v2/
