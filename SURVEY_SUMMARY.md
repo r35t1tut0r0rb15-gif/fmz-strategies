@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2431 |
-| PORTED | 1150 |
+| PORT_CANDIDATE | 2418 |
+| PORTED | 1162 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 164 |
+| REJECTED_ON_READING | 165 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1278,7 +1278,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435101 | `ports/435101_ema-multi-timeframe-dynamic-ema-trading-strategy/` | PineScript | ma_cross | none | first x2 | 2 |
 | 435103 | `ports/435103_supertrend-advanced-supertrend-tracking-strategy/` | PineScript | volatility_stop_cross | none | mult x2, atr_len x2 | 4 |
 | 435104 | `ports/435104_smaema-quantitative-trading-strategy-based-on-sma-and-ema/` | PineScript | volatility_stop_cross | none | no x2 | 2 |
-| | **1150 ports** | | | | | **6192** |
+| 435105 | `ports/435105_momentum-filtering-moving-average-strategy/` | PineScript | momentum_oscillator_turn | none | length x2, filt_atr x2 | 4 |
+| 435106 | `ports/435106_macd-strategy-two-way-exit-trading/` | PineScript | macd_cross | coarse_bar_stop | rr x2, swing x2 | 4 |
+| 435123 | `ports/435123_trend-trading-strategy-based-on-price-extremum/` | PineScript | channel_breakout | none | pattern x3 | 3 |
+| 435124 | `ports/435124_momentum-indicator-driven-trend-following-trading-strategy/` | PineScript | multi_indicator_vote | coarse_bar_stop | risk_pct x2, tp_factor x2 | 4 |
+| 435126 | `ports/435126_stochastic-momentum-index-rsi-stochastic-momentum-index-and/` | PineScript | stochastic_oscillator | none | limitsmi x2, limitrsi x2 | 4 |
+| 435132 | `ports/435132_rsi-scalping-strategy-based-on-rsi-indicator-with-trailing-s/` | PineScript | rsi_oscillator | trailing_stop | trail_pct x2, os x2 | 4 |
+| 435133 | `ports/435133_ema-tracking-trend-suppressing-oscillation-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | tt_mult x2, profit x2 | 4 |
+| 435134 | `ports/435134_rate-of-change-quantitative-strategy/` | PineScript | momentum_breakout | coarse_bar_stop | roc_len x2, sl_pct x2 | 4 |
+| 435139 | `ports/435139_ichimoku-early-cloud-trend-following-strategy/` | PineScript | ichimoku | none | disp x2, long_only x2 | 4 |
+| 435143 | `ports/435143_trend-tracking-strategy-based-on-dual-vortex-indicator-combi/` | PineScript | directional_movement | none | period x2, bar x2 | 4 |
+| 435146 | `ports/435146_rsi-rsi-trend-following-crypto-strategy/` | PineScript | rsi_oscillator | none | rsi_long x2, rsi_close x2 | 4 |
+| 435147 | `ports/435147_momentum-pullback-strategy/` | PineScript | momentum_oscillator_turn | trailing_stop_pending, coarse_bar_stop | atr_inp x2, look x2 | 4 |
+| | **1162 ports** | | | | | **6239** |
 
 ## Rejected on reading
 
@@ -1446,8 +1458,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 434679 | RSI趋势跟踪移动止损策略RSI-Trend-Following-Strategy-with-Trailing-Stop-Loss.md | 1 | Partial exits: two take-profit orders close 50 % and then the rest of the position (qty_percent 50 / 100), with levels re-placed every bar from the current high / low (as #365389). |
 | 434707 | 动向指数平均线交叉ADX交易策略ADX-Crossover-Trend-Trading-Strategy.md | 1 | Pyramiding 3 with adds when the close is under the averaged position price, and a stop and exits keyed on that averaged price; the position is a sum of units (as #426570). |
 | 434936 | Y-Profit-Maximizer策略Y-Profit-Maximizer-Strategy.md | 1 | Partial exits: the long is scaled out with limit orders for 33.3 %, then 50 %, then the rest (qty_percent), driven by counters of the script's own take-profit levels (as #365389). |
-| 435081 | 移动平均数RSI相关性加密货币趋势策略Moving-Average-RSI-Crypto-Correlation-Trend-Strategy.md | 3 | The signals are computed on request.security('BTC_USDT:swap', timeframe.period, close / open / high / low) ("correlation candles" on by default): a crypto-exchange perpetual contract used as the signal source for the chart symbol (as #430742). |
+| 435081 | 移动平均数RSI相关性加密货币趋势策略Moving-Average-RSI-Crypto-Correlation-Trend-Strategy.md | 3 | The signals are computed on request.security('BTC_USDT:swap', timeframe.period, close / open / high / low) ("correlation candles" on by default): a crypto-exchange perpetual contract used as the signal source for the chart symbol (as #430742). Stored in flagged/ (rule C7). |
 | 435088 | 跨周期价值区域突破策略Cross-period-Value-Area-Breakout-Strategy.md | 1 | The momentum values are request.security(syminfo.tickerid, '180', rsi(...)) on the daily header chart: a 180-minute resolution below the chart's, whose value per daily bar is undefined (as #427518). |
+| 435138 | 多时间轴均线系统交易策略Multi-Timeframe-Moving-Average-System-Trading-Strategy.md | 1 | The trend lines are request.security(syminfo.tickerid, '15' / '30' / '60' / '120', ...) on the 4-hour header chart: resolutions below the chart's, whose value per 4-hour bar is undefined (as #427518). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

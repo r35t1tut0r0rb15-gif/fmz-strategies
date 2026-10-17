@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #435146 (RSI趋势追踪型加密货币策略RSI-Trend-Following-Crypto-Strategy)
+# Source: https://www.fmz.com/strategy/435146  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission  [lines 148-148]
+  148: strategy("RSI Trend Crypto", overlay=false, pyramiding=1, commission_value=0.2, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #435139 (Ichimoku-Early-Cloud-Trend-Following-Strategy-一云双提前知机会均线趋势跟踪策略)
+# Source: https://www.fmz.com/strategy/435139  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 99 % of equity, commission  [lines 173-181]
+  173: strategy("Ichimoku Cloud Strategy Idea",
+  174:          shorttitle="Ichimoku", 
+  175:          overlay=true,
+  176:          pyramiding=0,     
+  177:          default_qty_type=strategy.percent_of_equity, 
+  178:          default_qty_value=99, 
+  179:          initial_capital=1000,           
+  180:          commission_type=strategy.commission.percent, 
+  181:          commission_value=0.1)

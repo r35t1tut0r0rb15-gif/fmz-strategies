@@ -1,0 +1,76 @@
+# Original sizing and money-management code, FMZ #435134 (基于变化率的量化策略Rate-of-Change-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/435134  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Fixed-ratio cash orders, commission  [lines 160-230]
+  160: strategy("RATE OF CHANGE BACKTESTING", shorttitle="ROC BACKTESTING", overlay=false, precision=3, initial_capital=1000, default_qty_type=strategy.cash, default_qty_value=950, commission_type=strategy.commission.percent, commission_value=0.18)
+  161: 
+  162: 
+  163: //--------------------------------FUNCTIONS-----------------------------------//
+  164: 
+  165: //@function Displays text passed to `txt` when called.
+  166: debugLabel(txt, color, loc) =>
+  167:     label.new(bar_index, loc, text = txt, color=color, style = label.style_label_lower_right, textcolor = color.black, size = size.small)
+  168: 
+  169: //@function which looks if the close date of the current bar falls inside the date range
+  170: inBacktestPeriod(start, end) => (time >= start) and (time <= end)
+  171: 
+  172: 
+  173: //----------------------------------USER INPUTS----------------------------------//
+  174: 
+  175: //Technical parameters
+  176: rocLength = input.int(defval=365, minval=0, title='ROC Length', group="Technical parameters")
+  177: bubbleValue = input.int(defval=200, minval=0, title="ROC Bubble signal", group="Technical parameters")
+  178: //Risk management
+  179: stopLossInput = input.float(defval=10, minval=0, title="Stop Loss (in %)", group="Risk Management")
+  180: //Money management
+  181: fixedRatio = input.int(defval=400, minval=1, title="Fixed Ratio Value ($)", group="Money Management")
+  182: increasingOrderAmount = input.int(defval=200, minval=1, title="Increasing Order Amount ($)", group="Money Management")
+  183: //Backtesting period
+  184: startDate = input(title="Start Date", defval=timestamp("1 Jan 2017 00:00:00"), group="Backtesting Period")
+  185: endDate = input(title="End Date", defval=timestamp("1 July 2024 00:00:00"), group="Backtesting Period")
+  186: 
+  187: 
+  188: //-------------------------------------VARIABLES INITIALISATION-----------------------------//
+  189: 
+  190: roc = (close/close[rocLength] - 1)*100
+  191: midlineConst = 0
+  192: var bool inBubble = na
+  193: bool shortBubbleCondition = na
+  194: equity = strategy.equity - strategy.openprofit
+  195: strategy.initial_capital = 50000
+  196: var float capital_ref = strategy.initial_capital
+  197: var float cashOrder = strategy.initial_capital * 0.95
+  198: bool inRange = na
+  199: 
+  200: 
+  201: //------------------------------CHECKING SOME CONDITIONS ON EACH SCRIPT EXECUTION-------------------------------//
+  202: 
+  203: //Checking if the date belong to the range
+  204: inRange := true
+  205: 
+  206: //Checking if we are in a bubble
+  207: if roc > bubbleValue and not inBubble
+  208:     inBubble := true
+  209: 
+  210: //Checking if the bubble is over
+  211: if roc < 0 and inBubble
+  212:     inBubble := false
+  213: 
+  214: //Checking the condition to short the bubble : The ROC must be above the bubblevalue for at least 1 week
+  215: if roc[1]>bubbleValue and roc[2]>bubbleValue and roc[3]>bubbleValue and roc[4]>bubbleValue and roc[5]>bubbleValue and roc[6]>bubbleValue and roc[7]>bubbleValue
+  216:     shortBubbleCondition := true
+  217: 
+  218: //Checking performances of the strategy
+  219: if equity > capital_ref + fixedRatio
+  220:     spread = (equity - capital_ref)/fixedRatio
+  221:     nb_level = int(spread)
+  222:     increasingOrder = nb_level * increasingOrderAmount
+  223:     cashOrder := cashOrder + increasingOrder
+  224:     capital_ref := capital_ref + nb_level*fixedRatio
+  225: if equity < capital_ref - fixedRatio
+  226:     spread = (capital_ref - equity)/fixedRatio
+  227:     nb_level = int(spread)
+  228:     decreasingOrder = nb_level * increasingOrderAmount
+  229:     cashOrder := cashOrder - decreasingOrder
+  230:     capital_ref := capital_ref - nb_level*fixedRatio

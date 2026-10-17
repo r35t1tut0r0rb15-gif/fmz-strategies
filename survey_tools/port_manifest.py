@@ -2689,6 +2689,37 @@ SIZING = {
     435104: [
         ("strategy(): 100 % of equity, capital", 154, 154),
     ],
+    # ---- FMZ-C, batch C74 (2026-10-17)
+    435105: [],
+    435106: [
+        ("Risk-based lot sizes; slippage", 155, 219),
+    ],
+    435123: [],
+    435124: [
+        ("Capital-based quantity, leverage, compounding", 122, 179),
+    ],
+    435126: [
+        ("strategy(): 100 % of equity; lot and martingale", 138, 212),
+    ],
+    435132: [
+        ("Trailing-stop inputs (ticks of the close)", 176, 246),
+    ],
+    435133: [
+        ("strategy(): 100 % of equity, commission", 160, 160),
+    ],
+    435134: [
+        ("Fixed-ratio cash orders, commission", 160, 230),
+    ],
+    435139: [
+        ("strategy(): 99 % of equity, commission", 173, 181),
+    ],
+    435143: [],
+    435146: [
+        ("strategy(): 100 % of equity, commission", 148, 148),
+    ],
+    435147: [
+        ("Fixed quantity 2, commission, slippage", 155, 262),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3310,10 +3341,14 @@ REJECTED_ON_READING = {
     435081: ("3", "The signals are computed on request.security('BTC_USDT:swap', timeframe.period, "
               "close / open / high / low) (\"correlation candles\" on by default): a "
               "crypto-exchange perpetual contract used as the signal source for the chart symbol "
-              "(as #430742)."),
+              "(as #430742). Stored in flagged/ (rule C7)."),
     435088: ("1", "The momentum values are request.security(syminfo.tickerid, '180', rsi(...)) on the "
               "daily header chart: a 180-minute resolution below the chart's, whose value per "
               "daily bar is undefined (as #427518)."),
+    # ---- FMZ-C, batch C74 (2026-10-17)
+    435138: ("1", "The trend lines are request.security(syminfo.tickerid, '15' / '30' / '60' / '120', "
+              "...) on the 4-hour header chart: resolutions below the chart's, whose value per "
+              "4-hour bar is undefined (as #427518)."),
 }
 
 DUPLICATE_ON_READING = {

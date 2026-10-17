@@ -1,0 +1,113 @@
+# Original sizing and money-management code, FMZ #435147 (动量回拉策略Momentum-Pullback-Strategy)
+# Source: https://www.fmz.com/strategy/435147  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Fixed quantity 2, commission, slippage  [lines 155-262]
+  155: strategy("M0PB", commission_value = 0.0004, slippage = 1, initial_capital=30000)
+  156: // commision is equal to approx $3.8 per round trip which is accurate for ES1! futures and slippage per trade is conservatively 1 tick in and 1 tick out. 
+  157: 
+  158: // *momentum pull back* //
+  159: 
+  160: // long / short strategy that identifies extreme readings on the rsi as a *momentum signal*
+  161: //Strategy buys/ sells a pullback to the 5ema(low)/ 5ema(high) and exits at rolling 12 bar high/ low. The rolling high/ low feature means that 
+  162: //if price enters into a pronlonged consolidation the profit target will begin to reduce with each new bar. The best trades tend to work within 2-6 bars
+  163: // hard stop is X atr's from postion average price. This can be adjusted in user inputs.
+  164: // built for use on 5 min & 1min intervals on: FX, Indexes, Crypto
+  165: // there is a lot of slack left in entries and exits but the overall strategy is fairly robust across timeframes and markets and has between 60%-70% winrate with larger winners.
+  166: // signals that occur from economic news volatility are best avoided.  
+  167: 
+  168: 
+  169: // define rsi
+  170: r = ta.rsi(close,6) 
+  171: 
+  172: // find rsi > 90
+  173: b = 0.0
+  174: 
+  175: if r >= 90
+  176:     b := 1.0
+  177: else
+  178:     na
+  179: 
+  180: // find rsi < 10
+  181: s = 0.0
+  182: 
+  183: if r <= 10
+  184:     s := -1.0
+  185: else
+  186:     na
+  187: 
+  188: // plot rsi extreme as painted background color
+  189: bgcolor(b ? color.rgb(255, 82, 82, 49): na)
+  190: bgcolor(s? color.rgb(76, 175, 79, 51): na)
+  191: 
+  192: 
+  193: 
+  194: // exponential moving averages for entries. note that source is high and low (normally close is def input) this creates entry bands
+  195: //entry short price using high as a source ta.ema(high,5)
+  196: es = ta.ema(high,5)
+  197: 
+  198: //entry long price using low as a source ta.ema(low,5)
+  199: el = ta.ema(low,5)
+  200: 
+  201: 
+  202: // long pullback entry trigger: last period above ema and current low below target ema entry 
+  203: let = 0.0
+  204: 
+  205: if low[1] > el[1] and low <= el
+  206:     let := 1.0
+  207: else
+  208:     na
+  209: //short entry trigger ""
+  210: set = 0.0
+  211: 
+  212: if high[1] < es[1] and high >= es
+  213:     set := -1.0
+  214: else
+  215:     na
+  216: 
+  217: // create signal "trade_l" if RSI > 90 and price pulls back to 5ema(low) within 6 bars
+  218: trade_l = 0.0
+  219: 
+  220: if ta.barssince(b == 1.0) < 6 and let == 1.0
+  221:     trade_l := 1.0
+  222: else
+  223:     na
+  224: 
+  225: plot(trade_l, "l_entry", color.green)
+  226: 
+  227: //create short signal "trade_s" if rsi < 10 and prices pullback to 5em(high) wihthin 6 bars
+  228: trade_s = 0.0
+  229: 
+  230: if ta.barssince(s == -1.0) < 6 and set == -1.0
+  231:     trade_s := -1.0
+  232: else
+  233:     na
+  234: 
+  235: plot(trade_s, "s_entry", color.purple)
+  236: 
+  237: // define price at time of trade_l signal and input value into trade_p to use for stop parems later
+  238: trade_p = strategy.position_avg_price
+  239: 
+  240: //indentify previous 12 bar high as part of long exit strat
+  241: // this creates a rolling 12 bar high target... a quick move back up will exit at previous swing high but if a consolidation occurs system will exit on a new 12 bar high which may be below prev local high
+  242: ph = ta.highest(12)
+  243: 
+  244: // inverse of above for short exit strat - previous lowest low of 12 bars as exit (rolling)
+  245: pl = ta.lowest(12)
+  246: 
+  247: 
+  248: // 1.5 atr stop below entry price (trade_p defined earlier) as part of exit strat
+  249: atr_inp = input.float(2.75, "atr stop", minval = 0.1, maxval = 6.0)
+  250: 
+  251: atr = ta.atr(10)
+  252: 
+  253: stop_l = trade_p - (atr* atr_inp)
+  254: stop_s = trade_p + (atr* atr_inp)
+  255: 
+  256: //strat entry long
+  257: 
+  258: strategy.entry("EL", strategy.long, 2, when = trade_l == 1.0)
+  259: 
+  260: //strat entry short
+  261: 
+  262: strategy.entry("ES", strategy.short, 2, when = trade_s == -1.0)   

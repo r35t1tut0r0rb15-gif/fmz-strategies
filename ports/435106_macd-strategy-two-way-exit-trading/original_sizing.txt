@@ -1,0 +1,70 @@
+# Original sizing and money-management code, FMZ #435106 (震荡交易指标策略MACD-Strategy-Two-Way-Exit-Trading)
+# Source: https://www.fmz.com/strategy/435106  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk-based lot sizes; slippage  [lines 155-219]
+  155: strategy("MACD Strategy", overlay=true, initial_capital=1000, slippage=25)
+  156: 
+  157: src = input(title="Source", defval=close)
+  158: target_stop_ratio = input.float(title='Risk/Reward', defval=2, minval=0.5, maxval=100)
+  159: risk = input.float(2, title="Risk per Trade %")
+  160: 
+  161: riskt = risk / 100 + 1
+  162: 
+  163: useDateFilter = input.bool(true, title="Filter Date Range of Backtest",
+  164:      group="Backtest Time Period")
+  165: backtestStartDate = input(timestamp("5 June 2022"), 
+  166:      title="Start Date", group="Backtest Time Period",
+  167:      tooltip="This start date is in the time zone of the exchange " + 
+  168:      "where the chart's instrument trades. It doesn't use the time " + 
+  169:      "zone of the chart or of your computer.")
+  170: backtestEndDate = input(timestamp("5 July 2022"),
+  171:      title="End Date", group="Backtest Time Period",
+  172:      tooltip="This end date is in the time zone of the exchange " + 
+  173:      "where the chart's instrument trades. It doesn't use the time " + 
+  174:      "zone of the chart or of your computer.")
+  175: 
+  176: inTradeWindow =  true
+  177: emaV = input.int(200, title="Length", group="EMA")
+  178: swingHighV = input.int(7, title="Swing High", group="number of past candles")
+  179: swingLowV = input.int(7, title="Swing Low", group="number of past candles")
+  180: 
+  181: ema = ta.ema(src, emaV)
+  182: 
+  183: fast_length = input(title="Fast Length", defval=12, group="MACD")
+  184: slow_length = input(title="Slow Length", defval=26, group="MACD")
+  185: signal_length = input.int(title="Signal Smoothing",  minval = 1, maxval = 50, defval = 9, group="MACD")
+  186: sma_source = input.string(title="Oscillator MA Type",  defval="EMA", options=["SMA", "EMA"], group="MACD")
+  187: sma_signal = input.string(title="Signal Line MA Type", defval="EMA", options=["SMA", "EMA"], group="MACD")
+  188: 
+  189: fast_ma = sma_source == "SMA" ? ta.sma(src, fast_length) : ta.ema(src, fast_length)
+  190: slow_ma = sma_source == "SMA" ? ta.sma(src, slow_length) : ta.ema(src, slow_length)
+  191: macd = fast_ma - slow_ma
+  192: signal = sma_signal == "SMA" ? ta.sma(macd, signal_length) : ta.ema(macd, signal_length)
+  193: hist = macd - signal
+  194: 
+  195: longcondition = close > ema and ta.crossover(macd, signal) and macd < 0
+  196: shortcondition = close < ema and ta.crossunder(macd, signal) and macd > 0
+  197: 
+  198: float risk_long = na
+  199: float risk_short = na
+  200: float stopLoss = na
+  201: float takeProfit = na
+  202: float entry_price = na
+  203: 
+  204: risk_long := risk_long[1]
+  205: risk_short := risk_short[1]
+  206: 
+  207: swingHigh = ta.highest(high, swingHighV)
+  208: swingLow = ta.lowest(low, swingLowV)
+  209: 
+  210: lotB = (strategy.equity*riskt-strategy.equity)/(close - swingLow)
+  211: lotS = (strategy.equity*riskt-strategy.equity)/(swingHigh - close)
+  212: 
+  213: if strategy.position_size == 0 and longcondition and inTradeWindow
+  214:     risk_long := (close - swingLow) / close
+  215:     strategy.entry("long", strategy.long, qty=lotB)
+  216:     
+  217: if strategy.position_size == 0 and shortcondition and inTradeWindow
+  218:     risk_short := (swingHigh - close) / close  
+  219:     strategy.entry("short", strategy.short, qty=lotS)

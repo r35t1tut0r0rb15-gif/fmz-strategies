@@ -1,0 +1,80 @@
+# Original sizing and money-management code, FMZ #435126 (基于Stochastic-Momentum-Index和RSI的量化策略Stochastic-Momentum-Index-and-RSI-Based-Quant-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/435126  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; lot and martingale  [lines 138-212]
+  138: strategy(title = "Noro's Stochastic Strategy v1.3", shorttitle = "Stochastic str 1.3", overlay = false, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)
+  139: 
+  140: //Settings 
+  141: needlong = input(true, defval = true, title = "Long")
+  142: needshort = input(true, defval = true, title = "Short")
+  143: usemar = input(false, defval = false, title = "Use Martingale")
+  144: capital = input(100, defval = 100, minval = 1, maxval = 10000, title = "Capital, %")
+  145: usesmi = input(true, defval = true, title = "Use SMI Strategy")
+  146: usersi = input(true, defval = true, title = "Use RSI Strategy")
+  147: usecol = input(true, defval = true, title = "Use Color-Filter")
+  148: usebod = input(true, defval = true, title = "Use Body-Filter")
+  149: a = input(2, defval = 2, minval = 2, maxval = 50, title = "SMI Percent K Length")
+  150: b = input(2, defval = 2, minval = 2, maxval = 50, title = "SMI Percent D Length")
+  151: limitsmi = input(50, defval = 50, minval = 1, maxval = 100, title = "SMI Limit")
+  152: periodrsi = input(2, defval = 2, minval = 2, maxval = 50, title = "RSI Period")
+  153: limitrsi = input(10, defval = 10, minval = 1, maxval = 50, title = "RSI Limit")
+  154: double = input(false, defval = false, title = "SMI+RSI Mode")
+  155: showbg = input(false, defval = false, title = "Show background")
+  156: fromyear = input(2018, defval = 2018, minval = 1900, maxval = 2100, title = "From Year")
+  157: toyear = input(2100, defval = 2100, minval = 1900, maxval = 2100, title = "To Year")
+  158: frommonth = input(01, defval = 01, minval = 01, maxval = 12, title = "From Month")
+  159: tomonth = input(12, defval = 12, minval = 01, maxval = 12, title = "To Month")
+  160: fromday = input(01, defval = 01, minval = 01, maxval = 31, title = "From day")
+  161: today = input(31, defval = 31, minval = 01, maxval = 31, title = "To day")
+  162: 
+  163: //Fast RSI
+  164: fastup = rma(max(change(close), 0), periodrsi)
+  165: fastdown = rma(-min(change(close), 0), periodrsi)
+  166: fastrsi = fastdown == 0 ? 100 : fastup == 0 ? 0 : 100 - (100 / (1 + fastup / fastdown))
+  167: 
+  168: //Stochastic Momentum Index
+  169: ll = lowest (low, a)
+  170: hh = highest (high, a)
+  171: diff = hh - ll
+  172: rdiff = close - (hh+ll)/2
+  173: //avgrel = ema(ema(rdiff,b),b)
+  174: //avgdiff = ema(ema(diff,b),b)
+  175: avgrel = sma(sma(rdiff,b),b)
+  176: avgdiff = sma(sma(diff,b),b)
+  177: SMI = avgdiff != 0 ? (avgrel/(avgdiff/2)*100) : 0
+  178: SMIsignal = ema(SMI,b)
+  179: 
+  180: //Lines
+  181: plot(SMI, color = blue, linewidth = 3, title = "Stochastic Momentum Index")
+  182: plot(SMIsignal, color = red, linewidth = 3, title = "SMI Signal Line")
+  183: plot(limitsmi, color = black, title = "Over Bought")
+  184: plot(-1 * limitsmi, color = black, title = "Over Sold")
+  185: plot(0, color = blue, title = "Zero Line")
+  186: 
+  187: //Color-Filter
+  188: gb = close > open or usecol == false
+  189: rb = close < open or usecol == false
+  190: 
+  191: //Body Filter
+  192: nbody = abs(close - open)
+  193: abody = sma(nbody, 10)
+  194: body = nbody > abody / 3 or usebod == false
+  195: 
+  196: //Signals
+  197: up1 = SMI < -1 * limitsmi and rb and body and usesmi
+  198: dn1 = SMI > limitsmi and gb and body and usesmi
+  199: up2 = fastrsi < limitrsi and rb and body and usersi
+  200: dn2 = fastrsi > 100 - limitrsi and gb and body and usersi
+  201: exit = ((strategy.position_size > 0 and close > open) or (strategy.position_size < 0 and close < open)) and body
+  202: 
+  203: //Background
+  204: redb = (SMI > limitsmi and usesmi) or (fastrsi > 100 - limitrsi and usersi)
+  205: limeb = (SMI < -1 * limitsmi and usesmi) or (fastrsi < limitrsi and usersi)
+  206: col = showbg == false ? na : redb ? red : limeb ? lime : na
+  207: bgcolor(col, transp = 50)
+  208: 
+  209: //Trading
+  210: profit = exit ? ((strategy.position_size > 0 and close > strategy.position_avg_price) or (strategy.position_size < 0 and close < strategy.position_avg_price)) ? 1 : -1 : profit[1]
+  211: mult = usemar ? exit ? profit == -1 ? mult[1] * 2 : 1 : mult[1] : 1
+  212: lot = strategy.position_size == 0 ? strategy.equity / close * capital / 100 * mult : lot[1]

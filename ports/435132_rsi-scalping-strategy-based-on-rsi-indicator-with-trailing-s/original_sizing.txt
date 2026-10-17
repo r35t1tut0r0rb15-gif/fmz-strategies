@@ -1,0 +1,76 @@
+# Original sizing and money-management code, FMZ #435132 (基于RSI指标的趋势跟踪止损策略Scalping-Strategy-based-on-RSI-Indicator-with-Trailing-Stop-Loss)
+# Source: https://www.fmz.com/strategy/435132  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trailing-stop inputs (ticks of the close)  [lines 176-246]
+  176: def_tick   = 0.5
+  177: def_filter = true
+  178: 
+  179: def_trailing_stop = 1
+  180: 
+  181: 
+  182: //***********
+  183: // Change the optional parameters
+  184: //***********
+  185: start_time  = input(title="Start date", defval=def_start_date, type=input.time)
+  186: end_time    = input(title="End date", defval=def_end_date, type=input.time)
+  187: // RSI
+  188: src         = input(title="Source", defval=close, type=input.source)
+  189: rsi_length  = input(title="RSI Length", defval=def_rsi_length, minval=1, type=input.integer)
+  190: overbought_threshold = input(title="Overbought threshold", defval=def_overbought_value, type=input.float)
+  191: oversold_threshold   = input(title="Oversold threshold", defval=def_oversold_value, type=input.float)
+  192: // Moving average
+  193: slow_ma_length = input(title="Slow MA length", defval=def_slow_ma_length, type=input.integer)
+  194: fast_ma_length = input(title="Fast MA length", defval=def_fast_ma_length, type=input.integer)
+  195: ma_choice = input(title="MA choice", defval="EMA", options=["SMA", "EMA"])
+  196: // Input ticker
+  197: tick   = input(title="Ticker size", defval=def_tick, type=input.float)
+  198: filter = input(title="Trend Filter", defval=def_filter, type=input.bool)
+  199: // Trailing stop (%)
+  200: ts_rate = input(title="Trailing Stop %", defval=def_trailing_stop, type=input.float)
+  201: 
+  202: 
+  203: //***********
+  204: // RSI
+  205: //***********
+  206: // Calculate RSI
+  207: up   = rma(max(change(src), 0), rsi_length)
+  208: down = rma(-min(change(src), 0), rsi_length)
+  209: rsi = (down == 0 ? 100 : (up == 0 ? 0 : 100-100/(1+up/down)))
+  210: 
+  211: 
+  212: //***********
+  213: // Moving averages
+  214: //***********
+  215: slow_ma = (ma_choice == "SMA" ? sma(close, slow_ma_length) : ema(close, slow_ma_length))
+  216: fast_ma = (ma_choice == "SMA" ? sma(close, fast_ma_length) : ema(close, fast_ma_length))
+  217: // Show the moving averages
+  218: plot(slow_ma, color=color.white,  title="Slow MA")
+  219: plot(fast_ma, color=color.yellow, title="Fast MA")
+  220: 
+  221: 
+  222: //***********
+  223: // Strategy
+  224: //***********
+  225: if true
+  226:     // Determine the entry conditions (only market entry and market exit conditions)
+  227:     // Long position
+  228:     ConditionEntryL := (filter == true ? (fast_ma > slow_ma and close > slow_ma and rsi < oversold_threshold) : (fast_ma > slow_ma and rsi < oversold_threshold))
+  229:     // Short position
+  230:     ConditionEntryS := (filter == true ? (fast_ma < slow_ma and close < slow_ma and rsi > overbought_threshold) : (fast_ma < slow_ma and rsi > overbought_threshold))
+  231:    
+  232:     // Calculate the trailing stop
+  233:     ts_calc = close * (1/tick) * ts_rate * 0.01
+  234: 
+  235:     // Submit the entry orders and the exit orders
+  236:     // Long position
+  237:     if ConditionEntryL
+  238:         strategy.entry("RSI Long", strategy.long)
+  239:     // Exit from a long position
+  240:     strategy.exit("Exit Long", "RSI Long", trail_points=0, trail_offset=ts_calc)
+  241: 
+  242:     // Short position 
+  243:     if ConditionEntryS
+  244:         strategy.entry("RSI Short", strategy.short)
+  245:     // Exit from a short position
+  246:     strategy.exit("Exit Short", "RSI Short", trail_points=0, trail_offset=ts_calc)
