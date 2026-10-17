@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2861 |
+| PORT_CANDIDATE | 2847 |
 | REJECTED | 994 |
-| PORTED | 783 |
+| PORTED | 794 |
 | HELD_NEEDS_VOLUME | 556 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 107 |
+| REJECTED_ON_READING | 110 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -911,7 +911,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430887 | `ports/430887_combo-strategy-of-123-reversal-and-fractal-chaos-oscillator/` | PineScript | combo_123_reversal | none | length x2, pattern x2 | 4 |
 | 430893 | `ports/430893_lion-fissure-balance-strategy/` | PineScript | ma_envelope_reversion | none | big_len x2, pct_below x2 | 4 |
 | 430896 | `ports/430896_dual-signal-trend-tracking-strategy/` | PineScript | multi_indicator_confluence | none | length x2, wma_len x2 | 4 |
-| | **783 ports** | | | | | **4775** |
+| 430897 | `ports/430897_dual-moving-average-crossover-strategy/` | PineScript | ma_cross | coarse_bar_stop | slow x2, stop_pct x2 | 4 |
+| 430898 | `ports/430898_oma-and-apollo-dual-rail-trading-strategy/` | PineScript | ma_trend_oscillator_pullback | trailing_stop_pending | atr_mult x2, rr x2 | 4 |
+| 430899 | `ports/430899_bull-and-bear-balance-strategy/` | PineScript | momentum_oscillator_turn | none | level_atr x2, atr_len x2 | 4 |
+| 430901 | `ports/430901_double-box-trend-following-system/` | PineScript | donchian_breakout | trailing_stop_pending | flb x2, slb x2 | 4 |
+| 430902 | `ports/430902_relative-momentum-index-strategy/` | PineScript | rsi_oscillator | none | length x2, buy_zone x2 | 4 |
+| 430903 | `ports/430903_williams-ad-williams-accumulation-distribution-williams-ad-s/` | PineScript | momentum_oscillator_turn | none |  | 0 |
+| 430977 | `ports/430977_rsi-bb-rsi-bb-momentum-breakout-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | sl_atr x2, tp_atr x2 | 4 |
+| 430984 | `ports/430984_strategy/` | PineScript | pivot_levels | none | length x2, entry_fib x2 | 4 |
+| 430988 | `ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/` | PineScript | supertrend | none | mult x2, fisher_level x2 | 4 |
+| 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
+| 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
+| | **794 ports** | | | | | **4815** |
 
 ## Rejected on reading
 
@@ -1024,6 +1035,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430847 | 基于质数震荡的交易策略Prime-Number-Oscillator-Trading-Strategy.md | 2 | The oscillator is the distance from the price to the nearest prime number of the price itself (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (on fractional prices it is always 0); it cannot be made generic. |
 | 430856 | 短线双均线策略Dual-Moving-Average-Strategy.md | 1 | The signal is crossover(request.security(syminfo.tickerid, '370', close), request.security(..., '370', open)) on the 1-day header chart: a 370-minute resolution below the chart's, whose value per bar is undefined (as #427518). |
 | 430864 | 双重指标策略Dual-Indicator-Strategy.md | 1 | Each side exits 0.5 % of the position at +9 % (strategy.exit with qty_percent = 0.5) and the rest at +21 %, and the entry is a fixed qty of 10 units: a partial exit cannot be expressed as one net position's signals (as #365389). |
+| 430974 | 基于RSI和SuperTrend的双向交易策略RSI-and-SuperTrend-Based-Dual-Direction-Trading-Strategy.md | 1 | The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit cannot be expressed as one net position's signals (as #365389). Its momentum line also uses ta.vwma (volume, check 8). |
+| 430985 | 双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md | 2 | The second signal is a band of the nearest prime numbers above / below the high and low (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (as #430847). |
+| 430992 | 趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md | 1 | A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

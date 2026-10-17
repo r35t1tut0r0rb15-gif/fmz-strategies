@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #430897 (双移动均线突破策略Dual-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/430897  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop loss % inputs  [lines 157-158]
+  157: longLossPerc = input(title="Long Stop Loss (%)", type=input.float, minval=0.0, step=0.1, defval=1) * 0.01
+  158: shortLossPerc = input(title="Short Stop Loss (%)", type=input.float, minval=0.0, step=0.1, defval=1) * 0.01

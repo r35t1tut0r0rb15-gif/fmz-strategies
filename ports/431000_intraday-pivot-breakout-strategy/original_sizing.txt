@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #431000 (跨时间段移动量策略Intraday-Pivot-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/431000  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Commented-out strategy(): 60 units, cash commission  [lines 172-172]
+  172: // strategy("PIVOT STRATEGY [5MIN TF]",overlay=true ,commission_type = strategy.cash, commission_value = 30 , slippage = 2, default_qty_value = 60, currency = currency.NONE, pyramiding = 0)
+
+## Risk per trade input  [lines 183-183]
+  183: risk = input.float(title='RISK',defval = 200 , minval = 1 , maxval = 5000 , step = 50, tooltip = "RISK PER TRADE")

@@ -1839,6 +1839,34 @@ SIZING = {
         ("Commented-out strategy(): 5 % of equity, commission", 184, 184),
     ],
     430896: [],
+    # ---- FMZ-C, batch C42 (2026-10-17)
+    430897: [
+        ("Stop loss % inputs", 157, 158),
+    ],
+    430898: [
+        ("strategy(): 100 % of equity", 182, 182),
+    ],
+    430899: [],
+    430901: [],
+    430902: [],
+    430903: [],
+    430977: [
+        ("Tick take-profit / stop / trail inputs", 259, 261),
+    ],
+    430984: [],
+    430988: [
+        ("Risk amount input", 182, 182),
+        ("Contract formulas", 198, 199),
+        ("Risk-based contracts at the signal", 219, 219),
+        ("Entry with qty = contracts", 225, 225),
+    ],
+    430998: [
+        ("Point take-profit / stop inputs", 165, 166),
+    ],
+    431000: [
+        ("Commented-out strategy(): 60 units, cash commission", 172, 172),
+        ("Risk per trade input", 183, 183),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2244,6 +2272,17 @@ REJECTED_ON_READING = {
     430864: ("1", "Each side exits 0.5 % of the position at +9 % (strategy.exit with qty_percent = "
               "0.5) and the rest at +21 %, and the entry is a fixed qty of 10 units: a partial "
               "exit cannot be expressed as one net position's signals (as #365389)."),
+    # ---- FMZ-C, batch C42 (2026-10-17)
+    430974: ("1", "The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with "
+              "qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit "
+              "cannot be expressed as one net position's signals (as #365389). Its momentum line "
+              "also uses ta.vwma (volume, check 8)."),
+    430985: ("2", "The second signal is a band of the nearest prime numbers above / below the high "
+              "and low (integer steps of the quote unit): a property of the quote's numeric "
+              "scale, not of the market (as #430847)."),
+    430992: ("1", "A template whose take-profit exit closes 50 % of the position (qty_percent = "
+              "takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a "
+              "partial exit cannot be expressed as one net position's signals (as #365389)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #430998 (木星与土星动能MA交叉过滤策略Jupiter-and-Saturn-Momentum-MA-Crossover-Filtered-Strategy)
+# Source: https://www.fmz.com/strategy/430998  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Point take-profit / stop inputs  [lines 165-166]
+  165: takeProfitPoints = input(1000, title="Take Profit (in Points)")
+  166: stopLossPoints = input(2500, title="Stop Loss (in Points)")
