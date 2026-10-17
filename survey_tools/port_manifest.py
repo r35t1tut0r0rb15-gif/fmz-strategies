@@ -2533,6 +2533,21 @@ SIZING = {
         ("strategy(): 100 % of equity", 173, 173),
         ("ATR stop / target re-issued every bar", 227, 231),
     ],
+    # ---- FMZ-C, batch L17 (2026-10-17)
+    483791: [
+        ("strategy(): 10 % of equity", 179, 179),
+        ("ATR multipliers", 191, 193),
+        ("Bracket levels", 200, 203),
+        ("Entries with the bracket", 206, 212),
+    ],
+    483793: [
+        ("strategy(): 10 % of equity", 179, 179),
+        ("RR / SL tick inputs", 182, 183),
+        ("Entries with the tick bracket", 205, 218),
+    ],
+    483794: [
+        ("strategy(): initial capital", 274, 274),
+    ],
 }
 
 REJECTED_ON_READING = {

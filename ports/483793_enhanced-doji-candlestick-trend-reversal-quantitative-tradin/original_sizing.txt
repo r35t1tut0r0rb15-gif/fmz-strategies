@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #483793 (增强型十字星烛台趋势反转量化交易策略-Enhanced-Doji-Candlestick-Trend-Reversal-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483793  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 179-179]
+  179: strategy("Enhanced Doji Candle Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## RR / SL tick inputs  [lines 182-183]
+  182: riskRewardRatio = input.float(2.0, title="Risk-Reward Ratio")
+  183: stopLossPips = input.int(5, title="Stop Loss (in pips)")  // Reduced to allow more trades
+
+## Entries with the tick bracket  [lines 205-218]
+  205: if doji
+  206:     if bullishConfirm or bullishConfirm[1]  // Loosen confirmation to 1 candle
+  207:         entryPrice = close
+  208:         stopLossPrice = entryPrice - (stopLossPips * syminfo.mintick)
+  209:         takeProfitPrice = entryPrice + ((entryPrice - stopLossPrice) * riskRewardRatio)
+  210:         strategy.entry("Buy", strategy.long)
+  211:         strategy.exit("Exit Buy", "Buy", stop=stopLossPrice, limit=takeProfitPrice)
+  212:     
+  213:     if bearishConfirm or bearishConfirm[1]  // Loosen confirmation to 1 candle
+  214:         entryPrice = close
+  215:         stopLossPrice = entryPrice + (stopLossPips * syminfo.mintick)
+  216:         takeProfitPrice = entryPrice - ((stopLossPrice - entryPrice) * riskRewardRatio)
+  217:         strategy.entry("Sell", strategy.short)
+  218:         strategy.exit("Exit Sell", "Sell", stop=stopLossPrice, limit=takeProfitPrice)
