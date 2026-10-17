@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #482669 (双均线趋势判断与波动率止损策略-Dual-Moving-Average-Trend-Detection-with-Volatility-Based-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/482669  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 83-83]
+   83: strategy("EMA 9/21 + ATR SL Strategy", shorttitle="EMA+ATR", overlay=true)
+
+## Stop from the average price  [lines 116-122]
+  116: if strategy.position_size > 0
+  117:     // If holding LONG, define stop-loss below the entry price
+  118:     strategy.exit("Exit Long", "Long", stop = strategy.position_avg_price - atrMult * atrValue)
+  119: 
+  120: if strategy.position_size < 0
+  121:     // If holding SHORT, define stop-loss above the entry price
+  122:     strategy.exit("Exit Short", "Short", stop = strategy.position_avg_price + atrMult * atrValue)

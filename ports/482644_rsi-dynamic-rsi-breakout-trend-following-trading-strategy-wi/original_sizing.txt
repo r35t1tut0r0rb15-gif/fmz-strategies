@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #482644 (动态RSI突破趋势跟踪交易策略结合风险收益比优化系统-Dynamic-RSI-Breakout-Trend-Following-Trading-Strategy-with-Risk-Reward-Ratio-Optimization-System)
+# Source: https://www.fmz.com/strategy/482644  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 99-99]
+   99: strategy("RSI Breakout Strategy with RR 1:4", overlay=true)
+
+## Entries with the bracket  [lines 128-143]
+  128: long_stop_loss = low[1]  // Previous candle's low
+  129: long_take_profit = close + (4 * (close - long_stop_loss))  // RR 1:4
+  130: 
+  131: // Enter long position if all conditions are met
+  132: if (long_condition)
+  133:     strategy.entry("Long", strategy.long)
+  134:     strategy.exit("Take Profit/Stop Loss", from_entry="Long", stop=long_stop_loss, limit=long_take_profit)
+  135: 
+  136: // Calculate stop loss and take profit for short positions
+  137: short_stop_loss = high[1]  // Previous candle's high
+  138: short_take_profit = close - (4 * (short_stop_loss - close))  // RR 1:4
+  139: 
+  140: // Enter short position if all conditions are met
+  141: if (short_condition)
+  142:     strategy.entry("Short", strategy.short)
+  143:     strategy.exit("Take Profit/Stop Loss", from_entry="Short", stop=short_stop_loss, limit=short_take_profit)

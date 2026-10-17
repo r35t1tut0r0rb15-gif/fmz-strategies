@@ -1,0 +1,57 @@
+# Original sizing and money-management code, FMZ #482592 (Dual-Direction-SMMA-Crossover-Strategy-with-ATR-Based-Risk-Management-and-Fixed-Take-Profit-双向SMMA交叉ATR风控定向获利策略)
+# Source: https://www.fmz.com/strategy/482592  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 200 % of equity  [lines 89-89]
+   89: strategy("SMMA 17 Crossover Strategy (Long & Short, ATR SL & Fixed TP)", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=200)
+
+## ATR  [lines 97-98]
+   97: atrLength = 14
+   98: atr = ta.rma(ta.tr(true), atrLength)
+
+## Stops and point targets  [lines 107-151]
+  107: longStopLoss = smma - (atr * 0.75)  // ✅ Stop Loss below SMMA
+  108: 
+  109: // ? Fixed Take Profit for Long (1150 Points)
+  110: var float longEntryPrice = na
+  111: var float longTakeProfit = na
+  112: if longCondition
+  113:     longEntryPrice := close
+  114:     longTakeProfit := longEntryPrice + 1150  // ✅ TP 1150 points above entry
+  115: 
+  116: // ? Short Entry Condition
+  117: shortCondition = ta.crossunder(close, smma)  // ✅ Price crosses BELOW SMMA (Short trade)
+  118: 
+  119: // ? Short Exit Condition
+  120: shortExit = ta.crossover(close, smma)  // ✅ Price crosses ABOVE SMMA (Close Short trade)
+  121: 
+  122: // ? ATR-Based Stop-Loss (Dynamic) for Short
+  123: shortStopLoss = smma + (atr * 0.75)  // ✅ Stop Loss above SMMA
+  124: 
+  125: // ? Fixed Take Profit for Short (1500 Points) - Updated from 2000
+  126: var float shortEntryPrice = na
+  127: var float shortTakeProfit = na
+  128: if shortCondition
+  129:     shortEntryPrice := close
+  130:     shortTakeProfit := shortEntryPrice - 1500  // ✅ TP 1500 points below entry (Updated)
+  131: 
+  132: // ? Plot SMMA (For Visualization)
+  133: plot(smma, title="SMMA (17)", color=color.blue)
+  134: 
+  135: // ? Long Entry (Allow Multiple)
+  136: if longCondition
+  137:     strategy.entry("Long", strategy.long)
+  138: 
+  139: // ? Long Exit Conditions (Whichever Comes First)
+  140: strategy.exit("Long TP/SL", from_entry="Long", stop=longStopLoss, limit=longTakeProfit)
+  141: if longExit
+  142:     strategy.close("Long")
+  143: 
+  144: // ? Short Entry (Allow Multiple)
+  145: if shortCondition
+  146:     strategy.entry("Short", strategy.short)
+  147: 
+  148: // ? Short Exit Conditions (Whichever Comes First)
+  149: strategy.exit("Short TP/SL", from_entry="Short", stop=shortStopLoss, limit=shortTakeProfit)
+  150: if shortExit
+  151:     strategy.close("Short")

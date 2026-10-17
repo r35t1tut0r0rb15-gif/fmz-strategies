@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482593 (自适应布林带ATR跟踪止损交易策略-Adaptive-Bollinger-Bands-ATR-Trailing-Stop-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482593  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 85-85]
+   85: strategy("ATR Trailing Stop Loss with Bollinger Bands", overlay=true)

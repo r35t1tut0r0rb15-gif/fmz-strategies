@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #482602 (多重指标趋势跟踪增强型量化交易策略-Multi-Indicator-Trend-Following-Enhanced-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482602  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 200 % of equity  [lines 99-99]
+   99: strategy("Enhanced Trend Following Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=200)
+
+## Entries with the bracket  [lines 126-132]
+  126: if (bullishTrend)
+  127:     strategy.entry("Long", strategy.long)
+  128:     strategy.exit("TakeProfit_Long", from_entry="Long", limit=close * 1.05, stop=close * 0.98)
+  129: 
+  130: if (bearishTrend)
+  131:     strategy.entry("Short", strategy.short)
+  132:     strategy.exit("TakeProfit_Short", from_entry="Short", limit=close * 0.95, stop=close * 1.02)

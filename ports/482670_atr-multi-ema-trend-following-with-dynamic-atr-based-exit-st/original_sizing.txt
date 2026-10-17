@@ -1,0 +1,44 @@
+# Original sizing and money-management code, FMZ #482670 (基于多均线趋势和ATR动态止盈止损的加密货币交易策略-Multi-EMA-Trend-Following-with-Dynamic-ATR-Based-Exit-Strategy-for-Cryptocurrency-Trading)
+# Source: https://www.fmz.com/strategy/482670  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 2 % of equity  [lines 105-105]
+  105: strategy("Backtest Last 2880 Baars Filers and Exits", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=2, backtest_fill_limits_assumption=0)
+
+## Per-ticker SL / TP table and 2 % risk sizing  [lines 143-163]
+  143: atrSL = switch syminfo.ticker
+  144:     "EURUSD" => 3.0 * atrValue,  
+  145:     "USDJPY" => 2.5 * atrValue,  
+  146:     "GBPUSD" => 3.0 * atrValue,  
+  147:     "AUDUSD" => 3.2 * atrValue,  
+  148:     "GBPJPY" => 3.0 * atrValue,  
+  149:     => 2.5 * atrValue  
+  150: 
+  151: atrTP = switch syminfo.ticker
+  152:     "EURUSD" => 3.8 * atrValue,  
+  153:     "USDJPY" => 3.5 * atrValue,  
+  154:     "GBPUSD" => 4.0 * atrValue,  
+  155:     "AUDUSD" => 4.0 * atrValue,  
+  156:     "GBPJPY" => 5.0 * atrValue,  
+  157:     => 3.5 * atrValue  
+  158: 
+  159: // **Ensure Trade Size is Not Zero**
+  160: riskPerTrade = 2  
+  161: accountSize = strategy.equity
+  162: tradeSize = (accountSize * (riskPerTrade / 100)) / atrSL
+  163: tradeSize := tradeSize < 1 ? 1 : tradeSize  // Minimum lot size of 1
+
+## Entries with the bracket  [lines 170-182]
+  170: if buyCondition
+  171:     strategy.entry("Buy", strategy.long, qty=tradeSize)
+  172:     strategy.exit("Take Profit/Stop Loss", from_entry="Buy", limit=close + atrTP, stop=close - atrSL)
+  173:     label.new(x=bar_index, y=low, text="BUY", color=color.green, textcolor=color.white, size=size.small, style=label.style_label_down)
+  174:     alert("BUY", alert.freq_once_per_bar_close)  
+  175:     dailyTradeCount := dailyTradeCount + 1  
+  176: 
+  177: if sellCondition
+  178:     strategy.entry("Sell", strategy.short, qty=tradeSize)
+  179:     strategy.exit("Take Profit/Stop Loss", from_entry="Sell", limit=close - atrTP, stop=close + atrSL)
+  180:     label.new(x=bar_index, y=high, text="SELL", color=color.red, textcolor=color.white, size=size.small, style=label.style_label_up)
+  181:     alert("SELL", alert.freq_once_per_bar_close)  
+  182:     dailyTradeCount := dailyTradeCount + 1  

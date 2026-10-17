@@ -3130,6 +3130,61 @@ SIZING = {
         ("SL / TP point inputs (0 = off)", 99, 100),
         ("Exit (inert at 0)", 190, 191),
     ],
+    # ---- FMZ-C, batch L33 (2026-10-17)
+    482590: [
+        ("strategy(): defaults", 97, 97),
+        ("SL / TP inputs and entries with the bracket", 142, 158),
+    ],
+    482591: [
+        ("strategy(): defaults", 99, 99),
+    ],
+    482592: [
+        ("strategy(): 200 % of equity", 89, 89),
+        ("ATR", 97, 98),
+        ("Stops and point targets", 107, 151),
+    ],
+    482593: [
+        ("strategy(): defaults", 85, 85),
+    ],
+    482594: [
+        ("strategy(): defaults", 99, 99),
+        ("SL / TP inputs", 102, 103),
+        ("Entries with the bracket", 148, 167),
+    ],
+    482595: [
+        ("strategy(): 200 % of equity, pyramiding 0", 133, 133),
+        ("Entries with the bracket", 161, 173),
+    ],
+    482600: [
+        ("strategy(): defaults", 99, 99),
+        ("ATR / target inputs", 110, 117),
+        ("Exits every bar", 145, 149),
+    ],
+    482602: [
+        ("strategy(): 200 % of equity", 99, 99),
+        ("Entries with the bracket", 126, 132),
+    ],
+    482644: [
+        ("strategy(): defaults", 99, 99),
+        ("Entries with the bracket", 128, 143),
+    ],
+    482645: [
+        ("strategy(): defaults", 99, 99),
+    ],
+    482669: [
+        ("strategy(): defaults", 83, 83),
+        ("Stop from the average price", 116, 122),
+    ],
+    482670: [
+        ("strategy(): 2 % of equity", 105, 105),
+        ("Per-ticker SL / TP table and 2 % risk sizing", 143, 163),
+        ("Entries with the bracket", 170, 182),
+    ],
+    482673: [
+        ("strategy(): 10 % of equity", 99, 99),
+        ("ATR stop inputs", 106, 107),
+        ("Entries with the stop", 125, 133),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3684,6 +3739,10 @@ REJECTED_ON_READING = {
               "15-bar high close, the take-profit sits 5 % above the quantity-weighted average of "
               "those adds and a forced close comes after 10 adds; without the adds (sizing, not "
               "ported) the exits have no meaning (as #483086)"),
+    # ---- FMZ-C, batch L33 (2026-10-17)
+    482672: ("1", "no entry signal: a DCA bot that buys whenever flat and adds up to 30 scaled safety "
+              "orders (pyramiding 999, sizing) and takes profit 1 % above their average; without "
+              "the adds (not ported) nothing but a buy-and-take-1 % loop remains (as #483086)"),
 }
 
 DUPLICATE_ON_READING = {

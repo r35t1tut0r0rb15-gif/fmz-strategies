@@ -1,0 +1,21 @@
+# Original sizing and money-management code, FMZ #482595 (基于布林带突破的三连阳阳线高点趋势跟踪策略-Triple-Candlestick-Bollinger-Bands-Breakout-Trend-Following-Strategy-with-High-Low-Point-Confirmation)
+# Source: https://www.fmz.com/strategy/482595  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 200 % of equity, pyramiding 0  [lines 133-133]
+  133: strategy("Bollinger Band Strategy (Close Near High/Low Relative to Half Range)", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=200, pyramiding=0)
+
+## Entries with the bracket  [lines 161-173]
+  161: if buyCondition and strategy.position_size == 0
+  162:     stop_loss := low[2] // Low of the earliest candle in the 3-candle sequence
+  163:     target_price := close + (close - stop_loss) // Risk-to-reward 1:1
+  164:     strategy.entry("Buy", strategy.long)
+  165:     strategy.exit("Exit Buy", "Buy", stop=stop_loss, limit=target_price)
+  166:     label.new(bar_index, low, "▲", color=color.green, style=label.style_label_up, yloc=yloc.belowbar)
+  167: 
+  168: // Sell Logic
+  169: if sellCondition and strategy.position_size == 0
+  170:     stop_loss := high[2] // High of the earliest candle in the 3-candle sequence
+  171:     target_price := close - (stop_loss - close) // Risk-to-reward 1:1
+  172:     strategy.entry("Sell", strategy.short)
+  173:     strategy.exit("Exit Sell", "Sell", stop=stop_loss, limit=target_price)
