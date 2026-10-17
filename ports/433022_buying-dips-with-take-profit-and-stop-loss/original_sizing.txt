@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #433022 (低吸多头追踪止盈止损策略Buying-dips-with-take-profit-and-stop-loss)
+# Source: https://www.fmz.com/strategy/433022  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## ATR bracket from the average entry price  [lines 152-172]
+  152: atn = input(15, "ATR Period")
+  153: atr = sma(tr,atn)[1]
+  154: bought = strategy.position_size[0] > strategy.position_size[1]
+  155: 
+  156: slm = input(2.0,"ATR SL Multiple",minval=0)
+  157: StopPrice  = strategy.position_avg_price - slm*atr              // determines stop loss's price 
+  158: FixedStopPrice = valuewhen(bought,StopPrice,0)                  // stores original StopPrice  
+  159: plot(FixedStopPrice,"Stop Loss",color=color.red,linewidth=2,style=plot.style_cross)
+  160: 
+  161: tpm = input(1.0,"ATR TP Multiple",minval=0)
+  162: TakePrice  = strategy.position_avg_price + tpm*atr              // determines Take Profit's price 
+  163: FixedTakePrice = valuewhen(bought,TakePrice,0)                  // stores original TakePrice  
+  164: plot(FixedTakePrice,"Take Profit",color=color.green,linewidth=2,style=plot.style_cross)
+  165: 
+  166: nn = input(7,"Channel Length")
+  167: ll = lowest(low,nn)
+  168: 
+  169: if close<ll[1]
+  170:     strategy.entry("Buy",strategy.long)
+  171: if strategy.position_size > 0
+  172:     strategy.exit(id="XL SL", stop=FixedStopPrice, limit=FixedTakePrice)    // commands stop loss order to exit!

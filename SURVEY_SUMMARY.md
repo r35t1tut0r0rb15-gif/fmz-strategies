@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2651 |
+| PORT_CANDIDATE | 2639 |
 | REJECTED | 994 |
-| PORTED | 963 |
+| PORTED | 974 |
 | HELD_NEEDS_VOLUME | 559 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 134 |
+| REJECTED_ON_READING | 135 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1091,7 +1091,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433002 | `ports/433002_momentum-combined-with-trend-judgment-multi-factor-quantitat/` | PineScript | multi_indicator_confluence | none | harmonic x3 | 3 |
 | 433008 | `ports/433008_bi-directional-trend-tracking-moving-average-crossover-strat/` | PineScript | ma_cross | none | basis_len x2, alma_offset x2 | 4 |
 | 433009 | `ports/433009_timeframe-power-trading-strategy/` | PineScript | calendar_seasonal | none | tz x2, exit_hour x2 | 4 |
-| | **963 ports** | | | | | **5473** |
+| 433010 | `ports/433010_price-based-stop-loss-and-take-profit-strategy/` | PineScript | ma_cross | none | tp_atr x2, sl_atr x2 | 4 |
+| 433011 | `ports/433011_multiple-moving-average-dynamic-trend-strategy/` | PineScript | supertrend | none | length x2, percent x2 | 4 |
+| 433012 | `ports/433012_trend-tracking-strategy-based-on-multi-indicator/` | PineScript | multi_indicator_confluence | none | length x2, mult x2 | 4 |
+| 433013 | `ports/433013_the-bollinger-bands-stop-loss-strategy/` | PineScript | bollinger_reversion | none | length x2, sl_pct x2 | 4 |
+| 433017 | `ports/433017_sar-speculation-gulf-trend-follow-strategy-based-on-sar/` | PineScript | parabolic_sar | none | ema_len x2, n_bars x2 | 4 |
+| 433020 | `ports/433020_dual-sma-crossover-strategy/` | PineScript | ma_cross | none | len_a x2, len_b x2 | 4 |
+| 433021 | `ports/433021_rsi-rsi-axial-moving-average-crossover-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, ma_len x2 | 4 |
+| 433022 | `ports/433022_buying-dips-with-take-profit-and-stop-loss/` | PineScript | donchian_breakout | coarse_bar_stop | sl_atr x2, tp_atr x2 | 4 |
+| 433024 | `ports/433024_bollinger-bands-breakout-short-term-trend-following-strategy/` | PineScript | bollinger_breakout | coarse_bar_stop, trailing_stop | bb_len x2, trail_pct x2 | 4 |
+| 433025 | `ports/433025_monthly-close-price-and-moving-average-crossover-strategy/` | PineScript | multi_timeframe_ma | none | len_ma x2, exponential x2 | 4 |
+| 433029 | `ports/433029_dual-exponential-moving-average-crossover-strategy/` | PineScript | ma_trend | none | short x2, long2 x2 | 4 |
+| | **974 ports** | | | | | **5517** |
 
 ## Rejected on reading
 
@@ -1231,6 +1242,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 432974 | Momentum-Alpha策略Momentum-Alpha-Strategy.md | 3 | The alpha and beta are measured against request.security('BTC_USDT:swap', timeframe.period, close), a crypto-exchange perpetual contract used as the benchmark for the chart symbol, which the project's single-symbol bars do not carry (as #430742). Stored in flagged/ (rule C7). |
 | 432988 | 基于波动带震荡器的反转跟踪策略CCTBBO-Reversal-Tracking-Strategy.md | 1 | Reads the future: Pine v2 request.security(syminfo.tickerid, '1440', high) without [1] behaves as lookahead_on, so on every 45-minute bar the oscillator uses the final high of the current day, not known until the day ends (SURVEY_README request.security rule, as #430661). |
 | 432992 | 布林带金叉死叉策略Bollinger-Break-Out-Strategy-with-Pyramiding.md | 1 | pyramiding = 4: further entries are added while the price is below the averaged-down level, and the stop, target and add levels are all measured from strategy.position_avg_price of the stacked units (a pyramided ladder, as #426570). |
+| 433015 | 基于均线的原始趋势跟踪策略ORIGINAL-PRIMITIVE-TREND-TRACKING-STRATEGY-BASED-ON-MOVING-AVERAGE.md | 1 | pyramiding = 10: the long and short signals add further units only while the close is beyond strategy.position_avg_price of the stacked position (useus), so the signals depend on the averaged price of the ladder (a pyramided ladder, as #426570). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

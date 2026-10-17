@@ -133,6 +133,7 @@ fmz_id,file,final_outcome,criterion,reason
 432974,Momentum-Alpha策略Momentum-Alpha-Strategy.md,REJECTED_ON_READING,3,"The alpha and beta are measured against request.security('BTC_USDT:swap', timeframe.period, close), a crypto-exchange perpetual contract used as the benchmark for the chart symbol, which the project's single-symbol bars do not carry (as #430742). Stored in flagged/ (rule C7)."
 432988,基于波动带震荡器的反转跟踪策略CCTBBO-Reversal-Tracking-Strategy.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 request.security(syminfo.tickerid, '1440', high) without [1] behaves as lookahead_on, so on every 45-minute bar the oscillator uses the final high of the current day, not known until the day ends (SURVEY_README request.security rule, as #430661)."
 432992,布林带金叉死叉策略Bollinger-Break-Out-Strategy-with-Pyramiding.md,REJECTED_ON_READING,1,"pyramiding = 4: further entries are added while the price is below the averaged-down level, and the stop, target and add levels are all measured from strategy.position_avg_price of the stacked units (a pyramided ladder, as #426570)."
+433015,基于均线的原始趋势跟踪策略ORIGINAL-PRIMITIVE-TREND-TRACKING-STRATEGY-BASED-ON-MOVING-AVERAGE.md,REJECTED_ON_READING,1,"pyramiding = 10: the long and short signals add further units only while the close is beyond strategy.position_avg_price of the stacked position (useus), so the signals depend on the averaged price of the ladder (a pyramided ladder, as #426570)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1108,3 +1109,14 @@ fmz_id,file,final_outcome,criterion,reason
 433002,动量结合趋势判断型多因子量化交易策略Momentum-Combined-with-Trend-Judgment-Multi-factor-Quantitative-Trading-Strategy.md,PORTED,,ports/433002_momentum-combined-with-trend-judgment-multi-factor-quantitat/
 433008,双向趋势追踪均线交叉策略Bi-Directional-Trend-Tracking-Moving-Average-Crossover-Strategy.md,PORTED,,ports/433008_bi-directional-trend-tracking-moving-average-crossover-strat/
 433009,时间区间威力买卖策略Timeframe-Power-Trading-Strategy.md,PORTED,,ports/433009_timeframe-power-trading-strategy/
+433010,基于价格的止损止盈策略Price-based-Stop-Loss-and-Take-Profit-Strategy.md,PORTED,,ports/433010_price-based-stop-loss-and-take-profit-strategy/
+433011,多重移动平均线动态趋势策略Multiple-Moving-Average-Dynamic-Trend-Strategy.md,PORTED,,ports/433011_multiple-moving-average-dynamic-trend-strategy/
+433012,基于多重指标的趋势追踪策略Trend-Tracking-Strategy-Based-on-Multi-indicator.md,PORTED,,ports/433012_trend-tracking-strategy-based-on-multi-indicator/
+433013,波道策略与止损The-Bollinger-Bands-Stop-Loss-Strategy.md,PORTED,,ports/433013_the-bollinger-bands-stop-loss-strategy/
+433017,基于-SAR-的趋势追踪型量化策略Speculation-Gulf-Trend-Follow-Strategy-Based-on-SAR.md,PORTED,,ports/433017_sar-speculation-gulf-trend-follow-strategy-based-on-sar/
+433020,均线交叉策略Dual-SMA-Crossover-Strategy.md,PORTED,,ports/433020_dual-sma-crossover-strategy/
+433021,RSI轴向均线交叉策略RSI-Axial-Moving-Average-Crossover-Strategy.md,PORTED,,ports/433021_rsi-rsi-axial-moving-average-crossover-strategy/
+433022,低吸多头追踪止盈止损策略Buying-dips-with-take-profit-and-stop-loss.md,PORTED,,ports/433022_buying-dips-with-take-profit-and-stop-loss/
+433024,基于布林带短期趋势跟踪型策略Bollinger-Bands-Breakout-short-term-trend-following-Strategy.md,PORTED,,ports/433024_bollinger-bands-breakout-short-term-trend-following-strategy/
+433025,月线收盘价与移动均线交叉策略Monthly-Close-Price-and-Moving-Average-Crossover-Strategy.md,PORTED,,ports/433025_monthly-close-price-and-moving-average-crossover-strategy/
+433029,双指数移动平均线交叉策略Dual-Exponential-Moving-Average-Crossover-Strategy.md,PORTED,,ports/433029_dual-exponential-moving-average-crossover-strategy/

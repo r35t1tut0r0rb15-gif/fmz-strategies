@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #433010 (基于价格的止损止盈策略Price-based-Stop-Loss-and-Take-Profit-Strategy)
+# Source: https://www.fmz.com/strategy/433010  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Money stop / target converted by position size  [lines 152-157]
+  152: moneyToSLPoints(money) =>
+  153:     strategy.position_size !=0 ? (money / syminfo.pointvalue / abs(strategy.position_size)) / syminfo.mintick : na
+  154: 
+  155: p = moneyToSLPoints(input(200, title = "Take Profit $$"))
+  156: l = moneyToSLPoints(input(100, title = "Stop Loss $$"))
+  157: strategy.exit("x", profit = p, loss = l)

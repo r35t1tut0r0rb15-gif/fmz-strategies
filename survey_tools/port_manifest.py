@@ -2295,6 +2295,32 @@ SIZING = {
         ("strategy(): 100 % of equity, commission", 133, 133),
     ],
     433009: [],
+    # ---- FMZ-C, batch C57 (2026-10-17)
+    433010: [
+        ("Money stop / target converted by position size", 152, 157),
+    ],
+    433011: [],
+    433012: [],
+    433013: [
+        ("strategy(): commission", 124, 124),
+    ],
+    433017: [],
+    433020: [
+        ("strategy(): 100 % of equity, commission", 135, 135),
+    ],
+    433021: [],
+    433022: [
+        ("ATR bracket from the average entry price", 152, 172),
+    ],
+    433024: [
+        ("Exit percentages, trail and bracket", 314, 341),
+    ],
+    433025: [
+        ("strategy(): 100 % of equity", 175, 175),
+    ],
+    433029: [
+        ("strategy(): 100 % of equity, commission", 145, 155),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2802,6 +2828,11 @@ REJECTED_ON_READING = {
     432992: ("1", "pyramiding = 4: further entries are added while the price is below the "
               "averaged-down level, and the stop, target and add levels are all measured from "
               "strategy.position_avg_price of the stacked units (a pyramided ladder, as #426570)."),
+    # ---- FMZ-C, batch C57 (2026-10-17)
+    433015: ("1", "pyramiding = 10: the long and short signals add further units only while the close "
+              "is beyond strategy.position_avg_price of the stacked position (useus), so the "
+              "signals depend on the averaged price of the ladder (a pyramided ladder, as "
+              "#426570)."),
 }
 
 DUPLICATE_ON_READING = {

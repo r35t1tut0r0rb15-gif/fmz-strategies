@@ -1,0 +1,33 @@
+# Original sizing and money-management code, FMZ #433024 (基于布林带短期趋势跟踪型策略Bollinger-Bands-Breakout-short-term-trend-following-Strategy)
+# Source: https://www.fmz.com/strategy/433024  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Exit percentages, trail and bracket  [lines 314-341]
+  314: xl_ts_percent      = input.float(2,step=0.5, title= "TS", group="Exit Long", inline="LTS", tooltip="Trailing Treshold %")
+  315: xl_to_percent      = input.float(0.5, step=0.5, title= "TO", group="Exit Long", inline="LTS", tooltip="Trailing Offset %")
+  316: 
+  317: xl_ts_tick = xl_ts_percent * close/syminfo.mintick/100
+  318: xl_to_tick = xl_to_percent * close/syminfo.mintick/100
+  319: 
+  320: xl_sl_percent      = input.float (2, step=0.5, title="SL",group="Exit Long", inline="LSLTP") 
+  321: xl_tp_percent      = input.float(9, step=0.5, title="TP",group="Exit Long", inline="LSLTP")
+  322: 
+  323: xl_sl_price = strategy.position_avg_price * (1-xl_sl_percent/100)
+  324: xl_tp_price = strategy.position_avg_price * (1+xl_tp_percent/100)
+  325: 
+  326: strategy.exit("XL+SL/TP", "EL", stop=xl_sl_price, limit=xl_tp_price, trail_points=xl_ts_tick, trail_offset=xl_to_tick,comment_loss= "XL-SL", comment_profit = "XL-TP",comment_trailing = "XL-TS")
+  327: 
+  328: // Short SL/TP/TS
+  329: xs_ts_percent      = input.float(2,step=0.5, title= "TS",group="Exit Short", inline ="STS", tooltip="Trailing Treshold %")
+  330: xs_to_percent      = input.float(0.5, step=0.5, title= "TO",group="Exit Short", inline ="STS", tooltip="Trailing Offset %")
+  331: 
+  332: xs_ts_tick = xs_ts_percent * close/syminfo.mintick/100
+  333: xs_to_tick = xs_to_percent * close/syminfo.mintick/100
+  334: 
+  335: xs_sl_percent      = input.float (2, step=0.5, title="SL",group="Exit Short", inline="ESSLTP", tooltip="Stop Loss %") 
+  336: xs_tp_percent      = input.float(9, step=0.5, title="TP",group="Exit Short",  inline="ESSLTP", tooltip="Take Profit %")
+  337: 
+  338: xs_sl_price = strategy.position_avg_price * (1+xs_sl_percent/100)
+  339: xs_tp_price = strategy.position_avg_price * (1-xs_tp_percent/100)
+  340: 
+  341: strategy.exit("XS+SL/TP", "ES", stop=xs_sl_price, limit=xs_tp_price, trail_points=xs_ts_tick, trail_offset=xs_to_tick,comment_loss= "XS-SL", comment_profit = "XS-TP",comment_trailing = "XS-TS")

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #433013 (波道策略与止损The-Bollinger-Bands-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/433013  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): commission  [lines 124-124]
+  124: strategy(title="Bollinger Bands Strategy", overlay=false, shorttitle="BBS", pyramiding=0, currency=currency.USD, commission_type=strategy.commission.percent, commission_value=0.03, initial_capital=1000)
