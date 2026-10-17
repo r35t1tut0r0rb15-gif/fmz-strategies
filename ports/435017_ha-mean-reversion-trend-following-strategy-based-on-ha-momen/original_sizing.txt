@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #435017 (基于均线和HA动量突破的趋势跟踪策略Mean-Reversion-Trend-Following-Strategy-Based-on-HA-Momentum-Breakout)
+# Source: https://www.fmz.com/strategy/435017  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 2 % of equity; tick bracket  [lines 181-207]
+  181: strategy("HA Trend Following", overlay=false, default_qty_type = strategy.percent_of_equity, default_qty_value = 2)
+  182: 
+  183: 
+  184: //parameters input
+  185: Trend_DIR_MA   = input(defval = 200, title = "MA for trend direction")
+  186: HA_Candle_strength   = input(defval = 2, title = "HA candle strength")
+  187: 
+  188: Rng = abs(open - close)
+  189: 
+  190: // HA_Momentum - size of break out body
+  191: HA_Momentum = sma(Rng, 1) / sma(Rng, 5)
+  192: plot(HA_Momentum, color=green, linewidth=1, style=line)
+  193: plot(HA_Candle_strength, color= blue)
+  194: 
+  195: // open position
+  196: longCondition = close > sma(close, 20) and (sma(close, 20) > sma(close, Trend_DIR_MA) )and HA_Momentum > HA_Candle_strength and close - open > 0
+  197: if (longCondition)
+  198:     strategy.entry(id = "Lng", long = true)
+  199: 
+  200: ShortCondition = close < sma(close, 20) and (sma(close, 20) < sma(close, Trend_DIR_MA) ) and HA_Momentum > HA_Candle_strength and close - open < 0
+  201: if (ShortCondition)
+  202:     strategy.entry(id = "Shrt", long = false)
+  203: 
+  204: 
+  205: // close position
+  206: strategy.exit("ExL", from_entry = "Lng", loss = 500 , profit = 1500)
+  207: strategy.exit("ExS", from_entry = "Shrt", loss = 500 , profit = 1500)

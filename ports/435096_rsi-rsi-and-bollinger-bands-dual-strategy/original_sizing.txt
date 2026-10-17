@@ -1,0 +1,58 @@
+# Original sizing and money-management code, FMZ #435096 (RSI与布林带双重策略RSI-and-Bollinger-Bands-Dual-Strategy)
+# Source: https://www.fmz.com/strategy/435096  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 10, commission; equity-sized quantity  [lines 135-187]
+  135: strategy("Ezieh Str.v2", shorttitle="Ezieh Str.v2", overlay=true, pyramiding=10, currency=currency.USD, slippage=3, commission_type=strategy.commission.cash_per_order, commission_value=0.04, initial_capital=1000)
+  136: 
+  137: 
+  138: 
+  139: UseDateFilter  = input(title="Enable Date Filter"         ,type=input.bool    ,defval=false                               ,group="Date & Time" ,tooltip="Turns on/off date filter")
+  140: StartDate      = input(title="Start Date Filter"          ,type=input.time    ,defval=timestamp("1 Jan 2000 00:00 +0000") ,group="Date & Time" ,tooltip="Date & time to start excluding trades")
+  141: EndDate        = input(title="End Date Filter"            ,type=input.time    ,defval=timestamp("1 Jan 2100 00:00 +0000") ,group="Date & Time" ,tooltip="Date & time to stop excluding trades")
+  142: UseTimeFilter  = input(title="Enable Time Session Filter" ,type=input.bool    ,defval=false                               ,group="Date & Time" ,tooltip="Turns on/off time session filter")
+  143: TradingSession = input(title="Trading Session"            ,type=input.session ,defval="1000-2200:1234567"                 ,group="Date & Time" ,tooltip="No trades will be taken outside of this range")
+  144: 
+  145: In(t)      => na(time(timeframe.period, t)) == false
+  146: TimeFilter = (UseTimeFilter and not In(TradingSession)) or not UseTimeFilter
+  147: DateFilter = time >= StartDate and time <= EndDate
+  148: 
+  149: DateTime = (UseDateFilter ? not DateFilter : true) and (UseTimeFilter ? In(TradingSession) : true) 
+  150: 
+  151: ///////////// RSI
+  152: L_RSI_Length     = input(7  , title="L_Length")
+  153: L_RSI_OverSold   = input(45 , title="L_OverSold")
+  154: S_RSI_Length     = input(14 , title="S_Length")
+  155: S_RSI_OverBought = input(65 , title="S_OverBought")
+  156: 
+  157: price = close
+  158: Lvrsi = rsi(price, L_RSI_Length)
+  159: Svrsi = rsi(price, S_RSI_Length)
+  160: 
+  161: ///////////// Bollinger Bands
+  162: BBlength = input(title="Bollinger Period Length", type=input.integer, defval=100, minval=2)
+  163: BBmult = 2.1 // input(2.0, minval=0.001, maxval=50,title="Bollinger Bands Standard Deviation")
+  164: BBbasis = sma(price, BBlength)
+  165: BBdev = BBmult * stdev(price, BBlength)
+  166: BBupper = BBbasis + BBdev
+  167: BBlower = BBbasis - BBdev
+  168: source = close
+  169: plot(BBbasis, color=color.aqua,title="Bollinger Bands SMA Basis Line")
+  170: p1 = plot(BBupper, color=color.silver,title="Bollinger Bands Upper Line")
+  171: p2 = plot(BBlower, color=color.silver,title="Bollinger Bands Lower Line")
+  172: fill(p1, p2)
+  173: 
+  174: 
+  175: ///////////// Colors
+  176: switch1=input(true, title="Enable Bar Color?")
+  177: switch2=input(true, title="Enable Background Color?")
+  178: 
+  179: 
+  180: 
+  181: ///////////// Condition
+  182: LongCondition  = crossover(Lvrsi, L_RSI_OverSold)    and crossover(close  ,BBlower)
+  183: ShortCondition = crossunder(Svrsi, S_RSI_OverBought) and crossunder(close,BBupper)
+  184: Longexcon      = crossunder(low, BBupper)
+  185: Shortexcon     = crossover(low, BBlower)
+  186: 
+  187: qt = round(strategy.equity/price, 3)

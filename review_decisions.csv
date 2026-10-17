@@ -161,6 +161,8 @@ fmz_id,file,final_outcome,criterion,reason
 434679,RSI趋势跟踪移动止损策略RSI-Trend-Following-Strategy-with-Trailing-Stop-Loss.md,REJECTED_ON_READING,1,"Partial exits: two take-profit orders close 50 % and then the rest of the position (qty_percent 50 / 100), with levels re-placed every bar from the current high / low (as #365389)."
 434707,动向指数平均线交叉ADX交易策略ADX-Crossover-Trend-Trading-Strategy.md,REJECTED_ON_READING,1,"Pyramiding 3 with adds when the close is under the averaged position price, and a stop and exits keyed on that averaged price; the position is a sum of units (as #426570)."
 434936,Y-Profit-Maximizer策略Y-Profit-Maximizer-Strategy.md,REJECTED_ON_READING,1,"Partial exits: the long is scaled out with limit orders for 33.3 %, then 50 %, then the rest (qty_percent), driven by counters of the script's own take-profit levels (as #365389)."
+435081,移动平均数RSI相关性加密货币趋势策略Moving-Average-RSI-Crypto-Correlation-Trend-Strategy.md,REJECTED_ON_READING,3,"The signals are computed on request.security('BTC_USDT:swap', timeframe.period, close / open / high / low) (""correlation candles"" on by default): a crypto-exchange perpetual contract used as the signal source for the chart symbol (as #430742)."
+435088,跨周期价值区域突破策略Cross-period-Value-Area-Breakout-Strategy.md,REJECTED_ON_READING,1,"The momentum values are request.security(syminfo.tickerid, '180', rsi(...)) on the daily header chart: a 180-minute resolution below the chart's, whose value per daily bar is undefined (as #427518)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1315,3 +1317,14 @@ fmz_id,file,final_outcome,criterion,reason
 434998,基于价格内部波动通道的看涨看跌策略Look-Up-and-Look-Down-Strategy-Based-on-Internal-Price-Channels.md,PORTED,,ports/434998_look-up-and-look-down-strategy-based-on-internal-price-chann/
 434999,基于EMA和ATR止损的趋势跟踪策略EMA-Strategy-with-ATR-Stop-Loss.md,PORTED,,ports/434999_ema-atr-ema-strategy-with-atr-stop-loss/
 435002,基于RSI指标和MA均线的趋势跟踪策略RSI-MA-Trend-Following-Strategy.md,PORTED,,ports/435002_rsi-ma-rsi-ma-trend-following-strategy/
+435003,基于ADXBB-BAO和EMA的量化交易策略Four-factor-Momentum-Tracking-Trading-Strategy-Based-on-ADX-BB-B-AO-and-EMA.md,PORTED,,ports/435003_adxbb-bao-ema-four-factor-momentum-tracking-trading-strategy/
+435010,动量跟踪自适应统计套利策略Momentum-Tracking-Adaptive-Statistical-Arbitrage-Strategy.md,PORTED,,ports/435010_momentum-tracking-adaptive-statistical-arbitrage-strategy/
+435017,基于均线和HA动量突破的趋势跟踪策略Mean-Reversion-Trend-Following-Strategy-Based-on-HA-Momentum-Breakout.md,PORTED,,ports/435017_ha-mean-reversion-trend-following-strategy-based-on-ha-momen/
+435019,诺罗波动通道scalping策略Noros-Price-Channel-Scalping-Strategy.md,PORTED,,ports/435019_scalping-noros-price-channel-scalping-strategy/
+435020,动态上升ADX趋势跟踪策略Dynamic-Rising-ADX-Trend-Following-Strategy.md,PORTED,,ports/435020_adx-dynamic-rising-adx-trend-following-strategy/
+435084,基于趋势分析指数的量化交易策略Quantitative-Trading-Strategy-Based-on-Trend-Analysis-Index.md,PORTED,,ports/435084_quantitative-trading-strategy-based-on-trend-analysis-index/
+435096,RSI与布林带双重策略RSI-and-Bollinger-Bands-Dual-Strategy.md,PORTED,,ports/435096_rsi-rsi-and-bollinger-bands-dual-strategy/
+435100,双轨跑赢大盘指数的分型规律量化策略EMA-MACD-Quantitative-Strategy-With-Dual-Track-Running-and-Leading-the-Market-Index.md,PORTED,,ports/435100_ema-macd-quantitative-strategy-with-dual-track-running-and-l/
+435101,多个EMA周期动态交易策略Multi-Timeframe-Dynamic-EMA-Trading-Strategy.md,PORTED,,ports/435101_ema-multi-timeframe-dynamic-ema-trading-strategy/
+435103,基于SuperTrend的趋势跟踪策略Advanced-SuperTrend-Tracking-Strategy.md,PORTED,,ports/435103_supertrend-advanced-supertrend-tracking-strategy/
+435104,基于SMAEMA的量化交易策略Quantitative-Trading-Strategy-Based-on-SMA-and-EMA.md,PORTED,,ports/435104_smaema-quantitative-trading-strategy-based-on-sma-and-ema/

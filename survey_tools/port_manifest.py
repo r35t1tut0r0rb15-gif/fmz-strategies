@@ -2665,6 +2665,30 @@ SIZING = {
     435002: [
         ("Tick bracket inputs", 161, 171),
     ],
+    # ---- FMZ-C, batch C73 (2026-10-17)
+    435003: [],
+    435010: [
+        ("strategy(): 20 % of equity, pyramiding 1", 107, 107),
+    ],
+    435017: [
+        ("strategy(): 2 % of equity; tick bracket", 181, 207),
+    ],
+    435019: [
+        ("strategy(): 100 % of equity", 110, 110),
+    ],
+    435020: [],
+    435084: [],
+    435096: [
+        ("strategy(): pyramiding 10, commission; equity-sized quantity", 135, 187),
+    ],
+    435100: [],
+    435101: [
+        ("Per-pair quantity 1 / (close x count)", 235, 235),
+    ],
+    435103: [],
+    435104: [
+        ("strategy(): 100 % of equity, capital", 154, 154),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3282,6 +3306,14 @@ REJECTED_ON_READING = {
     434936: ("1", "Partial exits: the long is scaled out with limit orders for 33.3 %, then 50 %, "
               "then the rest (qty_percent), driven by counters of the script's own take-profit "
               "levels (as #365389)."),
+    # ---- FMZ-C, batch C73 (2026-10-17)
+    435081: ("3", "The signals are computed on request.security('BTC_USDT:swap', timeframe.period, "
+              "close / open / high / low) (\"correlation candles\" on by default): a "
+              "crypto-exchange perpetual contract used as the signal source for the chart symbol "
+              "(as #430742)."),
+    435088: ("1", "The momentum values are request.security(syminfo.tickerid, '180', rsi(...)) on the "
+              "daily header chart: a 180-minute resolution below the chart's, whose value per "
+              "daily bar is undefined (as #427518)."),
 }
 
 DUPLICATE_ON_READING = {

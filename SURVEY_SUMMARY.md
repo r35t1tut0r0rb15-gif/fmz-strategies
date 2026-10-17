@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2444 |
-| PORTED | 1139 |
+| PORT_CANDIDATE | 2431 |
+| PORTED | 1150 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 162 |
+| REJECTED_ON_READING | 164 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1267,7 +1267,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 434998 | `ports/434998_look-up-and-look-down-strategy-based-on-internal-price-chann/` | PineScript | candle_pattern | none | ma_len x2, atr_mult x2 | 4 |
 | 434999 | `ports/434999_ema-atr-ema-strategy-with-atr-stop-loss/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 435002 | `ports/435002_rsi-ma-rsi-ma-trend-following-strategy/` | PineScript | rsi_oscillator | none | rsin x2, atr_scale x2 | 4 |
-| | **1139 ports** | | | | | **6154** |
+| 435003 | `ports/435003_adxbb-bao-ema-four-factor-momentum-tracking-trading-strategy/` | PineScript | multi_indicator_confluence | trailing_stop_pending, coarse_bar_stop | adx_min x2, ao_atr x2 | 4 |
+| 435010 | `ports/435010_momentum-tracking-adaptive-statistical-arbitrage-strategy/` | PineScript | mean_reversion_band | none | h x2, x0 x2 | 4 |
+| 435017 | `ports/435017_ha-mean-reversion-trend-following-strategy-based-on-ha-momen/` | PineScript | momentum_breakout | none | strength x2, sl_atr x2 | 4 |
+| 435019 | `ports/435019_scalping-noros-price-channel-scalping-strategy/` | PineScript | volatility_channel_breakout | none | length x2 | 2 |
+| 435020 | `ports/435020_adx-dynamic-rising-adx-trend-following-strategy/` | PineScript | directional_movement | none | threshold x2, ma_len x2 | 4 |
+| 435084 | `ports/435084_quantitative-trading-strategy-based-on-trend-analysis-index/` | PineScript | slope_momentum | bar_size_pending | avg_len x2, top x2 | 4 |
+| 435096 | `ports/435096_rsi-rsi-and-bollinger-bands-dual-strategy/` | PineScript | bollinger_reversion | none | bb_len x2, l_os x2 | 4 |
+| 435100 | `ports/435100_ema-macd-quantitative-strategy-with-dual-track-running-and-l/` | PineScript | ma_cross | none | len1 x2, len2 x2 | 4 |
+| 435101 | `ports/435101_ema-multi-timeframe-dynamic-ema-trading-strategy/` | PineScript | ma_cross | none | first x2 | 2 |
+| 435103 | `ports/435103_supertrend-advanced-supertrend-tracking-strategy/` | PineScript | volatility_stop_cross | none | mult x2, atr_len x2 | 4 |
+| 435104 | `ports/435104_smaema-quantitative-trading-strategy-based-on-sma-and-ema/` | PineScript | volatility_stop_cross | none | no x2 | 2 |
+| | **1150 ports** | | | | | **6192** |
 
 ## Rejected on reading
 
@@ -1435,6 +1446,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 434679 | RSI趋势跟踪移动止损策略RSI-Trend-Following-Strategy-with-Trailing-Stop-Loss.md | 1 | Partial exits: two take-profit orders close 50 % and then the rest of the position (qty_percent 50 / 100), with levels re-placed every bar from the current high / low (as #365389). |
 | 434707 | 动向指数平均线交叉ADX交易策略ADX-Crossover-Trend-Trading-Strategy.md | 1 | Pyramiding 3 with adds when the close is under the averaged position price, and a stop and exits keyed on that averaged price; the position is a sum of units (as #426570). |
 | 434936 | Y-Profit-Maximizer策略Y-Profit-Maximizer-Strategy.md | 1 | Partial exits: the long is scaled out with limit orders for 33.3 %, then 50 %, then the rest (qty_percent), driven by counters of the script's own take-profit levels (as #365389). |
+| 435081 | 移动平均数RSI相关性加密货币趋势策略Moving-Average-RSI-Crypto-Correlation-Trend-Strategy.md | 3 | The signals are computed on request.security('BTC_USDT:swap', timeframe.period, close / open / high / low) ("correlation candles" on by default): a crypto-exchange perpetual contract used as the signal source for the chart symbol (as #430742). |
+| 435088 | 跨周期价值区域突破策略Cross-period-Value-Area-Breakout-Strategy.md | 1 | The momentum values are request.security(syminfo.tickerid, '180', rsi(...)) on the daily header chart: a 180-minute resolution below the chart's, whose value per daily bar is undefined (as #427518). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
