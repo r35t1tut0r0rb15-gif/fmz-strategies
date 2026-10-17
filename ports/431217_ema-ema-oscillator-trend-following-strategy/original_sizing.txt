@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #431217 (基于EMA指标的趋势追踪策略EMA-Oscillator-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/431217  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 30 % of equity, pyramiding 3  [lines 196-202]
+  196: strategy("STR:EMA Oscilator [Azzrael]", overlay=false, 
+  197:  margin_long=100, 
+  198:  margin_short=100, 
+  199:  currency=currency.USD,
+  200:  default_qty_type=strategy.percent_of_equity,
+  201:  default_qty_value=30,
+  202:  pyramiding=3)

@@ -1867,6 +1867,31 @@ SIZING = {
         ("Commented-out strategy(): 60 units, cash commission", 172, 172),
         ("Risk per trade input", 183, 183),
     ],
+    # ---- FMZ-C, batch C43 (2026-10-17)
+    431003: [],
+    431010: [
+        ("strategy(): 100 % of equity, commission", 147, 147),
+    ],
+    431210: [],
+    431217: [
+        ("strategy(): 30 % of equity, pyramiding 3", 196, 202),
+    ],
+    431221: [
+        ("strategy(): 10 % of equity, pyramiding 5, commission", 158, 158),
+    ],
+    431223: [],
+    431224: [
+        ("strategy(): 15 % of equity", 173, 173),
+    ],
+    431226: [],
+    431233: [],
+    431235: [],
+    431249: [
+        ("strategy(): 100 % of equity", 227, 227),
+    ],
+    431250: [
+        ("strategy(): 100 % of equity", 138, 138),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2283,6 +2308,13 @@ REJECTED_ON_READING = {
     430992: ("1", "A template whose take-profit exit closes 50 % of the position (qty_percent = "
               "takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a "
               "partial exit cannot be expressed as one net position's signals (as #365389)."),
+    # ---- FMZ-C, batch C43 (2026-10-17)
+    431005: ("1", "The long exits in steps: TP1 closes 15 % of the position at +4.5 % (qty_percent = "
+              "15), TP2 the rest at +20 %, beside a close-checked exit: a partial exit cannot be "
+              "expressed as one net position's signals (as #365389)."),
+    431018: ("1", "Positions of 2 units are closed one unit at a time (strategy.exit with qty = 1 at "
+              "point targets, the rest with qty = 2): a partial exit cannot be expressed as one "
+              "net position's signals (as #365389); the targets are also point distances."),
 }
 
 DUPLICATE_ON_READING = {

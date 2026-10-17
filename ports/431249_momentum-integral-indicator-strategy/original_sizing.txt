@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #431249 (指标积分策略Momentum-Integral-Indicator-Strategy)
+# Source: https://www.fmz.com/strategy/431249  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 227-227]
+  227: strategy("Indicator Integrator Strat",default_qty_type = strategy.percent_of_equity, default_qty_value = 100,currency="USD",initial_capital=662, overlay=false)

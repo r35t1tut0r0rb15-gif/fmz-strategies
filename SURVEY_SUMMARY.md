@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2847 |
+| PORT_CANDIDATE | 2833 |
 | REJECTED | 994 |
-| PORTED | 794 |
+| PORTED | 806 |
 | HELD_NEEDS_VOLUME | 556 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 110 |
+| REJECTED_ON_READING | 112 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -922,7 +922,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430988 | `ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/` | PineScript | supertrend | none | mult x2, fisher_level x2 | 4 |
 | 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
 | 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
-| | **794 ports** | | | | | **4815** |
+| 431003 | `ports/431003_dual-moving-average-reversal-strategy/` | PineScript | volatility_stop_cross | none | length x2, atr_mult x2 | 4 |
+| 431010 | `ports/431010_dual-breakout-strategy/` | PineScript | bollinger_reversion | none | length x2, adx_level x2 | 4 |
+| 431210 | `ports/431210_super-momentum-strategy/` | PineScript | momentum_oscillator_turn | none | cmo_len x2, cmo_buy x2 | 4 |
+| 431217 | `ports/431217_ema-ema-oscillator-trend-following-strategy/` | PineScript | zscore_reversion | none | ema_len x2, factor x2 | 4 |
+| 431221 | `ports/431221_connecticut-turtle-system/` | PineScript | donchian_breakout | none | stop_n x2, l1 x2 | 4 |
+| 431223 | `ports/431223_smoothed-moving-average-strategy/` | PineScript | ma_trend | none | length x2, loops x2 | 4 |
+| 431224 | `ports/431224_trend-following-strategy/` | PineScript | hull_ma | none | hma_len x2, stop_pct x2 | 4 |
+| 431226 | `ports/431226_roc-rsi-rsi-based-on-roc-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, roc_len x2 | 4 |
+| 431233 | `ports/431233_a-price-breakthrough-bollinger-band-a-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 431235 | `ports/431235_dual-track-trend-capturing-fusion-strategy/` | PineScript | combo_123_reversal | none | length x2, band x2 | 4 |
+| 431249 | `ports/431249_momentum-integral-indicator-strategy/` | PineScript | ma_trend | none | length x2, terms x2 | 4 |
+| 431250 | `ports/431250_k-trend-deviation-index-with-moving-average-strategy/` | PineScript | momentum_oscillator_turn | none | length x2, signal x2 | 4 |
+| | **806 ports** | | | | | **4863** |
 
 ## Rejected on reading
 
@@ -1038,6 +1050,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430974 | 基于RSI和SuperTrend的双向交易策略RSI-and-SuperTrend-Based-Dual-Direction-Trading-Strategy.md | 1 | The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit cannot be expressed as one net position's signals (as #365389). Its momentum line also uses ta.vwma (volume, check 8). |
 | 430985 | 双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md | 2 | The second signal is a band of the nearest prime numbers above / below the high and low (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (as #430847). |
 | 430992 | 趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md | 1 | A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389). |
+| 431005 | 基于趋势的开尔特纳通道策略Keltner-Channel-Trend-Based-Strategy.md | 1 | The long exits in steps: TP1 closes 15 % of the position at +4.5 % (qty_percent = 15), TP2 the rest at +20 %, beside a close-checked exit: a partial exit cannot be expressed as one net position's signals (as #365389). |
+| 431018 | 停顿回转策略Turnaround-After-Consolidation-Strategy.md | 1 | Positions of 2 units are closed one unit at a time (strategy.exit with qty = 1 at point targets, the rest with qty = 2): a partial exit cannot be expressed as one net position's signals (as #365389); the targets are also point distances. |
 
 ## Flagged and stored under criterion 3 (253 files)
 
