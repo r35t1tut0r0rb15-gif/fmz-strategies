@@ -2720,6 +2720,24 @@ SIZING = {
     435147: [
         ("Fixed quantity 2, commission, slippage", 155, 262),
     ],
+    # ---- FMZ-C, batch C75 (2026-10-18)
+    435151: [],
+    435152: [],
+    435155: [],
+    435157: [],
+    435158: [],
+    435160: [
+        ("Capital-based order size; tick bracket", 204, 222),
+    ],
+    435165: [],
+    435169: [
+        ("Percent bracket inputs", 196, 210),
+    ],
+    435232: [],
+    435233: [
+        ("strategy(): percent of equity", 120, 120),
+    ],
+    435234: [],
 }
 
 REJECTED_ON_READING = {
@@ -3349,6 +3367,12 @@ REJECTED_ON_READING = {
     435138: ("1", "The trend lines are request.security(syminfo.tickerid, '15' / '30' / '60' / '120', "
               "...) on the 4-hour header chart: resolutions below the chart's, whose value per "
               "4-hour bar is undefined (as #427518)."),
+    # ---- FMZ-C, batch C75 (2026-10-18)
+    435153: ("1", "Matrix ladder: the position is resized up and down around grid levels 2 % apart "
+              "(increase / decrease / reset orders keyed on the entry price and the level count); "
+              "the position is a sum of grid units (as #430596)."),
+    435154: ("2", "The entries need close > entrybar, where entrybar is a var set to the first bar's "
+              "close and never updated: a fixed price level set by where the chart's data starts."),
 }
 
 DUPLICATE_ON_READING = {

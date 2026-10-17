@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #435169 (基于一目均衡表的5分钟快速突破策略Ichimoku-Scalping-Strategy-for-5-Minute-Timeframe)
+# Source: https://www.fmz.com/strategy/435169  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Percent bracket inputs  [lines 196-210]
+  196: // Define the shorter Stop Loss and Take Profit percentages for scalping
+  197: percentStop = input(0.5, "Stop Loss (%)")
+  198: percentTP = input(1.0, "Take Profit (%)")
+  199: 
+  200: // Define the entry conditions
+  201: longCondition = ta.crossover(conversionLine, baseLine) and close > leadLine1 and close > leadLine2
+  202: shortCondition = ta.crossunder(conversionLine, baseLine) and close < leadLine1 and close < leadLine2
+  203: 
+  204: if (longCondition)
+  205:     strategy.entry("Long", strategy.long)
+  206:     strategy.exit("Take Profit or Stop Loss for Long", "Long", stop=strategy.position_avg_price * (1 - percentStop / 100), limit=strategy.position_avg_price * (1 + percentTP / 100))
+  207: 
+  208: if (shortCondition)
+  209:     strategy.entry("Short", strategy.short)
+  210:     strategy.exit("Take Profit or Stop Loss for Short", "Short", stop=strategy.position_avg_price * (1 + percentStop / 100), limit=strategy.position_avg_price * (1 - percentTP / 100))

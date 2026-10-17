@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #435160 (顺势突破均线交叉策略Schaff-Trend-Cycle-with-Double-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/435160  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Capital-based order size; tick bracket  [lines 204-222]
+  204: strategy.initial_capital = 50000
+  205: ordersize=floor(strategy.initial_capital/close)
+  206: targetvalue = input(title="Target/stop", type=input.integer, defval=400)
+  207: 
+  208: ma1length = input(title="SMA1", type=input.integer, defval=35)
+  209: ma2length = input(title="SMA2", type=input.integer, defval=200)
+  210: ma1 = ema(close,ma1length)
+  211: ma2 = ema(close,ma2length)
+  212: 
+  213: bullbuy = crossover(stc, lower) and ma1>ma2 and close>ma1
+  214: bearsell = crossunder(stc, upper) and ma1<ma2 and close<ma1
+  215: 
+  216: if (bullbuy)
+  217:     strategy.entry("Riposte", strategy.long, ordersize)
+  218:     strategy.exit( "Riposte close", from_entry="Riposte", qty_percent=100, profit=targetvalue,loss=targetvalue)
+  219: 
+  220: if (bearsell)
+  221:     strategy.entry("Riposte", strategy.short, ordersize)
+  222:     strategy.exit( "Riposte close", from_entry="Riposte", qty_percent=100, profit=targetvalue,loss=targetvalue)

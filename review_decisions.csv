@@ -164,6 +164,8 @@ fmz_id,file,final_outcome,criterion,reason
 435081,移动平均数RSI相关性加密货币趋势策略Moving-Average-RSI-Crypto-Correlation-Trend-Strategy.md,REJECTED_ON_READING,3,"The signals are computed on request.security('BTC_USDT:swap', timeframe.period, close / open / high / low) (""correlation candles"" on by default): a crypto-exchange perpetual contract used as the signal source for the chart symbol (as #430742). Stored in flagged/ (rule C7)."
 435088,跨周期价值区域突破策略Cross-period-Value-Area-Breakout-Strategy.md,REJECTED_ON_READING,1,"The momentum values are request.security(syminfo.tickerid, '180', rsi(...)) on the daily header chart: a 180-minute resolution below the chart's, whose value per daily bar is undefined (as #427518)."
 435138,多时间轴均线系统交易策略Multi-Timeframe-Moving-Average-System-Trading-Strategy.md,REJECTED_ON_READING,1,"The trend lines are request.security(syminfo.tickerid, '15' / '30' / '60' / '120', ...) on the 4-hour header chart: resolutions below the chart's, whose value per 4-hour bar is undefined (as #427518)."
+435153,乖离矩阵趋势跟随策略Divergence-Matrix-Trend-Following-Strategy.md,REJECTED_ON_READING,1,Matrix ladder: the position is resized up and down around grid levels 2 % apart (increase / decrease / reset orders keyed on the entry price and the level count); the position is a sum of grid units (as #430596).
+435154,移动均线交叉交易策略EMA-Crossover-Trading-Strategy.md,REJECTED_ON_READING,2,"The entries need close > entrybar, where entrybar is a var set to the first bar's close and never updated: a fixed price level set by where the chart's data starts."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1341,3 +1343,14 @@ fmz_id,file,final_outcome,criterion,reason
 435143,双漩涡指标结合真实强度指标的趋势追踪策略Trend-Tracking-Strategy-Based-on-Dual-Vortex-Indicator-Combined-with-True-Strength-Index.md,PORTED,,ports/435143_trend-tracking-strategy-based-on-dual-vortex-indicator-combi/
 435146,RSI趋势追踪型加密货币策略RSI-Trend-Following-Crypto-Strategy.md,PORTED,,ports/435146_rsi-rsi-trend-following-crypto-strategy/
 435147,动量回拉策略Momentum-Pullback-Strategy.md,PORTED,,ports/435147_momentum-pullback-strategy/
+435151,枢轴点突破策略Pivot-Points-Breakout-Strategy.md,PORTED,,ports/435151_pivot-points-breakout-strategy/
+435152,重心回测交易策略Center-of-Gravity-Backtesting-Trading-Strategy.md,PORTED,,ports/435152_center-of-gravity-backtesting-trading-strategy/
+435155,双波带驱动强势指数交易策略Bollinger-Band-Awesome-Oscillator-Breakout-Trading-Strategy.md,PORTED,,ports/435155_bollinger-band-awesome-oscillator-breakout-trading-strategy/
+435157,可持续追踪止损交易策略Sustainable-Trailing-Stop-Loss-Trading-Strategy.md,PORTED,,ports/435157_sustainable-trailing-stop-loss-trading-strategy/
+435158,一目均衡交易策略Ichimoku-Trading-Strategy-With-Money-Management.md,PORTED,,ports/435158_ichimoku-trading-strategy-with-money-management/
+435160,顺势突破均线交叉策略Schaff-Trend-Cycle-with-Double-Moving-Average-Crossover-Strategy.md,PORTED,,ports/435160_schaff-trend-cycle-with-double-moving-average-crossover-stra/
+435165,动态交易者指数指标策略Concise-Dynamic-Trend-Strategy.md,PORTED,,ports/435165_concise-dynamic-trend-strategy/
+435169,基于一目均衡表的5分钟快速突破策略Ichimoku-Scalping-Strategy-for-5-Minute-Timeframe.md,PORTED,,ports/435169_5-ichimoku-scalping-strategy-for-5-minute-timeframe/
+435232,价格震荡突破策略Volatility-Breakthrough-Strategy.md,PORTED,,ports/435232_volatility-breakthrough-strategy/
+435233,阳光超级趋势策略Sunny-Supertrend-Strategy.md,PORTED,,ports/435233_sunny-supertrend-strategy/
+435234,振荡指标交易策略Reverasal-Indicator-Strategy.md,PORTED,,ports/435234_reverasal-indicator-strategy/

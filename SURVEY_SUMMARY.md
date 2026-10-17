@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2418 |
-| PORTED | 1162 |
+| PORT_CANDIDATE | 2405 |
+| PORTED | 1173 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 165 |
+| REJECTED_ON_READING | 167 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1290,7 +1290,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435143 | `ports/435143_trend-tracking-strategy-based-on-dual-vortex-indicator-combi/` | PineScript | directional_movement | none | period x2, bar x2 | 4 |
 | 435146 | `ports/435146_rsi-rsi-trend-following-crypto-strategy/` | PineScript | rsi_oscillator | none | rsi_long x2, rsi_close x2 | 4 |
 | 435147 | `ports/435147_momentum-pullback-strategy/` | PineScript | momentum_oscillator_turn | trailing_stop_pending, coarse_bar_stop | atr_inp x2, look x2 | 4 |
-| | **1162 ports** | | | | | **6239** |
+| 435151 | `ports/435151_pivot-points-breakout-strategy/` | PineScript | pivot_levels | none | reverse x2 | 2 |
+| 435152 | `ports/435152_center-of-gravity-backtesting-trading-strategy/` | PineScript | mean_reversion_band | none | length x2, percent x2 | 4 |
+| 435155 | `ports/435155_bollinger-band-awesome-oscillator-breakout-trading-strategy/` | PineScript | momentum_oscillator_turn | none | bb_length x2, fast x2 | 4 |
+| 435157 | `ports/435157_sustainable-trailing-stop-loss-trading-strategy/` | PineScript | always_in_trailing_stop | none | side x2, init_sl x2 | 4 |
+| 435158 | `ports/435158_ichimoku-trading-strategy-with-money-management/` | PineScript | ichimoku | none | gain_exit x2, loss_exit x2 | 4 |
+| 435160 | `ports/435160_schaff-trend-cycle-with-double-moving-average-crossover-stra/` | PineScript | stochastic_oscillator | coarse_bar_stop | cycle x2, k_atr x2 | 4 |
+| 435165 | `ports/435165_concise-dynamic-trend-strategy/` | PineScript | rsi_oscillator | none | strength x2, lenh x2 | 4 |
+| 435169 | `ports/435169_5-ichimoku-scalping-strategy-for-5-minute-timeframe/` | PineScript | ichimoku | trailing_stop_pending | conv x2, base x2 | 4 |
+| 435232 | `ports/435232_volatility-breakthrough-strategy/` | PineScript | multi_indicator_confluence | none | ma_len x2, adx_th x2 | 4 |
+| 435233 | `ports/435233_sunny-supertrend-strategy/` | PineScript | supertrend | none | factor x2, atr_len x2 | 4 |
+| 435234 | `ports/435234_reverasal-indicator-strategy/` | PineScript | momentum_oscillator_turn | none | cci_len x2, ob x2 | 4 |
+| | **1173 ports** | | | | | **6281** |
 
 ## Rejected on reading
 
@@ -1461,6 +1472,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435081 | 移动平均数RSI相关性加密货币趋势策略Moving-Average-RSI-Crypto-Correlation-Trend-Strategy.md | 3 | The signals are computed on request.security('BTC_USDT:swap', timeframe.period, close / open / high / low) ("correlation candles" on by default): a crypto-exchange perpetual contract used as the signal source for the chart symbol (as #430742). Stored in flagged/ (rule C7). |
 | 435088 | 跨周期价值区域突破策略Cross-period-Value-Area-Breakout-Strategy.md | 1 | The momentum values are request.security(syminfo.tickerid, '180', rsi(...)) on the daily header chart: a 180-minute resolution below the chart's, whose value per daily bar is undefined (as #427518). |
 | 435138 | 多时间轴均线系统交易策略Multi-Timeframe-Moving-Average-System-Trading-Strategy.md | 1 | The trend lines are request.security(syminfo.tickerid, '15' / '30' / '60' / '120', ...) on the 4-hour header chart: resolutions below the chart's, whose value per 4-hour bar is undefined (as #427518). |
+| 435153 | 乖离矩阵趋势跟随策略Divergence-Matrix-Trend-Following-Strategy.md | 1 | Matrix ladder: the position is resized up and down around grid levels 2 % apart (increase / decrease / reset orders keyed on the entry price and the level count); the position is a sum of grid units (as #430596). |
+| 435154 | 移动均线交叉交易策略EMA-Crossover-Trading-Strategy.md | 2 | The entries need close > entrybar, where entrybar is a var set to the first bar's close and never updated: a fixed price level set by where the chart's data starts. |
 
 ## Flagged and stored under criterion 3 (253 files)
 
