@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #431668 (RSI策略的回测与优化Backtesting-and-Optimization-of-RSI-Strategy)
+# Source: https://www.fmz.com/strategy/431668  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Order size input (USDT)  [lines 177-177]
+  177: open_pos = input.int(50000, title = "每次开单资金(usdt)")
+
+## Long entry qty  [lines 253-253]
+  253: 	strategy.entry("long", strategy.long, open_pos / close, comment = "long")
+
+## Short entry qty  [lines 259-259]
+  259:     strategy.entry("short", strategy.short, open_pos / close, comment = "short")

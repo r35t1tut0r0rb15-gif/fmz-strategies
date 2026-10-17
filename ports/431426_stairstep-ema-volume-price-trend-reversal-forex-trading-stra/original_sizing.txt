@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #431426 (基于交易量平均价和Stairstep-EMA-的策略Volume-Price-Trend-Reversal-Forex-Trading-Strategy-Based-on-Stairstep-EMA)
+# Source: https://www.fmz.com/strategy/431426  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## TP / SL pip inputs  [lines 273-274]
+  273: tp=input(25, title="TP in PIPS", group="Risk Management")*10
+  274: sl=input(25, title="SL in PIPS", group="Risk Management")*10

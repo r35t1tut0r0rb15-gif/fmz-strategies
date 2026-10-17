@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #431502 (唐奇安波动通道交易策略Donchian-Channel-Breakout-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/431502  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Capital % input  [lines 216-216]
+  216: capital = input(100)
+
+## Lot formula  [lines 258-258]
+  258: lot = strategy.equity / close * capital / 100

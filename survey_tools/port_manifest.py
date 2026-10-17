@@ -1956,6 +1956,38 @@ SIZING = {
         ("Capital % input", 175, 175),
         ("Lot formula (martingale multiplier)", 229, 231),
     ],
+    # ---- FMZ-C, batch C46 (2026-10-17)
+    431426: [
+        ("TP / SL pip inputs", 273, 274),
+    ],
+    431431: [],
+    431494: [
+        ("strategy(): 100 % of equity, commission", 155, 155),
+    ],
+    431498: [
+        ("strategy(): 10000 cash per order", 199, 199),
+    ],
+    431502: [
+        ("Capital % input", 216, 216),
+        ("Lot formula", 258, 258),
+    ],
+    431662: [],
+    431664: [],
+    431666: [],
+    431667: [
+        ("strategy(): 100 % of equity, commission", 176, 184),
+    ],
+    431668: [
+        ("Order size input (USDT)", 177, 177),
+        ("Long entry qty", 253, 253),
+        ("Short entry qty", 259, 259),
+    ],
+    431676: [],
+    431678: [],
+    431693: [
+        ("Entries with qty 10", 261, 262),
+    ],
+    431885: [],
 }
 
 REJECTED_ON_READING = {

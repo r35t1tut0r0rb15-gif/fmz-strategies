@@ -954,3 +954,17 @@ fmz_id,file,final_outcome,criterion,reason
 431413,基于KST指标和EMA指标的交易策略KST-EMA-Momentum-Trend-Following-Strategy.md,PORTED,,ports/431413_kst-ema-kst-ema-momentum-trend-following-strategy/
 431415,混沌交易规则止损策略Chaotic-Trading-Rules-Stop-Loss-Strategy.md,PORTED,,ports/431415_chaotic-trading-rules-stop-loss-strategy/
 431422,快速RSI指标二次突破策略Double-Fast-RSI-Breakthrough-Strategy.md,PORTED,,ports/431422_rsi-double-fast-rsi-breakthrough-strategy/
+431426,基于交易量平均价和Stairstep-EMA-的策略Volume-Price-Trend-Reversal-Forex-Trading-Strategy-Based-on-Stairstep-EMA.md,PORTED,,ports/431426_stairstep-ema-volume-price-trend-reversal-forex-trading-stra/
+431431,基于T3移动平均线和ATR的交易策略Volatility-Adjusted-Moving-Average-Trading-Strategy.md,PORTED,,ports/431431_t3-atr-volatility-adjusted-moving-average-trading-strategy/
+431494,基于SMA交叉策略SMA-Crossover-Strategy.md,PORTED,,ports/431494_sma-sma-crossover-strategy/
+431498,RSI双向突破策略RSI-Reversal-Breakout-Strategy.md,PORTED,,ports/431498_rsi-rsi-reversal-breakout-strategy/
+431502,唐奇安波动通道交易策略Donchian-Channel-Breakout-Trading-Strategy.md,PORTED,,ports/431502_donchian-channel-breakout-trading-strategy/
+431662,高低位突破量化策略High-Low-Breakout-for-Quantitative-Trading.md,PORTED,,ports/431662_high-low-breakout-for-quantitative-trading/
+431664,双移动均线反转交易策略Dual-Moving-Average-Reversal-Trading-Strategy.md,PORTED,,ports/431664_dual-moving-average-reversal-trading-strategy/
+431666,牛熊长线多头策略Bullish-Divergence-Short-term-Long-Trade-Finder-Strategy.md,PORTED,,ports/431666_bullish-divergence-short-term-long-trade-finder-strategy/
+431667,三EMA趋势追踪策略Three-EMA-Trend-Following-Strategy.md,PORTED,,ports/431667_ema-three-ema-trend-following-strategy/
+431668,RSI策略的回测与优化Backtesting-and-Optimization-of-RSI-Strategy.md,PORTED,,ports/431668_rsi-backtesting-and-optimization-of-rsi-strategy/
+431676,收盘买开盘卖策略Closing-Position-Strategy.md,PORTED,,ports/431676_closing-position-strategy/
+431678,EMA均线交叉策略EMA-Crossover-Strategy.md,PORTED,,ports/431678_ema-ema-crossover-strategy/
+431693,双均线RSI指标组合反转策略Dual-Moving-Average-RSI-Indicator-Combination-Reversal-Strategy.md,PORTED,,ports/431693_rsi-dual-moving-average-rsi-indicator-combination-reversal-s/
+431885,短线动量反转策略Momentum-Reversal-Strategy.md,PORTED,,ports/431885_momentum-reversal-strategy/

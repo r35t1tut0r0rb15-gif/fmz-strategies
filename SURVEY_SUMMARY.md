@@ -11,9 +11,9 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2805 |
+| PORT_CANDIDATE | 2791 |
 | REJECTED | 994 |
-| PORTED | 831 |
+| PORTED | 845 |
 | HELD_NEEDS_VOLUME | 557 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
@@ -959,7 +959,21 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 431413 | `ports/431413_kst-ema-kst-ema-momentum-trend-following-strategy/` | PineScript | momentum_oscillator_turn | trailing_stop, coarse_bar_stop | trail_pct x2, ema_len x2 | 4 |
 | 431415 | `ports/431415_chaotic-trading-rules-stop-loss-strategy/` | PineScript | rsi_oscillator | none | leverage x2, length x2 | 4 |
 | 431422 | `ports/431422_rsi-double-fast-rsi-breakthrough-strategy/` | PineScript | rsi_oscillator | none | limit x2, rsi2_len x2 | 4 |
-| | **831 ports** | | | | | **4963** |
+| 431426 | `ports/431426_stairstep-ema-volume-price-trend-reversal-forex-trading-stra/` | PineScript | candle_pattern | none | n x2, bracket_atr x2 | 4 |
+| 431431 | `ports/431431_t3-atr-volatility-adjusted-moving-average-trading-strategy/` | PineScript | volatility_stop_cross | trailing_stop_pending, coarse_bar_stop | key x2, t3_len x2 | 4 |
+| 431494 | `ports/431494_sma-sma-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 431498 | `ports/431498_rsi-rsi-reversal-breakout-strategy/` | PineScript | rsi_oscillator | none | length x2, overbought x2 | 4 |
+| 431502 | `ports/431502_donchian-channel-breakout-trading-strategy/` | PineScript | channel_reversal | none | history x2, pct_dev x2 | 4 |
+| 431662 | `ports/431662_high-low-breakout-for-quantitative-trading/` | PineScript | combo_123_reversal | none | length x2, level x2 | 4 |
+| 431664 | `ports/431664_dual-moving-average-reversal-trading-strategy/` | PineScript | candle_pattern | none | max_hours x2, bars x2 | 4 |
+| 431666 | `ports/431666_bullish-divergence-short-term-long-trade-finder-strategy/` | PineScript | macd_divergence | none | pivot_left x2, stop_pct x2 | 4 |
+| 431667 | `ports/431667_ema-three-ema-trend-following-strategy/` | PineScript | ma_trend | none | e1 x2, e3 x2 | 4 |
+| 431668 | `ports/431668_rsi-backtesting-and-optimization-of-rsi-strategy/` | PineScript | rsi_oscillator | none | rsi_line x2, cooldown x2 | 4 |
+| 431676 | `ports/431676_closing-position-strategy/` | PineScript | calendar_seasonal | none | sma_len x2, entry_hour x2 | 4 |
+| 431678 | `ports/431678_ema-ema-crossover-strategy/` | PineScript | ma_cross | none | buy_len x2, sell_len x2 | 4 |
+| 431693 | `ports/431693_rsi-dual-moving-average-rsi-indicator-combination-reversal-s/` | PineScript | multi_indicator_confluence | none | adx_max x2, hold x2 | 4 |
+| 431885 | `ports/431885_momentum-reversal-strategy/` | PineScript | momentum_breakout | none | x x2, pct x2 | 4 |
+| | **845 ports** | | | | | **5019** |
 
 ## Rejected on reading
 
