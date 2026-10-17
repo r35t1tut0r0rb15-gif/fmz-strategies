@@ -1,0 +1,65 @@
+# Original sizing and money-management code, FMZ #482430 (多重指标动态跟踪趋势波段交易策略-Multi-Indicator-Dynamic-Trend-Following-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482430  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults, pyramiding 0  [lines 93-93]
+   93: strategy("EMA Momentum Scalper", shorttitle="EMS", overlay=true, pyramiding=0)
+
+## Sizing, leverage, ATR and timeout inputs  [lines 96-111]
+   96: posSizeMethod = input.string("Capital %", title="Метод расчета позиции", options=["% Based", "Capital %", "Fixed Capital Based", "Fixed Contract Size"])
+   97: riskPerTrade = input.float(3, title="Риск на сделку (%)", minval=0.1, maxval=100, step=0.5) / 100
+   98: capitalPctPerTrade = input.float(10, title="Доля капитала на сделку (%)", minval=0.1, maxval=100, step=0.5) / 100
+   99: fixedCapitalAmount = input.float(100, title="Фиксированная сумма капитала", minval=0)
+  100: fixedContractSize = input.int(10, title="Фиксированный размер контракта")
+  101: atrLength = input.int(14, title="Длина ATR")
+  102: atrMultiplierSL = input.float(2.5, title="ATR множитель для SL")
+  103: atrMultiplierTP = input.float(1.5, title="ATR множитель для TP")
+  104: timeoutBars = input.int(20, title="Выход через X баров, если нет TP/SL")
+  105: emaLength = input.int(50, title="Длина EMA")
+  106: rsiLength = input.int(14, title="Длина RSI")
+  107: rsiOverbought = input.int(70, title="RSI перекупленность")
+  108: rsiOversold = input.int(30, title="RSI перепроданность")
+  109: adxLength = input.int(14, title="Длина ADX")
+  110: adxThreshold = input.float(20, title="Порог ADX для тренда")
+  111: leverage = input.int(15, title="Плечо", minval=1, maxval=100)
+
+## Position-size methods  [lines 129-143]
+  129: var float qty = na
+  130: riskAmount = strategy.equity * riskPerTrade
+  131: stopLossDistance = atr * atrMultiplierSL
+  132: positionSize = riskAmount / stopLossDistance
+  133: 
+  134: if (posSizeMethod == "% Based")
+  135:     qty := strategy.equity * riskPerTrade / (atr * atrMultiplierSL)
+  136: else if (posSizeMethod == "Capital %")
+  137:     qty := strategy.equity * capitalPctPerTrade / close
+  138: else if (posSizeMethod == "Fixed Capital Based")
+  139:     qty := fixedCapitalAmount / close
+  140: else if (posSizeMethod == "Fixed Contract Size")
+  141:     qty := fixedContractSize
+  142: 
+  143: qty := qty * leverage  // Умножаем на плечо
+
+## Bracket levels and entries  [lines 146-167]
+  146: entryPrice = close
+  147: stopLossLong = entryPrice - atrMultiplierSL * atr
+  148: stopLossShort = entryPrice + atrMultiplierSL * atr
+  149: takeProfit1 = entryPrice + atrMultiplierTP * atr * (longEntry ? 1 : -1)
+  150: takeProfit2 = entryPrice + atrMultiplierTP * atr * (longEntry ? 2 : -2) / 1.5
+  151: 
+  152: // === ТРЕЙЛИНГ-СТОП ===
+  153: trailStopDistance = atr * atrMultiplierSL
+  154: 
+  155: if (longEntry)
+  156:     strategy.entry("Long", strategy.long, qty=qty)
+  157:     strategy.exit("Exit Long", "Long", stop=stopLossLong, limit=takeProfit1, trail_points=trailStopDistance)
+  158:     alertMessage = syminfo.ticker + " LONG\n" +
+  159:                    "Leverage: Cross " + str.tostring(leverage) + "x\n" +
+  160:                    "➡️ Entry: " + str.tostring(entryPrice) + "\n" +
+  161:                    "? Take profit 1: " + str.tostring(takeProfit1) + "\n" +
+  162:                    "? Stop loss: " + str.tostring(stopLossLong)
+  163:     alert(alertMessage, alert.freq_once_per_bar_close)
+  164: 
+  165: if (shortEntry)
+  166:     strategy.entry("Short", strategy.short, qty=qty)
+  167:     strategy.exit("Exit Short", "Short", stop=stopLossShort, limit=takeProfit1, trail_points=trailStopDistance)

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482426 (多周期高斯通道结合StochRSI趋势跟踪策略-Multi-Period-Gaussian-Channel-with-StochRSI-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/482426  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 250 % of equity, 0.1 % commission  [lines 101-101]
+  101: strategy(title="Demo GPT - Gaussian Channel Strategy v3.0", overlay=true, commission_type=strategy.commission.percent, commission_value=0.1, slippage=0, default_qty_type=strategy.percent_of_equity, default_qty_value=250)

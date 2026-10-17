@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #482428 (动态跟踪止损的三分之一K线量化交易策略-Dynamic-Third-Bar-Analysis-Strategy-with-Adaptive-Trailing-Stop)
+# Source: https://www.fmz.com/strategy/482428  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 250 % of equity  [lines 91-92]
+   91: strategy("TrinityBar with Trailing Stop", overlay=true, initial_capital=100000, 
+   92:      default_qty_type=strategy.percent_of_equity, default_qty_value=250)

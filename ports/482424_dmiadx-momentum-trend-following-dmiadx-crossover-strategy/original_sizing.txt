@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #482424 (动量趋势跟踪指标DMIADX交叉策略-Momentum-Trend-Following-DMIADX-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/482424  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 250 % of equity  [lines 129-129]
+  129: strategy("DMI + ADX Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=250)
+
+## SL / TP inputs  [lines 136-137]
+  136: stopLossPerc = input.float(1.0, title="Stop Loss (%)")
+  137: takeProfitPerc = input.float(2.0, title="Take Profit (%)")
+
+## Bracket from the average price  [lines 153-162]
+  153: longStop = strategy.position_avg_price * (1 - stopLossPerc / 100)
+  154: longLimit = strategy.position_avg_price * (1 + takeProfitPerc / 100)
+  155: if (strategy.position_size > 0)
+  156:     strategy.exit("Long Exit", "Long", stop=longStop, limit=longLimit)
+  157: 
+  158: // Definovanie Stop a Limit pre Short pozíciu
+  159: shortStop = strategy.position_avg_price * (1 + stopLossPerc / 100)
+  160: shortLimit = strategy.position_avg_price * (1 - takeProfitPerc / 100)
+  161: if (strategy.position_size < 0)
+  162:     strategy.exit("Short Exit", "Short", stop=shortStop, limit=shortLimit)

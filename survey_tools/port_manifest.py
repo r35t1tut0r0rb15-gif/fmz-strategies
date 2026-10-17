@@ -3276,6 +3276,48 @@ SIZING = {
     482472: [
         ("strategy(): defaults", 153, 153),
     ],
+    # ---- FMZ-C, batch L36 (2026-10-17)
+    482424: [
+        ("strategy(): 250 % of equity", 129, 129),
+        ("SL / TP inputs", 136, 137),
+        ("Bracket from the average price", 153, 162),
+    ],
+    482426: [
+        ("strategy(): 250 % of equity, 0.1 % commission", 101, 101),
+    ],
+    482427: [
+        ("strategy(): defaults", 97, 97),
+    ],
+    482428: [
+        ("strategy(): 250 % of equity", 91, 92),
+    ],
+    482430: [
+        ("strategy(): defaults, pyramiding 0", 93, 93),
+        ("Sizing, leverage, ATR and timeout inputs", 96, 111),
+        ("Position-size methods", 129, 143),
+        ("Bracket levels and entries", 146, 167),
+    ],
+    482434: [
+        ("strategy(): defaults", 109, 109),
+        ("Entries with the bracket", 150, 166),
+    ],
+    482437: [
+        ("strategy(): defaults", 87, 87),
+        ("USD offset, trade size and target inputs", 92, 96),
+        ("Flat-only entries and the bracket from the average price", 112, 125),
+    ],
+    482441: [
+        ("strategy(): 250 % of equity", 119, 119),
+    ],
+    482443: [
+        ("strategy(): defaults", 99, 99),
+    ],
+    482444: [
+        ("strategy(): 20 % of equity", 119, 119),
+    ],
+    482445: [
+        ("strategy(): defaults", 103, 103),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3847,6 +3889,14 @@ REJECTED_ON_READING = {
     482460: ("1", "a LOWER timeframe on a higher chart: the short trigger reads request.security(..., "
               "'3', close[1]) on the 12-hour chart (as #430765); the bracket also comes from "
               "strategy.position_avg_price"),
+    # ---- FMZ-C, batch L36 (2026-10-17)
+    482432: ("1", "partial exits: strategy.exit qty_percent 30 / 50 / 20 at two targets and a trail "
+              "(as #430864)"),
+    482447: ("1", "degenerate as written: ta.stoch(close, 14, 3, 3) passes the constants 14 and 3 as "
+              "high and low, so on any market priced above about 25 the long filter (k < 30) "
+              "never passes and the short filter (k > 70) always does; the 40 / 5-tick trail (a "
+              "fraction of a dollar on BTC_USDT, cents on the titled XAU/USD) closes every trade "
+              "within its first minutes (as #483034)"),
 }
 
 DUPLICATE_ON_READING = {
@@ -3878,4 +3928,6 @@ HELD_ON_READING = {
     484920: ("8", "The signal is the close crossing vwma(close, 100) with vwma(close, 100) > ema(close, 200): a volume-weighted average (check 8, held with the other volume users); the entries are also a martingale add ladder."),
     # ---- FMZ-C, batch L34 (2026-10-17)
     482509: ("8", "The entry and exit use vwma(close, 200) and a weekly vwma(close, 50): volume-weighted averages (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch L36 (2026-10-17)
+    482422: ("8", "The entries and exits use vwma(close, 25) and vwma(close, 8): volume-weighted averages (check 8, held with the other volume users)."),
 }

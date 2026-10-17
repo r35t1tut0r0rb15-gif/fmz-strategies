@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482427 (基于波浪趋势动量突破的自适应多周期交易策略-Adaptive-Multi-Period-Trading-Strategy-Based-on-Wave-Trend-Momentum-Breakout)
+# Source: https://www.fmz.com/strategy/482427  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 97-97]
+   97: strategy(title="WaveTrend [LazyBear] Strategy", shorttitle="WT_LB_Strategy", overlay=true)
