@@ -3318,6 +3318,28 @@ SIZING = {
     482445: [
         ("strategy(): defaults", 103, 103),
     ],
+    # ---- FMZ-C, batch L37 (2026-10-17)
+    481393: [
+        ("strategy(): defaults", 101, 101),
+        ("EMA 100 stop (inert)", 140, 154),
+    ],
+    481394: [
+        ("strategy(): defaults", 107, 107),
+    ],
+    482241: [
+        ("strategy(): defaults", 89, 89),
+    ],
+    482242: [
+        ("strategy(): 200 % of equity", 108, 109),
+    ],
+    482419: [
+        ("strategy(): 300 % of equity", 97, 97),
+        ("SL / TP inputs and exits", 196, 205),
+    ],
+    482420: [
+        ("strategy(): 10 % of equity, pyramiding 0", 92, 93),
+        ("SL / TP points (0 = off), bar window and exits", 197, 221),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3897,6 +3919,10 @@ REJECTED_ON_READING = {
               "never passes and the short filter (k > 70) always does; the 40 / 5-tick trail (a "
               "fraction of a dollar on BTC_USDT, cents on the titled XAU/USD) closes every trade "
               "within its first minutes (as #483034)"),
+    # ---- FMZ-C, batch L37 (2026-10-17)
+    481371: ("1", "a LOWER timeframe on a higher chart (request.security '60' on the 3-hour chart, as "
+              "#430765), plus grid adds with a 1.5x lot multiplier and exits on account equity "
+              "(daily profit target, 2 % equity drawdown)"),
 }
 
 DUPLICATE_ON_READING = {

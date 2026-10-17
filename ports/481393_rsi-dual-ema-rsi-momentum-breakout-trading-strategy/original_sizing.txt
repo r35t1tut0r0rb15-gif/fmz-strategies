@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #481393 (双均线RSI动量突破交易策略-Dual-EMA-RSI-Momentum-Breakout-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/481393  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 101-101]
+  101: strategy("IME-Bands with RSI Strategy", overlay=true)
+
+## EMA 100 stop (inert)  [lines 140-154]
+  140: var float stopLoss = na
+  141: if (isGreenCrossover and not isGreenCrossover[1])
+  142:     stopLoss := emaB  // Set stop loss to EMA Big (crossover point)
+  143: 
+  144: // Entry and Exit Trades
+  145: if (entryCondition)
+  146:     strategy.entry("Buy", strategy.long)
+  147:     stopLoss := na  // Reset stop loss after entry
+  148: 
+  149: if (exitCondition)
+  150:     strategy.close("Buy")
+  151: 
+  152: // Stop Loss logic
+  153: if (strategy.position_size > 0 and not na(stopLoss))
+  154:     strategy.exit("Stop Loss", from_entry="Buy", stop=stopLoss)

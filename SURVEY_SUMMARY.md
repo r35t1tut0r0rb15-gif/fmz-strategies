@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2440 |
-| PORTED | 1147 |
+| PORT_CANDIDATE | 2433 |
+| PORTED | 1153 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 560 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 160 |
+| REJECTED_ON_READING | 161 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -922,6 +922,12 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430988 | `ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/` | PineScript | supertrend | none | mult x2, fisher_level x2 | 4 |
 | 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
 | 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
+| 481393 | `ports/481393_rsi-dual-ema-rsi-momentum-breakout-trading-strategy/` | PineScript | trend_following | none | rsi_ob x2, slow x2 | 4 |
+| 481394 | `ports/481394_rsi-dual-ema-and-stochastic-rsi-trend-following-strategy/` | PineScript | trend_following | none | os x2, slow x2 | 4 |
+| 482241 | `ports/482241_rsi-dual-ema-rsi-momentum-trend-following-strategy/` | PineScript | trend_following | none | fast x2, slow x2 | 4 |
+| 482242 | `ports/482242_trinity-bar-based-trend-breakthrough-and-momentum-tracking-s/` | PineScript | trend_following | none |  | 0 |
+| 482419 | `ports/482419_trend-momentum-strategy-multi-period-dynamic-zigzag-wave-tim/` | PineScript | mean_reversion | coarse_bar_stop | depth x2, tp_pct x2 | 4 |
+| 482420 | `ports/482420_adx-opening-and-closing-moving-average-crossover-strategy-wi/` | PineScript | trend_following | none | use_res x2, adx_filter x2 | 4 |
 | 482424 | `ports/482424_dmiadx-momentum-trend-following-dmiadx-crossover-strategy/` | PineScript | trend_following | coarse_bar_stop | adx_min x2, tp_pct x2 | 4 |
 | 482426 | `ports/482426_stochrsi-multi-period-gaussian-channel-with-stochrsi-trend-f/` | PineScript | breakout | none | period x2, multiplier x2 | 4 |
 | 482427 | `ports/482427_adaptive-multi-period-trading-strategy-based-on-wave-trend-m/` | PineScript | mean_reversion | none | level x2, n2 x2 | 4 |
@@ -1275,7 +1281,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491914 | `ports/491914_price-action-structural-breakout-strategy-with-trailing-stop/` | PineScript | price_action_breakout | trailing_stop | trail_k x2, trail_activate x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | macd_divergence | coarse_bar_stop, trailing_stop_pending | method x2, lb x2 | 4 |
 | 492009 | `ports/492009_atr-dual-ema-filtered-atr-adaptive-trend-following-strategy/` | PineScript | volatility_stop_cross | trailing_stop | atr_mult x2, trail_k x2 | 4 |
-| | **1147 ports** | | | | | **6175** |
+| | **1153 ports** | | | | | **6195** |
 
 ## Rejected on reading
 
@@ -1391,6 +1397,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430974 | 基于RSI和SuperTrend的双向交易策略RSI-and-SuperTrend-Based-Dual-Direction-Trading-Strategy.md | 1 | The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit cannot be expressed as one net position's signals (as #365389). Its momentum line also uses ta.vwma (volume, check 8). |
 | 430985 | 双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md | 2 | The second signal is a band of the nearest prime numbers above / below the high and low (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (as #430847). |
 | 430992 | 趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md | 1 | A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389). |
+| 481371 | 多时间周期动态网格RSI趋势震荡交易策略-Multi-Timeframe-Dynamic-Grid-RSI-Trend-Oscillation-Trading-Strategy.md | 1 | a LOWER timeframe on a higher chart (request.security '60' on the 3-hour chart, as #430765), plus grid adds with a 1.5x lot multiplier and exits on account equity (daily profit target, 2 % equity drawdown) |
 | 482432 | 动态趋势跟踪的EMA-ADX多级止盈策略-Dynamic-Trend-Following-EMA-ADX-Multi-Level-Take-Profit-Strategy.md | 1 | partial exits: strategy.exit qty_percent 30 / 50 / 20 at two targets and a trail (as #430864) |
 | 482447 | 多指标趋势跟踪与震荡预警结合策略-Multi-Indicator-Trend-Following-with-Oscillator-Alert-Strategy.md | 1 | degenerate as written: ta.stoch(close, 14, 3, 3) passes the constants 14 and 3 as high and low, so on any market priced above about 25 the long filter (k < 30) never passes and the short filter (k > 70) always does; the 40 / 5-tick trail (a fraction of a dollar on BTC_USDT, cents on the titled XAU/USD) closes every trade within its first minutes (as #483034) |
 | 482456 | 多周期趋势跟踪与随机震荡优化策略-Multi-Timeframe-Trend-Following-with-Stochastic-Oscillator-Strategy.md | 1 | partial exits: two strategy.exit orders of qty 1 each out of a 2-lot entry at different targets, plus a 1-lot break-even exit (as #430864) |

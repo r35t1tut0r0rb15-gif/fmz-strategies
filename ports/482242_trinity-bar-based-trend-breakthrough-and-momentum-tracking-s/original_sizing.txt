@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #482242 (三段趋势突破与动量跟踪策略-Trinity-Bar-Based-Trend-Breakthrough-and-Momentum-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/482242  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 200 % of equity  [lines 108-109]
+  108: strategy("TrinityBar", overlay=true, initial_capital=100000, 
+  109:      default_qty_type=strategy.percent_of_equity, default_qty_value=200)
