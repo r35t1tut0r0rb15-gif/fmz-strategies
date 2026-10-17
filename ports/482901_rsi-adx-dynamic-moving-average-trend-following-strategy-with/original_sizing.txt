@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #482901 (均线动态趋势跟踪与RSI-ADX复合指标交易策略-Dynamic-Moving-Average-Trend-Following-Strategy-with-RSI-ADX-Composite-Indicators)
+# Source: https://www.fmz.com/strategy/482901  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 101-101]
+  101: strategy("BTC/USD MA200 with RSI, ADX, ATR", overlay=true)
+
+## Target / stop levels  [lines 122-123]
+  122: take_profit = close * 1.02  // 2% profit
+  123: stop_loss = close - (1.5 * atr)  // Dynamic stop based on ATR
+
+## Entry with the bracket  [lines 126-128]
+  126: if (buy_confirmation and strategy.opentrades == 0)
+  127:     strategy.entry("Buy", strategy.long)
+  128:     strategy.exit("Take Profit/Stop Loss", from_entry="Buy", limit=take_profit, stop=stop_loss)

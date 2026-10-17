@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #482904 (基于多重级别EMA与RSI动态势能强度的比特币跨周期趋势交易策略-Multi-Timeframe-Bitcoin-Trading-Strategy-Based-on-EMA-and-RSI-Dynamic-Momentum-Strength)
+# Source: https://www.fmz.com/strategy/482904  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 105-112]
+  105: strategy("Bitcoin Regime Filter Strategy",         // Strategy name
+  106:      overlay=true,                                 // The strategy will be drawn directly on the price chart
+  107:      initial_capital=10000,                        // Initial capital of 10000 USD
+  108:      currency=currency.USDT,                       // Defines the currency used, USDT
+  109:      default_qty_type=strategy.percent_of_equity,  // Position size will be calculated as a percentage of equity
+  110:      default_qty_value=100,                        // The strategy uses 100% of available capital for each trade
+  111:      commission_type=strategy.commission.percent,  // The strategy uses commission as a percentage
+  112:      commission_value=0.1)                         // Transaction fee is 0.1%
+
+## Trailing stop and exits  [lines 166-181]
+  166: var float trailStop = na
+  167: 
+  168: // Entry logic
+  169: if bullish and strategy.position_size == 0 and not caution
+  170:     strategy.entry(id = "Buy", direction = strategy.long)
+  171:     trailStop := na
+  172: 
+  173: // Trailing stop logic
+  174: temp_trailStop = ta.highest(low, 7) - (caution[1] ? atrValue * 0.2 : atrValue)
+  175: if strategy.position_size > 0
+  176:     if temp_trailStop > trailStop or na(trailStop)
+  177:         trailStop := temp_trailStop
+  178: 
+  179: // Exit logic
+  180: if (close < trailStop or close < htfEmaValue)
+  181:     strategy.close("Buy", comment = "Sell")

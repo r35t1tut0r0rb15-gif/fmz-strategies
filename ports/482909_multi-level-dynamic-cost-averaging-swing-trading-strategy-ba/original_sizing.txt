@@ -1,0 +1,30 @@
+# Original sizing and money-management code, FMZ #482909 (基于相对强弱指数和平均真实波幅的多层次动态成本均摊波段交易策略-Multi-Level-Dynamic-Cost-Averaging-Swing-Trading-Strategy-Based-on-RSI-and-ATR)
+# Source: https://www.fmz.com/strategy/482909  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk sizing and DCA settings  [lines 124-130]
+  124: riskPerTrade = 200                       // Total risk ($200)
+  125: atrRisk = 2 * atr                        // Risk in dollars per buy (2 ATR)
+  126: positionSize = riskPerTrade / atrRisk    // Position size (shares)
+  127: 
+  128: // DCA Parameters
+  129: maxEntries = 4                           // Maximum of 4 buys
+  130: takeProfitATR = 3                        // Take profit: 3 ATR
+
+## Buys with the qty  [lines 139-145]
+  139: buyCondition = rsi < 30 and entryCount < maxEntries  // Buy when oversold
+  140: if (buyCondition)
+  141:     strategy.entry("DCA Buy", strategy.long, qty=positionSize)
+  142:     
+  143:     // Update the average entry price
+  144:     avgEntryPrice := na(avgEntryPrice) ? close : (avgEntryPrice * entryCount + close) / (entryCount + 1)
+  145:     entryCount += 1
+
+## Take-profit close  [lines 159-165]
+  159: takeProfitPrice = avgEntryPrice + takeProfitATR * atr
+  160: if (close >= takeProfitPrice and entryCount > 0)
+  161:     strategy.close("DCA Buy")
+  162:     
+  163:     // Reset parameters after closing
+  164:     avgEntryPrice := na
+  165:     entryCount := 0

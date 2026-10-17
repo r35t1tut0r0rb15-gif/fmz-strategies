@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #482899 (动态突破追踪止损交易策略基于波动率的多周期价格突破模型-Dynamic-Breakout-Trading-Strategy-with-Multi-Period-Volatility-Based-Price-Breakthrough-Model)
+# Source: https://www.fmz.com/strategy/482899  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 100  [lines 94-96]
+   94: strategy("!! ? Breakout Strategy with Trailing Stop", overlay=true, 
+   95:          default_qty_type=strategy.percent_of_equity, default_qty_value=100, 
+   96:          pyramiding=100)
+
+## Stop / trail inputs  [lines 101-103]
+  101: var float stopLossPct = input.float(0.2, title="Stop Loss Percentage", minval=0.1) / 100
+  102: // Adjusted: No longer directly using takeProfitPct for a fixed take profit level
+  103: var float trailStartPct = input.float(0.5, title="Trail Start at Profit Percentage", minval=0.001) / 100
+
+## Trailing exits  [lines 127-130]
+  127: if strategy.position_size > 0 
+  128:     strategy.exit("Trailing Stop Exit", "Breakout Buy", trail_points = close * trailStartPct, trail_offset = close * stopLossPct)
+  129: if strategy.position_size < 0 
+  130:     strategy.exit("Trailing Stop Exit", "Breakout Sell", trail_points = close * trailStartPct, trail_offset = close * stopLossPct)

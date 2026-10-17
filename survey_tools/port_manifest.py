@@ -2848,6 +2848,62 @@ SIZING = {
     483038: [
         ("strategy(): defaults", 90, 90),
     ],
+    # ---- FMZ-C, batch L24 (2026-10-17)
+    482890: [
+        ("strategy(): 10 % of equity", 103, 105),
+    ],
+    482891: [
+        ("strategy(): 10 % of equity", 96, 96),
+        ("Stop % input", 110, 110),
+        ("Close-based stops", 143, 151),
+    ],
+    482895: [
+        ("strategy(): 10 % of equity", 85, 85),
+        ("SL / TP inputs", 91, 92),
+        ("Bracket levels and entries", 110, 123),
+    ],
+    482897: [
+        ("strategy(): 1 % of equity", 139, 139),
+        ("Lot size input", 142, 142),
+        ("Entries with the lot size", 180, 184),
+    ],
+    482899: [
+        ("strategy(): 100 % of equity, pyramiding 100", 94, 96),
+        ("Stop / trail inputs", 101, 103),
+        ("Trailing exits", 127, 130),
+    ],
+    482901: [
+        ("strategy(): defaults", 101, 101),
+        ("Target / stop levels", 122, 123),
+        ("Entry with the bracket", 126, 128),
+    ],
+    482902: [
+        ("strategy(): defaults", 102, 102),
+        ("Point stop / target exits", 195, 196),
+    ],
+    482904: [
+        ("strategy(): 100 % of equity", 105, 112),
+        ("Trailing stop and exits", 166, 181),
+    ],
+    482906: [
+        ("strategy(): 10 % of equity", 90, 91),
+    ],
+    482909: [
+        ("Risk sizing and DCA settings", 124, 130),
+        ("Buys with the qty", 139, 145),
+        ("Take-profit close", 159, 165),
+    ],
+    482917: [
+        ("strategy(): 10 % of equity", 105, 105),
+        ("SL / TP inputs", 127, 128),
+        ("Exits from position_avg_price", 209, 213),
+    ],
+    482919: [
+        ("strategy(): 10 % of equity", 107, 107),
+    ],
+    482920: [
+        ("strategy(): 100 % of equity", 96, 96),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3381,6 +3437,9 @@ REJECTED_ON_READING = {
               "(stoppct = 0): the long's stop and the short's limit sit at the latest close, so "
               "every trade ends at the next touch of the previous close; a 0 % stop of the fill "
               "is not a bracket the house engine can express"),
+    # ---- FMZ-C, batch L24 (2026-10-17)
+    482916: ("1", "pyramiding adds (up to 15 entries) and a partial close: strategy.close('Buy', "
+              "qty_percent = 50) at the target (as #365389, #490570)"),
 }
 
 DUPLICATE_ON_READING = {

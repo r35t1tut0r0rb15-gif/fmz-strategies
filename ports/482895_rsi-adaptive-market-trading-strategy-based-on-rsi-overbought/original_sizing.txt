@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #482895 (基于RSI超买超卖的自适应市场交易策略-Adaptive-Market-Trading-Strategy-Based-on-RSI-Overbought-Oversold)
+# Source: https://www.fmz.com/strategy/482895  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 85-85]
+   85: strategy("Gold Trading RSI", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## SL / TP inputs  [lines 91-92]
+   91: sl_percent = input.float(1.0, title="Stop Loss (%)") / 100 // Stop loss percentage
+   92: tp_percent = input.float(2.0, title="Take Profit (%)") / 100 // Take profit percentage
+
+## Bracket levels and entries  [lines 110-123]
+  110: sl_long = close * (1 - sl_percent)
+  111: tp_long = close * (1 + tp_percent)
+  112: 
+  113: sl_short = close * (1 + sl_percent)
+  114: tp_short = close * (1 - tp_percent)
+  115: 
+  116: // Enter trade
+  117: if (long_condition)
+  118:     strategy.entry("Buy", strategy.long)
+  119:     strategy.exit("Exit Buy", from_entry="Buy", stop=sl_long, limit=tp_long)
+  120: 
+  121: if (short_condition)
+  122:     strategy.entry("Sell", strategy.short)
+  123:     strategy.exit("Exit Sell", from_entry="Sell", stop=sl_short, limit=tp_short)

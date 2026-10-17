@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2570 |
-| PORTED | 1032 |
+| PORT_CANDIDATE | 2556 |
+| PORTED | 1045 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 558 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 147 |
+| REJECTED_ON_READING | 148 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -922,6 +922,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430988 | `ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/` | PineScript | supertrend | none | mult x2, fisher_level x2 | 4 |
 | 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
 | 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
+| 482890 | `ports/482890_multi-band-statistical-trend-analysis-strategy/` | PineScript | channel_breakout | none | length x2, confirm_bars x2 | 4 |
+| 482891 | `ports/482891_rsi-macd-dynamic-stop-loss-trend-following-strategy-with-rsi/` | PineScript | macd | none | stop_pct x2, rsi_ob x2 | 4 |
+| 482895 | `ports/482895_rsi-adaptive-market-trading-strategy-based-on-rsi-overbought/` | PineScript | mean_reversion | trailing_stop_pending | sl_pct x2, tp_pct x2 | 4 |
+| 482897 | `ports/482897_multi-technical-indicator-moving-average-crossover-trend-fol/` | PineScript | mean_reversion | none | rsi_os x2, stoch_os x2 | 4 |
+| 482899 | `ports/482899_dynamic-breakout-trading-strategy-with-multi-period-volatili/` | PineScript | breakout | coarse_bar_stop, trailing_stop | trail_pct x2, lookback x2 | 4 |
+| 482901 | `ports/482901_rsi-adx-dynamic-moving-average-trend-following-strategy-with/` | PineScript | trend_following | coarse_bar_stop | tp_pct x2, sl_mult x2 | 4 |
+| 482902 | `ports/482902_k-comprehensive-candlestick-and-trendline-pattern-analysis-s/` | PineScript | candlestick | none |  | 0 |
+| 482904 | `ports/482904_ema-rsi-multi-timeframe-bitcoin-trading-strategy-based-on-em/` | PineScript | trend_following | none | ema_len x2, atr_len x2 | 4 |
+| 482906 | `ports/482906_composite-trend-moving-average-reversal-trading-strategy/` | PineScript | ma_pullback | none | comp_period x2, reaction_pct x2 | 4 |
+| 482909 | `ports/482909_multi-level-dynamic-cost-averaging-swing-trading-strategy-ba/` | PineScript | mean_reversion | none | tp_atr x2, rsi_os x2 | 4 |
+| 482917 | `ports/482917_nadaraya-watson-multi-dimensional-integration-trading-strate/` | PineScript | kernel_regression | none | sl_pct x2, tp_pct x2 | 4 |
+| 482919 | `ports/482919_triple-ema-fisher-transform-triple-ema-and-fisher-transform/` | PineScript | oscillator_cross | none | tema_len x2, fisher_len x2 | 4 |
+| 482920 | `ports/482920_ema-ema-and-candlestick-based-dynamic-price-trend-following/` | PineScript | candlestick | none | fast x2, slow x2 | 4 |
 | 482921 | `ports/482921_adx-three-line-strike-momentum-trend-following-strategy-with/` | PineScript | candlestick | trailing_stop_pending | adx_threshold x2, tp_mult x2 | 4 |
 | 483020 | `ports/483020_macd-momentum-divergence-trend-reversal-quantitative-strateg/` | PineScript | macd | none | fast x2, slow x2 | 4 |
 | 483021 | `ports/483021_advanced-dual-ema-and-supertrend-combination-trading-strateg/` | PineScript | supertrend | none | factor x2, slow x2 | 4 |
@@ -1160,7 +1173,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491914 | `ports/491914_price-action-structural-breakout-strategy-with-trailing-stop/` | PineScript | price_action_breakout | trailing_stop | trail_k x2, trail_activate x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | macd_divergence | coarse_bar_stop, trailing_stop_pending | method x2, lb x2 | 4 |
 | 492009 | `ports/492009_atr-dual-ema-filtered-atr-adaptive-trend-following-strategy/` | PineScript | volatility_stop_cross | trailing_stop | atr_mult x2, trail_k x2 | 4 |
-| | **1032 ports** | | | | | **5733** |
+| | **1045 ports** | | | | | **5781** |
 
 ## Rejected on reading
 
@@ -1276,6 +1289,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430974 | 基于RSI和SuperTrend的双向交易策略RSI-and-SuperTrend-Based-Dual-Direction-Trading-Strategy.md | 1 | The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit cannot be expressed as one net position's signals (as #365389). Its momentum line also uses ta.vwma (volume, check 8). |
 | 430985 | 双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md | 2 | The second signal is a band of the nearest prime numbers above / below the high and low (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (as #430847). |
 | 430992 | 趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md | 1 | A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389). |
+| 482916 | 多层级RSI交叉回归增仓策略-Multi-Level-RSI-Cross-Under-Regression-Pyramiding-Strategy.md | 1 | pyramiding adds (up to 15 entries) and a partial close: strategy.close('Buy', qty_percent = 50) at the target (as #365389, #490570) |
 | 483022 | 基于市场情绪的动态阈值交易策略-Dynamic-Market-Sentiment-Threshold-Trading-Strategy.md | 1 | not a market strategy: the 'fear and greed' values are a hard-coded 8-number placeholder array cycled by bar_index, so the signals are a fixed 8-bar cycle unrelated to prices |
 | 483033 | 交易品种蜡烛线大小阈值交易策略-Futures-Candlestick-Size-Threshold-Trading-Strategy.md | 1 | never trades on history as written: the 07:00-09:15 window is built with timestamp(year(timenow), month(timenow), dayofmonth(timenow), ...), i.e. only on the day the script runs; also tick distances on DOGE_USDT |
 | 483034 | 零延迟趋势动量指标交易策略-Zero-Lag-Trend-Momentum-Indicator-Trading-Strategy.md | 1 | the exits are re-placed on every bar from the CURRENT close with a 0 % stop (stoppct = 0): the long's stop and the short's limit sit at the latest close, so every trade ends at the next touch of the previous close; a 0 % stop of the fill is not a bracket the house engine can express |

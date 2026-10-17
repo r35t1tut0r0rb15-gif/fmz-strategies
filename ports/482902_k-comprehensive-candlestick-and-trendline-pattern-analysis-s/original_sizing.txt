@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #482902 (综合K线图形态与趋势线技术分析策略-Comprehensive-Candlestick-and-Trendline-Pattern-Analysis-Strategy)
+# Source: https://www.fmz.com/strategy/482902  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 102-102]
+  102: strategy("Advanced Candlestick and Line Chart Patterns with Head and Shoulders", overlay=true)
+
+## Point stop / target exits  [lines 195-196]
+  195: strategy.exit("Take Profit/Stop Loss", "Long", stop=low - 10, limit=high + 10)
+  196: strategy.exit("Take Profit/Stop Loss", "Short", stop=high + 10, limit=low - 10)
