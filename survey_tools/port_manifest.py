@@ -2431,6 +2431,27 @@ SIZING = {
     433562: [
         ("Quantity 1 and the unused stop / target variables", 124, 133),
     ],
+    # ---- FMZ-C, batch C62 (2026-10-17)
+    433569: [],
+    433572: [
+        ("Tick stop ladder and exits", 149, 201),
+    ],
+    433574: [],
+    433575: [],
+    433579: [
+        ("Point value / margin / commission constants", 175, 180),
+    ],
+    433583: [],
+    433585: [
+        ("strategy(): 100 % of equity", 131, 131),
+    ],
+    433589: [],
+    433590: [
+        ("strategy(): 100 % of equity", 123, 123),
+    ],
+    433901: [
+        ("strategy(): 100 % of equity, pyramiding 5", 171, 171),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2975,6 +2996,16 @@ REJECTED_ON_READING = {
               "one net position's signals (as #365389)."),
     433541: ("1", "strategy.order entries with a 50 % partial exit at half the target and the rest at "
               "the full target (qty_percent): partial exits of the net position (as #365389)."),
+    # ---- FMZ-C, batch C62 (2026-10-17)
+    433565: ("1", "The signals are the candle colours of request.security(syminfo.tickerid, '3' / '5' "
+              "/ '15' / '30', open / close) on the 1-hour header chart: resolutions below the "
+              "chart's, whose value per bar is undefined (as #430587)."),
+    433581: ("1", "Three long entries ('long_D', 'long_W', 'long_M', one unit each, pyramiding 3) "
+              "open and close on their own daily, weekly and monthly P-signals: each unit leaves "
+              "on its own exit, i.e. partial exits of the net position (as #426781)."),
+    433588: ("1", "pyramiding 5 with trend entries allowed only while the close is beyond "
+              "strategy.position_avg_price of the stacked position: the signals depend on the "
+              "averaged price of the ladder (as #426570, #433015)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2587 |
-| PORTED | 1018 |
+| PORT_CANDIDATE | 2574 |
+| PORTED | 1028 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 559 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 143 |
+| REJECTED_ON_READING | 146 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1146,7 +1146,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433560 | `ports/433560_multi-sma-multi-sma-moving-average-crossover-strategy/` | PineScript | ma_trend | none | scale x2 | 2 |
 | 433561 | `ports/433561_donchian-trend-strategy/` | PineScript | donchian_breakout | none | length x2, slow x2 | 4 |
 | 433562 | `ports/433562_rsi-atr-scalping/` | PineScript | momentum_breakout | none | atr_mult x2, atr_len x2 | 4 |
-| | **1018 ports** | | | | | **5686** |
+| 433569 | `ports/433569_rsi-reverse-engineering-rsi-strategy/` | PineScript | rsi_oscillator | none | value x2, wild_per x2 | 4 |
+| 433572 | `ports/433572_stepped-trailing-stop-with-partial-profit-taking-strategy/` | PineScript | ma_cross | trailing_stop_pending | sl_atr x2, tp_atr x2 | 4 |
+| 433574 | `ports/433574_ichimoku-kumo-twist-gold-absorbing-strategy/` | PineScript | ichimoku | none | preset x2 | 2 |
+| 433575 | `ports/433575_wave-trend-based-quantitative-trading-strategy/` | PineScript | momentum_oscillator_turn | none | tz x2, n1 x2 | 4 |
+| 433579 | `ports/433579_commodity-momentum-index-strategy/` | PineScript | directional_movement | none | length x2 | 2 |
+| 433583 | `ports/433583_cmo-wma-momentum-trading-strategy-based-on-cmo-and-wma/` | PineScript | momentum_oscillator_turn | none | length x2, wma_len x2 | 4 |
+| 433585 | `ports/433585_harami-closing-price-strategy/` | PineScript | candle_pattern | none | body_len x2, exit_frac x2 | 4 |
+| 433589 | `ports/433589_dynamic-support-and-resistance-strategy-based-on-historical/` | PineScript | pivot_levels | none | level x2 | 2 |
+| 433590 | `ports/433590_rsi-rsi-moving-average-crossover-trend-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, price_ema x2 | 4 |
+| 433901 | `ports/433901_rsi-fast-rsi-reversal-strategy/` | PineScript | rsi_oscillator | none | limit x2, rsi_len x2 | 4 |
+| | **1028 ports** | | | | | **5720** |
 
 ## Rejected on reading
 
@@ -1295,6 +1305,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433521 | 基于RSI均线交叉策略RSI-Moving-Average-Crossover-Strategy.md | 1 | The only exit is strategy.exit(profit = close x 1.20, loss = close x 0.95) in ticks, placed only once the exit condition fires (12 % / 9.5 % at BTC's 0.1 tick, a different size on any other tick): a bracket armed by a later signal, from the entry price, which the stops (live from the entry) cannot express, and whose size depends on the symbol's tick. |
 | 433539 | 基于转折点的RSI背离策略Pivot-based-RSI-Divergence-Strategy.md | 1 | The take-profits close 3/4 or 1/2 of the position at four RSI levels (strategy.close with qty), with pyramiding 2: partial exits cannot be expressed as one net position's signals (as #365389). |
 | 433541 | 基于移动均线的突破交易策略Moving-Average-Breakout-Strategy.md | 1 | strategy.order entries with a 50 % partial exit at half the target and the rest at the full target (qty_percent): partial exits of the net position (as #365389). |
+| 433565 | 多时间框架MACD策略Multi-Timeframe-MACD-Strategy.md | 1 | The signals are the candle colours of request.security(syminfo.tickerid, '3' / '5' / '15' / '30', open / close) on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #430587). |
+| 433581 | P-Signal多时间框架交易策略P-Signal-Multi-Timeframe-Trading-Strategy.md | 1 | Three long entries ('long_D', 'long_W', 'long_M', one unit each, pyramiding 3) open and close on their own daily, weekly and monthly P-signals: each unit leaves on its own exit, i.e. partial exits of the net position (as #426781). |
+| 433588 | 动量波动追踪策略Noros-Bollinger-Tracking-Strategy.md | 1 | pyramiding 5 with trend entries allowed only while the close is beyond strategy.position_avg_price of the stacked position: the signals depend on the averaged price of the ladder (as #426570, #433015). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

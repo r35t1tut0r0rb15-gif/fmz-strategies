@@ -1,0 +1,58 @@
+# Original sizing and money-management code, FMZ #433572 (分阶梯式止盈滑点策略Stepped-Trailing-Stop-with-Partial-Profit-Taking-Strategy)
+# Source: https://www.fmz.com/strategy/433572  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Tick stop ladder and exits  [lines 149-201]
+  149: sl = input(100)
+  150: tp1 = input(100)
+  151: tp2 = input(200)
+  152: tp3 = input(300)
+  153: 
+  154: curProfitInPts() =>
+  155:     if strategy.position_size > 0
+  156:         (high - strategy.position_avg_price) / syminfo.mintick
+  157:     else if strategy.position_size < 0
+  158:         (strategy.position_avg_price - low) / syminfo.mintick
+  159:     else
+  160:         0
+  161:         
+  162: calcStopLossPrice(OffsetPts) =>
+  163:     if strategy.position_size > 0
+  164:         strategy.position_avg_price - OffsetPts * syminfo.mintick
+  165:     else if strategy.position_size < 0
+  166:         strategy.position_avg_price + OffsetPts * syminfo.mintick
+  167:     else
+  168:         0
+  169:         
+  170: calcProfitTrgtPrice(OffsetPts) =>
+  171:     calcStopLossPrice(-OffsetPts)
+  172: 
+  173: getCurrentStage() =>
+  174:     var stage = 0
+  175:     if strategy.position_size == 0 
+  176:         stage := 0
+  177:     if stage == 0 and strategy.position_size != 0
+  178:         stage := 1
+  179:     else if stage == 1 and curProfitInPts() >= tp1
+  180:         stage := 2
+  181:     else if stage == 2 and curProfitInPts() >= tp2
+  182:         stage := 3
+  183:     stage
+  184: 
+  185: stopLevel = -1.
+  186: profitLevel = calcProfitTrgtPrice(tp3)
+  187: 
+  188: // based on current stage set up exit
+  189: // note: we use same exit ids ("x") consciously, for MODIFY the exit's parameters
+  190: curStage = getCurrentStage()
+  191: if curStage == 1
+  192:     stopLevel := calcStopLossPrice(sl)
+  193:     strategy.exit("x", loss = sl, profit = tp3, comment = "sl or tp3")
+  194: else if curStage == 2
+  195:     stopLevel := calcStopLossPrice(0)
+  196:     strategy.exit("x", stop = stopLevel, profit = tp3, comment = "breakeven or tp3")
+  197: else if curStage == 3
+  198:     stopLevel := calcStopLossPrice(-tp1)
+  199:     strategy.exit("x", stop = stopLevel, profit = tp3, comment = "tp1 or tp3")
+  200: else
+  201:     strategy.cancel("x")

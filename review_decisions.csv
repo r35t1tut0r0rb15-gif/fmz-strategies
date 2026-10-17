@@ -142,6 +142,9 @@ fmz_id,file,final_outcome,criterion,reason
 433521,基于RSI均线交叉策略RSI-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"The only exit is strategy.exit(profit = close x 1.20, loss = close x 0.95) in ticks, placed only once the exit condition fires (12 % / 9.5 % at BTC's 0.1 tick, a different size on any other tick): a bracket armed by a later signal, from the entry price, which the stops (live from the entry) cannot express, and whose size depends on the symbol's tick."
 433539,基于转折点的RSI背离策略Pivot-based-RSI-Divergence-Strategy.md,REJECTED_ON_READING,1,"The take-profits close 3/4 or 1/2 of the position at four RSI levels (strategy.close with qty), with pyramiding 2: partial exits cannot be expressed as one net position's signals (as #365389)."
 433541,基于移动均线的突破交易策略Moving-Average-Breakout-Strategy.md,REJECTED_ON_READING,1,strategy.order entries with a 50 % partial exit at half the target and the rest at the full target (qty_percent): partial exits of the net position (as #365389).
+433565,多时间框架MACD策略Multi-Timeframe-MACD-Strategy.md,REJECTED_ON_READING,1,"The signals are the candle colours of request.security(syminfo.tickerid, '3' / '5' / '15' / '30', open / close) on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #430587)."
+433581,P-Signal多时间框架交易策略P-Signal-Multi-Timeframe-Trading-Strategy.md,REJECTED_ON_READING,1,"Three long entries ('long_D', 'long_W', 'long_M', one unit each, pyramiding 3) open and close on their own daily, weekly and monthly P-signals: each unit leaves on its own exit, i.e. partial exits of the net position (as #426781)."
+433588,动量波动追踪策略Noros-Bollinger-Tracking-Strategy.md,REJECTED_ON_READING,1,"pyramiding 5 with trend entries allowed only while the close is beyond strategy.position_avg_price of the stacked position: the signals depend on the averaged price of the ladder (as #426570, #433015)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1172,3 +1175,13 @@ fmz_id,file,final_outcome,criterion,reason
 433560,Multi-SMA均线交叉策略Multi-SMA-Moving-Average-Crossover-Strategy.md,PORTED,,ports/433560_multi-sma-multi-sma-moving-average-crossover-strategy/
 433561,唐氏趋势策略Donchian-Trend-Strategy.md,PORTED,,ports/433561_donchian-trend-strategy/
 433562,基于RSI和ATR通道的超级scalping策略.md,PORTED,,ports/433562_rsi-atr-scalping/
+433569,逆向工程RSI策略Reverse-Engineering-RSI-Strategy.md,PORTED,,ports/433569_rsi-reverse-engineering-rsi-strategy/
+433572,分阶梯式止盈滑点策略Stepped-Trailing-Stop-with-Partial-Profit-Taking-Strategy.md,PORTED,,ports/433572_stepped-trailing-stop-with-partial-profit-taking-strategy/
+433574,一云穿月双星吸金策略Ichimoku-Kumo-Twist-Gold-Absorbing-Strategy.md,PORTED,,ports/433574_ichimoku-kumo-twist-gold-absorbing-strategy/
+433575,基于波浪趋势的量化交易策略Wave-Trend-Based-Quantitative-Trading-Strategy.md,PORTED,,ports/433575_wave-trend-based-quantitative-trading-strategy/
+433579,动量商品选择指数策略Commodity-Momentum-Index-Strategy.md,PORTED,,ports/433579_commodity-momentum-index-strategy/
+433583,基于CMO和WMA的动量交易策略Momentum-Trading-Strategy-Based-on-CMO-and-WMA.md,PORTED,,ports/433583_cmo-wma-momentum-trading-strategy-based-on-cmo-and-wma/
+433585,闭合阳线策略Harami-Closing-Price-Strategy.md,PORTED,,ports/433585_harami-closing-price-strategy/
+433589,基于历史数据的动态支撑阻力策略Dynamic-Support-and-Resistance-Strategy-Based-on-Historical-Data.md,PORTED,,ports/433589_dynamic-support-and-resistance-strategy-based-on-historical/
+433590,RSI均线交叉趋势策略RSI-Moving-Average-Crossover-Trend-Strategy.md,PORTED,,ports/433590_rsi-rsi-moving-average-crossover-trend-strategy/
+433901,快速RSI反转策略Fast-RSI-Reversal-Strategy.md,PORTED,,ports/433901_rsi-fast-rsi-reversal-strategy/
