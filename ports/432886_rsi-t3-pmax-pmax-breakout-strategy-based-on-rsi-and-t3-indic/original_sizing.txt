@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #432886 (基于RSI和T3指标的PMax自适应突破策略PMax-Breakout-Strategy-Based-on-RSI-and-T3-Indicators)
+# Source: https://www.fmz.com/strategy/432886  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

@@ -128,6 +128,8 @@ fmz_id,file,final_outcome,criterion,reason
 432420,基于趋势的循环交易策略Cycle-Position-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"The only exit is strategy.exit('Exit', limit = close) placed when the close condition holds: a resting limit at the signal bar's close, filled inside the next bar at its own price (as #427119)."
 432781,双均线价格跃动策略Dual-Moving-Average-Price-Leaping-Strategy.md,REJECTED_ON_READING,1,"The only exit is strategy.close('long', qty_percent = 20): a partial exit that takes 20 % of the position off at a time cannot be expressed as one net position (as #428066)."
 432807,多时间框架动态回溯策略Multi-Timeframe-Dynamic-Backtesting-Strategy.md,REJECTED_ON_READING,1,"Reads the future: the HTF high / low are security(tickerid, '3M', high[0] / low[0], lookahead = barmerge.lookahead_on) (the lookahead input is true): without [1], lookahead_on hands every daily bar the final high and low of its three-month bar (as #430661)."
+432894,动量突破GetString策略GetString-Momentum-Breakthrough-Strategy.md,REJECTED_ON_READING,1,"Positions are built with strategy.order('Long Signal' / 'Short Signal'), which adds or removes one unit per signal instead of entering or reversing: the position path depends on the order size (as #430596)."
+432900,多种技术指标动量突破策略multiple-technical-indicators-Momentum-Breakout-Strategy.md,REJECTED_ON_READING,1,"The MACD filters are request.security(syminfo.tickerid, '5' / '15' / '60', macdLine) on the 1-day header chart: resolutions below the chart's, whose value per bar is undefined (as #430587)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1080,3 +1082,15 @@ fmz_id,file,final_outcome,criterion,reason
 432874,多重均线突破策略Multi-Moving-Average-Breakout-Strategy.md,PORTED,,ports/432874_multi-moving-average-breakout-strategy/
 432880,Heikin-Ashi-HighLow通道动态均线交易策略Heikin-Ashi-HighLow-Channel-Dynamic-Moving-Average-Trading-Strategy.md,PORTED,,ports/432880_heikin-ashi-highlow-heikin-ashi-highlow-channel-dynamic-movi/
 432883,双线性反转均线振荡器组合策略123-Reversal-Moving-Average-Convergence-Divergence-Combination-Strategy.md,PORTED,,ports/432883_123-reversal-moving-average-convergence-divergence-combinati/
+432885,RSI双叉反转策略RSI-Dual-Cross-Reversal-Strategy.md,PORTED,,ports/432885_rsi-rsi-dual-cross-reversal-strategy/
+432886,基于RSI和T3指标的PMax自适应突破策略PMax-Breakout-Strategy-Based-on-RSI-and-T3-Indicators.md,PORTED,,ports/432886_rsi-t3-pmax-pmax-breakout-strategy-based-on-rsi-and-t3-indic/
+432890,跨时间轴双向突破系统Cross-Period-Breakthrough-System.md,PORTED,,ports/432890_cross-period-breakthrough-system/
+432896,基于SMA的多空策略SMA-Based-Dual-Thrust-Strategy.md,PORTED,,ports/432896_sma-sma-based-dual-thrust-strategy/
+432897,捕捉底部策略Bottom-Catching-Strategy.md,PORTED,,ports/432897_bottom-catching-strategy/
+432898,基于趋势置信度的趋势跟踪策略Trend-Following-Strategy-Based-on-Trend-Confidence.md,PORTED,,ports/432898_trend-following-strategy-based-on-trend-confidence/
+432902,双均线穿叉策略Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/432902_dual-moving-average-crossover-strategy/
+432908,基于Stochastic指标和CCI指标的趋势跟踪策略Trend-Following-Strategy-Based-on-Stochastic-and-CCI.md,PORTED,,ports/432908_stochastic-cci-trend-following-strategy-based-on-stochastic/
+432913,基于移动快慢均线交叉策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/432913_moving-average-crossover-strategy/
+432914,带状趋势追踪者Bollinger-Band-Trend-Chaser.md,PORTED,,ports/432914_bollinger-band-trend-chaser/
+432920,现代拉盖尔变换相对强弱指标优化策略-Modern-Laguerre-Transform-Relative-Strength-Index-Optimization-Strategy.md,PORTED,,ports/432920_modern-laguerre-transform-relative-strength-index-optimizati/
+432921,双重反转追踪策略Dual-Reversal-Tracking-Strategy.md,PORTED,,ports/432921_dual-reversal-tracking-strategy/

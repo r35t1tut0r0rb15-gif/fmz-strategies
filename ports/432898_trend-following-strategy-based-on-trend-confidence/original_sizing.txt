@@ -1,0 +1,42 @@
+# Original sizing and money-management code, FMZ #432898 (基于趋势置信度的趋势跟踪策略Trend-Following-Strategy-Based-on-Trend-Confidence)
+# Source: https://www.fmz.com/strategy/432898  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop-loss input and orders  [lines 172-208]
+  172: stop_loss   = input.float(10, step=1, title='Stop loss (percentage)') / 100
+  173: 
+  174: // Trend Confidence
+  175: 
+  176: linreg = ta.linreg(source, length, 0)
+  177: linreg_p = ta.linreg(source, length, 0+1)
+  178: 
+  179: x = bar_index
+  180: slope = linreg - linreg_p
+  181: intercept = linreg - x*slope
+  182: deviationSum = 0.0
+  183: for i = 0 to length-1
+  184:     deviationSum := deviationSum + math.pow(source[i]-(slope*(x-i)+intercept), 2)
+  185: deviation = math.sqrt(deviationSum/(length))
+  186: 
+  187: slope_perc = slope / source[0]
+  188: deviation_perc = deviation / source[0]
+  189: trend_confidence = slope_perc / deviation_perc
+  190: 
+  191: // Strategy
+  192: 
+  193: in_interval = true
+  194: 
+  195: sl_long = strategy.position_avg_price * (1 - stop_loss)
+  196: sl_short = strategy.position_avg_price * (1 + stop_loss)
+  197: 
+  198: if in_interval and longs_on and ta.crossover(trend_confidence, long_entry)
+  199:     strategy.entry("TC Long Entry", strategy.long)
+  200:     strategy.exit("TC Long Exit", stop=sl_long)
+  201: if in_interval and longs_on and ta.crossunder(trend_confidence, long_exit)
+  202:     strategy.close("TC Long Entry")
+  203: 
+  204: if in_interval and shorts_on and ta.crossunder(trend_confidence, short_entry)
+  205:     strategy.entry("TC Short Entry", strategy.short)
+  206:     strategy.exit("TC Short Exit", stop=sl_short)
+  207: if in_interval and shorts_on and ta.crossover(trend_confidence, short_exit)
+  208:     strategy.close("TC Short Entry")

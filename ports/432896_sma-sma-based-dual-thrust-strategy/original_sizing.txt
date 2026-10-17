@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #432896 (基于SMA的多空策略SMA-Based-Dual-Thrust-Strategy)
+# Source: https://www.fmz.com/strategy/432896  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Entries with qty 1  [lines 172-177]
+  172: if time >= start
+  173:     strategy.entry( "long", strategy.long,1, when = enterlong)
+  174:     strategy.entry( "short", strategy.short,1, when = entershort) 
+  175:     
+  176:     strategy.close("long", when = exitlong)
+  177:     strategy.close("short", when = exitshort)

@@ -2241,6 +2241,34 @@ SIZING = {
         ("strategy(): 100 % of equity", 113, 113),
     ],
     432883: [],
+    # ---- FMZ-C, batch C55 (2026-10-17)
+    432885: [],
+    432886: [],
+    432890: [
+        ("strategy(): commission, slippage", 171, 174),
+        ("Money management (risk-based lot)", 272, 285),
+        ("Entries and tick exits", 289, 296),
+    ],
+    432896: [
+        ("Entries with qty 1", 172, 177),
+    ],
+    432897: [],
+    432898: [
+        ("Stop-loss input and orders", 172, 208),
+    ],
+    432902: [],
+    432908: [
+        ("strategy(): 100 % of equity, commission", 138, 138),
+        ("Stop-loss input and orders", 204, 219),
+    ],
+    432913: [
+        ("Entries with qty 1 and their ATR tick exits", 172, 191),
+    ],
+    432914: [
+        ("strategy(): 10 % of equity, commission", 149, 151),
+    ],
+    432920: [],
+    432921: [],
 }
 
 REJECTED_ON_READING = {
@@ -2729,6 +2757,13 @@ REJECTED_ON_READING = {
               "low[0], lookahead = barmerge.lookahead_on) (the lookahead input is true): without "
               "[1], lookahead_on hands every daily bar the final high and low of its three-month "
               "bar (as #430661)."),
+    # ---- FMZ-C, batch C55 (2026-10-17)
+    432894: ("1", "Positions are built with strategy.order('Long Signal' / 'Short Signal'), which "
+              "adds or removes one unit per signal instead of entering or reversing: the position "
+              "path depends on the order size (as #430596)."),
+    432900: ("1", "The MACD filters are request.security(syminfo.tickerid, '5' / '15' / '60', "
+              "macdLine) on the 1-day header chart: resolutions below the chart's, whose value "
+              "per bar is undefined (as #430587)."),
 }
 
 DUPLICATE_ON_READING = {

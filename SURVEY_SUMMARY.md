@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2679 |
+| PORT_CANDIDATE | 2665 |
 | REJECTED | 994 |
-| PORTED | 940 |
+| PORTED | 952 |
 | HELD_NEEDS_VOLUME | 559 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 129 |
+| REJECTED_ON_READING | 131 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1068,7 +1068,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 432874 | `ports/432874_multi-moving-average-breakout-strategy/` | PineScript | ma_cross | none | set x2 | 2 |
 | 432880 | `ports/432880_heikin-ashi-highlow-heikin-ashi-highlow-channel-dynamic-movi/` | PineScript | heikin_ashi_trend | bar_size_pending | len_h x2, len_l x2 | 4 |
 | 432883 | `ports/432883_123-reversal-moving-average-convergence-divergence-combinati/` | PineScript | combo_123_reversal | none | length x2, level x2 | 4 |
-| | **940 ports** | | | | | **5382** |
+| 432885 | `ports/432885_rsi-rsi-dual-cross-reversal-strategy/` | PineScript | rsi_oscillator | none | fast x2, slow x2 | 4 |
+| 432886 | `ports/432886_rsi-t3-pmax-pmax-breakout-strategy-based-on-rsi-and-t3-indic/` | PineScript | supertrend | none | mult x2, t3_len x2 | 4 |
+| 432890 | `ports/432890_cross-period-breakthrough-system/` | PineScript | ma_trend | none | tz x2, atr_k x2 | 4 |
+| 432896 | `ports/432896_sma-sma-based-dual-thrust-strategy/` | PineScript | donchian_breakout | none | length x2, offset x2 | 4 |
+| 432897 | `ports/432897_bottom-catching-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, drop x2 | 4 |
+| 432898 | `ports/432898_trend-following-strategy-based-on-trend-confidence/` | PineScript | slope_momentum | none | length x2, long_entry x2 | 4 |
+| 432902 | `ports/432902_dual-moving-average-crossover-strategy/` | PineScript | momentum_oscillator_turn | none | fast x2, slow x2 | 4 |
+| 432908 | `ports/432908_stochastic-cci-trend-following-strategy-based-on-stochastic/` | PineScript | multi_indicator_confluence | coarse_bar_stop | pcnt x2, sl_pct x2 | 4 |
+| 432913 | `ports/432913_moving-average-crossover-strategy/` | PineScript | ma_cross | none | sl_atr x2, tp_atr x2 | 4 |
+| 432914 | `ports/432914_bollinger-band-trend-chaser/` | PineScript | multi_indicator_confluence | none | mult x2, ma_len x2 | 4 |
+| 432920 | `ports/432920_modern-laguerre-transform-relative-strength-index-optimizati/` | PineScript | rsi_oscillator | none | gamma x2, band x2 | 4 |
+| 432921 | `ports/432921_dual-reversal-tracking-strategy/` | PineScript | combo_123_reversal | none | length x2, n_len x2 | 4 |
+| | **952 ports** | | | | | **5430** |
 
 ## Rejected on reading
 
@@ -1203,6 +1215,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 432420 | 基于趋势的循环交易策略Cycle-Position-Trend-Following-Strategy.md | 1 | The only exit is strategy.exit('Exit', limit = close) placed when the close condition holds: a resting limit at the signal bar's close, filled inside the next bar at its own price (as #427119). |
 | 432781 | 双均线价格跃动策略Dual-Moving-Average-Price-Leaping-Strategy.md | 1 | The only exit is strategy.close('long', qty_percent = 20): a partial exit that takes 20 % of the position off at a time cannot be expressed as one net position (as #428066). |
 | 432807 | 多时间框架动态回溯策略Multi-Timeframe-Dynamic-Backtesting-Strategy.md | 1 | Reads the future: the HTF high / low are security(tickerid, '3M', high[0] / low[0], lookahead = barmerge.lookahead_on) (the lookahead input is true): without [1], lookahead_on hands every daily bar the final high and low of its three-month bar (as #430661). |
+| 432894 | 动量突破GetString策略GetString-Momentum-Breakthrough-Strategy.md | 1 | Positions are built with strategy.order('Long Signal' / 'Short Signal'), which adds or removes one unit per signal instead of entering or reversing: the position path depends on the order size (as #430596). |
+| 432900 | 多种技术指标动量突破策略multiple-technical-indicators-Momentum-Breakout-Strategy.md | 1 | The MACD filters are request.security(syminfo.tickerid, '5' / '15' / '60', macdLine) on the 1-day header chart: resolutions below the chart's, whose value per bar is undefined (as #430587). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

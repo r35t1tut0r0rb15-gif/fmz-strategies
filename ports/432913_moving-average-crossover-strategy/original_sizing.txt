@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #432913 (基于移动快慢均线交叉策略Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/432913  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Entries with qty 1 and their ATR tick exits  [lines 172-191]
+  172: tickFactor = isJPY? 1e3: 1e5
+  173: sl = atrMulSL*atr(atrPar)*tickFactor
+  174: tp = atrMulTP*atr(atrPar)*tickFactor
+  175: 
+  176: plot(sig1, color=aqua, title="MA1", linewidth=2)
+  177: plot(sig2, color=orange, title="MA2", linewidth=2)
+  178: 
+  179: longCondition = crossunder(sig2, sig1) and year>=yr // change the >= to == if you like exact years not a range
+  180: if (longCondition)
+  181:     strategy.entry("Long", strategy.long, qty=1) // exit trade when SL and TP are hit
+  182:     strategy.exit("Exit Long", "Long", loss=sl, profit=tp)
+  183: if (crossunder(sig1, sig2)) // or when the short condition is met
+  184:     strategy.close("Long")
+  185: 
+  186: shortCondition = crossover(sig2,sig1) and year>=yr // change the >= to == if you like exact years not a range
+  187: if (shortCondition)
+  188:     strategy.entry("Short", strategy.short, qty=1)
+  189:     strategy.exit("Exit Short", "Short", loss=sl, profit=tp)
+  190: if (crossover(sig1,sig2))
+  191:     strategy.close("Short")
