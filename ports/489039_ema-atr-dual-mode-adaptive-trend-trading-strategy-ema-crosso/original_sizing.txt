@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #489039 (双模式自适应趋势交易策略EMA交叉结合ATR波动率风险管理系统-Dual-Mode-Adaptive-Trend-Trading-Strategy-EMA-Crossover-with-ATR-Volatility-Based-Risk-Management-System)
+# Source: https://www.fmz.com/strategy/489039  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin settings  [lines 235-235]
+  235: strategy("DOGE/USDT 5X Adaptive Trend Strategy", overlay=true, margin_long=20, margin_short=20)
+
+## Stop / target / risk inputs and leverage  [lines 245-248]
+  245: slMultiplier = input.float(1.2, "Stop-Loss (ATR Multiple)", minval=0.5, maxval=5.0, step=0.1)
+  246: tpMultiplier = input.float(2.0, "Take-Profit (ATR Multiple)", minval=0.5, maxval=10.0, step=0.1)
+  247: riskPct = input.float(1.0, "Risk Per Trade (%)", minval=0.1, maxval=10.0, step=0.1)
+  248: leverage = 5.0  // Fixed 5x leverage
+
+## Risk-based, leveraged position size  [lines 299-302]
+  299: equity = strategy.equity
+  300: riskAmount = equity * (riskPct / 100)
+  301: stopDistance = atrValue * slMultiplier
+  302: positionSize = math.round((riskAmount / stopDistance) * leverage)
+
+## Entries with the bracket  [lines 309-320]
+  309: if (validLong)
+  310:     strategy.entry("Long", strategy.long, qty=positionSize)
+  311:     stopPrice = close - (atrValue * slMultiplier)
+  312:     targetPrice = close + (atrValue * tpMultiplier)
+  313:     strategy.exit("Exit Long", "Long", stop=stopPrice, limit=targetPrice)
+  314:     lastTradeBarIndex := bar_index
+  315: if (validShort)
+  316:     strategy.entry("Short", strategy.short, qty=positionSize)
+  317:     stopPrice = close + (atrValue * slMultiplier)
+  318:     targetPrice = close - (atrValue * tpMultiplier)
+  319:     strategy.exit("Exit Short", "Short", stop=stopPrice, limit=targetPrice)
+  320:     lastTradeBarIndex := bar_index

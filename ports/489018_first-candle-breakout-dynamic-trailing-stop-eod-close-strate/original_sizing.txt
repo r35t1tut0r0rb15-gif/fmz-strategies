@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #489018 (首个蜡烛突破-动态追踪止损与收盘平仓策略-First-Candle-Breakout-Dynamic-Trailing-Stop-EOD-Close-Strategy)
+# Source: https://www.fmz.com/strategy/489018  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trail multiplier input  [lines 168-168]
+  168: trailStopMultiplier = input(1.5, "Trailing Stop Multiplier")  // 1.5x first candle range
+
+## Close-checked trail (ported as signals)  [lines 206-217]
+  206: if (tradeDirection == 1 and not na(trailStopLevel))
+  207:     trailStopLevel := nz(trailStopLevel, close - trailStopDistance)  // Initialize if na
+  208:     trailStopLevel := math.max(trailStopLevel, close - trailStopDistance)  // Adjust trailing stop up
+  209:     if (close <= trailStopLevel)  // Stop loss hit
+  210:         strategy.close("Buy", comment="Trailing SL Hit")
+  211: 
+  212: // Update trailing stop for short trades
+  213: if (tradeDirection == -1 and not na(trailStopLevel))
+  214:     trailStopLevel := nz(trailStopLevel, close + trailStopDistance)  // Initialize if na
+  215:     trailStopLevel := math.min(trailStopLevel, close + trailStopDistance)  // Adjust trailing stop down
+  216:     if (close >= trailStopLevel)  // Stop loss hit
+  217:         strategy.close("Sell", comment="Trailing SL Hit")

@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #489016 (自适应波动突破回撤交易策略-Adaptive-Volatility-Breakout-Retest-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/489016  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk multiplier input  [lines 180-180]
+  180: riskFactor = input.float(1.0, "Risk Multiplier") // Adjust risk level for quick trades
+
+## Stop / target levels  [lines 183-187]
+  183: longSL = close - (atr * riskFactor) // Tight Stop Loss
+  184: longTP = close + (atr * riskFactor)  // Tight Take Profit
+  185: 
+  186: shortSL = close + (atr * riskFactor) // Tight Stop Loss
+  187: shortTP = close - (atr * riskFactor) // Tight Take Profit
+
+## Entries with the bracket  [lines 190-196]
+  190: if (longCondition)
+  191:     strategy.entry("Long", strategy.long)
+  192:     strategy.exit("LongExit", from_entry="Long", stop=longSL, limit=longTP)
+  193: 
+  194: if (shortCondition)
+  195:     strategy.entry("Short", strategy.short)
+  196:     strategy.exit("ShortExit", from_entry="Short", stop=shortSL, limit=shortTP)

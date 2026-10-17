@@ -2163,6 +2163,51 @@ SIZING = {
         ("Bracket re-issued every bar", 234, 234),
     ],
     489186: [],
+    # ---- FMZ-C, batch L7 (2026-10-17)
+    489007: [],
+    489009: [
+        ("strategy(): 10 % of equity, pyramiding 0", 125, 125),
+    ],
+    489010: [
+        ("Long band-distance trail", 222, 225),
+        ("Short band-distance trail", 239, 242),
+    ],
+    489016: [
+        ("Risk multiplier input", 180, 180),
+        ("Stop / target levels", 183, 187),
+        ("Entries with the bracket", 190, 196),
+    ],
+    489017: [],
+    489018: [
+        ("Trail multiplier input", 168, 168),
+        ("Close-checked trail (ported as signals)", 206, 217),
+    ],
+    489031: [
+        ("strategy(): initial capital, margin", 161, 161),
+        ("Risk input", 166, 166),
+        ("Risk-based quantity", 186, 186),
+        ("Entries with the bracket", 189, 195),
+    ],
+    489032: [
+        ("Entries with the stored ATR levels", 224, 235),
+        ("Exits at the stored levels", 239, 244),
+    ],
+    489034: [
+        ("strategy(): 100 % of equity, initial capital", 110, 110),
+    ],
+    489035: [],
+    489039: [
+        ("strategy(): margin settings", 235, 235),
+        ("Stop / target / risk inputs and leverage", 245, 248),
+        ("Risk-based, leveraged position size", 299, 302),
+        ("Entries with the bracket", 309, 320),
+    ],
+    489041: [
+        ("strategy(): 10 % of equity", 161, 161),
+        ("ATR, reward and multiplier inputs", 167, 169),
+        ("Stop / target levels", 189, 190),
+        ("Entry with the bracket", 193, 195),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2603,6 +2648,9 @@ REJECTED_ON_READING = {
               "60-minute securities on a 2-day chart (lower timeframes; as #430765)"),
     489150: ("1", "grid / averaging-in with partial exits: strategy.close(\"Buy\", qty=...) sells part "
               "of the position at each grid step"),
+    # ---- FMZ-C, batch L7 (2026-10-17)
+    489006: ("1", "5- and 15-minute securities on a 2-day chart (request.security(..., \"5\" / \"15\", "
+              "sma(close, 50))); as #430765"),
 }
 
 DUPLICATE_ON_READING = {

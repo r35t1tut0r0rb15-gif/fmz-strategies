@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #489010 (多层级布林带趋势跟踪与反转交易策略-Multi-level-Bollinger-Bands-Trend-Following-and-Reversal-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/489010  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Long band-distance trail  [lines 222-225]
+  222:     distanceLong = longEntryPrice - lower
+  223:     trailPriceLong = longEntryPrice + (distanceLong * 2)  // 假設 2 倍風險距離作為觸發點，可調整
+  224:     trailOffsetLong = distanceLong * (1 - Z / 100)
+  225:     strategy.exit("Long Trail", "Long", trail_price=trailPriceLong, trail_offset=trailOffsetLong)
+
+## Short band-distance trail  [lines 239-242]
+  239:     distanceShort = upper - shortEntryPrice
+  240:     trailPriceShort = shortEntryPrice - (distanceShort * 2)  // 假設 2 倍風險距離作為觸發點，可調整
+  241:     trailOffsetShort = distanceShort * (1 - Z / 100)
+  242:     strategy.exit("Short Trail", "Short", trail_price=trailPriceShort, trail_offset=trailOffsetShort)

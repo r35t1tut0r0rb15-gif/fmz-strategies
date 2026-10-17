@@ -1,0 +1,21 @@
+# Original sizing and money-management code, FMZ #489031 (自动化斐波那契回撤交易系统策略-Automated-Fibonacci-Retracement-Trading-System-Strategy)
+# Source: https://www.fmz.com/strategy/489031  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital, margin  [lines 161-161]
+  161: strategy("Estrategia Fibonacci con Señales", overlay=true, initial_capital=100, currency=currency.USD, margin_long=100, margin_short=100)
+
+## Risk input  [lines 166-166]
+  166: riskPercentage = input.float(1.0, "Riesgo por Operación %", step=0.5)
+
+## Risk-based quantity  [lines 186-186]
+  186: positionSize = (strategy.equity * riskPercentage/100) / (close * 0.01)
+
+## Entries with the bracket  [lines 189-195]
+  189: if (longCondition)
+  190:     strategy.entry("Long", strategy.long, qty=positionSize)
+  191:     strategy.exit("SL/TP Long", "Long", stop=close*0.99, limit=close*1.02)
+  192: 
+  193: if (shortCondition)
+  194:     strategy.entry("Short", strategy.short, qty=positionSize)
+  195:     strategy.exit("SL/TP Short", "Short", stop=close*1.01, limit=close*0.98)

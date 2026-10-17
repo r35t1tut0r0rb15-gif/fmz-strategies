@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #489034 (均线交叉空头反转量化策略SMA20-50-智能空单交易系统-SMA20-50-Bearish-Trend-Reversal-Quantitative-Trading-System)
+# Source: https://www.fmz.com/strategy/489034  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, initial capital  [lines 110-110]
+  110: strategy("SMA20/50 Short-Only Strategy", overlay=true, initial_capital=5000, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
