@@ -1,0 +1,30 @@
+# Original sizing and money-management code, FMZ #488543 (动态多维度趋势追踪与量化交易策略-Dynamic-Multi-Dimensional-Trend-Tracking-and-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/488543  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): equity percentage  [lines 107-107]
+  107: strategy("SOL Scalper - Supertrend + EMA + RSI (One Position at a Time)", overlay=true, initial_capital=1000, default_qty_type=strategy.percent_of_equity, default_qty_value=10, commission_type=strategy.commission.percent, commission_value=0.075)
+
+## Stop / target inputs  [lines 114-115]
+  114: slPercent = input.float(1, title="Stop Loss (%)", minval=0.1, step=0.1) / 100
+  115: tpMultiplier = input.float(3.0, title="Take Profit Multiplier", minval=1.0)
+
+## Stop and target distances  [lines 136-137]
+  136: stopLoss = close * slPercent
+  137: takeProfit = atr * tpMultiplier
+
+## Gated entries with the bracket  [lines 143-156]
+  143: if (not inPosition) // Only enter a new trade if no position is open
+  144:     if (longCondition)
+  145:         strategy.entry("Long", strategy.long)
+  146:         strategy.exit("Long Exit", "Long", stop=close - stopLoss, limit=close + takeProfit)
+  147:         inPosition := true // Set inPosition to true when a trade is opened
+  148: 
+  149:     if (shortCondition)
+  150:         strategy.entry("Short", strategy.short)
+  151:         strategy.exit("Short Exit", "Short", stop=close + stopLoss, limit=close - takeProfit)
+  152:         inPosition := true // Set inPosition to true when a trade is opened
+  153: 
+  154: // Reset inPosition when the trade is closed
+  155: if (strategy.position_size == 0)
+  156:     inPosition := false

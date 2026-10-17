@@ -11,9 +11,9 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2747 |
+| PORT_CANDIDATE | 2744 |
 | REJECTED | 994 |
-| PORTED | 883 |
+| PORTED | 886 |
 | HELD_NEEDS_VOLUME | 557 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
@@ -922,6 +922,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430988 | `ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/` | PineScript | supertrend | none | mult x2, fisher_level x2 | 4 |
 | 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
 | 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
+| 488537 | `ports/488537_vishal-vishal-adaptive-multi-indicator-trading-strategy/` | PineScript | multi_indicator_confluence | none | st_factor x2, sar_max x2 | 4 |
+| 488541 | `ports/488541_dynamic-bollinger-bands-breakout-trend-tracking-strategy/` | PineScript | bollinger_breakout | coarse_bar_stop | mult x2, sl_pct x2 | 4 |
+| 488543 | `ports/488543_dynamic-multi-dimensional-trend-tracking-and-quantitative-tr/` | PineScript | supertrend | trailing_stop_pending | st_factor x2, tp_mult x2 | 4 |
 | 488848 | `ports/488848_opening-bell-high-low-breakout-dynamic-trailing-strategy/` | PineScript | momentum_breakout | none | session_tz x2, trail_atr x2 | 4 |
 | 488850 | `ports/488850_15-15-minute-breakout-multi-timeframe-synergy-strategy-with/` | PineScript | momentum_breakout | trailing_stop_pending | rr x2 | 2 |
 | 488883 | `ports/488883_advanced-dynamic-range-breakout-trend-following-strategy/` | PineScript | volatility_channel_breakout | coarse_bar_stop | mult x2, sl_atr x2 | 4 |
@@ -1011,7 +1014,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491914 | `ports/491914_price-action-structural-breakout-strategy-with-trailing-stop/` | PineScript | price_action_breakout | trailing_stop | trail_k x2, trail_activate x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | macd_divergence | coarse_bar_stop, trailing_stop_pending | method x2, lb x2 | 4 |
 | 492009 | `ports/492009_atr-dual-ema-filtered-atr-adaptive-trend-following-strategy/` | PineScript | volatility_stop_cross | trailing_stop | atr_mult x2, trail_k x2 | 4 |
-| | **883 ports** | | | | | **5151** |
+| | **886 ports** | | | | | **5163** |
 
 ## Rejected on reading
 

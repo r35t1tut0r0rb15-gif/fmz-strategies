@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #488541 (动态布林带突破趋势追踪策略-Dynamic-Bollinger-Bands-Breakout-Trend-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/488541  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## TP / SL percent inputs  [lines 145-146]
+  145: takeProfitPerc = input.float(5, title="Take Profit %") / 100
+  146: stopLossPerc = input.float(2, title="Stop Loss %") / 100
+
+## Bracket levels from the average price  [lines 149-152]
+  149: longTP = strategy.position_avg_price * (1 + takeProfitPerc)
+  150: longSL = strategy.position_avg_price * (1 - stopLossPerc)
+  151: shortTP = strategy.position_avg_price * (1 - takeProfitPerc)
+  152: shortSL = strategy.position_avg_price * (1 + stopLossPerc)
+
+## Exits re-issued every bar  [lines 155-156]
+  155: strategy.exit("Long TP/SL", from_entry="Long", limit=longTP, stop=longSL)
+  156: strategy.exit("Short TP/SL", from_entry="Short", limit=shortTP, stop=shortSL)

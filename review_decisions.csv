@@ -923,6 +923,9 @@ fmz_id,file,final_outcome,criterion,reason
 430988,基于SuperTrend和Fisher变换的趋势跟随长线策略Trend-Following-Long-Term-Strategy-Based-on-SuperTrend-and-Fisher-Transform.md,PORTED,,ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/
 430998,木星与土星动能MA交叉过滤策略Jupiter-and-Saturn-Momentum-MA-Crossover-Filtered-Strategy.md,PORTED,,ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/
 431000,跨时间段移动量策略Intraday-Pivot-Breakout-Strategy.md,PORTED,,ports/431000_intraday-pivot-breakout-strategy/
+488537,Vishal-自适应多指标交易策略-Vishal-Adaptive-Multi-Indicator-Trading-Strategy.md,PORTED,,ports/488537_vishal-vishal-adaptive-multi-indicator-trading-strategy/
+488541,动态布林带突破趋势追踪策略-Dynamic-Bollinger-Bands-Breakout-Trend-Tracking-Strategy.md,PORTED,,ports/488541_dynamic-bollinger-bands-breakout-trend-tracking-strategy/
+488543,动态多维度趋势追踪与量化交易策略-Dynamic-Multi-Dimensional-Trend-Tracking-and-Quantitative-Trading-Strategy.md,PORTED,,ports/488543_dynamic-multi-dimensional-trend-tracking-and-quantitative-tr/
 488848,早盘高低点突破动态追踪策略-Opening-Bell-High-Low-Breakout-Dynamic-Trailing-Strategy.md,PORTED,,ports/488848_opening-bell-high-low-breakout-dynamic-trailing-strategy/
 488850,15分钟突破多周期协同策略基于风险收益比优化模型15-Minute-Breakout-Multi-Timeframe-Synergy-Strategy-with-Risk-Reward-Optimization-Model.md,PORTED,,ports/488850_15-15-minute-breakout-multi-timeframe-synergy-strategy-with/
 488883,高级动态范围突破趋势追踪策略-Advanced-Dynamic-Range-Breakout-Trend-Following-Strategy.md,PORTED,,ports/488883_advanced-dynamic-range-breakout-trend-following-strategy/

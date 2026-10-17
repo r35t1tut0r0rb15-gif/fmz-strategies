@@ -2242,6 +2242,21 @@ SIZING = {
         ("TP / SL factor inputs", 150, 151),
         ("Flat-only entries with the zone bracket", 196, 208),
     ],
+    # ---- FMZ-C, batch L9 (2026-10-17)
+    488537: [
+        ("strategy(): margin, capital, equity percentage", 115, 115),
+    ],
+    488541: [
+        ("TP / SL percent inputs", 145, 146),
+        ("Bracket levels from the average price", 149, 152),
+        ("Exits re-issued every bar", 155, 156),
+    ],
+    488543: [
+        ("strategy(): equity percentage", 107, 107),
+        ("Stop / target inputs", 114, 115),
+        ("Stop and target distances", 136, 137),
+        ("Gated entries with the bracket", 143, 156),
+    ],
 }
 
 REJECTED_ON_READING = {
