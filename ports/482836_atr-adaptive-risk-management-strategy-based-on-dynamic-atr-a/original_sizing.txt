@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #482836 (基于动态ATR和双均线交叉的自适应风险管理策略-Adaptive-Risk-Management-Strategy-Based-on-Dynamic-ATR-and-Moving-Average-Crossover)
+# Source: https://www.fmz.com/strategy/482836  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 101-101]
+  101: strategy("Profitable Moving Average Crossover Strategy", shorttitle="Profitable MA Crossover", overlay=true)
+
+## Risk inputs  [lines 117-122]
+  117: riskRewardRatio = input.float(2, title="Risk-Reward Ratio", minval=1)
+  118: riskPercent = input.float(1, title="Risk Per Trade (%)", minval=0.1)
+  119: 
+  120: // ATR settings
+  121: atrLength = input.int(14, title="ATR Length")
+  122: atrMultiplier = input.float(1.5, title="ATR Multiplier for Stop-Loss and Take-Profit")
+
+## Entries with the bracket  [lines 156-171]
+  156: if (bullishCross and isTimeValid and not isCooldownActive)
+  157:     entryPrice = close
+  158:     stopLossBuy = entryPrice - stopLossOffset
+  159:     takeProfitBuy = entryPrice + takeProfitOffset
+  160:     strategy.entry("Buy", strategy.long)
+  161:     strategy.exit("TakeProfit/StopLoss", "Buy", stop=stopLossBuy, limit=takeProfitBuy)
+  162:     lastSignalBar := bar_index
+  163: 
+  164: // Handle sell signals
+  165: if (bearishCross and isTimeValid and not isCooldownActive)
+  166:     entryPrice = close
+  167:     stopLossSell = entryPrice + stopLossOffset
+  168:     takeProfitSell = entryPrice - takeProfitOffset
+  169:     strategy.entry("Sell", strategy.short)
+  170:     strategy.exit("TakeProfit/StopLoss", "Sell", stop=stopLossSell, limit=takeProfitSell)
+  171:     lastSignalBar := bar_index

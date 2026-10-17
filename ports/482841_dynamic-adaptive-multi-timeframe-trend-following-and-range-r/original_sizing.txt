@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #482841 (动态自适应多时间周期趋势跟踪与震荡反转复合策略-Dynamic-Adaptive-Multi-Timeframe-Trend-Following-and-Range-Reversal-Hybrid-Strategy)
+# Source: https://www.fmz.com/strategy/482841  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): defaults  [lines 101-101]
+  101: strategy("Refined Ichimoku with MACD and RSI Strategy", overlay=true)
+
+## ATR stop inputs  [lines 121-122]
+  121: atrLength = input.int(14, title="ATR Length", group="Risk Management")
+  122: atrMultiplier = input.float(2.0, title="ATR Multiplier", group="Risk Management")
+
+## Entries with the stops  [lines 163-177]
+  163: if trendLongCondition
+  164:     strategy.entry("Trend Long", strategy.long)
+  165:     strategy.exit("Exit Trend Long", from_entry="Trend Long", stop=longStopLoss)
+  166: 
+  167: if trendShortCondition
+  168:     strategy.entry("Trend Short", strategy.short)
+  169:     strategy.exit("Exit Trend Short", from_entry="Trend Short", stop=shortStopLoss)
+  170: 
+  171: if rangeLongCondition
+  172:     strategy.entry("Range Long", strategy.long)
+  173:     strategy.exit("Exit Range Long", from_entry="Range Long", stop=longStopLoss)
+  174: 
+  175: if rangeShortCondition
+  176:     strategy.entry("Range Short", strategy.short)
+  177:     strategy.exit("Exit Range Short", from_entry="Range Short", stop=shortStopLoss)

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482831 (动量增强型超级趋势-随机双指标交易策略-Momentum-Enhanced-SuperTrend-Stochastic-Dual-Indicator-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482831  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 132-132]
+  132: strategy("SuperTrend + Stochastic Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)

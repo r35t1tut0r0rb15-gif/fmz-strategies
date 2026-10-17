@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #482824 (高级布林带指标组合动态趋势突破交易策略-Advanced-Bollinger-Bands-Multi-Indicator-Dynamic-Trend-Breakout-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482824  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 1 % of equity  [lines 117-117]
+  117: strategy("Optimized Bollinger Bands Breakout Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=1)
+
+## Stop / trail inputs  [lines 147-155]
+  147: stopLossMultiplier = input(1.5, title="Stop Loss (ATR Multiplier)") 
+  148: atrValue = ta.atr(14)
+  149: longSL = close - (atrValue * stopLossMultiplier)
+  150: shortSL = close + (atrValue * stopLossMultiplier)
+  151: 
+  152: // ✅ Trailing Stop
+  153: trailMultiplier = input(1, title="Trailing Stop Multiplier")
+  154: longTrailStop = close - (atrValue * trailMultiplier)
+  155: shortTrailStop = close + (atrValue * trailMultiplier)
+
+## Entries with the exits  [lines 158-164]
+  158: if (longCondition)
+  159:     strategy.entry("Long", strategy.long)
+  160:     strategy.exit("Exit Long", from_entry="Long", stop=longSL, trail_price=longTrailStop, trail_offset=atrValue * 0.5)
+  161: 
+  162: if (shortCondition)
+  163:     strategy.entry("Short", strategy.short)
+  164:     strategy.exit("Exit Short", from_entry="Short", stop=shortSL, trail_price=shortTrailStop, trail_offset=atrValue * 0.5)

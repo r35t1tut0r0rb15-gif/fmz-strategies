@@ -2986,6 +2986,50 @@ SIZING = {
         ("Risk / RR / stop inputs", 142, 144),
         ("Exits from the entry price", 176, 200),
     ],
+    # ---- FMZ-C, batch L30 (2026-10-17)
+    482820: [
+        ("strategy(): defaults", 115, 115),
+        ("Bracket re-issued every bar", 155, 160),
+    ],
+    482822: [
+        ("strategy(): 100 % of equity", 115, 115),
+        ("Profit stages and inert closes", 162, 201),
+    ],
+    482824: [
+        ("strategy(): 1 % of equity", 117, 117),
+        ("Stop / trail inputs", 147, 155),
+        ("Entries with the exits", 158, 164),
+    ],
+    482826: [
+        ("strategy(): defaults", 92, 92),
+    ],
+    482830: [
+        ("strategy(): 100 % of equity, 0.1 % commission", 121, 121),
+    ],
+    482831: [
+        ("strategy(): 10 % of equity", 132, 132),
+    ],
+    482832: [
+        ("strategy(): defaults", 162, 162),
+    ],
+    482833: [
+        ("strategy(): 10 % of equity", 103, 103),
+    ],
+    482836: [
+        ("strategy(): defaults", 101, 101),
+        ("Risk inputs", 117, 122),
+        ("Entries with the bracket", 156, 171),
+    ],
+    482840: [
+        ("strategy(): defaults", 102, 102),
+        ("Point stop inputs (inert)", 106, 107),
+        ("Exits (never placed)", 133, 146),
+    ],
+    482841: [
+        ("strategy(): defaults", 101, 101),
+        ("ATR stop inputs", 121, 122),
+        ("Entries with the stops", 163, 177),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3522,6 +3566,14 @@ REJECTED_ON_READING = {
     # ---- FMZ-C, batch L24 (2026-10-17)
     482916: ("1", "pyramiding adds (up to 15 entries) and a partial close: strategy.close('Buy', "
               "qty_percent = 50) at the target (as #365389, #490570)"),
+    # ---- FMZ-C, batch L30 (2026-10-17)
+    482817: ("1", "a LOWER timeframe on a higher chart: the spike test runs through "
+              "request.security(..., '60', ...) on the 3-hour chart (as #430765); the bracket "
+              "also comes from strategy.position_avg_price"),
+    482835: ("1", "not a market strategy: the signal is prediction = math.random() x 2 - 1, so the "
+              "entries are random draws, not reproducible (as #483022)"),
+    482837: ("1", "a LOWER timeframe on a higher chart: the higher-timeframe stochastic is "
+              "request.security(..., '30', ...) on the 1-day chart (as #430765)"),
 }
 
 DUPLICATE_ON_READING = {
