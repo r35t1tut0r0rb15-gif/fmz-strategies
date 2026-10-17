@@ -2156,6 +2156,28 @@ SIZING = {
         ("Entries with qty 10 and their exits", 262, 266),
     ],
     432346: [],
+    # ---- FMZ-C, batch C52 (2026-10-17)
+    432354: [
+        ("strategy(): 100 % of equity", 201, 201),
+    ],
+    432356: [],
+    432357: [
+        ("strategy(): fixed quantity 5, commission", 197, 197),
+    ],
+    432358: [
+        ("strategy(): 100 % of equity", 165, 165),
+        ("Target / stop inputs (their exits are commented out)", 195, 202),
+    ],
+    432361: [
+        ("Stop-loss input and order", 192, 204),
+    ],
+    432416: [
+        ("strategy(): 100 % of equity, commission", 157, 157),
+    ],
+    432421: [
+        ("strategy(): 10,000 USD cash per trade", 171, 171),
+    ],
+    432423: [],
 }
 
 REJECTED_ON_READING = {
@@ -2618,6 +2640,23 @@ REJECTED_ON_READING = {
     432341: ("1", "The signal averages request.security(tickerid, '1' / '5' / '15' / '30' / '45' / "
               "'60', vwma(rsi, 15)) on the 1-hour header chart: resolutions below the chart's, "
               "whose value per bar is undefined (as #430587); it also weights by volume (vwma)."),
+    # ---- FMZ-C, batch C52 (2026-10-17)
+    432350: ("3", "The signal is the RSI of request.security('CRYPTOCAP:TOTAL2', '120', close[1]) (a "
+              "crypto market-cap index) divided by the chart's RSI: crypto-market index data the "
+              "project's single-symbol bars do not carry (as #430742). Stored in flagged/ (rule "
+              "C7)."),
+    432351: ("2", "A fixed grid: ten buy levels 1 % apart below a hard-coded starting price of 40,500 "
+              "and their sell levels, each its own entry id: absolute price levels (and a ladder "
+              "of stacked entries), not generic."),
+    432362: ("1", "The trend filters are request.security(syminfo.tickerid, '1' / '5' / '15' / '30' / "
+              "'60', ema(...)) on the 1-day header chart: resolutions below the chart's, whose "
+              "value per bar is undefined (as #430587)."),
+    432363: ("1", "Every entry needs strategy.equity >= ema(strategy.equity, 40): an equity-curve "
+              "filter on the account's own P&L, which depends on the order size and the "
+              "commission (as #427139)."),
+    432420: ("1", "The only exit is strategy.exit('Exit', limit = close) placed when the close "
+              "condition holds: a resting limit at the signal bar's close, filled inside the next "
+              "bar at its own price (as #427119)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -2645,4 +2684,6 @@ HELD_ON_READING = {
     430588: ("8", "The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C45 (2026-10-17)
     431414: ("8", "The trend line is vwma(close, 33) and its RSI: a volume-weighted average (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C52 (2026-10-17)
+    432347: ("8", "The band basis is vwma(hlc3, 50): a volume-weighted average (check 8, held with the other volume users)."),
 }

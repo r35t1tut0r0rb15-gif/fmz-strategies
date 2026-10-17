@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #432358 (Ichimoku-Kinko-Hyo交易策略Ichimoku-Kinko-Hyo-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/432358  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 165-165]
+  165: strategy("Ichimoku system", overlay=true, initial_capital = 100000, default_qty_type = strategy.percent_of_equity, default_qty_value=100)
+
+## Target / stop inputs (their exits are commented out)  [lines 195-202]
+  195: profit = input(3.5, "enter target in % after entry", step = 0.5)
+  196: 
+  197: stoploss = input(1.5, "enter Stoploss in % after entry", step = 0.5)
+  198: 
+  199: 
+  200: sl = stoploss /100 * strategy.position_avg_price / syminfo.mintick
+  201: 
+  202: profitt = profit /100 * strategy.position_avg_price / syminfo.mintick

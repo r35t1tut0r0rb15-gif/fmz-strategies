@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2721 |
+| PORT_CANDIDATE | 2707 |
 | REJECTED | 994 |
-| PORTED | 907 |
-| HELD_NEEDS_VOLUME | 557 |
+| PORTED | 915 |
+| HELD_NEEDS_VOLUME | 558 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 122 |
+| REJECTED_ON_READING | 127 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1035,7 +1035,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 432340 | `ports/432340_trend-breakout-strategy-based-on-bollinger-bands/` | PineScript | volatility_channel_breakout | none | length x3 | 3 |
 | 432342 | `ports/432342_adaptive-bollinger-trend-tracking-strategy/` | PineScript | mean_reversion_band | trailing_stop | length x2, sl_atr x2 | 4 |
 | 432346 | `ports/432346_momentum-trend-following-oscillation-strategy/` | PineScript | combo_123_reversal | none | length x2, sig2 x2 | 4 |
-| | **907 ports** | | | | | **5257** |
+| 432354 | `ports/432354_k-candlestick-body-based-dual-thrust-strategy/` | PineScript | candle_pattern | none | body_len x2, use_body x2 | 4 |
+| 432356 | `ports/432356_dual-moving-average-crossover-momentum-strategy/` | PineScript | macd_momentum | none | fast x2, slow x2 | 4 |
+| 432357 | `ports/432357_ma-mz-ma-cross-multiple-timeframe-strategy/` | PineScript | multi_timeframe_ma | none | fast_len x2, slow_len x2 | 4 |
+| 432358 | `ports/432358_ichimoku-kinko-hyo-ichimoku-kinko-hyo-trading-strategy/` | PineScript | ichimoku | none | conv x2, span_b x2 | 4 |
+| 432361 | `ports/432361_macd-macd-trend-following-strategy/` | PineScript | macd_momentum | none | buy_atr x2, sell_atr x2 | 4 |
+| 432416 | `ports/432416_bilinear-regression-trend-following-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 432421 | `ports/432421_adaptive-moving-average-quantitative-strategy/` | PineScript | ma_trend | none | lookback x2, smoothing x2 | 4 |
+| 432423 | `ports/432423_multiple-trend-tracking-strategy/` | PineScript | multi_indicator_confluence | none | rsi_len x2, fast x2 | 4 |
+| | **915 ports** | | | | | **5289** |
 
 ## Rejected on reading
 
@@ -1163,6 +1171,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 432308 | 穿越BB通道突破SMA200均线的趋势跟踪策略BB21_SMA200-Trend-Following-Strategy.md | 1 | Besides the full exits, strategy.close(qty_percent = 30) takes 30 % of the long off at a target: a partial exit cannot be expressed as one net position (as #428066). |
 | 432339 | 基于适应性正则化移动平均线的跨市场套利策略Adaptive-Regularized-Moving-Average-Cross-Market-Arbitrage-Strategy.md | 2 | The signal is a min-max scaling of pow(close x 5, -close): it depends on the absolute price level and underflows to a constant for prices above a few hundred (BTC on the header), so scaleMinimax divides 0 by 0; not generic across instruments. |
 | 432341 | 多时间框架RSI均线交叉策略Multi-Timeframe-RSI-Moving-Average-Crossover-Strategy.md | 1 | The signal averages request.security(tickerid, '1' / '5' / '15' / '30' / '45' / '60', vwma(rsi, 15)) on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #430587); it also weights by volume (vwma). |
+| 432350 | 相对强弱指数多空策略Relative-Strength-Index-Long-Short-Strategy.md | 3 | The signal is the RSI of request.security('CRYPTOCAP:TOTAL2', '120', close[1]) (a crypto market-cap index) divided by the chart's RSI: crypto-market index data the project's single-symbol bars do not carry (as #430742). Stored in flagged/ (rule C7). |
+| 432351 | 固定网格交易策略Fixed-Grid-Trading-Strategy.md | 2 | A fixed grid: ten buy levels 1 % apart below a hard-coded starting price of 40,500 and their sell levels, each its own entry id: absolute price levels (and a ladder of stacked entries), not generic. |
+| 432362 | 多时间框架趋势追踪日内scalping策略Multi-Timeframe-Trend-Tracking-Intraday-Scalping-Strategy.md | 1 | The trend filters are request.security(syminfo.tickerid, '1' / '5' / '15' / '30' / '60', ema(...)) on the 1-day header chart: resolutions below the chart's, whose value per bar is undefined (as #430587). |
+| 432363 | 双移动均线交叉策略Dual-Moving-Average-Crossover-Strategy.md | 1 | Every entry needs strategy.equity >= ema(strategy.equity, 40): an equity-curve filter on the account's own P&L, which depends on the order size and the commission (as #427139). |
+| 432420 | 基于趋势的循环交易策略Cycle-Position-Trend-Following-Strategy.md | 1 | The only exit is strategy.exit('Exit', limit = close) placed when the close condition holds: a resting limit at the signal bar's close, filled inside the next bar at its own price (as #427119). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

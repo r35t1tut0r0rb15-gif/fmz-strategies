@@ -121,6 +121,11 @@ fmz_id,file,final_outcome,criterion,reason
 432308,穿越BB通道突破SMA200均线的趋势跟踪策略BB21_SMA200-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"Besides the full exits, strategy.close(qty_percent = 30) takes 30 % of the long off at a target: a partial exit cannot be expressed as one net position (as #428066)."
 432339,基于适应性正则化移动平均线的跨市场套利策略Adaptive-Regularized-Moving-Average-Cross-Market-Arbitrage-Strategy.md,REJECTED_ON_READING,2,"The signal is a min-max scaling of pow(close x 5, -close): it depends on the absolute price level and underflows to a constant for prices above a few hundred (BTC on the header), so scaleMinimax divides 0 by 0; not generic across instruments."
 432341,多时间框架RSI均线交叉策略Multi-Timeframe-RSI-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"The signal averages request.security(tickerid, '1' / '5' / '15' / '30' / '45' / '60', vwma(rsi, 15)) on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #430587); it also weights by volume (vwma)."
+432350,相对强弱指数多空策略Relative-Strength-Index-Long-Short-Strategy.md,REJECTED_ON_READING,3,"The signal is the RSI of request.security('CRYPTOCAP:TOTAL2', '120', close[1]) (a crypto market-cap index) divided by the chart's RSI: crypto-market index data the project's single-symbol bars do not carry (as #430742). Stored in flagged/ (rule C7)."
+432351,固定网格交易策略Fixed-Grid-Trading-Strategy.md,REJECTED_ON_READING,2,"A fixed grid: ten buy levels 1 % apart below a hard-coded starting price of 40,500 and their sell levels, each its own entry id: absolute price levels (and a ladder of stacked entries), not generic."
+432362,多时间框架趋势追踪日内scalping策略Multi-Timeframe-Trend-Tracking-Intraday-Scalping-Strategy.md,REJECTED_ON_READING,1,"The trend filters are request.security(syminfo.tickerid, '1' / '5' / '15' / '30' / '60', ema(...)) on the 1-day header chart: resolutions below the chart's, whose value per bar is undefined (as #430587)."
+432363,双移动均线交叉策略Dual-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"Every entry needs strategy.equity >= ema(strategy.equity, 40): an equity-curve filter on the account's own P&L, which depends on the order size and the commission (as #427139)."
+432420,基于趋势的循环交易策略Cycle-Position-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"The only exit is strategy.exit('Exit', limit = close) placed when the close condition holds: a resting limit at the signal bar's close, filled inside the next bar at its own price (as #427119)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -130,6 +135,7 @@ fmz_id,file,final_outcome,criterion,reason
 430551,动态RSI矩形Grid策略RSI-Box-Grid-Strategy.md,HELD_NEEDS_VOLUME,8,"The grid lines are vwma(highest / lowest, 14): volume-weighted averages (check 8, held with the other volume users)."
 430588,均线交易策略Trend-Trading-Strategy-Based-on-Moving-Average.md,HELD_NEEDS_VOLUME,8,"The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."
 431414,基于VWMA及ATR的趋势跟踪策略VWMA-and-ATR-Trend-Following-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend line is vwma(close, 33) and its RSI: a volume-weighted average (check 8, held with the other volume users)."
+432347,基于布林带黄金分割法的均衡回归交易策略Mean-Reversion-Trading-Strategy-Based-on-Bollinger-Bands-and-Golden-Ratio.md,HELD_NEEDS_VOLUME,8,"The band basis is vwma(hlc3, 50): a volume-weighted average (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -1038,3 +1044,11 @@ fmz_id,file,final_outcome,criterion,reason
 432340,趋势区间突破策略Trend-Breakout-Strategy-Based-on-Bollinger-Bands.md,PORTED,,ports/432340_trend-breakout-strategy-based-on-bollinger-bands/
 432342,自适应布林通道趋势跟踪策略Adaptive-Bollinger-Trend-Tracking-Strategy.md,PORTED,,ports/432342_adaptive-bollinger-trend-tracking-strategy/
 432346,移动平均量价趋势攻击震荡策略Momentum-Trend-Following-Oscillation-Strategy.md,PORTED,,ports/432346_momentum-trend-following-oscillation-strategy/
+432354,基于K线实体的多空策略Candlestick-Body-Based-Dual-Thrust-Strategy.md,PORTED,,ports/432354_k-candlestick-body-based-dual-thrust-strategy/
+432356,双均线交叉动量策略Dual-Moving-Average-Crossover-Momentum-Strategy.md,PORTED,,ports/432356_dual-moving-average-crossover-momentum-strategy/
+432357,多时间框架MA蒙德里安交叉策略MZ-MA-Cross-Multiple-TimeFrame-Strategy.md,PORTED,,ports/432357_ma-mz-ma-cross-multiple-timeframe-strategy/
+432358,Ichimoku-Kinko-Hyo交易策略Ichimoku-Kinko-Hyo-Trading-Strategy.md,PORTED,,ports/432358_ichimoku-kinko-hyo-ichimoku-kinko-hyo-trading-strategy/
+432361,基于MACD指标的趋势跟踪策略MACD-Trend-Following-Strategy.md,PORTED,,ports/432361_macd-macd-trend-following-strategy/
+432416,双线性回归趋势跟踪策略Bilinear-Regression-Trend-Following-Strategy.md,PORTED,,ports/432416_bilinear-regression-trend-following-strategy/
+432421,自适应移动平均线量化策略Adaptive-Moving-Average-Quantitative-Strategy.md,PORTED,,ports/432421_adaptive-moving-average-quantitative-strategy/
+432423,多重趋势跟踪策略Multiple-Trend-Tracking-Strategy.md,PORTED,,ports/432423_multiple-trend-tracking-strategy/

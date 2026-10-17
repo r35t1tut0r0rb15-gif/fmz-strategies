@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #432357 (多时间框架MA蒙德里安交叉策略MZ-MA-Cross-Multiple-TimeFrame-Strategy)
+# Source: https://www.fmz.com/strategy/432357  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): fixed quantity 5, commission  [lines 197-197]
+  197: strategy(shorttitle="MZ MA Cross",title="MA MTF Cross Strategy", overlay=true, calc_on_order_fills=false, calc_on_every_tick=false, default_qty_type=strategy.fixed, default_qty_value=5,commission_value=0.1)
