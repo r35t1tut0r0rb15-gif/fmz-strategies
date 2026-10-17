@@ -2321,6 +2321,33 @@ SIZING = {
     433029: [
         ("strategy(): 100 % of equity, commission", 145, 155),
     ],
+    # ---- FMZ-C, batch C58 (2026-10-17)
+    433068: [
+        ("strategy(): 100 % of equity", 157, 157),
+    ],
+    433069: [],
+    433075: [],
+    433079: [],
+    433094: [],
+    433097: [],
+    433101: [
+        ("strategy(): 100 % of equity, commission", 178, 178),
+    ],
+    433104: [],
+    433113: [
+        ("Risk-based lot", 252, 269),
+        ("Entries with qty 1 and their tick exits", 278, 282),
+    ],
+    433117: [
+        ("Capital and reinvestment bookkeeping", 189, 215),
+    ],
+    433122: [
+        ("strategy(): 20 % of equity, commission", 185, 193),
+        ("Profit / loss parameters and exits", 211, 334),
+    ],
+    433123: [
+        ("Stop / target inputs and exits", 166, 177),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2833,6 +2860,14 @@ REJECTED_ON_READING = {
               "is beyond strategy.position_avg_price of the stacked position (useus), so the "
               "signals depend on the averaged price of the ladder (a pyramided ladder, as "
               "#426570)."),
+    # ---- FMZ-C, batch C58 (2026-10-17)
+    433074: ("1", "The signals compare the close with request.security(syminfo.tickerid, '1', ...) "
+              "and request.security(syminfo.tickerid, '5', ...) supertrends on the 1-hour header "
+              "chart: resolutions below the chart's, whose value per bar is undefined (as "
+              "#430587)."),
+    433108: ("1", "Entries are strategy.order('多(buy)' / '空(sell)') calls on four grid levels with no "
+              "pyramiding limit, so each level touched adds a unit and an opposite order reduces "
+              "rather than reverses: the position path depends on the order sizes (as #430596)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -22,8 +22,10 @@ Interpretation choices (Pine rules in SURVEY_README.md)
       the source sizes the trail distances from each bar's close in ticks (re-issued every bar), the
       house from the fill price (as #430671).
     * The exit cross of one side is the entry cross of the other, so a band cross reverses: REVERSAL
-      INTENDED. The daily-close ROC filter and the trend filter are off by default; the
-      max-intraday-loss input and the monthly results table are not trading rules.
+      INTENDED. The crosses are the signals (no held state), so after a stop, target or trail exit
+      the next qualifying cross enters again (corrected in batch C58). The daily-close ROC filter and
+      the trend filter are off by default; the max-intraday-loss input and the monthly results table
+      are not trading rules.
     * Stop module: portfolio_kwargs {} (driver D4). Daily bars are broker days (17:00
       America/New_York), stamped with their first minute; stops on daily bars: mark coarse_bar_stop.
       FREQ = "1D" from the backtest header.
@@ -91,23 +93,13 @@ def simulate(bars_df, **params):
     xo_up = ((c > up) & (c.shift(1) <= up.shift(1))).to_numpy()
     xu_dn = ((c < dn) & (c.shift(1) >= dn.shift(1))).to_numpy()
     vo = vol_ok.to_numpy()
-    m = len(c)
-    tgt = np.zeros(m, dtype=np.int8)
-    pos = 0
-    for i in range(m):
-        if pos == 1 and xu_dn[i]:
-            pos = 0
-        elif pos == -1 and xo_up[i]:
-            pos = 0
-        if xo_up[i] and vo[i]:
-            pos = 1
-        elif xu_dn[i] and vo[i]:
-            pos = -1
-        tgt[i] = pos
-    prev = np.concatenate(([0], tgt[:-1]))
+    # the band crosses themselves are the signals (no held state), so after a stop, target or
+    # trail exit the next qualifying cross enters again; a cross that opens the other side
+    # reverses on its own, and a plain exit is emitted only when it does not
     ix = bars_df.index
-    return (pd.Series((tgt == 1) & (prev != 1), index=ix), pd.Series((prev == 1) & (tgt == 0), index=ix),
-            pd.Series((tgt == -1) & (prev != -1), index=ix), pd.Series((prev == -1) & (tgt == 0), index=ix))
+    le, se = xo_up & vo, xu_dn & vo
+    return (pd.Series(le, index=ix), pd.Series(xu_dn & ~se, index=ix),
+            pd.Series(se, index=ix), pd.Series(xo_up & ~le, index=ix))
 
 
 def stops(bars_df, **params):

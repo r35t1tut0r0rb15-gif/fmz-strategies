@@ -134,6 +134,8 @@ fmz_id,file,final_outcome,criterion,reason
 432988,基于波动带震荡器的反转跟踪策略CCTBBO-Reversal-Tracking-Strategy.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 request.security(syminfo.tickerid, '1440', high) without [1] behaves as lookahead_on, so on every 45-minute bar the oscillator uses the final high of the current day, not known until the day ends (SURVEY_README request.security rule, as #430661)."
 432992,布林带金叉死叉策略Bollinger-Break-Out-Strategy-with-Pyramiding.md,REJECTED_ON_READING,1,"pyramiding = 4: further entries are added while the price is below the averaged-down level, and the stop, target and add levels are all measured from strategy.position_avg_price of the stacked units (a pyramided ladder, as #426570)."
 433015,基于均线的原始趋势跟踪策略ORIGINAL-PRIMITIVE-TREND-TRACKING-STRATEGY-BASED-ON-MOVING-AVERAGE.md,REJECTED_ON_READING,1,"pyramiding = 10: the long and short signals add further units only while the close is beyond strategy.position_avg_price of the stacked position (useus), so the signals depend on the averaged price of the ladder (a pyramided ladder, as #426570)."
+433074,跨时间框架超级趋势震荡突破策略Cross-Timeframe-SuperTrend-Breakout-Strategy.md,REJECTED_ON_READING,1,"The signals compare the close with request.security(syminfo.tickerid, '1', ...) and request.security(syminfo.tickerid, '5', ...) supertrends on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #430587)."
+433108,高级布林带均线网格趋势追踪策略Advanced-Bollinger-Band-Moving-Average-Grid-Trend-Tracking-Strategy.md,REJECTED_ON_READING,1,"Entries are strategy.order('多(buy)' / '空(sell)') calls on four grid levels with no pyramiding limit, so each level touched adds a unit and an opposite order reduces rather than reverses: the position path depends on the order sizes (as #430596)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1120,3 +1122,15 @@ fmz_id,file,final_outcome,criterion,reason
 433024,基于布林带短期趋势跟踪型策略Bollinger-Bands-Breakout-short-term-trend-following-Strategy.md,PORTED,,ports/433024_bollinger-bands-breakout-short-term-trend-following-strategy/
 433025,月线收盘价与移动均线交叉策略Monthly-Close-Price-and-Moving-Average-Crossover-Strategy.md,PORTED,,ports/433025_monthly-close-price-and-moving-average-crossover-strategy/
 433029,双指数移动平均线交叉策略Dual-Exponential-Moving-Average-Crossover-Strategy.md,PORTED,,ports/433029_dual-exponential-moving-average-crossover-strategy/
+433068,Ichimoku云图量化策略Ichimoku-Cloud-Quant-Strategy.md,PORTED,,ports/433068_ichimoku-ichimoku-cloud-quant-strategy/
+433069,动量反转双轨配对策略Combo-Momentum-Reversal-Dual-Rail-Matching-Strategy.md,PORTED,,ports/433069_combo-momentum-reversal-dual-rail-matching-strategy/
+433075,基于T3和CCI指标的趋势追踪策略T3-CCI-Trend-Tracking-Strategy.md,PORTED,,ports/433075_t3-cci-t3-cci-trend-tracking-strategy/
+433079,基于价格去趋势振荡器的量化交易策略Detrended-Price-Oscillator-Quantitative-Trading-Strategy.md,PORTED,,ports/433079_detrended-price-oscillator-quantitative-trading-strategy/
+433094,平滑移动平均线交叉策略EMA-Crossover-Strategy.md,PORTED,,ports/433094_ema-crossover-strategy/
+433097,基于月度买入日期的量化投资策略Quantitative-Investment-Strategy-Based-on-Monthly-Buy-Date.md,PORTED,,ports/433097_quantitative-investment-strategy-based-on-monthly-buy-date/
+433101,三重SMA自适应K线交叉长线策略Twisted-SMA-Adaptive-Crossover-Long-Line-Strategy.md,PORTED,,ports/433101_sma-k-twisted-sma-adaptive-crossover-long-line-strategy/
+433104,Ichimoku-Kinko-Hyo趋势跟踪策略Ichimoku-Kinko-Hyo-indicator-Balancing-Trend-Strategy.md,PORTED,,ports/433104_ichimoku-kinko-hyo-ichimoku-kinko-hyo-indicator-balancing-tr/
+433113,坚实稳健的移动平均系统策略Solid-Moving-Average-System-Strategy.md,PORTED,,ports/433113_solid-moving-average-system-strategy/
+433117,反向拉斯维加斯定量交易策略Inverse-Las-Vegas-Algorithmic-Trading-Strategy.md,PORTED,,ports/433117_inverse-las-vegas-algorithmic-trading-strategy/
+433122,基于EMA均线的交易策略Traffic-Light-Trading-Strategy-Based-on-EMA.md,PORTED,,ports/433122_ema-traffic-light-trading-strategy-based-on-ema/
+433123,动量分析式Ichimoku云雾闪电交易策略Momentum-Analysis-Ichimoku-Cloud-Fog-Lightning-Trading-Strategy.md,PORTED,,ports/433123_ichimoku-momentum-analysis-ichimoku-cloud-fog-lightning-trad/

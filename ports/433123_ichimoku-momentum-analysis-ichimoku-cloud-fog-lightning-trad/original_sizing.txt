@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #433123 (动量分析式Ichimoku云雾闪电交易策略Momentum-Analysis-Ichimoku-Cloud-Fog-Lightning-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/433123  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target inputs and exits  [lines 166-177]
+  166: stopLossPercent = input(1.5, title="Stop Loss (%)")
+  167: takeProfitPercent = input(1.0, title="Take Profit (%)")
+  168: stopLossPrice = strategy.position_avg_price * (1 - stopLossPercent / 100)
+  169: takeProfitPrice = strategy.position_avg_price * (1 + takeProfitPercent / 100)
+  170: 
+  171: // Set stop loss and take profit for long positions
+  172: if (strategy.position_size > 0)
+  173:     strategy.exit("Long SL/TP", "Long", stop=stopLossPrice, limit=takeProfitPrice)
+  174:     
+  175: // Set stop loss and take profit for short positions
+  176: if (strategy.position_size < 0)
+  177:     strategy.exit("Short SL/TP", "Short", stop=stopLossPrice, limit=takeProfitPrice)

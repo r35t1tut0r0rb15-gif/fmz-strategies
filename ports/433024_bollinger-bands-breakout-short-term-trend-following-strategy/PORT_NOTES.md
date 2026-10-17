@@ -3,7 +3,7 @@
 - FMZ source id: 433024 (lineage).
 - Source: https://www.fmz.com/strategy/433024 (PineScript v5, author ChaoZhang, FMZ last
   modified 2023-11-23 17:01:12). Verbatim here as `original_source.md`. Read 2026-10-17 (FMZ-C).
-- Status: PORTED (batch C57). Not run.
+- Status: PORTED (batch C58). Not run.
 
 ## Criteria
 

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2639 |
+| PORT_CANDIDATE | 2625 |
 | REJECTED | 994 |
-| PORTED | 974 |
+| PORTED | 986 |
 | HELD_NEEDS_VOLUME | 559 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 135 |
+| REJECTED_ON_READING | 137 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1102,7 +1102,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433024 | `ports/433024_bollinger-bands-breakout-short-term-trend-following-strategy/` | PineScript | bollinger_breakout | coarse_bar_stop, trailing_stop | bb_len x2, trail_pct x2 | 4 |
 | 433025 | `ports/433025_monthly-close-price-and-moving-average-crossover-strategy/` | PineScript | multi_timeframe_ma | none | len_ma x2, exponential x2 | 4 |
 | 433029 | `ports/433029_dual-exponential-moving-average-crossover-strategy/` | PineScript | ma_trend | none | short x2, long2 x2 | 4 |
-| | **974 ports** | | | | | **5517** |
+| 433068 | `ports/433068_ichimoku-ichimoku-cloud-quant-strategy/` | PineScript | ichimoku | none | ema1 x2, ema2 x2 | 4 |
+| 433069 | `ports/433069_combo-momentum-reversal-dual-rail-matching-strategy/` | PineScript | combo_123_reversal | none | length x2, buy_zone x2 | 4 |
+| 433075 | `ports/433075_t3-cci-t3-cci-trend-tracking-strategy/` | PineScript | momentum_oscillator_turn | none | cci_len x2, t3_len x2 | 4 |
+| 433079 | `ports/433079_detrended-price-oscillator-quantitative-trading-strategy/` | PineScript | ma_trend | none | length x3 | 3 |
+| 433094 | `ports/433094_ema-crossover-strategy/` | PineScript | ma_cross | none | ema_len x3 | 3 |
+| 433097 | `ports/433097_quantitative-investment-strategy-based-on-monthly-buy-date/` | PineScript | calendar_seasonal | none | entry_day x2, use_exit x2 | 4 |
+| 433101 | `ports/433101_sma-k-twisted-sma-adaptive-crossover-long-line-strategy/` | PineScript | ma_trend | none | main_len x2, ad_len x2 | 4 |
+| 433104 | `ports/433104_ichimoku-kinko-hyo-ichimoku-kinko-hyo-indicator-balancing-tr/` | PineScript | ichimoku | none | vol_target x2, offset x2 | 4 |
+| 433113 | `ports/433113_solid-moving-average-system-strategy/` | PineScript | ma_trend | none | tz x2, atr_k x2 | 4 |
+| 433117 | `ports/433117_inverse-las-vegas-algorithmic-trading-strategy/` | PineScript | momentum_breakout | none | lag_days x2 | 2 |
+| 433122 | `ports/433122_ema-traffic-light-trading-strategy-based-on-ema/` | PineScript | ma_trend | trailing_stop_pending | atr_mult x2, filter_len x2 | 4 |
+| 433123 | `ports/433123_ichimoku-momentum-analysis-ichimoku-cloud-fog-lightning-trad/` | PineScript | ichimoku | none | sl_pct x2, tp_pct x2 | 4 |
+| | **986 ports** | | | | | **5561** |
 
 ## Rejected on reading
 
@@ -1243,6 +1255,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 432988 | 基于波动带震荡器的反转跟踪策略CCTBBO-Reversal-Tracking-Strategy.md | 1 | Reads the future: Pine v2 request.security(syminfo.tickerid, '1440', high) without [1] behaves as lookahead_on, so on every 45-minute bar the oscillator uses the final high of the current day, not known until the day ends (SURVEY_README request.security rule, as #430661). |
 | 432992 | 布林带金叉死叉策略Bollinger-Break-Out-Strategy-with-Pyramiding.md | 1 | pyramiding = 4: further entries are added while the price is below the averaged-down level, and the stop, target and add levels are all measured from strategy.position_avg_price of the stacked units (a pyramided ladder, as #426570). |
 | 433015 | 基于均线的原始趋势跟踪策略ORIGINAL-PRIMITIVE-TREND-TRACKING-STRATEGY-BASED-ON-MOVING-AVERAGE.md | 1 | pyramiding = 10: the long and short signals add further units only while the close is beyond strategy.position_avg_price of the stacked position (useus), so the signals depend on the averaged price of the ladder (a pyramided ladder, as #426570). |
+| 433074 | 跨时间框架超级趋势震荡突破策略Cross-Timeframe-SuperTrend-Breakout-Strategy.md | 1 | The signals compare the close with request.security(syminfo.tickerid, '1', ...) and request.security(syminfo.tickerid, '5', ...) supertrends on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #430587). |
+| 433108 | 高级布林带均线网格趋势追踪策略Advanced-Bollinger-Band-Moving-Average-Grid-Trend-Tracking-Strategy.md | 1 | Entries are strategy.order('多(buy)' / '空(sell)') calls on four grid levels with no pyramiding limit, so each level touched adds a unit and an opposite order reduces rather than reverses: the position path depends on the order sizes (as #430596). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

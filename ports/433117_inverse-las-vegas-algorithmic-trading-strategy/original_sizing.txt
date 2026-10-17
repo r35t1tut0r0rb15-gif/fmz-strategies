@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #433117 (反向拉斯维加斯定量交易策略Inverse-Las-Vegas-Algorithmic-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/433117  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Capital and reinvestment bookkeeping  [lines 189-215]
+  189: capital_inicial = input(100, title="Capital Inicial")
+  190: 
+  191: // Variables para el seguimiento de las ganancias
+  192: var float capital_actual = capital_inicial
+  193: var float ganancias_acumuladas = 0.0
+  194: 
+  195: // Calcular el precio actual y el precio anterior
+  196: current_price = close
+  197: previous_price = security(syminfo.tickerid, "D", close[1])
+  198: 
+  199: // Lógica de la estrategia invertida
+  200: long_condition = current_price > previous_price
+  201: short_condition = current_price < previous_price
+  202: 
+  203: // Calcular el tamaño de la posición en función de las ganancias acumuladas y reinvertir
+  204: if (long_condition or short_condition)
+  205:     position_size = capital_actual / current_price
+  206:     ganancias = position_size * (previous_price - current_price)  // Invertir la dirección
+  207:     capital_actual := capital_actual + ganancias
+  208:     ganancias_acumuladas := ganancias_acumuladas + ganancias
+  209: 
+  210: // Reinvertir las ganancias en la próxima orden
+  211: position_size_reinvested = capital_actual / current_price
+  212: 
+  213: // Sumar las ganancias de los trades al monto de operación
+  214: if (long_condition or short_condition)
+  215:     capital_actual := capital_actual + ganancias_acumuladas

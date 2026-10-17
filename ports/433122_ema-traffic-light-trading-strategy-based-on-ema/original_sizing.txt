@@ -1,0 +1,140 @@
+# Original sizing and money-management code, FMZ #433122 (基于EMA均线的交易策略Traffic-Light-Trading-Strategy-Based-on-EMA)
+# Source: https://www.fmz.com/strategy/433122  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 20 % of equity, commission  [lines 185-193]
+  185: strategy(title="Trafic Lights Strategy",
+  186:          shorttitle="TLS",
+  187:          overlay=true,
+  188:          initial_capital=1000,
+  189:          default_qty_value=20,
+  190:          default_qty_type=strategy.percent_of_equity,
+  191:          commission_value=0.1,
+  192:          pyramiding=0
+  193:          )
+
+## Profit / loss parameters and exits  [lines 211-334]
+  211: sep3           = input(title="============LONG Profit-Loss Parameters============", type=input.bool, defval=false)
+  212: 
+  213: e_Long_TP      = input(true, title="Enable a Profit Level?")
+  214: e_Long_SL      = input(false, title="Enable a S.Loss Level?")
+  215: e_Long_TS      = input(true, title="Enable a Trailing Stop?")           
+  216: long_TP_Input  = input(40.0,   title='Take Profit %',   type=input.float,   minval=0)/100
+  217: long_SL_Input  = input(1.0,   title='Stop Loss %',     type=input.float,   minval=0)/100 
+  218: atrLongMultip  = input(2.0,   title='ATR Multiplier',  type=input.float,   minval=0.1)   // Parameters to calculate Trailing Stop Loss
+  219: atrLongLength  = input(14,    title='ATR Length',      type=input.integer, minval=1)
+  220: 
+  221: sep4           = input(title="============SHORT Profit-Loss Parameters============", type=input.bool, defval=false)
+  222: 
+  223: e_Short_TP     = input(true, title="Enable a Profit Level?")
+  224: e_Short_SL     = input(false, title="Enable a S.Loss Level?")
+  225: e_Short_TS     = input(true, title="Enable a Trailing Stop?")
+  226: short_TP_Input = input(30.0,   title='Take Profit %',   type=input.float,   minval=0)/100
+  227: short_SL_Input = input(1.0,   title='Stop Loss %',     type=input.float,   minval=0)/100
+  228: atrShortMultip = input(2.0,   title='ATR Multiplier',  type=input.float,   minval=0.1)
+  229: atrShortLength = input(14,    title='ATR Length',      type=input.integer, minval=1)
+  230: 
+  231: // Indicators
+  232: 
+  233: fema   = ema(close, f_length)
+  234: mema   = ema(close, m_length)
+  235: sema   = ema(close, s_length)
+  236: filter = security(syminfo.tickerid, filterRes, ema(close, filter_L))
+  237: 
+  238: plot(fema,   title="Fast EMA",   color=color.new(color.green,  0))
+  239: plot(mema,   title="Medi EMA",   color=color.new(color.yellow, 0))
+  240: plot(sema,   title="Slow EMA",   color=color.new(color.red,    0))
+  241: plot(filter, title="EMA Filter", color=color.new(color.white,  0))
+  242: 
+  243: // Entry Conditions
+  244: 
+  245: longTrade  = strategy.position_size >  0
+  246: shortTrade = strategy.position_size <  0
+  247: notInTrade = strategy.position_size == 0
+  248: inTrade    = strategy.position_size != 0
+  249: priceEntry = strategy.position_avg_price
+  250: 
+  251: goLong  = fema > mema and mema > sema and fema > filter and  enable_Long  and (crossover (fema, mema) or crossover (mema, sema) or crossover (sema, filter))
+  252: goShort = fema < mema and mema < sema and fema < filter and  enable_Short and (crossunder (fema, mema) or crossunder (mema, sema) or crossunder (sema, filter))
+  253: 
+  254: close_L = crossunder(fema, mema)
+  255: close_S = crossover (fema, mema)
+  256: 
+  257: // Profit and Loss conditions
+  258: 
+  259: // Long
+  260:  
+  261: long_TP = priceEntry * (1 + long_TP_Input)  // Long Position Take Profit Calculation
+  262: long_SL = priceEntry * (1 - long_SL_Input)  // Long Position Stop Loss Calculation
+  263: atrLong = atr(atrLongLength)                // Long Position ATR Calculation
+  264: long_TS = low - atrLong * atrLongMultip
+  265: 
+  266: long_T_stop  = 0.0                          // Code for calculating Long Positions Trailing Stop Loss/
+  267: long_T_stop := if (longTrade)
+  268:     longStop = long_TS
+  269:     max(long_T_stop[1], longStop)
+  270: else 
+  271:     0
+  272:     
+  273: //Short
+  274: 
+  275: short_TP = priceEntry * (1 - short_TP_Input) // Long  Position Take Profit Calculation
+  276: short_SL = priceEntry * (1 + short_SL_Input) // Short Position Stop Loss Calculation
+  277: atrShort = atr(atrShortLength)               // Short Position ATR Calculation
+  278: short_TS = high + atrShort * atrShortMultip
+  279: 
+  280: short_T_stop   = 0.0                // Code for calculating Short Positions Trailing Stop Loss/
+  281: short_T_stop  := if shortTrade
+  282:     shortStop  = short_TS
+  283:     min(short_T_stop[1], shortStop)
+  284: else 
+  285:     9999999
+  286: 
+  287: // Strategy Long Entry
+  288: 
+  289: if goLong and notInTrade 
+  290:     strategy.entry("Go Long", long=strategy.long, comment="Go Long", alert_message="Open Long Position")
+  291: 
+  292: if longTrade and close_L
+  293:     strategy.close("Go Long", when=close_L, comment="Close Long", alert_message="Close Long Position")
+  294:     
+  295: if e_Long_TP    // Algorithm for Enabled Long Position Profit Loss Parameters
+  296:     if (e_Long_TS and not e_Long_SL)
+  297:         strategy.exit("Long TP & TS", "Go Long", limit = long_TP, stop = long_T_stop)
+  298:     else
+  299:         if (e_Long_SL and not e_Long_TS)
+  300:             strategy.exit("Long TP & TS", "Go Long",limit = long_TP, stop = long_SL)
+  301:         else 
+  302:             strategy.exit("Long TP & TS", "Go Long",limit = long_TP)
+  303: else
+  304:     if not e_Long_TP 
+  305:         if (e_Long_TS and not e_Long_SL)
+  306:             strategy.exit("Long TP & TS", "Go Long", stop = long_T_stop)
+  307:         else
+  308:             if (e_Long_SL and not e_Long_TS)
+  309:                 strategy.exit("Long TP & TS", "Go Long",stop = long_SL)
+  310:     
+  311: 
+  312: // Strategy Short Entry
+  313: 
+  314: if goShort and notInTrade 
+  315:     strategy.entry("Go Short", long=strategy.short, comment="Go Short", alert_message="Open Short Position")
+  316: 
+  317: if shortTrade and close_S
+  318:     strategy.close("Go Short", comment="Close Short", alert_message="Close Short Position")
+  319: 
+  320: if e_Short_TP   // Algorithm for Enabled Short Position Profit Loss Parameters
+  321:     if (e_Short_TS and not e_Short_SL)
+  322:         strategy.exit("Short TP & TS", "Go Short", limit = short_TP, stop = short_T_stop)
+  323:     else
+  324:         if (e_Short_SL and not e_Short_TS)
+  325:             strategy.exit("Short TP & SL", "Go Short",limit = short_TP, stop = short_SL)
+  326:         else 
+  327:             strategy.exit("Short TP & TS", "Go Short",limit = short_TP)
+  328: else
+  329:     if not e_Short_TP 
+  330:         if (e_Short_TS and not e_Short_SL)
+  331:             strategy.exit("Short TS", "Go Short", stop = short_T_stop)
+  332:         else
+  333:             if (e_Short_SL and not e_Short_TS)
+  334:                 strategy.exit("Short SL", "Go Short",stop = short_SL)
