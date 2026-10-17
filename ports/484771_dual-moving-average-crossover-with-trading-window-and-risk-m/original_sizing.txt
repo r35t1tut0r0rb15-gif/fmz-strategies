@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #484771 (双均线交叉带定时交易窗口与止盈止损策略-Dual-Moving-Average-Crossover-with-Trading-Window-and-Risk-Management-Strategy)
+# Source: https://www.fmz.com/strategy/484771  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target ticks and quantity  [lines 259-261]
+  259: stopLossTicks = input(50, title="Stop (Ticks)")
+  260: profitTargetTicks = input(50, title="Target (Ticks)")
+  261: defaultQuantity = input(2, title="Default Quantity")
+
+## Entries with quantity  [lines 278-284]
+  278: if (market_open)
+  279:     if (longCondition)
+  280:         strategy.entry("Long", strategy.long, defaultQuantity)
+  281:         tradeEntryPrice := close
+  282:     else if (shortCondition)
+  283:         strategy.entry("Short", strategy.short, defaultQuantity)
+  284:         tradeEntryPrice := close
+
+## Tick bracket re-issued every bar  [lines 287-294]
+  287: if (not na(tradeEntryPrice))
+  288:     stopLossPrice = tradeEntryPrice - stopLossTicks * syminfo.mintick
+  289:     takeProfitPrice = tradeEntryPrice + profitTargetTicks * syminfo.mintick
+  290: 
+  291:     if (strategy.position_size > 0) // Si estamos en largo
+  292:         strategy.exit("SL/TP", from_entry="Long", stop=stopLossPrice, limit=takeProfitPrice)
+  293:     else if (strategy.position_size < 0) // Si estamos en corto
+  294:         strategy.exit("SL/TP", from_entry="Short", stop=stopLossPrice, limit=takeProfitPrice)
+
+## 15:00 close-all  [lines 297-298]
+  297: if (hour == 15 and minute == 0)
+  298:     strategy.close_all()

@@ -1,0 +1,21 @@
+# Original sizing and money-management code, FMZ #484924 (多重技术指标黄金即时变动检测与风险管理策略-Multi-Technical-Indicator-Gold-Real-Time-Movement-Detection-and-Risk-Management-Strategy)
+# Source: https://www.fmz.com/strategy/484924  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## TP / SL pip inputs  [lines 182-187]
+  182: tp_pips = input.int(50, title="Take Profit (Pips)")
+  183: sl_pips = input.int(30, title="Stop Loss (Pips)")
+  184: 
+  185: // Convert pips to price value for XAUUSD (1 pip = 0.1 in Gold)
+  186: tp_value = tp_pips * 0.1
+  187: sl_value = sl_pips * 0.1
+
+## Entries with the bracket  [lines 634-641]
+  634: if longCondition
+  635:     strategy.entry("Long", strategy.long)
+  636:     strategy.exit("TakeProfit_Long", from_entry="Long", limit=close + tp_value, stop=close - sl_value)
+  637: 
+  638: // Short Entry Conditions
+  639: if shortCondition
+  640:     strategy.entry("Short", strategy.short)
+  641:     strategy.exit("TakeProfit_Short", from_entry="Short", limit=close - tp_value, stop=close + sl_value)

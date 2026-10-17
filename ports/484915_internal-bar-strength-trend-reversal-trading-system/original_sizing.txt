@@ -1,0 +1,45 @@
+# Original sizing and money-management code, FMZ #484915 (内部价格强度趋势反转交易系统-Internal-Bar-Strength-Trend-Reversal-Trading-System)
+# Source: https://www.fmz.com/strategy/484915  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 50 % of equity, pyramiding 2  [lines 184-184]
+  184: strategy("IBS (Internal Bar Strength) Trading Strategy for SPY and NDQ", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=50, pyramiding = 2, currency = currency.USD, process_orders_on_close=false)
+
+## Entry distance / duration inputs  [lines 193-194]
+  193: minEntryPct = input.float(0, title="Minimum Distance for New Entry (%)", step=0.05, minval=0.0, maxval=100, tooltip = "Distance in Price from Last Opened Position, in Percentage Terms (%)")
+  194: maxTradeDuration = input.int(title="Maximum Trade Duration (days)", defval=14, minval=1, step=1, maxval=1000, tooltip = "Exit at close if maximum trade duration is reached.")
+
+## Entries, distance rule and time exits  [lines 227-259]
+  227: var float lastEntryPrice = na
+  228: if strategy.position_size == 0
+  229:     lastEntryPrice := na
+  230: 
+  231: // If there is no previous entry, the condition is met.
+  232: // Otherwise, allow a new entry only if the current price is lower than the last entry price
+  233: // by at least the predefined percentage (converted to a fraction).
+  234: dcaCondition = na(lastEntryPrice) or ((close < lastEntryPrice) and (((lastEntryPrice - close) / lastEntryPrice) >= (minEntryPct / 100)))
+  235: dcaConditionShort = na(lastEntryPrice) or ((close > lastEntryPrice) and (((close - lastEntryPrice) / lastEntryPrice) >= (minEntryPct / 100)))
+  236: 
+  237: 
+  238: // ***** STRATEGY ORDERS *****
+  239: // Enter a long position only if both the entry condition and the DCA condition are met.
+  240: if enterLong and dcaCondition 
+  241:     strategy.entry("Long", strategy.long)
+  242:     lastEntryPrice := close  // update the last entry price
+  243:     entryBarIndex := bar_index
+  244: 
+  245: if enterShort and dcaConditionShort 
+  246:     strategy.entry("Short", strategy.short)
+  247:     lastEntryPrice := close  // update the last entry price
+  248:     entryBarIndex := bar_index
+  249: 
+  250: // Compute trade duration in days using the absolute difference
+  251: tradeDuration = not na(entryBarIndex) ? math.abs(bar_index - entryBarIndex) : 0
+  252: 
+  253: // Exit the long position when the exit condition is met or if the trade duration reaches maxTradeDuration days.
+  254: if exitLong or (tradeDuration >= maxTradeDuration)
+  255:     strategy.close("Long")
+  256: 
+  257: // Exit the long position when the exit condition is met or if the trade duration reaches maxTradeDuration days.
+  258: if exitShort or (tradeDuration >= maxTradeDuration)
+  259:     strategy.close("Short")

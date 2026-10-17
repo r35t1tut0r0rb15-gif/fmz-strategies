@@ -2437,6 +2437,48 @@ SIZING = {
         ("Partial / full take-profit closes", 218, 224),
     ],
     486567: [],
+    # ---- FMZ-C, batch L14 (2026-10-17)
+    484589: [
+        ("Entries with the 10-bar extreme stop", 285, 290),
+    ],
+    484592: [],
+    484595: [],
+    484771: [
+        ("Stop / target ticks and quantity", 259, 261),
+        ("Entries with quantity", 278, 284),
+        ("Tick bracket re-issued every bar", 287, 294),
+        ("15:00 close-all", 297, 298),
+    ],
+    484773: [
+        ("strategy(): 10 % of equity", 200, 200),
+    ],
+    484911: [
+        ("strategy(): 10 % of equity", 206, 206),
+    ],
+    484912: [
+        ("strategy(): 1 % of equity", 188, 188),
+    ],
+    484914: [
+        ("Risk / units / stop inputs", 186, 193),
+        ("Unit size and add-on conditions", 217, 222),
+        ("Entries with qty and add-ons", 233, 246),
+        ("Stop levels and trailing exits", 255, 269),
+    ],
+    484915: [
+        ("strategy(): 50 % of equity, pyramiding 2", 184, 184),
+        ("Entry distance / duration inputs", 193, 194),
+        ("Entries, distance rule and time exits", 227, 259),
+    ],
+    484919: [],
+    484921: [
+        ("strategy(): 10 % of equity", 324, 324),
+        ("ATR stop / target levels", 346, 352),
+        ("Entries with the bracket", 355, 361),
+    ],
+    484924: [
+        ("TP / SL pip inputs", 182, 187),
+        ("Entries with the bracket", 634, 641),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -2914,6 +2956,10 @@ REJECTED_ON_READING = {
               "ta.rsi(close, 14), lookahead = barmerge.lookahead_on) without [1]: on every 3-hour "
               "bar they hold the current day's / week's final RSI, not known until it closes "
               "(reads the future, as #430661)"),
+    # ---- FMZ-C, batch L14 (2026-10-17)
+    484769: ("2", "a 3.0-price-unit Renko brick with no backtest header (no market or bar size to "
+              "judge it against as an ATR multiple), and history offsets by the float brick size "
+              "([3.0] bars): no generic, repeatable reading"),
 }
 
 DUPLICATE_ON_READING = {
@@ -2941,4 +2987,6 @@ HELD_ON_READING = {
     430588: ("8", "The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch L6 (2026-10-17)
     489134: ("8", "The basis is vwma(hlc3, 200): a volume-weighted average (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch L14 (2026-10-17)
+    484920: ("8", "The signal is the close crossing vwma(close, 100) with vwma(close, 100) > ema(close, 200): a volume-weighted average (check 8, held with the other volume users); the entries are also a martingale add ladder."),
 }

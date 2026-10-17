@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #484773 (动态ATR追踪止损交易策略市场波动性自适应系统-Dynamic-ATR-Trailing-Stop-Trading-Strategy-Market-Volatility-Adaptive-System)
+# Source: https://www.fmz.com/strategy/484773  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 200-200]
+  200: strategy(title='Xfera Trading Bot Automation', overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)

@@ -1,0 +1,54 @@
+# Original sizing and money-management code, FMZ #484914 (增强型动态通道突破趋势跟踪交易系统-Enhanced-Dynamic-Channel-Breakout-Trend-Following-Trading-System)
+# Source: https://www.fmz.com/strategy/484914  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk / units / stop inputs  [lines 186-193]
+  186: capitalRisk = input.float(2.0, "Risk per Trade (%)", minval=0.1, step=0.1) / 100
+  187: volumeUnits = input.int(4, "Max Units per Position", minval=1)
+  188: smaPeriod = input.int(200, "SMA Trend Period", minval=1)
+  189: rsiPeriod = input.int(14, "RSI Period", minval=1)
+  190: rsiOverbought = input.int(70, "RSI Overbought Level", minval=0, maxval=100)
+  191: rsiOversold = input.int(30, "RSI Oversold Level", minval=0, maxval=100)
+  192: atrMultiplierStop = input.float(2.0, "ATR Multiplier for Stop", minval=0.1, step=0.1)
+  193: atrMultiplierAdd = input.float(1.0, "ATR Multiplier for Adding Units", minval=0.1, step=0.1)
+
+## Unit size and add-on conditions  [lines 217-222]
+  217: capitalPerUnit = strategy.equity * capitalRisk
+  218: unitsSize = math.floor(capitalPerUnit / (atr * close))
+  219: 
+  220: // --- Conditions for Adding Units ---
+  221: addUnitLong = strategy.position_size > 0 and strategy.position_size / unitsSize < volumeUnits and high > strategy.position_avg_price + atrMultiplierAdd * atr
+  222: addUnitShort = strategy.position_size < 0 and math.abs(strategy.position_size) / unitsSize < volumeUnits and low < strategy.position_avg_price - atrMultiplierAdd * atr
+
+## Entries with qty and add-ons  [lines 233-246]
+  233: if (longEntry and strategy.position_size <= 0)
+  234:     strategy.close_all()
+  235:     strategy.entry("Long Entry", strategy.long, qty=unitsSize)
+  236: 
+  237: // Short Entry
+  238: if (shortEntry and strategy.position_size >= 0)
+  239:     strategy.close_all()
+  240:     strategy.entry("Short Entry", strategy.short, qty=unitsSize)
+  241: 
+  242: // Adding Units
+  243: if (addUnitLong)
+  244:     strategy.entry("Add Long", strategy.long, qty=unitsSize)
+  245: if (addUnitShort)
+  246:     strategy.entry("Add Short", strategy.short, qty=unitsSize)
+
+## Stop levels and trailing exits  [lines 255-269]
+  255: longStopPrice = strategy.position_avg_price - atrMultiplierStop * atr
+  256: shortStopPrice = strategy.position_avg_price + atrMultiplierStop * atr
+  257: 
+  258: var float longTrailingStop = na
+  259: var float shortTrailingStop = na
+  260: 
+  261: if (strategy.position_size > 0)
+  262:     longTrailingStop := math.max(longTrailingStop[1], longStopPrice)
+  263:     strategy.exit("Long Stop", "Long Entry", stop=longTrailingStop)
+  264:     strategy.exit("Long Stop", "Add Long", stop=longTrailingStop)
+  265: 
+  266: if (strategy.position_size < 0)
+  267:     shortTrailingStop := math.min(shortTrailingStop[1], shortStopPrice)
+  268:     strategy.exit("Short Stop", "Short Entry", stop=shortTrailingStop)
+  269:     strategy.exit("Short Stop", "Add Short", stop=shortTrailingStop)

@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #484589 (双时间框架EMA趋势识别与交易触发量化策略-Dual-Timeframe-EMA-Trend-Recognition-and-Trading-Trigger-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/484589  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Entries with the 10-bar extreme stop  [lines 285-290]
+  285: if (buySignal or highVolatilityUp)
+  286:     strategy.entry("Long", strategy.long)
+  287:     strategy.exit("Long Exit", from_entry="Long", stop=localBottom)
+  288: if (sellSignal or highVolatilityDown)
+  289:     strategy.entry("Short", strategy.short)
+  290:     strategy.exit("Short Exit", from_entry="Short", stop=localPeak)

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2688 |
+| PORT_CANDIDATE | 2674 |
 | REJECTED | 994 |
-| PORTED | 933 |
-| HELD_NEEDS_VOLUME | 557 |
+| PORTED | 945 |
+| HELD_NEEDS_VOLUME | 558 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 129 |
+| REJECTED_ON_READING | 130 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -922,6 +922,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430988 | `ports/430988_supertrend-fisher-trend-following-long-term-strategy-based-o/` | PineScript | supertrend | none | mult x2, fisher_level x2 | 4 |
 | 430998 | `ports/430998_ma-jupiter-and-saturn-momentum-ma-crossover-filtered-strateg/` | PineScript | ma_trend_oscillator_pullback | none | sl_atr x2, tp_atr x2 | 4 |
 | 431000 | `ports/431000_intraday-pivot-breakout-strategy/` | PineScript | pivot_reversal | trailing_stop_pending, coarse_bar_stop | rightbars x2, atr_mult x2 | 4 |
+| 484589 | `ports/484589_ema-dual-timeframe-ema-trend-recognition-and-trading-trigger/` | PineScript | ma_trend_filter | trailing_stop_pending | d_short x2, move_pct x2 | 4 |
+| 484592 | `ports/484592_dynamic-breakout-master-channel-strategy-an-adaptive-trading/` | PineScript | support_resistance_breakout | none | period x2, width_pct x2 | 4 |
+| 484595 | `ports/484595_multi-indicator-trend-confirmation-momentum-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 484771 | `ports/484771_dual-moving-average-crossover-with-trading-window-and-risk-m/` | PineScript | ma_cross | trailing_stop_pending | session_tz x2, k_atr x2 | 4 |
+| 484773 | `ports/484773_atr-dynamic-atr-trailing-stop-trading-strategy-market-volati/` | PineScript | atr_trailing_line | none | key x2, atr_period x2 | 4 |
+| 484911 | `ports/484911_adx-trend-confirmation-stochastic-oscillation-strategy-dynam/` | PineScript | stochastic_oscillator | none | adx_threshold x2, band x2 | 4 |
+| 484912 | `ports/484912_multi-fibonacci-optimal-time-entry-strategy/` | PineScript | fibonacci_retracement | none | length x2 | 2 |
+| 484914 | `ports/484914_enhanced-dynamic-channel-breakout-trend-following-trading-sy/` | PineScript | donchian_breakout | coarse_bar_stop, trailing_stop_pending | entry_period x2, stop_mult x2 | 4 |
+| 484915 | `ports/484915_internal-bar-strength-trend-reversal-trading-system/` | PineScript | ibs_mean_reversion | none | ibs_entry x2, max_bars x2 | 4 |
+| 484919 | `ports/484919_double-bollinger-bands-extreme-reversal-trading-strategy/` | PineScript | bollinger_reversion | none | length x2, outer_mult x2 | 4 |
+| 484921 | `ports/484921_multi-indicator-trend-confirmation-dynamic-risk-management-t/` | PineScript | supertrend | coarse_bar_stop, trailing_stop_pending | factor x2, atr_mult x2 | 4 |
+| 484924 | `ports/484924_multi-technical-indicator-gold-real-time-movement-detection/` | PineScript | chandelier_exit | coarse_bar_stop | sl_atr x2, ce_mult x2 | 4 |
 | 485123 | `ports/485123_tsl-multi-directional-oscillator-trading-system-tsl-based-au/` | PineScript | swing_breakout | none | swing x2 | 2 |
 | 485125 | `ports/485125_k-multi-timeframe-smoothed-moving-average-strategy-with-cand/` | PineScript | candlestick_pattern | none | session_tz x2, len4 x2 | 4 |
 | 485126 | `ports/485126_zero-lag-moving-average-trend-crossover-strategy/` | PineScript | ma_cross | none | length x2 | 2 |
@@ -1061,7 +1073,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491914 | `ports/491914_price-action-structural-breakout-strategy-with-trailing-stop/` | PineScript | price_action_breakout | trailing_stop | trail_k x2, trail_activate x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | macd_divergence | coarse_bar_stop, trailing_stop_pending | method x2, lb x2 | 4 |
 | 492009 | `ports/492009_atr-dual-ema-filtered-atr-adaptive-trend-following-strategy/` | PineScript | volatility_stop_cross | trailing_stop | atr_mult x2, trail_k x2 | 4 |
-| | **933 ports** | | | | | **5343** |
+| | **945 ports** | | | | | **5389** |
 
 ## Rejected on reading
 
@@ -1177,6 +1189,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 430974 | 基于RSI和SuperTrend的双向交易策略RSI-and-SuperTrend-Based-Dual-Direction-Trading-Strategy.md | 1 | The take-profit exit closes q1 = 5 % of the position at +1 % (strategy.exit with qty_percent = q1) and the rest leaves on the SuperTrend exit: a partial exit cannot be expressed as one net position's signals (as #365389). Its momentum line also uses ta.vwma (volume, check 8). |
 | 430985 | 双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md | 2 | The second signal is a band of the nearest prime numbers above / below the high and low (integer steps of the quote unit): a property of the quote's numeric scale, not of the market (as #430847). |
 | 430992 | 趋势突破均线跟踪策略Trend-Breakout-Moving-Average-Tracking-Strategy.md | 1 | A template whose take-profit exit closes 50 % of the position (qty_percent = takeProfitQuantityPerc) with a trailing order and leaves the rest to a stop: a partial exit cannot be expressed as one net position's signals (as #365389). |
+| 484769 | 多步骤非重绘Renko仿真趋势反转量化交易策略-Multi-Step-Non-Repainting-Renko-Emulation-Trend-Reversal-Quantitative-Trading-Strategy.md | 2 | a 3.0-price-unit Renko brick with no backtest header (no market or bar size to judge it against as an ATR multiple), and history offsets by the float brick size ([3.0] bars): no generic, repeatable reading |
 | 485292 | 多时间框架趋势识别与蜡烛图模式交易策略-Multi-Timeframe-Trend-Recognition-and-Candlestick-Pattern-Trading-Strategy.md | 1 | the trend test is request.security(syminfo.tickerid, '15', close) on the 1-day header chart: a 15-minute resolution below the chart's, whose value per bar is undefined (as #430765) |
 | 486562 | 多时间框架趋势追踪与ATR波动率动态风险管理系统策略-Multi-Timeframe-Trend-Following-with-ATR-Volatility-Based-Dynamic-Risk-Management-System-Strategy.md | 1 | the trend filter is request.security(syminfo.tickerid, '15', close > ta.sma(close, 50)) on the 1-hour header chart: a 15-minute resolution below the chart's, whose value per bar is undefined (as #430765) |
 | 486563 | 多周期指数均线与MACD协同多空趋势量化交易策略-Multi-Timeframe-EMA-and-MACD-Enhanced-Trend-Quantification-Trading-Strategy.md | 1 | the only exits are a 20-price-unit target and a 10-unit stop on the author's ~12 USD TRUMP_USDT (about 400 / 200 two-minute ATRs: inert there, as #490798); with them dropped a long is never closed, so there is no repeatable exit rule (as #430776) |

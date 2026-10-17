@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #484921 (多重指标趋势确认动态止盈止损交易策略-Multi-Indicator-Trend-Confirmation-Dynamic-Risk-Management-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/484921  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 324-324]
+  324: strategy("Super Trend with EMA, RSI & Signals", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## ATR stop / target levels  [lines 346-352]
+  346: atrMultiplier = input.float(1.5, title="ATR Stop Loss Multiplier")
+  347: atrValue = ta.atr(atrLength)
+  348: stopLossBuy = close - (atrMultiplier * atrValue)
+  349: stopLossSell = close + (atrMultiplier * atrValue)
+  350: takeProfitMultiplier = input.float(2.0, title="Take Profit Multiplier")
+  351: takeProfitBuy = close + (takeProfitMultiplier * (close - stopLossBuy))
+  352: takeProfitSell = close - (takeProfitMultiplier * (stopLossSell - close))
+
+## Entries with the bracket  [lines 355-361]
+  355: if buyCondition
+  356:     strategy.entry("Buy", strategy.long)
+  357:     strategy.exit("Take Profit Buy", from_entry="Buy", limit=takeProfitBuy, stop=stopLossBuy)
+  358: 
+  359: if sellCondition
+  360:     strategy.entry("Sell", strategy.short)
+  361:     strategy.exit("Take Profit Sell", from_entry="Sell", limit=takeProfitSell, stop=stopLossSell)
