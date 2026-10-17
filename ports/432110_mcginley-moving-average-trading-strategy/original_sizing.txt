@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #432110 (麦金非动态均线交易策略McGinley-Moving-Average-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/432110  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Long entry, target and close with qty 1  [lines 205-207]
+  205:     strategy.entry("Compra", strategy.long, qty=1, when= buySignal)
+  206:     strategy.exit("Gain da compra", "Compra", qty=1, profit=20)
+  207:     strategy.close("Compra", qty=1, when= buyLoss, comment="Loss na operação")
+
+## Short entry, target and close with qty 1  [lines 213-215]
+  213:     strategy.entry("Venda", strategy.short, qty=1, when= sellSignal)
+  214:     strategy.exit("Gain da venda", "Venda", qty=1, profit=20)
+  215:     strategy.close("Venda", qty=1, when= sellLoss, comment="Loss na operação")

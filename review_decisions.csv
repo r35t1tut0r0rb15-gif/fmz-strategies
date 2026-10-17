@@ -996,3 +996,17 @@ fmz_id,file,final_outcome,criterion,reason
 432096,双轨跟踪震荡分型策略Dual-track-Oscillator-Pattern-Strategy.md,PORTED,,ports/432096_dual-track-oscillator-pattern-strategy/
 432099,多时间框架趋势追踪策略Multi-Timeframe-Trend-Tracking-Strategy.md,PORTED,,ports/432099_multi-timeframe-trend-tracking-strategy/
 432100,基于改进涡轮指标的量化交易策略Quantitative-Trading-Strategy-Based-on-Improved-Vortex-Indicator.md,PORTED,,ports/432100_quantitative-trading-strategy-based-on-improved-vortex-indic/
+432110,麦金非动态均线交易策略McGinley-Moving-Average-Trading-Strategy.md,PORTED,,ports/432110_mcginley-moving-average-trading-strategy/
+432111,海龟交易RSI指标短线策略RSI-Oscillator-Turtle-Trading-Short-term-Strategy.md,PORTED,,ports/432111_rsi-rsi-oscillator-turtle-trading-short-term-strategy/
+432112,双盈止损均线交叉量化策略Dual-Take-Profit-Moving-Average-Crossover-Quantitative-Strategy.md,PORTED,,ports/432112_dual-take-profit-moving-average-crossover-quantitative-strat/
+432114,简单移动平均线金叉死叉策略Simple-Moving-Average-Crossover-Strategy.md,PORTED,,ports/432114_simple-moving-average-crossover-strategy/
+432117,双MA时间限制交易策略Dual-MA-Strategy-with-Time-Limit.md,PORTED,,ports/432117_ma-dual-ma-strategy-with-time-limit/
+432178,三EMA叉加Stochastic-RSI策略3EMA-with-Stochastic-RSI-Strategy.md,PORTED,,ports/432178_ema-stochastic-rsi-3ema-with-stochastic-rsi-strategy/
+432179,三重指数移动平均线长线策略Triple-Exponential-Moving-Average-Long-Only-Strategy.md,PORTED,,ports/432179_triple-exponential-moving-average-long-only-strategy/
+432180,优势均线突破趋势跟踪系统Advantage-Moving-Average-Breakout-Trend-Following-System.md,PORTED,,ports/432180_advantage-moving-average-breakout-trend-following-system/
+432181,追随趋势动量突破策略Momentum-Breakout-Strategy.md,PORTED,,ports/432181_momentum-breakout-strategy/
+432182,基于ICHIMOKU形态和STOCH指标的趋势跟踪策略ICHIMOKU-Cloud-and-STOCH-Indicator-Based-Trend-Tracking-Strategy.md,PORTED,,ports/432182_ichimoku-stoch-ichimoku-cloud-and-stoch-indicator-based-tren/
+432183,基于距离的移动止损量化策略Trend-Following-Strategy-Based-on-Distance-with-Trailing-Stop-Loss.md,PORTED,,ports/432183_trend-following-strategy-based-on-distance-with-trailing-sto/
+432185,基于MACD的扩散通道趋势跟踪策略Trend-Following-Strategy-with-MACD-and-Donchian-Channel.md,PORTED,,ports/432185_macd-trend-following-strategy-with-macd-and-donchian-channel/
+432207,多指标波动带交易策略Multi-Indicator-Bollinger-Bands-Trading-Strategy.md,PORTED,,ports/432207_multi-indicator-bollinger-bands-trading-strategy/
+432210,基于百分比变化的价值棒图回测策略Percent-Change-Bar-Chart-Backtest-Strategy.md,PORTED,,ports/432210_percent-change-bar-chart-backtest-strategy/

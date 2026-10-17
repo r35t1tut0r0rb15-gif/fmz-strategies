@@ -1,0 +1,39 @@
+# Original sizing and money-management code, FMZ #432181 (追随趋势动量突破策略Momentum-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/432181  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission  [lines 181-181]
+  181: strategy("Momentum BF ?", overlay=true, precision=2, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=100, commission_type=strategy.commission.percent, commission_value=0.075)
+
+## Stop-loss inputs and levels  [lines 243-268]
+  243: _5 = input(false,  "═══════ Stop Loss L ══════")
+  244: SL_typel = input("Fixed", options=["Fixed", "ATR Derived"], title="Stop Loss Type")
+  245: sl_inpl = input(8.0, title='Fixed Stop Loss %') / 100
+  246: atrLkbl = input(20, minval=1, title='ATR Stop Period')
+  247: atrMultl = input(1.5, step=0.25, title='ATR Stop Multiplier') 
+  248: atr1l = atr(atrLkbl)
+  249: 
+  250: longStop1l = 0.0
+  251: longStop1l := short_signal ? na : long_signal ? close - (atr1l * atrMultl) : longStop1l[1]
+  252: 
+  253: slLongl = in_long_signal ? strategy.position_avg_price * (1 - sl_inpl) : na
+  254: long_sll = in_long_signal ? slLongl : na
+  255: 
+  256: /////////////// Stop Losses Short ///////////////
+  257: _6 = input(false, "═══════ Stop Loss S ══════")
+  258: SL_types = input("Fixed", options=["Fixed", "ATR Derived"], title="Stop Loss Type")
+  259: sl_inps = input(7.0, title='Fixed Stop Loss %') / 100
+  260: atrLkbs = input(20, minval=1, title='ATR Stop Period')
+  261: atrMults = input(1.5, step=0.25, title='ATR Stop Multiplier') 
+  262: atr1s = atr(atrLkbs)
+  263: 
+  264: shortStop1s = 0.0
+  265: shortStop1s := long_signal ? na : short_signal ? close + (atr1s * atrMults) : shortStop1s[1]
+  266: 
+  267: slShorts = strategy.position_avg_price * (1 + sl_inps)
+  268: short_sls = in_short_signal ? slShorts : na
+
+## Stop orders  [lines 278-280]
+  278:         strategy.exit("L SL", "L", stop = SL_typel == "Fixed" ? long_sll : longStop1l, when=since_longEntry > 0)
+  279:     if useShorts
+  280:         strategy.exit("S SL", "S", stop = SL_types == "Fixed" ? short_sls : shortStop1s, when=since_shortEntry > 0)

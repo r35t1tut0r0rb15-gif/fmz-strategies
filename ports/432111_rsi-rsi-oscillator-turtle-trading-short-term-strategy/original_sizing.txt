@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #432111 (海龟交易RSI指标短线策略RSI-Oscillator-Turtle-Trading-Short-term-Strategy)
+# Source: https://www.fmz.com/strategy/432111  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 20 % of equity, pyramiding 1  [lines 188-188]
+  188: strategy(title="RSI of Ultimate Oscillator [SHORT Selling] Strategy",  shorttitle="RSIofUO" , overlay=false, pyramiding=1,     default_qty_type=strategy.percent_of_equity,  default_qty_value=20, initial_capital=10000, currency=currency.USD)  //default_qty_value=10, default_qty_type=strategy.fixed,
+
+## Risk % and quantity stop inputs  [lines 201-202]
+  201: riskCapital = input(title="Risk % of capital", defval=10, minval=1)
+  202: stopLoss=input(3,title="Stop Loss",minval=1)
+
+## Risk-based quantity  [lines 261-264]
+  261: qty1 = (strategy.equity  * riskCapital / 100 ) /  (close*stopLoss/100)  
+  262: 
+  263: //check if cash is sufficient  to buy qty1  , if capital not available use the available capital only
+  264: qty1:= (qty1 * close >= strategy.equity ) ? (strategy.equity / close) : qty1
+
+## One-third partial cover  [lines 276-276]
+  276: strategy.close(id="SERSIofUO", comment="PExit",  qty=strategy.position_size/3, when=abs(strategy.position_size)>=1 and close< strategy.position_avg_price and crossover(rsiUO,30) )

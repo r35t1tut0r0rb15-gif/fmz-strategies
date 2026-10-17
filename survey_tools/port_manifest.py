@@ -2038,6 +2038,61 @@ SIZING = {
         ("Entries with qty 1", 223, 227),
     ],
     432100: [],
+    # ---- FMZ-C, batch C49 (2026-10-17)
+    432110: [
+        ("Long entry, target and close with qty 1", 205, 207),
+        ("Short entry, target and close with qty 1", 213, 215),
+    ],
+    432111: [
+        ("strategy(): 20 % of equity, pyramiding 1", 188, 188),
+        ("Risk % and quantity stop inputs", 201, 202),
+        ("Risk-based quantity", 261, 264),
+        ("One-third partial cover", 276, 276),
+    ],
+    432112: [
+        ("Risk input and size", 230, 231),
+        ("Bracket orders (half-size first target, second target)", 234, 242),
+    ],
+    432114: [
+        ("strategy(): margin settings", 219, 219),
+    ],
+    432117: [
+        ("Exit orders (target, stop, trail)", 217, 218),
+    ],
+    432178: [
+        ("strategy(): 100 % of equity", 126, 126),
+        ("ATR bracket from the fill", 162, 172),
+    ],
+    432179: [],
+    432180: [
+        ("strategy(): pyramiding 4", 198, 198),
+        ("Risk-based amount", 230, 237),
+        ("Long entry and stop", 248, 251),
+        ("Short entry and stop", 255, 258),
+    ],
+    432181: [
+        ("strategy(): 100 % of equity, commission", 181, 181),
+        ("Stop-loss inputs and levels", 243, 268),
+        ("Stop orders", 278, 280),
+    ],
+    432182: [
+        ("Entries with the tick bracket", 213, 219),
+    ],
+    432183: [
+        ("strategy(): 100 % of equity, pyramiding 10", 184, 184),
+        ("Martingale and capital % inputs", 189, 190),
+        ("Lot formula (martingale multiplier)", 231, 233),
+    ],
+    432185: [
+        ("strategy(): pyramiding 3", 210, 210),
+        ("Risk-based amount", 250, 255),
+        ("Long entry and stop", 268, 271),
+        ("Short entry and stop", 275, 278),
+    ],
+    432207: [
+        ("strategy(): 100 % of equity, commission", 192, 192),
+    ],
+    432210: [],
 }
 
 REJECTED_ON_READING = {

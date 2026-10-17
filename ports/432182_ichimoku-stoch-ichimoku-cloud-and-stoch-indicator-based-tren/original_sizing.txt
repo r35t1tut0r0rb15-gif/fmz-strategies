@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #432182 (基于ICHIMOKU形态和STOCH指标的趋势跟踪策略ICHIMOKU-Cloud-and-STOCH-Indicator-Based-Trend-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/432182  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Entries with the tick bracket  [lines 213-219]
+  213: if (not na(k) and not na(d))
+  214: 	if (co and k < OverSold)and(close_price > TREND)
+  215: 		strategy.entry("BUY order", strategy.long, comment="BUY order")
+  216: 		strategy.exit("exitBUY", "BUY order", profit = Profit, loss = Stop)
+  217: 	if (cu and k > OverBought)and(close_price < TREND)
+  218: 		strategy.entry("SELL order", strategy.short, comment="SELL order")
+  219: 		strategy.exit("exitSELL", "SELL order", profit = Profit, loss = Stop)

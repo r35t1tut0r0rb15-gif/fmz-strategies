@@ -11,9 +11,9 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2763 |
+| PORT_CANDIDATE | 2749 |
 | REJECTED | 994 |
-| PORTED | 869 |
+| PORTED | 883 |
 | HELD_NEEDS_VOLUME | 557 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
@@ -997,7 +997,21 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 432096 | `ports/432096_dual-track-oscillator-pattern-strategy/` | PineScript | ma_cross | none | length x2, ema_len x2 | 4 |
 | 432099 | `ports/432099_multi-timeframe-trend-tracking-strategy/` | PineScript | multi_indicator_confluence | none | sma_len x2, np_len x2 | 4 |
 | 432100 | `ports/432100_quantitative-trading-strategy-based-on-improved-vortex-indic/` | PineScript | directional_movement | none | period x2, thresh x2 | 4 |
-| | **869 ports** | | | | | **5111** |
+| 432110 | `ports/432110_mcginley-moving-average-trading-strategy/` | PineScript | ma_trend | coarse_bar_stop | tp_atr x2, md_period x2 | 4 |
+| 432111 | `ports/432111_rsi-rsi-oscillator-turtle-trading-short-term-strategy/` | PineScript | momentum_oscillator_turn | none | rsi_len x2, sell_line x2 | 4 |
+| 432112 | `ports/432112_dual-take-profit-moving-average-crossover-quantitative-strat/` | PineScript | ma_cross | none | sl_atr x2, tp_atr x2 | 4 |
+| 432114 | `ports/432114_simple-moving-average-crossover-strategy/` | PineScript | ma_cross | none | len1 x2, len4 x2 | 4 |
+| 432117 | `ports/432117_ma-dual-ma-strategy-with-time-limit/` | PineScript | ma_cross | trailing_stop_pending | sl_atr x2, tp_atr x2 | 4 |
+| 432178 | `ports/432178_ema-stochastic-rsi-3ema-with-stochastic-rsi-strategy/` | PineScript | multi_indicator_confluence | none | sl_atr x2, tp_atr x2 | 4 |
+| 432179 | `ports/432179_triple-exponential-moving-average-long-only-strategy/` | PineScript | ma_trend | none | tema_len x3 | 3 |
+| 432180 | `ports/432180_advantage-moving-average-breakout-trend-following-system/` | PineScript | donchian_breakout | trailing_stop_pending | channel x2, sl_atr x2 | 4 |
+| 432181 | `ports/432181_momentum-breakout-strategy/` | PineScript | momentum_breakout | coarse_bar_stop | length x2, sl_scale x2 | 4 |
+| 432182 | `ports/432182_ichimoku-stoch-ichimoku-cloud-and-stoch-indicator-based-tren/` | PineScript | ichimoku | none | sl_atr x2, tp_atr x2 | 4 |
+| 432183 | `ports/432183_trend-following-strategy-based-on-distance-with-trailing-sto/` | PineScript | candle_pattern | none | rsi_len x2, dist_mult x2 | 4 |
+| 432185 | `ports/432185_macd-trend-following-strategy-with-macd-and-donchian-channel/` | PineScript | donchian_breakout | trailing_stop_pending | channel x2, sl_atr x2 | 4 |
+| 432207 | `ports/432207_multi-indicator-bollinger-bands-trading-strategy/` | PineScript | bollinger_breakout | none | length x3 | 3 |
+| 432210 | `ports/432210_percent-change-bar-chart-backtest-strategy/` | PineScript | momentum_breakout | none | zone x2, lookback x2 | 4 |
+| | **883 ports** | | | | | **5165** |
 
 ## Rejected on reading
 

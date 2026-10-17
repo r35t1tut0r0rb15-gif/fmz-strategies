@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #432180 (优势均线突破趋势跟踪系统Advantage-Moving-Average-Breakout-Trend-Following-System)
+# Source: https://www.fmz.com/strategy/432180  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 4  [lines 198-198]
+  198: strategy("Long Term Trend Following System", overlay=true, margin_long=0, margin_short=0, pyramiding=4)
+
+## Risk-based amount  [lines 230-237]
+  230: strategy.initial_capital = 50000
+  231: //ATR and Position Size //
+  232: 
+  233: length = input.int(title="ATR Period", defval=14, minval=1, group="ATR Inputs")
+  234: risk = input(title="Risk Per Trade", defval=0.01, group="ATR Inputs")
+  235: multiplier = input(title="ATR Multiplier", defval=2, group="ATR Inputs")
+  236: atr = ta.atr(length)
+  237: amount = (risk * strategy.initial_capital / (multiplier * atr))
+
+## Long entry and stop  [lines 248-251]
+  248: if (close > h1 and entrycondition2)
+  249:     strategy.entry("long", strategy.long, qty=amount)
+  250:     stoploss = close - atr * 4
+  251:     strategy.exit("exit sl", stop=stoploss, trail_offset=stoploss)
+
+## Short entry and stop  [lines 255-258]
+  255: if (close < l1 and sellcondition2)
+  256:     strategy.entry("short", strategy.short, qty=amount)
+  257:     stoploss = close + atr * 4
+  258:     strategy.exit("exit sl", stop=stoploss, trail_offset=stoploss)
