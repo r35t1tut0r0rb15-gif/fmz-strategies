@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #433960 (双均线与RSI组合的MT5马丁格尔scalping策略RSI-and-Moving-Average-Combination-MT5-Martingale-Scalping-Strategy)
+# Source: https://www.fmz.com/strategy/433960  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Martingale lot variables  [lines 174-184]
+  174: var lot_multiplier = 1.0
+  175: var last_lot_size = strategy.equity * 0.01
+  176: var trade_1_profit = 0.0
+  177: if (strategy.position_size != 0)
+  178:     lot_multiplier := last_lot_size / strategy.position_size < 1.5 ? lot_multiplier * 1.5 : 1.0
+  179:     trade_1_profit := strategy.grossprofit
+  180: else
+  181:     lot_multiplier := 1.0
+  182:     trade_1_profit := 0.0
+  183: lot_size = strategy.equity * 0.01 * lot_multiplier + trade_1_profit
+  184: last_lot_size := lot_size

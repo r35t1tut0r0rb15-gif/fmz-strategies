@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2561 |
-| PORTED | 1036 |
+| PORT_CANDIDATE | 2548 |
+| PORTED | 1046 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 559 |
+| HELD_NEEDS_VOLUME | 560 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 151 |
+| REJECTED_ON_READING | 153 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1164,7 +1164,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433923 | `ports/433923_dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | short x2, long x2 | 4 |
 | 433936 | `ports/433936_holy-grail-strategy/` | PineScript | directional_movement | none | ema_len x2, target x2 | 4 |
 | 433946 | `ports/433946_atr-ma-supertrend-trading-strategy-based-on-atr-and-ma-combi/` | PineScript | supertrend | none | factor x2, pd x2 | 4 |
-| | **1036 ports** | | | | | **5752** |
+| 433948 | `ports/433948_hull-ma-hull-ma-channel-and-linear-regression-swing-trading/` | PineScript | hull_ma | none | hull_len x2, ema_sig x2 | 4 |
+| 433949 | `ports/433949_moving-average-line-reverse-crossover-strategy/` | PineScript | ma_cross | none | ma_len x2, hold x2 | 4 |
+| 433950 | `ports/433950_dual-moving-average-crossover-reversal-strategy/` | PineScript | ma_cross | none | hold x2, trend_len x2 | 4 |
+| 433959 | `ports/433959_volatility-stop-tracking-strategy/` | PineScript | volatility_stop_cross | none | length x2, mult x2 | 4 |
+| 433960 | `ports/433960_rsi-mt5-scalping-rsi-and-moving-average-combination-mt5-mart/` | PineScript | stochastic_oscillator | none | osc_len x2, rsi_band x2 | 4 |
+| 433966 | `ports/433966_multi-take-profit-and-stop-loss-wavetrend-trend-following-st/` | PineScript | momentum_oscillator_turn | none | level x2, n1 x2 | 4 |
+| 433968 | `ports/433968_momentum-dual-moving-average-trading-strategy/` | PineScript | donchian_breakout | none | pch x2, rsi_limit x2 | 4 |
+| 433970 | `ports/433970_momentum-exponential-moving-average-crossover-trading-strate/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 433971 | `ports/433971_quadriple-exponential-moving-average-trading-strategy/` | PineScript | ma_cross | coarse_bar_stop | sl_atr x2, slow x2 | 4 |
+| 434159 | `ports/434159_the-great-delight-multifactor-quantitative-strategy/` | PineScript | ichimoku | none | ema_len x2, conv x2 | 4 |
+| | **1046 ports** | | | | | **5792** |
 
 ## Rejected on reading
 
@@ -1321,6 +1331,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 433918 | 先机获利的移动平均早盘退出策略Early-Profit-Taking-Moving-Average-Opening-Bell-Exit-Strategy.md | 1 | The exit order 'Close Long' is a 2000-tick target outside 10:00-16:00 and is replaced by a 500-tick stop inside that window (same id, re-issued by the clock), so the bracket of an open trade switches by time of day, which fixed per-trade stops cannot express. |
 | 433920 | 动态网格交易策略Dynamic-Grid-Trading-Strategy.md | 1 | Grid ladder: fifteen entry ids on levels around an SMA 300, each bought below its level and closed above the next one; the position is a sum of grid units (as #430596). |
 | 433932 | 多个百分比止盈exit策略Multiple-Percentage-Profit-Exits-Strategy.md | 1 | Four exits close 25 % / 25 % / 25 % / the rest at 1 / 2 / 3 / 4 % (qty_percent): partial exits of the net position (as #365389). |
+| 433951 | 基于RSI均线的低买高卖短线量化交易策略RSI-Mean-Reversion-Quantitative-Trading-Strategy-Based-on-RSI-Average-Crossing.md | 1 | pyramiding 3 with adds allowed only while the close is below strategy.position_avg_price minus a sum of ATRs (an averaging-down ladder keyed on the averaged price, as #426570), and the only exit is a resting limit at the signal close (as #427119). |
+| 434164 | 基于TFO和ATR的趋势跟踪止损策略TFO-and-ATR-Based-Trend-Tracking-Stop-Loss-Strategy.md | 1 | pyramiding 15 cash adds, and the strategy's sell signal requires strategy.openprofit / (position_avg_price x position_size) above a threshold, so the exit depends on the averaged price and P&L of the stacked units (as #426570); the trailing stop arms at the averaged price + 15 %. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -150,6 +150,8 @@ fmz_id,file,final_outcome,criterion,reason
 433918,先机获利的移动平均早盘退出策略Early-Profit-Taking-Moving-Average-Opening-Bell-Exit-Strategy.md,REJECTED_ON_READING,1,"The exit order 'Close Long' is a 2000-tick target outside 10:00-16:00 and is replaced by a 500-tick stop inside that window (same id, re-issued by the clock), so the bracket of an open trade switches by time of day, which fixed per-trade stops cannot express."
 433920,动态网格交易策略Dynamic-Grid-Trading-Strategy.md,REJECTED_ON_READING,1,"Grid ladder: fifteen entry ids on levels around an SMA 300, each bought below its level and closed above the next one; the position is a sum of grid units (as #430596)."
 433932,多个百分比止盈exit策略Multiple-Percentage-Profit-Exits-Strategy.md,REJECTED_ON_READING,1,Four exits close 25 % / 25 % / 25 % / the rest at 1 / 2 / 3 / 4 % (qty_percent): partial exits of the net position (as #365389).
+433951,基于RSI均线的低买高卖短线量化交易策略RSI-Mean-Reversion-Quantitative-Trading-Strategy-Based-on-RSI-Average-Crossing.md,REJECTED_ON_READING,1,"pyramiding 3 with adds allowed only while the close is below strategy.position_avg_price minus a sum of ATRs (an averaging-down ladder keyed on the averaged price, as #426570), and the only exit is a resting limit at the signal close (as #427119)."
+434164,基于TFO和ATR的趋势跟踪止损策略TFO-and-ATR-Based-Trend-Tracking-Stop-Loss-Strategy.md,REJECTED_ON_READING,1,"pyramiding 15 cash adds, and the strategy's sell signal requires strategy.openprofit / (position_avg_price x position_size) above a threshold, so the exit depends on the averaged price and P&L of the stacked units (as #426570); the trailing stop arms at the averaged price + 15 %."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -161,6 +163,7 @@ fmz_id,file,final_outcome,criterion,reason
 431414,基于VWMA及ATR的趋势跟踪策略VWMA-and-ATR-Trend-Following-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend line is vwma(close, 33) and its RSI: a volume-weighted average (check 8, held with the other volume users)."
 432347,基于布林带黄金分割法的均衡回归交易策略Mean-Reversion-Trading-Strategy-Based-on-Bollinger-Bands-and-Golden-Ratio.md,HELD_NEEDS_VOLUME,8,"The band basis is vwma(hlc3, 50): a volume-weighted average (check 8, held with the other volume users)."
 432773,均线金叉死叉策略Cross-Moving-Average-Strategy.md,HELD_NEEDS_VOLUME,8,"The fast line is vwma(close, 3): a volume-weighted average (check 8, held with the other volume users)."
+433969,双重均线交叉移动平均策略Dual-Moving-Average-Crossover-Strategy.md,HELD_NEEDS_VOLUME,8,"The slow line is vwma(high, 7): a volume-weighted average (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -1198,3 +1201,13 @@ fmz_id,file,final_outcome,criterion,reason
 433923,双移动平均线交叉策略Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/433923_dual-moving-average-crossover-strategy/
 433936,神圣十字策略Holy-Grail-Strategy.md,PORTED,,ports/433936_holy-grail-strategy/
 433946,基于ATR和MA组合的超级趋势交易策略Supertrend-Trading-Strategy-Based-on-ATR-and-MA-Combination.md,PORTED,,ports/433946_atr-ma-supertrend-trading-strategy-based-on-atr-and-ma-combi/
+433948,基于频道和线性回归的Hull-MA摆荡策略Hull-MA-Channel-and-Linear-Regression-Swing-Trading-Strategy.md,PORTED,,ports/433948_hull-ma-hull-ma-channel-and-linear-regression-swing-trading/
+433949,移动平均线反转跨越策略Moving-Average-Line-Reverse-Crossover-Strategy.md,PORTED,,ports/433949_moving-average-line-reverse-crossover-strategy/
+433950,双移动均线金叉死叉反转策略Dual-Moving-Average-Crossover-Reversal-Strategy.md,PORTED,,ports/433950_dual-moving-average-crossover-reversal-strategy/
+433959,基于价格波动性的趋势跟踪止损策略-Volatility-Stop-Tracking-Strategy.md,PORTED,,ports/433959_volatility-stop-tracking-strategy/
+433960,双均线与RSI组合的MT5马丁格尔scalping策略RSI-and-Moving-Average-Combination-MT5-Martingale-Scalping-Strategy.md,PORTED,,ports/433960_rsi-mt5-scalping-rsi-and-moving-average-combination-mt5-mart/
+433966,波浪趋势多止损多止盈策略Multi-Take-Profit-and-Stop-Loss-WaveTrend-Trend-Following-Strategy.md,PORTED,,ports/433966_multi-take-profit-and-stop-loss-wavetrend-trend-following-st/
+433968,动量双均线交易策略Momentum-Dual-Moving-Average-Trading-Strategy.md,PORTED,,ports/433968_momentum-dual-moving-average-trading-strategy/
+433970,动量指数型金叉交易策略Momentum-Exponential-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/433970_momentum-exponential-moving-average-crossover-trading-strate/
+433971,四重指数移动平均线交易策略Quadriple-Exponential-Moving-Average-Trading-Strategy.md,PORTED,,ports/433971_quadriple-exponential-moving-average-trading-strategy/
+434159,大悦多因子量化策略The-Great-Delight-Multifactor-Quantitative-Strategy.md,PORTED,,ports/434159_the-great-delight-multifactor-quantitative-strategy/

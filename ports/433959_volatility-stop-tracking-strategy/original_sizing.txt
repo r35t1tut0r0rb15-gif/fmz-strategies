@@ -1,0 +1,58 @@
+# Original sizing and money-management code, FMZ #433959 (基于价格波动性的趋势跟踪止损策略-Volatility-Stop-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/433959  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Pip take profit / stop loss options  [lines 128-180]
+  128: utp = input(false, "Use take profit?")
+  129: pr = input(100, "Take profit pips")
+  130: usl = input(false, "Use stop loss?")
+  131: sl = input(100, "Stop loss pips")
+  132: fromday = input(01, defval=01, minval=01, maxval=31, title="From Day")
+  133: frommonth = input(01, defval=01, minval= 01, maxval=12, title="From Month")
+  134: fromyear = input(2000, minval=1900, maxval=2100, title="From Year")
+  135: today = input(31, defval=01, minval=01, maxval=31, title="To Day")
+  136: tomonth = input(12, defval=12, minval=01, maxval=12, title="To Month")
+  137: toyear = input(2039, minval=1900, maxval=2100, title="To Year")
+  138: 
+  139: use_date = (time > timestamp(fromyear, frommonth, fromday, 00, 00) and time < timestamp(toyear, tomonth, today, 00, 00))
+  140: 
+  141: atr_ = atr(length)
+  142: max_ = 0.0
+  143: min_ = 0.0
+  144: max1 = 0.0
+  145: max1 := max(nz(max_[1]), close)
+  146: min1 = 0.0
+  147: min1 := min(nz(min_[1]), close)
+  148: vstop = 0.0
+  149: is_uptrend = false
+  150: is_uptrend_prev = false
+  151: is_uptrend_prev := nz(is_uptrend[1], true)
+  152: stop = is_uptrend_prev ? max1 - mult * atr_ : min1 + mult * atr_
+  153: vstop_prev = nz(vstop[1])
+  154: vstop1 = is_uptrend_prev ? max(vstop_prev, stop) : min(vstop_prev, stop)
+  155: is_uptrend := close - vstop1 >= 0
+  156: is_trend_changed = is_uptrend != is_uptrend_prev
+  157: max_ := is_trend_changed ? close : max1
+  158: min_ := is_trend_changed ? close : min1
+  159: vstop := is_trend_changed ? is_uptrend ? max_ - mult * atr_ : min_ + mult * atr_ : vstop1
+  160: plot(vstop, color = is_uptrend ? color.green : color.red, linewidth=2)
+  161: 
+  162: longCondition = is_uptrend
+  163: if (longCondition and use_date)
+  164:     strategy.entry("BUY", strategy.long)
+  165: 
+  166: shortCondition = not is_uptrend
+  167: if (shortCondition and use_date)
+  168:     strategy.entry("SELL", strategy.short)
+  169:     
+  170: if (utp and not usl)
+  171:     strategy.exit("TP", "BUY", profit = pr)
+  172:     strategy.exit("TP", "SELL", profit = pr)
+  173:     
+  174: if (usl and not utp)
+  175:     strategy.exit("SL", "BUY", loss = sl)
+  176:     strategy.exit("SL", "SELL", loss = sl)
+  177:     
+  178: if (usl and utp)
+  179:     strategy.exit("TP/SL", "BUY", loss = sl, profit = pr)
+  180:     strategy.exit("TP/SL", "SELL", loss = sl, profit = pr)

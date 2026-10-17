@@ -1,0 +1,46 @@
+# Original sizing and money-management code, FMZ #433966 (波浪趋势多止损多止盈策略Multi-Take-Profit-and-Stop-Loss-WaveTrend-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/433966  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Secondary percent stop  [lines 152-192]
+  152: useSecondarySL = input(false, "Use Secondary Stop Loss")
+  153: slPercentage = input(5.0, "Stop Loss Percentage (%)")
+  154: 
+  155: // WaveTrend Indicator Calculations
+  156: ap = hlc3 
+  157: esa = ema(ap, n1)
+  158: d = ema(abs(ap - esa), n1)
+  159: ci = (ap - esa) / (0.015 * d)
+  160: tci = ema(ci, n2)
+  161: wt1 = tci
+  162: wt2 = sma(wt1, 4)
+  163: 
+  164: // EMA Calculation with Selected Time Frame
+  165: getEma(timeFrame) =>
+  166:     security(syminfo.tickerid, timeFrame, ema(close, emaLength))
+  167: 
+  168: emaFilter = getEma(emaTimeFrame)
+  169: 
+  170: // Secondary Stop Loss Calculation
+  171: longStopPrice = strategy.position_avg_price * (1 - slPercentage / 100)
+  172: shortStopPrice = strategy.position_avg_price * (1 + slPercentage / 100)
+  173: 
+  174: // Long Entry and Exit Conditions with EMA Filter and Trade Mode
+  175: longEntry = crossover(wt1, wt2) and wt2 < osLevel1 and (not useEmaFilter or close > emaFilter) and (tradeMode == "Long Only" or tradeMode == "Both")
+  176: if (longEntry)
+  177:     strategy.entry("Long", strategy.long)
+  178: longExit = crossunder(wt1, wt2) and wt2 > obLevel1
+  179: if (longExit)
+  180:     strategy.close("Long")
+  181: if (useSecondarySL and strategy.position_size > 0 and low < longStopPrice)
+  182:     strategy.close("Long", comment="SL Hit")
+  183: 
+  184: // Short Entry and Exit Conditions with EMA Filter and Trade Mode
+  185: shortEntry = crossunder(wt1, wt2) and wt2 > obLevel1 and (not useEmaFilter or close < emaFilter) and (tradeMode == "Short Only" or tradeMode == "Both")
+  186: if (shortEntry)
+  187:     strategy.entry("Short", strategy.short)
+  188: shortExit = crossover(wt1, wt2) and wt2 < osLevel1
+  189: if (shortExit)
+  190:     strategy.close("Short")
+  191: if (useSecondarySL and strategy.position_size < 0 and high > shortStopPrice)
+  192:     strategy.close("Short", comment="SL Hit")

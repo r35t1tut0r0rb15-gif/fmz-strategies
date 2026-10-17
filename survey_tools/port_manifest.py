@@ -2467,6 +2467,28 @@ SIZING = {
     433946: [
         ("Decimal-scaled ATR bracket", 250, 341),
     ],
+    # ---- FMZ-C, batch C64 (2026-10-17)
+    433948: [],
+    433949: [],
+    433950: [],
+    433959: [
+        ("Pip take profit / stop loss options", 128, 180),
+    ],
+    433960: [
+        ("Martingale lot variables", 174, 184),
+    ],
+    433966: [
+        ("Secondary percent stop", 152, 192),
+    ],
+    433968: [
+        ("Capital % lot", 178, 236),
+    ],
+    433970: [],
+    433971: [
+        ("strategy(): 10000 cash quantity", 129, 129),
+        ("Tick bracket on the stacked entries", 141, 147),
+    ],
+    434159: [],
 }
 
 REJECTED_ON_READING = {
@@ -3039,6 +3061,15 @@ REJECTED_ON_READING = {
               "#430596)."),
     433932: ("1", "Four exits close 25 % / 25 % / 25 % / the rest at 1 / 2 / 3 / 4 % (qty_percent): "
               "partial exits of the net position (as #365389)."),
+    # ---- FMZ-C, batch C64 (2026-10-17)
+    433951: ("1", "pyramiding 3 with adds allowed only while the close is below "
+              "strategy.position_avg_price minus a sum of ATRs (an averaging-down ladder keyed on "
+              "the averaged price, as #426570), and the only exit is a resting limit at the "
+              "signal close (as #427119)."),
+    434164: ("1", "pyramiding 15 cash adds, and the strategy's sell signal requires "
+              "strategy.openprofit / (position_avg_price x position_size) above a threshold, so "
+              "the exit depends on the averaged price and P&L of the stacked units (as #426570); "
+              "the trailing stop arms at the averaged price + 15 %."),
 }
 
 DUPLICATE_ON_READING = {
@@ -3070,4 +3101,6 @@ HELD_ON_READING = {
     432347: ("8", "The band basis is vwma(hlc3, 50): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C53 (2026-10-17)
     432773: ("8", "The fast line is vwma(close, 3): a volume-weighted average (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C64 (2026-10-17)
+    433969: ("8", "The slow line is vwma(high, 7): a volume-weighted average (check 8, held with the other volume users)."),
 }

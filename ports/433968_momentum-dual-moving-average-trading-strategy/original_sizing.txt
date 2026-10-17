@@ -1,0 +1,64 @@
+# Original sizing and money-management code, FMZ #433968 (动量双均线交易策略Momentum-Dual-Moving-Average-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/433968  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Capital % lot  [lines 178-236]
+  178: capital = input(100, defval = 100, minval = 1, maxval = 100000, title = "capital, %")
+  179: uset = input(true, defval = true, title = "Use trend entry")
+  180: usect = input(true, defval = true, title = "Use counter-trend entry")
+  181: usersi = input(true, defval = true, title = "Use RSI strategy")
+  182: pch = input(30, defval = 30, minval = 2, maxval = 200, title = "Price Channel Period")
+  183: showcl = input(true, defval = true, title = "Price Channel")
+  184: fromyear = input(2018, defval = 2018, minval = 1900, maxval = 2100, title = "From Year")
+  185: toyear = input(2100, defval = 2100, minval = 1900, maxval = 2100, title = "To Year")
+  186: frommonth = input(01, defval = 01, minval = 01, maxval = 12, title = "From Month")
+  187: tomonth = input(12, defval = 12, minval = 01, maxval = 12, title = "To Month")
+  188: fromday = input(01, defval = 01, minval = 01, maxval = 31, title = "From day")
+  189: today = input(31, defval = 31, minval = 01, maxval = 31, title = "To day")
+  190: src = close
+  191: 
+  192: //Price channel
+  193: lasthigh = highest(src, pch)
+  194: lastlow = lowest(src, pch)
+  195: center = (lasthigh + lastlow) / 2
+  196: trend = low > center ? 1 : high < center ? -1 : trend[1]
+  197: col = showcl ? blue : na
+  198: col2 = showcl ? black : na
+  199: plot(lasthigh, color = col2, linewidth = 2)
+  200: plot(lastlow, color = col2, linewidth = 2)
+  201: plot(center, color = col, linewidth = 2)
+  202: 
+  203: //Bars
+  204: bar = close > open ? 1 : close < open ? -1 : 0
+  205: rbars = sma(bar, 2) == -1
+  206: gbars = sma(bar, 2) == 1
+  207: 
+  208: //Fast RSI
+  209: fastup = rma(max(change(src), 0), 2)
+  210: fastdown = rma(-min(change(src), 0), 2)
+  211: fastrsi = fastdown == 0 ? 100 : fastup == 0 ? 0 : 100 - (100 / (1 + fastup / fastdown))
+  212: 
+  213: //Signals
+  214: body = abs(close - open)
+  215: abody = sma(body, 10)
+  216: up1 = rbars and close > center and uset
+  217: dn1 = gbars and close < center and uset
+  218: up2 = close <= lastlow and close < open and usect
+  219: dn2 = close >= lasthigh and close > open and usect
+  220: up3 = fastrsi < 25 and close > center and usersi
+  221: dn3 = fastrsi > 75 and close < center and usersi
+  222: exit = (((strategy.position_size > 0 and close > open) or (strategy.position_size < 0 and close < open)) and body > abody / 2)
+  223: lot = strategy.position_size == 0 ? strategy.equity / close * capital / 100 : lot[1]
+  224: 
+  225: //Trading
+  226: if up1 or up2 or up3
+  227:     if strategy.position_size < 0
+  228:         strategy.close_all()
+  229:         
+  230:     strategy.entry("Long", strategy.long, needlong == false ? 0 : lot, when=(time > timestamp(fromyear, frommonth, fromday, 00, 00) and time < timestamp(toyear, tomonth, today, 23, 59)))
+  231: 
+  232: if dn1 or dn2 or dn3
+  233:     if strategy.position_size > 0
+  234:         strategy.close_all()
+  235:         
+  236:     strategy.entry("Short", strategy.short, needshort == false ? 0 : lot, when=(time > timestamp(fromyear, frommonth, fromday, 00, 00) and time < timestamp(toyear, tomonth, today, 23, 59)))
