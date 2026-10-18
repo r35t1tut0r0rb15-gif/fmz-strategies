@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #435288 (基于随机转向因子和关键反转信号的组合反转策略Combination-Reversal-Strategy-Based-on-Stochastic-Turnaround-Factor-and-Key-Reversal-Signal)
+# Source: https://www.fmz.com/strategy/435288  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

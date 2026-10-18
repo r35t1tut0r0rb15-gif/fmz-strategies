@@ -2762,6 +2762,24 @@ SIZING = {
     435266: [
         ("Risk-based quantity", 247, 247),
     ],
+    # ---- FMZ-C, batch C77 (2026-10-18)
+    435268: [],
+    435269: [],
+    435271: [],
+    435272: [
+        ("strategy(): percent of equity; trade_amount", 193, 193),
+        ("Trade amount from capital and leverage", 210, 224),
+        ("Fixed SL / PT tick inputs (off)", 301, 303),
+    ],
+    435280: [
+        ("Equity-based lot", 173, 175),
+    ],
+    435283: [],
+    435284: [],
+    435285: [],
+    435286: [],
+    435288: [],
+    435291: [],
 }
 
 REJECTED_ON_READING = {
@@ -3410,6 +3428,17 @@ REJECTED_ON_READING = {
               "rules compare the close with price levels carried from the last signal and, as "
               "written, open and close on the same open or never hold, so no signal rule can be "
               "separated from the price-level bookkeeping."),
+    # ---- FMZ-C, batch C77 (2026-10-18)
+    435275: ("1", "The relative-strength half compares the chart symbol with a second symbol read "
+              "through security(b, timeframe.period, close) (the input default is the BTC swap "
+              "itself, a ratio of 1.0) and tests the ratio's 10-bar average against price-ratio "
+              "bands 0.9988 / 0.9960 / 0.9975: a two-instrument pair signal, outside the "
+              "single-instrument interface."),
+    435278: ("1", "The orders read the 4-hour MACD histogram through security(syminfo.tickerid, "
+              "'240', hist, gaps_off, lookahead_on) with 'Use The Future?' true by default, so on "
+              "the 5-minute chart each 4-hour bar's final histogram is seen from its first bar: "
+              "it reads the future (SURVEY_README request.security rule); the other branch is the "
+              "same logic without lookahead and is only a switch."),
 }
 
 DUPLICATE_ON_READING = {

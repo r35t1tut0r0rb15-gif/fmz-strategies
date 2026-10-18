@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #435272 (组合动量突破策略Momentum-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/435272  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity; trade_amount  [lines 193-193]
+  193: strategy("3MA + Laguerre RSI + ADX [Pt]", shorttitle = "3MA+LaRSI+ADX[Pt]", overlay=true, initial_capital = 10000, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, calc_on_order_fills = false, max_bars_back = 500)
+
+## Trade amount from capital and leverage  [lines 210-224]
+  210: margin_req = input.float(1, title="Margin Requirement / Leverage", step=0.1, group = "Trading Options")
+  211: qty_per_trade = input.float(100, title = "% of initial capital per trade", group = "Trading Options")
+  212: reinvest = input.bool(defval=false,title="Reinvest profit", group = "Trading Options")
+  213: reinvest_percent = input.float(defval=100, title = "Reinvest percentage", group="Trading Options")
+  214: 
+  215: close_eod = input.bool(false, "All trades will close at the close of trading window", group = "Trading Options")
+  216: close_b4_open = input.bool(false, "Position must hit either SL/PT before entering new trade", group = "Trading Options")
+  217: 
+  218: profit = strategy.netprofit 
+  219: strategy.initial_capital = 50000
+  220: float trade_amount = math.floor(strategy.initial_capital*margin_req / close) 
+  221: 
+  222: if strategy.netprofit > 0 and reinvest
+  223:     trade_amount := math.floor((strategy.initial_capital* (qty_per_trade/100)+(profit*reinvest_percent*0.01))*margin_req/ close) 
+  224: else
+
+## Fixed SL / PT tick inputs (off)  [lines 301-303]
+  301: use_SLPT = input.bool(false, 'Use Fixed SL / PT', group = group_SL)
+  302: SL = input.float(50, 'Stop loss in ticks', step = 1, group = group_SL) * syminfo.mintick
+  303: PT = input.float(100, "Profit target in ticks", step = 1, group = group_SL) * syminfo.mintick
