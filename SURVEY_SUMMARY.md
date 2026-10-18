@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2256 |
-| PORTED | 1303 |
+| PORT_CANDIDATE | 2241 |
+| PORTED | 1317 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 186 |
+| REJECTED_ON_READING | 187 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1431,7 +1431,21 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436140 | `ports/436140_moving-average-crossover-strategy-with-stop-loss-and-take-pr/` | PineScript | ma_cross | coarse_bar_stop | k_atr x2, rr x2 | 4 |
 | 436143 | `ports/436143_super-trend-triple-strategy/` | PineScript | supertrend | none | ema_length x2, factor_scale x2 | 4 |
 | 436145 | `ports/436145_ma-dual-ma-crossover-trend-tracking-strategy/` | PineScript | ma_cross | none | invert x2, k_atr x2 | 4 |
-| | **1303 ports** | | | | | **6798** |
+| 436146 | `ports/436146_short-term-trading-strategy-based-on-chaikin-volatility-indi/` | PineScript | volatility_band | none | reverse x2, length x2 | 4 |
+| 436148 | `ports/436148_moment-reversal-strategy-based-on-multi-factor-model/` | PineScript | reversal_pattern | none | reverse x2, harmonic x2 | 4 |
+| 436211 | `ports/436211_turtle-trend-following-strategy/` | PineScript | breakout | none | a x2, length3 x2 | 4 |
+| 436213 | `ports/436213_macd-macd-golden-cross-death-cross-trend-following-strategy/` | PineScript | macd_cross | none | signal x5, sl_mult x2 | 10 |
+| 436214 | `ports/436214_cloud-nebula-dual-moving-average-breakthrough-strategy/` | PineScript | breakout | none | c1 x2, c2 x2 | 4 |
+| 436215 | `ports/436215_rsi-price-reversal-rsi-combo-strategy/` | PineScript | reversal_pattern | none | reverse x2, length_rsi x2 | 4 |
+| 436216 | `ports/436216_multiple-moving-average-comprehensive-strategy/` | PineScript | ma_cross | none | step x2, n_ma x2 | 4 |
+| 436218 | `ports/436218_ehlers-fisher-stochastic-relative-vigor-index-strategy/` | PineScript | momentum_oscillator | none | p x2, opposite_trade x2 | 4 |
+| 436219 | `ports/436219_quantitative-trading-price-breakthrough-strategy/` | PineScript | trend_confluence | none | len x2, mult x2 | 4 |
+| 436220 | `ports/436220_double-exponential-moving-average-and-alma-strategy/` | PineScript | ma_cross | none | windowsize x2, l2 x2 | 4 |
+| 436222 | `ports/436222_rsi-estocastic-tsla-tsla-quantitative-trading-system-across/` | PineScript | rsi_oscillator | none | rsi_fast x2, stoch_exit x2 | 4 |
+| 436224 | `ports/436224_broken-high-low-strategy/` | PineScript | candle_pattern | none | fast_ma x2, slow_ma x2 | 4 |
+| 436226 | `ports/436226_bollinger-momentum-breakout-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 436228 | `ports/436228_slow-heiken-ashi-exponential-moving-average-trading-strategy/` | PineScript | candle_pattern | none | p x2, exponential x2 | 4 |
+| | **1317 ports** | | | | | **6860** |
 
 ## Rejected on reading
 
@@ -1623,6 +1637,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436093 | 基于互动模式的K线交易策略-Interactive-Model-Based-Candlestick-Trading-Strategy.md | 2 | The entry needs the close over a fixed RESISTANCE price (200) and the exit a close under a fixed SUPPORT price (100): price levels typed in as inputs, which mean something different at every price scale and on every instrument. |
 | 436096 | Ichimoku云量化短线策略Ichimoku-Cloud-Quant-Scalping-Strategy.md | 1 | The orders are strategy.order calls with a quantity of 1 in each direction (a 'buy' and a 'sel' order, each with its own tick bracket): strategy.order adds to and nets against the open position instead of reversing it, so a sell order while long only takes the position to flat and repeated signals stack units: net-position arithmetic that the all-in / all-out signal interface cannot express. |
 | 436142 | 动态跟随止损策略Dynamic-Trailing-Stop-Loss-Strategy.md | 1 | The signals combine daily and 15-minute request.security reads inside while loops with break (high[_bar] / low[_bar] of several earlier bars, including the index 0 bar which on the 1-minute chart is the still-forming day), choosing which earlier range the previous close broke out of; which value each read returns on a historical bar depends on the runtime's handling of in-progress higher bars, and the stop sits at a structural 15-minute low. |
+| 436217 | 双动量突破与波动率过滤量化策略Dual-Momentum-Breakthrough-and-Volatility-Filtering-Algorithmic-Trading-Strategy.md | 1 | The entry filter reads atr(14) through security(tickerid, 'D', ...) and then a moving average of the percent ATR through a second security call whose expression is the variable atrp, itself built from the first security result and the chart close: a nested request.security whose evaluation context (daily versus chart bars) depends on how the runtime resolves the inner variable; the take profit (3000 %) and the 50 % trail are inert. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

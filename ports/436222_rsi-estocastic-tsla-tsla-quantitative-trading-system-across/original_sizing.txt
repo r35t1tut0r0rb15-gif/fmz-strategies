@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #436222 (基于RSI和Estocastic指标的TSLA交易策略TSLA-Quantitative-Trading-System-Across-Multiple-Timeframes)
+# Source: https://www.fmz.com/strategy/436222  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Purchase quantity  [lines 126-126]
+  126: cantidad_compra = 2

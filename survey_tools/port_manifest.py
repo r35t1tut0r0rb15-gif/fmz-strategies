@@ -3003,6 +3003,31 @@ SIZING = {
         ("Take profit, stop and trail inputs", 165, 168),
         ("Exit orders", 205, 206),
     ],
+    # ---- FMZ-C, batch C87 (2026-10-18)
+    436146: [],
+    436148: [],
+    436211: [],
+    436213: [
+        ("Pip adjuster and ATR bracket inputs", 223, 232),
+    ],
+    436214: [],
+    436215: [],
+    436216: [],
+    436218: [
+        ("strategy(): percent of equity, pyramiding", 121, 121),
+    ],
+    436219: [],
+    436220: [],
+    436222: [
+        ("Purchase quantity", 126, 126),
+    ],
+    436224: [
+        ("strategy(): capital, percent of equity, pyramiding", 155, 155),
+    ],
+    436226: [
+        ("strategy(): percent of equity", 128, 128),
+    ],
+    436228: [],
 }
 
 REJECTED_ON_READING = {
@@ -3741,6 +3766,13 @@ REJECTED_ON_READING = {
               "range the previous close broke out of; which value each read returns on a "
               "historical bar depends on the runtime's handling of in-progress higher bars, and "
               "the stop sits at a structural 15-minute low."),
+    # ---- FMZ-C, batch C87 (2026-10-18)
+    436217: ("1", "The entry filter reads atr(14) through security(tickerid, 'D', ...) and then a "
+              "moving average of the percent ATR through a second security call whose expression "
+              "is the variable atrp, itself built from the first security result and the chart "
+              "close: a nested request.security whose evaluation context (daily versus chart "
+              "bars) depends on how the runtime resolves the inner variable; the take profit "
+              "(3000 %) and the 50 % trail are inert."),
 }
 
 DUPLICATE_ON_READING = {

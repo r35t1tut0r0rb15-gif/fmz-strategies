@@ -185,6 +185,7 @@ fmz_id,file,final_outcome,criterion,reason
 436093,基于互动模式的K线交易策略-Interactive-Model-Based-Candlestick-Trading-Strategy.md,REJECTED_ON_READING,2,"The entry needs the close over a fixed RESISTANCE price (200) and the exit a close under a fixed SUPPORT price (100): price levels typed in as inputs, which mean something different at every price scale and on every instrument."
 436096,Ichimoku云量化短线策略Ichimoku-Cloud-Quant-Scalping-Strategy.md,REJECTED_ON_READING,1,"The orders are strategy.order calls with a quantity of 1 in each direction (a 'buy' and a 'sel' order, each with its own tick bracket): strategy.order adds to and nets against the open position instead of reversing it, so a sell order while long only takes the position to flat and repeated signals stack units: net-position arithmetic that the all-in / all-out signal interface cannot express."
 436142,动态跟随止损策略Dynamic-Trailing-Stop-Loss-Strategy.md,REJECTED_ON_READING,1,"The signals combine daily and 15-minute request.security reads inside while loops with break (high[_bar] / low[_bar] of several earlier bars, including the index 0 bar which on the 1-minute chart is the still-forming day), choosing which earlier range the previous close broke out of; which value each read returns on a historical bar depends on the runtime's handling of in-progress higher bars, and the stop sits at a structural 15-minute low."
+436217,双动量突破与波动率过滤量化策略Dual-Momentum-Breakthrough-and-Volatility-Filtering-Algorithmic-Trading-Strategy.md,REJECTED_ON_READING,1,"The entry filter reads atr(14) through security(tickerid, 'D', ...) and then a moving average of the percent ATR through a second security call whose expression is the variable atrp, itself built from the first security result and the chart close: a nested request.security whose evaluation context (daily versus chart bars) depends on how the runtime resolves the inner variable; the take profit (3000 %) and the 50 % trail are inert."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1503,3 +1504,17 @@ fmz_id,file,final_outcome,criterion,reason
 436140,基于均线交叉的止损止盈策略Moving-Average-Crossover-Strategy-with-Stop-Loss-and-Take-Profit.md,PORTED,,ports/436140_moving-average-crossover-strategy-with-stop-loss-and-take-pr/
 436143,基于多个时间三重超趋势策略Super-Trend-Triple-Strategy.md,PORTED,,ports/436143_super-trend-triple-strategy/
 436145,双MA交叉趋势追踪策略Dual-MA-Crossover-Trend-Tracking-Strategy.md,PORTED,,ports/436145_ma-dual-ma-crossover-trend-tracking-strategy/
+436146,基于柴金波动率指标的短线交易策略Short-term-Trading-Strategy-Based-on-Chaikin-Volatility-Indicator.md,PORTED,,ports/436146_short-term-trading-strategy-based-on-chaikin-volatility-indi/
+436148,多因子模型动量反转策略Moment-Reversal-Strategy-Based-on-Multi-factor-Model.md,PORTED,,ports/436148_moment-reversal-strategy-based-on-multi-factor-model/
+436211,趋势顺应海龟交易策略Turtle-trend-Following-Strategy.md,PORTED,,ports/436211_turtle-trend-following-strategy/
+436213,MACD金叉死叉趋势跟踪策略MACD-Golden-Cross-Death-Cross-Trend-Following-Strategy.md,PORTED,,ports/436213_macd-macd-golden-cross-death-cross-trend-following-strategy/
+436214,云霓双重均线突破策略Cloud-Nebula-Dual-Moving-Average-Breakthrough-Strategy.md,PORTED,,ports/436214_cloud-nebula-dual-moving-average-breakthrough-strategy/
+436215,价格反转RSI组合策略Price-Reversal-RSI-Combo-Strategy.md,PORTED,,ports/436215_rsi-price-reversal-rsi-combo-strategy/
+436216,多重移动平均线综合策略Multiple-Moving-Average-Comprehensive-Strategy.md,PORTED,,ports/436216_multiple-moving-average-comprehensive-strategy/
+436218,埃勒斯-费希尔相对活力指数策略Ehlers-Fisher-Stochastic-Relative-Vigor-Index-Strategy.md,PORTED,,ports/436218_ehlers-fisher-stochastic-relative-vigor-index-strategy/
+436219,量化交易价格突破策略Quantitative-Trading-Price-Breakthrough-Strategy.md,PORTED,,ports/436219_quantitative-trading-price-breakthrough-strategy/
+436220,双指数移动平均线和阿尔玛策略Double-Exponential-Moving-Average-and-ALMA-Strategy.md,PORTED,,ports/436220_double-exponential-moving-average-and-alma-strategy/
+436222,基于RSI和Estocastic指标的TSLA交易策略TSLA-Quantitative-Trading-System-Across-Multiple-Timeframes.md,PORTED,,ports/436222_rsi-estocastic-tsla-tsla-quantitative-trading-system-across/
+436224,跟踪价格突破高低策略Broken-High-Low-Strategy.md,PORTED,,ports/436224_broken-high-low-strategy/
+436226,布林带突破动量策略Bollinger-Momentum-Breakout-Strategy.md,PORTED,,ports/436226_bollinger-momentum-breakout-strategy/
+436228,慢速平仓均线交易策略Slow-Heiken-Ashi-Exponential-Moving-Average-Trading-Strategy.md,PORTED,,ports/436228_slow-heiken-ashi-exponential-moving-average-trading-strategy/

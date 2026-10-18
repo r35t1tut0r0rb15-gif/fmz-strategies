@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #436146 (基于柴金波动率指标的短线交易策略Short-term-Trading-Strategy-Based-on-Chaikin-Volatility-Indicator)
+# Source: https://www.fmz.com/strategy/436146  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

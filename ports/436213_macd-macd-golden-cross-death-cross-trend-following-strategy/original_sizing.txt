@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #436213 (MACD金叉死叉趋势跟踪策略MACD-Golden-Cross-Death-Cross-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/436213  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Pip adjuster and ATR bracket inputs  [lines 223-232]
+  223: SLmultiplier = 1.5
+  224: TPmultiplier = 1
+  225: 
+  226: JPYPair = input(type = input.bool, title = "JPY Pair ?", defval = false)
+  227: pipAdjuster = JPYPair ? 1000 : 100000
+  228: 
+  229: 
+  230: ATR = atr(14) * pipAdjuster // 1000 for jpy pairs : 100000
+  231: SL = ATR * SLmultiplier
+  232: TP = ATR * TPmultiplier
