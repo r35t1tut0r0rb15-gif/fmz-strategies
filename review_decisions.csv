@@ -166,6 +166,8 @@ fmz_id,file,final_outcome,criterion,reason
 435138,多时间轴均线系统交易策略Multi-Timeframe-Moving-Average-System-Trading-Strategy.md,REJECTED_ON_READING,1,"The trend lines are request.security(syminfo.tickerid, '15' / '30' / '60' / '120', ...) on the 4-hour header chart: resolutions below the chart's, whose value per 4-hour bar is undefined (as #427518)."
 435153,乖离矩阵趋势跟随策略Divergence-Matrix-Trend-Following-Strategy.md,REJECTED_ON_READING,1,Matrix ladder: the position is resized up and down around grid levels 2 % apart (increase / decrease / reset orders keyed on the entry price and the level count); the position is a sum of grid units (as #430596).
 435154,移动均线交叉交易策略EMA-Crossover-Trading-Strategy.md,REJECTED_ON_READING,2,"The entries need close > entrybar, where entrybar is a var set to the first bar's close and never updated: a fixed price level set by where the chart's data starts."
+435256,指数修正分析过滤策略Modulo-Logic-With-EMA-Filter-Strategy.md,REJECTED_ON_READING,2,"The entries need the close divided by 4 to leave no remainder (close % 4 == 0 by default): an exact test of the price against a multiple of a price-unit divisor, so the trigger is a fixed price level grid that means something different on every instrument and at every price scale; the stops are also built from valuewhen levels of the entry bar."
+435262,MACD金叉突破配200日均线的趋势追踪策略MACD-Golden-Cross-Breakout-with-200-Day-Moving-Average-Trend-Following-Strategy.md,REJECTED_ON_READING,2,"The stop level is set ABOVE the entry close (close x (1 + 0.5 %)) and kept in a var; the exits close the long whenever the close is under that level (true at once and on every later bar until the next signal) or at or over a target level, and strategy.exit is handed the price levels as loss / profit tick distances: the rules compare the close with price levels carried from the last signal and, as written, open and close on the same open or never hold, so no signal rule can be separated from the price-level bookkeeping."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1354,3 +1356,14 @@ fmz_id,file,final_outcome,criterion,reason
 435232,价格震荡突破策略Volatility-Breakthrough-Strategy.md,PORTED,,ports/435232_volatility-breakthrough-strategy/
 435233,阳光超级趋势策略Sunny-Supertrend-Strategy.md,PORTED,,ports/435233_sunny-supertrend-strategy/
 435234,振荡指标交易策略Reverasal-Indicator-Strategy.md,PORTED,,ports/435234_reverasal-indicator-strategy/
+435245,移动平均线交叉指标与反转指标组合策略Moving-Average-Crossover-and-Reversal-Indicator-Combination-Strategy.md,PORTED,,ports/435245_moving-average-crossover-and-reversal-indicator-combination/
+435246,双均线交易策略Long-Short-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/435246_long-short-moving-average-crossover-trading-strategy/
+435248,双指数平均线捕捉策略Dual-Moving-Average-Line-Capture-Strategy.md,PORTED,,ports/435248_dual-moving-average-line-capture-strategy/
+435249,多时间轴均线策略Multi-Timeframe-Moving-Average-Strategy.md,PORTED,,ports/435249_multi-timeframe-moving-average-strategy/
+435250,基于加速振荡器的趋势反转策略Trend-Reversal-Strategy-Based-on-Accelerator-Oscillator.md,PORTED,,ports/435250_trend-reversal-strategy-based-on-accelerator-oscillator/
+435251,基于相对强弱指标动量轮回策略RSI-Crossover-Momentum-Cyclical-Strategy.md,PORTED,,ports/435251_rsi-crossover-momentum-cyclical-strategy/
+435252,基于ADX和MACD指标的交易策略ADX-and-MACD-Indicators-based-Trading-Strategy.md,PORTED,,ports/435252_adx-macd-adx-and-macd-indicators-based-trading-strategy/
+435260,基于价格行动的黄金交易算法Gold-Price-Action-Trading-Algorithm.md,PORTED,,ports/435260_gold-price-action-trading-algorithm/
+435264,自适应价格区域反转交易策略Adaptive-Price-Zone-Reversal-Trading-Strategy.md,PORTED,,ports/435264_adaptive-price-zone-reversal-trading-strategy/
+435265,动态移动平均线双策略Dynamic-Moving-Average-Dual-Strategy.md,PORTED,,ports/435265_dynamic-moving-average-dual-strategy/
+435266,动量突破与趋势跟踪组合策略Momentum-Breakout-and-Trend-Following-Combination-Strategy.md,PORTED,,ports/435266_momentum-breakout-and-trend-following-combination-strategy/

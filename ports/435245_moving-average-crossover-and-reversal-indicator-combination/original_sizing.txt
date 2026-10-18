@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #435245 (移动平均线交叉指标与反转指标组合策略Moving-Average-Crossover-and-Reversal-Indicator-Combination-Strategy)
+# Source: https://www.fmz.com/strategy/435245  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Fixed order quantity 1  [lines 187-188]
+  187: strategy.entry("Long", strategy.long, 1, when = isCrossover)
+  188: strategy.entry("Short", strategy.short, 1, when = isCrossunder)

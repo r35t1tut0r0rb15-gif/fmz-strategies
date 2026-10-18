@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #435260 (基于价格行动的黄金交易算法Gold-Price-Action-Trading-Algorithm)
+# Source: https://www.fmz.com/strategy/435260  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Price-unit bracket inputs  [lines 174-175]
+  174: takeProfit = input(500, "Take Profit")
+  175: stopLoss = input(200, "Stop Loss")

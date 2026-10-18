@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #435265 (动态移动平均线双策略Dynamic-Moving-Average-Dual-Strategy)
+# Source: https://www.fmz.com/strategy/435265  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity, pyramiding 2  [lines 180-180]
+  180: strategy("DRSI DMA Scalping Strategy", shorttitle="DRSIDMA", overlay=false, initial_capital=1000, pyramiding=2, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

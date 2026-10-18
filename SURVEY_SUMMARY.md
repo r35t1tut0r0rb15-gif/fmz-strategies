@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2405 |
-| PORTED | 1173 |
+| PORT_CANDIDATE | 2392 |
+| PORTED | 1184 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 167 |
+| REJECTED_ON_READING | 169 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1301,7 +1301,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435232 | `ports/435232_volatility-breakthrough-strategy/` | PineScript | multi_indicator_confluence | none | ma_len x2, adx_th x2 | 4 |
 | 435233 | `ports/435233_sunny-supertrend-strategy/` | PineScript | supertrend | none | factor x2, atr_len x2 | 4 |
 | 435234 | `ports/435234_reverasal-indicator-strategy/` | PineScript | momentum_oscillator_turn | none | cci_len x2, ob x2 | 4 |
-| | **1173 ports** | | | | | **6281** |
+| 435245 | `ports/435245_moving-average-crossover-and-reversal-indicator-combination/` | PineScript | rsi_oscillator | none | rsi_ma x2, cci_len x2 | 4 |
+| 435246 | `ports/435246_long-short-moving-average-crossover-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 435248 | `ports/435248_dual-moving-average-line-capture-strategy/` | PineScript | bollinger_breakout | none | mult x2, target x2 | 4 |
+| 435249 | `ports/435249_multi-timeframe-moving-average-strategy/` | PineScript | ma_cross | none | k_atr x2, len3 x2 | 4 |
+| 435250 | `ports/435250_trend-reversal-strategy-based-on-accelerator-oscillator/` | PineScript | momentum_oscillator | none | reverse x2, slow x2 | 4 |
+| 435251 | `ports/435251_rsi-crossover-momentum-cyclical-strategy/` | PineScript | rsi_oscillator | none | buy_th x2, sell_th x2 | 4 |
+| 435252 | `ports/435252_adx-macd-adx-and-macd-indicators-based-trading-strategy/` | PineScript | trend_confluence | none | di_len x2, macd_fast x2 | 4 |
+| 435260 | `ports/435260_gold-price-action-trading-algorithm/` | PineScript | breakout | coarse_bar_stop | lookback x2, k_atr x2 | 4 |
+| 435264 | `ports/435264_adaptive-price-zone-reversal-trading-strategy/` | PineScript | volatility_band | none | reverse x2, n_periods x2, band_pct x2 | 8 |
+| 435265 | `ports/435265_dynamic-moving-average-dual-strategy/` | PineScript | momentum_oscillator | none | malen x2, vol_min x2, mt_frac x2 | 8 |
+| 435266 | `ports/435266_momentum-breakout-and-trend-following-combination-strategy/` | PineScript | supertrend | none | pl x2, factor x2 | 4 |
+| | **1184 ports** | | | | | **6333** |
 
 ## Rejected on reading
 
@@ -1474,6 +1485,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435138 | 多时间轴均线系统交易策略Multi-Timeframe-Moving-Average-System-Trading-Strategy.md | 1 | The trend lines are request.security(syminfo.tickerid, '15' / '30' / '60' / '120', ...) on the 4-hour header chart: resolutions below the chart's, whose value per 4-hour bar is undefined (as #427518). |
 | 435153 | 乖离矩阵趋势跟随策略Divergence-Matrix-Trend-Following-Strategy.md | 1 | Matrix ladder: the position is resized up and down around grid levels 2 % apart (increase / decrease / reset orders keyed on the entry price and the level count); the position is a sum of grid units (as #430596). |
 | 435154 | 移动均线交叉交易策略EMA-Crossover-Trading-Strategy.md | 2 | The entries need close > entrybar, where entrybar is a var set to the first bar's close and never updated: a fixed price level set by where the chart's data starts. |
+| 435256 | 指数修正分析过滤策略Modulo-Logic-With-EMA-Filter-Strategy.md | 2 | The entries need the close divided by 4 to leave no remainder (close % 4 == 0 by default): an exact test of the price against a multiple of a price-unit divisor, so the trigger is a fixed price level grid that means something different on every instrument and at every price scale; the stops are also built from valuewhen levels of the entry bar. |
+| 435262 | MACD金叉突破配200日均线的趋势追踪策略MACD-Golden-Cross-Breakout-with-200-Day-Moving-Average-Trend-Following-Strategy.md | 2 | The stop level is set ABOVE the entry close (close x (1 + 0.5 %)) and kept in a var; the exits close the long whenever the close is under that level (true at once and on every later bar until the next signal) or at or over a target level, and strategy.exit is handed the price levels as loss / profit tick distances: the rules compare the close with price levels carried from the last signal and, as written, open and close on the same open or never hold, so no signal rule can be separated from the price-level bookkeeping. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

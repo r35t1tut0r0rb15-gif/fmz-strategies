@@ -2738,6 +2738,30 @@ SIZING = {
         ("strategy(): percent of equity", 120, 120),
     ],
     435234: [],
+    # ---- FMZ-C, batch C76 (2026-10-18)
+    435245: [
+        ("Fixed order quantity 1", 187, 188),
+    ],
+    435246: [],
+    435248: [],
+    435249: [
+        ("Tick bracket inputs", 188, 189),
+    ],
+    435250: [],
+    435251: [],
+    435252: [
+        ("Stop loss price input", 208, 209),
+    ],
+    435260: [
+        ("Price-unit bracket inputs", 174, 175),
+    ],
+    435264: [],
+    435265: [
+        ("strategy(): percent of equity, pyramiding 2", 180, 180),
+    ],
+    435266: [
+        ("Risk-based quantity", 247, 247),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3373,6 +3397,19 @@ REJECTED_ON_READING = {
               "the position is a sum of grid units (as #430596)."),
     435154: ("2", "The entries need close > entrybar, where entrybar is a var set to the first bar's "
               "close and never updated: a fixed price level set by where the chart's data starts."),
+    # ---- FMZ-C, batch C76 (2026-10-18)
+    435256: ("2", "The entries need the close divided by 4 to leave no remainder (close % 4 == 0 by "
+              "default): an exact test of the price against a multiple of a price-unit divisor, "
+              "so the trigger is a fixed price level grid that means something different on every "
+              "instrument and at every price scale; the stops are also built from valuewhen "
+              "levels of the entry bar."),
+    435262: ("2", "The stop level is set ABOVE the entry close (close x (1 + 0.5 %)) and kept in a "
+              "var; the exits close the long whenever the close is under that level (true at once "
+              "and on every later bar until the next signal) or at or over a target level, and "
+              "strategy.exit is handed the price levels as loss / profit tick distances: the "
+              "rules compare the close with price levels carried from the last signal and, as "
+              "written, open and close on the same open or never hold, so no signal rule can be "
+              "separated from the price-level bookkeeping."),
 }
 
 DUPLICATE_ON_READING = {
