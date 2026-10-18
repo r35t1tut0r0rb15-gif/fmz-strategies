@@ -2858,6 +2858,30 @@ SIZING = {
     435774: [],
     435775: [],
     435828: [],
+    # ---- FMZ-C, batch C82 (2026-10-18)
+    435832: [
+        ("Equity-based order size", 224, 226),
+    ],
+    435835: [],
+    435837: [],
+    435848: [
+        ("Cash order size, risk-sizing inputs and quantity", 179, 192),
+        ("Quantity from risk", 293, 298),
+    ],
+    435852: [],
+    435863: [],
+    435867: [],
+    435868: [],
+    435869: [
+        ("Cash size, leverage and risk inputs", 126, 131),
+        ("Entry quantity", 159, 162),
+    ],
+    435871: [
+        ("Equity-based lot", 283, 285),
+    ],
+    435881: [
+        ("strategy(): percent of equity, commission", 150, 150),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3560,6 +3584,20 @@ REJECTED_ON_READING = {
               "bar's close, re-sent only on those bars, and enterShort needs strategy.openprofit "
               "> 0): an exit placed mid-trade at a level that depends on the position's open "
               "profit, outside the entry-fill bracket the stop interface supports."),
+    # ---- FMZ-C, batch C82 (2026-10-18)
+    435839: ("1", "Each entry also sends strategy.exit with qty_percent = 10 at a profit target (a 10 "
+              "% partial take profit; the 15 % and 20 % tiers are declared and unused) and the "
+              "stop is a custom ratchet on bar closes: a partial exit that the all-in / all-out "
+              "signal interface cannot express."),
+    435845: ("1", "A 3Commas dollar-cost-averaging bot: strategy.order adds safety orders "
+              "(volume-scaled quantities, up to a set count) on deviations below the average "
+              "price while a base order is open, with take profit and stop on the average of the "
+              "combined position: a ladder of adds whose size depends on the position, which the "
+              "all-in / all-out signal interface cannot express."),
+    435850: ("1", "The moving averages are read through security(tickerid, '5D', sma(hlc3, 16), "
+              "gaps_off, lookahead_on) and the matching EMA with lookahead_on and no [1]: on "
+              "historical bars the 5-day values are seen from the first bar of the 5-day period, "
+              "so the rule reads the future (SURVEY_README request.security rule)."),
 }
 
 DUPLICATE_ON_READING = {

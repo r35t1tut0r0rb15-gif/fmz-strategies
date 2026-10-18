@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2329 |
-| PORTED | 1237 |
+| PORT_CANDIDATE | 2315 |
+| PORTED | 1248 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 179 |
+| REJECTED_ON_READING | 182 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1365,7 +1365,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435774 | `ports/435774_rsi-rsi-channel-price-difference-tracking-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, hma_len x2 | 4 |
 | 435775 | `ports/435775_macd-rsi-macd-and-rsi-based-trend-following-reversal-strateg/` | PineScript | macd_cross | none | ema_len x2, rsi_len x2 | 4 |
 | 435828 | `ports/435828_5-10-20-strategy-based-on-5-10-20-day-ema-crossover-using-su/` | PineScript | supertrend | none | len1 x2, mult x2 | 4 |
-| | **1237 ports** | | | | | **6533** |
+| 435832 | `ports/435832_k-candlestick-patterns-trading-strategy/` | PineScript | candle_pattern | none |  | 0 |
+| 435835 | `ports/435835_trend-tracking-strategy-based-on-multi-factor-model-with-ada/` | PineScript | atr_trailing_line | none | a x2, c x2 | 4 |
+| 435837 | `ports/435837_dual-factor-mean-reversion-tracking-strategy/` | PineScript | reversal_pattern | none | reverse x2, n_period x2 | 4 |
+| 435848 | `ports/435848_stochastic-moving-average-strategy/` | PineScript | stochastic_oscillator | none | atr_mult x2, rr x2 | 4 |
+| 435852 | `ports/435852_eight-day-extended-run-strategy/` | PineScript | mean_reversion | none | sma_len x2, run x2 | 4 |
+| 435863 | `ports/435863_crossing-moving-average-strategy/` | PineScript | ma_cross | none | ema5 x2, ema21 x2 | 4 |
+| 435867 | `ports/435867_dynamic-re-entry-buy-only-strategy/` | PineScript | cci_oscillator | none | fast x2, adx_threshold x2 | 4 |
+| 435868 | `ports/435868_rsi-laguerre-rsi-trading-strategy/` | PineScript | laguerre | none | alpha x3 | 3 |
+| 435869 | `ports/435869_bollinger-band-breakout-trading-strategy/` | PineScript | bollinger_breakout | none | lookback x2, dev_mult x2 | 4 |
+| 435871 | `ports/435871_directional-movement-index-dual-direction-trading-strategy/` | PineScript | trend_confluence | none | len x2, limit x2 | 4 |
+| 435881 | `ports/435881_dual-moving-average-trend-tracking-strategy/` | PineScript | ma_cross | none | fast x2, slow x2, type x2 | 8 |
+| | **1248 ports** | | | | | **6576** |
 
 ## Rejected on reading
 
@@ -1550,6 +1561,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435766 | 基于MACD和RSI指标的交叉信号策略Trading-Strategy-Based-on-MACD-and-RSI-Crossover-Signals.md | 1 | Positions are built and cut by quantity: strategy.order buys 25 % of equity on each MACD-cross-after-oversold signal (pyramiding 10) and sells one third of the open position size (qty = posSize / 3) on each cross after overbought: scale-in and a stepped scale-out that the all-in / all-out signal interface cannot express. |
 | 435773 | 坚实踏实的SMA均线持仓策略Solid-and-Steady-SMA-Position-Holding-Strategy.md | 1 | Two take-profit exits take 10 % and 50 % of the position at +1 % and +5 % (qty_percent), the rest following the ZLEMA slope exit: partial exits (a scale-out) that the all-in / all-out signal interface cannot express. |
 | 435831 | SMA波动偏移交易策略SMA-Offset-Fluctuation-Trading-Strategy.md | 1 | The long's stop is an exit order armed only when the short condition appears during the trade (strategy.exit with stop = a ratcheted level computed from every bar's close, re-sent only on those bars, and enterShort needs strategy.openprofit > 0): an exit placed mid-trade at a level that depends on the position's open profit, outside the entry-fill bracket the stop interface supports. |
+| 435839 | 超趋势跟踪止损策略Super-Trend-Tracking-Stop-Loss-Strategy.md | 1 | Each entry also sends strategy.exit with qty_percent = 10 at a profit target (a 10 % partial take profit; the 15 % and 20 % tiers are declared and unused) and the stop is a custom ratchet on bar closes: a partial exit that the all-in / all-out signal interface cannot express. |
+| 435845 | 动量震荡跨界Bollinger带均线策略Momentum-Oscillation-Crossing-Bollinger-Bands-with-Moving-Average-Strategy.md | 1 | A 3Commas dollar-cost-averaging bot: strategy.order adds safety orders (volume-scaled quantities, up to a set count) on deviations below the average price while a base order is open, with take profit and stop on the average of the combined position: a ladder of adds whose size depends on the position, which the all-in / all-out signal interface cannot express. |
+| 435850 | 动态MA均线交叉趋势追踪策略Dynamic-MA-Crossover-Trend-Following-Strategy.md | 1 | The moving averages are read through security(tickerid, '5D', sma(hlc3, 16), gaps_off, lookahead_on) and the matching EMA with lookahead_on and no [1]: on historical bars the 5-day values are seen from the first bar of the 5-day period, so the rule reads the future (SURVEY_README request.security rule). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #435848 (动量随机平滑移动平均策略Stochastic-Moving-Average-Strategy)
+# Source: https://www.fmz.com/strategy/435848  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Cash order size, risk-sizing inputs and quantity  [lines 179-192]
+  179: strategy("Stochastic Moving Average", shorttitle="Stoch. EMA", overlay=true, default_qty_type= strategy.cash, initial_capital=10000, default_qty_value=100)
+  180: 
+  181: //==============================================================================
+  182: //==============================   USER INPUT   ================================
+  183: //==============================================================================
+  184: 
+  185: var g_tradeSetup = "     Trade Setup"
+  186: activateLongs  = input.bool (title="Long Trades"        , defval=true                                       , inline="A1", group=g_tradeSetup, tooltip="")
+  187: activateShorts = input.bool (title="Short Trades"       , defval=true                                       , inline="A1", group=g_tradeSetup, tooltip="")
+  188: rr             = input.float(title="Risk : Reward"      , defval=1   , minval=0, maxval=100       , step=0.1, inline=""  , group=g_tradeSetup, tooltip="")
+  189: RiskEquity     = input.bool (title="Risk = % Equity    ", defval=false                                      , inline="A2", group=g_tradeSetup, tooltip="Set stop loss size as a percentage of 'Initial Capital' -> Strategy Parameter -> Properties tab (Low liquidity markets will affect will prevent to get an exact amount du to gaps)")
+  190: riskPrctEqui   = input.float(title=""                   , defval=1   , minval=0, maxval=100       , step=0.1, inline="A2", group=g_tradeSetup, tooltip="")
+  191: RiskUSD        = input.bool (title="Risk = $ Amount   " , defval=false                                      , inline="A3", group=g_tradeSetup, tooltip="Set stop loss size as a fixed Base currency amount (Low liquidity markets will affect will prevent to get an exact amount du to gaps)")
+  192: riskUSD        = input.float(title=""                   , defval=1000, minval=0, maxval=1000000000, step=100, inline="A3", group=g_tradeSetup, tooltip="")
+
+## Quantity from risk  [lines 293-298]
+  293: if validLong 
+  294:     strategy.entry("Long", strategy.long, 
+  295:      qty = RiskEquity ? ((riskPrctEqui/100)*strategy.equity)/longSLDist : RiskUSD ? riskUSD/longSLDist : na)
+  296: if validShort 
+  297:     strategy.entry("Short", strategy.short, 
+  298:      qty = RiskEquity ? ((riskPrctEqui/100)*strategy.equity)/shortSLDist  : RiskUSD ? riskUSD/shortSLDist : na)

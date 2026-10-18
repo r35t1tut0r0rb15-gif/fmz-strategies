@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #435869 (布林带跨度交易策略Bollinger-Band-Breakout-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/435869  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Cash size, leverage and risk inputs  [lines 126-131]
+  126: strategy("I11L OIL Bot",overlay=true, initial_capital=1000000,default_qty_value=1000000,default_qty_type=strategy.cash,commission_type=strategy.commission.percent,commission_value=0.00)
+  127: 
+  128: leverage = input.float(1,"Leverage (x)",step=1)
+  129: SL_Factor = 1 - input.float(1,"Risk Capital per Trade (%)", minval=0.1, maxval=100, step=0.05) / 100 / leverage
+  130: TP_Factor = input.float(2, step=0.1)
+  131: invertBuyLogic = input.bool(false)
+
+## Entry quantity  [lines 159-162]
+  159: strategy.initial_capital = 50000
+  160: 
+  161: if((invertBuyLogic ? isBuyInverted : isBuy) and not(disableAdditionalBuysThisDay))
+  162:     strategy.entry("Long", strategy.long, (strategy.initial_capital / close) * leverage)

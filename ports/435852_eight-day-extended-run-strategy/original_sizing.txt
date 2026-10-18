@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #435852 (八日扩展运行策略Eight-Day-Extended-Run-Strategy)
+# Source: https://www.fmz.com/strategy/435852  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

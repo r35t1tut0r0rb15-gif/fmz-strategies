@@ -1,0 +1,8 @@
+# Original sizing and money-management code, FMZ #435871 (动向指数双向交易策略Directional-Movement-Index-Dual-direction-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/435871  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Equity-based lot  [lines 283-285]
+  283: size = strategy.position_size
+  284: lot = 0.0
+  285: lot := size != size[1] ? strategy.equity / close * capital / 100 : lot[1]
