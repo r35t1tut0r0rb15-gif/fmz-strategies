@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #435464 (跨趋势跟随套利181策略Valeria-181-Robot-Strategy-Improved-24)
+# Source: https://www.fmz.com/strategy/435464  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin inputs  [lines 114-114]
+  114: strategy("Valeria 181 Bot Strategy Mejorado 2.21", overlay=true, margin_long=100, margin_short=100)
+
+## Price-unit stop and target  [lines 134-137]
+  134: stopLossLong = lastLongOrderPrice - 170  // 10 USDT lower than the last long order price
+  135: takeProfitLong = lastLongOrderPrice + 150  // 100 USDT higher than the last long order price
+  136: stopLossShort = lastShortOrderPrice + 170  // 10 USDT higher than the last short order price
+  137: takeProfitShort = lastShortOrderPrice - 150  // 100 USDT lower than the last short order price

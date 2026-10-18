@@ -2780,6 +2780,26 @@ SIZING = {
     435286: [],
     435288: [],
     435291: [],
+    # ---- FMZ-C, batch C78 (2026-10-18)
+    435463: [],
+    435464: [
+        ("strategy(): margin inputs", 114, 114),
+        ("Price-unit stop and target", 134, 137),
+    ],
+    435468: [],
+    435469: [
+        ("strategy(): percent of equity, commission, pyramiding", 165, 170),
+    ],
+    435477: [
+        ("strategy(): initial capital", 107, 107),
+    ],
+    435484: [
+        ("strategy(): percent of equity 30", 128, 128),
+    ],
+    435485: [],
+    435488: [],
+    435492: [],
+    435495: [],
 }
 
 REJECTED_ON_READING = {
@@ -3439,6 +3459,18 @@ REJECTED_ON_READING = {
               "the 5-minute chart each 4-hour bar's final histogram is seen from its first bar: "
               "it reads the future (SURVEY_README request.security rule); the other branch is the "
               "same logic without lookahead and is only a switch."),
+    # ---- FMZ-C, batch C78 (2026-10-18)
+    435473: ("1", "The entry opens 2 units and the exits are two separate 1-unit partial closes "
+              "(strategy.close with qty = 1 on a cross under the ema of H4 and another on the ema "
+              "of L3): the position is half-closed on the first exit signal and the rest on the "
+              "second, a scale-out the all-in / all-out signal interface cannot express; the ATR "
+              "trailing level is only plotted."),
+    435486: ("2", "Entries need a 09:35-14:30 session test (time(timeframe.period, session)) on the "
+              "DAILY chart of the backtest header, where the bar's own time is not inside the "
+              "session, so the entry condition is a clock-time filter that is undefined (probably "
+              "never true) on the chart it was tested on; the exit is a stop re-sent each bar at "
+              "close - 10 ATR (a close-relative level, not a ratchet) and the 14:57 end-of-day "
+              "close never occurs on daily bars."),
 }
 
 DUPLICATE_ON_READING = {

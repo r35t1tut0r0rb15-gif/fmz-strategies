@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2379 |
-| PORTED | 1195 |
+| PORT_CANDIDATE | 2367 |
+| PORTED | 1205 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 171 |
+| REJECTED_ON_READING | 173 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1323,7 +1323,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435286 | `ports/435286_heiken-ashi-crossover-strategy/` | PineScript | candle_pattern | none |  | 0 |
 | 435288 | `ports/435288_combination-reversal-strategy-based-on-stochastic-turnaround/` | PineScript | reversal_pattern | none | reverse x2, n_length x2 | 4 |
 | 435291 | `ports/435291_dual-reversal-trend-tracking-strategy/` | PineScript | reversal_pattern | none | reverse x2, period x2 | 4 |
-| | **1195 ports** | | | | | **6373** |
+| 435463 | `ports/435463_stochastic-rsi-stochastic-rsi-strategy-for-cryptocurrency-tr/` | PineScript | stochastic_oscillator | none | per x2, length_rsi x2 | 4 |
+| 435464 | `ports/435464_181-valeria-181-robot-strategy-improved-24/` | PineScript | ma_cross | coarse_bar_stop | k_atr x2, sma_len x2 | 4 |
+| 435468 | `ports/435468_stochastic-stochastic-crossover-long-and-short-strategy/` | PineScript | stochastic_oscillator | none | reverse x2, length x2 | 4 |
+| 435469 | `ports/435469_wmx-williams-fractals-reversal-pivot-strategy/` | PineScript | fractal_breakout | none | n x2, occurrence x2 | 4 |
+| 435477 | `ports/435477_ema-ema-golden-cross-short-term-trading-strategy/` | PineScript | ma_cross | none | ema_l x2, ema_l2 x2 | 4 |
+| 435484 | `ports/435484_quant-trading-strategy-based-on-monthly-and-quarterly-moving/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 435485 | `ports/435485_four-ema-crossover-strategy/` | PineScript | ma_cross | none | fast1 x2, slow2 x2 | 4 |
+| 435488 | `ports/435488_breakout-strategy-with-confirmation-on-multiple-time-frames/` | PineScript | ma_cross | none | pct_p x2, sim x2 | 4 |
+| 435492 | `ports/435492_dual-timeframe-trend-tracking-strategy/` | PineScript | ma_cross | none | len_short_h x2, len_long_h x2 | 4 |
+| 435495 | `ports/435495_macd-macd-long-reversal-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| | **1205 ports** | | | | | **6413** |
 
 ## Rejected on reading
 
@@ -1500,6 +1510,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435262 | MACD金叉突破配200日均线的趋势追踪策略MACD-Golden-Cross-Breakout-with-200-Day-Moving-Average-Trend-Following-Strategy.md | 2 | The stop level is set ABOVE the entry close (close x (1 + 0.5 %)) and kept in a var; the exits close the long whenever the close is under that level (true at once and on every later bar until the next signal) or at or over a target level, and strategy.exit is handed the price levels as loss / profit tick distances: the rules compare the close with price levels carried from the last signal and, as written, open and close on the same open or never hold, so no signal rule can be separated from the price-level bookkeeping. |
 | 435275 | 基于逆转与相对强度的组合量化策略Quantitative-Strategy-Based-on-Reversal-and-Comparative-Relative-Strength.md | 1 | The relative-strength half compares the chart symbol with a second symbol read through security(b, timeframe.period, close) (the input default is the BTC swap itself, a ratio of 1.0) and tests the ratio's 10-bar average against price-ratio bands 0.9988 / 0.9960 / 0.9975: a two-instrument pair signal, outside the single-instrument interface. |
 | 435278 | 未来麦克D路线预测策略MacD-Future-Path-Prediction-Strategy.md | 1 | The orders read the 4-hour MACD histogram through security(syminfo.tickerid, '240', hist, gaps_off, lookahead_on) with 'Use The Future?' true by default, so on the 5-minute chart each 4-hour bar's final histogram is seen from its first bar: it reads the future (SURVEY_README request.security rule); the other branch is the same logic without lookahead and is only a switch. |
+| 435473 | 最低点反转策略Bottom-Reversal-Strategy.md | 1 | The entry opens 2 units and the exits are two separate 1-unit partial closes (strategy.close with qty = 1 on a cross under the ema of H4 and another on the ema of L3): the position is half-closed on the first exit signal and the rest on the second, a scale-out the all-in / all-out signal interface cannot express; the ATR trailing level is only plotted. |
+| 435486 | 印度市场整合突破交易策略Consolidation-Breakout-Strategy.md | 2 | Entries need a 09:35-14:30 session test (time(timeframe.period, session)) on the DAILY chart of the backtest header, where the bar's own time is not inside the session, so the entry condition is a clock-time filter that is undefined (probably never true) on the chart it was tested on; the exit is a stop re-sent each bar at close - 10 ATR (a close-relative level, not a ratchet) and the 14:57 end-of-day close never occurs on daily bars. |
 
 ## Flagged and stored under criterion 3 (253 files)
 
