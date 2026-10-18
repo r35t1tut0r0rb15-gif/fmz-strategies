@@ -2970,6 +2970,39 @@ SIZING = {
     436108: [
         ("Fixed-ratio money management and cash order", 159, 199),
     ],
+    # ---- FMZ-C, batch C86 (2026-10-18)
+    436110: [],
+    436112: [
+        ("Tick loss and profit amounts", 153, 158),
+    ],
+    436113: [],
+    436114: [],
+    436117: [
+        ("Initial balance", 195, 195),
+    ],
+    436119: [
+        ("Quantity and USD trail offset", 191, 195),
+    ],
+    436120: [
+        ("strategy(): pyramiding", 129, 129),
+    ],
+    436123: [],
+    436133: [
+        ("strategy(): cash size and capital", 139, 139),
+    ],
+    436136: [
+        ("Quantity and starting amount", 188, 194),
+    ],
+    436137: [
+        ("Quantities and pyramiding multiplier", 109, 112),
+        ("Entry quantities", 145, 148),
+    ],
+    436140: [],
+    436143: [],
+    436145: [
+        ("Take profit, stop and trail inputs", 165, 168),
+        ("Exit orders", 205, 206),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3701,6 +3734,13 @@ REJECTED_ON_READING = {
               "and nets against the open position instead of reversing it, so a sell order while "
               "long only takes the position to flat and repeated signals stack units: "
               "net-position arithmetic that the all-in / all-out signal interface cannot express."),
+    # ---- FMZ-C, batch C86 (2026-10-18)
+    436142: ("1", "The signals combine daily and 15-minute request.security reads inside while loops "
+              "with break (high[_bar] / low[_bar] of several earlier bars, including the index 0 "
+              "bar which on the 1-minute chart is the still-forming day), choosing which earlier "
+              "range the previous close broke out of; which value each read returns on a "
+              "historical bar depends on the runtime's handling of in-progress higher bars, and "
+              "the stop sits at a structural 15-minute low."),
 }
 
 DUPLICATE_ON_READING = {

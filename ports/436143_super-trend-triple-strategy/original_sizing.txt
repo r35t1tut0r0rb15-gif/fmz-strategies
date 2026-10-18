@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #436143 (基于多个时间三重超趋势策略Super-Trend-Triple-Strategy)
+# Source: https://www.fmz.com/strategy/436143  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

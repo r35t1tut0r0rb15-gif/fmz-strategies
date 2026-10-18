@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #436114 (基于均线和移动平均的穿楼锯式止盈止损策略Floor-Crossing-Sawtooth-Profit-Stop-Strategy-Based-on-Moving-Average)
+# Source: https://www.fmz.com/strategy/436114  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

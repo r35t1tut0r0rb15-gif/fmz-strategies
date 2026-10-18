@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #436119 (望远适应-CCI-底部捕捉商品交易策略Extended-Adaptive-CCI-Bottom-Fishing-Trading-Strategy-for-Commodities)
+# Source: https://www.fmz.com/strategy/436119  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantity and USD trail offset  [lines 191-195]
+  191:     strategy.entry("Long", strategy.long, qty=1)
+  192:     alert("Long entry executed at " + str.tostring(close), alert.freq_once_per_bar)
+  193: 
+  194: trailOffset = input(10.0, title="Trailing Stop Offset in USD")
+  195: strategy.exit("Trailing Stop", "Long", trail_offset = trailOffset, trail_price = close)

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #436133 (Ichimoku云图量化交易策略A-Quantitative-Ichimoku-Cloud-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/436133  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): cash size and capital  [lines 139-139]
+  139: strategy(title="Ichimoku Cloud", shorttitle="Ichimoku", overlay=true, default_qty_type=strategy.cash, default_qty_value=100000, initial_capital=100000, currency=currency.USD)

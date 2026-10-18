@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #436145 (双MA交叉趋势追踪策略Dual-MA-Crossover-Trend-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/436145  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take profit, stop and trail inputs  [lines 165-168]
+  165: inpTakeProfit   = input(defval = 1000, title = "Take Profit", minval = 0)
+  166: inpStopLoss     = input(defval = 200, title = "Stop Loss", minval = 0)
+  167: inpTrailStop    = input(defval = 200, title = "Trailing Stop Loss", minval = 0)
+  168: inpTrailOffset  = input(defval = 0, title = "Trailing Stop Loss Offset", minval = 0)
+
+## Exit orders  [lines 205-206]
+  205: strategy.exit("Exit Long", from_entry = "Long", profit = useTakeProfit, loss = useStopLoss, trail_points = useTrailStop, trail_offset = useTrailOffset)
+  206: strategy.exit("Exit Short", from_entry = "Short", profit = useTakeProfit, loss = useStopLoss, trail_points = useTrailStop, trail_offset = useTrailOffset)

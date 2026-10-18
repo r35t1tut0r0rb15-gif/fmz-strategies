@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #436136 (基于布林带的高频交易策略Bollinger-Bands-Based-High-Frequency-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/436136  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantity and starting amount  [lines 188-194]
+  188: monto_inicial = 10
+  189: 
+  190: // Lógica de la estrategia
+  191: if (price_touches_basis_up)
+  192:     qty = strategy.equity + strategy.netprofit // Invertir el total del capital más las ganancias en cada operación
+  193:     direction = close > basis ? strategy.long : strategy.short
+  194:     strategy.entry("Operacion", direction, qty = 1)

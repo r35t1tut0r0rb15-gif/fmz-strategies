@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2271 |
-| PORTED | 1289 |
+| PORT_CANDIDATE | 2256 |
+| PORTED | 1303 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 185 |
+| REJECTED_ON_READING | 186 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1417,7 +1417,21 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436102 | `ports/436102_dual-moving-average-trend-tracking-strategy/` | PineScript | ma_cross | none | len x2, len2 x2 | 4 |
 | 436103 | `ports/436103_ema-ema-pullback-strategy/` | PineScript | pullback | none | ratio x2, risk_low x2 | 4 |
 | 436108 | `ports/436108_macd-macd-of-relative-strength-strategy/` | PineScript | macd_cross | coarse_bar_stop | rs_length x2, sl_max x2 | 4 |
-| | **1289 ports** | | | | | **6743** |
+| 436110 | `ports/436110_triple-supertrend-breakout-strategy/` | PineScript | supertrend | none | atr_multi x2, ema_len x2 | 4 |
+| 436112 | `ports/436112_k-last-candle-strategy/` | PineScript | momentum_oscillator | coarse_bar_stop | sl_frac x2, tp_frac x2 | 4 |
+| 436113 | `ports/436113_dynamic-weighted-moving-average-trading-strategy/` | PineScript | ma_cross | none | fast x2, ema_len x2 | 4 |
+| 436114 | `ports/436114_floor-crossing-sawtooth-profit-stop-strategy-based-on-moving/` | PineScript | breakout | none | span x2, filter x2 | 4 |
+| 436117 | `ports/436117_lazybear-momentum-strategy-based-on-lazybears-squeeze/` | PineScript | momentum_oscillator | none | length x2, ema_len x2 | 4 |
+| 436119 | `ports/436119_cci-extended-adaptive-cci-bottom-fishing-trading-strategy-fo/` | PineScript | cci_oscillator | trailing_stop | cci_length x2, trail_pct x2 | 4 |
+| 436120 | `ports/436120_the-multi-period-trading-strategy-based-on-volatility-index/` | PineScript | mean_reversion | none | pd x2, ph x2 | 4 |
+| 436123 | `ports/436123_stochastic-vortex-strategy/` | PineScript | stochastic_oscillator | none | k_period x2, length_vi x2 | 4 |
+| 436133 | `ports/436133_ichimoku-a-quantitative-ichimoku-cloud-trading-strategy/` | PineScript | ichimoku | none | conversion x2, displacement x2 | 4 |
+| 436136 | `ports/436136_bollinger-bands-based-high-frequency-trading-strategy/` | PineScript | bollinger_breakout | coarse_bar_stop | length x2, tp_frac x2 | 4 |
+| 436137 | `ports/436137_mean-reversion-reverse-strategy-based-on-moving-average/` | PineScript | mean_reversion | none | profit_pct x3 | 3 |
+| 436140 | `ports/436140_moving-average-crossover-strategy-with-stop-loss-and-take-pr/` | PineScript | ma_cross | coarse_bar_stop | k_atr x2, rr x2 | 4 |
+| 436143 | `ports/436143_super-trend-triple-strategy/` | PineScript | supertrend | none | ema_length x2, factor_scale x2 | 4 |
+| 436145 | `ports/436145_ma-dual-ma-crossover-trend-tracking-strategy/` | PineScript | ma_cross | none | invert x2, k_atr x2 | 4 |
+| | **1303 ports** | | | | | **6798** |
 
 ## Rejected on reading
 
@@ -1608,6 +1622,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435964 | 基于布林带和RSI的趋势追踪策略Bollinger-Bands-and-RSI-Trend-Following-Strategy.md | 1 | The exit orders are re-sent every bar with levels computed from the CURRENT bar's extremes (sl = high + 50 ticks, tp = low - 100 ticks for a short; the mirror for a long): a moving bracket that follows each new bar rather than a level fixed at the entry fill, in tick units, which the stop interface (levels fixed at the entry fill or a declared trail) cannot express. |
 | 436093 | 基于互动模式的K线交易策略-Interactive-Model-Based-Candlestick-Trading-Strategy.md | 2 | The entry needs the close over a fixed RESISTANCE price (200) and the exit a close under a fixed SUPPORT price (100): price levels typed in as inputs, which mean something different at every price scale and on every instrument. |
 | 436096 | Ichimoku云量化短线策略Ichimoku-Cloud-Quant-Scalping-Strategy.md | 1 | The orders are strategy.order calls with a quantity of 1 in each direction (a 'buy' and a 'sel' order, each with its own tick bracket): strategy.order adds to and nets against the open position instead of reversing it, so a sell order while long only takes the position to flat and repeated signals stack units: net-position arithmetic that the all-in / all-out signal interface cannot express. |
+| 436142 | 动态跟随止损策略Dynamic-Trailing-Stop-Loss-Strategy.md | 1 | The signals combine daily and 15-minute request.security reads inside while loops with break (high[_bar] / low[_bar] of several earlier bars, including the index 0 bar which on the 1-minute chart is the still-forming day), choosing which earlier range the previous close broke out of; which value each read returns on a historical bar depends on the runtime's handling of in-progress higher bars, and the stop sits at a structural 15-minute low. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

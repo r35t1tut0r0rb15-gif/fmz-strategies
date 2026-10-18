@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #436120 (基于波动率指标和随机指标的多时间周期交易策略The-Multi-Period-Trading-Strategy-Based-on-Volatility-Index-and-Stochastic-Oscillator)
+# Source: https://www.fmz.com/strategy/436120  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding  [lines 129-129]
+  129: strategy('Vix FIX / StochRSI Strategy', overlay=true, pyramiding=9, margin_long=100, margin_short=100)

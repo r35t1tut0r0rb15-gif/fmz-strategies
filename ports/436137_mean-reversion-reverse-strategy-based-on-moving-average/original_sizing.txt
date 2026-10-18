@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #436137 (均线回转反转策略Mean-Reversion-Reverse-Strategy-Based-on-Moving-Average)
+# Source: https://www.fmz.com/strategy/436137  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantities and pyramiding multiplier  [lines 109-112]
+  109: qt1 = input.int(5, title="Quantity 1", minval=1)
+  110: qt2 = input.int(10, title="Quantity 2", minval=1)
+  111: qt3 = input.int(15, title="Quantity 3", minval=1)
+  112: qt4 = input.int(20, title="Quantity 4", minval=1)
+
+## Entry quantities  [lines 145-148]
+  145: strategy.entry("Buy1", strategy.long, qty=qt1 * pyramiding, when=buy_condition_1)
+  146: strategy.entry("Buy2", strategy.long, qty=qt2 * pyramiding, when=buy_condition_2)
+  147: strategy.entry("Buy3", strategy.long, qty=qt3 * pyramiding, when=buy_condition_3)
+  148: strategy.entry("Buy4", strategy.long, qty=qt4 * pyramiding, when=buy_condition_4)

@@ -184,6 +184,7 @@ fmz_id,file,final_outcome,criterion,reason
 435964,基于布林带和RSI的趋势追踪策略Bollinger-Bands-and-RSI-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"The exit orders are re-sent every bar with levels computed from the CURRENT bar's extremes (sl = high + 50 ticks, tp = low - 100 ticks for a short; the mirror for a long): a moving bracket that follows each new bar rather than a level fixed at the entry fill, in tick units, which the stop interface (levels fixed at the entry fill or a declared trail) cannot express."
 436093,基于互动模式的K线交易策略-Interactive-Model-Based-Candlestick-Trading-Strategy.md,REJECTED_ON_READING,2,"The entry needs the close over a fixed RESISTANCE price (200) and the exit a close under a fixed SUPPORT price (100): price levels typed in as inputs, which mean something different at every price scale and on every instrument."
 436096,Ichimoku云量化短线策略Ichimoku-Cloud-Quant-Scalping-Strategy.md,REJECTED_ON_READING,1,"The orders are strategy.order calls with a quantity of 1 in each direction (a 'buy' and a 'sel' order, each with its own tick bracket): strategy.order adds to and nets against the open position instead of reversing it, so a sell order while long only takes the position to flat and repeated signals stack units: net-position arithmetic that the all-in / all-out signal interface cannot express."
+436142,动态跟随止损策略Dynamic-Trailing-Stop-Loss-Strategy.md,REJECTED_ON_READING,1,"The signals combine daily and 15-minute request.security reads inside while loops with break (high[_bar] / low[_bar] of several earlier bars, including the index 0 bar which on the 1-minute chart is the still-forming day), choosing which earlier range the previous close broke out of; which value each read returns on a historical bar depends on the runtime's handling of in-progress higher bars, and the stop sits at a structural 15-minute low."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1488,3 +1489,17 @@ fmz_id,file,final_outcome,criterion,reason
 436102,双移动平均线趋势跟踪策略Dual-Moving-Average-Trend-Tracking-Strategy.md,PORTED,,ports/436102_dual-moving-average-trend-tracking-strategy/
 436103,EMA黄金交叉回调策略EMA-Pullback-Strategy.md,PORTED,,ports/436103_ema-ema-pullback-strategy/
 436108,相对强度MACD策略MACD-of-Relative-Strength-Strategy.md,PORTED,,ports/436108_macd-macd-of-relative-strength-strategy/
+436110,三重超趋势均线突破策略Triple-Supertrend-Breakout-Strategy.md,PORTED,,ports/436110_triple-supertrend-breakout-strategy/
+436112,最后K线趋势跟踪策略Last-Candle-Strategy.md,PORTED,,ports/436112_k-last-candle-strategy/
+436113,动态加权移动平均线多空策略Dynamic-Weighted-Moving-Average-Trading-Strategy.md,PORTED,,ports/436113_dynamic-weighted-moving-average-trading-strategy/
+436114,基于均线和移动平均的穿楼锯式止盈止损策略Floor-Crossing-Sawtooth-Profit-Stop-Strategy-Based-on-Moving-Average.md,PORTED,,ports/436114_floor-crossing-sawtooth-profit-stop-strategy-based-on-moving/
+436117,基于LazyBear压力矩量化动量策略Momentum-Strategy-Based-on-LazyBears-Squeeze.md,PORTED,,ports/436117_lazybear-momentum-strategy-based-on-lazybears-squeeze/
+436119,望远适应-CCI-底部捕捉商品交易策略Extended-Adaptive-CCI-Bottom-Fishing-Trading-Strategy-for-Commodities.md,PORTED,,ports/436119_cci-extended-adaptive-cci-bottom-fishing-trading-strategy-fo/
+436120,基于波动率指标和随机指标的多时间周期交易策略The-Multi-Period-Trading-Strategy-Based-on-Volatility-Index-and-Stochastic-Oscillator.md,PORTED,,ports/436120_the-multi-period-trading-strategy-based-on-volatility-index/
+436123,随机漩涡策略Stochastic-Vortex-Strategy.md,PORTED,,ports/436123_stochastic-vortex-strategy/
+436133,Ichimoku云图量化交易策略A-Quantitative-Ichimoku-Cloud-Trading-Strategy.md,PORTED,,ports/436133_ichimoku-a-quantitative-ichimoku-cloud-trading-strategy/
+436136,基于布林带的高频交易策略Bollinger-Bands-Based-High-Frequency-Trading-Strategy.md,PORTED,,ports/436136_bollinger-bands-based-high-frequency-trading-strategy/
+436137,均线回转反转策略Mean-Reversion-Reverse-Strategy-Based-on-Moving-Average.md,PORTED,,ports/436137_mean-reversion-reverse-strategy-based-on-moving-average/
+436140,基于均线交叉的止损止盈策略Moving-Average-Crossover-Strategy-with-Stop-Loss-and-Take-Profit.md,PORTED,,ports/436140_moving-average-crossover-strategy-with-stop-loss-and-take-pr/
+436143,基于多个时间三重超趋势策略Super-Trend-Triple-Strategy.md,PORTED,,ports/436143_super-trend-triple-strategy/
+436145,双MA交叉趋势追踪策略Dual-MA-Crossover-Trend-Tracking-Strategy.md,PORTED,,ports/436145_ma-dual-ma-crossover-trend-tracking-strategy/
