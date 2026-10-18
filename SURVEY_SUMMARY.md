@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2191 |
-| PORTED | 1359 |
+| PORT_CANDIDATE | 2185 |
+| PORTED | 1364 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 195 |
+| REJECTED_ON_READING | 196 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1487,7 +1487,12 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436619 | `ports/436619_stochastic-rsi-stochastic-rsi-momentum-oscillation-trading-s/` | PineScript | stochastic_oscillator | none | sl_pct x2, tp_pct x2 | 4 |
 | 436623 | `ports/436623_dual-factor-combo-reversal-and-mass-index-strategy/` | PineScript | combo_state | none | length x2, trigger x2 | 4 |
 | 436634 | `ports/436634_a-dmi-stochastic-trading-strategy-with-dynamic-stop-loss/` | PineScript | trend_filter | coarse_bar_stop | length x2, adx_threshold x2 | 4 |
-| | **1359 ports** | | | | | **7040** |
+| 436640 | `ports/436640_rainbow-oscillator-backtesting-strategy/` | PineScript | momentum_oscillator | none | length x2, length_hhll x2 | 4 |
+| 436644 | `ports/436644_inertia-indicator-trading-strategy/` | PineScript | momentum_oscillator | none | period x2, smooth x2 | 4 |
+| 436647 | `ports/436647_moving-average-envelopes-trading-strategy/` | PineScript | volatility_channel_breakout | none | length x2, percent_shift x2 | 4 |
+| 436650 | `ports/436650_atr-etf-an-atr-and-breakout-based-etf-trading-strategy/` | PineScript | donchian_breakout | none | lookback x2, atr_sl_mult x2 | 4 |
+| 436652 | `ports/436652_ichimoku-balance-line-strategy/` | PineScript | ichimoku | none | tenkan x2, span_offset x2 | 4 |
+| | **1364 ports** | | | | | **7060** |
 
 ## Rejected on reading
 
@@ -1688,6 +1693,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436524 | 基于RSI指标的多头趋势追踪策略RSI-Based-Bullish-Trend-Following-Strategy.md | 1 | An RSI-crossing strategy with pyramiding 5 whose exits are two strategy.exit orders for half of the position each (qty_percent 50 / 50, targets +3 % and +5 %, stop 5 %), and entries that stack up to five units; the position is built and unwound in parts, which the all-in / all-out signal interface cannot express. |
 | 436528 | 双移动平均线黄金交叉策略Dual-Moving-Average-Crossover-Strategy.md | 1 | Orders are sent with strategy.order (one unit BUY after a bullish crossing above the 100-bar average, one unit SELL after a bearish crossing below it), not strategy.entry: each order adds to or subtracts from the net position without any direction logic, so a filtered-out crossing leaves the net at 0, +1, -1, -2 ...; the unit-by-unit accumulation cannot be expressed as flat / long / short signals. |
 | 436603 | 基于趋势跟踪突破策略Trend-Tracking-Breakout-Strategy.md | 2 | The stop and the target are written as strategy.exit(loss = low - 5.70, profit = close + 11.40): price levels of one instrument passed as TICK counts, so the real distances are (price - 5.7) x tick size, an instrument-specific and nearly meaningless bracket (about 10 % at a 0.1 tick on a 40000 price, about 1 % at 0.01); the author's intended USD levels are tied to a single price scale, so there is no generic reading. |
+| 436653 | 高杠杆防止追加保证金头寸管理策略Leveraged-Position-Sizing-with-Margin-Call-Risk-Management-Strategy.md | 1 | A leverage and margin-call management script: the position size is a leverage multiple of one unit, entries are blocked and strategy.close_all is sent when strategy.equity falls to a margin value (25000), and the trigger reads the high / low of the 4-hour bar through a lower-timeframe security call from a daily chart; the margin rule depends on the account equity, which the signal interface cannot see. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

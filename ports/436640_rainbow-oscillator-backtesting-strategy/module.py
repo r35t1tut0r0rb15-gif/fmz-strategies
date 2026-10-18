@@ -1,0 +1,93 @@
+"""Rainbow oscillator side, 1-hour bars: ten chained 2-bar SMAs of the close; the close above their average (as a share of the 10-bar close range) is long, below is short; the earlier state holds at zero; an optional switch trades
+the reverse. The state reverses at the crossing.
+Port of FMZ strategy #436640 "Rainbow Oscillator Backtesting Strategy" (Rainbow Oscillator Backtest).
+
+FMZ source id: 436640
+
+Source
+    https://www.fmz.com/strategy/436640 (PineScript v2, FMZ last modified 2023-12-26 15:08:17).
+    Verbatim copy: original_source.md. Read 2026-10-18 (FMZ-C).
+
+Original signal (original_source.md lines 195-224), length 2, HHV / LLV lookback 10, reverse off
+    xMA1 = sma(close, 2), xMA2 = sma(xMA1, 2) ... xMA10;  xRBO = 100 (close - average of the ten) / (highest(close, 10) - lowest(close, 10));  pos = 1 if xRBO > 0, -1 if xRBO < 0, else pos[1];  possig = -pos when reverse
+    possig == 1 -> entry Long;  possig == -1 -> entry Short
+
+Interpretation choices (Pine rules in SURVEY_README.md)
+    * The state is a level, so the entry is sent on every bar of the state; a same-side entry while in the
+      position is ignored (pyramiding 0). REVERSAL INTENDED. The default quantity is sizing. FREQ =
+      "1h" from the backtest header.
+
+Admission criteria
+    1 fits the interface: PASS, bar-close orders.
+    2 generic: PASS, oscillator sign state.
+    3 crypto-exchange-only: no (exchange pair in the header only).
+    4 signals only: no sizing code.
+    5 ranges declared: GRID below (4 trials), before any backtest.
+    6 near-duplicates: no DG / ND group; ported (rule 7).
+    7 FMZ performance claims: ignored.
+Volume: not used (check 8).
+Session open: not used.
+REVERSAL INTENDED.
+
+Marks: none
+"""
+import numpy as np
+import pandas as pd
+
+NAME = "fmz_436640_rainbow_oscillator_state"
+FAMILY = "momentum_oscillator"  # proposed 2026-10-18 (FMZ-C), user to confirm
+FREQ = "1h"  # backtest header period: 1h
+PERIODS_PER_YEAR_OVERRIDE = None
+
+GRID = {
+    "length": [2, 3],
+    "length_hhll": [10, 20],
+}
+DEFAULT_PARAMS = {"length": 2, "length_hhll": 10, "reverse": False}
+
+
+def _resample(raw_1m_df, freq):
+    ohlc = raw_1m_df[["open", "high", "low", "close"]]
+    bars = ohlc.resample(freq, label="left", closed="left").agg(
+        {"open": "first", "high": "max", "low": "min", "close": "last"})
+    bars = bars.dropna(how="all")  # an empty period is not a bar; never forward-filled
+    if bars.index.tz is None:
+        raise ValueError("raw_1m_df must have a tz-aware UTC index")
+    return bars
+
+
+def precompute(raw_1m_df, symbol_key, **params):
+    return _resample(raw_1m_df, FREQ)
+
+
+def simulate(bars_df, **params):
+    p = {**DEFAULT_PARAMS, **params}
+    c = bars_df["close"]
+    n = int(p["length"])
+    mas = []
+    cur = c
+    for _ in range(10):
+        cur = cur.rolling(n).mean()
+        mas.append(cur)
+    hh = c.rolling(int(p["length_hhll"])).max()
+    ll = c.rolling(int(p["length_hhll"])).min()
+    with np.errstate(divide="ignore", invalid="ignore"):
+        rbo = (100.0 * (c - sum(mas) / 10.0) / (hh - ll).where(hh > ll)).to_numpy()
+    m = len(rbo)
+    pos = np.zeros(m)
+    prev = 0.0
+    with np.errstate(invalid="ignore"):
+        for i in range(m):
+            if rbo[i] > 0:
+                prev = 1.0
+            elif rbo[i] < 0:
+                prev = -1.0
+            pos[i] = prev
+    sig = -pos if p["reverse"] else pos
+    ix = bars_df.index
+    false = pd.Series(False, index=ix)
+    return pd.Series(sig == 1, index=ix), false, pd.Series(sig == -1, index=ix), false.copy()
+
+
+def portfolio_kwargs(**params):
+    return {}

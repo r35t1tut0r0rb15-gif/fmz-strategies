@@ -3137,6 +3137,17 @@ SIZING = {
     ],
     436623: [],
     436634: [],
+    # ---- FMZ-C, batch C94 (2026-10-18)
+    436640: [],
+    436644: [],
+    436647: [],
+    436650: [
+        ("strategy(): percent of equity, pyramiding 100", 187, 187),
+        ("Entry ids and sequel trades", 196, 196),
+    ],
+    436652: [
+        ("strategy(): percent of equity, commission", 129, 129),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3924,6 +3935,13 @@ REJECTED_ON_READING = {
               "meaningless bracket (about 10 % at a 0.1 tick on a 40000 price, about 1 % at "
               "0.01); the author's intended USD levels are tied to a single price scale, so there "
               "is no generic reading."),
+    # ---- FMZ-C, batch C94 (2026-10-18)
+    436653: ("1", "A leverage and margin-call management script: the position size is a leverage "
+              "multiple of one unit, entries are blocked and strategy.close_all is sent when "
+              "strategy.equity falls to a margin value (25000), and the trigger reads the high / "
+              "low of the 4-hour bar through a lower-timeframe security call from a daily chart; "
+              "the margin rule depends on the account equity, which the signal interface cannot "
+              "see."),
 }
 
 DUPLICATE_ON_READING = {
