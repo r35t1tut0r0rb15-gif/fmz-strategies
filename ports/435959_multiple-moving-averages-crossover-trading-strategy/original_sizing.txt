@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #435959 (融合移动平均线多重交叉交易策略Multiple-Moving-Averages-Crossover-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/435959  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity  [lines 153-153]
+  153: strategy(shorttitle = "TManyMA Strategy - ST9 - Long Market Only", title="Triple Many Moving Averages", overlay=true, pyramiding=1, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

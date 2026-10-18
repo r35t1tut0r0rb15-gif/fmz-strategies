@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2315 |
-| PORTED | 1248 |
+| PORT_CANDIDATE | 2301 |
+| PORTED | 1262 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1376,7 +1376,21 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435869 | `ports/435869_bollinger-band-breakout-trading-strategy/` | PineScript | bollinger_breakout | none | lookback x2, dev_mult x2 | 4 |
 | 435871 | `ports/435871_directional-movement-index-dual-direction-trading-strategy/` | PineScript | trend_confluence | none | len x2, limit x2 | 4 |
 | 435881 | `ports/435881_dual-moving-average-trend-tracking-strategy/` | PineScript | ma_cross | none | fast x2, slow x2, type x2 | 8 |
-| | **1248 ports** | | | | | **6576** |
+| 435884 | `ports/435884_macd-macd-quantitative-trading-strategy/` | PineScript | macd_cross | bar_size_pending | fast x2, level_frac x2 | 4 |
+| 435888 | `ports/435888_bill-williams-awesome-oscillator-trading-strategy/` | PineScript | momentum_oscillator | none | reverse x2, slow x2 | 4 |
+| 435893 | `ports/435893_fractal-breakout-strategy/` | PineScript | fractal_breakout | none | n_time x2, use_longer x2 | 4 |
+| 435895 | `ports/435895_ichimoku-ichimoku-moving-average-crossover-strategy/` | PineScript | ichimoku | none | base x2, use_body_filter x2 | 4 |
+| 435897 | `ports/435897_heikin-ashi-heikin-ashi-and-kaufman-adaptive-moving-average/` | PineScript | adaptive_average | none | length x2, sloma x2 | 4 |
+| 435903 | `ports/435903_bollinger-bollinger-bands-momentum-breakout-strategy/` | PineScript | bollinger_breakout | none | length x3 | 3 |
+| 435945 | `ports/435945_ao-ao-indicator-based-trend-following-strategy/` | PineScript | trend_confluence | none | profit x2, stop x2 | 4 |
+| 435948 | `ports/435948_btc-ichimoku-kinko-hyo-based-btc-trading-strategy/` | PineScript | ichimoku | none | kijun_lag x2, kijun_len x2 | 4 |
+| 435951 | `ports/435951_pivot-point-forecast-oscillator-backtesting-strategy/` | PineScript | momentum_oscillator | none | reverse x2, length x2 | 4 |
+| 435953 | `ports/435953_dual-moving-average-intelligent-tracking-strategy/` | PineScript | ma_cross | none | base_ma_length x2, mode x3 | 6 |
+| 435955 | `ports/435955_dual-moving-average-range-breakout-strategy/` | PineScript | ma_cross | none | hold x2, ema200 x2 | 4 |
+| 435957 | `ports/435957_bollinger-band-based-price-action-strategy/` | PineScript | bollinger_breakout | coarse_bar_stop | k_atr x2, b_sma x2 | 4 |
+| 435959 | `ports/435959_multiple-moving-averages-crossover-trading-strategy/` | PineScript | ma_cross | none | ma1 x2, ma2 x2 | 4 |
+| 435960 | `ports/435960_turtle-turtle-trend-trading-system/` | PineScript | breakout | none | n x2, e x2 | 4 |
+| | **1262 ports** | | | | | **6633** |
 
 ## Rejected on reading
 

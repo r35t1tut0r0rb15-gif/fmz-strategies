@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #435945 (基于AO指标和均线的趋势跟踪策略AO-Indicator-Based-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/435945  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Profit and stop inputs  [lines 121-122]
+  121: profit = (input.float(10, "profit") / 100) + 1
+  122: stop = (input.float(5, "stop") / 100) + 1

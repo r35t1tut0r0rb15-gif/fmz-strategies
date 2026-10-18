@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #435895 (Ichimoku均线交叉策略Ichimoku-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/435895  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity  [lines 103-103]
+  103: strategy(title = "Noro's Ichimoku Strategy v1.0", shorttitle = "Ichimoku str 1.0", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)

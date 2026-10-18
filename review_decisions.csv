@@ -1444,3 +1444,17 @@ fmz_id,file,final_outcome,criterion,reason
 435869,布林带跨度交易策略Bollinger-Band-Breakout-Trading-Strategy.md,PORTED,,ports/435869_bollinger-band-breakout-trading-strategy/
 435871,动向指数双向交易策略Directional-Movement-Index-Dual-direction-Trading-Strategy.md,PORTED,,ports/435871_directional-movement-index-dual-direction-trading-strategy/
 435881,双移动平均趋势跟踪策略Dual-Moving-Average-Trend-Tracking-Strategy.md,PORTED,,ports/435881_dual-moving-average-trend-tracking-strategy/
+435884,运用MACD量化交易策略MACD-Quantitative-Trading-Strategy.md,PORTED,,ports/435884_macd-macd-quantitative-trading-strategy/
+435888,震荡波动优异指标交易策略Bill-Williams-Awesome-Oscillator-Trading-Strategy.md,PORTED,,ports/435888_bill-williams-awesome-oscillator-trading-strategy/
+435893,突破型分形策略Fractal-Breakout-Strategy.md,PORTED,,ports/435893_fractal-breakout-strategy/
+435895,Ichimoku均线交叉策略Ichimoku-Moving-Average-Crossover-Strategy.md,PORTED,,ports/435895_ichimoku-ichimoku-moving-average-crossover-strategy/
+435897,Heikin-Ashi与考夫曼自适应移动平均线交易策略Heikin-Ashi-and-Kaufman-Adaptive-Moving-Average-Trading-Strategy.md,PORTED,,ports/435897_heikin-ashi-heikin-ashi-and-kaufman-adaptive-moving-average/
+435903,Bollinger带动量突破策略Bollinger-Bands-Momentum-Breakout-Strategy.md,PORTED,,ports/435903_bollinger-bollinger-bands-momentum-breakout-strategy/
+435945,基于AO指标和均线的趋势跟踪策略AO-Indicator-Based-Trend-Following-Strategy.md,PORTED,,ports/435945_ao-ao-indicator-based-trend-following-strategy/
+435948,基于一目均线系统的BTC交易策略Ichimoku-Kinko-Hyo-Based-BTC-Trading-Strategy.md,PORTED,,ports/435948_btc-ichimoku-kinko-hyo-based-btc-trading-strategy/
+435951,枢轴点预测震荡指标回测策略Pivot-Point-Forecast-Oscillator-Backtesting-Strategy.md,PORTED,,ports/435951_pivot-point-forecast-oscillator-backtesting-strategy/
+435953,双均线智能追踪策略Dual-Moving-Average-Intelligent-Tracking-Strategy.md,PORTED,,ports/435953_dual-moving-average-intelligent-tracking-strategy/
+435955,基于双均线区间突破策略Dual-Moving-Average-Range-Breakout-Strategy.md,PORTED,,ports/435955_dual-moving-average-range-breakout-strategy/
+435957,基于布林带的价格行为策略Bollinger-Band-based-Price-Action-Strategy.md,PORTED,,ports/435957_bollinger-band-based-price-action-strategy/
+435959,融合移动平均线多重交叉交易策略Multiple-Moving-Averages-Crossover-Trading-Strategy.md,PORTED,,ports/435959_multiple-moving-averages-crossover-trading-strategy/
+435960,趋势追踪-turtle系统Turtle-Trend-Trading-System.md,PORTED,,ports/435960_turtle-turtle-trend-trading-system/
