@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #435507 (布林带和RSI短线策略Bollinger-Bands-and-RSI-Short-Selling-Strategy)
+# Source: https://www.fmz.com/strategy/435507  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital, percent of equity, commission  [lines 202-208]
+  202: strategy("Bollinger Bands and RSI Short Selling",
+  203:          overlay=true,
+  204:          initial_capital = 1000,
+  205:          default_qty_value = 30,
+  206:          default_qty_type = strategy.percent_of_equity,
+  207:          commission_type=strategy.commission.percent,
+  208:          commission_value=0.1)
+
+## Stop loss / take profit inputs  [lines 236-237]
+  236: Stop_loss= ((input (1))/100)
+  237: Take_profit= ((input (7)/100))

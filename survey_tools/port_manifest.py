@@ -2800,6 +2800,30 @@ SIZING = {
     435488: [],
     435492: [],
     435495: [],
+    # ---- FMZ-C, batch C79 (2026-10-18)
+    435487: [
+        ("strategy(): initial capital", 230, 230),
+    ],
+    435502: [
+        ("strategy(): percent of equity, commission", 127, 127),
+        ("Stop loss / take profit inputs", 201, 205),
+    ],
+    435503: [
+        ("strategy(): percent of equity", 150, 150),
+    ],
+    435505: [],
+    435506: [
+        ("strategy(): initial capital", 157, 157),
+        ("Profit / loss tick inputs", 163, 164),
+    ],
+    435507: [
+        ("strategy(): initial capital, percent of equity, commission", 202, 208),
+        ("Stop loss / take profit inputs", 236, 237),
+    ],
+    435514: [],
+    435519: [],
+    435520: [],
+    435522: [],
 }
 
 REJECTED_ON_READING = {
@@ -3471,6 +3495,12 @@ REJECTED_ON_READING = {
               "never true) on the chart it was tested on; the exit is a stop re-sent each bar at "
               "close - 10 ATR (a close-relative level, not a ratchet) and the 14:57 end-of-day "
               "close never occurs on daily bars."),
+    # ---- FMZ-C, batch C79 (2026-10-18)
+    435511: ("1", "The exits are four partial exits of the position (strategy.exit with qty_percent "
+              "25 / 25 / 25 and the rest at profit levels 2 / 4 / 6 / 8 % of the average price, "
+              "tick-converted) and the rule reads a weekly RSI of a held week-open close through "
+              "time('W'): a scale-out in four parts that the all-in / all-out signal interface "
+              "cannot express."),
 }
 
 DUPLICATE_ON_READING = {

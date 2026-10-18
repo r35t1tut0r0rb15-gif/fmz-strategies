@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2367 |
-| PORTED | 1205 |
+| PORT_CANDIDATE | 2356 |
+| PORTED | 1215 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 173 |
+| REJECTED_ON_READING | 174 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1330,10 +1330,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435477 | `ports/435477_ema-ema-golden-cross-short-term-trading-strategy/` | PineScript | ma_cross | none | ema_l x2, ema_l2 x2 | 4 |
 | 435484 | `ports/435484_quant-trading-strategy-based-on-monthly-and-quarterly-moving/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 435485 | `ports/435485_four-ema-crossover-strategy/` | PineScript | ma_cross | none | fast1 x2, slow2 x2 | 4 |
+| 435487 | `ports/435487_k-comprehensive-strategy-of-multiple-candlestick-patterns/` | PineScript | candle_pattern | none | stop_loss x2, sma_len x2 | 4 |
 | 435488 | `ports/435488_breakout-strategy-with-confirmation-on-multiple-time-frames/` | PineScript | ma_cross | none | pct_p x2, sim x2 | 4 |
 | 435492 | `ports/435492_dual-timeframe-trend-tracking-strategy/` | PineScript | ma_cross | none | len_short_h x2, len_long_h x2 | 4 |
 | 435495 | `ports/435495_macd-macd-long-reversal-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
-| | **1205 ports** | | | | | **6413** |
+| 435502 | `ports/435502_momentum-indicator-decision-trading-strategy/` | PineScript | momentum_oscillator | coarse_bar_stop | sl x2, length1 x2 | 4 |
+| 435503 | `ports/435503_dual-moving-average-triple-exponential-indicator-trading-str/` | PineScript | stochastic_oscillator | none | length_rsi x2, lo_level x2 | 4 |
+| 435505 | `ports/435505_price-deviation-from-daily-average-trading-strategy/` | PineScript | ichimoku | none | conversion x2, base x2 | 4 |
+| 435506 | `ports/435506_reverse-trading-strategy-based-on-overlapping-price-differen/` | PineScript | reversal_pattern | none | bracket x2, min_move x2 | 4 |
+| 435507 | `ports/435507_rsi-bollinger-bands-and-rsi-short-selling-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 435514 | `ports/435514_seven-candlestick-oscillation-breakthrough-strategy/` | PineScript | candle_pattern | none | n x3 | 3 |
+| 435519 | `ports/435519_dual-moving-average-reversal-strategy/` | PineScript | mean_reversion | none | move_limit x2, ma_length x2 | 4 |
+| 435520 | `ports/435520_hye-mean-reversion-sma-strategy/` | PineScript | mean_reversion | none | direction x2, pct_below x2 | 4 |
+| 435522 | `ports/435522_dual-reversion-balance-strategy/` | PineScript | reversal_pattern | none | reverse x2, length_emd x2 | 4 |
+| | **1215 ports** | | | | | **6452** |
 
 ## Rejected on reading
 
@@ -1512,6 +1522,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435278 | 未来麦克D路线预测策略MacD-Future-Path-Prediction-Strategy.md | 1 | The orders read the 4-hour MACD histogram through security(syminfo.tickerid, '240', hist, gaps_off, lookahead_on) with 'Use The Future?' true by default, so on the 5-minute chart each 4-hour bar's final histogram is seen from its first bar: it reads the future (SURVEY_README request.security rule); the other branch is the same logic without lookahead and is only a switch. |
 | 435473 | 最低点反转策略Bottom-Reversal-Strategy.md | 1 | The entry opens 2 units and the exits are two separate 1-unit partial closes (strategy.close with qty = 1 on a cross under the ema of H4 and another on the ema of L3): the position is half-closed on the first exit signal and the rest on the second, a scale-out the all-in / all-out signal interface cannot express; the ATR trailing level is only plotted. |
 | 435486 | 印度市场整合突破交易策略Consolidation-Breakout-Strategy.md | 2 | Entries need a 09:35-14:30 session test (time(timeframe.period, session)) on the DAILY chart of the backtest header, where the bar's own time is not inside the session, so the entry condition is a clock-time filter that is undefined (probably never true) on the chart it was tested on; the exit is a stop re-sent each bar at close - 10 ATR (a close-relative level, not a ratchet) and the 14:57 end-of-day close never occurs on daily bars. |
+| 435511 | 基于TRSI和SUPER趋势指标的量化交易策略Quantitative-Trading-Strategy-Based-on-TRSI-and-SUPER-Trend-Indicators.md | 1 | The exits are four partial exits of the position (strategy.exit with qty_percent 25 / 25 / 25 and the rest at profit levels 2 / 4 / 6 / 8 % of the average price, tick-converted) and the rule reads a weekly RSI of a held week-open close through time('W'): a scale-out in four parts that the all-in / all-out signal interface cannot express. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

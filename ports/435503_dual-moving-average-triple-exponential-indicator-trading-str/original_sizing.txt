@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #435503 (双均线三指数指标交易策略Dual-Moving-Average-Triple-Exponential-Indicator-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/435503  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity  [lines 150-150]
+  150: strategy(title='5212 EMA Strategy', shorttitle='5212 EMA', overlay=true, pyramiding=0, default_qty_type=strategy.percent_of_equity, default_qty_value=10, calc_on_every_tick=false)

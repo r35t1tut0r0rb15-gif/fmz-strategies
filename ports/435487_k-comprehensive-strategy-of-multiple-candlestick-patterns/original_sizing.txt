@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #435487 (多种K线形态综合策略Comprehensive-Strategy-of-Multiple-Candlestick-Patterns)
+# Source: https://www.fmz.com/strategy/435487  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital  [lines 230-230]
+  230: strategy(shorttitle="All Candlestick Patterns Strategy", title="All Candlestick Patterns Strategy", overlay=true, initial_capital=600)
