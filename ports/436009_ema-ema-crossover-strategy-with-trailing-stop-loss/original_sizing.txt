@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #436009 (基于EMA均线交叉的移动止损策略EMA-Crossover-Strategy-with-Trailing-Stop-Loss)
+# Source: https://www.fmz.com/strategy/436009  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

@@ -2944,6 +2944,32 @@ SIZING = {
     435992: [
         ("Take-profit tick input", 207, 209),
     ],
+    # ---- FMZ-C, batch C85 (2026-10-18)
+    435993: [],
+    435995: [
+        ("Trade size and pip inputs", 116, 123),
+    ],
+    436006: [],
+    436008: [],
+    436009: [],
+    436092: [],
+    436094: [],
+    436098: [],
+    436099: [],
+    436100: [
+        ("strategy(): percent of equity, slippage", 164, 164),
+    ],
+    436102: [
+        ("Equity-based lot", 191, 191),
+        ("Lot from equity", 280, 282),
+    ],
+    436103: [
+        ("Risk limits and risk-capped quantity", 164, 165),
+        ("Entry contracts from equity", 243, 247),
+    ],
+    436108: [
+        ("Fixed-ratio money management and cash order", 159, 199),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3666,6 +3692,15 @@ REJECTED_ON_READING = {
               "long): a moving bracket that follows each new bar rather than a level fixed at the "
               "entry fill, in tick units, which the stop interface (levels fixed at the entry "
               "fill or a declared trail) cannot express."),
+    # ---- FMZ-C, batch C85 (2026-10-18)
+    436093: ("2", "The entry needs the close over a fixed RESISTANCE price (200) and the exit a close "
+              "under a fixed SUPPORT price (100): price levels typed in as inputs, which mean "
+              "something different at every price scale and on every instrument."),
+    436096: ("1", "The orders are strategy.order calls with a quantity of 1 in each direction (a "
+              "'buy' and a 'sel' order, each with its own tick bracket): strategy.order adds to "
+              "and nets against the open position instead of reversing it, so a sell order while "
+              "long only takes the position to flat and repeated signals stack units: "
+              "net-position arithmetic that the all-in / all-out signal interface cannot express."),
 }
 
 DUPLICATE_ON_READING = {

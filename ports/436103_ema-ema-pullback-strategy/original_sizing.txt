@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #436103 (EMA黄金交叉回调策略EMA-Pullback-Strategy)
+# Source: https://www.fmz.com/strategy/436103  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk limits and risk-capped quantity  [lines 164-165]
+  164: riskLimit_low =  input(title="lowest risk per trade", type=input.float, defval=0.008, minval=0, maxval=100)
+  165: riskLimit_high =  input(title="highest risk per trade", type=input.float, defval=0.02, minval=0, maxval=100)
+
+## Entry contracts from equity  [lines 243-247]
+  243:     if(risk_long < riskLimit_high)
+  244:         entryContracts := strategy.equity / close
+  245:     else
+  246:         entryContracts := (strategy.equity * riskLimit_high / risk_long)/close
+  247:     

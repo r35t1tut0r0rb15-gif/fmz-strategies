@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #435993 (买卖力量弹性移动平均线交易策略Bull-and-Bear-Power-Moving-Average-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/435993  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

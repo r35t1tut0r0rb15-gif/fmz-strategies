@@ -182,6 +182,8 @@ fmz_id,file,final_outcome,criterion,reason
 435845,动量震荡跨界Bollinger带均线策略Momentum-Oscillation-Crossing-Bollinger-Bands-with-Moving-Average-Strategy.md,REJECTED_ON_READING,1,"A 3Commas dollar-cost-averaging bot: strategy.order adds safety orders (volume-scaled quantities, up to a set count) on deviations below the average price while a base order is open, with take profit and stop on the average of the combined position: a ladder of adds whose size depends on the position, which the all-in / all-out signal interface cannot express."
 435850,动态MA均线交叉趋势追踪策略Dynamic-MA-Crossover-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"The moving averages are read through security(tickerid, '5D', sma(hlc3, 16), gaps_off, lookahead_on) and the matching EMA with lookahead_on and no [1]: on historical bars the 5-day values are seen from the first bar of the 5-day period, so the rule reads the future (SURVEY_README request.security rule)."
 435964,基于布林带和RSI的趋势追踪策略Bollinger-Bands-and-RSI-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"The exit orders are re-sent every bar with levels computed from the CURRENT bar's extremes (sl = high + 50 ticks, tp = low - 100 ticks for a short; the mirror for a long): a moving bracket that follows each new bar rather than a level fixed at the entry fill, in tick units, which the stop interface (levels fixed at the entry fill or a declared trail) cannot express."
+436093,基于互动模式的K线交易策略-Interactive-Model-Based-Candlestick-Trading-Strategy.md,REJECTED_ON_READING,2,"The entry needs the close over a fixed RESISTANCE price (200) and the exit a close under a fixed SUPPORT price (100): price levels typed in as inputs, which mean something different at every price scale and on every instrument."
+436096,Ichimoku云量化短线策略Ichimoku-Cloud-Quant-Scalping-Strategy.md,REJECTED_ON_READING,1,"The orders are strategy.order calls with a quantity of 1 in each direction (a 'buy' and a 'sel' order, each with its own tick bracket): strategy.order adds to and nets against the open position instead of reversing it, so a sell order while long only takes the position to flat and repeated signals stack units: net-position arithmetic that the all-in / all-out signal interface cannot express."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1473,3 +1475,16 @@ fmz_id,file,final_outcome,criterion,reason
 435986,多重加权移动平均线趋势策略Multiple-Weighted-Moving-Averages-Trend-Strategy.md,PORTED,,ports/435986_multiple-weighted-moving-averages-trend-strategy/
 435987,动力追踪交易策略Momentum-Tracking-Trading-Strategy.md,PORTED,,ports/435987_momentum-tracking-trading-strategy/
 435992,布林带RSI指标的CCI均线交叉策略Quantitative-Strategy-Bollinger-Bands-RSI-CCI-Crossover-Strategy.md,PORTED,,ports/435992_rsi-cci-quantitative-strategy-bollinger-bands-rsi-cci-crosso/
+435993,买卖力量弹性移动平均线交易策略Bull-and-Bear-Power-Moving-Average-Trading-Strategy.md,PORTED,,ports/435993_bull-and-bear-power-moving-average-trading-strategy/
+435995,双EMA黄金交叉突破策略Dual-EMA-Golden-Cross-Breakthrough-Strategy.md,PORTED,,ports/435995_ema-dual-ema-golden-cross-breakthrough-strategy/
+436006,双因子量化反转追踪策略Dual-factor-Quantitative-Reversal-Tracking-Strategy.md,PORTED,,ports/436006_dual-factor-quantitative-reversal-tracking-strategy/
+436008,基于RSI-SMA的突发性买卖策略SMA-RSI-Sudden-Buy-Sell-Strategy.md,PORTED,,ports/436008_rsi-sma-sma-rsi-sudden-buy-sell-strategy/
+436009,基于EMA均线交叉的移动止损策略EMA-Crossover-Strategy-with-Trailing-Stop-Loss.md,PORTED,,ports/436009_ema-ema-crossover-strategy-with-trailing-stop-loss/
+436092,DEMA策略MACD指标组合DEMA-MACD-Combination-Strategy.md,PORTED,,ports/436092_dema-macd-dema-macd-combination-strategy/
+436094,双指标量化策略Dual-Indicator-Quantitative-Strategy.md,PORTED,,ports/436094_dual-indicator-quantitative-strategy/
+436098,动量反转均线交叉策略An-Oscillating-Momentum-Reversal-Moving-Average-Crossover-Strategy.md,PORTED,,ports/436098_an-oscillating-momentum-reversal-moving-average-crossover-st/
+436099,RSI指标与平均线交叉策略Relative-Strength-Index-and-Moving-Average-Crossover-Strategy.md,PORTED,,ports/436099_rsi-relative-strength-index-and-moving-average-crossover-str/
+436100,动态移动平均线交易策略Trend-Trading-Strategy-Based-on-Dynamic-Moving-Average.md,PORTED,,ports/436100_trend-trading-strategy-based-on-dynamic-moving-average/
+436102,双移动平均线趋势跟踪策略Dual-Moving-Average-Trend-Tracking-Strategy.md,PORTED,,ports/436102_dual-moving-average-trend-tracking-strategy/
+436103,EMA黄金交叉回调策略EMA-Pullback-Strategy.md,PORTED,,ports/436103_ema-ema-pullback-strategy/
+436108,相对强度MACD策略MACD-of-Relative-Strength-Strategy.md,PORTED,,ports/436108_macd-macd-of-relative-strength-strategy/

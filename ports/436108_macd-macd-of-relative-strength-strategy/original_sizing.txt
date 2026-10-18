@@ -1,0 +1,46 @@
+# Original sizing and money-management code, FMZ #436108 (相对强度MACD策略MACD-of-Relative-Strength-Strategy)
+# Source: https://www.fmz.com/strategy/436108  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Fixed-ratio money management and cash order  [lines 159-199]
+  159: slMax = input.float(8, "Max risk per trade (in %)", minval=0, group="Risk Management", tooltip=t5)
+  160: //Money Management
+  161: fixedRatio = input.int(defval=400, minval=1, title="Fixed Ratio Value ($)", group="Money Management", tooltip=t6)
+  162: increasingOrderAmount = input.int(defval=200, minval=1, title="Increasing Order Amount ($)", group="Money Management", tooltip=t7)
+  163: //Backtesting period
+  164: startDate = input(title="Start Date", defval=timestamp("1 Jan 2020 00:00:00"), group="Backtesting Period")
+  165: endDate = input(title="End Date", defval=timestamp("1 July 2024 00:00:00"), group="Backtesting Period")
+  166: 
+  167: 
+  168: //----------------------------------VARIABLES INITIALISATION-----------------------------//
+  169: strategy.initial_capital = 50000
+  170: //Relative Strenght Calculation
+  171: rs = close/ta.highest(high, rs_lenght)
+  172: //MACD of RS Calculation
+  173: [macdLine, signalLine, histLine] = ta.macd(rs, fast_length, slow_length, signal_length)
+  174: //Money management
+  175: equity = math.abs(strategy.equity - strategy.openprofit)
+  176: var float capital_ref = strategy.initial_capital
+  177: var float cashOrder = strategy.initial_capital * 0.95
+  178: //Backtesting period
+  179: bool inRange = na
+  180: 
+  181: 
+  182: //------------------------------CHECKING SOME CONDITIONS ON EACH SCRIPT EXECUTION-------------------------------//
+  183: 
+  184: //Checking if the date belong to the range
+  185: inRange := true
+  186: 
+  187: //Checking performances of the strategy
+  188: if equity > capital_ref + fixedRatio
+  189:     spread = (equity - capital_ref)/fixedRatio
+  190:     nb_level = int(spread)
+  191:     increasingOrder = nb_level * increasingOrderAmount
+  192:     cashOrder := cashOrder + increasingOrder
+  193:     capital_ref := capital_ref + nb_level*fixedRatio
+  194: if equity < capital_ref - fixedRatio
+  195:     spread = (capital_ref - equity)/fixedRatio
+  196:     nb_level = int(spread)
+  197:     decreasingOrder = nb_level * increasingOrderAmount
+  198:     cashOrder := cashOrder - decreasingOrder
+  199:     capital_ref := capital_ref - nb_level*fixedRatio

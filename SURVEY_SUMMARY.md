@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2286 |
-| PORTED | 1276 |
+| PORT_CANDIDATE | 2271 |
+| PORTED | 1289 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 183 |
+| REJECTED_ON_READING | 185 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1404,7 +1404,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435986 | `ports/435986_multiple-weighted-moving-averages-trend-strategy/` | PineScript | ma_cross | none | len1 x2, len2 x2 | 4 |
 | 435987 | `ports/435987_momentum-tracking-trading-strategy/` | PineScript | candle_pattern | none | direction x2, k_atr x2 | 4 |
 | 435992 | `ports/435992_rsi-cci-quantitative-strategy-bollinger-bands-rsi-cci-crosso/` | PineScript | mean_reversion | none | k_atr x2, length x2 | 4 |
-| | **1276 ports** | | | | | **6689** |
+| 435993 | `ports/435993_bull-and-bear-power-moving-average-trading-strategy/` | PineScript | mean_reversion | none | reverse x2, trigger_frac x2 | 4 |
+| 435995 | `ports/435995_ema-dual-ema-golden-cross-breakthrough-strategy/` | PineScript | ma_cross | none | tp_frac x2, sl_frac x2 | 4 |
+| 436006 | `ports/436006_dual-factor-quantitative-reversal-tracking-strategy/` | PineScript | reversal_pattern | none | reverse x2, slow x2 | 4 |
+| 436008 | `ports/436008_rsi-sma-sma-rsi-sudden-buy-sell-strategy/` | PineScript | rsi_oscillator | none | length x2, bars x2 | 4 |
+| 436009 | `ports/436009_ema-ema-crossover-strategy-with-trailing-stop-loss/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 436092 | `ports/436092_dema-macd-dema-macd-combination-strategy/` | PineScript | ma_cross | none | dema_length x2, macd_control x2 | 4 |
+| 436094 | `ports/436094_dual-indicator-quantitative-strategy/` | PineScript | reversal_pattern | none | reverse x2, fast_ma x2 | 4 |
+| 436098 | `ports/436098_an-oscillating-momentum-reversal-moving-average-crossover-st/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| 436099 | `ports/436099_rsi-relative-strength-index-and-moving-average-crossover-str/` | PineScript | rsi_oscillator | none | len x2, ma_len x2 | 4 |
+| 436100 | `ports/436100_trend-trading-strategy-based-on-dynamic-moving-average/` | PineScript | ma_cross | none | length x2, mode x3 | 6 |
+| 436102 | `ports/436102_dual-moving-average-trend-tracking-strategy/` | PineScript | ma_cross | none | len x2, len2 x2 | 4 |
+| 436103 | `ports/436103_ema-ema-pullback-strategy/` | PineScript | pullback | none | ratio x2, risk_low x2 | 4 |
+| 436108 | `ports/436108_macd-macd-of-relative-strength-strategy/` | PineScript | macd_cross | coarse_bar_stop | rs_length x2, sl_max x2 | 4 |
+| | **1289 ports** | | | | | **6743** |
 
 ## Rejected on reading
 
@@ -1593,6 +1606,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435845 | 动量震荡跨界Bollinger带均线策略Momentum-Oscillation-Crossing-Bollinger-Bands-with-Moving-Average-Strategy.md | 1 | A 3Commas dollar-cost-averaging bot: strategy.order adds safety orders (volume-scaled quantities, up to a set count) on deviations below the average price while a base order is open, with take profit and stop on the average of the combined position: a ladder of adds whose size depends on the position, which the all-in / all-out signal interface cannot express. |
 | 435850 | 动态MA均线交叉趋势追踪策略Dynamic-MA-Crossover-Trend-Following-Strategy.md | 1 | The moving averages are read through security(tickerid, '5D', sma(hlc3, 16), gaps_off, lookahead_on) and the matching EMA with lookahead_on and no [1]: on historical bars the 5-day values are seen from the first bar of the 5-day period, so the rule reads the future (SURVEY_README request.security rule). |
 | 435964 | 基于布林带和RSI的趋势追踪策略Bollinger-Bands-and-RSI-Trend-Following-Strategy.md | 1 | The exit orders are re-sent every bar with levels computed from the CURRENT bar's extremes (sl = high + 50 ticks, tp = low - 100 ticks for a short; the mirror for a long): a moving bracket that follows each new bar rather than a level fixed at the entry fill, in tick units, which the stop interface (levels fixed at the entry fill or a declared trail) cannot express. |
+| 436093 | 基于互动模式的K线交易策略-Interactive-Model-Based-Candlestick-Trading-Strategy.md | 2 | The entry needs the close over a fixed RESISTANCE price (200) and the exit a close under a fixed SUPPORT price (100): price levels typed in as inputs, which mean something different at every price scale and on every instrument. |
+| 436096 | Ichimoku云量化短线策略Ichimoku-Cloud-Quant-Scalping-Strategy.md | 1 | The orders are strategy.order calls with a quantity of 1 in each direction (a 'buy' and a 'sel' order, each with its own tick bracket): strategy.order adds to and nets against the open position instead of reversing it, so a sell order while long only takes the position to flat and repeated signals stack units: net-position arithmetic that the all-in / all-out signal interface cannot express. |
 
 ## Flagged and stored under criterion 3 (253 files)
 
