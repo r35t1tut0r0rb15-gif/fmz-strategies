@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #435772 (动量TD反转交易策略Momentum-TD-Reversal-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/435772  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take profit, stop and trailing-stop inputs  [lines 184-187]
+  184: inpTakeProfit   = input(defval = 0, title = "Take Profit Points", minval = 0)
+  185: inpStopLoss     = input(defval = 0, title = "Stop Loss Points", minval = 0)
+  186: inpTrailStop    = input(defval = 100, title = "Trailing Stop Loss Points", minval = 0)
+  187: inpTrailOffset  = input(defval = 0, title = "Trailing Stop Loss Offset Points", minval = 0)

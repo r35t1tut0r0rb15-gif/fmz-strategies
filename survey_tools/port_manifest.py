@@ -2841,6 +2841,23 @@ SIZING = {
         ("strategy(): cash order size, capital", 160, 160),
     ],
     435720: [],
+    # ---- FMZ-C, batch C81 (2026-10-18)
+    435722: [
+        ("Cash order size, capital", 186, 191),
+    ],
+    435723: [],
+    435724: [],
+    435763: [],
+    435767: [],
+    435771: [
+        ("Percent stop and target inputs", 171, 172),
+    ],
+    435772: [
+        ("Take profit, stop and trailing-stop inputs", 184, 187),
+    ],
+    435774: [],
+    435775: [],
+    435828: [],
 }
 
 REJECTED_ON_READING = {
@@ -3525,6 +3542,24 @@ REJECTED_ON_READING = {
               "dollar, close_all) and sizes the percent stops by ticks: the exits and adds depend "
               "on the position size and its dollar profit, which the all-in signal interface "
               "cannot express."),
+    # ---- FMZ-C, batch C81 (2026-10-18)
+    435725: ("1", "The long and short each carry strategy.exit with qty_percent = 50 at a take-profit "
+              "level of the channel line plus / minus 15 % (a scale-out of half the position) "
+              "while the channel line itself is the highest / lowest of the monthly OPEN taken "
+              "over 21 chart bars: the half-position exit cannot be expressed by the all-in / "
+              "all-out signal interface."),
+    435766: ("1", "Positions are built and cut by quantity: strategy.order buys 25 % of equity on "
+              "each MACD-cross-after-oversold signal (pyramiding 10) and sells one third of the "
+              "open position size (qty = posSize / 3) on each cross after overbought: scale-in "
+              "and a stepped scale-out that the all-in / all-out signal interface cannot express."),
+    435773: ("1", "Two take-profit exits take 10 % and 50 % of the position at +1 % and +5 % "
+              "(qty_percent), the rest following the ZLEMA slope exit: partial exits (a "
+              "scale-out) that the all-in / all-out signal interface cannot express."),
+    435831: ("1", "The long's stop is an exit order armed only when the short condition appears "
+              "during the trade (strategy.exit with stop = a ratcheted level computed from every "
+              "bar's close, re-sent only on those bars, and enterShort needs strategy.openprofit "
+              "> 0): an exit placed mid-trade at a level that depends on the position's open "
+              "profit, outside the entry-fill bracket the stop interface supports."),
 }
 
 DUPLICATE_ON_READING = {

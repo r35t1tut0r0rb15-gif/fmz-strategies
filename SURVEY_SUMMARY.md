@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2343 |
-| PORTED | 1227 |
+| PORT_CANDIDATE | 2329 |
+| PORTED | 1237 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 175 |
+| REJECTED_ON_READING | 179 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1355,7 +1355,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435714 | `ports/435714_fixed-percentage-stop-loss-and-take-profit-strategy-based-on/` | PineScript | ma_cross | coarse_bar_stop | stop_per x2, take_per x2 | 4 |
 | 435717 | `ports/435717_galileo-galileis-moving-average-crossover-strategy/` | PineScript | ma_cross | none | length x2 | 2 |
 | 435720 | `ports/435720_05-heikin-ashi-05-change-short-period-trading-strategy/` | PineScript | momentum_oscillator | none | threshold x2 | 2 |
-| | **1227 ports** | | | | | **6496** |
+| 435722 | `ports/435722_macd-macd-dual-moving-average-tracking-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| 435723 | `ports/435723_moving-average-ribbon-strategy/` | PineScript | ma_cross | bar_size_pending | matype x2, most x2 | 4 |
+| 435724 | `ports/435724_cci-cci-long-only-strategy/` | PineScript | cci_oscillator | none | cci_period x3 | 3 |
+| 435763 | `ports/435763_rsi-bayesian-condition-rsi-trading-strategy/` | PineScript | bayesian_counts | none | p x2, t x2 | 4 |
+| 435767 | `ports/435767_bollinger-bands-dual-standard-deviation-trading-strategy/` | PineScript | bollinger_breakout | none | length x3 | 3 |
+| 435771 | `ports/435771_trend-following-regression-trading-strategy-based-on-linear/` | PineScript | ma_cross | none | n x3 | 3 |
+| 435772 | `ports/435772_td-momentum-td-reversal-trading-strategy/` | PineScript | sequential_count | trailing_stop | bars_count x2, trail_pct x2 | 4 |
+| 435774 | `ports/435774_rsi-rsi-channel-price-difference-tracking-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, hma_len x2 | 4 |
+| 435775 | `ports/435775_macd-rsi-macd-and-rsi-based-trend-following-reversal-strateg/` | PineScript | macd_cross | none | ema_len x2, rsi_len x2 | 4 |
+| 435828 | `ports/435828_5-10-20-strategy-based-on-5-10-20-day-ema-crossover-using-su/` | PineScript | supertrend | none | len1 x2, mult x2 | 4 |
+| | **1237 ports** | | | | | **6533** |
 
 ## Rejected on reading
 
@@ -1536,6 +1546,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435486 | 印度市场整合突破交易策略Consolidation-Breakout-Strategy.md | 2 | Entries need a 09:35-14:30 session test (time(timeframe.period, session)) on the DAILY chart of the backtest header, where the bar's own time is not inside the session, so the entry condition is a clock-time filter that is undefined (probably never true) on the chart it was tested on; the exit is a stop re-sent each bar at close - 10 ATR (a close-relative level, not a ratchet) and the 14:57 end-of-day close never occurs on daily bars. |
 | 435511 | 基于TRSI和SUPER趋势指标的量化交易策略Quantitative-Trading-Strategy-Based-on-TRSI-and-SUPER-Trend-Indicators.md | 1 | The exits are four partial exits of the position (strategy.exit with qty_percent 25 / 25 / 25 and the rest at profit levels 2 / 4 / 6 / 8 % of the average price, tick-converted) and the rule reads a weekly RSI of a held week-open close through time('W'): a scale-out in four parts that the all-in / all-out signal interface cannot express. |
 | 435721 | 多重时间框架魔改加强的史托克指标与SMA组合趋势跟踪策略X48-DayLight-Hunter-Strategy-Optimization-and-Adaptation.md | 1 | The default Trend mode adds martingale orders (strategy.order Long2 / Short2 with qty = last size x 2 once the price has moved a point range against the entry), takes profit when strategy.openprofit reaches a currency amount (tp_pnl = 1 dollar, close_all) and sizes the percent stops by ticks: the exits and adds depend on the position size and its dollar profit, which the all-in signal interface cannot express. |
+| 435725 | 基于开盘价通道趋势策略Channel-Trend-Strategy.md | 1 | The long and short each carry strategy.exit with qty_percent = 50 at a take-profit level of the channel line plus / minus 15 % (a scale-out of half the position) while the channel line itself is the highest / lowest of the monthly OPEN taken over 21 chart bars: the half-position exit cannot be expressed by the all-in / all-out signal interface. |
+| 435766 | 基于MACD和RSI指标的交叉信号策略Trading-Strategy-Based-on-MACD-and-RSI-Crossover-Signals.md | 1 | Positions are built and cut by quantity: strategy.order buys 25 % of equity on each MACD-cross-after-oversold signal (pyramiding 10) and sells one third of the open position size (qty = posSize / 3) on each cross after overbought: scale-in and a stepped scale-out that the all-in / all-out signal interface cannot express. |
+| 435773 | 坚实踏实的SMA均线持仓策略Solid-and-Steady-SMA-Position-Holding-Strategy.md | 1 | Two take-profit exits take 10 % and 50 % of the position at +1 % and +5 % (qty_percent), the rest following the ZLEMA slope exit: partial exits (a scale-out) that the all-in / all-out signal interface cannot express. |
+| 435831 | SMA波动偏移交易策略SMA-Offset-Fluctuation-Trading-Strategy.md | 1 | The long's stop is an exit order armed only when the short condition appears during the trade (strategy.exit with stop = a ratcheted level computed from every bar's close, re-sent only on those bars, and enterShort needs strategy.openprofit > 0): an exit placed mid-trade at a level that depends on the position's open profit, outside the entry-fill bracket the stop interface supports. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #435722 (基于MACD指标的双均线交易策略MACD-Dual-Moving-Average-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/435722  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Cash order size, capital  [lines 186-191]
+  186: strategy.initial_capital = 20000
+  187: // Set quantity to initial capital / closing price
+  188: cantidad = strategy.initial_capital/close
+  189: 
+  190: // Submit orders
+  191: strategy.entry(id="long", long=true, qty=cantidad, when=longCondition)
