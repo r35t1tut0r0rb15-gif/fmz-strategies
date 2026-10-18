@@ -2824,6 +2824,23 @@ SIZING = {
     435519: [],
     435520: [],
     435522: [],
+    # ---- FMZ-C, batch C80 (2026-10-18)
+    435698: [],
+    435699: [],
+    435701: [],
+    435703: [],
+    435704: [],
+    435705: [],
+    435707: [
+        ("strategy(): percent of equity, capital", 138, 138),
+    ],
+    435709: [],
+    435713: [],
+    435714: [],
+    435717: [
+        ("strategy(): cash order size, capital", 160, 160),
+    ],
+    435720: [],
 }
 
 REJECTED_ON_READING = {
@@ -3500,6 +3517,13 @@ REJECTED_ON_READING = {
               "25 / 25 / 25 and the rest at profit levels 2 / 4 / 6 / 8 % of the average price, "
               "tick-converted) and the rule reads a weekly RSI of a held week-open close through "
               "time('W'): a scale-out in four parts that the all-in / all-out signal interface "
+              "cannot express."),
+    # ---- FMZ-C, batch C80 (2026-10-18)
+    435721: ("1", "The default Trend mode adds martingale orders (strategy.order Long2 / Short2 with "
+              "qty = last size x 2 once the price has moved a point range against the entry), "
+              "takes profit when strategy.openprofit reaches a currency amount (tp_pnl = 1 "
+              "dollar, close_all) and sizes the percent stops by ticks: the exits and adds depend "
+              "on the position size and its dollar profit, which the all-in signal interface "
               "cannot express."),
 }
 

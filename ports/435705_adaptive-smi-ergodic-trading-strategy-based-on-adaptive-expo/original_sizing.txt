@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #435705 (基于自适应指数平滑移动平均线的量化交易策略Adaptive-SMI-Ergodic-Trading-Strategy-Based-on-Adaptive-Exponential-Moving-Average-Lines)
+# Source: https://www.fmz.com/strategy/435705  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

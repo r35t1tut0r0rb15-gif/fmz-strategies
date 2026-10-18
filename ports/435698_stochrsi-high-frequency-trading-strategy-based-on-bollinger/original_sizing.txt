@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #435698 (基于布林带和-StochRSI-指标的高频交易策略High-Frequency-Trading-Strategy-Based-on-Bollinger-Bands-and-StochRSI-Indicators)
+# Source: https://www.fmz.com/strategy/435698  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

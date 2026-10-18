@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2356 |
-| PORTED | 1215 |
+| PORT_CANDIDATE | 2343 |
+| PORTED | 1227 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 174 |
+| REJECTED_ON_READING | 175 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1343,7 +1343,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435519 | `ports/435519_dual-moving-average-reversal-strategy/` | PineScript | mean_reversion | none | move_limit x2, ma_length x2 | 4 |
 | 435520 | `ports/435520_hye-mean-reversion-sma-strategy/` | PineScript | mean_reversion | none | direction x2, pct_below x2 | 4 |
 | 435522 | `ports/435522_dual-reversion-balance-strategy/` | PineScript | reversal_pattern | none | reverse x2, length_emd x2 | 4 |
-| | **1215 ports** | | | | | **6452** |
+| 435698 | `ports/435698_stochrsi-high-frequency-trading-strategy-based-on-bollinger/` | PineScript | bollinger_breakout | bar_size_pending | length x2, dev x2 | 4 |
+| 435699 | `ports/435699_trend-following-strategy-based-on-ichimoku-cloud/` | PineScript | ichimoku | none | tenkan x2, kijun x2 | 4 |
+| 435701 | `ports/435701_dual-moving-average-reversal-breakout-strategy/` | PineScript | reversal_pattern | none | reverse x2, length_dbp x2 | 4 |
+| 435703 | `ports/435703_rsi-sma-and-rsi-long-only-strategy/` | PineScript | rsi_oscillator | none | emapl x2, rsi_period x2 | 4 |
+| 435704 | `ports/435704_sma-psar-sma-and-psar-strategy-for-spot-trading/` | PineScript | trend_confluence | none | sma_len x2, psar_start x2 | 4 |
+| 435705 | `ports/435705_adaptive-smi-ergodic-trading-strategy-based-on-adaptive-expo/` | PineScript | momentum_oscillator | none | longlen x2, siglen x2 | 4 |
+| 435707 | `ports/435707_lsma-super-trend-lsma-long-strategy/` | PineScript | supertrend | none | factor x2, lengthx x2 | 4 |
+| 435709 | `ports/435709_momentum-breakout-bi-directional-tracking-strategy/` | PineScript | trend_confluence | none | length_ha x2, adx_threshold x2 | 4 |
+| 435713 | `ports/435713_ema-quantitative-trading-strategy-based-on-double-ema-and-pr/` | PineScript | trend_confluence | none | reverse x2, length x2 | 4 |
+| 435714 | `ports/435714_fixed-percentage-stop-loss-and-take-profit-strategy-based-on/` | PineScript | ma_cross | coarse_bar_stop | stop_per x2, take_per x2 | 4 |
+| 435717 | `ports/435717_galileo-galileis-moving-average-crossover-strategy/` | PineScript | ma_cross | none | length x2 | 2 |
+| 435720 | `ports/435720_05-heikin-ashi-05-change-short-period-trading-strategy/` | PineScript | momentum_oscillator | none | threshold x2 | 2 |
+| | **1227 ports** | | | | | **6496** |
 
 ## Rejected on reading
 
@@ -1523,6 +1535,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435473 | 最低点反转策略Bottom-Reversal-Strategy.md | 1 | The entry opens 2 units and the exits are two separate 1-unit partial closes (strategy.close with qty = 1 on a cross under the ema of H4 and another on the ema of L3): the position is half-closed on the first exit signal and the rest on the second, a scale-out the all-in / all-out signal interface cannot express; the ATR trailing level is only plotted. |
 | 435486 | 印度市场整合突破交易策略Consolidation-Breakout-Strategy.md | 2 | Entries need a 09:35-14:30 session test (time(timeframe.period, session)) on the DAILY chart of the backtest header, where the bar's own time is not inside the session, so the entry condition is a clock-time filter that is undefined (probably never true) on the chart it was tested on; the exit is a stop re-sent each bar at close - 10 ATR (a close-relative level, not a ratchet) and the 14:57 end-of-day close never occurs on daily bars. |
 | 435511 | 基于TRSI和SUPER趋势指标的量化交易策略Quantitative-Trading-Strategy-Based-on-TRSI-and-SUPER-Trend-Indicators.md | 1 | The exits are four partial exits of the position (strategy.exit with qty_percent 25 / 25 / 25 and the rest at profit levels 2 / 4 / 6 / 8 % of the average price, tick-converted) and the rule reads a weekly RSI of a held week-open close through time('W'): a scale-out in four parts that the all-in / all-out signal interface cannot express. |
+| 435721 | 多重时间框架魔改加强的史托克指标与SMA组合趋势跟踪策略X48-DayLight-Hunter-Strategy-Optimization-and-Adaptation.md | 1 | The default Trend mode adds martingale orders (strategy.order Long2 / Short2 with qty = last size x 2 once the price has moved a point range against the entry), takes profit when strategy.openprofit reaches a currency amount (tp_pnl = 1 dollar, close_all) and sizes the percent stops by ticks: the exits and adds depend on the position size and its dollar profit, which the all-in signal interface cannot express. |
 
 ## Flagged and stored under criterion 3 (253 files)
 
