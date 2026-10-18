@@ -1540,3 +1540,11 @@ fmz_id,file,final_outcome,criterion,reason
 436485,基于RSI指标和移动平均线的量化交易策略Quantitative-Trading-Strategy-Based-on-RSI-Indicator-and-Moving-Average.md,PORTED,,ports/436485_rsi-quantitative-trading-strategy-based-on-rsi-indicator-and/
 436489,双重布林带震荡跟踪策略Dual-Bollinger-Band-Volatility-Tracking-Strategy.md,PORTED,,ports/436489_dual-bollinger-band-volatility-tracking-strategy/
 436490,双向反转动量指数交易策略Dual-Reversal-Momentum-Index-Trading-Strategy.md,PORTED,,ports/436490_dual-reversal-momentum-index-trading-strategy/
+436491,三均线交叉动量策略Three-SMA-Crossover-Momentum-Strategy.md,PORTED,,ports/436491_three-sma-crossover-momentum-strategy/
+436493,KST策略.md,PORTED,,ports/436493_kst/
+436497,动量指标追踪短期价格变动策略-Price-Volume-Trend-Strategy.md,PORTED,,ports/436497_price-volume-trend-strategy/
+436499,双波动带突破策略Double-Bollinger-Bands-Breakout-Strategy.md,PORTED,,ports/436499_double-bollinger-bands-breakout-strategy/
+436500,双移动平均线反转策略Dual-Moving-Average-Reversal-Strategy.md,PORTED,,ports/436500_dual-moving-average-reversal-strategy/
+436502,动态移动平均线与克尔特通道交易策略Dynamic-Moving-Averages-and-Keltner-Channel-Trading-Strategy.md,PORTED,,ports/436502_dynamic-moving-averages-and-keltner-channel-trading-strategy/
+436511,震荡多空RSI换币策略Oscillating-Long-Short-RSI-Crypto-Switching-Strategy.md,PORTED,,ports/436511_rsi-oscillating-long-short-rsi-crypto-switching-strategy/
+436514,基于移动平均线的单边开仓策略Single-Side-Entry-Strategy-Based-on-Moving-Average.md,PORTED,,ports/436514_single-side-entry-strategy-based-on-moving-average/

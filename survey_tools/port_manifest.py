@@ -3067,6 +3067,31 @@ SIZING = {
         ("strategy(): percent of equity; Capital % input", 167, 172),
         ("Lot from equity", 210, 210),
     ],
+    # ---- FMZ-C, batch C90 (2026-10-18)
+    436491: [
+        ("strategy(): cash quantity, pyramiding 1", 137, 137),
+    ],
+    436493: [
+        ("strategy(): percent of equity, pyramiding 1", 36, 36),
+    ],
+    436497: [
+        ("strategy(): percent of equity, pyramiding 1, slippage", 124, 126),
+    ],
+    436499: [
+        ("strategy(): percent of equity", 139, 139),
+        ("Take profit, stop and trailing inputs (off by default)", 155, 162),
+    ],
+    436500: [
+        ("strategy(): percent of equity 10", 156, 162),
+        ("Stop loss percent input", 176, 176),
+    ],
+    436502: [],
+    436511: [
+        ("strategy(): percent of equity, pyramiding 1", 212, 212),
+    ],
+    436514: [
+        ("strategy(): percent of equity, pyramiding 0", 145, 145),
+    ],
 }
 
 REJECTED_ON_READING = {

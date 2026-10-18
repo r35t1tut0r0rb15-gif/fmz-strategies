@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #436499 (双波动带突破策略Double-Bollinger-Bands-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/436499  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity  [lines 139-139]
+  139: strategy("BB Strat",default_qty_type = strategy.percent_of_equity, default_qty_value = 100,currency="USD",initial_capital=100, overlay=true)
+
+## Take profit, stop and trailing inputs (off by default)  [lines 155-162]
+  155: inpTakeProfit = input(defval = 0, title = "Take Profit", minval = 0)
+  156: inpStopLoss = input(defval = 0, title = "Stop Loss", minval = 0)
+  157: inpTrailStop = input(defval = 0, title = "Trailing Stop Loss", minval = 0)
+  158: inpTrailOffset = input(defval = 0, title = "Trailing Stop Loss Offset", minval = 0)
+  159: useTakeProfit = inpTakeProfit >= 1 ? inpTakeProfit : na
+  160: useStopLoss = inpStopLoss >= 1 ? inpStopLoss : na
+  161: useTrailStop = inpTrailStop >= 1 ? inpTrailStop : na
+  162: useTrailOffset = inpTrailOffset >= 1 ? inpTrailOffset : na

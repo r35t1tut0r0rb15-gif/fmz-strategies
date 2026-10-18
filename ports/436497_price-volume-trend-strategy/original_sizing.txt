@@ -1,0 +1,8 @@
+# Original sizing and money-management code, FMZ #436497 (动量指标追踪短期价格变动策略-Price-Volume-Trend-Strategy)
+# Source: https://www.fmz.com/strategy/436497  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity, pyramiding 1, slippage  [lines 124-126]
+  124: strategy("HA smoothed eliminator v2  ",pyramiding=1, slippage=10, default_qty_type=strategy.percent_of_equity, 
+  125:      commission_type=strategy.commission.percent, commission_value=0.075, overlay=true, 
+  126:      default_qty_value=100, initial_capital=1000)

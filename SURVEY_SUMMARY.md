@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2219 |
-| PORTED | 1334 |
+| PORT_CANDIDATE | 2211 |
+| PORTED | 1342 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1462,7 +1462,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436485 | `ports/436485_rsi-quantitative-trading-strategy-based-on-rsi-indicator-and/` | PineScript | rsi_oscillator | none | fast x2, slow x2 | 4 |
 | 436489 | `ports/436489_dual-bollinger-band-volatility-tracking-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
 | 436490 | `ports/436490_dual-reversal-momentum-index-trading-strategy/` | PineScript | stochastic_oscillator | none | a x2, limit x2 | 4 |
-| | **1334 ports** | | | | | **6928** |
+| 436491 | `ports/436491_three-sma-crossover-momentum-strategy/` | PineScript | trend_filter | none | sma1 x2, kama_len x2 | 4 |
+| 436493 | `ports/436493_kst/` | PineScript | momentum_oscillator | none | roc1 x2, sig x2 | 4 |
+| 436497 | `ports/436497_price-volume-trend-strategy/` | PineScript | trend_filter | none | factor x2, len x2 | 4 |
+| 436499 | `ports/436499_double-bollinger-bands-breakout-strategy/` | PineScript | bollinger_breakout | none | l x2, pbin x2 | 4 |
+| 436500 | `ports/436500_dual-moving-average-reversal-strategy/` | PineScript | mean_reversion | none | ma2 x2, trigger x2, stop_pct x2 | 8 |
+| 436502 | `ports/436502_dynamic-moving-averages-and-keltner-channel-trading-strategy/` | PineScript | trend_filter | none | ma_type x2, length x2 | 4 |
+| 436511 | `ports/436511_rsi-oscillating-long-short-rsi-crypto-switching-strategy/` | PineScript | ichimoku | none | ts_bars x2, ks_bars x2 | 4 |
+| 436514 | `ports/436514_single-side-entry-strategy-based-on-moving-average/` | PineScript | trend_filter | none | ma_type x6, len x2 | 12 |
+| | **1342 ports** | | | | | **6972** |
 
 ## Rejected on reading
 

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #436514 (基于移动平均线的单边开仓策略Single-Side-Entry-Strategy-Based-on-Moving-Average)
+# Source: https://www.fmz.com/strategy/436514  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity, pyramiding 0  [lines 145-145]
+  145: strategy(title = "Noro's MAs Tests v1.1", shorttitle = "MAs tests 1.1", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value=100.0, pyramiding=0)

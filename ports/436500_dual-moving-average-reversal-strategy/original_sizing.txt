@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #436500 (双移动平均线反转策略Dual-Moving-Average-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/436500  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity 10  [lines 156-162]
+  156: strategy("Davin's 10/200MA Pullback on SPY Strategy v2.0",
+  157:      overlay=true,
+  158:      initial_capital=10000,
+  159:      default_qty_type=strategy.percent_of_equity,
+  160:      default_qty_value=10, // 10% of equity on each trade
+  161:      commission_type=strategy.commission.cash_per_contract, 
+  162:      commission_value=0.1) //Insert your broker's rate, IB is 0.005USD or tiered
+
+## Stop loss percent input  [lines 176-176]
+  176: i_stopPercent   = input.float(title="Stop Loss Percent", defval=0.15, step=0.01, group="Strategy Parameters", tooltip="Hard stop loss of 10%")
