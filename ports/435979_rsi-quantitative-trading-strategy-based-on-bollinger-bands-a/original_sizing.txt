@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #435979 (基于布林带和RSI的量化交易策略Quantitative-Trading-Strategy-Based-on-Bollinger-Bands-and-RSI)
+# Source: https://www.fmz.com/strategy/435979  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Equity-based quantity  [lines 154-161]
+  154:         cantidad = round(strategy.equity / close)
+  155:         strategy.entry("Compra", strategy.long, qty=cantidad, when=cantidad > 0)
+  156:         SL := close * (1 - (stop_loss / 100))
+  157: 
+  158:     if close > banda_superior and rsi_value > rsi_overbought
+  159:         // Realizar la Venta
+  160:         cantidad = round(strategy.equity / close)
+  161:         strategy.entry("Venta", strategy.short, qty=cantidad, when=cantidad > 0)

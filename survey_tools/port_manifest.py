@@ -2911,6 +2911,39 @@ SIZING = {
         ("strategy(): percent of equity", 153, 153),
     ],
     435960: [],
+    # ---- FMZ-C, batch C84 (2026-10-18)
+    435961: [
+        ("Initial capital input", 146, 146),
+    ],
+    435962: [
+        ("strategy(): commission", 125, 125),
+    ],
+    435963: [
+        ("strategy(): percent of equity, pyramiding; trailing inputs", 179, 199),
+    ],
+    435965: [],
+    435969: [
+        ("Stop loss in pips input", 171, 171),
+    ],
+    435974: [],
+    435979: [
+        ("Equity-based quantity", 154, 161),
+    ],
+    435980: [],
+    435981: [
+        ("strategy(): percent of equity, capital, commission", 159, 167),
+    ],
+    435982: [],
+    435984: [],
+    435986: [
+        ("Risk, stop and target inputs", 110, 112),
+    ],
+    435987: [
+        ("Take profit, stop and tick-size inputs", 240, 256),
+    ],
+    435992: [
+        ("Take-profit tick input", 207, 209),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3627,6 +3660,12 @@ REJECTED_ON_READING = {
               "gaps_off, lookahead_on) and the matching EMA with lookahead_on and no [1]: on "
               "historical bars the 5-day values are seen from the first bar of the 5-day period, "
               "so the rule reads the future (SURVEY_README request.security rule)."),
+    # ---- FMZ-C, batch C84 (2026-10-18)
+    435964: ("1", "The exit orders are re-sent every bar with levels computed from the CURRENT bar's "
+              "extremes (sl = high + 50 ticks, tp = low - 100 ticks for a short; the mirror for a "
+              "long): a moving bracket that follows each new bar rather than a level fixed at the "
+              "entry fill, in tick units, which the stop interface (levels fixed at the entry "
+              "fill or a declared trail) cannot express."),
 }
 
 DUPLICATE_ON_READING = {

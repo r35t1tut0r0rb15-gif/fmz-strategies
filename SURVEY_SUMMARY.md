@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2301 |
-| PORTED | 1262 |
+| PORT_CANDIDATE | 2286 |
+| PORTED | 1276 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 182 |
+| REJECTED_ON_READING | 183 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1390,7 +1390,21 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435957 | `ports/435957_bollinger-band-based-price-action-strategy/` | PineScript | bollinger_breakout | coarse_bar_stop | k_atr x2, b_sma x2 | 4 |
 | 435959 | `ports/435959_multiple-moving-averages-crossover-trading-strategy/` | PineScript | ma_cross | none | ma1 x2, ma2 x2 | 4 |
 | 435960 | `ports/435960_turtle-turtle-trend-trading-system/` | PineScript | breakout | none | n x2, e x2 | 4 |
-| | **1262 ports** | | | | | **6633** |
+| 435961 | `ports/435961_rsi-rsi-trading-strategy/` | PineScript | rsi_oscillator | none | length x2, oversold x2 | 4 |
+| 435962 | `ports/435962_trend-following-strategy-based-on-moving-average/` | PineScript | trend_confluence | none | take x2, stop x2 | 4 |
+| 435963 | `ports/435963_meticulous-ema-crossover-strategy/` | PineScript | ma_cross | coarse_bar_stop | fast x2, slow x2 | 4 |
+| 435965 | `ports/435965_simple-moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 435969 | `ports/435969_reverse-mean-breakthrough-strategy/` | PineScript | mean_reversion | none | k_atr x2, band_mult x2 | 4 |
+| 435974 | `ports/435974_ichimoku-the-octagon-cloud-tracing-strategy/` | PineScript | ichimoku | none | tenkan x2, kijun x2 | 4 |
+| 435979 | `ports/435979_rsi-quantitative-trading-strategy-based-on-bollinger-bands-a/` | PineScript | mean_reversion | none | length x2, take_profit x2 | 4 |
+| 435980 | `ports/435980_hedging-oscillation-reversal-strategy/` | PineScript | mean_reversion | none | length x2, percent x2 | 4 |
+| 435981 | `ports/435981_momentum-capture-channel-strategy/` | PineScript | breakout | none | high_period x2, low_period x2 | 4 |
+| 435982 | `ports/435982_macd-blue-red-leverage-strategy/` | PineScript | macd_cross | none | length_ema x2, fast x2 | 4 |
+| 435984 | `ports/435984_macd-trading-strategy-based-on-bollinger-bands-and-macd/` | PineScript | bollinger_breakout | none | atr_multi x2, boll_len x2 | 4 |
+| 435986 | `ports/435986_multiple-weighted-moving-averages-trend-strategy/` | PineScript | ma_cross | none | len1 x2, len2 x2 | 4 |
+| 435987 | `ports/435987_momentum-tracking-trading-strategy/` | PineScript | candle_pattern | none | direction x2, k_atr x2 | 4 |
+| 435992 | `ports/435992_rsi-cci-quantitative-strategy-bollinger-bands-rsi-cci-crosso/` | PineScript | mean_reversion | none | k_atr x2, length x2 | 4 |
+| | **1276 ports** | | | | | **6689** |
 
 ## Rejected on reading
 
@@ -1578,6 +1592,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435839 | 超趋势跟踪止损策略Super-Trend-Tracking-Stop-Loss-Strategy.md | 1 | Each entry also sends strategy.exit with qty_percent = 10 at a profit target (a 10 % partial take profit; the 15 % and 20 % tiers are declared and unused) and the stop is a custom ratchet on bar closes: a partial exit that the all-in / all-out signal interface cannot express. |
 | 435845 | 动量震荡跨界Bollinger带均线策略Momentum-Oscillation-Crossing-Bollinger-Bands-with-Moving-Average-Strategy.md | 1 | A 3Commas dollar-cost-averaging bot: strategy.order adds safety orders (volume-scaled quantities, up to a set count) on deviations below the average price while a base order is open, with take profit and stop on the average of the combined position: a ladder of adds whose size depends on the position, which the all-in / all-out signal interface cannot express. |
 | 435850 | 动态MA均线交叉趋势追踪策略Dynamic-MA-Crossover-Trend-Following-Strategy.md | 1 | The moving averages are read through security(tickerid, '5D', sma(hlc3, 16), gaps_off, lookahead_on) and the matching EMA with lookahead_on and no [1]: on historical bars the 5-day values are seen from the first bar of the 5-day period, so the rule reads the future (SURVEY_README request.security rule). |
+| 435964 | 基于布林带和RSI的趋势追踪策略Bollinger-Bands-and-RSI-Trend-Following-Strategy.md | 1 | The exit orders are re-sent every bar with levels computed from the CURRENT bar's extremes (sl = high + 50 ticks, tp = low - 100 ticks for a short; the mirror for a long): a moving bracket that follows each new bar rather than a level fixed at the entry fill, in tick units, which the stop interface (levels fixed at the entry fill or a declared trail) cannot express. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

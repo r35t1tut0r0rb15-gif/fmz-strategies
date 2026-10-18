@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #435981 (动量捕捉通道策略Momentum-Capture-Channel-Strategy)
+# Source: https://www.fmz.com/strategy/435981  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity, capital, commission  [lines 159-167]
+  159: strategy("Donchian Channel Strategy Idea",
+  160:          shorttitle="Donchian", 
+  161:          overlay=true,
+  162:          pyramiding=0,     
+  163:          default_qty_type=strategy.percent_of_equity, 
+  164:          default_qty_value=100, 
+  165:          initial_capital=1000,           
+  166:          commission_type=strategy.commission.percent, 
+  167:          commission_value=0.075)

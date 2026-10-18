@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #435963 (基于两条不同参数渐变均线交易策略Meticulous-EMA-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/435963  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity, pyramiding; trailing inputs  [lines 179-199]
+  179: strategy("EMA Strategy", shorttitle = "EMA Strategy", overlay=true, pyramiding = 3,default_qty_type = strategy.percent_of_equity, default_qty_value = 10)
+  180: 
+  181: 
+  182: // === Inputs ===
+  183: // short ma
+  184: maFastSource   = input(defval = close, title = "Fast MA Source")
+  185: maFastLength   = input(defval = 13, title = "Fast MA Period", minval = 1)
+  186: 
+  187: // long ma
+  188: maSlowSource   = input(defval = close, title = "Slow MA Source")
+  189: maSlowLength   = input(defval = 48, title = "Slow MA Period", minval = 1)
+  190: 
+  191: // invert trade direction
+  192: tradeInvert = input(defval = false, title = "Invert Trade Direction?")
+  193: // risk management
+  194: useStop     = input(defval = true, title = "Use Initial Stop Loss?")
+  195: slPoints    = input(defval = 25, title = "Initial Stop Loss Points", minval = 1)
+  196: useTS       = input(defval = true, title = "Use Trailing Stop?")
+  197: tslPoints   = input(defval = 120, title = "Trail Points", minval = 1)
+  198: useTSO      = input(defval = false, title = "Use Offset For Trailing Stop?")
+  199: tslOffset   = input(defval = 20, title = "Trail Offset Points", minval = 1)

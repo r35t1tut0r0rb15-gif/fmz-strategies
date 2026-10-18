@@ -1,0 +1,8 @@
+# Original sizing and money-management code, FMZ #435992 (布林带RSI指标的CCI均线交叉策略Quantitative-Strategy-Bollinger-Bands-RSI-CCI-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/435992  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit tick input  [lines 207-209]
+  207: strategy.exit("Exit ", profit = 600)
+  208: strategy.entry("SHORT", strategy.short, when = shortCBB and shortBRSI and shortcci)
+  209: strategy.exit("Exit ", profit = 600)

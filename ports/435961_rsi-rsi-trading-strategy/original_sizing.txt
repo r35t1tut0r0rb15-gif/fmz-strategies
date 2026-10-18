@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #435961 (基于相对强弱指标RSI交易策略RSI-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/435961  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Initial capital input  [lines 146-146]
+  146: initial_capital = input(20, title="Capital inicial (USDT)")

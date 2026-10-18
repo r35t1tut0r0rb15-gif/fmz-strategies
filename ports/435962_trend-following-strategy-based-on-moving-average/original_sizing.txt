@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #435962 (基于移动平均线的趋势追踪策略Trend-Following-Strategy-Based-on-Moving-Average)
+# Source: https://www.fmz.com/strategy/435962  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): commission  [lines 125-125]
+  125: strategy(title="Pure Mark Minervini 10%TP 5%CL", pyramiding = 0, commission_type=strategy.commission.percent, commission_value=0.08, overlay=true)
