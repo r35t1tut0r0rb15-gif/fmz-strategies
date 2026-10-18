@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #436490 (双向反转动量指数交易策略Dual-Reversal-Momentum-Index-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/436490  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity; Capital % input  [lines 167-172]
+  167: strategy(title = "Noro's Stochastic Strategy v1.0", shorttitle = "Stochastic str 1.0", overlay = false, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)
+  168: 
+  169: //Settings 
+  170: needlong = input(true, defval = true, title = "Long")
+  171: needshort = input(true, defval = true, title = "Short")
+  172: capital = input(100, defval = 100, minval = 1, maxval = 10000, title = "Capital, %")
+
+## Lot from equity  [lines 210-210]
+  210: lot = strategy.position_size == 0 ? strategy.equity / close * capital / 100 : lot[1]

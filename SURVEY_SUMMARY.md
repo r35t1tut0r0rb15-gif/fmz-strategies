@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2226 |
-| PORTED | 1330 |
+| PORT_CANDIDATE | 2219 |
+| PORTED | 1334 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 189 |
+| REJECTED_ON_READING | 192 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1458,7 +1458,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436261 | `ports/436261_frama-frama-and-moving-average-crossover-trading-strategy-ba/` | PineScript | adaptive_average | none | len x2, sc x2 | 4 |
 | 436476 | `ports/436476_donchian-turtle-trading-strategy-based-on-donchian-channels/` | PineScript | breakout | none | donchian_slow x2, atr_mult x2 | 4 |
 | 436479 | `ports/436479_dual-ma-crossover-strategy/` | PineScript | ma_cross | none | dema_len x2, ema_len x2 | 4 |
-| | **1330 ports** | | | | | **6912** |
+| 436480 | `ports/436480_dynamic-filter-quant-trading-strategy/` | PineScript | trend_filter | none | per x2, mult x2 | 4 |
+| 436485 | `ports/436485_rsi-quantitative-trading-strategy-based-on-rsi-indicator-and/` | PineScript | rsi_oscillator | none | fast x2, slow x2 | 4 |
+| 436489 | `ports/436489_dual-bollinger-band-volatility-tracking-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 436490 | `ports/436490_dual-reversal-momentum-index-trading-strategy/` | PineScript | stochastic_oscillator | none | a x2, limit x2 | 4 |
+| | **1334 ports** | | | | | **6928** |
 
 ## Rejected on reading
 
@@ -1653,6 +1657,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436217 | 双动量突破与波动率过滤量化策略Dual-Momentum-Breakthrough-and-Volatility-Filtering-Algorithmic-Trading-Strategy.md | 1 | The entry filter reads atr(14) through security(tickerid, 'D', ...) and then a moving average of the percent ATR through a second security call whose expression is the variable atrp, itself built from the first security result and the chart close: a nested request.security whose evaluation context (daily versus chart bars) depends on how the runtime resolves the inner variable; the take profit (3000 %) and the 50 % trail are inert. |
 | 436245 | 动态加仓策略Dynamic-Pyramiding-Strategy.md | 1 | A dollar-cost-averaging emulator: after the base order it adds safety orders (strategy.entry with growing cash quantities, volume scale 2, up to 10 levels, pyramiding 99) every time the price falls a step under the first entry, and closes everything at +1.5 % of the average price: a ladder of adds whose size depends on the position, which the all-in / all-out signal interface cannot express. |
 | 436475 | 基于AO震荡指标的EMA交叉日内交易策略EMA-Crossover-Intraday-Trading-Strategy-Based-on-AO-Oscillator.md | 2 | Every trade is gated by a 03:00-11:00 session test (time(timeframe.period, session) != 0) on the DAILY chart of the backtest header, where a bar's own time is not inside the session, so the condition is a clock-time filter that is undefined (probably never true) on the chart it was tested on; close_all is also sent whenever the session is false. |
+| 436482 | 超趋势增强旗形发现者An-Enhanced-Flag-Pattern-Recognition-Strategy-Integrating-with-SuperTrend.md | 1 | A flag-breakout finder whose only exit is strategy.exit with stop=supertrend: a stop level that moves every bar with the Supertrend line (re-sent each bar), a trailing level that is not a fraction of the fill price and cannot be expressed by the house stop interface; the flag and pole detection also depends on many persistent var indices tied to bar positions. |
+| 436483 | BBMA突破策略BBMA-Breakthrough-Strategy.md | 2 | The long's stop sits above its own entry price and the limit target also sits above it, so with the fill at the next open the stop and the limit are both already crossed: trades open and close at the same open, the strategy has no defined result as a signal system. |
+| 436515 | 50资金50仓位动态平衡量化策略Dynamic-Balancing-Strategy-with-50-Funds-and-50-Positions.md | 1 | A 50/50 dynamic balancing strategy that sends strategy.order calls to rebalance the position toward half the equity at each step: the size changes every bar depending on the position and equity, which the all-in / all-out signal interface cannot express. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

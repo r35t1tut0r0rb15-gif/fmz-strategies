@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #436489 (双重布林带震荡跟踪策略Dual-Bollinger-Band-Volatility-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/436489  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity, pyramiding  [lines 122-122]
+  122: strategy("BB_BB", overlay=true,default_qty_type=strategy.percent_of_equity, default_qty_value=100.0, pyramiding=0)

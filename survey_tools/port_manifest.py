@@ -3057,6 +3057,16 @@ SIZING = {
     436479: [
         ("Entry quantity 1", 413, 420),
     ],
+    # ---- FMZ-C, batch C89 (2026-10-18)
+    436480: [],
+    436485: [],
+    436489: [
+        ("strategy(): percent of equity, pyramiding", 122, 122),
+    ],
+    436490: [
+        ("strategy(): percent of equity; Capital % input", 167, 172),
+        ("Lot from equity", 210, 210),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3813,6 +3823,20 @@ REJECTED_ON_READING = {
               "is not inside the session, so the condition is a clock-time filter that is "
               "undefined (probably never true) on the chart it was tested on; close_all is also "
               "sent whenever the session is false."),
+    # ---- FMZ-C, batch C89 (2026-10-18)
+    436482: ("1", "A flag-breakout finder whose only exit is strategy.exit with stop=supertrend: a "
+              "stop level that moves every bar with the Supertrend line (re-sent each bar), a "
+              "trailing level that is not a fraction of the fill price and cannot be expressed by "
+              "the house stop interface; the flag and pole detection also depends on many "
+              "persistent var indices tied to bar positions."),
+    436483: ("2", "The long's stop sits above its own entry price and the limit target also sits "
+              "above it, so with the fill at the next open the stop and the limit are both "
+              "already crossed: trades open and close at the same open, the strategy has no "
+              "defined result as a signal system."),
+    436515: ("1", "A 50/50 dynamic balancing strategy that sends strategy.order calls to rebalance "
+              "the position toward half the equity at each step: the size changes every bar "
+              "depending on the position and equity, which the all-in / all-out signal interface "
+              "cannot express."),
 }
 
 DUPLICATE_ON_READING = {
