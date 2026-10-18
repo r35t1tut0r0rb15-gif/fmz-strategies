@@ -1,0 +1,180 @@
+"""Dynamic pivot bands with a trend-index filter, 1-hour bars: from flat, a bar that dips to the lower ATR band and closes back over it, with a rising short ATR and a rising trend signal, goes long (the mirror at the upper band
+goes short); each side closes when price reaches the pivot (middle band); a tick stop is re-expressed as an ATR multiple.
+Port of FMZ strategy #436614 "Trend Tracking Strategy Based on Dynamic Pivot Bands" (Strategy - Bobo PAPATR).
+
+FMZ source id: 436614
+
+Source
+    https://www.fmz.com/strategy/436614 (PineScript v4, FMZ last modified 2023-12-26 11:57:20).
+    Verbatim copy: original_source.md. Read 2026-10-18 (FMZ-C).
+
+Original signal (original_source.md lines 118-186), pivot length 24, ATR 22 x 3, trend index 2 / 20 / 5 / 3 / 4, stop 100 ticks, no target
+    pivot = (lastPivotLow + lastPivotHigh + (high[1] + low[1] + close[1]) / 3) / 3  (a pivot is a 24-bar extreme that stayed unchanged for 24 bars);  bands = pivot -/+ ATR22[1] x 3
+    enterLong = low <= lower band and close > lower band, no open trade, atr(3) > atr(50), signal > signal[3];  exitLong = high > pivot;  enterShort / exitShort mirror (high >= upper band and close < upper band; low < pivot)
+    entry Long / Short, close on the exit rule;  exit(loss = 100 ticks) for both
+
+Interpretation choices (Pine rules in SURVEY_README.md)
+    * Criterion 2: the 100-tick stop is re-expressed as sl_stop = k_atr x ATR(22) / close of the signal bar,
+      shifted one bar inside stops() (re-based on the fill); 0.07 is the reading (about 100 ticks of 0.1 on
+      BTC against a 1-hour ATR near 150), 1.0 one ATR. "Flat" follows the house bracket: the loop marks
+      the position closed once a bar's high / low reaches the stop (from the fill price) or the exit
+      rule closes it. The "pivot" is the dev(h, len) test: the deviation of the 24-bar highest is zero
+      only when it was constant over the window; the last such value is carried (fixnan). An exit
+      rule true on the entry's own bar closes the trade at once, so that entry is dropped. The trend
+      index (directional trend index with a 4-bar signal) is read as written. Opposite entries cannot
+      occur (entries from flat). Stop module: portfolio_kwargs {} (driver D4). Stops on 1-hour bars: not
+      coarse. The fixed size 1 is sizing. FREQ = "1h" from the backtest header.
+
+Admission criteria
+    1 fits the interface: PASS, bar-close orders; bracket fixed at entry.
+    2 generic: REVIEW, tick stop -> ATR multiple; pivot via a deviation test.
+    3 crypto-exchange-only: no (exchange pair in the header only).
+    4 signals only: the fixed size, the tick inputs stored.
+    5 ranges declared: GRID below (4 trials), before any backtest.
+    6 near-duplicates: ND434486 (2 members, best partner #434486, Jaccard 0.710); ported (rule 7).
+    7 FMZ performance claims: ignored.
+Volume: not used (check 8).
+Session open: not used.
+Opposite entries cannot occur.
+
+Marks: none
+"""
+import numpy as np
+import pandas as pd
+
+NAME = "fmz_436614_pivot_atr_band_reversal"
+FAMILY = "volatility_channel_breakout"  # proposed 2026-10-18 (FMZ-C), user to confirm
+FREQ = "1h"  # backtest header period: 1h
+PERIODS_PER_YEAR_OVERRIDE = None
+USES_STOPS = True
+
+GRID = {
+    "atrmult": [3.0, 2.0],
+    "k_atr": [0.07, 1.0],
+}
+DEFAULT_PARAMS = {"atrmult": 3.0, "k_atr": 0.07, "len": 24, "atr_len": 22, "i1": 2, "i2": 20, "i3": 5, "i4": 3,
+                  "i5": 4}
+
+
+def _resample(raw_1m_df, freq):
+    ohlc = raw_1m_df[["open", "high", "low", "close"]]
+    bars = ohlc.resample(freq, label="left", closed="left").agg(
+        {"open": "first", "high": "max", "low": "min", "close": "last"})
+    bars = bars.dropna(how="all")  # an empty period is not a bar; never forward-filled
+    if bars.index.tz is None:
+        raise ValueError("raw_1m_df must have a tz-aware UTC index")
+    return bars
+
+
+def _rma(x, n):
+    """Wilder smoothing as Pine's rma: SMA seed over the first n valid values, then recursive."""
+    v = x.to_numpy(dtype=float)
+    out = np.full(v.shape, np.nan)
+    valid = np.flatnonzero(~np.isnan(v))
+    if len(valid) >= n:
+        s = valid[0]
+        out[s + n - 1] = v[s:s + n].mean()
+        for i in range(s + n, len(v)):
+            out[i] = (out[i - 1] * (n - 1) + v[i]) / n
+    return pd.Series(out, index=x.index)
+
+
+def _carry(s):
+    """fixnan: keep the last non-na value."""
+    v = s.to_numpy(dtype=float)
+    out = v.copy()
+    last = np.nan
+    for i in range(len(v)):
+        if np.isnan(v[i]):
+            out[i] = last
+        else:
+            last = v[i]
+    return pd.Series(out, index=s.index)
+
+
+def precompute(raw_1m_df, symbol_key, **params):
+    return _resample(raw_1m_df, FREQ)
+
+
+def _setup(bars_df, p):
+    o, h, lo, c = (bars_df[k] for k in ("open", "high", "low", "close"))
+    pc = c.shift(1)
+    tr = pd.concat([h - lo, (h - pc).abs(), (lo - pc).abs()], axis=1).max(axis=1)
+    atr22 = _rma(tr, int(p["atr_len"]))
+    dailyatr = atr22.shift(1)
+    pivot0 = (h.shift(1) + lo.shift(1) + c.shift(1)) / 3
+    n = int(p["len"])
+    hh, ll = h.rolling(n).max(), lo.rolling(n).min()
+    h1 = hh.where(hh.rolling(n).max() == hh.rolling(n).min())
+    l1 = ll.where(ll.rolling(n).max() == ll.rolling(n).min())
+    pivot = (_carry(l1) + _carry(h1) + pivot0) / 3
+    mult = float(p["atrmult"])
+    upper, lower = pivot + dailyatr * mult, pivot - dailyatr * mult
+    i1, i2, i3, i4, i5 = (int(p[k]) for k in ("i1", "i2", "i3", "i4", "i5"))
+    hi_dif, lo_dif = h - h.shift(1), lo.shift(1) - lo
+    udm = hi_dif.where((hi_dif > lo_dif) & (hi_dif > 0), 0.0)
+    ddm = lo_dif.where((lo_dif > hi_dif) & (lo_dif > 0), 0.0)
+    atr_i = _rma(tr, i1)
+    hlm2 = 100 * _rma(udm, i1) / atr_i - 100 * _rma(ddm, i1) / atr_i
+
+    def e3(s):
+        return s.ewm(span=i2, adjust=False).mean().ewm(span=i3, adjust=False).mean().ewm(span=i4, adjust=False).mean()
+
+    with np.errstate(divide="ignore", invalid="ignore"):
+        dti = 100 * e3(hlm2) / e3(hlm2.abs())
+    sig = dti.ewm(span=i5, adjust=False).mean()
+    vol_ok = _rma(tr, 3) > _rma(tr, 50)
+    enter_l = (((lo <= lower) & (c > lower)) | ((o <= lower) & (c > lower))) & vol_ok & (sig > sig.shift(3))
+    enter_s = (((h >= upper) & (c < upper)) | ((o >= upper) & (c < upper))) & vol_ok & (sig < sig.shift(3))
+    exit_l, exit_s = h > pivot, lo < pivot
+    f_long = (float(p["k_atr"]) * atr22 / c)
+    return enter_l.fillna(False), enter_s.fillna(False), exit_l.fillna(False), exit_s.fillna(False), f_long
+
+
+def simulate(bars_df, **params):
+    p = {**DEFAULT_PARAMS, **params}
+    enter_l, enter_s, exit_l, exit_s, f = _setup(bars_df, p)
+    ov, hv, lv = (bars_df[k].to_numpy(dtype=float) for k in ("open", "high", "low"))
+    el, es, xl, xs, fv = (enter_l.to_numpy(), enter_s.to_numpy(), exit_l.to_numpy(), exit_s.to_numpy(),
+                          f.to_numpy())
+    m = len(ov)
+    le, se = np.zeros(m, dtype=bool), np.zeros(m, dtype=bool)
+    lx, sx = np.zeros(m, dtype=bool), np.zeros(m, dtype=bool)
+    pos, entry_i, sl_f = 0, -1, np.nan
+    pend_exit = False
+    for i in range(m):
+        if pend_exit and pos != 0:                       # the exit rule fills at this bar's open
+            pos = 0
+        pend_exit = False
+        if pos != 0 and i >= entry_i:                    # house stop from the fill price
+            e = ov[entry_i]
+            if pos == 1 and lv[i] <= e * (1 - sl_f):
+                pos = 0
+            elif pos == -1 and hv[i] >= e * (1 + sl_f):
+                pos = 0
+        if pos != 0 and i >= entry_i:
+            if pos == 1 and xl[i]:
+                lx[i] = True
+                pend_exit = True
+            elif pos == -1 and xs[i]:
+                sx[i] = True
+                pend_exit = True
+        elif pos == 0 and i + 1 < m and not np.isnan(fv[i]):
+            if el[i] and not xl[i]:
+                le[i] = True
+                pos, entry_i, sl_f = 1, i + 1, fv[i]
+            elif es[i] and not xs[i]:
+                se[i] = True
+                pos, entry_i, sl_f = -1, i + 1, fv[i]
+    ix = bars_df.index
+    return pd.Series(le, index=ix), pd.Series(lx, index=ix), pd.Series(se, index=ix), pd.Series(sx, index=ix)
+
+
+def stops(bars_df, **params):
+    p = {**DEFAULT_PARAMS, **params}
+    f = _setup(bars_df, p)[4]
+    return {"sl_stop": f.shift(1)}
+
+
+def portfolio_kwargs(**params):
+    return {}

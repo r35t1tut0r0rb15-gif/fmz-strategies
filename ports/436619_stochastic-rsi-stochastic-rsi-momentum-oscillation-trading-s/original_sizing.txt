@@ -1,0 +1,57 @@
+# Original sizing and money-management code, FMZ #436619 (动量震荡Stochastic-RSI交易策略Stochastic-RSI-Momentum-Oscillation-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/436619  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Gamble sizing and quantity formula  [lines 169-214]
+  169: capitaleIniziale=10000
+  170: 
+  171: var sizeordineInit= 50 // → % di capitale investita per ogni trade
+  172: var deltaSize = 25 // → delta% di capitale investito se trade precedente è stato in perdita
+  173: var sizeLimite = 100 //il trade non userà mai questa percentuale di capitale investito
+  174: var sizeordine = sizeordineInit
+  175: 
+  176: //Parametri ottimali 30 min
+  177: usiShort=false
+  178: usiLong=true
+  179: ipercomprato=85.29
+  180: ipervenduto=30.6
+  181: //
+  182: 
+  183: strategy("Momentum Strategy (V7.B.4)", initial_capital=capitaleIniziale, currency="USD", default_qty_type=strategy.percent_of_equity, commission_type=strategy.commission.percent, commission_value=0.1, slippage = 5, default_qty_value=sizeordineInit, overlay=false, pyramiding=0)
+  184: 
+  185: backtest = input(title="------------------------Backtest Period------------------------", defval = false)
+  186: start = timestamp(input(2020, "start year"), input(1, "start month"), input(1, "start day"), 00, 00)
+  187: end = timestamp(input(0, "end year"), input(0, "end month"), input(0, "end day"), 00, 00) 
+  188: 
+  189: siamoindata=time > start?true:false
+  190: if end > 0
+  191:     siamoindata:=time > start and time <= end?true:false
+  192: 
+  193: basicParameters = input(title="------------------------Basic Parameters------------------------", defval = false)
+  194: smoothK = input(3, minval=1)
+  195: smoothD = input(6, minval=1)
+  196: lengthRSI = input(12, minval=1) 
+  197: src = input(close, title="RSI Source")
+  198: rsi1 = rsi(src, lengthRSI)
+  199: lengthStoch = input(12, minval=1)
+  200: k = ema(stoch(rsi1, rsi1, rsi1, lengthStoch), smoothK)
+  201: d = ema(k, smoothD)
+  202: altezzaipercomprato= input(ipercomprato, title="Overbought Height", minval=1, type=input.float)
+  203: altezzaipervenduto= input(ipervenduto, title="Oversold Height", minval=1,type=input.float) 
+  204: 
+  205: BarsDelay = input(6,title="Bars delay",minval=0) 
+  206: 
+  207: GambleSizing = input(true, title = "Gamble Sizing?",type=input.bool)
+  208: gambleAdd = input(deltaSize,title="Gamble Add (%)",minval=0,type=input.integer)
+  209: gambleLimit = input(sizeLimite,title="Gamble MAX (%)",minval=0,type=input.integer)
+  210: if GambleSizing and strategy.closedtrades[0]>strategy.closedtrades[1]
+  211:     if strategy.losstrades[0]>strategy.losstrades[1] and sizeordine<gambleLimit
+  212:         sizeordine:=sizeordine+gambleAdd
+  213:     if strategy.wintrades[0]>strategy.wintrades[1]
+  214:         sizeordine:=sizeordineInit
+
+## strategy(): percent of equity 50  [lines 183-183]
+  183: strategy("Momentum Strategy (V7.B.4)", initial_capital=capitaleIniziale, currency="USD", default_qty_type=strategy.percent_of_equity, commission_type=strategy.commission.percent, commission_value=0.1, slippage = 5, default_qty_value=sizeordineInit, overlay=false, pyramiding=0)
+
+## Quantity from equity  [lines 290-290]
+  290: quantita = (sizeordine/100*(capitaleIniziale+strategy.netprofit))/valuewhen(haiUnLongAncoraAperto==false and CondizioneAperturaLong,close,0)

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2198 |
-| PORTED | 1353 |
+| PORT_CANDIDATE | 2191 |
+| PORTED | 1359 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 194 |
+| REJECTED_ON_READING | 195 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1481,7 +1481,13 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436597 | `ports/436597_relative-strength-index-stop-loss-strategy/` | PineScript | rsi_oscillator | bar_size_pending | rsi_len x2, stop_pct x2 | 4 |
 | 436598 | `ports/436598_statistical-volatility-backtest-strategy-based-on-extreme-va/` | PineScript | volatility_regime | none | length x2, top_band x2 | 4 |
 | 436599 | `ports/436599_n-k-n-bar-close-below-open-short-strategy/` | PineScript | candle_pattern | none | n_length x2, tp_frac x2 | 4 |
-| | **1353 ports** | | | | | **7016** |
+| 436604 | `ports/436604_n-last-n-candle-reverse-logic-strategy/` | PineScript | candle_pattern | none | num_check x2, num_exit x2 | 4 |
+| 436614 | `ports/436614_trend-tracking-strategy-based-on-dynamic-pivot-bands/` | PineScript | volatility_channel_breakout | none | atrmult x2, k_atr x2 | 4 |
+| 436617 | `ports/436617_moving-average-crossover-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 436619 | `ports/436619_stochastic-rsi-stochastic-rsi-momentum-oscillation-trading-s/` | PineScript | stochastic_oscillator | none | sl_pct x2, tp_pct x2 | 4 |
+| 436623 | `ports/436623_dual-factor-combo-reversal-and-mass-index-strategy/` | PineScript | combo_state | none | length x2, trigger x2 | 4 |
+| 436634 | `ports/436634_a-dmi-stochastic-trading-strategy-with-dynamic-stop-loss/` | PineScript | trend_filter | coarse_bar_stop | length x2, adx_threshold x2 | 4 |
+| | **1359 ports** | | | | | **7040** |
 
 ## Rejected on reading
 
@@ -1681,6 +1687,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436515 | 50资金50仓位动态平衡量化策略Dynamic-Balancing-Strategy-with-50-Funds-and-50-Positions.md | 1 | A 50/50 dynamic balancing strategy that sends strategy.order calls to rebalance the position toward half the equity at each step: the size changes every bar depending on the position and equity, which the all-in / all-out signal interface cannot express. |
 | 436524 | 基于RSI指标的多头趋势追踪策略RSI-Based-Bullish-Trend-Following-Strategy.md | 1 | An RSI-crossing strategy with pyramiding 5 whose exits are two strategy.exit orders for half of the position each (qty_percent 50 / 50, targets +3 % and +5 %, stop 5 %), and entries that stack up to five units; the position is built and unwound in parts, which the all-in / all-out signal interface cannot express. |
 | 436528 | 双移动平均线黄金交叉策略Dual-Moving-Average-Crossover-Strategy.md | 1 | Orders are sent with strategy.order (one unit BUY after a bullish crossing above the 100-bar average, one unit SELL after a bearish crossing below it), not strategy.entry: each order adds to or subtracts from the net position without any direction logic, so a filtered-out crossing leaves the net at 0, +1, -1, -2 ...; the unit-by-unit accumulation cannot be expressed as flat / long / short signals. |
+| 436603 | 基于趋势跟踪突破策略Trend-Tracking-Breakout-Strategy.md | 2 | The stop and the target are written as strategy.exit(loss = low - 5.70, profit = close + 11.40): price levels of one instrument passed as TICK counts, so the real distances are (price - 5.7) x tick size, an instrument-specific and nearly meaningless bracket (about 10 % at a 0.1 tick on a 40000 price, about 1 % at 0.01); the author's intended USD levels are tied to a single price scale, so there is no generic reading. |
 
 ## Flagged and stored under criterion 3 (253 files)
 
