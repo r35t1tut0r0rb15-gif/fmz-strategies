@@ -3103,6 +3103,24 @@ SIZING = {
     436540: [
         ("strategy(): percent of equity, pyramiding 0", 141, 141),
     ],
+    # ---- FMZ-C, batch C92 (2026-10-18)
+    436543: [
+        ("strategy(): percent of equity, pyramiding 1", 128, 128),
+    ],
+    436593: [
+        ("strategy(): percent of equity 20", 181, 181),
+        ("Stop loss inputs (off by default)", 220, 246),
+    ],
+    436595: [
+        ("Entry quantity 1", 157, 157),
+    ],
+    436597: [
+        ("Stop loss percentage input", 136, 136),
+    ],
+    436598: [],
+    436599: [
+        ("Take profit and stop loss pip inputs", 137, 138),
+    ],
 }
 
 REJECTED_ON_READING = {

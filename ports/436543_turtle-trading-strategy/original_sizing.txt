@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #436543 (一种追踪突破动量的海龟交易策略Turtle-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/436543  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity, pyramiding 1  [lines 128-128]
+  128: strategy("Turtles", shorttitle = "Turtles", overlay=true, pyramiding=1, default_qty_type= strategy.percent_of_equity, default_qty_value = 100)

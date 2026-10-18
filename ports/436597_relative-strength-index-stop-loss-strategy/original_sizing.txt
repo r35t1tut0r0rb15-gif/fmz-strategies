@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #436597 (相对强度指数止损策略Relative-Strength-Index-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/436597  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop loss percentage input  [lines 136-136]
+  136: stopLossPercent = input(1, title="Stop Loss Percentage") / 100

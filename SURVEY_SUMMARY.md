@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2204 |
-| PORTED | 1347 |
+| PORT_CANDIDATE | 2198 |
+| PORTED | 1353 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1475,7 +1475,13 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436527 | `ports/436527_ema-trend-reversal-trading-strategy-based-on-ema-crossover/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 436533 | `ports/436533_sma-crossover-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 436540 | `ports/436540_dual-moving-average-momentum-squeeze-strategy/` | PineScript | momentum_oscillator | none | length_kc x2, body_div x2 | 4 |
-| | **1347 ports** | | | | | **6992** |
+| 436543 | `ports/436543_turtle-trading-strategy/` | PineScript | donchian_breakout | none | enter_fast x2, exit_fast x2 | 4 |
+| 436593 | `ports/436593_a-multi-period-trading-strategy-based-on-moving-averages/` | PineScript | macd_signal | none | fast_length x2, length x2 | 4 |
+| 436595 | `ports/436595_dual-channel-donchian-breakout-strategy/` | PineScript | donchian_breakout | none | length1 x2, length2 x2 | 4 |
+| 436597 | `ports/436597_relative-strength-index-stop-loss-strategy/` | PineScript | rsi_oscillator | bar_size_pending | rsi_len x2, stop_pct x2 | 4 |
+| 436598 | `ports/436598_statistical-volatility-backtest-strategy-based-on-extreme-va/` | PineScript | volatility_regime | none | length x2, top_band x2 | 4 |
+| 436599 | `ports/436599_n-k-n-bar-close-below-open-short-strategy/` | PineScript | candle_pattern | none | n_length x2, tp_frac x2 | 4 |
+| | **1353 ports** | | | | | **7016** |
 
 ## Rejected on reading
 

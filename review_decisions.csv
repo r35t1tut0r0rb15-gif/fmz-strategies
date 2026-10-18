@@ -1555,3 +1555,9 @@ fmz_id,file,final_outcome,criterion,reason
 436527,基于EMA交叉的趋势转向交易策略Trend-Reversal-Trading-Strategy-Based-on-EMA-Crossover.md,PORTED,,ports/436527_ema-trend-reversal-trading-strategy-based-on-ema-crossover/
 436533,基于简单双均线交叉交易策略SMA-Crossover-Trading-Strategy.md,PORTED,,ports/436533_sma-crossover-trading-strategy/
 436540,双均线动量鞅策略Dual-Moving-Average-Momentum-Squeeze-Strategy.md,PORTED,,ports/436540_dual-moving-average-momentum-squeeze-strategy/
+436543,一种追踪突破动量的海龟交易策略Turtle-Trading-Strategy.md,PORTED,,ports/436543_turtle-trading-strategy/
+436593,移动平均线和偏差指标多周期交易策略A-Multi-Period-Trading-Strategy-Based-on-Moving-Averages.md,PORTED,,ports/436593_a-multi-period-trading-strategy-based-on-moving-averages/
+436595,分离通道唐奇安突破策略Dual-Channel-Donchian-Breakout-Strategy.md,PORTED,,ports/436595_dual-channel-donchian-breakout-strategy/
+436597,相对强度指数止损策略Relative-Strength-Index-Stop-Loss-Strategy.md,PORTED,,ports/436597_relative-strength-index-stop-loss-strategy/
+436598,基于极值法的统计波动率回测策略Statistical-Volatility-Backtest-Strategy-Based-on-Extreme-Value-Method.md,PORTED,,ports/436598_statistical-volatility-backtest-strategy-based-on-extreme-va/
+436599,连续N根K线收阴策略N-Bar-Close-Below-Open-Short-Strategy.md,PORTED,,ports/436599_n-k-n-bar-close-below-open-short-strategy/
