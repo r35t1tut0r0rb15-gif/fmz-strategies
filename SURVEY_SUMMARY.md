@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2392 |
-| PORTED | 1184 |
+| PORT_CANDIDATE | 2379 |
+| PORTED | 1195 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 169 |
+| REJECTED_ON_READING | 171 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1312,7 +1312,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435264 | `ports/435264_adaptive-price-zone-reversal-trading-strategy/` | PineScript | volatility_band | none | reverse x2, n_periods x2, band_pct x2 | 8 |
 | 435265 | `ports/435265_dynamic-moving-average-dual-strategy/` | PineScript | momentum_oscillator | none | malen x2, vol_min x2, mt_frac x2 | 8 |
 | 435266 | `ports/435266_momentum-breakout-and-trend-following-combination-strategy/` | PineScript | supertrend | none | pl x2, factor x2 | 4 |
-| | **1184 ports** | | | | | **6333** |
+| 435268 | `ports/435268_macd-compound-quantitative-trading-strategy-based-on-macd/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| 435269 | `ports/435269_supertrend-blind-following-strategy/` | PineScript | supertrend | none | factor x2, pd x2 | 4 |
+| 435271 | `ports/435271_macd-macd-crossover-with-signal-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| 435272 | `ports/435272_momentum-breakout-strategy/` | PineScript | trend_confluence | none | ema1_len x2, adx_th x2 | 4 |
+| 435280 | `ports/435280_kaufmans-adaptive-moving-average-trend-tracking-strategy/` | PineScript | adaptive_average | none | length x2, type x2 | 4 |
+| 435283 | `ports/435283_double-bollinger-bands-breakout-strategy/` | PineScript | bollinger_breakout | none | atr_mult x2, atr_len x2 | 4 |
+| 435284 | `ports/435284_moving-average-crossover-midpoint-strategy/` | PineScript | ma_cross | none | bperiod x2, shift x2 | 4 |
+| 435285 | `ports/435285_wami-strategy/` | PineScript | momentum_oscillator | none | reverse x2, length_ema x2 | 4 |
+| 435286 | `ports/435286_heiken-ashi-crossover-strategy/` | PineScript | candle_pattern | none |  | 0 |
+| 435288 | `ports/435288_combination-reversal-strategy-based-on-stochastic-turnaround/` | PineScript | reversal_pattern | none | reverse x2, n_length x2 | 4 |
+| 435291 | `ports/435291_dual-reversal-trend-tracking-strategy/` | PineScript | reversal_pattern | none | reverse x2, period x2 | 4 |
+| | **1195 ports** | | | | | **6373** |
 
 ## Rejected on reading
 
@@ -1487,6 +1498,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 435154 | 移动均线交叉交易策略EMA-Crossover-Trading-Strategy.md | 2 | The entries need close > entrybar, where entrybar is a var set to the first bar's close and never updated: a fixed price level set by where the chart's data starts. |
 | 435256 | 指数修正分析过滤策略Modulo-Logic-With-EMA-Filter-Strategy.md | 2 | The entries need the close divided by 4 to leave no remainder (close % 4 == 0 by default): an exact test of the price against a multiple of a price-unit divisor, so the trigger is a fixed price level grid that means something different on every instrument and at every price scale; the stops are also built from valuewhen levels of the entry bar. |
 | 435262 | MACD金叉突破配200日均线的趋势追踪策略MACD-Golden-Cross-Breakout-with-200-Day-Moving-Average-Trend-Following-Strategy.md | 2 | The stop level is set ABOVE the entry close (close x (1 + 0.5 %)) and kept in a var; the exits close the long whenever the close is under that level (true at once and on every later bar until the next signal) or at or over a target level, and strategy.exit is handed the price levels as loss / profit tick distances: the rules compare the close with price levels carried from the last signal and, as written, open and close on the same open or never hold, so no signal rule can be separated from the price-level bookkeeping. |
+| 435275 | 基于逆转与相对强度的组合量化策略Quantitative-Strategy-Based-on-Reversal-and-Comparative-Relative-Strength.md | 1 | The relative-strength half compares the chart symbol with a second symbol read through security(b, timeframe.period, close) (the input default is the BTC swap itself, a ratio of 1.0) and tests the ratio's 10-bar average against price-ratio bands 0.9988 / 0.9960 / 0.9975: a two-instrument pair signal, outside the single-instrument interface. |
+| 435278 | 未来麦克D路线预测策略MacD-Future-Path-Prediction-Strategy.md | 1 | The orders read the 4-hour MACD histogram through security(syminfo.tickerid, '240', hist, gaps_off, lookahead_on) with 'Use The Future?' true by default, so on the 5-minute chart each 4-hour bar's final histogram is seen from its first bar: it reads the future (SURVEY_README request.security rule); the other branch is the same logic without lookahead and is only a switch. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -83,6 +83,15 @@ def _laguerre_rsi(cv, alpha):
     return out
 
 
+def _fixnan(s):
+    """Pine fixnan: a missing value takes the last non-missing one (a loop, not a fill method)."""
+    v = s.to_numpy(dtype=float).copy()
+    for i in range(1, len(v)):
+        if np.isnan(v[i]):
+            v[i] = v[i - 1]
+    return pd.Series(v, index=s.index)
+
+
 def _adx(h, lo, c, di_len, adx_len):
     up, dn = h.diff(), -lo.diff()
     plus_dm = pd.Series(np.where((up > dn) & (up > 0), up, 0.0), index=c.index).where(up.notna())
@@ -92,8 +101,8 @@ def _adx(h, lo, c, di_len, adx_len):
     tr.iloc[0] = np.nan
     a = 1 / di_len
     trn = tr.ewm(alpha=a, adjust=False).mean()
-    plus = (100 * plus_dm.ewm(alpha=a, adjust=False).mean() / trn).ffill()
-    minus = (100 * minus_dm.ewm(alpha=a, adjust=False).mean() / trn).ffill()
+    plus = _fixnan(100 * plus_dm.ewm(alpha=a, adjust=False).mean() / trn)
+    minus = _fixnan(100 * minus_dm.ewm(alpha=a, adjust=False).mean() / trn)
     s = plus + minus
     return 100 * (((plus - minus).abs() / s.where(s != 0, 1.0)).ewm(alpha=1 / adx_len, adjust=False).mean())
 
