@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #436238 (单均线穿越布林带策略Single-Moving-Average-Crossover-Bollinger-Bands-Strategy)
+# Source: https://www.fmz.com/strategy/436238  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity; off bracket inputs  [lines 131-149]
+  131: strategy(title="single sma cross", shorttitle="single sma cross",default_qty_type = strategy.percent_of_equity, default_qty_value = 100,overlay=true,currency="USD")
+  132: s=input(title="s",defval=90)
+  133: p=input(title="p",type=float,defval=.9,step=.1)
+  134: 
+  135: sa=sma(close,s)
+  136: plot(sa,color=red,linewidth=3)
+  137: band=stdev(close,s)*p
+  138: plot(band+sa,color=lime,title="")
+  139: plot(-band+sa,color=lime,title="")
+  140: 
+  141: // ===Strategy Orders============================================= ========
+  142: inpTakeProfit = input(defval = 0, title = "Take Profit", minval = 0)
+  143: inpStopLoss = input(defval = 0, title = "Stop Loss", minval = 0)
+  144: inpTrailStop = input(defval = 0, title = "Trailing Stop Loss", minval = 0)
+  145: inpTrailOffset = input(defval = 0, title = "Trailing Stop Loss Offset", minval = 0)
+  146: useTakeProfit = inpTakeProfit >= 1 ? inpTakeProfit : na
+  147: useStopLoss = inpStopLoss >= 1 ? inpStopLoss : na
+  148: useTrailStop = inpTrailStop >= 1 ? inpTrailStop : na
+  149: useTrailOffset = inpTrailOffset >= 1 ? inpTrailOffset : na

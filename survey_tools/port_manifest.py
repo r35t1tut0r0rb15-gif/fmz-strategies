@@ -3028,6 +3028,35 @@ SIZING = {
         ("strategy(): percent of equity", 128, 128),
     ],
     436228: [],
+    # ---- FMZ-C, batch C88 (2026-10-18)
+    436232: [],
+    436237: [
+        ("strategy(): percent of equity; bracket inputs", 136, 157),
+    ],
+    436238: [
+        ("strategy(): percent of equity; off bracket inputs", 131, 149),
+    ],
+    436241: [
+        ("Tick take profit, stop and trail inputs", 174, 183),
+    ],
+    436242: [],
+    436243: [
+        ("strategy(): pyramiding", 155, 155),
+    ],
+    436246: [],
+    436251: [],
+    436252: [
+        ("Capital, martingale and lot", 217, 220),
+        ("Lot from equity", 294, 296),
+    ],
+    436254: [],
+    436261: [],
+    436476: [
+        ("strategy(): percent of equity, pyramiding", 161, 161),
+    ],
+    436479: [
+        ("Entry quantity 1", 413, 420),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3773,6 +3802,17 @@ REJECTED_ON_READING = {
               "close: a nested request.security whose evaluation context (daily versus chart "
               "bars) depends on how the runtime resolves the inner variable; the take profit "
               "(3000 %) and the 50 % trail are inert."),
+    # ---- FMZ-C, batch C88 (2026-10-18)
+    436245: ("1", "A dollar-cost-averaging emulator: after the base order it adds safety orders "
+              "(strategy.entry with growing cash quantities, volume scale 2, up to 10 levels, "
+              "pyramiding 99) every time the price falls a step under the first entry, and closes "
+              "everything at +1.5 % of the average price: a ladder of adds whose size depends on "
+              "the position, which the all-in / all-out signal interface cannot express."),
+    436475: ("2", "Every trade is gated by a 03:00-11:00 session test (time(timeframe.period, "
+              "session) != 0) on the DAILY chart of the backtest header, where a bar's own time "
+              "is not inside the session, so the condition is a clock-time filter that is "
+              "undefined (probably never true) on the chart it was tested on; close_all is also "
+              "sent whenever the session is false."),
 }
 
 DUPLICATE_ON_READING = {

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2241 |
-| PORTED | 1317 |
+| PORT_CANDIDATE | 2226 |
+| PORTED | 1330 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 187 |
+| REJECTED_ON_READING | 189 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1445,7 +1445,20 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436224 | `ports/436224_broken-high-low-strategy/` | PineScript | candle_pattern | none | fast_ma x2, slow_ma x2 | 4 |
 | 436226 | `ports/436226_bollinger-momentum-breakout-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
 | 436228 | `ports/436228_slow-heiken-ashi-exponential-moving-average-trading-strategy/` | PineScript | candle_pattern | none | p x2, exponential x2 | 4 |
-| | **1317 ports** | | | | | **6860** |
+| 436232 | `ports/436232_the-moving-average-crossover-strategy-is-a-quantitative-trad/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 436237 | `ports/436237_rsi-the-rsi-breakout-strategy-is-a-quantitative-trading-stra/` | PineScript | rsi_oscillator | coarse_bar_stop | pct x2, length x2 | 4 |
+| 436238 | `ports/436238_single-moving-average-crossover-bollinger-bands-strategy/` | PineScript | bollinger_breakout | none | s x2, p x2 | 4 |
+| 436241 | `ports/436241_macd-golden-cross-dead-cross-dual-moving-average-macd-trend/` | PineScript | ma_cross | none | k_atr x2, slow1 x2 | 4 |
+| 436242 | `ports/436242_oscillator-index-transformation-strategy/` | PineScript | momentum_oscillator | none | reverse x2, length2 x2 | 4 |
+| 436243 | `ports/436243_quad-ma-trend-scalper-strategy/` | PineScript | ma_cross | none | length1 x2, length2 x2 | 4 |
+| 436246 | `ports/436246_empirical-mode-decomposition-based-quantitative-trading-stra/` | PineScript | cycle_filter | none | reverse x2, length x2 | 4 |
+| 436251 | `ports/436251_moving-average-crossover-quantitative-strategy/` | PineScript | ma_cross | none | level_frac x2, ema_length x2 | 4 |
+| 436252 | `ports/436252_noro-rsi-v17fast-scalping-rsi-switching-strategy-v17/` | PineScript | rsi_oscillator | none | fast x2, limit x2 | 4 |
+| 436254 | `ports/436254_moving-average-crossover-long-short-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 436261 | `ports/436261_frama-frama-and-moving-average-crossover-trading-strategy-ba/` | PineScript | adaptive_average | none | len x2, sc x2 | 4 |
+| 436476 | `ports/436476_donchian-turtle-trading-strategy-based-on-donchian-channels/` | PineScript | breakout | none | donchian_slow x2, atr_mult x2 | 4 |
+| 436479 | `ports/436479_dual-ma-crossover-strategy/` | PineScript | ma_cross | none | dema_len x2, ema_len x2 | 4 |
+| | **1330 ports** | | | | | **6912** |
 
 ## Rejected on reading
 
@@ -1638,6 +1651,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436096 | Ichimoku云量化短线策略Ichimoku-Cloud-Quant-Scalping-Strategy.md | 1 | The orders are strategy.order calls with a quantity of 1 in each direction (a 'buy' and a 'sel' order, each with its own tick bracket): strategy.order adds to and nets against the open position instead of reversing it, so a sell order while long only takes the position to flat and repeated signals stack units: net-position arithmetic that the all-in / all-out signal interface cannot express. |
 | 436142 | 动态跟随止损策略Dynamic-Trailing-Stop-Loss-Strategy.md | 1 | The signals combine daily and 15-minute request.security reads inside while loops with break (high[_bar] / low[_bar] of several earlier bars, including the index 0 bar which on the 1-minute chart is the still-forming day), choosing which earlier range the previous close broke out of; which value each read returns on a historical bar depends on the runtime's handling of in-progress higher bars, and the stop sits at a structural 15-minute low. |
 | 436217 | 双动量突破与波动率过滤量化策略Dual-Momentum-Breakthrough-and-Volatility-Filtering-Algorithmic-Trading-Strategy.md | 1 | The entry filter reads atr(14) through security(tickerid, 'D', ...) and then a moving average of the percent ATR through a second security call whose expression is the variable atrp, itself built from the first security result and the chart close: a nested request.security whose evaluation context (daily versus chart bars) depends on how the runtime resolves the inner variable; the take profit (3000 %) and the 50 % trail are inert. |
+| 436245 | 动态加仓策略Dynamic-Pyramiding-Strategy.md | 1 | A dollar-cost-averaging emulator: after the base order it adds safety orders (strategy.entry with growing cash quantities, volume scale 2, up to 10 levels, pyramiding 99) every time the price falls a step under the first entry, and closes everything at +1.5 % of the average price: a ladder of adds whose size depends on the position, which the all-in / all-out signal interface cannot express. |
+| 436475 | 基于AO震荡指标的EMA交叉日内交易策略EMA-Crossover-Intraday-Trading-Strategy-Based-on-AO-Oscillator.md | 2 | Every trade is gated by a 03:00-11:00 session test (time(timeframe.period, session) != 0) on the DAILY chart of the backtest header, where a bar's own time is not inside the session, so the condition is a clock-time filter that is undefined (probably never true) on the chart it was tested on; close_all is also sent whenever the session is false. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

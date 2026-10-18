@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #436241 (金叉死叉双均线MACD趋势追踪策略Golden-Cross-Dead-Cross-Dual-Moving-Average-MACD-Trend-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/436241  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Tick take profit, stop and trail inputs  [lines 174-183]
+  174: inpTakeProfit   = input(defval = 30, title = "Take Profit", minval = 0)
+  175: inpStopLoss     = input(defval = 10, title = "Stop Loss", minval = 0)
+  176: inpTrailStop    = input(defval = 5, title = "Trailing Stop Loss", minval = 0)
+  177: inpTrailOffset  = input(defval = 0, title = "Trailing Stop Loss Offset", minval = 0)
+  178: 
+  179: // if an input is less than 1, assuming not wanted so we assign 'na' value to disable it.
+  180: useTakeProfit   = inpTakeProfit  >= 1 ? inpTakeProfit  : na
+  181: useStopLoss     = inpStopLoss    >= 1 ? inpStopLoss    : na
+  182: useTrailStop    = inpTrailStop   >= 1 ? inpTrailStop   : na
+  183: useTrailOffset  = inpTrailOffset >= 1 ? inpTrailOffset : na
