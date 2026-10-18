@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2211 |
-| PORTED | 1342 |
+| PORT_CANDIDATE | 2204 |
+| PORTED | 1347 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 562 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 192 |
+| REJECTED_ON_READING | 194 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1470,7 +1470,12 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436502 | `ports/436502_dynamic-moving-averages-and-keltner-channel-trading-strategy/` | PineScript | trend_filter | none | ma_type x2, length x2 | 4 |
 | 436511 | `ports/436511_rsi-oscillating-long-short-rsi-crypto-switching-strategy/` | PineScript | ichimoku | none | ts_bars x2, ks_bars x2 | 4 |
 | 436514 | `ports/436514_single-side-entry-strategy-based-on-moving-average/` | PineScript | trend_filter | none | ma_type x6, len x2 | 12 |
-| | **1342 ports** | | | | | **6972** |
+| 436516 | `ports/436516_tema-trend-following-strategy-based-on-multi-timeframe-tema/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 436519 | `ports/436519_low-lag-triple-moving-average-fast-trading-strategy/` | PineScript | ma_cross | coarse_bar_stop | mav x2, k_atr x2 | 4 |
+| 436527 | `ports/436527_ema-trend-reversal-trading-strategy-based-on-ema-crossover/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 436533 | `ports/436533_sma-crossover-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 436540 | `ports/436540_dual-moving-average-momentum-squeeze-strategy/` | PineScript | momentum_oscillator | none | length_kc x2, body_div x2 | 4 |
+| | **1347 ports** | | | | | **6992** |
 
 ## Rejected on reading
 
@@ -1668,6 +1673,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436482 | 超趋势增强旗形发现者An-Enhanced-Flag-Pattern-Recognition-Strategy-Integrating-with-SuperTrend.md | 1 | A flag-breakout finder whose only exit is strategy.exit with stop=supertrend: a stop level that moves every bar with the Supertrend line (re-sent each bar), a trailing level that is not a fraction of the fill price and cannot be expressed by the house stop interface; the flag and pole detection also depends on many persistent var indices tied to bar positions. |
 | 436483 | BBMA突破策略BBMA-Breakthrough-Strategy.md | 2 | The long's stop sits above its own entry price and the limit target also sits above it, so with the fill at the next open the stop and the limit are both already crossed: trades open and close at the same open, the strategy has no defined result as a signal system. |
 | 436515 | 50资金50仓位动态平衡量化策略Dynamic-Balancing-Strategy-with-50-Funds-and-50-Positions.md | 1 | A 50/50 dynamic balancing strategy that sends strategy.order calls to rebalance the position toward half the equity at each step: the size changes every bar depending on the position and equity, which the all-in / all-out signal interface cannot express. |
+| 436524 | 基于RSI指标的多头趋势追踪策略RSI-Based-Bullish-Trend-Following-Strategy.md | 1 | An RSI-crossing strategy with pyramiding 5 whose exits are two strategy.exit orders for half of the position each (qty_percent 50 / 50, targets +3 % and +5 %, stop 5 %), and entries that stack up to five units; the position is built and unwound in parts, which the all-in / all-out signal interface cannot express. |
+| 436528 | 双移动平均线黄金交叉策略Dual-Moving-Average-Crossover-Strategy.md | 1 | Orders are sent with strategy.order (one unit BUY after a bullish crossing above the 100-bar average, one unit SELL after a bearish crossing below it), not strategy.entry: each order adds to or subtracts from the net position without any direction logic, so a filtered-out crossing leaves the net at 0, +1, -1, -2 ...; the unit-by-unit accumulation cannot be expressed as flat / long / short signals. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -3092,6 +3092,17 @@ SIZING = {
     436514: [
         ("strategy(): percent of equity, pyramiding 0", 145, 145),
     ],
+    # ---- FMZ-C, batch C91 (2026-10-18)
+    436516: [],
+    436519: [
+        ("Take profit, stop, trail inputs (ticks)", 171, 173),
+        ("Order size from equity", 178, 178),
+    ],
+    436527: [],
+    436533: [],
+    436540: [
+        ("strategy(): percent of equity, pyramiding 0", 141, 141),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -3862,6 +3873,16 @@ REJECTED_ON_READING = {
               "the position toward half the equity at each step: the size changes every bar "
               "depending on the position and equity, which the all-in / all-out signal interface "
               "cannot express."),
+    # ---- FMZ-C, batch C91 (2026-10-18)
+    436524: ("1", "An RSI-crossing strategy with pyramiding 5 whose exits are two strategy.exit "
+              "orders for half of the position each (qty_percent 50 / 50, targets +3 % and +5 %, "
+              "stop 5 %), and entries that stack up to five units; the position is built and "
+              "unwound in parts, which the all-in / all-out signal interface cannot express."),
+    436528: ("1", "Orders are sent with strategy.order (one unit BUY after a bullish crossing above "
+              "the 100-bar average, one unit SELL after a bearish crossing below it), not "
+              "strategy.entry: each order adds to or subtracts from the net position without any "
+              "direction logic, so a filtered-out crossing leaves the net at 0, +1, -1, -2 ...; "
+              "the unit-by-unit accumulation cannot be expressed as flat / long / short signals."),
 }
 
 DUPLICATE_ON_READING = {

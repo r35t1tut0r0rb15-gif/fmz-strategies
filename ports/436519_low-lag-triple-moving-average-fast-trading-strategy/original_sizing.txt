@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #436519 (三均线低时延滞快速交易策略Low-Lag-Triple-Moving-Average-Fast-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/436519  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take profit, stop, trail inputs (ticks)  [lines 171-173]
+  171: TP = input(200)
+  172: SL = input(130)
+  173: TS = input(1)
+
+## Order size from equity  [lines 178-178]
+  178: orderSize = floor((fracCap * strategy.equity) / close)
