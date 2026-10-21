@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #437672 (顺势突破ADX过滤交易策略Momentum-Breakout-Strategy-with-ADX-Filter)
+# Source: https://www.fmz.com/strategy/437672  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit / stop-loss tick inputs  [lines 156-157]
+  156: Take_Profit = input(800)
+  157: Stop_Loss = input(400)

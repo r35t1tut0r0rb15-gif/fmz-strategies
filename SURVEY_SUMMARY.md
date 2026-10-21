@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2091 |
-| PORTED | 1447 |
+| PORT_CANDIDATE | 2079 |
+| PORTED | 1459 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1575,7 +1575,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 437553 | `ports/437553_reversal-and-center-of-gravity-integrated-trading-strategy-b/` | PineScript | reversal_pattern | none | length_cof x2, length x2 | 4 |
 | 437558 | `ports/437558_grid-trading-strategy-based-on-moving-average-system/` | PineScript | ma_cross | none | fast_len x2, slow_len x2 | 4 |
 | 437565 | `ports/437565_bollinger-band-breakout-strategy/` | PineScript | bollinger_breakout | none | mult x2, exit_option x2 | 4 |
-| | **1447 ports** | | | | | **7380** |
+| 437632 | `ports/437632_cmo-dual-reversion-cmo-quantum-strategy/` | PineScript | reversal_pattern | none | length x2, length_cmo x2 | 4 |
+| 437640 | `ports/437640_dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, atr_mult x2 | 4 |
+| 437644 | `ports/437644_bear-power-strategy/` | PineScript | candle_pattern | none | sell_frac x2 | 2 |
+| 437645 | `ports/437645_hull-filter-moving-average-strategy/` | PineScript | trend_filter | none | k_sl x2, signal_period x2 | 4 |
+| 437649 | `ports/437649_quant-trend-following-strategy/` | PineScript | atr_trailing_line | none | key x2, atr_period x2 | 4 |
+| 437651 | `ports/437651_momentum-trend-tracking-strategy/` | PineScript | momentum_oscillator | none | length_momentum x2, length_rsi x2 | 4 |
+| 437656 | `ports/437656_quant-lights-moving-average-trend-tracking-optimization-stra/` | PineScript | stochastic_oscillator | none | period_k x2, smooth_k x2 | 4 |
+| 437658 | `ports/437658_dual-moving-average-crossover-reverse-trend-tracking-strateg/` | PineScript | reversal_pattern | none | length x2, length_ma x2 | 4 |
+| 437659 | `ports/437659_momentum-bollinger-bands-breakout-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 437663 | `ports/437663_adaptive-botvenko-indicator-long-short-strategy/` | PineScript | momentum_oscillator | none | nn x2, sell x2 | 4 |
+| 437665 | `ports/437665_ema-multi-ema-crossover-trend-following-strategy/` | PineScript | ma_cross | none | shortest x2, shorter x2 | 4 |
+| 437672 | `ports/437672_adx-momentum-breakout-strategy-with-adx-filter/` | PineScript | bollinger_breakout | none | length x2, k_atr x2 | 4 |
+| | **1459 ports** | | | | | **7426** |
 
 ## Rejected on reading
 

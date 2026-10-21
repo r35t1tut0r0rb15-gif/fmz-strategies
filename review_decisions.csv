@@ -1668,3 +1668,15 @@ fmz_id,file,final_outcome,criterion,reason
 437553,基于多策略集成的反转与重心线交易策略Reversal-and-Center-of-Gravity-Integrated-Trading-Strategy-Based-on-Multi-strategy.md,PORTED,,ports/437553_reversal-and-center-of-gravity-integrated-trading-strategy-b/
 437558,基于均线系统的网格交易策略Grid-Trading-Strategy-Based-on-Moving-Average-System.md,PORTED,,ports/437558_grid-trading-strategy-based-on-moving-average-system/
 437565,宽带突破策略Bollinger-Band-Breakout-Strategy.md,PORTED,,ports/437565_bollinger-band-breakout-strategy/
+437632,双重反转CMO量子策略Dual-Reversion-CMO-Quantum-Strategy.md,PORTED,,ports/437632_cmo-dual-reversion-cmo-quantum-strategy/
+437640,双均线交叉趋势追踪型策略Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/437640_dual-moving-average-crossover-strategy/
+437644,基于熊力量指标的量化交易策略Bear-Power-Strategy.md,PORTED,,ports/437644_bear-power-strategy/
+437645,霍尔移动平均线过滤策略Hull-Filter-Moving-Average-Strategy.md,PORTED,,ports/437645_hull-filter-moving-average-strategy/
+437649,量化追踪牛市策略Quant-Trend-Following-Strategy.md,PORTED,,ports/437649_quant-trend-following-strategy/
+437651,动量趋势跟踪策略Momentum-Trend-Tracking-Strategy.md,PORTED,,ports/437651_momentum-trend-tracking-strategy/
+437656,移动均线趋势跟踪优化策略Quant-Lights-Moving-Average-Trend-Tracking-Optimization-Strategy.md,PORTED,,ports/437656_quant-lights-moving-average-trend-tracking-optimization-stra/
+437658,双均线交叉反转趋势追踪策略Dual-Moving-Average-Crossover-Reverse-Trend-Tracking-Strategy.md,PORTED,,ports/437658_dual-moving-average-crossover-reverse-trend-tracking-strateg/
+437659,动量布林带突破策略Momentum-Bollinger-Bands-Breakout-Strategy.md,PORTED,,ports/437659_momentum-bollinger-bands-breakout-strategy/
+437663,自适应布温科指标多空策略Adaptive-Botvenko-Indicator-Long-Short-Strategy.md,PORTED,,ports/437663_adaptive-botvenko-indicator-long-short-strategy/
+437665,多重EMA均线交叉趋势跟踪策略Multi-EMA-Crossover-Trend-Following-Strategy.md,PORTED,,ports/437665_ema-multi-ema-crossover-trend-following-strategy/
+437672,顺势突破ADX过滤交易策略Momentum-Breakout-Strategy-with-ADX-Filter.md,PORTED,,ports/437672_adx-momentum-breakout-strategy-with-adx-filter/
