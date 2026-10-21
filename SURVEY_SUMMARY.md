@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2067 |
-| PORTED | 1469 |
+| PORT_CANDIDATE | 2055 |
+| PORTED | 1481 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1597,7 +1597,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 437693 | `ports/437693_ema-sma-trend-reversal-strategy-based-on-ema-and-sma-crossov/` | PineScript | ma_cross | none | ema_length x2, sma_length x2 | 4 |
 | 437694 | `ports/437694_multi-indicator-collision-reversal-strategy/` | PineScript | reversal_pattern | none | length x2, n_length x2 | 4 |
 | 437740 | `ports/437740_pivot-point-and-fibonacci-retracement-based-automatic-trend/` | PineScript | reversal_pattern | none | length x2 | 2 |
-| | **1469 ports** | | | | | **7464** |
+| 437742 | `ports/437742_adaptive-trading-strategy-based-on-momentum-indicators/` | PineScript | volatility_regime | none | length x2, mult_kc x2 | 4 |
+| 437746 | `ports/437746_breakthrough-tracking-strategy/` | PineScript | donchian_breakout | none | lookback x2, guard x2 | 4 |
+| 437747 | `ports/437747_multi-timeframe-moving-average-crossover-optimization-strate/` | PineScript | trend_filter | coarse_bar_stop, trailing_stop | length x2, trail_k x2 | 4 |
+| 437748 | `ports/437748_ma-adaptive-backtest-date-range-selection-strategy-based-on/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 437751 | `ports/437751_k-long-breakthrough-strategy-based-on-k-line-construction/` | PineScript | candle_pattern | none | tp x2, sl x2 | 4 |
+| 437753 | `ports/437753_simple-trend-following-strategy/` | PineScript | donchian_breakout | none | fast_len x2 | 2 |
+| 437759 | `ports/437759_trend-following-momentum-breakout-strategy/` | PineScript | supertrend | none | factor x2, atr_len x2 | 4 |
+| 437761 | `ports/437761_trend-following-moving-average-trading-strategy/` | PineScript | volatility_channel_breakout | none | length x2, atr_mult x2 | 4 |
+| 437765 | `ports/437765_ema-quantitative-trading-strategy-based-on-ema-crossover/` | PineScript | ma_cross | none | k_atr x2, fast x2 | 4 |
+| 437769 | `ports/437769_reversal-momentum-compound-strategy/` | PineScript | reversal_pattern | none | length x2, length_dapd x2 | 4 |
+| 437773 | `ports/437773_rsi-price-drop-buy-strategy-in-downtrend-with-stop-loss/` | PineScript | mean_reversion | none | rsi_length x2, profit_frac x2 | 4 |
+| 437774 | `ports/437774_golden-ratio-moving-average-trading-strategy/` | PineScript | mean_reversion | coarse_bar_stop | stop x2, mashort x2 | 4 |
+| | **1481 ports** | | | | | **7510** |
 
 ## Rejected on reading
 

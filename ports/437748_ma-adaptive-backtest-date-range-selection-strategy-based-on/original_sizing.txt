@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #437748 (基于双MA叠加的自适应回测时间范围选择策略Adaptive-Backtest-Date-Range-Selection-Strategy-Based-on-Double-MA)
+# Source: https://www.fmz.com/strategy/437748  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

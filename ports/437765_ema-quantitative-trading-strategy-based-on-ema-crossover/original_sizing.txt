@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #437765 (基于EMA均线交叉的短期量化交易策略Quantitative-Trading-Strategy-Based-on-EMA-Crossover)
+# Source: https://www.fmz.com/strategy/437765  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Tick bracket exit  [lines 151-151]
+  151: strategy.exit("TP/SL", profit=1, loss=0.5)

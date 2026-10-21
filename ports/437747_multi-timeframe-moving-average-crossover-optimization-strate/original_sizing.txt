@@ -1,0 +1,61 @@
+# Original sizing and money-management code, FMZ #437747 (移动均线多时标交叉优化策略Multi-Timeframe-Moving-Average-Crossover-Optimization-Strategy)
+# Source: https://www.fmz.com/strategy/437747  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trailing-stop inputs and exits  [lines 131-186]
+  131: useStop     = input(defval = true, title = "Use Trailing Stop?")
+  132: slPoints    = input(defval = 200, title = "Stop Loss Trail Points", minval = 1)
+  133: slOffset    = input(defval = 400, title = "Stop Loss Trail Offset", minval = 1)
+  134: 
+  135: res = useCurrentRes ? timeframe.period : resCustom
+  136: //hull ma definition
+  137: hullma = wma(2*wma(src, len/2)-wma(src, len), round(sqrt(len)))
+  138: //TEMA definition
+  139: ema1 = ema(src, len)
+  140: ema2 = ema(ema1, len)
+  141: ema3 = ema(ema2, len)
+  142: tema = 3 * (ema1 - ema2) + ema3
+  143: 
+  144: avg = atype == 1 ? sma(src,len) : atype == 2 ? ema(src,len) : atype == 3 ? wma(src,len) : atype == 4 ? hullma : atype == 5 ? vwma(src, len) : atype == 6 ? rma(src,len) : tema
+  145: //2nd Ma - hull ma definition
+  146: hullma2 = wma(2*wma(src, len2/2)-wma(src, len2), round(sqrt(len2)))
+  147: //2nd MA TEMA definition
+  148: sema1 = ema(src, len2)
+  149: sema2 = ema(sema1, len2)
+  150: sema3 = ema(sema2, len2)
+  151: stema = 3 * (sema1 - sema2) + sema3
+  152: 
+  153: avg2 = atype2 == 1 ? sma(src,len2) : atype2 == 2 ? ema(src,len2) : atype2 == 3 ? wma(src,len2) : atype2 == 4 ? hullma2 : atype2 == 5 ? vwma(src, len2) : atype2 == 6 ? rma(src,len2) : tema
+  154: 
+  155: out = avg 
+  156: out_two = avg2
+  157: 
+  158: out1 = request.security(syminfo.tickerid, res, out)
+  159: out2 = request.security(syminfo.tickerid, res, out_two)
+  160: 
+  161: ma_up = out1 >= out1[smoothe]
+  162: ma_down = out1 < out1[smoothe]
+  163: 
+  164: col = cc ? ma_up ? lime : ma_down ? red : aqua : aqua
+  165: col2 = cc2 ? ma_up ? lime : ma_down ? red : aqua : aqua
+  166: 
+  167: circleYPosition = out2
+  168: 
+  169: plot(out1, title="Multi-Timeframe Moving Avg", style=line, linewidth=4, color = col)
+  170: plot(doma2 and out2 ? out2 : na, title="2nd Multi-TimeFrame Moving Average", style=circles, linewidth=4, color=col2)
+  171: plot(sd and cross(out1, out2) ? circleYPosition : na,style=cross, linewidth=5, color=yellow)
+  172: 
+  173: // Strategy conditions
+  174: 
+  175: longCond    = ma_up
+  176: shortCond   = ma_down
+  177: // entries and base exit
+  178: strategy.entry("long", strategy.long, when = longCond)
+  179: strategy.entry("short", strategy.short, when = shortCond)
+  180: 
+  181: if (useStop)
+  182:     strategy.exit("XL", from_entry = "long", trail_points = slPoints, trail_offset = slOffset)
+  183:     strategy.exit("XS", from_entry = "short", trail_points = slPoints, trail_offset = slOffset)
+  184: // not sure needed, but just incase..
+  185: strategy.exit("XL", from_entry = "long", when = shortCond)
+  186: strategy.exit("XS", from_entry = "short", when = longCond)

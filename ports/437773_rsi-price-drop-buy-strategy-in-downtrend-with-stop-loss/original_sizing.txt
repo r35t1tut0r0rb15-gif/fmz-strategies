@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #437773 (RSI收敛破位趋势震荡停损策略Price-Drop-Buy-Strategy-in-Downtrend-with-Stop-Loss)
+# Source: https://www.fmz.com/strategy/437773  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital  [lines 135-135]
+  135: strategy("price drop buy in", overlay=true, initial_capital=1000, max_bars_back=24)

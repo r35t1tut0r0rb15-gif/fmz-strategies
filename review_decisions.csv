@@ -1692,3 +1692,15 @@ fmz_id,file,final_outcome,criterion,reason
 437693,基于EMA和SMA均线交叉的趋势反转策略Trend-Reversal-Strategy-Based-on-EMA-and-SMA-Crossover.md,PORTED,,ports/437693_ema-sma-trend-reversal-strategy-based-on-ema-and-sma-crossov/
 437694,多重指标碰撞反转策略Multi-indicator-Collision-Reversal-Strategy.md,PORTED,,ports/437694_multi-indicator-collision-reversal-strategy/
 437740,基于枢轴点和斐波那契回撤的自动趋势追踪策略Pivot-Point-and-Fibonacci-Retracement-Based-Automatic-Trend-Following-Strategy.md,PORTED,,ports/437740_pivot-point-and-fibonacci-retracement-based-automatic-trend/
+437742,基于动量指标的自适应交易策略Adaptive-Trading-Strategy-Based-on-Momentum-Indicators.md,PORTED,,ports/437742_adaptive-trading-strategy-based-on-momentum-indicators/
+437746,突破追踪策略Breakthrough-Tracking-Strategy.md,PORTED,,ports/437746_breakthrough-tracking-strategy/
+437747,移动均线多时标交叉优化策略Multi-Timeframe-Moving-Average-Crossover-Optimization-Strategy.md,PORTED,,ports/437747_multi-timeframe-moving-average-crossover-optimization-strate/
+437748,基于双MA叠加的自适应回测时间范围选择策略Adaptive-Backtest-Date-Range-Selection-Strategy-Based-on-Double-MA.md,PORTED,,ports/437748_ma-adaptive-backtest-date-range-selection-strategy-based-on/
+437751,基于K线构建的多头突破策略Long-Breakthrough-Strategy-Based-on-K-Line-Construction.md,PORTED,,ports/437751_k-long-breakthrough-strategy-based-on-k-line-construction/
+437753,简单趋势跟随策略Simple-Trend-Following-Strategy.md,PORTED,,ports/437753_simple-trend-following-strategy/
+437759,基于趋势追踪的动量突破策略Trend-Following-Momentum-Breakout-Strategy.md,PORTED,,ports/437759_trend-following-momentum-breakout-strategy/
+437761,趋势追踪移动平均线交易策略Trend-Following-Moving-Average-Trading-Strategy.md,PORTED,,ports/437761_trend-following-moving-average-trading-strategy/
+437765,基于EMA均线交叉的短期量化交易策略Quantitative-Trading-Strategy-Based-on-EMA-Crossover.md,PORTED,,ports/437765_ema-quantitative-trading-strategy-based-on-ema-crossover/
+437769,趋势反转动量复合策略Reversal-Momentum-Compound-Strategy.md,PORTED,,ports/437769_reversal-momentum-compound-strategy/
+437773,RSI收敛破位趋势震荡停损策略Price-Drop-Buy-Strategy-in-Downtrend-with-Stop-Loss.md,PORTED,,ports/437773_rsi-price-drop-buy-strategy-in-downtrend-with-stop-loss/
+437774,黄金分割移动平均线交易策略Golden-Ratio-Moving-Average-Trading-Strategy.md,PORTED,,ports/437774_golden-ratio-moving-average-trading-strategy/
