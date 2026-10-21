@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #437025 (多时间框架突破策略Multi-Timeframe-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/437025  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Capital % input  [lines 115-115]
+  115: capital = input(100, defval = 100, minval = 1, maxval = 10000, title = "Capital, %")
+
+## Equity-based lot  [lines 143-145]
+  143: size = strategy.position_size
+  144: lot = 0.0
+  145: lot := size != size[1] ? strategy.equity / close * capital / 100 : lot[1]

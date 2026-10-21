@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #436997 (基于线性回归拦截点的量化策略Quant-Strategy-Based-on-Linear-Regression-Intercept)
+# Source: https://www.fmz.com/strategy/436997  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

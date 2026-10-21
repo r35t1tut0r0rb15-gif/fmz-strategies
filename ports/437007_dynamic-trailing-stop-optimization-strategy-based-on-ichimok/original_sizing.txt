@@ -1,0 +1,34 @@
+# Original sizing and money-management code, FMZ #437007 (基于渔网策略的动态移动止损优化策略Dynamic-Trailing-Stop-Optimization-Strategy-Based-on-Ichimoku-Cloud)
+# Source: https://www.fmz.com/strategy/437007  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission  [lines 143-143]
+  143: strategy("IFTS+TS Strategy Overlay ", overlay=true, pyramiding = 0, calc_on_order_fills = false, commission_type =  strategy.commission.percent, commission_value = 0.0454, default_qty_type = strategy.percent_of_equity, default_qty_value = 100)
+
+## Trailing-stop inputs  [lines 150-158]
+  150: uts = input(true, title="Use trailing stop")
+  151: rts = input(false, title="Re-enter after trailing stop")
+  152: tsi = input(title="trailing stop actiation pips",defval=245)                                                                       
+  153: tso = input(title="trailing stop offset pips",defval=20)
+  154: udts = input(true, title="Use dynamic trailing stop start")
+  155: mpl2 = input(68.3,step=0.05, title="Multiplier for Dynamic TS start X*ATR")
+  156: udto = input(true, title="Use dynamic trailing stop offset")
+  157: mpl = input(1,step=0.01, title="Multiplier for Dynamic TS offset X*ATR")
+  158: occ = input(1, title="Occurancy for dynamic TS")
+
+## Trailing exits (trail_points / trail_offset)  [lines 340-354]
+  340: if  (uts)
+  341:     strategy.exit("Close BUY with TS","BUY", trail_points = tsi, trail_offset = tso)
+  342:     strategy.exit("Close SELL with TS","SELL", trail_points = tsi, trail_offset = tso)
+  343: 
+  344:     if  (udto)
+  345:         strategy.exit("Close BUY with TS","BUY", trail_points = tsi, trail_offset = dtsov)
+  346:         strategy.exit("Close SELL with TS","SELL", trail_points = tsi, trail_offset = dtsov)
+  347:         
+  348:     if  (udts)
+  349:         strategy.exit("Close BUY with TS","BUY", trail_points = dtsiv, trail_offset = tso)
+  350:         strategy.exit("Close SELL with TS","SELL", trail_points = dtsiv, trail_offset = tso)
+  351:         
+  352:     if  (udto and udts)
+  353:         strategy.exit("Close BUY with TS","BUY", trail_points = dtsiv, trail_offset = dtsov)
+  354:         strategy.exit("Close SELL with TS","SELL", trail_points = dtsiv, trail_offset = dtsov)

@@ -3214,6 +3214,30 @@ SIZING = {
         ("Take-profit / stop-loss pip inputs", 181, 182),
     ],
     436994: [],
+    # ---- FMZ-C, batch C98 (2026-10-21)
+    436908: [
+        ("strategy(): capital, 90 % of equity, commission", 282, 282),
+    ],
+    436997: [],
+    437004: [
+        ("Percent bracket inputs (tp / sl)", 311, 312),
+    ],
+    437007: [
+        ("strategy(): 100 % of equity, commission", 143, 143),
+        ("Trailing-stop inputs", 150, 158),
+        ("Trailing exits (trail_points / trail_offset)", 340, 354),
+    ],
+    437010: [
+        ("strategy(): capital, 100 % of equity, commission", 135, 135),
+    ],
+    437018: [],
+    437022: [
+        ("strategy(): capital, cash quantity, commission", 117, 124),
+    ],
+    437025: [
+        ("Capital % input", 115, 115),
+        ("Equity-based lot", 143, 145),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -4031,6 +4055,12 @@ REJECTED_ON_READING = {
               "the candle colours use the final close of the current day, 5-day, 15-day and "
               "45-day bars, not known until they end (SURVEY_README request.security rule, as "
               "#432988)."),
+    # ---- FMZ-C, batch C98 (2026-10-21)
+    437027: ("1", "Each trade is closed in two halves: strategy.exit(qty_percent = 50) at TP 1 (6 %) "
+              "and the rest at TP 2 (12 %), both with a 3 % stop, and once the high reaches TP 1 "
+              "the second half's stop is cancelled and re-placed at the entry price; partial "
+              "exits and a stop moved after a partial fill are outside the single-position signal "
+              "interface (as #436524)."),
 }
 
 DUPLICATE_ON_READING = {

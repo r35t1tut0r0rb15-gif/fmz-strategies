@@ -199,6 +199,7 @@ fmz_id,file,final_outcome,criterion,reason
 436773,移动平均线交叉金策略Moving-Average-Crossover-Gold-Strategy.md,REJECTED_ON_READING,2,"The stop, the target and the break-even exit are written as strategy.exit(loss = close x 0.99, profit = close x 1.02) and exit(loss = close x 1.01): price levels passed as TICK counts, so the real distances are (price x 0.99) x tick size, an instrument-specific and nearly meaningless bracket (about 10 % at a 0.1 tick on a 42000 price, about 1 % at 0.01); these are the only exits, so there is no generic reading (as #436603)."
 436776,基于PSARMACD和RSI的多时间框架量化交易策略Multi-timeframe-Quantitative-Trading-Strategy-Based-on-PSAR-MACD-and-RSI.md,REJECTED_ON_READING,1,"An intraday square-off script run on the daily header chart: entries are sent only while barInSession('0915-1455') is true, and every daily bar opens at its session start (00:00 UTC on the backtest exchange, 17:00 New York on broker days), outside 09:15-14:55, so no order can ever be sent and the square-off closes nothing; the bracket is also computed from strategy.position_avg_price before the entry fills (na when flat)."
 436859,多时间框架判断趋势策略Multi-Timeframe-Trend-Strategy.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 request.security(syminfo.tickerid, 'D' / '5D' / '15D' / '45D', open / close) without [1] behaves as lookahead_on, so on every 1-hour bar the candle colours use the final close of the current day, 5-day, 15-day and 45-day bars, not known until they end (SURVEY_README request.security rule, as #432988)."
+437027,动量指标交叉反转趋势跟踪策略Trend-Reversal-Momentum-Indicators-Crossover-Tracking-Strategy.md,REJECTED_ON_READING,1,"Each trade is closed in two halves: strategy.exit(qty_percent = 50) at TP 1 (6 %) and the rest at TP 2 (12 %), both with a 3 % stop, and once the high reaches TP 1 the second half's stop is cancelled and re-placed at the entry price; partial exits and a stop moved after a partial fill are outside the single-position signal interface (as #436524)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1606,9 +1607,17 @@ fmz_id,file,final_outcome,criterion,reason
 436900,双重趋势过滤链动平均线比率策略Premium-Double-Trend-Filter-MA-Ratio-Strategy.md,PORTED,,ports/436900_premium-double-trend-filter-ma-ratio-strategy/
 436903,多重指标量化交易策略Comprehensive-Quantitative-Trading-Strategy-Based-on-Multiple-Indicators.md,PORTED,,ports/436903_comprehensive-quantitative-trading-strategy-based-on-multipl/
 436904,慢速随机指标趋势追踪策略Slow-Stochastic-Trend-Following-Strategy.md,PORTED,,ports/436904_slow-stochastic-trend-following-strategy/
+436908,多指标自适应趋势交易策略Multi-indicator-Adaptive-Trend-Trading-Strategy.md,PORTED,,ports/436908_multi-indicator-adaptive-trend-trading-strategy/
 436910,慢速RSI超买超卖策略Slow-RSI-OB-OS-Strategy.md,PORTED,,ports/436910_rsi-slow-rsi-ob-os-strategy/
 436984,动态追踪止损策略Dynamic-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/436984_dynamic-trailing-stop-loss-strategy/
 436987,量化交易反转趋势串并T3-CCI策略Quantitative-Trading-Reversal-Trend-Combo-T3-CCI-Strategy.md,PORTED,,ports/436987_t3-cci-quantitative-trading-reversal-trend-combo-t3-cci-stra/
 436988,在Pine脚本中设置杠杆策略Leveraged-RSI-Strategy-in-Pine-Script.md,PORTED,,ports/436988_pine-leveraged-rsi-strategy-in-pine-script/
 436992,三内下反转策略Three-Inside-Down-Reversal-Strategy.md,PORTED,,ports/436992_three-inside-down-reversal-strategy/
 436994,基于斐波那契HMA的AI买卖信号策略Fibonacci-HMA-AI-Buy-Sell-Signal-Strategy.md,PORTED,,ports/436994_hma-ai-fibonacci-hma-ai-buy-sell-signal-strategy/
+436997,基于线性回归拦截点的量化策略Quant-Strategy-Based-on-Linear-Regression-Intercept.md,PORTED,,ports/436997_quant-strategy-based-on-linear-regression-intercept/
+437004,基于多重指标的加密货币高低位策略High-Low-Cryptocurrency-Strategy-Based-on-Multiple-Indicators.md,PORTED,,ports/437004_high-low-cryptocurrency-strategy-based-on-multiple-indicator/
+437007,基于渔网策略的动态移动止损优化策略Dynamic-Trailing-Stop-Optimization-Strategy-Based-on-Ichimoku-Cloud.md,PORTED,,ports/437007_dynamic-trailing-stop-optimization-strategy-based-on-ichimok/
+437010,RSI菲波那契回调策略RSI-Fibonacci-Retracement-Strategy.md,PORTED,,ports/437010_rsi-rsi-fibonacci-retracement-strategy/
+437018,动态支撑阻力回测策略Dynamic-Pivot-Point-Backtest-Strategy.md,PORTED,,ports/437018_dynamic-pivot-point-backtest-strategy/
+437022,动态止盈追趋策略Dynamic-Take-Profit-Following-Trend-Strategy.md,PORTED,,ports/437022_dynamic-take-profit-following-trend-strategy/
+437025,多时间框架突破策略Multi-Timeframe-Breakout-Strategy.md,PORTED,,ports/437025_multi-timeframe-breakout-strategy/

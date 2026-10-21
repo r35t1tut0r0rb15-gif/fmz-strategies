@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2147 |
-| PORTED | 1397 |
+| PORT_CANDIDATE | 2138 |
+| PORTED | 1405 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 200 |
+| REJECTED_ON_READING | 201 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1519,13 +1519,21 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436900 | `ports/436900_premium-double-trend-filter-ma-ratio-strategy/` | PineScript | trend_confluence | none | slow_length x2, k_atr x2 | 4 |
 | 436903 | `ports/436903_comprehensive-quantitative-trading-strategy-based-on-multipl/` | PineScript | trend_confluence | none | st_mult x2, tia_len x2 | 4 |
 | 436904 | `ports/436904_slow-stochastic-trend-following-strategy/` | PineScript | stochastic_oscillator | none | smooth_k x2, sma_k x2 | 4 |
+| 436908 | `ports/436908_multi-indicator-adaptive-trend-trading-strategy/` | PineScript | trend_confluence | none | mat_length x2, ma2_length x2 | 4 |
 | 436910 | `ports/436910_rsi-slow-rsi-ob-os-strategy/` | PineScript | rsi_oscillator | none | length x2, smoother x2 | 4 |
 | 436984 | `ports/436984_dynamic-trailing-stop-loss-strategy/` | PineScript | ma_cross | none | trail_pct x2, stop_pct x2 | 4 |
 | 436987 | `ports/436987_t3-cci-quantitative-trading-reversal-trend-combo-t3-cci-stra/` | PineScript | reversal_pattern | none | length x2, cci_period x2 | 4 |
 | 436988 | `ports/436988_pine-leveraged-rsi-strategy-in-pine-script/` | PineScript | rsi_oscillator | none | length x2, over_sold x2 | 4 |
 | 436992 | `ports/436992_three-inside-down-reversal-strategy/` | PineScript | candle_pattern | none | k_sl x2, atr_len x2 | 4 |
 | 436994 | `ports/436994_hma-ai-fibonacci-hma-ai-buy-sell-signal-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
-| | **1397 ports** | | | | | **7190** |
+| 436997 | `ports/436997_quant-strategy-based-on-linear-regression-intercept/` | PineScript | trend_filter | none | length x2 | 2 |
+| 437004 | `ports/437004_high-low-cryptocurrency-strategy-based-on-multiple-indicator/` | PineScript | trend_confluence | none | sl x2, tp x2 | 4 |
+| 437007 | `ports/437007_dynamic-trailing-stop-optimization-strategy-based-on-ichimok/` | PineScript | stochastic_oscillator | trailing_stop_pending | stoch_len x2, wma_len x2 | 4 |
+| 437010 | `ports/437010_rsi-rsi-fibonacci-retracement-strategy/` | PineScript | rsi_oscillator | none | length x2, fib_level x2 | 4 |
+| 437018 | `ports/437018_dynamic-pivot-point-backtest-strategy/` | PineScript | breakout | bar_size_pending | reverse x2 | 2 |
+| 437022 | `ports/437022_dynamic-take-profit-following-trend-strategy/` | PineScript | trend_filter | none | rsi_len x2, sl_units x2 | 4 |
+| 437025 | `ports/437025_multi-timeframe-breakout-strategy/` | PineScript | breakout | none | saw_filter x2, color_filter x2 | 4 |
+| | **1405 ports** | | | | | **7218** |
 
 ## Rejected on reading
 
@@ -1731,6 +1739,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436773 | 移动平均线交叉金策略Moving-Average-Crossover-Gold-Strategy.md | 2 | The stop, the target and the break-even exit are written as strategy.exit(loss = close x 0.99, profit = close x 1.02) and exit(loss = close x 1.01): price levels passed as TICK counts, so the real distances are (price x 0.99) x tick size, an instrument-specific and nearly meaningless bracket (about 10 % at a 0.1 tick on a 42000 price, about 1 % at 0.01); these are the only exits, so there is no generic reading (as #436603). |
 | 436776 | 基于PSARMACD和RSI的多时间框架量化交易策略Multi-timeframe-Quantitative-Trading-Strategy-Based-on-PSAR-MACD-and-RSI.md | 1 | An intraday square-off script run on the daily header chart: entries are sent only while barInSession('0915-1455') is true, and every daily bar opens at its session start (00:00 UTC on the backtest exchange, 17:00 New York on broker days), outside 09:15-14:55, so no order can ever be sent and the square-off closes nothing; the bracket is also computed from strategy.position_avg_price before the entry fills (na when flat). |
 | 436859 | 多时间框架判断趋势策略Multi-Timeframe-Trend-Strategy.md | 1 | Reads the future: Pine v2 request.security(syminfo.tickerid, 'D' / '5D' / '15D' / '45D', open / close) without [1] behaves as lookahead_on, so on every 1-hour bar the candle colours use the final close of the current day, 5-day, 15-day and 45-day bars, not known until they end (SURVEY_README request.security rule, as #432988). |
+| 437027 | 动量指标交叉反转趋势跟踪策略Trend-Reversal-Momentum-Indicators-Crossover-Tracking-Strategy.md | 1 | Each trade is closed in two halves: strategy.exit(qty_percent = 50) at TP 1 (6 %) and the rest at TP 2 (12 %), both with a 3 % stop, and once the high reaches TP 1 the second half's stop is cancelled and re-placed at the entry price; partial exits and a stop moved after a partial fill are outside the single-position signal interface (as #436524). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
