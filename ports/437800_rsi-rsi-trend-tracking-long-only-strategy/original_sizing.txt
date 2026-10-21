@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #437800 (基于RSI的多头趋势追踪策略RSI-Trend-Tracking-Long-Only-Strategy)
+# Source: https://www.fmz.com/strategy/437800  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Percent bracket inputs and levels  [lines 158-172]
+  158: long_tp_inp = input(0.07, title='Long Take Profit %')
+  159: long_sl_inp = input(0.035, title='Long Stop Loss %')
+  160: 
+  161: long_take_level = strategy.position_avg_price * (1 + long_tp_inp)
+  162: long_stop_level = strategy.position_avg_price * (1 - long_sl_inp)
+  163: 
+  164: plot(long_take_level, color=color.green, title="Long Take Profit Level", linewidth=2)
+  165: plot(long_stop_level, color=color.red, title="Long Stop Loss Level", linewidth=2)
+  166: 
+  167: if (not na(vrsi))
+  168:     if vrsi < overSold
+  169:         // Long Entry
+  170:         strategy.entry("Long", strategy.long, comment="enter long")
+  171: 
+  172:         strategy.exit("Take Profit/Stop Loss", "Long", limit=long_take_level, stop=long_stop_level)

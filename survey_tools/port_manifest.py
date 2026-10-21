@@ -3404,6 +3404,36 @@ SIZING = {
     437774: [
         ("strategy(): 100 % of equity; stop / profit inputs", 159, 166),
     ],
+    # ---- FMZ-C, batch C106 (2026-10-21)
+    437783: [
+        ("strategy(): capital; capital / close quantity", 187, 188),
+    ],
+    437785: [
+        ("strategy(): 100 % of equity", 142, 142),
+    ],
+    437786: [
+        ("strategy(): capital, 100 % of equity, commission", 183, 183),
+    ],
+    437789: [
+        ("strategy(): capital", 194, 194),
+        ("Dollar cost per position; static bracket inputs and levels", 235, 247),
+        ("Entry quantities", 276, 280),
+    ],
+    437792: [
+        ("Capital / close quantity", 151, 155),
+    ],
+    437794: [],
+    437795: [],
+    437800: [
+        ("Percent bracket inputs and levels", 158, 172),
+    ],
+    437801: [],
+    437808: [
+        ("Unused capital variable", 186, 186),
+    ],
+    437811: [
+        ("Tick bracket exits", 127, 130),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -4264,6 +4294,13 @@ REJECTED_ON_READING = {
               "LEVELS passed as TICK counts, so the real distances are about the whole price "
               "times the tick size, an instrument-specific bracket with no generic reading (as "
               "#436603, #437677)."),
+    # ---- FMZ-C, batch C106 (2026-10-21)
+    437787: ("2", "The only exits are strategy.exit(loss = close, profit = close + 2 x ATR / close + "
+              "3 x ATR): price LEVELS passed as TICK distances, so the real distances are the "
+              "price itself times the tick size (an instrument-specific bracket with no generic "
+              "reading, as #437048), and the two exits close 50 % and 100 % of the position "
+              "(partial exits, criterion 1, as #436524). The Blackflag FTS value is always 50 (up "
+              "and down are the same sum), so its filter is constant."),
 }
 
 DUPLICATE_ON_READING = {

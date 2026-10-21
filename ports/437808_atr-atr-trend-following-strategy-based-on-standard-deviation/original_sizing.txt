@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #437808 (基于ATR和标准差通道的趋势跟踪交易策略ATR-Trend-Following-Strategy-Based-on-Standard-Deviation-Channel)
+# Source: https://www.fmz.com/strategy/437808  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Unused capital variable  [lines 186-186]
+  186: initial_capital = 100000

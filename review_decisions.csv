@@ -207,6 +207,7 @@ fmz_id,file,final_outcome,criterion,reason
 437557,基于移动平均线和相对强弱指标的动量反转策略Momentum-Reversal-Strategy.md,REJECTED_ON_READING,1,"The take profit is strategy.exit(profit = 8, qty_percent = 50), a half-position exit, and the remainder closes on an SMA cross only on the bar the take profit is placed (quantityRemainder resets every bar): partial exits are outside the single-position signal interface (as #436524)."
 437677,TrendSurfing-双均线交叉趋势策略TrendSurfing-Double-Moving-Average-Crossover-Trend-Strategy.md,REJECTED_ON_READING,2,"Apart from the reversing entries, the exits are strategy.exit(loss = close - 1 % x ATR, profit = close + 1 % x ATR): price LEVELS passed as TICK counts, so the real distances are about the whole price times the tick size (about 10 % at a 0.1 tick on a 42000 price), an instrument-specific bracket with no generic reading (as #436603, #436773)."
 437738,基于EMA和MACD的多时间框架趋势跟踪策略Trend-Following-Strategy-Based-on-EMA-and-MACD-across-Timeframes.md,REJECTED_ON_READING,2,"The exits are strategy.exit(loss = close - 1 ATR, profit = close + 3 ATR): price LEVELS passed as TICK counts, so the real distances are about the whole price times the tick size, an instrument-specific bracket with no generic reading (as #436603, #437677)."
+437787,渔夫转身EMA多重止损多重止盈策略Fisher-Turnaround-EMA-Multi-Take-Profit-and-Multi-Stop-Strategy.md,REJECTED_ON_READING,2,"The only exits are strategy.exit(loss = close, profit = close + 2 x ATR / close + 3 x ATR): price LEVELS passed as TICK distances, so the real distances are the price itself times the tick size (an instrument-specific bracket with no generic reading, as #437048), and the two exits close 50 % and 100 % of the position (partial exits, criterion 1, as #436524). The Blackflag FTS value is always 50 (up and down are the same sum), so its filter is constant."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1704,3 +1705,14 @@ fmz_id,file,final_outcome,criterion,reason
 437769,趋势反转动量复合策略Reversal-Momentum-Compound-Strategy.md,PORTED,,ports/437769_reversal-momentum-compound-strategy/
 437773,RSI收敛破位趋势震荡停损策略Price-Drop-Buy-Strategy-in-Downtrend-with-Stop-Loss.md,PORTED,,ports/437773_rsi-price-drop-buy-strategy-in-downtrend-with-stop-loss/
 437774,黄金分割移动平均线交易策略Golden-Ratio-Moving-Average-Trading-Strategy.md,PORTED,,ports/437774_golden-ratio-moving-average-trading-strategy/
+437783,策略与买入持有的可视化比较Visual-Comparison-between-Strategy-and-Buy-Hold-Returns.md,PORTED,,ports/437783_visual-comparison-between-strategy-and-buy-hold-returns/
+437785,双均线交叉交易趋势跟踪策略MACD-Crossover-Trading-Strategy.md,PORTED,,ports/437785_macd-crossover-trading-strategy/
+437786,移动平均线系统交易策略Moving-Average-System-Trading-Strategy.md,PORTED,,ports/437786_moving-average-system-trading-strategy/
+437789,动量指标驱动的三重确认趋势跟踪策略The-Momentum-Driven-Triple-Confirmation-Trend-Following-Strategy.md,PORTED,,ports/437789_the-momentum-driven-triple-confirmation-trend-following-stra/
+437792,吊灯出场策略Chandelier-Exit-Strategy.md,PORTED,,ports/437792_chandelier-exit-strategy/
+437794,短期长期EMA决策合并策略Merged-Short-Term-and-Long-Term-EMA-Decision-Strategy.md,PORTED,,ports/437794_ema-merged-short-term-and-long-term-ema-decision-strategy/
+437795,均线黄金交叉RSI-MACD策略Improved-RSI-MACD-Moving-Average-Strategy.md,PORTED,,ports/437795_rsi-macd-improved-rsi-macd-moving-average-strategy/
+437800,基于RSI的多头趋势追踪策略RSI-Trend-Tracking-Long-Only-Strategy.md,PORTED,,ports/437800_rsi-rsi-trend-tracking-long-only-strategy/
+437801,RSI和MACD结合支撑阻力的量化交易策略Quantitative-Trading-Strategy-Combining-RSI-MACD-and-Support-Resistance.md,PORTED,,ports/437801_rsi-macd-quantitative-trading-strategy-combining-rsi-macd-an/
+437808,基于ATR和标准差通道的趋势跟踪交易策略ATR-Trend-Following-Strategy-Based-on-Standard-Deviation-Channel.md,PORTED,,ports/437808_atr-atr-trend-following-strategy-based-on-standard-deviation/
+437811,午夜蜡烛颜色策略Midnight-Candle-Color-Strategy-with-Stop-Loss-and-Take-Profit.md,PORTED,,ports/437811_midnight-candle-color-strategy-with-stop-loss-and-take-profi/

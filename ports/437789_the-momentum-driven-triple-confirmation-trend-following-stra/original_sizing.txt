@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #437789 (动量指标驱动的三重确认趋势跟踪策略The-Momentum-Driven-Triple-Confirmation-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/437789  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital  [lines 194-194]
+  194: strategy('The Flash-Strategy (Momentum-RSI, EMA-crossover, ATR)', shorttitle='The Flash-Strategy (Momentum-RSI, EMA-crossover, ATR)', overlay=true,initial_capital = 1000)
+
+## Dollar cost per position; static bracket inputs and levels  [lines 235-247]
+  235: dollar = input.float(title='Dollar Cost Per Position* ', defval=50000, group =group_strategy)
+  236: trade_direction = input.string(title='Trade_direction', group =group_strategy, options=['LONG', 'SHORT', 'BOTH'], defval='BOTH')
+  237: v1 = input(true, title="Version 1 - Uses SL/TP Dynamically ", group =group_strategy ,tooltip = 'With this settings our stoploss price increase or decrease with price to get better PNL score')
+  238: 
+  239: v2 = input(false, title="Version 2 -  Uses SL/TP Statically", group =group_strategy)
+  240: v2stoploss_input = input.float(5, title='Static Stop.Loss % Val', minval=0.01, group =group_strategy)/100
+  241: v2takeprofit_input = input.float(10, title='Static Take.Prof % Val', minval=0.01, group =group_strategy)/100
+  242: 
+  243: v2stoploss_level_long = strategy.position_avg_price * (1 - v2stoploss_input)
+  244: v2takeprofit_level_long = strategy.position_avg_price * (1 + v2takeprofit_input)
+  245: 
+  246: v2stoploss_level_short = strategy.position_avg_price * (1 + v2stoploss_input)
+  247: v2takeprofit_level_short = strategy.position_avg_price * (1 - v2takeprofit_input)
+
+## Entry quantities  [lines 276-280]
+  276: if strategy.opentrades == 0 and buy_signal and ( trade_direction == 'LONG' or trade_direction == 'BOTH')
+  277:     strategy.entry('Long_0', strategy.long, qty=dollar / close)
+  278: 
+  279: if strategy.opentrades == 0 and sell_signal and ( trade_direction == 'SHORT' or trade_direction == 'BOTH')
+  280:     strategy.entry('Short_0', strategy.short, qty=dollar / close)

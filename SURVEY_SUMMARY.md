@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2055 |
-| PORTED | 1481 |
+| PORT_CANDIDATE | 2043 |
+| PORTED | 1492 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 208 |
+| REJECTED_ON_READING | 209 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1609,7 +1609,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 437769 | `ports/437769_reversal-momentum-compound-strategy/` | PineScript | reversal_pattern | none | length x2, length_dapd x2 | 4 |
 | 437773 | `ports/437773_rsi-price-drop-buy-strategy-in-downtrend-with-stop-loss/` | PineScript | mean_reversion | none | rsi_length x2, profit_frac x2 | 4 |
 | 437774 | `ports/437774_golden-ratio-moving-average-trading-strategy/` | PineScript | mean_reversion | coarse_bar_stop | stop x2, mashort x2 | 4 |
-| | **1481 ports** | | | | | **7510** |
+| 437783 | `ports/437783_visual-comparison-between-strategy-and-buy-hold-returns/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 437785 | `ports/437785_macd-crossover-trading-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| 437786 | `ports/437786_moving-average-system-trading-strategy/` | PineScript | ma_trend | none | length x2, ma_type x2 | 4 |
+| 437789 | `ports/437789_the-momentum-driven-triple-confirmation-trend-following-stra/` | PineScript | multi_indicator_confluence | none | factor x2, mom_rsi_val x2 | 4 |
+| 437792 | `ports/437792_chandelier-exit-strategy/` | PineScript | volatility_stop_cross | none | mult x2, length x2 | 4 |
+| 437794 | `ports/437794_ema-merged-short-term-and-long-term-ema-decision-strategy/` | PineScript | ma_cross | none | thr_frac x2, slow x2 | 4 |
+| 437795 | `ports/437795_rsi-macd-improved-rsi-macd-moving-average-strategy/` | PineScript | multi_indicator_confluence | none | stop_pct x2, atr_mult x2 | 4 |
+| 437800 | `ports/437800_rsi-rsi-trend-tracking-long-only-strategy/` | PineScript | rsi_oscillator | trailing_stop_pending | length x2, oversold x2 | 4 |
+| 437801 | `ports/437801_rsi-macd-quantitative-trading-strategy-combining-rsi-macd-an/` | PineScript | macd_cross | none | near_frac x2, fast x2 | 4 |
+| 437808 | `ports/437808_atr-atr-trend-following-strategy-based-on-standard-deviation/` | PineScript | volatility_stop_cross | none | atr_mult x2, atr_period x2 | 4 |
+| 437811 | `ports/437811_midnight-candle-color-strategy-with-stop-loss-and-take-profi/` | PineScript | calendar_seasonal | none | k_atr x2, atr_len x2 | 4 |
+| | **1492 ports** | | | | | **7554** |
 
 ## Rejected on reading
 
@@ -1823,6 +1834,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 437557 | 基于移动平均线和相对强弱指标的动量反转策略Momentum-Reversal-Strategy.md | 1 | The take profit is strategy.exit(profit = 8, qty_percent = 50), a half-position exit, and the remainder closes on an SMA cross only on the bar the take profit is placed (quantityRemainder resets every bar): partial exits are outside the single-position signal interface (as #436524). |
 | 437677 | TrendSurfing-双均线交叉趋势策略TrendSurfing-Double-Moving-Average-Crossover-Trend-Strategy.md | 2 | Apart from the reversing entries, the exits are strategy.exit(loss = close - 1 % x ATR, profit = close + 1 % x ATR): price LEVELS passed as TICK counts, so the real distances are about the whole price times the tick size (about 10 % at a 0.1 tick on a 42000 price), an instrument-specific bracket with no generic reading (as #436603, #436773). |
 | 437738 | 基于EMA和MACD的多时间框架趋势跟踪策略Trend-Following-Strategy-Based-on-EMA-and-MACD-across-Timeframes.md | 2 | The exits are strategy.exit(loss = close - 1 ATR, profit = close + 3 ATR): price LEVELS passed as TICK counts, so the real distances are about the whole price times the tick size, an instrument-specific bracket with no generic reading (as #436603, #437677). |
+| 437787 | 渔夫转身EMA多重止损多重止盈策略Fisher-Turnaround-EMA-Multi-Take-Profit-and-Multi-Stop-Strategy.md | 2 | The only exits are strategy.exit(loss = close, profit = close + 2 x ATR / close + 3 x ATR): price LEVELS passed as TICK distances, so the real distances are the price itself times the tick size (an instrument-specific bracket with no generic reading, as #437048), and the two exits close 50 % and 100 % of the position (partial exits, criterion 1, as #436524). The Blackflag FTS value is always 50 (up and down are the same sum), so its filter is constant. |
 
 ## Flagged and stored under criterion 3 (253 files)
 
