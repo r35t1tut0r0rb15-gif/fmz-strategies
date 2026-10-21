@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #437037 (基于简单移动平均线的海龟交易策略Turtle-Trading-Strategy-Based-on-Simple-Moving-Average)
+# Source: https://www.fmz.com/strategy/437037  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #437376 (九种移动平均线交叉策略Nine-Types-of-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/437376  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## SL / PT level inputs (off)  [lines 177-178]
+  177: sl_lev_perc  = input(title = "SL Level % (0 - Off)", type = float,   defval = 0,  minval = 0, step = 0.01)
+  178: pt_lev_perc  = input(title = "PT Level % (0 - Off)", type = float,   defval = 0,  minval = 0, step = 0.01)

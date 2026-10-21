@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2138 |
-| PORTED | 1405 |
+| PORT_CANDIDATE | 2126 |
+| PORTED | 1416 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 201 |
+| REJECTED_ON_READING | 202 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1533,7 +1533,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 437018 | `ports/437018_dynamic-pivot-point-backtest-strategy/` | PineScript | breakout | bar_size_pending | reverse x2 | 2 |
 | 437022 | `ports/437022_dynamic-take-profit-following-trend-strategy/` | PineScript | trend_filter | none | rsi_len x2, sl_units x2 | 4 |
 | 437025 | `ports/437025_multi-timeframe-breakout-strategy/` | PineScript | breakout | none | saw_filter x2, color_filter x2 | 4 |
-| | **1405 ports** | | | | | **7218** |
+| 437029 | `ports/437029_rsi-rsi-indicator-improvement-trading-strategy/` | PineScript | rsi_oscillator | none | period x2, buy_level x2 | 4 |
+| 437031 | `ports/437031_quantitative-dual-indicator-strategy/` | PineScript | trend_confluence | none | length x2, bp_len x2 | 4 |
+| 437035 | `ports/437035_rsi-bollinger-bands-and-rsi-crossover-strategy/` | PineScript | bollinger_breakout | none | length x2, rsi_len x2 | 4 |
+| 437036 | `ports/437036_macd-dual-moving-average-bollinger-band-macd-trading-strateg/` | PineScript | macd_cross | trailing_stop_pending | fast x2, bb_length x2 | 4 |
+| 437037 | `ports/437037_turtle-trading-strategy-based-on-simple-moving-average/` | PineScript | donchian_breakout | none | enter_fast x2, exit_fast x2 | 4 |
+| 437040 | `ports/437040_trailing-stop-loss-dual-moving-average-strategy/` | PineScript | ma_cross | none | fast x2, dev x2 | 4 |
+| 437043 | `ports/437043_transient-zones-strategy/` | PineScript | reversal_pattern | none | h_left x2, use_body x2 | 4 |
+| 437044 | `ports/437044_banknifty-banknifty-supertrend-trading-strategy/` | PineScript | supertrend | trailing_stop_pending | atr_period x2, factor x2 | 4 |
+| 437045 | `ports/437045_reverse-linear-regression-strategy/` | PineScript | reversal_pattern | none | slope_len x2, bars_run x2 | 4 |
+| 437376 | `ports/437376_nine-types-of-moving-average-crossover-strategy/` | PineScript | ma_cross | none | ma_type x2, short_len x2 | 4 |
+| 437377 | `ports/437377_combo-trend-tracking-strategy/` | PineScript | reversal_pattern | none | length x2, r x2 | 4 |
+| | **1416 ports** | | | | | **7262** |
 
 ## Rejected on reading
 
@@ -1740,6 +1751,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436776 | 基于PSARMACD和RSI的多时间框架量化交易策略Multi-timeframe-Quantitative-Trading-Strategy-Based-on-PSAR-MACD-and-RSI.md | 1 | An intraday square-off script run on the daily header chart: entries are sent only while barInSession('0915-1455') is true, and every daily bar opens at its session start (00:00 UTC on the backtest exchange, 17:00 New York on broker days), outside 09:15-14:55, so no order can ever be sent and the square-off closes nothing; the bracket is also computed from strategy.position_avg_price before the entry fills (na when flat). |
 | 436859 | 多时间框架判断趋势策略Multi-Timeframe-Trend-Strategy.md | 1 | Reads the future: Pine v2 request.security(syminfo.tickerid, 'D' / '5D' / '15D' / '45D', open / close) without [1] behaves as lookahead_on, so on every 1-hour bar the candle colours use the final close of the current day, 5-day, 15-day and 45-day bars, not known until they end (SURVEY_README request.security rule, as #432988). |
 | 437027 | 动量指标交叉反转趋势跟踪策略Trend-Reversal-Momentum-Indicators-Crossover-Tracking-Strategy.md | 1 | Each trade is closed in two halves: strategy.exit(qty_percent = 50) at TP 1 (6 %) and the rest at TP 2 (12 %), both with a 3 % stop, and once the high reaches TP 1 the second half's stop is cancelled and re-placed at the entry price; partial exits and a stop moved after a partial fill are outside the single-position signal interface (as #436524). |
+| 437048 | 动态趋势突破策略Dynamic-Breakout-Trend-Following-Strategy.md | 2 | The only exits are strategy.exit(profit = 0.02 x close, loss = 0.01 x close): percents of the close in PRICE units passed as TICK counts, so the real distances are 2 % / 1 % of the price times the tick size (0.2 % / 0.1 % at a 0.1 tick on BTC, 2 % / 1 % at a 1.0 tick), an instrument-specific bracket with no generic reading (as #436603, #436773). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #437043 (过渡区间策略Transient-Zones-Strategy)
+# Source: https://www.fmz.com/strategy/437043  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; capital % input  [lines 162-167]
+  162: strategy("Noro's Transient Zones Strategy v1.0", shorttitle = "TZ str 1.0", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)
+  163: 
+  164: //Settings 
+  165: needlong = input(true, defval = true, title = "Long")
+  166: needshort = input(true, defval = true, title = "Short")
+  167: capital = input(100, defval = 100, minval = 1, maxval = 10000, title = "Capital, %")
+
+## Equity-based lot  [lines 222-222]
+  222: lot = strategy.position_size == 0 ? strategy.equity / close * capital / 100 : lot[1]

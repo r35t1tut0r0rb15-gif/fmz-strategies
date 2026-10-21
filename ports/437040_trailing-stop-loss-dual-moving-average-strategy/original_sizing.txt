@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #437040 (双均线追踪止损策略Trailing-Stop-Loss-Dual-Moving-Average-Strategy)
+# Source: https://www.fmz.com/strategy/437040  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 0, 100 % of equity, capital  [lines 204-210]
+  204: strategy(title = 'Trailing Sell',
+  205:          shorttitle = 'TS',
+  206:          overlay = true,
+  207:          pyramiding = 0,
+  208:          default_qty_type = strategy.percent_of_equity,
+  209:          default_qty_value = 100,
+  210:          initial_capital = 100000)

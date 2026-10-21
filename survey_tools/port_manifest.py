@@ -3238,6 +3238,33 @@ SIZING = {
         ("Capital % input", 115, 115),
         ("Equity-based lot", 143, 145),
     ],
+    # ---- FMZ-C, batch C99 (2026-10-21)
+    437029: [],
+    437031: [],
+    437035: [],
+    437036: [
+        ("Profit target / stop loss point inputs", 197, 198),
+        ("Every-bar bracket exits", 213, 217),
+    ],
+    437037: [],
+    437040: [
+        ("strategy(): pyramiding 0, 100 % of equity, capital", 204, 210),
+    ],
+    437043: [
+        ("strategy(): 100 % of equity; capital % input", 162, 167),
+        ("Equity-based lot", 222, 222),
+    ],
+    437044: [
+        ("Stop-loss points and trail inputs", 166, 170),
+        ("Exit orders with stop and trail", 194, 208),
+    ],
+    437045: [
+        ("strategy(): capital, pyramiding 2, 100 % of equity", 126, 126),
+    ],
+    437376: [
+        ("SL / PT level inputs (off)", 177, 178),
+    ],
+    437377: [],
 }
 
 REJECTED_ON_READING = {
@@ -4061,6 +4088,12 @@ REJECTED_ON_READING = {
               "the second half's stop is cancelled and re-placed at the entry price; partial "
               "exits and a stop moved after a partial fill are outside the single-position signal "
               "interface (as #436524)."),
+    # ---- FMZ-C, batch C99 (2026-10-21)
+    437048: ("2", "The only exits are strategy.exit(profit = 0.02 x close, loss = 0.01 x close): "
+              "percents of the close in PRICE units passed as TICK counts, so the real distances "
+              "are 2 % / 1 % of the price times the tick size (0.2 % / 0.1 % at a 0.1 tick on "
+              "BTC, 2 % / 1 % at a 1.0 tick), an instrument-specific bracket with no generic "
+              "reading (as #436603, #436773)."),
 }
 
 DUPLICATE_ON_READING = {

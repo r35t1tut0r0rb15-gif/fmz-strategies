@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #437044 (BankNifty超级趋势交易策略BankNifty-Supertrend-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/437044  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop-loss points and trail inputs  [lines 166-170]
+  166: useDelay_stopLoss = input(true, "Use Stoploss Points?", group="Risk Management")
+  167: stopLoss = useDelay_stopLoss ? input(100, "Stop Loss Points", group="Risk Management"): na
+  168: 
+  169: useDelay_stopLossPerc1 = input(true, "Use Stoploss Trail?", group="Risk Management")
+  170: stopLossPerc1 =useDelay_stopLossPerc1 ? input.float(0.1, "Stop Loss Trail%", step=0.1,maxval = 1, group="Risk Management"): na
+
+## Exit orders with stop and trail  [lines 194-208]
+  194: if entryce and inSession
+  195:     // Enter long trade
+  196:     onePercent = strategy.position_avg_price *stopLossPerc1
+  197:     entryPrice := close
+  198:     strategy.entry("My Long Entry Id", strategy.long, comment="long" )
+  199:     // Set stop loss at x% below entry price
+  200:     strategy.exit("My Long Exit Id", "My Long Entry Id", stop=(entryPrice - stopLoss),trail_points=onePercent )
+  201:     
+  202: if entrype and inSession
+  203:     onePercent1 = strategy.position_avg_price *stopLossPerc1
+  204:     entryPrice := close
+  205:     // Enter short trade
+  206:     strategy.entry("My Short Entry Id", strategy.short, comment="short")
+  207:     // Set stop loss at x% above entry price
+  208:     strategy.exit("My Short Exit Id", "My Short Entry Id", stop=(entryPrice + stopLoss),trail_points=onePercent1)
