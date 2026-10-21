@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #437505 (双波动带截断策略Double-Bollinger-Band-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/437505  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital, commission  [lines 142-149]
+  142: strategy("Double Bollinger Strategy", 
+  143:      overlay=true, 
+  144:      default_qty_type=strategy.percent_of_equity, 
+  145:      default_qty_value=100, 
+  146:      initial_capital=10000, 
+  147:      commission_value=0.04, 
+  148:      calc_on_every_tick=false, 
+  149:      slippage=0)
+
+## Stop and take-profit inputs  [lines 165-172]
+  165: i_SL=input(true, title="Use Stop Loss and Take Profit")
+  166: i_SLType=input(defval="Strategy Stop", title="Type Of Stop", options=["Strategy Stop", "Swing Lo/Hi", "ATR Stop"])
+  167: i_SPL=input(defval=10, title="Swing Point Lookback")
+  168: i_PercIncrement=input(defval=1, step=.1, title="Swing Point SL Perc Increment")*0.01
+  169: i_ATR = input(14, title="ATR Length")
+  170: i_ATRMult = input(5, step=.1, title="ATR Multiple")
+  171: i_TPRRR = input(2, step=.1, title="Take Profit Risk Reward Ratio")
+  172: TS=input(false, title="Trailing Stop")

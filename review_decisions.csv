@@ -1645,3 +1645,14 @@ fmz_id,file,final_outcome,criterion,reason
 437403,基于信噪比和均线的量化交易策略Signal-to-Noise-Moving-Average-Trading-Strategy-Based-on-Quantitative-Trading.md,PORTED,,ports/437403_signal-to-noise-moving-average-trading-strategy-based-on-qua/
 437488,基于RSI指标和包容涨跌形态的量化交易策略Quantitative-Trading-Strategy-Based-on-RSI-Indicator-and-Engulfing-Pattern.md,PORTED,,ports/437488_rsi-quantitative-trading-strategy-based-on-rsi-indicator-and/
 437490,双边突破震荡策略Sideways-Breakthrough-Oscillation-Strategy.md,PORTED,,ports/437490_sideways-breakthrough-oscillation-strategy/
+437494,刚性突破策略Stiffness-Breakthrough-Strategy.md,PORTED,,ports/437494_stiffness-breakthrough-strategy/
+437499,黄金交叉多头趋势跟踪策略Golden-Cross-Uptrend-Tracking-Strategy.md,PORTED,,ports/437499_golden-cross-uptrend-tracking-strategy/
+437501,MacD200日均线信号交叉交易策略MACD-200-Day-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/437501_macd200-macd-200-day-moving-average-crossover-trading-strate/
+437503,基于ATR通道的破口踏入趋势策略ATR-Channel-Breakout-Trend-following-Strategy.md,PORTED,,ports/437503_atr-atr-channel-breakout-trend-following-strategy/
+437505,双波动带截断策略Double-Bollinger-Band-Breakout-Strategy.md,PORTED,,ports/437505_double-bollinger-band-breakout-strategy/
+437506,动量指标RSI捕捉反转交易策略Momentum-Indicator-RSI-Reversal-Trading-Strategy.md,PORTED,,ports/437506_rsi-momentum-indicator-rsi-reversal-trading-strategy/
+437508,KP移动平均趋势策略Heyping-Moving-Average-Trend-Strategy.md,PORTED,,ports/437508_kp-heyping-moving-average-trend-strategy/
+437515,双重反转高-低策略Dual-Reversal-High-Low-Strategy.md,PORTED,,ports/437515_dual-reversal-high-low-strategy/
+437527,带通滤波趋势提取策略Bandpass-Filtering-Trend-Extraction-Strategy.md,PORTED,,ports/437527_bandpass-filtering-trend-extraction-strategy/
+437539,自适应考夫曼移动平均线趋势跟踪策略Adaptive-Kaufman-Moving-Average-Trend-Following-Strategy.md,PORTED,,ports/437539_adaptive-kaufman-moving-average-trend-following-strategy/
+437540,高斯分布移动平均线交易策略The-Gaussian-Moving-Average-Trading-Strategy.md,PORTED,,ports/437540_the-gaussian-moving-average-trading-strategy/

@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2114 |
-| PORTED | 1426 |
+| PORT_CANDIDATE | 2103 |
+| PORTED | 1437 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1554,7 +1554,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 437403 | `ports/437403_signal-to-noise-moving-average-trading-strategy-based-on-qua/` | PineScript | trend_filter | none | length x2, smooth x2 | 4 |
 | 437488 | `ports/437488_rsi-quantitative-trading-strategy-based-on-rsi-indicator-and/` | PineScript | candle_pattern | none | rsi_len x2, oversold x2 | 4 |
 | 437490 | `ports/437490_sideways-breakthrough-oscillation-strategy/` | PineScript | mean_reversion | none | length x2, mult x2 | 4 |
-| | **1426 ports** | | | | | **7302** |
+| 437494 | `ports/437494_stiffness-breakthrough-strategy/` | PineScript | momentum_oscillator | none | ma_length x2, stiff_length x2 | 4 |
+| 437499 | `ports/437499_golden-cross-uptrend-tracking-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 437501 | `ports/437501_macd200-macd-200-day-moving-average-crossover-trading-strate/` | PineScript | macd_cross | none | fast x2, ma_length x2 | 4 |
+| 437503 | `ports/437503_atr-atr-channel-breakout-trend-following-strategy/` | PineScript | breakout | none | atr_length x2 | 2 |
+| 437505 | `ports/437505_double-bollinger-band-breakout-strategy/` | PineScript | bollinger_breakout | coarse_bar_stop | length_slow x2, length_fast x2 | 4 |
+| 437506 | `ports/437506_rsi-momentum-indicator-rsi-reversal-trading-strategy/` | PineScript | rsi_oscillator | none | smma_len x2, adx_len x2 | 4 |
+| 437508 | `ports/437508_kp-heyping-moving-average-trend-strategy/` | PineScript | ma_cross | none | fama x2, sloma x2 | 4 |
+| 437515 | `ports/437515_dual-reversal-high-low-strategy/` | PineScript | reversal_pattern | none | length x2, length_hema x2 | 4 |
+| 437527 | `ports/437527_bandpass-filtering-trend-extraction-strategy/` | PineScript | cycle_filter | none | length x2, delta x2 | 4 |
+| 437539 | `ports/437539_adaptive-kaufman-moving-average-trend-following-strategy/` | PineScript | adaptive_average | none | length x2 | 2 |
+| 437540 | `ports/437540_the-gaussian-moving-average-trading-strategy/` | PineScript | mean_reversion | none | z_len x2, pct_len x2 | 4 |
+| | **1437 ports** | | | | | **7342** |
 
 ## Rejected on reading
 
