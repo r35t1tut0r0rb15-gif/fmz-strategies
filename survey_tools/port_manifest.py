@@ -3351,6 +3351,28 @@ SIZING = {
     437672: [
         ("Take-profit / stop-loss tick inputs", 156, 157),
     ],
+    # ---- FMZ-C, batch C104 (2026-10-21)
+    437673: [],
+    437674: [
+        ("Risk-based size (unused), fixed quantity 1 and the tick inputs", 157, 191),
+    ],
+    437675: [
+        ("strategy(): pyramiding 1, 100 % of equity, commission", 124, 124),
+    ],
+    437682: [
+        ("Take-profit / stop-loss / minimum-body pip inputs", 140, 142),
+    ],
+    437684: [
+        ("strategy(): pyramiding 7, capital, 20 % of equity, commission", 126, 126),
+        ("Pyramiding entries 2-7 and their exits", 173, 194),
+    ],
+    437685: [],
+    437689: [],
+    437693: [],
+    437694: [],
+    437740: [
+        ("strategy(): commission", 98, 98),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -4201,6 +4223,16 @@ REJECTED_ON_READING = {
               "exit, and the remainder closes on an SMA cross only on the bar the take profit is "
               "placed (quantityRemainder resets every bar): partial exits are outside the "
               "single-position signal interface (as #436524)."),
+    # ---- FMZ-C, batch C104 (2026-10-21)
+    437677: ("2", "Apart from the reversing entries, the exits are strategy.exit(loss = close - 1 % x "
+              "ATR, profit = close + 1 % x ATR): price LEVELS passed as TICK counts, so the real "
+              "distances are about the whole price times the tick size (about 10 % at a 0.1 tick "
+              "on a 42000 price), an instrument-specific bracket with no generic reading (as "
+              "#436603, #436773)."),
+    437738: ("2", "The exits are strategy.exit(loss = close - 1 ATR, profit = close + 3 ATR): price "
+              "LEVELS passed as TICK counts, so the real distances are about the whole price "
+              "times the tick size, an instrument-specific bracket with no generic reading (as "
+              "#436603, #437677)."),
 }
 
 DUPLICATE_ON_READING = {

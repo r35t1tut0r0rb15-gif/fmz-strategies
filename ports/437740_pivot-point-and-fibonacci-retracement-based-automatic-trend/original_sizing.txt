@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #437740 (基于枢轴点和斐波那契回撤的自动趋势追踪策略Pivot-Point-and-Fibonacci-Retracement-Based-Automatic-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/437740  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): commission  [lines 98-98]
+   98: strategy("ABCD Strategy", shorttitle="ABCDS", overlay=true, commission_value=0.04)

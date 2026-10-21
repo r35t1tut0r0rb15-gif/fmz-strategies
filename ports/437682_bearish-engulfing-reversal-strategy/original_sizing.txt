@@ -1,0 +1,8 @@
+# Original sizing and money-management code, FMZ #437682 (熊转魔法蜡烛反转策略Bearish-Engulfing-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/437682  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit / stop-loss / minimum-body pip inputs  [lines 140-142]
+  140: input_takeprofit = input(40, title="Take Profit pip")
+  141: input_stoploss = input(20, title="Stop Loss pip")
+  142: input_minsizebody = input(2, title="Min. Size Body pip")

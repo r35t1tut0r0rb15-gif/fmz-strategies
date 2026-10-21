@@ -1,0 +1,40 @@
+# Original sizing and money-management code, FMZ #437674 (基于RSI和AI自定义条件进行交易的高级策略Improved-RSI-Scalping-Strategy-based-on-Relative-Strength-Index)
+# Source: https://www.fmz.com/strategy/437674  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk-based size (unused), fixed quantity 1 and the tick inputs  [lines 157-191]
+  157: takeProfitPips = input.int(10, title="Take Profit (Pips)")
+  158: stopLossPips = input.int(5, title="Stop Loss (Pips)")
+  159: riskPercentage = input.float(1, title="Risk Percentage", minval=0, maxval=100, step=0.1)
+  160: 
+  161: // Calculate RSI
+  162: rsiValue = ta.rsi(close, rsiLength)
+  163: 
+  164: // Custom AI Conditions
+  165: aiCondition1Long = ta.crossover(rsiValue, 50)
+  166: aiCondition1Short = ta.crossunder(rsiValue, 50)
+  167: 
+  168: // Add more AI conditions here
+  169: var aiCondition2Long = ta.crossover(rsiValue, 30)
+  170: var aiCondition2Short = ta.crossunder(rsiValue, 70)
+  171: 
+  172: // Combine AI conditions with RSI
+  173: longCondition = aiCondition1Long or aiCondition2Long or ta.crossover(rsiValue, rsiOversold)
+  174: shortCondition = aiCondition1Short or aiCondition2Short or ta.crossunder(rsiValue, rsiOverbought)
+  175: 
+  176: // Calculate position size based on risk percentage
+  177: equity = strategy.equity
+  178: riskAmount = (equity * riskPercentage) / 100
+  179: positionSize = riskAmount / (stopLossPips * syminfo.mintick)
+  180: 
+  181: // Calculate Take Profit and Stop Loss levels
+  182: takeProfitLevel = close + takeProfitPips * syminfo.mintick
+  183: stopLossLevel = close - stopLossPips * syminfo.mintick
+  184: 
+  185: // Long entry
+  186: strategy.entry("Long Entry", strategy.long, when=longCondition[1] and not longCondition, qty=1)
+  187: strategy.exit("Take Profit/Stop Loss", from_entry="Long Entry", limit=takeProfitLevel, stop=stopLossLevel)
+  188: 
+  189: // Short entry
+  190: strategy.entry("Short Entry", strategy.short, when=shortCondition[1] and not shortCondition, qty=1)
+  191: strategy.exit("Take Profit/Stop Loss", from_entry="Short Entry", limit=takeProfitLevel, stop=stopLossLevel)

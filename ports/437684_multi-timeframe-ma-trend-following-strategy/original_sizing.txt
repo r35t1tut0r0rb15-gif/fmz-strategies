@@ -1,0 +1,30 @@
+# Original sizing and money-management code, FMZ #437684 (均线多重级差趋势追踪策略Multi-timeframe-MA-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/437684  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 7, capital, 20 % of equity, commission  [lines 126-126]
+  126: strategy(shorttitle='Pyramiding Entry On Early Trends',title='Pyramiding Entry On Early Trends (by Coinrule)', overlay=false, pyramiding= 7, initial_capital = 1000, default_qty_type = strategy.percent_of_equity, default_qty_value = 20, commission_type=strategy.commission.percent, commission_value=0.1)
+
+## Pyramiding entries 2-7 and their exits  [lines 173-194]
+  173: strategy.entry("Entry 2", strategy.long, when = (strategy.opentrades == 1) and longsignal)
+  174:         
+  175: strategy.entry("Entry 3", strategy.long, when = (strategy.opentrades == 2) and longsignal)
+  176:     
+  177: strategy.entry("Entry 4", strategy.long, when = (strategy.opentrades == 3) and longsignal)
+  178:     
+  179: strategy.entry("Entry 5", strategy.long, when = (strategy.opentrades == 4) and longsignal)
+  180:         
+  181: strategy.entry("Entry 6", strategy.long, when = (strategy.opentrades == 5) and longsignal)
+  182:         
+  183: strategy.entry("Entry 7", strategy.long, when = (strategy.opentrades == 6) and longsignal)
+  184:     
+  185:     
+  186:     
+  187: if (strategy.position_size > 0)
+  188:     strategy.exit(id="Exit 1", from_entry = "Entry 1", profit = Profit_Ticks, loss = Loss_Ticks)
+  189:     strategy.exit(id="Exit 2", from_entry = "Entry 2", profit = Profit_Ticks, loss = Loss_Ticks)
+  190:     strategy.exit(id="Exit 3", from_entry = "Entry 3", profit = Profit_Ticks, loss = Loss_Ticks)
+  191:     strategy.exit(id="Exit 4", from_entry = "Entry 4", profit = Profit_Ticks, loss = Loss_Ticks)
+  192:     strategy.exit(id="Exit 5", from_entry = "Entry 5", profit = Profit_Ticks, loss = Loss_Ticks)
+  193:     strategy.exit(id="Exit 6", from_entry = "Entry 6", profit = Profit_Ticks, loss = Loss_Ticks)
+  194:     strategy.exit(id="Exit 7", from_entry = "Entry 7", profit = Profit_Ticks, loss = Loss_Ticks)

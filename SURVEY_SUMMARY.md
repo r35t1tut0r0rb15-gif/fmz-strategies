@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2079 |
-| PORTED | 1459 |
+| PORT_CANDIDATE | 2067 |
+| PORTED | 1469 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 206 |
+| REJECTED_ON_READING | 208 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1587,7 +1587,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 437663 | `ports/437663_adaptive-botvenko-indicator-long-short-strategy/` | PineScript | momentum_oscillator | none | nn x2, sell x2 | 4 |
 | 437665 | `ports/437665_ema-multi-ema-crossover-trend-following-strategy/` | PineScript | ma_cross | none | shortest x2, shorter x2 | 4 |
 | 437672 | `ports/437672_adx-momentum-breakout-strategy-with-adx-filter/` | PineScript | bollinger_breakout | none | length x2, k_atr x2 | 4 |
-| | **1459 ports** | | | | | **7426** |
+| 437673 | `ports/437673_rsi-dual-reversion-rsi-histoalert-strategy/` | PineScript | reversal_pattern | none | length x2, rsi_period x2 | 4 |
+| 437674 | `ports/437674_rsi-ai-improved-rsi-scalping-strategy-based-on-relative-stre/` | PineScript | rsi_oscillator | trailing_stop_pending | rsi_length x2, oversold x2 | 4 |
+| 437675 | `ports/437675_hull-dmi-and-hma-combination-strategy/` | PineScript | trend_confluence | none | hull_len1 x2, di_len x2 | 4 |
+| 437682 | `ports/437682_bearish-engulfing-reversal-strategy/` | PineScript | candle_pattern | none | k_sl x2, atr_len x2 | 4 |
+| 437684 | `ports/437684_multi-timeframe-ma-trend-following-strategy/` | PineScript | trend_filter | none | tp x2, sl x2 | 4 |
+| 437685 | `ports/437685_rsi-rsindex-and-moving-average-combination-strategy/` | PineScript | rsi_oscillator | none | trend_len x2, exit_len x2 | 4 |
+| 437689 | `ports/437689_rsi-rsi-trend-following-bull-strategy/` | PineScript | rsi_oscillator | none | rsi_long x2, ema_length x2 | 4 |
+| 437693 | `ports/437693_ema-sma-trend-reversal-strategy-based-on-ema-and-sma-crossov/` | PineScript | ma_cross | none | ema_length x2, sma_length x2 | 4 |
+| 437694 | `ports/437694_multi-indicator-collision-reversal-strategy/` | PineScript | reversal_pattern | none | length x2, n_length x2 | 4 |
+| 437740 | `ports/437740_pivot-point-and-fibonacci-retracement-based-automatic-trend/` | PineScript | reversal_pattern | none | length x2 | 2 |
+| | **1469 ports** | | | | | **7464** |
 
 ## Rejected on reading
 
@@ -1799,6 +1809,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 437487 | 玻尔布带ATR尾随止损策略Bollinger-Bands-ATR-Trailing-Stop-Strategy.md | 1 | Entries require strategy.position_size == 0, and the only exits are an exit(limit, stop) whose stop ratchets every bar on max(low - ATR(5), previous stop) (a trail on lows the house trail cannot express) together with a limit set from that stop's distance: whether the strategy is flat, and so whether it may enter, depends on an exit the port cannot model; the candle and midline tests are also in forex pips (x 0.0001) on a BTC chart. |
 | 437544 | 收盘买入次日开盘止盈策略Close-Buying-Next-Open-Profit-Taking-Strategy.md | 1 | An intraday buy-at-the-close script on the daily header chart: the buy window time(period, '1429-1500') and the sell window '0925-0935' never contain a daily bar's open (00:00 UTC on the backtest exchange, 17:00 New York on broker days), so no entry is ever sent (as #436776). |
 | 437557 | 基于移动平均线和相对强弱指标的动量反转策略Momentum-Reversal-Strategy.md | 1 | The take profit is strategy.exit(profit = 8, qty_percent = 50), a half-position exit, and the remainder closes on an SMA cross only on the bar the take profit is placed (quantityRemainder resets every bar): partial exits are outside the single-position signal interface (as #436524). |
+| 437677 | TrendSurfing-双均线交叉趋势策略TrendSurfing-Double-Moving-Average-Crossover-Trend-Strategy.md | 2 | Apart from the reversing entries, the exits are strategy.exit(loss = close - 1 % x ATR, profit = close + 1 % x ATR): price LEVELS passed as TICK counts, so the real distances are about the whole price times the tick size (about 10 % at a 0.1 tick on a 42000 price), an instrument-specific bracket with no generic reading (as #436603, #436773). |
+| 437738 | 基于EMA和MACD的多时间框架趋势跟踪策略Trend-Following-Strategy-Based-on-EMA-and-MACD-across-Timeframes.md | 2 | The exits are strategy.exit(loss = close - 1 ATR, profit = close + 3 ATR): price LEVELS passed as TICK counts, so the real distances are about the whole price times the tick size, an instrument-specific bracket with no generic reading (as #436603, #437677). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

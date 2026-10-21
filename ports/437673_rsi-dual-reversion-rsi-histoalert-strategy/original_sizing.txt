@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #437673 (双重反转RSI历史警报策略Dual-Reversion-RSI-HistoAlert-Strategy)
+# Source: https://www.fmz.com/strategy/437673  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
