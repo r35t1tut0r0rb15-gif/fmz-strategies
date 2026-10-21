@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #436765 (融合多重止损的趋势追踪型Intraday策略Intraday-Trend-Following-Strategy-with-Multiple-Stop-Loss)
+# Source: https://www.fmz.com/strategy/436765  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital, commission  [lines 112-113]
+  112: strategy("Lancelot vstop intraday strategy", overlay=true, currency=currency.NONE, initial_capital = 100, commission_type=strategy.commission.percent, 
+  113:      commission_value=0.075, default_qty_type = strategy.percent_of_equity, default_qty_value = 100)

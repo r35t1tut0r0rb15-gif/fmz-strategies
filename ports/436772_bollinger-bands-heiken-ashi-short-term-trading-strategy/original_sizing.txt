@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #436772 (布林带海克隆阿什短线策略Bollinger-Bands-Heiken-Ashi-Short-term-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/436772  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

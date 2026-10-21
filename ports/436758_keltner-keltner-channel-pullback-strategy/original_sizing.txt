@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #436758 (Keltner通道突破回抽策略Keltner-Channel-Pullback-Strategy)
+# Source: https://www.fmz.com/strategy/436758  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop loss in ticks input  [lines 126-126]
+  126: SL = input(defval=50, minval=0, maxval=10000, title="Stop loss in ticks (leave zero to skip)")
+
+## Trade size input  [lines 139-139]
+  139: tradeSize = input(defval=1, minval=1, title="Trade size")

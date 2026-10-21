@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #436754 (利用双向RSI突破策略Dual-RSI-Breakthrough-Strategy)
+# Source: https://www.fmz.com/strategy/436754  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk lot formula (unused; size 1) and the pip inputs  [lines 197-213]
+  197: strategy.initial_capital = 50000
+  198:     //Calculate the size of the next trade
+  199: balance = strategy.netprofit + strategy.initial_capital //current balance
+  200: floating = strategy.openprofit          //floating profit/loss
+  201: risk = input(2,type=input.float,title="Risk %")/100           //risk % per trade
+  202: isTwoDigit = input(false,"Is this a 2 digit pair? (JPY, XAU, XPD...")
+  203: 
+  204: 
+  205: stop = input(250, title="stop loss pips")
+  206: tp = input(2500, title="take profit pips")
+  207: if(isTwoDigit)
+  208:     stop := stop/100
+  209:     
+  210: temp01 = balance * risk     //Risk in USD
+  211: temp02 = temp01/stop        //Risk in lots
+  212: temp03 = temp02*100000      //Convert to contracts
+  213: size = 1

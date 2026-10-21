@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2185 |
-| PORTED | 1364 |
+| PORT_CANDIDATE | 2172 |
+| PORTED | 1374 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 562 |
+| HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 196 |
+| REJECTED_ON_READING | 198 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1492,7 +1492,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436647 | `ports/436647_moving-average-envelopes-trading-strategy/` | PineScript | volatility_channel_breakout | none | length x2, percent_shift x2 | 4 |
 | 436650 | `ports/436650_atr-etf-an-atr-and-breakout-based-etf-trading-strategy/` | PineScript | donchian_breakout | none | lookback x2, atr_sl_mult x2 | 4 |
 | 436652 | `ports/436652_ichimoku-balance-line-strategy/` | PineScript | ichimoku | none | tenkan x2, span_offset x2 | 4 |
-| | **1364 ports** | | | | | **7060** |
+| 436754 | `ports/436754_rsi-dual-rsi-breakthrough-strategy/` | PineScript | rsi_oscillator | none | period x2, k_atr x2 | 4 |
+| 436755 | `ports/436755_k-ema-up-versus-down-close-candles-strategy-with-ema-filter/` | PineScript | trend_filter | none | lookback x2, ema_period x2 | 4 |
+| 436757 | `ports/436757_trending-darvas-box-quantitative-trading-strategy/` | PineScript | breakout | coarse_bar_stop | boxp x2, rvi_len x2 | 4 |
+| 436758 | `ports/436758_keltner-keltner-channel-pullback-strategy/` | PineScript | mean_reversion | none | k_dev x2, k_atr x2 | 4 |
+| 436763 | `ports/436763_ichimoku-triple-supertrend-ichimoku-cloud-quantitative-tradi/` | PineScript | supertrend | none | atr_len x2, factor1 x2 | 4 |
+| 436764 | `ports/436764_kana-candle-breakout-strategy-based-on-moving-average-and-su/` | PineScript | trend_confluence | none | length x2, use_sr x2 | 4 |
+| 436765 | `ports/436765_intraday-intraday-trend-following-strategy-with-multiple-sto/` | PineScript | atr_trailing_line | none | vlen x2, renko_atr x2 | 4 |
+| 436767 | `ports/436767_momentum-direction-divergence-strategy/` | PineScript | momentum_oscillator | none | r x2, smth_len x2 | 4 |
+| 436770 | `ports/436770_multi-factor-quantitative-trading-strategy/` | PineScript | reversal_pattern | none | length x2, length_pline x2 | 4 |
+| 436772 | `ports/436772_bollinger-bands-heiken-ashi-short-term-trading-strategy/` | PineScript | candle_pattern | none | consecutive x2, vol_frac x2 | 4 |
+| | **1374 ports** | | | | | **7100** |
 
 ## Rejected on reading
 
@@ -1694,6 +1704,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436528 | 双移动平均线黄金交叉策略Dual-Moving-Average-Crossover-Strategy.md | 1 | Orders are sent with strategy.order (one unit BUY after a bullish crossing above the 100-bar average, one unit SELL after a bearish crossing below it), not strategy.entry: each order adds to or subtracts from the net position without any direction logic, so a filtered-out crossing leaves the net at 0, +1, -1, -2 ...; the unit-by-unit accumulation cannot be expressed as flat / long / short signals. |
 | 436603 | 基于趋势跟踪突破策略Trend-Tracking-Breakout-Strategy.md | 2 | The stop and the target are written as strategy.exit(loss = low - 5.70, profit = close + 11.40): price levels of one instrument passed as TICK counts, so the real distances are (price - 5.7) x tick size, an instrument-specific and nearly meaningless bracket (about 10 % at a 0.1 tick on a 40000 price, about 1 % at 0.01); the author's intended USD levels are tied to a single price scale, so there is no generic reading. |
 | 436653 | 高杠杆防止追加保证金头寸管理策略Leveraged-Position-Sizing-with-Margin-Call-Risk-Management-Strategy.md | 1 | A leverage and margin-call management script: the position size is a leverage multiple of one unit, entries are blocked and strategy.close_all is sent when strategy.equity falls to a margin value (25000), and the trigger reads the high / low of the 4-hour bar through a lower-timeframe security call from a daily chart; the margin rule depends on the account equity, which the signal interface cannot see. |
+| 436659 | 结合MACDRSI和FIB的量化比特币交易策略Quant-Bitcoin-Trading-Strategy-Combining-MACD-RSI-and-FIB.md | 2 | Every signal is computed on security(sym, '', close / high / low) where sym is an input whose default is BINANCE:BTCUSDT: a named external instrument used as the signal source for whatever chart is traded (SURVEY_README: another symbol -> criterion 2), with the entries sized from strategy.equity. |
+| 436773 | 移动平均线交叉金策略Moving-Average-Crossover-Gold-Strategy.md | 2 | The stop, the target and the break-even exit are written as strategy.exit(loss = close x 0.99, profit = close x 1.02) and exit(loss = close x 1.01): price levels passed as TICK counts, so the real distances are (price x 0.99) x tick size, an instrument-specific and nearly meaningless bracket (about 10 % at a 0.1 tick on a 42000 price, about 1 % at 0.01); these are the only exits, so there is no generic reading (as #436603). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

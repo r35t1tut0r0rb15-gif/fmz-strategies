@@ -3148,6 +3148,30 @@ SIZING = {
     436652: [
         ("strategy(): percent of equity, commission", 129, 129),
     ],
+    # ---- FMZ-C, batch C95 (2026-10-21)
+    436754: [
+        ("Risk lot formula (unused; size 1) and the pip inputs", 197, 213),
+    ],
+    436755: [],
+    436757: [
+        ("strategy(): 100 % of equity, capital", 124, 124),
+    ],
+    436758: [
+        ("Stop loss in ticks input", 126, 126),
+        ("Trade size input", 139, 139),
+    ],
+    436763: [
+        ("Percent-of-portfolio input (not used by the orders)", 146, 146),
+    ],
+    436764: [
+        ("Take-profit tick formula (off by default)", 141, 143),
+    ],
+    436765: [
+        ("strategy(): 100 % of equity, capital, commission", 112, 113),
+    ],
+    436767: [],
+    436770: [],
+    436772: [],
 }
 
 REJECTED_ON_READING = {
@@ -3942,6 +3966,17 @@ REJECTED_ON_READING = {
               "low of the 4-hour bar through a lower-timeframe security call from a daily chart; "
               "the margin rule depends on the account equity, which the signal interface cannot "
               "see."),
+    # ---- FMZ-C, batch C95 (2026-10-21)
+    436659: ("2", "Every signal is computed on security(sym, '', close / high / low) where sym is an "
+              "input whose default is BINANCE:BTCUSDT: a named external instrument used as the "
+              "signal source for whatever chart is traded (SURVEY_README: another symbol -> "
+              "criterion 2), with the entries sized from strategy.equity."),
+    436773: ("2", "The stop, the target and the break-even exit are written as strategy.exit(loss = "
+              "close x 0.99, profit = close x 1.02) and exit(loss = close x 1.01): price levels "
+              "passed as TICK counts, so the real distances are (price x 0.99) x tick size, an "
+              "instrument-specific and nearly meaningless bracket (about 10 % at a 0.1 tick on a "
+              "42000 price, about 1 % at 0.01); these are the only exits, so there is no generic "
+              "reading (as #436603)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -3979,4 +4014,6 @@ HELD_ON_READING = {
     434606: ("8", "One of the five averages is vwma(close, 136): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C72 (2026-10-17)
     434977: ("8", "The long and short exits test the close against vwma(close, 20): a volume-weighted average (check 8, held with the other volume users). (Also, on the 1-hour header chart no bar opens inside the 09:15-09:16 session window, so the day-range anchor is never set.)"),
+    # ---- FMZ-C, batch C95 (2026-10-21)
+    436658: ("8", "The long and short entries test the Hull line against rvwma3 = vwma(close, 42): a volume-weighted average (check 8, held with the other volume users)."),
 }
