@@ -1776,3 +1776,15 @@ fmz_id,file,final_outcome,criterion,reason
 438505,基于ATR的ES尾随停止策略ATR-based-Trailing-Stop-Strategy-for-ES.md,PORTED,,ports/438505_atr-es-atr-based-trailing-stop-strategy-for-es/
 438506,超级趋势追踪止损策略Trend-Following-Strategy-with-Stop-Loss.md,PORTED,,ports/438506_trend-following-strategy-with-stop-loss/
 438507,典型的趋势跟踪策略Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/438507_dual-moving-average-crossover-strategy/
+438769,多时间框架超级趋势追踪策略Multi-timeframe-Super-Trend-Tracking-Strategy.md,PORTED,,ports/438769_multi-timeframe-super-trend-tracking-strategy/
+438771,基于超趋势指标与净值曲线交易的量化策略Quantitative-Trading-Strategy-Based-on-Supertrend-Indicator-and-Equity-Curve-Trading.md,PORTED,,ports/438771_quantitative-trading-strategy-based-on-supertrend-indicator/
+438773,坚固趋势追踪策略Robust-Trend-Tracking-Strategy.md,PORTED,,ports/438773_robust-trend-tracking-strategy/
+438774,即时突破波动率EMA趋势策略Zero-Lag-Volatility-Breakout-EMA-Trend-Strategy.md,PORTED,,ports/438774_ema-zero-lag-volatility-breakout-ema-trend-strategy/
+438775,基于双EMA和AC指标的趋势跟踪策略Dual-EMA-and-AC-Indicator-Based-Trend-Following-Strategy.md,PORTED,,ports/438775_ema-ac-dual-ema-and-ac-indicator-based-trend-following-strat/
+438777,RSI多空分歧指标交易策略RSI-Bullish-and-Bearish-Divergence-Trading-Strategy.md,PORTED,,ports/438777_rsi-rsi-bullish-and-bearish-divergence-trading-strategy/
+438782,通道突破均线跟踪策略Trend-Following-Channel-Breakout-Strategy-with-Moving-Average-and-Trailing-Stop.md,PORTED,,ports/438782_trend-following-channel-breakout-strategy-with-moving-averag/
+438783,基于历史波动率的市场定时策略Volatility-Filtered-Market-Timing-Strategy.md,PORTED,,ports/438783_volatility-filtered-market-timing-strategy/
+438785,MACD指标的RSI反转策略RSI-of-MACD-Reversal-Strategy.md,PORTED,,ports/438785_macd-rsi-rsi-of-macd-reversal-strategy/
+438787,基于双均线反转交易策略Dual-Moving-Average-Reversal-Trading-Strategy.md,PORTED,,ports/438787_dual-moving-average-reversal-trading-strategy/
+438792,极化分形效率PFE交易策略Polarized-Fractal-Efficiency-PFE-Trading-Strategy.md,PORTED,,ports/438792_pfe-polarized-fractal-efficiency-pfe-trading-strategy/
+438794,基于双移动平均线交叉的回调入场策略EintSimple-Pullback-Strategy.md,PORTED,,ports/438794_eintsimple-pullback-strategy/

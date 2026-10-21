@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #438794 (基于双移动平均线交叉的回调入场策略EintSimple-Pullback-Strategy)
+# Source: https://www.fmz.com/strategy/438794  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, 100 % of equity  [lines 155-159]
+  155: strategy("Simple Pullback Strategy", 
+  156:      overlay=true, 
+  157:      initial_capital=50000,
+  158:      default_qty_type=strategy.percent_of_equity, 
+  159:      default_qty_value=100)// 100% of balance invested on each trade

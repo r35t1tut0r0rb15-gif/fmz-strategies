@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1983 |
-| PORTED | 1547 |
+| PORT_CANDIDATE | 1971 |
+| PORTED | 1559 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1675,7 +1675,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 438505 | `ports/438505_atr-es-atr-based-trailing-stop-strategy-for-es/` | PineScript | supertrend | none | periods x2, multiplier x2 | 4 |
 | 438506 | `ports/438506_trend-following-strategy-with-stop-loss/` | PineScript | supertrend | none | stop_frac x2, factor x2 | 4 |
 | 438507 | `ports/438507_dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | len1 x2, len2 x2 | 4 |
-| | **1547 ports** | | | | | **7774** |
+| 438769 | `ports/438769_multi-timeframe-super-trend-tracking-strategy/` | PineScript | supertrend | none | periods x2, multiplier x2 | 4 |
+| 438771 | `ports/438771_quantitative-trading-strategy-based-on-supertrend-indicator/` | PineScript | supertrend | none | periods x2, multiplier x2 | 4 |
+| 438773 | `ports/438773_robust-trend-tracking-strategy/` | PineScript | combo_123_reversal | none | length x2, length_smi x2 | 4 |
+| 438774 | `ports/438774_ema-zero-lag-volatility-breakout-ema-trend-strategy/` | PineScript | volatility_channel_breakout | none | lx x2, bbmult x2 | 4 |
+| 438775 | `ports/438775_ema-ac-dual-ema-and-ac-indicator-based-trend-following-strat/` | PineScript | combo_123_reversal | none | length x2, slow x2 | 4 |
+| 438777 | `ports/438777_rsi-rsi-bullish-and-bearish-divergence-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, lb x2 | 4 |
+| 438782 | `ports/438782_trend-following-channel-breakout-strategy-with-moving-averag/` | PineScript | volatility_channel_breakout | coarse_bar_stop, trailing_stop | k_sl x2, k_trail x2 | 4 |
+| 438783 | `ports/438783_volatility-filtered-market-timing-strategy/` | PineScript | trend_filter | none | upper x4 | 4 |
+| 438785 | `ports/438785_macd-rsi-rsi-of-macd-reversal-strategy/` | PineScript | macd_momentum | none | rsi_len x2, slow x2 | 4 |
+| 438787 | `ports/438787_dual-moving-average-reversal-trading-strategy/` | PineScript | combo_123_reversal | none | length x2, ma_length x2 | 4 |
+| 438792 | `ports/438792_pfe-polarized-fractal-efficiency-pfe-trading-strategy/` | PineScript | momentum_oscillator | none | unit x2, length x2 | 4 |
+| 438794 | `ports/438794_eintsimple-pullback-strategy/` | PineScript | mean_reversion | none | ma1 x2, stop x2 | 4 |
+| | **1559 ports** | | | | | **7822** |
 
 ## Rejected on reading
 

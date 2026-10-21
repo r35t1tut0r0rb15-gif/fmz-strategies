@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #438771 (基于超趋势指标与净值曲线交易的量化策略Quantitative-Trading-Strategy-Based-on-Supertrend-Indicator-and-Equity-Curve-Trading)
+# Source: https://www.fmz.com/strategy/438771  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital  [lines 181-181]
+  181: strategy('Supertrend & Equity curve with EMA', overlay=false, format=format.price, precision=2, initial_capital=100000)

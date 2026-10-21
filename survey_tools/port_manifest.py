@@ -3562,6 +3562,30 @@ SIZING = {
         ("strategy(): percent of equity; stop / profit amounts", 155, 159),
     ],
     438507: [],
+    # ---- FMZ-C, batch C112 (2026-10-22)
+    438769: [],
+    438771: [
+        ("strategy(): capital", 181, 181),
+    ],
+    438773: [],
+    438774: [],
+    438775: [],
+    438777: [],
+    438782: [
+        ("Tick stop and trail inputs and exits", 135, 204),
+    ],
+    438783: [
+        ("strategy(): capital, 100 % of equity", 122, 122),
+    ],
+    438785: [
+        ("strategy(): 20 % of equity, capital, pyramiding 1; risk inputs", 141, 162),
+        ("Risk-based quantity", 198, 204),
+    ],
+    438787: [],
+    438792: [],
+    438794: [
+        ("strategy(): capital, 100 % of equity", 155, 159),
+    ],
 }
 
 REJECTED_ON_READING = {

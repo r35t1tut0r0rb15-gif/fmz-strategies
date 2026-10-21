@@ -1,0 +1,36 @@
+# Original sizing and money-management code, FMZ #438785 (MACD指标的RSI反转策略RSI-of-MACD-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/438785  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 20 % of equity, capital, pyramiding 1; risk inputs  [lines 141-162]
+  141: strategy(title="RSI of MACD Strategy[Long only]",  shorttitle="RSIofMACD" , overlay=false, pyramiding=1,     default_qty_type=strategy.percent_of_equity,  default_qty_value=20, initial_capital=10000, currency=currency.USD)  //default_qty_value=10, default_qty_type=strategy.fixed,
+  142: 
+  143: 	
+  144: 
+  145: /////////////////////////////////////////////////////////////////////////////////
+  146: 
+  147: 
+  148: 
+  149: // MACD Inputs ///
+  150: fastLen = input(12, title="Fast Length")
+  151: slowLen = input(21, title="Slow Length")
+  152: sigLen  = input(9, title="Signal Length")
+  153: 
+  154: rsiLength  = input(14, title="RSI of MACD Length")
+  155: 
+  156: 
+  157: 
+  158: 
+  159: riskCapital = input(title="Risk % of capital", defval=10, minval=1)
+  160: stopLoss=input(3,title="Stop Loss",minval=1)
+  161: 
+  162: takeProfit=input(false, title="Take Profit")
+
+## Risk-based quantity  [lines 198-204]
+  198: qty1 = (strategy.equity  * riskCapital / 100 ) /  (close*stopLoss/100)  
+  199: 
+  200: //check if cash is sufficient  to buy qty1  , if capital not available use the available capital only
+  201: qty1:= (qty1 * close >= strategy.equity ) ? (strategy.equity / close) : qty1
+  202: 
+  203: 
+  204: strategy.entry(id="RSIofMACD", long=true,   qty=qty1,  when =  ( crossover(rsiOfMACD, 30) or crossover(rsiOfMACD, 35)  ) and close>=emaSlow )
