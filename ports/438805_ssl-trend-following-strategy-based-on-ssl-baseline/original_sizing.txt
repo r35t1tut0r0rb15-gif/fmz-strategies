@@ -1,0 +1,294 @@
+# Original sizing and money-management code, FMZ #438805 (基于SSL的均线趋势跟随策略Trend-Following-Strategy-Based-on-SSL-Baseline)
+# Source: https://www.fmz.com/strategy/438805  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk inputs, risk-based quantity and tick bracket  [lines 192-480]
+  192: i_riskReward            = input.float(2,    "Risk : Reward  Ratio ",            group = "Strategy: Risk Management",    inline = "1", minval = 0, step = 0.1,     tooltip = "Previous high or low (long/short dependant) is used to determine TP level. 'Risk : Reward' ratio is then used to calculate SL based of previous high/low level.\n\nIn short, the higher the R:R ratio, the smaller the SL since TP target is fixed by previous high/low price data.")
+  193: i_accountRiskPercent    = input.float(1,    "Portfolio Risk %",                 group = "Strategy: Risk Management",    inline = "1", minval = 0, step = 0.1,     tooltip = "Percentage of portfolio you lose if trade hits SL.\n\nYou then stand to gain\n  Portfolio Risk % * Risk : Reward\nif trade hits TP.")
+  194: 
+  195: 
+  196: 
+  197: // 4. Inputs for Drawings
+  198: i_showTpSlBoxes       = input.bool(false,  "Show TP / SL Boxes",               group = "Strategy: Drawings",           inline = "1",  tooltip = "Show or hide TP and SL position boxes.\n\nNote: TradingView limits the maximum number of boxes that can be displayed to 500 so they may not appear for all price data under test.")
+  199: i_showLabels          = input.bool(false, "Show Trade Exit Labels",            group = "Strategy: Drawings",           inline = "1",  tooltip = "Useful labels to identify Profit/Loss and cumulative portfolio capital after each trade closes.\n\nAlso note that TradingView limits the max number of 'boxes' that can be displayed on a chart (max 500). This means when you lookback far enough on the chart you will not see the TP/SL boxes. However you can check this option to identify where trades exited.")
+  200: i_showDashboard       = input.bool(false, "Show Dashboard",                    group = "Strategy: Drawings",           inline = "1",  tooltip = "Show Backtest Results")
+  201: i_show_color_bar      = input.bool(false , "Color Bars",                       group = "Strategy: Drawings",           inline = "1") 
+  202: // 5. Inputs for Indicators
+  203: //// 5-1. Inputs for Indicator - 1: SSL Hybrid
+  204: i_useTrueRange = input.bool(defval = true , title = "use true range for Keltner Channel?", tooltip = "", inline = " ", group = "1: SSL Hybrid") 
+  205: i_maType = input.string(defval='EMA', title='Baseline Type', options=['SMA', 'EMA', 'DEMA', 'TEMA', 'LSMA', 'WMA', 'MF', 'VAMA', 'TMA', 'HMA', 'JMA', 'Kijun v2', 'EDSMA', 'McGinley'],group = "1: SSL Hybrid")
+  206: i_len = input.int(defval=30,title='Baseline Length', group = "1: SSL Hybrid")
+  207: i_multy = input.float(0.2, step=0.05, title='Base Channel Multiplier', group = "1: SSL Hybrid")
+  208: 
+  209: // Input for Baseline
+  210: i_kidiv = input.int(defval=1, maxval=4, minval=0, title='Kijun MOD Divider',inline="Kijun v2", group="1: SSL Hybrid")
+  211: i_jurik_phase = input.int(defval=3, title='Baseline Type = JMA -> Jurik Phase', inline='JMA',group="1: SSL Hybrid")
+  212: i_jurik_power = input.int(defval=1, title='Baseline Type = JMA -> Jurik Power', inline='JMA',group="1: SSL Hybrid")
+  213: i_volatility_lookback = input.int(defval=10, title='Baseline Type = VAMA -> Volatility lookback length', inline='VAMA',group="1: SSL Hybrid")
+  214: // MF
+  215: i_beta = input.float(0.8, minval=0, maxval=1, step=0.1, title='Baseline Type = MF (Modular Filter, General Filter) ->Beta', inline='MF',group="1: SSL Hybrid")
+  216: i_feedback = input.bool(defval=false, title='Baseline Type = MF (Modular Filter) -> Use Feedback?', inline='MF',group="1: SSL Hybrid")
+  217: i_z = input.float(0.5, title='Baseline Type = MF (Modular Filter) ->  Feedback Weighting', step=0.1, minval=0, maxval=1, inline='MF',group="1: SSL Hybrid")
+  218: // EDSMA
+  219: i_ssfLength = input.int(title='EDSMA - Super Smoother Filter Length', minval=1, defval=20, inline='EDSMA',group="1: SSL Hybrid")
+  220: i_ssfPoles = input.int(title='EDSMA - Super Smoother Filter Poles', defval=2, options=[2, 3], inline='EDSMA',group="1: SSL Hybrid")
+  221: 
+  222: // # ========================================================================= #
+  223: // #               Functions for Stop Loss & Take Profit & Plots
+  224: // # ========================================================================= #
+  225: 
+  226: percentAsPoints(pcnt) =>
+  227:     math.round(pcnt / 100 * close / syminfo.mintick) 
+  228:     
+  229: calcStopLossPrice(pointsOffset, isLong) =>
+  230:     priceOffset = pointsOffset * syminfo.mintick
+  231:     if isLong
+  232:         close - priceOffset
+  233:     else 
+  234:         close + priceOffset
+  235: 
+  236: calcProfitTrgtPrice(pointsOffset, isLong) =>
+  237:     calcStopLossPrice(-pointsOffset, isLong)
+  238:     
+  239:         
+  240: printLabel(barIndex, msg) => label.new(barIndex, close, msg)
+  241: 
+  242: printTpSlHitBox(left, right, slHit, tpHit, entryPrice, slPrice, tpPrice) => 
+  243:     if i_showTpSlBoxes
+  244:         box.new (left = left,   top = entryPrice,   right = right,  bottom = slPrice,   bgcolor = slHit ? color.new(color.red, 60)   : color.new(color.gray, 90), border_width = 0)
+  245:         box.new (left = left,   top = entryPrice,   right = right,  bottom = tpPrice,   bgcolor = tpHit ? color.new(color.green, 60) : color.new(color.gray, 90), border_width = 0)
+  246:         line.new(x1 = left,     y1 = entryPrice,    x2 = right,     y2 = entryPrice,    color = color.new(color.yellow, 20))
+  247:         line.new(x1 = left,     y1 = slPrice,       x2 = right,     y2 = slPrice,       color = color.new(color.red, 20))
+  248:         line.new(x1 = left,     y1 = tpPrice,       x2 = right,     y2 = tpPrice,       color = color.new(color.green, 20))
+  249:         
+  250: printTpSlNotHitBox(left, right, entryPrice, slPrice, tpPrice) => 
+  251:     if i_showTpSlBoxes
+  252:         box.new (left = left,   top = entryPrice,   right = right,  bottom = slPrice,   bgcolor = color.new(color.gray, 90), border_width = 0)
+  253:         box.new (left = left,   top = entryPrice,   right = right,  bottom = tpPrice,   bgcolor = color.new(color.gray, 90), border_width = 0)
+  254:         line.new(x1 = left,     y1 = entryPrice,    x2 = right,     y2 = entryPrice,    color = color.new(color.yellow, 20))
+  255:         line.new(x1 = left,     y1 = slPrice,       x2 = right,     y2 = slPrice,       color = color.new(color.red, 20))
+  256:         line.new(x1 = left,     y1 = tpPrice,       x2 = right,     y2 = tpPrice,       color = color.new(color.green, 20))
+  257:         
+  258: printTradeExitLabel(x, y, posSize, entryPrice, pnl) => 
+  259:     if i_showLabels
+  260:         labelStr = "Position Size: " + str.tostring(math.abs(posSize), "#.##") + "\nPNL: " + str.tostring(pnl, "#.##") + "\nCapital: " + str.tostring(strategy.equity, "#.##") + "\nEntry Price: " + str.tostring(entryPrice, "#.##") + "\nExit Price: " + str.tostring(close,"#.##")
+  261:         label.new(x = x, y = y, text = labelStr, color = pnl > 0 ? color.new(color.green, 60) : color.new(color.red, 60), textcolor = color.white, style = label.style_label_down)
+  262: 
+  263: f_fillCell(_table, _column, _row, _title, _value, _bgcolor, _txtcolor) =>
+  264:     _cellText = _title + " " + _value
+  265:     table.cell(_table, _column, _row, _cellText, bgcolor=_bgcolor, text_color=_txtcolor, text_size=size.auto)
+  266: 
+  267: // # ========================================================================= #
+  268: // #                          Entry, Close Logic 
+  269: // # ========================================================================= #
+  270: // 1. Calculate Indicators
+  271: //// 1-1. Calculate Indicators for SSL Hybrid Baseline
+  272: ////// TEMA
+  273: tema(src, len) =>
+  274:     ema1 = ta.ema(src, len)
+  275:     ema2 = ta.ema(ema1, len)
+  276:     ema3 = ta.ema(ema2, len)
+  277:     3 * ema1 - 3 * ema2 + ema3
+  278: ////// EDSMA
+  279: get2PoleSSF(src, length) =>
+  280:     PI = 2 * math.asin(1)
+  281:     arg = math.sqrt(2) * PI / length
+  282:     a1 = math.exp(-arg)
+  283:     b1 = 2 * a1 * math.cos(arg)
+  284:     c2 = b1
+  285:     c3 = -math.pow(a1, 2)
+  286:     c1 = 1 - c2 - c3
+  287: 
+  288:     ssf = 0.0
+  289:     ssf := c1 * src + c2 * nz(ssf[1]) + c3 * nz(ssf[2])
+  290:     ssf
+  291: 
+  292: get3PoleSSF(src, length) =>
+  293:     PI = 2 * math.asin(1)
+  294: 
+  295:     arg = PI / length
+  296:     a1 = math.exp(-arg)
+  297:     b1 = 2 * a1 * math.cos(1.738 * arg)
+  298:     c1 = math.pow(a1, 2)
+  299: 
+  300:     coef2 = b1 + c1
+  301:     coef3 = -(c1 + b1 * c1)
+  302:     coef4 = math.pow(c1, 2)
+  303:     coef1 = 1 - coef2 - coef3 - coef4
+  304: 
+  305:     ssf = 0.0
+  306:     ssf := coef1 * src + coef2 * nz(ssf[1]) + coef3 * nz(ssf[2]) + coef4 * nz(ssf[3])
+  307:     ssf
+  308: 
+  309: ma(type, src, len) =>
+  310:     float result = 0
+  311:     if type == 'TMA'
+  312:         result := ta.sma(ta.sma(src, math.ceil(len / 2)), math.floor(len / 2) + 1)
+  313:         result
+  314:     if type == 'MF'
+  315:         ts = 0.
+  316:         b = 0.
+  317:         c = 0.
+  318:         os = 0.
+  319:         //----
+  320:         alpha = 2 / (len + 1)
+  321:         a = i_feedback ? i_z * src + (1 - i_z) * nz(ts[1], src) : src
+  322:         //----
+  323:         b := a > alpha * a + (1 - alpha) * nz(b[1], a) ? a : alpha * a + (1 - alpha) * nz(b[1], a)
+  324:         c := a < alpha * a + (1 - alpha) * nz(c[1], a) ? a : alpha * a + (1 - alpha) * nz(c[1], a)
+  325:         os := a == b ? 1 : a == c ? 0 : os[1]
+  326:         //----
+  327:         upper = i_beta * b + (1 - i_beta) * c
+  328:         lower = i_beta * c + (1 - i_beta) * b
+  329:         ts := os * upper + (1 - os) * lower
+  330:         result := ts
+  331:         result
+  332:     if type == 'LSMA'
+  333:         result := ta.linreg(src, len, 0)
+  334:         result
+  335:     if type == 'SMA'  // Simple
+  336:         result := ta.sma(src, len)
+  337:         result
+  338:     if type == 'EMA'  // Exponential
+  339:         result := ta.ema(src, len)
+  340:         result
+  341:     if type == 'DEMA'  // Double Exponential
+  342:         e = ta.ema(src, len)
+  343:         result := 2 * e - ta.ema(e, len)
+  344:         result
+  345:     if type == 'TEMA'  // Triple Exponential
+  346:         e = ta.ema(src, len)
+  347:         result := 3 * (e - ta.ema(e, len)) + ta.ema(ta.ema(e, len), len)
+  348:         result
+  349:     if type == 'WMA'  // Weighted
+  350:         result := ta.wma(src, len)
+  351:         result
+  352:     if type == 'VAMA'  // Volatility Adjusted
+  353:         /// Copyright © 2019 to present, Joris Duyck (JD)
+  354:         mid = ta.ema(src, len)
+  355:         dev = src - mid
+  356:         vol_up = ta.highest(dev, i_volatility_lookback)
+  357:         vol_down = ta.lowest(dev, i_volatility_lookback)
+  358:         result := mid + math.avg(vol_up, vol_down)
+  359:         result
+  360:     if type == 'HMA'  // Hull
+  361:         result := ta.wma(2 * ta.wma(src, len / 2) - ta.wma(src, len), math.round(math.sqrt(len)))
+  362:         result
+  363:     if type == 'JMA'  // Jurik
+  364:         /// Copyright © 2018 Alex Orekhov (everget)
+  365:         /// Copyright © 2017 Jurik Research and Consulting.
+  366:         phaseRatio = i_jurik_phase < -100 ? 0.5 : i_jurik_phase > 100 ? 2.5 : i_jurik_phase / 100 + 1.5
+  367:         beta = 0.45 * (len - 1) / (0.45 * (len - 1) + 2)
+  368:         alpha = math.pow(beta, i_jurik_power)
+  369:         jma = 0.0
+  370:         e0 = 0.0
+  371:         e0 := (1 - alpha) * src + alpha * nz(e0[1])
+  372:         e1 = 0.0
+  373:         e1 := (src - e0) * (1 - beta) + beta * nz(e1[1])
+  374:         e2 = 0.0
+  375:         e2 := (e0 + phaseRatio * e1 - nz(jma[1])) * math.pow(1 - alpha, 2) + math.pow(alpha, 2) * nz(e2[1])
+  376:         jma := e2 + nz(jma[1])
+  377:         result := jma
+  378:         result
+  379:     if type == 'Kijun v2'
+  380:         kijun = math.avg(ta.lowest(len), ta.highest(len))  //, (open + close)/2)
+  381:         conversionLine = math.avg(ta.lowest(len / i_kidiv), ta.highest(len / i_kidiv))
+  382:         delta = (kijun + conversionLine) / 2
+  383:         result := delta
+  384:         result
+  385:     if type == 'McGinley'
+  386:         mg = 0.0
+  387:         mg := na(mg[1]) ? ta.ema(src, len) : mg[1] + (src - mg[1]) / (len * math.pow(src / mg[1], 4))
+  388:         result := mg
+  389:         result
+  390:     if type == 'EDSMA'
+  391:         zeros = src - nz(src[2])
+  392:         avgZeros = (zeros + zeros[1]) / 2
+  393: 
+  394:         // Ehlers Super Smoother Filter 
+  395:         ssf = i_ssfPoles == 2 ? get2PoleSSF(avgZeros, i_ssfLength) : get3PoleSSF(avgZeros, i_ssfLength)
+  396: 
+  397:         // Rescale filter in terms of Standard Deviations
+  398:         stdev = ta.stdev(ssf, len)
+  399:         scaledFilter = stdev != 0 ? ssf / stdev : 0
+  400: 
+  401:         alpha = 5 * math.abs(scaledFilter) / len
+  402: 
+  403:         edsma = 0.0
+  404:         edsma := alpha * src + (1 - alpha) * nz(edsma[1])
+  405:         result := edsma
+  406:         result
+  407:     result
+  408: 
+  409: ////// Keltner Baseline Channel (Baseline) 
+  410: BBMC = ma(i_maType, close, i_len)
+  411: Keltma = ma(i_maType, close, i_len)
+  412: range_1 = i_useTrueRange ? ta.tr : high - low
+  413: rangema = ta.ema(range_1, i_len)
+  414: upperk = Keltma + rangema * i_multy
+  415: lowerk = Keltma - rangema * i_multy
+  416: 
+  417: // 2. Entry Condition for Long and Short
+  418: // Condition 1
+  419: bullSSL             = close > upperk
+  420: bearSSL             = close < lowerk
+  421: // Enter Position based on Condition 1
+  422: goLong              = inDateRange and bullSSL 
+  423: goShort             = inDateRange and bearSSL 
+  424: // # ========================================================================= #
+  425: // #                   Position Control Logic (Entry & Exit)
+  426: // # ========================================================================= #
+  427: // 1. Trade entry and exit variables
+  428: var tradeEntryBar   = bar_index
+  429: var profitPoints    = 0.
+  430: var lossPoints      = 0.
+  431: var slPrice         = 0.
+  432: var tpPrice         = 0.
+  433: var inLong          = false 
+  434: var inShort         = false
+  435: // 2. Entry decisions
+  436: openLong            = (goLong and not inLong)                           // Long entry condition & not in long position
+  437: openShort           = (goShort and not inShort)                         // Short entry condition & not in short position
+  438: flippingSides       = (goLong and inShort) or (goShort and inLong)      // (Long entry condition & in short position) and the opposite
+  439: enteringTrade       = openLong or openShort                             // Entering Long or Short Condition
+  440: inTrade             = inLong or inShort
+  441: // 3. Stop Loss & Take Profit Percent
+  442: lowestLow           = ta.lowest(source = low, length = i_slLookBack) 
+  443: highestHigh         = ta.highest(source = high, length = i_slLookBack) 
+  444: llhhSLPercent       = openLong ? math.abs((close - lowestLow) / close) * 100 : openShort ? math.abs((highestHigh - close) / close) * 100 : na
+  445: atr                 = ta.atr(i_slAtrLength)
+  446: slAmount            = atr * i_slAtrMultiplier
+  447: slPercent           = i_slType == 'ATR' ? math.abs((1 - (close - slAmount) / close) * 100) : i_slType == 'Percent' ? i_slPercent : llhhSLPercent
+  448: tpPercent           = slPercent * i_riskReward
+  449: // 4. Risk calculations & Quantity Management
+  450: riskAmt             = strategy.equity * i_accountRiskPercent / 100
+  451: entryQty            = math.abs(riskAmt / slPercent * 100)  / close
+  452: 
+  453: // 5. Open Position
+  454: if openLong
+  455:     if strategy.position_size < 0
+  456:         printTpSlNotHitBox(tradeEntryBar + 1, bar_index + 1, strategy.position_avg_price, slPrice, tpPrice)
+  457:         printTradeExitLabel(bar_index + 1, math.max(tpPrice, slPrice), strategy.position_size, strategy.position_avg_price, strategy.openprofit)
+  458:     strategy.entry("Long", strategy.long, qty = entryQty, alert_message = "Long Entry")
+  459:     enteringTrade   := true
+  460:     inLong          := true
+  461:     inShort         := false
+  462: 
+  463: if openShort
+  464:     if strategy.position_size > 0
+  465:         printTpSlNotHitBox(tradeEntryBar + 1, bar_index + 1, strategy.position_avg_price, slPrice, tpPrice)
+  466:         printTradeExitLabel(bar_index + 1, math.max(tpPrice, slPrice), strategy.position_size, strategy.position_avg_price, strategy.openprofit)
+  467:     strategy.entry("Short", strategy.short, qty = entryQty, alert_message = "Short Entry")
+  468:     enteringTrade   := true
+  469:     inShort         := true
+  470:     inLong          := false
+  471: 
+  472: if enteringTrade
+  473:     profitPoints    := percentAsPoints(tpPercent)
+  474:     lossPoints      := percentAsPoints(slPercent)
+  475:     slPrice         := calcStopLossPrice(lossPoints, openLong) 
+  476:     tpPrice         := calcProfitTrgtPrice(profitPoints, openLong)
+  477:     tradeEntryBar   := bar_index
+  478: 
+  479: // Can add more take profit Actions 
+  480: strategy.exit("TP/SL", profit = profitPoints, loss = lossPoints, comment_profit = "TP Hit", comment_loss = "SL Hit", alert_profit = "TP Hit Alert", alert_loss = "SL Hit Alert")

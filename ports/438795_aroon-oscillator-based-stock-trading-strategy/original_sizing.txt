@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #438795 (基于阿隆震荡器的股票交易策略Aroon-Oscillator-Based-Stock-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/438795  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

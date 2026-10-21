@@ -1,0 +1,76 @@
+# Original sizing and money-management code, FMZ #438800 (开放收盘交叉移动平均线趋势追踪策略Open-Close-Cross-Moving-Average-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/438800  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trailing stop inputs and exits  [lines 205-275]
+  205: useStop = input(defval=true, title="Use Trailing Stop?")
+  206: slPoints = input(defval=200, title="Stop Loss Trail Points", minval=1)
+  207: slOffset = input(defval=400, title="Stop Loss Trail Offset", minval=1)
+  208: // === /INPUTS ===
+  209: 
+  210: // === BASE FUNCTIONS ===
+  211: // Returns MA input selection variant, default to SMA if blank or typo.
+  212: variant(type, src, len, offSig, offALMA) =>
+  213:     v1 = sma(src, len)  // Simple
+  214:     v2 = ema(src, len)  // Exponential
+  215:     v3 = 2 * v2 - ema(v2, len)  // Double Exponential
+  216:     v4 = 3 * (v2 - ema(v2, len)) + ema(ema(v2, len), len)  // Triple Exponential
+  217:     v5 = wma(src, len)  // Weighted
+  218:     v6 = vwma(src, len)  // Volume Weighted
+  219:     sma_1 = sma(src, len)  // Smoothed
+  220:     v7 = na(v5[1]) ? sma_1 : (v5[1] * (len - 1) + src) / len
+  221:     v8 = wma(2 * wma(src, len / 2) - wma(src, len), round(sqrt(len)))  // Hull
+  222:     v9 = linreg(src, len, offSig)  // Least Squares
+  223:     v10 = alma(src, len, offALMA, offSig)  // Arnaud Legoux
+  224:     type == "EMA" ? v2 : type == "DEMA" ? v3 : type == "TEMA" ? v4 : 
+  225:        type == "WMA" ? v5 : type == "VWMA" ? v6 : type == "SMMA" ? v7 : 
+  226:        type == "HullMA" ? v8 : type == "LSMA" ? v9 : type == "ALMA" ? v10 : v1
+  227: // security wrapper for repeat calls
+  228: reso(exp, use, res) =>
+  229:     security_1 = security(syminfo.tickerid, res, exp)
+  230:     use ? security_1 : exp
+  231: // === /BASE FUNCTIONS ===
+  232: 
+  233: // === SERIES SETUP ===
+  234: // open/close
+  235: variant__1 = variant(basisType, close, basisLen, offsetSigma, offsetALMA)
+  236: reso__1 = reso(variant__1, useRes, stratRes)
+  237: reso__2 = reso(close, useRes, stratRes)
+  238: closeSeries = useMA ? reso__1 : reso__2
+  239: variant__2 = variant(basisType, open, basisLen, offsetSigma, offsetALMA)
+  240: reso__3 = reso(variant__2, useRes, stratRes)
+  241: reso__4 = reso(open, useRes, stratRes)
+  242: openSeries = useMA ? reso__3 : reso__4
+  243: trendState = bool(na)
+  244: trendState := closeSeries > openSeries ? true : 
+  245:    closeSeries < openSeries ? false : trendState[1]
+  246: // === /SERIES ===
+  247: 
+  248: // === PLOTTING ===
+  249: barcolor(color=closeSeries > openSeries ? #006600 : #990000, title="Bar Colours")
+  250: // channel outline
+  251: closePlot = plot(closeSeries, title="Close Line", color=#009900, linewidth=2, style=plot.style_line, transp=90)
+  252: openPlot = plot(openSeries, title="Open Line", color=#CC0000, linewidth=2, style=plot.style_line, transp=90)
+  253: // channel fill
+  254: closePlotU = plot(trendState ? closeSeries : na, transp=100, editable=false)
+  255: openPlotU = plot(trendState ? openSeries : na, transp=100, editable=false)
+  256: closePlotD = plot(trendState ? na : closeSeries, transp=100, editable=false)
+  257: openPlotD = plot(trendState ? na : openSeries, transp=100, editable=false)
+  258: fill(openPlotU, closePlotU, title="Up Trend Fill", color=#009900, transp=40)
+  259: fill(openPlotD, closePlotD, title="Down Trend Fill", color=#CC0000, transp=40)
+  260: // === /PLOTTING ===
+  261: 
+  262: // === STRATEGY ===
+  263: // conditions
+  264: longCond = crossover(closeSeries, openSeries)
+  265: shortCond = crossunder(closeSeries, openSeries)
+  266: // entries and base exit
+  267: strategy.entry("long", strategy.long, when=longCond)
+  268: strategy.entry("short", strategy.short, when=shortCond)
+  269: // if we're using the trailing stop
+  270: if useStop
+  271:     strategy.exit("XL", from_entry="long", trail_points=slPoints, trail_offset=slOffset)
+  272:     strategy.exit("XS", from_entry="short", trail_points=slPoints, trail_offset=slOffset)
+  273: // not sure needed, but just incase..
+  274: strategy.exit("XL", from_entry="long", when=shortCond)
+  275: strategy.exit("XS", from_entry="short", when=longCond)

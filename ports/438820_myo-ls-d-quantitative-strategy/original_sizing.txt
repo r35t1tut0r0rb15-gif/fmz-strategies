@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #438820 (基于多空双轨的追踪止盈策略Myo_LS_D-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/438820  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Capital and capital / close quantities  [lines 255-266]
+  255: strategy.initial_capital = 50000
+  256: if strategy.position_size == 0
+  257:     if LongOpen
+  258:         strategy.entry("Long Open" , strategy.long , comment= "Long Open " + str.tostring(close[0]), qty=strategy.initial_capital/close[0])
+  259: 
+  260: if strategy.position_size > 0
+  261:     if (con_f > 0 or con_g > 0 or ShortOpen) and close <= baseLine_D
+  262:         strategy.close_all(comment="Close Long " + str.tostring(close[0]))
+  263: 
+  264: if strategy.position_size == 0
+  265:     if ShortOpen
+  266:         strategy.entry("Short Open" , strategy.short , comment= "Short Open " + str.tostring(close[0]), qty=strategy.initial_capital/close[0])

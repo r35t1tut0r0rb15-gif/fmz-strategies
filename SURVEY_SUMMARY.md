@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1971 |
-| PORTED | 1559 |
+| PORT_CANDIDATE | 1959 |
+| PORTED | 1571 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1687,7 +1687,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 438787 | `ports/438787_dual-moving-average-reversal-trading-strategy/` | PineScript | combo_123_reversal | none | length x2, ma_length x2 | 4 |
 | 438792 | `ports/438792_pfe-polarized-fractal-efficiency-pfe-trading-strategy/` | PineScript | momentum_oscillator | none | unit x2, length x2 | 4 |
 | 438794 | `ports/438794_eintsimple-pullback-strategy/` | PineScript | mean_reversion | none | ma1 x2, stop x2 | 4 |
-| | **1559 ports** | | | | | **7822** |
+| 438795 | `ports/438795_aroon-oscillator-based-stock-trading-strategy/` | PineScript | momentum_oscillator | none | length x2, level_middle x2 | 4 |
+| 438798 | `ports/438798_rsi-multi-timeframe-rsi-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, tf_mid x2 | 4 |
+| 438799 | `ports/438799_adaptive-trend-following-strategy/` | PineScript | supertrend | none | pd_ x2, bw x2 | 4 |
+| 438800 | `ports/438800_open-close-cross-moving-average-trend-following-strategy/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop | k_trail x2, activate x2 | 4 |
+| 438802 | `ports/438802_momentum-trend-following-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 438805 | `ports/438805_ssl-trend-following-strategy-based-on-ssl-baseline/` | PineScript | volatility_channel_breakout | none | length x2, sl_mult x2 | 4 |
+| 438807 | `ports/438807_ibs-and-weekly-high-based-sp500-futures-trading-strategy/` | PineScript | calendar_seasonal | none | ibs_max x2, hold_bars x2 | 4 |
+| 438810 | `ports/438810_donchian-channels-long-term-trend-following-strategy/` | PineScript | donchian_breakout | none | length x2, double_mid x2 | 4 |
+| 438816 | `ports/438816_multiplicative-moving-average-dual-direction-trading-strateg/` | PineScript | volatility_stop_cross | none | multiplier x2, length x2 | 4 |
+| 438820 | `ports/438820_myo-ls-d-quantitative-strategy/` | PineScript | multi_indicator_confluence | none | trend_l x2, base_periods x2 | 4 |
+| 438826 | `ports/438826_adx-adx-dynamic-trend-strategy/` | PineScript | directional_movement | none | key_level x2, ma_length x2 | 4 |
+| 438929 | `ports/438929_macd-multi-timeframe-macd-moving-average-trading-strategy/` | PineScript | rsi_oscillator | coarse_bar_stop | k_sl x2, rsi_len x2 | 4 |
+| | **1571 ports** | | | | | **7870** |
 
 ## Rejected on reading
 

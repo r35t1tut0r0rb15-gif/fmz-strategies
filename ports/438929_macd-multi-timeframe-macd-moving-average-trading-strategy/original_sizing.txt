@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #438929 (多时间周期MACD均线交易策略Multi-Timeframe-MACD-Moving-Average-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/438929  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Tick risk inputs and exits  [lines 386-407]
+  386: inpTakeProfit   = input(defval = 1500, title = "Take Profit", minval = 0)                        
+  387: inpStopLoss     = input(defval = 100, title = "Stop Loss", minval = 0)                           
+  388: inpTrailStop    = input(defval = 0, title = "Trailing Stop Loss", minval = 0)                    
+  389: inpTrailOffset  = input(defval = 0, title = "Trailing Stop Loss Offset", minval = 0)             
+  390: useTakeProfit   = inpTakeProfit  >= 1 ? inpTakeProfit  : na
+  391: useStopLoss     = inpStopLoss    >= 1 ? inpStopLoss    : na
+  392: useTrailStop    = inpTrailStop   >= 1 ? inpTrailStop   : na
+  393: useTrailOffset  = inpTrailOffset >= 1 ? inpTrailOffset : na
+  394: 
+  395: // Condition to enter/exit short/long
+  396: enterLong =  (run_script) and res_crossUp
+  397: enterShort = (run_script) and res_crossDn
+  398: exitLong =   (run_script) and pIHammer
+  399: exitShort =  (run_script) and pHammer
+  400: 
+  401: // STRATEGY script => uncomment ; STUDY script => comment
+  402: strategy.entry( id = "Long", long = true, when = enterLong )
+  403: strategy.close( id = "Long", when = exitLong )
+  404: strategy.entry( id = "Short", long = false, when = enterShort )
+  405: strategy.close( id = "Short", when = exitShort )
+  406: strategy.exit("Exit Long", from_entry = "Long", profit = useTakeProfit, loss = useStopLoss, trail_points = useTrailStop, trail_offset = useTrailOffset)
+  407: strategy.exit("Exit Short", from_entry = "Short", profit = useTakeProfit, loss = useStopLoss, trail_points = useTrailStop, trail_offset = useTrailOffset)

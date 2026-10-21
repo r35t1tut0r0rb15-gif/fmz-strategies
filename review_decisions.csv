@@ -1788,3 +1788,15 @@ fmz_id,file,final_outcome,criterion,reason
 438787,基于双均线反转交易策略Dual-Moving-Average-Reversal-Trading-Strategy.md,PORTED,,ports/438787_dual-moving-average-reversal-trading-strategy/
 438792,极化分形效率PFE交易策略Polarized-Fractal-Efficiency-PFE-Trading-Strategy.md,PORTED,,ports/438792_pfe-polarized-fractal-efficiency-pfe-trading-strategy/
 438794,基于双移动平均线交叉的回调入场策略EintSimple-Pullback-Strategy.md,PORTED,,ports/438794_eintsimple-pullback-strategy/
+438795,基于阿隆震荡器的股票交易策略Aroon-Oscillator-Based-Stock-Trading-Strategy.md,PORTED,,ports/438795_aroon-oscillator-based-stock-trading-strategy/
+438798,多时间框架RSI策略Multi-Timeframe-RSI-Strategy.md,PORTED,,ports/438798_rsi-multi-timeframe-rsi-strategy/
+438799,自适应趋势跟随策略Adaptive-Trend-Following-Strategy.md,PORTED,,ports/438799_adaptive-trend-following-strategy/
+438800,开放收盘交叉移动平均线趋势追踪策略Open-Close-Cross-Moving-Average-Trend-Following-Strategy.md,PORTED,,ports/438800_open-close-cross-moving-average-trend-following-strategy/
+438802,动量趋势跟踪交易策略Momentum-Trend-Following-Trading-Strategy.md,PORTED,,ports/438802_momentum-trend-following-trading-strategy/
+438805,基于SSL的均线趋势跟随策略Trend-Following-Strategy-Based-on-SSL-Baseline.md,PORTED,,ports/438805_ssl-trend-following-strategy-based-on-ssl-baseline/
+438807,基于日内波动性和周线高点的交易策略IBS-and-Weekly-High-Based-SP500-Futures-Trading-Strategy.md,PORTED,,ports/438807_ibs-and-weekly-high-based-sp500-futures-trading-strategy/
+438810,唐奇安通道长期趋势跟踪策略Donchian-Channels-Long-Term-Trend-Following-Strategy.md,PORTED,,ports/438810_donchian-channels-long-term-trend-following-strategy/
+438816,乘法移动平均线双向交易策略Multiplicative-Moving-Average-Dual-direction-Trading-Strategy.md,PORTED,,ports/438816_multiplicative-moving-average-dual-direction-trading-strateg/
+438820,基于多空双轨的追踪止盈策略Myo_LS_D-Quantitative-Strategy.md,PORTED,,ports/438820_myo-ls-d-quantitative-strategy/
+438826,ADX动态平均趋势指标策略ADX-Dynamic-Trend-Strategy.md,PORTED,,ports/438826_adx-adx-dynamic-trend-strategy/
+438929,多时间周期MACD均线交易策略Multi-Timeframe-MACD-Moving-Average-Trading-Strategy.md,PORTED,,ports/438929_macd-multi-timeframe-macd-moving-average-trading-strategy/
