@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #437543 (动态止损追踪策略Moving-Stop-Loss-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/437543  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit tick input  [lines 162-162]
+  162: TakeProfitLevel=input(400)

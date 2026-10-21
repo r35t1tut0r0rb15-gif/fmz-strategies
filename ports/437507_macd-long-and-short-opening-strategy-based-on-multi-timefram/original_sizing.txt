@@ -1,0 +1,51 @@
+# Original sizing and money-management code, FMZ #437507 (基于多时框架移动平均线和MACD-的长空开仓策略Long-and-Short-Opening-Strategy-Based-on-Multi-Timeframe-Moving-Average-and-MACD)
+# Source: https://www.fmz.com/strategy/437507  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, 100 % of equity, slippage, commission  [lines 221-222]
+  221: strategy("LONG", overlay=true, initial_capital=1000, default_qty_type=strategy.percent_of_equity, default_qty_value=100, slippage=1, commission_type=strategy.commission.percent, 
+  222:      commission_value=0.015)
+
+## Long stop / take-profit inputs  [lines 360-401]
+  360: maxIdLossPcnt = input(5, "Max Intraday Loss(%)", type=input.float, minval=0.0, step=0.1)
+  361: // strategy.risk.max_intraday_loss(maxIdLossPcnt, strategy.percent_of_equity)
+  362: 
+  363: SSL2=input(title="Long Stop Loss when MTF EMA cross?",type=input.bool,defval=false)
+  364: 
+  365: SSLOP = LONG  and crossunder(source, mtf1) 
+  366: 
+  367: SlossPercOn = input(title="Long Stop Loss (%) on?",type=input.bool,defval=false)
+  368: SlossPerc = input(title="Long Stop Loss (%)", type=input.float, minval=0.0, step=0.1, defval=4.7) * 0.01
+  369: SSpricePerc = LONG and SlossPercOn? strategy.position_avg_price * (-1 - SlossPerc) : na
+  370: plot(series = SSpricePerc, linewidth=2, color= color.maroon,style=plot.style_linebr, title="Long Stop Loss %") 
+  371: SSLX = LONG and crossunder(source, SSpricePerc)
+  372: 
+  373: SSLatr= input(title="Long Stop Loss ATR?",type=input.bool,defval=true)
+  374: useStructure=input(title="Look back for High/Lows?",type=input.bool,defval=true)
+  375: Slookback=input(title="How far to look back for High/Lows:",type=input.integer,defval=18,minval=1)
+  376: SatrLenghth=input(title="Long ATR Lenghth",type=input.integer,defval=9,minval=1)
+  377: SatrStopMultiplier=input(title="Long ATR Stop x ?", type=input.float,defval=4.3, minval=0.1,step=0.1)
+  378: 
+  379: Satr = atr(SatrLenghth)
+  380: LongStop = SSLatr ? ((useStructure ? lowest(low, Slookback) : source) - Satr * SatrStopMultiplier) : na
+  381: 
+  382: SStop = crossunder(source,LongStop)
+  383: 
+  384: plot(Satr, color=color.blue, title="ATR", transp=100)
+  385: plot(series = uptrend ? LongStop : na, color=color.red, style=plot.style_linebr, title="Long Trailing Stop", transp=0)
+  386: 
+  387: 
+  388: ATRTPSLXX= input(title = "═════════════════ LONG TP ═════════════════", defval = false, type = input.bool)
+  389: 
+  390: TpPercOn = input(title="Long Take Profit (%) on?",type=input.bool,defval=true)
+  391: TpPerc = input(title="Long Take Profit (%)", type=input.float, minval=0.0, step=0.1, defval=5.3) * 0.01
+  392: TppricePerc = LONG and TpPercOn? strategy.position_avg_price * (-1 + TpPerc) : na
+  393: plot(series = TppricePerc, linewidth=2, color= color.lime,style=plot.style_linebr, title="Long Take Profit %") 
+  394: TPLX = LONG and crossunder(source, TppricePerc)
+  395: 
+  396: TP1=input(title="1 Long Take Profit On?",type=input.bool,defval=true)
+  397: 
+  398: useStructure1=input(title="Look back for High/Lows?",type=input.bool,defval=true)
+  399: STplookback=input(title="How far to look back for High/Lows for 1 TP",type=input.integer,defval=12,minval=1)
+  400: STpatrLenghth=input(title="Long ATR Lenghth 1 TP",type=input.integer,defval=24,minval=1)
+  401: SatrProfitMultiplier = input(title="First Long ATR Take Profit x ?", type=input.float,defval=5.5, minval=0.1,step=0.1)

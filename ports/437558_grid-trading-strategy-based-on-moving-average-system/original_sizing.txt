@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #437558 (基于均线系统的网格交易策略Grid-Trading-Strategy-Based-on-Moving-Average-System)
+# Source: https://www.fmz.com/strategy/437558  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; lot input  [lines 148-153]
+  148: strategy(title = "Noro's Fishnet Strategy", shorttitle = "Fishnet str", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)
+  149: 
+  150: //Settings
+  151: needlong = input(true, defval = true, title = "Long")
+  152: needshort = input(true, defval = true, title = "Short")
+  153: capital = input(100, defval = 100, minval = 1, maxval = 10000, title = "Lot")
+
+## Equity-based lot  [lines 221-222]
+  221: lot = 0.0
+  222: lot := strategy.equity / close * capital / 100

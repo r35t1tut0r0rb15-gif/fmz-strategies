@@ -3303,6 +3303,32 @@ SIZING = {
     437527: [],
     437539: [],
     437540: [],
+    # ---- FMZ-C, batch C102 (2026-10-21)
+    437507: [
+        ("strategy(): capital, 100 % of equity, slippage, commission", 221, 222),
+        ("Long stop / take-profit inputs", 360, 401),
+    ],
+    437542: [],
+    437543: [
+        ("Take-profit tick input", 162, 162),
+    ],
+    437547: [
+        ("Trailing-stop and stop-loss percent inputs", 178, 186),
+    ],
+    437548: [
+        ("strategy(): 100 % of equity, pyramiding 0; martingale and capital inputs", 157, 164),
+        ("Lot and martingale", 273, 275),
+    ],
+    437550: [],
+    437552: [],
+    437553: [],
+    437558: [
+        ("strategy(): 100 % of equity; lot input", 148, 153),
+        ("Equity-based lot", 221, 222),
+    ],
+    437565: [
+        ("Fixed quantity 1", 163, 163),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -4144,6 +4170,15 @@ REJECTED_ON_READING = {
               "distance: whether the strategy is flat, and so whether it may enter, depends on an "
               "exit the port cannot model; the candle and midline tests are also in forex pips (x "
               "0.0001) on a BTC chart."),
+    # ---- FMZ-C, batch C102 (2026-10-21)
+    437544: ("1", "An intraday buy-at-the-close script on the daily header chart: the buy window "
+              "time(period, '1429-1500') and the sell window '0925-0935' never contain a daily "
+              "bar's open (00:00 UTC on the backtest exchange, 17:00 New York on broker days), so "
+              "no entry is ever sent (as #436776)."),
+    437557: ("1", "The take profit is strategy.exit(profit = 8, qty_percent = 50), a half-position "
+              "exit, and the remainder closes on an SMA cross only on the bar the take profit is "
+              "placed (quantityRemainder resets every bar): partial exits are outside the "
+              "single-position signal interface (as #436524)."),
 }
 
 DUPLICATE_ON_READING = {

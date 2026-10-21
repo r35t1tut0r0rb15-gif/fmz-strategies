@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #437547 (指数平滑移动平均值结合尾随止损与百分比止损的股票量化交易策略Stock-Quant-Trading-Strategy-Combining-Exponential-Moving-Average-with-Trailing-Stop-Loss-and-Percentage-Stop-Loss)
+# Source: https://www.fmz.com/strategy/437547  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trailing-stop and stop-loss percent inputs  [lines 178-186]
+  178: longTrailPerc = input.float(title="Long Trailing Stop (%)", minval=0.0, step=0.1, defval=7) * 0.01
+  179: 
+  180: shortTrailPerc = input.float(title="Short Trailing Stop (%)", minval=0.0, step=0.1, defval=7) * 0.01
+  181: 
+  182: //Configure stop loss level with input options (optional)
+  183: 
+  184: longStopPerc = input.float(title="Long Stop Loss (%)", minval=0.0, step=0.1, defval=2)*0.01
+  185: 
+  186: shortStopPerc = input.float(title="Short Stop Loss (%)", minval=0.0, step=0.1, defval=2)*0.01

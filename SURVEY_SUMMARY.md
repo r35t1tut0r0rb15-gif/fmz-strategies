@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2103 |
-| PORTED | 1437 |
+| PORT_CANDIDATE | 2091 |
+| PORTED | 1447 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 204 |
+| REJECTED_ON_READING | 206 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1560,12 +1560,22 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 437503 | `ports/437503_atr-atr-channel-breakout-trend-following-strategy/` | PineScript | breakout | none | atr_length x2 | 2 |
 | 437505 | `ports/437505_double-bollinger-band-breakout-strategy/` | PineScript | bollinger_breakout | coarse_bar_stop | length_slow x2, length_fast x2 | 4 |
 | 437506 | `ports/437506_rsi-momentum-indicator-rsi-reversal-trading-strategy/` | PineScript | rsi_oscillator | none | smma_len x2, adx_len x2 | 4 |
+| 437507 | `ports/437507_macd-long-and-short-opening-strategy-based-on-multi-timefram/` | PineScript | trend_confluence | none | macd_limit_frac x2, stop_mult x2 | 4 |
 | 437508 | `ports/437508_kp-heyping-moving-average-trend-strategy/` | PineScript | ma_cross | none | fama x2, sloma x2 | 4 |
 | 437515 | `ports/437515_dual-reversal-high-low-strategy/` | PineScript | reversal_pattern | none | length x2, length_hema x2 | 4 |
 | 437527 | `ports/437527_bandpass-filtering-trend-extraction-strategy/` | PineScript | cycle_filter | none | length x2, delta x2 | 4 |
 | 437539 | `ports/437539_adaptive-kaufman-moving-average-trend-following-strategy/` | PineScript | adaptive_average | none | length x2 | 2 |
 | 437540 | `ports/437540_the-gaussian-moving-average-trading-strategy/` | PineScript | mean_reversion | none | z_len x2, pct_len x2 | 4 |
-| | **1437 ports** | | | | | **7342** |
+| 437542 | `ports/437542_short-term-trend-tracking-strategy-based-on-gann-me-analysis/` | PineScript | ma_cross | none | scale x2 | 2 |
+| 437543 | `ports/437543_moving-stop-loss-tracking-strategy/` | PineScript | stochastic_oscillator | trailing_stop_pending | period_k x2, smooth_k x2 | 4 |
+| 437547 | `ports/437547_stock-quant-trading-strategy-combining-exponential-moving-av/` | PineScript | ma_cross | trailing_stop | trail_pct x2, stop_pct x2 | 4 |
+| 437548 | `ports/437548_alexincs-bar-v12-breakout-accumulation-strategy-based-on-mea/` | PineScript | reversal_pattern | none | body_mult x2, meanful_div x2 | 4 |
+| 437550 | `ports/437550_swing-bollinger-bands-breakout-swing-trading-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 437552 | `ports/437552_dema-tema-dual-and-triple-exponential-moving-average-crossov/` | PineScript | ma_cross | none | dema_length x2, tema_length x2 | 4 |
+| 437553 | `ports/437553_reversal-and-center-of-gravity-integrated-trading-strategy-b/` | PineScript | reversal_pattern | none | length_cof x2, length x2 | 4 |
+| 437558 | `ports/437558_grid-trading-strategy-based-on-moving-average-system/` | PineScript | ma_cross | none | fast_len x2, slow_len x2 | 4 |
+| 437565 | `ports/437565_bollinger-band-breakout-strategy/` | PineScript | bollinger_breakout | none | mult x2, exit_option x2 | 4 |
+| | **1447 ports** | | | | | **7380** |
 
 ## Rejected on reading
 
@@ -1775,6 +1785,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 437048 | 动态趋势突破策略Dynamic-Breakout-Trend-Following-Strategy.md | 2 | The only exits are strategy.exit(profit = 0.02 x close, loss = 0.01 x close): percents of the close in PRICE units passed as TICK counts, so the real distances are 2 % / 1 % of the price times the tick size (0.2 % / 0.1 % at a 0.1 tick on BTC, 2 % / 1 % at a 1.0 tick), an instrument-specific bracket with no generic reading (as #436603, #436773). |
 | 437411 | 日K线突破策略Daily-Breakout-Strategy.md | 1 | The only stop is strategy.exit(loss = 0.001 x lastDayOpen x tradeSize) with tradeSize = strategy.equity / 3500: the stop distance in ticks grows with the account equity, so the exit depends on the account state, which the signal interface cannot see (as #436653's equity-dependent rule); the order size is also taken from the equity. |
 | 437487 | 玻尔布带ATR尾随止损策略Bollinger-Bands-ATR-Trailing-Stop-Strategy.md | 1 | Entries require strategy.position_size == 0, and the only exits are an exit(limit, stop) whose stop ratchets every bar on max(low - ATR(5), previous stop) (a trail on lows the house trail cannot express) together with a limit set from that stop's distance: whether the strategy is flat, and so whether it may enter, depends on an exit the port cannot model; the candle and midline tests are also in forex pips (x 0.0001) on a BTC chart. |
+| 437544 | 收盘买入次日开盘止盈策略Close-Buying-Next-Open-Profit-Taking-Strategy.md | 1 | An intraday buy-at-the-close script on the daily header chart: the buy window time(period, '1429-1500') and the sell window '0925-0935' never contain a daily bar's open (00:00 UTC on the backtest exchange, 17:00 New York on broker days), so no entry is ever sent (as #436776). |
+| 437557 | 基于移动平均线和相对强弱指标的动量反转策略Momentum-Reversal-Strategy.md | 1 | The take profit is strategy.exit(profit = 8, qty_percent = 50), a half-position exit, and the remainder closes on an SMA cross only on the bar the take profit is placed (quantityRemainder resets every bar): partial exits are outside the single-position signal interface (as #436524). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
