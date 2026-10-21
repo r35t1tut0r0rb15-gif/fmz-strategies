@@ -210,6 +210,7 @@ fmz_id,file,final_outcome,criterion,reason
 437787,渔夫转身EMA多重止损多重止盈策略Fisher-Turnaround-EMA-Multi-Take-Profit-and-Multi-Stop-Strategy.md,REJECTED_ON_READING,2,"The only exits are strategy.exit(loss = close, profit = close + 2 x ATR / close + 3 x ATR): price LEVELS passed as TICK distances, so the real distances are the price itself times the tick size (an instrument-specific bracket with no generic reading, as #437048), and the two exits close 50 % and 100 % of the position (partial exits, criterion 1, as #436524). The Blackflag FTS value is always 50 (up and down are the same sum), so its filter is constant."
 438016,超趋势追踪止盈策略Supertrend-Take-Profit-Strategy.md,REJECTED_ON_READING,1,"The only exits are three take-profit limits closing 25 %, 50 % and 25 % of the position (strategy.exit qty_percent): partial exits, which the house engine cannot hold (one position, all-in or all-out; as #436524)."
 438017,基于K线收盘价的买卖策略Buy-Sell-on-Candle-Close-Strategy.md,REJECTED_ON_READING,1,"pastLow / pastHigh = request.security(tickerid, ""D"", low / high, lookahead = barmerge.lookahead_on) with the [1] applied on the 1-hour chart, not inside the call: from the second hour of a day the value is that same day's final low / high, known only at the day's end (look-ahead)."
+438025,质数波带回测策略Prime-Number-Bands-Backtest-Strategy.md,REJECTED_ON_READING,2,"The bands are the nearest prime numbers above the high and below the low (integer steps of the quote unit; on fractional prices the price itself): a property of the quote's numeric scale, not of the market (as #430985, #430847)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1728,3 +1729,14 @@ fmz_id,file,final_outcome,criterion,reason
 438019,动量双滑窗TSI指标Momentum-Dual-Moving-Window-TSI-Indicator.md,PORTED,,ports/438019_tsi-momentum-dual-moving-window-tsi-indicator/
 438020,多时间框架跟踪止损策略Multi-Timeframe-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/438020_multi-timeframe-trailing-stop-loss-strategy/
 438021,指数均线交叉策略Exponential-Moving-Average-Crossover-Strategy.md,PORTED,,ports/438021_exponential-moving-average-crossover-strategy/
+438022,低波动率买入高波动率买入策略Buy-Low-Volatility-VS-Buy-High-Volatility-Strategy.md,PORTED,,ports/438022_buy-low-volatility-vs-buy-high-volatility-strategy/
+438024,快速震荡RSI交易策略Fast-Oscillating-RSI-Trading-Strategy.md,PORTED,,ports/438024_rsi-fast-oscillating-rsi-trading-strategy/
+438026,双向追Momentum止盈止损策略Consecutive-Up-Down-Strategy-with-Reverse-and-SL-TP-Extension.md,PORTED,,ports/438026_momentum-consecutive-up-down-strategy-with-reverse-and-sl-tp/
+438032,DEMA与EMA交叉结合ATR波动率的短期策略Momentum-Strategy-Based-on-DEMA-and-EMA-Crossover-with-ATR-Volatility-Filter.md,PORTED,,ports/438032_dema-ema-atr-momentum-strategy-based-on-dema-and-ema-crossov/
+438033,多重交叉海龟与加权移动平均线与MACD与TSI组合策略Multiple-Crossovers-Turtle-and-Weighted-Moving-Average-and-MACD-and-TSI-Combination-Strategy.md,PORTED,,ports/438033_macd-tsi-multiple-crossovers-turtle-and-weighted-moving-aver/
+438034,基于EMA均线和MACD指标的趋势跟踪策略EMA-Crossover-and-MACD-Signals-Trend-Following-Strategy.md,PORTED,,ports/438034_ema-macd-ema-crossover-and-macd-signals-trend-following-stra/
+438036,适应性变动性突破策略Adaptive-Volatility-Breakout-Strategy.md,PORTED,,ports/438036_adaptive-volatility-breakout-strategy/
+438046,基于EMA200的移动止盈移动止损策略EMA-200-Based-Trailing-Take-Profit-and-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/438046_ema200-ema-200-based-trailing-take-profit-and-trailing-stop/
+438047,移动平均线交叉信号策略Moving-Average-Cross-Signal-Strategy.md,PORTED,,ports/438047_moving-average-cross-signal-strategy/
+438048,一种双均线交易策略Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/438048_dual-moving-average-crossover-strategy/
+438051,突破高低点回测策略Breakthrough-Highs-and-Lows-Backtesting-Strategy.md,PORTED,,ports/438051_breakthrough-highs-and-lows-backtesting-strategy/

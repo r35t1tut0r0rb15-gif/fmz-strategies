@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #438048 (一种双均线交易策略Dual-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/438048  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop input and tick bracket  [lines 139-158]
+  139: stopLossPercent = input(1, title="Stop Loss Percentage")
+  140: 
+  141: // Calculate moving averages
+  142: fastMA = ta.sma(close, fastLength)
+  143: slowMA = ta.sma(close, slowLength)
+  144: 
+  145: // Plot the moving averages on the chart
+  146: plot(fastMA, color=color.blue, title="Fast MA")
+  147: plot(slowMA, color=color.red, title="Slow MA")
+  148: 
+  149: // Define trading signals
+  150: longCondition = ta.crossover(fastMA, slowMA)
+  151: shortCondition = ta.crossunder(fastMA, slowMA)
+  152: 
+  153: // Execute trades
+  154: strategy.entry("Long", strategy.long, when=longCondition)
+  155: strategy.entry("Short", strategy.short, when=shortCondition)
+  156: 
+  157: // Implement stop loss
+  158: strategy.exit("Stop Loss/Profit", from_entry="Long", loss=close * stopLossPercent / 100, profit=close * 2)

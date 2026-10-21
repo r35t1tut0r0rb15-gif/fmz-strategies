@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #438033 (多重交叉海龟与加权移动平均线与MACD与TSI组合策略Multiple-Crossovers-Turtle-and-Weighted-Moving-Average-and-MACD-and-TSI-Combination-Strategy)
+# Source: https://www.fmz.com/strategy/438033  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

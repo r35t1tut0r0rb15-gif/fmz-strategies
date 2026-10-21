@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #438026 (双向追Momentum止盈止损策略Consecutive-Up-Down-Strategy-with-Reverse-and-SL-TP-Extension)
+# Source: https://www.fmz.com/strategy/438026  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital, commission  [lines 153-160]
+  153: strategy("Consecutive Up/Down Strategy with Reverse", 
+  154:      overlay=true, 
+  155:      default_qty_type=strategy.percent_of_equity, 
+  156:      default_qty_value=100, 
+  157:      initial_capital=10000, 
+  158:      commission_value=0.04, 
+  159:      calc_on_every_tick=false, 
+  160:      slippage=0)

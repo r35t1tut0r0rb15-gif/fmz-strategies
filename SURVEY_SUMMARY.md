@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2031 |
-| PORTED | 1502 |
+| PORT_CANDIDATE | 2019 |
+| PORTED | 1513 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 211 |
+| REJECTED_ON_READING | 212 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1630,7 +1630,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 438019 | `ports/438019_tsi-momentum-dual-moving-window-tsi-indicator/` | PineScript | momentum_oscillator | none | long x2, short x2 | 4 |
 | 438020 | `ports/438020_multi-timeframe-trailing-stop-loss-strategy/` | PineScript | volatility_stop_cross | none | atr_mult x2, atr_length x2 | 4 |
 | 438021 | `ports/438021_exponential-moving-average-crossover-strategy/` | PineScript | pivot_levels | trailing_stop_pending | fib_level x2, range_len x2 | 4 |
-| | **1502 ports** | | | | | **7594** |
+| 438022 | `ports/438022_buy-low-volatility-vs-buy-high-volatility-strategy/` | PineScript | volatility_channel_breakout | none | target_ratio x2, hold_bars x2 | 4 |
+| 438024 | `ports/438024_rsi-fast-oscillating-rsi-trading-strategy/` | PineScript | rsi_oscillator | none | limit x2, dnrsiperiod x2 | 4 |
+| 438026 | `ports/438026_momentum-consecutive-up-down-strategy-with-reverse-and-sl-tp/` | PineScript | momentum_breakout | coarse_bar_stop, trailing_stop | bars_up x2, k_atr x2 | 4 |
+| 438032 | `ports/438032_dema-ema-atr-momentum-strategy-based-on-dema-and-ema-crossov/` | PineScript | ma_cross | none | length x2, ema_len x2 | 4 |
+| 438033 | `ports/438033_macd-tsi-multiple-crossovers-turtle-and-weighted-moving-aver/` | PineScript | multi_indicator_confluence | none | keh x2, teh x2 | 4 |
+| 438034 | `ports/438034_ema-macd-ema-crossover-and-macd-signals-trend-following-stra/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 438036 | `ports/438036_adaptive-volatility-breakout-strategy/` | PineScript | volatility_channel_breakout | none | k x4 | 4 |
+| 438046 | `ports/438046_ema200-ema-200-based-trailing-take-profit-and-trailing-stop/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 438047 | `ports/438047_moving-average-cross-signal-strategy/` | PineScript | ma_trend | none | atype x2, len x2 | 4 |
+| 438048 | `ports/438048_dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, stop x2 | 4 |
+| 438051 | `ports/438051_breakthrough-highs-and-lows-backtesting-strategy/` | PineScript | breakout | none | lookback x4 | 4 |
+| | **1513 ports** | | | | | **7638** |
 
 ## Rejected on reading
 
@@ -1847,6 +1858,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 437787 | 渔夫转身EMA多重止损多重止盈策略Fisher-Turnaround-EMA-Multi-Take-Profit-and-Multi-Stop-Strategy.md | 2 | The only exits are strategy.exit(loss = close, profit = close + 2 x ATR / close + 3 x ATR): price LEVELS passed as TICK distances, so the real distances are the price itself times the tick size (an instrument-specific bracket with no generic reading, as #437048), and the two exits close 50 % and 100 % of the position (partial exits, criterion 1, as #436524). The Blackflag FTS value is always 50 (up and down are the same sum), so its filter is constant. |
 | 438016 | 超趋势追踪止盈策略Supertrend-Take-Profit-Strategy.md | 1 | The only exits are three take-profit limits closing 25 %, 50 % and 25 % of the position (strategy.exit qty_percent): partial exits, which the house engine cannot hold (one position, all-in or all-out; as #436524). |
 | 438017 | 基于K线收盘价的买卖策略Buy-Sell-on-Candle-Close-Strategy.md | 1 | pastLow / pastHigh = request.security(tickerid, "D", low / high, lookahead = barmerge.lookahead_on) with the [1] applied on the 1-hour chart, not inside the call: from the second hour of a day the value is that same day's final low / high, known only at the day's end (look-ahead). |
+| 438025 | 质数波带回测策略Prime-Number-Bands-Backtest-Strategy.md | 2 | The bands are the nearest prime numbers above the high and below the low (integer steps of the quote unit; on fractional prices the price itself): a property of the quote's numeric scale, not of the market (as #430985, #430847). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #438036 (适应性变动性突破策略Adaptive-Volatility-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/438036  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 151-151]
+  151: strategy("Volatility Breakout Strategy", overlay=true, default_qty_type= strategy.percent_of_equity, default_qty_value=100,process_orders_on_close=false)

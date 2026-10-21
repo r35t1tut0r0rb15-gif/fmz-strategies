@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #438034 (基于EMA均线和MACD指标的趋势跟踪策略EMA-Crossover-and-MACD-Signals-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/438034  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Percent bracket inputs and levels  [lines 143-147]
+  143: stopLossPct = input.float(1, title="Stop Loss (%)") / 100
+  144: takeProfitPct = input.float(2, title="Take Profit (%)") / 100
+  145: 
+  146: stopLoss = close * (1 - stopLossPct)
+  147: takeProfit = close * (1 + takeProfitPct)

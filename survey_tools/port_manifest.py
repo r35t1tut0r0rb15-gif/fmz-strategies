@@ -3462,6 +3462,28 @@ SIZING = {
         ("strategy(): 100 % of equity", 144, 144),
     ],
     438021: [],
+    # ---- FMZ-C, batch C108 (2026-10-22)
+    438022: [],
+    438024: [],
+    438026: [
+        ("strategy(): 100 % of equity, capital, commission", 153, 160),
+    ],
+    438032: [],
+    438033: [],
+    438034: [
+        ("Percent bracket inputs and levels", 143, 147),
+    ],
+    438036: [
+        ("strategy(): 100 % of equity", 151, 151),
+    ],
+    438046: [
+        ("strategy(): margins, quantity 1, capital", 132, 132),
+    ],
+    438047: [],
+    438048: [
+        ("Stop input and tick bracket", 139, 158),
+    ],
+    438051: [],
 }
 
 REJECTED_ON_READING = {
@@ -4337,6 +4359,10 @@ REJECTED_ON_READING = {
               "barmerge.lookahead_on) with the [1] applied on the 1-hour chart, not inside the "
               "call: from the second hour of a day the value is that same day's final low / high, "
               "known only at the day's end (look-ahead)."),
+    # ---- FMZ-C, batch C108 (2026-10-22)
+    438025: ("2", "The bands are the nearest prime numbers above the high and below the low (integer "
+              "steps of the quote unit; on fractional prices the price itself): a property of the "
+              "quote's numeric scale, not of the market (as #430985, #430847)."),
 }
 
 DUPLICATE_ON_READING = {
