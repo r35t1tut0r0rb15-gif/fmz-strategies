@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #438458 (动态趋势跟踪优化策略-Dynamic-Trend-Tracking-Optimized-Strategy)
+# Source: https://www.fmz.com/strategy/438458  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital, commission  [lines 137-137]
+  137: strategy("Optimized Trend Tracker - Strategy Version", shorttitle="OTT-Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100, initial_capital=10000, currency=currency.USD, commission_value=0.1, commission_type=strategy.commission.percent)
+
+## Entry quantities 1  [lines 199-204]
+  199: if condition == "Support Line Crossing Signals"
+  200:     strategy.entry("BUY", true, 1, when = buySignalk)
+  201:     strategy.entry("SELL", false, 1, when = sellSignallk)
+  202: else
+  203:     strategy.entry("BUY", true, 1, when = buySignalc)
+  204:     strategy.entry("SELL", false, 1, when = sellSignallc)

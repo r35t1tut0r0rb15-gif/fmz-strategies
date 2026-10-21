@@ -1,0 +1,30 @@
+# Original sizing and money-management code, FMZ #438459 (金叉死叉短线交易策略Swing-Trading-Strategy-with-20-50-EMA-Cross)
+# Source: https://www.fmz.com/strategy/438459  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / reward inputs and levels  [lines 134-158]
+  134: var float stopLossPct = input.float(1, title = "Stop Loss (%)") / 100
+  135: var float rewardRiskRatio = input.float(2, title = "Risk-Reward Ratio")
+  136: takeProfitPct = stopLossPct * rewardRiskRatio
+  137: 
+  138: // Calculate EMA values
+  139: ema20 = ta.ema(close, 20)
+  140: ema50 = ta.ema(close, 50)
+  141: 
+  142: // Plot EMAs on the chart
+  143: plot(ema20, title = "20 EMA", color = color.blue)
+  144: plot(ema50, title = "50 EMA", color = color.red)
+  145: 
+  146: // Trading conditions
+  147: longCondition = ta.crossover(ema20, ema50)
+  148: shortCondition = ta.crossunder(ema20, ema50)
+  149: 
+  150: // Execute long and short trades
+  151: strategy.entry("Long", strategy.long, when = longCondition)
+  152: strategy.entry("Short", strategy.short, when = shortCondition)
+  153: 
+  154: // Calculate stop-loss and take-profit levels based on risk-reward ratio
+  155: stopLossPrice = close * (1 - stopLossPct)
+  156: takeProfitPrice = close * (1 + takeProfitPct)
+  157: 
+  158: strategy.exit("Take Profit/Stop Loss", stop = stopLossPrice, limit = takeProfitPrice)

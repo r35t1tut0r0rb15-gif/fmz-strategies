@@ -1752,3 +1752,15 @@ fmz_id,file,final_outcome,criterion,reason
 438334,基于点数止损止盈的移动止损策略Moving-Stop-Loss-Strategy-Based-on-Points-Take-Profit-and-Stop-Loss.md,PORTED,,ports/438334_moving-stop-loss-strategy-based-on-points-take-profit-and-st/
 438450,基于SMA均线交叉的量化交易策略SMA-Crossover-Based-Quantitative-Trading-Strategy.md,PORTED,,ports/438450_sma-sma-crossover-based-quantitative-trading-strategy/
 438451,均线交叉的移动平均趋势策略Moving-Average-Crossover-Trend-Strategy.md,PORTED,,ports/438451_moving-average-crossover-trend-strategy/
+438456,基于移动平均线和平均真实波动率的趋势追踪策略Trend-Tracking-Strategy-Based-on-Moving-Average-and-Average-True-Range.md,PORTED,,ports/438456_trend-tracking-strategy-based-on-moving-average-and-average/
+438457,双均线策略与随机指标组合Dual-Moving-Average-Strategy-Combined-with-Stochastic-Indicator.md,PORTED,,ports/438457_dual-moving-average-strategy-combined-with-stochastic-indica/
+438458,动态趋势跟踪优化策略-Dynamic-Trend-Tracking-Optimized-Strategy.md,PORTED,,ports/438458_dynamic-trend-tracking-optimized-strategy/
+438459,金叉死叉短线交易策略Swing-Trading-Strategy-with-20-50-EMA-Cross.md,PORTED,,ports/438459_swing-trading-strategy-with-20-50-ema-cross/
+438460,多指标趋势追踪交易策略Trend-Following-Trading-Strategy-Based-on-Multiple-Indicators.md,PORTED,,ports/438460_trend-following-trading-strategy-based-on-multiple-indicator/
+438463,承压指标追踪策略Bear-Power-Tracking-Strategy.md,PORTED,,ports/438463_bear-power-tracking-strategy/
+438465,多时间框架移动平均线结合交易时间的量化交易策略Multi-Timeframe-Moving-Average-Combined-with-Trading-Hours-Quantitative-Trading-Strategy.md,PORTED,,ports/438465_multi-timeframe-moving-average-combined-with-trading-hours-q/
+438466,追踪金本位价值的动态移动平均线策略Daily-Moving-Average-Tracking-Strategy-for-Gold-Value.md,PORTED,,ports/438466_daily-moving-average-tracking-strategy-for-gold-value/
+438467,牛市力量交易策略Bull-Power-Trading-Strategy.md,PORTED,,ports/438467_bull-power-trading-strategy/
+438468,动能加权移动平均线双均线交叉策略Dynamic-Momentum-Weighted-Moving-Average-Crossover-Strategy.md,PORTED,,ports/438468_dynamic-momentum-weighted-moving-average-crossover-strategy/
+438470,量化大师专属多级移动平均交叉策略Multi-level-Moving-Average-Crossing-Strategy-for-Quant-Masters.md,PORTED,,ports/438470_multi-level-moving-average-crossing-strategy-for-quant-maste/
+438473,动量反转均线组合策略Momentum-Reversal-Combo-Strategy.md,PORTED,,ports/438473_momentum-reversal-combo-strategy/

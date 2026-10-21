@@ -3515,6 +3515,33 @@ SIZING = {
     438451: [
         ("Target / stop inputs and levels", 182, 189),
     ],
+    # ---- FMZ-C, batch C110 (2026-10-22)
+    438456: [
+        ("strategy(): 100 % of equity; capital input", 164, 169),
+        ("Equity-based lot and entry quantities", 190, 199),
+    ],
+    438457: [],
+    438458: [
+        ("strategy(): 100 % of equity, capital, commission", 137, 137),
+        ("Entry quantities 1", 199, 204),
+    ],
+    438459: [
+        ("Stop / reward inputs and levels", 134, 158),
+    ],
+    438460: [],
+    438463: [],
+    438465: [
+        ("Fixed risk inputs and levels", 255, 266),
+    ],
+    438466: [
+        ("Trailing inputs and exits", 164, 193),
+    ],
+    438467: [],
+    438468: [],
+    438470: [
+        ("strategy(): capital, 30 % of equity, commission", 124, 124),
+    ],
+    438473: [],
 }
 
 REJECTED_ON_READING = {

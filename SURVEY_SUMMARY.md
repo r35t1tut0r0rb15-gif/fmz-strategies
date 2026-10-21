@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2007 |
-| PORTED | 1525 |
+| PORT_CANDIDATE | 1995 |
+| PORTED | 1537 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1653,7 +1653,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 438334 | `ports/438334_moving-stop-loss-strategy-based-on-points-take-profit-and-st/` | PineScript | ma_cross | none | k_atr x2, ema_period x2 | 4 |
 | 438450 | `ports/438450_sma-sma-crossover-based-quantitative-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 438451 | `ports/438451_moving-average-crossover-trend-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
-| | **1525 ports** | | | | | **7686** |
+| 438456 | `ports/438456_trend-tracking-strategy-based-on-moving-average-and-average/` | PineScript | volatility_channel_breakout | none | len x2, mult x2 | 4 |
+| 438457 | `ports/438457_dual-moving-average-strategy-combined-with-stochastic-indica/` | PineScript | combo_123_reversal | none | length x2, percent_shift x2 | 4 |
+| 438458 | `ports/438458_dynamic-trend-tracking-optimized-strategy/` | PineScript | volatility_stop_cross | none | percent x2, pds x2 | 4 |
+| 438459 | `ports/438459_swing-trading-strategy-with-20-50-ema-cross/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 438460 | `ports/438460_trend-following-trading-strategy-based-on-multiple-indicator/` | PineScript | multi_indicator_confluence | none | stoch_len x2, ema_signal x2 | 4 |
+| 438463 | `ports/438463_bear-power-tracking-strategy/` | PineScript | momentum_oscillator | none | length x4 | 4 |
+| 438465 | `ports/438465_multi-timeframe-moving-average-combined-with-trading-hours-q/` | PineScript | calendar_seasonal | none | len x2, ma_type x2 | 4 |
+| 438466 | `ports/438466_daily-moving-average-tracking-strategy-for-gold-value/` | PineScript | trend_confluence | trailing_stop | trail_pct x2, activate x2 | 4 |
+| 438467 | `ports/438467_bull-power-trading-strategy/` | PineScript | momentum_oscillator | none | sell_frac x2, buy_ratio x2 | 4 |
+| 438468 | `ports/438468_dynamic-momentum-weighted-moving-average-crossover-strategy/` | PineScript | ma_cross | none | len1 x2, len2 x2 | 4 |
+| 438470 | `ports/438470_multi-level-moving-average-crossing-strategy-for-quant-maste/` | PineScript | ma_cross | none | inlong x2, inshort x2 | 4 |
+| 438473 | `ports/438473_momentum-reversal-combo-strategy/` | PineScript | combo_123_reversal | none | length x2, top_band x2 | 4 |
+| | **1537 ports** | | | | | **7734** |
 
 ## Rejected on reading
 

@@ -1,0 +1,35 @@
+# Original sizing and money-management code, FMZ #438466 (追踪金本位价值的动态移动平均线策略Daily-Moving-Average-Tracking-Strategy-for-Gold-Value)
+# Source: https://www.fmz.com/strategy/438466  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trailing inputs and exits  [lines 164-193]
+  164: trailingStop = input(100, title="Trailing Stop Start (pips)")
+  165: trailingStep = input(10, title="Trailing Step (pips)")
+  166: 
+  167: // Define the EMAs
+  168: longEma = ema(close, 200)
+  169: shortEma = ema(close, 50)
+  170: 
+  171: // Calculate daily open, high, low, close
+  172: daily_open = security(syminfo.tickerid, "D", open[1])
+  173: daily_close = security(syminfo.tickerid, "D", close[1])
+  174: 
+  175: // Time conditions
+  176: timeAllowed = (hour >= startHour) and (hour <= endHour)
+  177: 
+  178: // Define long condition based on your criteria
+  179: longCondition = (daily_close > daily_open) and (close > daily_open) and (shortEma > longEma) and timeAllowed
+  180: 
+  181: // Define short condition based on your criteria
+  182: shortCondition = (daily_close < daily_open) and (close < daily_open) and (shortEma < longEma) and timeAllowed
+  183: 
+  184: // Enter the trade
+  185: if (longCondition)
+  186:     strategy.entry("Long", strategy.long)
+  187: 
+  188: if (shortCondition)
+  189:     strategy.entry("Short", strategy.short)
+  190: 
+  191: // Trailing Stop Loss
+  192: strategy.exit("Exit Long", "Long", trail_points = trailingStop / syminfo.mintick, trail_offset = trailingStep / syminfo.mintick)
+  193: strategy.exit("Exit Short", "Short", trail_points = trailingStop / syminfo.mintick, trail_offset = trailingStep / syminfo.mintick)

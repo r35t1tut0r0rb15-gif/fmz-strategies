@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #438456 (基于移动平均线和平均真实波动率的趋势追踪策略Trend-Tracking-Strategy-Based-on-Moving-Average-and-Average-True-Range)
+# Source: https://www.fmz.com/strategy/438456  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; capital input  [lines 164-169]
+  164: strategy(title = "Noro's MA+ATR Strategy", shorttitle = "MA+ATR str", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)
+  165: 
+  166: //Settings
+  167: needlong = input(true, defval = true, title = "Long")
+  168: needshort = input(true, defval = true, title = "Short")
+  169: capital = input(100, defval = 100, minval = 1, maxval = 10000, title = "Capital, %")
+
+## Equity-based lot and entry quantities  [lines 190-199]
+  190: lot = 0.0
+  191: lot := strategy.position_size != strategy.position_size[1] ? strategy.equity / close * capital / 100 : lot[1]
+  192: if trend == 1 and limitmode == false
+  193:     strategy.entry("Long", strategy.long, needlong == false ? 0 : lot)
+  194: if trend == -1 and limitmode == false
+  195:     strategy.entry("Short", strategy.short, needshort == false ? 0 : lot)
+  196: if trend == 1 and limitmode
+  197:     strategy.entry("Long", strategy.long, needlong == false ? 0 : lot)
+  198: if trend == -1 and limitmode
+  199:     strategy.entry("Short", strategy.short, needshort == false ? 0 : lot)

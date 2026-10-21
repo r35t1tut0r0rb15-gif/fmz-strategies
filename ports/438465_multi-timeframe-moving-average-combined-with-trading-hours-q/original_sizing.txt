@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #438465 (多时间框架移动平均线结合交易时间的量化交易策略Multi-Timeframe-Moving-Average-Combined-with-Trading-Hours-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/438465  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Fixed risk inputs and levels  [lines 255-266]
+  255: stopPer = input.float(10.0, title='LONG Stop Loss % ', group='Fixed Risk Management') / 100
+  256: takePer = input.float(30.0, title='LONG Take Profit %', group='Fixed Risk Management') / 100
+  257: 
+  258: stopPerShort = input.float(5.0, title='SHORT Stop Loss % ', group='Fixed Risk Management') / 100
+  259: takePerShort = input.float(10.0, title='SHORT Take Profit %', group='Fixed Risk Management') / 100
+  260: 
+  261: 
+  262: longStop = strategy.position_avg_price * (1 - stopPer)
+  263: longTake = strategy.position_avg_price * (1 + takePer)
+  264: 
+  265: shortStop = strategy.position_avg_price * (1 + stopPerShort)
+  266: shortTake = strategy.position_avg_price * (1 - takePerShort)
