@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #438004 (超趋势进阶策略Supertrend-Advance-Strategy)
+# Source: https://www.fmz.com/strategy/438004  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 1 % of equity  [lines 206-206]
+  206: strategy("Supertrend advance", overlay=true,default_qty_type =strategy.percent_of_equity,default_qty_value = 1,process_orders_on_close = false)
+
+## Quantity input  [lines 330-330]
+  330: qty_new=input.float(1.0,step =0.10,title ="Quantity",group =group_text3)
+
+## Entry quantities  [lines 346-352]
+  346: if buy_cond and longOK and time_cond and strategy.position_size==0
+  347:     strategy.entry("enter long",direction = strategy.long,qty =qty_new)
+  348:     store:=globl
+  349: 
+  350: if sell_cond and shortOK and time_cond and strategy.position_size==0
+  351:     strategy.entry("enter short",direction =strategy.short,qty =qty_new)
+  352:     store2:=globl2
+
+## Percentage, swing / supertrend and ATR exit inputs  [lines 357-362]
+  357: enable_trail=input.bool(false,"Enable Trail",group =group_text7)
+  358: stopPer = input.float(1.0,step=0.10,title='Stop Loss %',group=group_text7)* 0.01
+  359: takePer = input.float(2.0,step=0.10, title='Take Profit %',group=group_text7)* 0.01
+  360: 
+  361: //TRAILING STOP CODE
+  362: trailStop = input.float(title='Trailing Stop (%)', minval=0.0, step=0.1, defval=1,group=group_text7) * 0.01

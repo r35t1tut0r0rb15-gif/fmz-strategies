@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #438006 (基于ZigZag指标的趋势追踪交易策略ZigZag-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/438006  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; capital input  [lines 171-176]
+  171: strategy(title = "Noro's ZigTrend Strategy v1.0", shorttitle = "ZigTrend 1.0", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)
+  172: 
+  173: //Settings
+  174: needlong = input(true, defval = true, title = "Long")
+  175: needshort = input(true, defval = true, title = "Short")
+  176: capital = input(100, defval = 100, minval = 1, maxval = 10000, title = "Capital, %")
+
+## Equity-based lot and entry quantities  [lines 200-206]
+  200: lot = 0.0
+  201: lot := strategy.position_size != strategy.position_size[1] ? strategy.equity / close * capital / 100 : lot[1]
+  202: if up
+  203:     strategy.entry("Long", strategy.long, needlong == false ? 0 : lot)
+  204: 
+  205: if dn
+  206:     strategy.entry("Short", strategy.short, needshort == false ? 0 : lot)

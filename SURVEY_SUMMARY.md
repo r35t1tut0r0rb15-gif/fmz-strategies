@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2043 |
-| PORTED | 1492 |
+| PORT_CANDIDATE | 2031 |
+| PORTED | 1502 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 209 |
+| REJECTED_ON_READING | 211 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1620,7 +1620,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 437801 | `ports/437801_rsi-macd-quantitative-trading-strategy-combining-rsi-macd-an/` | PineScript | macd_cross | none | near_frac x2, fast x2 | 4 |
 | 437808 | `ports/437808_atr-atr-trend-following-strategy-based-on-standard-deviation/` | PineScript | volatility_stop_cross | none | atr_mult x2, atr_period x2 | 4 |
 | 437811 | `ports/437811_midnight-candle-color-strategy-with-stop-loss-and-take-profi/` | PineScript | calendar_seasonal | none | k_atr x2, atr_len x2 | 4 |
-| | **1492 ports** | | | | | **7554** |
+| 438004 | `ports/438004_supertrend-advance-strategy/` | PineScript | supertrend | none | factor x2, cci_level x2 | 4 |
+| 438006 | `ports/438006_zigzag-zigzag-trend-following-strategy/` | PineScript | ma_trend | none | length x2, detection x2 | 4 |
+| 438007 | `ports/438007_rsi-rsi-and-bollinger-bands-quantitative-trading-strategy/` | PineScript | bollinger_reversion | none | rsilimit x2, bbperiod x2 | 4 |
+| 438009 | `ports/438009_vertical-horizontal-filter-backtest-strategy/` | PineScript | trend_filter | none | length x2, signal x2 | 4 |
+| 438010 | `ports/438010_crude-oil-moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 438011 | `ports/438011_rsi-rsi-dual-track-breakthrough-strategy/` | PineScript | rsi_oscillator | none | atr_multi x2, rsi_low x2 | 4 |
+| 438012 | `ports/438012_positive-bars-percentage-breakout-strategy/` | PineScript | momentum_oscillator | none | lookback x2, k_atr x2 | 4 |
+| 438019 | `ports/438019_tsi-momentum-dual-moving-window-tsi-indicator/` | PineScript | momentum_oscillator | none | long x2, short x2 | 4 |
+| 438020 | `ports/438020_multi-timeframe-trailing-stop-loss-strategy/` | PineScript | volatility_stop_cross | none | atr_mult x2, atr_length x2 | 4 |
+| 438021 | `ports/438021_exponential-moving-average-crossover-strategy/` | PineScript | pivot_levels | trailing_stop_pending | fib_level x2, range_len x2 | 4 |
+| | **1502 ports** | | | | | **7594** |
 
 ## Rejected on reading
 
@@ -1835,6 +1845,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 437677 | TrendSurfing-双均线交叉趋势策略TrendSurfing-Double-Moving-Average-Crossover-Trend-Strategy.md | 2 | Apart from the reversing entries, the exits are strategy.exit(loss = close - 1 % x ATR, profit = close + 1 % x ATR): price LEVELS passed as TICK counts, so the real distances are about the whole price times the tick size (about 10 % at a 0.1 tick on a 42000 price), an instrument-specific bracket with no generic reading (as #436603, #436773). |
 | 437738 | 基于EMA和MACD的多时间框架趋势跟踪策略Trend-Following-Strategy-Based-on-EMA-and-MACD-across-Timeframes.md | 2 | The exits are strategy.exit(loss = close - 1 ATR, profit = close + 3 ATR): price LEVELS passed as TICK counts, so the real distances are about the whole price times the tick size, an instrument-specific bracket with no generic reading (as #436603, #437677). |
 | 437787 | 渔夫转身EMA多重止损多重止盈策略Fisher-Turnaround-EMA-Multi-Take-Profit-and-Multi-Stop-Strategy.md | 2 | The only exits are strategy.exit(loss = close, profit = close + 2 x ATR / close + 3 x ATR): price LEVELS passed as TICK distances, so the real distances are the price itself times the tick size (an instrument-specific bracket with no generic reading, as #437048), and the two exits close 50 % and 100 % of the position (partial exits, criterion 1, as #436524). The Blackflag FTS value is always 50 (up and down are the same sum), so its filter is constant. |
+| 438016 | 超趋势追踪止盈策略Supertrend-Take-Profit-Strategy.md | 1 | The only exits are three take-profit limits closing 25 %, 50 % and 25 % of the position (strategy.exit qty_percent): partial exits, which the house engine cannot hold (one position, all-in or all-out; as #436524). |
+| 438017 | 基于K线收盘价的买卖策略Buy-Sell-on-Candle-Close-Strategy.md | 1 | pastLow / pastHigh = request.security(tickerid, "D", low / high, lookahead = barmerge.lookahead_on) with the [1] applied on the 1-hour chart, not inside the call: from the second hour of a day the value is that same day's final low / high, known only at the day's end (look-ahead). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

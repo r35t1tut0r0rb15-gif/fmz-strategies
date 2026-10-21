@@ -3434,6 +3434,34 @@ SIZING = {
     437811: [
         ("Tick bracket exits", 127, 130),
     ],
+    # ---- FMZ-C, batch C107 (2026-10-22)
+    438004: [
+        ("strategy(): 1 % of equity", 206, 206),
+        ("Quantity input", 330, 330),
+        ("Entry quantities", 346, 352),
+        ("Percentage, swing / supertrend and ATR exit inputs", 357, 362),
+    ],
+    438006: [
+        ("strategy(): 100 % of equity; capital input", 171, 176),
+        ("Equity-based lot and entry quantities", 200, 206),
+    ],
+    438007: [
+        ("strategy(): 100 % of equity, pyramiding 5; lot input", 138, 141),
+        ("Equity-based lot and entry quantity", 178, 181),
+    ],
+    438009: [],
+    438010: [],
+    438011: [],
+    438012: [
+        ("strategy(): 100 % of equity, capital, commission", 166, 173),
+    ],
+    438019: [
+        ("strategy(): capital, commission, 100 % of equity, pyramiding 10", 161, 161),
+    ],
+    438020: [
+        ("strategy(): 100 % of equity", 144, 144),
+    ],
+    438021: [],
 }
 
 REJECTED_ON_READING = {
@@ -4301,6 +4329,14 @@ REJECTED_ON_READING = {
               "reading, as #437048), and the two exits close 50 % and 100 % of the position "
               "(partial exits, criterion 1, as #436524). The Blackflag FTS value is always 50 (up "
               "and down are the same sum), so its filter is constant."),
+    # ---- FMZ-C, batch C107 (2026-10-22)
+    438016: ("1", "The only exits are three take-profit limits closing 25 %, 50 % and 25 % of the "
+              "position (strategy.exit qty_percent): partial exits, which the house engine cannot "
+              "hold (one position, all-in or all-out; as #436524)."),
+    438017: ("1", "pastLow / pastHigh = request.security(tickerid, \"D\", low / high, lookahead = "
+              "barmerge.lookahead_on) with the [1] applied on the 1-hour chart, not inside the "
+              "call: from the second hour of a day the value is that same day's final low / high, "
+              "known only at the day's end (look-ahead)."),
 }
 
 DUPLICATE_ON_READING = {

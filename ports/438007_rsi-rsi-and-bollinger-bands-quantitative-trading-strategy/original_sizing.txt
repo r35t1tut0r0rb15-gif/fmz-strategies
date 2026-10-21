@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #438007 (RSI与布林线量化交易策略RSI-and-Bollinger-Bands-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/438007  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 5; lot input  [lines 138-141]
+  138: strategy(title = "Noro's BB + RSI Strategy v1.0", shorttitle = "BB+RSI str 1.0", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 5)
+  139: 
+  140: //Settings
+  141: capital = input(100, defval = 100, minval = 1, maxval = 10000, title = "Lot, %")
+
+## Equity-based lot and entry quantity  [lines 178-181]
+  178: lot = 0.0 
+  179: lot := strategy.position_size == 0 ? strategy.equity / close * capital / 100 : lot[1]
+  180: if up
+  181:     strategy.entry("Long", strategy.long, lot)
