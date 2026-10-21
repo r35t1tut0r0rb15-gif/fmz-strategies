@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #436779 (基于EMA指标的趋势跟踪策略EMA-Crossover-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/436779  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital  [lines 152-158]
+  152: strategy("EMA交叉策略by GPT",
+  153:      format = format.inherit,
+  154:      overlay = true,
+  155:      default_qty_type= strategy.percent_of_equity,
+  156:      default_qty_value = 100,
+  157:      currency = currency.USD,
+  158:      initial_capital = 1000000)

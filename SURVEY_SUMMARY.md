@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2172 |
-| PORTED | 1374 |
+| PORT_CANDIDATE | 2159 |
+| PORTED | 1385 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 198 |
+| REJECTED_ON_READING | 200 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1502,7 +1502,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436767 | `ports/436767_momentum-direction-divergence-strategy/` | PineScript | momentum_oscillator | none | r x2, smth_len x2 | 4 |
 | 436770 | `ports/436770_multi-factor-quantitative-trading-strategy/` | PineScript | reversal_pattern | none | length x2, length_pline x2 | 4 |
 | 436772 | `ports/436772_bollinger-bands-heiken-ashi-short-term-trading-strategy/` | PineScript | candle_pattern | none | consecutive x2, vol_frac x2 | 4 |
-| | **1374 ports** | | | | | **7100** |
+| 436779 | `ports/436779_ema-ema-crossover-trend-following-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 436781 | `ports/436781_ema-ema-fast-ema-and-slow-ema-momentum-breakthrough-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 436783 | `ports/436783_sma-rsi-short-term-silver-trading-strategy-based-on-sma-and/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 436786 | `ports/436786_rsi-ema-rsi-and-ema-channel-intraday-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, ema_len x2 | 4 |
+| 436787 | `ports/436787_momentum-indicator-crossover-strategy/` | PineScript | ma_cross | none | len1 x2, len2 x2 | 4 |
+| 436788 | `ports/436788_ema-multi-period-ema-crossover-quantitative-trading-strategy/` | PineScript | trend_filter | none | p1 x2, p2 x2 | 4 |
+| 436791 | `ports/436791_dual-factor-reversal-trading-strategy/` | PineScript | reversal_pattern | none | length x2, length_ett x2 | 4 |
+| 436793 | `ports/436793_trend-breakout-strategy/` | PineScript | volatility_regime | none | sma_len x2, bars_back x2 | 4 |
+| 436797 | `ports/436797_double-moving-average-crossover-strategy/` | PineScript | trend_confluence | none | window x2, sigma x2 | 4 |
+| 436860 | `ports/436860_reversal-dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | ma1 x2, ma2 x2 | 4 |
+| 436872 | `ports/436872_momentum-gap-trading-strategy/` | PineScript | momentum_oscillator | none | period x2, signal_period x2 | 4 |
+| | **1385 ports** | | | | | **7144** |
 
 ## Rejected on reading
 
@@ -1706,6 +1717,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436653 | 高杠杆防止追加保证金头寸管理策略Leveraged-Position-Sizing-with-Margin-Call-Risk-Management-Strategy.md | 1 | A leverage and margin-call management script: the position size is a leverage multiple of one unit, entries are blocked and strategy.close_all is sent when strategy.equity falls to a margin value (25000), and the trigger reads the high / low of the 4-hour bar through a lower-timeframe security call from a daily chart; the margin rule depends on the account equity, which the signal interface cannot see. |
 | 436659 | 结合MACDRSI和FIB的量化比特币交易策略Quant-Bitcoin-Trading-Strategy-Combining-MACD-RSI-and-FIB.md | 2 | Every signal is computed on security(sym, '', close / high / low) where sym is an input whose default is BINANCE:BTCUSDT: a named external instrument used as the signal source for whatever chart is traded (SURVEY_README: another symbol -> criterion 2), with the entries sized from strategy.equity. |
 | 436773 | 移动平均线交叉金策略Moving-Average-Crossover-Gold-Strategy.md | 2 | The stop, the target and the break-even exit are written as strategy.exit(loss = close x 0.99, profit = close x 1.02) and exit(loss = close x 1.01): price levels passed as TICK counts, so the real distances are (price x 0.99) x tick size, an instrument-specific and nearly meaningless bracket (about 10 % at a 0.1 tick on a 42000 price, about 1 % at 0.01); these are the only exits, so there is no generic reading (as #436603). |
+| 436776 | 基于PSARMACD和RSI的多时间框架量化交易策略Multi-timeframe-Quantitative-Trading-Strategy-Based-on-PSAR-MACD-and-RSI.md | 1 | An intraday square-off script run on the daily header chart: entries are sent only while barInSession('0915-1455') is true, and every daily bar opens at its session start (00:00 UTC on the backtest exchange, 17:00 New York on broker days), outside 09:15-14:55, so no order can ever be sent and the square-off closes nothing; the bracket is also computed from strategy.position_avg_price before the entry fills (na when flat). |
+| 436859 | 多时间框架判断趋势策略Multi-Timeframe-Trend-Strategy.md | 1 | Reads the future: Pine v2 request.security(syminfo.tickerid, 'D' / '5D' / '15D' / '45D', open / close) without [1] behaves as lookahead_on, so on every 1-hour bar the candle colours use the final close of the current day, 5-day, 15-day and 45-day bars, not known until they end (SURVEY_README request.security rule, as #432988). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

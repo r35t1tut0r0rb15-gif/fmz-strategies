@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #436783 (基于SMA均线和RSI指标的白银价格短期交易策略Short-Term-Silver-Trading-Strategy-Based-on-SMA-and-RSI-Indicators)
+# Source: https://www.fmz.com/strategy/436783  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Fixed quantity 1 on the entries  [lines 125-131]
+  125:     strategy.entry("long", strategy.long, 1, when = rsi > 50)
+  126:     strategy.exit("exit", "long", stop=stopLoss, limit=takeProfit)
+  127: 
+  128: if (shortCondition)
+  129:     stopLoss = high + atr * 2
+  130:     takeProfit = low - atr * 2
+  131:     strategy.entry("short", strategy.short, 1, when = rsi < 50)

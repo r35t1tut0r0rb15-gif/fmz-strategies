@@ -3172,6 +3172,26 @@ SIZING = {
     436767: [],
     436770: [],
     436772: [],
+    # ---- FMZ-C, batch C96 (2026-10-21)
+    436779: [
+        ("strategy(): 100 % of equity, capital", 152, 158),
+    ],
+    436781: [],
+    436783: [
+        ("Fixed quantity 1 on the entries", 125, 131),
+    ],
+    436786: [],
+    436787: [
+        ("Position-size input (not used by the orders)", 141, 141),
+    ],
+    436788: [
+        ("Quantity = round(equity / close)", 125, 126),
+    ],
+    436791: [],
+    436793: [],
+    436797: [],
+    436860: [],
+    436872: [],
 }
 
 REJECTED_ON_READING = {
@@ -3977,6 +3997,18 @@ REJECTED_ON_READING = {
               "instrument-specific and nearly meaningless bracket (about 10 % at a 0.1 tick on a "
               "42000 price, about 1 % at 0.01); these are the only exits, so there is no generic "
               "reading (as #436603)."),
+    # ---- FMZ-C, batch C96 (2026-10-21)
+    436776: ("1", "An intraday square-off script run on the daily header chart: entries are sent only "
+              "while barInSession('0915-1455') is true, and every daily bar opens at its session "
+              "start (00:00 UTC on the backtest exchange, 17:00 New York on broker days), outside "
+              "09:15-14:55, so no order can ever be sent and the square-off closes nothing; the "
+              "bracket is also computed from strategy.position_avg_price before the entry fills "
+              "(na when flat)."),
+    436859: ("1", "Reads the future: Pine v2 request.security(syminfo.tickerid, 'D' / '5D' / '15D' / "
+              "'45D', open / close) without [1] behaves as lookahead_on, so on every 1-hour bar "
+              "the candle colours use the final close of the current day, 5-day, 15-day and "
+              "45-day bars, not known until they end (SURVEY_README request.security rule, as "
+              "#432988)."),
 }
 
 DUPLICATE_ON_READING = {
