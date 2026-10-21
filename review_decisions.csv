@@ -211,6 +211,8 @@ fmz_id,file,final_outcome,criterion,reason
 438016,超趋势追踪止盈策略Supertrend-Take-Profit-Strategy.md,REJECTED_ON_READING,1,"The only exits are three take-profit limits closing 25 %, 50 % and 25 % of the position (strategy.exit qty_percent): partial exits, which the house engine cannot hold (one position, all-in or all-out; as #436524)."
 438017,基于K线收盘价的买卖策略Buy-Sell-on-Candle-Close-Strategy.md,REJECTED_ON_READING,1,"pastLow / pastHigh = request.security(tickerid, ""D"", low / high, lookahead = barmerge.lookahead_on) with the [1] applied on the 1-hour chart, not inside the call: from the second hour of a day the value is that same day's final low / high, known only at the day's end (look-ahead)."
 438025,质数波带回测策略Prime-Number-Bands-Backtest-Strategy.md,REJECTED_ON_READING,2,"The bands are the nearest prime numbers above the high and below the low (integer steps of the quote unit; on fractional prices the price itself): a property of the quote's numeric scale, not of the market (as #430985, #430847)."
+438481,基于RSI-V形态的短线盈利策略-RSI-V-shaped-Pattern-Swing-Trading-Strategy.md,REJECTED_ON_READING,1,"Exits close half and three quarters of the position on RSI crossings (strategy.close with qty = position_size x 1/2, x 3/4): partial exits, which the house engine cannot hold (as #436524)."
+438495,趋势追踪型EMA突破策略Trend-Tracking-EMA-Breakout-Strategy.md,REJECTED_ON_READING,1,"monthclose / weekclose / dayclose = request.security(tickerid, 'M' / 'W' / 'D', close, lookahead = barmerge.lookahead_on): on a daily chart the month's and week's FINAL close is used from their first bar (look-ahead); the entry requires monthclose > monthopen and weekclose > weekopen."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1764,3 +1766,13 @@ fmz_id,file,final_outcome,criterion,reason
 438468,动能加权移动平均线双均线交叉策略Dynamic-Momentum-Weighted-Moving-Average-Crossover-Strategy.md,PORTED,,ports/438468_dynamic-momentum-weighted-moving-average-crossover-strategy/
 438470,量化大师专属多级移动平均交叉策略Multi-level-Moving-Average-Crossing-Strategy-for-Quant-Masters.md,PORTED,,ports/438470_multi-level-moving-average-crossing-strategy-for-quant-maste/
 438473,动量反转均线组合策略Momentum-Reversal-Combo-Strategy.md,PORTED,,ports/438473_momentum-reversal-combo-strategy/
+438482,双均线叠加RSI指标的量化交易策略Stochastic-Overlap-with-RSI-Index-Quant-Trading-Strategy.md,PORTED,,ports/438482_rsi-stochastic-overlap-with-rsi-index-quant-trading-strategy/
+438483,动态圣诞老人回归策略Dynamic-Santa-Claus-Regression-Strategy.md,PORTED,,ports/438483_dynamic-santa-claus-regression-strategy/
+438485,移动平均线交叉策略Exponential-Moving-Average-Crossover-Strategy.md,PORTED,,ports/438485_exponential-moving-average-crossover-strategy/
+438487,多因子均衡震荡器交易策略Ultimate-Balance-Oscillator-Trading-Strategy.md,PORTED,,ports/438487_ultimate-balance-oscillator-trading-strategy/
+438492,基于Ichimoku云图的量化交易策略Quant-Trading-Strategy-Based-on-Ichimoku-Cloud.md,PORTED,,ports/438492_ichimoku-quant-trading-strategy-based-on-ichimoku-cloud/
+438498,量化双因子反转惯性交易策略Quantitative-Dual-Factor-Reversal-Inertia-Trading-Strategy.md,PORTED,,ports/438498_quantitative-dual-factor-reversal-inertia-trading-strategy/
+438499,基于均线差值的趋势跟踪策略Trend-Following-Strategy-Based-on-Moving-Average-Difference.md,PORTED,,ports/438499_trend-following-strategy-based-on-moving-average-difference/
+438505,基于ATR的ES尾随停止策略ATR-based-Trailing-Stop-Strategy-for-ES.md,PORTED,,ports/438505_atr-es-atr-based-trailing-stop-strategy-for-es/
+438506,超级趋势追踪止损策略Trend-Following-Strategy-with-Stop-Loss.md,PORTED,,ports/438506_trend-following-strategy-with-stop-loss/
+438507,典型的趋势跟踪策略Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/438507_dual-moving-average-crossover-strategy/

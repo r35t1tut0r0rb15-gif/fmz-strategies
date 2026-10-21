@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1995 |
-| PORTED | 1537 |
+| PORT_CANDIDATE | 1983 |
+| PORTED | 1547 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 212 |
+| REJECTED_ON_READING | 214 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1665,7 +1665,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 438468 | `ports/438468_dynamic-momentum-weighted-moving-average-crossover-strategy/` | PineScript | ma_cross | none | len1 x2, len2 x2 | 4 |
 | 438470 | `ports/438470_multi-level-moving-average-crossing-strategy-for-quant-maste/` | PineScript | ma_cross | none | inlong x2, inshort x2 | 4 |
 | 438473 | `ports/438473_momentum-reversal-combo-strategy/` | PineScript | combo_123_reversal | none | length x2, top_band x2 | 4 |
-| | **1537 ports** | | | | | **7734** |
+| 438482 | `ports/438482_rsi-stochastic-overlap-with-rsi-index-quant-trading-strategy/` | PineScript | stochastic_oscillator | none | period_k x2, os_level x2 | 4 |
+| 438483 | `ports/438483_dynamic-santa-claus-regression-strategy/` | PineScript | ma_trend | none | length x4 | 4 |
+| 438485 | `ports/438485_exponential-moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, mid x2 | 4 |
+| 438487 | `ports/438487_ultimate-balance-oscillator-trading-strategy/` | PineScript | multi_indicator_confluence | none | ob_level x2, os_level x2 | 4 |
+| 438492 | `ports/438492_ichimoku-quant-trading-strategy-based-on-ichimoku-cloud/` | PineScript | ichimoku | none | conversion x2, base x2 | 4 |
+| 438498 | `ports/438498_quantitative-dual-factor-reversal-inertia-trading-strategy/` | PineScript | combo_123_reversal | none | length x2, period x2 | 4 |
+| 438499 | `ports/438499_trend-following-strategy-based-on-moving-average-difference/` | PineScript | hull_ma | none | period x2, close_hour x2 | 4 |
+| 438505 | `ports/438505_atr-es-atr-based-trailing-stop-strategy-for-es/` | PineScript | supertrend | none | periods x2, multiplier x2 | 4 |
+| 438506 | `ports/438506_trend-following-strategy-with-stop-loss/` | PineScript | supertrend | none | stop_frac x2, factor x2 | 4 |
+| 438507 | `ports/438507_dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | len1 x2, len2 x2 | 4 |
+| | **1547 ports** | | | | | **7774** |
 
 ## Rejected on reading
 
@@ -1883,6 +1893,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 438016 | 超趋势追踪止盈策略Supertrend-Take-Profit-Strategy.md | 1 | The only exits are three take-profit limits closing 25 %, 50 % and 25 % of the position (strategy.exit qty_percent): partial exits, which the house engine cannot hold (one position, all-in or all-out; as #436524). |
 | 438017 | 基于K线收盘价的买卖策略Buy-Sell-on-Candle-Close-Strategy.md | 1 | pastLow / pastHigh = request.security(tickerid, "D", low / high, lookahead = barmerge.lookahead_on) with the [1] applied on the 1-hour chart, not inside the call: from the second hour of a day the value is that same day's final low / high, known only at the day's end (look-ahead). |
 | 438025 | 质数波带回测策略Prime-Number-Bands-Backtest-Strategy.md | 2 | The bands are the nearest prime numbers above the high and below the low (integer steps of the quote unit; on fractional prices the price itself): a property of the quote's numeric scale, not of the market (as #430985, #430847). |
+| 438481 | 基于RSI-V形态的短线盈利策略-RSI-V-shaped-Pattern-Swing-Trading-Strategy.md | 1 | Exits close half and three quarters of the position on RSI crossings (strategy.close with qty = position_size x 1/2, x 3/4): partial exits, which the house engine cannot hold (as #436524). |
+| 438495 | 趋势追踪型EMA突破策略Trend-Tracking-EMA-Breakout-Strategy.md | 1 | monthclose / weekclose / dayclose = request.security(tickerid, 'M' / 'W' / 'D', close, lookahead = barmerge.lookahead_on): on a daily chart the month's and week's FINAL close is used from their first bar (look-ahead); the entry requires monthclose > monthopen and weekclose > weekopen. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

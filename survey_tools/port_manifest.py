@@ -3542,6 +3542,26 @@ SIZING = {
         ("strategy(): capital, 30 % of equity, commission", 124, 124),
     ],
     438473: [],
+    # ---- FMZ-C, batch C111 (2026-10-22)
+    438482: [],
+    438483: [],
+    438485: [
+        ("strategy(): capital, cash quantity, commission", 101, 102),
+        ("Unused bracket levels", 129, 144),
+    ],
+    438487: [],
+    438492: [
+        ("ATR stop / target variables", 157, 159),
+    ],
+    438498: [],
+    438499: [],
+    438505: [
+        ("Trailing exits (offset only)", 141, 149),
+    ],
+    438506: [
+        ("strategy(): percent of equity; stop / profit amounts", 155, 159),
+    ],
+    438507: [],
 }
 
 REJECTED_ON_READING = {
@@ -4421,6 +4441,14 @@ REJECTED_ON_READING = {
     438025: ("2", "The bands are the nearest prime numbers above the high and below the low (integer "
               "steps of the quote unit; on fractional prices the price itself): a property of the "
               "quote's numeric scale, not of the market (as #430985, #430847)."),
+    # ---- FMZ-C, batch C111 (2026-10-22)
+    438481: ("1", "Exits close half and three quarters of the position on RSI crossings "
+              "(strategy.close with qty = position_size x 1/2, x 3/4): partial exits, which the "
+              "house engine cannot hold (as #436524)."),
+    438495: ("1", "monthclose / weekclose / dayclose = request.security(tickerid, 'M' / 'W' / 'D', "
+              "close, lookahead = barmerge.lookahead_on): on a daily chart the month's and week's "
+              "FINAL close is used from their first bar (look-ahead); the entry requires "
+              "monthclose > monthopen and weekclose > weekopen."),
 }
 
 DUPLICATE_ON_READING = {

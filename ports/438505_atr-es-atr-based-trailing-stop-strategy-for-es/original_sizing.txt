@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #438505 (基于ATR的ES尾随停止策略ATR-based-Trailing-Stop-Strategy-for-ES)
+# Source: https://www.fmz.com/strategy/438505  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trailing exits (offset only)  [lines 141-149]
+  141: // Trailing stop loss logic
+  142: // For long positions, trail 1 point below the up plot
+  143: longStopPrice = up - 1
+  144: 
+  145: // For short positions, trail 1 point above the dn plot
+  146: shortStopPrice = dn + 1
+  147: 
+  148: strategy.exit("Trailing Stop Long", "Long", trail_offset=longStopPrice)
+  149: strategy.exit("Trailing Stop Short", "Short", trail_offset=shortStopPrice)

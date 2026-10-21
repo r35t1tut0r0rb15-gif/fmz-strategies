@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #438506 (超级趋势追踪止损策略Trend-Following-Strategy-with-Stop-Loss)
+# Source: https://www.fmz.com/strategy/438506  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity; stop / profit amounts  [lines 155-159]
+  155: strategy("Supertrend Strategy", overlay=true, default_qty_type=strategy.percent_of_equity)
+  156: 
+  157: // Stop loss and profit amount
+  158: stop_loss = input(300, title="Stop Loss Amount")
+  159: profit = input (800, title="Profit Amount")

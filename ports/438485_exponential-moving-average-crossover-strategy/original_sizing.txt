@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #438485 (移动平均线交叉策略Exponential-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/438485  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, cash quantity, commission  [lines 101-102]
+  101: strategy(title = "rt maax EMA cross strategy", shorttitle = "rt maax ema ", overlay = true, precision = 8, max_bars_back = 200, pyramiding = 0, initial_capital = 100000, 
+  102:      currency = currency.USD, default_qty_type = strategy.cash, default_qty_value = 100000, commission_type = "percent", commission_value = 0.27)
+
+## Unused bracket levels  [lines 129-144]
+  129:     stoploss=low*0.97
+  130:     takeprofit=high*1.12
+  131:     strategy.entry("Long Entry", strategy.long)
+  132:     strategy.exit ("exit","long",stop=stoploss,limit=takeprofit)
+  133:    
+  134: 
+  135: 
+  136: shortCondition1 = ta.crossunder (fema , fastema )
+  137: shortcondition2= fastema< slowema
+  138: shortcondition3= fema< slowema
+  139: 
+  140: if (shortCondition1 and shortcondition2 and shortcondition3 )
+  141:     stoploss=low*0.97 
+  142:     takeprofit=high*1.5
+  143:     strategy.entry("Short Entry", strategy.short)
+  144:     strategy.exit("exit","short",stop=stoploss,limit=takeprofit)
