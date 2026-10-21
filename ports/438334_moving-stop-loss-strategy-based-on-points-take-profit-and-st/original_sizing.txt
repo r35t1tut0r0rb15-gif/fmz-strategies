@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #438334 (基于点数止损止盈的移动止损策略Moving-Stop-Loss-Strategy-Based-on-Points-Take-Profit-and-Stop-Loss)
+# Source: https://www.fmz.com/strategy/438334  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital; pip inputs  [lines 125-139]
+  125: strategy('SL & TP based on Pips', "PIP SL & TP", overlay=true, initial_capital=1000)
+  126: 
+  127: // MA
+  128: ema_period = input(title='EMA period', defval=10)
+  129: wma_period = input(title='WMA period', defval=20)
+  130: ema = ta.ema(close, ema_period)
+  131: wma = ta.wma(close, wma_period)
+  132: 
+  133: // Entry Conditions
+  134: long = ta.crossover(ema, wma) and nz(strategy.position_size) == 0
+  135: short = ta.crossunder(ema, wma) and nz(strategy.position_size) == 0
+  136: 
+  137: // Pips Calculation
+  138: pip1 = input(20, title = "TP PIP", group = "PIP CALCULATION") * 10 * syminfo.mintick
+  139: pip2 = input(20, title = "SL PIP", group = "PIP CALCULATION") * 10 * syminfo.mintick

@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #438064 (基于多时间框架移动平均线与RSI的趋势跟踪策略Trend-Following-Strategy-Based-on-Multi-Timeframe-Moving-Average-and-RSI)
+# Source: https://www.fmz.com/strategy/438064  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trailing exits (ticks of 2 % of the close)  [lines 178-179]
+  178: strategy.exit ("Bull TSL", "long", trail_points=close * 0.02 / syminfo.mintick, trail_offset=close * 0.02/syminfo.mintick)
+  179: strategy.exit ("Bear TSL", "short", trail_points=close * 0.02 / syminfo.mintick, trail_offset=close * 0.02/syminfo.mintick)

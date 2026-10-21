@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #438058 (双MA顺势突破策略Dual-MA-Trend-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/438058  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; stop percent input  [lines 179-185]
+  179: strategy(title = "Noro's Trend MAs Strategy v2.0 +CB", shorttitle = "Trend MAs str 2.0", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value=100.0, pyramiding=0)
+  180: 
+  181: //Settings
+  182: needlong = input(true, "long")
+  183: needshort = input(true, "short")
+  184: needstops = input(false, "stops")
+  185: stoppercent = input(5, defval = 5, minval = 1, maxval = 50, title = "Stop, %")
+
+## Stop levels and entry quantities  [lines 252-263]
+  252: stoplong = up == 1 and needstops == true ? close - (close / 100 * stoppercent) : stoplong[1]
+  253: stopshort = dn == 1 and needstops == true ? close + (close / 100 * stoppercent) : stopshort[1]
+  254: 
+  255: longCondition = up == 1 or (up2 == 1 and needex == true) or up3 == 1
+  256: if (longCondition)
+  257:     strategy.entry("Long", strategy.long, needlong == false ? 0 : na)
+  258:     strategy.exit("Stop Long", "Long", stop = stoplong)
+  259: 
+  260: shortCondition = dn == 1
+  261: if (shortCondition)
+  262:     strategy.entry("Short", strategy.short, needshort == false ? 0 : na)
+  263:     strategy.exit("Stop Short", "Short", stop = stopshort)

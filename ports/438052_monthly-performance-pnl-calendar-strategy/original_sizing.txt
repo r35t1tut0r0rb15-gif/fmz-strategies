@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #438052 (月度收益表现策略Monthly-Performance-PnL-Calendar-Strategy)
+# Source: https://www.fmz.com/strategy/438052  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Capital assignment for the P/L table  [lines 215-218]
+  215: strategy.initial_capital = 50000
+  216: // profit
+  217: only_profit = strategy.netprofit
+  218: initial_balance = strategy.initial_capital

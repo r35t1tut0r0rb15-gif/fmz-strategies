@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #438068 (追踪止损百分比策略Percentage-Trailing-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/438068  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trail percent input and stop levels  [lines 135-149]
+  135: longTrailPerc = input.float(defval=3.0,step=0.1,title="Trail Long Loss (%)")* 0.01 
+  136: longCondition = ta.crossover(ta.sma(close, 14), ta.sma(close, 28))
+  137: 
+  138: // Determine trail stop loss prices
+  139: longStopPrice = 0.0
+  140: lastEntryPrice = strategy.opentrades.entry_price(strategy.opentrades - 1)
+  141: longStopPrice := if (strategy.position_size > 0 and close > (lastEntryPrice * (1 + longTrailPerc)))
+  142:     stopValue = lastEntryPrice
+  143:     math.max(stopValue, longStopPrice[1])
+  144: else
+  145:     longStopPrice := if (strategy.position_size > 0)
+  146:         stopValue = lastEntryPrice * (1 - longTrailPerc)
+  147:         math.max(stopValue, longStopPrice[1])
+  148:     else
+  149:         0

@@ -3484,6 +3484,37 @@ SIZING = {
         ("Stop input and tick bracket", 139, 158),
     ],
     438051: [],
+    # ---- FMZ-C, batch C109 (2026-10-22)
+    438052: [
+        ("Capital assignment for the P/L table", 215, 218),
+    ],
+    438053: [],
+    438054: [
+        ("strategy(): 15 % of equity; stop / profit amounts", 87, 93),
+    ],
+    438058: [
+        ("strategy(): 100 % of equity; stop percent input", 179, 185),
+        ("Stop levels and entry quantities", 252, 263),
+    ],
+    438059: [
+        ("Long / short stop and target inputs", 212, 219),
+        ("Bracket levels", 354, 357),
+    ],
+    438063: [],
+    438064: [
+        ("Trailing exits (ticks of 2 % of the close)", 178, 179),
+    ],
+    438067: [],
+    438068: [
+        ("Trail percent input and stop levels", 135, 149),
+    ],
+    438334: [
+        ("strategy(): capital; pip inputs", 125, 139),
+    ],
+    438450: [],
+    438451: [
+        ("Target / stop inputs and levels", 182, 189),
+    ],
 }
 
 REJECTED_ON_READING = {

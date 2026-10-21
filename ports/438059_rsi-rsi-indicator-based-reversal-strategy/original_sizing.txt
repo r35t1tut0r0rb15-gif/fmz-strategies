@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #438059 (基于RSI指标的多空反转策略RSI-Indicator-Based-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/438059  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Long / short stop and target inputs  [lines 212-219]
+  212: longTrading = input(true, title="enable Long Backtester (to disable uncheck 'plot Bullish' and 'plot hidden Bullish as well')", group='Long Backtester')
+  213: longStopLoss = input.float(0.5, title='Stop Loss %', group='Long Backtester') / 100
+  214: longTakeProfit = input.float(2.0, title='Take Profit %', group='Long Backtester') / 100
+  215: 
+  216: // short settings - ? uncomment the 3 lines below to disable the alerts and enable the backtester 
+  217: shortTrading = input(true, title="enable Short Backtester (to disable uncheck 'plot Bearish' and 'plot hidden Bearish as well'", group='Short Backtester')
+  218: shortStopLoss = input.float(0.5, title='Stop Loss %', group='Short Backtester') / 100
+  219: shortTakeProfit = input.float(2.0, title='Take Profit %', group='Short Backtester') / 100
+
+## Bracket levels  [lines 354-357]
+  354: longTP = strategy.position_size > 0 ? strategy.position_avg_price * (1 + longTakeProfit) : strategy.position_size < 0 ? strategy.position_avg_price * (1 - longTakeProfit) : na
+  355: longSL = strategy.position_size > 0 ? strategy.position_avg_price * (1 - longStopLoss) : strategy.position_size < 0 ? strategy.position_avg_price * (1 + longStopLoss) : na
+  356: shortTP = strategy.position_size > 0 ? strategy.position_avg_price * (1 + shortTakeProfit) : strategy.position_size < 0 ? strategy.position_avg_price * (1 - shortTakeProfit) : na
+  357: shortSL = strategy.position_size > 0 ? strategy.position_avg_price * (1 - shortStopLoss) : strategy.position_size < 0 ? strategy.position_avg_price * (1 + shortStopLoss) : na

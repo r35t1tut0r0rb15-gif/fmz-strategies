@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #438054 (超越移动止损盈利策略Supertrend-Moving-Stop-Loss-Take-Profit-Strategy)
+# Source: https://www.fmz.com/strategy/438054  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 15 % of equity; stop / profit amounts  [lines 87-93]
+   87: strategy("ST Michael Moving TP", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=15)
+   88: 
+   89: // Stop loss and profit amount
+   90: stop_loss = input(1500, title="Stop Loss Amount")
+   91: profit = input (15000, title="Profit Amount")
+   92: LongTrailProfit = input (0.91, title = "Long Trailing Profit Taking")
+   93: ShortTrailProfit = input (1.01, title = "Short Trailing Profit Taking")

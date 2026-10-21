@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2019 |
-| PORTED | 1513 |
+| PORT_CANDIDATE | 2007 |
+| PORTED | 1525 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1641,7 +1641,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 438047 | `ports/438047_moving-average-cross-signal-strategy/` | PineScript | ma_trend | none | atype x2, len x2 | 4 |
 | 438048 | `ports/438048_dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, stop x2 | 4 |
 | 438051 | `ports/438051_breakthrough-highs-and-lows-backtesting-strategy/` | PineScript | breakout | none | lookback x4 | 4 |
-| | **1513 ports** | | | | | **7638** |
+| 438052 | `ports/438052_monthly-performance-pnl-calendar-strategy/` | PineScript | breakout | none | lookback x4 | 4 |
+| 438053 | `ports/438053_andrew-abraham-andrew-abraham-trend-tracking-strategy/` | PineScript | volatility_stop_cross | none | length x2, mult x2 | 4 |
+| 438054 | `ports/438054_supertrend-moving-stop-loss-take-profit-strategy/` | PineScript | supertrend | coarse_bar_stop | stop_frac x2, factor x2 | 4 |
+| 438058 | `ports/438058_ma-dual-ma-trend-breakout-strategy/` | PineScript | ma_trend | none | slowlen x2, fastlen x2 | 4 |
+| 438059 | `ports/438059_rsi-rsi-indicator-based-reversal-strategy/` | PineScript | rsi_oscillator | coarse_bar_stop | lb x2, stop x2 | 4 |
+| 438063 | `ports/438063_ma200-buying-dips-ma200-optimized-strategy/` | PineScript | mean_reversion | none | drop x2, ma_len x2 | 4 |
+| 438064 | `ports/438064_rsi-trend-following-strategy-based-on-multi-timeframe-moving/` | PineScript | trend_confluence | coarse_bar_stop, trailing_stop | fast x2, trail_pct x2 | 4 |
+| 438067 | `ports/438067_dual-moving-average-crossover-and-bull-bear-power-balance-co/` | PineScript | combo_123_reversal | none | length x2, level_atr x2 | 4 |
+| 438068 | `ports/438068_percentage-trailing-stop-loss-strategy/` | PineScript | ma_cross | trailing_stop | trail_pct x2, fast x2 | 4 |
+| 438334 | `ports/438334_moving-stop-loss-strategy-based-on-points-take-profit-and-st/` | PineScript | ma_cross | none | k_atr x2, ema_period x2 | 4 |
+| 438450 | `ports/438450_sma-sma-crossover-based-quantitative-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 438451 | `ports/438451_moving-average-crossover-trend-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| | **1525 ports** | | | | | **7686** |
 
 ## Rejected on reading
 

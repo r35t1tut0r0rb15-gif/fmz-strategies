@@ -1740,3 +1740,15 @@ fmz_id,file,final_outcome,criterion,reason
 438047,移动平均线交叉信号策略Moving-Average-Cross-Signal-Strategy.md,PORTED,,ports/438047_moving-average-cross-signal-strategy/
 438048,一种双均线交易策略Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/438048_dual-moving-average-crossover-strategy/
 438051,突破高低点回测策略Breakthrough-Highs-and-Lows-Backtesting-Strategy.md,PORTED,,ports/438051_breakthrough-highs-and-lows-backtesting-strategy/
+438052,月度收益表现策略Monthly-Performance-PnL-Calendar-Strategy.md,PORTED,,ports/438052_monthly-performance-pnl-calendar-strategy/
+438053,Andrew-Abraham趋势追踪策略Andrew-Abraham-Trend-Tracking-Strategy.md,PORTED,,ports/438053_andrew-abraham-andrew-abraham-trend-tracking-strategy/
+438054,超越移动止损盈利策略Supertrend-Moving-Stop-Loss-Take-Profit-Strategy.md,PORTED,,ports/438054_supertrend-moving-stop-loss-take-profit-strategy/
+438058,双MA顺势突破策略Dual-MA-Trend-Breakout-Strategy.md,PORTED,,ports/438058_ma-dual-ma-trend-breakout-strategy/
+438059,基于RSI指标的多空反转策略RSI-Indicator-Based-Reversal-Strategy.md,PORTED,,ports/438059_rsi-rsi-indicator-based-reversal-strategy/
+438063,买入低点-MA200优化策略Buying-Dips-MA200-Optimized-Strategy.md,PORTED,,ports/438063_ma200-buying-dips-ma200-optimized-strategy/
+438064,基于多时间框架移动平均线与RSI的趋势跟踪策略Trend-Following-Strategy-Based-on-Multi-Timeframe-Moving-Average-and-RSI.md,PORTED,,ports/438064_rsi-trend-following-strategy-based-on-multi-timeframe-moving/
+438067,双均线价格突破与多空力量平衡组合策略Dual-Moving-Average-Crossover-and-Bull-Bear-Power-Balance-Combination-Strategy.md,PORTED,,ports/438067_dual-moving-average-crossover-and-bull-bear-power-balance-co/
+438068,追踪止损百分比策略Percentage-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/438068_percentage-trailing-stop-loss-strategy/
+438334,基于点数止损止盈的移动止损策略Moving-Stop-Loss-Strategy-Based-on-Points-Take-Profit-and-Stop-Loss.md,PORTED,,ports/438334_moving-stop-loss-strategy-based-on-points-take-profit-and-st/
+438450,基于SMA均线交叉的量化交易策略SMA-Crossover-Based-Quantitative-Trading-Strategy.md,PORTED,,ports/438450_sma-sma-crossover-based-quantitative-trading-strategy/
+438451,均线交叉的移动平均趋势策略Moving-Average-Crossover-Trend-Strategy.md,PORTED,,ports/438451_moving-average-crossover-trend-strategy/
