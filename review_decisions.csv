@@ -1812,3 +1812,15 @@ fmz_id,file,final_outcome,criterion,reason
 438951,双均线回转与枢轴点组合策略Combination-Strategy-of-123-Reversal-and-Pivot-Point.md,PORTED,,ports/438951_combination-strategy-of-123-reversal-and-pivot-point/
 438972,基于Ichimoku-Kinko-Hyo指标的突破策略Ichimoku-Kinko-Hyo-Breakout-Strategy.md,PORTED,,ports/438972_ichimoku-kinko-hyo-ichimoku-kinko-hyo-breakout-strategy/
 438975,基于移动平均线的量化交易策略Quantitative-Trading-Strategy-Based-on-Moving-Average.md,PORTED,,ports/438975_quantitative-trading-strategy-based-on-moving-average/
+438978,三均线黄金交叉交易策略Triangular-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/438978_triangular-moving-average-crossover-trading-strategy/
+439036,偏反指标回测策略Key-Reversal-Backtest-Strategy.md,PORTED,,ports/439036_key-reversal-backtest-strategy/
+439039,趋势追踪移动止损策略Trend-Tracking-Trailing-Stop-Strategy.md,PORTED,,ports/439039_trend-tracking-trailing-stop-strategy/
+439047,基于线性回归分析和均线指标的短线交易策略Linear-Regression-Channel-Strategy.md,PORTED,,ports/439047_linear-regression-channel-strategy/
+439048,基于均线和超越的跟踪止损策略Moving-Average-and-Super-Trend-Tracking-Stop-Loss-Strategy.md,PORTED,,ports/439048_moving-average-and-super-trend-tracking-stop-loss-strategy/
+439049,基于RSI指标的短线交易策略RSI-Indicator-Based-Short-term-Trading-Strategy.md,PORTED,,ports/439049_rsi-rsi-indicator-based-short-term-trading-strategy/
+439050,RSI指标追踪止盈止损策略RSI-Target-and-Stop-Loss-Tracking-Strategy.md,PORTED,,ports/439050_rsi-rsi-target-and-stop-loss-tracking-strategy/
+439051,基于MA转折点的长短策略MA-Turning-Point-Long-and-Short-Strategy.md,PORTED,,ports/439051_ma-ma-turning-point-long-and-short-strategy/
+439052,优化EMA黄金交叉策略Optimized-EMA-Crossover-Strategy.md,PORTED,,ports/439052_ema-optimized-ema-crossover-strategy/
+439053,短期极限空头策略Extreme-Short-term-Scalping-Strategy.md,PORTED,,ports/439053_extreme-short-term-scalping-strategy/
+439064,利用价格动量指标实现的趋势跟踪策略Momentum-Breakout-Strategy.md,PORTED,,ports/439064_momentum-breakout-strategy/
+439067,动量均差指标突破策略Momentum-Mean-Deviation-Breakthrough-Strategy.md,PORTED,,ports/439067_momentum-mean-deviation-breakthrough-strategy/

@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #438978 (三均线黄金交叉交易策略Triangular-Moving-Average-Crossover-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/438978  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 5 % of equity; SL / PT inputs  [lines 169-189]
+  169: strategy("Kozlod - 3 MA strategy with SL/PT", shorttitle="kozlod_3ma", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 5)
+  170: 
+  171: // 
+  172: // author: Kozlod
+  173: // date: 2018-03-25
+  174: // 
+  175: 
+  176: ////////////
+  177: // INPUTS //
+  178: ////////////
+  179: 
+  180: ma_type        = input(title = "MA Type",            defval = "SMA", options = ['SMA', 'EMA', 'WMA', 'VWMA', 'HMA', 'SMMA', 'DEMA'])
+  181: short_ma_len   = input(title = "Short MA Length",    defval = 5,     minval = 1)
+  182: short_ma_src   = input(title = "Short MA Source",    defval = close)
+  183: medium_ma_len  = input(title = "Medium MA Length",   defval = 20,    minval = 2)
+  184: medium_ma_src  = input(title = "Medium MA Source",   defval = close)
+  185: long_ma_len    = input(title = "Long MA Length",     defval = 100,   minval = 3)
+  186: long_ma_src    = input(title = "Long MA Source",     defval = close)
+  187: 
+  188: sl_lev_perc    = input(title = "SL Level % (0 - Off)", type = float,   defval = 0,  minval = 0, step = 0.01)
+  189: pt_lev_perc    = input(title = "PT Level % (0 - Off)", type = float,   defval = 0,  minval = 0, step = 0.01)

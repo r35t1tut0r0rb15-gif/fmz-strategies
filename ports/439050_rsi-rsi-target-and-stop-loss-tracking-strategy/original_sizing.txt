@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #439050 (RSI指标追踪止盈止损策略RSI-Target-and-Stop-Loss-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/439050  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Point bracket inputs and levels  [lines 138-152]
+  138: LONGSTOP = input.int(defval = 50, title = "STOPLOSS LONG")
+  139: LONGTARGET = input.int(defval = 100, title = "TARGET LONG")
+  140: 
+  141: SHORTSTOP = input.int(defval = 50, title = "STOPLOSS SHORT")
+  142: SHORTTARGET = input.int(defval = 100, title = "TARGET SHORT")
+  143: 
+  144: // POINTBASED TARGET & STOPLOSS
+  145: 
+  146: RSI = ta.rsi(close,RSI_L)
+  147: 
+  148: longstop = strategy.position_avg_price - LONGSTOP
+  149: longtarget = strategy.position_avg_price + LONGTARGET
+  150: 
+  151: shortstop = strategy.position_avg_price + SHORTSTOP
+  152: shorttarget = strategy.position_avg_price - SHORTTARGET

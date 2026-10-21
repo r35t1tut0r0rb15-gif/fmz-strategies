@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #439049 (基于RSI指标的短线交易策略RSI-Indicator-Based-Short-term-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/439049  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / take inputs and order prices; capital / close quantity  [lines 129-145]
+  129: sl_inp = input(10.0, title='Stop Loss %')/100
+  130: tp_inp = input(1.0, title='Take Profit %')/100
+  131: 
+  132: haOpen = 0.0
+  133: haOpen := haOpen[1]
+  134:  
+  135: st_level = strategy.position_avg_price * (1 - sl_inp)
+  136: take_level = strategy.position_avg_price * (1 + tp_inp)
+  137: price = close
+  138: vrsi = rsi(price, length)
+  139: co = crossover(vrsi, overSold)
+  140: cu = crossunder(vrsi, overBought)
+  141: strategy.initial_capital =50000
+  142: orderSize = ((strategy.initial_capital * 1) / close)
+  143: if (not na(vrsi))
+  144: 	if (co)
+  145: 		strategy.order("RsiLE", strategy.long, orderSize, take_level, st_level, comment="RsiLE")

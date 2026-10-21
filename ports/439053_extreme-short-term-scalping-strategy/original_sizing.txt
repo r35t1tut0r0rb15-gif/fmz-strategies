@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #439053 (短期极限空头策略Extreme-Short-term-Scalping-Strategy)
+# Source: https://www.fmz.com/strategy/439053  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Tick gap and bracket inputs  [lines 168-178]
+  168: gap_tick=input(100)
+  169: fixedTP=input(300)
+  170: fixedSL=input(100)
+  171: useFixedSLTP=input(true)
+  172: direction=input(defval="ALL",title="Direction of order",options=["ALL","BUY ONLY","SELL ONLY"])
+  173: gap=gap_tick*syminfo.mintick
+  174: plot(out+gap,color=color.red)
+  175: plot(out-gap,color=color.green)
+  176: 
+  177: tp=useFixedSLTP?fixedTP:gap_tick
+  178: sl=useFixedSLTP?fixedSL:gap_tick

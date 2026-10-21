@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #439052 (优化EMA黄金交叉策略Optimized-EMA-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/439052  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk-based position size  [lines 204-205]
+  204: riskAmount = 1.5
+  205: positionSize = strategy.equity * riskAmount / (riskRewardRatio * atr(14))

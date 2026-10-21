@@ -3642,6 +3642,31 @@ SIZING = {
     438951: [],
     438972: [],
     438975: [],
+    # ---- FMZ-C, batch C115 (2026-10-22)
+    438978: [
+        ("strategy(): 5 % of equity; SL / PT inputs", 169, 189),
+    ],
+    439036: [],
+    439039: [],
+    439047: [
+        ("strategy(): 100 % of equity, commission", 169, 169),
+    ],
+    439048: [],
+    439049: [
+        ("Stop / take inputs and order prices; capital / close quantity", 129, 145),
+    ],
+    439050: [
+        ("Point bracket inputs and levels", 138, 152),
+    ],
+    439051: [],
+    439052: [
+        ("Risk-based position size", 204, 205),
+    ],
+    439053: [
+        ("Tick gap and bracket inputs", 168, 178),
+    ],
+    439064: [],
+    439067: [],
 }
 
 REJECTED_ON_READING = {

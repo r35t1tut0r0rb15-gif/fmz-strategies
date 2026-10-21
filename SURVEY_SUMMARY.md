@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1947 |
-| PORTED | 1583 |
+| PORT_CANDIDATE | 1935 |
+| PORTED | 1595 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1711,7 +1711,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 438951 | `ports/438951_combination-strategy-of-123-reversal-and-pivot-point/` | PineScript | combo_123_reversal | none | length x2, level_set x2 | 4 |
 | 438972 | `ports/438972_ichimoku-kinko-hyo-ichimoku-kinko-hyo-breakout-strategy/` | PineScript | ichimoku | none | ts_bars x2, ks_bars x2 | 4 |
 | 438975 | `ports/438975_quantitative-trading-strategy-based-on-moving-average/` | PineScript | hull_ma | none | ma_len x2, mode x2 | 4 |
-| | **1583 ports** | | | | | **7918** |
+| 438978 | `ports/438978_triangular-moving-average-crossover-trading-strategy/` | PineScript | ma_cross | none | ma_type x2, short_len x2 | 4 |
+| 439036 | `ports/439036_key-reversal-backtest-strategy/` | PineScript | reversal_pattern | none | tp_frac x2, sl_frac x2 | 4 |
+| 439039 | `ports/439039_trend-tracking-trailing-stop-strategy/` | PineScript | supertrend | none | atr_factor x2, over_bought x2 | 4 |
+| 439047 | `ports/439047_linear-regression-channel-strategy/` | PineScript | mean_reversion | none | length x2, hma_len x2 | 4 |
+| 439048 | `ports/439048_moving-average-and-super-trend-tracking-stop-loss-strategy/` | PineScript | supertrend | none | factor x2, len x2 | 4 |
+| 439049 | `ports/439049_rsi-rsi-indicator-based-short-term-trading-strategy/` | PineScript | rsi_oscillator | none | length x2, over_sold x2 | 4 |
+| 439050 | `ports/439050_rsi-rsi-target-and-stop-loss-tracking-strategy/` | PineScript | rsi_oscillator | none | stop_frac x2, rsi_len x2 | 4 |
+| 439051 | `ports/439051_ma-ma-turning-point-long-and-short-strategy/` | PineScript | ma_trend | none | ma1 x2, trend_strength x2 | 4 |
+| 439052 | `ports/439052_ema-optimized-ema-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 439053 | `ports/439053_extreme-short-term-scalping-strategy/` | PineScript | mean_reversion | coarse_bar_stop | k_sl x2, k_gap x2 | 4 |
+| 439064 | `ports/439064_momentum-breakout-strategy/` | PineScript | momentum_breakout | none | momentum_length x2, confirm_bars x2 | 4 |
+| 439067 | `ports/439067_momentum-mean-deviation-breakthrough-strategy/` | PineScript | momentum_oscillator | none | r x2, s x2 | 4 |
+| | **1595 ports** | | | | | **7966** |
 
 ## Rejected on reading
 
