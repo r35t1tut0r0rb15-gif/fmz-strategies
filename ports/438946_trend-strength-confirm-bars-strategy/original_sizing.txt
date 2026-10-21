@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #438946 (趋势强度确认策略Trend-Strength-Confirm-Bars-Strategy)
+# Source: https://www.fmz.com/strategy/438946  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #438933 (基于价格通道的突破策略Price-Channel-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/438933  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 181-181]
+  181: strategy(title = "Noro's Price Channel Strategy v1.0", shorttitle = "Price Channel str 1.0", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 0)

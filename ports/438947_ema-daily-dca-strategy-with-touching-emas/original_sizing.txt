@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #438947 (每日均成本策略结合EMA触碰信号Daily-DCA-Strategy-with-Touching-EMAs)
+# Source: https://www.fmz.com/strategy/438947  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Daily investment, pyramiding and quantity  [lines 259-276]
+  259: strategy("Daily DCA Strategy with Touching EMAs", overlay=true, pyramiding=10000)
+  260: 
+  261: // Customizable Parameters
+  262: daily_investment = input(50000, title="Daily Investment")
+  263: start_year = input(2022, title="Start Year")
+  264: start_month = input(1, title="Start Month")
+  265: start_day = input(1, title="Start Day")
+  266: end_year = input(2023, title="End Year")
+  267: end_month = input(12, title="End Month")
+  268: end_day = input(1, title="End Day")
+  269: trade_count_limit = input(10000, title="Pyramiding Limit")
+  270: enable_sell = input(true, title="Enable Sell")
+  271: 
+  272: start_date = timestamp(start_year, start_month, start_day)
+  273: var int trade_count = 0
+  274: 
+  275: // Calculate the number of shares to buy based on the current closing price
+  276: shares_to_buy = daily_investment / close

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #438948 (动态趋势追踪反转策略Dynamic-Trend-Tracking-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/438948  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): quantity 1  [lines 222-222]
+  222: strategy(total, total, 1, 0)

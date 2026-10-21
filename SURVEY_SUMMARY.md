@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1959 |
-| PORTED | 1571 |
+| PORT_CANDIDATE | 1947 |
+| PORTED | 1583 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1699,7 +1699,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 438820 | `ports/438820_myo-ls-d-quantitative-strategy/` | PineScript | multi_indicator_confluence | none | trend_l x2, base_periods x2 | 4 |
 | 438826 | `ports/438826_adx-adx-dynamic-trend-strategy/` | PineScript | directional_movement | none | key_level x2, ma_length x2 | 4 |
 | 438929 | `ports/438929_macd-multi-timeframe-macd-moving-average-trading-strategy/` | PineScript | rsi_oscillator | coarse_bar_stop | k_sl x2, rsi_len x2 | 4 |
-| | **1571 ports** | | | | | **7870** |
+| 438931 | `ports/438931_ema-ma-ema-ma-crossover-options-trading-strategy/` | PineScript | ma_cross | none | ema1 x2, ema2 x2 | 4 |
+| 438933 | `ports/438933_price-channel-breakout-strategy/` | PineScript | donchian_breakout | none | pch x2, body_ratio x2 | 4 |
+| 438938 | `ports/438938_dema-dual-trend-tracking-strategy/` | PineScript | supertrend | none | periods x2, multiplier x2 | 4 |
+| 438940 | `ports/438940_hull-hull-fisher-adaptive-intelligent-multi-factor-strategy/` | PineScript | hull_ma | none | period x2, length x2 | 4 |
+| 438944 | `ports/438944_super-trend-dual-moving-average-strategy/` | PineScript | supertrend | none | factor x2, sl x2 | 4 |
+| 438946 | `ports/438946_trend-strength-confirm-bars-strategy/` | PineScript | momentum_breakout | none | confirm_bars x4 | 4 |
+| 438947 | `ports/438947_ema-daily-dca-strategy-with-touching-emas/` | PineScript | calendar_seasonal | none | fastest x2, slowest x2 | 4 |
+| 438948 | `ports/438948_dynamic-trend-tracking-reversal-strategy/` | PineScript | reversal_pattern | none | band x2, xx x2 | 4 |
+| 438950 | `ports/438950_rsi-moving-average-and-stochastic-rsi-combination-trading-st/` | PineScript | stochastic_oscillator | trailing_stop_pending | stoch_length x2, oversold x2 | 4 |
+| 438951 | `ports/438951_combination-strategy-of-123-reversal-and-pivot-point/` | PineScript | combo_123_reversal | none | length x2, level_set x2 | 4 |
+| 438972 | `ports/438972_ichimoku-kinko-hyo-ichimoku-kinko-hyo-breakout-strategy/` | PineScript | ichimoku | none | ts_bars x2, ks_bars x2 | 4 |
+| 438975 | `ports/438975_quantitative-trading-strategy-based-on-moving-average/` | PineScript | hull_ma | none | ma_len x2, mode x2 | 4 |
+| | **1583 ports** | | | | | **7918** |
 
 ## Rejected on reading
 

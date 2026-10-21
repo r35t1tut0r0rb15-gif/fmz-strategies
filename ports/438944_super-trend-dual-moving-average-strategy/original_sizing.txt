@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #438944 (基于超趋势指标和简单移动平均线策略Super-Trend-Dual-Moving-Average-Strategy)
+# Source: https://www.fmz.com/strategy/438944  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, 25 % of equity, commission, pyramiding 1; stop input  [lines 143-154]
+  143: strategy("Smart SuperTrend Strategy ", shorttitle="ST Strategy", overlay=true, pyramiding=1, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=25, calc_on_order_fills=false, slippage=0, commission_type=strategy.commission.percent, commission_value=0.01)
+  144: 
+  145: 
+  146: // Parametry wskaźnika SuperTrend
+  147: atrLength = input(10, title="Lenght ATR")
+  148: factor = input(3.0, title="Mult.")
+  149: 
+  150: // Parametry dla SMA
+  151: lengthSMA = input(200, title="Lenght SMA")
+  152: 
+  153: // Parametry dla Stop Loss
+  154: sl = input.float(25.0, '% Stop Loss', step=0.1)
+
+## Stop in ticks of the average price  [lines 208-212]
+  208: per(procent) =>
+  209:     strategy.position_size != 0 ? math.round(procent / 100 * strategy.position_avg_price / syminfo.mintick) : float(na)
+  210: // --------------------------------------------------------------------------------------------------------------------
+  211: 
+  212: strategy.exit('SL',loss=per(sl))

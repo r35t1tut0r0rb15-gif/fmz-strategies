@@ -1800,3 +1800,15 @@ fmz_id,file,final_outcome,criterion,reason
 438820,基于多空双轨的追踪止盈策略Myo_LS_D-Quantitative-Strategy.md,PORTED,,ports/438820_myo-ls-d-quantitative-strategy/
 438826,ADX动态平均趋势指标策略ADX-Dynamic-Trend-Strategy.md,PORTED,,ports/438826_adx-adx-dynamic-trend-strategy/
 438929,多时间周期MACD均线交易策略Multi-Timeframe-MACD-Moving-Average-Trading-Strategy.md,PORTED,,ports/438929_macd-multi-timeframe-macd-moving-average-trading-strategy/
+438931,基于EMA-MA交叉的交易策略EMA-MA-Crossover-Options-Trading-Strategy.md,PORTED,,ports/438931_ema-ma-ema-ma-crossover-options-trading-strategy/
+438933,基于价格通道的突破策略Price-Channel-Breakout-Strategy.md,PORTED,,ports/438933_price-channel-breakout-strategy/
+438938,超级趋势指标DEMA双重趋势追踪策略Dual-Trend-Tracking-Strategy.md,PORTED,,ports/438938_dema-dual-trend-tracking-strategy/
+438940,优化自适应智能多因子Hull渔人策略Hull-Fisher-Adaptive-Intelligent-Multi-factor-Strategy.md,PORTED,,ports/438940_hull-hull-fisher-adaptive-intelligent-multi-factor-strategy/
+438944,基于超趋势指标和简单移动平均线策略Super-Trend-Dual-Moving-Average-Strategy.md,PORTED,,ports/438944_super-trend-dual-moving-average-strategy/
+438946,趋势强度确认策略Trend-Strength-Confirm-Bars-Strategy.md,PORTED,,ports/438946_trend-strength-confirm-bars-strategy/
+438947,每日均成本策略结合EMA触碰信号Daily-DCA-Strategy-with-Touching-EMAs.md,PORTED,,ports/438947_ema-daily-dca-strategy-with-touching-emas/
+438948,动态趋势追踪反转策略Dynamic-Trend-Tracking-Reversal-Strategy.md,PORTED,,ports/438948_dynamic-trend-tracking-reversal-strategy/
+438950,移动平均线与随机RSI组合交易策略Moving-Average-and-Stochastic-RSI-Combination-Trading-Strategy.md,PORTED,,ports/438950_rsi-moving-average-and-stochastic-rsi-combination-trading-st/
+438951,双均线回转与枢轴点组合策略Combination-Strategy-of-123-Reversal-and-Pivot-Point.md,PORTED,,ports/438951_combination-strategy-of-123-reversal-and-pivot-point/
+438972,基于Ichimoku-Kinko-Hyo指标的突破策略Ichimoku-Kinko-Hyo-Breakout-Strategy.md,PORTED,,ports/438972_ichimoku-kinko-hyo-ichimoku-kinko-hyo-breakout-strategy/
+438975,基于移动平均线的量化交易策略Quantitative-Trading-Strategy-Based-on-Moving-Average.md,PORTED,,ports/438975_quantitative-trading-strategy-based-on-moving-average/

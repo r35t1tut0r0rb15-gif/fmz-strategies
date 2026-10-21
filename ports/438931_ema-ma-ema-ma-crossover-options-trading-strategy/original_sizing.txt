@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #438931 (基于EMA-MA交叉的交易策略EMA-MA-Crossover-Options-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/438931  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Buy quantity input  [lines 158-158]
+  158: qty = input(100000, "Buy quantity")
