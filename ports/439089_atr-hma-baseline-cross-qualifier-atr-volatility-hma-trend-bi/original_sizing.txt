@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #439089 (基于ATR波动性与HMA趋势偏差的双均线突破策略Baseline-Cross-Qualifier-ATR-Volatility-HMA-Trend-Bias-Mean-Reversion-Strategy)
+# Source: https://www.fmz.com/strategy/439089  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Per-bar bracket and unused take-profit variants  [lines 175-186]
+  175: if (takeProfitType == "1 Take Profit")
+  176:     strategy.exit("TP/SL", "Long", limit=rangeHigh, stop=rangeLow)
+  177:     strategy.exit("TP/SL", "Short", limit=rangeLow, stop=rangeHigh)
+  178: else if (takeProfitType == "2 Take Profits")
+  179:     strategy.exit("TP1", "Long", qty=strategy.position_size * 0.5, limit=rangeHigh / 2)
+  180:     strategy.exit("TP2", "Long", qty=strategy.position_size * 0.5, limit=rangeHigh)
+  181:     strategy.exit("TP1", "Short", qty=strategy.position_size * 0.5, limit=rangeLow / 2)
+  182:     strategy.exit("TP2", "Short", qty=strategy.position_size * 0.5, limit=rangeLow)
+  183: else if (takeProfitType == "3 Take Profits")
+  184:     strategy.exit("TP1", "Long", qty=strategy.position_size * 0.5, limit=rangeHigh / 2)
+  185:     strategy.exit("TP2", "Long", qty=strategy.position_size * 0.25, limit=rangeHigh * 0.75)
+  186:     strategy.exit("TP3", "Long", qty=strategy.position_size * 0.25, limit=rangeHigh * 1.5)

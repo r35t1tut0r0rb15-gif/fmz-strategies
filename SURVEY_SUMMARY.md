@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1935 |
-| PORTED | 1595 |
+| PORT_CANDIDATE | 1923 |
+| PORTED | 1607 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1723,7 +1723,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439053 | `ports/439053_extreme-short-term-scalping-strategy/` | PineScript | mean_reversion | coarse_bar_stop | k_sl x2, k_gap x2 | 4 |
 | 439064 | `ports/439064_momentum-breakout-strategy/` | PineScript | momentum_breakout | none | momentum_length x2, confirm_bars x2 | 4 |
 | 439067 | `ports/439067_momentum-mean-deviation-breakthrough-strategy/` | PineScript | momentum_oscillator | none | r x2, s x2 | 4 |
-| | **1595 ports** | | | | | **7966** |
+| 439074 | `ports/439074_true-range-based-weighted-moving-average-cross-period-strate/` | PineScript | momentum_oscillator | none | corto x2, largo x2 | 4 |
+| 439075 | `ports/439075_multi-filter-bollinger-band-trading-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 439077 | `ports/439077_adx-adaptive-trading-strategy-based-on-adx-indicator/` | PineScript | directional_movement | none | len x2, diff x2 | 4 |
+| 439079 | `ports/439079_ema-sma-trend-following-strategy-based-on-ema-and-sma-crosso/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 439080 | `ports/439080_momentum-inversion-tracking-strategy/` | PineScript | volatility_stop_cross | none | increment x2, maximum x2 | 4 |
+| 439082 | `ports/439082_improved-supertrend-strategy/` | PineScript | volatility_channel_breakout | none | atr_mult x2, filter_len x2 | 4 |
+| 439083 | `ports/439083_fibonacci-breakthrough-of-daily-high-low-price-based-on-fibo/` | PineScript | breakout | none | exit_on_low x2, buffer x2 | 4 |
+| 439084 | `ports/439084_ehlers-stochastic-cyber-cycle-strategy/` | PineScript | momentum_oscillator_turn | none | alpha x2, len x2 | 4 |
+| 439087 | `ports/439087_price-reversal-with-crossover-capturing-strategy/` | PineScript | combo_123_reversal | none | length x2, length_sc x2 | 4 |
+| 439089 | `ports/439089_atr-hma-baseline-cross-qualifier-atr-volatility-hma-trend-bi/` | PineScript | ma_trend | trailing_stop_pending | baseline_len x2, qualifier_mult x2 | 4 |
+| 439094 | `ports/439094_momentum-breakout-optimization/` | PineScript | volatility_stop_cross | none | multiplier x2, length x2 | 4 |
+| 439098 | `ports/439098_pb-bandpass-mean-pb-indicator-strategy/` | PineScript | momentum_oscillator | none | period1 x2, period2 x2 | 4 |
+| | **1607 ports** | | | | | **8014** |
 
 ## Rejected on reading
 

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #439098 (布林带穿越均值PB指标策略Bandpass-Mean-PB-Indicator-Strategy)
+# Source: https://www.fmz.com/strategy/439098  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital  [lines 137-137]
+  137: strategy("BandPass EOS", overlay=false, initial_capital = 1000)

@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #439083 (基于Fibonacci水平的日内高低价突破Breakthrough-of-Daily-High-low-Price-Based-on-Fibonacci-Levels)
+# Source: https://www.fmz.com/strategy/439083  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

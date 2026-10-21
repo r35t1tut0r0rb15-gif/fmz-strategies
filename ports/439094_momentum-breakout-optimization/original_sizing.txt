@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #439094 (动量突破优化趋势跟踪策略Momentum-Breakout-Optimization)
+# Source: https://www.fmz.com/strategy/439094  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, commission, slippage; risk sizing  [lines 200-219]
+  200: strategy(title="Profit Maximizer PMax", overlay=true,
+  201:      pyramiding=0, initial_capital=1000,
+  202:      commission_type=strategy.commission.cash_per_order,
+  203:      commission_value=0.025, slippage=2)
+  204: 
+  205: 
+  206: src = input(hl2, title="Source")
+  207: Periods = input(title="ATR Length", type=input.integer, defval=10)
+  208: Multiplier = input(title="ATR Multiplier", type=input.float, step=0.1, defval=3.0)
+  209: mav = input(title="Moving Average Type", defval="ZLEMA", options=["SMA", "EMA", "WMA", "TMA", "VAR", "WWMA", "ZLEMA", "TSF"])
+  210: length =input(10, "Moving Average Length", minval=1)
+  211: changeATR= input(title="Change ATR Calculation Method ?", type=input.bool, defval=true)
+  212: showsupport = input(title="Show Moving Average?", type=input.bool, defval=true)
+  213: showsignalsk = input(title="Show Crossing Signals?", type=input.bool, defval=true)
+  214: showsignalsc = input(title="Show Price/Pmax Crossing Signals?", type=input.bool, defval=false)
+  215: highlighting = input(title="Highlighter On/Off ?", type=input.bool, defval=true)
+  216: 
+  217: usePosSize = input(title="Use Position Sizing?", type=input.bool, defval=true)
+  218: riskPerc   = input(title="Risk %", type=input.float, defval=0.5, step=0.25)
+  219: 
+
+## Position size  [lines 316-319]
+  316: // Calculate position size
+  317: riskEquity  = (riskPerc / 100) * strategy.equity
+  318: atrCurrency = (atr(20) * syminfo.pointvalue)
+  319: posSize     = usePosSize ? floor(riskEquity / atrCurrency) : 1

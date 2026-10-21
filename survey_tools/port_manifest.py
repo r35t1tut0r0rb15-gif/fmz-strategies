@@ -3667,6 +3667,34 @@ SIZING = {
     ],
     439064: [],
     439067: [],
+    # ---- FMZ-C, batch C116 (2026-10-22)
+    439074: [
+        ("Contract sizes and adds", 159, 187),
+    ],
+    439075: [],
+    439077: [
+        ("strategy(): quantity 15, commission", 157, 157),
+    ],
+    439079: [],
+    439080: [
+        ("strategy(): 10 % of equity", 125, 125),
+    ],
+    439082: [],
+    439083: [],
+    439084: [
+        ("strategy(): 100 % of equity, pyramiding 1, commission", 169, 169),
+    ],
+    439087: [],
+    439089: [
+        ("Per-bar bracket and unused take-profit variants", 175, 186),
+    ],
+    439094: [
+        ("strategy(): capital, commission, slippage; risk sizing", 200, 219),
+        ("Position size", 316, 319),
+    ],
+    439098: [
+        ("strategy(): capital", 137, 137),
+    ],
 }
 
 REJECTED_ON_READING = {

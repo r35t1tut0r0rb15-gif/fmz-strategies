@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #439080 (抛物线转向系统动能拐点追踪策略Momentum-Inversion-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/439080  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 125-125]
+  125: strategy("Parabolic SAR Strategy", shorttitle="PSAR", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)

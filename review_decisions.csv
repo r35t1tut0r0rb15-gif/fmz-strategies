@@ -1824,3 +1824,15 @@ fmz_id,file,final_outcome,criterion,reason
 439053,短期极限空头策略Extreme-Short-term-Scalping-Strategy.md,PORTED,,ports/439053_extreme-short-term-scalping-strategy/
 439064,利用价格动量指标实现的趋势跟踪策略Momentum-Breakout-Strategy.md,PORTED,,ports/439064_momentum-breakout-strategy/
 439067,动量均差指标突破策略Momentum-Mean-Deviation-Breakthrough-Strategy.md,PORTED,,ports/439067_momentum-mean-deviation-breakthrough-strategy/
+439074,基于真实波幅的加权移动平均跨期策略True-Range-Based-Weighted-Moving-Average-Cross-Period-Strategy.md,PORTED,,ports/439074_true-range-based-weighted-moving-average-cross-period-strate/
+439075,多重筛选型布林带交易策略Multi-filter-Bollinger-Band-Trading-Strategy.md,PORTED,,ports/439075_multi-filter-bollinger-band-trading-strategy/
+439077,基于ADX指标的自适应交易策略Adaptive-Trading-Strategy-Based-on-ADX-Indicator.md,PORTED,,ports/439077_adx-adaptive-trading-strategy-based-on-adx-indicator/
+439079,基于EMA和SMA交叉的趋势跟踪策略Trend-Following-Strategy-Based-on-EMA-and-SMA-Crossover.md,PORTED,,ports/439079_ema-sma-trend-following-strategy-based-on-ema-and-sma-crosso/
+439080,抛物线转向系统动能拐点追踪策略Momentum-Inversion-Tracking-Strategy.md,PORTED,,ports/439080_momentum-inversion-tracking-strategy/
+439082,改进趋势跟踪动量突破趋势策略Improved-SuperTrend-Strategy.md,PORTED,,ports/439082_improved-supertrend-strategy/
+439083,基于Fibonacci水平的日内高低价突破Breakthrough-of-Daily-High-low-Price-Based-on-Fibonacci-Levels.md,PORTED,,ports/439083_fibonacci-breakthrough-of-daily-high-low-price-based-on-fibo/
+439084,埃勒斯随机周期量化交易策略Ehlers-Stochastic-Cyber-Cycle-Strategy.md,PORTED,,ports/439084_ehlers-stochastic-cyber-cycle-strategy/
+439087,反转交叉捕捉策略Price-Reversal-with-Crossover-Capturing-Strategy.md,PORTED,,ports/439087_price-reversal-with-crossover-capturing-strategy/
+439089,基于ATR波动性与HMA趋势偏差的双均线突破策略Baseline-Cross-Qualifier-ATR-Volatility-HMA-Trend-Bias-Mean-Reversion-Strategy.md,PORTED,,ports/439089_atr-hma-baseline-cross-qualifier-atr-volatility-hma-trend-bi/
+439094,动量突破优化趋势跟踪策略Momentum-Breakout-Optimization.md,PORTED,,ports/439094_momentum-breakout-optimization/
+439098,布林带穿越均值PB指标策略Bandpass-Mean-PB-Indicator-Strategy.md,PORTED,,ports/439098_pb-bandpass-mean-pb-indicator-strategy/

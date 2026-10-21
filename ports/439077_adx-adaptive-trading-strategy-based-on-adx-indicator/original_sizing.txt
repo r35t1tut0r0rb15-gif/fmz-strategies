@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #439077 (基于ADX指标的自适应交易策略Adaptive-Trading-Strategy-Based-on-ADX-Indicator)
+# Source: https://www.fmz.com/strategy/439077  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): quantity 15, commission  [lines 157-157]
+  157: strategy("Monthly Performance by Dr. Maurya", overlay=true, default_qty_value = 15, commission_type = strategy.commission.percent, commission_value = 0.1)
