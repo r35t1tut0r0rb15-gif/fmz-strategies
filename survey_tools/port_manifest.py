@@ -3192,6 +3192,28 @@ SIZING = {
     436797: [],
     436860: [],
     436872: [],
+    # ---- FMZ-C, batch C97 (2026-10-21)
+    436876: [],
+    436877: [
+        ("strategy(): margins and pyramiding 10", 155, 155),
+    ],
+    436878: [],
+    436900: [
+        ("Take-profit, stop-loss and combined-exit tick inputs", 143, 149),
+    ],
+    436903: [],
+    436904: [],
+    436910: [],
+    436984: [],
+    436987: [],
+    436988: [
+        ("strategy(): percent of equity, pyramiding 1, commission", 115, 115),
+        ("Leverage quantity", 135, 142),
+    ],
+    436992: [
+        ("Take-profit / stop-loss pip inputs", 181, 182),
+    ],
+    436994: [],
 }
 
 REJECTED_ON_READING = {

@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 2159 |
-| PORTED | 1385 |
+| PORT_CANDIDATE | 2147 |
+| PORTED | 1397 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 563 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1513,7 +1513,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 436797 | `ports/436797_double-moving-average-crossover-strategy/` | PineScript | trend_confluence | none | window x2, sigma x2 | 4 |
 | 436860 | `ports/436860_reversal-dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | ma1 x2, ma2 x2 | 4 |
 | 436872 | `ports/436872_momentum-gap-trading-strategy/` | PineScript | momentum_oscillator | none | period x2, signal_period x2 | 4 |
-| | **1385 ports** | | | | | **7144** |
+| 436876 | `ports/436876_macd-ema-macd-and-ema-crossover-strategy/` | PineScript | macd_cross | coarse_bar_stop | fast x2, ema_len x2 | 4 |
+| 436877 | `ports/436877_moving-average-rebound-strategy/` | PineScript | mean_reversion | none | length_rs x2 | 2 |
+| 436878 | `ports/436878_highest-lowest-center-lookback-strategy/` | PineScript | volatility_channel_breakout | none | lookback x2, atr_mult x2 | 4 |
+| 436900 | `ports/436900_premium-double-trend-filter-ma-ratio-strategy/` | PineScript | trend_confluence | none | slow_length x2, k_atr x2 | 4 |
+| 436903 | `ports/436903_comprehensive-quantitative-trading-strategy-based-on-multipl/` | PineScript | trend_confluence | none | st_mult x2, tia_len x2 | 4 |
+| 436904 | `ports/436904_slow-stochastic-trend-following-strategy/` | PineScript | stochastic_oscillator | none | smooth_k x2, sma_k x2 | 4 |
+| 436910 | `ports/436910_rsi-slow-rsi-ob-os-strategy/` | PineScript | rsi_oscillator | none | length x2, smoother x2 | 4 |
+| 436984 | `ports/436984_dynamic-trailing-stop-loss-strategy/` | PineScript | ma_cross | none | trail_pct x2, stop_pct x2 | 4 |
+| 436987 | `ports/436987_t3-cci-quantitative-trading-reversal-trend-combo-t3-cci-stra/` | PineScript | reversal_pattern | none | length x2, cci_period x2 | 4 |
+| 436988 | `ports/436988_pine-leveraged-rsi-strategy-in-pine-script/` | PineScript | rsi_oscillator | none | length x2, over_sold x2 | 4 |
+| 436992 | `ports/436992_three-inside-down-reversal-strategy/` | PineScript | candle_pattern | none | k_sl x2, atr_len x2 | 4 |
+| 436994 | `ports/436994_hma-ai-fibonacci-hma-ai-buy-sell-signal-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| | **1397 ports** | | | | | **7190** |
 
 ## Rejected on reading
 

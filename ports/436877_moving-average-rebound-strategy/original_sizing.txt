@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #436877 (均线反弹吸筹策略Moving-Average-Rebound-Strategy)
+# Source: https://www.fmz.com/strategy/436877  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margins and pyramiding 10  [lines 155-155]
+  155: strategy('Estrategia EMA Resistencia Soporte', shorttitle='Estrategia EMA RESISTENCIA Y SOPORTE', overlay=true, margin_long=100, margin_short=100, pyramiding = 10 )

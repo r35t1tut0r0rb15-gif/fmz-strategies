@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #436900 (双重趋势过滤链动平均线比率策略Premium-Double-Trend-Filter-MA-Ratio-Strategy)
+# Source: https://www.fmz.com/strategy/436900  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit, stop-loss and combined-exit tick inputs  [lines 143-149]
+  143: use_exit_strategies = input(true, title = "Use Exit Strategies?")
+  144: use_take_profit = input(true, title = "Use Take Profit?")
+  145: take_profit_ticks = input(150, title = "Take Profit in Ticks")
+  146: use_stop_loss = input(true, title = "Use Stop Loss?")
+  147: stop_loss_ticks = input(100, title = "Stop Loss in Ticks")
+  148: use_combined_exit = input(true, title = "Use Combined Exit Strategy?")
+  149: combined_exit_ticks = input(50, title = "Combined Exit Ticks")

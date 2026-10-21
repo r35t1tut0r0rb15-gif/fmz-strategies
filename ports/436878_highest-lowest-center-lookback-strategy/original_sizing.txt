@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #436878 (最高最低中心回看策略Highest-Lowest-Center-Lookback-Strategy)
+# Source: https://www.fmz.com/strategy/436878  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
