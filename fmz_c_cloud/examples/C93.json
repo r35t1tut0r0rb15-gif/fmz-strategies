@@ -1,0 +1,13 @@
+{"batch": "C93", "date": "2026-10-18",
+ "sizing": {
+  "436604": [["Investment value and quantity", 183, 185]],
+  "436614": [["strategy(): fixed size 1", 118, 118], ["Take profit and stop loss tick inputs", 160, 166]],
+  "436617": [],
+  "436619": [["Gamble sizing and quantity formula", 169, 214], ["strategy(): percent of equity 50", 183, 183], ["Quantity from equity", 290, 290]],
+  "436623": [],
+  "436634": []
+ },
+ "rejected": {
+  "436603": ["2", "The stop and the target are written as strategy.exit(loss = low - 5.70, profit = close + 11.40): price levels of one instrument passed as TICK counts, so the real distances are (price - 5.7) x tick size, an instrument-specific and nearly meaningless bracket (about 10 % at a 0.1 tick on a 40000 price, about 1 % at 0.01); the author's intended USD levels are tied to a single price scale, so there is no generic reading."]
+ }
+}

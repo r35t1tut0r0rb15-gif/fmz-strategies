@@ -1,0 +1,21 @@
+{"batch": "C95", "date": "2026-10-21",
+ "sizing": {
+  "436754": [["Risk lot formula (unused; size 1) and the pip inputs", 197, 213]],
+  "436755": [],
+  "436757": [["strategy(): 100 % of equity, capital", 124, 124]],
+  "436758": [["Stop loss in ticks input", 126, 126], ["Trade size input", 139, 139]],
+  "436763": [["Percent-of-portfolio input (not used by the orders)", 146, 146]],
+  "436764": [["Take-profit tick formula (off by default)", 141, 143]],
+  "436765": [["strategy(): 100 % of equity, capital, commission", 112, 113]],
+  "436767": [],
+  "436770": [],
+  "436772": []
+ },
+ "rejected": {
+  "436659": ["2", "Every signal is computed on security(sym, '', close / high / low) where sym is an input whose default is BINANCE:BTCUSDT: a named external instrument used as the signal source for whatever chart is traded (SURVEY_README: another symbol -> criterion 2), with the entries sized from strategy.equity."],
+  "436773": ["2", "The stop, the target and the break-even exit are written as strategy.exit(loss = close x 0.99, profit = close x 1.02) and exit(loss = close x 1.01): price levels passed as TICK counts, so the real distances are (price x 0.99) x tick size, an instrument-specific and nearly meaningless bracket (about 10 % at a 0.1 tick on a 42000 price, about 1 % at 0.01); these are the only exits, so there is no generic reading (as #436603)."]
+ },
+ "held": {
+  "436658": ["8", "The long and short entries test the Hull line against rvwma3 = vwma(close, 42): a volume-weighted average (check 8, held with the other volume users)."]
+ }
+}

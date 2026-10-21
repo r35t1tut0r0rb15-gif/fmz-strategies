@@ -1,0 +1,131 @@
+@@id 436754
+@@alias RSI Algo
+@@summary
+RSI threshold breakouts with a tick bracket, 3-minute bars: the RSI 14 crossing up through 75 while rising goes long, crossing down through 25 while falling goes short; a state flag lets a long follow only a
+short signal (and a short only a long signal or the start), so signals alternate, reversing; each trade has a tick stop (250) and target (2500) re-expressed as ATR multiples.
+@@orig_lines 181-219
+@@orig_head period 14, thresholds 75 / 25, inverse off, stop 250 / target 2500 (ticks; the 2-digit switch off)
+@@orig
+buy = rising(rsi, 1) and cross(rsi, 75);  sell = falling(rsi, 1) and cross(rsi, 25)  (swapped when inverse);  myPosition := buy ? 0 : (sell or myPosition[1] == 1) ? 1 : 0
+entry "long" when buy and myPosition[1] == 1;  entry "short" when sell and myPosition[1] == 0;  exit(loss = 250, profit = 2500) for both
+@@interp
+* Criterion 2: the tick amounts (250 / 2500 ticks) are re-expressed as sl_stop = k_atr x ATR(14) / close
+  and tp_stop = 10 (2500 / 250) x sl_stop of the signal bar, shifted one bar inside stops() (re-based on
+  the fill); 0.6 is the reading (about 250 ticks of 0.1 on BTC against a 3-minute ATR near 40), 1.5 a
+  wider stop. cross() is a crossing in either direction, so with rising / falling the buy is a crossing
+  up through 75 and the sell a crossing down through 25. myPosition[1] is na on the first bar, so
+  neither entry can fire there. The London / New York session strings are computed but time_cond is
+  true, so they place no orders. REVERSAL INTENDED. The risk-based lot formula is unused (size 1) and
+  stored as sizing. FREQ = "3min" from the backtest header.
+@@c1 PASS | bar-close orders; bracket fixed at entry
+@@c2 ADAPT | tick amounts -> ATR multiples
+@@c3 exchange pair in the header only
+@@c4 the risk lot formula and the pip inputs stored
+@@session not used (the London / New York windows are computed, never used: time_cond is true)
+@@side REVERSAL INTENDED.
+@@marks none
+@@name fmz_436754_rsi_threshold_alternating_bracket
+@@family rsi_oscillator
+@@grid_note
+`period` [14, 21] x `k_atr` [0.6, 1.5]: @N; thresholds 75 / 25, the 10:1 target and ATR 14 fixed; inverse off.
+@@ambig
+- Tick amounts -> ATR multiples; signals alternate through the myPosition flag; session strings unused. REVERSAL INTENDED. FREQ = "3min".
+@@code
+import numpy as np
+import pandas as pd
+
+NAME = "fmz_436754_rsi_threshold_alternating_bracket"
+FAMILY = "rsi_oscillator"  # proposed 2026-10-21 (FMZ-C), user to confirm
+FREQ = "3min"  # backtest header period: 3m
+PERIODS_PER_YEAR_OVERRIDE = None
+USES_STOPS = True
+
+GRID = {
+    "period": [14, 21],
+    "k_atr": [0.6, 1.5],
+}
+DEFAULT_PARAMS = {"period": 14, "k_atr": 0.6, "up": 75.0, "dn": 25.0, "inverse": False, "tp_ratio": 10.0,
+                  "atr_len": 14}
+
+
+def _resample(raw_1m_df, freq):
+    ohlc = raw_1m_df[["open", "high", "low", "close"]]
+    bars = ohlc.resample(freq, label="left", closed="left").agg(
+        {"open": "first", "high": "max", "low": "min", "close": "last"})
+    bars = bars.dropna(how="all")  # an empty period is not a bar; never forward-filled
+    if bars.index.tz is None:
+        raise ValueError("raw_1m_df must have a tz-aware UTC index")
+    return bars
+
+
+def _rma(x, n):
+    """Wilder smoothing as Pine's rma: SMA seed over the first n valid values, then recursive."""
+    v = x.to_numpy(dtype=float)
+    out = np.full(v.shape, np.nan)
+    valid = np.flatnonzero(~np.isnan(v))
+    if len(valid) >= n:
+        s = valid[0]
+        out[s + n - 1] = v[s:s + n].mean()
+        for i in range(s + n, len(v)):
+            out[i] = (out[i - 1] * (n - 1) + v[i]) / n
+    return pd.Series(out, index=x.index)
+
+
+def _rsi(c, n):
+    d = c.diff()
+    up = _rma(d.clip(lower=0), n)
+    dn = _rma((-d).clip(lower=0), n)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        r = 100.0 - 100.0 / (1.0 + up / dn)
+    r = r.where(up != 0, 0.0).where(dn != 0, 100.0)    # Pine: down == 0 -> 100, else up == 0 -> 0
+    return r.where(up.notna() & dn.notna())
+
+
+def _atr(bars_df, n):
+    h, lo, c = bars_df["high"], bars_df["low"], bars_df["close"]
+    pc = c.shift(1)
+    tr = pd.concat([h - lo, (h - pc).abs(), (lo - pc).abs()], axis=1).max(axis=1)
+    return _rma(tr, int(n))
+
+
+def precompute(raw_1m_df, symbol_key, **params):
+    return _resample(raw_1m_df, FREQ)
+
+
+def simulate(bars_df, **params):
+    p = {**DEFAULT_PARAMS, **params}
+    r = _rsi(bars_df["close"], int(p["period"]))
+    r1 = r.shift(1)
+    rising, falling = r > r1, r < r1
+
+    def cross(t):
+        return ((r > t) & (r1 <= t)) | ((r < t) & (r1 >= t))
+
+    up_x, dn_x = cross(float(p["up"])), cross(float(p["dn"]))
+    if p["inverse"]:
+        buy, sell = falling & dn_x, rising & up_x
+    else:
+        buy, sell = rising & up_x, falling & dn_x
+    b, s = buy.to_numpy(), sell.to_numpy()
+    m = len(b)
+    le, se = np.zeros(m, dtype=bool), np.zeros(m, dtype=bool)
+    prev = None                                  # myPosition[1]; na on the first bar
+    for i in range(m):
+        if b[i] and prev == 1:
+            le[i] = True
+        if s[i] and prev == 0:
+            se[i] = True
+        prev = 0 if b[i] else (1 if (s[i] or prev == 1) else 0)
+    ix = bars_df.index
+    false = pd.Series(False, index=ix)
+    return pd.Series(le, index=ix), false, pd.Series(se, index=ix), false.copy()
+
+
+def stops(bars_df, **params):
+    p = {**DEFAULT_PARAMS, **params}
+    f = float(p["k_atr"]) * _atr(bars_df, p["atr_len"]) / bars_df["close"]
+    return {"sl_stop": f.shift(1), "tp_stop": (float(p["tp_ratio"]) * f).shift(1)}
+
+
+def portfolio_kwargs(**params):
+    return {}
