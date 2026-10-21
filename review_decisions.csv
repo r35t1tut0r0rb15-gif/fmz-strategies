@@ -201,6 +201,8 @@ fmz_id,file,final_outcome,criterion,reason
 436859,多时间框架判断趋势策略Multi-Timeframe-Trend-Strategy.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 request.security(syminfo.tickerid, 'D' / '5D' / '15D' / '45D', open / close) without [1] behaves as lookahead_on, so on every 1-hour bar the candle colours use the final close of the current day, 5-day, 15-day and 45-day bars, not known until they end (SURVEY_README request.security rule, as #432988)."
 437027,动量指标交叉反转趋势跟踪策略Trend-Reversal-Momentum-Indicators-Crossover-Tracking-Strategy.md,REJECTED_ON_READING,1,"Each trade is closed in two halves: strategy.exit(qty_percent = 50) at TP 1 (6 %) and the rest at TP 2 (12 %), both with a 3 % stop, and once the high reaches TP 1 the second half's stop is cancelled and re-placed at the entry price; partial exits and a stop moved after a partial fill are outside the single-position signal interface (as #436524)."
 437048,动态趋势突破策略Dynamic-Breakout-Trend-Following-Strategy.md,REJECTED_ON_READING,2,"The only exits are strategy.exit(profit = 0.02 x close, loss = 0.01 x close): percents of the close in PRICE units passed as TICK counts, so the real distances are 2 % / 1 % of the price times the tick size (0.2 % / 0.1 % at a 0.1 tick on BTC, 2 % / 1 % at a 1.0 tick), an instrument-specific bracket with no generic reading (as #436603, #436773)."
+437411,日K线突破策略Daily-Breakout-Strategy.md,REJECTED_ON_READING,1,"The only stop is strategy.exit(loss = 0.001 x lastDayOpen x tradeSize) with tradeSize = strategy.equity / 3500: the stop distance in ticks grows with the account equity, so the exit depends on the account state, which the signal interface cannot see (as #436653's equity-dependent rule); the order size is also taken from the equity."
+437487,玻尔布带ATR尾随止损策略Bollinger-Bands-ATR-Trailing-Stop-Strategy.md,REJECTED_ON_READING,1,"Entries require strategy.position_size == 0, and the only exits are an exit(limit, stop) whose stop ratchets every bar on max(low - ATR(5), previous stop) (a trail on lows the house trail cannot express) together with a limit set from that stop's distance: whether the strategy is flat, and so whether it may enter, depends on an exit the port cannot model; the candle and midline tests are also in forex pips (x 0.0001) on a BTC chart."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1624,6 +1626,7 @@ fmz_id,file,final_outcome,criterion,reason
 437025,多时间框架突破策略Multi-Timeframe-Breakout-Strategy.md,PORTED,,ports/437025_multi-timeframe-breakout-strategy/
 437029,RSI指标改进交易策略RSI-Indicator-Improvement-Trading-Strategy.md,PORTED,,ports/437029_rsi-rsi-indicator-improvement-trading-strategy/
 437031,量化双管齐下策略Quantitative-Dual-indicator-Strategy.md,PORTED,,ports/437031_quantitative-dual-indicator-strategy/
+437034,基于QQE和MA的趋势跟踪策略Trend-Following-Strategy-Based-on-QQE-and-MA.md,PORTED,,ports/437034_qqe-ma-trend-following-strategy-based-on-qqe-and-ma/
 437035,博林带RSI交叉策略Bollinger-Bands-and-RSI-Crossover-Strategy.md,PORTED,,ports/437035_rsi-bollinger-bands-and-rsi-crossover-strategy/
 437036,双均线布林带MACD交易策略Dual-Moving-Average-Bollinger-Band-MACD-Trading-Strategy.md,PORTED,,ports/437036_macd-dual-moving-average-bollinger-band-macd-trading-strateg/
 437037,基于简单移动平均线的海龟交易策略Turtle-Trading-Strategy-Based-on-Simple-Moving-Average.md,PORTED,,ports/437037_turtle-trading-strategy-based-on-simple-moving-average/
@@ -1633,3 +1636,12 @@ fmz_id,file,final_outcome,criterion,reason
 437045,逆向线性回归策略Reverse-Linear-Regression-Strategy.md,PORTED,,ports/437045_reverse-linear-regression-strategy/
 437376,九种移动平均线交叉策略Nine-Types-of-Moving-Average-Crossover-Strategy.md,PORTED,,ports/437376_nine-types-of-moving-average-crossover-strategy/
 437377,双重趋势追踪策略Combo-Trend-Tracking-Strategy.md,PORTED,,ports/437377_combo-trend-tracking-strategy/
+437378,基于动态均线的趋势跟踪策略Trend-Following-Strategy-Based-on-Dynamic-Moving-Average.md,PORTED,,ports/437378_trend-following-strategy-based-on-dynamic-moving-average/
+437381,移動的Vegas通道穿越策略Moving-Vegas-Channel-Crossover-Strategy.md,PORTED,,ports/437381_vegas-moving-vegas-channel-crossover-strategy/
+437383,基于参数优化的趋势跟踪型量化策略Parameter-Optimized-Trend-Following-Quantitative-Strategy.md,PORTED,,ports/437383_parameter-optimized-trend-following-quantitative-strategy/
+437390,随机Fisher变换临时停止反转STOCH指标量化策略Random-Fisher-Transform-Temporary-Stop-Reverse-STOCH-Indicator-Quantitative-Strategy.md,PORTED,,ports/437390_fisher-stoch-random-fisher-transform-temporary-stop-reverse/
+437399,多重RSI指标聚合策略Strategy-of-Synthesis-between-Multiple-Relative-Strength-Indicators.md,PORTED,,ports/437399_rsi-strategy-of-synthesis-between-multiple-relative-strength/
+437400,动量均线交叉和MACD过滤的海肯阿什蜡烛策略Momentum-Crossover-Moving-Average-and-MACD-Filter-Heikin-Ashi-Candlestick-Strategy.md,PORTED,,ports/437400_macd-momentum-crossover-moving-average-and-macd-filter-heiki/
+437403,基于信噪比和均线的量化交易策略Signal-to-Noise-Moving-Average-Trading-Strategy-Based-on-Quantitative-Trading.md,PORTED,,ports/437403_signal-to-noise-moving-average-trading-strategy-based-on-qua/
+437488,基于RSI指标和包容涨跌形态的量化交易策略Quantitative-Trading-Strategy-Based-on-RSI-Indicator-and-Engulfing-Pattern.md,PORTED,,ports/437488_rsi-quantitative-trading-strategy-based-on-rsi-indicator-and/
+437490,双边突破震荡策略Sideways-Breakthrough-Oscillation-Strategy.md,PORTED,,ports/437490_sideways-breakthrough-oscillation-strategy/

@@ -1,0 +1,39 @@
+# Original sizing and money-management code, FMZ #437390 (随机Fisher变换临时停止反转STOCH指标量化策略Random-Fisher-Transform-Temporary-Stop-Reverse-STOCH-Indicator-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/437390  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission  [lines 156-156]
+  156: strategy("IFT Stochastic + Trailing Stop", overlay=false, pyramiding = 0, calc_on_order_fills = false, commission_type =  strategy.commission.percent, commission_value = 0.0454, default_qty_type = strategy.percent_of_equity, default_qty_value = 100)
+
+## Trailing-stop inputs and exits  [lines 163-193]
+  163: uts = input(true, title="Use trailing stop")
+  164: tsi = input(title="trailing stop actiation pips",defval=245)                                                                       
+  165: tso = input(title="trailing stop offset pips",defval=20)
+  166: 
+  167: //CALCULATIONS
+  168: v1=0.1*(stoch(close, high, low, stochlength)-50)
+  169: v2=wma(v1, wmalength)
+  170: INVLine=(exp(2*v2)-1)/(exp(2*v2)+1)
+  171: 
+  172: //CONDITIONS
+  173: sell = crossunder(INVLine,ul)? 1 : 0
+  174: buy = crossover(INVLine,dl)? 1 : 0
+  175: 
+  176: //PLOTS
+  177: plot(INVLine, color=aqua, linewidth=1, title="STOCH")
+  178: hline(ul, color=red)
+  179: hline(dl, color=green)
+  180: bgcolor(sell==1? red : na, transp=30, title = "sell signal")
+  181: bgcolor(buy==1? lime : na, transp=30, title = "buy signal")
+  182: plotchar(buy==1, title="Buy Signal", char='B', location=location.bottom, color=white, transp=0, offset=0)
+  183: plotchar(sell==1, title="Sell Signal", char='S', location=location.top, color=white, transp=0, offset=0)
+  184: 
+  185: //STRATEGY
+  186: strategy.entry("BUY", strategy.long, when = buy==1)
+  187: strategy.entry("SELL", strategy.short, when = sell==1)
+  188: 
+  189: if  (uts)
+  190:     strategy.entry("BUY", strategy.long, when = buy)
+  191:     strategy.entry("SELL", strategy.short, when = sell)
+  192:     strategy.exit("Close BUY with TS","BUY", trail_points = tsi, trail_offset = tso)
+  193:     strategy.exit("Close SELL with TS","SELL", trail_points = tsi, trail_offset = tso)

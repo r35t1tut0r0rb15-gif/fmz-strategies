@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #437378 (基于动态均线的趋势跟踪策略Trend-Following-Strategy-Based-on-Dynamic-Moving-Average)
+# Source: https://www.fmz.com/strategy/437378  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

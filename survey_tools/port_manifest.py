@@ -3265,6 +3265,25 @@ SIZING = {
         ("SL / PT level inputs (off)", 177, 178),
     ],
     437377: [],
+    # ---- FMZ-C, batch C100 (2026-10-21)
+    437034: [],
+    437378: [],
+    437381: [
+        ("Per-setup entry quantities (1 / 100)", 185, 213),
+    ],
+    437383: [],
+    437390: [
+        ("strategy(): 100 % of equity, commission", 156, 156),
+        ("Trailing-stop inputs and exits", 163, 193),
+    ],
+    437399: [
+        ("strategy(): 100 % of equity, pyramiding 20; lot % input", 186, 191),
+        ("Equity-based lot", 231, 231),
+    ],
+    437400: [],
+    437403: [],
+    437488: [],
+    437490: [],
 }
 
 REJECTED_ON_READING = {
@@ -4094,6 +4113,18 @@ REJECTED_ON_READING = {
               "are 2 % / 1 % of the price times the tick size (0.2 % / 0.1 % at a 0.1 tick on "
               "BTC, 2 % / 1 % at a 1.0 tick), an instrument-specific bracket with no generic "
               "reading (as #436603, #436773)."),
+    # ---- FMZ-C, batch C100 (2026-10-21)
+    437411: ("1", "The only stop is strategy.exit(loss = 0.001 x lastDayOpen x tradeSize) with "
+              "tradeSize = strategy.equity / 3500: the stop distance in ticks grows with the "
+              "account equity, so the exit depends on the account state, which the signal "
+              "interface cannot see (as #436653's equity-dependent rule); the order size is also "
+              "taken from the equity."),
+    437487: ("1", "Entries require strategy.position_size == 0, and the only exits are an exit(limit, "
+              "stop) whose stop ratchets every bar on max(low - ATR(5), previous stop) (a trail "
+              "on lows the house trail cannot express) together with a limit set from that stop's "
+              "distance: whether the strategy is flat, and so whether it may enter, depends on an "
+              "exit the port cannot model; the candle and midline tests are also in forex pips (x "
+              "0.0001) on a BTC chart."),
 }
 
 DUPLICATE_ON_READING = {

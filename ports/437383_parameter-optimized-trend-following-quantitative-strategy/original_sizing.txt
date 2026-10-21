@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #437383 (基于参数优化的趋势跟踪型量化策略Parameter-Optimized-Trend-Following-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/437383  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
