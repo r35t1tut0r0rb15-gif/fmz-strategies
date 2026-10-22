@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2900 |
+| PORTED | 2910 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 570 |
-| PORT_CANDIDATE | 424 |
-| REJECTED_ON_READING | 413 |
+| REJECTED_ON_READING | 415 |
+| PORT_CANDIDATE | 412 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -3028,7 +3028,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 481105 | `ports/481105_ema-macdrsi-multi-indicator-trend-momentum-crossover-strateg/` | PineScript | macd | none | signal_len x2, rsi_high x2 | 4 |
 | 481347 | `ports/481347_rsi-dynamic-rsi-enhanced-ema-trend-trading-strategy/` | PineScript | ma_cross | coarse_bar_stop | sl_frac x2, tp_frac x2 | 4 |
 | 481349 | `ports/481349_rsi-atr-cross-period-momentum-ema-strategy-with-rsi-and-dyna/` | PineScript | ma_cross | coarse_bar_stop | atr_mult x2, tp_factor x2 | 4 |
-| | **2900 ports** | | | | | **13436** |
+| 481350 | `ports/481350_triple-moving-average-momentum-trend-trading-strategy/` | PineScript | ma_cross | coarse_bar_stop | fast x2, slow x2 | 4 |
+| 481351 | `ports/481351_advanced-vortex-momentum-analysis-and-trading-strategy/` | PineScript | vortex | none | length x3 | 3 |
+| 481352 | `ports/481352_rsi-dual-moving-average-crossover-with-stochastic-rsi-overbo/` | PineScript | stochastic_oscillator | none | stoch_len x2, fast_sma x2 | 4 |
+| 481354 | `ports/481354_macd-macd-crossover-and-momentum-trend-intelligent-trading-s/` | PineScript | macd | none | fast x2, slow x2 | 4 |
+| 481355 | `ports/481355_dual-exponential-smoothing-trend-following-trading-system/` | PineScript | ma_cross | coarse_bar_stop | primary x2, secondary x2 | 4 |
+| 481362 | `ports/481362_adaptive-trend-following-strategy-with-dynamic-take-profit-u/` | PineScript | macd | trailing_stop_pending | ema_short x2, rsi_overbought x2 | 4 |
+| 481364 | `ports/481364_momentum-driven-keltner-channel-breakout-trading-strategy/` | PineScript | keltner_channel | none | length_kc x2, mult x2 | 4 |
+| 481365 | `ports/481365_multi-indicator-trend-following-strategy-with-dynamic-risk-m/` | PineScript | ma_cross | coarse_bar_stop | ema_fast x2, ema_slow x2 | 4 |
+| 481370 | `ports/481370_adaptive-bollinger-bands-trend-following-strategy-with-multi/` | PineScript | bollinger_reversion | trailing_stop_pending | bars_till_close x2, sl_frac x2 | 4 |
+| 481393 | `ports/481393_rsi-dual-ema-rsi-momentum-breakout-trading-strategy/` | PineScript | ma_trend | none | ema_small x2, rsi_level x2 | 4 |
+| | **2910 ports** | | | | | **13475** |
 
 ## Rejected on reading
 
@@ -3447,6 +3457,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 478713 | 多重通道动态支撑阻力肯尼通道策略-Multi-Channel-Dynamic-Support-Resistance-Keltner-Channel-Strategy.md | 1 | The long entry needs close > request.security(higher time frame, sma(close, 20), lookahead_on): the higher bar's final value is read before it closes (criterion 1, lookahead_on for a higher time frame). |
 | 481345 | 多重均线趋势跟踪与动态止损策略-Multi-EMA-Trend-Following-Strategy-with-Dynamic-Stop-Loss.md | 1 | The entry reads daily EMAs from request.security("D", ..., lookahead=barmerge.lookahead_on) on an hourly chart: the day's final values are used before the day ends (criterion 1, lookahead_on for a higher time frame). |
 | 481346 | 多周期市场疲劳度分析策略与风险管理系统-Multi-Timeframe-Market-Exhaustion-Analysis-Strategy-with-Risk-Management-System.md | 1 | strategy.close_all when the drawdown of strategy.equity from its peak reaches 10 %: an exit set by the account's equity path (criterion 1, equity gates, as #453662). |
+| 481356 | 动态趋势跟随多重指标分批止盈交易策略-Dynamic-Trend-Following-Multi-Indicator-Staged-Take-Profit-Trading-Strategy.md | 1 | The first take-profit sends strategy.order for a part of the position (firstTpQty, 50 % by input) before close_all at the second target: partial exits (criterion 1). |
+| 481371 | 多时间周期动态网格RSI趋势震荡交易策略-Multi-Timeframe-Dynamic-Grid-RSI-Trend-Oscillation-Trading-Strategy.md | 1 | A grid: "Long Grid n" / "Short Grid n" entries add base size x 1.5^n each time price moves a grid step against the position, with daily equity profit targets and an openprofit drawdown close: martingale adds and equity gates (criterion 1). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

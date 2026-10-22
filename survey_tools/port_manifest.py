@@ -6336,6 +6336,29 @@ SIZING = {
     481349: [
         ("strategy(): 200 % of equity; ATR 1.5 stop / 2 target", 135, 174),
     ],
+    # ---- FMZ-C, batch C242 (2026-10-22)
+    481350: [
+        ("strategy(): margin 100 %; stop 2 % / target 4 % of the avg price", 93, 136),
+    ],
+    481351: [],
+    481352: [],
+    481354: [],
+    481355: [
+        ("strategy(): capital 100000, 200 % of equity; target / stop 30 points", 91, 175),
+    ],
+    481362: [
+        ("Stop 1.5 % of the avg price (danger-armed)", 119, 155),
+    ],
+    481364: [
+        ("strategy(): 200 % of equity", 147, 147),
+    ],
+    481365: [
+        ("strategy(): capital 1000, 200 % of equity, commission 0.1 %; stop 2 %, R:R 1.5", 97, 151),
+    ],
+    481370: [
+        ("SL 300 $ / TP 1000 $ (off) from the avg price; bars till close 10", 115, 182),
+    ],
+    481393: [],
 }
 
 REJECTED_ON_READING = {
@@ -7993,6 +8016,12 @@ REJECTED_ON_READING = {
     481346: ("1", "strategy.close_all when the drawdown of strategy.equity from its peak reaches 10 "
               "%: an exit set by the account's equity path (criterion 1, equity gates, as "
               "#453662)."),
+    # ---- FMZ-C, batch C242 (2026-10-22)
+    481356: ("1", "The first take-profit sends strategy.order for a part of the position (firstTpQty, "
+              "50 % by input) before close_all at the second target: partial exits (criterion 1)."),
+    481371: ("1", "A grid: \"Long Grid n\" / \"Short Grid n\" entries add base size x 1.5^n each time "
+              "price moves a grid step against the position, with daily equity profit targets and "
+              "an openprofit drawdown close: martingale adds and equity gates (criterion 1)."),
 }
 
 DUPLICATE_ON_READING = {

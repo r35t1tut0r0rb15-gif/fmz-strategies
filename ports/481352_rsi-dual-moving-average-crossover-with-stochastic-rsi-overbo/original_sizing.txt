@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #481352 (双均线交叉与随机RSI超买超卖区间优化交易策略-Dual-Moving-Average-Crossover-with-Stochastic-RSI-Overbought-Oversold-Enhanced-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/481352  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

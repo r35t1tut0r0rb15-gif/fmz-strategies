@@ -1,0 +1,73 @@
+# Original sizing and money-management code, FMZ #481370 (Adaptive-Bollinger-Bands-Trend-Following-Strategy-with-Multi-Level-Risk-Management-自适应布林带趋势跟踪策略与多层风险管理系统)
+# Source: https://www.fmz.com/strategy/481370  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## SL 300 $ / TP 1000 $ (off) from the avg price; bars till close 10  [lines 115-182]
+  115: sl_dollars          = input.float(300.0, title="Stop Loss (\$)", minval=0.0)
+  116: tp_dollars          = input.float(1000.0, title="Take Profit (\$)", minval=0.0)
+  117: use_bars_till_close = input.bool(true, title="Use Bars Till Close")
+  118: bars_till_close     = input.int(10, title="Bars Till Close", minval=1)
+  119: // New input to toggle indicator plotting
+  120: plot_indicators     = input.bool(true, title="Plot Bollinger Bands and EMA on Chart")
+  121: 
+  122: // Calculate Bollinger Bands and EMA
+  123: basis      = ta.sma(close, bb_length)
+  124: upper_band = basis + bb_stddev * ta.stdev(close, bb_length)
+  125: lower_band = basis - bb_stddev * ta.stdev(close, bb_length)
+  126: ema        = ta.ema(close, ema_length)
+  127: 
+  128: // Plot Bollinger Bands and EMA conditionally
+  129: plot(plot_indicators  ? basis : na, color=color.blue, linewidth=2, title="Basis (SMA)")
+  130: plot(plot_indicators ? upper_band : na, color=color.red, linewidth=2, title="Upper Band")
+  131: plot(plot_indicators  ? lower_band : na, color=color.green, linewidth=2, title="Lower Band")
+  132: plot(plot_indicators   ? ema   : na, color=color.orange, linewidth=2, title="EMA")
+  133: 
+  134: // EMA conditions
+  135: ema_long_condition  = ema > ema[1]
+  136: ema_short_condition = ema < ema[1]
+  137: 
+  138: // Entry conditions
+  139: sell_condition = close[1] > upper_band[1] and close[1] > open[1] and close < open
+  140: if sell_condition and (not use_ema or ema_short_condition)
+  141:     strategy.entry("Sell", strategy.short)
+  142: 
+  143: buy_condition = close[1] < lower_band[1] and close > open
+  144: if buy_condition and (not use_ema or ema_long_condition)
+  145:     strategy.entry("Buy", strategy.long)
+  146: 
+  147: // Trailing stop logic
+  148: if use_trailing_stop
+  149:     if strategy.position_size > 0 and close >= basis
+  150:         strategy.exit("Trailing Stop Long", from_entry="Buy", stop=low)
+  151:     if strategy.position_size < 0 and close <= basis
+  152:         strategy.exit("Trailing Stop Short", from_entry="Sell", stop=high)
+  153: 
+  154: // Stop Loss and Take Profit logic
+  155: if use_sl or use_tp
+  156:     if strategy.position_size > 0
+  157:         long_entry = strategy.position_avg_price
+  158:         long_sl    = long_entry - sl_dollars
+  159:         long_tp    = long_entry + tp_dollars
+  160:         if use_sl and close <= long_sl
+  161:             strategy.close("Buy", comment="Long SL Hit")
+  162:         if use_tp and close >= long_tp
+  163:             strategy.close("Buy", comment="Long TP Hit")
+  164:     if strategy.position_size < 0
+  165:         short_entry = strategy.position_avg_price
+  166:         short_sl    = short_entry + sl_dollars
+  167:         short_tp    = short_entry - tp_dollars
+  168:         if use_sl and close >= short_sl
+  169:             strategy.close("Sell", comment="Short SL Hit")
+  170:         if use_tp and close <= short_tp
+  171:             strategy.close("Sell", comment="Short TP Hit")
+  172: 
+  173: // Bars Till Close logic
+  174: var int bars_since_entry = na
+  175: if strategy.position_size != 0
+  176:     bars_since_entry := na(bars_since_entry) ? 0 : bars_since_entry + 1
+  177: else
+  178:     bars_since_entry := na
+  179: 
+  180: if use_bars_till_close and not na(bars_since_entry) and bars_since_entry >= bars_till_close
+  181:     strategy.close("Buy", comment="Bars Till Close Hit")
+  182:     strategy.close("Sell", comment="Bars Till Close Hit")

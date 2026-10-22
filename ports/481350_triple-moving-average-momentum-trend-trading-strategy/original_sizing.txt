@@ -1,0 +1,49 @@
+# Original sizing and money-management code, FMZ #481350 (三重均线动量趋势交易策略-Triple-Moving-Average-Momentum-Trend-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/481350  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin 100 %; stop 2 % / target 4 % of the avg price  [lines 93-136]
+   93: strategy("Oliver Valez Triple MA Strategy", overlay=true, margin_long=100, margin_short=100)
+   94: 
+   95: // Inputs
+   96: ma20_length = input.int(20, "20-period MA Length", minval=1)
+   97: ma50_length = input.int(50, "50-period MA Length", minval=1)
+   98: ma200_length = input.int(200, "200-period MA Length", minval=1)
+   99: use_ema = input.bool(false, "Use EMA Instead of SMA")
+  100: sl_percent = input.float(2.0, "Stop Loss %", minval=0.0)
+  101: tp_percent = input.float(4.0, "Take Profit %", minval=0.0)
+  102: 
+  103: // Calculate MAs
+  104: ma20 = use_ema ? ta.ema(close, ma20_length) : ta.sma(close, ma20_length)
+  105: ma50 = use_ema ? ta.ema(close, ma50_length) : ta.sma(close, ma50_length)
+  106: ma200 = use_ema ? ta.ema(close, ma200_length) : ta.sma(close, ma200_length)
+  107: 
+  108: // Plot MAs
+  109: plot(ma20, "MA 20", color=color.new(color.blue, 0), linewidth=2)
+  110: plot(ma50, "MA 50", color=color.new(color.orange, 0), linewidth=2)
+  111: plot(ma200, "MA 200", color=color.new(color.red, 0), linewidth=2)
+  112: 
+  113: // Trend Filter
+  114: bullish_trend = close > ma200
+  115: bearish_trend = close < ma200
+  116: 
+  117: // Entry Conditions
+  118: long_condition = ta.crossover(ma20, ma50) and bullish_trend
+  119: short_condition = ta.crossunder(ma20, ma50) and bearish_trend
+  120: 
+  121: // Exit Conditions
+  122: exit_long = ta.crossunder(ma20, ma50)
+  123: exit_short = ta.crossover(ma20, ma50)
+  124: 
+  125: // Risk Management
+  126: stop_loss = strategy.position_avg_price * (1 - sl_percent/100)
+  127: take_profit = strategy.position_avg_price * (1 + tp_percent/100)
+  128: 
+  129: // Execute Trades
+  130: if (long_condition)
+  131:     strategy.entry("Long", strategy.long)
+  132:     strategy.exit("XL", "Long", stop=stop_loss, limit=take_profit)
+  133: 
+  134: if (short_condition)
+  135:     strategy.entry("Short", strategy.short)
+  136:     strategy.exit("XS", "Short", stop=stop_loss, limit=take_profit)
