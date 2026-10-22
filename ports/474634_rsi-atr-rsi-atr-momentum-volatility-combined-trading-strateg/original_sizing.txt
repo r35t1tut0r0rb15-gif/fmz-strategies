@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #474634 (RSI-ATR动量波动组合交易策略-RSI-ATR-Momentum-Volatility-Combined-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/474634  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target 5000 ticks from the signal low / high  [lines 118-144]
+  118: stop_loss_ticks = input.int(5000, title="Stop Loss Ticks")
+  119: take_profit_ticks = input.int(5000, title="Take Profit Ticks")
+  120: 
+  121: // === Получение значений индикаторов ===
+  122: rsi = ta.rsi(close, rsi_length)
+  123: rsi_ma = ta.sma(rsi, rsi_ma_length)
+  124: atr_value = ta.atr(atr_length)
+  125: 
+  126: // === Время для открытия сделок ===
+  127: start_time = timestamp("Europe/Prague", year, month, dayofmonth, 8, 0)
+  128: end_time = timestamp("Europe/Prague", year, month, dayofmonth, 21, 0)
+  129: in_trading_hours = (time >= start_time and time <= end_time)
+  130: 
+  131: // === Условие по волатильности ===
+  132: volatility_filter = atr_value > atr_threshold
+  133: 
+  134: // === Условия для лонгов ===
+  135: long_condition = ta.crossover(rsi, rsi_ma) and rsi < 45 and in_trading_hours and volatility_filter
+  136: if (long_condition)
+  137:     strategy.entry("Long", strategy.long)
+  138:     strategy.exit("Take Profit/Stop Loss", "Long", stop=low - stop_loss_ticks * syminfo.mintick, limit=high + take_profit_ticks * syminfo.mintick)
+  139: 
+  140: // === Условия для шортов ===
+  141: short_condition = ta.crossunder(rsi, rsi_ma) and rsi > 55 and in_trading_hours and volatility_filter
+  142: if (short_condition)
+  143:     strategy.entry("Short", strategy.short)
+  144:     strategy.exit("Take Profit/Stop Loss", "Short", stop=high + stop_loss_ticks * syminfo.mintick, limit=low - take_profit_ticks * syminfo.mintick)

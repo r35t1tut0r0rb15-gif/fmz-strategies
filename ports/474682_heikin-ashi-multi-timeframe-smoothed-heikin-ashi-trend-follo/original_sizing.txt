@@ -1,0 +1,46 @@
+# Original sizing and money-management code, FMZ #474682 (多周期平滑Heikin-Ashi趋势跟踪量化交易系统-Multi-Timeframe-Smoothed-Heikin-Ashi-Trend-Following-Quantitative-Trading-System)
+# Source: https://www.fmz.com/strategy/474682  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 % / target 4 % of avg  [lines 97-137]
+   97: use_stop_loss = input.bool(true, title="Use Stop Loss")
+   98: stop_loss_percent = input.float(2.0, title="Stop Loss (%)", minval=0.0, tooltip="Set stop loss percentage")
+   99: use_take_profit = input.bool(true, title="Use Take Profit")
+  100: take_profit_percent = input.float(4.0, title="Take Profit (%)", minval=0.0, tooltip="Set take profit percentage")
+  101: 
+  102: // Input to choose Buy or Sell
+  103: trade_type = input.string("Buy Only", options=["Buy Only", "Sell Only"], title="Trade Type", tooltip="Choose whether to only Buy or only Sell")
+  104: 
+  105: // Heikin Ashi calculation on a user-defined timeframe
+  106: ha_open = request.security(syminfo.tickerid, ha_timeframe, ta.sma(open, 2), barmerge.gaps_off, barmerge.lookahead_on)
+  107: ha_close = request.security(syminfo.tickerid, ha_timeframe, ta.sma(close, 2), barmerge.gaps_off, barmerge.lookahead_on)
+  108: ha_high = request.security(syminfo.tickerid, ha_timeframe, math.max(high, close), barmerge.gaps_off, barmerge.lookahead_on)
+  109: ha_low = request.security(syminfo.tickerid, ha_timeframe, math.min(low, open), barmerge.gaps_off, barmerge.lookahead_on)
+  110: 
+  111: // Heikin Ashi candle colors
+  112: ha_bullish = ha_close > ha_open // Green candle
+  113: ha_bearish = ha_close < ha_open // Red candle
+  114: 
+  115: // Backtest period filter
+  116: inDateRange = true
+  117: 
+  118: // Trading logic depending on user input
+  119: if (inDateRange)  // Ensures trades happen only in the selected period
+  120:     if (trade_type == "Buy Only")  // Buy when green, Sell when red
+  121:         if (ha_bullish and strategy.position_size <= 0)  // Buy on green candle only if no position is open
+  122:             strategy.entry("Buy", strategy.long)
+  123:         if (ha_bearish and strategy.position_size > 0)  // Sell on red candle (close the long position)
+  124:             strategy.close("Buy")
+  125: 
+  126:     if (trade_type == "Sell Only")  // Sell when red, Exit sell when green
+  127:         if (ha_bearish and strategy.position_size >= 0)  // Sell on red candle only if no position is open
+  128:             strategy.entry("Sell", strategy.short)
+  129:         if (ha_bullish and strategy.position_size < 0)  // Exit the sell position on green candle
+  130:             strategy.close("Sell")
+  131: 
+  132: // Add Stop Loss and Take Profit conditions if enabled
+  133: if (use_stop_loss)
+  134:     strategy.exit("Stop Loss", from_entry="Buy", stop=strategy.position_avg_price * (1 - stop_loss_percent / 100))
+  135:     
+  136: if (use_take_profit)
+  137:     strategy.exit("Take Profit", from_entry="Buy", limit=strategy.position_avg_price * (1 + take_profit_percent / 100))

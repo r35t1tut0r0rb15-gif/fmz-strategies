@@ -1,0 +1,68 @@
+# Original sizing and money-management code, FMZ #474670 (高级动态追踪止损与目标盈利策略-Advanced-Dynamic-Trailing-Stop-with-Risk-Reward-Targeting-Strategy)
+# Source: https://www.fmz.com/strategy/474670  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Size = 1000 / R; target avg + 3 R; trailing stop  [lines 111-173]
+  111: var float shares=na
+  112: risk = 1000
+  113: var float R=na
+  114: E = strategy.position_avg_price
+  115: 
+  116: // Input option to choose long, short, or both
+  117: side = input.string("Long", title="Side", options=["Long", "Short", "Both"])
+  118: 
+  119: // RSI exit option
+  120: RSIexit = input.string("Yes", title="Exit at RSI extreme?", options=["Yes", "No"])
+  121: RSIup = input(75)
+  122: RSIdown = input(25)
+  123: 
+  124: // Get indicator values 
+  125: float atrValue = ta.atr(ATR_LENGTH)
+  126: 
+  127: // Calculate stop loss values
+  128: var float trailingStopLoss = na 
+  129: float longStop  = ta.lowest(low, BAR_LOOKBACK) - (atrValue * ATR_MULTIPLIER)
+  130: float shortStop = ta.highest(high, BAR_LOOKBACK) + (atrValue * ATR_MULTIPLIER)
+  131: 
+  132: // Check if we can take trades 
+  133: bool canTakeTrades = not na(atrValue)
+  134: bgcolor(canTakeTrades ? na : color.red)
+  135: 
+  136: //Long pattern
+  137:     //Two pin bar
+  138: onepinbar = (math.min(close,open)-low)/(high-low)>0.6 and math.min(close,open)-low>ta.sma(high-low,14)
+  139: twopinbar = onepinbar and onepinbar[1]
+  140: notatbottom = low>ta.lowest(low[1],10)
+  141:     // Parallel
+  142: bigred = (open-close)/(high-low)>0.8 and high-low>ta.sma(high-low,14)
+  143: biggreen = (close-open)/(high-low)>0.8 and high-low>ta.sma(high-low,14)
+  144: parallel = bigred[1] and biggreen  
+  145: atbottom = low==ta.lowest(low,10)
+  146: 
+  147: // Enter long trades (replace this entry condition)
+  148: longCondition = parallel 
+  149: if (longCondition and canTakeTrades and  strategy.position_size == 0 and (side == "Long" or side == "Both"))
+  150:     R:= close-longStop
+  151:     shares:= risk/R
+  152:     strategy.entry("Long", strategy.long,qty=shares)
+  153: 
+  154: // Enter short trades (replace this entry condition)
+  155: shortCondition = parallel
+  156: if (shortCondition and canTakeTrades and strategy.position_size == 0 and (side == "Short" or side == "Both"))
+  157:     R:= shortStop - close
+  158:     shares:= risk/R
+  159:     strategy.entry("Short", strategy.short,qty=shares)
+  160: 
+  161: // Update trailing stop
+  162: if (strategy.position_size > 0)
+  163:     if (na(trailingStopLoss) or longStop > trailingStopLoss)
+  164:         trailingStopLoss := longStop
+  165: else if (strategy.position_size < 0)
+  166:     if (na(trailingStopLoss) or shortStop < trailingStopLoss)
+  167:         trailingStopLoss := shortStop
+  168: else
+  169:     trailingStopLoss := na
+  170: 
+  171: // Exit trades with trailing stop
+  172: strategy.exit("Long Exit",  "Long",  stop=trailingStopLoss, limit = E + rr*R )
+  173: strategy.exit("Short Exit", "Short", stop=trailingStopLoss, limit = E - rr*R)

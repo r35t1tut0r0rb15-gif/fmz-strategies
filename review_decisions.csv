@@ -3095,3 +3095,15 @@ fmz_id,file,final_outcome,criterion,reason
 474065,双均线交叉动量趋势跟踪策略-EMA-Crossover-Momentum-Trend-Following-Strategy-Dual-EMA-Crossover-Momentum-Trend-Following-Strategy.md,PORTED,,ports/474065_ema-crossover-momentum-trend-following-strategy-dual-ema-cro/
 474075,基于布林带和RSI的多维度动态突破交易系统-Multi-Dimensional-Dynamic-Breakout-Trading-System-Based-on-Bollinger-Bands-and-RSI.md,PORTED,,ports/474075_rsi-multi-dimensional-dynamic-breakout-trading-system-based/
 474630,三重触及布林带趋势跟踪量化交易策略-Triple-Bollinger-Bands-Touch-Trend-Following-Quantitative-Trading-Strategy.md,PORTED,,ports/474630_triple-bollinger-bands-touch-trend-following-quantitative-tr/
+474631,多周期组合K线形态识别交易策略-Multi-Timeframe-Combined-Candlestick-Pattern-Recognition-Trading-Strategy.md,PORTED,,ports/474631_k-multi-timeframe-combined-candlestick-pattern-recognition-t/
+474632,多策略组合型技术分析交易系统-Multi-Strategy-Technical-Analysis-Trading-System.md,PORTED,,ports/474632_multi-strategy-technical-analysis-trading-system/
+474634,RSI-ATR动量波动组合交易策略-RSI-ATR-Momentum-Volatility-Combined-Trading-Strategy.md,PORTED,,ports/474634_rsi-atr-rsi-atr-momentum-volatility-combined-trading-strateg/
+474635,布林带与RSI指标组合动态交易策略-Bollinger-Bands-and-RSI-Combined-Dynamic-Trading-Strategy.md,PORTED,,ports/474635_rsi-bollinger-bands-and-rsi-combined-dynamic-trading-strateg/
+474668,基于布林带和ATR的多级智能动态跟踪止损策略-Multi-Level-Intelligent-Dynamic-Trailing-Stop-Strategy-Based-on-Bollinger-Bands-and-ATR.md,PORTED,,ports/474668_atr-multi-level-intelligent-dynamic-trailing-stop-strategy-b/
+474670,高级动态追踪止损与目标盈利策略-Advanced-Dynamic-Trailing-Stop-with-Risk-Reward-Targeting-Strategy.md,PORTED,,ports/474670_advanced-dynamic-trailing-stop-with-risk-reward-targeting-st/
+474672,多指标趋势动量交叉量化策略-Multi-Indicator-Trend-Momentum-Crossover-Quantitative-Strategy.md,PORTED,,ports/474672_multi-indicator-trend-momentum-crossover-quantitative-strate/
+474679,日线区间突破单向交易策略-Daily-Range-Breakout-Single-Direction-Trading-Strategy.md,PORTED,,ports/474679_daily-range-breakout-single-direction-trading-strategy/
+474681,动态RSI震荡多项式拟合指标趋势量化交易策略-Dynamic-RSI-Oscillator-Polynomial-Fitting-Indicator-Trend-Quantitative-Trading-Strategy.md,PORTED,,ports/474681_rsi-dynamic-rsi-oscillator-polynomial-fitting-indicator-tren/
+474682,多周期平滑Heikin-Ashi趋势跟踪量化交易系统-Multi-Timeframe-Smoothed-Heikin-Ashi-Trend-Following-Quantitative-Trading-System.md,PORTED,,ports/474682_heikin-ashi-multi-timeframe-smoothed-heikin-ashi-trend-follo/
+474683,多重均线趋势跟踪交易策略-Multi-EMA-Trend-Following-Trading-Strategy.md,PORTED,,ports/474683_multi-ema-trend-following-trading-strategy/
+474684,MACD与线性回归双重信号智能交易策略-MACD-and-Linear-Regression-Dual-Signal-Intelligent-Trading-Strategy.md,PORTED,,ports/474684_macd-macd-and-linear-regression-dual-signal-intelligent-trad/

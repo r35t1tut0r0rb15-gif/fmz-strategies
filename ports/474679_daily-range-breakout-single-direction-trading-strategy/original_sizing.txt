@@ -1,0 +1,43 @@
+# Original sizing and money-management code, FMZ #474679 (日线区间突破单向交易策略-Daily-Range-Breakout-Single-Direction-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/474679  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; target / stop 50 points  [lines 96-133]
+   96: strategy("US 30 Daily Breakout Strategy (Single Trade Per Breakout/Breakdown, New York Time)", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100, trim_orders = true)
+   97: 
+   98: // Set pip size for US 30 (1 pip = 1 point)
+   99: var float pip = 1.0
+  100: 
+  101: // Set take profit and stop loss in points (1 pip = 1 point)
+  102: take_profit_pips = 50
+  103: stop_loss_pips = 50
+  104: 
+  105: // Calculate the previous day's high and low (assumes chart timezone is set to New York)
+  106: prevDayHigh = request.security(syminfo.tickerid, "D", high[1])
+  107: prevDayLow = request.security(syminfo.tickerid, "D", low[1])
+  108: 
+  109: // Initialize flags to track if a breakout/breakdown trade has been taken
+  110: var bool breakout_traded = false
+  111: var bool breakdown_traded = false
+  112: 
+  113: // Reset flags at the start of a new day in New York timezone (as per chart setting)
+  114: if (ta.change(time("D")))
+  115:     breakout_traded := false
+  116:     breakdown_traded := false
+  117: 
+  118: // Condition for a long entry: candle closes above the previous day's high and no breakout trade has been taken
+  119: longCondition = close > prevDayHigh and strategy.opentrades == 0 and not breakout_traded
+  120: 
+  121: // Condition for a short entry: candle closes below the previous day's low and no breakdown trade has been taken
+  122: shortCondition = close < prevDayLow and strategy.opentrades == 0 and not breakdown_traded
+  123: 
+  124: // Execute long trade if the condition is met, and set the breakout flag
+  125: if (longCondition)
+  126:     strategy.entry("Long", strategy.long)
+  127:     strategy.exit("Take Profit/Stop Loss", "Long", limit=close + take_profit_pips * pip, stop=close - stop_loss_pips * pip)
+  128:     breakout_traded := true  // Set breakout flag
+  129: 
+  130: // Execute short trade if the condition is met, and set the breakdown flag
+  131: if (shortCondition)
+  132:     strategy.entry("Short", strategy.short)
+  133:     strategy.exit("Take Profit/Stop Loss", "Short", limit=close - take_profit_pips * pip, stop=close + stop_loss_pips * pip)

@@ -5851,6 +5851,31 @@ SIZING = {
         ("Stop 2 % / target 2 % x 2 of the signal close", 107, 151),
     ],
     474630: [],
+    # ---- FMZ-C, batch C222 (2026-10-22)
+    474631: [],
+    474632: [],
+    474634: [
+        ("Stop / target 5000 ticks from the signal low / high", 118, 144),
+    ],
+    474635: [],
+    474668: [
+        ("strategy(): 100 % of equity, commission 0.1 %, slippage 3; target trigger 20 %, stop 12 % of the signal close", 149, 240),
+    ],
+    474670: [
+        ("Size = 1000 / R; target avg + 3 R; trailing stop", 111, 173),
+    ],
+    474672: [],
+    474679: [
+        ("strategy(): 100 % of equity; target / stop 50 points", 96, 133),
+    ],
+    474681: [],
+    474682: [
+        ("Stop 2 % / target 4 % of avg", 97, 137),
+    ],
+    474683: [],
+    474684: [
+        ("Target 10 % / stop 0.10 % of the current close (every bar)", 186, 198),
+    ],
 }
 
 REJECTED_ON_READING = {

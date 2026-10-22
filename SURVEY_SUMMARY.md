@@ -11,9 +11,9 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2697 |
+| PORTED | 2709 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 664 |
+| PORT_CANDIDATE | 652 |
 | HELD_NEEDS_VOLUME | 569 |
 | REJECTED_ON_READING | 377 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -2825,7 +2825,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474065 | `ports/474065_ema-crossover-momentum-trend-following-strategy-dual-ema-cro/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
 | 474075 | `ports/474075_rsi-multi-dimensional-dynamic-breakout-trading-system-based/` | PineScript | bollinger_breakout | coarse_bar_stop, trailing_stop_pending | length x2, mult x2, rr x2 | 8 |
 | 474630 | `ports/474630_triple-bollinger-bands-touch-trend-following-quantitative-tr/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
-| | **2697 ports** | | | | | **12678** |
+| 474631 | `ports/474631_k-multi-timeframe-combined-candlestick-pattern-recognition-t/` | PineScript | candle_pattern | none |  | 0 |
+| 474632 | `ports/474632_multi-strategy-technical-analysis-trading-system/` | PineScript | macd_momentum | none |  | 0 |
+| 474634 | `ports/474634_rsi-atr-rsi-atr-momentum-volatility-combined-trading-strateg/` | PineScript | rsi_oscillator | coarse_bar_stop | k_atr x2, rsi_ma_length x2 | 4 |
+| 474635 | `ports/474635_rsi-bollinger-bands-and-rsi-combined-dynamic-trading-strateg/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 474668 | `ports/474668_atr-multi-level-intelligent-dynamic-trailing-stop-strategy-b/` | PineScript | bollinger_reversion | none | length x2, atr_mult x2 | 4 |
+| 474670 | `ports/474670_advanced-dynamic-trailing-stop-with-risk-reward-targeting-st/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop_pending | lookback x2, rr x2 | 4 |
+| 474672 | `ports/474672_multi-indicator-trend-momentum-crossover-quantitative-strate/` | PineScript | supertrend | none | st_mult x2, st_len x2 | 4 |
+| 474679 | `ports/474679_daily-range-breakout-single-direction-trading-strategy/` | PineScript | breakout | coarse_bar_stop | sl_frac x2, tp_frac x2 | 4 |
+| 474681 | `ports/474681_rsi-dynamic-rsi-oscillator-polynomial-fitting-indicator-tren/` | PineScript | momentum_oscillator | none | rsi_len x2, window x2 | 4 |
+| 474682 | `ports/474682_heikin-ashi-multi-timeframe-smoothed-heikin-ashi-trend-follo/` | PineScript | ma_trend | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
+| 474683 | `ports/474683_multi-ema-trend-following-trading-strategy/` | PineScript | ma_trend | none | short_len x2, mid_len x2, long_len x2 | 8 |
+| 474684 | `ports/474684_macd-macd-and-linear-regression-dual-signal-intelligent-trad/` | PineScript | macd_cross | trailing_stop_pending | lr_length x2, signal_len x2 | 4 |
+| | **2709 ports** | | | | | **12722** |
 
 ## Rejected on reading
 
