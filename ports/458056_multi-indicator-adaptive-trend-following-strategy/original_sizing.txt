@@ -1,0 +1,97 @@
+# Original sizing and money-management code, FMZ #458056 (多指标融合的自适应趋势跟踪策略-Multi-Indicator-Adaptive-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/458056  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Exit band 0.2 % of the signal close  [lines 183-274]
+  183: percentage = input.float(0.002, title="Percentage for Exit (0.2% as decimal)")
+  184: 
+  185: // RSI Inputs
+  186: rsiPeriod = input.int(14, title="RSI Period")
+  187: rsiSource = input.source(close, title="RSI Source")
+  188: 
+  189: // ATR Calculation
+  190: xATR = ta.atr(c)
+  191: nLoss = a * xATR
+  192: 
+  193: // Heikin Ashi Calculation
+  194: haClose = request.security(syminfo.tickerid, timeframe.period, close, lookahead=barmerge.lookahead_on)
+  195: haOpen = request.security(syminfo.tickerid, timeframe.period, open, lookahead=barmerge.lookahead_on)
+  196: haHigh = request.security(syminfo.tickerid, timeframe.period, high, lookahead=barmerge.lookahead_on)
+  197: haLow = request.security(syminfo.tickerid, timeframe.period, low, lookahead=barmerge.lookahead_on)
+  198: haCloseSeries = (haOpen + haHigh + haLow + haClose) / 4
+  199: 
+  200: src = h ? haCloseSeries : close
+  201: 
+  202: // RSI Calculation
+  203: rsiValue = ta.rsi(rsiSource, rsiPeriod)
+  204: 
+  205: // Non-repainting ATR Trailing Stop Calculation
+  206: var float xATRTrailingStop = na
+  207: if (barstate.isconfirmed)
+  208:     xATRTrailingStop := src > nz(xATRTrailingStop[1], 0) and src[1] > nz(xATRTrailingStop[1], 0) ? math.max(nz(xATRTrailingStop[1]), src - nLoss) : src < nz(xATRTrailingStop[1], 0) and src[1] < nz(xATRTrailingStop[1], 0) ? math.min(nz(xATRTrailingStop[1]), src + nLoss) : src > nz(xATRTrailingStop[1], 0) ? src - nLoss : src + nLoss
+  209: 
+  210: // Position Calculation
+  211: var int pos = 0
+  212: if (barstate.isconfirmed)
+  213:     pos := src[1] < nz(xATRTrailingStop[1], 0) and src > nz(xATRTrailingStop[1], 0) ? 1 : src[1] > nz(xATRTrailingStop[1], 0) and src < nz(xATRTrailingStop[1], 0) ? -1 : nz(pos[1], 0)
+  214: 
+  215: xcolor = pos == -1 ? color.red : pos == 1 ? color.green : color.blue
+  216: 
+  217: ema = ta.ema(src, 1)
+  218: above = ta.crossover(ema, xATRTrailingStop)
+  219: below = ta.crossover(xATRTrailingStop, ema)
+  220: 
+  221: // Track entry prices
+  222: var float entryPrice = na
+  223: 
+  224: // Donchian Channels
+  225: length = input.int(20, minval = 1, title="Donchian Channels Length")
+  226: offset = input.int(0, title="Donchian Channels Offset")
+  227: lower = ta.lowest(length)
+  228: upper = ta.highest(length)
+  229: basis = math.avg(upper, lower)
+  230: plot(basis, "Basis", color = #FF6D00, offset = offset)
+  231: u = plot(upper, "Upper", color = #2962FF, offset = offset)
+  232: l = plot(lower, "Lower", color = #2962FF, offset = offset)
+  233: fill(u, l, color = color.rgb(33, 150, 243, 95), title = "Background")
+  234: 
+  235: // Buy and sell conditions with RSI filter and basis condition
+  236: buy = src > xATRTrailingStop and above and barstate.isconfirmed and rsiValue > 50 and src > basis
+  237: sell = src < xATRTrailingStop and below and barstate.isconfirmed and rsiValue < 50 and src < basis
+  238: 
+  239: // Calculate target prices for exit
+  240: var float buyTarget = na
+  241: var float sellTarget = na
+  242: 
+  243: if (buy)
+  244:     entryPrice := src
+  245:     buyTarget := entryPrice * (1 + percentage)
+  246:     sellTarget := entryPrice * (1 - percentage)
+  247:     strategy.entry("Buy", strategy.long)
+  248: 
+  249: if (sell)
+  250:     entryPrice := src
+  251:     buyTarget := entryPrice * (1 + percentage)
+  252:     sellTarget := entryPrice * (1 - percentage)
+  253:     strategy.entry("Sell", strategy.short)
+  254: 
+  255: // Exit conditions
+  256: var bool buyExit = false
+  257: var bool sellExit = false
+  258: var bool stopLossExit = false
+  259: 
+  260: if (strategy.position_size > 0 and barstate.isconfirmed)
+  261:     if (src >= buyTarget)
+  262:         strategy.exit("Take Profit", "Buy", limit=buyTarget)
+  263:         buyExit := true
+  264:     if (src <= sellTarget)
+  265:         strategy.exit("Stoploss exit", "Buy", stop=src)
+  266:         stopLossExit := true
+  267: 
+  268: if (strategy.position_size < 0 and barstate.isconfirmed)
+  269:     if (src <= sellTarget)
+  270:         strategy.exit("Take Profit", "Sell", limit=sellTarget)
+  271:         sellExit := true
+  272:     if (src >= buyTarget)
+  273:         strategy.exit("Stoploss exit", "Sell", stop=src)
+  274:         stopLossExit := true

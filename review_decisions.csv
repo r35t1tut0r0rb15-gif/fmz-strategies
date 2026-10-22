@@ -350,6 +350,7 @@ fmz_id,file,final_outcome,criterion,reason
 458037,高频翻转百分比追踪动量策略-High-Frequency-Flip-Percentage-Tracking-Momentum-Strategy.md,REJECTED_ON_READING,1,"The take-profit target is solved from the script's own balance bookkeeping (CurrentBalance, Accom, PositionTarget of a 1000 USDT start, 90 % position size), so where a trade closes depends on the position size and the history of past trades (criterion 1, size- and history-dependent exit, as #440336)."
 458038,SMA交叉多空策略结合峰值回撤控制与自动终止-SMA-Crossover-Long-Short-Strategy-with-Peak-Drawdown-Control-and-Auto-Termination.md,REJECTED_ON_READING,1,"Entries stop for good once the strategy's own equity drawdown from its peak reaches 40 % (end_strategy): a size- and history-dependent equity gate on every trade (criterion 1, as #440336)."
 458045,动态移动止损双目标价均线交叉策略-Dynamic-Trailing-Stop-Dual-Target-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"strategy.exit with qty = 0.75 / 0.25 x the trade size takes partial profits (and the stop moves to the entry): partial exits (criterion 1, as #436524)."
+458066,多指标结合期权交易策略-Multi-Indicator-Options-Trading-Strategy.md,REJECTED_ON_READING,1,"The only exit closes when strategy.opentrades.profit (currency, for a 10 % of equity position) reaches 0.30 x the entry price (a price): where the trade ends depends on the position size (criterion 1, size-dependent exit, as #440336)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2831,3 +2832,14 @@ fmz_id,file,final_outcome,criterion,reason
 458043,自适应移动平均交叉追踪止损策略-Adaptive-Moving-Average-Crossover-with-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/458043_adaptive-moving-average-crossover-with-trailing-stop-loss-st/
 458044,动态自适应动量突破策略-Dynamic-Adaptive-Momentum-Breakout-Strategy.md,PORTED,,ports/458044_dynamic-adaptive-momentum-breakout-strategy/
 458047,多周期Hull移动平均线交叉策略-Multi-Timeframe-Hull-Moving-Average-Crossover-Strategy.md,PORTED,,ports/458047_hull-multi-timeframe-hull-moving-average-crossover-strategy/
+458049,EMA交叉指示双重止盈止损策略-EMA-Crossover-with-Dual-Take-Profit-and-Stop-Loss-Strategy.md,PORTED,,ports/458049_ema-ema-crossover-with-dual-take-profit-and-stop-loss-strate/
+458051,高级EMA交叉策略基于动态止损和获利目标的自适应交易系统Advanced-EMA-Crossover-Strategy-Adaptive-Trading-System-with-Dynamic-Stop-Loss-and-Take-Profit-Targets.md,PORTED,,ports/458051_ema-advanced-ema-crossover-strategy-adaptive-trading-system/
+458054,多指标综合交易策略动量超买超卖与波动率的完美结合-Multi-Indicator-Comprehensive-Trading-Strategy-Perfect-Combination-of-Momentum-Overbought-Oversold-and-Volatility.md,PORTED,,ports/458054_multi-indicator-comprehensive-trading-strategy-perfect-combi/
+458056,多指标融合的自适应趋势跟踪策略-Multi-Indicator-Adaptive-Trend-Following-Strategy.md,PORTED,,ports/458056_multi-indicator-adaptive-trend-following-strategy/
+458057,RSI-反转交叉动量盈利目标量化交易策略-RSI-Reversal-Cross-Momentum-Profit-Target-Quantitative-Trading-Strategy.md,PORTED,,ports/458057_rsi-rsi-reversal-cross-momentum-profit-target-quantitative-t/
+458058,双重平滑海肯阿希趋势跟随策略Double-Smoothed-Heiken-Ashi-Trend-Following-Strategy.md,PORTED,,ports/458058_double-smoothed-heiken-ashi-trend-following-strategy/
+458059,加权移动平均线和相对强弱指数交叉策略与风险管理优化系统Weighted-Moving-Average-and-Relative-Strength-Index-Crossover-Strategy-with-Risk-Management-Optimization-System.md,PORTED,,ports/458059_weighted-moving-average-and-relative-strength-index-crossove/
+458061,SMA交叉结合超趋势的自适应动量交易策略Adaptive-Momentum-Trading-Strategy-with-SMA-Crossover-and-SuperTrend.md,PORTED,,ports/458061_sma-adaptive-momentum-trading-strategy-with-sma-crossover-an/
+458062,多重指数移动平均交叉策略-Multi-EMA-Crossover-Stop-Strategy.md,PORTED,,ports/458062_multi-ema-crossover-stop-strategy/
+458063,多重EMA交叉结合斐波那契扩展的趋势跟踪策略-Multi-EMA-Crossover-with-Fibonacci-Extension-Trend-Following-Strategy.md,PORTED,,ports/458063_ema-multi-ema-crossover-with-fibonacci-extension-trend-follo/
+458064,双均线趋势跟踪策略与RSI过滤器-Dual-Moving-Average-Trend-Following-Strategy-with-RSI-Filter.md,PORTED,,ports/458064_rsi-dual-moving-average-trend-following-strategy-with-rsi-fi/

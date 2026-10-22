@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #458054 (多指标综合交易策略动量超买超卖与波动率的完美结合-Multi-Indicator-Comprehensive-Trading-Strategy-Perfect-Combination-of-Momentum-Overbought-Oversold-and-Volatility)
+# Source: https://www.fmz.com/strategy/458054  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 % / target 5 % of the signal close  [lines 253-264]
+  253: stopLossPercent = 0.02  // 2% stop loss
+  254: takeProfitPercent = 0.05  // 5% take profit
+  255: 
+  256: // Long position logic
+  257: if (longCondition)
+  258:     strategy.entry("Long", strategy.long, comment="Long Entry")
+  259:     strategy.exit("Take Profit/Stop Loss", "Long", limit=close * (1 + takeProfitPercent), stop=close * (1 - stopLossPercent))
+  260: 
+  261: // Short position logic
+  262: if (shortCondition)
+  263:     strategy.entry("Short", strategy.short, comment="Short Entry")
+  264:     strategy.exit("Take Profit/Stop Loss", "Short", limit=close * (1 - takeProfitPercent), stop=close * (1 + stopLossPercent))

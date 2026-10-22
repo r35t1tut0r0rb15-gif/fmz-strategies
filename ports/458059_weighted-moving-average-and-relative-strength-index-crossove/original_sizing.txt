@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #458059 (加权移动平均线和相对强弱指数交叉策略与风险管理优化系统Weighted-Moving-Average-and-Relative-Strength-Index-Crossover-Strategy-with-Risk-Management-Optimization-System)
+# Source: https://www.fmz.com/strategy/458059  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 40 / stop 20 points from the average price  [lines 260-276]
+  260: long_tp_points = 40
+  261: long_sl_points = 20
+  262: 
+  263: // Condiciones para las señales de trading
+  264: longCondition = ta.crossover(wma7, wma14) and rsi < rsiOversold
+  265: 
+  266: // Ejecución de las órdenes de entrada y salida
+  267: if (longCondition)
+  268:     strategy.entry("Long", strategy.long)
+  269: 
+  270: // Cálculo de los niveles de stop loss y take profit para posiciones largas
+  271: long_take_level = strategy.position_avg_price + long_tp_points
+  272: long_stop_level = strategy.position_avg_price - long_sl_points
+  273: 
+  274: // Salidas de las órdenes basadas en el precio actual
+  275: if (strategy.position_size > 0)
+  276:     strategy.exit("Take Profit/Stop Loss", "Long", limit=long_take_level, stop=long_stop_level)

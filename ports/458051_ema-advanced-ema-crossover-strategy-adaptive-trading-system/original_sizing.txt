@@ -1,0 +1,33 @@
+# Original sizing and money-management code, FMZ #458051 (高级EMA交叉策略基于动态止损和获利目标的自适应交易系统Advanced-EMA-Crossover-Strategy-Adaptive-Trading-System-with-Dynamic-Stop-Loss-and-Take-Profit-Targets)
+# Source: https://www.fmz.com/strategy/458051  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 90 / target 270 ticks from the signal close  [lines 144-171]
+  144: tick_size = syminfo.mintick
+  145: stop_loss_ticks = 90
+  146: take_profit_ticks = 270
+  147: stop_loss = stop_loss_ticks * tick_size
+  148: take_profit = take_profit_ticks * tick_size
+  149: 
+  150: // Plot buy and sell signals on the chart
+  151: plotshape(series=longCondition, location=location.belowbar, color=color.green, style=shape.labelup, title="Buy Signal")
+  152: plotshape(series=shortCondition, location=location.abovebar, color=color.red, style=shape.labeldown, title="Sell Signal")
+  153: 
+  154: // Initialize variables to store the stop loss and take profit prices
+  155: var float long_stop_price = na
+  156: var float long_take_profit_price = na
+  157: var float short_stop_price = na
+  158: var float short_take_profit_price = na
+  159: 
+  160: // Strategy orders with fixed stop loss and take profit
+  161: if (longCondition)
+  162:     long_stop_price := close - stop_loss
+  163:     long_take_profit_price := close + take_profit
+  164:     strategy.entry("Long", strategy.long)
+  165:     strategy.exit("Exit Long", from_entry="Long", stop=long_stop_price, limit=long_take_profit_price)
+  166: 
+  167: if (shortCondition)
+  168:     short_stop_price := close + stop_loss
+  169:     short_take_profit_price := close - take_profit
+  170:     strategy.entry("Short", strategy.short)
+  171:     strategy.exit("Exit Short", from_entry="Short", stop=short_stop_price, limit=short_take_profit_price)

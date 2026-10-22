@@ -1,0 +1,40 @@
+# Original sizing and money-management code, FMZ #458057 (RSI-反转交叉动量盈利目标量化交易策略-RSI-Reversal-Cross-Momentum-Profit-Target-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/458057  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trade size 2 lots; profit target 2000 USD  [lines 201-235]
+  201: profitTarget = input(2000, title="Profit Target (in USD)")
+  202: tradeSize = input(2, title="Trade Size (Lots)")
+  203: 
+  204: // RSI Calculation
+  205: rsi = ta.rsi(close, rsiPeriod)
+  206: 
+  207: // Entry conditions
+  208: longCondition = ta.crossover(rsi, entryOversold) and ta.valuewhen(ta.crossunder(rsi, oversoldLevel), rsi, 0) < entryOversold
+  209: shortCondition = ta.crossunder(rsi, entryOverbought) and ta.valuewhen(ta.crossover(rsi, overboughtLevel), rsi, 0) > entryOverbought
+  210: 
+  211: // Calculate profit in ticks
+  212: tickValue = syminfo.pointvalue
+  213: profitTicks = profitTarget / (tickValue * tradeSize)
+  214: 
+  215: // Determine the profit target level in price units
+  216: longExitPrice = strategy.position_avg_price + profitTicks * syminfo.mintick
+  217: shortExitPrice = strategy.position_avg_price - profitTicks * syminfo.mintick
+  218: 
+  219: // Plotting entry and exit points
+  220: plotshape(series=longCondition, location=location.belowbar, color=color.green, style=shape.labelup, title="Buy Signal")
+  221: plotshape(series=shortCondition, location=location.abovebar, color=color.red, style=shape.labeldown, title="Sell Signal")
+  222: 
+  223: // Strategy execution
+  224: if (longCondition)
+  225:     strategy.entry("Long", strategy.long, qty=tradeSize)
+  226: if (shortCondition)
+  227:     strategy.entry("Short", strategy.short, qty=tradeSize)
+  228: 
+  229: // Close long position if profit target met
+  230: if (strategy.position_size > 0 and close >= longExitPrice)
+  231:     strategy.close("Long")
+  232: 
+  233: // Close short position if profit target met
+  234: if (strategy.position_size < 0 and close <= shortExitPrice)
+  235:     strategy.close("Short")

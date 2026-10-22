@@ -5287,6 +5287,34 @@ SIZING = {
         ("strategy(): margin_long 100, margin_short 100", 249, 249),
     ],
     458047: [],
+    # ---- FMZ-C, batch C200 (2026-10-22)
+    458049: [
+        ("Stop EMA 50 -+ 100 pips, target close +- 200 pips (x mintick)", 178, 223),
+    ],
+    458051: [
+        ("Stop 90 / target 270 ticks from the signal close", 144, 171),
+    ],
+    458054: [
+        ("Stop 2 % / target 5 % of the signal close", 253, 264),
+    ],
+    458056: [
+        ("Exit band 0.2 % of the signal close", 183, 274),
+    ],
+    458057: [
+        ("Trade size 2 lots; profit target 2000 USD", 201, 235),
+    ],
+    458058: [],
+    458059: [
+        ("Target 40 / stop 20 points from the average price", 260, 276),
+    ],
+    458061: [
+        ("Target 1 % of the average price", 246, 251),
+    ],
+    458062: [],
+    458063: [],
+    458064: [
+        ("Target 2 % / stop 0.5 % of the reference close (close tests)", 208, 258),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -6703,6 +6731,10 @@ REJECTED_ON_READING = {
               "trade (criterion 1, as #440336)."),
     458045: ("1", "strategy.exit with qty = 0.75 / 0.25 x the trade size takes partial profits (and "
               "the stop moves to the entry): partial exits (criterion 1, as #436524)."),
+    # ---- FMZ-C, batch C200 (2026-10-22)
+    458066: ("1", "The only exit closes when strategy.opentrades.profit (currency, for a 10 % of "
+              "equity position) reaches 0.30 x the entry price (a price): where the trade ends "
+              "depends on the position size (criterion 1, size-dependent exit, as #440336)."),
 }
 
 DUPLICATE_ON_READING = {

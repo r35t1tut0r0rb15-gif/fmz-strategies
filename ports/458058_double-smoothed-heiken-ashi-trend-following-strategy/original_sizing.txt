@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #458058 (双重平滑海肯阿希趋势跟随策略Double-Smoothed-Heiken-Ashi-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/458058  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

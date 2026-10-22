@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2461 |
+| PORTED | 2472 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 928 |
+| PORT_CANDIDATE | 916 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 351 |
+| REJECTED_ON_READING | 352 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2589,7 +2589,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 458043 | `ports/458043_adaptive-moving-average-crossover-with-trailing-stop-loss-st/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
 | 458044 | `ports/458044_dynamic-adaptive-momentum-breakout-strategy/` | PineScript | momentum_oscillator | none | hold x2, ema_len x2 | 4 |
 | 458047 | `ports/458047_hull-multi-timeframe-hull-moving-average-crossover-strategy/` | PineScript | hull_ma | none | length x2 | 2 |
-| | **2461 ports** | | | | | **11526** |
+| 458049 | `ports/458049_ema-ema-crossover-with-dual-take-profit-and-stop-loss-strate/` | PineScript | ma_cross | coarse_bar_stop | short_len x2, long_len x2, tp_atr x2 | 8 |
+| 458051 | `ports/458051_ema-advanced-ema-crossover-strategy-adaptive-trading-system/` | PineScript | ma_cross | none | sl_atr x2, tp_atr x2 | 4 |
+| 458054 | `ports/458054_multi-indicator-comprehensive-trading-strategy-perfect-combi/` | PineScript | multi_indicator_confluence | trailing_stop_pending | rsi_len x2, sl_pct x2, tp_pct x2 | 8 |
+| 458056 | `ports/458056_multi-indicator-adaptive-trend-following-strategy/` | PineScript | atr_trailing_line | none | key x2, dc_len x2, band_pct x2 | 8 |
+| 458057 | `ports/458057_rsi-rsi-reversal-cross-momentum-profit-target-quantitative-t/` | PineScript | rsi_oscillator | none | rsi_len x2, target_frac x2 | 4 |
+| 458058 | `ports/458058_double-smoothed-heiken-ashi-trend-following-strategy/` | PineScript | candle_pattern | none | len x2, len2 x2 | 4 |
+| 458059 | `ports/458059_weighted-moving-average-and-relative-strength-index-crossove/` | PineScript | ma_cross | coarse_bar_stop | sl_frac x2, tp_frac x2 | 4 |
+| 458061 | `ports/458061_sma-adaptive-momentum-trading-strategy-with-sma-crossover-an/` | PineScript | supertrend | coarse_bar_stop | sma1 x2, sma2 x2, tp_pct x2 | 8 |
+| 458062 | `ports/458062_multi-ema-crossover-stop-strategy/` | PineScript | ma_cross | none | length x2, length2 x2 | 4 |
+| 458063 | `ports/458063_ema-multi-ema-crossover-with-fibonacci-extension-trend-follo/` | PineScript | ma_trend | none | swing_len x2 | 2 |
+| 458064 | `ports/458064_rsi-dual-moving-average-trend-following-strategy-with-rsi-fi/` | PineScript | rsi_oscillator | none | sma_len x2, confirm x2, tp_pct x2 | 8 |
+| | **2472 ports** | | | | | **11588** |
 
 ## Rejected on reading
 
@@ -2946,6 +2957,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 458037 | 高频翻转百分比追踪动量策略-High-Frequency-Flip-Percentage-Tracking-Momentum-Strategy.md | 1 | The take-profit target is solved from the script's own balance bookkeeping (CurrentBalance, Accom, PositionTarget of a 1000 USDT start, 90 % position size), so where a trade closes depends on the position size and the history of past trades (criterion 1, size- and history-dependent exit, as #440336). |
 | 458038 | SMA交叉多空策略结合峰值回撤控制与自动终止-SMA-Crossover-Long-Short-Strategy-with-Peak-Drawdown-Control-and-Auto-Termination.md | 1 | Entries stop for good once the strategy's own equity drawdown from its peak reaches 40 % (end_strategy): a size- and history-dependent equity gate on every trade (criterion 1, as #440336). |
 | 458045 | 动态移动止损双目标价均线交叉策略-Dynamic-Trailing-Stop-Dual-Target-Moving-Average-Crossover-Strategy.md | 1 | strategy.exit with qty = 0.75 / 0.25 x the trade size takes partial profits (and the stop moves to the entry): partial exits (criterion 1, as #436524). |
+| 458066 | 多指标结合期权交易策略-Multi-Indicator-Options-Trading-Strategy.md | 1 | The only exit closes when strategy.opentrades.profit (currency, for a 10 % of equity position) reaches 0.30 x the entry price (a price): where the trade ends depends on the position size (criterion 1, size-dependent exit, as #440336). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
