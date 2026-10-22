@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #454741 (机器学习启发的双均线RSI交易策略-Machine-Learning-Inspired-Dual-Moving-Average-RSI-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/454741  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

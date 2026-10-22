@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #454737 (多周期指数移动平均交叉策略与期权交易建议系统-Multi-Period-Exponential-Moving-Average-Crossover-Strategy-with-Options-Trading-Suggestion-System)
+# Source: https://www.fmz.com/strategy/454737  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

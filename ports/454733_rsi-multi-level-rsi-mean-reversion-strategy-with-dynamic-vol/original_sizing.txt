@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #454733 (多层级RSI回归交易策略与动态波动率调整-Multi-Level-RSI-Mean-Reversion-Strategy-with-Dynamic-Volatility-Adjustment)
+# Source: https://www.fmz.com/strategy/454733  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

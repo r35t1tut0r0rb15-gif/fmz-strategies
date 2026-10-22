@@ -5209,6 +5209,20 @@ SIZING = {
         ("Take profit 5 % / stop 3 % of the signal close (close tests)", 126, 167),
     ],
     454730: [],
+    # ---- FMZ-C, batch C196 (2026-10-22)
+    454731: [
+        ("Stop 3 % / target 6 % of the average price", 205, 229),
+    ],
+    454732: [],
+    454733: [],
+    454735: [],
+    454737: [],
+    454738: [],
+    454740: [],
+    454741: [],
+    454742: [],
+    454743: [],
+    454746: [],
 }
 
 REJECTED_ON_READING = {
@@ -6597,6 +6611,9 @@ REJECTED_ON_READING = {
     454721: ("1", "The 'Markov' state is overwritten by a counter that cycles 0-9 from the first bar "
               "of the data, so which bars buy, sell or close depends on where the data starts "
               "rather than on prices alone; the source also names no bar size (criterion 1)."),
+    # ---- FMZ-C, batch C196 (2026-10-22)
+    454736: ("1", "The take-profit steps strategy.exit(qty_percent = 12 / 8 / 4 %) close parts of the "
+              "position at 6 / 12 / 18 %: partial exits (criterion 1, as #436524)."),
 }
 
 DUPLICATE_ON_READING = {

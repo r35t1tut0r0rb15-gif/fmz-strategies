@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2421 |
+| PORTED | 2432 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 976 |
+| PORT_CANDIDATE | 964 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 343 |
+| REJECTED_ON_READING | 344 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2549,7 +2549,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 454727 | `ports/454727_rsi-rsi-dual-period-moving-average-reversal-strategy-with-dy/` | PineScript | rsi_oscillator | coarse_bar_stop, trailing_stop_pending | fast x2, slow x2, sl_pct x2 | 8 |
 | 454728 | `ports/454728_dynamic-take-profit-and-stop-loss-dual-moving-average-crosso/` | PineScript | ma_cross | none | short_len x2, long_len x2, tp_pct x2 | 8 |
 | 454730 | `ports/454730_cci-cci-momentum-divergence-trend-trading-strategy/` | PineScript | momentum_oscillator | none | cci_len x2, rsi_len x2 | 4 |
-| | **2421 ports** | | | | | **11313** |
+| 454731 | `ports/454731_rsi-macd-bb-super-triple-indicator-rsi-macd-bb-momentum-reve/` | PineScript | bollinger_reversion | coarse_bar_stop | ob x2, sl_pct x2, tp_pct x2 | 8 |
+| 454732 | `ports/454732_bollinger-bands-momentum-crossover-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 454733 | `ports/454733_rsi-multi-level-rsi-mean-reversion-strategy-with-dynamic-vol/` | PineScript | mean_reversion | none | rsi_len x2, body_lookback x2, exit_frac x2 | 8 |
+| 454735 | `ports/454735_cso-custom-signal-oscillator-strategy-cso/` | PineScript | candle_pattern | none |  | 0 |
+| 454737 | `ports/454737_multi-period-exponential-moving-average-crossover-strategy-w/` | PineScript | ma_cross | none | short_len x2, longer_len x2 | 4 |
+| 454738 | `ports/454738_triple-standard-deviation-momentum-reversal-trading-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 454740 | `ports/454740_multi-indicator-high-frequency-trading-strategy-short-term-t/` | PineScript | ma_cross | none | fast x2, slow x2, rsi_len x2 | 8 |
+| 454741 | `ports/454741_rsi-machine-learning-inspired-dual-moving-average-rsi-tradin/` | PineScript | ma_cross | none | fast x2, slow x2, rsi_len x2 | 8 |
+| 454742 | `ports/454742_supertrend-supertrend-strategy-optimization-dynamic-volatili/` | PineScript | supertrend | none | atr_len x2, mult x2 | 4 |
+| 454743 | `ports/454743_dynamic-channel-percentage-envelope-strategy/` | PineScript | mean_reversion | none | length x2, pct x2 | 4 |
+| 454746 | `ports/454746_dynamic-oscillation-trend-capture-strategy/` | PineScript | macd_cross | none | hilo_len x2, fast x2, slow x2 | 8 |
+| | **2432 ports** | | | | | **11373** |
 
 ## Rejected on reading
 
@@ -2898,6 +2909,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 454359 | EMA动态止损交易策略-EMA-Dynamic-Stop-Loss-Trading-Strategy.md | 1 | The only exit arms when strategy.netprofit (closed-trade profit in currency) reaches 1.2 x the average price (a price level): a size- and history-dependent gate on the stop, with no other exit for the long (criterion 1, as #440336). |
 | 454361 | EMA多头均线交叉策略-EMA-Bullish-Crossover-Strategy.md | 1 | The target is close + 0.001 (a forex-pip amount) on BTC: the limit sits at, or within a fraction of a cent of, the entry, so every long and short is closed at about its own fill price (criterion 1, as #451493). |
 | 454721 | 马尔可夫链概率转换状态量化交易策略-Markov-Chain-Probability-Transition-State-Quantitative-Trading-Strategy.md | 1 | The 'Markov' state is overwritten by a counter that cycles 0-9 from the first bar of the data, so which bars buy, sell or close depends on where the data starts rather than on prices alone; the source also names no bar size (criterion 1). |
+| 454736 | Supertrend双重触发的多步移动止盈策略Double-Supertrend-Multi-Step-Trailing-Take-Profit-Strategy.md | 1 | The take-profit steps strategy.exit(qty_percent = 12 / 8 / 4 %) close parts of the position at 6 / 12 / 18 %: partial exits (criterion 1, as #436524). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

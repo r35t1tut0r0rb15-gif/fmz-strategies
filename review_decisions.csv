@@ -342,6 +342,7 @@ fmz_id,file,final_outcome,criterion,reason
 454359,EMA动态止损交易策略-EMA-Dynamic-Stop-Loss-Trading-Strategy.md,REJECTED_ON_READING,1,"The only exit arms when strategy.netprofit (closed-trade profit in currency) reaches 1.2 x the average price (a price level): a size- and history-dependent gate on the stop, with no other exit for the long (criterion 1, as #440336)."
 454361,EMA多头均线交叉策略-EMA-Bullish-Crossover-Strategy.md,REJECTED_ON_READING,1,"The target is close + 0.001 (a forex-pip amount) on BTC: the limit sits at, or within a fraction of a cent of, the entry, so every long and short is closed at about its own fill price (criterion 1, as #451493)."
 454721,马尔可夫链概率转换状态量化交易策略-Markov-Chain-Probability-Transition-State-Quantitative-Trading-Strategy.md,REJECTED_ON_READING,1,"The 'Markov' state is overwritten by a counter that cycles 0-9 from the first bar of the data, so which bars buy, sell or close depends on where the data starts rather than on prices alone; the source also names no bar size (criterion 1)."
+454736,Supertrend双重触发的多步移动止盈策略Double-Supertrend-Multi-Step-Trailing-Take-Profit-Strategy.md,REJECTED_ON_READING,1,"The take-profit steps strategy.exit(qty_percent = 12 / 8 / 4 %) close parts of the position at 6 / 12 / 18 %: partial exits (criterion 1, as #436524)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2783,3 +2784,14 @@ fmz_id,file,final_outcome,criterion,reason
 454727,RSI双周期均线反转策略与动态风险管理系统-RSI-Dual-Period-Moving-Average-Reversal-Strategy-with-Dynamic-Risk-Management-System.md,PORTED,,ports/454727_rsi-rsi-dual-period-moving-average-reversal-strategy-with-dy/
 454728,动态止盈止损的双均线交叉交易策略-Dynamic-Take-Profit-and-Stop-Loss-Dual-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/454728_dynamic-take-profit-and-stop-loss-dual-moving-average-crosso/
 454730,CCI动量背离趋势交易策略CCI-Momentum-Divergence-Trend-Trading-Strategy.md,PORTED,,ports/454730_cci-cci-momentum-divergence-trend-trading-strategy/
+454731,超级三指标RSI-MACD-BB动量反转策略-Super-Triple-Indicator-RSI-MACD-BB-Momentum-Reversal-Strategy.md,PORTED,,ports/454731_rsi-macd-bb-super-triple-indicator-rsi-macd-bb-momentum-reve/
+454732,布林带动量交叉策略-Bollinger-Bands-Momentum-Crossover-Strategy.md,PORTED,,ports/454732_bollinger-bands-momentum-crossover-strategy/
+454733,多层级RSI回归交易策略与动态波动率调整-Multi-Level-RSI-Mean-Reversion-Strategy-with-Dynamic-Volatility-Adjustment.md,PORTED,,ports/454733_rsi-multi-level-rsi-mean-reversion-strategy-with-dynamic-vol/
+454735,自定义信号振荡器策略-CSO-Custom-Signal-Oscillator-Strategy-CSO.md,PORTED,,ports/454735_cso-custom-signal-oscillator-strategy-cso/
+454737,多周期指数移动平均交叉策略与期权交易建议系统-Multi-Period-Exponential-Moving-Average-Crossover-Strategy-with-Options-Trading-Suggestion-System.md,PORTED,,ports/454737_multi-period-exponential-moving-average-crossover-strategy-w/
+454738,三标准差动量反转交易策略-Triple-Standard-Deviation-Momentum-Reversal-Trading-Strategy.md,PORTED,,ports/454738_triple-standard-deviation-momentum-reversal-trading-strategy/
+454740,多指标组合的高频交易策略指数均线与动量指标相结合的短线交易系统-Multi-Indicator-High-Frequency-Trading-Strategy-Short-Term-Trading-System-Combining-Exponential-Moving-Averages-and-Momentum-Indicators.md,PORTED,,ports/454740_multi-indicator-high-frequency-trading-strategy-short-term-t/
+454741,机器学习启发的双均线RSI交易策略-Machine-Learning-Inspired-Dual-Moving-Average-RSI-Trading-Strategy.md,PORTED,,ports/454741_rsi-machine-learning-inspired-dual-moving-average-rsi-tradin/
+454742,SuperTrend策略优化动态波动率跟踪与交易信号增强系统-SuperTrend-Strategy-Optimization-Dynamic-Volatility-Tracking-and-Enhanced-Trading-Signal-System.md,PORTED,,ports/454742_supertrend-supertrend-strategy-optimization-dynamic-volatili/
+454743,动态通道百分比包络策略-Dynamic-Channel-Percentage-Envelope-Strategy.md,PORTED,,ports/454743_dynamic-channel-percentage-envelope-strategy/
+454746,动态波动趋势捕捉策略-Dynamic-Oscillation-Trend-Capture-Strategy.md,PORTED,,ports/454746_dynamic-oscillation-trend-capture-strategy/

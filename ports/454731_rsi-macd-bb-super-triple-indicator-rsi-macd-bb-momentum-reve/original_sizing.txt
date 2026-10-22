@@ -1,0 +1,30 @@
+# Original sizing and money-management code, FMZ #454731 (超级三指标RSI-MACD-BB动量反转策略-Super-Triple-Indicator-RSI-MACD-BB-Momentum-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/454731  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 3 % / target 6 % of the average price  [lines 205-229]
+  205: stopLossPercent = input(3, title="Stop Loss Percent", type=input.float)/100
+  206: takeProfitPercent = input(6, title="Take Profit Percent", type=input.float)/100
+  207: 
+  208: // Cálculo de Indicadores
+  209: rsi = rsi(close, 14)
+  210: [macdLine, signalLine, _] = macd(close, macdShort, macdLong, macdSignal)
+  211: [upperBand, b, lowerBand] = bb(close, 20, 2)
+  212: 
+  213: // Señal de Entrada Short
+  214: isOverbought = rsi > rsiOverbought
+  215: isMacdBearish = macdLine < signalLine
+  216: isNearUpperBand = close > upperBand
+  217: 
+  218: shortCondition = isOverbought and isMacdBearish and isNearUpperBand
+  219: 
+  220: // Ejecución de la Estrategia
+  221: if (shortCondition)
+  222:     strategy.entry("Short", strategy.short)
+  223:     label.new(bar_index, na, "SELL", style=label.style_label_down, color=color.red, textcolor=color.white, size=size.small)
+  224:     alert("Señal de Venta: Iniciar una posición corta en DOTUSDT", alert.freq_once_per_bar)
+  225: 
+  226: // Gestión del Riesgo
+  227: stopLossLevel = strategy.position_avg_price * (1 + stopLossPercent)
+  228: takeProfitLevel = strategy.position_avg_price * (1 - takeProfitPercent)
+  229: strategy.exit("Take Profit/Stop Loss", "Short", stop=stopLossLevel, limit=takeProfitLevel)

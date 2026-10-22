@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #454740 (多指标组合的高频交易策略指数均线与动量指标相结合的短线交易系统-Multi-Indicator-High-Frequency-Trading-Strategy-Short-Term-Trading-System-Combining-Exponential-Moving-Averages-and-Momentum-Indicators)
+# Source: https://www.fmz.com/strategy/454740  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
