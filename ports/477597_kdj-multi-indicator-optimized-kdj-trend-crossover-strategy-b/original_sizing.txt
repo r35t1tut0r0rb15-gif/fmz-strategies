@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #477597 (多指标优化型KDJ趋势交叉策略基于动态随机形态的交易系统-Multi-Indicator-Optimized-KDJ-Trend-Crossover-Strategy-Based-on-Dynamic-Stochastic-Pattern-Trading-System)
+# Source: https://www.fmz.com/strategy/477597  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty 1; stop 5 % of the avg price; trailing inputs unused  [lines 198-219]
+  198:     strategy.entry("golden", strategy.long, qty=1)
+  199: 
+  200: // to_short = 
+  201: // or ta.crossunder(pJ, 100)
+  202: 
+  203: // Exit condition
+  204: if ta.crossover(pD, pJ)
+  205:     strategy.close("golden", qty = 1)
+  206: 
+  207: // Stop loss and trailing profit
+  208: trail_stop_pct = input.float(0.5, title="Trailing Stop activation (%)", group="Exit Lonng", inline="LTS", tooltip="Trailing Treshold %")
+  209: trail_offset_pct = input.float(0.5, title="Trailing Offset (%)", group="Exit Lonng", inline="LTS", tooltip="Trailing Offset %")
+  210: trail_stop_tick = trail_stop_pct * close/100
+  211: trail_offset_tick = trail_offset_pct * close/100
+  212: 
+  213: sl_pct = input.float(5, title="Stop Loss", group="SL and TP", inline="LSLTP")
+  214: // tp_pct = input.float(9, title="Take Profit", group="SL and TP", inline="LSLTP")
+  215: 
+  216: long_sl_price = strategy.position_avg_price * (1 - sl_pct/100)
+  217: // long_tp_price = strategy.position_avg_price * (1 + tp_pct/100)
+  218: 
+  219: strategy.exit('golden Exit', 'golden', stop = long_sl_price)

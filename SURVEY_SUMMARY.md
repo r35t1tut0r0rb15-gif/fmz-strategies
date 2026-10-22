@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2829 |
+| PORTED | 2839 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 569 |
-| PORT_CANDIDATE | 508 |
-| REJECTED_ON_READING | 401 |
+| PORT_CANDIDATE | 496 |
+| REJECTED_ON_READING | 403 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2957,7 +2957,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 477569 | `ports/477569_multi-indicator-probability-threshold-momentum-trend-trading/` | PineScript | zscore_momentum | none | lookback x2, threshold x2 | 4 |
 | 477579 | `ports/477579_bollinger-bands-breakout-momentum-trading-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
 | 477580 | `ports/477580_wavetrend-ema-ribbon-advanced-wavetrend-and-ema-ribbon-fusio/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | long_rr x2, short_rr x2 | 4 |
-| | **2829 ports** | | | | | **13158** |
+| 477581 | `ports/477581_rsi-dual-moving-average-rsi-synergy-options-quantitative-tra/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 477583 | `ports/477583_mean-reversion-bollinger-bands-trading-strategy-with-rationa/` | PineScript | bollinger_breakout | none | length x2, threshold x2 | 4 |
+| 477587 | `ports/477587_advanced-fibonacci-retracement-trend-following-and-reversal/` | PineScript | channel_breakout | none | lookback x3 | 3 |
+| 477590 | `ports/477590_multi-period-price-level-breakout-trend-trading-system-based/` | PineScript | support_resistance | none | pm_end_hour x2, switch_hour x2 | 4 |
+| 477592 | `ports/477592_multi-parameter-stochastic-intelligent-trend-trading-strateg/` | PineScript | stochastic_oscillator | coarse_bar_stop | rr x3, stop_pct x2 | 6 |
+| 477593 | `ports/477593_z-z-score-normalized-linear-signal-quantitative-trading-stra/` | PineScript | zscore_reversion | trailing_stop_pending | lookback x2, threshold x2 | 4 |
+| 477595 | `ports/477595_di-atr-dynamic-volatility-adjusted-trend-following-strategy/` | PineScript | adx_trend | coarse_bar_stop, trailing_stop_pending | strength x2, tp_mult x2 | 4 |
+| 477596 | `ports/477596_multi-timeframe-heikin-ashi-moving-average-trend-following-t/` | PineScript | heikin_ashi | none | slow x3 | 3 |
+| 477597 | `ports/477597_kdj-multi-indicator-optimized-kdj-trend-crossover-strategy-b/` | PineScript | stochastic_oscillator | coarse_bar_stop | period x2, d_signal x2 | 4 |
+| 477598 | `ports/477598_atr-dynamic-moving-average-crossover-trend-following-strateg/` | PineScript | ma_cross | coarse_bar_stop | atr_mult x2, slow x2 | 4 |
+| | **2839 ports** | | | | | **13198** |
 
 ## Rejected on reading
 
@@ -3364,6 +3374,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 476264 | 动态多周期指数移动平均交叉策略与回撤优化系统-Dynamic-Multi-Period-Exponential-Moving-Average-Cross-Strategy-with-Pullback-Optimization-System.md | 1 | Five entry ids (Step1-3, Pullback, Above50) add 20 % / 40 % parts to the long and the EMA 5 / 13 cross-down closes only one part: staged adds and partial closes (criterion 1, DCA adds and partial exits). |
 | 477534 | 多重指标动态追踪止损交易策略-Multi-Indicator-Dynamic-Trailing-Stop-Trading-Strategy.md | 2 | The only exits pass trail_points = atr x 1.5 and trail_offset = atr x 0.75, price amounts, where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #442115). |
 | 477565 | 多时间周期动态信号组合的ICT智能结构突破策略-Multi-Period-Dynamic-Signal-Integration-ICT-Smart-Structure-Breakthrough-Strategy.md | 1 | Every entry needs the bar inside the 07:00-10:00 kill-zone session (time(timeframe.period, session)), which a 2-day bar starting at the day boundary never is: the strategy never trades on its own chart (criterion 1, intraday time windows on a multi-day chart, as #437544). |
+| 477584 | 高级均线交叉趋势跟踪策略结合ATR动态止盈止损系统-Advanced-EMA-Crossover-Trend-Following-Strategy-with-ATR-Based-Dynamic-Stop-Management-System.md | 2 | The bracket's trail_points = atr x 2.0 is a price amount where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #442115). |
+| 477600 | 基于下跌幅度与目标利润的多头网格策略-Long-Grid-Strategy-Based-on-Drawdown-and-Target-Profit.md | 1 | A grid: the first bar buys with no market signal (active_trade false) and every profit close re-buys on the next bar, with a "Rebuy" add on each 5 % drop (ignored only by pyramiding 1): an always-invested buy from the first bar with DCA adds by design (criterion 1, as #433916 and the DCA rule). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

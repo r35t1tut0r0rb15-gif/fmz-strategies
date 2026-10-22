@@ -1,0 +1,40 @@
+# Original sizing and money-management code, FMZ #477598 (动态均线交叉趋势跟踪策略结合ATR风险管理系统-Dynamic-Moving-Average-Crossover-Trend-Following-Strategy-with-ATR-Risk-Management-System)
+# Source: https://www.fmz.com/strategy/477598  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = equity x 200 % / close; ATR 14 x 1.5 stop / target; risk tolerance unused  [lines 94-128]
+   94: risk_tolerance = input.float(2.0, "Risk Tolerance (%)", step=0.1) / 100
+   95: capital_allocation = input.float(200, "Capital Allocation (%)", step=1) / 100
+   96: 
+   97: // Technical indicators (used to emulate machine learning)
+   98: ma_length_fast = input.int(10, "Fast MA Length")
+   99: ma_length_slow = input.int(50, "Slow MA Length")
+  100: atr_length = input.int(14, "ATR Length")
+  101: atr_multiplier = input.float(1.5, "ATR Multiplier")
+  102: 
+  103: // Calculations
+  104: fast_ma = ta.sma(close, ma_length_fast)
+  105: slow_ma = ta.sma(close, ma_length_slow)
+  106: atr = ta.atr(atr_length)
+  107: 
+  108: // Entry and exit conditions
+  109: long_condition = ta.crossover(fast_ma, slow_ma)
+  110: short_condition = ta.crossunder(fast_ma, slow_ma)
+  111: 
+  112: // Risk management
+  113: stop_loss_long = close - (atr * atr_multiplier)
+  114: stop_loss_short = close + (atr * atr_multiplier)
+  115: take_profit_long = close + (atr * atr_multiplier)
+  116: take_profit_short = close - (atr * atr_multiplier)
+  117: 
+  118: // Capital allocation
+  119: position_size = strategy.equity * capital_allocation
+  120: 
+  121: // Execute trades
+  122: if long_condition
+  123:     strategy.entry("Long", strategy.long, qty=position_size / close)
+  124:     strategy.exit("Take Profit/Stop Loss", "Long", stop=stop_loss_long, limit=take_profit_long)
+  125: 
+  126: if short_condition
+  127:     strategy.entry("Short", strategy.short, qty=position_size / close)
+  128:     strategy.exit("Take Profit/Stop Loss", "Short", stop=stop_loss_short, limit=take_profit_short)

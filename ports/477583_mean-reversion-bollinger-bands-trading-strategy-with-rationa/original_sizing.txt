@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #477583 (均值回归型布林带交易策略结合理性回归信号-Mean-Reversion-Bollinger-Bands-Trading-Strategy-with-Rational-Return-Signal)
+# Source: https://www.fmz.com/strategy/477583  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 200 % of equity  [lines 127-127]
+  127: strategy("Estratégia com Bandas de Bollinger e Sinal de Retorno", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=200)

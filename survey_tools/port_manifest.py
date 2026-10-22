@@ -6164,6 +6164,31 @@ SIZING = {
     477580: [
         ("strategy(): capital 10000, fixed qty 1; swing stop, 2 R / 3 R targets", 105, 208),
     ],
+    # ---- FMZ-C, batch C235 (2026-10-22)
+    477581: [
+        ("Target 4 % / stop 0.5 % of strategy.position_avg_price (long formulas for both sides)", 109, 144),
+    ],
+    477583: [
+        ("strategy(): 200 % of equity", 127, 127),
+    ],
+    477587: [],
+    477590: [],
+    477592: [
+        ("Stop 1 %, R:R 1:1 / 1:4 / 1:8", 124, 171),
+    ],
+    477593: [
+        ("qty 1; take profit 0.02 / stop 0.01 (fractions)", 96, 128),
+    ],
+    477595: [
+        ("ATR 14 x 1.5 stop / x 2.5 target", 122, 157),
+    ],
+    477596: [],
+    477597: [
+        ("qty 1; stop 5 % of the avg price; trailing inputs unused", 198, 219),
+    ],
+    477598: [
+        ("qty = equity x 200 % / close; ATR 14 x 1.5 stop / target; risk tolerance unused", 94, 128),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7780,6 +7805,14 @@ REJECTED_ON_READING = {
               "(time(timeframe.period, session)), which a 2-day bar starting at the day boundary "
               "never is: the strategy never trades on its own chart (criterion 1, intraday time "
               "windows on a multi-day chart, as #437544)."),
+    # ---- FMZ-C, batch C235 (2026-10-22)
+    477584: ("2", "The bracket's trail_points = atr x 2.0 is a price amount where the call takes "
+              "ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, "
+              "as #442115)."),
+    477600: ("1", "A grid: the first bar buys with no market signal (active_trade false) and every "
+              "profit close re-buys on the next bar, with a \"Rebuy\" add on each 5 % drop (ignored "
+              "only by pyramiding 1): an always-invested buy from the first bar with DCA adds by "
+              "design (criterion 1, as #433916 and the DCA rule)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,53 @@
+# Original sizing and money-management code, FMZ #477592 (多参数随机震荡智能趋势交易策略-Multi-Parameter-Stochastic-Intelligent-Trend-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/477592  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 %, R:R 1:1 / 1:4 / 1:8  [lines 124-171]
+  124: use_rr = input.bool(true, "Use Risk:Reward Ratio")
+  125: use_sl = input.bool(true, "Use Stop Loss")  // New input for Stop Loss toggle
+  126: rr_options = input.string("1:1", "Risk:Reward Ratio", options=["1:1", "1:4", "1:8"])
+  127: stop_percent = input.float(1.0, "Stop Loss (%)", minval=0.1, step=0.1)
+  128: 
+  129: // Convert selected R:R ratio to number
+  130: get_rr_multiplier(rr) =>
+  131:     switch rr
+  132:         "1:1" => 1.0
+  133:         "1:4" => 4.0
+  134:         "1:8" => 8.0
+  135:         => 1.0  // default case
+  136: rr_ratio = get_rr_multiplier(rr_options)
+  137: 
+  138: // Fixed Level Settings
+  139: upperLine = 93.0  // Fixed sell level
+  140: midLine = 40.0    // Buy/Sell level
+  141: lowerLine = 15.0  // Fixed buy level
+  142: 
+  143: // EMA Settings
+  144: ema20 = ta.ema(close, 20)
+  145: ema50 = ta.ema(close, 50)
+  146: ema100 = ta.ema(close, 100)
+  147: ema200 = ta.ema(close, 200)
+  148: 
+  149: // Calculate Stochastic with smoothing
+  150: k = ta.sma(ta.stoch(close, high, low, length), smoothK)
+  151: 
+  152: // Dynamic color based on K value
+  153: kColor = k >= upperLine ? color.red :    // Above 93 -> Red
+  154:          k <= lowerLine ? color.green :   // Below 15 -> Green
+  155:          k <= midLine ? color.green :     // Below 40 -> Green
+  156:          color.blue                       // Between 40-93 -> Blue
+  157: 
+  158: // Buy Signals:
+  159: longCondition1 = ta.crossover(k, lowerLine)   // Cross above 15
+  160: longCondition2 = ta.crossover(k, midLine)     // Cross above 40
+  161: 
+  162: // Sell Signals:
+  163: shortCondition1 = ta.crossunder(k, upperLine) // Cross below 93
+  164: shortCondition2 = ta.crossunder(k, midLine)   // Cross below 40
+  165: 
+  166: calc_tp_sl(entry_price, is_long) =>
+  167:     sl_distance = entry_price * (stop_percent / 100)
+  168:     sl = is_long ? entry_price - sl_distance : entry_price + sl_distance
+  169:     tp_distance = sl_distance * rr_ratio
+  170:     tp = is_long ? entry_price + tp_distance : entry_price - tp_distance
+  171:     [sl, tp]

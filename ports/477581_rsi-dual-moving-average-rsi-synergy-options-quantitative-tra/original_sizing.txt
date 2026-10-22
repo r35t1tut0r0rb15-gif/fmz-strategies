@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #477581 (双均线-RSI联动期权量化交易策略-Dual-Moving-Average-RSI-Synergy-Options-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/477581  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 4 % / stop 0.5 % of strategy.position_avg_price (long formulas for both sides)  [lines 109-144]
+  109: takeProfitPerc = input.float(4, title="Take Profit (%)", minval=0.1)
+  110: stopLossPerc = input.float(0.5, title="Stop Loss (%)", minval=0.1)
+  111: 
+  112: // Moving Averages
+  113: fastMA = ta.sma(close, fastLength)
+  114: slowMA = ta.sma(close, slowLength)
+  115: 
+  116: // RSI
+  117: rsi = ta.rsi(close, rsiLength)
+  118: 
+  119: // Entry Conditions
+  120: longCondition = ta.crossover(fastMA, slowMA) and rsi < rsiOversold
+  121: shortCondition = ta.crossunder(fastMA, slowMA) and rsi > rsiOverbought
+  122: 
+  123: // Plot Debugging Shapes
+  124: plotshape(ta.crossover(fastMA, slowMA), color=color.green, style=shape.circle, location=location.belowbar, title="Fast MA Crossover")
+  125: plotshape(ta.crossunder(fastMA, slowMA), color=color.red, style=shape.circle, location=location.abovebar, title="Fast MA Crossunder")
+  126: 
+  127: plotshape(rsi < rsiOversold, color=color.blue, style=shape.triangleup, location=location.belowbar, title="RSI Oversold")
+  128: plotshape(rsi > rsiOverbought, color=color.orange, style=shape.triangledown, location=location.abovebar, title="RSI Overbought")
+  129: 
+  130: // Entry and Exit Execution
+  131: if (longCondition)
+  132:     strategy.entry("Buy", strategy.long)
+  133: 
+  134: if (shortCondition)
+  135:     strategy.entry("Sell", strategy.short)
+  136: 
+  137: takeProfitPrice = strategy.position_avg_price * (1 + takeProfitPerc / 100)
+  138: stopLossPrice = strategy.position_avg_price * (1 - stopLossPerc / 100)
+  139: 
+  140: if (strategy.position_size > 0)
+  141:     strategy.exit("Exit Buy", from_entry="Buy", limit=takeProfitPrice, stop=stopLossPrice)
+  142: 
+  143: if (strategy.position_size < 0)
+  144:     strategy.exit("Exit Sell", from_entry="Sell", limit=takeProfitPrice, stop=stopLossPrice)
