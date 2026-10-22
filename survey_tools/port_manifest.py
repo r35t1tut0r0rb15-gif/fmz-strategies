@@ -5405,6 +5405,32 @@ SIZING = {
     458254: [
         ("Stop 1 % / target 2 % of the signal close", 192, 241),
     ],
+    # ---- FMZ-C, batch C205 (2026-10-22)
+    458255: [
+        ("Target / stop 1.5 ATR from the signal close", 180, 208),
+    ],
+    458256: [
+        ("Stop SMA 200 x 0.999 / 1.001; target close +- 7.5 (price units)", 163, 183),
+    ],
+    458264: [
+        ("1 share per entry", 210, 350),
+    ],
+    458266: [
+        ("Target 100 / stop 50 points from the average price", 224, 256),
+    ],
+    458268: [
+        ("Stop: close under 98 % of the average price", 267, 289),
+    ],
+    458269: [],
+    458270: [
+        ("Target / stop = 20-bar high / low at the signal (close tests)", 215, 287),
+    ],
+    458271: [],
+    458272: [],
+    458273: [],
+    458274: [
+        ("strategy(): 100 % of equity; max position size 1; target / stop 1 %", 224, 253),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -6847,6 +6873,10 @@ REJECTED_ON_READING = {
               "the signal bar: one of each pair is always marketable at the fill, so every trade "
               "closes at the open it fills at and no position is ever held as written (criterion "
               "1, zero-length trades as #452827)."),
+    # ---- FMZ-C, batch C205 (2026-10-22)
+    458265: ("1", "The trades follow math.random() draws (each bar's 'next state' is chosen by random "
+              "numbers against fixed probabilities): no reproducible rule, and every run of the "
+              "script trades differently (criterion 1)."),
 }
 
 DUPLICATE_ON_READING = {

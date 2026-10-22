@@ -1,0 +1,78 @@
+# Original sizing and money-management code, FMZ #458270 (动态趋势追踪与精准止盈止损策略-Dynamic-Trend-Following-with-Precision-Take-Profit-and-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/458270  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target / stop = 20-bar high / low at the signal (close tests)  [lines 215-287]
+  215: recentHigh = ta.highest(high, lookbackPeriod)
+  216: recentLow = ta.lowest(low, lookbackPeriod)
+  217: 
+  218: // Variables to track the entry prices for profit target and stop-loss
+  219: var float entryPriceLong = na
+  220: var float entryPriceShort = na
+  221: var float targetPriceLong = na
+  222: var float targetPriceShort = na
+  223: var float stopLossLong = na
+  224: var float stopLossShort = na
+  225: 
+  226: // Buy and Sell Conditions with Trend Filter
+  227: buy = close > trendEma and  // Buy only if above the trend EMA
+  228:       close[2] > open[2] and close[1] > open[1] and close > open and 
+  229:       (math.abs(close[2] - open[2]) > math.abs(close[1] - open[1])) and 
+  230:       (math.abs(close - open) > math.abs(close[1] - open[1])) and 
+  231:       close > close[1] and close[1] > close[2] and tr > ema
+  232: 
+  233: sell = close < trendEma and  // Sell only if below the trend EMA
+  234:        close[2] < open[2] and close[1] < open[1] and close < open and 
+  235:        (math.abs(close[2] - open[2]) > math.abs(close[1] - open[1])) and 
+  236:        (math.abs(close - open) > math.abs(close[1] - open[1])) and 
+  237:        close < close[1] and close[1] < close[2] and tr > ema
+  238: 
+  239: // Entry Rules
+  240: if (buy and barstate.isconfirmed)  // Check for buy condition on candle close
+  241:     if (showStrategy)
+  242:         strategy.entry("Buy", strategy.long, comment="Buy at Close")
+  243:     entryPriceLong := close  // Track entry price for long position
+  244:     targetPriceLong := recentHigh  // Set take profit target to recent high
+  245:     stopLossLong := recentLow  // Set stop-loss to recent low
+  246: 
+  247: if (sell and barstate.isconfirmed)  // Check for sell condition on candle close
+  248:     if (showStrategy)
+  249:         strategy.entry("Sell", strategy.short, comment="Sell at Close")
+  250:     entryPriceShort := close  // Track entry price for short position
+  251:     targetPriceShort := recentLow  // Set take profit target to recent low
+  252:     stopLossShort := recentHigh  // Set stop-loss to recent high
+  253: 
+  254: // Take Profit and Stop Loss Logic
+  255: signalBuyTPPrint = (not na(entryPriceLong) and close >= targetPriceLong)
+  256: signalSellTPPrint = (not na(entryPriceShort) and close <= targetPriceShort)
+  257: 
+  258: signalBuySLPrint = (not na(entryPriceLong) and close <= stopLossLong)
+  259: signalSellSLPrint = (not na(entryPriceShort) and close >= stopLossShort)
+  260: 
+  261: if (signalBuyTPPrint)
+  262:     if (showStrategy)
+  263:         strategy.close("Buy", comment="Close Buy at Profit Target")
+  264:     entryPriceLong := na  // Reset entry price for long position
+  265:     targetPriceLong := na  // Reset target price for long position
+  266:     stopLossLong := na  // Reset stop-loss for long position
+  267: 
+  268: if (signalSellTPPrint)
+  269:     if (showStrategy)
+  270:         strategy.close("Sell", comment="Close Sell at Profit Target")
+  271:     entryPriceShort := na  // Reset entry price for short position
+  272:     targetPriceShort := na  // Reset target price for short position
+  273:     stopLossShort := na  // Reset stop-loss for short position
+  274: 
+  275: if (signalBuySLPrint)
+  276:     if (showStrategy)
+  277:         strategy.close("Buy", comment="Close Buy at Stop Loss")
+  278:     entryPriceLong := na  // Reset entry price for long position
+  279:     targetPriceLong := na  // Reset target price for long position
+  280:     stopLossLong := na  // Reset stop-loss for long position
+  281: 
+  282: if (signalSellSLPrint)
+  283:     if (showStrategy)
+  284:         strategy.close("Sell", comment="Close Sell at Stop Loss")
+  285:     entryPriceShort := na  // Reset entry price for short position
+  286:     targetPriceShort := na  // Reset target price for short position
+  287:     stopLossShort := na  // Reset stop-loss for short position

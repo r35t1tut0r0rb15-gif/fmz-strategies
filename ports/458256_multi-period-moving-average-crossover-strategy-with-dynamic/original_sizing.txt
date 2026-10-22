@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #458256 (多周期均线交叉与波动率过滤动态策略-Multi-Period-Moving-Average-Crossover-Strategy-with-Dynamic-Volatility-Filter)
+# Source: https://www.fmz.com/strategy/458256  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop SMA 200 x 0.999 / 1.001; target close +- 7.5 (price units)  [lines 163-183]
+  163: stopLossLong = sma200 * 0.999
+  164: stopLossShort = sma200 * 1.001
+  165: 
+  166: // Initialize take profit levels
+  167: var float takeProfitLong = na
+  168: var float takeProfitShort = na
+  169: 
+  170: // Generate buy/sell signals
+  171: longCondition = ta.crossover(smaShort, smaLong) and atr > atrMultiplier * ta.sma(atr, atrLength)
+  172: shortCondition = ta.crossunder(smaShort, smaLong) and atr > atrMultiplier * ta.sma(atr, atrLength)
+  173: 
+  174: // Execute trades with stop loss and take profit
+  175: if (longCondition)
+  176:     strategy.entry("Long", strategy.long)
+  177:     takeProfitLong := close + 7.5
+  178:     strategy.exit("Long Exit", "Long", stop=stopLossLong, limit=takeProfitLong)
+  179: 
+  180: if (shortCondition)
+  181:     strategy.entry("Short", strategy.short)
+  182:     takeProfitShort := close - 7.5
+  183:     strategy.exit("Short Exit", "Short", stop=stopLossShort, limit=takeProfitShort)

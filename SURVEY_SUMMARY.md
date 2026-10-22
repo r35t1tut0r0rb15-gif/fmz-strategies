@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2516 |
+| PORTED | 2527 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 868 |
+| PORT_CANDIDATE | 856 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 356 |
+| REJECTED_ON_READING | 357 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2644,7 +2644,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 458250 | `ports/458250_lorenzian-classification-multi-timeframe-target-strategy/` | PineScript | adaptive_average | none | length x2, lookback x2, target_pct x2 | 8 |
 | 458252 | `ports/458252_rsi-dual-rsi-strategy-advanced-trend-capture-system-combinin/` | PineScript | rsi_oscillator | none | len x2, xbars x2 | 4 |
 | 458254 | `ports/458254_triple-ema-with-dynamic-support-resistance-trading-strategy/` | PineScript | ma_cross | coarse_bar_stop | short_len x2, mid_len x2, sl_pct x2 | 8 |
-| | **2516 ports** | | | | | **11820** |
+| 458255 | `ports/458255_multi-indicator-comprehensive-momentum-trading-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop, trailing_stop_pending | atr_mult x2, rsi_len x2 | 4 |
+| 458256 | `ports/458256_multi-period-moving-average-crossover-strategy-with-dynamic/` | PineScript | ma_cross | none | short_len x2, tp_frac x2 | 4 |
+| 458264 | `ports/458264_multi-layer-volatility-band-trading-strategy/` | PineScript | volatility_channel_breakout | none | col_int x2, atr_bias x2 | 4 |
+| 458266 | `ports/458266_adaptive-trend-following-strategy-based-on-fibonacci-retrace/` | PineScript | pivot_levels | none | length x2, tp_frac x2, sl_frac x2 | 8 |
+| 458268 | `ports/458268_bollinger-bands-mean-reversion-trading-strategy-with-dynamic/` | PineScript | bollinger_reversion | none | length x2, drop_pct x2 | 4 |
+| 458269 | `ports/458269_ichimoku-kinko-hyo-trend-following-and-support-resistance-st/` | PineScript | ichimoku | none | span_b x2 | 2 |
+| 458270 | `ports/458270_dynamic-trend-following-with-precision-take-profit-and-stop/` | PineScript | momentum_breakout | none | filter_number x2, trend_len x2, lookback x2 | 8 |
+| 458271 | `ports/458271_dynamic-support-resistance-breakout-moving-average-crossover/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 458272 | `ports/458272_sma-fvg-sma-comprehensive-trading-system-combining-sma-cross/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 458273 | `ports/458273_ema-sma-ema-sma-moving-average-crossover-momentum-indicator/` | PineScript | ma_cross | none | ema_len x2, sma1 x2, sma2 x2 | 8 |
+| 458274 | `ports/458274_supertrend-ema-supertrend-and-ema-crossover-quantitative-tra/` | PineScript | supertrend | coarse_bar_stop | ema_len x2, factor x2, bracket x2 | 8 |
+| | **2527 ports** | | | | | **11878** |
 
 ## Rejected on reading
 
@@ -3006,6 +3017,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 458198 | 多重均线交叉与时间间隔整合策略-Multi-EMA-Crossover-with-Time-Interval-Integration-Strategy.md | 2 | The 50 / 30 pips are passed to strategy.exit as limit= / stop= PRICES (pip = mintick x 10, so the levels are the absolute prices 50 and 30): at any BTC price the long's sell limit and the short's buy stop are marketable at the fill, so every trade would close at its own fill, and the 30-candle gap divides milliseconds by 1000 x mintick; both are instrument-specific price units (criterion 2, as #441086). |
 | 458243 | RSI超卖定期投资策略与冷却期优化RSI-Oversold-Periodic-Investment-Strategy-with-Cooldown-Optimization.md | 1 | Every RSI-under-30 bar at least 30 days after the last buy sends strategy.entry plus a strategy.order buy (the order is not limited by pyramiding), and nothing ever sells: a dollar-cost accumulation whose size path is the strategy (criterion 1, as #439958, #430762). |
 | 458245 | 基于艾略特波浪与汤姆德马克顺势交易策略-Elliott-Wave-and-Tom-DeMark-Trend-Following-Trading-Strategy.md | 1 | The long's limit and stop are the same price (wave1 = wave3 = valuewhen(wave_trend == 1, close, 0)) and the short's too (wave2 = wave4), sent on every bar including the signal bar: one of each pair is always marketable at the fill, so every trade closes at the open it fills at and no position is ever held as written (criterion 1, zero-length trades as #452827). |
+| 458265 | 高级马尔可夫模型技术指标融合交易策略Advanced-Markov-Model-Technical-Indicator-Fusion-Trading-Strategy.md | 1 | The trades follow math.random() draws (each bar's 'next state' is chosen by random numbers against fixed probabilities): no reproducible rule, and every run of the script trades differently (criterion 1). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

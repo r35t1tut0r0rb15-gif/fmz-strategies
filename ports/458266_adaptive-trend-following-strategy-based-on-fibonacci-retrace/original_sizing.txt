@@ -1,0 +1,38 @@
+# Original sizing and money-management code, FMZ #458266 (基于斐波那契回撤的自适应趋势跟踪策略-Adaptive-Trend-Following-Strategy-Based-on-Fibonacci-Retracement)
+# Source: https://www.fmz.com/strategy/458266  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 100 / stop 50 points from the average price  [lines 224-256]
+  224: target_points = input.int(100, title="Target Points")
+  225: stop_loss_points = input.int(50, title="Stop Loss Points")
+  226: 
+  227: // Calculate Fibonacci levels
+  228: high_price = ta.highest(close, 20)
+  229: low_price = ta.lowest(close, 20)
+  230: range_ = high_price - low_price
+  231: fib618 = high_price - range_ * 0.618
+  232: fib382 = high_price - range_ * 0.382
+  233: 
+  234: // Strategy logic
+  235: long_condition = ta.crossover(close, fib618)
+  236: short_condition = ta.crossunder(close, fib382)
+  237: 
+  238: // Plot Fibonacci levels
+  239: plot(fib_levels ? fib618 : na , "61.8%", color=color.blue, trackprice=true)
+  240: plot(fib_levels ? fib382 : na , "38.2%", color=color.red, trackprice=true)
+  241: 
+  242: // Strategy entry and exit
+  243: if long_condition
+  244:     strategy.entry("Long", strategy.long)
+  245: if short_condition
+  246:     strategy.entry("Short", strategy.short)
+  247: 
+  248: // Calculate target and stop loss levels
+  249: long_target = strategy.position_avg_price + target_points
+  250: long_stop_loss = strategy.position_avg_price - stop_loss_points
+  251: short_target = strategy.position_avg_price - target_points
+  252: short_stop_loss = strategy.position_avg_price + stop_loss_points
+  253: 
+  254: // Strategy exit
+  255: strategy.exit("Long Exit", "Long", limit=long_target, stop=long_stop_loss)
+  256: strategy.exit("Short Exit", "Short", limit=short_target, stop=short_stop_loss)

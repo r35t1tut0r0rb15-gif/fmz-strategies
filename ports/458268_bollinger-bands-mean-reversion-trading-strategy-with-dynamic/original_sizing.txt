@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #458268 (Bollinger-Bands-Mean-Reversion-Trading-Strategy-with-Dynamic-Support-布林带均值回归交易策略与动态支撑)
+# Source: https://www.fmz.com/strategy/458268  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop: close under 98 % of the average price  [lines 267-289]
+  267: dropCondition = strategy.position_size > 0 and close < strategy.position_avg_price * 0.98
+  268: 
+  269: // Plot Buy/Sell Signals only on initial cross
+  270: plotshape(series=longCondition, location=location.belowbar, color=color.green, style=shape.triangleup, textcolor=color.black, text="BUY", size=size.small)
+  271: plotshape(series=closeCondition and not dropCondition, location=location.abovebar, color=color.red, style=shape.triangledown, textcolor=color.black, text="SELL", size=size.small)
+  272: plotshape(series=dropCondition, location=location.abovebar, color=color.red, style=shape.triangledown, textcolor=color.black, text="STOP", size=size.small)
+  273: 
+  274: // Track entry date to ensure no same-day buy/sell
+  275: var float entryPrice = na
+  276: var int entryYear = na
+  277: var int entryMonth = na
+  278: var int entryDay = na
+  279: 
+  280: // Strategy Logic
+  281: if (longCondition and (na(entryDay) or (year != entryYear or month != entryMonth or dayofmonth != entryDay))) 
+  282:     strategy.entry("Long", strategy.long)
+  283:     entryPrice := close
+  284:     entryYear := year
+  285:     entryMonth := month
+  286:     entryDay := dayofmonth
+  287: 
+  288: if ((closeCondition or dropCondition) and strategy.position_size > 0 and (na(entryDay) or (year != entryYear or month != entryMonth or dayofmonth != entryDay or dropCondition)))
+  289:     strategy.close("Long")
