@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2927 |
+| PORTED | 2939 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 572 |
 | REJECTED_ON_READING | 420 |
-| PORT_CANDIDATE | 388 |
+| PORT_CANDIDATE | 376 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -3055,7 +3055,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482450 | `ports/482450_ema-rsi-dynamic-ema-crossover-with-rsi-synergy-trading-syste/` | PineScript | ma_cross | coarse_bar_stop | sl_frac x2, tp_frac x2 | 4 |
 | 482451 | `ports/482451_rsi-gaussian-channel-with-stochastic-rsi-quantitative-tradin/` | PineScript | bollinger_reversion | none | gc_length x2, gc_mult x2 | 4 |
 | 482453 | `ports/482453_rsi-multi-period-rsi-signal-line-crossover-trend-following-s/` | PineScript | rsi_oscillator | none | length x2, smooth x2 | 4 |
-| | **2927 ports** | | | | | **13535** |
+| 482457 | `ports/482457_atr-atr-dynamic-trend-following-with-re-entry-trading-strate/` | PineScript | channel_breakout | coarse_bar_stop | length x2, target_multiplier x2 | 4 |
+| 482458 | `ports/482458_multi-ema-rsi-macd-multi-ema-trend-following-strategy-with-r/` | PineScript | ma_cross | trailing_stop_pending | macd_fast x2, macd_slow x2 | 4 |
+| 482459 | `ports/482459_dynamic-trend-channel-and-relative-strength-momentum-trading/` | PineScript | keltner_reversion | none | multiplier x2, ema_length x2 | 4 |
+| 482460 | `ports/482460_advanced-linear-regression-channel-trading-strategy-with-dyn/` | PineScript | mean_reversion_band | coarse_bar_stop | length x2, mult x2 | 4 |
+| 482461 | `ports/482461_dynamic-wave-indicator-combination-strategy/` | PineScript | macd_cross | coarse_bar_stop, trailing_stop_pending | adx_threshold x2, risk_reward_ratio x2 | 4 |
+| 482463 | `ports/482463_multi-indicator-dynamic-trend-prediction-trading-system/` | PineScript | pivot_levels | none | rsi_length x2, stoch_k x2 | 4 |
+| 482466 | `ports/482466_ema-atr-three-line-strike-trend-following-strategy-with-ema/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop_pending | ema_length x2, tp_atr x2 | 4 |
+| 482468 | `ports/482468_atr-adaptive-trend-following-strategy-based-on-kernel-regres/` | PineScript | mean_reversion_band | none | coef x2, h x2 | 4 |
+| 482472 | `ports/482472_k-multi-indicator-momentum-breakout-with-smoothed-candlestic/` | PineScript | bollinger_breakout | none | bb_length x2, bb_mult x2 | 4 |
+| 482473 | `ports/482473_high-reward-to-risk-price-structure-breakout-trading-strateg/` | PineScript | donchian_breakout | coarse_bar_stop, trailing_stop_pending | lookback x2, rr_multiplier x2 | 4 |
+| 482474 | `ports/482474_gamma-weighted-momentum-based-bitcoin-futures-intelligent-tr/` | PineScript | ma_trend | none | length x2, gamma_factor x2 | 4 |
+| 482477 | `ports/482477_multi-period-ema-trend-following-with-support-resistance-hyb/` | PineScript | breakout | trailing_stop_pending | sup_res_lookback x2, atr_period x2 | 4 |
+| | **2939 ports** | | | | | **13583** |
 
 ## Rejected on reading
 

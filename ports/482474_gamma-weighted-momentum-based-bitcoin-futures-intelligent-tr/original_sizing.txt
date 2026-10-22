@@ -1,0 +1,8 @@
+# Original sizing and money-management code, FMZ #482474 (基于伽马权重和动量的比特币期货智能交易策略-Gamma-Weighted-Momentum-Based-Bitcoin-Futures-Intelligent-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482474  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): cash 50000, slippage 1, commission 0.01  [lines 85-87]
+   85: strategy("BTC Future Gamma-Weighted Momentum Model (BGMM)", shorttitle="BGMM", overlay=true, 
+   86:          default_qty_type=strategy.cash, default_qty_value=50000, 
+   87:          slippage=1, commission_value=0.01)

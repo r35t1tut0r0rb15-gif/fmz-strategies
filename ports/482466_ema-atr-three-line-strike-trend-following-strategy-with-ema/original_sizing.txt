@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #482466 (三线突破趋势跟踪策略结合EMA动态过滤和ATR风险管理系统-Three-Line-Strike-Trend-Following-Strategy-with-EMA-Dynamic-Filter-and-ATR-Risk-Management-System)
+# Source: https://www.fmz.com/strategy/482466  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 100000, 100 % of equity, pyramiding 0  [lines 93-99]
+   93: strategy(title='3 Line Strike [TTF] - Strategy with ATR and EMA Filter',
+   94:      shorttitle='3LS Strategy [TTF]',
+   95:      overlay=true,
+   96:      initial_capital=100000,
+   97:      default_qty_type=strategy.percent_of_equity,
+   98:      default_qty_value=100,
+   99:      pyramiding=0)
