@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2031 |
-| PORT_CANDIDATE | 1419 |
+| PORTED | 2043 |
+| PORT_CANDIDATE | 1407 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
 | REJECTED_ON_READING | 290 |
@@ -2159,7 +2159,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442561 | `ports/442561_rsi-simple-cryptocurrency-trading-strategy-based-on-rsi/` | PineScript | rsi_oscillator | none | length x2, oversold x2 | 4 |
 | 442567 | `ports/442567_ema-momentum-breakout-ema-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 442618 | `ports/442618_triple-dynamic-moving-average-trend-tracking-strategy/` | PineScript | multi_timeframe_ma | none | length x2, length3 x2 | 4 |
-| | **2031 ports** | | | | | **9619** |
+| 442621 | `ports/442621_reversal-momentum-breakout-strategy/` | PineScript | donchian_breakout | none | window x2, decay x2 | 4 |
+| 442623 | `ports/442623_ema-dual-ema-golden-cross-long-line-strategy/` | PineScript | ma_trend | trailing_stop | trail_pct x2, atr_mult x2 | 4 |
+| 442624 | `ports/442624_trend-following-strategy-based-on-moving-average-crossover/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 442625 | `ports/442625_rsi-multi-timeframe-rsi-trading-strategy/` | PineScript | multi_timeframe_ma | none | rsi_len x2, floor x2 | 4 |
+| 442626 | `ports/442626_sma-sma-system-trend-following-strategy/` | PineScript | ma_cross | none | slow x2, fast x2 | 4 |
+| 442628 | `ports/442628_moving-average-crossover-trading-strategy/` | PineScript | ma_cross | none | fast x2, mid x2 | 4 |
+| 442635 | `ports/442635_dca-dca-strategy-with-trailing-take-profit/` | PineScript | mean_reversion | none | tp_pct x2, trail_pct x2 | 4 |
+| 442637 | `ports/442637_rsi-rsi-moving-average-double-cross-oscillation-strategy/` | PineScript | rsi_oscillator | trailing_stop_pending | rsi_length x2, bb_length x2 | 4 |
+| 442639 | `ports/442639_rsi-macd-reversal-bollinger-band-rsi-macd-quant-strategy/` | PineScript | bollinger_reversion | none | length_bb x2, oversold x2 | 4 |
+| 442641 | `ports/442641_marubozu-candle-range-balance-strategy/` | PineScript | candle_pattern | none | body_len x2, shadow_pct x2 | 4 |
+| 442643 | `ports/442643_macd-quantitative-trading-strategy-based-on-bollinger-bands/` | PineScript | macd_cross | none | bb_length x2, stop_div x2 | 4 |
+| 442644 | `ports/442644_atr-ema-all-about-the-atr-and-ema-based-trend-following-stra/` | PineScript | volatility_channel_breakout | coarse_bar_stop | lookback x2, atr_mult x2 | 4 |
+| | **2043 ports** | | | | | **9667** |
 
 ## Rejected on reading
 

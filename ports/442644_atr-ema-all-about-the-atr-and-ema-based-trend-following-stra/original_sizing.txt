@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #442644 (基于ATR和EMA的趋势跟随策略All-about-the-ATR-and-EMA-based-trend-following-strategy)
+# Source: https://www.fmz.com/strategy/442644  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## lots = 1 (exit qty)  [lines 137-137]
+  137: lots = input(title="Lots to Trade", type=input.float, defval=1)

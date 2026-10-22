@@ -4417,6 +4417,31 @@ SIZING = {
         ("strategy(): capital 10000, commission 0.05", 113, 117),
         ("QtyTrade = equity (InitialBalance + netprofit[1]) x (1 + MarginFactor) / close[1] or 3.5 contracts", 123, 129),
     ],
+    # ---- FMZ-C, batch C159 (2026-10-22)
+    442621: [
+        ("strategy(): 100 % of equity", 178, 178),
+    ],
+    442623: [],
+    442624: [
+        ("strategy(): 100 % of equity, pyramiding 0", 130, 130),
+    ],
+    442625: [],
+    442626: [],
+    442628: [],
+    442635: [
+        ("strategy(): 10 % of equity, capital 1000", 129, 129),
+    ],
+    442637: [
+        ("strategy(): 100 % of equity", 95, 95),
+    ],
+    442639: [],
+    442641: [
+        ("strategy(): 100 % of equity, capital 1000, commission 0", 157, 157),
+    ],
+    442643: [],
+    442644: [
+        ("lots = 1 (exit qty)", 137, 137),
+    ],
 }
 
 REJECTED_ON_READING = {

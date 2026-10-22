@@ -2340,3 +2340,15 @@ fmz_id,file,final_outcome,criterion,reason
 442561,基于RSI的简单密码货币交易策略Simple-Cryptocurrency-Trading-Strategy-Based-on-RSI.md,PORTED,,ports/442561_rsi-simple-cryptocurrency-trading-strategy-based-on-rsi/
 442567,基于动量突破EMA交叉策略Momentum-Breakout-EMA-Crossover-Strategy.md,PORTED,,ports/442567_ema-momentum-breakout-ema-crossover-strategy/
 442618,动态三均线趋势跟踪策略Triple-Dynamic-Moving-Average-Trend-Tracking-Strategy.md,PORTED,,ports/442618_triple-dynamic-moving-average-trend-tracking-strategy/
+442621,反转动量破窗策略Reversal-Momentum-Breakout-Strategy.md,PORTED,,ports/442621_reversal-momentum-breakout-strategy/
+442623,双EMA黄金交叉长线策略Dual-EMA-Golden-Cross-Long-Line-Strategy.md,PORTED,,ports/442623_ema-dual-ema-golden-cross-long-line-strategy/
+442624,基于移动平均线交叉的趋势追踪策略Trend-Following-Strategy-Based-on-Moving-Average-Crossover.md,PORTED,,ports/442624_trend-following-strategy-based-on-moving-average-crossover/
+442625,多时间框架RSI交易策略Multi-Timeframe-RSI-Trading-Strategy.md,PORTED,,ports/442625_rsi-multi-timeframe-rsi-trading-strategy/
+442626,基于SMA均线系统的趋势跟踪策略SMA-System-Trend-Following-Strategy.md,PORTED,,ports/442626_sma-sma-system-trend-following-strategy/
+442628,基于移动平均线交叉交易策略Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/442628_moving-average-crossover-trading-strategy/
+442635,带滑点止损的DCA定投策略DCA-Strategy-with-Trailing-Take-Profit.md,PORTED,,ports/442635_dca-dca-strategy-with-trailing-take-profit/
+442637,RSI均线双金叉震荡策略RSI-Moving-Average-Double-Cross-Oscillation-Strategy.md,PORTED,,ports/442637_rsi-rsi-moving-average-double-cross-oscillation-strategy/
+442639,反转布林带RSI-MACD量化策略Reversal-Bollinger-Band-RSI-MACD-Quant-Strategy.md,PORTED,,ports/442639_rsi-macd-reversal-bollinger-band-rsi-macd-quant-strategy/
+442641,马鲁博蜡烛线段均衡策略Marubozu-Candle-Range-Balance-Strategy.md,PORTED,,ports/442641_marubozu-candle-range-balance-strategy/
+442643,基于布林带和MACD的量化交易策略Quantitative-Trading-Strategy-Based-on-Bollinger-Bands-and-MACD.md,PORTED,,ports/442643_macd-quantitative-trading-strategy-based-on-bollinger-bands/
+442644,基于ATR和EMA的趋势跟随策略All-about-the-ATR-and-EMA-based-trend-following-strategy.md,PORTED,,ports/442644_atr-ema-all-about-the-atr-and-ema-based-trend-following-stra/
