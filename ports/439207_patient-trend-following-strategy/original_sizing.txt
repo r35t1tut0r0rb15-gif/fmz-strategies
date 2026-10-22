@@ -1,0 +1,37 @@
+# Original sizing and money-management code, FMZ #439207 (耐心追踪趋势跟随型策略Patient-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/439207  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Order size from capital / close; pip inputs  [lines 169-200]
+  169: emalength = input(21, title="Short EMA")
+  170: emashort = ema(close, emalength)
+  171: plot(emashort, color = color.purple, linewidth=1)
+  172: 
+  173: // 55 EMA
+  174: emalength2 = input(55, title="Long EMA")
+  175: ema = ema(close, emalength2)
+  176: plot(ema, color = color.green, linewidth=1)
+  177: 
+  178: //CCI calculation and inputs
+  179: lengthcci = input(20, minval=1, title="Overbought/sold detector period")
+  180: src = input(close, title="Overbought/sold detector source")
+  181: ma = sma(src, lengthcci)
+  182: ccivalue = (src - ma) / (0.015 * dev(src, lengthcci))
+  183: 
+  184: 
+  185: //CCI plotting
+  186: ccioverbought = input(defval=100, title="Overbought level 1")
+  187: ccioverbought2 = input(defval=140, title="Overbought level 2")
+  188: ccioverbought3 = input(defval=180, title="Overbought level 3")
+  189: 
+  190: ccioversold = input(defval=-100, title="Oversold level 1")
+  191: ccioversold2 = input(defval=-140, title="Oversold level 2")
+  192: ccioversold3 = input(defval=-180, title="Oversold level 3")
+  193: 
+  194: cciOB = (ccivalue >= ccioverbought and ccivalue < ccioverbought2)
+  195: plotshape(cciOB,  title= "Overbought", location=location.abovebar, color=color.lime, transp=0, style=shape.circle)
+  196: cciOS = (ccivalue <= ccioversold and ccivalue > ccioversold2)
+  197: plotshape(cciOS, title= "Oversold", location=location.belowbar, color=color.lime, transp=0, style=shape.circle)
+  198: 
+  199: cciOB2 = (ccivalue >= ccioverbought2 and ccivalue < ccioverbought3)
+  200: plotshape(cciOB2,  title= "Overbought", location=location.abovebar, color=color.red, transp=0, style=shape.circle)

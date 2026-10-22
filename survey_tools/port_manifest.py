@@ -3719,6 +3719,34 @@ SIZING = {
         ("Position size and leverage", 163, 182),
     ],
     439201: [],
+    # ---- FMZ-C, batch C118 (2026-10-22)
+    439202: [
+        ("strategy(): percent of equity 100", 151, 155),
+    ],
+    439204: [],
+    439207: [
+        ("Order size from capital / close; pip inputs", 169, 200),
+    ],
+    439223: [
+        ("strategy(): percent of equity, commission; position management", 149, 161),
+        ("Position management sizes", 298, 305),
+    ],
+    439226: [
+        ("Entry size 1", 268, 271),
+    ],
+    439227: [],
+    439231: [
+        ("Leverage input and lot", 127, 151),
+    ],
+    439233: [],
+    439237: [],
+    439240: [],
+    439241: [
+        ("strategy(): capital, percent of equity 30, commission", 127, 127),
+    ],
+    439243: [
+        ("strategy(): cash 1000, commission", 116, 119),
+    ],
 }
 
 REJECTED_ON_READING = {

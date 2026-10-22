@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1911 |
-| PORTED | 1618 |
+| PORT_CANDIDATE | 1899 |
+| PORTED | 1630 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1746,7 +1746,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439193 | `ports/439193_parabolic-sarstoch-security-parabolic-sar-stoch-and-security/` | PineScript | multi_indicator_confluence | none | period_k x2, sar_max x2 | 4 |
 | 439200 | `ports/439200_multi-factor-moving-average-trend-following-strategy/` | PineScript | trend_confluence | none | stop_loss x2, sma_len x2 | 4 |
 | 439201 | `ports/439201_bollinger-bands-breakout-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
-| | **1618 ports** | | | | | **8058** |
+| 439202 | `ports/439202_sar-parabolic-sar-trend-tracking-strategy/` | PineScript | volatility_stop_cross | none | slow x2, offset x2 | 4 |
+| 439204 | `ports/439204_atr-based-supertrend-strategy/` | PineScript | supertrend | none | factor x2, atr_length x2 | 4 |
+| 439207 | `ports/439207_patient-trend-following-strategy/` | PineScript | trend_confluence | none | k_tp x2, mult x2 | 4 |
+| 439223 | `ports/439223_moving-average-range-swallowing-strategy/` | PineScript | ma_cross | none | ma1 x2, swing x2 | 4 |
+| 439226 | `ports/439226_a-strict-trend-following-strategy-based-on-ichimoku-kinko-hy/` | PineScript | ichimoku | trailing_stop_pending | min_cloud_atr x2, atr_period x2 | 4 |
+| 439227 | `ports/439227_cci-best-supertrend-cci-multi-timeframe-trading-strategy/` | PineScript | momentum_oscillator | none | cci_period x2, ml x2 | 4 |
+| 439231 | `ports/439231_rsi-dual-rsi-breakthrough-strategy/` | PineScript | rsi_oscillator | none | fast x2, slow x2 | 4 |
+| 439233 | `ports/439233_quant-trading-support-and-resistance-cloud-indicator/` | PineScript | reversal_pattern | none | entry_period x2, sensitivity x2 | 4 |
+| 439237 | `ports/439237_rsi-wma-rsi-wma-trend-tracking-strategy/` | PineScript | rsi_oscillator | none | length x2, wma_length x2 | 4 |
+| 439240 | `ports/439240_b-dual-b-intelligent-tracking-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 439241 | `ports/439241_bottom-fishing-strategy/` | PineScript | rsi_oscillator | none | rsi_entry x2, ma_len x2 | 4 |
+| 439243 | `ports/439243_rsi-ema-hull-and-rsi-opportunity-tracking-strategy/` | PineScript | hull_ma | none | ema_len x2, hull_len x2 | 4 |
+| | **1630 ports** | | | | | **8106** |
 
 ## Rejected on reading
 

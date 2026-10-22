@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #439202 (抛物线SAR趋势追踪策略Parabolic-SAR-Trend-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/439202  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity 100  [lines 151-155]
+  151: SlowEMALength = input(100, "Slow EMA Length")
+  152: FastEMALength = input(10, "Fast EMA Length")
+  153: emaoffset = input(1.00, "EMA Offset %")
+  154: start = input(0.01)
+  155: increment = input(0.005)

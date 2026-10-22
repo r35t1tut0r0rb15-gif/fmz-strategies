@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #439223 (移动平均线区间吞噬策略Moving-Average-Range-Swallowing-Strategy)
+# Source: https://www.fmz.com/strategy/439223  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity, commission; position management  [lines 149-161]
+  149: strategy("4 MA Strat", overlay=true, pyramiding=1, 
+  150:      default_qty_type=strategy.percent_of_equity, 
+  151:      default_qty_value=100, 
+  152:      commission_value = 0.04, 
+  153:      initial_capital=100, 
+  154:      process_orders_on_close=false)
+  155: 
+  156: direction = input(0, title = "Strategy Direction", type=input.integer, minval=-1, maxval=1)
+  157: strategy.risk.allow_entry_in(direction == 0 ? strategy.direction.all : (direction < 0 ? strategy.direction.short : strategy.direction.long))
+  158: 
+  159: //Inputs
+  160: PSMGMT=input(defval=false, title="Position Management")
+  161: risk_per_trade=input(defval=5, title="Risk Per Trade % (for PSMGMT)", step=0.5)*.01
+
+## Position management sizes  [lines 298-305]
+  298: //Position Management Calculations
+  299: capital=strategy.equity
+  300: distance_to_long_stop_loss=1-(LSL/strategy.position_avg_price)
+  301: distance_to_short_stop_loss=(SSL/strategy.position_avg_price)-1
+  302: PS=(capital*risk_per_trade)/distance_to_long_stop_loss
+  303: SPS=(capital*risk_per_trade)/distance_to_short_stop_loss
+  304: PSqty=PS/close
+  305: SPSqty=SPS/close
