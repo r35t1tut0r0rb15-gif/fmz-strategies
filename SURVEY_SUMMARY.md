@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2252 |
-| PORT_CANDIDATE | 1167 |
+| PORTED | 2264 |
+| PORT_CANDIDATE | 1155 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
 | REJECTED_ON_READING | 321 |
@@ -2380,7 +2380,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 449518 | `ports/449518_trend-capturing-strategy-with-horizontal-line-breakout/` | PineScript | mean_reversion | none |  | 0 |
 | 449519 | `ports/449519_ema23-ema50-ema23-ema50-double-moving-average-crossover-quan/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 449520 | `ports/449520_real-time-trendline-trading-based-on-pivot-points-and-slope/` | PineScript | breakout | none | length x2, mult x2 | 4 |
-| | **2252 ports** | | | | | **10455** |
+| 449526 | `ports/449526_stochastic-oscillator-and-moving-average-crossover-strategy/` | PineScript | stochastic_oscillator | trailing_stop_pending | length x2, sl x2 | 4 |
+| 449552 | `ports/449552_4-9-elliott-wave-theory-4-9-impulse-wave-automatic-detection/` | PineScript | momentum_breakout | coarse_bar_stop | consclos x2, daysago x2 | 4 |
+| 449553 | `ports/449553_rsi-ema-rsi-and-dual-ema-crossover-signal-quantitative-strat/` | PineScript | rsi_oscillator | none | rsi_len x2, ema_close x2 | 4 |
+| 449698 | `ports/449698_stochastic-crossover-indicator-momentum-trading-strategy/` | PineScript | stochastic_oscillator | none | length x2, smooth x2 | 4 |
+| 449709 | `ports/449709_rsi-rsi-trend-reversal-strategy/` | PineScript | volatility_stop_cross | none | rsi_length x2, rsi_mult x2 | 4 |
+| 449710 | `ports/449710_hull-quantitative-trading-strategy-based-on-modified-hull-mo/` | PineScript | ichimoku | none | keh x2, displacement x2 | 4 |
+| 449711 | `ports/449711_vegas-supertrend-enhanced-strategy/` | PineScript | supertrend | none | base_mult x2, vol_adj x2 | 4 |
+| 449713 | `ports/449713_ccidmi-macd-cci-dmi-and-macd-hybrid-long-short-strategy/` | PineScript | multi_indicator_confluence | none | cci_len x2, level x2 | 4 |
+| 449714 | `ports/449714_wavetrend-wavetrend-cross-lazybear-strategy/` | PineScript | momentum_oscillator | none | n1 x2, n2 x2 | 4 |
+| 449715 | `ports/449715_htf-htf-zigzag-path-strategy/` | PineScript | candle_pattern | none | tf_minutes x2 | 2 |
+| 449724 | `ports/449724_gbs-gbs-top-bottom-confirmed-strategy/` | PineScript | breakout | none |  | 0 |
+| 449810 | `ports/449810_hurst-future-lines-of-demarcation-strategy/` | PineScript | cycle_filter | none | cyc_q x2, cyc x2 | 4 |
+| | **2264 ports** | | | | | **10497** |
 
 ## Rejected on reading
 

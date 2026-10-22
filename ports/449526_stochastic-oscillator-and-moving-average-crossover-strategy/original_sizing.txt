@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #449526 (随机震荡指标与均线交叉策略结合止损与随机震荡过滤器-Stochastic-Oscillator-and-Moving-Average-Crossover-Strategy-with-Stop-Loss-and-Stochastic-Filter)
+# Source: https://www.fmz.com/strategy/449526  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = 5000 x 10 %; stop 2 % of the signal close  [lines 169-204]
+  169: capital = 5000
+  170: 
+  171: // Tamaño de posición (10% del capital)
+  172: positionSize = capital * 0.10
+  173: 
+  174: // Stop Loss (2% del precio de entrada)
+  175: stopLossPercent = input.int(2, title="Stop Loss (%)") / 100
+  176: 
+  177: // Número de ruedas para el filtro estocástico
+  178: filterPeriods = input.int(12, title="Ruedas de Filtro Estocástico")
+  179: 
+  180: // Cálculo del Estocástico
+  181: k = ta.sma(ta.stoch(close, high, low, length), smoothK)
+  182: d = ta.sma(k, smoothD)
+  183: 
+  184: // Cálculo de la Media Móvil
+  185: ma = ta.sma(maSource, maLength)
+  186: 
+  187: // Filtro estocástico
+  188: stochasticFilter = ta.sma(k > 50 ? 1 : 0, filterPeriods)
+  189: 
+  190: // Condiciones de entrada en largo y corto
+  191: longCondition = (ta.crossunder(k, oversold) or ta.crossover(stochasticFilter, 1)) and ma > ma[1]
+  192: shortCondition = (ta.crossover(k, overbought) or ta.crossover(stochasticFilter, 1)) and ma < ma[1]
+  193: 
+  194: // Condiciones de salida
+  195: exitLongCondition = ta.crossover(k, ma) and ma < ma[1]
+  196: exitShortCondition = ta.crossunder(k, ma) and ma > ma[1]
+  197: 
+  198: // Estrategia
+  199: if (longCondition)
+  200:     strategy.entry("Long", strategy.long, qty=positionSize)
+  201:     strategy.exit("Exit Long", "Long", stop=close * (1 - stopLossPercent))
+  202: if (shortCondition)
+  203:     strategy.entry("Short", strategy.short, qty=positionSize)
+  204:     strategy.exit("Exit Short", "Short", stop=close * (1 + stopLossPercent))

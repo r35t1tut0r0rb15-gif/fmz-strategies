@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #449711 (维加斯超级趋势增强策略Vegas-SuperTrend-Enhanced-Strategy)
+# Source: https://www.fmz.com/strategy/449711  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): cash 10000, capital 10000, commission 0.1 %, slippage 1  [lines 121-122]
+  121: strategy("Vegas SuperTrend Enhanced - strategy [presentTrading]", shorttitle="Vegas SuperTrend Enhanced - strategy [presentTrading]", overlay=true, precision=3, default_qty_type=strategy.cash, 
+  122:  commission_value=0.1, commission_type=strategy.commission.percent, slippage=1, currency=currency.USD, default_qty_value=10000, initial_capital=10000)

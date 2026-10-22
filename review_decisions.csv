@@ -2592,3 +2592,15 @@ fmz_id,file,final_outcome,criterion,reason
 449518,横线突破捕捉趋势策略Trend-Capturing-Strategy-with-Horizontal-Line-Breakout.md,PORTED,,ports/449518_trend-capturing-strategy-with-horizontal-line-breakout/
 449519,EMA23-EMA50双均线交叉量化交易策略-EMA23-EMA50-Double-Moving-Average-Crossover-Quantitative-Trading-Strategy.md,PORTED,,ports/449519_ema23-ema50-ema23-ema50-double-moving-average-crossover-quan/
 449520,基于支点和斜率的实时趋势线交易-Real-time-Trendline-Trading-Based-on-Pivot-Points-and-Slope.md,PORTED,,ports/449520_real-time-trendline-trading-based-on-pivot-points-and-slope/
+449526,随机震荡指标与均线交叉策略结合止损与随机震荡过滤器-Stochastic-Oscillator-and-Moving-Average-Crossover-Strategy-with-Stop-Loss-and-Stochastic-Filter.md,PORTED,,ports/449526_stochastic-oscillator-and-moving-average-crossover-strategy/
+449552,艾略特波浪理论4-9脉冲波自动检测交易策略-Elliott-Wave-Theory-4-9-Impulse-Wave-Automatic-Detection-Trading-Strategy.md,PORTED,,ports/449552_4-9-elliott-wave-theory-4-9-impulse-wave-automatic-detection/
+449553,RSI与双EMA交叉信号量化策略-RSI-and-Dual-EMA-Crossover-Signal-Quantitative-Strategy.md,PORTED,,ports/449553_rsi-ema-rsi-and-dual-ema-crossover-signal-quantitative-strat/
+449698,随机交叉指标动量交易策略-Stochastic-Crossover-Indicator-Momentum-Trading-Strategy.md,PORTED,,ports/449698_stochastic-crossover-indicator-momentum-trading-strategy/
+449709,RSI趋势反转策略-RSI-Trend-Reversal-Strategy.md,PORTED,,ports/449709_rsi-rsi-trend-reversal-strategy/
+449710,基于修正Hull移动平均与一目均衡的量化交易策略-Quantitative-Trading-Strategy-Based-on-Modified-Hull-Moving-Average-and-Ichimoku-Kinko-Hyo.md,PORTED,,ports/449710_hull-quantitative-trading-strategy-based-on-modified-hull-mo/
+449711,维加斯超级趋势增强策略Vegas-SuperTrend-Enhanced-Strategy.md,PORTED,,ports/449711_vegas-supertrend-enhanced-strategy/
+449713,CCIDMI和MACD混合多空策略-CCI-DMI-and-MACD-Hybrid-Long-Short-Strategy.md,PORTED,,ports/449713_ccidmi-macd-cci-dmi-and-macd-hybrid-long-short-strategy/
+449714,基于WaveTrend指标的趋势追踪策略WaveTrend-Cross-LazyBear-Strategy.md,PORTED,,ports/449714_wavetrend-wavetrend-cross-lazybear-strategy/
+449715,HTF-锯齿形路径策略HTF-Zigzag-Path-Strategy.md,PORTED,,ports/449715_htf-htf-zigzag-path-strategy/
+449724,GBS高低点确认策略-GBS-TOP-BOTTOM-Confirmed-Strategy.md,PORTED,,ports/449724_gbs-gbs-top-bottom-confirmed-strategy/
+449810,赫斯特未来分界线策略-Hurst-Future-Lines-of-Demarcation-Strategy.md,PORTED,,ports/449810_hurst-future-lines-of-demarcation-strategy/
