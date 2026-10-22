@@ -11,13 +11,12 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3226 |
+| PORTED | 3227 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 574 |
-| REJECTED_ON_READING | 504 |
+| REJECTED_ON_READING | 506 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 3 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3354,7 +3353,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491514 | `ports/491514_rsi-supertrend-rsi-and-supertrend-filter-combination-system/` | PineScript | rsi_threshold | trailing_stop_pending | rsiOversold x2, atrMult x2 | 4 |
 | 491892 | `ports/491892_ema-ema-dual-crossover-dynamic-stop-loss-quantitative-strate/` | PineScript | ma_cross | none | length10 x2, length20 x2 | 4 |
 | 491897 | `ports/491897_multi-factor-trend-following-quantitative-strategy/` | PineScript | parabolic_sar | coarse_bar_stop, trailing_stop_pending | adxThreshold x2, atrMultiplier x2 | 4 |
-| | **3226 ports** | | | | | **14708** |
+| 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | rsi_divergence | trailing_stop_pending | lookLeft x2, rangeUpper x2 | 4 |
+| | **3227 ports** | | | | | **14712** |
 
 ## Rejected on reading
 
@@ -3864,6 +3864,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491510 | 开盘价势动量反转-RSI-交易策略-Market-Open-Momentum-Reversal-RSI-Trading-Strategy.md | 1 | The session start is the exact timestamp 09:30 GMT-4 with a 90-second window and a 10-minute hold: no 7-minute bar opens at that instant, so the open price and direction are never set and the script can never trade (criterion 1, as #430384). |
 | 491890 | RSI-MA-交叉摆动交易策略与追踪止损系统-RSI-MA-Crossover-Swing-Trading-Strategy-with-Trailing-Stop-System.md | 2 | The trailing exit is close <= highest close - 10 'points' (Nifty points), a fixed price amount (criterion 2, as #473377). |
 | 491891 | 多时间框架趋势突破策略与RSI过滤及ATR风险管理-Multi-Timeframe-Trend-Breakout-Strategy-with-RSI-Filter-and-ATR-Based-Risk-Management.md | 2 | The exits include trail_points / trail_offset of ATR multiples, price amounts passed as tick counts (criterion 2, as #482767); the source has no backtest header either. |
+| 491914 | 价格行为结构突破-跟踪止损策略-Price-Action-Structural-Breakout-Strategy-with-Trailing-Stop.md | 2 | The only exits are strategy.exit(trail_points = 1 ATR, trail_offset = 0.5 ATR), price amounts passed as tick counts (criterion 2, as #482767). |
+| 492009 | 双均线过滤的ATR自适应趋势跟踪策略-Dual-EMA-Filtered-ATR-Adaptive-Trend-Following-Strategy.md | 2 | The exits are a 10 / 10-point trail and a limit of 100 'points' added to the price, a fixed price amount (criterion 2, as #473377). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

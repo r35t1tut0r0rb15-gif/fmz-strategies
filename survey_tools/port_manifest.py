@@ -7083,6 +7083,10 @@ SIZING = {
     491897: [
         ("qty = 2 % of equity / close", 158, 160),
     ],
+    # ---- FMZ-C, batch C275 (2026-10-22)
+    492007: [
+        ("strategy(): 10 % of equity", 120, 120),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9013,6 +9017,11 @@ REJECTED_ON_READING = {
     491891: ("2", "The exits include trail_points / trail_offset of ATR multiples, price amounts "
               "passed as tick counts (criterion 2, as #482767); the source has no backtest header "
               "either."),
+    # ---- FMZ-C, batch C275 (2026-10-22)
+    491914: ("2", "The only exits are strategy.exit(trail_points = 1 ATR, trail_offset = 0.5 ATR), "
+              "price amounts passed as tick counts (criterion 2, as #482767)."),
+    492009: ("2", "The exits are a 10 / 10-point trail and a limit of 100 'points' added to the "
+              "price, a fixed price amount (criterion 2, as #473377)."),
 }
 
 DUPLICATE_ON_READING = {
