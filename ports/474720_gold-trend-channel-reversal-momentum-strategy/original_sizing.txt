@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #474720 (黄金趋势通道反转突破动量策略-Gold-Trend-Channel-Reversal-Momentum-Strategy)
+# Source: https://www.fmz.com/strategy/474720  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 2.0 points / stop 1 ATR from the signal close  [lines 110-131]
+  110: pip_target = 20 * 0.10
+  111: 
+  112: // Bullish/Bearish Engulfing Pattern
+  113: bullish_engulfing = close > open and close[1] < open[1] and close > close[1] and open < close[1]
+  114: bearish_engulfing = close < open and close[1] > open[1] and close < close[1] and open > close[1]
+  115: 
+  116: // Define trend and exact entry conditions
+  117: longCondition = (ema50 > ema200) and (rsi >= 45 and rsi <= 55) and (bullish_engulfing) and (close > ema50)
+  118: shortCondition = (ema50 < ema200) and (rsi >= 45 and rsi <= 55) and (bearish_engulfing) and (close < ema50)
+  119: 
+  120: // ATR-based stop loss
+  121: longStopLoss = close - atr
+  122: shortStopLoss = close + atr
+  123: 
+  124: // Entry Conditions with precise points
+  125: if (longCondition)
+  126:     strategy.entry("Long", strategy.long)
+  127:     strategy.exit("Take Profit/Stop Loss", "Long", limit=close + pip_target, stop=longStopLoss)
+  128: 
+  129: if (shortCondition)
+  130:     strategy.entry("Short", strategy.short)
+  131:     strategy.exit("Take Profit/Stop Loss", "Short", limit=close - pip_target, stop=shortStopLoss)

@@ -1,0 +1,57 @@
+# Original sizing and money-management code, FMZ #474804 (波动交易策略结合动态多空仓位和均线交叉信号系统-Dynamic-Long-Short-Swing-Trading-Strategy-with-Moving-Average-Crossover-Signal-System)
+# Source: https://www.fmz.com/strategy/474804  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; size by 1 % risk of 10000; stop 1.5 ATR / target 3 ATR from avg  [lines 100-151]
+  100: strategy("Swing Trading Strategy with On/Off Long and Short", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+  101: 
+  102: // Input for turning Long and Short trades ON/OFF
+  103: enable_long = input.bool(true, title="Enable Long Trades")
+  104: enable_short = input.bool(true, title="Enable Short Trades")
+  105: 
+  106: // Input parameters for strategy
+  107: sma_short_length = input.int(20, title="Short EMA Length", minval=1)
+  108: sma_long_length = input.int(50, title="Long SMA Length", minval=1)
+  109: sl_percentage = input.float(1.5, title="Stop Loss (%)", step=0.1, minval=0.1)
+  110: tp_percentage = input.float(3, title="Take Profit (%)", step=0.1, minval=0.1)
+  111: risk_per_trade = input.float(1, title="Risk Per Trade (%)", step=0.1, minval=0.1)
+  112: capital = input.float(10000, title="Initial Capital", step=100)
+  113: 
+  114: // Input for date range for backtesting
+  115: start_date = input(timestamp("2020-01-01 00:00"), title="Backtest Start Date")
+  116: end_date = input(timestamp("2024-12-31 23:59"), title="Backtest End Date")
+  117: inDateRange = true
+  118: 
+  119: // Moving averages
+  120: sma_short = ta.ema(close, sma_short_length)
+  121: sma_long = ta.sma(close, sma_long_length)
+  122: 
+  123: // RSI setup
+  124: rsi = ta.rsi(close, 14)
+  125: rsi_overbought = 70
+  126: rsi_oversold = 30
+  127: 
+  128: // ATR for volatility-based stop-loss calculation
+  129: atr = ta.atr(14)
+  130: stop_loss_level_long = strategy.position_avg_price - (1.5 * atr)
+  131: stop_loss_level_short = strategy.position_avg_price + (1.5 * atr)
+  132: take_profit_level_long = strategy.position_avg_price + (3 * atr)
+  133: take_profit_level_short = strategy.position_avg_price - (3 * atr)
+  134: 
+  135: // Position sizing based on risk per trade
+  136: risk_amount = capital * (risk_per_trade / 100)
+  137: position_size = risk_amount / (close * sl_percentage / 100)
+  138: 
+  139: // Long and Short conditions
+  140: long_condition = ta.crossover(sma_short, sma_long) and rsi < rsi_overbought
+  141: short_condition = ta.crossunder(sma_short, sma_long) and rsi > rsi_oversold
+  142: 
+  143: // Execute long trades
+  144: if (long_condition and inDateRange and enable_long)
+  145:     strategy.entry("Long", strategy.long, qty=position_size)
+  146:     strategy.exit("Take Profit/Stop Loss", "Long", stop=stop_loss_level_long, limit=take_profit_level_long)
+  147: 
+  148: // Execute short trades
+  149: if (short_condition and inDateRange and enable_short)
+  150:     strategy.entry("Short", strategy.short, qty=position_size)
+  151:     strategy.exit("Take Profit/Stop Loss", "Short", stop=stop_loss_level_short, limit=take_profit_level_short)

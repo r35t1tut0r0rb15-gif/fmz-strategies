@@ -1,0 +1,109 @@
+# Original sizing and money-management code, FMZ #474717 (高级指数移动平均动量趋势交易策略-Advanced-EMA-Momentum-Trend-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/474717  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): fixed qty 1; contract size 1; stop 1 %, TP ratio 2  [lines 99-202]
+   99: strategy("[Mustang Algo] EMA Momentum Strategy", 
+  100:          shorttitle="[Mustang Algo] Mom Strategy", 
+  101:          overlay=true, 
+  102:          initial_capital=10000,
+  103:          default_qty_type=strategy.fixed,
+  104:          default_qty_value=1,
+  105:          pyramiding=0,
+  106:          calc_on_every_tick=false,
+  107:          max_bars_back=5000)
+  108: 
+  109: // Momentum Parameters
+  110: len = input.int(10, minval=1, title="Length")
+  111: src = input(close, title="Source")
+  112: momTimeframe = input.timeframe("", title="Momentum Timeframe")
+  113: timeframe_gaps = input.bool(true, title="Autoriser les gaps de timeframe")
+  114: momFilterLong = input.float(5, title="Filtre Momentum Long", minval=0)
+  115: momFilterShort = input.float(-5, title="Filtre Momentum Short", maxval=0)
+  116: 
+  117: // EMA Filter
+  118: useEmaFilter = input.bool(true, title="Utiliser Filtre EMA")
+  119: emaLength = input.int(200, title="EMA Length", minval=1)
+  120: 
+  121: // Position Size
+  122: contractSize = input.float(1.0, title="Taille de position", minval=0.01, step=0.01)
+  123: 
+  124: // Time filter settings
+  125: use_time_filter = input.bool(false, title="Utiliser le Filtre de Temps")
+  126: start_hour = input.int(9, title="Heure de Début", minval=0, maxval=23)
+  127: start_minute = input.int(30, title="Minute de Début", minval=0, maxval=59)
+  128: end_hour = input.int(16, title="Heure de Fin", minval=0, maxval=23)
+  129: end_minute = input.int(30, title="Minute de Fin", minval=0, maxval=59)
+  130: gmt_offset = input.int(0, title="Décalage GMT", minval=-12, maxval=14)
+  131: 
+  132: // Risk Management
+  133: useAtrSl = input.bool(false, title="Utiliser ATR pour SL/TP")
+  134: atrPeriod = input.int(14, title="Période ATR", minval=1)
+  135: atrMultiplier = input.float(1.5, title="Multiplicateur ATR pour SL", minval=0.1, step=0.1)
+  136: stopLossPerc = input.float(1.0, title="Stop Loss (%)", minval=0.01, step=0.01)
+  137: tpRatio = input.float(2.0, title="Take Profit Ratio", minval=0.1, step=0.1)
+  138: 
+  139: // Daily trade limit
+  140: maxDailyTrades = input.int(2, title="Limite de trades par jour", minval=1)
+  141: 
+  142: // Variables for tracking daily trades
+  143: var int dailyTradeCount = 0
+  144: 
+  145: // Reset daily trade count
+  146: if dayofweek != dayofweek[1]
+  147:     dailyTradeCount := 0
+  148: 
+  149: // Time filter function
+  150: is_within_session() =>
+  151:     current_time = time(timeframe.period, "0000-0000:1234567", gmt_offset)
+  152:     start_time = timestamp(year, month, dayofmonth, start_hour, start_minute, 0)
+  153:     end_time = timestamp(year, month, dayofmonth, end_hour, end_minute, 0)
+  154:     in_session = current_time >= start_time and current_time <= end_time
+  155:     not use_time_filter or in_session
+  156: 
+  157: // EMA Calculation
+  158: ema200 = ta.ema(close, emaLength)
+  159: 
+  160: // Momentum Calculation
+  161: gapFillMode = timeframe_gaps ? barmerge.gaps_on : barmerge.gaps_off
+  162: mom = request.security(syminfo.tickerid, momTimeframe, src - src[len], gapFillMode)
+  163: 
+  164: // ATR Calculation
+  165: atr = ta.atr(atrPeriod)
+  166: 
+  167: // Signal Detection with Filters
+  168: crossoverUp = ta.crossover(mom, momFilterLong)
+  169: crossoverDown = ta.crossunder(mom, momFilterShort)
+  170: 
+  171: emaUpTrend = close > ema200
+  172: emaDownTrend = close < ema200
+  173: 
+  174: // Trading Conditions
+  175: longCondition = crossoverUp and (not useEmaFilter or emaUpTrend) and is_within_session() and dailyTradeCount < maxDailyTrades and barstate.isconfirmed
+  176: shortCondition = crossoverDown and (not useEmaFilter or emaDownTrend) and is_within_session() and dailyTradeCount < maxDailyTrades and barstate.isconfirmed
+  177: 
+  178: // Calcul des niveaux de Stop Loss et Take Profit
+  179: float stopLoss = useAtrSl ? (atr * atrMultiplier) : (close * stopLossPerc / 100)
+  180: float takeProfit = stopLoss * tpRatio
+  181: 
+  182: // Modification des variables pour éviter les erreurs de repainting
+  183: var float entryPrice = na
+  184: var float currentStopLoss = na
+  185: var float currentTakeProfit = na
+  186: 
+  187: // Exécution des ordres avec gestion des positions
+  188: if strategy.position_size == 0
+  189:     if longCondition
+  190:         entryPrice := close
+  191:         currentStopLoss := entryPrice - stopLoss
+  192:         currentTakeProfit := entryPrice + takeProfit
+  193:         strategy.entry("Long", strategy.long, qty=contractSize)
+  194:         strategy.exit("Exit Long", "Long", stop=currentStopLoss, limit=currentTakeProfit)
+  195:         dailyTradeCount += 1
+  196: 
+  197:     if shortCondition
+  198:         entryPrice := close
+  199:         currentStopLoss := entryPrice + stopLoss
+  200:         currentTakeProfit := entryPrice - takeProfit
+  201:         strategy.entry("Short", strategy.short, qty=contractSize)
+  202:         strategy.exit("Exit Short", "Short", stop=currentStopLoss, limit=currentTakeProfit)

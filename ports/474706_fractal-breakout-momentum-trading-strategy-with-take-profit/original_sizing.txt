@@ -1,0 +1,39 @@
+# Original sizing and money-management code, FMZ #474706 (分型突破动量交易策略结合止盈优化法-Fractal-Breakout-Momentum-Trading-Strategy-with-Take-Profit-Optimization)
+# Source: https://www.fmz.com/strategy/474706  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trigger / target 107 pips (pip = mintick x 10)  [lines 94-127]
+   94: trigger_pips = input.int(107, title="Entry Distance (Pips)")  // 入场点距离底分型或顶分型的距离
+   95: take_profit_pips = input.int(107, title="Take Profit (Pips)") // 止盈点数
+   96: 
+   97: pip_value = syminfo.mintick * 10 // 点值（每点等于多少价格单位）
+   98: 
+   99: // 计算分型
+  100: is_bottom_fractal = low[1] < low[2] and low[1] < low[0] // 判断是否为底分型
+  101: is_top_fractal = high[1] > high[2] and high[1] > high[0] // 判断是否为顶分型
+  102: 
+  103: // 存储分型位置
+  104: var float last_bottom_fractal = na
+  105: var float last_top_fractal = na
+  106: 
+  107: // 更新分型值
+  108: if is_bottom_fractal
+  109:     last_bottom_fractal := low[1]
+  110:     
+  111: if is_top_fractal
+  112:     last_top_fractal := high[1]
+  113: 
+  114: // 计算开盘价格
+  115: bottom_trigger_price = na(last_bottom_fractal) ? na : last_bottom_fractal + trigger_pips * pip_value
+  116: top_trigger_price = na(last_top_fractal) ? na : last_top_fractal - trigger_pips * pip_value
+  117: 
+  118: // 交易逻辑：底分型多单和顶分型空单
+  119: if not na(last_bottom_fractal)
+  120:     if close <= bottom_trigger_price
+  121:         strategy.entry("Buy", strategy.long)
+  122:         strategy.exit("Take Profit", from_entry="Buy", limit=bottom_trigger_price + take_profit_pips * pip_value)
+  123:         
+  124: if not na(last_top_fractal)
+  125:     if close >= top_trigger_price
+  126:         strategy.entry("Sell", strategy.short)
+  127:         strategy.exit("Take Profit", from_entry="Sell", limit=top_trigger_price - take_profit_pips * pip_value)

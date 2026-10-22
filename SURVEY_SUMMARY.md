@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2709 |
+| PORTED | 2718 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 652 |
+| PORT_CANDIDATE | 640 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 377 |
+| REJECTED_ON_READING | 380 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2837,7 +2837,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474682 | `ports/474682_heikin-ashi-multi-timeframe-smoothed-heikin-ashi-trend-follo/` | PineScript | ma_trend | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
 | 474683 | `ports/474683_multi-ema-trend-following-trading-strategy/` | PineScript | ma_trend | none | short_len x2, mid_len x2, long_len x2 | 8 |
 | 474684 | `ports/474684_macd-macd-and-linear-regression-dual-signal-intelligent-trad/` | PineScript | macd_cross | trailing_stop_pending | lr_length x2, signal_len x2 | 4 |
-| | **2709 ports** | | | | | **12722** |
+| 474690 | `ports/474690_multi-period-supertrend-dynamic-trading-strategy/` | PineScript | supertrend | none |  | 0 |
+| 474704 | `ports/474704_macd-supertrend-macd-supertrend-dual-confirmation-trend-foll/` | PineScript | supertrend | trailing_stop_pending | factor x2, atr_len x2 | 4 |
+| 474706 | `ports/474706_fractal-breakout-momentum-trading-strategy-with-take-profit/` | PineScript | pivot_levels | coarse_bar_stop, trailing_stop_pending | trig_frac x2, tp_frac x2 | 4 |
+| 474707 | `ports/474707_multi-indicator-trend-following-strategy-with-profit-optimiz/` | PineScript | parabolic_sar | trailing_stop_pending | sma_len x2, target_pct x2 | 4 |
+| 474708 | `ports/474708_multi-timeframe-fibonacci-retracement-with-trend-breakout-tr/` | PineScript | pivot_levels | trailing_stop_pending | fib1 x2, sl_pct x2 | 4 |
+| 474717 | `ports/474717_advanced-ema-momentum-trend-trading-strategy/` | PineScript | momentum_oscillator | coarse_bar_stop | len x2, stop_pct x2 | 4 |
+| 474720 | `ports/474720_gold-trend-channel-reversal-momentum-strategy/` | PineScript | candle_pattern | coarse_bar_stop |  | 0 |
+| 474722 | `ports/474722_vix-advanced-volatility-mean-reversion-trading-strategy-mult/` | PineScript | mean_reversion | none | length x2, pct x2 | 4 |
+| 474804 | `ports/474804_dynamic-long-short-swing-trading-strategy-with-moving-averag/` | PineScript | ma_cross | coarse_bar_stop | short_len x2, long_len x2 | 4 |
+| | **2718 ports** | | | | | **12750** |
 
 ## Rejected on reading
 
@@ -3220,6 +3229,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474055 | 多重形态识别与SR分位交易策略-Multi-Pattern-Recognition-and-SR-Level-Trading-Strategy.md | 1 | The S/R level is refreshed only on bars where bar_index % 21 == 0, counted from the first bar of the loaded data, and the entries compare it with the double-bottom levels: which bars set the level depends on where the data starts (criterion 1, a data-start schedule, as #430034 / #468340). |
 | 474057 | MACD-KDJ联动的马丁格尔金字塔式量化交易策略-MACD-KDJ-Combined-Martingale-Pyramiding-Quantitative-Trading-Strategy.md | 1 | Martingale pyramiding: up to 5 additions to the open position (strategy.entry on the same id with qty = initial x multiplier^n after a drop and rebound), so the size path is part of the strategy (criterion 1, stepped adds, as #430762). |
 | 474064 | Multi-Step-ATR-Trading-Strategy-with-Dynamic-Profit-Taking-多层级-ATR-动态获利交易策略.md | 1 | Multi-step take-profit on by default: seven qty_percent partial exits (10 % each at ATR and percent levels): the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #436524). |
+| 474709 | 增强型动量震荡与随机背离量化交易策略-Enhanced-Momentum-Oscillator-and-Stochastic-Divergence-Quantitative-Trading-Strategy.md | 1 | The target and stop are close +/- 0.0020 / 0.0040 in price (FX-sized, "40 pips"): on the header pair's 0.1 tick both levels sit at the signal close, so one of them is always at or through the fill open and every trade closes at its own fill (criterion 1, a zero-width bracket, as #451493). |
+| 474712 | 多移动平均线趋势强度交易策略-基于移动平均线偏离度的灵活性智能交易系统-Multi-MA-Trend-Intensity-Trading-Strategy-A-Flexible-Smart-Trading-System-Based-on-MA-Deviation.md | 1 | A qty_percent partial exit (50 % at 1 R) on every trade, with a risk-sized quantity: the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #436524). |
+| 474803 | 多重技术指标趋势追踪套利策略-Multi-Technical-Indicator-Trend-Following-Trading-Strategy.md | 1 | The trailing exit has trail_price = close x 0.98 (under the market, so armed at once) and trail_offset = 0.02 ticks (0.002 in price), re-sent every bar: it stops every trade at the first tick against it, so trades end at their entry price (criterion 1, a zero-width exit, as #451493). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

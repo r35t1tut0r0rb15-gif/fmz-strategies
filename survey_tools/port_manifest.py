@@ -5876,6 +5876,30 @@ SIZING = {
     474684: [
         ("Target 10 % / stop 0.10 % of the current close (every bar)", 186, 198),
     ],
+    # ---- FMZ-C, batch C223 (2026-10-22)
+    474690: [],
+    474704: [
+        ("Stop close x 0.995 / limit close x 1.9999", 130, 136),
+    ],
+    474706: [
+        ("Trigger / target 107 pips (pip = mintick x 10)", 94, 127),
+    ],
+    474707: [
+        ("Target 3 % of the stored buy price", 118, 164),
+    ],
+    474708: [
+        ("Stop 1 %, target 2 R from the signal close", 101, 138),
+    ],
+    474717: [
+        ("strategy(): fixed qty 1; contract size 1; stop 1 %, TP ratio 2", 99, 202),
+    ],
+    474720: [
+        ("Target 2.0 points / stop 1 ATR from the signal close", 110, 131),
+    ],
+    474722: [],
+    474804: [
+        ("strategy(): 100 % of equity; size by 1 % risk of 10000; stop 1.5 ATR / target 3 ATR from avg", 100, 151),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7403,6 +7427,18 @@ REJECTED_ON_READING = {
     474064: ("1", "Multi-step take-profit on by default: seven qty_percent partial exits (10 % each "
               "at ATR and percent levels): the position is closed in parts, so the size path is "
               "part of the strategy (criterion 1, qty_percent partial exits, as #436524)."),
+    # ---- FMZ-C, batch C223 (2026-10-22)
+    474709: ("1", "The target and stop are close +/- 0.0020 / 0.0040 in price (FX-sized, \"40 pips\"): "
+              "on the header pair's 0.1 tick both levels sit at the signal close, so one of them "
+              "is always at or through the fill open and every trade closes at its own fill "
+              "(criterion 1, a zero-width bracket, as #451493)."),
+    474712: ("1", "A qty_percent partial exit (50 % at 1 R) on every trade, with a risk-sized "
+              "quantity: the position is closed in parts, so the size path is part of the "
+              "strategy (criterion 1, qty_percent partial exits, as #436524)."),
+    474803: ("1", "The trailing exit has trail_price = close x 0.98 (under the market, so armed at "
+              "once) and trail_offset = 0.02 ticks (0.002 in price), re-sent every bar: it stops "
+              "every trade at the first tick against it, so trades end at their entry price "
+              "(criterion 1, a zero-width exit, as #451493)."),
 }
 
 DUPLICATE_ON_READING = {

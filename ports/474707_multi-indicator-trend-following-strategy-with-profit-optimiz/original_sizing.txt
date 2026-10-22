@@ -1,0 +1,52 @@
+# Original sizing and money-management code, FMZ #474707 (多重指标趋势跟踪与止盈优化策略-Multi-Indicator-Trend-Following-Strategy-with-Profit-Optimization)
+# Source: https://www.fmz.com/strategy/474707  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 3 % of the stored buy price  [lines 118-164]
+  118: targetProfitPercentage = input.float(3.0, title="Target Profit Percentage")
+  119: 
+  120: // Calculate SAR
+  121: sar = ta.sar(sarStart, sarIncrement, sarMax)
+  122: 
+  123: // Calculate ATR
+  124: atr = ta.atr(atrLength)
+  125: 
+  126: // Calculate MACD
+  127: [macdLine, macdSignalLine, _] = ta.macd(close, macdShort, macdLong, macdSignal)
+  128: 
+  129: // Calculate SMA
+  130: sma = ta.sma(close, smaLength)
+  131: bullishTrend = close > sma
+  132: 
+  133: // Calculate DMI
+  134: [plusDI, minusDI, adx] = ta.dmi(dmiLength, adxSmoothing) // Specify ADX smoothing period
+  135: 
+  136: // Determine if DMI is bullish
+  137: dmiBullish = plusDI > minusDI
+  138: 
+  139: // Define buy signal
+  140: buySignal = ta.crossover(close, sar) and bullishTrend and dmiBullish
+  141: 
+  142: // Track buy price and position state
+  143: var float buyPrice = na
+  144: var bool inPosition = false
+  145: 
+  146: // Enter position
+  147: if (buySignal and not inPosition)
+  148:     buyPrice := close
+  149:     inPosition := true
+  150:     strategy.entry("Buy", strategy.long)
+  151: 
+  152: // Define target price (3% above the buy price)
+  153: targetPrice = na(buyPrice) ? na : buyPrice * (1 + targetProfitPercentage / 100)
+  154: 
+  155: // Define MACD sell signal
+  156: macdSellSignal = ta.crossunder(macdLine, macdSignalLine)
+  157: 
+  158: // Define sell signal
+  159: sellSignal = inPosition and (close >= targetPrice or macdSellSignal)
+  160: 
+  161: // Exit position
+  162: if (sellSignal)
+  163:     inPosition := false
+  164:     strategy.exit("Sell", "Buy", limit=targetPrice)
