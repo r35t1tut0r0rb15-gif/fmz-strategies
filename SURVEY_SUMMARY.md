@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2117 |
-| PORT_CANDIDATE | 1323 |
+| PORTED | 2128 |
+| PORT_CANDIDATE | 1311 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 300 |
+| REJECTED_ON_READING | 301 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2245,7 +2245,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 443123 | `ports/443123_trend-following-moving-average-strategy/` | PineScript | donchian_breakout | none | period x2 | 2 |
 | 443124 | `ports/443124_the-momentum-breakout-strategy/` | PineScript | mean_reversion | none | buy_threshold x2, sell_threshold x2 | 4 |
 | 443125 | `ports/443125_the-compound-breakout-strategy/` | PineScript | mean_reversion | none | value1 x2, value2 x2 | 4 |
-| | **2117 ports** | | | | | **9947** |
+| 443133 | `ports/443133_multiple-moving-average-trading-strategy/` | PineScript | macd_cross | coarse_bar_stop | bracket_frac x2, gap_frac x2 | 4 |
+| 443135 | `ports/443135_ema-atrrsi-an-advanced-ema-trend-following-strategy-with-rel/` | PineScript | ma_cross | none | short_ema x2, long_ema x2 | 4 |
+| 443136 | `ports/443136_adaptive-channel-breakout-strategy/` | PineScript | donchian_breakout | none | length x2 | 2 |
+| 443139 | `ports/443139_market-reversal-momentum-strategy/` | PineScript | supertrend | none | multiplier x2, fisher_level x2 | 4 |
+| 443228 | `ports/443228_walnut-trend-following-strategy-based-on-distance-from-200-e/` | PineScript | mean_reversion | none | ema_period x2, threshold x2 | 4 |
+| 443229 | `ports/443229_double-confirmation-breakthrough-strategy/` | PineScript | pivot_levels | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 443230 | `ports/443230_moving-average-crossover-trend-following-strategy/` | PineScript | multi_timeframe_ma | none | fast x2, slow x2 | 4 |
+| 443231 | `ports/443231_ema-elevated-touch-short-triangle-strategy/` | PineScript | ma_trend | coarse_bar_stop | ema_period x2, rr x2 | 4 |
+| 443239 | `ports/443239_the-breakout-regression-strategy/` | PineScript | donchian_breakout | none | high_lookback x2, exit_after x2 | 4 |
+| 443241 | `ports/443241_rsi-rsi-rsi-and-smoothed-rsi-bullish-divergence-strategy/` | PineScript | rsi_oscillator | none | rsi_curve x2, div_lookback x2 | 4 |
+| 443243 | `ports/443243_hullma-quant-trading-strategy-based-on-hullma-percentage-ban/` | PineScript | adaptive_average | none | length x2, band1 x2 | 4 |
+| | **2128 ports** | | | | | **9989** |
 
 ## Rejected on reading
 
@@ -2551,6 +2562,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442940 | 支撑阻力趋势追踪策略Support-and-Resistance-Trend-Tracking-Strategy.md | 2 | The exits strategy.exit(loss = stopLossLevel, profit = targetPrice) pass price levels where the call takes tick distances, and the entries test the close against the fixed prices 100 / 200 (always above 200 on the BTC reading): undefined exits and instrument-specific levels (criterion 2, as #442076, #437048). |
 | 443044 | 升降通道突破策略SuperTrend-Breakout-Strategy.md | 1 | is_uptrend (close > hlc3 - 3 ATR) and is_downtrend (close < hlc3 + 3 ATR) both hold on nearly every bar, so trend_changed is nearly always true and both entries fire together; the later Short wins (as #437773): a sell-and-hold from near the data start (criterion 1, as #442261). |
 | 443110 | 多时间框架随机指数均线策略Multi-Timeframe-Stochastic-Strategy.md | 1 | pyramiding = 3 with repeated "Lungo" / "Corto" entries on each new stochastic crossing while a position is open (the trail_points-only exits place no trail): the position accumulates units (criterion 1, as #442112, #430762). |
+| 443238 | 快速RSI反转交易策略Fast-RSI-Reversal-Trading-Strategy.md | 1 | pyramiding = 5 with the long entry allowed again whenever the close is under the average price (and the short whenever above it): averaging into a losing position, the position accumulates units (criterion 1, as #430762). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

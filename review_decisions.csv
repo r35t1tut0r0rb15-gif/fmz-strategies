@@ -299,6 +299,7 @@ fmz_id,file,final_outcome,criterion,reason
 442940,支撑阻力趋势追踪策略Support-and-Resistance-Trend-Tracking-Strategy.md,REJECTED_ON_READING,2,"The exits strategy.exit(loss = stopLossLevel, profit = targetPrice) pass price levels where the call takes tick distances, and the entries test the close against the fixed prices 100 / 200 (always above 200 on the BTC reading): undefined exits and instrument-specific levels (criterion 2, as #442076, #437048)."
 443044,升降通道突破策略SuperTrend-Breakout-Strategy.md,REJECTED_ON_READING,1,"is_uptrend (close > hlc3 - 3 ATR) and is_downtrend (close < hlc3 + 3 ATR) both hold on nearly every bar, so trend_changed is nearly always true and both entries fire together; the later Short wins (as #437773): a sell-and-hold from near the data start (criterion 1, as #442261)."
 443110,多时间框架随机指数均线策略Multi-Timeframe-Stochastic-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 3 with repeated ""Lungo"" / ""Corto"" entries on each new stochastic crossing while a position is open (the trail_points-only exits place no trail): the position accumulates units (criterion 1, as #442112, #430762)."
+443238,快速RSI反转交易策略Fast-RSI-Reversal-Trading-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 5 with the long entry allowed again whenever the close is under the average price (and the short whenever above it): averaging into a losing position, the position accumulates units (criterion 1, as #430762)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2436,3 +2437,14 @@ fmz_id,file,final_outcome,criterion,reason
 443123,基于趋势追踪均线战略Trend-Following-Moving-Average-Strategy.md,PORTED,,ports/443123_trend-following-moving-average-strategy/
 443124,基于动量突破策略The-Momentum-Breakout-Strategy.md,PORTED,,ports/443124_the-momentum-breakout-strategy/
 443125,基于复合突破策略The-Compound-Breakout-Strategy.md,PORTED,,ports/443125_the-compound-breakout-strategy/
+443133,基于多重均线交易策略Multiple-Moving-Average-Trading-Strategy.md,PORTED,,ports/443133_multiple-moving-average-trading-strategy/
+443135,基于EMA和ATRRSI过滤器的趋势跟踪策略An-Advanced-EMA-Trend-Following-Strategy-with-Relaxed-RSI-and-ATR-Filters.md,PORTED,,ports/443135_ema-atrrsi-an-advanced-ema-trend-following-strategy-with-rel/
+443136,自适应通道突破策略Adaptive-Channel-Breakout-Strategy.md,PORTED,,ports/443136_adaptive-channel-breakout-strategy/
+443139,市场逆转双重动量策略Market-Reversal-Momentum-Strategy.md,PORTED,,ports/443139_market-reversal-momentum-strategy/
+443228,坚果离线趋势追踪策略Walnut-Trend-Following-Strategy-Based-on-Distance-from-200-EMA.md,PORTED,,ports/443228_walnut-trend-following-strategy-based-on-distance-from-200-e/
+443229,双重确认突破策略Double-Confirmation-Breakthrough-Strategy.md,PORTED,,ports/443229_double-confirmation-breakthrough-strategy/
+443230,基于移动平均线交叉的趋势跟踪策略Moving-Average-Crossover-Trend-Following-Strategy.md,PORTED,,ports/443230_moving-average-crossover-trend-following-strategy/
+443231,突破EMA滑动止损三角策略Elevated-Touch-Short-Triangle-Strategy.md,PORTED,,ports/443231_ema-elevated-touch-short-triangle-strategy/
+443239,基于突破回归策略The-Breakout-Regression-Strategy.md,PORTED,,ports/443239_the-breakout-regression-strategy/
+443241,RSI与平滑RSI策略多头分型RSI-and-smoothed-RSI-bullish-divergence-strategy.md,PORTED,,ports/443241_rsi-rsi-rsi-and-smoothed-rsi-bullish-divergence-strategy/
+443243,基于HullMA百分比带的量化交易策略Quant-Trading-Strategy-Based-on-HullMA-Percentage-Bands.md,PORTED,,ports/443243_hullma-quant-trading-strategy-based-on-hullma-percentage-ban/

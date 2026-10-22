@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #443239 (基于突破回归策略The-Breakout-Regression-Strategy)
+# Source: https://www.fmz.com/strategy/443239  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): fixed qty 1, capital 20000  [lines 117-117]
+  117: strategy("Crudeoil Breakout strategy", overlay = true, initial_capital = 20000, default_qty_type = strategy.fixed, default_qty_value = 1)

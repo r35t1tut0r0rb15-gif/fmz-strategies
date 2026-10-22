@@ -4564,6 +4564,26 @@ SIZING = {
     443125: [
         ("strategy(): 100 % of equity", 157, 157),
     ],
+    # ---- FMZ-C, batch C167 (2026-10-22)
+    443133: [],
+    443135: [],
+    443136: [
+        ("strategy(): 100 % of equity", 126, 126),
+    ],
+    443139: [
+        ("strategy.entry qty = 1 (risk-based contracts unused)", 207, 207),
+    ],
+    443228: [],
+    443229: [],
+    443230: [],
+    443231: [],
+    443239: [
+        ("strategy(): fixed qty 1, capital 20000", 117, 117),
+    ],
+    443241: [
+        ("strategy(): 100 % of equity, commission 0.1", 144, 144),
+    ],
+    443243: [],
 }
 
 REJECTED_ON_READING = {
@@ -5792,6 +5812,10 @@ REJECTED_ON_READING = {
     443110: ("1", "pyramiding = 3 with repeated \"Lungo\" / \"Corto\" entries on each new stochastic "
               "crossing while a position is open (the trail_points-only exits place no trail): "
               "the position accumulates units (criterion 1, as #442112, #430762)."),
+    # ---- FMZ-C, batch C167 (2026-10-22)
+    443238: ("1", "pyramiding = 5 with the long entry allowed again whenever the close is under the "
+              "average price (and the short whenever above it): averaging into a losing position, "
+              "the position accumulates units (criterion 1, as #430762)."),
 }
 
 DUPLICATE_ON_READING = {
