@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1990 |
-| PORT_CANDIDATE | 1467 |
+| PORTED | 2000 |
+| PORT_CANDIDATE | 1455 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 283 |
+| REJECTED_ON_READING | 285 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2118,7 +2118,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442367 | `ports/442367_rsiadxatr-reversal-trading-strategy-with-bollinger-bands-rsi/` | PineScript | bollinger_reversion | none | length x2, adx_max x2 | 4 |
 | 442368 | `ports/442368_bollinger-crossing-death-golden-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
 | 442369 | `ports/442369_atr-best-atr-stop-multiple-strategy/` | PineScript | ma_cross | none | fast x2, atr_mult x2 | 4 |
-| | **1990 ports** | | | | | **9469** |
+| 442372 | `ports/442372_trading-psychology-balancing-strategy/` | PineScript | parabolic_sar | none | ema_length x2, rr x2 | 4 |
+| 442377 | `ports/442377_dual-moving-average-strategy/` | PineScript | rsi_oscillator | none | length x2, rsi_len x2 | 4 |
+| 442381 | `ports/442381_dynamic-position-sizing-quant-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 442383 | `ports/442383_ema-k-trading-strategy-based-on-multiple-time-frame-ema-brea/` | PineScript | candle_pattern | none | tf_minutes x2 | 2 |
+| 442387 | `ports/442387_donchian-adaptive-moving-average-trading-system/` | PineScript | volatility_channel_breakout | none | long_period x2, band_factor x2 | 4 |
+| 442388 | `ports/442388_simple-moving-average-crossover-strategy/` | PineScript | ma_cross | none | first x2, second x2 | 4 |
+| 442389 | `ports/442389_sakkoulas-enhanced-moving-average-crossover-sakkoulas-tradin/` | PineScript | macd_cross | none | atr_mult x2, signal_smoothing x2 | 4 |
+| 442397 | `ports/442397_ema-multi-timeframe-moving-average-and-ema-based-trend-strat/` | PineScript | mean_reversion | none | max_profit_closes x2, max_bars x2 | 4 |
+| 442399 | `ports/442399_123-recursive-moving-trend-average-combined-with-123-reversa/` | PineScript | combo_123_reversal | none | length x2, length_rmta x2 | 4 |
+| 442401 | `ports/442401_ema-reversal-trading-strategy-with-ema-crossover-and-bolling/` | PineScript | bollinger_reversion | none | ema_short x2, bb_length x2 | 4 |
+| | **2000 ports** | | | | | **9507** |
 
 ## Rejected on reading
 
@@ -2407,6 +2417,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442229 | 基于动态加仓策略Dynamic-Position-Building-Strategy.md | 1 | A DCA that buys on the close of every bar with pyramiding = 999 and cash sizes from remaining capital: the position accumulates units (criterion 1, as #430762). |
 | 442261 | 帕拉波尔振荡器寻找高点低点策略Parabola-Oscillator-Seeking-Highs-and-Lows-Strategy.md | 1 | longCondition and shortCondition are both the constant true, so every bar sends a long entry then a short entry; the last entry wins (as #437773), so as written the position is short from the first bar on, churning each bar: a sell-and-hold from the data start (criterion 1, as #430384). |
 | 442343 | 双Donchian通道突破策略Dual-Donchian-Channel-Breakout-Strategy.md | 1 | The take profit closes TP1Yuzde = 50 % of the position (strategy.exit with qty_percent = 50): partial exits (criterion 1, as #436524). |
+| 442378 | 基于收盘价突破的买入策略Buy-Strategy-Based-on-Close-Price-Breakthrough.md | 1 | The take profit is a limit at entry_price x 1.005 with entry_price the input default 0, i.e. a sell limit at 0, which fills as soon as each long opens: as written no position is held beyond its fill (criterion 1, as #430384). |
+| 442382 | 基于趋势的止损追利策略Trend-Following-Strategy-with-Stop-Loss-and-Take-Profit.md | 2 | The exit strategy.exit(loss = stopLoss, profit = takeProfit) passes price levels where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #437048, #437677). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

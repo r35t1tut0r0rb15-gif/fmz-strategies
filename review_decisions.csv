@@ -282,6 +282,8 @@ fmz_id,file,final_outcome,criterion,reason
 442229,基于动态加仓策略Dynamic-Position-Building-Strategy.md,REJECTED_ON_READING,1,"A DCA that buys on the close of every bar with pyramiding = 999 and cash sizes from remaining capital: the position accumulates units (criterion 1, as #430762)."
 442261,帕拉波尔振荡器寻找高点低点策略Parabola-Oscillator-Seeking-Highs-and-Lows-Strategy.md,REJECTED_ON_READING,1,"longCondition and shortCondition are both the constant true, so every bar sends a long entry then a short entry; the last entry wins (as #437773), so as written the position is short from the first bar on, churning each bar: a sell-and-hold from the data start (criterion 1, as #430384)."
 442343,双Donchian通道突破策略Dual-Donchian-Channel-Breakout-Strategy.md,REJECTED_ON_READING,1,"The take profit closes TP1Yuzde = 50 % of the position (strategy.exit with qty_percent = 50): partial exits (criterion 1, as #436524)."
+442378,基于收盘价突破的买入策略Buy-Strategy-Based-on-Close-Price-Breakthrough.md,REJECTED_ON_READING,1,"The take profit is a limit at entry_price x 1.005 with entry_price the input default 0, i.e. a sell limit at 0, which fills as soon as each long opens: as written no position is held beyond its fill (criterion 1, as #430384)."
+442382,基于趋势的止损追利策略Trend-Following-Strategy-with-Stop-Loss-and-Take-Profit.md,REJECTED_ON_READING,2,"The exit strategy.exit(loss = stopLoss, profit = takeProfit) passes price levels where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #437048, #437677)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2292,3 +2294,13 @@ fmz_id,file,final_outcome,criterion,reason
 442367,玻尔班带RSIADXATR反转交易策略Reversal-Trading-Strategy-with-Bollinger-Bands-RSI-ADX-and-ATR.md,PORTED,,ports/442367_rsiadxatr-reversal-trading-strategy-with-bollinger-bands-rsi/
 442368,基于金叉死叉布林带策略Bollinger-Crossing-Death-Golden-Strategy.md,PORTED,,ports/442368_bollinger-crossing-death-golden-strategy/
 442369,最佳ATR停损倍数策略Best-ATR-Stop-Multiple-Strategy.md,PORTED,,ports/442369_atr-best-atr-stop-multiple-strategy/
+442372,交易心理控制均衡策略Trading-Psychology-Balancing-Strategy.md,PORTED,,ports/442372_trading-psychology-balancing-strategy/
+442377,基于双移动平均策略Dual-Moving-Average-Strategy.md,PORTED,,ports/442377_dual-moving-average-strategy/
+442381,动态仓位调整量化策略Dynamic-Position-Sizing-Quant-Strategy.md,PORTED,,ports/442381_dynamic-position-sizing-quant-strategy/
+442383,多时间框架EMA突破与K线形态组合策略Trading-Strategy-Based-on-Multiple-Time-Frame-EMA-Breakthrough-and-K-line-Pattern-Combination.md,PORTED,,ports/442383_ema-k-trading-strategy-based-on-multiple-time-frame-ema-brea/
+442387,唐奇安自适应移动平均线交易系统Donchian-Adaptive-Moving-Average-Trading-System.md,PORTED,,ports/442387_donchian-adaptive-moving-average-trading-system/
+442388,单均线组合交易策略Simple-Moving-Average-Crossover-Strategy.md,PORTED,,ports/442388_simple-moving-average-crossover-strategy/
+442389,动量均线交叉-Sakkoulas-交易策略Enhanced-Moving-Average-Crossover-Sakkoulas-Trading-Strategy.md,PORTED,,ports/442389_sakkoulas-enhanced-moving-average-crossover-sakkoulas-tradin/
+442397,基于均线和EMA的跨时间框架趋势策略Multi-Timeframe-Moving-Average-and-EMA-Based-Trend-Strategy.md,PORTED,,ports/442397_ema-multi-timeframe-moving-average-and-ema-based-trend-strat/
+442399,递归移动趋势均线结合123形态反转的组合策略Recursive-Moving-Trend-Average-Combined-with-123-Reversal-Pattern-Strategy.md,PORTED,,ports/442399_123-recursive-moving-trend-average-combined-with-123-reversa/
+442401,双EMA穿越与布林带回转策略Reversal-Trading-Strategy-with-EMA-Crossover-and-Bollinger-Bands.md,PORTED,,ports/442401_ema-reversal-trading-strategy-with-ema-crossover-and-bolling/

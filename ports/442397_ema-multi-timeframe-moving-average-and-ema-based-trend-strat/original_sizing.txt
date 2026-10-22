@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #442397 (基于均线和EMA的跨时间框架趋势策略Multi-Timeframe-Moving-Average-and-EMA-Based-Trend-Strategy)
+# Source: https://www.fmz.com/strategy/442397  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy.entry qty = Quantity (1)  [lines 158-158]
+  158: strategy.entry(id="L1", long=true, qty=Quantity, when=(Cond00 and Cond01 and Cond02 and Cond03 and Cond04 and Cond05))

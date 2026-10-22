@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #442383 (多时间框架EMA突破与K线形态组合策略Trading-Strategy-Based-on-Multiple-Time-Frame-EMA-Breakthrough-and-K-line-Pattern-Combination)
+# Source: https://www.fmz.com/strategy/442383  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital 100, commission 0.25  [lines 148-148]
+  148: strategy(title='ck - CryptoSniper Longs Only (Strategy)', shorttitle='ck - CryptoSniper Longs (S) v1', overlay=true, precision=2, commission_value=0.25, default_qty_type=strategy.percent_of_equity, pyramiding=0, default_qty_value=100, initial_capital=100)

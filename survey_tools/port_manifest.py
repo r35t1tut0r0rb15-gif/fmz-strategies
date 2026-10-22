@@ -4342,6 +4342,23 @@ SIZING = {
     442367: [],
     442368: [],
     442369: [],
+    # ---- FMZ-C, batch C155 (2026-10-22)
+    442372: [],
+    442377: [],
+    442381: [
+        ("strategy.entry qty = auto-compounding size (equity / 10000 steps, max 25)", 151, 177),
+    ],
+    442383: [
+        ("strategy(): 100 % of equity, capital 100, commission 0.25", 148, 148),
+    ],
+    442387: [],
+    442388: [],
+    442389: [],
+    442397: [
+        ("strategy.entry qty = Quantity (1)", 158, 158),
+    ],
+    442399: [],
+    442401: [],
 }
 
 REJECTED_ON_READING = {
@@ -5503,6 +5520,13 @@ REJECTED_ON_READING = {
     # ---- FMZ-C, batch C154 (2026-10-22)
     442343: ("1", "The take profit closes TP1Yuzde = 50 % of the position (strategy.exit with "
               "qty_percent = 50): partial exits (criterion 1, as #436524)."),
+    # ---- FMZ-C, batch C155 (2026-10-22)
+    442378: ("1", "The take profit is a limit at entry_price x 1.005 with entry_price the input "
+              "default 0, i.e. a sell limit at 0, which fills as soon as each long opens: as "
+              "written no position is held beyond its fill (criterion 1, as #430384)."),
+    442382: ("2", "The exit strategy.exit(loss = stopLoss, profit = takeProfit) passes price levels "
+              "where the call takes tick distances, with no /mintick: the stop and target are "
+              "undefined as written (criterion 2, as #437048, #437677)."),
 }
 
 DUPLICATE_ON_READING = {
