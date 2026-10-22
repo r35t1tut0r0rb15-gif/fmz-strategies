@@ -1,0 +1,36 @@
+# Original sizing and money-management code, FMZ #477556 (双指数均线动量交叉量化交易策略-Dual-Exponential-Moving-Average-Momentum-Crossover-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/477556  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## pip value 0.10 x mintick (stop levels never sent)  [lines 104-134]
+  104: pip_value = input.float(0.10, title="Pip Value (10 pips = 1 point for Gold)")
+  105: 
+  106: // Calculate TEMA
+  107: tema_short = ta.ema(2 * ta.ema(close, tema_short_length) - ta.ema(ta.ema(close, tema_short_length), tema_short_length), tema_short_length)
+  108: tema_long = ta.ema(2 * ta.ema(close, tema_long_length) - ta.ema(ta.ema(close, tema_long_length), tema_long_length), tema_long_length)
+  109: 
+  110: // Plot TEMA
+  111: plot(tema_short, color=color.blue, title="300 TEMA")
+  112: plot(tema_long, color=color.red, title="500 TEMA")
+  113: 
+  114: // Crossover conditions
+  115: long_condition = ta.crossover(tema_short, tema_long)
+  116: short_condition = ta.crossunder(tema_short, tema_long)
+  117: 
+  118: // Calculate recent swing high/low
+  119: swing_low = ta.lowest(low, 10)
+  120: swing_high = ta.highest(high, 10)
+  121: 
+  122: // Convert pips to price
+  123: pip_adjustment = pip_value * syminfo.mintick
+  124: 
+  125: // Long entry logic
+  126: if (long_condition and strategy.position_size == 0)
+  127:     stop_loss_long = swing_low - pip_adjustment
+  128:     strategy.entry("Long", strategy.long)
+  129:     label.new(bar_index, swing_low, style=label.style_label_down, text="Buy", color=color.green)
+  130: 
+  131: // Short entry logic
+  132: if (short_condition and strategy.position_size == 0)
+  133:     stop_loss_short = swing_high + pip_adjustment
+  134:     strategy.entry("Short", strategy.short)

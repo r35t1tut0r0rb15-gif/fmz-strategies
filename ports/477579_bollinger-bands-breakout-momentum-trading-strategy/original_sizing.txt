@@ -1,0 +1,44 @@
+# Original sizing and money-management code, FMZ #477579 (布林带突破动量跟踪交易策略-Bollinger-Bands-Breakout-Momentum-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/477579  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 100000, commission 0.1 %, slippage 3; qty 1  [lines 96-134]
+   96: strategy(title="Demo GPT - Bollinger Bands Strategy", overlay=true, initial_capital=100000, commission_type=strategy.commission.percent, commission_value=0.1, slippage=3)
+   97: 
+   98: // Inputs
+   99: length = input.int(20, minval=1, title="Length")
+  100: maType = input.string("SMA", "Basis MA Type", options=["SMA", "EMA", "SMMA (RMA)", "WMA", "VWMA"])
+  101: src = input(close, title="Source")
+  102: mult = input.float(2.0, minval=0.001, maxval=50, title="StdDev")
+  103: offset = input.int(0, "Offset", minval=-500, maxval=500)
+  104: startDate = input(timestamp('01 Jan 2018 00:00 +0000'), title="Start Date")
+  105: endDate = input(timestamp('31 Dec 2069 23:59 +0000'), title="End Date")
+  106: 
+  107: // Moving Average Function
+  108: ma(source, length, _type) =>
+  109:     switch _type
+  110:         "SMA" => ta.sma(source, length)
+  111:         "EMA" => ta.ema(source, length)
+  112:         "SMMA (RMA)" => ta.rma(source, length)
+  113:         "WMA" => ta.wma(source, length)
+  114:         "VWMA" => ta.vwma(source, length)
+  115: 
+  116: // Calculations
+  117: basis = ma(src, length, maType)
+  118: dev = mult * ta.stdev(src, length)
+  119: upper = basis + dev
+  120: lower = basis - dev
+  121: 
+  122: // Plotting
+  123: plot(basis, "Basis", color=#2962FF, offset=offset)
+  124: p1 = plot(upper, "Upper", color=#F23645, offset=offset)
+  125: p2 = plot(lower, "Lower", color=#089981, offset=offset)
+  126: fill(p1, p2, title="Background", color=color.rgb(33, 150, 243, 95))
+  127: 
+  128: // Strategy Logic
+  129: inTradeWindow = true
+  130: longCondition = close > upper and inTradeWindow
+  131: exitCondition = close < lower and inTradeWindow
+  132: 
+  133: if (longCondition)
+  134:     strategy.entry("Long", strategy.long, qty=1)

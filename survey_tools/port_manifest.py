@@ -6138,6 +6138,32 @@ SIZING = {
         ("strategy(): 100 % of equity", 85, 85),
     ],
     477553: [],
+    # ---- FMZ-C, batch C234 (2026-10-22)
+    477554: [],
+    477555: [
+        ("strategy(): commission 0.1 %, slippage 3; close at 2 % over the avg price", 131, 169),
+    ],
+    477556: [
+        ("pip value 0.10 x mintick (stop levels never sent)", 104, 134),
+    ],
+    477560: [
+        ("TP 2 x ATR / SL 1 x ATR from the signal close", 87, 118),
+    ],
+    477561: [],
+    477562: [],
+    477564: [
+        ("Stop 2 % of strategy.position_avg_price", 111, 140),
+    ],
+    477567: [
+        ("ATR threshold 1.0 (price)", 98, 98),
+    ],
+    477569: [],
+    477579: [
+        ("strategy(): capital 100000, commission 0.1 %, slippage 3; qty 1", 96, 134),
+    ],
+    477580: [
+        ("strategy(): capital 10000, fixed qty 1; swing stop, 2 R / 3 R targets", 105, 208),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7749,6 +7775,11 @@ REJECTED_ON_READING = {
     477534: ("2", "The only exits pass trail_points = atr x 1.5 and trail_offset = atr x 0.75, price "
               "amounts, where the call takes ticks, with no /mintick: the trailing stop is "
               "undefined as written (criterion 2, as #442115)."),
+    # ---- FMZ-C, batch C234 (2026-10-22)
+    477565: ("1", "Every entry needs the bar inside the 07:00-10:00 kill-zone session "
+              "(time(timeframe.period, session)), which a 2-day bar starting at the day boundary "
+              "never is: the strategy never trades on its own chart (criterion 1, intraday time "
+              "windows on a multi-day chart, as #437544)."),
 }
 
 DUPLICATE_ON_READING = {

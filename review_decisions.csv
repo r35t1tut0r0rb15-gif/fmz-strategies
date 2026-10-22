@@ -399,6 +399,7 @@ fmz_id,file,final_outcome,criterion,reason
 476261,多层次机构订单流动量化策略与动态分仓优化系统-Multi-Level-Institutional-Order-Flow-Quantitative-Strategy-with-Dynamic-Position-Scaling-System.md,REJECTED_ON_READING,1,"Three strategy.exit targets with qty_percent 50 / 30 / 20 scale the position out in parts (criterion 1, partial exits)."
 476264,动态多周期指数移动平均交叉策略与回撤优化系统-Dynamic-Multi-Period-Exponential-Moving-Average-Cross-Strategy-with-Pullback-Optimization-System.md,REJECTED_ON_READING,1,"Five entry ids (Step1-3, Pullback, Above50) add 20 % / 40 % parts to the long and the EMA 5 / 13 cross-down closes only one part: staged adds and partial closes (criterion 1, DCA adds and partial exits)."
 477534,多重指标动态追踪止损交易策略-Multi-Indicator-Dynamic-Trailing-Stop-Trading-Strategy.md,REJECTED_ON_READING,2,"The only exits pass trail_points = atr x 1.5 and trail_offset = atr x 0.75, price amounts, where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #442115)."
+477565,多时间周期动态信号组合的ICT智能结构突破策略-Multi-Period-Dynamic-Signal-Integration-ICT-Smart-Structure-Breakthrough-Strategy.md,REJECTED_ON_READING,1,"Every entry needs the bar inside the 07:00-10:00 kill-zone session (time(timeframe.period, session)), which a 2-day bar starting at the day boundary never is: the strategy never trades on its own chart (criterion 1, intraday time windows on a multi-day chart, as #437544)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -3239,3 +3240,14 @@ fmz_id,file,final_outcome,criterion,reason
 477550,RSI趋势突破与动量增强交易策略-RSI-Trend-Breakthrough-and-Momentum-Enhancement-Trading-Strategy.md,PORTED,,ports/477550_rsi-rsi-trend-breakthrough-and-momentum-enhancement-trading/
 477552,多指标融合动态移动平均线交叉量化策略-Multi-Indicator-Dynamic-Moving-Average-Crossover-Quantitative-Strategy.md,PORTED,,ports/477552_multi-indicator-dynamic-moving-average-crossover-quantitativ/
 477553,多重均线超级趋势结合布林带突破交易策略-Multi-Moving-Average-Supertrend-with-Bollinger-Breakout-Trading-Strategy.md,PORTED,,ports/477553_multi-moving-average-supertrend-with-bollinger-breakout-trad/
+477554,动量趋势交叉云图交易策略-Momentum-Trend-Ichimoku-Cloud-Trading-Strategy.md,PORTED,,ports/477554_momentum-trend-ichimoku-cloud-trading-strategy/
+477555,RSI与布林带协同波段交易策略-RSI-and-Bollinger-Bands-Synergistic-Swing-Trading-Strategy.md,PORTED,,ports/477555_rsi-rsi-and-bollinger-bands-synergistic-swing-trading-strate/
+477556,双指数均线动量交叉量化交易策略-Dual-Exponential-Moving-Average-Momentum-Crossover-Trading-Strategy.md,PORTED,,ports/477556_dual-exponential-moving-average-momentum-crossover-trading-s/
+477560,动态ATR调整的指数均线交叉策略-Dynamic-ATR-Adjusted-EMA-Crossover-Strategy.md,PORTED,,ports/477560_atr-dynamic-atr-adjusted-ema-crossover-strategy/
+477561,组合式动量与均值回归高频量化策略-Combined-Momentum-and-Mean-Reversion-High-Frequency-Quantitative-Strategy.md,PORTED,,ports/477561_combined-momentum-and-mean-reversion-high-frequency-quantita/
+477562,多指标交叉动态动量策略-Multi-Indicator-Dynamic-Momentum-Cross-Strategy.md,PORTED,,ports/477562_multi-indicator-dynamic-momentum-cross-strategy/
+477564,基于相对强弱与RSI的动态趋势跟踪套利策略-Dynamic-Trend-Following-Strategy-Based-on-Relative-Strength-and-RSI.md,PORTED,,ports/477564_rsi-dynamic-trend-following-strategy-based-on-relative-stren/
+477567,多周期均线趋势跟踪结合RSI超买超卖动态优化策略-Multi-Period-EMA-Trend-Following-with-RSI-Overbought-Oversold-Dynamic-Optimization-Strategy.md,PORTED,,ports/477567_rsi-multi-period-ema-trend-following-with-rsi-overbought-ove/
+477569,多指标概率阈值动量趋势交易策略-Multi-Indicator-Probability-Threshold-Momentum-Trend-Trading-Strategy.md,PORTED,,ports/477569_multi-indicator-probability-threshold-momentum-trend-trading/
+477579,布林带突破动量跟踪交易策略-Bollinger-Bands-Breakout-Momentum-Trading-Strategy.md,PORTED,,ports/477579_bollinger-bands-breakout-momentum-trading-strategy/
+477580,高级WaveTrend与EMA-Ribbon融合交易策略-Advanced-WaveTrend-and-EMA-Ribbon-Fusion-Trading-Strategy.md,PORTED,,ports/477580_wavetrend-ema-ribbon-advanced-wavetrend-and-ema-ribbon-fusio/

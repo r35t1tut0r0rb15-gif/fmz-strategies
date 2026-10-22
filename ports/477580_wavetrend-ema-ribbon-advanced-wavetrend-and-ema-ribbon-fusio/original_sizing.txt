@@ -1,0 +1,109 @@
+# Original sizing and money-management code, FMZ #477580 (高级WaveTrend与EMA-Ribbon融合交易策略-Advanced-WaveTrend-and-EMA-Ribbon-Fusion-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/477580  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 10000, fixed qty 1; swing stop, 2 R / 3 R targets  [lines 105-208]
+  105: strategy("VuManChu Cipher A Strategy", overlay=true, initial_capital=10000, default_qty_type=strategy.fixed, default_qty_value=1.0)
+  106: 
+  107: // === 函数定义 ===
+  108: // WaveTrend函数
+  109: f_wavetrend(_src, _chlen, _avg, _malen) =>
+  110:     _esa = ta.ema(_src, _chlen)
+  111:     _de = ta.ema(math.abs(_src - _esa), _chlen)
+  112:     _ci = (_src - _esa) / (0.015 * _de)
+  113:     _tci = ta.ema(_ci, _avg)
+  114:     _wt1 = _tci
+  115:     _wt2 = ta.sma(_wt1, _malen)
+  116:     [_wt1, _wt2]
+  117: 
+  118: // EMA Ribbon函数
+  119: f_emaRibbon(_src, _e1, _e2, _e3, _e4, _e5, _e6, _e7, _e8) =>
+  120:     _ema1 = ta.ema(_src, _e1)
+  121:     _ema2 = ta.ema(_src, _e2)
+  122:     _ema3 = ta.ema(_src, _e3)
+  123:     _ema4 = ta.ema(_src, _e4)
+  124:     _ema5 = ta.ema(_src, _e5)
+  125:     _ema6 = ta.ema(_src, _e6)
+  126:     _ema7 = ta.ema(_src, _e7)
+  127:     _ema8 = ta.ema(_src, _e8)
+  128:     [_ema1, _ema2, _ema3, _ema4, _ema5, _ema6, _ema7, _ema8]
+  129: 
+  130: // === 变量声明 ===
+  131: var float stopPrice = na      // 止损价格变量
+  132: var float targetPrice = na    // 止盈价格变量
+  133: var float lastLongPrice = na
+  134: var float lastShortPrice = na
+  135: var float highestSinceLastLong = na
+  136: var float lowestSinceLastShort = na
+  137: 
+  138: // === WaveTrend参数 ===
+  139: wtChannelLen = input.int(9, title = 'WT Channel Length')
+  140: wtAverageLen = input.int(13, title = 'WT Average Length')
+  141: wtMASource = hlc3
+  142: wtMALen = input.int(3, title = 'WT MA Length')
+  143: 
+  144: // === EMA Ribbon参数 ===
+  145: ema1Len = input.int(5, "EMA 1 Length")
+  146: ema2Len = input.int(11, "EMA 2 Length")
+  147: ema3Len = input.int(15, "EMA 3 Length")
+  148: ema4Len = input.int(18, "EMA 4 Length")
+  149: ema5Len = input.int(21, "EMA 5 Length")
+  150: ema6Len = input.int(24, "EMA 6 Length")
+  151: ema7Len = input.int(28, "EMA 7 Length")
+  152: ema8Len = input.int(34, "EMA 8 Length")
+  153: 
+  154: // === 计算指标 ===
+  155: // WaveTrend计算
+  156: [wt1, wt2] = f_wavetrend(wtMASource, wtChannelLen, wtAverageLen, wtMALen)
+  157: 
+  158: // WaveTrend交叉条件
+  159: wtCross = ta.cross(wt1, wt2)
+  160: wtCrossDown = wt2 - wt1 >= 0
+  161: 
+  162: // EMA Ribbon计算
+  163: [ema1, ema2, ema3, ema4, ema5, ema6, ema7, ema8] = f_emaRibbon(close, ema1Len, ema2Len, ema3Len, ema4Len, ema5Len, ema6Len, ema7Len, ema8Len)
+  164: 
+  165: // === 交易信号 ===
+  166: longEma = ta.crossover(ema2, ema8)
+  167: shortEma = ta.crossover(ema8, ema2)
+  168: redCross = ta.crossunder(ema1, ema2)
+  169: blueTriangle = ta.crossover(ema2, ema3)
+  170: redDiamond = wtCross and wtCrossDown
+  171: bloodDiamond = redDiamond and redCross
+  172: 
+  173: // 更新最高最低价
+  174: if not na(lastLongPrice)
+  175:     highestSinceLastLong := math.max(high, nz(highestSinceLastLong))
+  176: if not na(lastShortPrice)
+  177:     lowestSinceLastShort := math.min(low, nz(lowestSinceLastShort))
+  178: 
+  179: // === 交易信号条件 ===
+  180: longCondition = longEma or (blueTriangle and not bloodDiamond)
+  181: shortCondition = shortEma or bloodDiamond
+  182: 
+  183: // === 执行交易 ===
+  184: if (longCondition)
+  185:     // 记录多头入场价格
+  186:     lastLongPrice := close
+  187:     // 重置最高价跟踪
+  188:     highestSinceLastLong := high
+  189:     
+  190:     stopPrice := nz(lowestSinceLastShort, close * 0.98)  // 使用前一个空头信号后的最低价作为止损
+  191:     float riskAmount = math.abs(close - stopPrice)
+  192:     targetPrice := close + (riskAmount * 2)  // 止盈为止损距离的2倍
+  193:     
+  194:     strategy.entry("做多", strategy.long)
+  195:     strategy.exit("多头止盈止损", "做多", limit=targetPrice, stop=stopPrice)
+  196: 
+  197: if (shortCondition)
+  198:     // 记录空头入场价格
+  199:     lastShortPrice := close
+  200:     // 重置最低价跟踪
+  201:     lowestSinceLastShort := low
+  202:     
+  203:     stopPrice := nz(highestSinceLastLong, close * 1.02)  // 使用前一个多头信号后的最高价作为止损
+  204:     float riskAmount = math.abs(stopPrice - close)
+  205:     targetPrice := close - (riskAmount * 3)  // 止盈为止损距离的2倍
+  206:     
+  207:     strategy.entry("做空", strategy.short)
+  208:     strategy.exit("空头止盈止损", "做空", limit=targetPrice, stop=stopPrice)

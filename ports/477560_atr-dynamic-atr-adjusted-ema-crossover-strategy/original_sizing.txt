@@ -1,0 +1,37 @@
+# Original sizing and money-management code, FMZ #477560 (动态ATR调整的指数均线交叉策略-Dynamic-ATR-Adjusted-EMA-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/477560  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## TP 2 x ATR / SL 1 x ATR from the signal close  [lines 87-118]
+   87: atrLength = input(14, title="ATR Length")  
+   88: atrMultiplierTP = input(2.0, title="ATR Multiplier for Take Profit")  
+   89: atrMultiplierSL = input(1.0, title="ATR Multiplier for Stop Loss")  
+   90: 
+   91: // Calculate EMAs and ATR  
+   92: shortTermEMA = ta.ema(close, shortTermLength)  
+   93: longTermEMA = ta.ema(close, longTermLength)  
+   94: atr = ta.atr(atrLength)  
+   95: 
+   96: // Plot the EMAs  
+   97: plot(shortTermEMA, color=color.blue, title="Short-Term EMA")  
+   98: plot(longTermEMA, color=color.red, title="Long-Term EMA")  
+   99: 
+  100: // Generate Entry Conditions  
+  101: longCondition = ta.crossover(shortTermEMA, longTermEMA)  
+  102: shortCondition = ta.crossunder(shortTermEMA, longTermEMA)  
+  103: 
+  104: // Optional Debugging: Print conditions (you can remove this later)  
+  105: var label longLabel = na  
+  106: var label shortLabel = na  
+  107: if longCondition  
+  108:     longLabel := label.new(bar_index, high, "Buy Signal", color=color.green, style=label.style_label_down, textcolor=color.white)  
+  109: if shortCondition  
+  110:     shortLabel := label.new(bar_index, low, "Sell Signal", color=color.red, style=label.style_label_up, textcolor=color.white)  
+  111: 
+  112: if (longCondition)  
+  113:     strategy.entry("Long", strategy.long)  
+  114:     strategy.exit("Long Exit", "Long", limit=close + atr * atrMultiplierTP, stop=close - atr * atrMultiplierSL)  
+  115: 
+  116: if (shortCondition)  
+  117:     strategy.entry("Short", strategy.short)  
+  118:     strategy.exit("Short Exit", "Short", limit=close - atr * atrMultiplierTP, stop=close + atr * atrMultiplierSL)

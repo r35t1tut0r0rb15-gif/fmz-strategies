@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2818 |
+| PORTED | 2829 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 569 |
-| PORT_CANDIDATE | 520 |
-| REJECTED_ON_READING | 400 |
+| PORT_CANDIDATE | 508 |
+| REJECTED_ON_READING | 401 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2946,7 +2946,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 477550 | `ports/477550_rsi-rsi-trend-breakthrough-and-momentum-enhancement-trading/` | PineScript | rsi_oscillator | none | rsi_length x2, exit_ma x2 | 4 |
 | 477552 | `ports/477552_multi-indicator-dynamic-moving-average-crossover-quantitativ/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 477553 | `ports/477553_multi-moving-average-supertrend-with-bollinger-breakout-trad/` | PineScript | supertrend | none | adx_level x2, factor x2 | 4 |
-| | **2818 ports** | | | | | **13114** |
+| 477554 | `ports/477554_momentum-trend-ichimoku-cloud-trading-strategy/` | PineScript | ichimoku | none | conversion x2, base x2 | 4 |
+| 477555 | `ports/477555_rsi-rsi-and-bollinger-bands-synergistic-swing-trading-strate/` | PineScript | bollinger_reversion | none | bb_length x2, profit_pct x2 | 4 |
+| 477556 | `ports/477556_dual-exponential-moving-average-momentum-crossover-trading-s/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 477560 | `ports/477560_atr-dynamic-atr-adjusted-ema-crossover-strategy/` | PineScript | ma_cross | coarse_bar_stop | tp_mult x2, sl_mult x2 | 4 |
+| 477561 | `ports/477561_combined-momentum-and-mean-reversion-high-frequency-quantita/` | PineScript | ma_cross | none | long_ema x2, bb_length x2 | 4 |
+| 477562 | `ports/477562_multi-indicator-dynamic-momentum-cross-strategy/` | PineScript | ma_trend | none | rsi_avg_length x2, rsi_mid x2 | 4 |
+| 477564 | `ports/477564_rsi-dynamic-trend-following-strategy-based-on-relative-stren/` | PineScript | rsi_oscillator | coarse_bar_stop | rs_period x2, rsi_threshold x2 | 4 |
+| 477567 | `ports/477567_rsi-multi-period-ema-trend-following-with-rsi-overbought-ove/` | PineScript | ma_trend | none | hold_bars x2, ema_long x2 | 4 |
+| 477569 | `ports/477569_multi-indicator-probability-threshold-momentum-trend-trading/` | PineScript | zscore_momentum | none | lookback x2, threshold x2 | 4 |
+| 477579 | `ports/477579_bollinger-bands-breakout-momentum-trading-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 477580 | `ports/477580_wavetrend-ema-ribbon-advanced-wavetrend-and-ema-ribbon-fusio/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | long_rr x2, short_rr x2 | 4 |
+| | **2829 ports** | | | | | **13158** |
 
 ## Rejected on reading
 
@@ -3352,6 +3363,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 476261 | 多层次机构订单流动量化策略与动态分仓优化系统-Multi-Level-Institutional-Order-Flow-Quantitative-Strategy-with-Dynamic-Position-Scaling-System.md | 1 | Three strategy.exit targets with qty_percent 50 / 30 / 20 scale the position out in parts (criterion 1, partial exits). |
 | 476264 | 动态多周期指数移动平均交叉策略与回撤优化系统-Dynamic-Multi-Period-Exponential-Moving-Average-Cross-Strategy-with-Pullback-Optimization-System.md | 1 | Five entry ids (Step1-3, Pullback, Above50) add 20 % / 40 % parts to the long and the EMA 5 / 13 cross-down closes only one part: staged adds and partial closes (criterion 1, DCA adds and partial exits). |
 | 477534 | 多重指标动态追踪止损交易策略-Multi-Indicator-Dynamic-Trailing-Stop-Trading-Strategy.md | 2 | The only exits pass trail_points = atr x 1.5 and trail_offset = atr x 0.75, price amounts, where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #442115). |
+| 477565 | 多时间周期动态信号组合的ICT智能结构突破策略-Multi-Period-Dynamic-Signal-Integration-ICT-Smart-Structure-Breakthrough-Strategy.md | 1 | Every entry needs the bar inside the 07:00-10:00 kill-zone session (time(timeframe.period, session)), which a 2-day bar starting at the day boundary never is: the strategy never trades on its own chart (criterion 1, intraday time windows on a multi-day chart, as #437544). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
