@@ -5047,6 +5047,26 @@ SIZING = {
     452692: [
         ("strategy(): margin_long 100, margin_short 100; stop 16 %, targets 8 / 16 / 32 % of the fill", 98, 235),
     ],
+    # ---- FMZ-C, batch C189 (2026-10-22)
+    452699: [],
+    452701: [],
+    452712: [
+        ("strategy(): margin_long 100, margin_short 100", 87, 87),
+    ],
+    452713: [],
+    452714: [
+        ("Stop 2 % of the signal close; minimum hold 10 bars (compared in milliseconds)", 106, 136),
+    ],
+    452716: [
+        ("Stop 2 ATR beyond the line (on never-entered ids)", 96, 136),
+    ],
+    452736: [
+        ("Targets high x 1.0012 / low x 0.994; stops max(low3 x 0.997, avg x 0.995) / min(high3 x 1.003, avg x 1.005)", 118, 151),
+    ],
+    452739: [],
+    452741: [],
+    452742: [],
+    452743: [],
 }
 
 REJECTED_ON_READING = {
@@ -6389,6 +6409,11 @@ REJECTED_ON_READING = {
               "(strategy.opentrades == 0) and the exits only end it after 7 bars or a price move: "
               "a short re-entered from the data start onwards with no signal (criterion 1, "
               "constant-true entry, as #442261)."),
+    # ---- FMZ-C, batch C189 (2026-10-22)
+    452698: ("1", "On the daily header chart every bar is a new day, so a long is opened on the "
+              "second bar and each take-profit close is followed on the same bar by a new long "
+              "entry (the short is opened only when no long is): one long held from the data "
+              "start (criterion 1, buy-and-hold from the data start, as #430384)."),
 }
 
 DUPLICATE_ON_READING = {

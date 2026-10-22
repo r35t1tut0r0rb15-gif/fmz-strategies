@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #452699 (基于EMA与趋势线突破的双均线-RSI-动量策略-Dual-Moving-Average-RSI-Momentum-Strategy-Based-on-EMA-and-Trendline-Breakouts)
+# Source: https://www.fmz.com/strategy/452699  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

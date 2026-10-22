@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2350 |
-| PORT_CANDIDATE | 1059 |
+| PORTED | 2361 |
+| PORT_CANDIDATE | 1047 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 331 |
+| REJECTED_ON_READING | 332 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2478,7 +2478,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 452689 | `ports/452689_masma-masma-dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
 | 452691 | `ports/452691_rsi-sma-dev-standard-deviation-dev-trading-strategy-based-on/` | PineScript | bollinger_reversion | none | length x2, entry_sd x2, exit_sd x2 | 8 |
 | 452692 | `ports/452692_psar-ema-psar-and-ema-based-quantitative-trading-strategy/` | PineScript | parabolic_sar | none | ema_len x2, sl_pct x2, tp_pct x2 | 8 |
-| | **2350 ports** | | | | | **10898** |
+| 452699 | `ports/452699_ema-rsi-dual-moving-average-rsi-momentum-strategy-based-on-e/` | PineScript | ma_cross | none | fast x2, slow x2, rsi_len x2 | 8 |
+| 452701 | `ports/452701_rsi-trend-reversal-trading-strategy-based-on-rsi-divergence/` | PineScript | rsi_oscillator | none | rsi_len x2, lookback x2 | 4 |
+| 452712 | `ports/452712_dynamic-market-regime-identification-strategy-based-on-linea/` | PineScript | momentum_oscillator | none | slope_len x2, sma_len x2, thr_frac x2 | 8 |
+| 452713 | `ports/452713_fibonacci-golden-harmony-breakout-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 452714 | `ports/452714_trend-following-with-breakout-and-frequency-filter-long-only/` | PineScript | donchian_breakout | coarse_bar_stop, trailing_stop_pending | ema_len x2, lb_min x2, sl_pct x2 | 8 |
+| 452716 | `ports/452716_atr-ema-atr-and-ema-based-dynamic-take-profit-and-stop-loss/` | PineScript | atr_trailing_line | none | key x2, atr_len x2 | 4 |
+| 452736 | `ports/452736_fvg-fvg-momentum-scalping-strategy/` | PineScript | breakout | coarse_bar_stop, trailing_stop_pending | long_tp x2, short_tp x2 | 4 |
+| 452739 | `ports/452739_ema-ema-momentum-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 452741 | `ports/452741_rsi-ma-rsi-and-ma-combination-strategy/` | PineScript | rsi_oscillator | none | ob x2, short_len x2, long_len x2 | 8 |
+| 452742 | `ports/452742_z-hybrid-binomial-z-score-quantitative-strategy/` | PineScript | mean_reversion | none | sma_len x2, z_thr x2, lookback x2 | 8 |
+| 452743 | `ports/452743_volatility-and-linear-regression-based-long-short-market-reg/` | PineScript | trend_filter | none | length x2, atr_mult x2, thr_frac x2 | 8 |
+| | **2361 ports** | | | | | **10966** |
 
 ## Rejected on reading
 
@@ -2815,6 +2826,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 452282 | SMK-ULTRA-TREND-双均线交叉策略SMK-ULTRA-TREND-Dual-Moving-Average-Crossover-Strategy.md | 1 | The only exit is strategy.close('sell'), an id never entered, so the EMA 5 / 20 cross-up long is never closed: one long held from the first signal with no exit (criterion 1, as #440692). |
 | 452353 | 双均线回归交易策略-Dual-Moving-Average-Regression-Trading-Strategy.md | 1 | Sixteen take-profit exits close qty_percent = 5 % each (partial exits), and the trailing multiplier switches on the count of closed trades: partial-position and trade-history-dependent exits (criterion 1, as #436524). |
 | 452358 | 短线做空高流通货币对策略-Short-term-Short-Selling-Strategy-for-High-liquidity-Currency-Pairs.md | 1 | strategy.entry('Short') is sent on every bar with no open trade (strategy.opentrades == 0) and the exits only end it after 7 bars or a price move: a short re-entered from the data start onwards with no signal (criterion 1, constant-true entry, as #442261). |
+| 452698 | 动态仓位管理每日交易策略Dynamic-Position-Management-Daily-Trading-Strategy.md | 1 | On the daily header chart every bar is a new day, so a long is opened on the second bar and each take-profit close is followed on the same bar by a new long entry (the short is opened only when no long is): one long held from the data start (criterion 1, buy-and-hold from the data start, as #430384). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

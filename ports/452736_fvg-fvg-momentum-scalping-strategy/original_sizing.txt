@@ -1,0 +1,39 @@
+# Original sizing and money-management code, FMZ #452736 (FVG动量短线交易策略-FVG-Momentum-Scalping-Strategy)
+# Source: https://www.fmz.com/strategy/452736  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Targets high x 1.0012 / low x 0.994; stops max(low3 x 0.997, avg x 0.995) / min(high3 x 1.003, avg x 1.005)  [lines 118-151]
+  118: var float targetLong = 0
+  119: var float targetShort = 0
+  120: 
+  121: if (buyCondition)
+  122:     strategy.entry("Buy", strategy.long)
+  123:     targetLong := high * 1.0012 // Calculate target price 2% above high
+  124:     strategy.exit("Target", "Buy", limit=targetLong)
+  125:     entrySL=fvgLow*0.994
+  126: 
+  127: if (sellCondition)
+  128:     strategy.entry("Sell", strategy.short)
+  129:     targetShort := low * 0.994 // Calculate target price 2% below low
+  130:     strategy.exit("Target", "Sell", limit=targetShort)
+  131:     entrySL=fvgHigh*1.0028
+  132: 
+  133: 
+  134: 
+  135: // Trailing stoploss
+  136: //stopLossLong = fvgLow * 0.997 // strategy.position_avg_price * 0.995
+  137: //stopLossShort = fvgHigh * 1.003 // strategy.position_avg_price * 1.005
+  138: stopLossLong = math.max(fvgLow * 0.997, strategy.position_avg_price * 0.995)
+  139: stopLossShort = math.min(fvgHigh * 1.003, strategy.position_avg_price * 1.005)
+  140: 
+  141: 
+  142: // Plot stoploss lines with small length
+  143: plot(stopLossLong, title="Stop Loss Long", color= strategy.position_size > 0 ? color.red : na, linewidth=1)
+  144: plot(stopLossShort, title="Stop Loss Short", color= strategy.position_size < 0 ? color.red : na, linewidth=1)
+  145: 
+  146: plot(targetLong, title="TLong", color= strategy.position_size > 0 ? color.green : na,  linewidth=1)
+  147: plot(targetShort, title="TShort",color= strategy.position_size < 0 ? color.green : na,  linewidth=1)
+  148: 
+  149: // Exit with stoploss
+  150: strategy.exit("Stop Loss", "Buy", stop=stopLossLong)
+  151: strategy.exit("Stop Loss", "Sell", stop=stopLossShort)

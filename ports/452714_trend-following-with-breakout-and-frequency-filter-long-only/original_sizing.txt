@@ -1,0 +1,36 @@
+# Original sizing and money-management code, FMZ #452714 (Trend-Following-with-Breakout-and-Frequency-Filter-Long-Only-基于突破和频率过滤的趋势跟踪策略只做多)
+# Source: https://www.fmz.com/strategy/452714  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 % of the signal close; minimum hold 10 bars (compared in milliseconds)  [lines 106-136]
+  106: stopLossPct = input.float(2, title="止损百分比") / 100  // 止损百分比
+  107: minHoldBars = input.int(10, title="最小持仓K线数量")  // 最小持仓K线数量
+  108: 
+  109: // 计算EMA
+  110: ema = ta.ema(close, emaLength)
+  111: 
+  112: // 计算最高价和最低价
+  113: highestHigh = ta.highest(high, lookbackPeriodMax)
+  114: lowestLow = ta.lowest(low, lookbackPeriodMax)
+  115: 
+  116: // 定义趋势方向
+  117: isBullish = close > ema
+  118: 
+  119: // 定义突破信号
+  120: breakoutCondition = (ta.crossover(close, highestHigh[lookbackPeriodMin]) or ta.crossover(close, highestHigh[lookbackPeriodMax])) and isBullish
+  121: 
+  122: // 计算止损点
+  123: stopLossLevelLong = close * (1 - stopLossPct)
+  124: 
+  125: // 绘制EMA
+  126: plot(ema, title="EMA", color=color.blue)
+  127: 
+  128: // 记录上次开仓时间
+  129: var float lastEntryTime = na
+  130: 
+  131: // 策略执行并标注信号
+  132: if (breakoutCondition and (na(lastEntryTime) or (time - lastEntryTime) > minHoldBars * timeframe.multiplier))
+  133:     strategy.entry("做多", strategy.long)
+  134:     label.new(bar_index, high, text="买入", style=label.style_label_up, color=color.green, textcolor=color.white)
+  135:     strategy.exit("止损", from_entry="做多", stop=stopLossLevelLong)
+  136:     lastEntryTime := time

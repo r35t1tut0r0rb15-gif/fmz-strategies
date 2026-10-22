@@ -1,0 +1,46 @@
+# Original sizing and money-management code, FMZ #452716 (基于ATR和EMA的动态止盈止损自适应策略-ATR-and-EMA-based-Dynamic-Take-Profit-and-Stop-Loss-Adaptive-Strategy)
+# Source: https://www.fmz.com/strategy/452716  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 ATR beyond the line (on never-entered ids)  [lines 96-136]
+   96: stoploss = input(2.0, title='Stop Loss (ATR Multiples)')
+   97: 
+   98: xATR = ta.atr(c)
+   99: nLoss = a * xATR
+  100: 
+  101: src = h ? request.security(ticker.heikinashi(syminfo.tickerid), timeframe.period, close, lookahead=barmerge.lookahead_off) : close
+  102: 
+  103: var xATR_trailing_stop = 0.0
+  104: iff_1 = src > nz(xATR_trailing_stop[1], 0) ? src - nLoss : src + nLoss
+  105: iff_2 = src < nz(xATR_trailing_stop[1], 0) and src[1] < nz(xATR_trailing_stop[1], 0) ? math.min(nz(xATR_trailing_stop[1]), src + nLoss) : iff_1
+  106: xATR_trailing_stop := src > nz(xATR_trailing_stop[1], 0) and src[1] > nz(xATR_trailing_stop[1], 0) ? math.max(nz(xATR_trailing_stop[1]), src - nLoss) : iff_2
+  107: 
+  108: pos = 0
+  109: iff_3 = src[1] > nz(xATR_trailing_stop[1], 0) and src < nz(xATR_trailing_stop[1], 0) ? -1 : nz(pos[1], 0)
+  110: pos := src[1] < nz(xATR_trailing_stop[1], 0) and src > nz(xATR_trailing_stop[1], 0) ? 1 : iff_3
+  111: 
+  112: xcolor = pos == -1 ? color.red : pos == 1 ? color.green : color.blue
+  113: 
+  114: ema = ta.ema(src, 1)
+  115: above = ta.crossover(ema, xATR_trailing_stop)
+  116: below = ta.crossover(xATR_trailing_stop, ema)
+  117: 
+  118: buy = src > xATR_trailing_stop and above
+  119: sell = src < xATR_trailing_stop and below
+  120: 
+  121: barbuy = src > xATR_trailing_stop
+  122: barsell = src < xATR_trailing_stop
+  123: 
+  124: plotshape(buy, title='Buy', text='Buy', style=shape.labelup, location=location.belowbar, color=color.new(color.green, 0), textcolor=color.new(color.white, 0), size=size.tiny)
+  125: plotshape(sell, title='Sell', text='Sell', style=shape.labeldown, location=location.abovebar, color=color.new(color.red, 0), textcolor=color.new(color.white, 0), size=size.tiny)
+  126: 
+  127: barcolor(barbuy ? color.green : na)
+  128: barcolor(barsell ? color.red : na)
+  129: 
+  130: stop_level = pos == 1 ? xATR_trailing_stop - stoploss * xATR : xATR_trailing_stop + stoploss * xATR
+  131: stop_level := math.max(stop_level, nz(stop_level[1]))
+  132: 
+  133: if pos == 1
+  134:     strategy.exit('Exit Long', 'UT Long', stop=stop_level)
+  135: else if pos == -1
+  136:     strategy.exit('Exit Short', 'UT Short', stop=stop_level)
