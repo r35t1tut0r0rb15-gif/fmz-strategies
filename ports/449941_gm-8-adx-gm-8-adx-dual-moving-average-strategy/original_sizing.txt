@@ -1,0 +1,43 @@
+# Original sizing and money-management code, FMZ #449941 (GM-8-ADX-双均线策略-GM-8-ADX-Dual-Moving-Average-Strategy)
+# Source: https://www.fmz.com/strategy/449941  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## lot size 0.4  [lines 118-155]
+  118: lot_size = input.float(0.4, title="Lot Size")
+  119: 
+  120: // Calculate the ADX manually
+  121: adx(high, low, close, length) =>
+  122:     sum_truerange = 0.0
+  123:     sum_plusDM = 0.0
+  124:     sum_minusDM = 0.0
+  125:     for i = 1 to length
+  126:         truerange_calc = high[i] - low[i]
+  127:         truerange_prev_close = high[i] - close[i-1]
+  128:         truerange_close = low[i] - close[i-1]
+  129:         truerange_calc := truerange_prev_close > truerange_calc ? truerange_prev_close : truerange_calc
+  130:         truerange_calc := truerange_close > truerange_calc ? truerange_close : truerange_calc
+  131:         sum_truerange := sum_truerange + truerange_calc
+  132:         plusDM = high[i] - high[i-1] > low[i-1] - low[i] and high[i] - high[i-1] > 0 ? high[i] - high[i-1] : 0
+  133:         sum_plusDM := sum_plusDM + plusDM
+  134:         minusDM = low[i-1] - low[i] > high[i] - high[i-1] and low[i-1] - low[i] > 0 ? low[i-1] - low[i] : 0
+  135:         sum_minusDM := sum_minusDM + minusDM
+  136:     plusDI = sum_plusDM / sum_truerange * 100
+  137:     minusDI = sum_minusDM / sum_truerange * 100
+  138:     sumDI = plusDI + minusDI
+  139:     adx_value = 100 * (plusDI - minusDI) / (sumDI == 0 ? 1 : sumDI)
+  140: 
+  141: // Calculate indicators
+  142: gm_8 = ta.sma(close, gm_period)
+  143: second_ema = ta.ema(close, second_ema_period)
+  144: adx_value = adx(high, low, close, adx_period)
+  145: 
+  146: // Define buy and sell conditions
+  147: buy_condition = ta.crossover(close, gm_8) and close > gm_8 and close > second_ema and adx_value > adx_threshold
+  148: sell_condition = ta.crossunder(close, gm_8) and close < gm_8 and close < second_ema and adx_value > adx_threshold
+  149: 
+  150: // Entry and exit logic
+  151: if (buy_condition)
+  152:     strategy.entry("Buy", strategy.long, qty=lot_size)
+  153: 
+  154: if (sell_condition)
+  155:     strategy.entry("Sell", strategy.short, qty=lot_size)

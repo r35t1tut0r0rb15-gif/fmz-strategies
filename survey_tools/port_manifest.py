@@ -4863,6 +4863,33 @@ SIZING = {
     449715: [],
     449724: [],
     449810: [],
+    # ---- FMZ-C, batch C181 (2026-10-22)
+    449811: [
+        ("qty 1; margins 100 / 100; stop / target percent of the signal low", 112, 138),
+    ],
+    449812: [],
+    449815: [
+        ("strategy(): 100 % of equity, capital 100000; stop / target percent of the average price", 147, 158),
+    ],
+    449816: [
+        ("Stop / target percent of the average price; trailing percent", 110, 133),
+    ],
+    449817: [],
+    449818: [],
+    449843: [
+        ("strategy(): 10 % of equity", 97, 97),
+    ],
+    449844: [
+        ("strategy(): 10 % of equity, capital 10000, commission 0.1 %, slippage 1", 127, 129),
+    ],
+    449846: [],
+    449851: [
+        ("Stop 100 / target 200 points", 117, 127),
+    ],
+    449941: [
+        ("lot size 0.4", 118, 155),
+    ],
+    449942: [],
 }
 
 REJECTED_ON_READING = {

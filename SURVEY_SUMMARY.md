@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2264 |
-| PORT_CANDIDATE | 1155 |
+| PORTED | 2276 |
+| PORT_CANDIDATE | 1143 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
 | REJECTED_ON_READING | 321 |
@@ -2392,7 +2392,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 449715 | `ports/449715_htf-htf-zigzag-path-strategy/` | PineScript | candle_pattern | none | tf_minutes x2 | 2 |
 | 449724 | `ports/449724_gbs-gbs-top-bottom-confirmed-strategy/` | PineScript | breakout | none |  | 0 |
 | 449810 | `ports/449810_hurst-future-lines-of-demarcation-strategy/` | PineScript | cycle_filter | none | cyc_q x2, cyc x2 | 4 |
-| | **2264 ports** | | | | | **10497** |
+| 449811 | `ports/449811_rsi2-rsi2-strategy-intraday-reversal-win-rate-backtest/` | PineScript | rsi_oscillator | trailing_stop_pending | max_loss x2, target x2 | 4 |
+| 449812 | `ports/449812_ccidmimacdadx-multi-indicator-combination-strategy-cci-dmi-m/` | PineScript | multi_indicator_confluence | none | cci_len x2, adx_min x2 | 4 |
+| 449815 | `ports/449815_macd-rsi-macd-and-rsi-combined-long-term-trading-strategy/` | PineScript | macd_cross | trailing_stop_pending | rsi_len x2, window x2 | 4 |
+| 449816 | `ports/449816_ema-long-entry-on-ema-cross-with-risk-management-strategy/` | PineScript | ma_cross | trailing_stop_pending | ema_len x2 | 2 |
+| 449817 | `ports/449817_ichimoku-leading-span-b-ichimoku-leading-span-b-breakout-str/` | PineScript | ichimoku | none | span_b x2, displacement x2 | 4 |
+| 449818 | `ports/449818_donchian-donchian-breakout-trading-strategy/` | PineScript | donchian_breakout | coarse_bar_stop | don_length x2, rr x2 | 4 |
+| 449843 | `ports/449843_ma99-ma99-touch-and-dynamic-stop-loss-strategy/` | PineScript | ma_pullback | none | ma_len x2 | 2 |
+| 449844 | `ports/449844_z-z-score-trend-following-strategy/` | PineScript | momentum_breakout | none | length x2, threshold x2 | 4 |
+| 449846 | `ports/449846_fibonacci-golden-ratio-retracement-buying-strategy/` | PineScript | pivot_levels | none | price_len x2, swing x2 | 4 |
+| 449851 | `ports/449851_ema-rsi-macd-atr-enhanced-ema-crossover-strategy-with-rsi-ma/` | PineScript | ma_cross | trailing_stop_pending | sl_frac x2, atr_rise x2 | 4 |
+| 449941 | `ports/449941_gm-8-adx-gm-8-adx-dual-moving-average-strategy/` | PineScript | directional_movement | none | adx_threshold x2, adx_period x2 | 4 |
+| 449942 | `ports/449942_khaled-tamims-avellaneda-stoikov-strategy-khaled-tamims-avel/` | PineScript | mean_reversion | none | band_frac x2 | 2 |
+| | **2276 ports** | | | | | **10539** |
 
 ## Rejected on reading
 

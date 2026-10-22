@@ -2604,3 +2604,15 @@ fmz_id,file,final_outcome,criterion,reason
 449715,HTF-锯齿形路径策略HTF-Zigzag-Path-Strategy.md,PORTED,,ports/449715_htf-htf-zigzag-path-strategy/
 449724,GBS高低点确认策略-GBS-TOP-BOTTOM-Confirmed-Strategy.md,PORTED,,ports/449724_gbs-gbs-top-bottom-confirmed-strategy/
 449810,赫斯特未来分界线策略-Hurst-Future-Lines-of-Demarcation-Strategy.md,PORTED,,ports/449810_hurst-future-lines-of-demarcation-strategy/
+449811,RSI2策略之日内反转胜率回测-RSI2-Strategy-Intraday-Reversal-Win-Rate-Backtest.md,PORTED,,ports/449811_rsi2-rsi2-strategy-intraday-reversal-win-rate-backtest/
+449812,多重指标组合策略CCIDMIMACDADX-Multi-Indicator-Combination-Strategy-CCI-DMI-MACD-ADX.md,PORTED,,ports/449812_ccidmimacdadx-multi-indicator-combination-strategy-cci-dmi-m/
+449815,MACD与RSI结合的长线交易策略-MACD-and-RSI-Combined-Long-term-Trading-Strategy.md,PORTED,,ports/449815_macd-rsi-macd-and-rsi-combined-long-term-trading-strategy/
+449816,基于EMA交叉的风险管理型多头策略-Long-Entry-on-EMA-Cross-with-Risk-Management-Strategy.md,PORTED,,ports/449816_ema-long-entry-on-ema-cross-with-risk-management-strategy/
+449817,Ichimoku-Leading-Span-B-突破策略-Ichimoku-Leading-Span-B-Breakout-Strategy.md,PORTED,,ports/449817_ichimoku-leading-span-b-ichimoku-leading-span-b-breakout-str/
+449818,Donchian突破交易策略-Donchian-Breakout-Trading-Strategy.md,PORTED,,ports/449818_donchian-donchian-breakout-trading-strategy/
+449843,MA99接触与动态止损策略-MA99-Touch-and-Dynamic-Stop-Loss-Strategy.md,PORTED,,ports/449843_ma99-ma99-touch-and-dynamic-stop-loss-strategy/
+449844,基于Z值的趋势跟踪策略-Z-Score-Trend-Following-Strategy.md,PORTED,,ports/449844_z-z-score-trend-following-strategy/
+449846,斐波那契黄金分割回撤买入策略-Fibonacci-Golden-Ratio-Retracement-Buying-Strategy.md,PORTED,,ports/449846_fibonacci-golden-ratio-retracement-buying-strategy/
+449851,EMA与RSI-MACD-ATR结合的双均线交叉策略-Enhanced-EMA-Crossover-Strategy-with-RSI-MACD-ATR.md,PORTED,,ports/449851_ema-rsi-macd-atr-enhanced-ema-crossover-strategy-with-rsi-ma/
+449941,GM-8-ADX-双均线策略-GM-8-ADX-Dual-Moving-Average-Strategy.md,PORTED,,ports/449941_gm-8-adx-gm-8-adx-dual-moving-average-strategy/
+449942,Khaled-Tamims-Avellaneda-Stoikov-Strategy-Khaled-Tamims-Avellaneda-Stoikov-Strategy.md,PORTED,,ports/449942_khaled-tamims-avellaneda-stoikov-strategy-khaled-tamims-avel/

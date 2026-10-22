@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #449816 (基于EMA交叉的风险管理型多头策略-Long-Entry-on-EMA-Cross-with-Risk-Management-Strategy)
+# Source: https://www.fmz.com/strategy/449816  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target percent of the average price; trailing percent  [lines 110-133]
+  110: stopLossPercent = input(1, title="Stop Loss %")
+  111: targetPercent = input(2, title="Target %")
+  112: trailingStopLossPercent = input(0.5, title="Trailing Stop Loss %")
+  113: 
+  114: // Calculate EMA
+  115: ema = ema(close, emaLength)
+  116: 
+  117: // Long Entry Condition
+  118: longCondition = crossover(close, ema)
+  119: 
+  120: // Exit Condition
+  121: exitCondition = crossunder(close, ema)
+  122: 
+  123: // Stop Loss, Target Profit, Trailing Stop Loss
+  124: stopLossLevel = strategy.position_avg_price * (1 - stopLossPercent / 100)
+  125: targetProfitLevel = strategy.position_avg_price * (1 + targetPercent / 100)
+  126: trailingStopLossLevel = close * (1 - trailingStopLossPercent / 100)
+  127: trailingStopLossLevel := max(trailingStopLossLevel, nz(trailingStopLossLevel[1]))
+  128: 
+  129: // Submit Long Order
+  130: strategy.entry("Long", strategy.long, when=longCondition)
+  131: 
+  132: // Submit Exit Orders
+  133: strategy.exit("Exit", "Long", stop=stopLossLevel, limit=targetProfitLevel, trail_offset=trailingStopLossLevel, when=exitCondition)

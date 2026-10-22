@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #449811 (RSI2策略之日内反转胜率回测-RSI2-Strategy-Intraday-Reversal-Win-Rate-Backtest)
+# Source: https://www.fmz.com/strategy/449811  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty 1; margins 100 / 100; stop / target percent of the signal low  [lines 112-138]
+  112: strategy("RSI2 strategy Raj", overlay=true, margin_long=100, margin_short=100)
+  113: 
+  114: rsi_len = input.int( 2, title = "RSI Length",     group = "Indicators")
+  115: rsi_os  = input.float(10, title = "RSI Oversold", group = "Indicators")
+  116: rsi_ob  = input.float(90, title = "RSI OverBrought",   group = "Indicators")
+  117: max_los = input.float(3,title = "Max Loss Percent", group = "Indicators")
+  118: tar_per = input.float(6,title = "Target Percent",group = "Indicators")
+  119: 
+  120: //Get the rsi value of the stock
+  121: rsi = ta.rsi(close, rsi_len)
+  122: sma = ta.sma(close,200)
+  123: var ent_dat = 0
+  124: var tar = 0.0
+  125: var los = 0.0
+  126: var bp = 0.0
+  127: 
+  128: if ((close > sma) and (rsi < rsi_os))
+  129:     strategy.entry("RSI2 Long Entry", strategy.long,1)
+  130:     ent_dat := time(timeframe = timeframe.period)
+  131: 
+  132: if(ent_dat == time(timeframe = timeframe.period))
+  133:     bp := low //high/2 + low/2
+  134:     tar := bp * (1 + (tar_per/100))
+  135:     los := bp * (1 - (max_los/100))
+  136: 
+  137: if (time(timeframe = timeframe.period) > ent_dat)
+  138:     strategy.exit("RSI2 Exit", "RSI2 Long Entry",qty = 1, limit = tar, stop = los, comment_profit = "P", comment_loss = "L")
