@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #440701 (黄金布林带跳空回归系统Golden-Bollinger-Band-Gap-Reversion-System)
+# Source: https://www.fmz.com/strategy/440701  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

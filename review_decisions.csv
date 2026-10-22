@@ -247,6 +247,10 @@ fmz_id,file,final_outcome,criterion,reason
 440546,Ichimoku-Entries策略Ichimoku-Entries-Strategy.md,REJECTED_ON_READING,2,"The exits are strategy.exit(loss = close - close x 1 %, profit = close + close x 2 %): price levels passed to loss and profit, which are in ticks (criterion 2, as #437048, #437677)."
 440565,多时间框架枢轴点超趋势策略Pivot-SuperTrend-Strategy-Across-Multiple-Timeframes.md,REJECTED_ON_READING,1,"Every entry comes on a bar where Trend changes, and the 'if change(Trend): strategy.close_all()' written after the entries leaves that bar flat (the close_all-after-entry convention, as #430380): as written no position is ever held (as #430384)."
 440675,均线趋势跟踪策略Moving-Average-Trend-Following-Strategy.md,REJECTED_ON_READING,2,"The exits are strategy.exit(loss = atr(14), profit = 2 atr(14)): ATR price amounts passed to loss / profit, which are in ticks, with no /mintick (criterion 2, as #437048, #437677)."
+440683,EMA指标的趋势跟踪策略EMA-Crossover-Trend-Following-Strategy.md,REJECTED_ON_READING,2,"The exit is strategy.exit(loss = close x (1 - 1 %), profit = close x 2): price levels passed to loss / profit, which are in ticks (criterion 2, as #437048, #437677)."
+440691,动态止损追踪策略Trailing-Stop-Loss-Percent-Strategy.md,REJECTED_ON_READING,1,"The entry condition is always true and its block resets the trailing level to 95 % of the current bar's high on every bar, so the long only closes on a single 1-minute bar with a 5 % range and re-enters at once: a buy-and-hold from the data start (criterion 1, as #430384)."
+440692,阴阳吊颈线策略Yin-Yang-Hanging-Man-Strategy.md,REJECTED_ON_READING,1,"There is no exit of any kind: the first doji (body under 0.05 price units) opens one long that is held to the end of the data, a buy-and-hold from near the data start (criterion 1, as #430384)."
+440711,基于区间突破的双向趋势追踪策略Dual-directional-Trend-Tracking-Strategy-Based-on-Range-Breakout.md,REJECTED_ON_READING,1,"Pyramiding 3 with repeated 'Long' / 'Short' entries of an equity-based lot, and exits sent as qty-0 'Close' entries: accumulation with position-size-dependent orders (criterion 1, as #430762)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2088,3 +2092,11 @@ fmz_id,file,final_outcome,criterion,reason
 440564,量化交易蜡烛形态与趋势追踪策略Quantitative-Candlestick-Pattern-and-Trend-Following-Strategy.md,PORTED,,ports/440564_quantitative-candlestick-pattern-and-trend-following-strateg/
 440677,跨时间框架动量追踪策略Cross-Timeframe-Momentum-Tracking-Strategy.md,PORTED,,ports/440677_cross-timeframe-momentum-tracking-strategy/
 440679,KDJ阳线突破买入策略KDJ-Golden-Cross-Long-Entry-Strategy.md,PORTED,,ports/440679_kdj-kdj-golden-cross-long-entry-strategy/
+440680,动量突破短线交易策略Momentum-Breakout-Intraday-Trading-Strategy.md,PORTED,,ports/440680_momentum-breakout-intraday-trading-strategy/
+440684,基于动态均线交叉策略Dynamic-Moving-Average-Crossover-Strategy.md,PORTED,,ports/440684_dynamic-moving-average-crossover-strategy/
+440685,双因子反转波段突破组合策略Reversal-Breakout-Bandpass-Combo-Strategy.md,PORTED,,ports/440685_reversal-breakout-bandpass-combo-strategy/
+440690,三重移动平均线趋势跟踪策略Triple-Moving-Average-Trend-Following-Strategy.md,PORTED,,ports/440690_triple-moving-average-trend-following-strategy/
+440695,基于布林带B指标的长线交易策略Long-Term-Trading-Strategy-Based-on-Bollinger-Bands-B-Indicator.md,PORTED,,ports/440695_b-long-term-trading-strategy-based-on-bollinger-bands-b-indi/
+440698,均衡尺云图趋势跟踪策略Ichimoku-Cloud-Trend-Following-Strategy.md,PORTED,,ports/440698_ichimoku-cloud-trend-following-strategy/
+440700,量化趋势追踪策略Quantitative-Trend-Tracking-Strategy.md,PORTED,,ports/440700_quantitative-trend-tracking-strategy/
+440701,黄金布林带跳空回归系统Golden-Bollinger-Band-Gap-Reversion-System.md,PORTED,,ports/440701_golden-bollinger-band-gap-reversion-system/

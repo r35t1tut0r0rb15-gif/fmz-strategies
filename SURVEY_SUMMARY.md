@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1823 |
-| PORT_CANDIDATE | 1671 |
+| PORTED | 1831 |
+| PORT_CANDIDATE | 1659 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 565 |
 | FLAGGED_CRYPTO_ONLY | 253 |
+| REJECTED_ON_READING | 252 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 248 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1951,7 +1951,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440564 | `ports/440564_quantitative-candlestick-pattern-and-trend-following-strateg/` | PineScript | donchian_breakout | none | enter_fast x2, exit_fast x2 | 4 |
 | 440677 | `ports/440677_cross-timeframe-momentum-tracking-strategy/` | PineScript | combo_123_reversal | none | length x2, signal_length x2 | 4 |
 | 440679 | `ports/440679_kdj-kdj-golden-cross-long-entry-strategy/` | PineScript | stochastic_oscillator | none | ilong x2, isig x2 | 4 |
-| | **1823 ports** | | | | | **8840** |
+| 440680 | `ports/440680_momentum-breakout-intraday-trading-strategy/` | PineScript | multi_indicator_confluence | none | adx_min x2, cooldown x2 | 4 |
+| 440684 | `ports/440684_dynamic-moving-average-crossover-strategy/` | PineScript | ma_cross | trailing_stop_pending | fast_length x2, slow_length x2 | 4 |
+| 440685 | `ports/440685_reversal-breakout-bandpass-combo-strategy/` | PineScript | combo_123_reversal | none | length x2, length_bf x2 | 4 |
+| 440690 | `ports/440690_triple-moving-average-trend-following-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 440695 | `ports/440695_b-long-term-trading-strategy-based-on-bollinger-bands-b-indi/` | PineScript | bollinger_reversion | none | tp x2, dev x2 | 4 |
+| 440698 | `ports/440698_ichimoku-cloud-trend-following-strategy/` | PineScript | ichimoku | none | tenkan x2, kijun x2 | 4 |
+| 440700 | `ports/440700_quantitative-trend-tracking-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | mult x2, rsi_comp x2 | 4 |
+| 440701 | `ports/440701_golden-bollinger-band-gap-reversion-system/` | PineScript | rsi_oscillator | coarse_bar_stop | k_br x2, adx_max x2 | 4 |
+| | **1831 ports** | | | | | **8872** |
 
 ## Rejected on reading
 
@@ -2205,6 +2213,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440546 | Ichimoku-Entries策略Ichimoku-Entries-Strategy.md | 2 | The exits are strategy.exit(loss = close - close x 1 %, profit = close + close x 2 %): price levels passed to loss and profit, which are in ticks (criterion 2, as #437048, #437677). |
 | 440565 | 多时间框架枢轴点超趋势策略Pivot-SuperTrend-Strategy-Across-Multiple-Timeframes.md | 1 | Every entry comes on a bar where Trend changes, and the 'if change(Trend): strategy.close_all()' written after the entries leaves that bar flat (the close_all-after-entry convention, as #430380): as written no position is ever held (as #430384). |
 | 440675 | 均线趋势跟踪策略Moving-Average-Trend-Following-Strategy.md | 2 | The exits are strategy.exit(loss = atr(14), profit = 2 atr(14)): ATR price amounts passed to loss / profit, which are in ticks, with no /mintick (criterion 2, as #437048, #437677). |
+| 440683 | EMA指标的趋势跟踪策略EMA-Crossover-Trend-Following-Strategy.md | 2 | The exit is strategy.exit(loss = close x (1 - 1 %), profit = close x 2): price levels passed to loss / profit, which are in ticks (criterion 2, as #437048, #437677). |
+| 440691 | 动态止损追踪策略Trailing-Stop-Loss-Percent-Strategy.md | 1 | The entry condition is always true and its block resets the trailing level to 95 % of the current bar's high on every bar, so the long only closes on a single 1-minute bar with a 5 % range and re-enters at once: a buy-and-hold from the data start (criterion 1, as #430384). |
+| 440692 | 阴阳吊颈线策略Yin-Yang-Hanging-Man-Strategy.md | 1 | There is no exit of any kind: the first doji (body under 0.05 price units) opens one long that is held to the end of the data, a buy-and-hold from near the data start (criterion 1, as #430384). |
+| 440711 | 基于区间突破的双向趋势追踪策略Dual-directional-Trend-Tracking-Strategy-Based-on-Range-Breakout.md | 1 | Pyramiding 3 with repeated 'Long' / 'Short' entries of an equity-based lot, and exits sent as qty-0 'Close' entries: accumulation with position-size-dependent orders (criterion 1, as #430762). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -4076,6 +4076,19 @@ SIZING = {
     ],
     440677: [],
     440679: [],
+    # ---- FMZ-C, batch C138 (2026-10-22)
+    440680: [],
+    440684: [],
+    440685: [],
+    440690: [
+        ("strategy(): capital, per-order commission, slippage; qty 1; position sizing input", 151, 226),
+    ],
+    440695: [],
+    440698: [
+        ("strategy(): capital, per-order commission, slippage", 149, 149),
+    ],
+    440700: [],
+    440701: [],
 }
 
 REJECTED_ON_READING = {
@@ -5114,6 +5127,20 @@ REJECTED_ON_READING = {
     440675: ("2", "The exits are strategy.exit(loss = atr(14), profit = 2 atr(14)): ATR price amounts "
               "passed to loss / profit, which are in ticks, with no /mintick (criterion 2, as "
               "#437048, #437677)."),
+    # ---- FMZ-C, batch C138 (2026-10-22)
+    440683: ("2", "The exit is strategy.exit(loss = close x (1 - 1 %), profit = close x 2): price "
+              "levels passed to loss / profit, which are in ticks (criterion 2, as #437048, "
+              "#437677)."),
+    440691: ("1", "The entry condition is always true and its block resets the trailing level to 95 % "
+              "of the current bar's high on every bar, so the long only closes on a single "
+              "1-minute bar with a 5 % range and re-enters at once: a buy-and-hold from the data "
+              "start (criterion 1, as #430384)."),
+    440692: ("1", "There is no exit of any kind: the first doji (body under 0.05 price units) opens "
+              "one long that is held to the end of the data, a buy-and-hold from near the data "
+              "start (criterion 1, as #430384)."),
+    440711: ("1", "Pyramiding 3 with repeated 'Long' / 'Short' entries of an equity-based lot, and "
+              "exits sent as qty-0 'Close' entries: accumulation with position-size-dependent "
+              "orders (criterion 1, as #430762)."),
 }
 
 DUPLICATE_ON_READING = {
