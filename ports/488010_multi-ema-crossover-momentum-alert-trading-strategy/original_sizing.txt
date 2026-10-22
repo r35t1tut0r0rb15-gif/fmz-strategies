@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #488010 (多指数均线交叉动量预警交易策略-Multi-EMA-Crossover-Momentum-Alert-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/488010  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 500, commission 0.1 %  [lines 153-153]
+  153: strategy(title='GRIM309 CallPut Strategy', shorttitle='CallsPuts Strategy', overlay=true, initial_capital=500, commission_value=0.1)

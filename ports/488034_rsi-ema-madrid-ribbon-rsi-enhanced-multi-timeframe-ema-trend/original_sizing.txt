@@ -1,0 +1,107 @@
+# Original sizing and money-management code, FMZ #488034 (马德里带状RSI增强型多时框EMA趋势策略-Madrid-Ribbon-RSI-Enhanced-Multi-Timeframe-EMA-Trend-Strategy)
+# Source: https://www.fmz.com/strategy/488034  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): cash 100000; qty = 100000 / close  [lines 186-287]
+  186: strategy("Madrid Ribbon Strategy with Backtesting", shorttitle="Madrid Ribbon Strat", overlay=true, default_qty_type=strategy.cash, default_qty_value=100000)
+  187: 
+  188: // Inputs
+  189: i_exp = input.bool(true, title="Use Exponential MA")
+  190: wallet_balance = input.float(100000, title="Starting Wallet Balance", minval=1000)
+  191: 
+  192: // RSI Settings
+  193: rsi_length = input.int(14, title="RSI Length")
+  194: rsi = ta.rsi(close, rsi_length)
+  195: 
+  196: // Profit Target & Stop Loss (%)
+  197: long_take_profit_perc = input.float(0.5, title="Long Take Profit (%)") / 100  // 0.5%
+  198: long_stop_loss_perc = input.float(1.0, title="Long Stop Loss (%)") / 100    // 1%
+  199: short_take_profit_perc = input.float(0.5, title="Short Take Profit (%)") / 100  // 0.5%
+  200: short_stop_loss_perc = input.float(1.0, title="Short Stop Loss (%)") / 100    // 1%
+  201: 
+  202: // Source
+  203: src = close
+  204: 
+  205: // Compute Moving Averages
+  206: ma05 = i_exp ? ta.ema(src, 5) : ta.sma(src, 5)
+  207: ma10 = i_exp ? ta.ema(src, 10) : ta.sma(src, 10)
+  208: ma15 = i_exp ? ta.ema(src, 15) : ta.sma(src, 15)
+  209: ma20 = i_exp ? ta.ema(src, 20) : ta.sma(src, 20)
+  210: ma25 = i_exp ? ta.ema(src, 25) : ta.sma(src, 25)
+  211: ma30 = i_exp ? ta.ema(src, 30) : ta.sma(src, 30)
+  212: ma35 = i_exp ? ta.ema(src, 35) : ta.sma(src, 35)
+  213: ma40 = i_exp ? ta.ema(src, 40) : ta.sma(src, 40)
+  214: ma45 = i_exp ? ta.ema(src, 45) : ta.sma(src, 45)
+  215: ma50 = i_exp ? ta.ema(src, 50) : ta.sma(src, 50)
+  216: ma55 = i_exp ? ta.ema(src, 55) : ta.sma(src, 55)
+  217: ma60 = i_exp ? ta.ema(src, 60) : ta.sma(src, 60)
+  218: ma65 = i_exp ? ta.ema(src, 65) : ta.sma(src, 65)
+  219: ma70 = i_exp ? ta.ema(src, 70) : ta.sma(src, 70)
+  220: ma75 = i_exp ? ta.ema(src, 75) : ta.sma(src, 75)
+  221: ma80 = i_exp ? ta.ema(src, 80) : ta.sma(src, 80)
+  222: ma85 = i_exp ? ta.ema(src, 85) : ta.sma(src, 85)
+  223: ma90 = i_exp ? ta.ema(src, 90) : ta.sma(src, 90)
+  224: ma100 = i_exp ? ta.ema(src, 100) : ta.sma(src, 100)
+  225: 
+  226: // Function for ribbon color
+  227: maColor(_ma, _maRef) =>
+  228:     diffMA = ta.change(_ma)
+  229:     resultColor = diffMA >= 0 and _ma > _maRef ? color.lime :
+  230:                   diffMA < 0 and _ma > _maRef ? color.maroon :
+  231:                   diffMA <= 0 and _ma < _maRef ? color.red :
+  232:                   diffMA >= 0 and _ma < _maRef ? color.green : color.gray
+  233:     resultColor
+  234: 
+  235: // Count Green and Red Ribbons
+  236: count_green = 0
+  237: count_red = 0
+  238: 
+  239: mas = array.new_float(18)
+  240: array.set(mas, 0, ma05)
+  241: array.set(mas, 1, ma10)
+  242: array.set(mas, 2, ma15)
+  243: array.set(mas, 3, ma20)
+  244: array.set(mas, 4, ma25)
+  245: array.set(mas, 5, ma30)
+  246: array.set(mas, 6, ma35)
+  247: array.set(mas, 7, ma40)
+  248: array.set(mas, 8, ma45)
+  249: array.set(mas, 9, ma50)
+  250: array.set(mas, 10, ma55)
+  251: array.set(mas, 11, ma60)
+  252: array.set(mas, 12, ma65)
+  253: array.set(mas, 13, ma70)
+  254: array.set(mas, 14, ma75)
+  255: array.set(mas, 15, ma80)
+  256: array.set(mas, 16, ma85)
+  257: array.set(mas, 17, ma90)
+  258: 
+  259: for i = 0 to array.size(mas) - 1
+  260:     ma = array.get(mas, i)
+  261:     col = maColor(ma, ma100)
+  262:     count_green += col == color.lime or col == color.green ? 1 : 0
+  263:     count_red += col == color.red or col == color.maroon ? 1 : 0
+  264: 
+  265: // Buy/Sell Conditions
+  266: buy_signal = count_green >= 13
+  267: sell_signal = count_red >= 9
+  268: 
+  269: // RSI Filtering
+  270: rsi_buy = buy_signal and rsi < 30
+  271: rsi_sell = sell_signal and rsi > 70
+  272: 
+  273: // Calculate Entry, Take Profit & Stop Loss for Long and Short
+  274: entry_price = close
+  275: long_take_profit = entry_price * (1 + long_take_profit_perc)  // +0.5%
+  276: long_stop_loss = entry_price * (1 - long_stop_loss_perc)      // -1%
+  277: short_take_profit = entry_price * (1 - short_take_profit_perc) // -0.5%
+  278: short_stop_loss = entry_price * (1 + short_stop_loss_perc)     // +1%
+  279: 
+  280: // Backtesting Orders
+  281: if rsi_buy
+  282:     strategy.entry("Buy", strategy.long, qty=wallet_balance / close)
+  283:     strategy.exit("Long Exit", from_entry="Buy", limit=long_take_profit, stop=long_stop_loss)
+  284:     alert("? Buy Signal! Entering long trade at " + str.tostring(entry_price), alert.freq_once_per_bar_close)
+  285: 
+  286: if rsi_sell
+  287:     strategy.entry("Sell", strategy.short, qty=wallet_balance / close)

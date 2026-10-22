@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3123 |
+| PORTED | 3133 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 465 |
+| REJECTED_ON_READING | 468 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 146 |
+| PORT_CANDIDATE | 133 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3251,7 +3251,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 486564 | `ports/486564_dual-moving-average-crossover-trading-system-a-quantitative/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 486566 | `ports/486566_rsi-moving-average-rsi-crossover-momentum-confirmation-strat/` | PineScript | ma_cross | none | sma_short_period x2, take_profit_perc x2 | 4 |
 | 486567 | `ports/486567_logarithmic-price-mean-reversion-dynamic-stop-loss-strategy/` | PineScript | zscore_reversion | none | window x2, z_entry x2 | 4 |
-| | **3123 ports** | | | | | **14302** |
+| 486571 | `ports/486571_sma-atr-sma-atr-dynamic-risk-reward-trend-following-strategy/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 486573 | `ports/486573_rsi-macd-multi-indicator-trend-confirmation-trading-system-e/` | PineScript | multi_indicator_confluence | none | len1 x2, len3 x2 | 4 |
+| 488004 | `ports/488004_ema-macd-atr-multi-indicator-dynamic-trend-following-trading/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | atrMultiplier x2, shortEmaLength x2 | 4 |
+| 488010 | `ports/488010_multi-ema-crossover-momentum-alert-trading-strategy/` | PineScript | ma_trend | none | len15 x2, cooldownBars x2 | 4 |
+| 488014 | `ports/488014_k-ema-dynamic-position-sizing-and-entry-candle-stop-loss-ema/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 488020 | `ports/488020_multi-indicator-confirmation-dynamic-trailing-breakout-quant/` | PineScript | ma_breakout | none | emaFast x2, maxHoldBars x2 | 4 |
+| 488021 | `ports/488021_k-atr-dynamic-resistance-and-support-dual-candlestick-patter/` | PineScript | candlestick_pattern | coarse_bar_stop, trailing_stop_pending | atrMultiplier x2, lookback x2 | 4 |
+| 488023 | `ports/488023_long-term-trend-and-volatility-recognition-combined-exponent/` | PineScript | supertrend | none | factor x2, ma_length x2 | 4 |
+| 488034 | `ports/488034_rsi-ema-madrid-ribbon-rsi-enhanced-multi-timeframe-ema-trend/` | PineScript | ma_ribbon | coarse_bar_stop, trailing_stop_pending | long_take_profit_perc x2, long_stop_loss_perc x2 | 4 |
+| 488129 | `ports/488129_macd-sar-multi-indicator-confirmation-trading-system-macd-pa/` | PineScript | supertrend | none | atrFactor x2, atrPeriod x2 | 4 |
+| | **3133 ports** | | | | | **14342** |
 
 ## Rejected on reading
 
@@ -3722,6 +3732,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 484924 | 多重技术指标黄金即时变动检测与风险管理策略-Multi-Technical-Indicator-Gold-Real-Time-Movement-Detection-and-Risk-Management-Strategy.md | 2 | The take-profit and stop are fixed price amounts (50 / 30 'pips' x 0.1 = 5.0 / 3.0, hard-coded for gold), added to the close (criterion 2, as #473377). |
 | 485288 | 均线突破固定利润目标自适应时间周期量化交易策略-Adaptive-Timeframe-SMA-Crossover-Strategy-with-Fixed-Profit-Targets.md | 2 | The profit target is 20 'points' added to the average price as a fixed price amount (criterion 2, as #473377); the timeframe test also closes everything on the header's 5h chart. |
 | 486563 | 多周期指数均线与MACD协同多空趋势量化交易策略-Multi-Timeframe-EMA-and-MACD-Enhanced-Trend-Quantification-Trading-Strategy.md | 2 | The take-profit and stop are dollar amounts divided by a share quantity (2000 / 100 and 1000 / 100), fixed price offsets from the entry (criterion 2, as #473377). |
+| 486570 | 多时间框架RSI与EMA交叉量化动量策略-Multi-Timeframe-RSI-EMA-Crossover-Momentum-Quantitative-Strategy.md | 1 | dailyRSI / weeklyRSI = request.security(tickerid, 'D' / 'W', ta.rsi(close, 14), lookahead = barmerge.lookahead_on) on a 3-hour chart: every bar of a day or week reads that period's FINAL RSI, known only when it ends (look-ahead; criterion 1, as #438495). |
+| 487999 | 动态交叉移动平均线趋势捕捉策略与风险管理系统-Dynamic-Crossover-Moving-Average-Trend-Capture-Strategy-with-Risk-Management-System.md | 2 | The exits are strategy.exit(trail_points = 3 x stopLossDistance, trail_offset = stopLossDistance), where stopLossDistance is a price amount (7 USD risk / quantity); price amounts passed as tick counts make an instrument-specific trail (criterion 2, as #482767). |
+| 488008 | 量子启发式概率趋势交易策略基于EMA和RSI的量化模型-Quantum-Inspired-Probability-Trend-Trading-Strategy-EMA-RSI-Based-Quantitative-Model.md | 2 | The trend filter is 1 / (1 + exp(-0.1 x (EMA 9 - EMA 55))) > 0.6 / < 0.4, a logistic of a raw price difference: it means the EMAs are more than about 4 quote units apart, which depends on the absolute price scale (always met on BTC, never on a 1.1 FX price; criterion 2, as #432339). The bracket also depends on bar_index % 50, the bar count from the chart's first bar. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

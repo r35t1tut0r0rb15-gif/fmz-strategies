@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #488014 (动态仓位与入场K线止损的EMA交叉策略-Dynamic-Position-Sizing-and-Entry-Candle-Stop-Loss-EMA-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/488014  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = 1000 / (close - low)  [lines 185-196]
+  185: var float buyQty = na
+  186: if (longCondition)
+  187:     entryCandleLow := low
+  188:     buyQty := 1000 / (close - low)
+  189: 
+  190: // Plot Tiny Triangle Entry Signal
+  191: if (longCondition)
+  192:     label.new(bar_index, low, "▲", color=color.green, textcolor=color.green, size=size.tiny, style=label.style_label_down, yloc=yloc.belowbar)
+  193: 
+  194: // Entry and stop-loss
+  195: if (longCondition)
+  196:     strategy.entry("Buy", strategy.long, qty=buyQty)

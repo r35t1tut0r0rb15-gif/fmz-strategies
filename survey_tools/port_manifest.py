@@ -6837,6 +6837,27 @@ SIZING = {
     486564: [],
     486566: [],
     486567: [],
+    # ---- FMZ-C, batch C264 (2026-10-22)
+    486571: [],
+    486573: [],
+    488004: [],
+    488010: [
+        ("strategy(): capital 500, commission 0.1 %", 153, 153),
+    ],
+    488014: [
+        ("qty = 1000 / (close - low)", 185, 196),
+    ],
+    488020: [
+        ("risk 0.5 % of equity x leverage 5 (ATR-scaled), margins 20", 232, 276),
+    ],
+    488021: [],
+    488023: [],
+    488034: [
+        ("strategy(): cash 100000; qty = 100000 / close", 186, 287),
+    ],
+    488129: [
+        ("strategy(): 100 % of equity, no commission or slippage", 207, 213),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8642,6 +8663,20 @@ REJECTED_ON_READING = {
               "header's 5h chart."),
     486563: ("2", "The take-profit and stop are dollar amounts divided by a share quantity (2000 / "
               "100 and 1000 / 100), fixed price offsets from the entry (criterion 2, as #473377)."),
+    # ---- FMZ-C, batch C264 (2026-10-22)
+    486570: ("1", "dailyRSI / weeklyRSI = request.security(tickerid, 'D' / 'W', ta.rsi(close, 14), "
+              "lookahead = barmerge.lookahead_on) on a 3-hour chart: every bar of a day or week "
+              "reads that period's FINAL RSI, known only when it ends (look-ahead; criterion 1, "
+              "as #438495)."),
+    487999: ("2", "The exits are strategy.exit(trail_points = 3 x stopLossDistance, trail_offset = "
+              "stopLossDistance), where stopLossDistance is a price amount (7 USD risk / "
+              "quantity); price amounts passed as tick counts make an instrument-specific trail "
+              "(criterion 2, as #482767)."),
+    488008: ("2", "The trend filter is 1 / (1 + exp(-0.1 x (EMA 9 - EMA 55))) > 0.6 / < 0.4, a "
+              "logistic of a raw price difference: it means the EMAs are more than about 4 quote "
+              "units apart, which depends on the absolute price scale (always met on BTC, never "
+              "on a 1.1 FX price; criterion 2, as #432339). The bracket also depends on bar_index "
+              "% 50, the bar count from the chart's first bar."),
 }
 
 DUPLICATE_ON_READING = {

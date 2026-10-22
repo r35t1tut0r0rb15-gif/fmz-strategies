@@ -1,0 +1,50 @@
+# Original sizing and money-management code, FMZ #488020 (多指标确认动态追踪突破量化交易策略-Multi-Indicator-Confirmation-Dynamic-Trailing-Breakout-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/488020  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## risk 0.5 % of equity x leverage 5 (ATR-scaled), margins 20  [lines 232-276]
+  232: strategy("MomentumBreakout V1.2 - DOGE/USDT", overlay=true, margin_long=20, margin_short=20)
+  233: 
+  234: // === Core Parameters ===
+  235: emaFast = input.int(15, "Fast EMA Length", minval=10, maxval=50)
+  236: emaSlow = input.int(40, "Slow EMA Length", minval=20, maxval=100)
+  237: atrPeriod = input.int(14, "ATR Period", minval=1, maxval=50)
+  238: riskPct = input.float(0.5, "Risk Per Trade (%)", minval=0.1, maxval=5.0, step=0.1)
+  239: baseLeverage = input.float(5.0, "Base Leverage", minval=1.0, maxval=20.0, step=0.5)
+  240: feeRate = input.float(0.1, "Fee Rate (%)", minval=0.0, maxval=1.0, step=0.01)
+  241: maxHoldBars = input.int(72, "Max Hold Bars (12H)", minval=1, maxval=1000)
+  242: rsiPeriod = input.int(14, "RSI Period", minval=5, maxval=50)
+  243: macdFast = input.int(12, "MACD Fast Length", minval=5, maxval=50)
+  244: macdSlow = input.int(26, "MACD Slow Length", minval=5, maxval=50)
+  245: macdSignal = input.int(9, "MACD Signal Length", minval=1, maxval=50)
+  246: 
+  247: // === Calculate Indicators ===
+  248: // EMA (10m)
+  249: emaFastValue = ta.ema(close, emaFast)
+  250: emaSlowValue = ta.ema(close, emaSlow)
+  251: 
+  252: // ATR
+  253: atrValue = ta.atr(atrPeriod)
+  254: 
+  255: // RSI (10m and 1H)
+  256: rsiValue = ta.rsi(close, rsiPeriod)
+  257: rsiValue_1h = request.security(syminfo.tickerid, "60", ta.rsi(close, rsiPeriod)[1], barmerge.gaps_off)
+  258: 
+  259: // MACD (1H)
+  260: [macdLine_1h, signalLine_1h, _] = request.security(syminfo.tickerid, "60", ta.macd(close, macdFast, macdSlow, macdSignal), barmerge.gaps_off)
+  261: macdLine_1h := macdLine_1h[1]
+  262: signalLine_1h := signalLine_1h[1]
+  263: 
+  264: // Trend Confirmation
+  265: trendUp_1h = emaFastValue > emaSlowValue and rsiValue_1h > 50 and macdLine_1h > signalLine_1h
+  266: trendDown_1h = emaFastValue < emaSlowValue
+  267: breakoutLong = ta.crossover(close, emaFastValue) and trendUp_1h and close > ta.sma(close, 20) and not na(emaFastValue)
+  268: breakoutShort = ta.crossunder(close, emaSlowValue) and trendDown_1h and atrValue > ta.sma(atrValue, 14) and not na(emaSlowValue)
+  269: noActivePosition = strategy.position_size == 0
+  270: 
+  271: // === Dynamic Position Sizing ===
+  272: equity = strategy.equity
+  273: riskAmount = equity * (riskPct / 100)
+  274: stopDistance = atrValue * 1.2  // Tightened to 1.2x ATR
+  275: leverage = baseLeverage * math.min(1.0, 1.0 / (atrValue / close))
+  276: positionSize = math.round((riskAmount / stopDistance) * leverage)
