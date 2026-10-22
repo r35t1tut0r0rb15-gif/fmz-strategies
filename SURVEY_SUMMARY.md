@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2968 |
+| PORTED | 2978 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 426 |
-| PORT_CANDIDATE | 340 |
+| REJECTED_ON_READING | 428 |
+| PORT_CANDIDATE | 328 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -3096,7 +3096,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482774 | `ports/482774_ema-atr-ema-cross-over-trend-following-strategy-with-atr-dyn/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | atr_mult x2, take_profit_perc x2 | 4 |
 | 482775 | `ports/482775_rsi-advanced-dual-moving-average-momentum-reversal-strategy/` | PineScript | bollinger_reversion | none | bb_length x2, bb_std_dev x2 | 4 |
 | 482778 | `ports/482778_5-5-ema-instant-divergence-breakout-trading-strategy/` | PineScript | ma_pullback | coarse_bar_stop, trailing_stop_pending | ema_length x2, target_multiplier x2 | 4 |
-| | **2968 ports** | | | | | **13699** |
+| 482779 | `ports/482779_kama-macd-adaptive-trend-following-strategy-based-on-kama-an/` | PineScript | adaptive_average | trailing_stop_pending | ama_length x2, slow_length x2 | 4 |
+| 482786 | `ports/482786_gaussian-channel-trend-following-with-stochastic-rsi-trading/` | PineScript | volatility_channel_breakout | none | length x2, multiplier x2 | 4 |
+| 482787 | `ports/482787_sar-multi-technical-indicator-trend-reversal-quantitative-tr/` | PineScript | parabolic_sar | none | zigzag_depth x2, sar_start x2 | 4 |
+| 482788 | `ports/482788_ema-sma-multi-moving-average-trend-reversal-quantitative-str/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 482789 | `ports/482789_dual-moving-average-trend-crossover-quantitative-trading-str/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 482792 | `ports/482792_multi-exponential-moving-average-golden-cross-trend-followin/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 482793 | `ports/482793_trend-confirmation-multi-indicator-dynamic-stop-loss-strateg/` | PineScript | multi_indicator_confluence | trailing_stop_pending | sma_length x2, adx_min x2 | 4 |
+| 482800 | `ports/482800_multiple-moving-average-crossover-trend-capture-strategy/` | PineScript | ma_cross | none | t_length x2, f_length x2 | 4 |
+| 482802 | `ports/482802_multi-level-take-profit-and-dynamic-stop-loss-enhanced-quant/` | PineScript | candle_pattern | coarse_bar_stop |  | 0 |
+| 482803 | `ports/482803_granville-macd-trend-following-trading-strategy-based-on-gra/` | PineScript | macd_cross | coarse_bar_stop, trailing_stop_pending | ema_period x2, tp_mult x2 | 4 |
+| | **2978 ports** | | | | | **13735** |
 
 ## Rejected on reading
 
@@ -3528,6 +3538,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482506 | 基于均值回归的多层级支撑阻力周线交易策略-Multi-Level-Support-Resistance-Weekly-Mean-Reversion-Trading-Strategy.md | 1 | pyramiding = 50 with up to four separate long entries per week at the S1-S4 levels, each with its own target: grid adds (criterion 1). |
 | 482672 | 基于动态DCA的加密货币量化交易策略-Dynamic-DCA-based-Cryptocurrency-Quantitative-Trading-Strategy.md | 1 | pyramiding = 999 with up to 30 safety orders added as the price falls (scaled DCA averaging down): DCA adds (criterion 1). |
 | 482767 | 多指标交叉动态止盈止损趋势跟踪策略-Multi-Indicator-Crossover-Dynamic-Stop-Loss-Trend-Following-Strategy.md | 2 | The exit passes trail_points = atr x 0.5 and trail_offset = atr x 0.3, price amounts, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #442115). |
+| 482783 | 基于马丁格尔理论的网格式加仓策略模型-Grid-based-Position-Accumulation-Strategy-Based-on-Martingale-Theory.md | 1 | strategy.order buys are added on each 5 % drop with the quantity doubled each time, up to 10 doublings: martingale adds (criterion 1). |
+| 482785 | 移动均线趋势向量量化交易策略-Moving-Average-Trend-Direction-Quantitative-Strategy-with-Cross-Validation.md | 1 | The open / close MA series come from request.security at the alternate resolution (3 x the chart) with lookahead=barmerge.lookahead_on (useRes on by default): higher-bar values are read before the bar closes (criterion 1, lookahead_on for a higher time frame, as #482420). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

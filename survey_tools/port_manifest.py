@@ -6478,6 +6478,29 @@ SIZING = {
     482778: [
         ("strategy(): margin 100 / 100", 111, 111),
     ],
+    # ---- FMZ-C, batch C249 (2026-10-22)
+    482779: [
+        ("strategy(): 10 % of equity", 106, 106),
+    ],
+    482786: [
+        ("strategy(): capital 100000, 100 % of equity, commission 0.1 %, margin 100 / 100, pyramiding 1", 98, 98),
+    ],
+    482787: [
+        ("strategy(): 10 % of equity", 103, 103),
+    ],
+    482788: [],
+    482789: [],
+    482792: [
+        ("strategy(): 100 % of equity, commission 0.1, slippage 3", 91, 91),
+    ],
+    482793: [],
+    482800: [],
+    482802: [
+        ("strategy(): margin 100 / 100", 84, 84),
+    ],
+    482803: [
+        ("strategy(): capital 100000, 10 % of equity", 99, 99),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8174,6 +8197,13 @@ REJECTED_ON_READING = {
     482767: ("2", "The exit passes trail_points = atr x 0.5 and trail_offset = atr x 0.3, price "
               "amounts, where the call takes ticks, with no /mintick: the trailing exit is "
               "undefined as written (criterion 2, as #442115)."),
+    # ---- FMZ-C, batch C249 (2026-10-22)
+    482783: ("1", "strategy.order buys are added on each 5 % drop with the quantity doubled each "
+              "time, up to 10 doublings: martingale adds (criterion 1)."),
+    482785: ("1", "The open / close MA series come from request.security at the alternate resolution "
+              "(3 x the chart) with lookahead=barmerge.lookahead_on (useRes on by default): "
+              "higher-bar values are read before the bar closes (criterion 1, lookahead_on for a "
+              "higher time frame, as #482420)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #482788 (多均线趋势反转量化策略基于EMA和SMA的组合信号系统-Multi-Moving-Average-Trend-Reversal-Quantitative-Strategy-Combined-EMA-and-SMA-Signal-System)
+# Source: https://www.fmz.com/strategy/482788  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
