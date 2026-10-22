@@ -6899,6 +6899,29 @@ SIZING = {
         ("strategy(): 100 % of equity, commission 0.02 %", 176, 176),
     ],
     488518: [],
+    # ---- FMZ-C, batch C267 (2026-10-22)
+    488521: [],
+    488523: [
+        ("strategy(): 100 % of equity", 137, 137),
+    ],
+    488527: [
+        ("strategy(): 10 % of equity", 171, 171),
+    ],
+    488536: [],
+    488537: [
+        ("strategy(): capital 100000, 100 % of equity, margins 100", 115, 115),
+    ],
+    488541: [],
+    488543: [
+        ("strategy(): capital 1000, 10 % of equity, commission 0.075 %", 107, 107),
+    ],
+    488850: [
+        ("strategy(): capital 100000, 10 % of equity", 176, 180),
+    ],
+    488883: [],
+    488889: [
+        ("qty = floor(equity / close); slippage 3", 196, 221),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8742,6 +8765,15 @@ REJECTED_ON_READING = {
     488513: ("1", "The range minutes are read from t = time('1', '0930-1600'), which is na outside "
               "09:30-16:00, so hour(t) / minute(t) can never be 9:15-9:20; the range is never set "
               "and the script can never trade (criterion 1, as #430384)."),
+    # ---- FMZ-C, batch C267 (2026-10-22)
+    488848: ("2", "The stop is close - 100 / close + 100, a fixed price amount of 100 quote units "
+              "(criterion 2, as #473377); the trail and target are tick counts besides."),
+    488886: ("2", "Every level is a fixed dollar amount from the entry price (target 10000, stop "
+              "3000, trail 1500, zone 1000, steps 2000; second entries 5000 / 2000): price "
+              "amounts (criterion 2, as #473377)."),
+    488901: ("2", "The exits include strategy.exit(trail_offset = 3.5 ATR), a price amount passed as "
+              "a tick count (criterion 2, as #482767), beside a break-even stop keyed on the "
+              "averaged price."),
 }
 
 DUPLICATE_ON_READING = {

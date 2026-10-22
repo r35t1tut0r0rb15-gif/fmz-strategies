@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3152 |
+| PORTED | 3162 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 475 |
+| REJECTED_ON_READING | 478 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 107 |
+| PORT_CANDIDATE | 94 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3280,7 +3280,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 488417 | `ports/488417_parabolic-sar-and-bollinger-bands-trend-identification-quant/` | PineScript | parabolic_sar | none | sar_max x2, bb_mult x2 | 4 |
 | 488517 | `ports/488517_adaptive-trend-following-system-with-kernel-smoothed-multipl/` | PineScript | ma_ribbon | trailing_stop_pending | maCrossoversRequired x2, trendConfirmationPeriod x2 | 4 |
 | 488518 | `ports/488518_dynamic-kumo-breakout-quantitative-trading-strategy/` | PineScript | ichimoku | none | lenKijun x2, lenSenkou x2 | 4 |
-| | **3152 ports** | | | | | **14417** |
+| 488521 | `ports/488521_rsi-macd-ema-multi-confirmation-dynamic-tp-sl-trading-strate/` | PineScript | candlestick_pattern | trailing_stop_pending | atrMult x2, emaLength x2 | 4 |
+| 488523 | `ports/488523_macd-multiple-ema-reversion-macd-trend-confirmation-strategy/` | PineScript | macd | trailing_stop_pending | atrMultiplier x2, rrRatio x2 | 4 |
+| 488527 | `ports/488527_sar-multi-indicator-synergistic-sar-reversal-strategy-with-f/` | PineScript | parabolic_sar | none | lsmaOffset x2, stochLength x2 | 4 |
+| 488536 | `ports/488536_dynamic-liquidity-driven-market-structure-adaptive-trading-s/` | PineScript | market_structure | none | lookback x2, stop_ticks x2 | 4 |
+| 488537 | `ports/488537_vishal-vishal-adaptive-multi-indicator-trading-strategy/` | PineScript | supertrend | none | factor x2, atrPeriod x2 | 4 |
+| 488541 | `ports/488541_dynamic-bollinger-bands-breakout-trend-tracking-strategy/` | PineScript | bollinger_breakout | coarse_bar_stop | takeProfitPerc x2, stopLossPerc x2 | 4 |
+| 488543 | `ports/488543_dynamic-multi-dimensional-trend-tracking-and-quantitative-tr/` | PineScript | supertrend | trailing_stop_pending | atrMultiplier x2, tpMultiplier x2 | 4 |
+| 488850 | `ports/488850_15-15-minute-breakout-multi-timeframe-synergy-strategy-with/` | PineScript | range_breakout | trailing_stop_pending | rr x2 | 2 |
+| 488883 | `ports/488883_advanced-dynamic-range-breakout-trend-following-strategy/` | PineScript | keltner_channel | coarse_bar_stop, trailing_stop_pending | mult x2, length x2 | 4 |
+| 488889 | `ports/488889_5-k-kdj-5-minute-kdj-indicator-dynamic-response-trading-stra/` | PineScript | stochastic | none | length x2, long_entry x2 | 4 |
+| | **3162 ports** | | | | | **14455** |
 
 ## Rejected on reading
 
@@ -3761,6 +3771,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 488287 | 动态ATR波段突破交易策略与多层次风险管理-Dynamic-ATR-Swing-Breakout-Strategy-with-Multi-Tiered-Risk-Management.md | 1 | Partial exits: strategy.close(qty_percent = 25) at 2 ATR and again when overextended, before the final close (criterion 1, as #436524). |
 | 488382 | 多因子顶部旋转反转策略与风险收益优化系统-Multi-Factor-Spinning-Top-Reversal-Strategy-with-Risk-Reward-Optimization.md | 2 | The stop is low - 4 / high + 4, a fixed price amount of 4 quote units, and the target is 1.5 x that distance (criterion 2, as #473377). |
 | 488513 | 早盘区间突破量化交易策略-Early-Morning-Range-Breakout-Quantitative-Trading-Strategy.md | 1 | The range minutes are read from t = time('1', '0930-1600'), which is na outside 09:30-16:00, so hour(t) / minute(t) can never be 9:15-9:20; the range is never set and the script can never trade (criterion 1, as #430384). |
+| 488848 | 早盘高低点突破动态追踪策略-Opening-Bell-High-Low-Breakout-Dynamic-Trailing-Strategy.md | 2 | The stop is close - 100 / close + 100, a fixed price amount of 100 quote units (criterion 2, as #473377); the trail and target are tick counts besides. |
+| 488886 | 多层级目标和尾随止损策略-Multi-Tiered-Target-and-Trailing-Stop-Strategy.md | 2 | Every level is a fixed dollar amount from the entry price (target 10000, stop 3000, trail 1500, zone 1000, steps 2000; second entries 5000 / 2000): price amounts (criterion 2, as #473377). |
+| 488901 | 优化的基于平均真实波动范围的趋势策略v6固定趋势捕捉-Optimized-ATR-Based-Trend-Strategy-v6-Fixed-Trend-Capture.md | 2 | The exits include strategy.exit(trail_offset = 3.5 ATR), a price amount passed as a tick count (criterion 2, as #482767), beside a break-even stop keyed on the averaged price. |
 
 ## Flagged and stored under criterion 3 (253 files)
 
