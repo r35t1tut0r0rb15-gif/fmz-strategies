@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1763 |
-| PORT_CANDIDATE | 1743 |
+| PORTED | 1773 |
+| PORT_CANDIDATE | 1731 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 237 |
+| REJECTED_ON_READING | 239 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1891,7 +1891,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440292 | `ports/440292_bull-market-breakout-darvas-box-buy-strategy/` | PineScript | donchian_breakout | trailing_stop_pending | box_len x2 | 2 |
 | 440299 | `ports/440299_macd-time-and-space-optimized-multi-timeframe-macd-strategy/` | PineScript | macd_cross | none | tp x2, sl x2 | 4 |
 | 440300 | `ports/440300_fixed-time-breakback-testing-strategy/` | PineScript | candle_pattern | none | k_long x2, k_short x2 | 4 |
-| | **1763 ports** | | | | | **8615** |
+| 440302 | `ports/440302_rsi-rsi-based-stop-loss-and-take-profit-strategy/` | PineScript | rsi_oscillator | none | length x2, oversold x2 | 4 |
+| 440303 | `ports/440303_bb-rsi-flawless-victory-quantitative-trading-strategy-based/` | PineScript | bollinger_reversion | none | rsi_ll x2, rsi_ul x2 | 4 |
+| 440309 | `ports/440309_cross-cycle-arbitrage-strategy-based-on-multiple-indicators/` | PineScript | multi_indicator_confluence | none | kc_mult x2, sensitivity x2 | 4 |
+| 440310 | `ports/440310_moving-average-turning-point-crossover-trading-strategy/` | PineScript | ma_cross | none | ma1 x2, ma2 x2 | 4 |
+| 440312 | `ports/440312_triple-indicator-collision-strategy/` | PineScript | multi_indicator_confluence | none | ema_len x2, signal_len x2 | 4 |
+| 440313 | `ports/440313_momentum-breakthrough-golden-cross-strategy/` | PineScript | macd_cross | none | ema_len x2, rsi_level x2 | 4 |
+| 440314 | `ports/440314_adxma-ema-adx-ma-and-ema-long-only-trend-tracking-strategy/` | PineScript | directional_movement | none | ma_period x2, adx_len x2 | 4 |
+| 440320 | `ports/440320_moving-average-trend-tracking-strategy/` | PineScript | ma_cross | none | p1 x2, p3 x2 | 4 |
+| 440337 | `ports/440337_rsi-rsi-alligator-trend-strategy/` | PineScript | rsi_oscillator | none | sl x2, tp x2 | 4 |
+| 440345 | `ports/440345_dual-moving-average-crossover-trading-strategy/` | PineScript | multi_timeframe_ma | none | ma1_len x2, ma23_len x2 | 4 |
+| | **1773 ports** | | | | | **8655** |
 
 ## Rejected on reading
 
@@ -2134,6 +2144,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440098 | 多时间框架趋势跟踪策略Swing-High-Low-Price-Channel-Strategy-V1.md | 1 | Each entry has a strategy.exit closing 50 % of the position (qty_percent = 50 when the high or low touches the fast channel): partial exits (criterion 1, as #436524). |
 | 440109 | 自适应三重超级趋势策略Adaptive-Triple-Supertrend-Strategy.md | 1 | The only exit is a 10 % limit / 1 % stop bracket placed from the close of a later sell-signal bar (any of the three supertrends turning up), not from the entry, and kept while later entries are ignored; the house stops (fractions of the entry fill) cannot express it, and without it the script is one long held from the first signal to the end (as #430384). |
 | 440118 | 基于Wave-Trend和VWMA的趋势跟踪量化策略Wave-Trend-and-VWMA-Based-Trend-Following-Quant-Strategy.md | 1 | Orders are strategy.order calls whose quantities are built from strategy.position_size (running sums of 1 / 2 / 4 base units plus the held size), and close_all is called on every bar: position-size-driven order sizing (criterion 1, as #430596). |
+| 440334 | 均线通道突破交易策略Moving-Average-Channel-Breakout-Trading-Strategy.md | 2 | The trail offsets are strategy.position_avg_price x 0.05 passed to trail_offset, which is in ticks, with no /mintick (and negative for the long side): a price amount passed as a tick count (criterion 2, as #437048, #437677). |
+| 440336 | 基于均线和威廉指标的日线策略Daily-FX-Strategy-Based-on-Moving-Average-and-Williams-Indicator.md | 1 | An equity protector closes all trades when the open loss (strategy.openprofit) exceeds 30 % of the balance (initial capital plus netprofit): an account-state gate the signal-only port cannot express (criterion 1, as #432078). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

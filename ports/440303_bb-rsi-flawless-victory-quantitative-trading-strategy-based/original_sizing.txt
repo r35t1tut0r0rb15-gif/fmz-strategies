@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #440303 (双BB指标RSI量化交易策略Flawless-Victory-Quantitative-Trading-Strategy-Based-on-Double-BB-Indicators-and-RSI)
+# Source: https://www.fmz.com/strategy/440303  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

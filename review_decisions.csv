@@ -236,6 +236,8 @@ fmz_id,file,final_outcome,criterion,reason
 440098,多时间框架趋势跟踪策略Swing-High-Low-Price-Channel-Strategy-V1.md,REJECTED_ON_READING,1,"Each entry has a strategy.exit closing 50 % of the position (qty_percent = 50 when the high or low touches the fast channel): partial exits (criterion 1, as #436524)."
 440109,自适应三重超级趋势策略Adaptive-Triple-Supertrend-Strategy.md,REJECTED_ON_READING,1,"The only exit is a 10 % limit / 1 % stop bracket placed from the close of a later sell-signal bar (any of the three supertrends turning up), not from the entry, and kept while later entries are ignored; the house stops (fractions of the entry fill) cannot express it, and without it the script is one long held from the first signal to the end (as #430384)."
 440118,基于Wave-Trend和VWMA的趋势跟踪量化策略Wave-Trend-and-VWMA-Based-Trend-Following-Quant-Strategy.md,REJECTED_ON_READING,1,"Orders are strategy.order calls whose quantities are built from strategy.position_size (running sums of 1 / 2 / 4 base units plus the held size), and close_all is called on every bar: position-size-driven order sizing (criterion 1, as #430596)."
+440334,均线通道突破交易策略Moving-Average-Channel-Breakout-Trading-Strategy.md,REJECTED_ON_READING,2,"The trail offsets are strategy.position_avg_price x 0.05 passed to trail_offset, which is in ticks, with no /mintick (and negative for the long side): a price amount passed as a tick count (criterion 2, as #437048, #437677)."
+440336,基于均线和威廉指标的日线策略Daily-FX-Strategy-Based-on-Moving-Average-and-Williams-Indicator.md,REJECTED_ON_READING,1,"An equity protector closes all trades when the open loss (strategy.openprofit) exceeds 30 % of the balance (initial capital plus netprofit): an account-state gate the signal-only port cannot express (criterion 1, as #432078)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2016,3 +2018,13 @@ fmz_id,file,final_outcome,criterion,reason
 440292,牛市追涨箱体买入策略Bull-Market-Breakout-Darvas-Box-Buy-Strategy.md,PORTED,,ports/440292_bull-market-breakout-darvas-box-buy-strategy/
 440299,时空优化多时间框架MACD策略Time-and-Space-Optimized-Multi-Timeframe-MACD-Strategy.md,PORTED,,ports/440299_macd-time-and-space-optimized-multi-timeframe-macd-strategy/
 440300,固定时间突破回测策略Fixed-Time-Breakback-Testing-Strategy.md,PORTED,,ports/440300_fixed-time-breakback-testing-strategy/
+440302,基于RSI的止损止盈策略RSI-based-Stop-Loss-and-Take-Profit-Strategy.md,PORTED,,ports/440302_rsi-rsi-based-stop-loss-and-take-profit-strategy/
+440303,双BB指标RSI量化交易策略Flawless-Victory-Quantitative-Trading-Strategy-Based-on-Double-BB-Indicators-and-RSI.md,PORTED,,ports/440303_bb-rsi-flawless-victory-quantitative-trading-strategy-based/
+440309,模拟三角套利的多时间框架量化交易策略Cross-Cycle-Arbitrage-Strategy-Based-on-Multiple-Indicators.md,PORTED,,ports/440309_cross-cycle-arbitrage-strategy-based-on-multiple-indicators/
+440310,移动平均线转折点交叉交易策略Moving-Average-Turning-Point-Crossover-Trading-Strategy.md,PORTED,,ports/440310_moving-average-turning-point-crossover-trading-strategy/
+440312,三重指标碰撞策略Triple-Indicator-Collision-Strategy.md,PORTED,,ports/440312_triple-indicator-collision-strategy/
+440313,动量突破金叉策略Momentum-Breakthrough-Golden-Cross-Strategy.md,PORTED,,ports/440313_momentum-breakthrough-golden-cross-strategy/
+440314,基于ADXMA和EMA的只做多趋势跟踪策略ADX-MA-and-EMA-Long-Only-Trend-Tracking-Strategy.md,PORTED,,ports/440314_adxma-ema-adx-ma-and-ema-long-only-trend-tracking-strategy/
+440320,趋势跟踪移动平均指标策略Moving-Average-Trend-Tracking-Strategy.md,PORTED,,ports/440320_moving-average-trend-tracking-strategy/
+440337,RSI鳄鱼趋势策略RSI-Alligator-Trend-Strategy.md,PORTED,,ports/440337_rsi-rsi-alligator-trend-strategy/
+440345,双均线金叉死叉算法交易策略Dual-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/440345_dual-moving-average-crossover-trading-strategy/

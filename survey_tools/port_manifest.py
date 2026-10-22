@@ -3980,6 +3980,19 @@ SIZING = {
     440292: [],
     440299: [],
     440300: [],
+    # ---- FMZ-C, batch C132 (2026-10-22)
+    440302: [],
+    440303: [],
+    440309: [],
+    440310: [],
+    440312: [],
+    440313: [],
+    440314: [],
+    440320: [],
+    440337: [
+        ("strategy(): cash 25000, capital 25000, commission 0.15 %, slippage 3", 185, 185),
+    ],
+    440345: [],
 }
 
 REJECTED_ON_READING = {
@@ -4979,6 +4992,13 @@ REJECTED_ON_READING = {
               "strategy.position_size (running sums of 1 / 2 / 4 base units plus the held size), "
               "and close_all is called on every bar: position-size-driven order sizing (criterion "
               "1, as #430596)."),
+    # ---- FMZ-C, batch C132 (2026-10-22)
+    440334: ("2", "The trail offsets are strategy.position_avg_price x 0.05 passed to trail_offset, "
+              "which is in ticks, with no /mintick (and negative for the long side): a price "
+              "amount passed as a tick count (criterion 2, as #437048, #437677)."),
+    440336: ("1", "An equity protector closes all trades when the open loss (strategy.openprofit) "
+              "exceeds 30 % of the balance (initial capital plus netprofit): an account-state "
+              "gate the signal-only port cannot express (criterion 1, as #432078)."),
 }
 
 DUPLICATE_ON_READING = {
