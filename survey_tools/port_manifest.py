@@ -5118,6 +5118,27 @@ SIZING = {
     453264: [
         ("Quantity 1; stop 11 % under close[1] (low test)", 93, 116),
     ],
+    # ---- FMZ-C, batch C192 (2026-10-22)
+    453267: [
+        ("Target 1000 points; stop at the trigger bar's high / low", 92, 175),
+    ],
+    453271: [],
+    453273: [
+        ("Quantity 1; capital 100000 / risk 1 % (label only)", 94, 119),
+    ],
+    453276: [],
+    453287: [
+        ("strategy(): 100 % of equity, capital 10000, commission 0.01 %", 98, 98),
+    ],
+    453645: [],
+    453646: [
+        ("strategy(): fixed quantity 1, capital 1000, commission 0", 88, 88),
+    ],
+    453647: [],
+    453648: [],
+    453650: [
+        ("strategy(): 10 % of equity, capital 100000, commission 0.1 %; stop 5 % / target 20 % (close tests)", 104, 149),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -6484,6 +6505,10 @@ REJECTED_ON_READING = {
     453266: ("2", "The exits strategy.exit(profit = takeProfit) / (loss = stopLoss) pass price "
               "amounts (a price level and 5 % of the close) where the call takes tick distances: "
               "the exits are undefined as written (criterion 2, as #442076, #442115)."),
+    # ---- FMZ-C, batch C192 (2026-10-22)
+    453281: ("1", "The breakout levels are request.security(syminfo.tickerid, '60', high / low / "
+              "close) on the daily header chart: a 1-hour resolution below the chart's, whose "
+              "value per daily bar is undefined (criterion 1, as #427518)."),
 }
 
 DUPLICATE_ON_READING = {

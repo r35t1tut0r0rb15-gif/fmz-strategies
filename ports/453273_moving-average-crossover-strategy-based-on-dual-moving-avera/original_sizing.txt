@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #453273 (基于双均线交叉的移动平均线策略-Moving-Average-Crossover-Strategy-Based-on-Dual-Moving-Averages)
+# Source: https://www.fmz.com/strategy/453273  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantity 1; capital 100000 / risk 1 % (label only)  [lines 94-119]
+   94: capital = input.float(100000, title="Initial Capital")
+   95: risk_per_trade = input.float(1.0, title="Risk Per Trade (%)")
+   96: 
+   97: // Calculate Moving Averages
+   98: shortMA = ta.sma(close, shortLength)
+   99: longMA = ta.sma(close, longLength)
+  100: 
+  101: // Plot Moving Averages
+  102: plot(shortMA, title="Short MA", color=color.blue, linewidth=2)
+  103: plot(longMA, title="Long MA", color=color.red, linewidth=2)
+  104: 
+  105: // Generate Buy/Sell signals
+  106: longCondition = ta.crossover(shortMA, longMA)
+  107: shortCondition = ta.crossunder(shortMA, longMA)
+  108: 
+  109: // Plot Buy/Sell signals
+  110: plotshape(series=longCondition, title="Buy Signal", location=location.belowbar, color=color.green, style=shape.labelup, text="BUY")
+  111: plotshape(series=shortCondition, title="Sell Signal", location=location.abovebar, color=color.red, style=shape.labeldown, text="SELL")
+  112: 
+  113: // Risk management: calculate position size
+  114: risk_amount = capital * (risk_per_trade / 100)
+  115: position_size = risk_amount / close
+  116: 
+  117: // Execute Buy/Sell orders with position size
+  118: if (longCondition)
+  119:     strategy.entry("Buy", strategy.long, qty=1, comment="Buy")

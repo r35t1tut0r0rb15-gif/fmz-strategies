@@ -336,6 +336,7 @@ fmz_id,file,final_outcome,criterion,reason
 453233,多时间尺度SMA趋势跟踪与动态止损策略-Multi-Timeframe-SMA-Trend-Following-Strategy-with-Dynamic-Stop-Loss.md,REJECTED_ON_READING,1,"The trend filter is request.security(syminfo.tickerid, '240', ..., lookahead_on) on the 6-hour header chart: a 4-hour resolution below the chart's, whose value per chart bar is undefined (criterion 1, as #427518)."
 453247,移动平均线交叉策略MA-Cross-Strategy.md,REJECTED_ON_READING,1,"Positions are opened and flattened with strategy.order (qty = the held size), so which side the strategy trades for the whole run depends on the first one-shot signal of the data, and the bracket levels are computed before the signals are re-assigned: strategy.order position bookkeeping (criterion 1, as #430596)."
 453266,基于CDC行动区的ATR止盈止损交易机器人策略-CDC-Action-Zone-Trading-Bot-Strategy-with-ATR-for-Take-Profit-and-Stop-Loss.md,REJECTED_ON_READING,2,"The exits strategy.exit(profit = takeProfit) / (loss = stopLoss) pass price amounts (a price level and 5 % of the close) where the call takes tick distances: the exits are undefined as written (criterion 2, as #442076, #442115)."
+453281,动态时间框架高低点突破策略-Dynamic-Timeframe-High-Low-Breakout-Strategy.md,REJECTED_ON_READING,1,"The breakout levels are request.security(syminfo.tickerid, '60', high / low / close) on the daily header chart: a 1-hour resolution below the chart's, whose value per daily bar is undefined (criterion 1, as #427518)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2736,3 +2737,13 @@ fmz_id,file,final_outcome,criterion,reason
 453244,RSI与线性回归通道交易策略-RSI-and-Linear-Regression-Channel-Trading-Strategy.md,PORTED,,ports/453244_rsi-rsi-and-linear-regression-channel-trading-strategy/
 453246,趋势跟随与动量过滤相结合的交易策略-Trend-Following-Trading-Strategy-with-Momentum-Filtering.md,PORTED,,ports/453246_trend-following-trading-strategy-with-momentum-filtering/
 453264,基于连续K线动态网格自适应均线动态止损策略-Continuous-Candle-Based-Dynamic-Grid-Adaptive-Moving-Average-with-Dynamic-Stop-Loss-Strategy.md,PORTED,,ports/453264_k-continuous-candle-based-dynamic-grid-adaptive-moving-avera/
+453267,EMA与布林带突破策略-EMA-and-Bollinger-Bands-Breakout-Strategy.md,PORTED,,ports/453267_ema-ema-and-bollinger-bands-breakout-strategy/
+453271,MACD与Supertrend组合策略-MACD-and-Supertrend-Combination-Strategy.md,PORTED,,ports/453271_macd-supertrend-macd-and-supertrend-combination-strategy/
+453273,基于双均线交叉的移动平均线策略-Moving-Average-Crossover-Strategy-Based-on-Dual-Moving-Averages.md,PORTED,,ports/453273_moving-average-crossover-strategy-based-on-dual-moving-avera/
+453276,百分比阈值量化交易策略-Percentage-Threshold-Quantitative-Trading-Strategy.md,PORTED,,ports/453276_percentage-threshold-quantitative-trading-strategy/
+453287,MACD和RSI结合的自然交易策略-MACD-and-RSI-Combined-Natural-Trading-Strategy.md,PORTED,,ports/453287_macd-rsi-macd-and-rsi-combined-natural-trading-strategy/
+453645,10SMA与MACD双重趋势跟踪交易策略-10SMA-and-MACD-Dual-Trend-Following-Trading-Strategy.md,PORTED,,ports/453645_10sma-macd-10sma-and-macd-dual-trend-following-trading-strat/
+453646,SMA双均线交叉策略-SMA-Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/453646_sma-sma-dual-moving-average-crossover-strategy/
+453647,布林带交叉移动平均策略-Bollinger-Bands-and-Moving-Average-Crossover-Strategy.md,PORTED,,ports/453647_bollinger-bands-and-moving-average-crossover-strategy/
+453648,Elliott-Wave-Stochastic-EMA-Strategy-Elliott-波动随机EMA策略.md,PORTED,,ports/453648_elliott-wave-stochastic-ema-strategy-elliott-ema/
+453650,RSI基于百分比止盈止损的交易策略-RSI-based-Trading-Strategy-with-Percentage-based-Take-Profit-and-Stop-Loss.md,PORTED,,ports/453650_rsi-rsi-based-trading-strategy-with-percentage-based-take-pr/

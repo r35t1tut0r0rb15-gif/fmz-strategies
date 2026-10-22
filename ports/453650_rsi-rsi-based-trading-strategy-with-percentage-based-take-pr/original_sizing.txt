@@ -1,0 +1,51 @@
+# Original sizing and money-management code, FMZ #453650 (RSI基于百分比止盈止损的交易策略-RSI-based-Trading-Strategy-with-Percentage-based-Take-Profit-and-Stop-Loss)
+# Source: https://www.fmz.com/strategy/453650  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity, capital 100000, commission 0.1 %; stop 5 % / target 20 % (close tests)  [lines 104-149]
+  104: strategy("RSI Strategy with Adjustable TP and SL", overlay=true, 
+  105:      default_qty_type=strategy.percent_of_equity, 
+  106:      default_qty_value=10, 
+  107:      initial_capital=100000, 
+  108:      currency=currency.USD, 
+  109:      commission_type=strategy.commission.percent, 
+  110:      commission_value=0.1)
+  111: 
+  112: // RSI settings
+  113: rsiPeriod = input.int(14, title="RSI Period")
+  114: rsiOverbought = input.int(70, title="RSI Overbought Level", minval=50, maxval=100)
+  115: rsiOversold = input.int(30, title="RSI Oversold Level", minval=0, maxval=50)
+  116: 
+  117: // Fixed TP and SL settings
+  118: takeProfitPct = input.float(20, title="Take Profit Percentage", step=0.1) / 100
+  119: stopLossPct = input.float(5, title="Stop Loss Percentage", step=0.1) / 100
+  120: 
+  121: // Calculate RSI
+  122: rsiValue = ta.rsi(close, rsiPeriod)
+  123: 
+  124: // Plot RSI
+  125: hline(rsiOverbought, "RSI Overbought", color=color.red)
+  126: hline(rsiOversold, "RSI Oversold", color=color.green)
+  127: plot(rsiValue, title="RSI", color=color.purple)
+  128: 
+  129: // Entry conditions
+  130: buyCondition = ta.crossunder(rsiValue, rsiOversold)
+  131: sellCondition = ta.crossover(rsiValue, rsiOverbought)
+  132: 
+  133: // Calculate stop loss and take profit prices
+  134: var float entryPrice = na
+  135: var float stopLossLevel = na
+  136: var float takeProfitLevel = na
+  137: 
+  138: if (buyCondition)
+  139:     entryPrice := close
+  140:     stopLossLevel := entryPrice * (1 - stopLossPct)
+  141:     takeProfitLevel := entryPrice * (1 + takeProfitPct)
+  142:     strategy.entry("Buy", strategy.long)
+  143: 
+  144: // Close positions when TP or SL is hit
+  145: if (strategy.position_size > 0)
+  146:     if (close <= stopLossLevel)
+  147:         strategy.close("Buy", comment="Stop Loss Hit")
+  148:     if (close >= takeProfitLevel)
+  149:         strategy.close("Buy", comment="Take Profit Hit")
