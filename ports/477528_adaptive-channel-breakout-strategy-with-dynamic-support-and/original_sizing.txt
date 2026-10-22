@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #477528 (自适应通道突破策略与动态支阻位交易系统-Adaptive-Channel-Breakout-Strategy-with-Dynamic-Support-and-Resistance-Trading-System)
+# Source: https://www.fmz.com/strategy/477528  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1.5 % / target 3 % of strategy.position_avg_price  [lines 162-170]
+  162: stopLossPercentage = input.float(1.5, title="Stop Loss Percentage", minval=0.0) / 100
+  163: takeProfitPercentage = input.float(3.0, title="Take Profit Percentage", minval=0.0) / 100
+  164: 
+  165: var float longStopLoss = na
+  166: var float longTakeProfit = na
+  167: if strategy.position_size > 0
+  168:     longStopLoss := strategy.position_avg_price * (1 - stopLossPercentage)
+  169:     longTakeProfit := strategy.position_avg_price * (1 + takeProfitPercentage)
+  170:     strategy.exit("Exit Buy", "Buy", stop=longStopLoss, limit=longTakeProfit)

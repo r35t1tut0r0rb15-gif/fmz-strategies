@@ -6114,6 +6114,30 @@ SIZING = {
     477521: [
         ("capital 50000 x 100 % / close as qty; exit after 20 ticks", 120, 183),
     ],
+    # ---- FMZ-C, batch C233 (2026-10-22)
+    477524: [],
+    477528: [
+        ("Stop 1.5 % / target 3 % of strategy.position_avg_price", 162, 170),
+    ],
+    477529: [],
+    477530: [],
+    477533: [
+        ("Stop 1 %, risk-reward 2", 105, 141),
+    ],
+    477535: [
+        ("Fixed stop 1 %, risk-reward 2", 141, 182),
+    ],
+    477537: [
+        ("strategy(): capital 1000, margin 20 %, 100 % of equity; qty = equity / close x leverage 4.5", 97, 193),
+    ],
+    477549: [],
+    477550: [
+        ("qty = 10 % of equity / close", 169, 169),
+    ],
+    477552: [
+        ("strategy(): 100 % of equity", 85, 85),
+    ],
+    477553: [],
 }
 
 REJECTED_ON_READING = {
@@ -7721,6 +7745,10 @@ REJECTED_ON_READING = {
     476264: ("1", "Five entry ids (Step1-3, Pullback, Above50) add 20 % / 40 % parts to the long and "
               "the EMA 5 / 13 cross-down closes only one part: staged adds and partial closes "
               "(criterion 1, DCA adds and partial exits)."),
+    # ---- FMZ-C, batch C233 (2026-10-22)
+    477534: ("2", "The only exits pass trail_points = atr x 1.5 and trail_offset = atr x 0.75, price "
+              "amounts, where the call takes ticks, with no /mintick: the trailing stop is "
+              "undefined as written (criterion 2, as #442115)."),
 }
 
 DUPLICATE_ON_READING = {

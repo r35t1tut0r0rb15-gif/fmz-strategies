@@ -1,0 +1,47 @@
+# Original sizing and money-management code, FMZ #477535 (动态双重技术指标超卖超买确认交易策略-Dynamic-Dual-Technical-Indicator-Oversold-Overbought-Confirmation-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/477535  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Fixed stop 1 %, risk-reward 2  [lines 141-182]
+  141: riskRewardRatio = input.float(2.0, title="Risk-Reward Ratio")
+  142: fixedStopLoss = input.float(1.0, title="Fixed Stop Loss (Percentage)", minval=0.1)
+  143: 
+  144: // RSI and CCI Calculations
+  145: rsi = ta.rsi(close, rsiLength)
+  146: cci = ta.cci(close, cciLength)
+  147: 
+  148: // Entry Conditions
+  149: longCondition = (rsi < rsiOversold) and (cci < cciOversold)
+  150: shortCondition = (rsi > rsiOverbought) and (cci > cciOverbought)
+  151: 
+  152: // Initialize variables for stop loss and take profit
+  153: var float longStopLoss = na
+  154: var float longTakeProfit = na
+  155: var float shortStopLoss = na
+  156: var float shortTakeProfit = na
+  157: 
+  158: // Plot Buy and Sell Signals
+  159: if (longCondition)
+  160:     label.new(bar_index, low, "BUY", style=label.style_label_up, color=color.green, textcolor=color.white)
+  161:     longEntryPrice = close
+  162:     longStopLoss := longEntryPrice * (1 - fixedStopLoss / 100)
+  163:     longTakeProfit := longEntryPrice + (longEntryPrice - longStopLoss) * riskRewardRatio
+  164:     // line.new(bar_index, longEntryPrice, bar_index, longStopLoss, color=color.red, width=1, extend=extend.none)
+  165:     // line.new(bar_index, longEntryPrice, bar_index, longTakeProfit, color=color.green, width=1, extend=extend.none)
+  166: 
+  167: if (shortCondition)
+  168:     label.new(bar_index, high, "SELL", style=label.style_label_down, color=color.red, textcolor=color.white)
+  169:     shortEntryPrice = close
+  170:     shortStopLoss := shortEntryPrice * (1 + fixedStopLoss / 100)
+  171:     shortTakeProfit := shortEntryPrice - (shortStopLoss - shortEntryPrice) * riskRewardRatio
+  172:     // line.new(bar_index, shortEntryPrice, bar_index, shortStopLoss, color=color.green, width=1, extend=extend.none)
+  173:     // line.new(bar_index, shortEntryPrice, bar_index, shortTakeProfit, color=color.red, width=1, extend=extend.none)
+  174: 
+  175: // Strategy Information and Alerts
+  176: if (longCondition)
+  177:     strategy.entry("Long", strategy.long)
+  178:     strategy.exit("Take Profit/Stop Loss", from_entry="Long", limit=longTakeProfit, stop=longStopLoss)
+  179: 
+  180: if (shortCondition)
+  181:     strategy.entry("Short", strategy.short)
+  182:     strategy.exit("Take Profit/Stop Loss", from_entry="Short", limit=shortTakeProfit, stop=shortStopLoss)

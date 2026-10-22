@@ -1,0 +1,102 @@
+# Original sizing and money-management code, FMZ #477537 (自适应趋势流动性多重过滤交易策略-Adaptive-Trend-Flow-Multiple-Filter-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/477537  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 1000, margin 20 %, 100 % of equity; qty = equity / close x leverage 4.5  [lines 97-193]
+   97: strategy("Adaptive Trend Flow Strategy with Filters for SPX", overlay=true, max_labels_count=500, 
+   98:      initial_capital=1000, commission_type=strategy.commission.cash_per_order, commission_value=0.01, slippage=2,
+   99:      margin_long=20, margin_short=20, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+  100: 
+  101: // User-defined inputs for trend logic
+  102: atr           = input.int(14, "Main Length", minval=2, group = "Find more strategies like this on pineindicators.com")
+  103: length        = input.int(2, "Main Length", minval=2)
+  104: smooth_len    = input.int(2, "Smoothing Length", minval=2)
+  105: sensitivity   = input.float(2.0, "Sensitivity", step=0.1)
+  106: 
+  107: // User-defined inputs for SMA filter
+  108: use_sma_filter = input.bool(true, "Enable SMA Filter?")
+  109: sma_length = input.int(4, "SMA Length", minval=1)
+  110: 
+  111: // User-defined inputs for MACD filter
+  112: use_macd_filter = input.bool(true, "Enable MACD Filter?")
+  113: macd_fast_length = input.int(2, "MACD Fast Length", minval=1)
+  114: macd_slow_length = input.int(7, "MACD Slow Length", minval=1)
+  115: macd_signal_length = input.int(2, "MACD Signal Length", minval=1)
+  116: // User-defined inputs for leverage
+  117: leverage_factor = input.float(4.5, "Leverage Factor", minval=1.0, step=0.1)
+  118: id           = input("besttrader123", title= "Your TradingView username", group = "Automate this strategy with plugpine.com")
+  119: key           = input("nc739ja84gf", title= "Unique identifier (UID)")
+  120: ticker        = input("SPX", title= "Ticker/symbol of your broker")
+  121: bullcolor     = #0097a7
+  122: bearcolor     = #ff195f
+  123: showbars      = input.bool(true, "Color Bars?")
+  124: showbg        = input.bool(true, "Background Color?")
+  125: showsignals   = input.bool(true, "Show Signals?")
+  126: 
+  127: 
+  128: // Trend calculation functions
+  129: calculate_trend_levels() =>
+  130:     typical = hlc3
+  131:     fast_ema = ta.ema(typical, length)
+  132:     slow_ema = ta.ema(typical, length * 2)
+  133:     basis = (fast_ema + slow_ema) / 2
+  134:     vol = ta.stdev(typical, length)
+  135:     smooth_vol = ta.ema(vol, smooth_len)
+  136:     upper = basis + (smooth_vol * sensitivity)
+  137:     lower = basis - (smooth_vol * sensitivity)
+  138:     [basis, upper, lower]
+  139: 
+  140: get_trend_state(upper, lower, basis) =>
+  141:     var float prev_level = na
+  142:     var int trend = 0
+  143:     if na(prev_level)
+  144:         trend := close > basis ? 1 : -1
+  145:         prev_level := trend == 1 ? lower : upper
+  146:     if trend == 1
+  147:         if close < lower
+  148:             trend := -1
+  149:             prev_level := upper
+  150:         else
+  151:             prev_level := lower
+  152:     else
+  153:         if close > upper
+  154:             trend := 1
+  155:             prev_level := lower
+  156:         else
+  157:             prev_level := upper
+  158:     [trend, prev_level]
+  159: 
+  160: [basis, upper, lower] = calculate_trend_levels()
+  161: [trend, level] = get_trend_state(upper, lower, basis)
+  162: 
+  163: // SMA filter
+  164: sma_value = ta.sma(close, sma_length)
+  165: sma_condition = use_sma_filter ? close > sma_value : true
+  166: 
+  167: // MACD filter
+  168: [macd_line, signal_line, _] = ta.macd(close, macd_fast_length, macd_slow_length, macd_signal_length)
+  169: macd_condition = use_macd_filter ? macd_line > signal_line : true
+  170: 
+  171: // Signal detection with filters
+  172: long_signal = trend == 1 and trend[1] == -1 and sma_condition and macd_condition
+  173: short_signal = trend == -1 and trend[1] == 1
+  174: 
+  175: // Plotting visuals
+  176: p2 = plot(basis, color=trend == 1 ? bullcolor : bearcolor, linewidth=2)
+  177: p1 = plot(level, color=close > level ? bullcolor : bearcolor, linewidth=2, style=plot.style_linebr)
+  178: // if showsignals and ta.crossover(close, level)
+  179: //     label.new(bar_index, level, "▲", color=bullcolor, textcolor=chart.bg_color, style=label.style_label_upper_right)
+  180: // if showsignals and ta.crossunder(close, level)
+  181: //     label.new(bar_index, level, "▼", color=bearcolor, textcolor=chart.fg_color, style=label.style_label_lower_right)
+  182: 
+  183: qty = strategy.equity / close * leverage_factor
+  184: 
+  185: // Automated alerts
+  186: if long_signal
+  187:     alert('{"AccountID": "' + id + '","Key": "' + key + '", "symbol": "' + ticker + '", "action": "long", "volume": ' + str.tostring(qty) + '}', alert.freq_once_per_bar)
+  188: if short_signal
+  189:     alert('{"AccountID": "' + id + '","Key": "' + key + '", "symbol": "' + ticker + '", "action": "closelong"}', alert.freq_once_per_bar)
+  190: 
+  191: // Strategy entries and exits
+  192: if long_signal
+  193:     strategy.entry("Long", strategy.long, qty=qty)

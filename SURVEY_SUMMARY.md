@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2807 |
+| PORTED | 2818 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 569 |
-| PORT_CANDIDATE | 532 |
-| REJECTED_ON_READING | 399 |
+| PORT_CANDIDATE | 520 |
+| REJECTED_ON_READING | 400 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2935,7 +2935,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 477516 | `ports/477516_rsi-trend-following-rsi-and-moving-average-combined-quantita/` | PineScript | rsi_oscillator | coarse_bar_stop | ma_length x2, tp_pct x2 | 4 |
 | 477519 | `ports/477519_enhanced-trend-multi-signal-dynamic-trading-strategy/` | PineScript | supertrend | none | factor x2, atr_period x2 | 4 |
 | 477521 | `ports/477521_camarilla-multi-ema-crossover-with-camarilla-support-resista/` | PineScript | ma_cross | none | exit_atr x2, ema_long x2 | 4 |
-| | **2807 ports** | | | | | **13071** |
+| 477524 | `ports/477524_dynamic-filtering-ema-cross-strategy-for-daily-trend-analysi/` | PineScript | ma_trend | none | fast x2, check_hour x2 | 4 |
+| 477528 | `ports/477528_adaptive-channel-breakout-strategy-with-dynamic-support-and/` | PineScript | support_resistance | coarse_bar_stop | lookback x2, tp_pct x2 | 4 |
+| 477529 | `ports/477529_multi-period-trend-linear-engulfing-pattern-quantitative-tra/` | PineScript | candle_pattern | none | hold_periods x3 | 3 |
+| 477530 | `ports/477530_adx-dynamic-ema-crossover-strategy-with-adx-trend-strength-f/` | PineScript | adx_trend | none | ema_length x2, adx_threshold x2 | 4 |
+| 477533 | `ports/477533_dual-ema-stochastic-oscillator-system-a-quantitative-trading/` | PineScript | stochastic_oscillator | trailing_stop_pending | stoch_k x2, rr x2 | 4 |
+| 477535 | `ports/477535_dynamic-dual-technical-indicator-oversold-overbought-confirm/` | PineScript | rsi_oscillator | trailing_stop_pending | cci_level x2, rr x2 | 4 |
+| 477537 | `ports/477537_adaptive-trend-flow-multiple-filter-trading-strategy/` | PineScript | volatility_band | none | length x2, sensitivity x2 | 4 |
+| 477549 | `ports/477549_dual-ema-crossover-dynamic-trend-following-quantitative-trad/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 477550 | `ports/477550_rsi-rsi-trend-breakthrough-and-momentum-enhancement-trading/` | PineScript | rsi_oscillator | none | rsi_length x2, exit_ma x2 | 4 |
+| 477552 | `ports/477552_multi-indicator-dynamic-moving-average-crossover-quantitativ/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 477553 | `ports/477553_multi-moving-average-supertrend-with-bollinger-breakout-trad/` | PineScript | supertrend | none | adx_level x2, factor x2 | 4 |
+| | **2818 ports** | | | | | **13114** |
 
 ## Rejected on reading
 
@@ -3340,6 +3351,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 476253 | 多重指标交叉趋势跟踪交易策略基于随机相对强弱与均线系统的量化分析-Multi-Indicator-Cross-Trend-Following-Trading-Strategy-Quantitative-Analysis-Based-on-Stochastic-RSI-and-Moving-Average-System.md | 1 | pyramiding=200 and strategy.entry on every bar the Stochastic RSI condition holds: repeat entries add to the position (criterion 1, pyramiding >= 2 with repeat entries). |
 | 476261 | 多层次机构订单流动量化策略与动态分仓优化系统-Multi-Level-Institutional-Order-Flow-Quantitative-Strategy-with-Dynamic-Position-Scaling-System.md | 1 | Three strategy.exit targets with qty_percent 50 / 30 / 20 scale the position out in parts (criterion 1, partial exits). |
 | 476264 | 动态多周期指数移动平均交叉策略与回撤优化系统-Dynamic-Multi-Period-Exponential-Moving-Average-Cross-Strategy-with-Pullback-Optimization-System.md | 1 | Five entry ids (Step1-3, Pullback, Above50) add 20 % / 40 % parts to the long and the EMA 5 / 13 cross-down closes only one part: staged adds and partial closes (criterion 1, DCA adds and partial exits). |
+| 477534 | 多重指标动态追踪止损交易策略-Multi-Indicator-Dynamic-Trailing-Stop-Trading-Strategy.md | 2 | The only exits pass trail_points = atr x 1.5 and trail_offset = atr x 0.75, price amounts, where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #442115). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
