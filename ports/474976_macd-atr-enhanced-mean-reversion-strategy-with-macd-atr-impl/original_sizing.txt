@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #474976 (均值回归增强型MACD-ATR策略Enhanced-Mean-Reversion-Strategy-with-MACD-ATR-Implementation)
+# Source: https://www.fmz.com/strategy/474976  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1.5 ATR / target 3 ATR from avg  [lines 110-135]
+  110: atrLength = input(14, title="ATR Length")
+  111: atrMultiplier = input(1.5, title="ATR Multiplier")
+  112: atrValue = ta.atr(atrLength)
+  113: 
+  114: // Vstupné podmienky pre long pozície
+  115: longCondition = ta.crossover(close, lowerBand) and macdLine > signalLine
+  116: if (longCondition)
+  117:     strategy.entry("Long", strategy.long)
+  118: 
+  119: // Vstupné podmienky pre short pozície
+  120: shortCondition = ta.crossunder(close, upperBand) and macdLine < signalLine
+  121: if (shortCondition)
+  122:     strategy.entry("Short", strategy.short)
+  123: 
+  124: // Dynamický Stop Loss a Take Profit na základe ATR
+  125: longSL = strategy.position_avg_price - atrValue * atrMultiplier
+  126: longTP = strategy.position_avg_price + atrValue * atrMultiplier * 2
+  127: shortSL = strategy.position_avg_price + atrValue * atrMultiplier
+  128: shortTP = strategy.position_avg_price - atrValue * atrMultiplier * 2
+  129: 
+  130: // Pridanie stop loss a take profit
+  131: if (strategy.position_size > 0)
+  132:     strategy.exit("Take Profit/Stop Loss", "Long", stop=longSL, limit=longTP)
+  133: 
+  134: if (strategy.position_size < 0)
+  135:     strategy.exit("Take Profit/Stop Loss", "Short", stop=shortSL, limit=shortTP)

@@ -1,0 +1,59 @@
+# Original sizing and money-management code, FMZ #474965 (多重波浪趋势交叉风险管理量化策略-Multi-Wave-Trend-Crossing-Risk-Management-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/474965  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 50 %, target 5 %, trail activation 3 %, offset close x 2 % ticks  [lines 103-156]
+  103: stopLossPercent = input.float(50.0, "Stop Loss (%)", minval=0.1, maxval=100)
+  104: takeProfitPercent = input.float(5.0, "Take Profit (%)", minval=0.1, maxval=100)
+  105: trailingStopPercent = input.float(3.0, "Trailing Stop (%)", minval=0.1, maxval=100)
+  106: trailingStepPercent = input.float(2.0, "Trailing Stop Step (%)", minval=0.1, maxval=100)
+  107: 
+  108: // WaveTrend Calculation
+  109: ap = hlc3 
+  110: esa = ta.ema(ap, n1)
+  111: d = ta.ema(math.abs(ap - esa), n1)
+  112: ci = (ap - esa) / (0.015 * d)
+  113: tci = ta.ema(ci, n2)
+  114:  
+  115: wt1 = tci
+  116: wt2 = ta.sma(wt1, 4)
+  117: 
+  118: // Plotting Original Indicators
+  119: plot(0, color=color.gray)
+  120: plot(obLevel1, color=color.red)
+  121: plot(osLevel1, color=color.green)
+  122: plot(obLevel2, color=color.red, style=plot.style_line)
+  123: plot(osLevel2, color=color.green, style=plot.style_line)
+  124: 
+  125: plot(wt1, color=color.green)
+  126: plot(wt2, color=color.red, style=plot.style_line)
+  127: plot(wt1-wt2, color=color.blue, style=plot.style_area, transp=80)
+  128: 
+  129: // Buy and Sell Signals with Risk Management
+  130: longCondition = ta.crossover(wt1, osLevel1) or ta.crossover(wt1, osLevel2)
+  131: shortCondition = ta.crossunder(wt1, obLevel1) or ta.crossunder(wt1, obLevel2)
+  132: 
+  133: // Strategy Entry with Risk Management
+  134: if (longCondition)
+  135:     entryPrice = close
+  136:     stopLossPrice = entryPrice * (1 - stopLossPercent/100)
+  137:     takeProfitPrice = entryPrice * (1 + takeProfitPercent/100)
+  138:     
+  139:     strategy.entry("Long", strategy.long)
+  140:     strategy.exit("Long Exit", "Long", 
+  141:                   stop=stopLossPrice, 
+  142:                   limit=takeProfitPrice, 
+  143:                   trail_price=close * (1 + trailingStopPercent/100), 
+  144:                   trail_offset=close * (trailingStepPercent/100))
+  145: 
+  146: if (shortCondition)
+  147:     entryPrice = close
+  148:     stopLossPrice = entryPrice * (1 + stopLossPercent/100)
+  149:     takeProfitPrice = entryPrice * (1 - takeProfitPercent/100)
+  150:     
+  151:     strategy.entry("Short", strategy.short)
+  152:     strategy.exit("Short Exit", "Short", 
+  153:                   stop=stopLossPrice, 
+  154:                   limit=takeProfitPrice, 
+  155:                   trail_price=close * (1 - trailingStopPercent/100), 
+  156:                   trail_offset=close * (trailingStepPercent/100))

@@ -5973,6 +5973,33 @@ SIZING = {
     474959: [
         ("Stop 1.1 ATR / target 2 ATR from avg", 130, 144),
     ],
+    # ---- FMZ-C, batch C227 (2026-10-22)
+    474961: [],
+    474962: [
+        ("Contracts 1 per id; stop / target 25 points from avg; trail 25 / 25", 104, 139),
+    ],
+    474964: [
+        ("Stop at the 5-bar low / high, target 2 R", 194, 222),
+    ],
+    474965: [
+        ("Stop 50 %, target 5 %, trail activation 3 %, offset close x 2 % ticks", 103, 156),
+    ],
+    474967: [],
+    474971: [
+        ("strategy(): 200 % of equity, capital 100000", 90, 90),
+    ],
+    474972: [
+        ("strategy(): 200 % of equity; stop 5 / target 10 pips from avg", 96, 186),
+    ],
+    474976: [
+        ("Stop 1.5 ATR / target 3 ATR from avg", 110, 135),
+    ],
+    474977: [
+        ("strategy(): 100 % of equity, commission 0.1 %, slippage 3", 115, 115),
+    ],
+    474980: [
+        ("strategy(): 100 % of equity", 123, 123),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7536,6 +7563,13 @@ REJECTED_ON_READING = {
     474960: ("2", "strategy.exit's profit / loss fields take tick counts but receive price amounts "
               "(close x 2.4 % / close x 1.2 %): a price amount in a tick field, so the distance "
               "in price depends on the instrument's tick size (criterion 2, as #442115)."),
+    # ---- FMZ-C, batch C227 (2026-10-22)
+    474981: ("1", "pyramiding = 3 with an entry on every bar whose body exceeds 1.91 % of the close: "
+              "up to three units are added on the same side, so the size path is part of the "
+              "strategy (criterion 1, pyramiding >= 2 repeats)."),
+    474983: ("1", "The daily RSI is requested with lookahead_on and no [1] offset, so every intraday "
+              "bar reads the day's final RSI before the day ends (criterion 1, higher time frame "
+              "with lookahead, as #427518)."),
 }
 
 DUPLICATE_ON_READING = {

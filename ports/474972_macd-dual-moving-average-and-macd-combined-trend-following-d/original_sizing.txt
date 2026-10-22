@@ -1,0 +1,96 @@
+# Original sizing and money-management code, FMZ #474972 (双移动平均线与MACD结合的趋势跟踪动态止盈智能交易系统-Dual-Moving-Average-and-MACD-Combined-Trend-Following-Dynamic-Take-Profit-Smart-Trading-System)
+# Source: https://www.fmz.com/strategy/474972  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 200 % of equity; stop 5 / target 10 pips from avg  [lines 96-186]
+   96: strategy("Trend Following Scalping Strategy", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=200)
+   97: 
+   98: // Input Parameters
+   99: stopLossPips = input.float(5.0, "Stop Loss in Pips", minval=1.0)
+  100: takeProfitPips = input.float(10.0, "Take Profit in Pips", minval=1.0)
+  101: useFixedTakeProfit = input.bool(true, "Use Fixed Take Profit")
+  102: 
+  103: // Moving Average Parameters
+  104: fastMA = input.int(50, "Fast MA Period")
+  105: slowMA = input.int(200, "Slow MA Period")
+  106: 
+  107: // MACD Parameters
+  108: macdFastLength = input.int(12, "MACD Fast Length")
+  109: macdSlowLength = input.int(26, "MACD Slow Length")
+  110: macdSignalLength = input.int(9, "MACD Signal Length")
+  111: 
+  112: // Trade Filter Parameters (Adjusted to be less strict)
+  113: minBarsBetweenTrades = input.int(5, "Minimum Bars Between Trades", minval=1)
+  114: trendStrengthPeriod = input.int(10, "Trend Strength Period")
+  115: minTrendStrength = input.float(0.4, "Minimum Trend Strength", minval=0.1, maxval=1.0)
+  116: macdThreshold = input.float(0.00005, "MACD Threshold", minval=0.0)
+  117: 
+  118: // Variables for trade management
+  119: var int barsLastTrade = 0
+  120: barsLastTrade := nz(barsLastTrade[1]) + 1
+  121: 
+  122: // Calculate Moving Averages
+  123: ma50 = ta.sma(close, fastMA)
+  124: ma200 = ta.sma(close, slowMA)
+  125: 
+  126: // Calculate MACD
+  127: [macdLine, signalLine, _] = ta.macd(close, macdFastLength, macdSlowLength, macdSignalLength)
+  128: 
+  129: // Calculate trend strength (simplified)
+  130: trendDirection = ta.ema(close, trendStrengthPeriod) > ta.ema(close, trendStrengthPeriod * 2)
+  131: isUptrend = close > ma50 and ma50 > ma200
+  132: isDowntrend = close < ma50 and ma50 < ma200
+  133: 
+  134: // Calculate pip value
+  135: pointsPerPip = syminfo.mintick * 10
+  136: 
+  137: // Entry Conditions with Less Strict Filters
+  138: macdCrossUp = ta.crossover(macdLine, signalLine) and math.abs(macdLine - signalLine) > macdThreshold
+  139: macdCrossDown = ta.crossunder(macdLine, signalLine) and math.abs(macdLine - signalLine) > macdThreshold
+  140: 
+  141: // Long and Short Conditions
+  142: longCondition = close > ma50 and macdCrossUp and barsLastTrade >= minBarsBetweenTrades and isUptrend
+  143: shortCondition = close < ma50 and macdCrossDown and barsLastTrade >= minBarsBetweenTrades and isDowntrend
+  144: 
+  145: // Exit Conditions (made more lenient)
+  146: exitLongCondition = macdCrossDown or close < ma50
+  147: exitShortCondition = macdCrossUp or close > ma50
+  148: 
+  149: // Reset bars counter on new trade
+  150: if (longCondition or shortCondition)
+  151:     barsLastTrade := 0
+  152: 
+  153: // Calculate stop loss and take profit levels
+  154: longStopPrice = strategy.position_avg_price - (stopLossPips * pointsPerPip)
+  155: longTakeProfitPrice = strategy.position_avg_price + (takeProfitPips * pointsPerPip)
+  156: shortStopPrice = strategy.position_avg_price + (stopLossPips * pointsPerPip)
+  157: shortTakeProfitPrice = strategy.position_avg_price - (takeProfitPips * pointsPerPip)
+  158: 
+  159: // Plot Moving Averages
+  160: plot(ma50, "50 MA", color=color.blue)
+  161: plot(ma200, "200 MA", color=color.red)
+  162: 
+  163: // Plot Entry Signals
+  164: plotshape(longCondition, "Long Signal", shape.triangleup, location.belowbar, color.green, size=size.small)
+  165: plotshape(shortCondition, "Short Signal", shape.triangledown, location.abovebar, color.red, size=size.small)
+  166: 
+  167: // Strategy Entry Rules
+  168: if (longCondition and strategy.position_size == 0)
+  169:     strategy.entry("Long", strategy.long)
+  170: 
+  171: if (shortCondition and strategy.position_size == 0)
+  172:     strategy.entry("Short", strategy.short)
+  173: 
+  174: // Strategy Exit Rules
+  175: if (strategy.position_size > 0 and exitLongCondition)
+  176:     strategy.close("Long")
+  177: 
+  178: if (strategy.position_size < 0 and exitShortCondition)
+  179:     strategy.close("Short")
+  180: 
+  181: // Stop Loss and Take Profit Management
+  182: if (strategy.position_size > 0)
+  183:     strategy.exit("Long TP/SL", "Long", stop=longStopPrice, limit=useFixedTakeProfit ? longTakeProfitPrice : na)
+  184: 
+  185: if (strategy.position_size < 0)
+  186:     strategy.exit("Short TP/SL", "Short", stop=shortStopPrice, limit=useFixedTakeProfit ? shortTakeProfitPrice : na)

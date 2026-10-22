@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2748 |
+| PORTED | 2758 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 604 |
+| PORT_CANDIDATE | 592 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 386 |
+| REJECTED_ON_READING | 388 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2876,7 +2876,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474955 | `ports/474955_historical-high-breakthrough-with-monthly-moving-average-fil/` | PineScript | breakout | none | sma_len x2 | 2 |
 | 474958 | `ports/474958_dual-ema-crossover-strategy-with-smart-risk-reward-control/` | PineScript | ma_cross | coarse_bar_stop | short_len x2, long_len x2 | 4 |
 | 474959 | `ports/474959_rsi-atr-multi-period-ema-crossover-with-rsi-momentum-and-atr/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop_pending | short_ema x2, long_ema x2 | 4 |
-| | **2748 ports** | | | | | **12848** |
+| 474961 | `ports/474961_dual-momentum-breakthrough-confirmation-quantitative-trading/` | PineScript | momentum_oscillator | none | wpr_length x2, rsi_length x2 | 4 |
+| 474962 | `ports/474962_dynamic-trend-following-multi-period-moving-average-crossove/` | PineScript | ma_pullback | coarse_bar_stop | sl_frac x2, tp_frac x2 | 4 |
+| 474964 | `ports/474964_dual-ema-stochastic-trend-following-trading-strategy/` | PineScript | stochastic_oscillator | coarse_bar_stop, trailing_stop_pending | fast x2, slow x2 | 4 |
+| 474965 | `ports/474965_multi-wave-trend-crossing-risk-management-quantitative-strat/` | PineScript | wavetrend_oscillator | coarse_bar_stop, trailing_stop, trailing_stop_pending | trail_pct x2, activate x2 | 4 |
+| 474967 | `ports/474967_ema-dynamic-ema-trend-crossover-entry-quantitative-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 474971 | `ports/474971_triple-standard-deviation-bollinger-bands-breakout-strategy/` | PineScript | bollinger_breakout | none | upper_sd x2, ma_period x2 | 4 |
+| 474972 | `ports/474972_macd-dual-moving-average-and-macd-combined-trend-following-d/` | PineScript | macd_cross | none | fast_ma x2, slow_ma x2 | 4 |
+| 474976 | `ports/474976_macd-atr-enhanced-mean-reversion-strategy-with-macd-atr-impl/` | PineScript | bollinger_reversion | coarse_bar_stop, trailing_stop_pending | bb_length x2, atr_mult x2 | 4 |
+| 474977 | `ports/474977_bollinger-bands-momentum-breakout-adaptive-trend-following-s/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 474980 | `ports/474980_intelligent-volatility-range-trading-strategy-combining-boll/` | PineScript | supertrend | none | length_bb x2, factor x2 | 4 |
+| | **2758 ports** | | | | | **12888** |
 
 ## Rejected on reading
 
@@ -3268,6 +3278,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474879 | 均值回归型布林带美元成本平均投资策略-Mean-Reversion-Bollinger-Band-Dollar-Cost-Averaging-Investment-Strategy.md | 1 | Dollar-cost averaging: strategy.order('DCA Buy', long, investment / close) on every cross under the lower band, with no exit until a fixed close date: the position is a running sum of orders, so the size path is the strategy (criterion 1, DCA accumulation, as #430762). |
 | 474956 | 多均线组合趋势跟踪战略-基于EMA与SMA指标的长期投资信号系统-Multi-Moving-Average-Trend-Following-Strategy-Long-term-Investment-Signal-System-Based-on-EMA-and-SMA-Indicators.md | 1 | No exit, and the entry test passes on the first bars of the data (its averages are still na and comparisons with na are false, so the 'clean' loop finds nothing to block): the first bar's long is held to the end of the data, a single buy-and-hold trade (criterion 1, as #433916). |
 | 474960 | MACD-RSI趋势动量交叉策略结合风险管理模型-MACD-RSI-Trend-Momentum-Cross-Strategy-with-Risk-Management-Model.md | 2 | strategy.exit's profit / loss fields take tick counts but receive price amounts (close x 2.4 % / close x 1.2 %): a price amount in a tick field, so the distance in price depends on the instrument's tick size (criterion 2, as #442115). |
+| 474981 | 黑天鹅波动与均线交叉动量跟踪策略-Black-Swan-Volatility-and-Moving-Average-Crossover-Momentum-Tracking-Strategy.md | 1 | pyramiding = 3 with an entry on every bar whose body exceeds 1.91 % of the close: up to three units are added on the same side, so the size path is part of the strategy (criterion 1, pyramiding >= 2 repeats). |
+| 474983 | 基于双RSI指标的自适应波段交易系统-Adaptive-Range-Trading-System-Based-on-Dual-RSI-Indicators.md | 1 | The daily RSI is requested with lookahead_on and no [1] offset, so every intraday bar reads the day's final RSI before the day ends (criterion 1, higher time frame with lookahead, as #427518). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

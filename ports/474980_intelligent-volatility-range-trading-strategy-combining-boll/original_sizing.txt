@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #474980 (布林带结合超级趋势的智能波动区间交易策略-Intelligent-Volatility-Range-Trading-Strategy-Combining-Bollinger-Bands-and-SuperTrend)
+# Source: https://www.fmz.com/strategy/474980  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 123-123]
+  123: strategy("Bollinger Band & SuperTrend Strategy (Standard Chart)", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

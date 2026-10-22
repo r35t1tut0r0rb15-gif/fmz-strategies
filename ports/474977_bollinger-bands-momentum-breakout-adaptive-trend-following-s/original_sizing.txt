@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #474977 (基于波林格带动量突破的自适应趋势跟踪交易策略-Bollinger-Bands-Momentum-Breakout-Adaptive-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/474977  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission 0.1 %, slippage 3  [lines 115-115]
+  115: strategy("Demo GPT - Bollinger Bands", overlay=true, initial_capital=10000, commission_type=strategy.commission.percent, commission_value=0.1, slippage=3, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

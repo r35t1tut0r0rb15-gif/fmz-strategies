@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #474962 (动态趋势跟踪多周期均线交叉策略-Dynamic-Trend-Following-Multi-Period-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/474962  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Contracts 1 per id; stop / target 25 points from avg; trail 25 / 25  [lines 104-139]
+  104: contracts = input.int(title="Aantal Contracten", defval=1)
+  105: stopLossPoints = input.int(title="Stop Loss Points per Contract", defval=25)
+  106: takeProfitPoints = input.int(title="Take Profit Points per Contract", defval=25)
+  107: 
+  108: // --- Calculate moving averages ---
+  109: sma89 = ta.sma(close, sma89Length)
+  110: sma21 = ta.sma(close, sma21Length)
+  111: ema5High = ta.ema(high, ema5HighLength)
+  112: ema5Low = ta.ema(low, ema5LowLength)
+  113: 
+  114: // --- Identify trend and order of moving averages ---
+  115: longSetup = close > sma89 and close > sma21 and ema5High > sma21 and sma21 > sma89
+  116: shortSetup = close < sma89 and close < sma21 and ema5Low < sma21 and sma21 < sma89
+  117: 
+  118: // --- Entry signals ---
+  119: longTrigger = longSetup and close <= ema5Low
+  120: shortTrigger = shortSetup and close >= ema5High
+  121: 
+  122: // --- Entry orders ---
+  123: if (longTrigger)
+  124:     strategy.entry("Long 1", strategy.long, qty=contracts)
+  125:     strategy.entry("Long 2", strategy.long, qty=contracts)
+  126: 
+  127: if (shortTrigger)
+  128:     strategy.entry("Short 1", strategy.short, qty=contracts)
+  129:     strategy.entry("Short 2", strategy.short, qty=contracts)
+  130: 
+  131: // --- Stop-loss and take-profit for long positions ---
+  132: if (strategy.position_size > 0)
+  133:     strategy.exit("Exit Long 1", "Long 1", stop=strategy.position_avg_price - stopLossPoints, limit=strategy.position_avg_price + takeProfitPoints)
+  134:     strategy.exit("Exit Long 2", "Long 2", stop=strategy.position_avg_price - stopLossPoints, trail_offset=takeProfitPoints, trail_points=takeProfitPoints)
+  135: 
+  136: // --- Stop-loss and take-profit for short positions ---
+  137: if (strategy.position_size < 0)
+  138:     strategy.exit("Exit Short 1", "Short 1", stop=strategy.position_avg_price + stopLossPoints, limit=strategy.position_avg_price - takeProfitPoints)
+  139:     strategy.exit("Exit Short 2", "Short 2", stop=strategy.position_avg_price + stopLossPoints, trail_offset=takeProfitPoints, trail_points=takeProfitPoints)

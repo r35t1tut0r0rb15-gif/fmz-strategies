@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #474967 (EMA趋势交叉动态入场量化策略-Dynamic-EMA-Trend-Crossover-Entry-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/474967  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
