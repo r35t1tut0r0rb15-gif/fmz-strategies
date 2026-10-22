@@ -263,6 +263,7 @@ fmz_id,file,final_outcome,criterion,reason
 440978,基于均线交叉的长线追涨策略SMA-Crossover-Bullish-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"The only exit is a bracket sent on entry-signal bars from strategy.position_avg_price; on the signal bar the position is flat (average na) so nothing is placed, and the bracket is armed only by a later crossover while long: a delayed level the house stops (fixed at the fill) cannot express; without it the long is held (as #440109)."
 440981,毕达哥蜡烛图MACD指标背离趋势跟踪策略Demigod-Candlestick-MACD-Divergence-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 100 with fixed qty-1 entries repeated on every signal while a position is open: the position accumulates units (criterion 1, as #430762)."
 440992,双向自适应布林带趋势追踪策略-Adaptive-Bollinger-Bands-Trend-Tracking-Strategy.md,REJECTED_ON_READING,1,"A DCA ladder: repeated qty-1 ""Buy"" entries as each fib level fills, and a qty-0 ""Close ALL"" entry at the average-price target: the position accumulates units (criterion 1, as #430762)."
+441049,基于双均线交叉策略Closing-Price-Comparison-Dual-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"The long's exits close 50 % of the position (strategy.close with qty_percent = 50) on an open-profit test: partial exits (criterion 1, as #436524)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2160,3 +2161,14 @@ fmz_id,file,final_outcome,criterion,reason
 440994,动量价格爬坡型加密货币策略Momentum-Price-Climbing-Crypto-Currency-Strategy.md,PORTED,,ports/440994_momentum-price-climbing-crypto-currency-strategy/
 440995,基于布林带移动平均线和MACD的组合交易策略Bollinger-Band-Moving-Average-and-MACD-Combined-Trading-Strategy.md,PORTED,,ports/440995_macd-bollinger-band-moving-average-and-macd-combined-trading/
 440996,趋势追踪移动平均策略Swing-Trend-Moving-Average-Strategy.md,PORTED,,ports/440996_swing-trend-moving-average-strategy/
+440997,基于Renko和相对活力指数的趋势跟踪策略Renko-and-Relative-Vigor-Index-Trend-Following-Strategy.md,PORTED,,ports/440997_renko-renko-and-relative-vigor-index-trend-following-strateg/
+440998,超趋动量波动双重指标择时策略Quadratic-Momentum-Double-Indicators-Timing-Strategy.md,PORTED,,ports/440998_quadratic-momentum-double-indicators-timing-strategy/
+440999,双移动均线趋势跟踪策略Dual-Moving-Average-Trend-Tracking-Strategy.md,PORTED,,ports/440999_dual-moving-average-trend-tracking-strategy/
+441002,基于移动平均线交叉交易策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/441002_moving-average-crossover-strategy/
+441003,双均线突破量化交易策略Dual-Moving-Average-Breakout-Strategy.md,PORTED,,ports/441003_dual-moving-average-breakout-strategy/
+441010,动态RSI指标交易策略Dynamic-RSI-Trading-Strategy.md,PORTED,,ports/441010_rsi-dynamic-rsi-trading-strategy/
+441013,黄金抛物线突破策略Golden-Parabola-Breakout-Strategy.md,PORTED,,ports/441013_golden-parabola-breakout-strategy/
+441042,反转趋势捕捉与动态止损双重策略Reversal-Trend-Catching-and-Dynamic-Stop-Loss-Combo-Strategy.md,PORTED,,ports/441042_reversal-trend-catching-and-dynamic-stop-loss-combo-strategy/
+441043,均线与RSI指标结合的趋势跟踪策略Exponential-Moving-Average-and-Relative-Strength-Index-Combination-Trend-Following-Strategy.md,PORTED,,ports/441043_rsi-exponential-moving-average-and-relative-strength-index-c/
+441044,威利旺卡突破策略Willy-Wonka-Breakout-Strategy.md,PORTED,,ports/441044_willy-wonka-breakout-strategy/
+441048,基于Ichimoku云图MACD和Stochastic的多时间框架趋势跟踪策略Ichimoku-Cloud-MACD-and-Stochastic-Based-Multi-Timeframe-Trend-Tracking-Strategy.md,PORTED,,ports/441048_ichimoku-macd-stochastic-ichimoku-cloud-macd-and-stochastic/

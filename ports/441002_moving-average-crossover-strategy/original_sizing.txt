@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #441002 (基于移动平均线交叉交易策略Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/441002  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 10000 USD  [lines 132-132]
+  132: strategy(title="Moving Average Cross", overlay=true, initial_capital=10000, currency='USD')

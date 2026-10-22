@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1879 |
-| PORT_CANDIDATE | 1599 |
+| PORTED | 1890 |
+| PORT_CANDIDATE | 1587 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 565 |
-| REJECTED_ON_READING | 264 |
+| REJECTED_ON_READING | 265 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2007,7 +2007,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440994 | `ports/440994_momentum-price-climbing-crypto-currency-strategy/` | PineScript | multi_indicator_confluence | none | candles x2, vortex_len x2 | 4 |
 | 440995 | `ports/440995_macd-bollinger-band-moving-average-and-macd-combined-trading/` | PineScript | multi_indicator_confluence | coarse_bar_stop | bb_len x2, ema_len x2 | 4 |
 | 440996 | `ports/440996_swing-trend-moving-average-strategy/` | PineScript | ma_trend | none | length x2, atr_mult x2 | 4 |
-| | **1879 ports** | | | | | **9059** |
+| 440997 | `ports/440997_renko-renko-and-relative-vigor-index-trend-following-strateg/` | PineScript | renko_bricks | none | atr_len x2, rvi_len x2 | 4 |
+| 440998 | `ports/440998_quadratic-momentum-double-indicators-timing-strategy/` | PineScript | supertrend | none | atr_length1 x2, multiplier1 x2 | 4 |
+| 440999 | `ports/440999_dual-moving-average-trend-tracking-strategy/` | PineScript | ma_pullback | none | length x2, bars x2 | 4 |
+| 441002 | `ports/441002_moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 441003 | `ports/441003_dual-moving-average-breakout-strategy/` | PineScript | ma_trend | none | len_a x2, len_b x2 | 4 |
+| 441010 | `ports/441010_rsi-dynamic-rsi-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, trail_pct x2 | 4 |
+| 441013 | `ports/441013_golden-parabola-breakout-strategy/` | PineScript | candle_pattern | none | length x2 | 2 |
+| 441042 | `ports/441042_reversal-trend-catching-and-dynamic-stop-loss-combo-strategy/` | PineScript | combo_123_reversal | none | length x2, length_kds x2 | 4 |
+| 441043 | `ports/441043_rsi-exponential-moving-average-and-relative-strength-index-c/` | PineScript | ma_cross | none | trend_len x2, rsi_length x2 | 4 |
+| 441044 | `ports/441044_willy-wonka-breakout-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, oversold x2 | 4 |
+| 441048 | `ports/441048_ichimoku-macd-stochastic-ichimoku-cloud-macd-and-stochastic/` | PineScript | ichimoku | coarse_bar_stop | sl_mult x2, tp_mult x2 | 4 |
+| | **1890 ports** | | | | | **9101** |
 
 ## Rejected on reading
 
@@ -2277,6 +2288,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440978 | 基于均线交叉的长线追涨策略SMA-Crossover-Bullish-Trend-Following-Strategy.md | 1 | The only exit is a bracket sent on entry-signal bars from strategy.position_avg_price; on the signal bar the position is flat (average na) so nothing is placed, and the bracket is armed only by a later crossover while long: a delayed level the house stops (fixed at the fill) cannot express; without it the long is held (as #440109). |
 | 440981 | 毕达哥蜡烛图MACD指标背离趋势跟踪策略Demigod-Candlestick-MACD-Divergence-Trend-Following-Strategy.md | 1 | pyramiding = 100 with fixed qty-1 entries repeated on every signal while a position is open: the position accumulates units (criterion 1, as #430762). |
 | 440992 | 双向自适应布林带趋势追踪策略-Adaptive-Bollinger-Bands-Trend-Tracking-Strategy.md | 1 | A DCA ladder: repeated qty-1 "Buy" entries as each fib level fills, and a qty-0 "Close ALL" entry at the average-price target: the position accumulates units (criterion 1, as #430762). |
+| 441049 | 基于双均线交叉策略Closing-Price-Comparison-Dual-Moving-Average-Crossover-Strategy.md | 1 | The long's exits close 50 % of the position (strategy.close with qty_percent = 50) on an open-profit test: partial exits (criterion 1, as #436524). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

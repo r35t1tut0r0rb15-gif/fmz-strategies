@@ -4166,6 +4166,27 @@ SIZING = {
     440996: [
         ("strategy(): 100 % of equity, capital 1000, commission 0.1", 140, 140),
     ],
+    # ---- FMZ-C, batch C144 (2026-10-22)
+    440997: [],
+    440998: [],
+    440999: [
+        ("strategy(): 100 % of equity, pyramiding 0", 131, 131),
+    ],
+    441002: [
+        ("strategy(): capital 10000 USD", 132, 132),
+    ],
+    441003: [
+        ("strategy.entry qty = 1 (long20)", 145, 145),
+        ("strategy.entry qty = 1 (long60)", 154, 154),
+    ],
+    441010: [],
+    441013: [],
+    441042: [],
+    441043: [
+        ("strategy(): default_qty_value 1", 112, 112),
+    ],
+    441044: [],
+    441048: [],
 }
 
 REJECTED_ON_READING = {
@@ -5255,6 +5276,9 @@ REJECTED_ON_READING = {
     440992: ("1", "A DCA ladder: repeated qty-1 \"Buy\" entries as each fib level fills, and a qty-0 "
               "\"Close ALL\" entry at the average-price target: the position accumulates units "
               "(criterion 1, as #430762)."),
+    # ---- FMZ-C, batch C144 (2026-10-22)
+    441049: ("1", "The long's exits close 50 % of the position (strategy.close with qty_percent = 50) "
+              "on an open-profit test: partial exits (criterion 1, as #436524)."),
 }
 
 DUPLICATE_ON_READING = {
