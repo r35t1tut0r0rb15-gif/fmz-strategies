@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1869 |
-| PORT_CANDIDATE | 1611 |
+| PORTED | 1879 |
+| PORT_CANDIDATE | 1599 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 565 |
-| REJECTED_ON_READING | 262 |
+| REJECTED_ON_READING | 264 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -1997,7 +1997,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440976 | `ports/440976_sma-trend-following-strategy-based-on-multi-period-sma/` | PineScript | ma_trend | none | dir_span x2, zl_slow x2 | 4 |
 | 440977 | `ports/440977_bollinger-bands-breakout-quantitative-trading-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
 | 440979 | `ports/440979_stochastic-rsi-ema-dual-indicator-stochastic-rsi-and-ema-tra/` | PineScript | stochastic_oscillator | none | stoch_length x2, ema1_period x2 | 4 |
-| | **1869 ports** | | | | | **9019** |
+| 440980 | `ports/440980_dual-moving-average-cross-timeframe-trading-strategy/` | PineScript | ma_cross | none | lenma_fast x2, lenma_slow x2 | 4 |
+| 440982 | `ports/440982_bollinger-bands-rsi-bollinger-bands-and-rsi-combination-trad/` | PineScript | bollinger_reversion | none | length x2, rsi_oversold x2 | 4 |
+| 440983 | `ports/440983_ema-rsi-powerful-ema-and-rsi-quantitative-trading-strategy/` | PineScript | ma_trend | none | ema_len x2, rsi_hi x2 | 4 |
+| 440985 | `ports/440985_stochastic-stochastic-weekly-options-trading-strategy/` | PineScript | stochastic_oscillator | none | length x2, low_level x2 | 4 |
+| 440986 | `ports/440986_sma-quantitative-trading-strategy-based-on-sma-and-rolling-t/` | PineScript | ma_trend | none | sma_period x2, window x2 | 4 |
+| 440988 | `ports/440988_rsi-quantitative-trading-strategy-based-on-rsi-and-bollinger/` | PineScript | bollinger_reversion | none | length x2, oversold x2 | 4 |
+| 440990 | `ports/440990_improved-rsi-breakout-strategy-with-stop-loss-and-take-profi/` | PineScript | rsi_oscillator | none | tp x2, sl x2 | 4 |
+| 440994 | `ports/440994_momentum-price-climbing-crypto-currency-strategy/` | PineScript | multi_indicator_confluence | none | candles x2, vortex_len x2 | 4 |
+| 440995 | `ports/440995_macd-bollinger-band-moving-average-and-macd-combined-trading/` | PineScript | multi_indicator_confluence | coarse_bar_stop | bb_len x2, ema_len x2 | 4 |
+| 440996 | `ports/440996_swing-trend-moving-average-strategy/` | PineScript | ma_trend | none | length x2, atr_mult x2 | 4 |
+| | **1879 ports** | | | | | **9059** |
 
 ## Rejected on reading
 
@@ -2265,6 +2275,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440954 | 移动平均交叉优化策略Optimized-Moving-Average-Crossover-Strategy.md | 1 | strategy.close_all() is called unconditionally on every bar after the entries, so every entry bar ends flat (as #430380): as written no position is ever held (as #430384). |
 | 440975 | 基于市场多空力量的Ichimoku云突破策略Market-Sentiment-Based-Ichimoku-Breakout-Strategy.md | 1 | The only exit (default ATR trail) is a ratcheting stop at the 7-bar swing low minus one ATR(14), which the house trail (best high or close) cannot express, and entries need a flat position; without it the first long is held to the end (as #440109, #430384). |
 | 440978 | 基于均线交叉的长线追涨策略SMA-Crossover-Bullish-Trend-Following-Strategy.md | 1 | The only exit is a bracket sent on entry-signal bars from strategy.position_avg_price; on the signal bar the position is flat (average na) so nothing is placed, and the bracket is armed only by a later crossover while long: a delayed level the house stops (fixed at the fill) cannot express; without it the long is held (as #440109). |
+| 440981 | 毕达哥蜡烛图MACD指标背离趋势跟踪策略Demigod-Candlestick-MACD-Divergence-Trend-Following-Strategy.md | 1 | pyramiding = 100 with fixed qty-1 entries repeated on every signal while a position is open: the position accumulates units (criterion 1, as #430762). |
+| 440992 | 双向自适应布林带趋势追踪策略-Adaptive-Bollinger-Bands-Trend-Tracking-Strategy.md | 1 | A DCA ladder: repeated qty-1 "Buy" entries as each fib level fills, and a qty-0 "Close ALL" entry at the average-price target: the position accumulates units (criterion 1, as #430762). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

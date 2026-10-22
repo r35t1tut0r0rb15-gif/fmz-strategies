@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #440983 (基于EMA和RSI的强大量化交易策略Powerful-EMA-and-RSI-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/440983  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

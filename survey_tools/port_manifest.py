@@ -4151,6 +4151,21 @@ SIZING = {
     440976: [],
     440977: [],
     440979: [],
+    # ---- FMZ-C, batch C143 (2026-10-22)
+    440980: [],
+    440982: [],
+    440983: [],
+    440985: [],
+    440986: [],
+    440988: [],
+    440990: [],
+    440994: [],
+    440995: [
+        ("strategy(): 10 % of equity", 179, 179),
+    ],
+    440996: [
+        ("strategy(): 100 % of equity, capital 1000, commission 0.1", 140, 140),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -5234,6 +5249,12 @@ REJECTED_ON_READING = {
               "so nothing is placed, and the bracket is armed only by a later crossover while "
               "long: a delayed level the house stops (fixed at the fill) cannot express; without "
               "it the long is held (as #440109)."),
+    # ---- FMZ-C, batch C143 (2026-10-22)
+    440981: ("1", "pyramiding = 100 with fixed qty-1 entries repeated on every signal while a "
+              "position is open: the position accumulates units (criterion 1, as #430762)."),
+    440992: ("1", "A DCA ladder: repeated qty-1 \"Buy\" entries as each fib level fills, and a qty-0 "
+              "\"Close ALL\" entry at the average-price target: the position accumulates units "
+              "(criterion 1, as #430762)."),
 }
 
 DUPLICATE_ON_READING = {

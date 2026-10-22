@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #440988 (基于RSI和布林带的量化交易策略Quantitative-Trading-Strategy-Based-on-RSI-and-Bollinger-Bands)
+# Source: https://www.fmz.com/strategy/440988  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

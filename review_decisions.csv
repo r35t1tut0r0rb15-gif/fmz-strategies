@@ -261,6 +261,8 @@ fmz_id,file,final_outcome,criterion,reason
 440954,移动平均交叉优化策略Optimized-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"strategy.close_all() is called unconditionally on every bar after the entries, so every entry bar ends flat (as #430380): as written no position is ever held (as #430384)."
 440975,基于市场多空力量的Ichimoku云突破策略Market-Sentiment-Based-Ichimoku-Breakout-Strategy.md,REJECTED_ON_READING,1,"The only exit (default ATR trail) is a ratcheting stop at the 7-bar swing low minus one ATR(14), which the house trail (best high or close) cannot express, and entries need a flat position; without it the first long is held to the end (as #440109, #430384)."
 440978,基于均线交叉的长线追涨策略SMA-Crossover-Bullish-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"The only exit is a bracket sent on entry-signal bars from strategy.position_avg_price; on the signal bar the position is flat (average na) so nothing is placed, and the bracket is armed only by a later crossover while long: a delayed level the house stops (fixed at the fill) cannot express; without it the long is held (as #440109)."
+440981,毕达哥蜡烛图MACD指标背离趋势跟踪策略Demigod-Candlestick-MACD-Divergence-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 100 with fixed qty-1 entries repeated on every signal while a position is open: the position accumulates units (criterion 1, as #430762)."
+440992,双向自适应布林带趋势追踪策略-Adaptive-Bollinger-Bands-Trend-Tracking-Strategy.md,REJECTED_ON_READING,1,"A DCA ladder: repeated qty-1 ""Buy"" entries as each fib level fills, and a qty-0 ""Close ALL"" entry at the average-price target: the position accumulates units (criterion 1, as #430762)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2148,3 +2150,13 @@ fmz_id,file,final_outcome,criterion,reason
 440976,基于多周期SMA指标的趋势跟踪策略Trend-Following-Strategy-Based-on-Multi-Period-SMA.md,PORTED,,ports/440976_sma-trend-following-strategy-based-on-multi-period-sma/
 440977,基于布林带突破的量化交易策略-Bollinger-Bands-Breakout-Quantitative-Trading-Strategy.md,PORTED,,ports/440977_bollinger-bands-breakout-quantitative-trading-strategy/
 440979,双重指标的Stochastic-RSI和EMA交易策略Dual-Indicator-Stochastic-RSI-and-EMA-Trading-Strategy.md,PORTED,,ports/440979_stochastic-rsi-ema-dual-indicator-stochastic-rsi-and-ema-tra/
+440980,双移动平均线跨时间框架交易策略Dual-Moving-Average-Cross-Timeframe-Trading-Strategy.md,PORTED,,ports/440980_dual-moving-average-cross-timeframe-trading-strategy/
+440982,Bollinger-Bands与RSI组合交易策略Bollinger-Bands-and-RSI-Combination-Trading-Strategy.md,PORTED,,ports/440982_bollinger-bands-rsi-bollinger-bands-and-rsi-combination-trad/
+440983,基于EMA和RSI的强大量化交易策略Powerful-EMA-and-RSI-Quantitative-Trading-Strategy.md,PORTED,,ports/440983_ema-rsi-powerful-ema-and-rsi-quantitative-trading-strategy/
+440985,基于Stochastic指标的周期性期权交易策略Stochastic-Weekly-Options-Trading-Strategy.md,PORTED,,ports/440985_stochastic-stochastic-weekly-options-trading-strategy/
+440986,基于SMA和滚动趋势线的量化交易策略Quantitative-Trading-Strategy-Based-on-SMA-and-Rolling-Trendline.md,PORTED,,ports/440986_sma-quantitative-trading-strategy-based-on-sma-and-rolling-t/
+440988,基于RSI和布林带的量化交易策略Quantitative-Trading-Strategy-Based-on-RSI-and-Bollinger-Bands.md,PORTED,,ports/440988_rsi-quantitative-trading-strategy-based-on-rsi-and-bollinger/
+440990,Improved-RSI-Breakout-Strategy-with-Stop-Loss-and-Take-Profit改进RSI突破策略带止损止盈.md,PORTED,,ports/440990_improved-rsi-breakout-strategy-with-stop-loss-and-take-profi/
+440994,动量价格爬坡型加密货币策略Momentum-Price-Climbing-Crypto-Currency-Strategy.md,PORTED,,ports/440994_momentum-price-climbing-crypto-currency-strategy/
+440995,基于布林带移动平均线和MACD的组合交易策略Bollinger-Band-Moving-Average-and-MACD-Combined-Trading-Strategy.md,PORTED,,ports/440995_macd-bollinger-band-moving-average-and-macd-combined-trading/
+440996,趋势追踪移动平均策略Swing-Trend-Moving-Average-Strategy.md,PORTED,,ports/440996_swing-trend-moving-average-strategy/
