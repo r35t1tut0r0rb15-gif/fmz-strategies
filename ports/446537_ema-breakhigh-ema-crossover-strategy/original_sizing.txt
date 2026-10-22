@@ -1,0 +1,89 @@
+# Original sizing and money-management code, FMZ #446537 (突破最高价EMA交叉策略-BreakHigh-EMA-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/446537  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = 50000 x 2.5 % / stop distance  [lines 174-257]
+  174: Risk_Per_Trade = input(2.5, '% of Risk Per Trade') / 100  // Risk% Per Trade Switch
+  175: SLDAY = input(title='Lowest price of the previous number of bars', defval=9)
+  176: Buysig = input(defval=true, title='Start Strategy')
+  177: UseSl = input(defval=false, title='Use Stoploss Price')
+  178: Compound = input(defval = false ,title =  "Compound Profit")
+  179: xtf = input.timeframe(title='** Fix chart to which time frame ? **)', defval='D')
+  180: 
+  181: 
+  182: //BUY
+  183: float buyLine = na
+  184: buyLine := ta.highest(high,Period)[1] 
+  185: plot(showema ? buyLine : na, linewidth=1, style=plot.style_linebr, color=color.new(color.green, 0))
+  186: 
+  187: //SELL
+  188: output = ta.ema(close, Period)
+  189: show = request.security(syminfo.tickerid, xtf, output)
+  190: FastL = plot(showema ? show : na, color=color.new(color.white, 0), linewidth=2, title='Slow EMA')
+  191: 
+  192: //Buy-Sell Signal
+  193: Green = close > buyLine   // Buy
+  194: Red = close < show // Sell
+  195: 
+  196: buycond = Green and Green[1] == 0
+  197: sellcond = Red and Red[1] == 0
+  198: 
+  199: bullish = ta.barssince(buycond) < ta.barssince(sellcond)
+  200: bearish = ta.barssince(sellcond) < ta.barssince(buycond)
+  201: 
+  202: buy = bearish[1] and buycond
+  203: sell = bullish[1] and sellcond
+  204: 
+  205: plotshape(MarkBuySig ? buy : na, style=shape.labelup, text='Buy Next Bar', textcolor=color.new(color.black, 0), location=location.belowbar, color=color.new(color.green, 0))
+  206: plotshape(MarkBuySig ? sell : na, style=shape.labeldown, text='Sell Next Bar', textcolor=color.new(color.black, 0), location=location.abovebar, color=color.new(color.red, 0))
+  207: bgcolor(showbg ? bullish ? color.new(color.green,90) : color.new(color.red,90) : na )
+  208: 
+  209: 
+  210: // === BACKTEST RANGE === //
+  211: use_date_range = input(true)
+  212: FromYear = input.int(defval=2012, title='From Year', minval=1950)
+  213: FromMonth = input.int(defval=1, title='From Month', minval=1)
+  214: FromDay = input.int(defval=1, title='From Day', minval=1)
+  215: ToYear = input.int(defval=9999, title='To Year', minval=1950)
+  216: ToMonth = input.int(defval=1, title='To Month', minval=1)
+  217: ToDay = input.int(defval=1, title='To Day', minval=1)
+  218: in_date_range = use_date_range ? time > timestamp(FromYear, FromMonth, FromDay, 00, 00) and time < timestamp(ToYear, ToMonth, ToDay, 23, 59) : true
+  219: 
+  220: //****************************************************************************//
+  221: 
+  222: //////////////////////////////////////////////
+  223: //    define strategy entry / exit          //
+  224: //////////////////////////////////////////////
+  225: 
+  226: //****************************************************************************//
+  227: // LONG CONDITIONS
+  228: 
+  229: Select_Long_Condition_1 = close > buyLine // Buy when Have Signal
+  230: Open_Long_Condition = Select_Long_Condition_1 and strategy.opentrades == 0
+  231: 
+  232: //****************************************************************************//
+  233: // STOP LOSS Price
+  234: 
+  235: float longSL = na
+  236: longSL := Open_Long_Condition ? ta.lowest(low, SLDAY)[1] : longSL[1]  
+  237: 
+  238: 
+  239: //****************************************************************************//
+  240: // Cal StopLoss
+  241: 
+  242: Long_Entry_Price = close
+  243: Diff_OPEN_to_SL = math.abs(Long_Entry_Price - longSL)
+  244: 
+  245: // Exit CONDITIONS
+  246: 
+  247: Exit_Long_Condition = close < show // Sell when Have Signal
+  248: 
+  249: //****************************************************************************//
+  250: // POSITION SIZE CAP
+  251: 
+  252: strategy.initial_capital = 50000
+  253: 
+  254: float portSize = Compound ? strategy.netprofit + strategy.initial_capital : strategy.initial_capital
+  255: float LossAmoutUnit = portSize * Risk_Per_Trade //50
+  256: float PercentSL = ( Diff_OPEN_to_SL / Long_Entry_Price ) * 100
+  257: float PositionSize = LossAmoutUnit / Diff_OPEN_to_SL

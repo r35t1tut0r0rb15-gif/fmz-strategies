@@ -307,6 +307,8 @@ fmz_id,file,final_outcome,criterion,reason
 444355,基于平均价海金阿什烛台与相对强弱指数的动态调仓策略Dynamic-Capital-Allocation-Strategy-Based-on-Heikin-Ashi-Candles-and-Relative-Strength-Index.md,REJECTED_ON_READING,1,"pyramiding = 10000 with a 10 % of equity buy on every green Heikin Ashi candle after a red one until the RSI exit: dollar-cost averaging that accumulates units (criterion 1, as #442229, #430762)."
 444961,基于双均线交叉的交易策略A-Trading-Strategy-Based-on-Dual-Moving-Average-Crossover.md,REJECTED_ON_READING,2,"The exits strategy.exit(loss = 0.01 x close, profit = 0.02 x close) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048)."
 445808,基于技术分析和资金管理的量化交易策略The-Support-Resistance-Psychology-Candlestick-Feedback-Money-Management-strategy.md,REJECTED_ON_READING,2,"The exits pass strategy.exit(loss = 100, profit = targetPriceLong / targetPriceShort): a price level where the call takes a tick distance, with no /mintick, so the target is undefined as written; the entry levels are absolute prices (close > 100 and close > 70) that are always true on the listed pair (criterion 2, as #442076, #437048)."
+446523,基于RSI和双均线的1小时趋势追踪策略-RSI-and-Dual-Moving-Average-Based-1-Hour-Trend-Following-Strategy.md,REJECTED_ON_READING,2,"The exits strategy.exit(profit = 1.5 x atr, loss = atr) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048)."
+446539,黄金短线交易策略-XAUUSD-Scalper-1m-XAUUSD-1-Minute-Scalping-Strategy.md,REJECTED_ON_READING,2,"The exits strategy.exit(loss = 30 x atr, profit = 30 x atr) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2532,3 +2534,13 @@ fmz_id,file,final_outcome,criterion,reason
 446457,SMA均线交叉策略SMA-Moving-Average-Crossover-Strategy.md,PORTED,,ports/446457_sma-sma-moving-average-crossover-strategy/
 446458,RSI止损追踪交易策略-RSI-Stop-Loss-Tracking-Trading-Strategy.md,PORTED,,ports/446458_rsi-rsi-stop-loss-tracking-trading-strategy/
 446460,基于目标止损比例和固定仓位的EMA交叉策略-EMA-Crossover-Strategy-with-Target-Stop-loss-Ratio-and-Fixed-Position-Size.md,PORTED,,ports/446460_ema-ema-crossover-strategy-with-target-stop-loss-ratio-and-f/
+446461,高斯通道自适应均线策略-Gaussian-Channel-Adaptive-Moving-Average-Strategy.md,PORTED,,ports/446461_gaussian-channel-adaptive-moving-average-strategy/
+446465,布林带与RSI交易策略-Bollinger-Bands-and-RSI-Trading-Strategy.md,PORTED,,ports/446465_rsi-bollinger-bands-and-rsi-trading-strategy/
+446468,基于均线的BankNifty期货交易策略-SMA-based-Trading-Strategy-for-BankNifty-Futures.md,PORTED,,ports/446468_banknifty-sma-based-trading-strategy-for-banknifty-futures/
+446522,指数移动平均线交叉量化交易策略-Exponential-Moving-Average-Crossover-Quantitative-Trading-Strategy.md,PORTED,,ports/446522_exponential-moving-average-crossover-quantitative-trading-st/
+446525,超级趋势ATR策略Supertrend-ATR-Strategy.md,PORTED,,ports/446525_atr-supertrend-atr-strategy/
+446526,动态趋势追踪策略-Dynamic-Trend-Following-Strategy.md,PORTED,,ports/446526_dynamic-trend-following-strategy/
+446537,突破最高价EMA交叉策略-BreakHigh-EMA-Crossover-Strategy.md,PORTED,,ports/446537_ema-breakhigh-ema-crossover-strategy/
+446541,EMA双均线交叉策略-EMA-Double-Moving-Average-Crossover-Strategy.md,PORTED,,ports/446541_ema-ema-double-moving-average-crossover-strategy/
+446542,MACD趋势跟踪策略-MACD-Trend-Following-Strategy.md,PORTED,,ports/446542_macd-macd-trend-following-strategy/
+446546,超级趋势与布林带组合策略-Supertrend-and-Bollinger-Bands-Combination-Strategy.md,PORTED,,ports/446546_supertrend-and-bollinger-bands-combination-strategy/

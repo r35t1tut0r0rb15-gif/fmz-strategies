@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2205 |
-| PORT_CANDIDATE | 1227 |
+| PORTED | 2215 |
+| PORT_CANDIDATE | 1215 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 308 |
+| REJECTED_ON_READING | 310 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2333,7 +2333,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 446457 | `ports/446457_sma-sma-moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 446458 | `ports/446458_rsi-rsi-stop-loss-tracking-trading-strategy/` | PineScript | rsi_oscillator | none | threshold x2, stop_pct x2 | 4 |
 | 446460 | `ports/446460_ema-ema-crossover-strategy-with-target-stop-loss-ratio-and-f/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
-| | **2205 ports** | | | | | **10275** |
+| 446461 | `ports/446461_gaussian-channel-adaptive-moving-average-strategy/` | PineScript | volatility_channel_breakout | none | poles x2, period x2 | 4 |
+| 446465 | `ports/446465_rsi-bollinger-bands-and-rsi-trading-strategy/` | PineScript | bollinger_reversion | none | buy_interval x2, rsi_lower x2 | 4 |
+| 446468 | `ports/446468_banknifty-sma-based-trading-strategy-for-banknifty-futures/` | PineScript | ma_pullback | none | length x2, target_frac x2 | 4 |
+| 446522 | `ports/446522_exponential-moving-average-crossover-quantitative-trading-st/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 446525 | `ports/446525_atr-supertrend-atr-strategy/` | PineScript | supertrend | none | multiplier x2, sl_mult x2 | 4 |
+| 446526 | `ports/446526_dynamic-trend-following-strategy/` | PineScript | ma_cross | trailing_stop_pending | slow x2, sl x2 | 4 |
+| 446537 | `ports/446537_ema-breakhigh-ema-crossover-strategy/` | PineScript | donchian_breakout | none | period x2, daily_ema x2 | 4 |
+| 446541 | `ports/446541_ema-ema-double-moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 446542 | `ports/446542_macd-macd-trend-following-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| 446546 | `ports/446546_supertrend-and-bollinger-bands-combination-strategy/` | PineScript | supertrend | none | factor x2, bb_len x2 | 4 |
+| | **2215 ports** | | | | | **10315** |
 
 ## Rejected on reading
 
@@ -2647,6 +2657,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 444355 | 基于平均价海金阿什烛台与相对强弱指数的动态调仓策略Dynamic-Capital-Allocation-Strategy-Based-on-Heikin-Ashi-Candles-and-Relative-Strength-Index.md | 1 | pyramiding = 10000 with a 10 % of equity buy on every green Heikin Ashi candle after a red one until the RSI exit: dollar-cost averaging that accumulates units (criterion 1, as #442229, #430762). |
 | 444961 | 基于双均线交叉的交易策略A-Trading-Strategy-Based-on-Dual-Moving-Average-Crossover.md | 2 | The exits strategy.exit(loss = 0.01 x close, profit = 0.02 x close) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048). |
 | 445808 | 基于技术分析和资金管理的量化交易策略The-Support-Resistance-Psychology-Candlestick-Feedback-Money-Management-strategy.md | 2 | The exits pass strategy.exit(loss = 100, profit = targetPriceLong / targetPriceShort): a price level where the call takes a tick distance, with no /mintick, so the target is undefined as written; the entry levels are absolute prices (close > 100 and close > 70) that are always true on the listed pair (criterion 2, as #442076, #437048). |
+| 446523 | 基于RSI和双均线的1小时趋势追踪策略-RSI-and-Dual-Moving-Average-Based-1-Hour-Trend-Following-Strategy.md | 2 | The exits strategy.exit(profit = 1.5 x atr, loss = atr) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048). |
+| 446539 | 黄金短线交易策略-XAUUSD-Scalper-1m-XAUUSD-1-Minute-Scalping-Strategy.md | 2 | The exits strategy.exit(loss = 30 x atr, profit = 30 x atr) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

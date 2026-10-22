@@ -4736,6 +4736,31 @@ SIZING = {
     446460: [
         ("position_size input 1 (qty)", 133, 162),
     ],
+    # ---- FMZ-C, batch C175 (2026-10-22)
+    446461: [
+        ("strategy(): 100 % of equity, capital 10000, commission 0.1 %", 117, 117),
+    ],
+    446465: [
+        ("strategy(): 100 % of equity, capital 100000, pyramiding 0", 115, 115),
+    ],
+    446468: [
+        ("entry qty 15; stop 20 / target 150 points; margins 100 / 100", 96, 157),
+    ],
+    446522: [
+        ("strategy(): 100 % of equity", 101, 101),
+    ],
+    446525: [
+        ("qty = floor(equity x 1 % / stop distance); bracket ATR 14 x 1.5, risk : reward 1", 162, 194),
+    ],
+    446526: [
+        ("qty = equity x 10 % x leverage / close; percent stops / targets", 196, 263),
+    ],
+    446537: [
+        ("qty = 50000 x 2.5 % / stop distance", 174, 257),
+    ],
+    446541: [],
+    446542: [],
+    446546: [],
 }
 
 REJECTED_ON_READING = {
@@ -5996,6 +6021,13 @@ REJECTED_ON_READING = {
               "/mintick, so the target is undefined as written; the entry levels are absolute "
               "prices (close > 100 and close > 70) that are always true on the listed pair "
               "(criterion 2, as #442076, #437048)."),
+    # ---- FMZ-C, batch C175 (2026-10-22)
+    446523: ("2", "The exits strategy.exit(profit = 1.5 x atr, loss = atr) pass price amounts where "
+              "the call takes tick distances, with no /mintick: the stop and target are undefined "
+              "as written (criterion 2, as #442076, #437048)."),
+    446539: ("2", "The exits strategy.exit(loss = 30 x atr, profit = 30 x atr) pass price amounts "
+              "where the call takes tick distances, with no /mintick: the stop and target are "
+              "undefined as written (criterion 2, as #442076, #437048)."),
 }
 
 DUPLICATE_ON_READING = {

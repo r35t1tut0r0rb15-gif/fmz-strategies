@@ -1,0 +1,38 @@
+# Original sizing and money-management code, FMZ #446525 (超级趋势ATR策略Supertrend-ATR-Strategy)
+# Source: https://www.fmz.com/strategy/446525  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = floor(equity x 1 % / stop distance); bracket ATR 14 x 1.5, risk : reward 1  [lines 162-194]
+  162: multiplier = input.float(title="ATR multiplier", defval = 1.5)
+  163: rr           = input.float(title="Risk:Reward", defval=1.0)
+  164: riskPerTrade = input.float(title="Risk Per Trade %", defval=1.0)
+  165: atr3 = ta.atr(14)
+  166: 
+  167: //calculate stops and targets 
+  168: longstop = close - (atr3 * multiplier)
+  169: shortstop = close + (atr3 * multiplier)
+  170: longStopDistance  = close - longstop
+  171: shortStopDistance = shortstop - close
+  172: longTarget  = close + (longStopDistance * rr)
+  173: shortTarget = close - (shortStopDistance * rr)
+  174: 
+  175: // Save stops & targets
+  176: var t_stop = 0.0
+  177: var t_target = 0.0
+  178: 
+  179: longCondition = buySignal 
+  180: if (longCondition)
+  181:     t_stop := longstop
+  182:     t_target := longTarget
+  183:     positionSize = math.floor((strategy.equity * (riskPerTrade/100)) / (close - t_stop))
+  184:     strategy.entry("Long", strategy.long, qty = positionSize)
+  185: 
+  186: shortCondition = sellSignal 
+  187: if (shortCondition)
+  188:     t_stop := shortstop
+  189:     t_target := shortTarget
+  190:     positionSize = math.floor((strategy.equity * (riskPerTrade/100)) / (t_stop - close))  
+  191:     strategy.entry("Short", strategy.short, qty = positionSize)
+  192: 
+  193: strategy.exit(id="Long Exit", from_entry="Long", limit=t_target, stop=t_stop)
+  194: strategy.exit(id="Short Exit", from_entry="Short", limit=t_target, stop=t_stop)

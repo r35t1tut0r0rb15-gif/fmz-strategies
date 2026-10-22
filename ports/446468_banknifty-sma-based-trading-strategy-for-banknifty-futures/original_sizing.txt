@@ -1,0 +1,67 @@
+# Original sizing and money-management code, FMZ #446468 (基于均线的BankNifty期货交易策略-SMA-based-Trading-Strategy-for-BankNifty-Futures)
+# Source: https://www.fmz.com/strategy/446468  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## entry qty 15; stop 20 / target 150 points; margins 100 / 100  [lines 96-157]
+   96: strategy("Strategy BankNifty SMA", overlay=true, margin_long=100, margin_short=100)
+   97: 
+   98: src = input(close, title="Source")
+   99: timeFrame = input.timeframe(defval='5', title = "Select Chart Timeframe")
+  100: typeMA = input.string(title = "Method", defval = "SMA", options=["SMA", "EMA", "SMMA (RMA)", "WMA", "VWMA"])
+  101: len = input.int(200, minval=1, title="Length", step = 10)
+  102: alertPrecision = input.float(0, "Alert Precision", minval = 0, maxval = 50, step=1)
+  103: slTimeFrame = input.timeframe(defval='1', title = "Select Stoploss Candle Timeframe")
+  104: slBuffer = input.float(0, "Stop Loss Buffer", minval = 0, maxval = 50, step = 1)
+  105: targetSlab = input.float(150, "Target Price", minval = 1, maxval = 2000, step = 10)
+  106: Stoploss  = input.float(20, "Stop Loss", minval = 1, maxval = 2000, step = 5)
+  107: offset = input.int(title="Offset", defval=0, minval=-500, maxval=500)
+  108: 
+  109: //out = ta.sma(src, len)
+  110: 
+  111: 
+  112: ma(source, length, type) =>
+  113:     switch type
+  114:         "SMA" => ta.sma(source, length)
+  115:         "EMA" => ta.ema(source, length)
+  116:         "SMMA (RMA)" => ta.rma(source, length)
+  117:         "WMA" => ta.wma(source, length)
+  118:         "VWMA" => ta.vwma(source, length)
+  119: 
+  120: tfSource = request.security(syminfo.tickerid, timeFrame, src, barmerge.gaps_on, barmerge.lookahead_off)
+  121: mySMA = ma(tfSource, len, typeMA)
+  122: plot(mySMA, color=color.rgb(243, 33, 89), title="MA", offset=offset, linewidth = 2)
+  123: 
+  124: slClose = request.security(syminfo.tickerid, slTimeFrame, src, barmerge.gaps_on, barmerge.lookahead_off)
+  125: 
+  126: 
+  127: highTravel = low > mySMA
+  128: lowTravel = high < mySMA
+  129: 
+  130: touchabove = (((high[1] + alertPrecision) > mySMA[1]) and (low[1] < mySMA[1])) //and (high[2] < mySMA[2])
+  131: touchbelow = (((low[1] - alertPrecision) < mySMA[1]) and (high[1] > mySMA[1])) //and (low[2] > mySMA[2])
+  132: 
+  133: crossabove = math.min(open, close) > mySMA
+  134: crossbelow = math.max(open, close) < mySMA
+  135: 
+  136: upalert = (touchabove or touchbelow) and crossabove
+  137: downalert = (touchabove or touchbelow) and crossbelow
+  138: 
+  139: h=hour(time('1'),"Asia/Kolkata")
+  140: m=minute(time('1'),"Asia/Kolkata")
+  141: startTime=h*100+m
+  142: 
+  143: if upalert and strategy.position_size == 0 
+  144:     strategy.entry("buy", strategy.long, 15)
+  145:     
+  146: if downalert and strategy.position_size == 0
+  147:     strategy.entry("sell", strategy.short, 15)
+  148: 
+  149: longexit = (slClose < (mySMA - slBuffer)) or (slClose < (strategy.opentrades.entry_price(strategy.opentrades - 1) - Stoploss)) or (slClose > (strategy.opentrades.entry_price(strategy.opentrades - 1) + targetSlab)) or (hour(time) == 15)
+  150: shortexit = (slClose > (mySMA + slBuffer)) or (slClose > (strategy.opentrades.entry_price(strategy.opentrades - 1) + Stoploss)) or (slClose < (strategy.opentrades.entry_price(strategy.opentrades - 1) - targetSlab)) or (hour(time) == 15)
+  151: 
+  152: if longexit
+  153:     strategy.close("buy")
+  154: 
+  155: if shortexit
+  156:     strategy.close("sell")
+  157: 
