@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1900 |
-| PORT_CANDIDATE | 1575 |
+| PORTED | 1911 |
+| PORT_CANDIDATE | 1563 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 566 |
-| REJECTED_ON_READING | 266 |
+| REJECTED_ON_READING | 267 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2028,7 +2028,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 441073 | `ports/441073_dual-moving-average-tracking-stop-loss-strategy/` | PineScript | atr_trailing_line | none | ema_period x2, delta x2 | 4 |
 | 441074 | `ports/441074_rsi-relative-strength-index-long-term-quant-strategy/` | PineScript | rsi_oscillator | none | length x2, rs_value x2 | 4 |
 | 441076 | `ports/441076_quant-trading-strategy-based-on-supertrend-channel/` | PineScript | supertrend | none | length x2, mult x2 | 4 |
-| | **1900 ports** | | | | | **9141** |
+| 441077 | `ports/441077_future-lines-of-demarcation-backtest-strategy/` | PineScript | trend_filter | none | period x2 | 2 |
+| 441078 | `ports/441078_bollinger-bands-dual-track-breakthrough-strategy/` | PineScript | bollinger_reversion | none | length x2, stop_pct x2 | 4 |
+| 441082 | `ports/441082_ema-trend-following-strategy-based-on-ema-lines/` | PineScript | ma_trend | none | ema2 x2, ema3 x2 | 4 |
+| 441083 | `ports/441083_camarilla-pivot-points-strategy-based-on-bollinger-bands/` | PineScript | pivot_levels | none | level_k x2 | 2 |
+| 441084 | `ports/441084_lazybear-squeeze-momentum-trading-strategy-based-on-lazybear/` | PineScript | volatility_squeeze | coarse_bar_stop | length x2, length_kc x2 | 4 |
+| 441092 | `ports/441092_breakout-reversal-strategy-with-stop-loss/` | PineScript | donchian_breakout | none | breakout_period x2, hold_bars x2 | 4 |
+| 441097 | `ports/441097_5-day-moving-average-channel-breakout-strategy-combined-with/` | PineScript | candle_pattern | none | length x2 | 2 |
+| 441100 | `ports/441100_stoch-ema-stochastic-and-moving-average-crossover-trend-foll/` | PineScript | stochastic_oscillator | none | tp x2, stoch_length x2 | 4 |
+| 441102 | `ports/441102_dual-smoothed-stochastic-bressert-strategy/` | PineScript | stochastic_oscillator | none | pds x2, ema_len x2 | 4 |
+| 441103 | `ports/441103_trend-following-stop-loss-strategy-based-on-trend-alert-indi/` | PineScript | atr_trailing_line | coarse_bar_stop | lookback x2, limit_mult x2 | 4 |
+| 441132 | `ports/441132_bottom-hunter-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | tp x2, sl x2 | 4 |
+| | **1911 ports** | | | | | **9179** |
 
 ## Rejected on reading
 
@@ -2300,6 +2311,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440992 | 双向自适应布林带趋势追踪策略-Adaptive-Bollinger-Bands-Trend-Tracking-Strategy.md | 1 | A DCA ladder: repeated qty-1 "Buy" entries as each fib level fills, and a qty-0 "Close ALL" entry at the average-price target: the position accumulates units (criterion 1, as #430762). |
 | 441049 | 基于双均线交叉策略Closing-Price-Comparison-Dual-Moving-Average-Crossover-Strategy.md | 1 | The long's exits close 50 % of the position (strategy.close with qty_percent = 50) on an open-profit test: partial exits (criterion 1, as #436524). |
 | 441065 | 双均线SuperTrend量化交易策略Dual-Moving-Average-Supertrend-Quantitative-Trading-Strategy.md | 1 | Reads the future: Pine v2 security(syminfo.tickerid, '120', ...) without [1] behaves as lookahead_on, so on every 5-minute bar the main SuperTrend uses the final close and ATR bands of the current 2-hour bar, not known until it ends (SURVEY_README request.security rule, as #434485). |
+| 441086 | 基于动量突破EMA策略Momentum-Breakthrough-EMA-Strategy.md | 2 | The only exit, strategy.exit(profit = target_price, loss = stop_loss_price), passes price levels (close + range x 2, low[1] - 100) where the call takes tick distances, with no /mintick: the target and stop are undefined as written (criterion 2, as #437048, #437677). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

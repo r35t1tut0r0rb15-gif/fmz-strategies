@@ -265,6 +265,7 @@ fmz_id,file,final_outcome,criterion,reason
 440992,双向自适应布林带趋势追踪策略-Adaptive-Bollinger-Bands-Trend-Tracking-Strategy.md,REJECTED_ON_READING,1,"A DCA ladder: repeated qty-1 ""Buy"" entries as each fib level fills, and a qty-0 ""Close ALL"" entry at the average-price target: the position accumulates units (criterion 1, as #430762)."
 441049,基于双均线交叉策略Closing-Price-Comparison-Dual-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"The long's exits close 50 % of the position (strategy.close with qty_percent = 50) on an open-profit test: partial exits (criterion 1, as #436524)."
 441065,双均线SuperTrend量化交易策略Dual-Moving-Average-Supertrend-Quantitative-Trading-Strategy.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 security(syminfo.tickerid, '120', ...) without [1] behaves as lookahead_on, so on every 5-minute bar the main SuperTrend uses the final close and ATR bands of the current 2-hour bar, not known until it ends (SURVEY_README request.security rule, as #434485)."
+441086,基于动量突破EMA策略Momentum-Breakthrough-EMA-Strategy.md,REJECTED_ON_READING,2,"The only exit, strategy.exit(profit = target_price, loss = stop_loss_price), passes price levels (close + range x 2, low[1] - 100) where the call takes tick distances, with no /mintick: the target and stop are undefined as written (criterion 2, as #437048, #437677)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2184,3 +2185,14 @@ fmz_id,file,final_outcome,criterion,reason
 441073,双移动均线追踪止损策略Dual-Moving-Average-Tracking-Stop-Loss-Strategy.md,PORTED,,ports/441073_dual-moving-average-tracking-stop-loss-strategy/
 441074,基于RSI的长线量化策略Relative-Strength-Index-Long-term-Quant-Strategy.md,PORTED,,ports/441074_rsi-relative-strength-index-long-term-quant-strategy/
 441076,基于超趋势通道的量化交易策略Quant-Trading-Strategy-Based-on-SuperTrend-Channel.md,PORTED,,ports/441076_quant-trading-strategy-based-on-supertrend-channel/
+441077,未来价格延伸线回测策略Future-Lines-of-Demarcation-Backtest-Strategy.md,PORTED,,ports/441077_future-lines-of-demarcation-backtest-strategy/
+441078,基于布林带的双轨道突破交易策略Bollinger-Bands-Dual-track-Breakthrough-Strategy.md,PORTED,,ports/441078_bollinger-bands-dual-track-breakthrough-strategy/
+441082,基于EMA平均线的趋势跟踪策略Trend-Following-Strategy-Based-on-EMA-Lines.md,PORTED,,ports/441082_ema-trend-following-strategy-based-on-ema-lines/
+441083,基于卡马奇拉枢轴与布林带的量化策略Camarilla-Pivot-Points-Strategy-Based-on-Bollinger-Bands.md,PORTED,,ports/441083_camarilla-pivot-points-strategy-based-on-bollinger-bands/
+441084,基于LazyBear压缩动量指标的量化交易策略Squeeze-Momentum-Trading-Strategy-Based-on-LazyBear-Indicator.md,PORTED,,ports/441084_lazybear-squeeze-momentum-trading-strategy-based-on-lazybear/
+441092,基于突破止损反转策略Breakout-Reversal-Strategy-with-Stop-Loss.md,PORTED,,ports/441092_breakout-reversal-strategy-with-stop-loss/
+441097,五日均线通道突破策略5-Day-Moving-Average-Channel-Breakout-Strategy-Combined-With-Mileage-Concept.md,PORTED,,ports/441097_5-day-moving-average-channel-breakout-strategy-combined-with/
+441100,基于Stoch和EMA指标的趋势跟踪量化策略Stochastic-and-Moving-Average-Crossover-Trend-Following-Quantitative-Strategy.md,PORTED,,ports/441100_stoch-ema-stochastic-and-moving-average-crossover-trend-foll/
+441102,双平滑随机指数布雷瑟策略Dual-Smoothed-Stochastic-Bressert-Strategy.md,PORTED,,ports/441102_dual-smoothed-stochastic-bressert-strategy/
+441103,趋势追踪止损策略Trend-Following-Stop-Loss-Strategy-Based-on-Trend-Alert-Indicator.md,PORTED,,ports/441103_trend-following-stop-loss-strategy-based-on-trend-alert-indi/
+441132,底部猎人策略Bottom-Hunter-Strategy.md,PORTED,,ports/441132_bottom-hunter-strategy/

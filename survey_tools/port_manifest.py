@@ -4203,6 +4203,20 @@ SIZING = {
     ],
     441074: [],
     441076: [],
+    # ---- FMZ-C, batch C146 (2026-10-22)
+    441077: [],
+    441078: [],
+    441082: [],
+    441083: [],
+    441084: [],
+    441092: [],
+    441097: [],
+    441100: [
+        ("strategy(): 100 % of equity, capital 1000, commission 0.01 %", 192, 192),
+    ],
+    441102: [],
+    441103: [],
+    441132: [],
 }
 
 REJECTED_ON_READING = {
@@ -5300,6 +5314,11 @@ REJECTED_ON_READING = {
               "behaves as lookahead_on, so on every 5-minute bar the main SuperTrend uses the "
               "final close and ATR bands of the current 2-hour bar, not known until it ends "
               "(SURVEY_README request.security rule, as #434485)."),
+    # ---- FMZ-C, batch C146 (2026-10-22)
+    441086: ("2", "The only exit, strategy.exit(profit = target_price, loss = stop_loss_price), "
+              "passes price levels (close + range x 2, low[1] - 100) where the call takes tick "
+              "distances, with no /mintick: the target and stop are undefined as written "
+              "(criterion 2, as #437048, #437677)."),
 }
 
 DUPLICATE_ON_READING = {
