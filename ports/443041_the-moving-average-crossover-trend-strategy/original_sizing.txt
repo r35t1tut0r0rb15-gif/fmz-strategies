@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #443041 (基于均线交叉趋势策略The-Moving-Average-Crossover-Trend-Strategy)
+# Source: https://www.fmz.com/strategy/443041  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

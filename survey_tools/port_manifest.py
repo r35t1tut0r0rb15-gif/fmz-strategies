@@ -4530,6 +4530,22 @@ SIZING = {
     ],
     442975: [],
     442979: [],
+    # ---- FMZ-C, batch C165 (2026-10-22)
+    443034: [],
+    443035: [],
+    443036: [],
+    443038: [],
+    443039: [],
+    443041: [],
+    443042: [
+        ("strategy(): commission 0.04", 134, 134),
+    ],
+    443043: [],
+    443092: [
+        ("positionSize = strategy.equity x 2 / close", 141, 142),
+    ],
+    443093: [],
+    443094: [],
 }
 
 REJECTED_ON_READING = {
@@ -5749,6 +5765,11 @@ REJECTED_ON_READING = {
               "levels where the call takes tick distances, and the entries test the close against "
               "the fixed prices 100 / 200 (always above 200 on the BTC reading): undefined exits "
               "and instrument-specific levels (criterion 2, as #442076, #437048)."),
+    # ---- FMZ-C, batch C165 (2026-10-22)
+    443044: ("1", "is_uptrend (close > hlc3 - 3 ATR) and is_downtrend (close < hlc3 + 3 ATR) both "
+              "hold on nearly every bar, so trend_changed is nearly always true and both entries "
+              "fire together; the later Short wins (as #437773): a sell-and-hold from near the "
+              "data start (criterion 1, as #442261)."),
 }
 
 DUPLICATE_ON_READING = {

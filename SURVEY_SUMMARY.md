@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2095 |
-| PORT_CANDIDATE | 1347 |
+| PORTED | 2106 |
+| PORT_CANDIDATE | 1335 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 298 |
+| REJECTED_ON_READING | 299 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2223,7 +2223,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442973 | `ports/442973_short-term-breakthrough-strategy-based-on-golden-crossover/` | PineScript | rsi_oscillator | none | malong x2, mashort x2 | 4 |
 | 442975 | `ports/442975_based-on-the-moving-average-reversion-strategy/` | PineScript | mean_reversion | none | big x2, pct_below x2 | 4 |
 | 442979 | `ports/442979_bollinger-bands-breakout-trend-trading-strategy/` | PineScript | bollinger_breakout | trailing_stop_pending | length x2, mult x2 | 4 |
-| | **2095 ports** | | | | | **9861** |
+| 443034 | `ports/443034_atr-atr-trailing-stop-strategy-with-fibonacci-retracement-ta/` | PineScript | volatility_channel_breakout | none | atr_period x2, atr_factor x2 | 4 |
+| 443035 | `ports/443035_gap-opening-strategy/` | PineScript | volatility_channel_breakout | none | ma_length x2, exit_below x2 | 4 |
+| 443036 | `ports/443036_binomial-momentum-breakout-reversal-strategy/` | PineScript | combo_123_reversal | none | length x2, sell_frac x2 | 4 |
+| 443038 | `ports/443038_atr-time-based-atr-stop-loss-buy-strategy/` | PineScript | calendar_seasonal | none | trade_hour x2, atr_length x2 | 4 |
+| 443039 | `ports/443039_simple-moving-average-trend-price-quantitative-strategy/` | PineScript | bollinger_breakout | none | trend_period x2, bb_period x2 | 4 |
+| 443041 | `ports/443041_the-moving-average-crossover-trend-strategy/` | PineScript | macd_cross | none | fast_length x2, slow_length x2 | 4 |
+| 443042 | `ports/443042_the-breakthrough-callback-trading-strategy/` | PineScript | momentum_oscillator | none | fast_length x2, slow_length x2 | 4 |
+| 443043 | `ports/443043_ema-the-double-ema-strategy-analysis/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 443092 | `ports/443092_dual-timeframe-trend-following-strategy/` | PineScript | ma_trend | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 443093 | `ports/443093_most-kama-trend-riding-strategy-based-on-most-and-kama/` | PineScript | adaptive_average | none | ma_length x2, percent x2 | 4 |
+| 443094 | `ports/443094_bollinger-bands-short-term-trading-strategy-based-on-bolling/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| | **2106 ports** | | | | | **9905** |
 
 ## Rejected on reading
 
@@ -2527,6 +2538,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442860 | 动量追踪型双EMA移动平均线交叉策略Momentum-Tracking-Dual-EMA-Crossover-Strategy.md | 1 | Exits close parts of the position (qty_percent = 50 on the short) and every profit and stop exit is gated on strategy.openprofit over a cash order value of 1000: partial exits and cash-ratio exits (criterion 1, as #436524). |
 | 442926 | 卖涨回落策略Sell-the-Rallies-Strategy.md | 1 | pyramiding = 2 with a short entry on every new 2 % one-bar rally while a short is open: the position accumulates units (criterion 1, as #441954, #430762). |
 | 442940 | 支撑阻力趋势追踪策略Support-and-Resistance-Trend-Tracking-Strategy.md | 2 | The exits strategy.exit(loss = stopLossLevel, profit = targetPrice) pass price levels where the call takes tick distances, and the entries test the close against the fixed prices 100 / 200 (always above 200 on the BTC reading): undefined exits and instrument-specific levels (criterion 2, as #442076, #437048). |
+| 443044 | 升降通道突破策略SuperTrend-Breakout-Strategy.md | 1 | is_uptrend (close > hlc3 - 3 ATR) and is_downtrend (close < hlc3 + 3 ATR) both hold on nearly every bar, so trend_changed is nearly always true and both entries fire together; the later Short wins (as #437773): a sell-and-hold from near the data start (criterion 1, as #442261). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #443042 (基于突破回调交易策略The-Breakthrough-Callback-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/443042  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): commission 0.04  [lines 134-134]
+  134: strategy("Divergence Scalper [30MIN]", overlay=true , commission_value=0.04 ) 

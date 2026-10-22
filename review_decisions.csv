@@ -297,6 +297,7 @@ fmz_id,file,final_outcome,criterion,reason
 442860,动量追踪型双EMA移动平均线交叉策略Momentum-Tracking-Dual-EMA-Crossover-Strategy.md,REJECTED_ON_READING,1,"Exits close parts of the position (qty_percent = 50 on the short) and every profit and stop exit is gated on strategy.openprofit over a cash order value of 1000: partial exits and cash-ratio exits (criterion 1, as #436524)."
 442926,卖涨回落策略Sell-the-Rallies-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 2 with a short entry on every new 2 % one-bar rally while a short is open: the position accumulates units (criterion 1, as #441954, #430762)."
 442940,支撑阻力趋势追踪策略Support-and-Resistance-Trend-Tracking-Strategy.md,REJECTED_ON_READING,2,"The exits strategy.exit(loss = stopLossLevel, profit = targetPrice) pass price levels where the call takes tick distances, and the entries test the close against the fixed prices 100 / 200 (always above 200 on the BTC reading): undefined exits and instrument-specific levels (criterion 2, as #442076, #437048)."
+443044,升降通道突破策略SuperTrend-Breakout-Strategy.md,REJECTED_ON_READING,1,"is_uptrend (close > hlc3 - 3 ATR) and is_downtrend (close < hlc3 + 3 ATR) both hold on nearly every bar, so trend_changed is nearly always true and both entries fire together; the later Short wins (as #437773): a sell-and-hold from near the data start (criterion 1, as #442261)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2412,3 +2413,14 @@ fmz_id,file,final_outcome,criterion,reason
 442973,黄金交叉短期突破策略Short-term-Breakthrough-Strategy-Based-on-Golden-Crossover.md,PORTED,,ports/442973_short-term-breakthrough-strategy-based-on-golden-crossover/
 442975,基于移动平均线均回复策略Based-on-the-Moving-Average-Reversion-Strategy.md,PORTED,,ports/442975_based-on-the-moving-average-reversion-strategy/
 442979,布林带趋势突破交易策略Bollinger-Bands-Breakout-Trend-Trading-Strategy.md,PORTED,,ports/442979_bollinger-bands-breakout-trend-trading-strategy/
+443034,基于ATR和斐波那契回撤止损的趋势跟踪策略ATR-Trailing-Stop-Strategy-with-Fibonacci-Retracement-Targets.md,PORTED,,ports/443034_atr-atr-trailing-stop-strategy-with-fibonacci-retracement-ta/
+443035,防跳空开仓策略Gap-Opening-Strategy.md,PORTED,,ports/443035_gap-opening-strategy/
+443036,双项式动量突破反转策略Binomial-Momentum-Breakout-Reversal-Strategy.md,PORTED,,ports/443036_binomial-momentum-breakout-reversal-strategy/
+443038,基于时间和ATR止损定时买入策略Time-based-ATR-Stop-Loss-Buy-Strategy.md,PORTED,,ports/443038_atr-time-based-atr-stop-loss-buy-strategy/
+443039,趋势价格简单移动平均量化策略Simple-Moving-Average-Trend-Price-Quantitative-Strategy.md,PORTED,,ports/443039_simple-moving-average-trend-price-quantitative-strategy/
+443041,基于均线交叉趋势策略The-Moving-Average-Crossover-Trend-Strategy.md,PORTED,,ports/443041_the-moving-average-crossover-trend-strategy/
+443042,基于突破回调交易策略The-Breakthrough-Callback-Trading-Strategy.md,PORTED,,ports/443042_the-breakthrough-callback-trading-strategy/
+443043,基于双EMA策略分析The-Double-EMA-Strategy-Analysis.md,PORTED,,ports/443043_ema-the-double-ema-strategy-analysis/
+443092,双时间框架趋势追踪策略Dual-Timeframe-Trend-Following-Strategy.md,PORTED,,ports/443092_dual-timeframe-trend-following-strategy/
+443093,基于MOST和KAMA的趋势跟踪策略Trend-Riding-Strategy-Based-on-MOST-and-KAMA.md,PORTED,,ports/443093_most-kama-trend-riding-strategy-based-on-most-and-kama/
+443094,基于Bollinger-Bands的短线交易策略Short-term-Trading-Strategy-Based-on-Bollinger-Bands.md,PORTED,,ports/443094_bollinger-bands-short-term-trading-strategy-based-on-bolling/
