@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #440364 (基于时间和ATR指标的止损止盈策略Time-based-Strategy-with-ATR-Take-Profit)
+# Source: https://www.fmz.com/strategy/440364  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

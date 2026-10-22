@@ -3993,6 +3993,19 @@ SIZING = {
         ("strategy(): cash 25000, capital 25000, commission 0.15 %, slippage 3", 185, 185),
     ],
     440345: [],
+    # ---- FMZ-C, batch C133 (2026-10-22)
+    440348: [],
+    440361: [],
+    440362: [
+        ("strategy(): capital 100, commission 0.0000005 %, 100 % of equity", 119, 119),
+    ],
+    440364: [],
+    440366: [],
+    440367: [],
+    440368: [],
+    440369: [],
+    440373: [],
+    440424: [],
 }
 
 REJECTED_ON_READING = {
@@ -4999,6 +5012,11 @@ REJECTED_ON_READING = {
     440336: ("1", "An equity protector closes all trades when the open loss (strategy.openprofit) "
               "exceeds 30 % of the balance (initial capital plus netprofit): an account-state "
               "gate the signal-only port cannot express (criterion 1, as #432078)."),
+    # ---- FMZ-C, batch C133 (2026-10-22)
+    440354: ("1", "The script averages down: while the open loss is 10 % or more it adds 50 % of the "
+              "held size to the long (pyramiding through strategy.position_size and "
+              "position_avg_price) and holds until a 10 % gain on the average price: accumulation "
+              "(criterion 1, as #435721, #430762)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -5040,4 +5058,6 @@ HELD_ON_READING = {
     436658: ("8", "The long and short entries test the Hull line against rvwma3 = vwma(close, 42): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C117 (2026-10-22)
     439103: ("8", "The moving-average rules use ma20 / ma50 / ma100 = vwma(close, 20 / 50 / 100): volume-weighted averages (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C133 (2026-10-22)
+    440372: ("8", "The default moving-average type is VWMA: vwma(close, 66) against vwma(open, 66), volume-weighted averages (check 8, held with the other volume users)."),
 }

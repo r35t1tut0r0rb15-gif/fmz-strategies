@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #440362 (基于移动均线的金叉死叉策略EMA-Candle-Close-Strategy)
+# Source: https://www.fmz.com/strategy/440362  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 100, commission 0.0000005 %, 100 % of equity  [lines 119-119]
+  119: strategy("EMA Candle Close Strategy KHANH 11/11/2023", overlay=true, initial_capital=100, commission_type=strategy.commission.percent, commission_value=0.0000005, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

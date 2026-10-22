@@ -238,6 +238,7 @@ fmz_id,file,final_outcome,criterion,reason
 440118,基于Wave-Trend和VWMA的趋势跟踪量化策略Wave-Trend-and-VWMA-Based-Trend-Following-Quant-Strategy.md,REJECTED_ON_READING,1,"Orders are strategy.order calls whose quantities are built from strategy.position_size (running sums of 1 / 2 / 4 base units plus the held size), and close_all is called on every bar: position-size-driven order sizing (criterion 1, as #430596)."
 440334,均线通道突破交易策略Moving-Average-Channel-Breakout-Trading-Strategy.md,REJECTED_ON_READING,2,"The trail offsets are strategy.position_avg_price x 0.05 passed to trail_offset, which is in ticks, with no /mintick (and negative for the long side): a price amount passed as a tick count (criterion 2, as #437048, #437677)."
 440336,基于均线和威廉指标的日线策略Daily-FX-Strategy-Based-on-Moving-Average-and-Williams-Indicator.md,REJECTED_ON_READING,1,"An equity protector closes all trades when the open loss (strategy.openprofit) exceeds 30 % of the balance (initial capital plus netprofit): an account-state gate the signal-only port cannot express (criterion 1, as #432078)."
+440354,动态均价追踪策略Dynamic-Average-Price-Tracking-Strategy.md,REJECTED_ON_READING,1,"The script averages down: while the open loss is 10 % or more it adds 50 % of the held size to the long (pyramiding through strategy.position_size and position_avg_price) and holds until a 10 % gain on the average price: accumulation (criterion 1, as #435721, #430762)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -254,6 +255,7 @@ fmz_id,file,final_outcome,criterion,reason
 434977,RSI拉升突破策略RSI-Breakout-Strategy.md,HELD_NEEDS_VOLUME,8,"The long and short exits test the close against vwma(close, 20): a volume-weighted average (check 8, held with the other volume users). (Also, on the 1-hour header chart no bar opens inside the 09:15-09:16 session window, so the day-range anchor is never set.)"
 436658,双均线黄金交叉量化策略Dual-Moving-Average-Golden-Cross-Quantitative-Strategy.md,HELD_NEEDS_VOLUME,8,"The long and short entries test the Hull line against rvwma3 = vwma(close, 42): a volume-weighted average (check 8, held with the other volume users)."
 439103,双移动均线黄金交叉策略Dual-Moving-Average-Golden-Cross-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rules use ma20 / ma50 / ma100 = vwma(close, 20 / 50 / 100): volume-weighted averages (check 8, held with the other volume users)."
+440372,趋势跟踪均线交叉策略Trend-Tracking-Moving-Average-Crossover-Strategy.md,HELD_NEEDS_VOLUME,8,"The default moving-average type is VWMA: vwma(close, 66) against vwma(open, 66), volume-weighted averages (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -2028,3 +2030,13 @@ fmz_id,file,final_outcome,criterion,reason
 440320,趋势跟踪移动平均指标策略Moving-Average-Trend-Tracking-Strategy.md,PORTED,,ports/440320_moving-average-trend-tracking-strategy/
 440337,RSI鳄鱼趋势策略RSI-Alligator-Trend-Strategy.md,PORTED,,ports/440337_rsi-rsi-alligator-trend-strategy/
 440345,双均线金叉死叉算法交易策略Dual-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/440345_dual-moving-average-crossover-trading-strategy/
+440348,基于多因子组合趋势交易策略Multi-factor-Trend-Trading-Strategy.md,PORTED,,ports/440348_multi-factor-trend-trading-strategy/
+440361,基于EMA指标的跨周期交易策略EMA-Crossover-Quantitative-Trading-Strategy.md,PORTED,,ports/440361_ema-ema-crossover-quantitative-trading-strategy/
+440362,基于移动均线的金叉死叉策略EMA-Candle-Close-Strategy.md,PORTED,,ports/440362_ema-candle-close-strategy/
+440364,基于时间和ATR指标的止损止盈策略Time-based-Strategy-with-ATR-Take-Profit.md,PORTED,,ports/440364_atr-time-based-strategy-with-atr-take-profit/
+440366,逆转型商品通道指数交易策略Commodity-Channel-Index-Reversal-Trading-Strategy.md,PORTED,,ports/440366_commodity-channel-index-reversal-trading-strategy/
+440367,平滑波动率目标带策略Smooth-Volatility-Band-Strategy.md,PORTED,,ports/440367_smooth-volatility-band-strategy/
+440368,基于平滑RSI的股票交易策略Smoothed-RSI-Based-Stock-Trading-Strategy.md,PORTED,,ports/440368_rsi-smoothed-rsi-based-stock-trading-strategy/
+440369,坚果123反转与突破范围短线交易策略Peanut-123-Reversal-and-Breakout-Range-Short-term-Trading-Strategy.md,PORTED,,ports/440369_123-peanut-123-reversal-and-breakout-range-short-term-tradin/
+440373,坚劲趋势延续策略Robust-Trend-Continuation-Strategy.md,PORTED,,ports/440373_robust-trend-continuation-strategy/
+440424,价格突破策略Amazing-Price-Breakout-Strategy.md,PORTED,,ports/440424_amazing-price-breakout-strategy/
