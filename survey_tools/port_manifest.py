@@ -5694,6 +5694,37 @@ SIZING = {
     473268: [
         ("Stop low x 0.98 / limit high x 1.04 (re-sent every bar)", 134, 137),
     ],
+    # ---- FMZ-C, batch C216 (2026-10-22)
+    473269: [],
+    473270: [
+        ("Stop 0.5 % / target 1.5 % of the average price (na from flat)", 122, 126),
+    ],
+    473271: [
+        ("strategy(): 100 % of equity", 89, 89),
+    ],
+    473272: [
+        ("Target 10 % / stop 5 % of the average price (na from flat)", 164, 178),
+    ],
+    473318: [
+        ("Limit 0.98 % from the current close (re-sent every bar)", 131, 159),
+    ],
+    473319: [
+        ("strategy(): cash size, commission 0.03 %", 139, 139),
+    ],
+    473321: [
+        ("Target 5 % of the average price / stop 1 % of the signal close", 91, 138),
+    ],
+    473324: [
+        ("strategy(): percent of equity; stop 40 / target 80 ticks from the signal close", 87, 122),
+    ],
+    473344: [],
+    473346: [
+        ("Stop 2 % of the signal close; target = 50-bar high", 103, 152),
+    ],
+    473350: [
+        ("strategy(): 100 % of equity, capital 100000; TP 7 % of the current close re-sent every bar", 93, 187),
+    ],
+    473351: [],
 }
 
 REJECTED_ON_READING = {

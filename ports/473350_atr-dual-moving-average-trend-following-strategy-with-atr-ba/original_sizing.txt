@@ -1,0 +1,100 @@
+# Original sizing and money-management code, FMZ #473350 (双均线趋势跟踪与ATR风控自适应交易策略-Dual-Moving-Average-Trend-Following-Strategy-with-ATR-Based-Risk-Management-System)
+# Source: https://www.fmz.com/strategy/473350  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital 100000; TP 7 % of the current close re-sent every bar  [lines 93-187]
+   93: strategy("Dual Strategy Selector V2 - Cryptogyani", overlay=true, pyramiding=0, 
+   94:          default_qty_type=strategy.percent_of_equity, default_qty_value=100, initial_capital=100000)
+   95: 
+   96: //#region STRATEGY SELECTION
+   97: strategyOptions = input.string(title="Select Strategy", defval="Strategy 1", options=["Strategy 1", "Strategy 2"], group="Strategy Selection")
+   98: //#endregion STRATEGY SELECTION
+   99: 
+  100: // ####################### STRATEGY 1: Original Logic ########################
+  101: //#region STRATEGY 1 INPUTS
+  102: s1_fastMALen = input.int(defval=21, title="Fast SMA Length (S1)", minval=1, group="Strategy 1 Settings", inline="S1 MA")
+  103: s1_slowMALen = input.int(defval=49, title="Slow SMA Length (S1)", minval=1, group="Strategy 1 Settings", inline="S1 MA")
+  104: s1_takeProfitMode = input.string(defval="Percentage", title="Take Profit Mode (S1)", options=["Percentage", "Pips"], group="Strategy 1 Settings")
+  105: s1_takeProfitPerc = input.float(defval=7.0, title="Take Profit % (S1)", minval=0.05, step=0.05, group="Strategy 1 Settings") / 100
+  106: s1_takeProfitPips = input.float(defval=50, title="Take Profit Pips (S1)", minval=1, step=1, group="Strategy 1 Settings")
+  107: s1_trailingTakeProfitEnabled = input.bool(defval=false, title="Enable Trailing (S1)", group="Strategy 1 Settings")
+  108: //#endregion STRATEGY 1 INPUTS
+  109: 
+  110: // ####################### STRATEGY 2: Enhanced with Recommendations ########################
+  111: //#region STRATEGY 2 INPUTS
+  112: s2_fastMALen = input.int(defval=20, title="Fast SMA Length (S2)", minval=1, group="Strategy 2 Settings", inline="S2 MA")
+  113: s2_slowMALen = input.int(defval=50, title="Slow SMA Length (S2)", minval=1, group="Strategy 2 Settings", inline="S2 MA")
+  114: s2_atrLength = input.int(defval=14, title="ATR Length (S2)", group="Strategy 2 Settings", inline="ATR")
+  115: s2_atrMultiplier = input.float(defval=1.5, title="ATR Multiplier for Stop-Loss (S2)", group="Strategy 2 Settings", inline="ATR")
+  116: s2_partialTakeProfitPerc = input.float(defval=50.0, title="Partial Take Profit % (S2)", minval=10, maxval=100, step=10, group="Strategy 2 Settings")
+  117: s2_timeframeTrend = input.timeframe(defval="1D", title="Higher Timeframe for Trend Filter (S2)", group="Strategy 2 Settings")
+  118: //#endregion STRATEGY 2 INPUTS
+  119: 
+  120: // ####################### GLOBAL VARIABLES ########################
+  121: var float takeProfitPrice = na
+  122: var float stopLossPrice = na
+  123: var float trailingStopPrice = na
+  124: var float fastMA = na
+  125: var float slowMA = na
+  126: var float higherTimeframeTrendMA = na
+  127: var bool validOpenLongPosition = false
+  128: 
+  129: // Precalculate higher timeframe values (global scope for Strategy 2)
+  130: higherTimeframeTrendMA := request.security(syminfo.tickerid, s2_timeframeTrend, ta.sma(close, s2_slowMALen))
+  131: 
+  132: // ####################### LOGIC ########################
+  133: if (strategyOptions == "Strategy 1")
+  134:     // Strategy 1 Logic (Original Logic Preserved)
+  135:     fastMA := ta.sma(close, s1_fastMALen)
+  136:     slowMA := ta.sma(close, s1_slowMALen)
+  137:     openLongPosition = ta.crossover(fastMA, slowMA)
+  138:     validOpenLongPosition := openLongPosition and strategy.opentrades.size(strategy.opentrades - 1) == 0
+  139:     
+  140:     // Take Profit Price
+  141:     takeProfitPrice := if (s1_takeProfitMode == "Percentage")
+  142:         close * (1 + s1_takeProfitPerc)
+  143:     else
+  144:         close + (s1_takeProfitPips * syminfo.mintick)
+  145: 
+  146:     // Trailing Stop Price (if enabled)
+  147:     if (strategy.position_size > 0 and s1_trailingTakeProfitEnabled)
+  148:         trailingStopPrice := high - (s1_takeProfitPips * syminfo.mintick)
+  149:     else
+  150:         trailingStopPrice := na
+  151: 
+  152: else if (strategyOptions == "Strategy 2")
+  153:     // Strategy 2 Logic with Recommendations
+  154:     fastMA := ta.sma(close, s2_fastMALen)
+  155:     slowMA := ta.sma(close, s2_slowMALen)
+  156:     openLongPosition = ta.crossover(fastMA, slowMA) and close > higherTimeframeTrendMA
+  157:     validOpenLongPosition := openLongPosition and strategy.opentrades.size(strategy.opentrades - 1) == 0
+  158: 
+  159:     // ATR-Based Stop-Loss
+  160:     atr = ta.atr(s2_atrLength)
+  161:     stopLossPrice := close - (atr * s2_atrMultiplier)
+  162: 
+  163:     // Partial Take Profit Logic
+  164:     takeProfitPrice := close * (1 + (s2_partialTakeProfitPerc / 100))
+  165: //#endregion STRATEGY LOGIC
+  166: 
+  167: // ####################### PLOTTING ########################
+  168: plot(series=fastMA, title="Fast SMA", color=color.yellow, linewidth=1)
+  169: plot(series=slowMA, title="Slow SMA", color=color.orange, linewidth=1)
+  170: plot(series=takeProfitPrice, title="Take Profit Price", color=color.teal, linewidth=1, style=plot.style_linebr)
+  171: 
+  172: // Trailing Stop and ATR Stop-Loss Plots (Global Scope)
+  173: plot(series=(strategyOptions == "Strategy 1" and s1_trailingTakeProfitEnabled) ? trailingStopPrice : na, title="Trailing Stop", color=color.red, linewidth=1, style=plot.style_linebr)
+  174: plot(series=(strategyOptions == "Strategy 2") ? stopLossPrice : na, title="ATR Stop-Loss", color=color.red, linewidth=1, style=plot.style_linebr)
+  175: //#endregion PLOTTING
+  176: 
+  177: // ####################### POSITION ORDERS ########################
+  178: //#region POSITION ORDERS
+  179: if (validOpenLongPosition)
+  180:     strategy.entry(id="Long Entry", direction=strategy.long)
+  181: 
+  182: if (strategyOptions == "Strategy 1")
+  183:     if (strategy.position_size > 0)
+  184:         if (s1_trailingTakeProfitEnabled)
+  185:             strategy.exit(id="Trailing Take Profit", from_entry="Long Entry", stop=trailingStopPrice)
+  186:         else
+  187:             strategy.exit(id="Take Profit", from_entry="Long Entry", limit=takeProfitPrice)

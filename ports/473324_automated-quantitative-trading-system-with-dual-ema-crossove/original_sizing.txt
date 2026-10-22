@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #473324 (双均线突破交易策略结合止损止盈的自动化量化系统-Automated-Quantitative-Trading-System-with-Dual-EMA-Crossover-and-Risk-Management)
+# Source: https://www.fmz.com/strategy/473324  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity; stop 40 / target 80 ticks from the signal close  [lines 87-122]
+   87: strategy("EMA Crossover Strategy with SL & TP", overlay=true, default_qty_type=strategy.percent_of_equity)
+   88: 
+   89: // Input settings for SL and TP (ticks)
+   90: slTicks = input.int(40, title="Stop Loss (ticks)", minval=1)
+   91: tpTicks = input.int(80, title="Take Profit (ticks)", minval=1)
+   92: 
+   93: // Define EMA periods
+   94: ema21 = ta.ema(close, 21)
+   95: ema50 = ta.ema(close, 50)
+   96: 
+   97: // Detect crossovers
+   98: bullishCross = ta.crossover(ema21, ema50)
+   99: bearishCross = ta.crossunder(ema21, ema50)
+  100: 
+  101: // Plot the EMAs
+  102: plot(ema21, color=color.green, linewidth=2, title="EMA 21")
+  103: plot(ema50, color=color.red, linewidth=2, title="EMA 50")
+  104: 
+  105: // Calculate tick size in points
+  106: var float tickSize = syminfo.mintick
+  107: 
+  108: // Calculate stop loss and take profit prices for long and short positions
+  109: longSL = close - slTicks * tickSize
+  110: longTP = close + tpTicks * tickSize
+  111: 
+  112: shortSL = close + slTicks * tickSize
+  113: shortTP = close - tpTicks * tickSize
+  114: 
+  115: // Execute trades on crossover signals
+  116: if (bullishCross)
+  117:     strategy.entry("Long", strategy.long)
+  118:     strategy.exit("Exit Long", "Long", stop=longSL, limit=longTP)
+  119: 
+  120: if (bearishCross)
+  121:     strategy.entry("Short", strategy.short)
+  122:     strategy.exit("Exit Short", "Short", stop=shortSL, limit=shortTP)

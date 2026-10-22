@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #473319 (KNN自适应参数化趋势跟踪策略-KNN-Based-Adaptive-Parametric-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/473319  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): cash size, commission 0.03 %  [lines 139-139]
+  139: strategy("Trend Following Strategy with KNN", overlay=true,commission_value=0.03,currency='USD', commission_type=strategy.commission.percent,default_qty_type=strategy.cash)

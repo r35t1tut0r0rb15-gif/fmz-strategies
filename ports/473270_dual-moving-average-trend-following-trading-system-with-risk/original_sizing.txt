@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #473270 (双移动均线趋势跟踪交易系统结合风险收益比优化策略-Dual-Moving-Average-Trend-Following-Trading-System-with-Risk-Reward-Ratio-Optimization-Strategy)
+# Source: https://www.fmz.com/strategy/473270  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 0.5 % / target 1.5 % of the average price (na from flat)  [lines 122-126]
+  122:     stop_loss = strategy.position_avg_price * 0.995  // -0.50% (rendimiento)
+  123:     take_profit = strategy.position_avg_price * 1.015  // +1.50% (3:1 ratio)
+  124:     
+  125:     // Establecer el stop loss y take profit
+  126:     strategy.exit("Take Profit / Stop Loss", from_entry="Compra", stop=stop_loss, limit=take_profit)

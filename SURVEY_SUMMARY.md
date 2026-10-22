@@ -11,9 +11,9 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2634 |
+| PORTED | 2646 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 736 |
+| PORT_CANDIDATE | 724 |
 | HELD_NEEDS_VOLUME | 569 |
 | REJECTED_ON_READING | 368 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -2762,7 +2762,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 473265 | `ports/473265_atr-multi-ema-trend-following-strategy-with-dynamic-atr-targ/` | PineScript | ma_pullback | coarse_bar_stop | sl_atr x2, tp_atr x2 | 4 |
 | 473266 | `ports/473266_bollinger-bands-and-rsi-combined-trading-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2, exit_rsi x2 | 8 |
 | 473268 | `ports/473268_dynamic-dual-moving-average-crossover-quantitative-trading-s/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
-| | **2634 ports** | | | | | **12436** |
+| 473269 | `ports/473269_k-moving-average-crossover-and-candlestick-pattern-smart-tim/` | PineScript | ma_cross | none |  | 0 |
+| 473270 | `ports/473270_dual-moving-average-trend-following-trading-system-with-risk/` | PineScript | ma_trend | trailing_stop_pending |  | 0 |
+| 473271 | `ports/473271_adaptive-range-volatility-trend-following-trading-strategy/` | PineScript | momentum_oscillator | none | asc_length x2, risk x2 | 4 |
+| 473272 | `ports/473272_ema-multi-timeframe-ema-cross-high-win-rate-trend-following/` | PineScript | ma_trend | trailing_stop_pending |  | 0 |
+| 473318 | `ports/473318_ema-multi-period-trend-following-trading-system-based-on-ema/` | PineScript | bollinger_reversion | trailing_stop_pending | length x2, mult x2 | 4 |
+| 473319 | `ports/473319_knn-knn-based-adaptive-parametric-trend-following-strategy/` | PineScript | ma_trend | none | k x2, ma_length x2 | 4 |
+| 473321 | `ports/473321_dynamic-dual-sma-trend-following-strategy-with-smart-risk-ma/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | sma_period x2, tp_pct x2, sl_pct x2 | 8 |
+| 473324 | `ports/473324_automated-quantitative-trading-system-with-dual-ema-crossove/` | PineScript | ma_cross | none | sl_atr x2, tp_atr x2 | 4 |
+| 473344 | `ports/473344_multi-frequency-momentum-reversal-quantitative-strategy-syst/` | PineScript | mean_reversion | none | streak x2, hold x2 | 4 |
+| 473346 | `ports/473346_adaptive-fvg-detection-and-ma-trend-trading-strategy-with-dy/` | PineScript | reversal_pattern | coarse_bar_stop, trailing_stop_pending | stop_pct x2, lookback x2, ma_period x2 | 8 |
+| 473350 | `ports/473350_atr-dual-moving-average-trend-following-strategy-with-atr-ba/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 473351 | `ports/473351_dynamic-trading-system-with-stochastic-rsi-and-candlestick-c/` | PineScript | stochastic_oscillator | none | oversold x2, overbought x2 | 4 |
+| | **2646 ports** | | | | | **12480** |
 
 ## Rejected on reading
 

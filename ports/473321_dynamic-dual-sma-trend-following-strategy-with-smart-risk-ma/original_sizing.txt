@@ -1,0 +1,53 @@
+# Original sizing and money-management code, FMZ #473321 (双均线动态趋势跟踪与智能风控策略-Dynamic-Dual-SMA-Trend-Following-Strategy-with-Smart-Risk-Management)
+# Source: https://www.fmz.com/strategy/473321  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 5 % of the average price / stop 1 % of the signal close  [lines 91-138]
+   91: initialTPPercent = input.float(5.0, title="Initial Take Profit (%)", minval=0.1)  // Take Profit iniziale (ambizioso)
+   92: trailingSLPercent = input.float(1.0, title="Trailing Stop Loss (%)", minval=0.1) // Percentuale di trailing SL
+   93: slopeThreshold = input.float(0.05, title="Slope Threshold (%)", minval=0.01)    // Soglia minima di pendenza significativa
+   94: 
+   95: // SMA calcolate su HIGH e LOW
+   96: smaHigh = ta.sma(high, smaPeriod)
+   97: smaLow = ta.sma(low, smaPeriod)
+   98: 
+   99: // Funzioni per pendenza significativa
+  100: isSignificantSlope(sma, threshold) =>
+  101:     math.abs(sma - sma[5]) / sma[5] > threshold / 100
+  102: 
+  103: slopePositive(sma) =>
+  104:     sma > sma[1] and isSignificantSlope(sma, slopeThreshold)
+  105: 
+  106: slopeNegative(sma) =>
+  107:     sma < sma[1] and isSignificantSlope(sma, slopeThreshold)
+  108: 
+  109: // Condizioni di BUY e SELL
+  110: buyCondition = close > smaHigh and low < smaHigh and close[1] < smaHigh and slopePositive(smaHigh)
+  111: sellCondition = close < smaLow and high > smaLow and close[1] > smaLow and slopeNegative(smaLow)
+  112: 
+  113: // Plot delle SMA
+  114: plot(smaHigh, color=color.green, linewidth=2, title="SMA 20 High")
+  115: plot(smaLow, color=color.red, linewidth=2, title="SMA 20 Low")
+  116: 
+  117: // Gestione TP/SL dinamici
+  118: longInitialTP = strategy.position_avg_price * (1 + initialTPPercent / 100)
+  119: shortInitialTP = strategy.position_avg_price * (1 - initialTPPercent / 100)
+  120: 
+  121: // Trailing SL dinamico
+  122: longTrailingSL = close * (1 - trailingSLPercent / 100)
+  123: shortTrailingSL = close * (1 + trailingSLPercent / 100)
+  124: 
+  125: // Chiusura di posizioni attive su segnali opposti
+  126: if strategy.position_size > 0 and sellCondition
+  127:     strategy.close("Buy", comment="Close Long on Sell Signal")
+  128: if strategy.position_size < 0 and buyCondition
+  129:     strategy.close("Sell", comment="Close Short on Buy Signal")
+  130: 
+  131: // Apertura di nuove posizioni con TP iniziale e Trailing SL
+  132: if buyCondition
+  133:     strategy.entry("Buy", strategy.long, comment="Open Long")
+  134:     strategy.exit("Long TP/Trailing SL", from_entry="Buy", limit=longInitialTP, stop=longTrailingSL)
+  135: 
+  136: if sellCondition
+  137:     strategy.entry("Sell", strategy.short, comment="Open Short")
+  138:     strategy.exit("Short TP/Trailing SL", from_entry="Sell", limit=shortInitialTP, stop=shortTrailingSL)

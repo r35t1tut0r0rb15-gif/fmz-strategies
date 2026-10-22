@@ -3023,3 +3023,15 @@ fmz_id,file,final_outcome,criterion,reason
 473265,多均线趋势跟踪与ATR动态目标策略-Multi-EMA-Trend-Following-Strategy-with-Dynamic-ATR-Targets.md,PORTED,,ports/473265_atr-multi-ema-trend-following-strategy-with-dynamic-atr-targ/
 473266,波林带与相对强弱组合交易策略-Bollinger-Bands-and-RSI-Combined-Trading-Strategy.md,PORTED,,ports/473266_bollinger-bands-and-rsi-combined-trading-strategy/
 473268,双均线交叉动态优化量化交易策略-Dynamic-Dual-Moving-Average-Crossover-Quantitative-Trading-Strategy.md,PORTED,,ports/473268_dynamic-dual-moving-average-crossover-quantitative-trading-s/
+473269,均线交叉趋势捕捉与K线突破智能择时策略-Moving-Average-Crossover-and-Candlestick-Pattern-Smart-Timing-Strategy.md,PORTED,,ports/473269_k-moving-average-crossover-and-candlestick-pattern-smart-tim/
+473270,双移动均线趋势跟踪交易系统结合风险收益比优化策略-Dual-Moving-Average-Trend-Following-Trading-System-with-Risk-Reward-Ratio-Optimization-Strategy.md,PORTED,,ports/473270_dual-moving-average-trend-following-trading-system-with-risk/
+473271,自适应范围波动率趋势跟踪交易策略-Adaptive-Range-Volatility-Trend-Following-Trading-Strategy.md,PORTED,,ports/473271_adaptive-range-volatility-trend-following-trading-strategy/
+473272,多周期EMA交叉高胜率趋势跟踪策略进阶版-Multi-Timeframe-EMA-Cross-High-Win-Rate-Trend-Following-Strategy-Advanced.md,PORTED,,ports/473272_ema-multi-timeframe-ema-cross-high-win-rate-trend-following/
+473318,基于EMA均线波动带的多周期趋势跟踪交易系统-Multi-Period-Trend-Following-Trading-System-Based-on-EMA-Volatility-Bands.md,PORTED,,ports/473318_ema-multi-period-trend-following-trading-system-based-on-ema/
+473319,KNN自适应参数化趋势跟踪策略-KNN-Based-Adaptive-Parametric-Trend-Following-Strategy.md,PORTED,,ports/473319_knn-knn-based-adaptive-parametric-trend-following-strategy/
+473321,双均线动态趋势跟踪与智能风控策略-Dynamic-Dual-SMA-Trend-Following-Strategy-with-Smart-Risk-Management.md,PORTED,,ports/473321_dynamic-dual-sma-trend-following-strategy-with-smart-risk-ma/
+473324,双均线突破交易策略结合止损止盈的自动化量化系统-Automated-Quantitative-Trading-System-with-Dual-EMA-Crossover-and-Risk-Management.md,PORTED,,ports/473324_automated-quantitative-trading-system-with-dual-ema-crossove/
+473344,多重频次动量反转量化策略系统Multi-Frequency-Momentum-Reversal-Quantitative-Strategy-System-Multi-Frequency-Momentum-Reversal-Quantitative-Strategy-System.md,PORTED,,ports/473344_multi-frequency-momentum-reversal-quantitative-strategy-syst/
+473346,Adaptive-FVG-Detection-and-MA-Trend-Trading-Strategy-with-Dynamic-Resistance-基于时适-FVG-检测与移动平均趋势的动态阻力交易策略.md,PORTED,,ports/473346_adaptive-fvg-detection-and-ma-trend-trading-strategy-with-dy/
+473350,双均线趋势跟踪与ATR风控自适应交易策略-Dual-Moving-Average-Trend-Following-Strategy-with-ATR-Based-Risk-Management-System.md,PORTED,,ports/473350_atr-dual-moving-average-trend-following-strategy-with-atr-ba/
+473351,随机相对强弱指数与蜡烛图确认的动态交易系统-Dynamic-Trading-System-with-Stochastic-RSI-and-Candlestick-Confirmation.md,PORTED,,ports/473351_dynamic-trading-system-with-stochastic-rsi-and-candlestick-c/

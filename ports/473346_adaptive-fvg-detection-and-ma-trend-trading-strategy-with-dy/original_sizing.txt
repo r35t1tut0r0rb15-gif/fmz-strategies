@@ -1,0 +1,55 @@
+# Original sizing and money-management code, FMZ #473346 (Adaptive-FVG-Detection-and-MA-Trend-Trading-Strategy-with-Dynamic-Resistance-基于时适-FVG-检测与移动平均趋势的动态阻力交易策略)
+# Source: https://www.fmz.com/strategy/473346  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 % of the signal close; target = 50-bar high  [lines 103-152]
+  103: stopLossPercent = input(2, title="Stop Loss (%)") / 100
+  104: lookbackPeriod = input(50, title="Güçlü Direnç İçin Geriye Dönük Süre")
+  105: fvgLength = input.timeframe("60", title="FVG Zaman Dilimi")  // 1 saatlik zaman dilimi
+  106: maPeriod = input(20, title="MA Dönemi")  // Trend yönü için MA dönemi
+  107: 
+  108: // FVG'leri Hesapla
+  109: var float fvgLow = na
+  110: var float fvgHigh = na
+  111: var bool fvgFilled = false
+  112: 
+  113: // Seçilen zaman diliminde FVG'leri kontrol et
+  114: if (ta.change(time(fvgLength)))
+  115:     bull_fvg = low > high[2] and close[1] > high[2]
+  116:     bear_fvg = high < low[2] and close[1] < low[2]
+  117:     
+  118:     if (bull_fvg)
+  119:         fvgLow := low[2]
+  120:         fvgHigh := high
+  121:         fvgFilled := true
+  122:     else if (bear_fvg)
+  123:         fvgLow := low
+  124:         fvgHigh := high[2]
+  125:         fvgFilled := true
+  126: 
+  127: // Trend Yönü Kontrolü (MA kullanarak)
+  128: ma = ta.sma(close, maPeriod)
+  129: trendUp = close > ma
+  130: trendDown = close < ma
+  131: 
+  132: // Dönüş Mumu Kontrolü
+  133: bullishReversal = close > open and close[1] < open[1] and fvgFilled and close > fvgHigh
+  134: bearishReversal = close < open and close[1] > open[1] and fvgFilled and close < fvgLow
+  135: 
+  136: // İlk güçlü direnç noktası
+  137: resistanceLevel = ta.highest(high, lookbackPeriod)
+  138: 
+  139: // Giriş Koşulları
+  140: if (bullishReversal and trendUp)
+  141:     entryPrice = close
+  142:     stopLoss = entryPrice * (1 - stopLossPercent)
+  143:     takeProfit = resistanceLevel
+  144:     strategy.entry("Long", strategy.long)
+  145:     strategy.exit("TP", "Long", limit=takeProfit, stop=stopLoss)
+  146: 
+  147: if (bearishReversal and trendDown)
+  148:     entryPrice = close
+  149:     stopLoss = entryPrice * (1 + stopLossPercent)
+  150:     takeProfit = resistanceLevel
+  151:     strategy.entry("Short", strategy.short)
+  152:     strategy.exit("TP", "Short", limit=takeProfit, stop=stopLoss)

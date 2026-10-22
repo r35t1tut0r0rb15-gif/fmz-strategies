@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #473272 (多周期EMA交叉高胜率趋势跟踪策略进阶版-Multi-Timeframe-EMA-Cross-High-Win-Rate-Trend-Following-Strategy-Advanced)
+# Source: https://www.fmz.com/strategy/473272  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 10 % / stop 5 % of the average price (na from flat)  [lines 164-178]
+  164:     longTakeProfit := strategy.position_avg_price * 1.10  // Target is 10% above the buy price
+  165:     longStopLoss := strategy.position_avg_price * 0.95    // Stop loss is 5% below the buy price
+  166:     buyPrice := strategy.position_avg_price
+  167: 
+  168: // Plot levels for the new trade
+  169: plotTakeProfit = plot(longTakeProfit, color=color.green, title="Take Profit", linewidth=1, offset=-1)
+  170: plotStopLoss = plot(longStopLoss, color=color.red, title="Stop Loss", linewidth=1, offset=-1)
+  171: plotBuyPrice = plot(buyPrice, color=color.blue, title="Buy Price", linewidth=1, offset=-1)
+  172: 
+  173: // Fill areas between buy price and take profit/stop loss levels
+  174: fill(plotBuyPrice, plotTakeProfit, color=color.new(color.green, 90), title="Fill to Take Profit")  // Light green fill to target
+  175: fill(plotBuyPrice, plotStopLoss, color=color.new(color.red, 90), title="Fill to Stop Loss")    // Light red fill to stop loss
+  176: 
+  177: // Exit conditions
+  178: strategy.exit("Take Profit/Stop Loss", from_entry="Buy", limit=longTakeProfit, stop=longStopLoss)
