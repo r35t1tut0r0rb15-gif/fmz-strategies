@@ -1,0 +1,34 @@
+# Original sizing and money-management code, FMZ #474038 (五均线RSI趋势跟踪动态通道交易系统-Five-EMA-RSI-Trend-Following-Dynamic-Channel-Trading-System)
+# Source: https://www.fmz.com/strategy/474038  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## SL / TP1 / TP2 from the signal bar's high / low  [lines 143-171]
+  143: var float longStopLoss = na
+  144: var float longTakeProfit1 = na
+  145: var float longTakeProfit2 = na
+  146: var float shortStopLoss = na
+  147: var float shortTakeProfit1 = na
+  148: var float shortTakeProfit2 = na
+  149: 
+  150: if longCondition
+  151:     longStopLoss := high * 0.99
+  152:     longTakeProfit1 := longStopLoss * 1.02618
+  153:     longTakeProfit2 := longStopLoss * 1.036185
+  154:     strategy.entry("Long", strategy.long)
+  155:     
+  156: if shortCondition
+  157:     shortStopLoss := low * 1.01
+  158:     shortTakeProfit1 := shortStopLoss * 0.97382
+  159:     shortTakeProfit2 := shortTakeProfit1 * 0.96381
+  160:     strategy.entry("Short", strategy.short)
+  161: 
+  162: // Exit Conditions
+  163: if not na(longStopLoss)
+  164:     strategy.exit("Take Profit 1", "Long", limit=longTakeProfit1)
+  165:     strategy.exit("Take Profit 2", "Long", limit=longTakeProfit2)
+  166:     strategy.exit("Stop Loss", "Long", stop=longStopLoss)
+  167: 
+  168: if not na(shortStopLoss)
+  169:     strategy.exit("Take Profit 1", "Short", limit= shortTakeProfit1)
+  170:     strategy.exit("Take Profit 2", "Short", limit=shortTakeProfit2)
+  171:     strategy.exit("Stop Loss", "Short", stop=shortStopLoss)

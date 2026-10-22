@@ -5803,6 +5803,32 @@ SIZING = {
     473937: [
         ("Stop 16 % / target 9.5 % of avg", 99, 173),
     ],
+    # ---- FMZ-C, batch C220 (2026-10-22)
+    473943: [],
+    473944: [],
+    473945: [
+        ("strategy(): fixed qty 1; qty = equity x 20 / close, doubled on repeat entries (pyramiding 1)", 101, 173),
+    ],
+    474020: [
+        ("strategy(): 10 % of equity", 99, 100),
+    ],
+    474022: [
+        ("Size = equity x 1 % / (2 ATR); stop 2 ATR / target 4 ATR, trail_offset 1.5 ATR", 142, 171),
+    ],
+    474025: [
+        ("strategy(): 2 % of equity; size by 1 % risk; stop 1.5 ATR / target 3 ATR", 91, 151),
+    ],
+    474030: [],
+    474037: [
+        ("strategy(): capital 25000", 105, 105),
+    ],
+    474038: [
+        ("SL / TP1 / TP2 from the signal bar's high / low", 143, 171),
+    ],
+    474049: [],
+    474050: [
+        ("strategy(): 10 % of equity; stop at the 5-bar extreme, target 2 R", 101, 169),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7315,6 +7341,10 @@ REJECTED_ON_READING = {
     473406: ("1", "useTakeProfit is on by default and exits in four qty_percent steps (25 / 20 / 10 / "
               "15 % at 3 / 6 / 12 / 21 %): the position is closed in parts, so the size path is "
               "part of the strategy (criterion 1, qty_percent partial exits, as #436524)."),
+    # ---- FMZ-C, batch C220 (2026-10-22)
+    473942: ("2", "strategy.exit's profit / loss fields take tick counts but receive ATR price "
+              "amounts (profit = 3 x ATR, loss = ATR): a price amount in a tick field, so the "
+              "distance in price depends on the instrument's tick size (criterion 2, as #442115)."),
 }
 
 DUPLICATE_ON_READING = {

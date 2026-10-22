@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #474037 (自适应权重趋势跟踪策略VIDYA多指标组合系统-Adaptive-Weighted-Trend-Following-Strategy-VIDYA-Multi-Indicator-System)
+# Source: https://www.fmz.com/strategy/474037  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 25000  [lines 105-105]
+  105: strategy("VIDYA Strategy", overlay=true, initial_capital=25000)

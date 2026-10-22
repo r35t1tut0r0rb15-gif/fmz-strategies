@@ -1,0 +1,74 @@
+# Original sizing and money-management code, FMZ #474050 (多指标交叉动量趋势跟踪策略结合止盈止损优化系统-Multi-Indicator-Crossover-Momentum-Trend-Following-Strategy-with-Optimized-Take-Profit-and-Stop-Loss-System)
+# Source: https://www.fmz.com/strategy/474050  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity; stop at the 5-bar extreme, target 2 R  [lines 101-169]
+  101: strategy("Alligator with AO and AC Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+  102: 
+  103: // ---------------------------- Индикатор Аллигатор ----------------------------
+  104: 
+  105: // Параметры Аллигатора
+  106: jawLength = input.int(13, title="Jaw Length")
+  107: teethLength = input.int(8, title="Teeth Length")
+  108: lipsLength = input.int(5, title="Lips Length")
+  109: 
+  110: jawOffset = input.int(8, title="Jaw Offset")
+  111: teethOffset = input.int(5, title="Teeth Offset")
+  112: lipsOffset = input.int(3, title="Lips Offset")
+  113: 
+  114: // Расчёт скользящих средних
+  115: jawLine = ta.sma(close, jawLength)
+  116: teethLine = ta.sma(close, teethLength)
+  117: lipsLine = ta.sma(close, lipsLength)
+  118: 
+  119: // Сдвиг линий
+  120: jaw = jawLine[jawOffset]
+  121: teeth = teethLine[teethOffset]
+  122: lips = lipsLine[lipsOffset]
+  123: 
+  124: // Отображение линий Аллигатора
+  125: plot(jaw, color=color.blue, linewidth=2, title="Jaw (13,8)")
+  126: plot(teeth, color=color.red, linewidth=2, title="Teeth (8,5)")
+  127: plot(lips, color=color.green, linewidth=2, title="Lips (5,3)")
+  128: 
+  129: // ---------------------------- Awesome Oscillator (AO) ----------------------------
+  130: 
+  131: // Расчёт AO
+  132: medianPrice = (high + low) / 2
+  133: ao = ta.sma(medianPrice, 5) - ta.sma(medianPrice, 34)
+  134: 
+  135: // Отображение AO
+  136: hline(0, "Zero Line", color=color.gray)
+  137: plot(ao, title="Awesome Oscillator", color=(ao >= 0 ? color.green : color.red), style=plot.style_histogram, linewidth=2)
+  138: 
+  139: // ---------------------------- Accelerator Oscillator (AC) ----------------------------
+  140: 
+  141: // Расчёт AC
+  142: ac = ao - ta.sma(ao, 5)
+  143: 
+  144: // Отображение AC
+  145: plot(ac, title="Accelerator Oscillator", color=(ac >= 0 ? color.green : color.red), style=plot.style_histogram, linewidth=2)
+  146: 
+  147: // ---------------------------- Логика сигналов и управление позицией ----------------------------
+  148: 
+  149: // Условия для открытия длинной позиции
+  150: longCondition = ta.crossover(lips, teeth) and ao > 0 and ac > 0
+  151: if (longCondition)
+  152:     // Определение уровней stop-loss и take-profit
+  153:     stopLevel = ta.lowest(low, 5) // Минимум за последние 5 свечей
+  154:     takeProfit = close + (close - stopLevel) * 2 // Соотношение риска к прибыли 1:2
+  155: 
+  156:     // Открытие длинной позиции
+  157:     strategy.entry("Long", strategy.long)
+  158:     strategy.exit("Take Profit", "Long", limit=takeProfit, stop=stopLevel)
+  159: 
+  160: // Условия для открытия короткой позиции
+  161: shortCondition = ta.crossunder(lips, teeth) and ao < 0 and ac < 0
+  162: if (shortCondition)
+  163:     // Определение уровней stop-loss и take-profit
+  164:     stopLevelShort = ta.highest(high, 5) // Максимум за последние 5 свечей
+  165:     takeProfitShort = close - (stopLevelShort - close) * 2 // Соотношение риска к прибыли 1:2
+  166: 
+  167:     // Открытие короткой позиции
+  168:     strategy.entry("Short", strategy.short)
+  169:     strategy.exit("Take Profit Short", "Short", limit=takeProfitShort, stop=stopLevelShort)

@@ -1,0 +1,35 @@
+# Original sizing and money-management code, FMZ #474022 (多均线趋势动量交易策略结合风险管理系统-Multi-EMA-Trend-Momentum-Trading-Strategy-with-Risk-Management-System)
+# Source: https://www.fmz.com/strategy/474022  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Size = equity x 1 % / (2 ATR); stop 2 ATR / target 4 ATR, trail_offset 1.5 ATR  [lines 142-171]
+  142: atr = ta.atr(14)
+  143: stopLossMultiplier = 2
+  144: takeProfitMultiplier = 4
+  145: stopLoss = atr * stopLossMultiplier
+  146: takeProfit = atr * takeProfitMultiplier
+  147: 
+  148: // Trailing stop settings
+  149: trailStopMultiplier = 1.5
+  150: trailOffset = atr * trailStopMultiplier
+  151: 
+  152: // Risk management: dynamic position sizing
+  153: riskPerTrade = 0.01  // 1% risk per trade
+  154: positionSize = strategy.equity * riskPerTrade / stopLoss
+  155: 
+  156: longCondition = longEmaCondition and longRsiCondition and longStochasticCondition and strategy.position_size == 0
+  157: exitLongCondition = (exitLongEmaCondition or exitLongRsiCondition or exitLongStochasticCondition) and strategy.position_size > 0
+  158: 
+  159: if (longCondition)
+  160:     strategy.entry("LONG", strategy.long, qty=positionSize)
+  161:     strategy.exit("Take Profit Long", "LONG", stop=close - stopLoss, limit=close + takeProfit, trail_offset=trailOffset)
+  162: 
+  163: if (exitLongCondition)
+  164:     strategy.close("LONG")
+  165:     
+  166: shortCondition = shortEmaCondition and shortRsiCondition and shortStochasticCondition and strategy.position_size == 0
+  167: exitShortCondition = (exitShortEmaCondition or exitShortRsiCondition or exitShortStochasticCondition) and strategy.position_size < 0
+  168: 
+  169: if (shortCondition)
+  170:     strategy.entry("SHORT", strategy.short, qty=positionSize)
+  171:     strategy.exit("Take Profit Short", "SHORT", stop=close + stopLoss, limit=close - takeProfit, trail_offset=trailOffset)

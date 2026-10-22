@@ -1,0 +1,66 @@
+# Original sizing and money-management code, FMZ #474025 (EMA-MACD高频量化策略与智能风控系统-EMA-MACD-High-Frequency-Quantitative-Strategy-with-Smart-Risk-Management)
+# Source: https://www.fmz.com/strategy/474025  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 2 % of equity; size by 1 % risk; stop 1.5 ATR / target 3 ATR  [lines 91-151]
+   91: strategy("High-Frequency Trade Script with EMA, MACD, and ATR-based TP/SL", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=2, initial_capital=100000)
+   92: 
+   93: // إعداد المؤشرات
+   94: emaBuy = ta.ema(close, 9)       // EMA بفترة قصيرة للشراء
+   95: emaSell = ta.ema(close, 21)     // EMA بفترة أطول للبيع
+   96: [macdLine, signalLine, _] = ta.macd(close, 6, 13, 4) // MACD بفترات قصيرة
+   97: atr = ta.atr(14)  // حساب مؤشر ATR
+   98: 
+   99: // إعداد نسبة وقف الخسارة وجني الأرباح
+  100: stopLossATRMultiplier = 1.5  // تقليل وقف الخسارة لـ 1.5 * ATR
+  101: riskToRewardRatio = 2.0  // نسبة العائد إلى المخاطرة 1:2
+  102: 
+  103: // إعداد إدارة المخاطر
+  104: riskPercentage = 1.0  // المخاطرة كـ 1% من رأس المال
+  105: capital = strategy.equity  // إجمالي رأس المال
+  106: riskAmount = capital * (riskPercentage / 100)  // مقدار المخاطرة
+  107: 
+  108: // شروط إشارات الشراء: تقاطع EMA القصير فوق الطويل و MACD أعلى من Signal
+  109: longCondition = ta.crossover(emaBuy, emaSell) and macdLine > signalLine
+  110: 
+  111: // شروط إشارات البيع: تقاطع EMA القصير تحت الطويل و MACD أسفل Signal
+  112: shortCondition = ta.crossunder(emaBuy, emaSell) and macdLine < signalLine
+  113: 
+  114: // --- تنفيذ أوامر الشراء والبيع تلقائيًا مع وقف الخسارة وجني الأرباح --- //
+  115: // تعريف خطوط وقف الخسارة وجني الأرباح
+  116: var line longStopLossLine = na
+  117: var line longTakeProfitLine = na
+  118: var line shortStopLossLine = na
+  119: var line shortTakeProfitLine = na
+  120: 
+  121: if (longCondition)
+  122:     longEntryPrice = close  // سعر الدخول للشراء
+  123:     longStopLoss = longEntryPrice - (atr * stopLossATRMultiplier)  // وقف الخسارة بناءً على ATR
+  124:     longTakeProfit = longEntryPrice + ((longEntryPrice - longStopLoss) * riskToRewardRatio)  // جني الأرباح بنسبة 1:2
+  125: 
+  126:     // حساب حجم الصفقة بناءً على مقدار المخاطرة
+  127:     positionSize = riskAmount / (longEntryPrice - longStopLoss)  // حجم العقد
+  128: 
+  129:     // إدخال أمر الشراء
+  130:     strategy.entry("Buy", strategy.long, qty=positionSize)
+  131:     
+  132:     // إعداد أوامر وقف الخسارة وجني الأرباح
+  133:     strategy.exit("Take Profit/Stop Loss", "Buy", stop=longStopLoss, limit=longTakeProfit)
+  134: 
+  135:     // رسم الخطوط لجني الأرباح ووقف الخسارة
+  136:     // longStopLossLine := line.new(bar_index, longStopLoss, bar_index + 1, longStopLoss, color=color.red, width=1, style=line.style_dashed)  // خط وقف الخسارة
+  137:     // longTakeProfitLine := line.new(bar_index, longTakeProfit, bar_index + 1, longTakeProfit, color=color.green, width=1, style=line.style_dashed)  // خط جني الأرباح
+  138: 
+  139: if (shortCondition)
+  140:     shortEntryPrice = close  // سعر الدخول للبيع
+  141:     shortStopLoss = shortEntryPrice + (atr * stopLossATRMultiplier)  // وقف الخسارة بناءً على ATR
+  142:     shortTakeProfit = shortEntryPrice - ((shortStopLoss - shortEntryPrice) * riskToRewardRatio)  // جني الأرباح بنسبة 1:2
+  143: 
+  144:     // حساب حجم الصفقة بناءً على مقدار المخاطرة
+  145:     positionSize = riskAmount / (shortStopLoss - shortEntryPrice)  // حجم العقد
+  146: 
+  147:     // إدخال أمر البيع
+  148:     strategy.entry("Sell", strategy.short, qty=positionSize)
+  149:     
+  150:     // إعداد أوامر وقف الخسارة وجني الأرباح
+  151:     strategy.exit("Take Profit/Stop Loss", "Sell", stop=shortStopLoss, limit=shortTakeProfit)

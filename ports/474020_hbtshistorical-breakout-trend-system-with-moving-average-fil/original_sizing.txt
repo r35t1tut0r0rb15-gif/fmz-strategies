@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #474020 (历史价格突破型混合趋势交易系统HBTSHistorical-Breakout-Trend-System-with-Moving-Average-Filter-HBTS)
+# Source: https://www.fmz.com/strategy/474020  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 99-100]
+   99: strategy("Turtle Traders - Andrei", overlay=true, 
+  100:      default_qty_type=strategy.percent_of_equity, default_qty_value=10)

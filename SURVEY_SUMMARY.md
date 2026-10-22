@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2677 |
+| PORTED | 2688 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 688 |
+| PORT_CANDIDATE | 676 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 373 |
+| REJECTED_ON_READING | 374 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2805,7 +2805,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 473935 | `ports/473935_macd-rsi-macd-rsi-dynamic-crossover-quantitative-trading-sys/` | PineScript | macd_cross | none | overbought x2, oversold x2 | 4 |
 | 473936 | `ports/473936_bollinger-bands-high-frequency-quantitative-strategy-combine/` | PineScript | bollinger_reversion | coarse_bar_stop | length x2, mult x2 | 4 |
 | 473937 | `ports/473937_dynamic-support-resistance-price-action-trading-system/` | PineScript | candle_pattern | none | length x2, sensitivity x2 | 4 |
-| | **2677 ports** | | | | | **12612** |
+| 473943 | `ports/473943_multi-ema-automated-trading-system-with-trailing-profit-lock/` | PineScript | ma_trend | none |  | 0 |
+| 473944 | `ports/473944_dynamic-dual-ema-crossover-quantitative-trading-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 473945 | `ports/473945_rsi-ema-multi-rsi-ema-momentum-hedging-strategy-with-positio/` | PineScript | rsi_oscillator | none |  | 0 |
+| 474020 | `ports/474020_hbtshistorical-breakout-trend-system-with-moving-average-fil/` | PineScript | donchian_breakout | none | lookback_buy x2, lookback_sell x2, ma_length x2 | 8 |
+| 474022 | `ports/474022_multi-ema-trend-momentum-trading-strategy-with-risk-manageme/` | PineScript | trend_confluence | none |  | 0 |
+| 474025 | `ports/474025_ema-macd-ema-macd-high-frequency-quantitative-strategy-with/` | PineScript | ma_cross | coarse_bar_stop |  | 0 |
+| 474030 | `ports/474030_dpo-ema-dpo-ema-trend-crossover-quantitative-strategy-resear/` | PineScript | momentum_oscillator | none |  | 0 |
+| 474037 | `ports/474037_vidya-adaptive-weighted-trend-following-strategy-vidya-multi/` | PineScript | adaptive_average | none | pds x2 | 2 |
+| 474038 | `ports/474038_rsi-five-ema-rsi-trend-following-dynamic-channel-trading-sys/` | PineScript | ma_cross | coarse_bar_stop | fast x2, slow x2 | 4 |
+| 474049 | `ports/474049_rsi-triangle-breakout-with-rsi-momentum-strategy/` | PineScript | breakout | none | len x2, rsi_buy x2 | 4 |
+| 474050 | `ports/474050_multi-indicator-crossover-momentum-trend-following-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | lips_len x2, teeth_len x2 | 4 |
+| | **2688 ports** | | | | | **12638** |
 
 ## Rejected on reading
 
@@ -3184,6 +3195,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 473389 | 动态RSI超卖反弹交易策略结合止损优化模型-Dynamic-RSI-Oversold-Rebound-Trading-Strategy-with-Stop-Loss-Optimization-Model.md | 1 | pyramiding = 2 with a long sent on every bar the RSI 8 is under 28: a second unit is added inside the trade, so the size path is part of the strategy (criterion 1, pyramiding >= 2 repeats). |
 | 473391 | Advanced-Fair-Value-Gap-Detection-Strategy-with-Dynamic-Risk-Management-and-Fixed-Take-Profit-基于动态风险管理和固定获利的高级公允价值缺口检测策略.md | 1 | The stop is strategy.close when strategy.openprofit < -1 % of strategy.equity: an exit set by the position's money size against the equity (criterion 1, equity-share openprofit exits). |
 | 473406 | Multi-Step-Volatility-Adjusted-Dynamic-SuperTrend-Strategy-多步波动率自适应动态超趋势策略.md | 1 | useTakeProfit is on by default and exits in four qty_percent steps (25 / 20 / 10 / 15 % at 3 / 6 / 12 / 21 %): the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #436524). |
+| 473942 | 高频混合技术分析量化策略-High-Frequency-Hybrid-Technical-Analysis-Quantitative-Strategy.md | 2 | strategy.exit's profit / loss fields take tick counts but receive ATR price amounts (profit = 3 x ATR, loss = ATR): a price amount in a tick field, so the distance in price depends on the instrument's tick size (criterion 2, as #442115). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
