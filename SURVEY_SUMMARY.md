@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2339 |
-| PORT_CANDIDATE | 1071 |
+| PORTED | 2350 |
+| PORT_CANDIDATE | 1059 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 330 |
+| REJECTED_ON_READING | 331 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2467,7 +2467,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 452275 | `ports/452275_ema-ema-crossover-with-short-term-signals-strategy/` | PineScript | volatility_channel_breakout | none | length x3 | 3 |
 | 452280 | `ports/452280_ema-sma-crossover-bull-market-support-band-strategy/` | PineScript | ma_cross | none | sma_len x2, ema_len x2 | 4 |
 | 452355 | `ports/452355_rsi-bollinger-bands-rsi-trading-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2, rsi_len x2 | 8 |
-| | **2339 ports** | | | | | **10826** |
+| 452359 | `ports/452359_cci-cci-ma-crossover-pullback-buy-strategy/` | PineScript | ma_pullback | none | fast x2, slow x2, cci_len x2 | 8 |
+| 452360 | `ports/452360_dynamic-take-profit-bollinger-bands-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | length x2, mult x2, tp_pct x2 | 8 |
+| 452361 | `ports/452361_nadaraya-watson-envelope-multi-confirmation-dynamic-stop-los/` | PineScript | volatility_channel_breakout | none | bandwidth x2, mult x2, adx_min x2 | 8 |
+| 452363 | `ports/452363_smc-ema-strategy-with-pl-projections-smc-ema-pl/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 452364 | `ports/452364_trend-following-average-true-range-trailing-stop-strategy/` | PineScript | atr_trailing_line | none | key x2, atr_len x2 | 4 |
+| 452365 | `ports/452365_macd-zero-lag-macd-dual-crossover-trading-strategy-high-freq/` | PineScript | macd_cross | none | fast x2, slow x2, signal_len x2 | 8 |
+| 452615 | `ports/452615_rsi-bollinger-bands-rsi-multi-ma-trend-strategy/` | PineScript | ma_trend | none | basis_len x2, mid_len x2, slow_len x2 | 8 |
+| 452685 | `ports/452685_risk-reward-ratio-and-technical-analysis-based-bull-flag-bre/` | PineScript | breakout | coarse_bar_stop, trailing_stop_pending | flag_len x2, rr x2 | 4 |
+| 452689 | `ports/452689_masma-masma-dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 452691 | `ports/452691_rsi-sma-dev-standard-deviation-dev-trading-strategy-based-on/` | PineScript | bollinger_reversion | none | length x2, entry_sd x2, exit_sd x2 | 8 |
+| 452692 | `ports/452692_psar-ema-psar-and-ema-based-quantitative-trading-strategy/` | PineScript | parabolic_sar | none | ema_len x2, sl_pct x2, tp_pct x2 | 8 |
+| | **2350 ports** | | | | | **10898** |
 
 ## Rejected on reading
 
@@ -2803,6 +2814,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 452281 | 五重强势移动平均策略-Quintuple-Strong-Moving-Average-Strategy.md | 1 | The five averages are request.security(syminfo.tickerid, '5' / '30' / '60' / '480' / '720', ..., lookahead_on) on the daily header chart: resolutions below the chart's, whose value per daily bar is undefined (criterion 1, as #427518). |
 | 452282 | SMK-ULTRA-TREND-双均线交叉策略SMK-ULTRA-TREND-Dual-Moving-Average-Crossover-Strategy.md | 1 | The only exit is strategy.close('sell'), an id never entered, so the EMA 5 / 20 cross-up long is never closed: one long held from the first signal with no exit (criterion 1, as #440692). |
 | 452353 | 双均线回归交易策略-Dual-Moving-Average-Regression-Trading-Strategy.md | 1 | Sixteen take-profit exits close qty_percent = 5 % each (partial exits), and the trailing multiplier switches on the count of closed trades: partial-position and trade-history-dependent exits (criterion 1, as #436524). |
+| 452358 | 短线做空高流通货币对策略-Short-term-Short-Selling-Strategy-for-High-liquidity-Currency-Pairs.md | 1 | strategy.entry('Short') is sent on every bar with no open trade (strategy.opentrades == 0) and the exits only end it after 7 bars or a price move: a short re-entered from the data start onwards with no signal (criterion 1, constant-true entry, as #442261). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -1,0 +1,37 @@
+# Original sizing and money-management code, FMZ #452361 (纳达拉亚-沃森带状图多重确认动态止损策略-Nadaraya-Watson-Envelope-Multi-Confirmation-Dynamic-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/452361  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 0.90 x close / 0.85 x the highest close (bar-close tests)  [lines 165-196]
+  165: var float stopLossLevel = na
+  166: var float highestPrice = na
+  167: 
+  168: potentialBuy = strongTrendUp and breakoutUp
+  169: potentialSell = strongTrendDown and breakoutDown
+  170: momentumConfirmUp = potentialBuy and momentumUp
+  171: momentumConfirmDown = potentialSell and momentumDown
+  172: 
+  173: if (momentumConfirmUp)
+  174:     strategy.entry("Buy", strategy.long)
+  175:     stopLossLevel := close * 0.90
+  176:     highestPrice := close
+  177: 
+  178: if (momentumConfirmDown)
+  179:     strategy.entry("Sell", strategy.short)
+  180:     stopLossLevel := close * 1.10
+  181:     highestPrice := close
+  182: 
+  183: if (strategy.position_size > 0)
+  184:     highestPrice := math.max(highestPrice, close)
+  185:     stopLossLevel := math.max(highestPrice * 0.85, close * 0.90)
+  186: 
+  187: if (strategy.position_size < 0)
+  188:     highestPrice := math.min(highestPrice, close)
+  189:     stopLossLevel := math.min(highestPrice * 1.15, close * 1.10)
+  190: 
+  191: // Close position if stop loss is hit
+  192: if (strategy.position_size > 0 and close < stopLossLevel)
+  193:     strategy.close("Buy")
+  194: 
+  195: if (strategy.position_size < 0 and close > stopLossLevel)
+  196:     strategy.close("Sell")

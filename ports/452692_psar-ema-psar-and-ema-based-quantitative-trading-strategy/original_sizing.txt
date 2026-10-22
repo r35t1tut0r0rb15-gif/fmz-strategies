@@ -1,0 +1,143 @@
+# Original sizing and money-management code, FMZ #452692 (基于PSAR与EMA的量化策略-PSAR-and-EMA-Based-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/452692  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin_long 100, margin_short 100; stop 16 %, targets 8 / 16 / 32 % of the fill  [lines 98-235]
+   98: strategy("aj sir second project", overlay=true, margin_long=100, margin_short=100)
+   99: 
+  100: start=input("0915-1515","session time")
+  101: st11=time(timeframe.period,start)
+  102: st=st11>0
+  103: et= not st 
+  104: 
+  105: psar=ta.sar(0.02,0.02,0.2)
+  106: emared=ta.ema(close,30)
+  107: //plot(psar,"psar",color.yellow,style = plot.style_cross)
+  108: //plot(emared,"emared",color.red)
+  109: var crodownflag=0
+  110: var croupflag=0
+  111: 
+  112: var igcflag=0
+  113: 
+  114: var ircflag=0
+  115: 
+  116: cdown1=ta.crossunder(psar,emared)  and not (psar<close and psar[1]>close[1])
+  117: cup1=ta.crossover(psar,emared) and not (psar>close and psar[1]<close[1])
+  118: 
+  119: cdown=ta.crossunder(psar,emared) 
+  120: cup=ta.crossover(psar,emared)
+  121: 
+  122: 
+  123: green_candle=close>open
+  124: red_candle=close<open
+  125: 
+  126: if ta.crossunder(psar,emared) and crodownflag==0  and not (psar<close and psar[1]>close[1])
+  127:     crodownflag:=1
+  128: else if cdown and crodownflag==1
+  129:     crodownflag:=0
+  130: 
+  131: 
+  132: 
+  133: if crodownflag==1 and green_candle and igcflag==0
+  134:     igcflag:=1
+  135: else if cdown and igcflag==1
+  136:     igcflag:=0
+  137: 
+  138: //plot(igcflag,"igcflag",color.lime)
+  139: 
+  140: if ta.crossover(psar,emared) and croupflag==0 and not (psar>close and psar[1]<close[1])
+  141:     croupflag:=1
+  142: else if cdown and croupflag==1
+  143:     croupflag:=0
+  144: 
+  145: //plot(crodownflag,"crodownflag",color.white)
+  146: irc_cond=croupflag==1 or cup
+  147: 
+  148: if (croupflag==1 and red_candle and ircflag==0)
+  149:     ircflag:=1
+  150: else if cup and croupflag==1
+  151:     ircflag:=0
+  152: 
+  153: igc_candle1=(igcflag==1 and igcflag[1]==0) or (cdown1 and green_candle)
+  154: irc_candle1=(ircflag==1 and ircflag[1]==0) or (cup1 and red_candle)
+  155: ///////////////////////////
+  156: dm=dayofmonth(time)
+  157: newday=dm!=dm[1]
+  158: dmc=dm==ta.valuewhen(bar_index==last_bar_index,dm,0)
+  159: 
+  160: ///////////////////////////////////////////
+  161: var irc_there=0
+  162: 
+  163: if irc_candle1[1] and irc_there==0
+  164:     irc_there:=1
+  165: else if cdown and irc_there==1
+  166:     irc_there:=0
+  167: 
+  168: irc_candle=irc_candle1 and irc_there==0// and dmc
+  169: 
+  170: var igc_there=0
+  171: 
+  172: if igc_candle1[1] and igc_there==0
+  173:     igc_there:=1
+  174: else if cup and igc_there ==1
+  175:     igc_there:=0
+  176: 
+  177: igc_candle=igc_candle1 and igc_there==0// and dmc
+  178: /////////// to get rid of irc being valid even after crossdown
+  179: var valid_igc_low=0
+  180: var valid_irc_high=0
+  181: 
+  182: if irc_candle[1] and valid_irc_high==0
+  183:     valid_irc_high:=1
+  184: else if igc_candle and valid_irc_high==1
+  185:     valid_irc_high:=0
+  186: 
+  187: if igc_candle and valid_igc_low==0
+  188:     valid_igc_low:=1
+  189: else if irc_candle and valid_igc_low==1
+  190:     valid_igc_low:=0
+  191: 
+  192: 
+  193: igc_low=ta.valuewhen(igc_candle,low,0)
+  194: irc_high=ta.valuewhen(irc_candle,high,0)
+  195: //////////////////////////////
+  196: //plot(irc_high,"irc_high",color.red)
+  197: 
+  198: //plot(valid_irc_high,"valid_irc_high",color.purple)
+  199: 
+  200: buy12=ta.crossunder(close,igc_low) and valid_igc_low==1
+  201: buy1=buy12[1]
+  202: 
+  203: short12=ta.crossover(close,irc_high) and valid_irc_high==1
+  204: short1=short12[1]
+  205: //plotshape(short12,"short12",shape.arrowdown,color=color.purple)
+  206: 
+  207: // plotshape(igc_candle,"igc_candle",shape.arrowdown,color=color.green)
+  208: // plotshape(irc_candle,"irc_candle",shape.arrowdown,color=color.red)
+  209: //plotshape((psar<close and psar[1]>close[1]) ,"croup",shape.arrowdown,color=color.red)
+  210: //plotshape(cup ,"croup",shape.arrowdown,color=color.orange)
+  211: 
+  212: buyprice=ta.valuewhen(buy1 and strategy.position_size[1]==0,open,0)
+  213: shortprice=ta.valuewhen(short1 and strategy.position_size[1]==0,open,0)
+  214: 
+  215: btarget1=buyprice+(buyprice*0.08)
+  216: btarget2=buyprice+(buyprice*0.16)
+  217: btarget3=buyprice+(buyprice*0.32)
+  218: bstoploss=buyprice-(buyprice*0.16)
+  219: 
+  220: starget1=shortprice-(shortprice*0.08)
+  221: starget2=shortprice-(shortprice*0.16)
+  222: starget3=shortprice-(shortprice*0.32)
+  223: sstoploss=shortprice+(shortprice*0.16)
+  224: 
+  225: if buy12 and strategy.position_size==0 and st11
+  226:     strategy.entry("buy",strategy.long)
+  227: 
+  228: if strategy.position_size >0
+  229:     strategy.exit("sell",from_entry = "buy",stop=bstoploss,limit=btarget3)
+  230: 
+  231: if short12 and strategy.position_size==0 and st11
+  232:     strategy.entry("short",strategy.short)
+  233: 
+  234: if strategy.position_size<0
+  235:     strategy.exit("cover",from_entry = "short",stop = sstoploss,limit = starget3)

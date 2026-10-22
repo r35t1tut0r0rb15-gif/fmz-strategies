@@ -5023,6 +5023,30 @@ SIZING = {
         ("strategy(): initial capital 1000", 82, 82),
     ],
     452355: [],
+    # ---- FMZ-C, batch C188 (2026-10-22)
+    452359: [],
+    452360: [
+        ("Take profit 1 % of the signal close", 99, 134),
+    ],
+    452361: [
+        ("Stop 0.90 x close / 0.85 x the highest close (bar-close tests)", 165, 196),
+    ],
+    452363: [],
+    452364: [],
+    452365: [],
+    452615: [
+        ("Quantity 1.0, or 0.5 / 0 by the SMA conditions", 147, 158),
+    ],
+    452685: [
+        ("strategy(): 10 % of equity; risk-reward 3, stop buffer 0.01", 92, 120),
+    ],
+    452689: [],
+    452691: [
+        ("strategy(): margin_long 100, margin_short 100", 105, 105),
+    ],
+    452692: [
+        ("strategy(): margin_long 100, margin_short 100; stop 16 %, targets 8 / 16 / 32 % of the fill", 98, 235),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -6360,6 +6384,11 @@ REJECTED_ON_READING = {
     452353: ("1", "Sixteen take-profit exits close qty_percent = 5 % each (partial exits), and the "
               "trailing multiplier switches on the count of closed trades: partial-position and "
               "trade-history-dependent exits (criterion 1, as #436524)."),
+    # ---- FMZ-C, batch C188 (2026-10-22)
+    452358: ("1", "strategy.entry('Short') is sent on every bar with no open trade "
+              "(strategy.opentrades == 0) and the exits only end it after 7 bars or a price move: "
+              "a short re-entered from the data start onwards with no signal (criterion 1, "
+              "constant-true entry, as #442261)."),
 }
 
 DUPLICATE_ON_READING = {

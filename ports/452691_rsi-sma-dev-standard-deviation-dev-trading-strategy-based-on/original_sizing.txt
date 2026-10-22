@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #452691 (基于相对强弱指数RSI和滑动平均SMA的波动率标准差DEV交易策略-Standard-Deviation-DEV-Trading-Strategy-Based-on-Relative-Strength-Index-RSI-and-Simple-Moving-Average-SMA)
+# Source: https://www.fmz.com/strategy/452691  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin_long 100, margin_short 100  [lines 105-105]
+  105: strategy("Estratégia de Desvio Padrão com RSI", overlay=true, margin_long=100, margin_short=100)

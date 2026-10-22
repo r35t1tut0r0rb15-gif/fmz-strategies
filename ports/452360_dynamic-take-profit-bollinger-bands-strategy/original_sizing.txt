@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #452360 (波林格带动态止盈策略-Dynamic-Take-Profit-Bollinger-Bands-Strategy)
+# Source: https://www.fmz.com/strategy/452360  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take profit 1 % of the signal close  [lines 99-134]
+   99: takeProfitPercentage = 1.0
+  100: 
+  101: // Ortalama ve Standart Sapma Hesaplamaları
+  102: basis = ta.sma(close, length)
+  103: dev = mult * ta.stdev(close, length)
+  104: 
+  105: // Üst ve Alt Bantlar
+  106: upper = basis + dev
+  107: lower = basis - dev
+  108: 
+  109: // Grafikte Gösterim
+  110: plot(basis, color=color.blue, linewidth=2, title="Basis")
+  111: plot(showBands ? upper : na, color=color.red, linewidth=1, title="Upper Band")
+  112: plot(showBands ? lower : na, color=color.green, linewidth=1, title="Lower Band")
+  113: 
+  114: // Al-Sat Sinyalleri
+  115: longCondition = ta.crossover(close[1], lower[1]) and close[1] < open[1]
+  116: shortCondition = ta.crossunder(close[1], upper[1]) and close[1] > open[1]
+  117: 
+  118: // Kar al seviyeleri
+  119: float longTakeProfit = na
+  120: float shortTakeProfit = na
+  121: 
+  122: if longCondition
+  123:     longTakeProfit := close * (1 + takeProfitPercentage / 100)
+  124: if shortCondition
+  125:     shortTakeProfit := close * (1 - takeProfitPercentage / 100)
+  126: 
+  127: // Strateji Giriş ve Çıkış
+  128: if longCondition
+  129:     strategy.entry("Buy", strategy.long)
+  130:     strategy.exit("Take Profit", from_entry="Buy", limit=longTakeProfit)
+  131: 
+  132: if shortCondition
+  133:     strategy.entry("Sell", strategy.short)
+  134:     strategy.exit("Take Profit", from_entry="Sell", limit=shortTakeProfit)
