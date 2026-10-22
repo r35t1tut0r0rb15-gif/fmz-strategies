@@ -6742,6 +6742,33 @@ SIZING = {
         ("strategy(): 10 % of equity", 103, 103),
     ],
     483674: [],
+    # ---- FMZ-C, batch C260 (2026-10-22)
+    483676: [
+        ("strategy(): capital 100000", 205, 205),
+    ],
+    483679: [
+        ("strategy(): 10 % of equity", 169, 169),
+    ],
+    483682: [
+        ("position_size = equity x 1 % / (2 atr), capped at equity", 184, 185),
+    ],
+    483790: [
+        ("strategy(): 100 % of equity", 161, 161),
+    ],
+    483791: [
+        ("strategy(): 10 % of equity", 179, 179),
+    ],
+    483793: [
+        ("strategy(): 10 % of equity", 179, 179),
+    ],
+    483794: [
+        ("strategy(): capital 100000", 274, 274),
+    ],
+    484090: [],
+    484092: [
+        ("strategy(): 2 % of equity", 213, 213),
+    ],
+    484094: [],
 }
 
 REJECTED_ON_READING = {
@@ -8517,6 +8544,14 @@ REJECTED_ON_READING = {
               "ever closes the long (criterion 1, as #440692)."),
     483526: ("1", "A partial close of half the lots (strategy.close qty = 0.01 of 0.02) at a "
               "tick-based profit: criterion 1, as #436524."),
+    # ---- FMZ-C, batch C260 (2026-10-22)
+    483681: ("1", "Two 50 % partial take-profits (qty_percent = 50) with a fixed 0.1 quantity: "
+              "criterion 1, as #436524."),
+    483937: ("1", "Two-tranche exits: a 50 % partial take-profit (qty = entry qty / 2) then a "
+              "break-even and trailing remainder keyed on the position size shrinking: criterion "
+              "1, as #436524."),
+    483943: ("1", "Pyramided strategy.order entries (up to five, gated on opentrades counts) with 50 "
+              "% partial exits (qty_percent) per tranche: criterion 1, as #436524 / #442261."),
 }
 
 DUPLICATE_ON_READING = {

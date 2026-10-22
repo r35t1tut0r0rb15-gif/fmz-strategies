@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #483682 (波动率过滤双均线交叉高夏普比策略-Volatility-Filtered-Dual-EMA-Crossover-High-Sharpe-Ratio-Strategy)
+# Source: https://www.fmz.com/strategy/483682  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## position_size = equity x 1 % / (2 atr), capped at equity  [lines 184-185]
+  184: position_size_calc = (strategy.equity * risk_factor) / (2 * atr_value)
+  185: position_size = math.min(position_size_calc, strategy.equity)  // 限制仓位不能大于账户总值

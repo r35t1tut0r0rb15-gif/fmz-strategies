@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483791 (高级趋势捕捉型均线交叉多指标确认交易策略-Advanced-Trend-Capturing-EMA-Crossover-Multi-Indicator-Confirmation-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483791  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 179-179]
+  179: strategy("Optimized BTC/USD Scalping", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)

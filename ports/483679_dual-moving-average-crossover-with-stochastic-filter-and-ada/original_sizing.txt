@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483679 (双均线交叉与随机指标结合的自适应追踪止损策略-Dual-Moving-Average-Crossover-with-Stochastic-Filter-and-Adaptive-Trailing-Stop-Strategy)
+# Source: https://www.fmz.com/strategy/483679  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 169-169]
+  169: strategy('[DRAGON]SMA 34 & SMA 200 with Stochastic 9-3-3 & Trailing Stop (Price Chart)', overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)

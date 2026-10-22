@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3083 |
+| PORTED | 3093 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 453 |
+| REJECTED_ON_READING | 456 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 198 |
+| PORT_CANDIDATE | 185 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3211,7 +3211,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 483525 | `ports/483525_rsi-momentum-enhanced-simple-moving-average-and-rsi-strategy/` | PineScript | ma_cross | none | short_length x2, long_length x2 | 4 |
 | 483528 | `ports/483528_rsi-psar-dynamic-rsi-and-psar-crossover-strategy-with-risk-m/` | PineScript | parabolic_sar | trailing_stop_pending | tp_percent x2, sl_percent x2 | 4 |
 | 483674 | `ports/483674_sma-rsi-cross-momentum-trend-following-strategy-sma-rsi-cros/` | PineScript | ma_trend | none | sma_length x2, rsi_length x2 | 4 |
-| | **3083 ports** | | | | | **14146** |
+| 483676 | `ports/483676_counter-trend-breakout-trading-system-a-quantitative-strateg/` | PineScript | reversal_pattern | none | max_trade_duration x2, atr_period x2 | 4 |
+| 483679 | `ports/483679_dual-moving-average-crossover-with-stochastic-filter-and-ada/` | PineScript | ma_trend | trailing_stop_pending | stop_loss_percent x2, take_profit_percent x2 | 4 |
+| 483682 | `ports/483682_volatility-filtered-dual-ema-crossover-high-sharpe-ratio-str/` | PineScript | ma_cross | trailing_stop_pending | ema_fast_length x2, ema_slow_length x2 | 4 |
+| 483790 | `ports/483790_multi-dimensional-adaptive-trend-following-and-risk-manageme/` | PineScript | volatility_channel_breakout | none | length x2, cooldown_bars x2 | 4 |
+| 483791 | `ports/483791_advanced-trend-capturing-ema-crossover-multi-indicator-confi/` | PineScript | multi_indicator_confluence | none | stop_loss_multiplier x2, take_profit_multiplier x2 | 4 |
+| 483793 | `ports/483793_enhanced-doji-candlestick-trend-reversal-quantitative-tradin/` | PineScript | candle_pattern | coarse_bar_stop | stop_frac x2, risk_reward x2 | 4 |
+| 483794 | `ports/483794_multi-indicator-momentum-wave-trading-strategy/` | PineScript | macd_momentum | none | signal_length x2, long_exit_frac x2 | 4 |
+| 484090 | `ports/484090_adaptive-volatility-based-trend-following-short-strategy-wit/` | PineScript | ma_trend | none | fast_ma_length x2, stop_loss_percent x2 | 4 |
+| 484092 | `ports/484092_atr-atr-enhanced-candlestick-reversal-pattern-recognition-an/` | PineScript | candle_pattern | trailing_stop_pending | atr_multiplier x2, atr_length x2 | 4 |
+| 484094 | `ports/484094_technical-chart-pattern-confirmation-momentum-strategy/` | PineScript | reversal_pattern | coarse_bar_stop, trailing_stop_pending | atr_length x2, tp_atr x2 | 4 |
+| | **3093 ports** | | | | | **14186** |
 
 ## Rejected on reading
 
@@ -3670,6 +3680,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 483500 | 多核心回归动态趋势跟踪交易策略-Multi-Kernel-Regression-Dynamic-Trend-Trading-Strategy.md | 1 | Three partial take-profits of 33 % / 33 % / 34 % (qty_percent): criterion 1, as #436524. |
 | 483508 | 均线-MACD趋势反转量化交易策略-EMA-MACD-Trend-Reversal-Quantitative-Trading-Strategy.md | 1 | The only exit is strategy.close("MacdLE"), an id that is never entered, so nothing ever closes the long (criterion 1, as #440692). |
 | 483526 | 双指数移动平均线趋势跟踪与分步退出交易策略-Dual-EMA-Trend-Following-Strategy-with-Staged-Position-Exit.md | 1 | A partial close of half the lots (strategy.close qty = 0.01 of 0.02) at a tick-based profit: criterion 1, as #436524. |
+| 483681 | 双均线波动率自适应交易策略与多级利润优化系统-Dual-EMA-Volatility-Adaptive-Trading-Strategy-with-Multi-Tiered-Profit-Optimization-System.md | 1 | Two 50 % partial take-profits (qty_percent = 50) with a fixed 0.1 quantity: criterion 1, as #436524. |
+| 483937 | SSL通道双阶梯利润策略-SSL-Channel-Dual-Tranche-Profit-Strategy.md | 1 | Two-tranche exits: a 50 % partial take-profit (qty = entry qty / 2) then a break-even and trailing remainder keyed on the position size shrinking: criterion 1, as #436524. |
+| 483943 | 多重均线追踪策略与动态仓位管理系统-Multi-EMA-Trend-Following-Strategy-with-Dynamic-Position-Management-System.md | 1 | Pyramided strategy.order entries (up to five, gated on opentrades counts) with 50 % partial exits (qty_percent) per tranche: criterion 1, as #436524 / #442261. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

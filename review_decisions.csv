@@ -452,6 +452,9 @@ fmz_id,file,final_outcome,criterion,reason
 483500,多核心回归动态趋势跟踪交易策略-Multi-Kernel-Regression-Dynamic-Trend-Trading-Strategy.md,REJECTED_ON_READING,1,"Three partial take-profits of 33 % / 33 % / 34 % (qty_percent): criterion 1, as #436524."
 483508,均线-MACD趋势反转量化交易策略-EMA-MACD-Trend-Reversal-Quantitative-Trading-Strategy.md,REJECTED_ON_READING,1,"The only exit is strategy.close(""MacdLE""), an id that is never entered, so nothing ever closes the long (criterion 1, as #440692)."
 483526,双指数移动平均线趋势跟踪与分步退出交易策略-Dual-EMA-Trend-Following-Strategy-with-Staged-Position-Exit.md,REJECTED_ON_READING,1,"A partial close of half the lots (strategy.close qty = 0.01 of 0.02) at a tick-based profit: criterion 1, as #436524."
+483681,双均线波动率自适应交易策略与多级利润优化系统-Dual-EMA-Volatility-Adaptive-Trading-Strategy-with-Multi-Tiered-Profit-Optimization-System.md,REJECTED_ON_READING,1,"Two 50 % partial take-profits (qty_percent = 50) with a fixed 0.1 quantity: criterion 1, as #436524."
+483937,SSL通道双阶梯利润策略-SSL-Channel-Dual-Tranche-Profit-Strategy.md,REJECTED_ON_READING,1,"Two-tranche exits: a 50 % partial take-profit (qty = entry qty / 2) then a break-even and trailing remainder keyed on the position size shrinking: criterion 1, as #436524."
+483943,多重均线追踪策略与动态仓位管理系统-Multi-EMA-Trend-Following-Strategy-with-Dynamic-Position-Management-System.md,REJECTED_ON_READING,1,"Pyramided strategy.order entries (up to five, gated on opentrades counts) with 50 % partial exits (qty_percent) per tranche: criterion 1, as #436524 / #442261."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -3561,3 +3564,13 @@ fmz_id,file,final_outcome,criterion,reason
 483525,基于动量增强型简单移动平均线和RSI的趋势跟踪策略-Momentum-Enhanced-Simple-Moving-Average-and-RSI-Strategy-for-Trend-Following.md,PORTED,,ports/483525_rsi-momentum-enhanced-simple-moving-average-and-rsi-strategy/
 483528,动态RSI与PSAR交叉策略结合风险管理系统-Dynamic-RSI-and-PSAR-Crossover-Strategy-with-Risk-Management-System.md,PORTED,,ports/483528_rsi-psar-dynamic-rsi-and-psar-crossover-strategy-with-risk-m/
 483674,交叉动能趋势跟踪策略SMA-RSI交叉动量系统-Cross-Momentum-Trend-Following-Strategy-SMA-RSI-Cross-Momentum-System.md,PORTED,,ports/483674_sma-rsi-cross-momentum-trend-following-strategy-sma-rsi-cros/
+483676,逆势突破交易系统基于多日价格模式与波动率过滤的量化策略-Counter-Trend-Breakout-Trading-System-A-Quantitative-Strategy-Based-on-Multi-Day-Price-Patterns-and-Volatility-Filtering.md,PORTED,,ports/483676_counter-trend-breakout-trading-system-a-quantitative-strateg/
+483679,双均线交叉与随机指标结合的自适应追踪止损策略-Dual-Moving-Average-Crossover-with-Stochastic-Filter-and-Adaptive-Trailing-Stop-Strategy.md,PORTED,,ports/483679_dual-moving-average-crossover-with-stochastic-filter-and-ada/
+483682,波动率过滤双均线交叉高夏普比策略-Volatility-Filtered-Dual-EMA-Crossover-High-Sharpe-Ratio-Strategy.md,PORTED,,ports/483682_volatility-filtered-dual-ema-crossover-high-sharpe-ratio-str/
+483790,多维度自适应趋势追踪与风险管理策略-Multi-Dimensional-Adaptive-Trend-Following-and-Risk-Management-Strategy.md,PORTED,,ports/483790_multi-dimensional-adaptive-trend-following-and-risk-manageme/
+483791,高级趋势捕捉型均线交叉多指标确认交易策略-Advanced-Trend-Capturing-EMA-Crossover-Multi-Indicator-Confirmation-Trading-Strategy.md,PORTED,,ports/483791_advanced-trend-capturing-ema-crossover-multi-indicator-confi/
+483793,增强型十字星烛台趋势反转量化交易策略-Enhanced-Doji-Candlestick-Trend-Reversal-Quantitative-Trading-Strategy.md,PORTED,,ports/483793_enhanced-doji-candlestick-trend-reversal-quantitative-tradin/
+483794,多指标动量波浪交易策略-Multi-Indicator-Momentum-Wave-Trading-Strategy.md,PORTED,,ports/483794_multi-indicator-momentum-wave-trading-strategy/
+484090,时间延迟与止损保护的自适应波动率趋势跟踪空头策略-Adaptive-Volatility-Based-Trend-Following-Short-Strategy-with-Time-Delay-and-Stop-Loss-Protection.md,PORTED,,ports/484090_adaptive-volatility-based-trend-following-short-strategy-wit/
+484092,ATR增强型蜡烛反转模式识别与风险管理策略-ATR-Enhanced-Candlestick-Reversal-Pattern-Recognition-and-Risk-Management-Strategy.md,PORTED,,ports/484092_atr-atr-enhanced-candlestick-reversal-pattern-recognition-an/
+484094,技术图形确认型多周期动量策略-Technical-Chart-Pattern-Confirmation-Momentum-Strategy.md,PORTED,,ports/484094_technical-chart-pattern-confirmation-momentum-strategy/

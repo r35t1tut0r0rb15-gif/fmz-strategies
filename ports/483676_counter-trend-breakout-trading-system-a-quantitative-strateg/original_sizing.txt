@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483676 (逆势突破交易系统基于多日价格模式与波动率过滤的量化策略-Counter-Trend-Breakout-Trading-System-A-Quantitative-Strategy-Based-on-Multi-Day-Price-Patterns-and-Volatility-Filtering)
+# Source: https://www.fmz.com/strategy/483676  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 100000  [lines 205-205]
+  205: strategy("3 Red / 3 Green Strategy with Volatility Check", overlay=true, initial_capital=100000, currency=currency.USD)
