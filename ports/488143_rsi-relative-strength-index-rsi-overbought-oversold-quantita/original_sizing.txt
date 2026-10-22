@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #488143 (相对强弱指标RSI超买超卖量化交易策略-Relative-Strength-Index-RSI-Overbought-Oversold-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/488143  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 5 % of equity; MT4/5 alert lots 0.1  [lines 161-173]
+  161: pc_risk = input.float(title='Lots', defval=0.1, step=0.1, minval=0, group='MT4/5 Settings', tooltip='Lot Size')
+  162: pc_prefix = input.string(title='MetaTrader Symbol', defval='', group='MT4/5 Settings', tooltip='This is your broker\'s MetaTrader symbol')
+  163: 
+  164: // Symbol Information
+  165: var symbol = pc_prefix
+  166: 
+  167: // Alerts for MetaTrader Integration
+  168: longa = pc_id + ',buy,' + symbol + ',risk=' + str.tostring(pc_risk, '#.##')
+  169: shorta = pc_id + ',sell,' + symbol + ',risk=' + str.tostring(pc_risk, '#.##')
+  170: longa_close = pc_id + ',closelong,' + symbol + ''
+  171: shorta_close = pc_id + ',closeshort,' + symbol + ''
+  172: //@version=6
+  173: strategy("RSI Overbought/Oversold Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=5)

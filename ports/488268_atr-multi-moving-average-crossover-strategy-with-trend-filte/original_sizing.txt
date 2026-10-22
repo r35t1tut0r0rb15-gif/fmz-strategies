@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #488268 (趋势过滤多均线交叉ATR风控量化策略-Multi-Moving-Average-Crossover-Strategy-with-Trend-Filter-and-ATR-Risk-Management)
+# Source: https://www.fmz.com/strategy/488268  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 10000  [lines 207-207]
+  207: strategy("EMA Cross Strategy (20MA & 89EMA with 200MA Filter)", overlay=true, initial_capital=10000, currency=currency.USD)

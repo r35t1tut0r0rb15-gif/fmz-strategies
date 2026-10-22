@@ -6858,6 +6858,30 @@ SIZING = {
     488129: [
         ("strategy(): 100 % of equity, no commission or slippage", 207, 213),
     ],
+    # ---- FMZ-C, batch C265 (2026-10-22)
+    488133: [
+        ("strategy(): 10 % of equity", 292, 292),
+    ],
+    488134: [],
+    488140: [],
+    488143: [
+        ("strategy(): 5 % of equity; MT4/5 alert lots 0.1", 161, 173),
+    ],
+    488156: [
+        ("strategy(): 1 % of equity", 177, 177),
+    ],
+    488165: [],
+    488239: [
+        ("strategy(): 100 % of equity", 186, 186),
+    ],
+    488241: [],
+    488244: [],
+    488268: [
+        ("strategy(): capital 10000", 207, 207),
+    ],
+    488273: [
+        ("strategy(): 10 % of equity", 170, 170),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8677,6 +8701,14 @@ REJECTED_ON_READING = {
               "units apart, which depends on the absolute price scale (always met on BTC, never "
               "on a 1.1 FX price; criterion 2, as #432339). The bracket also depends on bar_index "
               "% 50, the bar count from the chart's first bar."),
+    # ---- FMZ-C, batch C265 (2026-10-22)
+    488136: ("1", "There is no exit of any kind: the first quiet-market signal near the middle band "
+              "opens one long that is held to the end of the data, a buy-and-hold from near the "
+              "data start (criterion 1, as #440692)."),
+    488152: ("2", "Besides the per-bar bracket, the exits include strategy.exit(trail_offset = 2 ATR "
+              "x 10 x syminfo.mintick, trail_price = close): a price amount scaled by the tick "
+              "size and passed as a tick count, an instrument-specific trail (criterion 2, as "
+              "#482767)."),
 }
 
 DUPLICATE_ON_READING = {

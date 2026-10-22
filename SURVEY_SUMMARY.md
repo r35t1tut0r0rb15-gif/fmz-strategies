@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3133 |
+| PORTED | 3144 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 468 |
+| REJECTED_ON_READING | 470 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 133 |
+| PORT_CANDIDATE | 120 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3261,7 +3261,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 488023 | `ports/488023_long-term-trend-and-volatility-recognition-combined-exponent/` | PineScript | supertrend | none | factor x2, ma_length x2 | 4 |
 | 488034 | `ports/488034_rsi-ema-madrid-ribbon-rsi-enhanced-multi-timeframe-ema-trend/` | PineScript | ma_ribbon | coarse_bar_stop, trailing_stop_pending | long_take_profit_perc x2, long_stop_loss_perc x2 | 4 |
 | 488129 | `ports/488129_macd-sar-multi-indicator-confirmation-trading-system-macd-pa/` | PineScript | supertrend | none | atrFactor x2, atrPeriod x2 | 4 |
-| | **3133 ports** | | | | | **14342** |
+| 488133 | `ports/488133_ema-quarterly-ema-pullback-trading-system/` | PineScript | ma_pullback | trailing_stop_pending | rsi_max x2, stop_pct x2 | 4 |
+| 488134 | `ports/488134_sar-multi-timeframe-parabolic-sar-dynamic-trend-following-qu/` | PineScript | parabolic_sar | none | start x2, maximum x2 | 4 |
+| 488140 | `ports/488140_bollinger-bands-dynamic-breakout-momentum-trading-strategy/` | PineScript | bollinger_breakout | none | mult x2, tolerance x2 | 4 |
+| 488143 | `ports/488143_rsi-relative-strength-index-rsi-overbought-oversold-quantita/` | PineScript | rsi_threshold | none | oversold x2, overbought x2 | 4 |
+| 488156 | `ports/488156_liquidity-grab-smart-money-divergence-indicator-combination/` | PineScript | liquidity_sweep | coarse_bar_stop, trailing_stop_pending | lookback x2, atrMultiplier x2 | 4 |
+| 488165 | `ports/488165_multi-timeframe-exponential-moving-average-crossover-strateg/` | PineScript | ma_cross | trailing_stop_pending | tp_pct x2, sl_pct x2 | 4 |
+| 488239 | `ports/488239_flexible-moving-average-crossover-quantitative-strategy/` | PineScript | ma_cross | none | fastMAPeriod x2, slowMAPeriod x2 | 4 |
+| 488241 | `ports/488241_adaptive-moving-average-crossover-quantitative-strategy-tren/` | PineScript | ma_cross | none | fastLength x2, slowLength x2 | 4 |
+| 488244 | `ports/488244_cross-breakout-dual-ema-system-strategy/` | PineScript | ma_breakout | none | length x3 | 3 |
+| 488268 | `ports/488268_atr-multi-moving-average-crossover-strategy-with-trend-filte/` | PineScript | ma_cross | coarse_bar_stop | stopLossMultiplier x2, takeProfitMultiplier x2 | 4 |
+| 488273 | `ports/488273_hybrid-keltner-channel-ema-based-trading-system-with-atr-ris/` | PineScript | keltner_channel | trailing_stop_pending | mult x2, length x2 | 4 |
+| | **3144 ports** | | | | | **14385** |
 
 ## Rejected on reading
 
@@ -3735,6 +3746,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 486570 | 多时间框架RSI与EMA交叉量化动量策略-Multi-Timeframe-RSI-EMA-Crossover-Momentum-Quantitative-Strategy.md | 1 | dailyRSI / weeklyRSI = request.security(tickerid, 'D' / 'W', ta.rsi(close, 14), lookahead = barmerge.lookahead_on) on a 3-hour chart: every bar of a day or week reads that period's FINAL RSI, known only when it ends (look-ahead; criterion 1, as #438495). |
 | 487999 | 动态交叉移动平均线趋势捕捉策略与风险管理系统-Dynamic-Crossover-Moving-Average-Trend-Capture-Strategy-with-Risk-Management-System.md | 2 | The exits are strategy.exit(trail_points = 3 x stopLossDistance, trail_offset = stopLossDistance), where stopLossDistance is a price amount (7 USD risk / quantity); price amounts passed as tick counts make an instrument-specific trail (criterion 2, as #482767). |
 | 488008 | 量子启发式概率趋势交易策略基于EMA和RSI的量化模型-Quantum-Inspired-Probability-Trend-Trading-Strategy-EMA-RSI-Based-Quantitative-Model.md | 2 | The trend filter is 1 / (1 + exp(-0.1 x (EMA 9 - EMA 55))) > 0.6 / < 0.4, a logistic of a raw price difference: it means the EMAs are more than about 4 quote units apart, which depends on the absolute price scale (always met on BTC, never on a 1.1 FX price; criterion 2, as #432339). The bracket also depends on bar_index % 50, the bar count from the chart's first bar. |
+| 488136 | 波段点检测与布林带震荡策略-Pivot-Point-Detection-with-Bollinger-Band-Oscillation-Strategy.md | 1 | There is no exit of any kind: the first quiet-market signal near the middle band opens one long that is held to the end of the data, a buy-and-hold from near the data start (criterion 1, as #440692). |
+| 488152 | 多均线趋势追踪与ATR风险管理量化交易策略-Multi-Moving-Average-Trend-Following-with-ATR-Risk-Management-Quantitative-Trading-Strategy.md | 2 | Besides the per-bar bracket, the exits include strategy.exit(trail_offset = 2 ATR x 10 x syminfo.mintick, trail_price = close): a price amount scaled by the tick size and passed as a tick count, an instrument-specific trail (criterion 2, as #482767). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

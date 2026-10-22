@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #488165 (多时段指数移动平均线交叉策略与趋势确认系统-Multi-Timeframe-Exponential-Moving-Average-Crossover-Strategy-with-Trend-Confirmation-System)
+# Source: https://www.fmz.com/strategy/488165  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

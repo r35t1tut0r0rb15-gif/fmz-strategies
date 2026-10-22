@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #488241 (多均线交叉量化策略系统基于自适应移动平均线的趋势跟踪与交易信号优化-Adaptive-Moving-Average-Crossover-Quantitative-Strategy-Trend-Following-and-Trading-Signal-Optimization)
+# Source: https://www.fmz.com/strategy/488241  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
