@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1887 |
-| PORTED | 1641 |
+| PORT_CANDIDATE | 1875 |
+| PORTED | 1648 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 215 |
+| REJECTED_ON_READING | 220 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1769,7 +1769,14 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439338 | `ports/439338_dual-moving-average-trading-strategy/` | PineScript | ma_cross | bar_size_pending | ma1_length x2, ma2_length x2 | 4 |
 | 439339 | `ports/439339_a-dual-moving-average-crossover-strategy/` | PineScript | ma_cross | trailing_stop_pending | fast_length x2, slow_length x2 | 4 |
 | 439348 | `ports/439348_an-analysis-of-quantitative-trading-strategy-based-on-gaussi/` | PineScript | momentum_oscillator | none | n_points x3 | 3 |
-| | **1641 ports** | | | | | **8148** |
+| 439349 | `ports/439349_simple-trailing-stop-buy-strategy-based-on-percentage/` | PineScript | volatility_channel_breakout | none | offset x2, buyoffset x2 | 4 |
+| 439350 | `ports/439350_k-fibonacci-average-candle-with-moving-average-strategy-for/` | PineScript | ma_trend | none | slow_ema x2 | 2 |
+| 439351 | `ports/439351_cross-trend-reversal-combined-with-three-ten-oscillator-dual/` | PineScript | combo_123_reversal | none | length x2, length3 x2 | 4 |
+| 439353 | `ports/439353_exponential-moving-average-and-moving-average-crossover-with/` | PineScript | ma_trend | none | length_ema x2, length_ma x2 | 4 |
+| 439354 | `ports/439354_aroon-williams-ma-bb-adx-powerful-multi-indicator-strategy/` | PineScript | multi_indicator_confluence | none | pos_wil x2, pos_aroon1 x2 | 4 |
+| 439362 | `ports/439362_ema-ema-multi-dca-strategy-with-trailing-stop-loss-and-profi/` | PineScript | mean_reversion | none | atr_frac x2, band x2 | 4 |
+| 439372 | `ports/439372_dual-moving-average-price-channel-trading-strategy/` | PineScript | trend_filter | none | length x2, ema_length x2 | 4 |
+| | **1648 ports** | | | | | **8174** |
 
 ## Rejected on reading
 
@@ -1990,6 +1997,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 438481 | 基于RSI-V形态的短线盈利策略-RSI-V-shaped-Pattern-Swing-Trading-Strategy.md | 1 | Exits close half and three quarters of the position on RSI crossings (strategy.close with qty = position_size x 1/2, x 3/4): partial exits, which the house engine cannot hold (as #436524). |
 | 438495 | 趋势追踪型EMA突破策略Trend-Tracking-EMA-Breakout-Strategy.md | 1 | monthclose / weekclose / dayclose = request.security(tickerid, 'M' / 'W' / 'D', close, lookahead = barmerge.lookahead_on): on a daily chart the month's and week's FINAL close is used from their first bar (look-ahead); the entry requires monthclose > monthopen and weekclose > weekopen. |
 | 439275 | 基于供需区域与EMA滑动止损的交易策略Trading-Strategy-Based-on-Supply-and-Demand-Zones-with-EMA-and-Trailing-Stop.md | 2 | The only stop is strategy.exit(loss = trailStop) with trailStop = close - 2 x ATR(14): a price LEVEL passed as a TICK distance, so the real distance is the price itself times the tick size (about 10 % of the price at a 0.1 tick on BTC, the whole price at a 1.0 tick), an instrument-specific bracket with no generic reading (as #437048, #437787). The daily supply / demand zones only colour the background. |
+| 439360 | 双止盈双止损移动止损量化策略Dual-Take-Profit-Dual-Stop-Loss-Trailing-Stop-Loss-Bitcoin-Quantitative-Strategy.md | 1 | Every trade is closed by two exits: exit1 (qty_percent = 1, at SL1 / TP1) closes 1 % of the position and exit2 the rest at SL2 / TP2 with a stop that moves after TP1: partial exits (criterion 1, as #436524). The pip distance is also an input times ten ticks. |
+| 439361 | 基于Nadaraya-Watson信封线和ROC指标的趋势跟踪策略Trend-Following-Strategy-Based-on-Nadaraya-Watson-Envelopes-and-ROC-Indicator.md | 2 | Apart from the reversing entries, the exits are strategy.exit(loss = close - 4 x 0.0001, profit = close + 8.4 x 0.0001): price LEVELS passed as TICK counts, so the real distances are about the whole price times the tick size, an instrument-specific bracket with no generic reading (as #437677, #437048). The entry tests close + 9 > 0 and close - 9 < 0 are price-unit thresholds (shorts only below a price of 9). |
+| 439363 | 基于动能量化追趋策略Heiken-Ashi-Momentum-Quant-Strategy.md | 1 | Every signal reads request.security("M" / "1D", [...], lookahead_on) on a daily chart: the monthly Heikin-Ashi values come from the month still in progress (its final close), so the rules use the future (criterion 1, as #438495). |
+| 439364 | 基于均线交叉的高频量化交易策略Intraday-Moving-Average-Crossover-Trading-Strategy.md | 2 | Apart from the reversing entries, the exits are strategy.exit(loss = close x 1 / 100, profit = close x 1 / 100): percents of the close in PRICE units passed as TICK counts, so the real distances are 1 % of the price times the tick size (0.1 % at a 0.1 tick on BTC, 1 % at a 1.0 tick), an instrument-specific bracket with no generic reading (as #437048, #437677). |
+| 439366 | 比特币和黄金5分钟震荡交易策略20Bitcoin-and-Gold-5-Minute-Scalping-Strategy-20.md | 2 | The only exit is strategy.exit(loss = stopLossLevel) with stopLossLevel = lowest(low, 2)[1] - ATR(14): a price LEVEL passed as a TICK distance, so the real distance is about the whole price times the tick size, an instrument-specific stop with no generic reading (as #437787, #439275); strategy.close("Sell") names an id that is never entered. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

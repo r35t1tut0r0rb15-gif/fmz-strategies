@@ -1,0 +1,37 @@
+# Original sizing and money-management code, FMZ #439362 (基于动态止损和目标获利的EMA多次成本加权平均成本策略EMA-Multi-DCA-Strategy-with-Trailing-Stop-Loss-and-Profit-Target)
+# Source: https://www.fmz.com/strategy/439362  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Investment per condition and the per-buy quantity  [lines 128-159]
+  128: investment_per_condition = 6
+  129: 
+  130: // Define the EMAs
+  131: ema5 = ema(close, 5)
+  132: ema10 = ema(close, 10)
+  133: ema20 = ema(close, 20)
+  134: ema50 = ema(close, 50)
+  135: ema100 = ema(close, 100)
+  136: ema200 = ema(close, 200)
+  137: 
+  138: // Define ATR sell threshold
+  139: atr_sell_threshold = input(title="ATR Sell Threshold", type=input.integer, defval=10, minval=1)
+  140: 
+  141: // Helper function to find if the price is within 1% of the EMA
+  142: isWithin1Percent(price, ema) =>
+  143:     ema_min = ema * 0.99
+  144:     ema_max = ema * 1.01
+  145:     price >= ema_min and price <= ema_max
+  146: 
+  147: // Control the number of buys
+  148: var int buy_count = 0
+  149: buy_limit = input(title="Buy Limit", type=input.integer, defval=3000)
+  150: 
+  151: // Calculate trailing stop and profit target levels
+  152: trail_percent = input(title="Trailing Stop Percentage", type=input.integer, defval=1, minval=0, maxval=10)
+  153: profit_target_percent = input(title="Profit Target Percentage", type=input.integer, defval=3, minval=1, maxval=10)
+  154: 
+  155: // Determine if the conditions are met and execute the strategy
+  156: checkConditionAndBuy(emaValue, emaName) =>
+  157:     var int local_buy_count = 0 // Create a local mutable variable
+  158:     if isWithin1Percent(close, emaValue) and local_buy_count < buy_limit
+  159:         strategy.entry("Buy at " + emaName, strategy.long, qty=investment_per_condition / close, alert_message ="Buy condition met for " + emaName)

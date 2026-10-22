@@ -3770,6 +3770,16 @@ SIZING = {
     439348: [
         ("Entry size 1", 191, 191),
     ],
+    # ---- FMZ-C, batch C120 (2026-10-22)
+    439349: [],
+    439350: [],
+    439351: [],
+    439353: [],
+    439354: [],
+    439362: [
+        ("Investment per condition and the per-buy quantity", 128, 159),
+    ],
+    439372: [],
 }
 
 REJECTED_ON_READING = {
@@ -4664,6 +4674,30 @@ REJECTED_ON_READING = {
               "the whole price at a 1.0 tick), an instrument-specific bracket with no generic "
               "reading (as #437048, #437787). The daily supply / demand zones only colour the "
               "background."),
+    # ---- FMZ-C, batch C120 (2026-10-22)
+    439360: ("1", "Every trade is closed by two exits: exit1 (qty_percent = 1, at SL1 / TP1) closes 1 "
+              "% of the position and exit2 the rest at SL2 / TP2 with a stop that moves after "
+              "TP1: partial exits (criterion 1, as #436524). The pip distance is also an input "
+              "times ten ticks."),
+    439361: ("2", "Apart from the reversing entries, the exits are strategy.exit(loss = close - 4 x "
+              "0.0001, profit = close + 8.4 x 0.0001): price LEVELS passed as TICK counts, so the "
+              "real distances are about the whole price times the tick size, an "
+              "instrument-specific bracket with no generic reading (as #437677, #437048). The "
+              "entry tests close + 9 > 0 and close - 9 < 0 are price-unit thresholds (shorts only "
+              "below a price of 9)."),
+    439363: ("1", "Every signal reads request.security(\"M\" / \"1D\", [...], lookahead_on) on a daily "
+              "chart: the monthly Heikin-Ashi values come from the month still in progress (its "
+              "final close), so the rules use the future (criterion 1, as #438495)."),
+    439364: ("2", "Apart from the reversing entries, the exits are strategy.exit(loss = close x 1 / "
+              "100, profit = close x 1 / 100): percents of the close in PRICE units passed as "
+              "TICK counts, so the real distances are 1 % of the price times the tick size (0.1 % "
+              "at a 0.1 tick on BTC, 1 % at a 1.0 tick), an instrument-specific bracket with no "
+              "generic reading (as #437048, #437677)."),
+    439366: ("2", "The only exit is strategy.exit(loss = stopLossLevel) with stopLossLevel = "
+              "lowest(low, 2)[1] - ATR(14): a price LEVEL passed as a TICK distance, so the real "
+              "distance is about the whole price times the tick size, an instrument-specific stop "
+              "with no generic reading (as #437787, #439275); strategy.close(\"Sell\") names an id "
+              "that is never entered."),
 }
 
 DUPLICATE_ON_READING = {

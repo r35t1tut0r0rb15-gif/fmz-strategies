@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #439350 (基于斐波那契平均K线和移动平均线的量化交易策略Fibonacci-Average-Candle-with-Moving-Average-Strategy-for-Quantitative-Trading)
+# Source: https://www.fmz.com/strategy/439350  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
