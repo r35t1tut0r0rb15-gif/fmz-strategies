@@ -305,6 +305,7 @@ fmz_id,file,final_outcome,criterion,reason
 444024,基于随机RSI和EMA交叉的加密货币回调交易策略Crypto-Pullback-Trading-Strategy-Based-on-Stochastic-RSI-and-EMA-Crossover.md,REJECTED_ON_READING,1,"pyramiding = 10 with level entries (close between the EMAs with the stochastic RSI under 25 / over 85) re-sent on every bar the condition holds: the position accumulates units (criterion 1, as #442112, #430762)."
 444028,抛物线SAR趋势跟踪策略-60Parabolic-SAR-Trend-Tracking-Strategy-60.md,REJECTED_ON_READING,1,"pyramiding = 5 with a new long on each SAR crossover while a long is open (the short needs a 2 % down bar): the position accumulates units (criterion 1, as #442112, #430762)."
 444355,基于平均价海金阿什烛台与相对强弱指数的动态调仓策略Dynamic-Capital-Allocation-Strategy-Based-on-Heikin-Ashi-Candles-and-Relative-Strength-Index.md,REJECTED_ON_READING,1,"pyramiding = 10000 with a 10 % of equity buy on every green Heikin Ashi candle after a red one until the RSI exit: dollar-cost averaging that accumulates units (criterion 1, as #442229, #430762)."
+444961,基于双均线交叉的交易策略A-Trading-Strategy-Based-on-Dual-Moving-Average-Crossover.md,REJECTED_ON_READING,2,"The exits strategy.exit(loss = 0.01 x close, profit = 0.02 x close) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2484,3 +2485,14 @@ fmz_id,file,final_outcome,criterion,reason
 444350,基于超级趋势和MACD的风险控制策略Samsuga-SuperTrend-MACD-Strategy.md,PORTED,,ports/444350_macd-samsuga-supertrend-macd-strategy/
 444352,均线与超级趋势结合的日内多空动态平衡策略Dynamic-Intraday-Long-Short-Balancing-Strategy-Combining-Moving-Average-and-Supertrend.md,PORTED,,ports/444352_dynamic-intraday-long-short-balancing-strategy-combining-mov/
 444363,基于双均线交叉策略The-Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/444363_the-dual-moving-average-crossover-strategy/
+444383,基于RSI-穿越交易策略The-RSI-Crossover-Trading-Strategy.md,PORTED,,ports/444383_rsi-the-rsi-crossover-trading-strategy/
+444387,多重指数移动平均线交易策略Multiple-Exponential-Moving-Average-Trading-Strategy.md,PORTED,,ports/444387_multiple-exponential-moving-average-trading-strategy/
+444959,动态RSI双均线买卖策略Dynamic-RSI-and-Dual-Moving-Average-Buy-Sell-Strategy.md,PORTED,,ports/444959_rsi-dynamic-rsi-and-dual-moving-average-buy-sell-strategy/
+444963,基于RSI和MACD交叉策略The-RSI-and-MACD-Crossover-Strategy.md,PORTED,,ports/444963_rsi-macd-the-rsi-and-macd-crossover-strategy/
+444968,布林带与斐波那契回调策略Bollinger-Bands-and-Fibonacci-Retracement-Strategy.md,PORTED,,ports/444968_bollinger-bands-and-fibonacci-retracement-strategy/
+444971,TrendHunter-w-MF-多时间框架趋势策略TrendHunter-w-MF-Multi-Timeframe-Trend-Strategy.md,PORTED,,ports/444971_trendhunter-w-mf-trendhunter-w-mf-multi-timeframe-trend-stra/
+444973,AI趋势预测交易策略AI-Trend-Predictor-Trading-Strategy.md,PORTED,,ports/444973_ai-ai-trend-predictor-trading-strategy/
+444975,一目均衡动力指数策略Ichimoku-Oscillator-with-Stochastic-Momentum-Index-Strategy.md,PORTED,,ports/444975_ichimoku-oscillator-with-stochastic-momentum-index-strategy/
+444977,布林带与相对强弱指数结合策略Bollinger-Bands-RSI-Combination-Strategy.md,PORTED,,ports/444977_bollinger-bands-rsi-combination-strategy/
+444985,日内锤子反转形态多头策略Intraday-Hammer-Reversal-Pattern-Long-Strategy.md,PORTED,,ports/444985_intraday-hammer-reversal-pattern-long-strategy/
+444988,高低点自动预测与交易策略High-Low-Automatic-Forecasting-and-Trading-Strategy.md,PORTED,,ports/444988_high-low-automatic-forecasting-and-trading-strategy/

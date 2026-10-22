@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #444971 (TrendHunter-w-MF-多时间框架趋势策略TrendHunter-w-MF-Multi-Timeframe-Trend-Strategy)
+# Source: https://www.fmz.com/strategy/444971  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 80 % of equity, capital 1000, pyramiding 0  [lines 194-194]
+  194: strategy("TrendHunter w/MF [Blocky]", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=80, initial_capital=1000, pyramiding=0)

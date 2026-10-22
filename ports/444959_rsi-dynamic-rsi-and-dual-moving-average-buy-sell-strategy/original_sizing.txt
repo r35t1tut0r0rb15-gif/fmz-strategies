@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #444959 (动态RSI双均线买卖策略Dynamic-RSI-and-Dual-Moving-Average-Buy-Sell-Strategy)
+# Source: https://www.fmz.com/strategy/444959  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; take profit / stop / trailing tick inputs  [lines 146-156]
+  146: strategy("ag7 buy sell", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100)
+  147: 
+  148: inpTakeProfit   = input.int(defval = 100000000, title = "Take Profit", minval = 0)
+  149: inpStopLoss     = input.int(defval = 5000, title = "Stop Loss", minval = 0)
+  150: inpTrailStop    = input.int(defval = 1000, title = "Trailing Stop Loss", minval = 0)
+  151: inpTrailOffset  = input.int(defval = 0, title = "Trailing Stop Loss Offset", minval = 0)
+  152: 
+  153: useTakeProfit   = inpTakeProfit  >= 1 ? inpTakeProfit  : na
+  154: useStopLoss     = inpStopLoss    >= 1 ? inpStopLoss    : na
+  155: useTrailStop    = inpTrailStop   >= 1 ? inpTrailStop   : na
+  156: useTrailOffset  = inpTrailOffset >= 1 ? inpTrailOffset : na

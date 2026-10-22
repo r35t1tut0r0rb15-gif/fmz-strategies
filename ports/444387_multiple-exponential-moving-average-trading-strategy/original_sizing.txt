@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #444387 (多重指数移动平均线交易策略Multiple-Exponential-Moving-Average-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/444387  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin_long 100, margin_short 100  [lines 138-138]
+  138: strategy("donmo's 4ema", overlay=true, margin_long=100, margin_short=100)

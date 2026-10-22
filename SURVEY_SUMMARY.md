@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2159 |
-| PORT_CANDIDATE | 1275 |
+| PORTED | 2170 |
+| PORT_CANDIDATE | 1263 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 306 |
+| REJECTED_ON_READING | 307 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2287,7 +2287,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 444350 | `ports/444350_macd-samsuga-supertrend-macd-strategy/` | PineScript | supertrend | none | factor x2, atr_period x2 | 4 |
 | 444352 | `ports/444352_dynamic-intraday-long-short-balancing-strategy-combining-mov/` | PineScript | multi_timeframe_ma | none | factor x2, atr_period x2 | 4 |
 | 444363 | `ports/444363_the-dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
-| | **2159 ports** | | | | | **10105** |
+| 444383 | `ports/444383_rsi-the-rsi-crossover-trading-strategy/` | PineScript | rsi_oscillator | none | length x2, oversold x2 | 4 |
+| 444387 | `ports/444387_multiple-exponential-moving-average-trading-strategy/` | PineScript | ma_trend | none | ema_high x2, ema_med x2 | 4 |
+| 444959 | `ports/444959_rsi-dynamic-rsi-and-dual-moving-average-buy-sell-strategy/` | PineScript | rsi_oscillator | none | k_atr x2, sma_len x2 | 4 |
+| 444963 | `ports/444963_rsi-macd-the-rsi-and-macd-crossover-strategy/` | PineScript | macd_cross | none | length x2, oversold x2 | 4 |
+| 444968 | `ports/444968_bollinger-bands-and-fibonacci-retracement-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 444971 | `ports/444971_trendhunter-w-mf-trendhunter-w-mf-multi-timeframe-trend-stra/` | PineScript | ichimoku | none | multiplier x2, ema_len x2 | 4 |
+| 444973 | `ports/444973_ai-ai-trend-predictor-trading-strategy/` | PineScript | ma_cross | none | length_b x2, length_c x2 | 4 |
+| 444975 | `ports/444975_ichimoku-oscillator-with-stochastic-momentum-index-strategy/` | PineScript | momentum_oscillator | none | k_len x2, d_len x2 | 4 |
+| 444977 | `ports/444977_bollinger-bands-rsi-combination-strategy/` | PineScript | bollinger_reversion | none | length x2, rsi_length x2 | 4 |
+| 444985 | `ports/444985_intraday-hammer-reversal-pattern-long-strategy/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop_pending | body_frac x2, target_mult x2 | 4 |
+| 444988 | `ports/444988_high-low-automatic-forecasting-and-trading-strategy/` | PineScript | breakout | none | session_hour x2, rsi_length x2 | 4 |
+| | **2170 ports** | | | | | **10149** |
 
 ## Rejected on reading
 
@@ -2599,6 +2610,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 444024 | 基于随机RSI和EMA交叉的加密货币回调交易策略Crypto-Pullback-Trading-Strategy-Based-on-Stochastic-RSI-and-EMA-Crossover.md | 1 | pyramiding = 10 with level entries (close between the EMAs with the stochastic RSI under 25 / over 85) re-sent on every bar the condition holds: the position accumulates units (criterion 1, as #442112, #430762). |
 | 444028 | 抛物线SAR趋势跟踪策略-60Parabolic-SAR-Trend-Tracking-Strategy-60.md | 1 | pyramiding = 5 with a new long on each SAR crossover while a long is open (the short needs a 2 % down bar): the position accumulates units (criterion 1, as #442112, #430762). |
 | 444355 | 基于平均价海金阿什烛台与相对强弱指数的动态调仓策略Dynamic-Capital-Allocation-Strategy-Based-on-Heikin-Ashi-Candles-and-Relative-Strength-Index.md | 1 | pyramiding = 10000 with a 10 % of equity buy on every green Heikin Ashi candle after a red one until the RSI exit: dollar-cost averaging that accumulates units (criterion 1, as #442229, #430762). |
+| 444961 | 基于双均线交叉的交易策略A-Trading-Strategy-Based-on-Dual-Moving-Average-Crossover.md | 2 | The exits strategy.exit(loss = 0.01 x close, profit = 0.02 x close) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

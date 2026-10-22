@@ -4642,6 +4642,26 @@ SIZING = {
     444363: [
         ("strategy(): margin_long 100, margin_short 100", 150, 150),
     ],
+    # ---- FMZ-C, batch C171 (2026-10-22)
+    444383: [],
+    444387: [
+        ("strategy(): margin_long 100, margin_short 100", 138, 138),
+    ],
+    444959: [
+        ("strategy(): 100 % of equity; take profit / stop / trailing tick inputs", 146, 156),
+    ],
+    444963: [],
+    444968: [],
+    444971: [
+        ("strategy(): 80 % of equity, capital 1000, pyramiding 0", 194, 194),
+    ],
+    444973: [],
+    444975: [],
+    444977: [],
+    444985: [
+        ("qty = 50000 / close; stop low[1], target close x 1.5", 113, 121),
+    ],
+    444988: [],
 }
 
 REJECTED_ON_READING = {
@@ -5892,6 +5912,10 @@ REJECTED_ON_READING = {
     444355: ("1", "pyramiding = 10000 with a 10 % of equity buy on every green Heikin Ashi candle "
               "after a red one until the RSI exit: dollar-cost averaging that accumulates units "
               "(criterion 1, as #442229, #430762)."),
+    # ---- FMZ-C, batch C171 (2026-10-22)
+    444961: ("2", "The exits strategy.exit(loss = 0.01 x close, profit = 0.02 x close) pass price "
+              "amounts where the call takes tick distances, with no /mintick: the stop and target "
+              "are undefined as written (criterion 2, as #442076, #437048)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #444985 (日内锤子反转形态多头策略Intraday-Hammer-Reversal-Pattern-Long-Strategy)
+# Source: https://www.fmz.com/strategy/444985  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = 50000 / close; stop low[1], target close x 1.5  [lines 113-121]
+  113: stopLossLevel = low[1]
+  114: profitTargetLevel = close * 1.5
+  115: //Calculate position bodySize
+  116: positionSize = 50000 / close
+  117: 
+  118: // Execute strategy
+  119: if (entryCondition)
+  120:     strategy.entry("Hammer Buy", strategy.long,qty=positionSize)
+  121:     strategy.exit("Take Profit / Stop Loss", "Hammer Buy", stop=stopLossLevel, limit=profitTargetLevel)
