@@ -4462,6 +4462,19 @@ SIZING = {
     442810: [],
     442812: [],
     442813: [],
+    # ---- FMZ-C, batch C161 (2026-10-22)
+    442814: [
+        ("strategy(): cash 50000 per trade, capital 500000", 152, 152),
+    ],
+    442815: [],
+    442817: [],
+    442820: [
+        ("strategy.entry qty = size (1)", 154, 155),
+    ],
+    442823: [],
+    442834: [],
+    442835: [],
+    442837: [],
 }
 
 REJECTED_ON_READING = {
@@ -5655,6 +5668,21 @@ REJECTED_ON_READING = {
     442645: ("1", "pyramiding = 3 with repeated \"Long\" / \"Short\" entries on every new fast-RSI "
               "crossing while a position is open (the exits are limit orders at the close that "
               "need not fill): the position accumulates units (criterion 1, as #442112, #430762)."),
+    # ---- FMZ-C, batch C161 (2026-10-22)
+    442816: ("2", "The exits strategy.exit(loss = close - 1.5 atr or close -+ 2 atr, profit = close + "
+              "2 atr) pass price levels where the call takes tick distances, with no /mintick: "
+              "the stops and targets are undefined as written (criterion 2, as #442076, #437048)."),
+    442822: ("1", "The only exits close when strategy.openprofit divided by the equity (initial "
+              "capital plus netprofit) reaches +2 % or -1 %: an account-state gate whose price "
+              "move depends on the position size against the equity, which the signal-only port "
+              "cannot express (criterion 1, as #440336)."),
+    442833: ("1", "pyramiding = 4 with a fixed quantity of 2 and repeated RSI-divergence entries "
+              "while a position is open: the position accumulates units (criterion 1, as #442112, "
+              "#430762)."),
+    442836: ("1", "The pinbar test is replaced by star = true, so on every confirmed bar while flat "
+              "the script sends a new short (its filters are computed but never used) and re-sets "
+              "the bracket from that bar: a constant-true entry, a short re-entered whenever flat "
+              "(criterion 1, as #442261)."),
 }
 
 DUPLICATE_ON_READING = {

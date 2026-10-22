@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2054 |
-| PORT_CANDIDATE | 1395 |
+| PORTED | 2062 |
+| PORT_CANDIDATE | 1383 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 291 |
+| REJECTED_ON_READING | 295 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2182,7 +2182,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442810 | `ports/442810_cci-supertrend-and-cci-scalping-strategy/` | PineScript | supertrend | none | factor2 x2, cci_len x2 | 4 |
 | 442812 | `ports/442812_cci-supertrend-and-cci-scalping-strategy/` | PineScript | rsi_oscillator | none | stoch_length x2, oversold x2 | 4 |
 | 442813 | `ports/442813_200-elliott-wave-strategy-with-200-day-moving-average/` | PineScript | reversal_pattern | none | sma_len x2 | 2 |
-| | **2054 ports** | | | | | **9709** |
+| 442814 | `ports/442814_pivot-point-supertrend-strategy/` | PineScript | supertrend | none | factor x2, prd x2 | 4 |
+| 442815 | `ports/442815_moving-average-indicator-strategy/` | PineScript | momentum_oscillator | none | length x2, buy_band x2 | 4 |
+| 442817 | `ports/442817_hullma-dual-moving-average-hullma-crossover-trend-strategy/` | PineScript | adaptive_average | none | keh x2 | 2 |
+| 442820 | `ports/442820_moving-average-trading-strategy/` | PineScript | mean_reversion | coarse_bar_stop | dip x2, tp_frac x2 | 4 |
+| 442823 | `ports/442823_the-dual-reversal-strategy/` | PineScript | combo_123_reversal | none | length x2, level x2 | 4 |
+| 442834 | `ports/442834_ema-the-dual-ema-price-swing-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 442835 | `ports/442835_intelligent-accumulator-buy-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, band_len x2 | 4 |
+| 442837 | `ports/442837_four-dema-multi-timeframe-trend-strategy/` | PineScript | ma_trend | none | short x2, long3 x2 | 4 |
+| | **2062 ports** | | | | | **9739** |
 
 ## Rejected on reading
 
@@ -2479,6 +2487,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442546 | 双移动均线与布林带结合的趋势追踪策略Dual-Moving-Average-and-Bollinger-Band-Combination-Trend-Tracking-Strategy.md | 1 | Orders are strategy.order('Buy' / 'Sell') with the default quantity, which add or remove units instead of entering or reversing: each repeated signal changes the net position by one unit, a running sum of orders (criterion 1, as #440533, #430596). |
 | 442550 | 自适应移动均线交易策略Adaptive-Moving-Average-Trading-Strategy.md | 1 | Reads the future: Pine v2 security(syminfo.tickerid, 'W', ...) without [1] on the 4-hour chart behaves as lookahead_on, so every bar's two DEMA lines use the final values of the current week, not known until it ends (SURVEY_README request.security rule, as #441065, #434485). |
 | 442645 | SPY-RSI-Stochastics-交叉值反转趋势策略SPY-RSI-Stochastics-Crossover-Reversal-Trend-Strategy.md | 1 | pyramiding = 3 with repeated "Long" / "Short" entries on every new fast-RSI crossing while a position is open (the exits are limit orders at the close that need not fill): the position accumulates units (criterion 1, as #442112, #430762). |
+| 442816 | 基于动态双均线追踪止损策略Dynamic-Dual-Moving-Average-Trailing-Stop-Strategy.md | 2 | The exits strategy.exit(loss = close - 1.5 atr or close -+ 2 atr, profit = close + 2 atr) pass price levels where the call takes tick distances, with no /mintick: the stops and targets are undefined as written (criterion 2, as #442076, #437048). |
+| 442822 | 基于订单块的动量突破策略The-Order-Block-Momentum-Breakout-Strategy.md | 1 | The only exits close when strategy.openprofit divided by the equity (initial capital plus netprofit) reaches +2 % or -1 %: an account-state gate whose price move depends on the position size against the equity, which the signal-only port cannot express (criterion 1, as #440336). |
+| 442833 | RSI指标多空分离交易策略RSI-Indicator-Long-Short-Separation-Trading-Strategy.md | 1 | pyramiding = 4 with a fixed quantity of 2 and repeated RSI-divergence entries while a position is open: the position accumulates units (criterion 1, as #442112, #430762). |
+| 442836 | 追踪熊市策略Follow-The-Bear-Strategy.md | 1 | The pinbar test is replaced by star = true, so on every confirmed bar while flat the script sends a new short (its filters are computed but never used) and re-sets the bracket from that bar: a constant-true entry, a short re-entered whenever flat (criterion 1, as #442261). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

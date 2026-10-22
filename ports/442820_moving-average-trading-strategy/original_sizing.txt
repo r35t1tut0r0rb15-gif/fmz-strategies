@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #442820 (移动平均均线交易策略Moving-Average-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/442820  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy.entry qty = size (1)  [lines 154-155]
+  154:     size = 1  // Tamaño de la posición con apalancamiento
+  155:     strategy.entry("Long", strategy.long, qty=size)

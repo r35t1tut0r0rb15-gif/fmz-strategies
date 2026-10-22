@@ -290,6 +290,10 @@ fmz_id,file,final_outcome,criterion,reason
 442546,双移动均线与布林带结合的趋势追踪策略Dual-Moving-Average-and-Bollinger-Band-Combination-Trend-Tracking-Strategy.md,REJECTED_ON_READING,1,"Orders are strategy.order('Buy' / 'Sell') with the default quantity, which add or remove units instead of entering or reversing: each repeated signal changes the net position by one unit, a running sum of orders (criterion 1, as #440533, #430596)."
 442550,自适应移动均线交易策略Adaptive-Moving-Average-Trading-Strategy.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 security(syminfo.tickerid, 'W', ...) without [1] on the 4-hour chart behaves as lookahead_on, so every bar's two DEMA lines use the final values of the current week, not known until it ends (SURVEY_README request.security rule, as #441065, #434485)."
 442645,SPY-RSI-Stochastics-交叉值反转趋势策略SPY-RSI-Stochastics-Crossover-Reversal-Trend-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 3 with repeated ""Long"" / ""Short"" entries on every new fast-RSI crossing while a position is open (the exits are limit orders at the close that need not fill): the position accumulates units (criterion 1, as #442112, #430762)."
+442816,基于动态双均线追踪止损策略Dynamic-Dual-Moving-Average-Trailing-Stop-Strategy.md,REJECTED_ON_READING,2,"The exits strategy.exit(loss = close - 1.5 atr or close -+ 2 atr, profit = close + 2 atr) pass price levels where the call takes tick distances, with no /mintick: the stops and targets are undefined as written (criterion 2, as #442076, #437048)."
+442822,基于订单块的动量突破策略The-Order-Block-Momentum-Breakout-Strategy.md,REJECTED_ON_READING,1,"The only exits close when strategy.openprofit divided by the equity (initial capital plus netprofit) reaches +2 % or -1 %: an account-state gate whose price move depends on the position size against the equity, which the signal-only port cannot express (criterion 1, as #440336)."
+442833,RSI指标多空分离交易策略RSI-Indicator-Long-Short-Separation-Trading-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 4 with a fixed quantity of 2 and repeated RSI-divergence entries while a position is open: the position accumulates units (criterion 1, as #442112, #430762)."
+442836,追踪熊市策略Follow-The-Bear-Strategy.md,REJECTED_ON_READING,1,"The pinbar test is replaced by star = true, so on every confirmed bar while flat the script sends a new short (its filters are computed but never used) and re-sets the bracket from that bar: a constant-true entry, a short re-entered whenever flat (criterion 1, as #442261)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2364,3 +2368,11 @@ fmz_id,file,final_outcome,criterion,reason
 442810,超趋势和CCI策略的短线交易Supertrend-and-CCI-Scalping-Strategy.md,PORTED,,ports/442810_cci-supertrend-and-cci-scalping-strategy/
 442812,基于超趋势和CCI策略的短线交易Supertrend-and-CCI-Scalping-Strategy.md,PORTED,,ports/442812_cci-supertrend-and-cci-scalping-strategy/
 442813,埃利奥特波动叠加200日均线交易策略Elliott-Wave-Strategy-with-200-Day-Moving-Average.md,PORTED,,ports/442813_200-elliott-wave-strategy-with-200-day-moving-average/
+442814,超级支撑阻力趋势跟踪策略Pivot-Point-SuperTrend-Strategy.md,PORTED,,ports/442814_pivot-point-supertrend-strategy/
+442815,一种移动平均线指标策略-Moving-Average-Indicator-Strategy.md,PORTED,,ports/442815_moving-average-indicator-strategy/
+442817,双移动平均-HullMA交叉趋势策略Dual-Moving-Average-HullMA-Crossover-Trend-Strategy.md,PORTED,,ports/442817_hullma-dual-moving-average-hullma-crossover-trend-strategy/
+442820,移动平均均线交易策略Moving-Average-Trading-Strategy.md,PORTED,,ports/442820_moving-average-trading-strategy/
+442823,基于双重反转策略The-Dual-Reversal-Strategy.md,PORTED,,ports/442823_the-dual-reversal-strategy/
+442834,基于双EMA价格摆动策略The-Dual-EMA-Price-Swing-Strategy.md,PORTED,,ports/442834_ema-the-dual-ema-price-swing-strategy/
+442835,智能累加买入策略Intelligent-Accumulator-Buy-Strategy.md,PORTED,,ports/442835_intelligent-accumulator-buy-strategy/
+442837,四均线多时间框架趋势策略Four-DEMA-Multi-Timeframe-Trend-Strategy.md,PORTED,,ports/442837_four-dema-multi-timeframe-trend-strategy/

@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #442834 (基于双EMA价格摆动策略The-Dual-EMA-Price-Swing-Strategy)
+# Source: https://www.fmz.com/strategy/442834  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

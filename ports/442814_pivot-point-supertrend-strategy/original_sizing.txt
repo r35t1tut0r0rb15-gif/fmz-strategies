@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #442814 (超级支撑阻力趋势跟踪策略Pivot-Point-SuperTrend-Strategy)
+# Source: https://www.fmz.com/strategy/442814  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): cash 50000 per trade, capital 500000  [lines 152-152]
+  152: strategy("PPS", overlay=true, initial_capital=500000, currency=currency.USD, default_qty_type=strategy.cash, default_qty_value=50000)
