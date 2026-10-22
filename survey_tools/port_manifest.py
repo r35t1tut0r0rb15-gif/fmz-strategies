@@ -6434,6 +6434,28 @@ SIZING = {
     482512: [],
     482515: [],
     482590: [],
+    # ---- FMZ-C, batch C247 (2026-10-22)
+    482591: [],
+    482592: [
+        ("strategy(): 200 % of equity", 89, 89),
+    ],
+    482593: [],
+    482594: [],
+    482595: [
+        ("strategy(): 200 % of equity, pyramiding 0", 133, 133),
+    ],
+    482600: [],
+    482602: [
+        ("strategy(): 200 % of equity", 99, 99),
+    ],
+    482644: [],
+    482645: [],
+    482669: [],
+    482670: [
+        ("strategy(): 2 % of equity", 105, 105),
+        ("tradeSize from strategy.equity x 2 % / atrSL, minimum 1", 160, 163),
+        ("entries with qty = tradeSize", 171, 178),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8123,6 +8145,9 @@ REJECTED_ON_READING = {
               "as #442115)."),
     482506: ("1", "pyramiding = 50 with up to four separate long entries per week at the S1-S4 "
               "levels, each with its own target: grid adds (criterion 1)."),
+    # ---- FMZ-C, batch C247 (2026-10-22)
+    482672: ("1", "pyramiding = 999 with up to 30 safety orders added as the price falls (scaled DCA "
+              "averaging down): DCA adds (criterion 1)."),
 }
 
 DUPLICATE_ON_READING = {

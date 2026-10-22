@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2946 |
+| PORTED | 2957 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 424 |
-| PORT_CANDIDATE | 364 |
+| REJECTED_ON_READING | 425 |
+| PORT_CANDIDATE | 352 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -3074,7 +3074,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482512 | `ports/482512_qfl-qfl-oscillation-stop-loss-moving-average-strategy/` | PineScript | support_resistance | none | look_back_period x2, exit_profit_threshold x2 | 4 |
 | 482515 | `ports/482515_ema-neural-moving-average-crossover-trend-following-strategy/` | PineScript | ma_trend | none | ema_length x2, sma_fast x2 | 4 |
 | 482590 | `ports/482590_multi-timeframe-stochastic-oscillator-strategy-with-trend-co/` | PineScript | stochastic_oscillator | trailing_stop_pending | sl_pct x2, tp_pct x2 | 4 |
-| | **2946 ports** | | | | | **13611** |
+| 482591 | `ports/482591_adaptive-dual-indicator-cross-smart-timing-trading-strategy/` | PineScript | rsi_oscillator | none | cci_length x2, rsi_exit_length x2 | 4 |
+| 482592 | `ports/482592_dual-direction-smma-crossover-strategy-with-atr-based-risk-m/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | smma_length x2, tp_scale x2 | 4 |
+| 482593 | `ports/482593_atr-adaptive-bollinger-bands-atr-trailing-stop-trading-strat/` | PineScript | bollinger_reversion | none | atr_multiplier x2, bb_length x2 | 4 |
+| 482594 | `ports/482594_hybrid-fibonacci-momentum-ma-crossover-strategy/` | PineScript | ma_cross | coarse_bar_stop | stop_loss_percentage x2, take_profit_percentage x2 | 4 |
+| 482595 | `ports/482595_triple-candlestick-bollinger-bands-breakout-trend-following/` | PineScript | bollinger_breakout | coarse_bar_stop | length x2, mult x2 | 4 |
+| 482600 | `ports/482600_adaptive-trend-following-with-dynamic-risk-control-strategy/` | PineScript | parabolic_sar | trailing_stop_pending | atr_multiplier x2, take_profit_percent x2 | 4 |
+| 482602 | `ports/482602_multi-indicator-trend-following-enhanced-quantitative-tradin/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | adx_threshold x2, rsi_overbought x2 | 4 |
+| 482644 | `ports/482644_rsi-dynamic-rsi-breakout-trend-following-trading-strategy-wi/` | PineScript | rsi_oscillator | coarse_bar_stop, trailing_stop_pending | rsi_length x2, rr x2 | 4 |
+| 482645 | `ports/482645_multi-indicator-dynamic-trend-crossover-quantitative-trading/` | PineScript | macd_cross | none | fast_ema_length x2, slow_ema_length x2 | 4 |
+| 482669 | `ports/482669_dual-moving-average-trend-detection-with-volatility-based-st/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | atr_mult x2, ema_slow_len x2 | 4 |
+| 482670 | `ports/482670_atr-multi-ema-trend-following-with-dynamic-atr-based-exit-st/` | PineScript | ma_cross | trailing_stop_pending | min_distance_atr x2, rsi_buy_low x2 | 4 |
+| | **2957 ports** | | | | | **13655** |
 
 ## Rejected on reading
 
@@ -3504,6 +3515,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482501 | 指数移动平均线交叉脉冲趋势分析交易策略-Exponential-Moving-Average-Cross-Impulsive-Trend-Analysis-Trading-Strategy.md | 2 | The exits pass profit = close + (close - low) x 3, a price, where the call takes ticks, with no /mintick: the target is undefined as written (criterion 2, as #442115). |
 | 482504 | 多时框随机震荡趋势跟踪交易策略-Multi-Timeframe-Stochastic-Oscillator-Trend-Following-Trading-Strategy.md | 2 | The exits pass trail_points = atr x 1.5, a price amount, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #442115). |
 | 482506 | 基于均值回归的多层级支撑阻力周线交易策略-Multi-Level-Support-Resistance-Weekly-Mean-Reversion-Trading-Strategy.md | 1 | pyramiding = 50 with up to four separate long entries per week at the S1-S4 levels, each with its own target: grid adds (criterion 1). |
+| 482672 | 基于动态DCA的加密货币量化交易策略-Dynamic-DCA-based-Cryptocurrency-Quantitative-Trading-Strategy.md | 1 | pyramiding = 999 with up to 30 safety orders added as the price falls (scaled DCA averaging down): DCA adds (criterion 1). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

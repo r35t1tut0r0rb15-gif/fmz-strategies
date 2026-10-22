@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482595 (基于布林带突破的三连阳阳线高点趋势跟踪策略-Triple-Candlestick-Bollinger-Bands-Breakout-Trend-Following-Strategy-with-High-Low-Point-Confirmation)
+# Source: https://www.fmz.com/strategy/482595  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 200 % of equity, pyramiding 0  [lines 133-133]
+  133: strategy("Bollinger Band Strategy (Close Near High/Low Relative to Half Range)", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=200, pyramiding=0)

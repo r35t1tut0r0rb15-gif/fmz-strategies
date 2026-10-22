@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482602 (多重指标趋势跟踪增强型量化交易策略-Multi-Indicator-Trend-Following-Enhanced-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482602  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 200 % of equity  [lines 99-99]
+   99: strategy("Enhanced Trend Following Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=200)

@@ -423,6 +423,7 @@ fmz_id,file,final_outcome,criterion,reason
 482501,指数移动平均线交叉脉冲趋势分析交易策略-Exponential-Moving-Average-Cross-Impulsive-Trend-Analysis-Trading-Strategy.md,REJECTED_ON_READING,2,"The exits pass profit = close + (close - low) x 3, a price, where the call takes ticks, with no /mintick: the target is undefined as written (criterion 2, as #442115)."
 482504,多时框随机震荡趋势跟踪交易策略-Multi-Timeframe-Stochastic-Oscillator-Trend-Following-Trading-Strategy.md,REJECTED_ON_READING,2,"The exits pass trail_points = atr x 1.5, a price amount, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #442115)."
 482506,基于均值回归的多层级支撑阻力周线交易策略-Multi-Level-Support-Resistance-Weekly-Mean-Reversion-Trading-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 50 with up to four separate long entries per week at the S1-S4 levels, each with its own target: grid adds (criterion 1)."
+482672,基于动态DCA的加密货币量化交易策略-Dynamic-DCA-based-Cryptocurrency-Quantitative-Trading-Strategy.md,REJECTED_ON_READING,1,pyramiding = 999 with up to 30 safety orders added as the price falls (scaled DCA averaging down): DCA adds (criterion 1).
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -3395,3 +3396,14 @@ fmz_id,file,final_outcome,criterion,reason
 482512,QFL震荡条件止损均线策略-QFL-Oscillation-Stop-Loss-Moving-Average-Strategy.md,PORTED,,ports/482512_qfl-qfl-oscillation-stop-loss-moving-average-strategy/
 482515,神经均线交叉趋势跟踪策略结合EMA过滤系统-Neural-Moving-Average-Crossover-Trend-Following-Strategy-with-EMA-Filtering-System.md,PORTED,,ports/482515_ema-neural-moving-average-crossover-trend-following-strategy/
 482590,多时框随机震荡指标策略与趋势确认交易系统-Multi-Timeframe-Stochastic-Oscillator-Strategy-with-Trend-Confirmation-Trading-System.md,PORTED,,ports/482590_multi-timeframe-stochastic-oscillator-strategy-with-trend-co/
+482591,自适应双重指标交叉智能择时交易策略-Adaptive-Dual-Indicator-Cross-Smart-Timing-Trading-Strategy.md,PORTED,,ports/482591_adaptive-dual-indicator-cross-smart-timing-trading-strategy/
+482592,Dual-Direction-SMMA-Crossover-Strategy-with-ATR-Based-Risk-Management-and-Fixed-Take-Profit-双向SMMA交叉ATR风控定向获利策略.md,PORTED,,ports/482592_dual-direction-smma-crossover-strategy-with-atr-based-risk-m/
+482593,自适应布林带ATR跟踪止损交易策略-Adaptive-Bollinger-Bands-ATR-Trailing-Stop-Trading-Strategy.md,PORTED,,ports/482593_atr-adaptive-bollinger-bands-atr-trailing-stop-trading-strat/
+482594,混合型斐波那契动量均线交叉策略-Hybrid-Fibonacci-Momentum-MA-Crossover-Strategy.md,PORTED,,ports/482594_hybrid-fibonacci-momentum-ma-crossover-strategy/
+482595,基于布林带突破的三连阳阳线高点趋势跟踪策略-Triple-Candlestick-Bollinger-Bands-Breakout-Trend-Following-Strategy-with-High-Low-Point-Confirmation.md,PORTED,,ports/482595_triple-candlestick-bollinger-bands-breakout-trend-following/
+482600,自适应趋势跟踪与动态风控策略-Adaptive-Trend-Following-with-Dynamic-Risk-Control-Strategy.md,PORTED,,ports/482600_adaptive-trend-following-with-dynamic-risk-control-strategy/
+482602,多重指标趋势跟踪增强型量化交易策略-Multi-Indicator-Trend-Following-Enhanced-Quantitative-Trading-Strategy.md,PORTED,,ports/482602_multi-indicator-trend-following-enhanced-quantitative-tradin/
+482644,动态RSI突破趋势跟踪交易策略结合风险收益比优化系统-Dynamic-RSI-Breakout-Trend-Following-Trading-Strategy-with-Risk-Reward-Ratio-Optimization-System.md,PORTED,,ports/482644_rsi-dynamic-rsi-breakout-trend-following-trading-strategy-wi/
+482645,多指标动态趋势交叉量化交易策略-Multi-Indicator-Dynamic-Trend-Crossover-Quantitative-Trading-Strategy.md,PORTED,,ports/482645_multi-indicator-dynamic-trend-crossover-quantitative-trading/
+482669,双均线趋势判断与波动率止损策略-Dual-Moving-Average-Trend-Detection-with-Volatility-Based-Stop-Loss-Strategy.md,PORTED,,ports/482669_dual-moving-average-trend-detection-with-volatility-based-st/
+482670,基于多均线趋势和ATR动态止盈止损的加密货币交易策略-Multi-EMA-Trend-Following-with-Dynamic-ATR-Based-Exit-Strategy-for-Cryptocurrency-Trading.md,PORTED,,ports/482670_atr-multi-ema-trend-following-with-dynamic-atr-based-exit-st/

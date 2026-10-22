@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #482670 (基于多均线趋势和ATR动态止盈止损的加密货币交易策略-Multi-EMA-Trend-Following-with-Dynamic-ATR-Based-Exit-Strategy-for-Cryptocurrency-Trading)
+# Source: https://www.fmz.com/strategy/482670  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 2 % of equity  [lines 105-105]
+  105: strategy("Backtest Last 2880 Baars Filers and Exits", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=2, backtest_fill_limits_assumption=0)
+
+## tradeSize from strategy.equity x 2 % / atrSL, minimum 1  [lines 160-163]
+  160: riskPerTrade = 2  
+  161: accountSize = strategy.equity
+  162: tradeSize = (accountSize * (riskPerTrade / 100)) / atrSL
+  163: tradeSize := tradeSize < 1 ? 1 : tradeSize  // Minimum lot size of 1
+
+## entries with qty = tradeSize  [lines 171-178]
+  171:     strategy.entry("Buy", strategy.long, qty=tradeSize)
+  172:     strategy.exit("Take Profit/Stop Loss", from_entry="Buy", limit=close + atrTP, stop=close - atrSL)
+  173:     label.new(x=bar_index, y=low, text="BUY", color=color.green, textcolor=color.white, size=size.small, style=label.style_label_down)
+  174:     alert("BUY", alert.freq_once_per_bar_close)  
+  175:     dailyTradeCount := dailyTradeCount + 1  
+  176: 
+  177: if sellCondition
+  178:     strategy.entry("Sell", strategy.short, qty=tradeSize)
