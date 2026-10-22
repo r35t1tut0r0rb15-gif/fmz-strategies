@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1767 |
-| PORTED | 1744 |
+| PORT_CANDIDATE | 1755 |
+| PORTED | 1754 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 232 |
+| REJECTED_ON_READING | 234 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1872,7 +1872,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440066 | `ports/440066_linear-regression-and-dual-moving-average-short-term-strateg/` | PineScript | trend_filter | none | len x2, length x2 | 4 |
 | 440073 | `ports/440073_macd-macd-crypto-trading-strategy/` | PineScript | macd_momentum | none | fast_length x2, slow_length x2 | 4 |
 | 440075 | `ports/440075_golden-cross-golden-cross-sma-trading-strategy/` | PineScript | ma_cross | none | sh_len x2, lg_len x2 | 4 |
-| | **1744 ports** | | | | | **8547** |
+| 440076 | `ports/440076_daily-open-reversal-strategy/` | PineScript | candle_pattern | coarse_bar_stop | k_sl x2 | 2 |
+| 440078 | `ports/440078_dual-moving-average-trading-strategy/` | PineScript | ma_trend | none | length0 x2, length1 x2 | 4 |
+| 440080 | `ports/440080_two-year-new-high-retracement-moving-average-strategy/` | PineScript | ma_trend | none | high_len x2, var_max x2 | 4 |
+| 440081 | `ports/440081_dynamic-bollinger-breakout-strategy/` | PineScript | bollinger_reversion | none | buy_frac x2, exit_frac x2 | 4 |
+| 440087 | `ports/440087_ema-dual-ema-golden-cross-breakout-strategy/` | PineScript | ma_cross | none | take_profit x2, ema1 x2 | 4 |
+| 440090 | `ports/440090_price-crossing-moving-average-trend-following-strategy/` | PineScript | hull_ma | none | len x2, tol x2 | 4 |
+| 440094 | `ports/440094_multiple-indicators-follow-strategy/` | PineScript | combo_123_reversal | none | length x2, length_q x2 | 4 |
+| 440095 | `ports/440095_moving-average-difference-zero-cross-strategy/` | PineScript | ma_trend | none | ema_period x2 | 2 |
+| 440096 | `ports/440096_adaptive-linear-regression-channel-strategy/` | PineScript | volatility_channel_breakout | none | length x2, mult x2 | 4 |
+| 440097 | `ports/440097_momentum-reversal-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, oversold x2 | 4 |
+| | **1754 ports** | | | | | **8583** |
 
 ## Rejected on reading
 
@@ -2110,6 +2120,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439958 | 基于RSI指标的Nifty交易策略Nifty-Trading-Strategy-Based-on-RSI-Indicator.md | 1 | pyramiding = 1000 with a 1-unit buy on every RSI 2 crossover and no exit until a fixed end date (30 Nov 2023), after which every bar closes: an accumulation whose size path is the strategy (as #430762, #430248). |
 | 439974 | 震荡型广谱移动平均线交易策略Oscillation-Spectrum-Moving-Average-Trading-Strategy.md | 1 | Both MA series are read through security(tickerid, '7D' (7 x the chart period), ..., lookahead = barmerge.lookahead_on): on the daily chart the 7-day values are seen from the first bar of the 7-day period, so every crossing uses the future (criterion 1, as #438495). |
 | 440058 | 杠杆化马丁格尔期货交易策略Leveraged-Martingale-Futures-Trading-Strategy.md | 1 | A leveraged martingale: after the first buy, each 1 % drop adds a 'Double Long' entry sized trade size x leverage x 2^n up to 10 times, and close_all fires on a take-profit of the size-weighted average price net of fees: the position size path is the strategy (as #435721). |
+| 440084 | 比特币期货头寸智能交易策略Bitcoin-Futures-Position-Trading-Strategy.md | 3 | Every signal is the RSI 7 of request.security('BTC_USDT:swap', '', open) (the author's Bitfinex shorts series, replaced by a crypto-exchange perpetual): a separate instrument used as the signal source for the chart symbol, which the project's single-symbol bars do not carry (as #430742). Stored in flagged/ (rule C7). |
+| 440085 | 一种基于三重SMA自动追踪策略Triple-SMA-Auto-Tracking-Strategy.md | 1 | Each side has three take-profit exits closing 30 % of the position each (qty_percent = 30 at 1 / 2 / 6 units of the average price): partial exits (criterion 1, as #436524). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

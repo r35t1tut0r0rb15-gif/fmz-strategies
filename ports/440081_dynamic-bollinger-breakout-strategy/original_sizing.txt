@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #440081 (基于布林通道指标的突破交易策略Dynamic-Bollinger-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/440081  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## 10 x equity / close quantity  [lines 162-162]
+  162: position_size = strategy.equity * 10 / close 

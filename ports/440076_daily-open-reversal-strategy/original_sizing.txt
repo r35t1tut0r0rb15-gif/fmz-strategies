@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #440076 (日内开仓反转策略-Daily-Open-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/440076  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity 100, capital; pip inputs  [lines 217-221]
+  217: strategy("Daily Open Strategy", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, initial_capital = 10000)
+  218: 
+  219: PrevRange = input(0.0100, type=input.float, title="Previous Candle Range")
+  220: TP = input(200, title="Take Profit in pips")
+  221: SL = input(1000, title="Stop Loss in pips")

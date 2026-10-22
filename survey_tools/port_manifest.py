@@ -3951,6 +3951,23 @@ SIZING = {
     440075: [
         ("Stop and target percent inputs", 359, 366),
     ],
+    # ---- FMZ-C, batch C130 (2026-10-22)
+    440076: [
+        ("strategy(): percent of equity 100, capital; pip inputs", 217, 221),
+    ],
+    440078: [],
+    440080: [],
+    440081: [
+        ("10 x equity / close quantity", 162, 162),
+    ],
+    440087: [
+        ("Quantity 1 and percent inputs", 165, 166),
+    ],
+    440090: [],
+    440094: [],
+    440095: [],
+    440096: [],
+    440097: [],
 }
 
 REJECTED_ON_READING = {
@@ -4928,6 +4945,15 @@ REJECTED_ON_READING = {
               "entry sized trade size x leverage x 2^n up to 10 times, and close_all fires on a "
               "take-profit of the size-weighted average price net of fees: the position size path "
               "is the strategy (as #435721)."),
+    # ---- FMZ-C, batch C130 (2026-10-22)
+    440084: ("3", "Every signal is the RSI 7 of request.security('BTC_USDT:swap', '', open) (the "
+              "author's Bitfinex shorts series, replaced by a crypto-exchange perpetual): a "
+              "separate instrument used as the signal source for the chart symbol, which the "
+              "project's single-symbol bars do not carry (as #430742). Stored in flagged/ (rule "
+              "C7)."),
+    440085: ("1", "Each side has three take-profit exits closing 30 % of the position each "
+              "(qty_percent = 30 at 1 / 2 / 6 units of the average price): partial exits "
+              "(criterion 1, as #436524)."),
 }
 
 DUPLICATE_ON_READING = {
