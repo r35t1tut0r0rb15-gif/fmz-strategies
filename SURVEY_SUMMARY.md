@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3216 |
+| PORTED | 3226 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 574 |
-| REJECTED_ON_READING | 501 |
+| REJECTED_ON_READING | 504 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 16 |
+| PORT_CANDIDATE | 3 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3344,7 +3344,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 490794 | `ports/490794_macd-technical-indicator-distance-measurement-and-macd-rever/` | PineScript | macd | none | fast x2, slow x2 | 4 |
 | 490795 | `ports/490795_multi-signal-convergence-cloud-edge-breakout-strategy/` | PineScript | ichimoku | none | bullishThreshold x2, bearishThreshold x2 | 4 |
 | 490805 | `ports/490805_moving-average-and-momentum-candle-trend-following-system/` | PineScript | candlestick_pattern | coarse_bar_stop | sl_pct x2, maLength x2 | 4 |
-| | **3216 ports** | | | | | **14668** |
+| 490914 | `ports/490914_rsi-multiple-ema-trend-confirmation-with-rsi-entry-filter-st/` | PineScript | ma_trend | none | rsi_cap x2, exit_slow x2 | 4 |
+| 490919 | `ports/490919_rma-multi-layer-dynamic-threshold-rma-trading-strategy-trend/` | PineScript | ma_cross | trailing_stop_pending | sl_pct x2, midLen x2 | 4 |
+| 491035 | `ports/491035_dual-exponential-moving-average-trend-oscillator-strategy-a/` | PineScript | band_breakout | trailing_stop_pending | len_dema x2, RR x2 | 4 |
+| 491038 | `ports/491038_multi-indicator-dynamic-trend-capture-and-mean-reversion-str/` | PineScript | multi_indicator_confluence | none | emaFastLen x2, emaSlowLen x2 | 4 |
+| 491505 | `ports/491505_ema-crossover-dynamic-trailing-stop-loss-strategy/` | PineScript | ma_cross | none | trailStopPercent x2, emaLength2 x2 | 4 |
+| 491506 | `ports/491506_ema-dual-ema-retest-reversal-strategy-a-trend-following-syst/` | PineScript | ma_pullback | trailing_stop_pending | retest_tolerance x2, stop_loss_perc x2 | 4 |
+| 491508 | `ports/491508_multi-indicator-momentum-strategy-with-ema-crossover-and-ris/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | slPercent x2, tpPercent x2 | 4 |
+| 491514 | `ports/491514_rsi-supertrend-rsi-and-supertrend-filter-combination-system/` | PineScript | rsi_threshold | trailing_stop_pending | rsiOversold x2, atrMult x2 | 4 |
+| 491892 | `ports/491892_ema-ema-dual-crossover-dynamic-stop-loss-quantitative-strate/` | PineScript | ma_cross | none | length10 x2, length20 x2 | 4 |
+| 491897 | `ports/491897_multi-factor-trend-following-quantitative-strategy/` | PineScript | parabolic_sar | coarse_bar_stop, trailing_stop_pending | adxThreshold x2, atrMultiplier x2 | 4 |
+| | **3226 ports** | | | | | **14708** |
 
 ## Rejected on reading
 
@@ -3851,6 +3861,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 490798 | 15分钟图表吞没突破多重确认策略-15-Minute-Engulfing-Breakout-Multi-Confirmation-Strategy.md | 2 | The stop and target are the engulfing zone -/+ 30 pips of 0.0001 (a fixed 0.003 price offset), an FX-sized price amount (criterion 2, as #473377). |
 | 490804 | 多指标协同短线趋势跟踪策略-Multi-Indicator-Synergistic-Short-Term-Trend-Following-Strategy.md | 2 | The exits include trail_points = trail_offset = 0.8 ATR, price amounts passed as tick counts (criterion 2, as #482767). |
 | 490908 | 多时间尺度动量趋势追踪与风险管理量化交易策略-Multi-Timeframe-Momentum-Trend-Tracking-and-Risk-Management-Quantitative-Trading-Strategy.md | 2 | The target and stop are 60000 / 25000 ticks from the entry ('punti'), with a break-even at 30000: read at the header coin's price (TRX about 0.2, tick 0.00001) the stop sits 125 % under the entry and the target 300 % over it; they are fixed point amounts for another instrument with no generic reading (criterion 2, as #473377). |
+| 491510 | 开盘价势动量反转-RSI-交易策略-Market-Open-Momentum-Reversal-RSI-Trading-Strategy.md | 1 | The session start is the exact timestamp 09:30 GMT-4 with a 90-second window and a 10-minute hold: no 7-minute bar opens at that instant, so the open price and direction are never set and the script can never trade (criterion 1, as #430384). |
+| 491890 | RSI-MA-交叉摆动交易策略与追踪止损系统-RSI-MA-Crossover-Swing-Trading-Strategy-with-Trailing-Stop-System.md | 2 | The trailing exit is close <= highest close - 10 'points' (Nifty points), a fixed price amount (criterion 2, as #473377). |
+| 491891 | 多时间框架趋势突破策略与RSI过滤及ATR风险管理-Multi-Timeframe-Trend-Breakout-Strategy-with-RSI-Filter-and-ATR-Based-Risk-Management.md | 2 | The exits include trail_points / trail_offset of ATR multiples, price amounts passed as tick counts (criterion 2, as #482767); the source has no backtest header either. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

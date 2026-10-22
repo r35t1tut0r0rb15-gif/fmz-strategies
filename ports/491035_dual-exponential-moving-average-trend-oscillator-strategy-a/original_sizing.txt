@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #491035 (双指数移动平均趋势震荡器策略基于标准差动态调整的量化交易模型-Dual-Exponential-Moving-Average-Trend-Oscillator-Strategy-A-Standard-Deviation-Based-Dynamic-Quantitative-Trading-Model)
+# Source: https://www.fmz.com/strategy/491035  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 208-208]
+  208: strategy("DEMA Trend Oscillator Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

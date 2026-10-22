@@ -7056,6 +7056,33 @@ SIZING = {
     490805: [
         ("strategy(): 10 % of equity", 173, 173),
     ],
+    # ---- FMZ-C, batch C274 (2026-10-22)
+    490914: [
+        ("strategy(): capital 1000000, 10 % of equity, commission 0.75 %", 173, 173),
+    ],
+    490919: [
+        ("strategy(): 100 % of equity", 162, 162),
+    ],
+    491035: [
+        ("strategy(): 100 % of equity", 208, 208),
+    ],
+    491038: [],
+    491505: [],
+    491506: [
+        ("strategy(): 1 % of equity", 169, 169),
+    ],
+    491508: [
+        ("strategy(): 10 % of equity", 197, 197),
+    ],
+    491514: [
+        ("strategy(): 100 % of equity", 158, 158),
+    ],
+    491892: [
+        ("strategy(): 100 % of equity", 116, 116),
+    ],
+    491897: [
+        ("qty = 2 % of equity / close", 158, 160),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8977,6 +9004,15 @@ REJECTED_ON_READING = {
               "the stop sits 125 % under the entry and the target 300 % over it; they are fixed "
               "point amounts for another instrument with no generic reading (criterion 2, as "
               "#473377)."),
+    # ---- FMZ-C, batch C274 (2026-10-22)
+    491510: ("1", "The session start is the exact timestamp 09:30 GMT-4 with a 90-second window and a "
+              "10-minute hold: no 7-minute bar opens at that instant, so the open price and "
+              "direction are never set and the script can never trade (criterion 1, as #430384)."),
+    491890: ("2", "The trailing exit is close <= highest close - 10 'points' (Nifty points), a fixed "
+              "price amount (criterion 2, as #473377)."),
+    491891: ("2", "The exits include trail_points / trail_offset of ATR multiples, price amounts "
+              "passed as tick counts (criterion 2, as #482767); the source has no backtest header "
+              "either."),
 }
 
 DUPLICATE_ON_READING = {

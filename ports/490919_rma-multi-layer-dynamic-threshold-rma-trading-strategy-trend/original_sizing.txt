@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #490919 (多层动态阈值RMA量化交易策略趋势与动量协同优化方法-Multi-Layer-Dynamic-Threshold-RMA-Trading-Strategy-Trend-and-Momentum-Synergy-Optimization)
+# Source: https://www.fmz.com/strategy/490919  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 162-162]
+  162: strategy("RMA Strategy - Weekly Dynamic Thresholds", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

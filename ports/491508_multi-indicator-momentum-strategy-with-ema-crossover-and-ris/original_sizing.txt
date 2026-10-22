@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #491508 (均线交叉与多指标动量风险控制策略-Multi-Indicator-Momentum-Strategy-with-EMA-Crossover-and-Risk-Management)
+# Source: https://www.fmz.com/strategy/491508  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 197-197]
+  197: strategy("Estrategia EMAs + RSI + MACD con SL y TP", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
