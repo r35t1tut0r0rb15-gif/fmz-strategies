@@ -4043,6 +4043,20 @@ SIZING = {
     440505: [],
     440507: [],
     440509: [],
+    # ---- FMZ-C, batch C136 (2026-10-22)
+    440510: [],
+    440517: [],
+    440536: [
+        ("entry qty 10", 199, 204),
+    ],
+    440537: [],
+    440540: [],
+    440542: [
+        ("risk 1 % input (unused)", 140, 140),
+    ],
+    440545: [],
+    440548: [],
+    440550: [],
 }
 
 REJECTED_ON_READING = {
@@ -5063,6 +5077,16 @@ REJECTED_ON_READING = {
     # ---- FMZ-C, batch C135 (2026-10-22)
     440502: ("1", "Two take-profit exits close 15 % and then the rest of the position (qty_percent = "
               "15 at 4.5 %, 100 at 20 %): partial exits (criterion 1, as #436524)."),
+    # ---- FMZ-C, batch C136 (2026-10-22)
+    440533: ("1", "Each signal adds contribution / close units with strategy.order (dollar-cost "
+              "averaging, the close order is commented out): the position is a running sum of "
+              "orders (criterion 1, as #430596)."),
+    440544: ("1", "Both entries test the close against request.security(syminfo.tickerid, 'D', [open, "
+              "close], lookahead = barmerge.lookahead_on): the current day's final close on every "
+              "intraday bar, a higher-timeframe value with lookahead (criterion 1)."),
+    440546: ("2", "The exits are strategy.exit(loss = close - close x 1 %, profit = close + close x 2 "
+              "%): price levels passed to loss and profit, which are in ticks (criterion 2, as "
+              "#437048, #437677)."),
 }
 
 DUPLICATE_ON_READING = {

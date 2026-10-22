@@ -242,6 +242,9 @@ fmz_id,file,final_outcome,criterion,reason
 440430,基于RSI指标的股票交易双向金字塔策略RSI-Indicator-Based-Stock-Trading-Pyramiding-Strategy.md,REJECTED_ON_READING,1,"Up to seven long entries (Entry 1 .. Entry 7) are added while the RSI stays oversold, one per strategy.opentrades count, each with its own exit: pyramiding accumulation (criterion 1, as #430762)."
 440436,移动平均线交叉策略Simple-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,2,"The stop is strategy.exit(loss = close x (1 - 1 %)): a price level passed to loss, which is in ticks (criterion 2, as #437048, #437677)."
 440502,双边突破K线波动通道策略Dual-Breakout-Volatility-Channel-Strategy.md,REJECTED_ON_READING,1,"Two take-profit exits close 15 % and then the rest of the position (qty_percent = 15 at 4.5 %, 100 at 20 %): partial exits (criterion 1, as #436524)."
+440533,动量布林带双均线DCA策略Momentum-Bollinger-Bands-Dual-Moving-Average-DCA-Strategy.md,REJECTED_ON_READING,1,"Each signal adds contribution / close units with strategy.order (dollar-cost averaging, the close order is commented out): the position is a running sum of orders (criterion 1, as #430596)."
+440544,RSI趋势追踪止损策略RSI-Trend-Following-Strategy-with-Trailing-Stop-Loss.md,REJECTED_ON_READING,1,"Both entries test the close against request.security(syminfo.tickerid, 'D', [open, close], lookahead = barmerge.lookahead_on): the current day's final close on every intraday bar, a higher-timeframe value with lookahead (criterion 1)."
+440546,Ichimoku-Entries策略Ichimoku-Entries-Strategy.md,REJECTED_ON_READING,2,"The exits are strategy.exit(loss = close - close x 1 %, profit = close + close x 2 %): price levels passed to loss and profit, which are in ticks (criterion 2, as #437048, #437677)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2064,3 +2067,12 @@ fmz_id,file,final_outcome,criterion,reason
 440505,双均线价格通道趋势追踪策略Trend-Trading-Strategy-Based-on-Price-Channel-of-Double-Moving-Averages.md,PORTED,,ports/440505_trend-trading-strategy-based-on-price-channel-of-double-movi/
 440507,基于renko股票日内低点回撤的stock日内交易策略Intraday-Trading-Strategy-for-Stocks-Based-on-Renko-Low-Point-Retracement.md,PORTED,,ports/440507_renko-stock-intraday-trading-strategy-for-stocks-based-on-re/
 440509,牛市追踪系统Bull-Market-Tracking-System.md,PORTED,,ports/440509_bull-market-tracking-system/
+440510,基于一目均衡表的比特币交易策略Bitcoin-Trading-Strategy-Based-on-Ichimoku-Cloud.md,PORTED,,ports/440510_bitcoin-trading-strategy-based-on-ichimoku-cloud/
+440517,金叉死叉双MA策略Double-Moving-Average-Crossover-Strategy.md,PORTED,,ports/440517_ma-double-moving-average-crossover-strategy/
+440536,基于前一天收盘价和ATR指标的趋势追踪策略Previous-Days-Close-with-ATR-Trend-Tracking-Strategy.md,PORTED,,ports/440536_atr-previous-days-close-with-atr-trend-tracking-strategy/
+440537,超级趋势柱转向融合策略Supertrend-BarUpDn-Fusion-Strategy.md,PORTED,,ports/440537_supertrend-barupdn-fusion-strategy/
+440540,多时间框架金反转跟踪策略Multi-Timeframe-Gold-Reversal-Tracking-Strategy.md,PORTED,,ports/440540_multi-timeframe-gold-reversal-tracking-strategy/
+440542,运用布林带突破整合策略Consolidation-Breakout-Strategy.md,PORTED,,ports/440542_consolidation-breakout-strategy/
+440545,基于均线交叉的趋势跟随策略Trend-Following-Strategy-Based-on-Moving-Average-Crossover.md,PORTED,,ports/440545_trend-following-strategy-based-on-moving-average-crossover/
+440548,改进波浪跟踪策略Improved-Wave-Trend-Tracking-Strategy.md,PORTED,,ports/440548_improved-wave-trend-tracking-strategy/
+440550,基于CCI和EMA的短线震荡策略CCI-and-EMA-Based-Scalping-Strategy.md,PORTED,,ports/440550_cci-ema-cci-and-ema-based-scalping-strategy/

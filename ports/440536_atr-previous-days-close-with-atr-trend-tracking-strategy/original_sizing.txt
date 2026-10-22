@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #440536 (基于前一天收盘价和ATR指标的趋势追踪策略Previous-Days-Close-with-ATR-Trend-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/440536  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## entry qty 10  [lines 199-204]
+  199:     strategy.entry("LONG", strategy.long, 10, comment="Buy", when = year > yer, oca_name="My oca")
+  200:     strategy.exit("Stopped", "LONG",  stop = slup, limit= profitlevelup, oca_name="My oca")
+  201:             
+  202: 
+  203: if (close < TPdown) and (close > profitleveldown)
+  204:     strategy.entry("SHORT", strategy.short, 10, comment="Sell", when = year > yer, oca_name="My oca")

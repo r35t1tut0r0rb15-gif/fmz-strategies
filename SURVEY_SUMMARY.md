@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1804 |
-| PORT_CANDIDATE | 1695 |
+| PORTED | 1813 |
+| PORT_CANDIDATE | 1683 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 565 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 243 |
+| REJECTED_ON_READING | 246 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1932,7 +1932,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440505 | `ports/440505_trend-trading-strategy-based-on-price-channel-of-double-movi/` | PineScript | ma_trend | none | tp x2, sl x2 | 4 |
 | 440507 | `ports/440507_renko-stock-intraday-trading-strategy-for-stocks-based-on-re/` | PineScript | volatility_spike_reversal | none | pd x2, ph x2 | 4 |
 | 440509 | `ports/440509_bull-market-tracking-system/` | PineScript | multi_indicator_confluence | none | k_tp x2, len4 x2 | 4 |
-| | **1804 ports** | | | | | **8769** |
+| 440510 | `ports/440510_bitcoin-trading-strategy-based-on-ichimoku-cloud/` | PineScript | ichimoku | none | period_max x2, period_min x2 | 4 |
+| 440517 | `ports/440517_ma-double-moving-average-crossover-strategy/` | PineScript | ma_cross | trailing_stop_pending | short_period x2, long_period x2 | 4 |
+| 440536 | `ports/440536_atr-previous-days-close-with-atr-trend-tracking-strategy/` | PineScript | atr_band_breakout | none | entr x2, tplevel x2 | 4 |
+| 440537 | `ports/440537_supertrend-barupdn-fusion-strategy/` | PineScript | candle_pattern | none | gap_lag x1 | 1 |
+| 440540 | `ports/440540_multi-timeframe-gold-reversal-tracking-strategy/` | PineScript | multi_indicator_confluence | none | atr_level x2, scalp_frac x2 | 4 |
+| 440542 | `ports/440542_consolidation-breakout-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 440545 | `ports/440545_trend-following-strategy-based-on-moving-average-crossover/` | PineScript | hull_ma | none | ma1 x2, ma2 x2 | 4 |
+| 440548 | `ports/440548_improved-wave-trend-tracking-strategy/` | PineScript | wavetrend_oscillator | none | tp_pct x2, sl_pct x2 | 4 |
+| 440550 | `ports/440550_cci-ema-cci-and-ema-based-scalping-strategy/` | PineScript | ma_trend | none | cci_len x2, slow x2 | 4 |
+| | **1813 ports** | | | | | **8802** |
 
 ## Rejected on reading
 
@@ -2181,6 +2190,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440430 | 基于RSI指标的股票交易双向金字塔策略RSI-Indicator-Based-Stock-Trading-Pyramiding-Strategy.md | 1 | Up to seven long entries (Entry 1 .. Entry 7) are added while the RSI stays oversold, one per strategy.opentrades count, each with its own exit: pyramiding accumulation (criterion 1, as #430762). |
 | 440436 | 移动平均线交叉策略Simple-Moving-Average-Crossover-Strategy.md | 2 | The stop is strategy.exit(loss = close x (1 - 1 %)): a price level passed to loss, which is in ticks (criterion 2, as #437048, #437677). |
 | 440502 | 双边突破K线波动通道策略Dual-Breakout-Volatility-Channel-Strategy.md | 1 | Two take-profit exits close 15 % and then the rest of the position (qty_percent = 15 at 4.5 %, 100 at 20 %): partial exits (criterion 1, as #436524). |
+| 440533 | 动量布林带双均线DCA策略Momentum-Bollinger-Bands-Dual-Moving-Average-DCA-Strategy.md | 1 | Each signal adds contribution / close units with strategy.order (dollar-cost averaging, the close order is commented out): the position is a running sum of orders (criterion 1, as #430596). |
+| 440544 | RSI趋势追踪止损策略RSI-Trend-Following-Strategy-with-Trailing-Stop-Loss.md | 1 | Both entries test the close against request.security(syminfo.tickerid, 'D', [open, close], lookahead = barmerge.lookahead_on): the current day's final close on every intraday bar, a higher-timeframe value with lookahead (criterion 1). |
+| 440546 | Ichimoku-Entries策略Ichimoku-Entries-Strategy.md | 2 | The exits are strategy.exit(loss = close - close x 1 %, profit = close + close x 2 %): price levels passed to loss and profit, which are in ticks (criterion 2, as #437048, #437677). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
