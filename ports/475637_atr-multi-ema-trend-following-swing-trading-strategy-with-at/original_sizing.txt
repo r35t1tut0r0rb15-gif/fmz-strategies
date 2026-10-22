@@ -1,0 +1,39 @@
+# Original sizing and money-management code, FMZ #475637 (多重均线协同趋势波动交易策略基于ATR动态风控-Multi-EMA-Trend-Following-Swing-Trading-Strategy-with-ATR-Based-Risk-Management)
+# Source: https://www.fmz.com/strategy/475637  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## 5 contracts; stop 1 ATR / target 1.5 ATR  [lines 105-138]
+  105: rrRatio = input.float(1.5, "Risk-Reward Ratio")
+  106: contracts = input.int(5, "Number of Contracts")
+  107: 
+  108: // Calculations
+  109: ema20 = ta.ema(close, emaShort)
+  110: ema50 = ta.ema(close, emaMid)
+  111: ema100 = ta.ema(close, emaLong)
+  112: 
+  113: atr = ta.atr(14)
+  114: 
+  115: // Conditions
+  116: longCondition = ta.crossover(close, ema20) and close > ema50
+  117: shortCondition = ta.crossunder(close, ema20) and close < ema50
+  118: 
+  119: // Variables for trades
+  120: var float entryPrice = na
+  121: var float stopLoss = na
+  122: var float takeProfit = na
+  123: 
+  124: // Long Trades
+  125: if (longCondition)
+  126:     entryPrice := close
+  127:     stopLoss := close - atr
+  128:     takeProfit := close + atr * rrRatio
+  129:     strategy.entry("Long", strategy.long, contracts)
+  130:     strategy.exit("Exit Long", from_entry="Long", stop=stopLoss, limit=takeProfit)
+  131: 
+  132: // Short Trades
+  133: if (shortCondition)
+  134:     entryPrice := close
+  135:     stopLoss := close + atr
+  136:     takeProfit := close - atr * rrRatio
+  137:     strategy.entry("Short", strategy.short, contracts)
+  138:     strategy.exit("Exit Short", from_entry="Short", stop=stopLoss, limit=takeProfit)

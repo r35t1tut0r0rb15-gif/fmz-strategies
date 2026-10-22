@@ -1,0 +1,47 @@
+# Original sizing and money-management code, FMZ #475635 (多周期RSI背离与支撑阻力组合量化策略-Multi-Period-RSI-Divergence-with-Support-Resistance-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/475635  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 % / target 2 % of the signal close  [lines 107-148]
+  107: stopLossPercent = input.float(1, title="Стоп-лосс (%)", minval=0.1) / 100
+  108: takeProfitPercent = input.float(2, title="Тейк-профит (%)", minval=0.1) / 100
+  109: 
+  110: // Период для уровней поддержки и сопротивления
+  111: supportResistanceLength = input.int(50, title="Период для уровней поддержки и сопротивления", minval=1)
+  112: 
+  113: // Рассчитываем RSI
+  114: rsi = ta.rsi(close, rsiLength)
+  115: 
+  116: // Рассчитываем уровни поддержки и сопротивления
+  117: support = ta.lowest(close, supportResistanceLength)  // Находим минимумы за период для поддержки
+  118: resistance = ta.highest(close, supportResistanceLength)  // Находим максимумы за период для сопротивления
+  119: 
+  120: // Определяем дивергенцию RSI с ценой
+  121: priceHigh = ta.highest(close, rsiLength)
+  122: priceLow = ta.lowest(close, rsiLength)
+  123: rsiHigh = ta.highest(rsi, rsiLength)
+  124: rsiLow = ta.lowest(rsi, rsiLength)
+  125: 
+  126: // Дивергенция на покупку (бычья): цена делает новый минимум, а RSI этого не делает
+  127: bullishDivergence = priceLow < priceLow[1] and rsiLow > rsiLow[1] and close > support
+  128: 
+  129: // Дивергенция на продажу (медвежья): цена делает новый максимум, а RSI этого не делает
+  130: bearishDivergence = priceHigh > priceHigh[1] and rsiHigh < rsiHigh[1] and close < resistance
+  131: 
+  132: // Отображаем уровни поддержки и сопротивления
+  133: plot(support, title="Поддержка", color=color.green, linewidth=2, style=plot.style_line)
+  134: plot(resistance, title="Сопротивление", color=color.red, linewidth=2, style=plot.style_line)
+  135: 
+  136: // Условия для покупки по бычьей дивергенции
+  137: if (bullishDivergence)
+  138:     strategy.entry("Long", strategy.long)
+  139:     stopLoss = close * (1 - stopLossPercent)   // Стоп-лосс
+  140:     takeProfit = close * (1 + takeProfitPercent) // Тейк-профит
+  141:     strategy.exit("Exit Long", from_entry="Long", stop=stopLoss, limit=takeProfit)
+  142: 
+  143: // Условия для продажи по медвежьей дивергенции
+  144: if (bearishDivergence)
+  145:     strategy.entry("Short", strategy.short)
+  146:     stopLoss = close * (1 + stopLossPercent)   // Стоп-лосс для шорта
+  147:     takeProfit = close * (1 - takeProfitPercent) // Тейк-профит для шорта
+  148:     strategy.exit("Exit Short", from_entry="Short", stop=stopLoss, limit=takeProfit)

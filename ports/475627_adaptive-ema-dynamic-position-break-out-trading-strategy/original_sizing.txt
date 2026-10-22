@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #475627 (自适应指数均线动态调仓突破交易策略-Adaptive-EMA-Dynamic-Position-Break-out-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/475627  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop at the last red low under EMA 100, target 3 R; break-even at +2 %  [lines 110-122]
+  110: longSL = lastRedCandleLow
+  111: longTP = close + 3 * (close - longSL) // TP SL ga nisbatan 1:2 masofada
+  112: 
+  113: // Savdoni ochish va 2% foyda bo'lganda SLni break-even ga o‘zgartirish
+  114: if (bullishCross)
+  115:     strategy.entry("Buy", strategy.long)  // Buy pozitsiyasini ochish
+  116:     strategy.exit("Exit Buy", "Buy", stop=longSL, limit=longTP)  // SL va TP qo'yish
+  117: 
+  118:     // 2% foyda bo'lganda SLni break-even ga o'zgartirish
+  119:     if (strategy.position_size > 0)
+  120:         profitPercentage = (close - strategy.position_avg_price) / strategy.position_avg_price * 100
+  121:         if (profitPercentage >= 2)
+  122:             strategy.exit("Exit Buy BE", "Buy", stop=strategy.position_avg_price) // SLni break-even ga o'zgartirish

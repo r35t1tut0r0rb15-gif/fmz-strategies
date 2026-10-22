@@ -6022,6 +6022,27 @@ SIZING = {
     475604: [
         ("$50000 per dip (qty = amount / close)", 112, 154),
     ],
+    # ---- FMZ-C, batch C229 (2026-10-22)
+    475606: [],
+    475619: [],
+    475624: [
+        ("strategy(): capital 100000", 104, 104),
+    ],
+    475627: [
+        ("Stop at the last red low under EMA 100, target 3 R; break-even at +2 %", 110, 122),
+    ],
+    475628: [],
+    475630: [],
+    475633: [
+        ("qty 0.5 per id; stop / TP1 / TP2 from the 20-bar low", 103, 144),
+    ],
+    475635: [
+        ("Stop 1 % / target 2 % of the signal close", 107, 148),
+    ],
+    475636: [],
+    475637: [
+        ("5 contracts; stop 1 ATR / target 1.5 ATR", 105, 138),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7604,6 +7625,13 @@ REJECTED_ON_READING = {
     475593: ("1", "The take-profit and stop are money amounts ($200 / $100) turned into ticks by "
               "dividing by the open position size: the exit distance depends on the position's "
               "size (criterion 1, size-dependent exits)."),
+    # ---- FMZ-C, batch C229 (2026-10-22)
+    475605: ("2", "strategy.exit's profit / loss fields take tick counts but receive price amounts (3 "
+              "% x close / 1 % x close): a price amount in a tick field, so the distance in price "
+              "depends on the instrument's tick size (criterion 2, as #442115)."),
+    475634: ("1", "strategy.close_all when the drawdown of strategy.equity from its peak exceeds 30 "
+              "%: an exit set by the account's equity path (criterion 1, equity gates, as "
+              "#453662)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2767 |
+| PORTED | 2777 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 580 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 391 |
+| PORT_CANDIDATE | 568 |
+| REJECTED_ON_READING | 393 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2895,7 +2895,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 475597 | `ports/475597_dual-moving-average-trend-following-strategy-with-risk-manag/` | PineScript | ma_cross | coarse_bar_stop |  | 0 |
 | 475598 | `ports/475598_g-quantitative-long-short-switching-strategy-based-on-g-chan/` | PineScript | volatility_channel_breakout | none | length x2, ema_length x2 | 4 |
 | 475604 | `ports/475604_ath-multi-level-ath-dynamic-tracking-triple-entry-strategy/` | PineScript | mean_reversion | none | dip1 x2, recovery x2 | 4 |
-| | **2767 ports** | | | | | **12916** |
+| 475606 | `ports/475606_ema-dynamic-ema-breakthrough-and-reversal-strategy/` | PineScript | candle_pattern | none | ema_length x2 | 2 |
+| 475619 | `ports/475619_multi-moving-average-trend-following-trading-strategy/` | PineScript | ma_cross | none | fast x2, medium x2 | 4 |
+| 475624 | `ports/475624_dynamic-wave-trend-tracking-strategy/` | PineScript | wavetrend_oscillator | none | ma_length x2, level x2 | 4 |
+| 475627 | `ports/475627_adaptive-ema-dynamic-position-break-out-trading-strategy/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | fast x2, slow x2 | 4 |
+| 475628 | `ports/475628_macd-rsi-macd-rsi-crossover-trend-following-strategy-with-bo/` | PineScript | macd_cross | none | rsi_length x2 | 2 |
+| 475630 | `ports/475630_ema-dynamic-buy-entry-strategy-combining-ema-crossing-and-ca/` | PineScript | candle_pattern | none | ema_length x2 | 2 |
+| 475633 | `ports/475633_multi-ema-golden-cross-strategy-with-tiered-take-profit/` | PineScript | ma_trend | none | lookback x2, tp_mult1 x2 | 4 |
+| 475635 | `ports/475635_rsi-multi-period-rsi-divergence-with-support-resistance-quan/` | PineScript | rsi_oscillator | trailing_stop_pending | rsi_length x2, sr_length x2 | 4 |
+| 475636 | `ports/475636_rsi-enhanced-mean-reversion-strategy-with-bollinger-bands-an/` | PineScript | bollinger_reversion | none | length x2, std_dev x2 | 4 |
+| 475637 | `ports/475637_atr-multi-ema-trend-following-swing-trading-strategy-with-at/` | PineScript | ma_cross | coarse_bar_stop | rr x2, ema_mid x2 | 4 |
+| | **2777 ports** | | | | | **12950** |
 
 ## Rejected on reading
 
@@ -3292,6 +3302,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 475588 | 双指数移动平均线与相对强弱指数交叉策略-Dual-Exponential-Moving-Average-and-Relative-Strength-Index-Crossover-Strategy.md | 2 | strategy.exit's profit / loss fields take tick counts but receive the percent inputs (profit = 1.5, loss = 0.5): 1.5 / 0.5 ticks instead of 1.5 % / 0.5 %, a unit mismatch, so the distance depends on the instrument's tick size (criterion 2, as #442115). |
 | 475592 | 多重时框趋势追踪与ATR止盈止损策略-Multi-Timeframe-Trend-Following-Strategy-with-ATR-Based-Take-Profit-and-Stop-Loss.md | 1 | Partial take-profits: two strategy.exit orders each for qty = position_size x 0.5 (TP1 / TP2) plus a moved stop: the position is closed in parts, so the size path is part of the strategy (criterion 1, partial exits, as #436524). The header also says "all rights reserved". |
 | 475593 | 多时间周期流动性枢纽热力图量化策略-Multi-Timeframe-Liquidity-Pivot-Heatmap-Strategy.md | 1 | The take-profit and stop are money amounts ($200 / $100) turned into ticks by dividing by the open position size: the exit distance depends on the position's size (criterion 1, size-dependent exits). |
+| 475605 | 动态趋势动量优化策略结合G通道指标-Dynamic-Trend-Momentum-Optimization-Strategy-with-G-Channel-Indicator.md | 2 | strategy.exit's profit / loss fields take tick counts but receive price amounts (3 % x close / 1 % x close): a price amount in a tick field, so the distance in price depends on the instrument's tick size (criterion 2, as #442115). |
+| 475634 | 自适应趋势跟踪策略结合动态回撤控制系统-Adaptive-Trend-Following-Strategy-with-Dynamic-Drawdown-Control-System.md | 1 | strategy.close_all when the drawdown of strategy.equity from its peak exceeds 30 %: an exit set by the account's equity path (criterion 1, equity gates, as #453662). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

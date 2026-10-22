@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #475636 (布林带RSI均值回归增强型量化策略-Enhanced-Mean-Reversion-Strategy-with-Bollinger-Bands-and-RSI-Integration)
+# Source: https://www.fmz.com/strategy/475636  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
