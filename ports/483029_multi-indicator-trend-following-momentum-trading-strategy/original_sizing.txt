@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483029 (多重指标趋势跟踪动量交易策略-Multi-Indicator-Trend-Following-Momentum-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483029  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 2 % of equity  [lines 94-94]
+   94: strategy("Trend-Following Momentum Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=2)

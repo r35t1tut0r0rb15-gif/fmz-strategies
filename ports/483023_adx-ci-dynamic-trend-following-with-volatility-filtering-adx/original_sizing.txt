@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483023 (动态趋势跟踪与波动率过滤策略基于ADX与CI双重确认的均线交叉系统-Dynamic-Trend-Following-with-Volatility-Filtering-ADX-and-CI-Dual-Confirmed-Moving-Average-Crossover-System)
+# Source: https://www.fmz.com/strategy/483023  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 10000  [lines 101-101]
+  101: strategy("MA9/MA21 Cross with ADX & CHOP Filter", overlay=true, initial_capital=10000, currency=currency.USD)

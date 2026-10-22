@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483026 (智能双均线交叉风险管理交易系统-Intelligent-Dual-SMA-Crossover-Risk-Management-Trading-System)
+# Source: https://www.fmz.com/strategy/483026  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## riskAmount = equity x 1 % (feeds no order)  [lines 117-117]
+  117: riskAmount = strategy.equity * riskPercent / 100

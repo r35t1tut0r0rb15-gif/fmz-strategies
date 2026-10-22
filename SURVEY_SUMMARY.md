@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3021 |
+| PORTED | 3032 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 437 |
-| PORT_CANDIDATE | 276 |
+| REJECTED_ON_READING | 439 |
+| PORT_CANDIDATE | 263 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -3149,7 +3149,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482919 | `ports/482919_triple-ema-fisher-transform-triple-ema-and-fisher-transform/` | PineScript | momentum_oscillator | none | tema_length x2, fisher_length x2 | 4 |
 | 482920 | `ports/482920_ema-ema-and-candlestick-based-dynamic-price-trend-following/` | PineScript | candle_pattern | none | fast x2, slow x2 | 4 |
 | 482921 | `ports/482921_adx-three-line-strike-momentum-trend-following-strategy-with/` | PineScript | candle_pattern | trailing_stop_pending | adx_threshold x2, tp_atr x2 | 4 |
-| | **3021 ports** | | | | | **13903** |
+| 483020 | `ports/483020_macd-momentum-divergence-trend-reversal-quantitative-strateg/` | PineScript | macd_momentum | none | fast_length x2, signal_length x2 | 4 |
+| 483021 | `ports/483021_advanced-dual-ema-and-supertrend-combination-trading-strateg/` | PineScript | supertrend | none | ema_fast x2, factor x2 | 4 |
+| 483023 | `ports/483023_adx-ci-dynamic-trend-following-with-volatility-filtering-adx/` | PineScript | ma_cross | none | adx_thresh x2, chop_thresh x2 | 4 |
+| 483026 | `ports/483026_intelligent-dual-sma-crossover-risk-management-trading-syste/` | PineScript | ma_cross | none | risk_percent x2, short_sma x2 | 4 |
+| 483027 | `ports/483027_rsi-dynamic-trend-rsi-crossover-momentum-enhancement-strateg/` | PineScript | volatility_stop_cross | none | atr_length x2, factor x2 | 4 |
+| 483029 | `ports/483029_multi-indicator-trend-following-momentum-trading-strategy/` | PineScript | macd_cross | trailing_stop_pending | risk_reward x2, pullback_bars x2 | 4 |
+| 483032 | `ports/483032_adaptive-dual-strategy-system-for-trend-following-and-range/` | PineScript | multi_indicator_confluence | trailing_stop_pending | stop_loss_mult x2, take_profit_mult x2 | 4 |
+| 483034 | `ports/483034_zero-lag-trend-momentum-indicator-trading-strategy/` | PineScript | adaptive_average | trailing_stop_pending | length x2, volatility_mult x2 | 4 |
+| 483035 | `ports/483035_dynamic-range-breakout-trading-strategy-based-on-bollinger-b/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 483037 | `ports/483037_sma-rsi-adx-multi-indicator-trend-following-strategy-sma-dua/` | PineScript | ma_cross | trailing_stop | trail_pct x2, sma_fast x2 | 4 |
+| 483038 | `ports/483038_dynamic-multi-indicator-trend-recognition-strategy-with-trip/` | PineScript | multi_indicator_vote | none | length x2, dyn_len x2 | 4 |
+| | **3032 ports** | | | | | **13947** |
 
 ## Rejected on reading
 
@@ -3592,6 +3603,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482902 | 综合K线图形态与趋势线技术分析策略-Comprehensive-Candlestick-and-Trendline-Pattern-Analysis-Strategy.md | 2 | The exits are stop = low - 10 / high + 10 and limit = high + 10 / low - 10: fixed price amounts with no scale (criterion 2, as #473377). |
 | 482909 | 基于相对强弱指数和平均真实波幅的多层次动态成本均摊波段交易策略-Multi-Level-Dynamic-Cost-Averaging-Swing-Trading-Strategy-Based-on-RSI-and-ATR.md | 1 | DCA accumulation: up to four buys of a risk-sized quantity while RSI < 30, with the exit level taken from the average of the buy closes (as the C204-C206 DCA readings, criterion 1). |
 | 482916 | 多层级RSI交叉回归增仓策略-Multi-Level-RSI-Cross-Under-Regression-Pyramiding-Strategy.md | 1 | Pyramided buys gated on position_size against equity x 0.066 x 15 (a size-dependent gate) and a 50 % partial close (qty_percent): criterion 1, as #436524. |
+| 483022 | 基于市场情绪的动态阈值交易策略-Dynamic-Market-Sentiment-Threshold-Trading-Strategy.md | 1 | The 'Fear and Greed' values are a fixed demo array of eight numbers cycled by bar_index: the trades follow the bar count, not the market (criterion 1). |
+| 483033 | 交易品种蜡烛线大小阈值交易策略-Futures-Candlestick-Size-Threshold-Trading-Strategy.md | 1 | The trading window is timestamp(year(timenow), month(timenow), dayofmonth(timenow), ...): it is built from the run's wall clock, so only bars of the day the script runs can trade (criterion 1, as #453230). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

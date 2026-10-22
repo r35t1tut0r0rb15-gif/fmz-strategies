@@ -6609,6 +6609,28 @@ SIZING = {
     482921: [
         ("strategy(): capital 100000, 100 % of equity, pyramiding 0", 98, 104),
     ],
+    # ---- FMZ-C, batch C254 (2026-10-22)
+    483020: [
+        ("strategy(): capital 100000, 10 % of equity", 99, 99),
+    ],
+    483021: [],
+    483023: [
+        ("strategy(): capital 10000", 101, 101),
+    ],
+    483026: [
+        ("riskAmount = equity x 1 % (feeds no order)", 117, 117),
+    ],
+    483027: [],
+    483029: [
+        ("strategy(): 2 % of equity", 94, 94),
+    ],
+    483032: [],
+    483034: [],
+    483035: [],
+    483037: [
+        ("strategy(): 2 % of equity", 101, 101),
+    ],
+    483038: [],
 }
 
 REJECTED_ON_READING = {
@@ -8340,6 +8362,12 @@ REJECTED_ON_READING = {
     482916: ("1", "Pyramided buys gated on position_size against equity x 0.066 x 15 (a "
               "size-dependent gate) and a 50 % partial close (qty_percent): criterion 1, as "
               "#436524."),
+    # ---- FMZ-C, batch C254 (2026-10-22)
+    483022: ("1", "The 'Fear and Greed' values are a fixed demo array of eight numbers cycled by "
+              "bar_index: the trades follow the bar count, not the market (criterion 1)."),
+    483033: ("1", "The trading window is timestamp(year(timenow), month(timenow), "
+              "dayofmonth(timenow), ...): it is built from the run's wall clock, so only bars of "
+              "the day the script runs can trade (criterion 1, as #453230)."),
 }
 
 DUPLICATE_ON_READING = {
