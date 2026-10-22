@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1827 |
-| PORTED | 1691 |
+| PORT_CANDIDATE | 1815 |
+| PORTED | 1702 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 225 |
+| REJECTED_ON_READING | 226 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1819,7 +1819,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439760 | `ports/439760_multi-indicator-trend-reversal-trading-strategy/` | PineScript | multi_indicator_confluence | none | harsi_back x2, coral_back x2 | 4 |
 | 439764 | `ports/439764_renko-dual-direction-trend-tracking-renko-trading-strategy/` | PineScript | supertrend | none | factor x2, pd x2 | 4 |
 | 439823 | `ports/439823_renko-long-term-moving-average-crossover-renko-strategy/` | PineScript | ma_cross | none | min_gain x2, smma_length x2 | 4 |
-| | **1691 ports** | | | | | **8341** |
+| 439830 | `ports/439830_momentum-moving-average-crossover-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 439833 | `ports/439833_dynmaic-risk-adjusted-momentum-trading-strategy/` | PineScript | hull_ma | coarse_bar_stop | hlength x2, stop_multiple x2 | 4 |
+| 439835 | `ports/439835_rsi-cci-williamsr-rsi-cci-williamsr-quantitative-trading-str/` | PineScript | multi_indicator_confluence | none | tp x2, sl x2 | 4 |
+| 439836 | `ports/439836_force-breakthrough-strategy/` | PineScript | rsi_oscillator | none | rsi_os x2, sma_2_length x2 | 4 |
+| 439837 | `ports/439837_dual-moving-average-trend-tracking-strategy/` | PineScript | donchian_breakout | none | slowlen x2, fastlen x2 | 4 |
+| 439838 | `ports/439838_this-strategy-is-a-bidirectional-adaptive-range-filtering-mo/` | PineScript | trend_filter | none | rng_qty x2, rng_per x2 | 4 |
+| 439839 | `ports/439839_rsi-quantitative-trading-strategy-based-on-linear-regression/` | PineScript | rsi_oscillator | none | length x2, ema_fast x2 | 4 |
+| 439843 | `ports/439843_moving-average-divergence-strategy/` | PineScript | reversal_pattern | none | len x2, lb x2 | 4 |
+| 439854 | `ports/439854_qstick-bi-directional-crossing-zero-axis-qstick-indicator-ba/` | PineScript | candle_pattern | none | length x3 | 3 |
+| 439855 | `ports/439855_trend-tracking-stop-loss-take-profit-strategy/` | PineScript | atr_trailing_line | none | bb_period x2, atr_period x2 | 4 |
+| 439859 | `ports/439859_ema-ema-tracking-strategy/` | PineScript | ma_trend | none | ema_period x2, percent x2 | 4 |
+| | **1702 ports** | | | | | **8384** |
 
 ## Rejected on reading
 
@@ -2050,6 +2061,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439709 | 基于TSI和HMACCI指标的双边套利策略Trend-Surfing-Hedging-Strategy-Based-on-TSI-and-HMACCI-Indicators.md | 1 | Positions are built with strategy.order('BUY' / 'SELL'), which adds or removes units instead of entering or reversing, and both orders and the close_all are gated on strategy.openprofit in account currency (> -1 to trade, > 3000 to close all) with a cash order size: the net position and the exits depend on the order size (as #430596, #432078). |
 | 439752 | 基于均线的震荡突破策略Oscillation-Breakthrough-Strategy-Based-on-Moving-Average.md | 1 | On the 1-day header chart every entry needs istradingsession = time('1', '0800-1600') to be defined, and a daily bar opens outside that session (its time is the session start), so the script as written never enters; an intraday reading is not the declared chart (as #430384). |
 | 439753 | 震荡盈利波段Grid策略Profit-Grid-Strategy-With-Oscillation.md | 1 | As written (Long, 'Grid - reentry', every filter and exit '---'), the grid level starts at 0, so the second bar of the data already moves it up and enters; no exit is ever sent and pyramiding blocks further entries: a buy-and-hold from the start of whatever data is loaded, with no repeatable rule at the source's settings (as #430384). The 500 base-currency grid gap is also an instrument-specific price distance. |
+| 439844 | 基于移动平均线金叉死叉交易策略Moving-Average-Crossover-Trading-Strategy.md | 2 | Apart from the reversing entries, the exits are strategy.exit(profit = close x 0.15, loss = close x 0.20): percents of the close in PRICE units passed as TICK counts, so the real distances are 15 % / 20 % of the price times the tick size (1.5 % / 2 % at a 0.1 tick on BTC, 15 % / 20 % at a 1.0 tick), an instrument-specific bracket with no generic reading (as #437048, #437677). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

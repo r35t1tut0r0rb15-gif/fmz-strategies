@@ -3851,6 +3851,26 @@ SIZING = {
     ],
     439764: [],
     439823: [],
+    # ---- FMZ-C, batch C125 (2026-10-22)
+    439830: [
+        ("Stop / target percent or pips inputs (0)", 195, 226),
+    ],
+    439833: [
+        ("Leverage, volatility target and compounding inputs; share count", 150, 192),
+    ],
+    439835: [
+        ("Take-profit and stop percent inputs", 171, 172),
+    ],
+    439836: [],
+    439837: [
+        ("strategy(): percent of equity 100, pyramiding 0; stop input", 175, 181),
+    ],
+    439838: [],
+    439839: [],
+    439843: [],
+    439854: [],
+    439855: [],
+    439859: [],
 }
 
 REJECTED_ON_READING = {
@@ -4795,6 +4815,12 @@ REJECTED_ON_READING = {
               "of whatever data is loaded, with no repeatable rule at the source's settings (as "
               "#430384). The 500 base-currency grid gap is also an instrument-specific price "
               "distance."),
+    # ---- FMZ-C, batch C125 (2026-10-22)
+    439844: ("2", "Apart from the reversing entries, the exits are strategy.exit(profit = close x "
+              "0.15, loss = close x 0.20): percents of the close in PRICE units passed as TICK "
+              "counts, so the real distances are 15 % / 20 % of the price times the tick size "
+              "(1.5 % / 2 % at a 0.1 tick on BTC, 15 % / 20 % at a 1.0 tick), an "
+              "instrument-specific bracket with no generic reading (as #437048, #437677)."),
 }
 
 DUPLICATE_ON_READING = {

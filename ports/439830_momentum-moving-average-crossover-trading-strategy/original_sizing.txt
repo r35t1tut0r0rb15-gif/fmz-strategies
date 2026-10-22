@@ -1,0 +1,37 @@
+# Original sizing and money-management code, FMZ #439830 (基于动量均线交易策略Momentum-Moving-Average-Crossover-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/439830  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target percent or pips inputs (0)  [lines 195-226]
+  195: pips = syminfo.pointvalue / syminfo.mintick
+  196: 
+  197: percentOrPipsInput = input.string('Percent', title='Percent or Pips', options=['Percent', 'Pips'])
+  198: 
+  199: stopLossLongInput = input.float(defval=0, step=0.01, title='Stop Loss Long', minval=0)
+  200: stopLossShortInput = input.float(defval=0, step=0.01, title='Stop Loss Short', minval=0)
+  201: 
+  202: takeProfitLongInput = input.float(defval=0, step=0.01, title='Target Profit Long', minval=0)
+  203: takeProfitShortInput = input.float(defval=0, step=0.01, title='Target Profit Short', minval=0)
+  204: 
+  205: stopLossPriceLong = ta.valuewhen(tradersPostBuy, close, 0) * (stopLossLongInput / 100) * pips
+  206: stopLossPriceShort = ta.valuewhen(tradersPostSell, close, 0) * (stopLossShortInput / 100) * pips
+  207: 
+  208: takeProfitPriceLong = ta.valuewhen(tradersPostBuy, close, 0) * (takeProfitLongInput / 100) * pips
+  209: takeProfitPriceShort = ta.valuewhen(tradersPostSell, close, 0) * (takeProfitShortInput / 100) * pips
+  210: 
+  211: takeProfitALong = takeProfitLongInput > 0 ? takeProfitLongInput : na
+  212: takeProfitBLong = takeProfitPriceLong > 0 ? takeProfitPriceLong : na
+  213: 
+  214: takeProfitAShort = takeProfitShortInput > 0 ? takeProfitShortInput : na
+  215: takeProfitBShort = takeProfitPriceShort > 0 ? takeProfitPriceShort : na
+  216: 
+  217: stopLossALong = stopLossLongInput > 0 ? stopLossLongInput : na
+  218: stopLossBLong = stopLossPriceLong > 0 ? stopLossPriceLong : na
+  219: 
+  220: stopLossAShort = stopLossShortInput > 0 ? stopLossShortInput : na
+  221: stopLossBShort = stopLossPriceShort > 0 ? stopLossPriceShort : na
+  222: 
+  223: takeProfitLong = percentOrPipsInput == 'Pips' ? takeProfitALong : takeProfitBLong
+  224: stopLossLong = percentOrPipsInput == 'Pips' ? stopLossALong : stopLossBLong
+  225: takeProfitShort = percentOrPipsInput == 'Pips' ? takeProfitAShort : takeProfitBShort
+  226: stopLossShort = percentOrPipsInput == 'Pips' ? stopLossAShort : stopLossBShort

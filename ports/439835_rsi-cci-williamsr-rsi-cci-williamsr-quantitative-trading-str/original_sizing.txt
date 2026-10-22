@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #439835 (RSI-CCI-WilliamsR-量化交易策略RSI-CCI-WilliamsR-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/439835  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit and stop percent inputs  [lines 171-172]
+  171: take_profit_pct = input(1.2, title="Take Profit (%)") / 100
+  172: stop_loss_pct = input(0.45, title="Stop Loss (%)") / 100

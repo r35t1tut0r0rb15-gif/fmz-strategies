@@ -1,0 +1,48 @@
+# Original sizing and money-management code, FMZ #439833 (动态波动调整趋势跟踪策略Dynmaic-Risk-Adjusted-Momentum-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/439833  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Leverage, volatility target and compounding inputs; share count  [lines 150-192]
+  150: stopMultiple = input.float(1, 'Stop multiple', step=0.25, group='Risk Management Settings', tooltip='Multiple for ATR, setting hard stop loss from entry price')
+  151: lev = input.float(1, 'Max Leverage', step=0.5, group='Risk Management Settings', tooltip='Max leverage sets maximum allowable leverage of total capital (initial capital + any net profit), capping maximum volatility adjusted position size')
+  152: riskT = input.float(10, maxval=75, title='Annualised Volatility Target %', group='Risk Management Settings', tooltip='Specify annual risk target, used to determine volatility adjusted position size. Annualised daily volatility is referenced to this value and position size adjusted accordingly')
+  153: comp = input(false, 'Compounding', inline='09', group='Risk Management Settings')
+  154: Comppct = input.float(50, '%', step=5, inline='09', group='Risk Management Settings', tooltip='Toggle compounding of profit, and set % of profit to compound')
+  155: 
+  156: // Backtesting period
+  157: FromDay = input.int(defval=1, title='From Day', minval=1, maxval=31, inline='04', group='Backtest range')
+  158: FromMonth = input.int(defval=1, title='From Mon', minval=1, maxval=12, inline='04', group='Backtest range')
+  159: FromYear = input.int(defval=2018, title='From Yr', minval=1900, inline='04', group='Backtest range', tooltip='Set start of backtesting period')
+  160: ToDay = input.int(defval=1, title='To Day', minval=1, maxval=31, inline='05', group='Backtest range')
+  161: ToMonth = input.int(defval=1, title='To Mon', minval=1, maxval=12, inline='05', group='Backtest range')
+  162: ToYear = input.int(defval=9999, title='To Yr', minval=1900, inline='05', group='Backtest range', tooltip='Set end of backtesting period')
+  163: 
+  164: start = timestamp(FromYear, FromMonth, FromDay, 00, 00)
+  165: finish = timestamp(ToYear, ToMonth, ToDay, 23, 59)
+  166: window = true
+  167: 
+  168: // Normalised returns calculation
+  169: nRet = (src - src[1]) / ta.stdev((src - src[1]), length)
+  170: 
+  171: nPrice = ta.cum(nRet)
+  172: 
+  173: //Hull Moving Average - using normalised price series
+  174: fHMA = ta.wma(2 * ta.wma(nPrice[offset], hlength / 2) - ta.wma(nPrice[offset], hlength), math.round(math.sqrt(hlength)))
+  175: 
+  176: //Risk Management formulae
+  177: strategy.initial_capital = 50000
+  178: tr = math.max(high - low, math.abs(high - close), math.abs(low - close)) //True range
+  179: stopL = ta.sma(tr, 14) //Average true range
+  180: stdev = ta.stdev(close-close[1], 14) //volatility of recent returns
+  181: maxcapital = strategy.initial_capital+strategy.netprofit //Maximum capital available to invest - initial capital net of profit
+  182: annvol = 100*math.sqrt(365)*stdev/close //converts recent volatility of returns into annualised volatility of returns - assumes daily timeframe
+  183: 
+  184: risk = 1.1
+  185: if comp
+  186:     risk := (strategy.initial_capital+(Comppct*strategy.netprofit/100))//adjust investment capital to include compounding
+  187: else
+  188:     risk := strategy.initial_capital
+  189: 
+  190: shares = (risk * (riskT/annvol)) / close //calculates volatility adjusted position size, dependent on user specified annualised risk target
+  191: if ((shares*close) > lev*maxcapital) //ensures position size does not exceed available capital multiplied by user specified maximum leverage
+  192:     shares := lev*maxcapital/close
