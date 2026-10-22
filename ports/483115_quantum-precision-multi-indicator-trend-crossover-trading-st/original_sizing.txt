@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483115 (量子精确多指标趋势交叉交易策略-Quantum-Precision-Multi-Indicator-Trend-Crossover-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483115  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 106-106]
+  106: strategy("Quantum Precision Forex Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)

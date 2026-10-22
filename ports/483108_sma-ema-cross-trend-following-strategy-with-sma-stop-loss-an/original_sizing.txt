@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #483108 (均线交叉趋势追踪策略结合SMA止损和重入场机制-EMA-Cross-Trend-Following-Strategy-with-SMA-Stop-Loss-and-Re-Entry-Mechanism)
+# Source: https://www.fmz.com/strategy/483108  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## entries with qty = 1  [lines 124-143]
+  124:     strategy.entry("Buy Signal", strategy.long, qty=1)
+  125:     stopLossHit := false // Reset stop-loss state when a new buy position is opened
+  126: 
+  127: // Sell Logic: EMA 50 crosses EMA 150 from above
+  128: if ema50CrossBelowEMA150 
+  129:     strategy.entry("Sell Signal", strategy.short, qty=1)
+  130:     stopLossHit := false // Reset stop-loss state when a new sell position is opened
+  131: 
+  132: // Stop-Loss for Long Positions: Close if price falls below SMA 150
+  133: if strategy.position_size > 0 and priceCloseBelowSMA150
+  134:     strategy.close("Buy Signal")
+  135:     stopLossHit := true // Mark stop-loss hit
+  136: 
+  137: // Re-Entry Logic After Stop-Loss
+  138: if stopLossHit 
+  139:     if priceCrossAboveEMA150 // Re-buy logic: PRICE crosses EMA 150 from below
+  140:         strategy.entry("Re-Buy Signal", strategy.long, qty=1)
+  141:         stopLossHit := false // Reset stop-loss state after re-entry
+  142:     if ema50CrossBelowEMA150 // Re-sell logic: EMA 50 crosses EMA 150 from above
+  143:         strategy.entry("Re-Sell Signal", strategy.short, qty=1)

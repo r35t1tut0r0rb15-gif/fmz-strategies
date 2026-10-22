@@ -6671,6 +6671,33 @@ SIZING = {
     483092: [
         ("strategy(): capital 10000, 1 % of equity", 103, 103),
     ],
+    # ---- FMZ-C, batch C257 (2026-10-22)
+    483096: [],
+    483102: [],
+    483103: [
+        ("strategy(): 10 % of equity", 119, 119),
+    ],
+    483106: [],
+    483108: [
+        ("entries with qty = 1", 124, 143),
+    ],
+    483111: [],
+    483112: [
+        ("strategy(): pyramiding 1, capital 100000, 100 % of equity", 116, 118),
+    ],
+    483113: [
+        ("strategy(): 100 % of equity", 108, 108),
+    ],
+    483114: [
+        ("strategy(): margin 100 / 100", 93, 93),
+    ],
+    483115: [
+        ("strategy(): 10 % of equity", 106, 106),
+    ],
+    483116: [],
+    483117: [
+        ("strategy(): 100 % of equity", 105, 105),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8422,6 +8449,9 @@ REJECTED_ON_READING = {
               "amount for the stop, target and trailing tests (criterion 2, as #473377)."),
     483086: ("1", "Five partial take-profits of 20 % of the position each (qty = position_size x 0.2) "
               "with adds allowed: criterion 1, as #436524."),
+    # ---- FMZ-C, batch C257 (2026-10-22)
+    483104: ("2", "The exit passes loss = atr x 1.5 and profit = atr x 2.5, price amounts, where "
+              "loss= / profit= take ticks (criterion 2, as #473377)."),
 }
 
 DUPLICATE_ON_READING = {

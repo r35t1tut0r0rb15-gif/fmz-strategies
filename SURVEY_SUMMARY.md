@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3053 |
+| PORTED | 3065 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 444 |
+| REJECTED_ON_READING | 445 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 237 |
+| PORT_CANDIDATE | 224 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3181,7 +3181,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 483087 | `ports/483087_multi-period-bollinger-bands-crossover-trend-following-strat/` | PineScript | bollinger_reversion | none | length1 x2, mult x2 | 4 |
 | 483089 | `ports/483089_dynamic-breakout-falling-wedge-trendline-quantitative-tradin/` | PineScript | pivot_levels | coarse_bar_stop, trailing_stop_pending | pivot_bars x2, take_profit_percent x2 | 4 |
 | 483092 | `ports/483092_emas-price-range-breakout-momentum-trading-strategy-with-ema/` | PineScript | breakout | none | stop_frac x2, risk_reward x2 | 4 |
-| | **3053 ports** | | | | | **14026** |
+| 483096 | `ports/483096_rsi-rsi-overbought-oversold-crossover-with-bollinger-bands-d/` | PineScript | rsi_oscillator | coarse_bar_stop, trailing_stop_pending | rsi_length x2, swing_bars x2 | 4 |
+| 483102 | `ports/483102_adaptive-trading-strategy-combining-dynamic-trend-reversal-a/` | PineScript | pivot_reversal | coarse_bar_stop, trailing_stop_pending | percent x2, k_length x2 | 4 |
+| 483103 | `ports/483103_multi-technical-indicator-smart-volatility-breakout-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | atr_mult x2, bb_length x2 | 4 |
+| 483106 | `ports/483106_rsi-adx-enhanced-trend-rsi-adx-linear-regression-prediction/` | PineScript | rsi_oscillator | none | rsi_length x2, ml_lookback x2 | 4 |
+| 483108 | `ports/483108_sma-ema-cross-trend-following-strategy-with-sma-stop-loss-an/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 483111 | `ports/483111_dynamic-opening-range-breakout-high-frequency-trading-strate/` | PineScript | opening_range | none | stop_frac x2, target_mult x2 | 4 |
+| 483112 | `ports/483112_rsi-rsi-and-trend-ma-dual-filter-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, ma_length x2 | 4 |
+| 483113 | `ports/483113_advanced-supertrend-indicator-trading-mechanism-optimization/` | PineScript | supertrend | none | supertrend_length x2, supertrend_factor x2 | 4 |
+| 483114 | `ports/483114_quantitative-smart-money-flow-trading-strategy-with-dual-ema/` | PineScript | trend_filter | trailing_stop_pending | ema_fast x2, risk_reward x2 | 4 |
+| 483115 | `ports/483115_quantum-precision-multi-indicator-trend-crossover-trading-st/` | PineScript | multi_indicator_confluence | none | atr_multiplier x2, risk_reward_ratio x2 | 4 |
+| 483116 | `ports/483116_rsi-dual-moving-average-crossover-with-rsi-momentum-enhancem/` | PineScript | ma_cross | none | fast_length x2, slow_length x2 | 4 |
+| 483117 | `ports/483117_atr-atr-dynamic-trend-following-and-ema-crossover-trading-st/` | PineScript | atr_trailing_line | none | key_value x2, atr_period x2 | 4 |
+| | **3065 ports** | | | | | **14074** |
 
 ## Rejected on reading
 
@@ -3631,6 +3643,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 483067 | 多指标融合自适应趋势交易策略-Multi-Indicator-Adaptive-Trend-Trading-Strategy.md | 2 | The exits pass trail_points = 2 % x avgPrice, a price amount, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #482767). |
 | 483081 | 动态趋势确认的反转公平价值缺口量化交易策略-Dynamic-Trend-Confirmed-Inverted-Fair-Value-Gap-Quantitative-Trading-Strategy.md | 2 | stopLoss = 100 'points' is added to and subtracted from the close as a price amount for the stop, target and trailing tests (criterion 2, as #473377). |
 | 483086 | 多级布林带回归交易策略-Multi-Level-Bollinger-Bands-Mean-Reversion-Trading-Strategy.md | 1 | Five partial take-profits of 20 % of the position each (qty = position_size x 0.2) with adds allowed: criterion 1, as #436524. |
+| 483104 | 多重均线与RSI交叉动态ATR止盈止损策略-Multi-SMA-and-RSI-Crossover-Strategy-with-Dynamic-ATR-based-Take-Profit-and-Stop-Loss.md | 2 | The exit passes loss = atr x 1.5 and profit = atr x 2.5, price amounts, where loss= / profit= take ticks (criterion 2, as #473377). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #483102 (动态趋势反转与随机指标结合的自适应交易策略-Adaptive-Trading-Strategy-Combining-Dynamic-Trend-Reversal-and-Stochastic-Indicator)
+# Source: https://www.fmz.com/strategy/483102  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
