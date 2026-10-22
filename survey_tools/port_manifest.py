@@ -6189,6 +6189,29 @@ SIZING = {
     477598: [
         ("qty = equity x 200 % / close; ATR 14 x 1.5 stop / target; risk tolerance unused", 94, 128),
     ],
+    # ---- FMZ-C, batch C236 (2026-10-22)
+    477604: [
+        ("Stop at the 3-bar low / high, R:R 1.5", 97, 132),
+    ],
+    477605: [
+        ("strategy(): 100 % of equity, capital 50000", 95, 101),
+    ],
+    477606: [],
+    477608: [
+        ("ATR 14 x 1 stop / target", 106, 145),
+    ],
+    477609: [
+        ("Stop at the 5-bar swing, target 2 R", 97, 140),
+    ],
+    477611: [
+        ("Stop 0.1 % / target 0.25 %; break-even at +0.1 %", 106, 144),
+    ],
+    477612: [
+        ("Stop 1 %, TP1 2 %, TP2 3 %; capital 10000 and risk 2 % unused", 109, 146),
+    ],
+    477613: [],
+    477614: [],
+    477943: [],
 }
 
 REJECTED_ON_READING = {
@@ -7813,6 +7836,10 @@ REJECTED_ON_READING = {
               "profit close re-buys on the next bar, with a \"Rebuy\" add on each 5 % drop (ignored "
               "only by pyramiding 1): an always-invested buy from the first bar with DCA adds by "
               "design (criterion 1, as #433916 and the DCA rule)."),
+    # ---- FMZ-C, batch C236 (2026-10-22)
+    477610: ("2", "The trailing exits pass trail_points = atr x 1.5 and trail_offset = atr x 1.0, "
+              "price amounts, where the call takes ticks, with no /mintick: the trailing stop is "
+              "undefined as written (criterion 2, as #442115)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -7864,4 +7891,6 @@ HELD_ON_READING = {
     468315: ("licence", "Held for Austin: the source says 'Copyright 2024 TRADINGWITHKAY. All rights reserved. Unauthorized use, distribution, and modification of this code are strictly prohibited.' The rules themselves are portable (RSI 14 zones 20 / 30 / 70 / 80 reversing, a 50-pip bracket = 50 price units at mintick x 10, 2-day bars). Port or reject on Austin's word; the review CSV labels every held row HELD_NEEDS_VOLUME (tool label)."),
     # ---- FMZ-C, batch C208 (2026-10-22)
     468337: ("8", "The trend filter compares vwma(close, 20) with vwma(close, 50): volume-weighted averages (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C236 (2026-10-22)
+    477603: ("8", "The default moving average of the wick length is ta.vwma: a volume-weighted average (check 8, held with the other volume users)."),
 }

@@ -1,0 +1,45 @@
+# Original sizing and money-management code, FMZ #477608 (基于EMA平滑RSI和ATR动态止盈止损的多时序量化交易策略-Multi-Timeframe-Quantitative-Trading-Strategy-Based-on-EMA-Smoothed-RSI-and-ATR-Dynamic-Stop-Loss-Take-Profit)
+# Source: https://www.fmz.com/strategy/477608  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## ATR 14 x 1 stop / target  [lines 106-145]
+  106: atrLength = input.int(14, title="ATR Length")
+  107: atrMultiplier = input.float(1, title="ATR Multiplier")
+  108: atrValue = ta.atr(atrLength)  // محاسبه ATR
+  109: level1 = 30
+  110: level2 = 70
+  111: 
+  112: // تنظیمات استراتژی
+  113: var table crossingTable = table.new(position.top_right, 2, 5, border_width=1)
+  114: var int crossCount = 0
+  115: var float crossPrice = na
+  116: 
+  117: // شرط ورود به معامله خرید زمانی که RSI از سطح 70 به بالا عبور می‌کند
+  118: if (ta.crossover(smoothedRsi, level2))
+  119:     strategy.entry("Long", strategy.long)
+  120:     // تنظیم حد سود و حد ضرر
+  121:     strategy.exit("Take Profit/Stop Loss", "Long", stop=close - atrMultiplier * atrValue, limit=close + atrMultiplier * atrValue, comment="")
+  122:     crossCount := crossCount + 1
+  123:     crossPrice := close
+  124: 
+  125: // شرط ورود به معامله فروش زمانی که RSI از سطح 70 به پایین عبور می‌کند
+  126: if (ta.crossunder(smoothedRsi, level2))
+  127:     strategy.entry("Short", strategy.short)
+  128:     // تنظیم حد سود و حد ضرر
+  129:     strategy.exit("Take Profit/Stop Loss", "Short", stop=close + atrMultiplier * atrValue, limit=close - atrMultiplier * atrValue, comment="")
+  130:     crossCount := crossCount + 1
+  131:     crossPrice := close
+  132: 
+  133: // شرط ورود به معامله خرید زمانی که RSI از سطح 30 به بالا عبور می‌کند
+  134: if (ta.crossover(smoothedRsi, level1))
+  135:     strategy.entry("Long", strategy.long)
+  136:     // تنظیم حد سود و حد ضرر
+  137:     strategy.exit("Take Profit/Stop Loss", "Long", stop=close - atrMultiplier * atrValue, limit=close + atrMultiplier * atrValue, comment="")
+  138:     crossCount := crossCount + 1
+  139:     crossPrice := close
+  140: 
+  141: // شرط ورود به معامله فروش زمانی که RSI از سطح 30 به پایین عبور می‌کند
+  142: if (ta.crossunder(smoothedRsi, level1))
+  143:     strategy.entry("Short", strategy.short)
+  144:     // تنظیم حد سود و حد ضرر
+  145:     strategy.exit("Take Profit/Stop Loss", "Short", stop=close + atrMultiplier * atrValue, limit=close - atrMultiplier * atrValue, comment="")

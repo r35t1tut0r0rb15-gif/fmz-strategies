@@ -1,0 +1,43 @@
+# Original sizing and money-management code, FMZ #477612 (基于动量与均线组合的多重技术指标趋势跟踪策略-Multi-Technical-Indicator-Momentum-MA-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/477612  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 %, TP1 2 %, TP2 3 %; capital 10000 and risk 2 % unused  [lines 109-146]
+  109: capital = input.float(10000, title="رأس المال (ريال)", minval=1000)    // رأس المال الافتراضي
+  110: riskPercent = input.float(2, title="نسبة المخاطرة (%)", minval=0.1, maxval=10) / 100  // نسبة المخاطرة
+  111: buySLPercent = input.float(1, title="وقف الخسارة (%)", minval=0.1, maxval=10) / 100  // وقف الخسارة
+  112: tp1Percent = input.float(2, title="الهدف الأول (%)", minval=0.1, maxval=20) / 100   // الهدف الأول
+  113: tp2Percent = input.float(3, title="الهدف الثاني (%)", minval=0.1, maxval=30) / 100 // الهدف الثاني
+  114: 
+  115: // إعدادات المؤشرات الفنية
+  116: macdFastLength = input.int(12, title="MACD - فترة المتوسط السريع", minval=1)
+  117: macdSlowLength = input.int(26, title="MACD - فترة المتوسط البطيء", minval=1)
+  118: macdSignalLength = input.int(9, title="MACD - فترة الإشارة", minval=1)
+  119: 
+  120: rsiLength = input.int(14, title="RSI - فترة المؤشر", minval=1)
+  121: rsiThreshold = input.int(50, title="RSI - مستوى الدخول", minval=1, maxval=100)
+  122: 
+  123: ma50Length = input.int(50, title="MA50 - فترة المتوسط المتحرك", minval=1)
+  124: ma200Length = input.int(200, title="MA200 - فترة المتوسط المتحرك", minval=1)
+  125: 
+  126: // حساب إدارة المخاطر
+  127: riskAmount = capital * riskPercent  // قيمة المخاطرة
+  128: 
+  129: // حساب المؤشرات الفنية
+  130: [macdLine, signalLine, _] = ta.macd(close, macdFastLength, macdSlowLength, macdSignalLength)
+  131: rsiValue = ta.rsi(close, rsiLength)
+  132: ma50 = ta.sma(close, ma50Length)
+  133: ma200 = ta.sma(close, ma200Length)
+  134: 
+  135: // تعريف الاتجاه العام للسوق باستخدام المتوسطات
+  136: isBullishTrend = ma50 > ma200
+  137: 
+  138: // شروط الدخول شراء فقط
+  139: if ta.crossover(macdLine, signalLine) and rsiValue > rsiThreshold and isBullishTrend
+  140:     entryPrice = close
+  141:     stopLoss = entryPrice * (1 - buySLPercent)   // وقف الخسارة أسفل نقطة الدخول
+  142:     takeProfit1 = entryPrice * (1 + tp1Percent) // الهدف الأول
+  143:     takeProfit2 = entryPrice * (1 + tp2Percent) // الهدف الثاني
+  144:     strategy.entry("Buy", strategy.long)        // فتح صفقة شراء
+  145:     strategy.exit("TP1", "Buy", limit=takeProfit1, stop=stopLoss)
+  146:     strategy.exit("TP2", "Buy", limit=takeProfit2)

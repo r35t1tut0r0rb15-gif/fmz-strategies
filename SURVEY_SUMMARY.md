@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2839 |
+| PORTED | 2849 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 569 |
-| PORT_CANDIDATE | 496 |
-| REJECTED_ON_READING | 403 |
+| HELD_NEEDS_VOLUME | 570 |
+| PORT_CANDIDATE | 484 |
+| REJECTED_ON_READING | 404 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2967,7 +2967,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 477596 | `ports/477596_multi-timeframe-heikin-ashi-moving-average-trend-following-t/` | PineScript | heikin_ashi | none | slow x3 | 3 |
 | 477597 | `ports/477597_kdj-multi-indicator-optimized-kdj-trend-crossover-strategy-b/` | PineScript | stochastic_oscillator | coarse_bar_stop | period x2, d_signal x2 | 4 |
 | 477598 | `ports/477598_atr-dynamic-moving-average-crossover-trend-following-strateg/` | PineScript | ma_cross | coarse_bar_stop | atr_mult x2, slow x2 | 4 |
-| | **2839 ports** | | | | | **13198** |
+| 477604 | `ports/477604_macd-advanced-macd-crossover-trading-strategy-with-adaptive/` | PineScript | macd | coarse_bar_stop | velas_sl x2, ratio x2 | 4 |
+| 477605 | `ports/477605_supertrend-multi-timeframe-supertrend-dynamic-trend-trading/` | PineScript | supertrend | none | factor x2, atr_period x2 | 4 |
+| 477606 | `ports/477606_k-multi-timeframe-candlestick-pattern-trading-strategy/` | PineScript | candle_pattern | none |  | 0 |
+| 477608 | `ports/477608_ema-rsi-atr-multi-timeframe-quantitative-trading-strategy-ba/` | PineScript | rsi_oscillator | coarse_bar_stop, trailing_stop_pending | smoothing x2, atr_mult x2 | 4 |
+| 477609 | `ports/477609_dual-technical-indicator-momentum-reversal-trading-strategy/` | PineScript | bollinger_reversion | coarse_bar_stop, trailing_stop_pending | swing x2, rr x2 | 4 |
+| 477611 | `ports/477611_triple-ema-crossover-trading-system-with-smart-r2r-based-sto/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | sl_pct x2, tp_pct x2 | 4 |
+| 477612 | `ports/477612_multi-technical-indicator-momentum-ma-trend-following-strate/` | PineScript | macd | trailing_stop_pending | tp_pct x2, sl_pct x2 | 4 |
+| 477613 | `ports/477613_multi-technical-indicator-fusion-trend-following-quantitativ/` | PineScript | bollinger_reversion | none | rsi_low x2, bb_length x2 | 4 |
+| 477614 | `ports/477614_sma-long-term-trend-sma-crossover-quantitative-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 477943 | `ports/477943_rsi-dual-ema-rsi-divergence-strategy-a-trend-capture-system/` | PineScript | rsi_oscillator | none | rsi_long x2, slow x2 | 4 |
+| | **2849 ports** | | | | | **13234** |
 
 ## Rejected on reading
 
@@ -3376,6 +3386,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 477565 | 多时间周期动态信号组合的ICT智能结构突破策略-Multi-Period-Dynamic-Signal-Integration-ICT-Smart-Structure-Breakthrough-Strategy.md | 1 | Every entry needs the bar inside the 07:00-10:00 kill-zone session (time(timeframe.period, session)), which a 2-day bar starting at the day boundary never is: the strategy never trades on its own chart (criterion 1, intraday time windows on a multi-day chart, as #437544). |
 | 477584 | 高级均线交叉趋势跟踪策略结合ATR动态止盈止损系统-Advanced-EMA-Crossover-Trend-Following-Strategy-with-ATR-Based-Dynamic-Stop-Management-System.md | 2 | The bracket's trail_points = atr x 2.0 is a price amount where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #442115). |
 | 477600 | 基于下跌幅度与目标利润的多头网格策略-Long-Grid-Strategy-Based-on-Drawdown-and-Target-Profit.md | 1 | A grid: the first bar buys with no market signal (active_trade false) and every profit close re-buys on the next bar, with a "Rebuy" add on each 5 % drop (ignored only by pyramiding 1): an always-invested buy from the first bar with DCA adds by design (criterion 1, as #433916 and the DCA rule). |
+| 477610 | 基于动态波动率的高频指数均线交叉量化策略-Dynamic-Volatility-Driven-High-Frequency-EMA-Crossover-Quantitative-Strategy.md | 2 | The trailing exits pass trail_points = atr x 1.5 and trail_offset = atr x 1.0, price amounts, where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #442115). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

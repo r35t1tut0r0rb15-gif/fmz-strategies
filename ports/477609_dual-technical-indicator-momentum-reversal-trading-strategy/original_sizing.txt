@@ -1,0 +1,49 @@
+# Original sizing and money-management code, FMZ #477609 (双重技术指标动量反转交易策略结合风险管理系统-Dual-Technical-Indicator-Momentum-Reversal-Trading-Strategy-with-Risk-Management-System)
+# Source: https://www.fmz.com/strategy/477609  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop at the 5-bar swing, target 2 R  [lines 97-140]
+   97: risk_to_reward = input.float(2.0, title="Risk-to-Reward Ratio", minval=1.0, step=0.1)
+   98: 
+   99: // Calculate Indicators
+  100: rsi_value = ta.rsi(src, length_rsi)
+  101: basis = ta.sma(src, length_bb)
+  102: dev = ta.stdev(src, length_bb)
+  103: upper_band = basis + 2 * dev
+  104: lower_band = basis - 2 * dev
+  105: 
+  106: // Define Buy and Sell Conditions
+  107: rsi_buy_condition = rsi_value < oversold_level // RSI below 30 (buy signal)
+  108: bollinger_buy_condition = close <= lower_band // Price at or near lower Bollinger Band (buy signal)
+  109: 
+  110: rsi_sell_condition = rsi_value > overbought_level // RSI above 70 (sell signal)
+  111: bollinger_sell_condition = close >= upper_band // Price at or near upper Bollinger Band (sell signal)
+  112: 
+  113: // Combine Buy and Sell Conditions
+  114: buy_condition = rsi_buy_condition and bollinger_buy_condition
+  115: sell_condition = rsi_sell_condition and bollinger_sell_condition
+  116: 
+  117: // Plot Buy and Sell Signals with white text and green/red boxes
+  118: plotshape(series=buy_condition, location=location.belowbar, color=color.green, style=shape.labelup, title="Buy Signal", text="BUY", textcolor=color.white, size=size.small)
+  119: plotshape(series=sell_condition, location=location.abovebar, color=color.red, style=shape.labeldown, title="Sell Signal", text="SELL", textcolor=color.white, size=size.small)
+  120: 
+  121: // Calculate Swing Points (for Stop Loss)
+  122: swing_low = ta.lowest(low, 5)  // Last 5 bars' low
+  123: swing_high = ta.highest(high, 5) // Last 5 bars' high
+  124: 
+  125: // Calculate Risk (Distance from Entry to SL)
+  126: long_risk = close - swing_low
+  127: short_risk = swing_high - close
+  128: 
+  129: // Calculate Take Profit using 1:2 Risk-to-Reward Ratio
+  130: take_profit_long = close + 2 * long_risk
+  131: take_profit_short = close - 2 * short_risk
+  132: 
+  133: // Strategy Execution: Enter Buy/Sell Positions
+  134: if buy_condition
+  135:     strategy.entry("Buy", strategy.long)
+  136:     strategy.exit("Take Profit", "Buy", limit=take_profit_long, stop=swing_low)  // Set TP and SL for Buy
+  137: 
+  138: if sell_condition
+  139:     strategy.entry("Sell", strategy.short)
+  140:     strategy.exit("Take Profit", "Sell", limit=take_profit_short, stop=swing_high)  // Set TP and SL for Sell

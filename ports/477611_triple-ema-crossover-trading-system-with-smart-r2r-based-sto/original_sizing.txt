@@ -1,0 +1,44 @@
+# Original sizing and money-management code, FMZ #477611 (三均线交叉结合风险收益比的智能移动止损交易系统-Triple-EMA-Crossover-Trading-System-with-Smart-R2R-based-Stop-Loss-Management)
+# Source: https://www.fmz.com/strategy/477611  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 0.1 % / target 0.25 %; break-even at +0.1 %  [lines 106-144]
+  106: fixed_risk_reward = input.float(1.0, title="Risk/Reward Ratio (R2R)")
+  107: sl_percentage = input.float(0.001, title="Stop Loss Percentage", step=0.0001)
+  108: tp_percentage = input.float(0.0025, title="Take Profit Percentage", step=0.0001)
+  109: 
+  110: // Изчисляване на EMA
+  111: ema8 = ta.ema(close, ema8_period)
+  112: ema21 = ta.ema(close, ema21_period)
+  113: ema89 = ta.ema(close, ema89_period)
+  114: 
+  115: // Условия за BUY
+  116: buy_condition = ta.crossover(ema8, ema21) and close > ema89 and close > open
+  117: 
+  118: // Условия за SELL
+  119: sell_condition = ta.crossunder(ema8, ema21) and close < ema89 and close < open
+  120: 
+  121: // Вход в BUY позиция
+  122: if (buy_condition)
+  123:     stop_loss = close * (1 - sl_percentage)
+  124:     take_profit = close * (1 + tp_percentage)
+  125:     strategy.entry("BUY", strategy.long)
+  126:     strategy.exit("TP/SL", from_entry="BUY", stop=stop_loss, limit=take_profit)
+  127: 
+  128: // Вход в SELL позиция
+  129: if (sell_condition)
+  130:     stop_loss = close * (1 + sl_percentage)
+  131:     take_profit = close * (1 - tp_percentage)
+  132:     strategy.entry("SELL", strategy.short)
+  133:     strategy.exit("TP/SL", from_entry="SELL", stop=stop_loss, limit=take_profit)
+  134: 
+  135: // Логика за преместване на стоп към BE
+  136: if (strategy.position_size > 0)
+  137:     entry_price = strategy.position_avg_price
+  138:     // За LONG позиция
+  139:     if (strategy.position_size > 0 and high  >= entry_price + (entry_price * sl_percentage * fixed_risk_reward))
+  140:         strategy.exit("SL to BE", from_entry="BUY", stop=entry_price)
+  141:         label.new(bar_index, high, "SL moved to BE", color=color.green)
+  142:     // За SHORT позиция
+  143:     if (strategy.position_size < 0 and low <= entry_price - (entry_price * sl_percentage * fixed_risk_reward))
+  144:         strategy.exit("SL to BE", from_entry="SELL", stop=entry_price)

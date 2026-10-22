@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #477605 (多时间周期Supertrend趋势交易策略的动态组合算法-Multi-Timeframe-Supertrend-Dynamic-Trend-Trading-Algorithm)
+# Source: https://www.fmz.com/strategy/477605  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital 50000  [lines 95-101]
+   95: strategy("Multi-Timeframe Supertrend Strategy", 
+   96:          overlay=true, 
+   97:          shorttitle="MTF Supertrend TF", 
+   98:          default_qty_type=strategy.percent_of_equity, 
+   99:          default_qty_value=100, 
+  100:          initial_capital=50000, 
+  101:          currency=currency.USD)

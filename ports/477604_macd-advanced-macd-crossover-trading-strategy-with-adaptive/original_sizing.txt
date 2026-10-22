@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #477604 (高级MACD均线交叉交易策略结合自适应风险管理-Advanced-MACD-Crossover-Trading-Strategy-with-Adaptive-Risk-Management)
+# Source: https://www.fmz.com/strategy/477604  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop at the 3-bar low / high, R:R 1.5  [lines 97-132]
+   97: velas_sl = input.int(3, "Velas para calcular Stop Loss", minval=1)
+   98: ratio = input.float(1.5, "Ratio Beneficio:Riesgo", minval=0.5)
+   99: rapida = input.int(12, "Periodo Media Rápida")
+  100: lenta = input.int(26, "Periodo Media Lenta")
+  101: senal = input.int(9, "Periodo Señal")
+  102: 
+  103: // Calcular MACD
+  104: [macdLinea, senalLinea, histograma] = ta.macd(close, rapida, lenta, senal)
+  105: 
+  106: // Señales
+  107: senal_larga = ta.crossover(macdLinea, senalLinea) and histograma > 0
+  108: senal_corta = ta.crossunder(macdLinea, senalLinea) and histograma < 0
+  109: 
+  110: // Gestión de riesgo
+  111: calcular_sl_largo() => ta.lowest(low, velas_sl)
+  112: calcular_sl_corto() => ta.highest(high, velas_sl)
+  113: 
+  114: calcular_tp(entrada, sl, es_larga) =>
+  115:     distancia = math.abs(entrada - sl)
+  116:     es_larga ? entrada + (distancia * ratio) : entrada - (distancia * ratio)
+  117: 
+  118: // Operaciones
+  119: sl_largo = calcular_sl_largo()
+  120: sl_corto = calcular_sl_corto()
+  121: 
+  122: if (direccion != "corta" and senal_larga and strategy.position_size == 0)
+  123:     entrada = close
+  124:     tp = calcular_tp(entrada, sl_largo, true)
+  125:     strategy.entry("Larga", strategy.long)
+  126:     strategy.exit("Salida Larga", "Larga", stop=sl_largo, limit=tp)
+  127: 
+  128: if (direccion != "larga" and senal_corta and strategy.position_size == 0)
+  129:     entrada = close
+  130:     tp = calcular_tp(entrada, sl_corto, false)
+  131:     strategy.entry("Corta", strategy.short)
+  132:     strategy.exit("Salida Corta", "Corta", stop=sl_corto, limit=tp)
