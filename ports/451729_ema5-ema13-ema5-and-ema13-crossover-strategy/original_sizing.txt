@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #451729 (EMA5与EMA13交叉策略-EMA5-and-EMA13-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/451729  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Buy quantity input 1 (unused by the orders)  [lines 91-91]
+   91: qty = input(1, 'Buy quantity')

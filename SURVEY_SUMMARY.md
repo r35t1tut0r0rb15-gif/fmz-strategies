@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2332 |
-| PORT_CANDIDATE | 1083 |
+| PORTED | 2339 |
+| PORT_CANDIDATE | 1071 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 325 |
+| REJECTED_ON_READING | 330 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2460,7 +2460,14 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 451713 | `ports/451713_upperband-super-moving-average-and-upperband-crossover-strat/` | PineScript | volatility_channel_breakout | none | factor x2, length x2 | 4 |
 | 451715 | `ports/451715_k-k-consecutive-candles-bull-bear-strategy/` | PineScript | candle_pattern | none | k x2, k_atr x2 | 4 |
 | 451723 | `ports/451723_laguerre-rsi-adx-laguerre-rsi-with-adx-filtered-trading-sign/` | PineScript | rsi_oscillator | none | alpha x2, adx_level x2 | 4 |
-| | **2332 ports** | | | | | **10787** |
+| 451727 | `ports/451727_reverse-volatility-breakout-strategy/` | PineScript | bollinger_reversion | none | bb_len x2, bb_mult x2, rsi_len x2 | 8 |
+| 451729 | `ports/451729_ema5-ema13-ema5-and-ema13-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 451730 | `ports/451730_macd-multi-timeframe-trend-tracking-strategy-based-on-impuls/` | PineScript | macd_cross | none | length_ma x2, length_signal x2 | 4 |
+| 451733 | `ports/451733_dual-moving-average-crossover-strategy/` | PineScript | ma_cross | coarse_bar_stop | quick x2, slow x2, sl_pct x2 | 8 |
+| 452275 | `ports/452275_ema-ema-crossover-with-short-term-signals-strategy/` | PineScript | volatility_channel_breakout | none | length x3 | 3 |
+| 452280 | `ports/452280_ema-sma-crossover-bull-market-support-band-strategy/` | PineScript | ma_cross | none | sma_len x2, ema_len x2 | 4 |
+| 452355 | `ports/452355_rsi-bollinger-bands-rsi-trading-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2, rsi_len x2 | 8 |
+| | **2339 ports** | | | | | **10826** |
 
 ## Rejected on reading
 
@@ -2791,6 +2798,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 451028 | 基于支撑位和阻力位的技术分析交易策略-Trading-Strategy-Based-on-Support-and-Resistance-Levels-Using-Technical-Analysis.md | 1 | The levels are strict 7-bar pivots of the daily close requested on hourly bars, a series that stays flat for each day, so no pivot ever forms and no order can be sent (criterion 1). |
 | 451411 | DZ-Session-Breakout-Strategy-DZ交易时段突破策略.md | 1 | Every entry needs the London window (hour 13 to 15, or 16:00 exactly) on the bar's UTC open hour, and the header's 6-hour bars open at 0, 6, 12 and 18 UTC only: no order can fire as written (criterion 1, as #435514). |
 | 451493 | RSI量化交易策略-RSI-Quantitative-Trading-Strategy.md | 1 | Both exits set stop = limit = the bar's close (take profit and stop loss 0 %), attached to each entry: the long's sell limit under or sell stop over the fill fills at the entry open itself (the short's likewise), so every trade opens and closes at one price; the martingale entries are refused by pyramiding 1 (criterion 1, constant / never-trading). |
+| 451724 | 改进型多空转换K线形态突破策略Improved-Swing-High-Low-Breakout-Strategy-with-Bullish-and-Bearish-Engulfing-Patterns.md | 2 | strategy.exit(profit = targetLevel, loss = stopLevel) passes price levels (both equal the bar's close) where the call takes tick distances: the stop and target are undefined as written (criterion 2, as #441086, #442076). |
+| 451726 | Nifty50三分钟开盘价突破策略-Nifty-50-3-Minute-Opening-Range-Breakout-Strategy.md | 1 | The session start is ta.change(hour(time, 'D')) != 0 on the header's daily bars, where the hour never changes: the first-candle high / low are never set (or only from the data's first bar), so the breakouts never fire as written (criterion 1, as the daily clock tests of C170-C175 and #430384). |
+| 452281 | 五重强势移动平均策略-Quintuple-Strong-Moving-Average-Strategy.md | 1 | The five averages are request.security(syminfo.tickerid, '5' / '30' / '60' / '480' / '720', ..., lookahead_on) on the daily header chart: resolutions below the chart's, whose value per daily bar is undefined (criterion 1, as #427518). |
+| 452282 | SMK-ULTRA-TREND-双均线交叉策略SMK-ULTRA-TREND-Dual-Moving-Average-Crossover-Strategy.md | 1 | The only exit is strategy.close('sell'), an id never entered, so the EMA 5 / 20 cross-up long is never closed: one long held from the first signal with no exit (criterion 1, as #440692). |
+| 452353 | 双均线回归交易策略-Dual-Moving-Average-Regression-Trading-Strategy.md | 1 | Sixteen take-profit exits close qty_percent = 5 % each (partial exits), and the trailing multiplier switches on the count of closed trades: partial-position and trade-history-dependent exits (criterion 1, as #436524). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

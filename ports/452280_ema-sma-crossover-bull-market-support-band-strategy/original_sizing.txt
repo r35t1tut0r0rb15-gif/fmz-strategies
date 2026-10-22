@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #452280 (均线交叉牛市支撑带策略-EMA-SMA-Crossover-Bull-Market-Support-Band-Strategy)
+# Source: https://www.fmz.com/strategy/452280  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): initial capital 1000  [lines 82-82]
+   82: strategy("EMA-SMA Crossover Strategy", overlay=true, initial_capital = 1000)

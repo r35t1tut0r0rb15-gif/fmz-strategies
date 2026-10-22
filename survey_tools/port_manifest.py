@@ -5009,6 +5009,20 @@ SIZING = {
         ("Stop loss / take profit 500 ticks; trailing start 200 ticks, give-back 50 %", 97, 100),
     ],
     451723: [],
+    # ---- FMZ-C, batch C187 (2026-10-22)
+    451727: [],
+    451729: [
+        ("Buy quantity input 1 (unused by the orders)", 91, 91),
+    ],
+    451730: [],
+    451733: [
+        ("Stop loss 2 % of the signal close", 116, 138),
+    ],
+    452275: [],
+    452280: [
+        ("strategy(): initial capital 1000", 82, 82),
+    ],
+    452355: [],
 }
 
 REJECTED_ON_READING = {
@@ -6329,6 +6343,23 @@ REJECTED_ON_READING = {
               "fills at the entry open itself (the short's likewise), so every trade opens and "
               "closes at one price; the martingale entries are refused by pyramiding 1 (criterion "
               "1, constant / never-trading)."),
+    # ---- FMZ-C, batch C187 (2026-10-22)
+    451724: ("2", "strategy.exit(profit = targetLevel, loss = stopLevel) passes price levels (both "
+              "equal the bar's close) where the call takes tick distances: the stop and target "
+              "are undefined as written (criterion 2, as #441086, #442076)."),
+    451726: ("1", "The session start is ta.change(hour(time, 'D')) != 0 on the header's daily bars, "
+              "where the hour never changes: the first-candle high / low are never set (or only "
+              "from the data's first bar), so the breakouts never fire as written (criterion 1, "
+              "as the daily clock tests of C170-C175 and #430384)."),
+    452281: ("1", "The five averages are request.security(syminfo.tickerid, '5' / '30' / '60' / '480' "
+              "/ '720', ..., lookahead_on) on the daily header chart: resolutions below the "
+              "chart's, whose value per daily bar is undefined (criterion 1, as #427518)."),
+    452282: ("1", "The only exit is strategy.close('sell'), an id never entered, so the EMA 5 / 20 "
+              "cross-up long is never closed: one long held from the first signal with no exit "
+              "(criterion 1, as #440692)."),
+    452353: ("1", "Sixteen take-profit exits close qty_percent = 5 % each (partial exits), and the "
+              "trailing multiplier switches on the count of closed trades: partial-position and "
+              "trade-history-dependent exits (criterion 1, as #436524)."),
 }
 
 DUPLICATE_ON_READING = {

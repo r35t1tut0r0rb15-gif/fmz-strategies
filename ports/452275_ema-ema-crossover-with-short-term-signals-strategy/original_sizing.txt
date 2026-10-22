@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #452275 (EMA均线交叉与短期信号策略-EMA-Crossover-with-Short-term-Signals-Strategy)
+# Source: https://www.fmz.com/strategy/452275  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

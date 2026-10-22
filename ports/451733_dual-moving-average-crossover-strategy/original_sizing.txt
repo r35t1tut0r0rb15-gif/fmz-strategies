@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #451733 (双均线交叉策略-Dual-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/451733  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop loss 2 % of the signal close  [lines 116-138]
+  116: stop_loss_percentage = input(2.0, title="Stop Loss (%)")
+  117: 
+  118: var float longStopLevel = na
+  119: var float shortStopLevel = na
+  120: 
+  121: bool isGoldenCross = ta.crossover(maQuick, maSlow)
+  122: bool isDeathCross  = ta.crossunder(maQuick, maSlow)
+  123: 
+  124: //------------------------------------------------------------------------------
+  125: // position opening logic
+  126: //------------------------------------------------------------------------------
+  127: 
+  128: if(strategy.position_size == 0)
+  129:     // Golden cross, enter a long position
+  130:     if(isGoldenCross)
+  131:         strategy.entry("Buy", strategy.long)
+  132:         longStopLevel := close - close * stop_loss_percentage/100.0
+  133:         strategy.exit("StopLossLong", "Buy", stop=longStopLevel)
+  134:     // Death cross, enter short position
+  135:     else if(isDeathCross)
+  136:         strategy.entry("Sell", strategy.short)
+  137:         shortStopLevel := close + close * stop_loss_percentage/100.0
+  138:         strategy.exit("StopLossShort", "Sell", stop=shortStopLevel)
