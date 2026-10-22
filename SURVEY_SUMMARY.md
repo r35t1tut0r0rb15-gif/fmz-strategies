@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2890 |
+| PORTED | 2900 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 570 |
-| PORT_CANDIDATE | 436 |
-| REJECTED_ON_READING | 411 |
+| PORT_CANDIDATE | 424 |
+| REJECTED_ON_READING | 413 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -3018,7 +3018,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 478743 | `ports/478743_adaptive-trend-following-and-multi-confirmation-trading-stra/` | PineScript | channel_breakout | none | dlen x2, coral_period x2 | 4 |
 | 478744 | `ports/478744_rsi-dual-moving-average-rsi-multi-signal-trend-trading-strat/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 478747 | `ports/478747_adaptive-bollinger-bands-mean-reversion-trading-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | bb_length x2, tp_pct x2 | 4 |
-| | **2890 ports** | | | | | **13396** |
+| 478748 | `ports/478748_atr-multi-dimensional-trend-analysis-with-atr-based-dynamic/` | PineScript | ichimoku | trailing_stop_pending | conv_len x2, base_len x2 | 4 |
+| 481093 | `ports/481093_momentum-adaptive-gaussian-channel-multi-period-strategy/` | PineScript | volatility_band | none | length_gc x2, multiplier x2 | 4 |
+| 481094 | `ports/481094_logarithmic-weighted-moving-average-trading-strategy-based-o/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 481097 | `ports/481097_high-frequency-volatility-breakout-trend-following-strategy/` | PineScript | bollinger_reversion | none | bb_period x2, bb_mult x2 | 4 |
+| 481100 | `ports/481100_sma-combined-sma-and-bollinger-bands-engulfing-pattern-tradi/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop_pending | rr x2, bb_length x2 | 4 |
+| 481103 | `ports/481103_cloud-based-dual-moving-average-momentum-strategy/` | PineScript | ichimoku | none | tenkan x2, kijun x2 | 4 |
+| 481104 | `ports/481104_multi-dimensional-trend-following-strategy-with-volatility-a/` | PineScript | supertrend | trailing_stop_pending | factor x2, ma_length x2 | 4 |
+| 481105 | `ports/481105_ema-macdrsi-multi-indicator-trend-momentum-crossover-strateg/` | PineScript | macd | none | signal_len x2, rsi_high x2 | 4 |
+| 481347 | `ports/481347_rsi-dynamic-rsi-enhanced-ema-trend-trading-strategy/` | PineScript | ma_cross | coarse_bar_stop | sl_frac x2, tp_frac x2 | 4 |
+| 481349 | `ports/481349_rsi-atr-cross-period-momentum-ema-strategy-with-rsi-and-dyna/` | PineScript | ma_cross | coarse_bar_stop | atr_mult x2, tp_factor x2 | 4 |
+| | **2900 ports** | | | | | **13436** |
 
 ## Rejected on reading
 
@@ -3435,6 +3445,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 478691 | RSI动态突破回调交易策略-RSI-Dynamic-Breakout-Retracement-Trading-Strategy.md | 1 | The long and short each send a "Partial Take Profit" exit with qty_percent=50 and a break-even move for the other half: partial exits (criterion 1). |
 | 478711 | 动态波浪趋势与斐波那契综合量化交易策略-Dynamic-WaveTrend-and-Fibonacci-Integrated-Quantitative-Trading-Strategy.md | 1 | The Fibonacci levels use the lowest low and highest high since the first bar of the chart (var levels widened on every bar): levels set by the data window's start (criterion 1, data-window levels, as #430034). |
 | 478713 | 多重通道动态支撑阻力肯尼通道策略-Multi-Channel-Dynamic-Support-Resistance-Keltner-Channel-Strategy.md | 1 | The long entry needs close > request.security(higher time frame, sma(close, 20), lookahead_on): the higher bar's final value is read before it closes (criterion 1, lookahead_on for a higher time frame). |
+| 481345 | 多重均线趋势跟踪与动态止损策略-Multi-EMA-Trend-Following-Strategy-with-Dynamic-Stop-Loss.md | 1 | The entry reads daily EMAs from request.security("D", ..., lookahead=barmerge.lookahead_on) on an hourly chart: the day's final values are used before the day ends (criterion 1, lookahead_on for a higher time frame). |
+| 481346 | 多周期市场疲劳度分析策略与风险管理系统-Multi-Timeframe-Market-Exhaustion-Analysis-Strategy-with-Risk-Management-System.md | 1 | strategy.close_all when the drawdown of strategy.equity from its peak reaches 10 %: an exit set by the account's equity path (criterion 1, equity gates, as #453662). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

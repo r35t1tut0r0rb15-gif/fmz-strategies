@@ -1,0 +1,47 @@
+# Original sizing and money-management code, FMZ #481104 (多维度趋势跟踪与波动率自适应止损策略-Multi-Dimensional-Trend-Following-Strategy-with-Volatility-Adaptive-Stop-Loss)
+# Source: https://www.fmz.com/strategy/481104  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin 100 %; trail 1.5 x ATR  [lines 104-145]
+  104: strategy("Trend Strategy with Stop Loss", overlay=true, margin_long=100, margin_short=100)
+  105: 
+  106: // ———— Inputs ———— //
+  107: atrLength = input(14, "ATR Length")
+  108: supertrendMultiplier = input(3.0, "Supertrend Multiplier")
+  109: rsiLength = input(14, "RSI Length")
+  110: maLength = input(50, "MA Length")
+  111: trailOffset = input(1.5, "Trailing Stop ATR Multiplier")
+  112: 
+  113: // ———— Indicators ———— //
+  114: // Supertrend for trend direction
+  115: [supertrend, direction] = ta.supertrend(supertrendMultiplier, atrLength)
+  116: 
+  117: // RSI for momentum filter
+  118: 
+  119: rsi = ta.rsi(close, rsiLength)
+  120: 
+  121: // Moving Average for trend confirmation
+  122: ma = ta.sma(close, maLength)
+  123: 
+  124: // ATR for volatility-based stop loss
+  125: atr = ta.atr(atrLength)
+  126: 
+  127: // ———— Strategy Logic ———— //
+  128: // Buy Signal: Supertrend bullish + RSI not overbought + Price above MA
+  129: buyCondition = direction < 0 and rsi < 65 and close > ma
+  130: 
+  131: // Sell Signal: Supertrend turns bearish
+  132: sellCondition = direction > 0
+  133: 
+  134: // ———— Stop Loss & Trailing ———— //
+  135: stopPrice = close - (atr * trailOffset)
+  136: var float trail = na
+  137: if buyCondition and strategy.position_size == 0
+  138:     trail := stopPrice
+  139: else
+  140:     trail := math.max(stopPrice, nz(trail[1]))
+  141: 
+  142: // ———— Execute Orders ———— //
+  143: strategy.entry("Long", strategy.long, when=buyCondition)
+  144: strategy.close("Long", when=sellCondition)
+  145: strategy.exit("Trail Exit", "Long", stop=trail)

@@ -6309,6 +6309,33 @@ SIZING = {
     478747: [
         ("strategy(): 200 % of equity; stop 1 % / target 2 %", 119, 161),
     ],
+    # ---- FMZ-C, batch C241 (2026-10-22)
+    478748: [
+        ("ATR 14 x 1.5 stop / x 3 target from the current close", 131, 139),
+    ],
+    481093: [
+        ("qty = min(equity x 0.5 % / ATR 22, equity x 0.5 / close); commission 0.1 %", 103, 220),
+    ],
+    481094: [],
+    481097: [
+        ("strategy(): 200 % of equity", 97, 97),
+    ],
+    481100: [
+        ("Stop at the candle low / high, R:R 1:2", 141, 157),
+    ],
+    481103: [],
+    481104: [
+        ("strategy(): margin 100 %; trail 1.5 x ATR", 104, 145),
+    ],
+    481105: [
+        ("strategy(): 200 % of equity", 101, 101),
+    ],
+    481347: [
+        ("capital 15000, risk 1000, target 5000, lot 1; stop 30 points", 107, 152),
+    ],
+    481349: [
+        ("strategy(): 200 % of equity; ATR 1.5 stop / 2 target", 135, 174),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7959,6 +7986,13 @@ REJECTED_ON_READING = {
     478713: ("1", "The long entry needs close > request.security(higher time frame, sma(close, 20), "
               "lookahead_on): the higher bar's final value is read before it closes (criterion 1, "
               "lookahead_on for a higher time frame)."),
+    # ---- FMZ-C, batch C241 (2026-10-22)
+    481345: ("1", "The entry reads daily EMAs from request.security(\"D\", ..., "
+              "lookahead=barmerge.lookahead_on) on an hourly chart: the day's final values are "
+              "used before the day ends (criterion 1, lookahead_on for a higher time frame)."),
+    481346: ("1", "strategy.close_all when the drawdown of strategy.equity from its peak reaches 10 "
+              "%: an exit set by the account's equity path (criterion 1, equity gates, as "
+              "#453662)."),
 }
 
 DUPLICATE_ON_READING = {

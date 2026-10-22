@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #481100 (基于SMA和布林带的吞没形态指标组合交易策略-Combined-SMA-and-Bollinger-Bands-Engulfing-Pattern-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/481100  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop at the candle low / high, R:R 1:2  [lines 141-157]
+  141: longSL = low  // SL di low candle bullish engulfing (prev low)
+  142: longRR = (close - low) * 2  // TP dengan Risk-Reward 1:2
+  143: longTP = close + longRR  // TP untuk posisi long
+  144: 
+  145: shortSL = high  // SL di high candle bearish engulfing (prev high)
+  146: shortRR = (high - close) * 2  // TP dengan Risk-Reward 1:2
+  147: shortTP = close - shortRR  // TP untuk posisi short
+  148: 
+  149: // Strategi Buy ketika kondisi beli terpenuhi dengan SL dan TP
+  150: if buyCondition
+  151:     strategy.entry("Buy", strategy.long)  // Perintah beli ketika Bullish Engulfing terjadi di atas SMA 200 dan Mid Bollinger Band
+  152:     strategy.exit("Sell Exit", from_entry = "Buy", stop = longSL, limit = longTP)  // SL dan TP untuk posisi long
+  153: 
+  154: // Strategi Sell ketika kondisi jual terpenuhi dengan SL dan TP
+  155: if sellCondition
+  156:     strategy.entry("Sell", strategy.short)  // Perintah jual ketika Bearish Engulfing terjadi di bawah SMA 200 dan Mid Bollinger Band
+  157:     strategy.exit("Buy Exit", from_entry = "Sell", stop = shortSL, limit = shortTP)  // SL dan TP untuk posisi short

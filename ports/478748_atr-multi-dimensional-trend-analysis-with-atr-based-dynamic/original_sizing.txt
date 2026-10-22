@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #478748 (多维度趋势判断与ATR动态止盈止损策略-Multi-Dimensional-Trend-Analysis-with-ATR-Based-Dynamic-Stop-Management-Strategy)
+# Source: https://www.fmz.com/strategy/478748  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## ATR 14 x 1.5 stop / x 3 target from the current close  [lines 131-139]
+  131:     stopLoss = input.float(1.5, title="止损 (ATR 倍数)", step=0.1) * ta.atr(14)  // 止损基于 ATR
+  132:     takeProfit = input.float(3.0, title="止盈 (ATR 倍数)", step=0.1) * ta.atr(14)  // 止盈基于 ATR
+  133: 
+  134:     // 执行平仓
+  135:     if exitLongCondition
+  136:         strategy.exit("Exit Long", from_entry="Long", stop=close - stopLoss, limit=close + takeProfit)  // 多单平仓
+  137: 
+  138:     if exitShortCondition
+  139:         strategy.exit("Exit Short", from_entry="Short", stop=close + stopLoss, limit=close - takeProfit)  // 空单平仓

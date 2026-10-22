@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #481094 (Logarithmic-Weighted-Moving-Average-Trading-Strategy-Based-on-Cross-Signal-Analysis-基于对数加权移动平均交叉信号的量化交易策略)
+# Source: https://www.fmz.com/strategy/481094  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

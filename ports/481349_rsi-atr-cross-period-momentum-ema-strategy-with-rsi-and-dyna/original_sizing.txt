@@ -1,0 +1,45 @@
+# Original sizing and money-management code, FMZ #481349 (跨周期动量均线交叉策略结合RSI与ATR动态止损-Cross-Period-Momentum-EMA-Strategy-with-RSI-and-Dynamic-ATR-Stop-Loss)
+# Source: https://www.fmz.com/strategy/481349  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 200 % of equity; ATR 1.5 stop / 2 target  [lines 135-174]
+  135: strategy("Day Trading EMA/RSI Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=200)
+  136: 
+  137: // Ulazni parametri
+  138: fastEmaPeriod   = input.int(9, "Fast EMA Period", minval=1)
+  139: slowEmaPeriod   = input.int(21, "Slow EMA Period", minval=1)
+  140: rsiPeriod       = input.int(14, "RSI Period", minval=1)
+  141: rsiOversold     = input.int(30, "RSI Oversold Level")
+  142: rsiOverbought   = input.int(70, "RSI Overbought Level")
+  143: atrPeriod       = input.int(14, "ATR Period", minval=1)
+  144: atrMultiplier   = input.float(1.5, "ATR Multiplier za Stop Loss", step=0.1)
+  145: takeProfitFactor= input.float(2.0, "Take Profit Factor", step=0.1)
+  146: 
+  147: // Izračun indikatora
+  148: fastEMA = ta.ema(close, fastEmaPeriod)
+  149: slowEMA = ta.ema(close, slowEmaPeriod)
+  150: rsiValue = ta.rsi(close, rsiPeriod)
+  151: atrValue = ta.atr(atrPeriod)
+  152: 
+  153: // Definicija trenda: ako je fastEMA iznad slowEMA, smatramo da je trend uzlazan, inače silazni.
+  154: trendUp   = fastEMA > slowEMA
+  155: trendDown = fastEMA < slowEMA
+  156: 
+  157: // Uvjeti za ulaz:
+  158: // Ulaz u long poziciju: crossover fastEMA i slowEMA, uz filtriranje da RSI nije prekupovan (manje od rsiOverbought)
+  159: longCondition  = ta.crossover(fastEMA, slowEMA) and (rsiValue < rsiOverbought)
+  160: // Ulaz u short poziciju: crossunder fastEMA i slowEMA, uz filtriranje da RSI nije preprodavan (više od rsiOversold)
+  161: shortCondition = ta.crossunder(fastEMA, slowEMA) and (rsiValue > rsiOversold)
+  162: 
+  163: // Definicija dinamičnih stop-loss razina (ATR-based)
+  164: stopLossLong  = close - (atrMultiplier * atrValue)
+  165: stopLossShort = close + (atrMultiplier * atrValue)
+  166: 
+  167: // Izvršenje naloga
+  168: if (longCondition)
+  169:     strategy.entry("Long", strategy.long)
+  170:     strategy.exit("Exit Long", "Long", stop=stopLossLong, limit=close + (takeProfitFactor * atrValue))
+  171: 
+  172: if (shortCondition)
+  173:     strategy.entry("Short", strategy.short)
+  174:     strategy.exit("Exit Short", "Short", stop=stopLossShort, limit=close - (takeProfitFactor * atrValue))

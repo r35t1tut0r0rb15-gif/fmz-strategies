@@ -1,0 +1,51 @@
+# Original sizing and money-management code, FMZ #481347 (动态RSI增强型指数均线趋势交易策略-Dynamic-RSI-Enhanced-EMA-Trend-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/481347  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## capital 15000, risk 1000, target 5000, lot 1; stop 30 points  [lines 107-152]
+  107: capital = input.float(15000, title="Capital (₹)", tooltip="Total capital")
+  108: risk_per_trade = input.float(1000, title="Risk per Trade (₹)", tooltip="Risk per trade amount")
+  109: target_per_trade = input.float(5000, title="Take Profit per Trade (₹)", tooltip="Target profit per trade")
+  110: lot_size = input.int(1, title="Lot Size", tooltip="Nifty option lot size")
+  111: stop_loss_distance = input.float(30, title="Stop Loss Distance (Points)", tooltip="Fixed stop-loss in points")
+  112: 
+  113: // EMA Parameters
+  114: short_ema_length = input.int(9, title="Short EMA Length")
+  115: long_ema_length = input.int(21, title="Long EMA Length")
+  116: 
+  117: // RSI Parameters
+  118: rsi_length = input.int(14, title="RSI Length")
+  119: rsi_overbought = input.float(70, title="RSI Overbought Level")
+  120: rsi_oversold = input.float(30, title="RSI Oversold Level")
+  121: 
+  122: // Calculate EMAs and RSI
+  123: ema_short = ta.ema(close, short_ema_length)
+  124: ema_long = ta.ema(close, long_ema_length)
+  125: rsi = ta.rsi(close, rsi_length)
+  126: 
+  127: // Buy and Sell Signals
+  128: buy_signal = ta.crossover(ema_short, ema_long) and rsi > 50
+  129: sell_signal = ta.crossunder(ema_short, ema_long) and rsi < 50
+  130: 
+  131: // Plot EMAs
+  132: plot(ema_short, color=color.blue, title="EMA Short")
+  133: plot(ema_long, color=color.orange, title="EMA Long")
+  134: 
+  135: // Position Size Calculation
+  136: position_size = risk_per_trade / stop_loss_distance
+  137: 
+  138: // Stop Loss and Take Profit Levels
+  139: long_stop_loss = close - stop_loss_distance
+  140: long_take_profit = close + (target_per_trade / position_size)
+  141: 
+  142: short_stop_loss = close + stop_loss_distance
+  143: short_take_profit = close - (target_per_trade / position_size)
+  144: 
+  145: // Entry and Exit Logic
+  146: if buy_signal
+  147:     strategy.entry("Buy", strategy.long, qty=lot_size)
+  148:     strategy.exit("Exit Buy", "Buy", stop=long_stop_loss, limit=long_take_profit)
+  149: 
+  150: if sell_signal
+  151:     strategy.entry("Sell", strategy.short, qty=lot_size)
+  152:     strategy.exit("Exit Sell", "Sell", stop=short_stop_loss, limit=short_take_profit)

@@ -1,0 +1,123 @@
+# Original sizing and money-management code, FMZ #481093 (动量自适应高斯通道多周期策略-Momentum-Adaptive-Gaussian-Channel-Multi-Period-Strategy)
+# Source: https://www.fmz.com/strategy/481093  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = min(equity x 0.5 % / ATR 22, equity x 0.5 / close); commission 0.1 %  [lines 103-220]
+  103: strategy("Demo GPT - Gold Gaussian Strategy", overlay=true, commission_type=strategy.commission.percent, commission_value=0.1)
+  104: 
+  105: // ====== INPUTS ======
+  106: // Gaussian Channel
+  107: lengthGC = input.int(144, "Gaussian Period", minval=20)
+  108: poles = input.int(4, "Poles", minval=1, maxval=9)
+  109: multiplier = input.float(1.414, "Volatility Multiplier", minval=1)
+  110: 
+  111: // Stochastic RSI
+  112: smoothK = input.int(3, "Stoch K", minval=1)
+  113: lengthRSI = input.int(14, "RSI Length", minval=1)
+  114: lengthStoch = input.int(14, "Stoch Length", minval=1)
+  115: overbought = input.int(80, "Overbought Level", minval=50)
+  116: 
+  117: // Seasonal Filter (corrected)
+  118: startMonth = input.int(9, "Start Month (1-12)", minval=1, maxval=12)
+  119: endMonth = input.int(2, "End Month (1-12)", minval=1, maxval=12)
+  120: 
+  121: // Volatility Management
+  122: atrLength = input.int(22, "ATR Length", minval=5)
+  123: riskPercent = input.float(0.5, "Risk per Trade (%)", minval=0.1, step=0.1)
+  124: 
+  125: // ====== GAUSSIAN CHANNEL ======
+  126: f_filt9x(alpha, source, iterations) =>
+  127:     float f = 0.0
+  128:     float x = 1 - alpha
+  129:     int m2 = iterations == 9 ? 36 : iterations == 8 ? 28 : iterations == 7 ? 21 : 
+  130:            iterations == 6 ? 15 : iterations == 5 ? 10 : iterations == 4 ? 6 : 
+  131:            iterations == 3 ? 3 : iterations == 2 ? 1 : 0
+  132:     
+  133:     int m3 = iterations == 9 ? 84 : iterations == 8 ? 56 : iterations == 7 ? 35 : 
+  134:            iterations == 6 ? 20 : iterations == 5 ? 10 : iterations == 4 ? 4 : 
+  135:            iterations == 3 ? 1 : 0
+  136:     
+  137:     int m4 = iterations == 9 ? 126 : iterations == 8 ? 70 : iterations == 7 ? 35 : 
+  138:            iterations == 6 ? 15 : iterations == 5 ? 5 : iterations == 4 ? 1 : 0
+  139:     
+  140:     int m5 = iterations == 9 ? 126 : iterations == 8 ? 56 : iterations == 7 ? 21 : 
+  141:            iterations == 6 ? 6 : iterations == 5 ? 1 : 0
+  142:     
+  143:     int m6 = iterations == 9 ? 84 : iterations == 8 ? 28 : iterations == 7 ? 7 : 
+  144:            iterations == 6 ? 1 : 0
+  145:     
+  146:     int m7 = iterations == 9 ? 36 : iterations == 8 ? 8 : iterations == 7 ? 1 : 0
+  147:     
+  148:     int m8 = iterations == 9 ? 9 : iterations == 8 ? 1 : 0
+  149:     int m9 = iterations == 9 ? 1 : 0
+  150:     
+  151:     f := math.pow(alpha, iterations) * nz(source) +
+  152:       iterations * x * nz(f[1]) -
+  153:       (iterations >= 2 ? m2 * math.pow(x, 2) * nz(f[2]) : 0) +
+  154:       (iterations >= 3 ? m3 * math.pow(x, 3) * nz(f[3]) : 0) -
+  155:       (iterations >= 4 ? m4 * math.pow(x, 4) * nz(f[4]) : 0) +
+  156:       (iterations >= 5 ? m5 * math.pow(x, 5) * nz(f[5]) : 0) -
+  157:       (iterations >= 6 ? m6 * math.pow(x, 6) * nz(f[6]) : 0) +
+  158:       (iterations >= 7 ? m7 * math.pow(x, 7) * nz(f[7]) : 0) -
+  159:       (iterations >= 8 ? m8 * math.pow(x, 8) * nz(f[8]) : 0) +
+  160:       (iterations == 9 ? m9 * math.pow(x, 9) * nz(f[9]) : 0)
+  161:     f
+  162: 
+  163: f_pole(alpha, source, iterations) =>
+  164:     float fn = na
+  165:     float f1 = f_filt9x(alpha, source, 1)
+  166:     float f2 = iterations >= 2 ? f_filt9x(alpha, source, 2) : na
+  167:     float f3 = iterations >= 3 ? f_filt9x(alpha, source, 3) : na
+  168:     float f4 = iterations >= 4 ? f_filt9x(alpha, source, 4) : na
+  169:     float f5 = iterations >= 5 ? f_filt9x(alpha, source, 5) : na
+  170:     float f6 = iterations >= 6 ? f_filt9x(alpha, source, 6) : na
+  171:     float f7 = iterations >= 7 ? f_filt9x(alpha, source, 7) : na
+  172:     float f8 = iterations >= 8 ? f_filt9x(alpha, source, 8) : na
+  173:     float f9 = iterations == 9 ? f_filt9x(alpha, source, 9) : na
+  174:     
+  175:     fn := iterations == 1 ? f1 : 
+  176:          iterations == 2 ? f2 : 
+  177:          iterations == 3 ? f3 : 
+  178:          iterations == 4 ? f4 : 
+  179:          iterations == 5 ? f5 : 
+  180:          iterations == 6 ? f6 : 
+  181:          iterations == 7 ? f7 : 
+  182:          iterations == 8 ? f8 : 
+  183:          iterations == 9 ? f9 : na
+  184:     [fn, f1]
+  185: 
+  186: beta = (1 - math.cos(4 * math.asin(1) / lengthGC)) / (math.pow(1.414, 2 / poles) - 1)
+  187: alpha = -beta + math.sqrt(math.pow(beta, 2) + 2 * beta)
+  188: lag = int((lengthGC - 1) / (2 * poles))
+  189: 
+  190: srcAdjusted = hlc3 + (hlc3 - hlc3[lag])
+  191: [mainFilter, filt1] = f_pole(alpha, srcAdjusted, poles)
+  192: [trFilter, tr1] = f_pole(alpha, ta.tr(true), poles)
+  193: 
+  194: upperBand = mainFilter + trFilter * multiplier
+  195: lowerBand = mainFilter - trFilter * multiplier
+  196: 
+  197: // ====== STOCHASTIC RSI ======
+  198: rsiValue = ta.rsi(close, lengthRSI)
+  199: k = ta.sma(ta.stoch(rsiValue, rsiValue, rsiValue, lengthStoch), smoothK)
+  200: stochSignal = k >= overbought
+  201: 
+  202: // ====== SEASONAL FILTER (FIXED) ======
+  203: currentMonth = month(time)
+  204: inSeason = (currentMonth >= startMonth and currentMonth <= 12) or 
+  205:          (currentMonth >= 1 and currentMonth <= endMonth)
+  206: 
+  207: // ====== VOLATILITY MANAGEMENT ======
+  208: atr = ta.atr(atrLength)
+  209: positionSize = math.min((strategy.equity * riskPercent/100) / atr, strategy.equity * 0.5 / close)
+  210: 
+  211: // ====== TRADING LOGIC ======
+  212: trendUp = mainFilter > mainFilter[1]
+  213: priceAbove = close > upperBand
+  214: longCondition = trendUp and priceAbove and stochSignal and inSeason
+  215: 
+  216: exitCondition = ta.crossunder(close, lowerBand)
+  217: 
+  218: // ====== EXECUTION ======
+  219: if longCondition
+  220:     strategy.entry("Long", strategy.long, qty=positionSize)
