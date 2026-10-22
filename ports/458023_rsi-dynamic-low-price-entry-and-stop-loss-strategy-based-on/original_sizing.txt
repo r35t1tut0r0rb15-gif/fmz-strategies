@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #458023 (基于RSI的低价动态入场与止损策略-Dynamic-Low-Price-Entry-and-Stop-Loss-Strategy-Based-on-RSI)
+# Source: https://www.fmz.com/strategy/458023  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Max loss 20 % from the signal bar's low (close test)  [lines 160-180]
+  160: lossTolerance = input.float(20.0, title="Max Loss %")
+  161: 
+  162: // Calculating RSI using the low price
+  163: rsi = ta.rsi(low, rsiLength)
+  164: 
+  165: // Entry condition
+  166: longCondition = rsi < rsiEntryLevel
+  167: if (longCondition)
+  168:     strategy.entry("Long", strategy.long)
+  169: 
+  170: // Recording the entry price
+  171: var float entryPrice = na
+  172: if (longCondition)
+  173:     entryPrice := low
+  174: 
+  175: // Exit conditions
+  176: percentFromEntry = 100 * (close - entryPrice) / entryPrice
+  177: exitCondition1 = rsi > rsiExitLevel
+  178: exitCondition2 = percentFromEntry <= -lossTolerance
+  179: if (exitCondition1 or exitCondition2)
+  180:     strategy.close("Long")

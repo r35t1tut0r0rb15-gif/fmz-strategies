@@ -344,6 +344,8 @@ fmz_id,file,final_outcome,criterion,reason
 454721,马尔可夫链概率转换状态量化交易策略-Markov-Chain-Probability-Transition-State-Quantitative-Trading-Strategy.md,REJECTED_ON_READING,1,"The 'Markov' state is overwritten by a counter that cycles 0-9 from the first bar of the data, so which bars buy, sell or close depends on where the data starts rather than on prices alone; the source also names no bar size (criterion 1)."
 454736,Supertrend双重触发的多步移动止盈策略Double-Supertrend-Multi-Step-Trailing-Take-Profit-Strategy.md,REJECTED_ON_READING,1,"The take-profit steps strategy.exit(qty_percent = 12 / 8 / 4 %) close parts of the position at 6 / 12 / 18 %: partial exits (criterion 1, as #436524)."
 454747,多重指数移动平均线交叉趋势跟踪策略-Multi-EMA-Crossover-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"The close condition includes strategy.netprofit / strategy.equity x 100 >= 20: once the closed profit reaches 20 % of equity every bar closes the long, a size- and history-dependent equity gate (criterion 1, as #440336)."
+456143,配对交易策略OKX.md,REJECTED_ON_READING,3,"Pairs grid on two OKX perpetual swaps: exchange positions, the OKX account equity (Info.data[0].totalEq), contract values (CtVal) and iceberg limit orders off the live bid / ask in a timed loop, two instruments at once (criterion 3). Stored in flagged/ (rule C7)."
+458029,多均线交叉趋势跟踪与波动率过滤策略-Multi-Moving-Average-Crossover-Trend-Following-Strategy-with-Volatility-Filter.md,REJECTED_ON_READING,1,"pyramiding = 2 with the 'Long' / 'Short' entries sent again on a later crossing while the trade is still open (a cross back that opens nothing in between): the position adds units (criterion 1, as #442112, #430762)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2807,3 +2809,13 @@ fmz_id,file,final_outcome,criterion,reason
 455359,多重均线交叉趋势跟踪策略-Multi-Moving-Average-Crossover-Trend-Following-Strategy.md,PORTED,,ports/455359_multi-moving-average-crossover-trend-following-strategy/
 455361,多重动量线性回归交叉策略-Multi-Momentum-Linear-Regression-Crossover-Strategy.md,PORTED,,ports/455361_multi-momentum-linear-regression-crossover-strategy/
 455364,动态优化超级趋势交易策略-Dynamic-Optimized-Supertrend-Trading-Strategy.md,PORTED,,ports/455364_dynamic-optimized-supertrend-trading-strategy/
+455366,增强型动态布林带交易策略-Enhanced-Dynamic-Bollinger-Bands-Trading-Strategy.md,PORTED,,ports/455366_enhanced-dynamic-bollinger-bands-trading-strategy/
+457776,动态Keltner通道动量反转策略-Dynamic-Keltner-Channel-Momentum-Reversal-Strategy.md,PORTED,,ports/457776_keltner-dynamic-keltner-channel-momentum-reversal-strategy/
+457777,4小时时间框架上的吞没形态交易策略与动态止盈止损优化-4-Hour-Timeframe-Engulfing-Pattern-Trading-Strategy-with-Dynamic-Take-Profit-and-Stop-Loss-Optimization.md,PORTED,,ports/457777_4-4-hour-timeframe-engulfing-pattern-trading-strategy-with-d/
+457792,布林带与相对强弱指数交叉交易策略-Bollinger-Bands-and-RSI-Crossover-Trading-Strategy.md,PORTED,,ports/457792_bollinger-bands-and-rsi-crossover-trading-strategy/
+457796,多重EMA交叉趋势跟踪策略Multi-EMA-Crossover-Trend-Following-Strategy.md,PORTED,,ports/457796_ema-multi-ema-crossover-trend-following-strategy/
+457811,ATR-RSI增强型趋势追踪交易系统-ATR-RSI-Enhanced-Trend-Following-Trading-System.md,PORTED,,ports/457811_atr-rsi-atr-rsi-enhanced-trend-following-trading-system/
+458023,基于RSI的低价动态入场与止损策略-Dynamic-Low-Price-Entry-and-Stop-Loss-Strategy-Based-on-RSI.md,PORTED,,ports/458023_rsi-dynamic-low-price-entry-and-stop-loss-strategy-based-on/
+458026,大红蜡烛突破买入策略-Big-Red-Candle-Breakout-Buy-Strategy.md,PORTED,,ports/458026_big-red-candle-breakout-buy-strategy/
+458027,MACD交叉动量策略与动态止盈止损优化-MACD-Crossover-Momentum-Strategy-with-Dynamic-Take-Profit-and-Stop-Loss-Optimization.md,PORTED,,ports/458027_macd-macd-crossover-momentum-strategy-with-dynamic-take-prof/
+458031,技术支撑阻力指示器精准交易策略-Technical-Support-and-Resistance-Indicator-Precision-Trading-Strategy.md,PORTED,,ports/458031_technical-support-and-resistance-indicator-precision-trading/

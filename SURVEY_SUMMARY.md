@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2443 |
+| PORTED | 2453 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 952 |
+| PORT_CANDIDATE | 940 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 345 |
+| REJECTED_ON_READING | 347 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2571,7 +2571,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 455359 | `ports/455359_multi-moving-average-crossover-trend-following-strategy/` | PineScript | adaptive_average | none | length x2, vfactor x2 | 4 |
 | 455361 | `ports/455361_multi-momentum-linear-regression-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2, rsi_len x2 | 8 |
 | 455364 | `ports/455364_dynamic-optimized-supertrend-trading-strategy/` | PineScript | supertrend | trailing_stop_pending | atr_len x2, factor x2 | 4 |
-| | **2443 ports** | | | | | **11429** |
+| 455366 | `ports/455366_enhanced-dynamic-bollinger-bands-trading-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 457776 | `ports/457776_keltner-dynamic-keltner-channel-momentum-reversal-strategy/` | PineScript | volatility_channel_breakout | coarse_bar_stop, trailing_stop_pending | kc_mult x2, ema_len x2, lookback x2 | 8 |
+| 457777 | `ports/457777_4-4-hour-timeframe-engulfing-pattern-trading-strategy-with-d/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop_pending | tp_mult x2, sl_atr x2 | 4 |
+| 457792 | `ports/457792_bollinger-bands-and-rsi-crossover-trading-strategy/` | PineScript | bollinger_reversion | bar_size_pending | length x2, mult x2, rsi_len x2 | 8 |
+| 457796 | `ports/457796_ema-multi-ema-crossover-trend-following-strategy/` | PineScript | ma_cross | none | fast x2, mid x2, slow x2 | 8 |
+| 457811 | `ports/457811_atr-rsi-atr-rsi-enhanced-trend-following-trading-system/` | PineScript | atr_trailing_line | bar_size_pending | key x2, atr_len x2, band_pct x2 | 8 |
+| 458023 | `ports/458023_rsi-dynamic-low-price-entry-and-stop-loss-strategy-based-on/` | PineScript | rsi_oscillator | bar_size_pending | rsi_len x2, entry_lvl x2, exit_lvl x2 | 8 |
+| 458026 | `ports/458026_big-red-candle-breakout-buy-strategy/` | PineScript | reversal_pattern | trailing_stop_pending | range_frac x2 | 2 |
+| 458027 | `ports/458027_macd-macd-crossover-momentum-strategy-with-dynamic-take-prof/` | PineScript | macd_cross | none | sl_frac x2, tp_frac x2 | 4 |
+| 458031 | `ports/458031_technical-support-and-resistance-indicator-precision-trading/` | PineScript | donchian_breakout | none | length x3 | 3 |
+| | **2453 ports** | | | | | **11486** |
 
 ## Rejected on reading
 
@@ -2922,6 +2932,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 454721 | 马尔可夫链概率转换状态量化交易策略-Markov-Chain-Probability-Transition-State-Quantitative-Trading-Strategy.md | 1 | The 'Markov' state is overwritten by a counter that cycles 0-9 from the first bar of the data, so which bars buy, sell or close depends on where the data starts rather than on prices alone; the source also names no bar size (criterion 1). |
 | 454736 | Supertrend双重触发的多步移动止盈策略Double-Supertrend-Multi-Step-Trailing-Take-Profit-Strategy.md | 1 | The take-profit steps strategy.exit(qty_percent = 12 / 8 / 4 %) close parts of the position at 6 / 12 / 18 %: partial exits (criterion 1, as #436524). |
 | 454747 | 多重指数移动平均线交叉趋势跟踪策略-Multi-EMA-Crossover-Trend-Following-Strategy.md | 1 | The close condition includes strategy.netprofit / strategy.equity x 100 >= 20: once the closed profit reaches 20 % of equity every bar closes the long, a size- and history-dependent equity gate (criterion 1, as #440336). |
+| 456143 | 配对交易策略OKX.md | 3 | Pairs grid on two OKX perpetual swaps: exchange positions, the OKX account equity (Info.data[0].totalEq), contract values (CtVal) and iceberg limit orders off the live bid / ask in a timed loop, two instruments at once (criterion 3). Stored in flagged/ (rule C7). |
+| 458029 | 多均线交叉趋势跟踪与波动率过滤策略-Multi-Moving-Average-Crossover-Trend-Following-Strategy-with-Volatility-Filter.md | 1 | pyramiding = 2 with the 'Long' / 'Short' entries sent again on a later crossing while the trade is still open (a cross back that opens nothing in between): the position adds units (criterion 1, as #442112, #430762). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

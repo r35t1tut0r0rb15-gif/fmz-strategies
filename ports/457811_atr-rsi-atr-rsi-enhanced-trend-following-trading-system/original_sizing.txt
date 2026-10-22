@@ -1,0 +1,85 @@
+# Original sizing and money-management code, FMZ #457811 (ATR-RSI增强型趋势追踪交易系统-ATR-RSI-Enhanced-Trend-Following-Trading-System)
+# Source: https://www.fmz.com/strategy/457811  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Exit band 0.2 % of the signal close  [lines 164-243]
+  164: percentage = input.float(0.002, title="Percentage for Exit (0.2% as decimal)")
+  165: 
+  166: // RSI Inputs
+  167: rsiPeriod = input.int(14, title="RSI Period")
+  168: rsiSource = input.source(close, title="RSI Source")
+  169: 
+  170: // ATR Calculation
+  171: xATR = ta.atr(c)
+  172: nLoss = a * xATR
+  173: 
+  174: // Heikin Ashi Calculation
+  175: haClose = request.security(syminfo.tickerid, timeframe.period, close, lookahead=barmerge.lookahead_on)
+  176: haOpen = request.security(syminfo.tickerid, timeframe.period, open, lookahead=barmerge.lookahead_on)
+  177: haHigh = request.security(syminfo.tickerid, timeframe.period, high, lookahead=barmerge.lookahead_on)
+  178: haLow = request.security(syminfo.tickerid, timeframe.period, low, lookahead=barmerge.lookahead_on)
+  179: haCloseSeries = (haOpen + haHigh + haLow + haClose) / 4
+  180: 
+  181: src = h ? haCloseSeries : close
+  182: 
+  183: // RSI Calculation
+  184: rsiValue = ta.rsi(rsiSource, rsiPeriod)
+  185: 
+  186: // Non-repainting ATR Trailing Stop Calculation
+  187: var float xATRTrailingStop = na
+  188: if (barstate.isconfirmed)
+  189:     xATRTrailingStop := src > nz(xATRTrailingStop[1], 0) and src[1] > nz(xATRTrailingStop[1], 0) ? math.max(nz(xATRTrailingStop[1]), src - nLoss) : src < nz(xATRTrailingStop[1], 0) and src[1] < nz(xATRTrailingStop[1], 0) ? math.min(nz(xATRTrailingStop[1]), src + nLoss) : src > nz(xATRTrailingStop[1], 0) ? src - nLoss : src + nLoss
+  190: 
+  191: // Position Calculation
+  192: var int pos = 0
+  193: if (barstate.isconfirmed)
+  194:     pos := src[1] < nz(xATRTrailingStop[1], 0) and src > nz(xATRTrailingStop[1], 0) ? 1 : src[1] > nz(xATRTrailingStop[1], 0) and src < nz(xATRTrailingStop[1], 0) ? -1 : nz(pos[1], 0)
+  195: 
+  196: xcolor = pos == -1 ? color.red : pos == 1 ? color.green : color.blue
+  197: 
+  198: ema = ta.ema(src, 1)
+  199: above = ta.crossover(ema, xATRTrailingStop)
+  200: below = ta.crossover(xATRTrailingStop, ema)
+  201: 
+  202: // Track entry prices
+  203: var float entryPrice = na
+  204: 
+  205: // Buy and sell conditions with RSI filter
+  206: buy = src > xATRTrailingStop and above and barstate.isconfirmed and rsiValue > 50
+  207: sell = src < xATRTrailingStop and below and barstate.isconfirmed and rsiValue < 50
+  208: 
+  209: // Calculate target prices for exit
+  210: var float buyTarget = na
+  211: var float sellTarget = na
+  212: 
+  213: if (buy)
+  214:     entryPrice := src
+  215:     buyTarget := entryPrice * (1 + percentage)
+  216:     sellTarget := entryPrice * (1 - percentage)
+  217:     strategy.entry("Buy", strategy.long)
+  218: 
+  219: if (sell)
+  220:     entryPrice := src
+  221:     buyTarget := entryPrice * (1 + percentage)
+  222:     sellTarget := entryPrice * (1 - percentage)
+  223:     strategy.entry("Sell", strategy.short)
+  224: 
+  225: // Exit conditions
+  226: var bool buyExit = false
+  227: var bool sellExit = false
+  228: 
+  229: if (strategy.position_size > 0 and barstate.isconfirmed)
+  230:     if (src >= buyTarget)
+  231:         strategy.exit("Take Profit", "Buy", limit=buyTarget)
+  232:         buyExit := true
+  233:     if (src <= sellTarget)
+  234:         strategy.exit("Take Profit", "Buy", limit=sellTarget)
+  235:         sellExit := true
+  236:         
+  237: if (strategy.position_size < 0 and barstate.isconfirmed)
+  238:     if (src <= sellTarget)
+  239:         strategy.exit("Take Profit", "Sell", limit=sellTarget)
+  240:         sellExit := true
+  241:     if (src >= buyTarget)
+  242:         strategy.exit("Take Profit", "Sell", limit=buyTarget)
+  243:         buyExit := true

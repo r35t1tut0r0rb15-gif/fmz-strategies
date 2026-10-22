@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #457777 (4小时时间框架上的吞没形态交易策略与动态止盈止损优化-4-Hour-Timeframe-Engulfing-Pattern-Trading-Strategy-with-Dynamic-Take-Profit-and-Stop-Loss-Optimization)
+# Source: https://www.fmz.com/strategy/457777  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity; target 1 x body, stop 100 ticks  [lines 181-216]
+  181: strategy("4H Engulfing Candle Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+  182: 
+  183: // Input variables
+  184: tpMultiplier = input.float(1.0, "Take Profit Multiplier", step=0.1)
+  185: slTicks = input.int(100, "Stop Loss Ticks")  // Number of ticks for SL
+  186: 
+  187: // Calculate body size for bullish and bearish engulfing candles on 4H timeframe
+  188: bullishBodySize = close - open
+  189: bearishBodySize = open - close
+  190: 
+  191: // Determine engulfing conditions on 4H timeframe
+  192: bullishEngulfing = close > open[1] and open < close[1] and open <= open[1] and close >= close[1]
+  193: bearishEngulfing = close < open[1] and open > close[1] and open >= open[1] and close <= close[1]
+  194: 
+  195: // Entry and exit levels
+  196: var float entryPrice = na
+  197: var float tpPrice = na
+  198: var float slPrice = na
+  199: 
+  200: if bullishEngulfing
+  201:     entryPrice := close
+  202:     tpPrice := close + bullishBodySize * tpMultiplier
+  203:     slPrice := entryPrice - slTicks * syminfo.mintick  // Calculate SL price based on ticks and tick size
+  204: 
+  205:     // Execute strategy orders for bullish engulfing
+  206:     strategy.entry("Buy", strategy.long)
+  207:     strategy.exit("TP/SL", "Buy", limit=tpPrice, stop=slPrice)
+  208: 
+  209: if bearishEngulfing
+  210:     entryPrice := close
+  211:     tpPrice := close - bearishBodySize * tpMultiplier
+  212:     slPrice := entryPrice + slTicks * syminfo.mintick  // Calculate SL price based on ticks and tick size
+  213: 
+  214:     // Execute strategy orders for bearish engulfing
+  215:     strategy.entry("Sell", strategy.short)
+  216:     strategy.exit("TP/SL", "Sell", limit=tpPrice, stop=slPrice)

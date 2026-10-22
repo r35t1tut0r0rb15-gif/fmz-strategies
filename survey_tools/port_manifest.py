@@ -5243,6 +5243,29 @@ SIZING = {
     455364: [
         ("Stop 1 ATR / target 2 ATR from the current close (every bar)", 170, 181),
     ],
+    # ---- FMZ-C, batch C198 (2026-10-22)
+    455366: [],
+    457776: [
+        ("Stop 5.5 x ATR[1] from the signal close", 278, 330),
+    ],
+    457777: [
+        ("strategy(): 10 % of equity; target 1 x body, stop 100 ticks", 181, 216),
+    ],
+    457792: [],
+    457796: [],
+    457811: [
+        ("Exit band 0.2 % of the signal close", 164, 243),
+    ],
+    458023: [
+        ("Max loss 20 % from the signal bar's low (close test)", 160, 180),
+    ],
+    458026: [
+        ("Quantity 1, +1 when the open profit reaches 150 % of the last mark; capital 24000; stop 20 / target 50 points (every bar)", 161, 200),
+    ],
+    458027: [
+        ("Target 100 / stop 50 points from the average price", 180, 208),
+    ],
+    458031: [],
 }
 
 REJECTED_ON_READING = {
@@ -6638,6 +6661,14 @@ REJECTED_ON_READING = {
     454747: ("1", "The close condition includes strategy.netprofit / strategy.equity x 100 >= 20: "
               "once the closed profit reaches 20 % of equity every bar closes the long, a size- "
               "and history-dependent equity gate (criterion 1, as #440336)."),
+    # ---- FMZ-C, batch C198 (2026-10-22)
+    456143: ("3", "Pairs grid on two OKX perpetual swaps: exchange positions, the OKX account equity "
+              "(Info.data[0].totalEq), contract values (CtVal) and iceberg limit orders off the "
+              "live bid / ask in a timed loop, two instruments at once (criterion 3). Stored in "
+              "flagged/ (rule C7)."),
+    458029: ("1", "pyramiding = 2 with the 'Long' / 'Short' entries sent again on a later crossing "
+              "while the trade is still open (a cross back that opens nothing in between): the "
+              "position adds units (criterion 1, as #442112, #430762)."),
 }
 
 DUPLICATE_ON_READING = {

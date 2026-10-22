@@ -1,0 +1,45 @@
+# Original sizing and money-management code, FMZ #458026 (大红蜡烛突破买入策略-Big-Red-Candle-Breakout-Buy-Strategy)
+# Source: https://www.fmz.com/strategy/458026  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantity 1, +1 when the open profit reaches 150 % of the last mark; capital 24000; stop 20 / target 50 points (every bar)  [lines 161-200]
+  161: strategy("Red Candle Breakout Buy Strategy", overlay=true, initial_capital=24000)
+  162: 
+  163: // Inputs
+  164: bigRedCandlePoints = input(20, title="Big Red Candle Points")
+  165: defaultQuantity = input(1, title="Default Quantity")
+  166: stopLossPoints = input(20, title="Stop Loss Points")
+  167: targetPoints = input(50, title="Target Points")
+  168: 
+  169: // Detect a big red candle
+  170: bigRedCandle = (high - low >= bigRedCandlePoints) and (close < open)
+  171: 
+  172: // Track the first big red candle
+  173: var float firstRedCandleLow = na
+  174: var bool firstRedCandleDetected = false
+  175: if bigRedCandle
+  176:     firstRedCandleLow := low
+  177:     firstRedCandleDetected := true
+  178: 
+  179: // Reset if a new big red candle is detected
+  180: if bigRedCandle and firstRedCandleDetected
+  181:     firstRedCandleLow := low
+  182: 
+  183: // Generate buy signal on the second candle breaking the first red candle's low
+  184: buySignal = (firstRedCandleDetected and low < firstRedCandleLow and close > open)
+  185: 
+  186: // Variables to handle quantity adjustment
+  187: var float lastEquity = strategy.initial_capital
+  188: var float currentQuantity = defaultQuantity
+  189: 
+  190: // Check for equity increase and adjust quantity
+  191: if strategy.opentrades.profit(strategy.opentrades - 1) >= lastEquity * 1.50
+  192:     currentQuantity := currentQuantity + 1
+  193:     lastEquity := strategy.opentrades.profit(strategy.opentrades - 1)
+  194: 
+  195: // Execute the strategy
+  196: if buySignal
+  197:     strategy.entry("Buy", strategy.long, qty=currentQuantity)
+  198: 
+  199: // Define stop loss and profit target levels
+  200: strategy.exit("Exit", from_entry="Buy", stop=close - stopLossPoints, limit=close + targetPoints)

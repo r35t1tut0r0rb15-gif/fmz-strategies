@@ -1,0 +1,58 @@
+# Original sizing and money-management code, FMZ #457776 (动态Keltner通道动量反转策略-Dynamic-Keltner-Channel-Momentum-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/457776  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 5.5 x ATR[1] from the signal close  [lines 278-330]
+  278: atrLength = input(35, "ATR Length")
+  279: atrMultiplier = input(5.5, "ATR Multiplier for Stop Loss")
+  280: kcLength = input(20, "Keltner Channel Length")
+  281: kcMultiplier = input(6.0, "Keltner Channel Multiplier")
+  282: emaLength = input(280, "EMA Length")
+  283: candleLookback = input(120, "Candle Lookback for Keltner Channel Touch")
+  284: 
+  285: // ATR for stop loss calculation
+  286: atr = ta.atr(atrLength)
+  287: 
+  288: // Keltner Channel
+  289: basis = ta.sma(close, kcLength)
+  290: kcRange = kcMultiplier * atr
+  291: upperKC = basis + kcRange
+  292: lowerKC = basis - kcRange
+  293: 
+  294: // EMA Trend Filter
+  295: ema = ta.ema(close, emaLength)
+  296: 
+  297: // Function to check if Keltner Channel was touched within the lookback period
+  298: wasKCTouched(direction) =>
+  299:     touched = false
+  300:     for i = 1 to candleLookback
+  301:         if direction == "long" and high[i] >= upperKC[i]
+  302:             touched := true
+  303:         if direction == "short" and low[i] <= lowerKC[i]
+  304:             touched := true
+  305:     touched
+  306: 
+  307: // Check for middle line touch by wick
+  308: middleLineTouchedByWick = high >= basis and low <= basis
+  309: 
+  310: // Entry Conditions
+  311: longCondition = wasKCTouched("long") and middleLineTouchedByWick and close > ema
+  312: shortCondition = wasKCTouched("short") and middleLineTouchedByWick and close < ema
+  313: 
+  314: // Exit Conditions
+  315: longExit = high >= upperKC
+  316: shortExit = low <= lowerKC
+  317: 
+  318: // Tracking the previous ATR value for stop loss calculation
+  319: var float prevAtr = na
+  320: if longCondition or shortCondition
+  321:     prevAtr := atr[1]
+  322: 
+  323: // Entry Execution
+  324: if longCondition
+  325:     strategy.entry("Long", strategy.long)
+  326:     strategy.exit("Exit Long", "Long", stop=close - atrMultiplier * prevAtr)
+  327: 
+  328: if shortCondition
+  329:     strategy.entry("Short", strategy.short)
+  330:     strategy.exit("Exit Short", "Short", stop=close + atrMultiplier * prevAtr)
