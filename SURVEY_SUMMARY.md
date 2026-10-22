@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2138 |
-| PORT_CANDIDATE | 1299 |
+| PORTED | 2149 |
+| PORT_CANDIDATE | 1287 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 303 |
+| REJECTED_ON_READING | 304 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2266,7 +2266,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 443993 | `ports/443993_highest-high-lowest-low-stop-strategy/` | PineScript | donchian_breakout | trailing_stop_pending |  | 0 |
 | 443997 | `ports/443997_the-bollinger-bands-mean-reversion-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
 | 444001 | `ports/444001_an-efficient-trading-strategy-based-on-dual-moving-average-c/` | PineScript | ma_cross | none | stop_pct x2, slow x2 | 4 |
-| | **2138 ports** | | | | | **10023** |
+| 444003 | `ports/444003_1-2-3-emamacd-1-2-3-pattern-quantitative-trading-strategy-wi/` | PineScript | candle_pattern | none | ema_fast x2, ema_slow x2 | 4 |
+| 444004 | `ports/444004_rsi-rsi-based-long-strategy-with-trailing-stop-for-quantitat/` | PineScript | rsi_oscillator | coarse_bar_stop | length x2, percent_diff x2 | 4 |
+| 444006 | `ports/444006_dynamic-adaptive-trend-trading-strategy/` | PineScript | ma_cross | none | stop_pct x2, slow x2 | 4 |
+| 444007 | `ports/444007_ema9-20dual-moving-average-crossover-strategy-ema9-20/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 444009 | `ports/444009_bollinger-bands-breakout-with-volatility-filter-strategy/` | PineScript | bollinger_reversion | none | lower_breakout x2, max_drawdown x2 | 4 |
+| 444011 | `ports/444011_moving-average-breakout-trading-strategy/` | PineScript | ma_cross | none | period x2, stop_pct x2 | 4 |
+| 444013 | `ports/444013_jiayibing-quantitative-trend-momentum-trading-strategy/` | PineScript | bollinger_breakout | trailing_stop, trailing_stop_pending, coarse_bar_stop | fast_ma x2, stop_pct x2 | 4 |
+| 444016 | `ports/444016_macd-macd-moving-average-bullish-quantitative-trading-strate/` | PineScript | macd_cross | none | sma_length x2, macd_fast x2 | 4 |
+| 444018 | `ports/444018_macd-multi-stage-bollinger-bands-macd-crossover-signal-quant/` | PineScript | bollinger_breakout | none | length x2, atr_length x2 | 4 |
+| 444020 | `ports/444020_bitcoin-momentum-trailing-stop-strategy/` | PineScript | ma_trend | none | ema_length x2, trail_lookback x2 | 4 |
+| 444025 | `ports/444025_kd-bollinger-bands-and-stochastic-kd-crossover-strategy/` | PineScript | bollinger_reversion | none | length x2, kd_length x2 | 4 |
+| | **2149 ports** | | | | | **10067** |
 
 ## Rejected on reading
 
@@ -2575,6 +2586,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 443238 | 快速RSI反转交易策略Fast-RSI-Reversal-Trading-Strategy.md | 1 | pyramiding = 5 with the long entry allowed again whenever the close is under the average price (and the short whenever above it): averaging into a losing position, the position accumulates units (criterion 1, as #430762). |
 | 443252 | 基于布林带的短线交易策略Short-Term-Trading-Strategy-Based-on-Bollinger-Bands.md | 2 | The exits strategy.exit(profit = close x (1 + 0.5 %), loss = close x (1 - 3 %)) pass price levels where the call takes tick distances, with no /mintick: the target and stop are undefined as written (criterion 2, as #442115, #437048). |
 | 443990 | SSL通道与绿量策略SSL-Channel-and-Green-Volume-Strategy.md | 2 | The exits strategy.exit(loss = close x (1 - 0.5 %), profit = close x (1 + 1 %)) pass price levels where the call takes tick distances, with no /mintick: the stops and targets are undefined as written (criterion 2, as #442076, #437048). |
+| 444024 | 基于随机RSI和EMA交叉的加密货币回调交易策略Crypto-Pullback-Trading-Strategy-Based-on-Stochastic-RSI-and-EMA-Crossover.md | 1 | pyramiding = 10 with level entries (close between the EMAs with the stochastic RSI under 25 / over 85) re-sent on every bar the condition holds: the position accumulates units (criterion 1, as #442112, #430762). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

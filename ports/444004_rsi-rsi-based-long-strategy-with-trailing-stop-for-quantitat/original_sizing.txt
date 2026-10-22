@@ -1,0 +1,35 @@
+# Original sizing and money-management code, FMZ #444004 (基于相对强弱指数RSI与止损的多头量化交易策略RSI-based-Long-Strategy-with-Trailing-Stop-for-Quantitative-Trading)
+# Source: https://www.fmz.com/strategy/444004  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital 1000; short qty 0.001  [lines 137-166]
+  137: strategy("RSI Strategy (Long)", overlay=true, initial_capital=1000, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+  138: length = input( 14 )
+  139: overSold = input( 30 )
+  140: overBought = input( 70 )
+  141: price = close
+  142: vrsi = ta.rsi(price, length)
+  143: co = ta.crossover(vrsi, overSold)
+  144: cu = ta.crossunder(vrsi, overBought)
+  145: 
+  146: // *** Signals ***
+  147: enter_long = ta.crossover(vrsi, overSold)
+  148: enter_short = ta.crossunder(vrsi, overBought)
+  149: close_long = ta.crossunder(vrsi, overBought)
+  150: close_short = ta.crossunder(vrsi, overBought)
+  151: 
+  152: 
+  153: // *** Risk management *** 
+  154: entry_price = close
+  155: percent_diff = input(5)
+  156: stop_loss_price_long = (1 - percent_diff / 100.) * entry_price 
+  157: stop_loss_price_short = (1 + percent_diff / 100.) * entry_price 
+  158: 
+  159: 
+  160: // *** Positions *** 
+  161: if enter_long and strategy.position_size == 0
+  162:     strategy.entry("Long", strategy.long)
+  163:     strategy.exit("SL Long", "Long", stop = stop_loss_price_long)
+  164: 
+  165: if enter_short and strategy.position_size == 0
+  166:     strategy.entry("Short", strategy.short, qty=.001)

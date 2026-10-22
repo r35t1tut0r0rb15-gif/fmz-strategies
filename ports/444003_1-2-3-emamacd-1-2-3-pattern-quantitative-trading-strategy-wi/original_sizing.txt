@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #444003 (1-2-3-形态与-EMAMACD-和第四根蜡烛线延伸的量化交易策略1-2-3-Pattern-Quantitative-Trading-Strategy-with-EMAs-MACD-and-4th-Candle-Extension)
+# Source: https://www.fmz.com/strategy/444003  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy.entry / close qty = 5  [lines 127-137]
+  127:     strategy.entry("Buy", strategy.long, qty=5)
+  128: 
+  129: if (close < open and strategy.opentrades > 0)
+  130:     strategy.close("Buy", qty=5)
+  131: 
+  132: // Implement strategy logic for sell orders
+  133: if (sell_candle1_below_open and sell_candle2_above_open and sell_candle3_below_close and sell_candle4_below_close and strategy.opentrades == 0 and close < ema_9 and close < ema_20 and macd_line < signal_line)
+  134:     strategy.entry("Sell", strategy.short, qty=5)
+  135: 
+  136: if (close > open and strategy.opentrades > 0)
+  137:     strategy.close("Sell", qty=5)

@@ -4599,6 +4599,28 @@ SIZING = {
     443993: [],
     443997: [],
     444001: [],
+    # ---- FMZ-C, batch C169 (2026-10-22)
+    444003: [
+        ("strategy.entry / close qty = 5", 127, 137),
+    ],
+    444004: [
+        ("strategy(): 100 % of equity, capital 1000; short qty 0.001", 137, 166),
+    ],
+    444006: [],
+    444007: [
+        ("strategy(): fixed qty 1 (entries qty 2), capital 1000, commission 0.35 per contract", 122, 129),
+    ],
+    444009: [
+        ("strategy(): 100 % of equity, capital 500, commission 0.08, pyramiding 2", 141, 141),
+    ],
+    444011: [],
+    444013: [
+        ("qty = (capital + netprofit) x 20 % / 10 / close, capped at 10000", 203, 206),
+    ],
+    444016: [],
+    444018: [],
+    444020: [],
+    444025: [],
 }
 
 REJECTED_ON_READING = {
@@ -5838,6 +5860,10 @@ REJECTED_ON_READING = {
     443990: ("2", "The exits strategy.exit(loss = close x (1 - 0.5 %), profit = close x (1 + 1 %)) "
               "pass price levels where the call takes tick distances, with no /mintick: the stops "
               "and targets are undefined as written (criterion 2, as #442076, #437048)."),
+    # ---- FMZ-C, batch C169 (2026-10-22)
+    444024: ("1", "pyramiding = 10 with level entries (close between the EMAs with the stochastic RSI "
+              "under 25 / over 85) re-sent on every bar the condition holds: the position "
+              "accumulates units (criterion 1, as #442112, #430762)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -302,6 +302,7 @@ fmz_id,file,final_outcome,criterion,reason
 443238,快速RSI反转交易策略Fast-RSI-Reversal-Trading-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 5 with the long entry allowed again whenever the close is under the average price (and the short whenever above it): averaging into a losing position, the position accumulates units (criterion 1, as #430762)."
 443252,基于布林带的短线交易策略Short-Term-Trading-Strategy-Based-on-Bollinger-Bands.md,REJECTED_ON_READING,2,"The exits strategy.exit(profit = close x (1 + 0.5 %), loss = close x (1 - 3 %)) pass price levels where the call takes tick distances, with no /mintick: the target and stop are undefined as written (criterion 2, as #442115, #437048)."
 443990,SSL通道与绿量策略SSL-Channel-and-Green-Volume-Strategy.md,REJECTED_ON_READING,2,"The exits strategy.exit(loss = close x (1 - 0.5 %), profit = close x (1 + 1 %)) pass price levels where the call takes tick distances, with no /mintick: the stops and targets are undefined as written (criterion 2, as #442076, #437048)."
+444024,基于随机RSI和EMA交叉的加密货币回调交易策略Crypto-Pullback-Trading-Strategy-Based-on-Stochastic-RSI-and-EMA-Crossover.md,REJECTED_ON_READING,1,"pyramiding = 10 with level entries (close between the EMAs with the stochastic RSI under 25 / over 85) re-sent on every bar the condition holds: the position accumulates units (criterion 1, as #442112, #430762)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2460,3 +2461,14 @@ fmz_id,file,final_outcome,criterion,reason
 443993,最高最低价格止损策略Highest-High-Lowest-Low-Stop-Strategy.md,PORTED,,ports/443993_highest-high-lowest-low-stop-strategy/
 443997,基于布林带均值回归策略The-Bollinger-Bands-Mean-Reversion-Strategy.md,PORTED,,ports/443997_the-bollinger-bands-mean-reversion-strategy/
 444001,基于双均线交叉和止损策略的高效交易策略An-Efficient-Trading-Strategy-Based-on-Dual-Moving-Average-Crossover-and-Stop-Loss.md,PORTED,,ports/444001_an-efficient-trading-strategy-based-on-dual-moving-average-c/
+444003,1-2-3-形态与-EMAMACD-和第四根蜡烛线延伸的量化交易策略1-2-3-Pattern-Quantitative-Trading-Strategy-with-EMAs-MACD-and-4th-Candle-Extension.md,PORTED,,ports/444003_1-2-3-emamacd-1-2-3-pattern-quantitative-trading-strategy-wi/
+444004,基于相对强弱指数RSI与止损的多头量化交易策略RSI-based-Long-Strategy-with-Trailing-Stop-for-Quantitative-Trading.md,PORTED,,ports/444004_rsi-rsi-based-long-strategy-with-trailing-stop-for-quantitat/
+444006,动态自适应趋势交易策略Dynamic-Adaptive-Trend-Trading-Strategy.md,PORTED,,ports/444006_dynamic-adaptive-trend-trading-strategy/
+444007,双均线交叉策略-EMA9-20Dual-Moving-Average-Crossover-Strategy-EMA9-20.md,PORTED,,ports/444007_ema9-20dual-moving-average-crossover-strategy-ema9-20/
+444009,波林格带突破与波动率过滤策略Bollinger-Bands-Breakout-with-Volatility-Filter-Strategy.md,PORTED,,ports/444009_bollinger-bands-breakout-with-volatility-filter-strategy/
+444011,基于移动平均线的突破交易策略Moving-Average-Breakout-Trading-Strategy.md,PORTED,,ports/444011_moving-average-breakout-trading-strategy/
+444013,甲易炳量化趋势动量交易策略JiaYiBing-Quantitative-Trend-Momentum-Trading-Strategy.md,PORTED,,ports/444013_jiayibing-quantitative-trend-momentum-trading-strategy/
+444016,MACD均线多头量化交易策略MACD-Moving-Average-Bullish-Quantitative-Trading-Strategy.md,PORTED,,ports/444016_macd-macd-moving-average-bullish-quantitative-trading-strate/
+444018,基于多阶段布林带和MACD指标的量化交易策略Multi-Stage-Bollinger-Bands-MACD-Crossover-Signal-Quantitative-Trading-Strategy.md,PORTED,,ports/444018_macd-multi-stage-bollinger-bands-macd-crossover-signal-quant/
+444020,比特币动量跟踪止损策略Bitcoin-Momentum-Trailing-Stop-Strategy.md,PORTED,,ports/444020_bitcoin-momentum-trailing-stop-strategy/
+444025,布林带与随机指标KD交叉策略Bollinger-Bands-and-Stochastic-KD-Crossover-Strategy.md,PORTED,,ports/444025_kd-bollinger-bands-and-stochastic-kd-crossover-strategy/

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #444009 (波林格带突破与波动率过滤策略Bollinger-Bands-Breakout-with-Volatility-Filter-Strategy)
+# Source: https://www.fmz.com/strategy/444009  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital 500, commission 0.08, pyramiding 2  [lines 141-141]
+  141: strategy("[Oppen Chow] Super BBS 1.0", default_qty_type = strategy.percent_of_equity, default_qty_value =100, initial_capital=500, commission_type=strategy.commission.percent, commission_value=0.08, pyramiding=2 )
