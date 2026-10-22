@@ -3824,6 +3824,18 @@ SIZING = {
     439696: [
         ("strategy(): capital, percent of equity 100, commission, pyramiding 1", 131, 131),
     ],
+    # ---- FMZ-C, batch C123 (2026-10-22)
+    439701: [],
+    439704: [],
+    439705: [],
+    439708: [],
+    439710: [],
+    439715: [],
+    439717: [],
+    439722: [],
+    439734: [],
+    439735: [],
+    439737: [],
 }
 
 REJECTED_ON_READING = {
@@ -4751,6 +4763,12 @@ REJECTED_ON_READING = {
               "so the real trail is 0.03 x the tick size behind the best price, an "
               "instrument-specific trail with no generic reading (as #437048); the 5 % stop and "
               "10 % target are re-sent every bar from the current close."),
+    # ---- FMZ-C, batch C123 (2026-10-22)
+    439709: ("1", "Positions are built with strategy.order('BUY' / 'SELL'), which adds or removes "
+              "units instead of entering or reversing, and both orders and the close_all are "
+              "gated on strategy.openprofit in account currency (> -1 to trade, > 3000 to close "
+              "all) with a cash order size: the net position and the exits depend on the order "
+              "size (as #430596, #432078)."),
 }
 
 DUPLICATE_ON_READING = {

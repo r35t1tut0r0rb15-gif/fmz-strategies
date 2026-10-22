@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1851 |
-| PORTED | 1670 |
+| PORT_CANDIDATE | 1839 |
+| PORTED | 1681 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 222 |
+| REJECTED_ON_READING | 223 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1798,7 +1798,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439693 | `ports/439693_this-strategy-is-a-momentum-strategy-based-on-moving-average/` | PineScript | ma_cross | coarse_bar_stop | sl x2, tp x2 | 4 |
 | 439695 | `ports/439695_rsi-crypto-rsi-mini-sniper-quick-response-trend-following-st/` | PineScript | rsi_oscillator | none | tp x2, sl x2 | 4 |
 | 439696 | `ports/439696_a-dual-moving-average-confirmation-advantage-line-strategy/` | PineScript | trend_filter | none | length x2, lengthx x2 | 4 |
-| | **1670 ports** | | | | | **8259** |
+| 439701 | `ports/439701_quant-trading-strategy-based-on-moving-average-crossover/` | PineScript | ma_cross | coarse_bar_stop | k_sl x2 | 2 |
+| 439704 | `ports/439704_golden-cross-death-cross-long-term-multi-factor-strategy/` | PineScript | ma_cross | coarse_bar_stop | risk_mult x2, slow x2 | 4 |
+| 439705 | `ports/439705_quantitative-trading-strategy-based-on-ichimoku-and-adx-indi/` | PineScript | ichimoku | none | adx_min x2, base x2 | 4 |
+| 439708 | `ports/439708_macd-dual-moving-average-crossover-macd-trend-following-stra/` | PineScript | macd_cross | none | fast_length x2, slow_length x2 | 4 |
+| 439710 | `ports/439710_atr-rsi-adaptive-atr-and-rsi-trend-following-strategy-with-t/` | PineScript | atr_trailing_line | none | a x2, c x2 | 4 |
+| 439715 | `ports/439715_atr-an-atr-channel-breakout-quantitative-trading-strategy/` | PineScript | volatility_channel_breakout | none | offset x2, sma_length x2 | 4 |
+| 439717 | `ports/439717_macd-rsi-trend-following-trading-strategy-based-on-macd-and/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| 439722 | `ports/439722_macd-5-1-multi-timeframe-macd-trend-following-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| 439734 | `ports/439734_macd-rsi-cci-stochrsi-ma-aggregated-multi-timeframe-macd-rsi/` | PineScript | multi_indicator_confluence | none | rsi_level x2, ma_len x2 | 4 |
+| 439735 | `ports/439735_adaptive-moving-average-and-weighted-moving-average-crossove/` | PineScript | ma_cross | none | aioma_length x2, wma_length x2 | 4 |
+| 439737 | `ports/439737_a-momentum-crossover-strategy-based-on-exponential-moving-av/` | PineScript | ma_cross | none | len1 x2, len2 x2 | 4 |
+| | **1681 ports** | | | | | **8301** |
 
 ## Rejected on reading
 
@@ -2026,6 +2037,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439366 | 比特币和黄金5分钟震荡交易策略20Bitcoin-and-Gold-5-Minute-Scalping-Strategy-20.md | 2 | The only exit is strategy.exit(loss = stopLossLevel) with stopLossLevel = lowest(low, 2)[1] - ATR(14): a price LEVEL passed as a TICK distance, so the real distance is about the whole price times the tick size, an instrument-specific stop with no generic reading (as #437787, #439275); strategy.close("Sell") names an id that is never entered. |
 | 439607 | 多重技术指标配合的趋势追踪型量化策略Quantitative-Trend-Tracking-Strategy-Based-on-Multiple-Technical-Indicators.md | 1 | The only exit is strategy.close("Long Position", qty_percent = 50): every close takes half of the position, so trades end in partial exits (criterion 1, as #436524). |
 | 439610 | 影响周线的交易策略Weekly-Swing-Trading-Strategy.md | 2 | The take-profit exit trails with trail_price = 0.03 (a price LEVEL, met at once) and trail_offset = 0.03 TICKS: the intended 3 % trail is passed as a tick count, so the real trail is 0.03 x the tick size behind the best price, an instrument-specific trail with no generic reading (as #437048); the 5 % stop and 10 % target are re-sent every bar from the current close. |
+| 439709 | 基于TSI和HMACCI指标的双边套利策略Trend-Surfing-Hedging-Strategy-Based-on-TSI-and-HMACCI-Indicators.md | 1 | Positions are built with strategy.order('BUY' / 'SELL'), which adds or removes units instead of entering or reversing, and both orders and the close_all are gated on strategy.openprofit in account currency (> -1 to trade, > 3000 to close all) with a cash order size: the net position and the exits depend on the order size (as #430596, #432078). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
