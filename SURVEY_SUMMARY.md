@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3065 |
+| PORTED | 3073 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 445 |
+| REJECTED_ON_READING | 450 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 224 |
+| PORT_CANDIDATE | 211 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3193,7 +3193,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 483115 | `ports/483115_quantum-precision-multi-indicator-trend-crossover-trading-st/` | PineScript | multi_indicator_confluence | none | atr_multiplier x2, risk_reward_ratio x2 | 4 |
 | 483116 | `ports/483116_rsi-dual-moving-average-crossover-with-rsi-momentum-enhancem/` | PineScript | ma_cross | none | fast_length x2, slow_length x2 | 4 |
 | 483117 | `ports/483117_atr-atr-dynamic-trend-following-and-ema-crossover-trading-st/` | PineScript | atr_trailing_line | none | key_value x2, atr_period x2 | 4 |
-| | **3065 ports** | | | | | **14074** |
+| 483120 | `ports/483120_rsi-multi-ema-crossover-with-rsi-momentum-adaptive-scalping/` | PineScript | ma_cross | coarse_bar_stop | stop_loss_percent x2, target_percent x2 | 4 |
+| 483121 | `ports/483121_ema-macd-dynamic-trend-momentum-crossover-strategy-quantitat/` | PineScript | macd_cross | none | stop_loss_perc x2, take_profit_perc x2 | 4 |
+| 483122 | `ports/483122_multi-layer-moving-average-cross-precise-timing-trend-follow/` | PineScript | ma_trend | none | sma_period1 x2, sma_period2 x2 | 4 |
+| 483123 | `ports/483123_sma-trend-following-dual-ema-crossover-strategy-with-sma-tre/` | PineScript | ma_cross | coarse_bar_stop | sma_length x2, rr x2 | 4 |
+| 483124 | `ports/483124_multi-indicator-cross-intelligence-trend-trading-strategy/` | PineScript | ma_cross | coarse_bar_stop | stop_loss_perc x2, take_profit_perc x2 | 4 |
+| 483126 | `ports/483126_rsi-rsi-dual-momentum-trend-reversal-strategy-based-on-rsi-a/` | PineScript | stochastic_oscillator | none | rsi_length x2, stoch_length x2 | 4 |
+| 483130 | `ports/483130_rsi-atr-dynamic-ema-crossover-with-rsi-momentum-and-atr-vola/` | PineScript | ma_cross | none | ema_fast_length x2, ema_slow_length x2 | 4 |
+| 483495 | `ports/483495_dynamic-dual-moving-average-crossover-strategy-with-single-t/` | PineScript | ma_cross | none | ema_period9 x2, ema_period21 x2 | 4 |
+| | **3073 ports** | | | | | **14106** |
 
 ## Rejected on reading
 
@@ -3644,6 +3652,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 483081 | 动态趋势确认的反转公平价值缺口量化交易策略-Dynamic-Trend-Confirmed-Inverted-Fair-Value-Gap-Quantitative-Trading-Strategy.md | 2 | stopLoss = 100 'points' is added to and subtracted from the close as a price amount for the stop, target and trailing tests (criterion 2, as #473377). |
 | 483086 | 多级布林带回归交易策略-Multi-Level-Bollinger-Bands-Mean-Reversion-Trading-Strategy.md | 1 | Five partial take-profits of 20 % of the position each (qty = position_size x 0.2) with adds allowed: criterion 1, as #436524. |
 | 483104 | 多重均线与RSI交叉动态ATR止盈止损策略-Multi-SMA-and-RSI-Crossover-Strategy-with-Dynamic-ATR-based-Take-Profit-and-Stop-Loss.md | 2 | The exit passes loss = atr x 1.5 and profit = atr x 2.5, price amounts, where loss= / profit= take ticks (criterion 2, as #473377). |
+| 483118 | 多重均线趋势追踪与风控优化量化交易策略-Multi-Moving-Average-Trend-Following-and-Risk-Management-Quantitative-Trading-Strategy.md | 2 | The trailing exit passes trail_points = atr x 1.5 and trail_offset = atr x 1.5, price amounts, where the call takes ticks, with no /mintick (criterion 2, as #482767). |
+| 483119 | 高级量化交易策略基于日内动量与风险管理的自动化执行系统-Advanced-Quantitative-Trading-Strategy-Automated-Execution-System-Based-on-Intraday-Momentum-and-Risk-Management.md | 2 | Stop loss 5 and take profit 15 are dollar amounts added to the average price (criterion 2, as #473377). |
+| 483125 | 动态ATR优化的日内高低点突破交易策略-Dynamic-ATR-Optimized-Intraday-High-Low-Breakout-Trading-Strategy.md | 1 | As written it can never trade: todayLow includes the current bar, so close <= min(prevDayLow, todayLow) - buffer is impossible (the close is never under the bar's own low), and likewise for the short (criterion 1, as #430384). |
+| 483496 | 多重指标动量突破趋势交易策略-Multi-Indicator-Momentum-Breakout-Trend-Trading-Strategy.md | 2 | The exits pass loss = longSL / shortSL and profit = longTP / shortTP, which are price LEVELS, where loss= / profit= take ticks (criterion 2, as #473377). |
+| 483498 | 多核心回归动态反应器趋势跟踪策略-Multi-Kernel-Regression-Dynamic-Reactor-Trend-Following-Strategy.md | 1 | A 50 % partial take-profit (qty_percent = 50) beside a trail whose trail_points / trail_offset are price amounts (riskValue x 0.8): criterion 1, as #436524 (the trail also fails criterion 2). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

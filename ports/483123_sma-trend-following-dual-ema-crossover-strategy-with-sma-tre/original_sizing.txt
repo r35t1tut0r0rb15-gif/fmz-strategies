@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483123 (趋势跟踪型双均线交叉策略结合SMA趋势过滤系统-Trend-Following-Dual-EMA-Crossover-Strategy-with-SMA-Trend-Filtering-System)
+# Source: https://www.fmz.com/strategy/483123  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin 100 / 100  [lines 97-97]
+   97: strategy("EMA Crossover Strategy with 15 SMA Trend", overlay=true, margin_long=100, margin_short=100)

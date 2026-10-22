@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #483122 (多层移动平均线交叉精确时序趋势跟踪策略-Multi-Layer-Moving-Average-Cross-Precise-Timing-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/483122  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

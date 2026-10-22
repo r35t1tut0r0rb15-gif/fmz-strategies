@@ -6698,6 +6698,28 @@ SIZING = {
     483117: [
         ("strategy(): 100 % of equity", 105, 105),
     ],
+    # ---- FMZ-C, batch C258 (2026-10-22)
+    483120: [],
+    483121: [
+        ("strategy(): 10 % of equity", 86, 86),
+    ],
+    483122: [],
+    483123: [
+        ("strategy(): margin 100 / 100", 97, 97),
+    ],
+    483124: [
+        ("strategy(): capital 10000, 10 % of equity, commission 0.1 %", 138, 138),
+    ],
+    483126: [
+        ("strategy(): capital 100000, 10 % of equity", 103, 103),
+    ],
+    483130: [
+        ("strategy(): margin 100 / 100, pyramiding 1", 93, 93),
+        ("risk-sized quantity: equity x 1 % / stop distance", 121, 124),
+    ],
+    483495: [
+        ("strategy(): capital 100000, 10 % of equity", 91, 91),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8452,6 +8474,20 @@ REJECTED_ON_READING = {
     # ---- FMZ-C, batch C257 (2026-10-22)
     483104: ("2", "The exit passes loss = atr x 1.5 and profit = atr x 2.5, price amounts, where "
               "loss= / profit= take ticks (criterion 2, as #473377)."),
+    # ---- FMZ-C, batch C258 (2026-10-22)
+    483118: ("2", "The trailing exit passes trail_points = atr x 1.5 and trail_offset = atr x 1.5, "
+              "price amounts, where the call takes ticks, with no /mintick (criterion 2, as "
+              "#482767)."),
+    483119: ("2", "Stop loss 5 and take profit 15 are dollar amounts added to the average price "
+              "(criterion 2, as #473377)."),
+    483125: ("1", "As written it can never trade: todayLow includes the current bar, so close <= "
+              "min(prevDayLow, todayLow) - buffer is impossible (the close is never under the "
+              "bar's own low), and likewise for the short (criterion 1, as #430384)."),
+    483496: ("2", "The exits pass loss = longSL / shortSL and profit = longTP / shortTP, which are "
+              "price LEVELS, where loss= / profit= take ticks (criterion 2, as #473377)."),
+    483498: ("1", "A 50 % partial take-profit (qty_percent = 50) beside a trail whose trail_points / "
+              "trail_offset are price amounts (riskValue x 0.8): criterion 1, as #436524 (the "
+              "trail also fails criterion 2)."),
 }
 
 DUPLICATE_ON_READING = {
