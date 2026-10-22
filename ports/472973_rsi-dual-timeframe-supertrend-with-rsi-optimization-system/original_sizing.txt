@@ -1,0 +1,35 @@
+# Original sizing and money-management code, FMZ #472973 (双时间周期超级趋势与RSI策略优化系统-Dual-Timeframe-Supertrend-with-RSI-Optimization-System)
+# Source: https://www.fmz.com/strategy/472973  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 30 % of the average price  [lines 127-156]
+  127: takeProfitPercent = input.float(30, title="Take Profit", step=0.1) / 100
+  128: 
+  129: // Entry conditions based on price crossover with Supertrend Timeframe
+  130: longCondition = ta.crossover(close, supertrend_tf2) and barstate.isconfirmed
+  131: shortCondition = ta.crossunder(close, supertrend_tf2) and barstate.isconfirmed
+  132: 
+  133: // Execution of reversal orders with closing of previous position
+  134: if (longCondition)
+  135:     // Close a short position before opening a long position
+  136:     if (strategy.position_size < 0)
+  137:         strategy.close("Short", comment="Close Short for Long Entry")
+  138:     strategy.entry("Long", strategy.long)
+  139: 
+  140: if (shortCondition)
+  141:     // Close long position before opening short position
+  142:     if (strategy.position_size > 0)
+  143:         strategy.close("Long", comment="Close Long for Short Entry")
+  144:     strategy.entry("Short", strategy.short)
+  145: 
+  146: // Calculate take profit levels relative to the average entry price
+  147: if (strategy.position_size > 0)
+  148:     takeProfitLong = strategy.position_avg_price * (1 + takeProfitPercent)
+  149:     strategy.exit("Take Profit Long", "Long", limit=takeProfitLong)
+  150: 
+  151: if (strategy.position_size > 0 and (rsi_tf_value >= rsiUpper))
+  152:     strategy.close("Long", comment="RSI Take Profit Long")
+  153: 
+  154: if (strategy.position_size < 0)
+  155:     takeProfitShort = strategy.position_avg_price * (1 - takeProfitPercent)
+  156:     strategy.exit("Take Profit Short", "Short", limit=takeProfitShort)

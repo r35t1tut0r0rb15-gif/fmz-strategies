@@ -1,0 +1,79 @@
+# Original sizing and money-management code, FMZ #472251 (EMA双均线交叉动态止盈止损量化交易策略-Dynamic-Take-Profit-Stop-Loss-EMA-Crossover-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/472251  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 30 / stop 10 pips (pip = mintick x 10)  [lines 92-165]
+   92: target_in_pips = 30
+   93: stoploss_in_pips = 10
+   94: 
+   95: // Convert pips to price value based on market (for forex, 1 pip = 0.0001 for major pairs like GBP/JPY)
+   96: pip_value = syminfo.mintick * 10  // For forex, 1 pip = 0.0001 or 0.01 for JPY pairs
+   97: target_value = target_in_pips * pip_value
+   98: stoploss_value = stoploss_in_pips * pip_value
+   99: 
+  100: // Define EMAs (10-EMA and 26-EMA) for the crossover strategy
+  101: ema10 = ta.ema(close, 10)
+  102: ema26 = ta.ema(close, 26)
+  103: 
+  104: // Buy signal: when 10 EMA crosses above 26 EMA
+  105: longCondition = ta.crossover(ema10, ema26)
+  106: // Sell signal: when 10 EMA crosses below 26 EMA
+  107: shortCondition = ta.crossunder(ema10, ema26)
+  108: 
+  109: // Define price levels with explicit type float
+  110: var float long_entry_price = na
+  111: var float long_take_profit = na
+  112: var float long_stop_loss = na
+  113: var float short_entry_price = na
+  114: var float short_take_profit = na
+  115: var float short_stop_loss = na
+  116: 
+  117: // Variable to track if a trade is active
+  118: var bool inTrade = false
+  119: 
+  120: // Check if the trade hit stop loss or take profit
+  121: if (inTrade)
+  122:     if (not na(long_take_profit) and close >= long_take_profit)
+  123:         inTrade := false  // Exit the trade after hitting target
+  124:         long_entry_price := na
+  125:         long_take_profit := na
+  126:         long_stop_loss := na
+  127:         strategy.close("Long")
+  128: 
+  129:     if (not na(long_stop_loss) and close <= long_stop_loss)
+  130:         inTrade := false  // Exit the trade after hitting stoploss
+  131:         long_entry_price := na
+  132:         long_take_profit := na
+  133:         long_stop_loss := na
+  134:         strategy.close("Long")
+  135: 
+  136:     if (not na(short_take_profit) and close <= short_take_profit)
+  137:         inTrade := false  // Exit the trade after hitting target
+  138:         short_entry_price := na
+  139:         short_take_profit := na
+  140:         short_stop_loss := na
+  141:         strategy.close("Short")
+  142: 
+  143:     if (not na(short_stop_loss) and close >= short_stop_loss)
+  144:         inTrade := false  // Exit the trade after hitting stoploss
+  145:         short_entry_price := na
+  146:         short_take_profit := na
+  147:         short_stop_loss := na
+  148:         strategy.close("Short")
+  149: 
+  150: // Only generate new signals if not already in a trade
+  151: if (not inTrade)
+  152:     if (longCondition)
+  153:         long_entry_price := close
+  154:         long_take_profit := close + target_value
+  155:         long_stop_loss := close - stoploss_value
+  156:         strategy.entry("Long", strategy.long)  // Enter a long trade
+  157:         strategy.exit("Take Profit/Stop Loss", "Long", limit=long_take_profit, stop=long_stop_loss)
+  158:         inTrade := true  // Mark trade as active
+  159: 
+  160:     if (shortCondition)
+  161:         short_entry_price := close
+  162:         short_take_profit := close - target_value
+  163:         short_stop_loss := close + stoploss_value
+  164:         strategy.entry("Short", strategy.short)  // Enter a short trade
+  165:         strategy.exit("Take Profit/Stop Loss", "Short", limit=short_take_profit, stop=short_stop_loss)

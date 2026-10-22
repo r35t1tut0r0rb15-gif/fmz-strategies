@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2589 |
+| PORTED | 2600 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 784 |
+| PORT_CANDIDATE | 772 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 365 |
+| REJECTED_ON_READING | 366 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2717,7 +2717,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 471729 | `ports/471729_dual-moving-average-crossover-with-dynamic-risk-management-s/` | PineScript | ma_cross | none | fast x2, slow x2, sl_pct x2 | 8 |
 | 472246 | `ports/472246_dual-moving-average-crossover-strategy-with-dynamic-risk-man/` | PineScript | ma_cross | none | short_len x2, long_len x2, tp_pct x2 | 8 |
 | 472248 | `ports/472248_ema-multi-ema-crossover-trend-following-strategy-with-dynami/` | PineScript | ma_cross | coarse_bar_stop | sl_atr x2, tp_atr x2 | 4 |
-| | **2589 ports** | | | | | **12221** |
+| 472251 | `ports/472251_ema-dynamic-take-profit-stop-loss-ema-crossover-quantitative/` | PineScript | ma_cross | coarse_bar_stop | tp_frac x2, sl_frac x2 | 4 |
+| 472252 | `ports/472252_dynamic-darvas-box-breakout-with-moving-average-trend-confir/` | PineScript | breakout | none | boxp x2, ma_len x2 | 4 |
+| 472933 | `ports/472933_enhanced-multi-period-dynamic-adaptive-trend-following-tradi/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2, adx_th x2 | 8 |
+| 472934 | `ports/472934_rsi-dual-ema-rsi-crossover-strategy-with-dynamic-take-profit/` | PineScript | ma_cross | none | fast x2, slow x2, tp_pct x2 | 8 |
+| 472936 | `ports/472936_multi-ema-trend-momentum-recognition-and-stop-loss-trading-s/` | PineScript | ma_trend | coarse_bar_stop | sl_pct x2 | 2 |
+| 472938 | `ports/472938_macd-dual-macd-price-action-breakout-trailing-strategy/` | PineScript | macd_momentum | trailing_stop_pending | strong_k x2 | 2 |
+| 472939 | `ports/472939_rsi-dual-timeframe-supertrend-rsi-intelligent-trading-strate/` | PineScript | supertrend | none | factor x2, atr_period x2 | 4 |
+| 472951 | `ports/472951_mtf-atr-macd-multi-timeframe-trend-following-trading-system/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 472971 | `ports/472971_dual-moving-average-crossover-trend-following-strategy-with/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 472973 | `ports/472973_rsi-dual-timeframe-supertrend-with-rsi-optimization-system/` | PineScript | supertrend | none | factor x2, tp_pct x2 | 4 |
+| 472974 | `ports/472974_dual-ema-momentum-trend-trading-strategy-with-full-body-cand/` | PineScript | candle_pattern | none | body_frac x2, ema_slow x2 | 4 |
+| | **2600 ports** | | | | | **12269** |
 
 ## Rejected on reading
 
@@ -3088,6 +3099,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 471710 | 自适应RSI震荡阈值动态交易策略-Adaptive-RSI-Oscillator-Dynamic-Trading-Strategy-with-Threshold-Optimization.md | 1 | Besides the 28-bar exit, the stop closes when strategy.opentrades.profit(0) <= -1600 (currency, for a 10 % of equity position): where trades end depends on the position size and account (criterion 1, size-dependent exit, as #458066). |
 | 471711 | 基于-RSI-动量和多层级止盈止损的智能自适应交易系统-RSI-Momentum-based-Smart-Adaptive-Trading-System-with-Multi-level-Risk-Management.md | 1 | close_all fires when hour(timenow) == 15 and minute(timenow) == 25, i.e. on the clock of the machine running the script, not the bar's time; the stop / target are fixed 100 / 150 price units from the average price (criterion 1, timenow gate). |
 | 471718 | 智能时间周期多空轮动均衡交易策略-Intelligent-Time-Based-Long-Short-Rotation-Balanced-Trading-Strategy.md | 1 | The strategy trades only while bar_index >= last_bar_index - 499 (the last 500 bars of whatever data is loaded) and has no market signal, only a timed long / short rotation: where it trades depends on where the data ends (criterion 1, data-end-dependent window). |
+| 472253 | 强化波林格均值回归量化策略-Enhanced-Bollinger-Mean-Reversion-Quantitative-Strategy.md | 2 | The exits pass ATR distances as prices (limit = 2 x atr, stop = 1 x atr): for BTC those are prices far under the market, so the long's sell limit and the short's buy stop are marketable at every fill and each trade would close at its own fill (criterion 2, distances as absolute prices, as #458198). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

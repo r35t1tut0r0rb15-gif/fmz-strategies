@@ -5583,6 +5583,34 @@ SIZING = {
     472248: [
         ("Stop 50 / target 100 ticks", 110, 144),
     ],
+    # ---- FMZ-C, batch C212 (2026-10-22)
+    472251: [
+        ("Target 30 / stop 10 pips (pip = mintick x 10)", 92, 165),
+    ],
+    472252: [],
+    472933: [
+        ("Bracket from the average price x risk / reward 1.5", 98, 123),
+    ],
+    472934: [
+        ("Target 1.5 % / stop 1 % of the signal close", 108, 121),
+    ],
+    472936: [
+        ("Stop 2 % of the average price", 118, 132),
+    ],
+    472938: [
+        ("Stop 1 ATR / ratcheting target 1.5 ATR", 116, 197),
+    ],
+    472939: [
+        ("Target / stop / trail modes (off)", 114, 198),
+    ],
+    472951: [
+        ("Trailing stop 1.5 ATR / target 2 ATR (sent on reversal bars)", 128, 182),
+    ],
+    472971: [],
+    472973: [
+        ("Target 30 % of the average price", 127, 156),
+    ],
+    472974: [],
 }
 
 REJECTED_ON_READING = {
@@ -7060,6 +7088,11 @@ REJECTED_ON_READING = {
               "bars of whatever data is loaded) and has no market signal, only a timed long / "
               "short rotation: where it trades depends on where the data ends (criterion 1, "
               "data-end-dependent window)."),
+    # ---- FMZ-C, batch C212 (2026-10-22)
+    472253: ("2", "The exits pass ATR distances as prices (limit = 2 x atr, stop = 1 x atr): for BTC "
+              "those are prices far under the market, so the long's sell limit and the short's "
+              "buy stop are marketable at every fill and each trade would close at its own fill "
+              "(criterion 2, distances as absolute prices, as #458198)."),
 }
 
 DUPLICATE_ON_READING = {

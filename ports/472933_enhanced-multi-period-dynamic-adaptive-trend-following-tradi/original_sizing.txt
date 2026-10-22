@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #472933 (增强型多周期动态自适应趋势跟踪交易系统-Enhanced-Multi-Period-Dynamic-Adaptive-Trend-Following-Trading-System)
+# Source: https://www.fmz.com/strategy/472933  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Bracket from the average price x risk / reward 1.5  [lines 98-123]
+   98: riskRewardRatio = input.float(1.5, title="Risk/Reward Ratio")
+   99: rsiOverbought = input.int(60, title="RSI Overbought Level")  // Adjusted for flexibility
+  100: rsiOversold = input.int(40, title="RSI Oversold Level")
+  101: 
+  102: // EMA Calculations
+  103: fastEMA = ta.ema(close, lenFast)
+  104: slowEMA = ta.ema(close, lenSlow)
+  105: 
+  106: // RSI Calculation
+  107: rsiValue = ta.rsi(close, rsiPeriod)
+  108: 
+  109: // ADX Calculation
+  110: [plusDI, minusDI, adxValue] = ta.dmi(adxPeriod, adxSmoothing)
+  111: 
+  112: // Entry Conditions with Confirmation
+  113: buyCondition = ta.crossover(fastEMA, slowEMA) and rsiValue < rsiOverbought and adxValue > adxThreshold
+  114: sellCondition = ta.crossunder(fastEMA, slowEMA) and rsiValue > rsiOversold and adxValue > adxThreshold
+  115: 
+  116: // Dynamic Exit Conditions
+  117: takeProfit = strategy.position_avg_price + (close - strategy.position_avg_price) * riskRewardRatio
+  118: stopLoss = strategy.position_avg_price - (close - strategy.position_avg_price)
+  119: 
+  120: // Entry logic
+  121: if (buyCondition)
+  122:     strategy.entry("Buy", strategy.long)
+  123:     strategy.exit("Sell", from_entry="Buy", limit=takeProfit, stop=stopLoss)

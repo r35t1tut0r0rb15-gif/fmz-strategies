@@ -1,0 +1,90 @@
+# Original sizing and money-management code, FMZ #472939 (双时间周期超趋势RSI智能交易策略-Dual-Timeframe-Supertrend-RSI-Intelligent-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/472939  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target / stop / trail modes (off)  [lines 114-198]
+  114: targetMode = input.string("Off", title="Target Mode", options=["Off", "Points", "%"])
+  115: target1Value = input.float(10, title="Target 1 Value", step=0.1)
+  116: target2Value = input.float(20, title="Target 2 Value", step=0.1)
+  117: 
+  118: // Input for Stoploss Settings (Off/Points/%)
+  119: stoplossMode = input.string("Off", title="Stoploss Mode", options=["Off", "Points", "%"])
+  120: stoplossValue = input.float(10, title="Stoploss Value", step=0.1)
+  121: 
+  122: // Input for Trailing Stop Loss (Off/Points/%)
+  123: trailStoplossMode = input.string("Off", title="Trailing Stoploss Mode", options=["Off", "Points", "%"])
+  124: trailStoplossValue = input.float(5, title="Trailing Stoploss Value", step=0.1)
+  125: 
+  126: // Supertrend settings
+  127: atrPeriod = input(10, title="ATR Period")
+  128: factor = input(3.0, title="Supertrend Factor")
+  129: 
+  130: // Timeframe definitions
+  131: timeframe5min = "5"
+  132: timeframe60min = "60"
+  133: 
+  134: // Supertrend 5-min and 60-min (ta.supertrend returns two values: [Supertrend line, Buy/Sell direction])
+  135: [st5minLine, st5minDirection] = ta.supertrend(factor, atrPeriod)
+  136: [st60minLine, st60minDirection] = request.security(syminfo.tickerid, timeframe60min, ta.supertrend(factor, atrPeriod))
+  137: 
+  138: // RSI 5-min
+  139: rsi5min = ta.rsi(close, 14)
+  140: 
+  141: // Conditions for Buy and Sell signals
+  142: isSupertrendBuy = (st5minDirection == 1) and (st60minDirection == 1)
+  143: isSupertrendSell = (st5minDirection == -1) and (st60minDirection == -1)
+  144: 
+  145: buyCondition = isSupertrendBuy and (rsi5min > 60)
+  146: sellCondition = isSupertrendSell and (rsi5min < 40)
+  147: 
+  148: // Exit conditions
+  149: exitBuyCondition = st5minDirection == -1
+  150: exitSellCondition = st5minDirection == 1
+  151: 
+  152: // Intraday session check
+  153: inSession = true
+  154: 
+  155: // Strategy Logic (Trades only during the intraday session if systemMode is Intraday)
+  156: if (buyCondition and inSession)
+  157:     strategy.entry("Buy", strategy.long)
+  158: 
+  159: if (sellCondition and inSession)
+  160:     strategy.entry("Sell", strategy.short)
+  161: 
+  162: // Exit logic using strategy.close() to close the position at market price
+  163: if (exitBuyCondition)
+  164:     strategy.close("Buy")
+  165: 
+  166: if (exitSellCondition)
+  167:     strategy.close("Sell")
+  168: 
+  169: // No Sell when 60-min Supertrend is green and no Buy when 60-min Supertrend is red
+  170: if isSupertrendSell and (st60minDirection == 1)
+  171:     strategy.close("Sell")
+  172: 
+  173: if isSupertrendBuy and (st60minDirection == -1)
+  174:     strategy.close("Buy")
+  175: 
+  176: // Target Management
+  177: if (targetMode == "Points")
+  178:     strategy.exit("Target 1", "Buy", limit=close + target1Value)
+  179:     strategy.exit("Target 2", "Sell", limit=close - target2Value)
+  180: if (targetMode == "%")
+  181:     strategy.exit("Target 1", "Buy", limit=close * (1 + target1Value / 100))
+  182:     strategy.exit("Target 2", "Sell", limit=close * (1 - target2Value / 100))
+  183: 
+  184: // Stoploss Management
+  185: if (stoplossMode == "Points")
+  186:     strategy.exit("Stoploss", "Buy", stop=close - stoplossValue)
+  187:     strategy.exit("Stoploss", "Sell", stop=close + stoplossValue)
+  188: if (stoplossMode == "%")
+  189:     strategy.exit("Stoploss", "Buy", stop=close * (1 - stoplossValue / 100))
+  190:     strategy.exit("Stoploss", "Sell", stop=close * (1 + stoplossValue / 100))
+  191: 
+  192: // Trailing Stop Loss
+  193: if (trailStoplossMode == "Points")
+  194:     strategy.exit("Trail SL", "Buy", trail_price=na, trail_offset=trailStoplossValue)
+  195:     strategy.exit("Trail SL", "Sell", trail_price=na, trail_offset=trailStoplossValue)
+  196: if (trailStoplossMode == "%")
+  197:     strategy.exit("Trail SL", "Buy", trail_price=na, trail_offset=trailStoplossValue / 100 * close)
+  198:     strategy.exit("Trail SL", "Sell", trail_price=na, trail_offset=trailStoplossValue / 100 * close)

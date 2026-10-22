@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #472936 (多重均线趋势动量识别与止损交易系统-Multi-EMA-Trend-Momentum-Recognition-and-Stop-Loss-Trading-System)
+# Source: https://www.fmz.com/strategy/472936  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 % of the average price  [lines 118-132]
+  118: stop_loss_perc = input(2.0, title="Stop Loss %")
+  119: 
+  120: // Execute buy signal
+  121: if (buy_condition)
+  122:     strategy.entry("Buy", strategy.long)
+  123:     
+  124:     // Set stop loss at a percentage below the entry price
+  125:     strategy.exit("Sell", "Buy", stop=strategy.position_avg_price * (1 - stop_loss_perc / 100))
+  126: 
+  127: // Execute sell signal
+  128: if (sell_condition)
+  129:     strategy.entry("Sell", strategy.short)
+  130: 
+  131:     // Set stop loss at a percentage above the entry price
+  132:     strategy.exit("Cover", "Sell", stop=strategy.position_avg_price * (1 + stop_loss_perc / 100))

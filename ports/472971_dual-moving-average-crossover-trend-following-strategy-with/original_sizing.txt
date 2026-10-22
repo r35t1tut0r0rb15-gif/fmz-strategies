@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #472971 (双均线交叉趋势追踪策略结合动态止盈止损系统-Dual-Moving-Average-Crossover-Trend-Following-Strategy-with-Dynamic-Stop-Loss-and-Take-Profit-System)
+# Source: https://www.fmz.com/strategy/472971  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

@@ -1,0 +1,87 @@
+# Original sizing and money-management code, FMZ #472938 (双重MACD价格行为突破追踪策略-Dual-MACD-Price-Action-Breakout-Trailing-Strategy)
+# Source: https://www.fmz.com/strategy/472938  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 ATR / ratcheting target 1.5 ATR  [lines 116-197]
+  116: atrMultiplier = input.float(1.5, title="ATR Multiplier for Trailing")
+  117: 
+  118: // Inputs for Stop Loss
+  119: atrStopMultiplier = input.float(1.0, title="ATR Multiplier for Stop Loss")
+  120: 
+  121: // MACD Calculations
+  122: [macdLine1, signalLine1, macdHist1] = ta.macd(close, fastLength1, slowLength1, signalLength1)
+  123: [macdLine2, signalLine2, macdHist2] = ta.macd(close, fastLength2, slowLength2, signalLength2)
+  124: 
+  125: // Get 15M MACD histogram colors
+  126: macdHist1Color = request.security(syminfo.tickerid, "15", (macdHist1 >= 0 ? (macdHist1[1] < macdHist1 ? #26A69A : #B2DFDB) : (macdHist1[1] < macdHist1 ? #FFCDD2 : #FF5252)))
+  127: macdHist2Color = request.security(syminfo.tickerid, "15", (macdHist2 >= 0 ? (macdHist2[1] < macdHist2 ? #26A69A : #B2DFDB) : (macdHist2[1] < macdHist2 ? #FFCDD2 : #FF5252)))
+  128: 
+  129: // Check MACD color conditions
+  130: isMacdUptrend = macdHist1Color == #26A69A and macdHist2Color == #26A69A
+  131: isMacdDowntrend = macdHist1Color == #FF5252 and macdHist2Color == #FF5252
+  132: 
+  133: // Function to detect strong 5M candles
+  134: isStrongCandle(open, close, high, low) =>
+  135:     body = math.abs(close - open)
+  136:     tail = math.abs(high - low) - body
+  137:     body > tail * 1.5  // Ensure body is larger than the tail
+  138: 
+  139: // Variables to track state
+  140: var float fiveMinuteHigh = na
+  141: var float fiveMinuteLow = na
+  142: var bool tradeExecuted = false
+  143: var bool breakoutDetected = false
+  144: var float entryPrice = na
+  145: var float stopLossPrice = na
+  146: var float longTakeProfit = na
+  147: var float shortTakeProfit = na
+  148: 
+  149: // Check for new 15M candle and reset flags
+  150: if ta.change(time("15"))
+  151:     tradeExecuted := false      // Reset trade execution flag
+  152:     breakoutDetected := false  // Reset breakout detection
+  153:     if isStrongCandle(open[1], close[1], high[1], low[1])
+  154:         fiveMinuteHigh := high[1]
+  155:         fiveMinuteLow := low[1]
+  156:     else
+  157:         fiveMinuteHigh := na
+  158:         fiveMinuteLow := na
+  159: 
+  160: // Get 1-minute close prices
+  161: close1m = request.security(syminfo.tickerid, "5", close)
+  162: 
+  163: // Ensure valid breakout direction and avoid double breakouts
+  164: if not na(fiveMinuteHigh) and not breakoutDetected
+  165:     for i = 1 to 3
+  166:         if close1m[i] > fiveMinuteHigh and not tradeExecuted  // 1M breakout check with close
+  167:             breakoutDetected := true
+  168:             if isMacdUptrend 
+  169:                 // Open Long trade
+  170:                 entryPrice := close
+  171:                 stopLossPrice := close - (atrStopMultiplier * ta.atr(14))  // ATR-based stop loss
+  172:                 longTakeProfit := close + (atrMultiplier * ta.atr(14)) // Initialize take profit
+  173: 
+  174:                 strategy.entry("Long", strategy.long)
+  175:                 tradeExecuted := true
+  176:             break // Exit the loop after detecting a breakout
+  177: 
+  178:         else if close1m[i] < fiveMinuteLow and not tradeExecuted  // 1M breakout check with close
+  179:             breakoutDetected := true
+  180:             if isMacdDowntrend
+  181:                 // Open Short trade
+  182:                 entryPrice := close
+  183:                 stopLossPrice := close + (atrStopMultiplier * ta.atr(14))  // ATR-based stop loss
+  184:                 shortTakeProfit := close - (atrMultiplier * ta.atr(14)) // Initialize take profit
+  185: 
+  186:                 strategy.entry("Short", strategy.short)
+  187:                 tradeExecuted := true
+  188:             break // Exit the loop after detecting a breakout
+  189: 
+  190: // Update trailing take-profit dynamically
+  191: if tradeExecuted and strategy.position_size > 0  // Long trade
+  192:     longTakeProfit := math.max(longTakeProfit, close + (atrMultiplier * ta.atr(14)))
+  193:     strategy.exit("Long TP/SL", "Long", stop=stopLossPrice, limit=longTakeProfit)
+  194: 
+  195: else if tradeExecuted and strategy.position_size < 0  // Short trade
+  196:     shortTakeProfit := math.min(shortTakeProfit, close - (atrMultiplier * ta.atr(14)))
+  197:     strategy.exit("Short TP/SL", "Short", stop=stopLossPrice, limit=shortTakeProfit)
