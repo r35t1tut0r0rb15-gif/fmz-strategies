@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #440831 (螺旋十字星与移动平均确认策略Spiral-Cross-Strategy-with-Moving-Average-Confirmation)
+# Source: https://www.fmz.com/strategy/440831  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

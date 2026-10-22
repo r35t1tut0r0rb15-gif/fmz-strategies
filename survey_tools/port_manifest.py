@@ -4101,6 +4101,27 @@ SIZING = {
     440797: [
         ("strategy(): capital 1000, fixed qty 0.5, slippage 25", 132, 132),
     ],
+    # ---- FMZ-C, batch C140 (2026-10-22)
+    440798: [
+        ("strategy(): capital 10000, cash 10000", 243, 243),
+    ],
+    440799: [],
+    440800: [],
+    440806: [
+        ("leverage input (scales the stop only)", 163, 163),
+    ],
+    440808: [],
+    440809: [],
+    440810: [],
+    440817: [
+        ("lot size 1", 163, 163),
+    ],
+    440829: [],
+    440831: [],
+    440832: [
+        ("strategy(): capital 1000, 30 % of equity, commission 0.1 %", 118, 118),
+    ],
+    440833: [],
 }
 
 REJECTED_ON_READING = {

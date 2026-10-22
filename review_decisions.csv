@@ -2112,3 +2112,15 @@ fmz_id,file,final_outcome,criterion,reason
 440728,双移动平均线穿越与威廉姆斯指标组合策略Dual-Moving-Average-Crossover-and-Williams-Indicator-Combo-Strategy.md,PORTED,,ports/440728_dual-moving-average-crossover-and-williams-indicator-combo-s/
 440794,量化交易动量方向收敛策略Ergotic-Momentum-Direction-Convergence-Trading-Strategy.md,PORTED,,ports/440794_ergotic-momentum-direction-convergence-trading-strategy/
 440797,帕罗贝尔周期与布林带结合的移动止损策略Parabolic-Period-and-Bollinger-Band-Combined-Moving-Stop-Loss-Strategy.md,PORTED,,ports/440797_parabolic-period-and-bollinger-band-combined-moving-stop-los/
+440798,基于超级趋势策略SuperTrend-Strategy.md,PORTED,,ports/440798_supertrend-strategy/
+440799,基于两个移动平均线的交叉策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/440799_moving-average-crossover-strategy/
+440800,单均点横盘突破策略Single-Point-Moving-Average-Breakout-Strategy.md,PORTED,,ports/440800_single-point-moving-average-breakout-strategy/
+440806,双指标滤波交易策略Stochastic-Moving-Average-Strategy-with-Double-Filters.md,PORTED,,ports/440806_stochastic-moving-average-strategy-with-double-filters/
+440808,基于MACD指标的趋势交易策略-Trend-Trading-Strategy-Based-on-MACD-Indicator.md,PORTED,,ports/440808_macd-trend-trading-strategy-based-on-macd-indicator/
+440809,基于布林带RSI和移动平均线的趋势跟踪策略Trend-Following-Strategy-Based-on-Bollinger-Bands-RSI-and-Moving-Average.md,PORTED,,ports/440809_rsi-trend-following-strategy-based-on-bollinger-bands-rsi-an/
+440810,动态SMMA与SMA交叉策略Dynamic-SMMA-and-SMA-Crossover-Strategy.md,PORTED,,ports/440810_smma-sma-dynamic-smma-and-sma-crossover-strategy/
+440817,开仓高收盘低吃单交易策略Open-High-Close-Low-Breakout-Trading-Strategy.md,PORTED,,ports/440817_open-high-close-low-breakout-trading-strategy/
+440829,金叉死叉量化交易策略Gold-Cross-Dead-Cross-Quantitative-Trading-Strategy.md,PORTED,,ports/440829_gold-cross-dead-cross-quantitative-trading-strategy/
+440831,螺旋十字星与移动平均确认策略Spiral-Cross-Strategy-with-Moving-Average-Confirmation.md,PORTED,,ports/440831_spiral-cross-strategy-with-moving-average-confirmation/
+440832,基于RSI的追踪趋势策略Trend-Following-RSI-Scalping-Strategy.md,PORTED,,ports/440832_rsi-trend-following-rsi-scalping-strategy/
+440833,渔夫指标移动止损策略Fisher-Yurik-Trailing-Stop-Strategy.md,PORTED,,ports/440833_fisher-yurik-trailing-stop-strategy/

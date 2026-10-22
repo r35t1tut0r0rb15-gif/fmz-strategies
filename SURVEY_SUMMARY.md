@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1838 |
-| PORT_CANDIDATE | 1647 |
+| PORTED | 1850 |
+| PORT_CANDIDATE | 1635 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 565 |
 | REJECTED_ON_READING | 257 |
@@ -1966,7 +1966,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440728 | `ports/440728_dual-moving-average-crossover-and-williams-indicator-combo-s/` | PineScript | combo_123_reversal | none | length x2, n_wma x2 | 4 |
 | 440794 | `ports/440794_ergotic-momentum-direction-convergence-trading-strategy/` | PineScript | momentum_oscillator | none | s x2, smth_len x2 | 4 |
 | 440797 | `ports/440797_parabolic-period-and-bollinger-band-combined-moving-stop-los/` | PineScript | parabolic_sar | coarse_bar_stop | swing x2, ema_v x2 | 4 |
-| | **1838 ports** | | | | | **8900** |
+| 440798 | `ports/440798_supertrend-strategy/` | PineScript | supertrend | none | periods x2, multiplier x2 | 4 |
+| 440799 | `ports/440799_moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast_length x2, slow_length x2 | 4 |
+| 440800 | `ports/440800_single-point-moving-average-breakout-strategy/` | PineScript | momentum_oscillator | none | length x2, buyline x2 | 4 |
+| 440806 | `ports/440806_stochastic-moving-average-strategy-with-double-filters/` | PineScript | stochastic_oscillator | none | length x2, lossp x2 | 4 |
+| 440808 | `ports/440808_macd-trend-trading-strategy-based-on-macd-indicator/` | PineScript | atr_trailing_line | none | length x2, multiplier x2 | 4 |
+| 440809 | `ports/440809_rsi-trend-following-strategy-based-on-bollinger-bands-rsi-an/` | PineScript | rsi_oscillator | none | ma_len x2, overbought x2 | 4 |
+| 440810 | `ports/440810_smma-sma-dynamic-smma-and-sma-crossover-strategy/` | PineScript | ma_cross | coarse_bar_stop | k_tp x2, slow x2 | 4 |
+| 440817 | `ports/440817_open-high-close-low-breakout-trading-strategy/` | PineScript | candle_pattern | none | tol_frac x1 | 1 |
+| 440829 | `ports/440829_gold-cross-dead-cross-quantitative-trading-strategy/` | PineScript | ma_cross | none | br_frac x2, fast x2 | 4 |
+| 440831 | `ports/440831_spiral-cross-strategy-with-moving-average-confirmation/` | PineScript | directional_movement | none | period x2, ma_len x2 | 4 |
+| 440832 | `ports/440832_rsi-trend-following-rsi-scalping-strategy/` | PineScript | rsi_oscillator | none | take_profit x2, exit_rsi x2 | 4 |
+| 440833 | `ports/440833_fisher-yurik-trailing-stop-strategy/` | PineScript | momentum_oscillator | trailing_stop, coarse_bar_stop | period x2, activate x2 | 4 |
+| | **1850 ports** | | | | | **8945** |
 
 ## Rejected on reading
 

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #440817 (开仓高收盘低吃单交易策略Open-High-Close-Low-Breakout-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/440817  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## lot size 1  [lines 163-163]
+  163: lotSize = input.int(title='Lot Size', step=1, defval=1, group="Trade settings")
