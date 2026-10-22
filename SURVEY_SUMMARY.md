@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1783 |
-| PORT_CANDIDATE | 1719 |
+| PORTED | 1793 |
+| PORT_CANDIDATE | 1707 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 565 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 240 |
+| REJECTED_ON_READING | 242 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1911,7 +1911,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440369 | `ports/440369_123-peanut-123-reversal-and-breakout-range-short-term-tradin/` | PineScript | combo_123_reversal | none | length x2, look_bak x2 | 4 |
 | 440373 | `ports/440373_robust-trend-continuation-strategy/` | PineScript | ma_pullback | none | sl_factor x2, tp_factor x2 | 4 |
 | 440424 | `ports/440424_amazing-price-breakout-strategy/` | PineScript | candle_pattern | none | mult x2, ma_len x2 | 4 |
-| | **1783 ports** | | | | | **8693** |
+| 440426 | `ports/440426_bollinger-rsi-bollinger-bands-and-rsi-combination-strategy/` | PineScript | volatility_squeeze | none | length x2, overbought x2 | 4 |
+| 440428 | `ports/440428_rsi-double-decker-rsi-trading-strategy/` | PineScript | rsi_oscillator | none | fast_rsi x2, slow_rsi x2 | 4 |
+| 440429 | `ports/440429_20-ema-all-about-ema-channel-trading-strategy/` | PineScript | ma_envelope_breakout | none | ema_len x2 | 2 |
+| 440437 | `ports/440437_rsi-double-exponential-moving-average-rsi-trading-strategy/` | PineScript | rsi_oscillator | trailing_stop | trail_k x2, ma_length x2 | 4 |
+| 440439 | `ports/440439_double-fractal-breakout-strategy/` | PineScript | fractal_breakout | none | occurrence x2 | 2 |
+| 440441 | `ports/440441_macd-rsi-5-macd-and-rsi-based-5-minute-momentum-trading-stra/` | PineScript | multi_indicator_confluence | none | rsi_length x2, rsi_oversold x2 | 4 |
+| 440443 | `ports/440443_ma-true-relative-movement-moving-average-strategy/` | PineScript | momentum_oscillator | none | tsi_short x2, rsi_len x2 | 4 |
+| 440444 | `ports/440444_trend-following-strategy-based-on-adaptive-moving-average/` | PineScript | adaptive_average | none | length1 x2, exit_filter x2 | 4 |
+| 440449 | `ports/440449_macd-dual-macd-quantitative-trading-strategy/` | PineScript | macd_cross | trailing_stop_pending, coarse_bar_stop | tp x2, sign_len x2 | 4 |
+| 440451 | `ports/440451_7-double-7-days-breakout-strategy/` | PineScript | mean_reversion | none | value1 x2, value2 x2 | 4 |
+| | **1793 ports** | | | | | **8729** |
 
 ## Rejected on reading
 
@@ -2157,6 +2167,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440334 | 均线通道突破交易策略Moving-Average-Channel-Breakout-Trading-Strategy.md | 2 | The trail offsets are strategy.position_avg_price x 0.05 passed to trail_offset, which is in ticks, with no /mintick (and negative for the long side): a price amount passed as a tick count (criterion 2, as #437048, #437677). |
 | 440336 | 基于均线和威廉指标的日线策略Daily-FX-Strategy-Based-on-Moving-Average-and-Williams-Indicator.md | 1 | An equity protector closes all trades when the open loss (strategy.openprofit) exceeds 30 % of the balance (initial capital plus netprofit): an account-state gate the signal-only port cannot express (criterion 1, as #432078). |
 | 440354 | 动态均价追踪策略Dynamic-Average-Price-Tracking-Strategy.md | 1 | The script averages down: while the open loss is 10 % or more it adds 50 % of the held size to the long (pyramiding through strategy.position_size and position_avg_price) and holds until a 10 % gain on the average price: accumulation (criterion 1, as #435721, #430762). |
+| 440430 | 基于RSI指标的股票交易双向金字塔策略RSI-Indicator-Based-Stock-Trading-Pyramiding-Strategy.md | 1 | Up to seven long entries (Entry 1 .. Entry 7) are added while the RSI stays oversold, one per strategy.opentrades count, each with its own exit: pyramiding accumulation (criterion 1, as #430762). |
+| 440436 | 移动平均线交叉策略Simple-Moving-Average-Crossover-Strategy.md | 2 | The stop is strategy.exit(loss = close x (1 - 1 %)): a price level passed to loss, which is in ticks (criterion 2, as #437048, #437677). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

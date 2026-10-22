@@ -239,6 +239,8 @@ fmz_id,file,final_outcome,criterion,reason
 440334,均线通道突破交易策略Moving-Average-Channel-Breakout-Trading-Strategy.md,REJECTED_ON_READING,2,"The trail offsets are strategy.position_avg_price x 0.05 passed to trail_offset, which is in ticks, with no /mintick (and negative for the long side): a price amount passed as a tick count (criterion 2, as #437048, #437677)."
 440336,基于均线和威廉指标的日线策略Daily-FX-Strategy-Based-on-Moving-Average-and-Williams-Indicator.md,REJECTED_ON_READING,1,"An equity protector closes all trades when the open loss (strategy.openprofit) exceeds 30 % of the balance (initial capital plus netprofit): an account-state gate the signal-only port cannot express (criterion 1, as #432078)."
 440354,动态均价追踪策略Dynamic-Average-Price-Tracking-Strategy.md,REJECTED_ON_READING,1,"The script averages down: while the open loss is 10 % or more it adds 50 % of the held size to the long (pyramiding through strategy.position_size and position_avg_price) and holds until a 10 % gain on the average price: accumulation (criterion 1, as #435721, #430762)."
+440430,基于RSI指标的股票交易双向金字塔策略RSI-Indicator-Based-Stock-Trading-Pyramiding-Strategy.md,REJECTED_ON_READING,1,"Up to seven long entries (Entry 1 .. Entry 7) are added while the RSI stays oversold, one per strategy.opentrades count, each with its own exit: pyramiding accumulation (criterion 1, as #430762)."
+440436,移动平均线交叉策略Simple-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,2,"The stop is strategy.exit(loss = close x (1 - 1 %)): a price level passed to loss, which is in ticks (criterion 2, as #437048, #437677)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2040,3 +2042,13 @@ fmz_id,file,final_outcome,criterion,reason
 440369,坚果123反转与突破范围短线交易策略Peanut-123-Reversal-and-Breakout-Range-Short-term-Trading-Strategy.md,PORTED,,ports/440369_123-peanut-123-reversal-and-breakout-range-short-term-tradin/
 440373,坚劲趋势延续策略Robust-Trend-Continuation-Strategy.md,PORTED,,ports/440373_robust-trend-continuation-strategy/
 440424,价格突破策略Amazing-Price-Breakout-Strategy.md,PORTED,,ports/440424_amazing-price-breakout-strategy/
+440426,收缩带Bollinger与RSI组合策略Bollinger-Bands-and-RSI-Combination-Strategy.md,PORTED,,ports/440426_bollinger-rsi-bollinger-bands-and-rsi-combination-strategy/
+440428,双层RSI交易策略Double-Decker-RSI-Trading-Strategy.md,PORTED,,ports/440428_rsi-double-decker-rsi-trading-strategy/
+440429,基于20日EMA通道的交易策略All-about-EMA-Channel-Trading-Strategy.md,PORTED,,ports/440429_20-ema-all-about-ema-channel-trading-strategy/
+440437,双指数移动平均线RSI交易策略Double-Exponential-Moving-Average-RSI-Trading-Strategy.md,PORTED,,ports/440437_rsi-double-exponential-moving-average-rsi-trading-strategy/
+440439,两重分形突破策略Double-Fractal-Breakout-Strategy.md,PORTED,,ports/440439_double-fractal-breakout-strategy/
+440441,基于MACD和RSI的5分钟动量交易策略MACD-and-RSI-Based-5-Minute-Momentum-Trading-Strategy.md,PORTED,,ports/440441_macd-rsi-5-macd-and-rsi-based-5-minute-momentum-trading-stra/
+440443,真实相对运动MA均线策略True-Relative-Movement-Moving-Average-Strategy.md,PORTED,,ports/440443_ma-true-relative-movement-moving-average-strategy/
+440444,基于自适应移动平均线的趋势跟踪策略Trend-Following-Strategy-Based-on-Adaptive-Moving-Average.md,PORTED,,ports/440444_trend-following-strategy-based-on-adaptive-moving-average/
+440449,基于双MACD量化交易策略Dual-MACD-Quantitative-Trading-Strategy.md,PORTED,,ports/440449_macd-dual-macd-quantitative-trading-strategy/
+440451,双7日突破策略Double-7-Days-Breakout-Strategy.md,PORTED,,ports/440451_7-double-7-days-breakout-strategy/

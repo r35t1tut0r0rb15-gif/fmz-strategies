@@ -4006,6 +4006,25 @@ SIZING = {
     440369: [],
     440373: [],
     440424: [],
+    # ---- FMZ-C, batch C134 (2026-10-22)
+    440426: [],
+    440428: [
+        ("positionSize 1", 193, 193),
+    ],
+    440429: [],
+    440437: [
+        ("initial capital 100000; qty 1; trade_size inputs", 142, 160),
+    ],
+    440439: [],
+    440441: [],
+    440443: [],
+    440444: [],
+    440449: [
+        ("strategy(): capital 1000, 20 % of equity, commission 0.1", 200, 207),
+    ],
+    440451: [
+        ("strategy(): 100 % of equity", 142, 142),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -5017,6 +5036,12 @@ REJECTED_ON_READING = {
               "held size to the long (pyramiding through strategy.position_size and "
               "position_avg_price) and holds until a 10 % gain on the average price: accumulation "
               "(criterion 1, as #435721, #430762)."),
+    # ---- FMZ-C, batch C134 (2026-10-22)
+    440430: ("1", "Up to seven long entries (Entry 1 .. Entry 7) are added while the RSI stays "
+              "oversold, one per strategy.opentrades count, each with its own exit: pyramiding "
+              "accumulation (criterion 1, as #430762)."),
+    440436: ("2", "The stop is strategy.exit(loss = close x (1 - 1 %)): a price level passed to loss, "
+              "which is in ticks (criterion 2, as #437048, #437677)."),
 }
 
 DUPLICATE_ON_READING = {
