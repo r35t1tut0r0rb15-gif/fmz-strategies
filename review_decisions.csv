@@ -477,6 +477,8 @@ fmz_id,file,final_outcome,criterion,reason
 488848,早盘高低点突破动态追踪策略-Opening-Bell-High-Low-Breakout-Dynamic-Trailing-Strategy.md,REJECTED_ON_READING,2,"The stop is close - 100 / close + 100, a fixed price amount of 100 quote units (criterion 2, as #473377); the trail and target are tick counts besides."
 488886,多层级目标和尾随止损策略-Multi-Tiered-Target-and-Trailing-Stop-Strategy.md,REJECTED_ON_READING,2,"Every level is a fixed dollar amount from the entry price (target 10000, stop 3000, trail 1500, zone 1000, steps 2000; second entries 5000 / 2000): price amounts (criterion 2, as #473377)."
 488901,优化的基于平均真实波动范围的趋势策略v6固定趋势捕捉-Optimized-ATR-Based-Trend-Strategy-v6-Fixed-Trend-Capture.md,REJECTED_ON_READING,2,"The exits include strategy.exit(trail_offset = 3.5 ATR), a price amount passed as a tick count (criterion 2, as #482767), beside a break-even stop keyed on the averaged price."
+488908,动态多周期中轴趋势突破策略-Dynamic-Multi-Timeframe-Pivot-Trend-Breakthrough-Strategy.md,REJECTED_ON_READING,1,"Four partial exits (strategy.exit x1..x4 with qty = 25 % of the entry each, at 3 / 5 / 7 / 10 % profit): the position is unwound in parts (criterion 1, as #436524)."
+489010,多层级布林带趋势跟踪与反转交易策略-Multi-level-Bollinger-Bands-Trend-Following-and-Reversal-Trading-Strategy.md,REJECTED_ON_READING,2,"The trailing exit is strategy.exit(trail_price = entry + 2 x distance, trail_offset = 0.7 x distance), where distance is a price amount (entry - lower band) passed as a tick count (criterion 2, as #482767); the 6-day bars are also outside the house bar sizes."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -3665,3 +3667,14 @@ fmz_id,file,final_outcome,criterion,reason
 488850,15分钟突破多周期协同策略基于风险收益比优化模型15-Minute-Breakout-Multi-Timeframe-Synergy-Strategy-with-Risk-Reward-Optimization-Model.md,PORTED,,ports/488850_15-15-minute-breakout-multi-timeframe-synergy-strategy-with/
 488883,高级动态范围突破趋势追踪策略-Advanced-Dynamic-Range-Breakout-Trend-Following-Strategy.md,PORTED,,ports/488883_advanced-dynamic-range-breakout-trend-following-strategy/
 488889,5分钟K线KDJ指标动态响应交易策略-5-Minute-KDJ-Indicator-Dynamic-Response-Trading-Strategy.md,PORTED,,ports/488889_5-k-kdj-5-minute-kdj-indicator-dynamic-response-trading-stra/
+488907,动态RSI低高点背离趋势策略-Dynamic-RSI-Low-High-Point-Divergence-Trend-Strategy.md,PORTED,,ports/488907_rsi-dynamic-rsi-low-high-point-divergence-trend-strategy/
+488909,PowerZone交易策略-PowerZone-Trading-Strategy.md,PORTED,,ports/488909_powerzone-powerzone-trading-strategy/
+489006,多时间框架智能资金概念支撑压力动态交易策略-Multi-Timeframe-Smart-Money-Concept-Support-and-Resistance-Dynamic-Trading-Strategy.md,PORTED,,ports/489006_multi-timeframe-smart-money-concept-support-and-resistance-d/
+489007,多重指数移动平均线趋势反转交易策略-Multi-EMA-Trend-Reversal-Trading-Strategy.md,PORTED,,ports/489007_multi-ema-trend-reversal-trading-strategy/
+489009,多重动态指标组合策略-Multi-Dynamic-Indicator-Combination-Strategy.md,PORTED,,ports/489009_multi-dynamic-indicator-combination-strategy/
+489016,自适应波动突破回撤交易策略-Adaptive-Volatility-Breakout-Retest-Trading-Strategy.md,PORTED,,ports/489016_adaptive-volatility-breakout-retest-trading-strategy/
+489017,双均线趋势追踪量化策略-Dual-EMA-Trend-Following-Quantitative-Strategy.md,PORTED,,ports/489017_dual-ema-trend-following-quantitative-strategy/
+489018,首个蜡烛突破-动态追踪止损与收盘平仓策略-First-Candle-Breakout-Dynamic-Trailing-Stop-EOD-Close-Strategy.md,PORTED,,ports/489018_first-candle-breakout-dynamic-trailing-stop-eod-close-strate/
+489031,自动化斐波那契回撤交易系统策略-Automated-Fibonacci-Retracement-Trading-System-Strategy.md,PORTED,,ports/489031_automated-fibonacci-retracement-trading-system-strategy/
+489032,多指标动态交叉趋势跟踪量化策略分析-Multi-Indicator-Dynamic-Crossover-Trend-Following-Quantitative-Strategy-Analysis.md,PORTED,,ports/489032_multi-indicator-dynamic-crossover-trend-following-quantitati/
+489034,均线交叉空头反转量化策略SMA20-50-智能空单交易系统-SMA20-50-Bearish-Trend-Reversal-Quantitative-Trading-System.md,PORTED,,ports/489034_sma20-50-sma20-50-bearish-trend-reversal-quantitative-tradin/

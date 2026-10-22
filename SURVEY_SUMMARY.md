@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3162 |
+| PORTED | 3173 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 478 |
+| REJECTED_ON_READING | 480 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 94 |
+| PORT_CANDIDATE | 81 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3290,7 +3290,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 488850 | `ports/488850_15-15-minute-breakout-multi-timeframe-synergy-strategy-with/` | PineScript | range_breakout | trailing_stop_pending | rr x2 | 2 |
 | 488883 | `ports/488883_advanced-dynamic-range-breakout-trend-following-strategy/` | PineScript | keltner_channel | coarse_bar_stop, trailing_stop_pending | mult x2, length x2 | 4 |
 | 488889 | `ports/488889_5-k-kdj-5-minute-kdj-indicator-dynamic-response-trading-stra/` | PineScript | stochastic | none | length x2, long_entry x2 | 4 |
-| | **3162 ports** | | | | | **14455** |
+| 488907 | `ports/488907_rsi-dynamic-rsi-low-high-point-divergence-trend-strategy/` | PineScript | rsi_divergence | none | lookback x2, oversold x2 | 4 |
+| 488909 | `ports/488909_powerzone-powerzone-trading-strategy/` | PineScript | order_block | coarse_bar_stop | periods x2, tp_factor x2 | 4 |
+| 489006 | `ports/489006_multi-timeframe-smart-money-concept-support-and-resistance-d/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | bracket_pct x2, swing x2 | 4 |
+| 489007 | `ports/489007_multi-ema-trend-reversal-trading-strategy/` | PineScript | ma_trend | none | aPeriod x2, cPeriod x2 | 4 |
+| 489009 | `ports/489009_multi-dynamic-indicator-combination-strategy/` | PineScript | supertrend | none | st_mult x2, st_length x2 | 4 |
+| 489016 | `ports/489016_adaptive-volatility-breakout-retest-trading-strategy/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | riskFactor x2, ma_length x2 | 4 |
+| 489017 | `ports/489017_dual-ema-trend-following-quantitative-strategy/` | PineScript | ma_cross | none | emaMarginATRMult x2, emaFastLen x2 | 4 |
+| 489018 | `ports/489018_first-candle-breakout-dynamic-trailing-stop-eod-close-strate/` | PineScript | opening_range_breakout | none | trailStopMultiplier x2, endHour x2 | 4 |
+| 489031 | `ports/489031_automated-fibonacci-retracement-trading-system-strategy/` | PineScript | fibonacci | coarse_bar_stop, trailing_stop_pending | lookback x2, tp_pct x2 | 4 |
+| 489032 | `ports/489032_multi-indicator-dynamic-crossover-trend-following-quantitati/` | PineScript | ma_cross | trailing_stop_pending | sl_atr x2, tp_atr x2 | 4 |
+| 489034 | `ports/489034_sma20-50-sma20-50-bearish-trend-reversal-quantitative-tradin/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| | **3173 ports** | | | | | **14499** |
 
 ## Rejected on reading
 
@@ -3774,6 +3785,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 488848 | 早盘高低点突破动态追踪策略-Opening-Bell-High-Low-Breakout-Dynamic-Trailing-Strategy.md | 2 | The stop is close - 100 / close + 100, a fixed price amount of 100 quote units (criterion 2, as #473377); the trail and target are tick counts besides. |
 | 488886 | 多层级目标和尾随止损策略-Multi-Tiered-Target-and-Trailing-Stop-Strategy.md | 2 | Every level is a fixed dollar amount from the entry price (target 10000, stop 3000, trail 1500, zone 1000, steps 2000; second entries 5000 / 2000): price amounts (criterion 2, as #473377). |
 | 488901 | 优化的基于平均真实波动范围的趋势策略v6固定趋势捕捉-Optimized-ATR-Based-Trend-Strategy-v6-Fixed-Trend-Capture.md | 2 | The exits include strategy.exit(trail_offset = 3.5 ATR), a price amount passed as a tick count (criterion 2, as #482767), beside a break-even stop keyed on the averaged price. |
+| 488908 | 动态多周期中轴趋势突破策略-Dynamic-Multi-Timeframe-Pivot-Trend-Breakthrough-Strategy.md | 1 | Four partial exits (strategy.exit x1..x4 with qty = 25 % of the entry each, at 3 / 5 / 7 / 10 % profit): the position is unwound in parts (criterion 1, as #436524). |
+| 489010 | 多层级布林带趋势跟踪与反转交易策略-Multi-level-Bollinger-Bands-Trend-Following-and-Reversal-Trading-Strategy.md | 2 | The trailing exit is strategy.exit(trail_price = entry + 2 x distance, trail_offset = 0.7 x distance), where distance is a price amount (entry - lower band) passed as a tick count (criterion 2, as #482767); the 6-day bars are also outside the house bar sizes. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

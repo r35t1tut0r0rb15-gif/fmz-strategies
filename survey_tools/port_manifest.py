@@ -6922,6 +6922,28 @@ SIZING = {
     488889: [
         ("qty = floor(equity / close); slippage 3", 196, 221),
     ],
+    # ---- FMZ-C, batch C268 (2026-10-22)
+    488907: [],
+    488909: [
+        ("strategy(): 100 % of equity", 143, 143),
+    ],
+    489006: [
+        ("strategy(): 10 % of equity", 121, 121),
+    ],
+    489007: [],
+    489009: [
+        ("strategy(): capital 100000, 10 % of equity", 125, 125),
+    ],
+    489016: [],
+    489017: [],
+    489018: [],
+    489031: [
+        ("strategy(): capital 100; risk 1 % quantity", 161, 190),
+    ],
+    489032: [],
+    489034: [
+        ("strategy(): capital 5000, 100 % of equity", 110, 110),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8774,6 +8796,13 @@ REJECTED_ON_READING = {
     488901: ("2", "The exits include strategy.exit(trail_offset = 3.5 ATR), a price amount passed as "
               "a tick count (criterion 2, as #482767), beside a break-even stop keyed on the "
               "averaged price."),
+    # ---- FMZ-C, batch C268 (2026-10-22)
+    488908: ("1", "Four partial exits (strategy.exit x1..x4 with qty = 25 % of the entry each, at 3 / "
+              "5 / 7 / 10 % profit): the position is unwound in parts (criterion 1, as #436524)."),
+    489010: ("2", "The trailing exit is strategy.exit(trail_price = entry + 2 x distance, "
+              "trail_offset = 0.7 x distance), where distance is a price amount (entry - lower "
+              "band) passed as a tick count (criterion 2, as #482767); the 6-day bars are also "
+              "outside the house bar sizes."),
 }
 
 DUPLICATE_ON_READING = {

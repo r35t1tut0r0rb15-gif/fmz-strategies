@@ -1,0 +1,35 @@
+# Original sizing and money-management code, FMZ #489031 (自动化斐波那契回撤交易系统策略-Automated-Fibonacci-Retracement-Trading-System-Strategy)
+# Source: https://www.fmz.com/strategy/489031  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 100; risk 1 % quantity  [lines 161-190]
+  161: strategy("Estrategia Fibonacci con Señales", overlay=true, initial_capital=100, currency=currency.USD, margin_long=100, margin_short=100)
+  162: 
+  163: // 1. Configuración de Fibonacci
+  164: lookback = input.int(20, "Período Swing", minval=10)
+  165: fibLevels = input.string("38.2|61.8", "Niveles Fib") 
+  166: riskPercentage = input.float(1.0, "Riesgo por Operación %", step=0.5)
+  167: 
+  168: // 2. Detectar swings y niveles Fib
+  169: swingHigh = ta.highest(high, lookback)
+  170: swingLow = ta.lowest(low, lookback)
+  171: fib382 = swingLow + (swingHigh - swingLow) * 0.382
+  172: fib618 = swingLow + (swingHigh - swingLow) * 0.618
+  173: 
+  174: // 3. Condiciones de trading
+  175: longCondition = ta.crossover(close, fib618)
+  176: shortCondition = ta.crossunder(close, fib382)
+  177: 
+  178: // 4. Indicadores Visuales
+  179: plotshape(series=longCondition, title="Señal Compra", color=color.new(color.green, 0), 
+  180:   style=shape.triangleup, location=location.belowbar, size=size.small, text="COMPRA")
+  181: 
+  182: plotshape(series=shortCondition, title="Señal Venta", color=color.new(color.red, 0), 
+  183:   style=shape.triangledown, location=location.abovebar, size=size.small, text="VENTA")
+  184: 
+  185: // 5. Gestión de Capital
+  186: positionSize = (strategy.equity * riskPercentage/100) / (close * 0.01)
+  187: 
+  188: // 6. Lógica de Ejecución
+  189: if (longCondition)
+  190:     strategy.entry("Long", strategy.long, qty=positionSize)
