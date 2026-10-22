@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #446963 (双移动平均线交叉策略-Dual-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/446963  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## stop 2 % / target 10 % of the current close  [lines 136-139]
+  136: stopLoss = input(0.02, title="Stop Loss (%)") // 2% stop loss
+  137: takeProfit = input(0.10, title="Take Profit (%)") // 10% take profit
+  138: 
+  139: strategy.exit("Take Profit/Stop Loss", "Buy", stop=close * (1 - stopLoss), limit=close * (1 + takeProfit))

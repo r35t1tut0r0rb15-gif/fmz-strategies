@@ -1,0 +1,42 @@
+# Original sizing and money-management code, FMZ #446984 (多指标趋势追踪动态风控量化交易策略-Multi-Indicator-Trend-Following-Dynamic-Risk-Management-Strategy)
+# Source: https://www.fmz.com/strategy/446984  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = equity x 1 % / (2 x ATR); ATR bracket multipliers  [lines 120-156]
+  120: riskRewardRatio = input.float(2.0, title="Risk/Reward Ratio", tooltip="Your target risk vs. reward ratio. A setting of 2.0 aims for profits twice the size of the risk.")
+  121: emaFastLength = input.int(50, title="EMA Fast Length", tooltip="Period length for the fast Exponential Moving Average. Influences trend sensitivity.")
+  122: emaSlowLength = input.int(200, title="EMA Slow Length", tooltip="Period length for the slow Exponential Moving Average. Determines long-term trend direction.")
+  123: trailStopMultiplier = input.float(3.0, title="Trailing Stop Multiplier", tooltip="Multiplier for ATR to set trailing stop levels. Adjusts stop loss sensitivity to volatility.")
+  124: riskPerTrade = input.float(1.0, title="Risk Per Trade (%)", tooltip="Percentage of equity risked per trade. Helps maintain consistent risk management.")
+  125: targetProfitRatio = input.float(2.0, title="Target Profit Ratio", tooltip="Multiplier for setting a profit target above the risk/reward ratio. For capturing extended gains.")
+  126: displayLines = input.bool(true, title="Display Stop/Target Lines", tooltip="Enable to show stop loss and target profit lines on the chart for visual reference.")
+  127: 
+  128: // Technical Indicator Calculations
+  129: rsi = ta.rsi(close, rsiPeriod)
+  130: [macdLine, signalLine, _] = ta.macd(close, macdFastLength, macdSlowLength, macdSmoothing)
+  131: atr = ta.atr(atrLength)
+  132: emaFast = ta.ema(close, emaFastLength)
+  133: emaSlow = ta.ema(close, emaSlowLength)
+  134: 
+  135: // Define trailing stop based on ATR
+  136: atrTrailStop = atr * trailStopMultiplier
+  137: 
+  138: // Entry Conditions for Long and Short Trades
+  139: longCondition = ta.crossover(macdLine, signalLine) and rsi < 70 and close > emaFast and emaFast > emaSlow
+  140: shortCondition = ta.crossunder(macdLine, signalLine) and rsi > 30 and close < emaFast and emaFast < emaSlow
+  141: 
+  142: // Dynamic Position Sizing Based on Risk Management
+  143: slPoints = atr * 2
+  144: riskAmount = strategy.equity * riskPerTrade / 100
+  145: qty = riskAmount / slPoints
+  146: 
+  147: // Strategy Execution with Entry and Exit Conditions
+  148: if (longCondition)
+  149:     strategy.entry("Long", strategy.long, qty=qty)
+  150:     strategy.exit("Exit Long", "Long", stop=close - atrTrailStop, limit=close + (atrTrailStop * riskRewardRatio))
+  151:     strategy.exit("Target Profit Long", "Long", limit=close + (atrTrailStop * riskRewardRatio * targetProfitRatio))
+  152: 
+  153: if (shortCondition)
+  154:     strategy.entry("Short", strategy.short, qty=qty)
+  155:     strategy.exit("Exit Short", "Short", stop=close + atrTrailStop, limit=close - (atrTrailStop * riskRewardRatio))
+  156:     strategy.exit("Target Profit Short", "Short", limit=close - (atrTrailStop * riskRewardRatio * targetProfitRatio))

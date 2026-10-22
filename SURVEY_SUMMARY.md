@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2226 |
-| PORT_CANDIDATE | 1203 |
+| PORTED | 2237 |
+| PORT_CANDIDATE | 1191 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 311 |
+| REJECTED_ON_READING | 312 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2354,7 +2354,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 446561 | `ports/446561_ema-ema-dual-moving-average-crossover-trend-following-strate/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 446567 | `ports/446567_asian-session-high-low-breakout-strategy/` | PineScript | breakout | trailing_stop_pending | session_start x2, offset_hours x2 | 4 |
 | 446752 | `ports/446752_time-series-adaptive-dynamic-threshold-strategy-based-on-equ/` | PineScript | adaptive_average | none |  | 0 |
-| | **2226 ports** | | | | | **10355** |
+| 446756 | `ports/446756_rsi-dual-moving-average-and-rsi-based-short-term-scalable-tr/` | PineScript | rsi_oscillator | none | rsi_len x2, oversold x2 | 4 |
+| 446757 | `ports/446757_volatility-trend-following-strategy/` | PineScript | atr_trailing_line | none | length x2, dev x2 | 4 |
+| 446758 | `ports/446758_sma-sma-crossover-compounding-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 446761 | `ports/446761_btc-multi-indicator-btc-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_low x2, sl x2 | 4 |
+| 446764 | `ports/446764_dual-moving-average-lagging-breakout-strategy/` | PineScript | ma_trend | trailing_stop_pending | len1 x2, len2 x2 | 4 |
+| 446765 | `ports/446765_dynamic-threshold-price-change-breakout-strategy/` | PineScript | momentum_breakout | none | change x2, stop_len x2 | 4 |
+| 446782 | `ports/446782_modified-bollinger-bands-strategy/` | PineScript | bollinger_reversion | none | length x2, oversold x2 | 4 |
+| 446963 | `ports/446963_dual-moving-average-crossover-strategy/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 446984 | `ports/446984_multi-indicator-trend-following-dynamic-risk-management-stra/` | PineScript | macd_cross | bar_size_pending, trailing_stop_pending | trail_mult x2, rr x2 | 4 |
+| 446986 | `ports/446986_rsi-rsi-and-bollinger-bands-double-strategy/` | PineScript | bollinger_reversion | none | rsi_len x2, bb_len x2 | 4 |
+| 446991 | `ports/446991_macd-tema-macd-tema-crossover-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| | **2237 ports** | | | | | **10399** |
 
 ## Rejected on reading
 
@@ -2671,6 +2682,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 446523 | 基于RSI和双均线的1小时趋势追踪策略-RSI-and-Dual-Moving-Average-Based-1-Hour-Trend-Following-Strategy.md | 2 | The exits strategy.exit(profit = 1.5 x atr, loss = atr) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048). |
 | 446539 | 黄金短线交易策略-XAUUSD-Scalper-1m-XAUUSD-1-Minute-Scalping-Strategy.md | 2 | The exits strategy.exit(loss = 30 x atr, profit = 30 x atr) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048). |
 | 446755 | 双区间滤波动量交易策略-Dual-Range-Filter-Momentum-Trading-Strategy.md | 1 | The exits are four strategy.exit calls with qty_percent 5 / 8 / 13 / 21 at take-profit levels of 13-34 % of the average price: partial exits, which the house engine cannot hold (one position, all-in or all-out; as #436524). |
+| 446760 | 基于TD序列突破和回撤的买卖点策略-TD-Sequential-Breakout-and-Retracement-Buy-Sell-Strategy.md | 1 | After the first TD buy setup, valuewhen(buy, high, 0) is a positive price, so 'if TDbuyh' is true on every later bar: the long entry is re-sent forever and the short branch never runs again, one long held from the first buy (constant-true entry, criterion 1, as #442261). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

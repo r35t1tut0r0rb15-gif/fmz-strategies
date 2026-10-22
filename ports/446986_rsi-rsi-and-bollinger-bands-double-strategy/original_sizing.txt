@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #446986 (RSI和布林带双重策略RSI-and-Bollinger-Bands-Double-Strategy)
+# Source: https://www.fmz.com/strategy/446986  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

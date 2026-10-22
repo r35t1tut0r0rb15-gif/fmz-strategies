@@ -4789,6 +4789,30 @@ SIZING = {
         ("Stop / target 300 ticks from each close", 158, 173),
     ],
     446752: [],
+    # ---- FMZ-C, batch C177 (2026-10-22)
+    446756: [],
+    446757: [
+        ("strategy(): 20 % of equity", 119, 119),
+    ],
+    446758: [
+        ("qty = (100000 + cumulative profit) / close", 134, 160),
+    ],
+    446761: [
+        ("riskPercent 0.005 stop, ATR target", 134, 157),
+    ],
+    446764: [
+        ("ATR bracket re-sent every bar", 186, 193),
+    ],
+    446765: [],
+    446782: [],
+    446963: [
+        ("stop 2 % / target 10 % of the current close", 136, 139),
+    ],
+    446984: [
+        ("qty = equity x 1 % / (2 x ATR); ATR bracket multipliers", 120, 156),
+    ],
+    446986: [],
+    446991: [],
 }
 
 REJECTED_ON_READING = {
@@ -6060,6 +6084,11 @@ REJECTED_ON_READING = {
     446755: ("1", "The exits are four strategy.exit calls with qty_percent 5 / 8 / 13 / 21 at "
               "take-profit levels of 13-34 % of the average price: partial exits, which the house "
               "engine cannot hold (one position, all-in or all-out; as #436524)."),
+    # ---- FMZ-C, batch C177 (2026-10-22)
+    446760: ("1", "After the first TD buy setup, valuewhen(buy, high, 0) is a positive price, so 'if "
+              "TDbuyh' is true on every later bar: the long entry is re-sent forever and the "
+              "short branch never runs again, one long held from the first buy (constant-true "
+              "entry, criterion 1, as #442261)."),
 }
 
 DUPLICATE_ON_READING = {

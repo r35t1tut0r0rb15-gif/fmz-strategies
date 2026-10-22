@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #446758 (移动平均线SMA交叉的多头空头策略-SMA-Crossover-Compounding-Strategy)
+# Source: https://www.fmz.com/strategy/446758  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = (100000 + cumulative profit) / close  [lines 134-160]
+  134: var float cumulative_profit = na
+  135: if (na(cumulative_profit))
+  136:     cumulative_profit := strategy.netprofit
+  137: 
+  138: // // Initialize starting balance
+  139: // var float starting_balance = na
+  140: // if (na(starting_balance))
+  141: //     starting_balance := strategy.equity
+  142: 
+  143: // Initialize starting balance
+  144: var float starting_balance = na
+  145: if (na(starting_balance))
+  146:     starting_balance := 100000.0 // Initial balance
+  147: 
+  148: // Calculate profit or gains
+  149: if (strategy.opentrades != 0)
+  150:     cumulative_profit := strategy.netprofit + (strategy.equity - starting_balance)
+  151: 
+  152: // Calculate position size based on current balance and cumulative profit
+  153: //position_size = 100000 
+  154: position_size = starting_balance + cumulative_profit
+  155: 
+  156: // Entry conditions
+  157: if (longCondition)
+  158:     strategy.entry("Long", strategy.long, qty = position_size / close)
+  159: if (shortCondition)
+  160:     strategy.entry("Short", strategy.short, qty = position_size / close)

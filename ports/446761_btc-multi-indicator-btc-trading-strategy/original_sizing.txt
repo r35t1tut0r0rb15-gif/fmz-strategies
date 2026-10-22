@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #446761 (多指标BTC交易策略-Multi-indicator-BTC-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/446761  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## riskPercent 0.005 stop, ATR target  [lines 134-157]
+  134: riskPercent = input(0.005, title="Risk Percentage for SL and Target")
+  135: 
+  136: // Calculate indicators
+  137: rsiValue = rsi(close, rsiLength)
+  138: [macdLine, signalLine, _] = macd(close, 12, 26, 9)
+  139: smaFast = sma(close, smaFastLength)
+  140: smaMedium = sma(close, smaMediumLength)
+  141: smaSlow = sma(close, smaSlowLength)
+  142: atrValue = atr(atrLength)
+  143: 
+  144: // Checking previous RSI value
+  145: prevRsiValue = rsi(close[1], rsiLength)
+  146: 
+  147: // Conditions for Entry
+  148: longCondition = rsiValue > rsiLowerBound and rsiValue < rsiUpperBound and  prevRsiValue < rsiLowerBound or prevRsiValue > rsiUpperBound and crossover(macdLine, signalLine) and close < smaFast and close < smaMedium and close < smaSlow
+  149: 
+  150: // Strategy Entry
+  151: if (longCondition and not strategy.position_size)
+  152:     strategy.entry("Long", strategy.long)
+  153: 
+  154:     // Setting Stop Loss and Take Profit
+  155:     stopLoss = close - riskPercent * close
+  156:     takeProfit = close + atrValue
+  157:     strategy.exit("Exit Long", "Long", stop = stopLoss, limit = takeProfit)
