@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #439760 (多指标组合趋势反转策略Multi-Indicator-Trend-Reversal-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/439760  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): cash quantity  [lines 169-169]
+  169: strategy('GT 5.1 Strategy', 'GT 5.1 Strategy •', true, default_qty_type=strategy.cash)

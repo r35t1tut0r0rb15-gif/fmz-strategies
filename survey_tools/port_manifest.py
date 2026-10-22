@@ -3836,6 +3836,21 @@ SIZING = {
     439734: [],
     439735: [],
     439737: [],
+    # ---- FMZ-C, batch C124 (2026-10-22)
+    439738: [],
+    439741: [],
+    439742: [],
+    439744: [],
+    439747: [],
+    439751: [
+        ("Trade size input", 336, 348),
+    ],
+    439756: [],
+    439760: [
+        ("strategy(): cash quantity", 169, 169),
+    ],
+    439764: [],
+    439823: [],
 }
 
 REJECTED_ON_READING = {
@@ -4769,6 +4784,17 @@ REJECTED_ON_READING = {
               "gated on strategy.openprofit in account currency (> -1 to trade, > 3000 to close "
               "all) with a cash order size: the net position and the exits depend on the order "
               "size (as #430596, #432078)."),
+    # ---- FMZ-C, batch C124 (2026-10-22)
+    439752: ("1", "On the 1-day header chart every entry needs istradingsession = time('1', "
+              "'0800-1600') to be defined, and a daily bar opens outside that session (its time "
+              "is the session start), so the script as written never enters; an intraday reading "
+              "is not the declared chart (as #430384)."),
+    439753: ("1", "As written (Long, 'Grid - reentry', every filter and exit '---'), the grid level "
+              "starts at 0, so the second bar of the data already moves it up and enters; no exit "
+              "is ever sent and pyramiding blocks further entries: a buy-and-hold from the start "
+              "of whatever data is loaded, with no repeatable rule at the source's settings (as "
+              "#430384). The 500 base-currency grid gap is also an instrument-specific price "
+              "distance."),
 }
 
 DUPLICATE_ON_READING = {

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1839 |
-| PORTED | 1681 |
+| PORT_CANDIDATE | 1827 |
+| PORTED | 1691 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 223 |
+| REJECTED_ON_READING | 225 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1809,7 +1809,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439734 | `ports/439734_macd-rsi-cci-stochrsi-ma-aggregated-multi-timeframe-macd-rsi/` | PineScript | multi_indicator_confluence | none | rsi_level x2, ma_len x2 | 4 |
 | 439735 | `ports/439735_adaptive-moving-average-and-weighted-moving-average-crossove/` | PineScript | ma_cross | none | aioma_length x2, wma_length x2 | 4 |
 | 439737 | `ports/439737_a-momentum-crossover-strategy-based-on-exponential-moving-av/` | PineScript | ma_cross | none | len1 x2, len2 x2 | 4 |
-| | **1681 ports** | | | | | **8301** |
+| 439738 | `ports/439738_triple-moving-average-quantitative-trading-strategy/` | PineScript | ma_cross | none | ma1 x2, ma2 x2 | 4 |
+| 439741 | `ports/439741_momentum-and-fear-index-crossover-strategy/` | PineScript | momentum_oscillator | none | len x2, scale x2 | 4 |
+| 439742 | `ports/439742_ema-macd-ema-channel-and-macd-based-short-term-trading-strat/` | PineScript | ma_trend | trailing_stop_pending | slow x2, fast x2 | 4 |
+| 439744 | `ports/439744_rsi-gods-bollinger-bands-rsi-trading-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 439747 | `ports/439747_ema-dual-ema-cross-trend-trading-strategy/` | PineScript | ma_trend | none | ema30_length x2, ema60_length x2 | 4 |
+| 439751 | `ports/439751_zigzag-zigzag-pattern-recognition-short-term-trading-strateg/` | PineScript | reversal_pattern | none | ew_rate x2, tp_rate x2 | 4 |
+| 439756 | `ports/439756_moving-average-crossover-strategy/` | PineScript | ma_cross | none | ma_length x2, hold x2 | 4 |
+| 439760 | `ports/439760_multi-indicator-trend-reversal-trading-strategy/` | PineScript | multi_indicator_confluence | none | harsi_back x2, coral_back x2 | 4 |
+| 439764 | `ports/439764_renko-dual-direction-trend-tracking-renko-trading-strategy/` | PineScript | supertrend | none | factor x2, pd x2 | 4 |
+| 439823 | `ports/439823_renko-long-term-moving-average-crossover-renko-strategy/` | PineScript | ma_cross | none | min_gain x2, smma_length x2 | 4 |
+| | **1691 ports** | | | | | **8341** |
 
 ## Rejected on reading
 
@@ -2038,6 +2048,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439607 | 多重技术指标配合的趋势追踪型量化策略Quantitative-Trend-Tracking-Strategy-Based-on-Multiple-Technical-Indicators.md | 1 | The only exit is strategy.close("Long Position", qty_percent = 50): every close takes half of the position, so trades end in partial exits (criterion 1, as #436524). |
 | 439610 | 影响周线的交易策略Weekly-Swing-Trading-Strategy.md | 2 | The take-profit exit trails with trail_price = 0.03 (a price LEVEL, met at once) and trail_offset = 0.03 TICKS: the intended 3 % trail is passed as a tick count, so the real trail is 0.03 x the tick size behind the best price, an instrument-specific trail with no generic reading (as #437048); the 5 % stop and 10 % target are re-sent every bar from the current close. |
 | 439709 | 基于TSI和HMACCI指标的双边套利策略Trend-Surfing-Hedging-Strategy-Based-on-TSI-and-HMACCI-Indicators.md | 1 | Positions are built with strategy.order('BUY' / 'SELL'), which adds or removes units instead of entering or reversing, and both orders and the close_all are gated on strategy.openprofit in account currency (> -1 to trade, > 3000 to close all) with a cash order size: the net position and the exits depend on the order size (as #430596, #432078). |
+| 439752 | 基于均线的震荡突破策略Oscillation-Breakthrough-Strategy-Based-on-Moving-Average.md | 1 | On the 1-day header chart every entry needs istradingsession = time('1', '0800-1600') to be defined, and a daily bar opens outside that session (its time is the session start), so the script as written never enters; an intraday reading is not the declared chart (as #430384). |
+| 439753 | 震荡盈利波段Grid策略Profit-Grid-Strategy-With-Oscillation.md | 1 | As written (Long, 'Grid - reentry', every filter and exit '---'), the grid level starts at 0, so the second bar of the data already moves it up and enters; no exit is ever sent and pyramiding blocks further entries: a buy-and-hold from the start of whatever data is loaded, with no repeatable rule at the source's settings (as #430384). The 500 base-currency grid gap is also an instrument-specific price distance. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

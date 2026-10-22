@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #439751 (基于ZigZag的多种形态识别短线交易策略ZigZag-Pattern-Recognition-Short-term-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/439751  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trade size input  [lines 336-348]
+  336: trade_size = input(title='Trade size:', type=float, defval=1.00)
+  337: ew_rate = input(title='Fib. Rate to use for Entry Window:', type=float, defval=0.382)
+  338: tp_rate = input(title='Fib. Rate to use for TP:', type=float, defval=0.618)
+  339: sl_rate = input(title='Fib. Rate to use for SL:', type=float, defval=-0.618)
+  340: buy_patterns_00 = isABCD(1) or isBat(1) or isAltBat(1) or isButterfly(1) or isGartley(1) or isCrab(1) or isShark(1) or is5o(1) or isWolf(1) or isHnS(1) or isConTria(1) or isExpTria(1)
+  341: buy_patterns_01 = isAntiBat(1) or isAntiButterfly(1) or isAntiGartley(1) or isAntiCrab(1) or isAntiShark(1)
+  342: sel_patterns_00 = isABCD(-1) or isBat(-1) or isAltBat(-1) or isButterfly(-1) or isGartley(-1) or isCrab(-1) or isShark(-1) or is5o(-1) or isWolf(-1) or isHnS(-1) or isConTria(-1) or isExpTria(-1)
+  343: sel_patterns_01 = isAntiBat(-1) or isAntiButterfly(-1) or isAntiGartley(-1) or isAntiCrab(-1) or isAntiShark(-1)
+  344: buy_entry = (buy_patterns_00 or buy_patterns_01) and close <= f_last_fib(ew_rate)
+  345: buy_close = high >= f_last_fib(tp_rate) or low <= f_last_fib(sl_rate)
+  346: sel_entry = (sel_patterns_00 or sel_patterns_01) and close >= f_last_fib(ew_rate)
+  347: sel_close = low <= f_last_fib(tp_rate) or high >= f_last_fib(sl_rate)
+  348: strategy.entry('buy', long=strategy.long, qty=trade_size, comment='buy', when=buy_entry)
