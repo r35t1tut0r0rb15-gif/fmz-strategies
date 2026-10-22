@@ -6882,6 +6882,23 @@ SIZING = {
     488273: [
         ("strategy(): 10 % of equity", 170, 170),
     ],
+    # ---- FMZ-C, batch C266 (2026-10-22)
+    488276: [],
+    488279: [
+        ("strategy(): 100 % of equity", 193, 193),
+    ],
+    488283: [],
+    488284: [
+        ("strategy(): 100 % of equity", 172, 172),
+    ],
+    488288: [
+        ("strategy(): capital 100000", 200, 200),
+    ],
+    488417: [],
+    488517: [
+        ("strategy(): 100 % of equity, commission 0.02 %", 176, 176),
+    ],
+    488518: [],
 }
 
 REJECTED_ON_READING = {
@@ -8709,6 +8726,22 @@ REJECTED_ON_READING = {
               "x 10 x syminfo.mintick, trail_price = close): a price amount scaled by the tick "
               "size and passed as a tick count, an instrument-specific trail (criterion 2, as "
               "#482767)."),
+    # ---- FMZ-C, batch C266 (2026-10-22)
+    488275: ("2", "The default exits are strategy.exit(trail_offset = expectedMove, trail_points = "
+              "expectedMove), a price amount passed as tick counts (criterion 2, as #482767); the "
+              "entries also stack up to five fixed 5-contract units (pyramiding 5) on a repeating "
+              "condition."),
+    488280: ("1", "Each retested fair-value gap opens its own entry ('L' / 'S' + the gap's bar) with "
+              "its own stop and target, up to five at once (pyramiding 5): the position is a sum "
+              "of separately bracketed units, which the all-in / all-out engine cannot hold "
+              "(criterion 1, as #436524); the 15:15 close-all never fires on 2-day bars."),
+    488287: ("1", "Partial exits: strategy.close(qty_percent = 25) at 2 ATR and again when "
+              "overextended, before the final close (criterion 1, as #436524)."),
+    488382: ("2", "The stop is low - 4 / high + 4, a fixed price amount of 4 quote units, and the "
+              "target is 1.5 x that distance (criterion 2, as #473377)."),
+    488513: ("1", "The range minutes are read from t = time('1', '0930-1600'), which is na outside "
+              "09:30-16:00, so hour(t) / minute(t) can never be 9:15-9:20; the range is never set "
+              "and the script can never trade (criterion 1, as #430384)."),
 }
 
 DUPLICATE_ON_READING = {

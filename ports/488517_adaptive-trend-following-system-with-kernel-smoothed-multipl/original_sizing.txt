@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #488517 (基于核平滑多重均线的自适应趋势追踪系统-Adaptive-Trend-Following-System-with-Kernel-Smoothed-Multiple-Moving-Averages)
+# Source: https://www.fmz.com/strategy/488517  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission 0.02 %  [lines 176-176]
+  176: strategy("B4100 - NW Trend Ribbon Strategy", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, commission_type = strategy.commission.percent, commission_value = 0.02)

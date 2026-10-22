@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #488284 (动态双EMA趋势捕捉与ATR风控量化策略-Dynamic-Dual-EMA-Trend-Capture-with-ATR-Risk-Management-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/488284  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 172-172]
+  172: strategy("9 & 15 EMA Scalping Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #488288 (RSI动量反转短期趋势跟踪策略与移动平均线聚合-RSI-Momentum-Reversal-Short-Term-Trend-Following-Strategy-with-Moving-Average-Confluence)
+# Source: https://www.fmz.com/strategy/488288  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 100000  [lines 200-200]
+  200: strategy("_Rerun's Dip Bonanza", overlay=true, initial_capital=100000, currency="USD")
