@@ -2640,3 +2640,15 @@ fmz_id,file,final_outcome,criterion,reason
 451026,KDJ趋势跟踪与信号移动平均策略-KDJ-Trending-View-with-Signals-and-MA-Strategy.md,PORTED,,ports/451026_kdj-kdj-trending-view-with-signals-and-ma-strategy/
 451027,RSI50_EMA长仓策略-RSI50_EMA-Long-Only-Strategy.md,PORTED,,ports/451027_rsi50-ema-rsi50-ema-long-only-strategy/
 451029,基于相对强弱指数的超买超卖自动化交易策略-Automated-Trading-Strategy-Based-on-RSI-Overbought-and-Oversold-Levels.md,PORTED,,ports/451029_automated-trading-strategy-based-on-rsi-overbought-and-overs/
+451030,MACD双均线交叉策略-MACD-Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/451030_macd-macd-dual-moving-average-crossover-strategy/
+451032,短中长期三重移动平均线趋势跟踪策略-Short-Medium-Long-Term-Triple-Moving-Average-Trend-Following-Strategy.md,PORTED,,ports/451032_short-medium-long-term-triple-moving-average-trend-following/
+451071,H1趋势偏差M15-MACD信号M5快速波动率缺口策略-H1-Trend-Bias-M15-MACD-Signal-M5-Fast-Volatility-Gap-Strategy.md,PORTED,,ports/451071_h1-m15-macd-m5-h1-trend-bias-m15-macd-signal-m5-fast-volatil/
+451072,Advanced-MACD-Strategy-with-Limited-Martingale-基于有限马丁格尔的高级MACD策略.md,PORTED,,ports/451072_advanced-macd-strategy-with-limited-martingale-macd/
+451074,基于多均线的趋势交易策略-Multi-Moving-Average-Trend-Trading-Strategy.md,PORTED,,ports/451074_multi-moving-average-trend-trading-strategy/
+451076,多时间框架逆转确认交易策略Multi-Timeframe-Reversal-Confirmation-Trading-Strategy.md,PORTED,,ports/451076_multi-timeframe-reversal-confirmation-trading-strategy/
+451387,EMAMACDRSI三重指标动量策略-EMA-MACD-and-RSI-Triple-Indicator-Momentum-Strategy.md,PORTED,,ports/451387_emamacdrsi-ema-macd-and-rsi-triple-indicator-momentum-strate/
+451389,基于双移动平均线交叉策略-Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/451389_dual-moving-average-crossover-strategy/
+451391,SMA双均线交易策略-SMA-Dual-Moving-Average-Trading-Strategy.md,PORTED,,ports/451391_sma-sma-dual-moving-average-trading-strategy/
+451393,BMSB-布林麦克超级趋势交易策略-BMSB-Bollinger-SuperTrend-Trading-Strategy.md,PORTED,,ports/451393_bmsb-bmsb-bollinger-supertrend-trading-strategy/
+451395,相对强弱指数均值回归策略Relative-Strength-Index-Mean-Reversion-Strategy.md,PORTED,,ports/451395_relative-strength-index-mean-reversion-strategy/
+451396,无上引线看涨K线突破策略-No-Upper-Wick-Bullish-Candle-Breakout-Strategy.md,PORTED,,ports/451396_k-no-upper-wick-bullish-candle-breakout-strategy/

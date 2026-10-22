@@ -1,0 +1,45 @@
+# Original sizing and money-management code, FMZ #451071 (H1趋势偏差M15-MACD信号M5快速波动率缺口策略-H1-Trend-Bias-M15-MACD-Signal-M5-Fast-Volatility-Gap-Strategy)
+# Source: https://www.fmz.com/strategy/451071  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity, capital 1000; TP / SL percents scaled by leverage 10  [lines 96-135]
+   96: strategy("H1 Bias + M15 MSS + M5 FVG", overlay=true, initial_capital=1000, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+   97: 
+   98: // H1 Bias
+   99: h1_bias = request.security(syminfo.tickerid, "60", close)
+  100: h1_ma = ta.sma(h1_bias, 50)
+  101: 
+  102: // M15 MSS
+  103: [m15_macd_line, m15_macd_signal, _] = ta.macd(request.security(syminfo.tickerid, "15", close), 12, 26, 9)
+  104: 
+  105: // M5 FVG Entry
+  106: m5_volatility = ta.atr(14)
+  107: 
+  108: // Entry conditions for long and short positions
+  109: long_condition = m15_macd_line > m15_macd_signal and m5_volatility > 0.001
+  110: short_condition = m15_macd_line < m15_macd_signal and m5_volatility > 0.001
+  111: 
+  112: // Exit conditions
+  113: exit_long_condition = m15_macd_line < m15_macd_signal
+  114: exit_short_condition = m15_macd_line > m15_macd_signal
+  115: 
+  116: // Strategy
+  117: if (long_condition)
+  118:     strategy.entry("Long", strategy.long)
+  119:     
+  120: if (short_condition)
+  121:     strategy.entry("Short", strategy.short)
+  122: 
+  123: if (exit_long_condition)
+  124:     strategy.close("Long")
+  125:     
+  126: if (exit_short_condition)
+  127:     strategy.close("Short")
+  128: 
+  129: // Take-Profit and Stop-Loss settings considering leverage
+  130: leverage = 10.0 // Leverage as a float
+  131: tp_percentage = 15.0 // TP percentage without leverage as a float
+  132: sl_percentage = 5.0 // SL percentage without leverage as a float
+  133: 
+  134: tp_level = strategy.position_avg_price * (1.0 + (tp_percentage / 100.0 / leverage)) // TP considering leverage as a float
+  135: sl_level = strategy.position_avg_price * (1.0 - (sl_percentage / 100.0 / leverage)) // SL considering leverage as a float

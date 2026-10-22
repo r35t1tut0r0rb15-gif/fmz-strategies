@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #451074 (基于多均线的趋势交易策略-Multi-Moving-Average-Trend-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/451074  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop gain / loss 100 ticks  [lines 187-192]
+  187: stop_gain_points = input.int(100, title="Stop Gain (pontos)", minval=1)
+  188: stop_loss_points = input.int(100, title="Stop Loss (pontos)", minval=1)
+  189: 
+  190: // Calcular o preço de saída alvo (Stop Gain) e de stop loss
+  191: target_price = entry_price + stop_gain_points * syminfo.mintick
+  192: stop_loss_price = entry_price - stop_loss_points * syminfo.mintick

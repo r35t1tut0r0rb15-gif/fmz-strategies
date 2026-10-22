@@ -1,0 +1,33 @@
+# Original sizing and money-management code, FMZ #451391 (SMA双均线交易策略-SMA-Dual-Moving-Average-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/451391  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 % / target 2 % of the average price; risk per trade 2 %  [lines 130-157]
+  130: stop_loss_percent = input.float(1.0, title="Stop Loss (%)")
+  131: take_profit_percent = input.float(2.0, title="Take Profit (%)")
+  132: risk_per_trade_percent = input.float(2.0, title="Risk Per Trade (%)")
+  133: 
+  134: // Calculate moving averages
+  135: fast_ma = ta.sma(src, fast_length)
+  136: slow_ma = ta.sma(src, slow_length)
+  137: 
+  138: // Plot moving averages
+  139: plot(fast_ma, color=color.new(color.blue, 0), title="Fast MA")
+  140: plot(slow_ma, color=color.new(color.red, 0), title="Slow MA")
+  141: 
+  142: // Generate buy and sell signals
+  143: buy_signal = ta.crossover(fast_ma, slow_ma)
+  144: sell_signal = ta.crossunder(fast_ma, slow_ma)
+  145: 
+  146: // Plot buy and sell signals
+  147: plotshape(buy_signal, style=shape.triangleup, location=location.belowbar, color=color.new(color.green, 0), size=size.small, title="Buy Signal")
+  148: plotshape(sell_signal, style=shape.triangledown, location=location.abovebar, color=color.new(color.red, 0), size=size.small, title="Sell Signal")
+  149: 
+  150: // Calculate stop loss and take profit levels
+  151: stop_loss_level = strategy.position_avg_price * (1 - stop_loss_percent / 100)
+  152: take_profit_level = strategy.position_avg_price * (1 + take_profit_percent / 100)
+  153: 
+  154: // Risk management
+  155: if (buy_signal)
+  156:     strategy.entry("Buy", strategy.long)
+  157:     strategy.exit("Take Profit/Stop Loss", "Buy", stop=stop_loss_level, limit=take_profit_level)

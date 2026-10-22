@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #451387 (EMAMACDRSI三重指标动量策略-EMA-MACD-and-RSI-Triple-Indicator-Momentum-Strategy)
+# Source: https://www.fmz.com/strategy/451387  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Bracket 2 % of the signal close  [lines 114-119]
+  114:     strategy.exit("Long Exit", "Long", limit=close*1.02, stop=close*0.98)
+  115:     alert('7345642438869,buy,XAUUSDm,risk=0.01,sl=140,tp=350', alert.freq_once_per_bar_close)
+  116:     
+  117: if (shortCondition and strategy.position_size >= 0)
+  118:     strategy.entry("Short", strategy.short)
+  119:     strategy.exit("Short Exit", "Short", limit=close*0.98, stop=close*1.02)

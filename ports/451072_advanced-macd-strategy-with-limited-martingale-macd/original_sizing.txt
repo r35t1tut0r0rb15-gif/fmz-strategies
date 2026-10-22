@@ -1,0 +1,49 @@
+# Original sizing and money-management code, FMZ #451072 (Advanced-MACD-Strategy-with-Limited-Martingale-基于有限马丁格尔的高级MACD策略)
+# Source: https://www.fmz.com/strategy/451072  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Martingale quantity 0.01 doubled up to 3 times; capital 100  [lines 102-145]
+  102: strategy("Advanced MACD Strategy with Limited Martingale", overlay=true, initial_capital=100)
+  103: 
+  104: // MACD 설정
+  105: fastLength = 15
+  106: slowLength = 30
+  107: signalSmoothing = 9
+  108: [macdLine, signalLine, _] = ta.macd(close, fastLength, slowLength, signalSmoothing)
+  109: 
+  110: // 계약수 및 이전 거래 결과 기록
+  111: var float contractSize = 0.01
+  112: var int martingaleCount = 0 // 마틴게일 카운트
+  113: var float lastTradeResult = 0
+  114: 
+  115: // 매수 및 매도 조건
+  116: longCondition = ta.crossover(macdLine, signalLine)
+  117: shortCondition = ta.crossunder(macdLine, signalLine)
+  118: 
+  119: // 매수 신호
+  120: if (longCondition)
+  121:     strategy.entry("Long", strategy.long, qty=contractSize)
+  122:     lastTradeResult := strategy.netprofit
+  123: 
+  124: // 매도 신호
+  125: if (shortCondition)
+  126:     strategy.entry("Short", strategy.short, qty=contractSize)
+  127:     lastTradeResult := strategy.netprofit
+  128: 
+  129: // 익절 및 손절 조건
+  130: strategy.close("Long", when=(close / strategy.position_avg_price >= 1.01))
+  131: strategy.close("Short", when=(strategy.position_avg_price / close >= 1.01))
+  132: strategy.close("Long", when=(close / strategy.position_avg_price <= 0.99))
+  133: strategy.close("Short", when=(strategy.position_avg_price / close <= 0.99))
+  134: 
+  135: // 마틴게일 전략 적용
+  136: if (strategy.netprofit < lastTradeResult)
+  137:     if (martingaleCount < 3)
+  138:         contractSize := contractSize * 2
+  139:         martingaleCount := martingaleCount + 1
+  140:     else
+  141:         contractSize := 0.01
+  142:         martingaleCount := 0
+  143: else
+  144:     contractSize := 0.01
+  145:     martingaleCount := 0

@@ -4936,6 +4936,33 @@ SIZING = {
         ("strategy(): 100 % of equity", 92, 92),
     ],
     451029: [],
+    # ---- FMZ-C, batch C184 (2026-10-22)
+    451030: [],
+    451032: [],
+    451071: [
+        ("strategy(): 10 % of equity, capital 1000; TP / SL percents scaled by leverage 10", 96, 135),
+    ],
+    451072: [
+        ("Martingale quantity 0.01 doubled up to 3 times; capital 100", 102, 145),
+    ],
+    451074: [
+        ("Stop gain / loss 100 ticks", 187, 192),
+    ],
+    451076: [],
+    451387: [
+        ("Bracket 2 % of the signal close", 114, 119),
+    ],
+    451389: [],
+    451391: [
+        ("Stop 1 % / target 2 % of the average price; risk per trade 2 %", 130, 157),
+    ],
+    451393: [],
+    451395: [
+        ("Stop 0.5 % / target 1 % close tests (on a never-entered id)", 105, 122),
+    ],
+    451396: [
+        ("strategy(): margin_long 100, margin_short 100", 93, 93),
+    ],
 }
 
 REJECTED_ON_READING = {

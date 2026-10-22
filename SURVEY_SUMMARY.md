@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2298 |
-| PORT_CANDIDATE | 1119 |
+| PORTED | 2310 |
+| PORT_CANDIDATE | 1107 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
 | REJECTED_ON_READING | 323 |
@@ -2426,7 +2426,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 451026 | `ports/451026_kdj-kdj-trending-view-with-signals-and-ma-strategy/` | PineScript | stochastic_oscillator | none | kdj_len x2, ma_len x2 | 4 |
 | 451027 | `ports/451027_rsi50-ema-rsi50-ema-long-only-strategy/` | PineScript | volatility_channel_breakout | none | length x2, mult x2 | 4 |
 | 451029 | `ports/451029_automated-trading-strategy-based-on-rsi-overbought-and-overs/` | PineScript | rsi_oscillator | none | rsi_len x2, exit_minutes x2 | 4 |
-| | **2298 ports** | | | | | **10625** |
+| 451030 | `ports/451030_macd-macd-dual-moving-average-crossover-strategy/` | PineScript | macd_cross | coarse_bar_stop | rr x2, fast x2 | 4 |
+| 451032 | `ports/451032_short-medium-long-term-triple-moving-average-trend-following/` | PineScript | mean_reversion | none | short_len x2, trend_len x2 | 4 |
+| 451071 | `ports/451071_h1-m15-macd-m5-h1-trend-bias-m15-macd-signal-m5-fast-volatil/` | PineScript | macd_cross | coarse_bar_stop | tp x2, sl x2 | 4 |
+| 451072 | `ports/451072_advanced-macd-strategy-with-limited-martingale-macd/` | PineScript | macd_cross | none | band x2, fast x2 | 4 |
+| 451074 | `ports/451074_multi-moving-average-trend-trading-strategy/` | PineScript | ma_trend | coarse_bar_stop | k_atr x2, ma_medium x2 | 4 |
+| 451076 | `ports/451076_multi-timeframe-reversal-confirmation-trading-strategy/` | PineScript | reversal_pattern | none | lookback x2 | 2 |
+| 451387 | `ports/451387_emamacdrsi-ema-macd-and-rsi-triple-indicator-momentum-strate/` | PineScript | multi_indicator_confluence | coarse_bar_stop | ema_len x2, bracket x2 | 4 |
+| 451389 | `ports/451389_dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | long_len x2, short_len x2 | 4 |
+| 451391 | `ports/451391_sma-sma-dual-moving-average-trading-strategy/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 451393 | `ports/451393_bmsb-bmsb-bollinger-supertrend-trading-strategy/` | PineScript | ma_trend | none | sma_len x2, ema_len x2 | 4 |
+| 451395 | `ports/451395_relative-strength-index-mean-reversion-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, sma_len x2 | 4 |
+| 451396 | `ports/451396_k-no-upper-wick-bullish-candle-breakout-strategy/` | PineScript | candle_pattern | none | wick_pct x2 | 2 |
+| | **2310 ports** | | | | | **10669** |
 
 ## Rejected on reading
 

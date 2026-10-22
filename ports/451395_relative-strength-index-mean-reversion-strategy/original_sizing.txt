@@ -1,0 +1,23 @@
+# Original sizing and money-management code, FMZ #451395 (相对强弱指数均值回归策略Relative-Strength-Index-Mean-Reversion-Strategy)
+# Source: https://www.fmz.com/strategy/451395  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 0.5 % / target 1 % close tests (on a never-entered id)  [lines 105-122]
+  105: stopLossPercentage = 0.5  // 0.5% stop loss
+  106: profitTargetPercentage = 1  // 1% profit target
+  107: 
+  108: // Calculate indicators
+  109: rsi = ta.rsi(close, rsiLength)
+  110: sma = ta.sma(close, smaPeriod)
+  111: 
+  112: // Entry conditions
+  113: buySignal = rsi < rsiThresholdBuy and close < sma
+  114: sellSignal = rsi > rsiThresholdSell and close > sma
+  115: 
+  116: // Exit conditions
+  117: if strategy.position_size > 0
+  118:     stopLoss = strategy.position_avg_price * (1 - stopLossPercentage / 100)
+  119:     takeProfit = strategy.position_avg_price * (1 + profitTargetPercentage / 100)
+  120: 
+  121:     if close <= stopLoss or close >= takeProfit
+  122:         strategy.close('Exit', comment='Stop Loss / Take Profit')
