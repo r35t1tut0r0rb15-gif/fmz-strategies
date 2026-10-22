@@ -4442,6 +4442,26 @@ SIZING = {
     442644: [
         ("lots = 1 (exit qty)", 137, 137),
     ],
+    # ---- FMZ-C, batch C160 (2026-10-22)
+    442646: [
+        ("strategy(): 100 % of equity, capital 1000, commission 0.1", 163, 163),
+    ],
+    442648: [],
+    442651: [
+        ("strategy(): 99 % of equity, pyramiding 1", 146, 146),
+    ],
+    442652: [
+        ("strategy(): margin_long / margin_short 100, capital 2000", 137, 137),
+    ],
+    442653: [],
+    442656: [
+        ("contractsQty = 5", 146, 146),
+    ],
+    442657: [],
+    442809: [],
+    442810: [],
+    442812: [],
+    442813: [],
 }
 
 REJECTED_ON_READING = {
@@ -5631,6 +5651,10 @@ REJECTED_ON_READING = {
               "4-hour chart behaves as lookahead_on, so every bar's two DEMA lines use the final "
               "values of the current week, not known until it ends (SURVEY_README "
               "request.security rule, as #441065, #434485)."),
+    # ---- FMZ-C, batch C160 (2026-10-22)
+    442645: ("1", "pyramiding = 3 with repeated \"Long\" / \"Short\" entries on every new fast-RSI "
+              "crossing while a position is open (the exits are limit orders at the close that "
+              "need not fill): the position accumulates units (criterion 1, as #442112, #430762)."),
 }
 
 DUPLICATE_ON_READING = {

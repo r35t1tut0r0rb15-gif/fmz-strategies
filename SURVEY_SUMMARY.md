@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2043 |
-| PORT_CANDIDATE | 1407 |
+| PORTED | 2054 |
+| PORT_CANDIDATE | 1395 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 290 |
+| REJECTED_ON_READING | 291 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2171,7 +2171,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442641 | `ports/442641_marubozu-candle-range-balance-strategy/` | PineScript | candle_pattern | none | body_len x2, shadow_pct x2 | 4 |
 | 442643 | `ports/442643_macd-quantitative-trading-strategy-based-on-bollinger-bands/` | PineScript | macd_cross | none | bb_length x2, stop_div x2 | 4 |
 | 442644 | `ports/442644_atr-ema-all-about-the-atr-and-ema-based-trend-following-stra/` | PineScript | volatility_channel_breakout | coarse_bar_stop | lookback x2, atr_mult x2 | 4 |
-| | **2043 ports** | | | | | **9667** |
+| 442646 | `ports/442646_polynomial-trailing-stop-strategy/` | PineScript | ma_trend | none | degree x2, d_frac x2 | 4 |
+| 442648 | `ports/442648_average-line-breakthrough-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | length x2, mult x2 | 4 |
+| 442651 | `ports/442651_trend-following-strategy-based-on-moving-average-combination/` | PineScript | ma_trend | none | step x2, slow_start x2 | 4 |
+| 442652 | `ports/442652_rainbow-oscillator-trading-strategy/` | PineScript | momentum_oscillator | bar_size_pending | fast_period x2, slow_period x2 | 4 |
+| 442653 | `ports/442653_institutional-trader-strategy-based-on-price-action/` | PineScript | mean_reversion | none | length x2, fair_value_period x2 | 4 |
+| 442656 | `ports/442656_spaced-out-trading-strategy/` | PineScript | ma_cross | none | ema_period x2, tp_pct x2 | 4 |
+| 442657 | `ports/442657_trend-following-strategy-based-on-moving-average-crossover/` | PineScript | ma_cross | coarse_bar_stop | short_len x2, long_len x2 | 4 |
+| 442809 | `ports/442809_threefold-overlapping-supertrend-strategy/` | PineScript | supertrend | none | factor1 x2, atr1 x2 | 4 |
+| 442810 | `ports/442810_cci-supertrend-and-cci-scalping-strategy/` | PineScript | supertrend | none | factor2 x2, cci_len x2 | 4 |
+| 442812 | `ports/442812_cci-supertrend-and-cci-scalping-strategy/` | PineScript | rsi_oscillator | none | stoch_length x2, oversold x2 | 4 |
+| 442813 | `ports/442813_200-elliott-wave-strategy-with-200-day-moving-average/` | PineScript | reversal_pattern | none | sma_len x2 | 2 |
+| | **2054 ports** | | | | | **9709** |
 
 ## Rejected on reading
 
@@ -2467,6 +2478,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442542 | 基于均线交易趋势策略The-Moving-Average-Crossover-Trading-Strategy.md | 2 | The only stops, strategy.exit(loss = close x 0.02), pass a price amount (2 % of the close) where the call takes ticks, with no /mintick: the stop is undefined as written (criterion 2, as #442115, #437048). |
 | 442546 | 双移动均线与布林带结合的趋势追踪策略Dual-Moving-Average-and-Bollinger-Band-Combination-Trend-Tracking-Strategy.md | 1 | Orders are strategy.order('Buy' / 'Sell') with the default quantity, which add or remove units instead of entering or reversing: each repeated signal changes the net position by one unit, a running sum of orders (criterion 1, as #440533, #430596). |
 | 442550 | 自适应移动均线交易策略Adaptive-Moving-Average-Trading-Strategy.md | 1 | Reads the future: Pine v2 security(syminfo.tickerid, 'W', ...) without [1] on the 4-hour chart behaves as lookahead_on, so every bar's two DEMA lines use the final values of the current week, not known until it ends (SURVEY_README request.security rule, as #441065, #434485). |
+| 442645 | SPY-RSI-Stochastics-交叉值反转趋势策略SPY-RSI-Stochastics-Crossover-Reversal-Trend-Strategy.md | 1 | pyramiding = 3 with repeated "Long" / "Short" entries on every new fast-RSI crossing while a position is open (the exits are limit orders at the close that need not fill): the position accumulates units (criterion 1, as #442112, #430762). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

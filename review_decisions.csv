@@ -289,6 +289,7 @@ fmz_id,file,final_outcome,criterion,reason
 442542,基于均线交易趋势策略The-Moving-Average-Crossover-Trading-Strategy.md,REJECTED_ON_READING,2,"The only stops, strategy.exit(loss = close x 0.02), pass a price amount (2 % of the close) where the call takes ticks, with no /mintick: the stop is undefined as written (criterion 2, as #442115, #437048)."
 442546,双移动均线与布林带结合的趋势追踪策略Dual-Moving-Average-and-Bollinger-Band-Combination-Trend-Tracking-Strategy.md,REJECTED_ON_READING,1,"Orders are strategy.order('Buy' / 'Sell') with the default quantity, which add or remove units instead of entering or reversing: each repeated signal changes the net position by one unit, a running sum of orders (criterion 1, as #440533, #430596)."
 442550,自适应移动均线交易策略Adaptive-Moving-Average-Trading-Strategy.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 security(syminfo.tickerid, 'W', ...) without [1] on the 4-hour chart behaves as lookahead_on, so every bar's two DEMA lines use the final values of the current week, not known until it ends (SURVEY_README request.security rule, as #441065, #434485)."
+442645,SPY-RSI-Stochastics-交叉值反转趋势策略SPY-RSI-Stochastics-Crossover-Reversal-Trend-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 3 with repeated ""Long"" / ""Short"" entries on every new fast-RSI crossing while a position is open (the exits are limit orders at the close that need not fill): the position accumulates units (criterion 1, as #442112, #430762)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2352,3 +2353,14 @@ fmz_id,file,final_outcome,criterion,reason
 442641,马鲁博蜡烛线段均衡策略Marubozu-Candle-Range-Balance-Strategy.md,PORTED,,ports/442641_marubozu-candle-range-balance-strategy/
 442643,基于布林带和MACD的量化交易策略Quantitative-Trading-Strategy-Based-on-Bollinger-Bands-and-MACD.md,PORTED,,ports/442643_macd-quantitative-trading-strategy-based-on-bollinger-bands/
 442644,基于ATR和EMA的趋势跟随策略All-about-the-ATR-and-EMA-based-trend-following-strategy.md,PORTED,,ports/442644_atr-ema-all-about-the-atr-and-ema-based-trend-following-stra/
+442646,多项式追踪止损策略Polynomial-Trailing-Stop-Strategy.md,PORTED,,ports/442646_polynomial-trailing-stop-strategy/
+442648,基于均线回归突破跟踪趋势策略Average-Line-Breakthrough-Strategy.md,PORTED,,ports/442648_average-line-breakthrough-strategy/
+442651,基于均线组合的长仓趋势追踪策略Trend-Following-Strategy-Based-on-Moving-Average-Combination.md,PORTED,,ports/442651_trend-following-strategy-based-on-moving-average-combination/
+442652,彩虹震荡器交易策略Rainbow-Oscillator-Trading-Strategy.md,PORTED,,ports/442652_rainbow-oscillator-trading-strategy/
+442653,基于价格行为的机构交易策略Institutional-Trader-Strategy-Based-on-Price-Action.md,PORTED,,ports/442653_institutional-trader-strategy-based-on-price-action/
+442656,基于间隔交易策略Spaced-Out-Trading-Strategy.md,PORTED,,ports/442656_spaced-out-trading-strategy/
+442657,基于均线交叉的趋势追踪策略Trend-Following-Strategy-Based-on-Moving-Average-Crossover.md,PORTED,,ports/442657_trend-following-strategy-based-on-moving-average-crossover/
+442809,三重叠加超趋势策略Threefold-Overlapping-SuperTrend-Strategy.md,PORTED,,ports/442809_threefold-overlapping-supertrend-strategy/
+442810,超趋势和CCI策略的短线交易Supertrend-and-CCI-Scalping-Strategy.md,PORTED,,ports/442810_cci-supertrend-and-cci-scalping-strategy/
+442812,基于超趋势和CCI策略的短线交易Supertrend-and-CCI-Scalping-Strategy.md,PORTED,,ports/442812_cci-supertrend-and-cci-scalping-strategy/
+442813,埃利奥特波动叠加200日均线交易策略Elliott-Wave-Strategy-with-200-Day-Moving-Average.md,PORTED,,ports/442813_200-elliott-wave-strategy-with-200-day-moving-average/

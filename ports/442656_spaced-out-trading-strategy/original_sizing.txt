@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #442656 (基于间隔交易策略Spaced-Out-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/442656  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## contractsQty = 5  [lines 146-146]
+  146: contractsQty = 5  // Number of contracts to buy
