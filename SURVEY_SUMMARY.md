@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2495 |
+| PORTED | 2506 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 892 |
+| PORT_CANDIDATE | 880 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 353 |
+| REJECTED_ON_READING | 354 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2623,7 +2623,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 458174 | `ports/458174_dynamic-trend-following-trading-strategy-based-on-gann-angle/` | PineScript | pivot_levels | trailing_stop_pending | length x2 | 2 |
 | 458176 | `ports/458176_multi-indicator-dynamic-volatility-alert-trading-system/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
 | 458178 | `ports/458178_dynamic-position-dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | shortlen x2, longlen x2 | 4 |
-| | **2495 ports** | | | | | **11712** |
+| 458179 | `ports/458179_adaptive-standard-deviation-breakout-trading-strategy-multi/` | PineScript | bollinger_reversion | none | mult x2, tp_pct x2, sl_pct x2 | 8 |
+| 458182 | `ports/458182_advanced-composite-moving-average-and-market-momentum-trend/` | PineScript | ichimoku | bar_size_pending | keh x2, kijun x2 | 4 |
+| 458183 | `ports/458183_multi-moving-average-trend-following-and-reversal-pattern-re/` | PineScript | candle_pattern | none |  | 0 |
+| 458184 | `ports/458184_multi-dimensional-order-flow-analysis-and-trading-strategy/` | PineScript | reversal_pattern | none | len x2, threshold x2 | 4 |
+| 458185 | `ports/458185_fibonacci-extension-and-retracement-channel-breakout-strateg/` | PineScript | donchian_breakout | none | length x2 | 2 |
+| 458192 | `ports/458192_bollinger-bands-breakout-quantitative-trading-strategy/` | PineScript | bollinger_reversion | bar_size_pending | length x2, mult x2 | 4 |
+| 458194 | `ports/458194_dual-dynamic-indicator-optimization-strategy/` | PineScript | ma_cross | none | ma_len x2 | 2 |
+| 458197 | `ports/458197_dual-moving-average-crossover-confirmation-strategy-with-vol/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 458200 | `ports/458200_multi-order-breakout-trend-following-strategy/` | PineScript | bollinger_breakout | coarse_bar_stop | lookback x2, breakout_mult x2, sl_pct x2 | 8 |
+| 458201 | `ports/458201_multi-ema-crossover-momentum-strategy/` | PineScript | ma_cross | none | fast x2, slow x2, trend x2 | 8 |
+| 458232 | `ports/458232_rsi-momentum-driven-ema-rsi-crossover-strategy/` | PineScript | rsi_oscillator | none | ema_len x2, buy_th x2, sell_th x2 | 8 |
+| | **2506 ports** | | | | | **11764** |
 
 ## Rejected on reading
 
@@ -2982,6 +2993,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 458045 | 动态移动止损双目标价均线交叉策略-Dynamic-Trailing-Stop-Dual-Target-Moving-Average-Crossover-Strategy.md | 1 | strategy.exit with qty = 0.75 / 0.25 x the trade size takes partial profits (and the stop moves to the entry): partial exits (criterion 1, as #436524). |
 | 458066 | 多指标结合期权交易策略-Multi-Indicator-Options-Trading-Strategy.md | 1 | The only exit closes when strategy.opentrades.profit (currency, for a 10 % of equity position) reaches 0.30 x the entry price (a price): where the trade ends depends on the position size (criterion 1, size-dependent exit, as #440336). |
 | 458170 | 多层级超买超卖震荡买入策略-Multi-Level-Oversold-Oscillator-Buy-Strategy.md | 1 | pyramiding = 3: each stochastic-RSI cross-up in oversold adds another entry while the long is held, up to three, all closed together by close_all when the stochastic RSI reaches 99 (no stop): the position size path is the strategy (criterion 1, as #430762, #439950). |
+| 458198 | 多重均线交叉与时间间隔整合策略-Multi-EMA-Crossover-with-Time-Interval-Integration-Strategy.md | 2 | The 50 / 30 pips are passed to strategy.exit as limit= / stop= PRICES (pip = mintick x 10, so the levels are the absolute prices 50 and 30): at any BTC price the long's sell limit and the short's buy stop are marketable at the fill, so every trade would close at its own fill, and the 30-candle gap divides milliseconds by 1000 x mintick; both are instrument-specific price units (criterion 2, as #441086). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

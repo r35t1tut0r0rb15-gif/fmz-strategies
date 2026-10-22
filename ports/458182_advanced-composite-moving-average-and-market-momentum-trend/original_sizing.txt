@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #458182 (高级复合均线与市场动量趋势捕捉策略-Advanced-Composite-Moving-Average-and-Market-Momentum-Trend-Capture-Strategy)
+# Source: https://www.fmz.com/strategy/458182  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

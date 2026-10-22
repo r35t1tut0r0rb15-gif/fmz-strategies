@@ -1,0 +1,60 @@
+# Original sizing and money-management code, FMZ #458179 (自适应标准差突破交易策略基于动态波动率的多周期优化系统-Adaptive-Standard-Deviation-Breakout-Trading-Strategy-Multi-Period-Optimization-System-Based-on-Dynamic-Volatility)
+# Source: https://www.fmz.com/strategy/458179  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 1 % / stop 0.5 % of the entry price (close tests); backtest dates  [lines 181-235]
+  181: takeProfitPerc = input.float(1.0, title="Take Profit Percentage", step=0.1) / 100
+  182: stopLossPerc = input.float(0.5, title="Stop Loss Percentage", step=0.1) / 100
+  183: 
+  184: // Input parameters for the backtesting range
+  185: testStartYear = input.int(2023, title="Backtest Start Year", minval=2000)
+  186: testStartMonth = input.int(1, title="Backtest Start Month", minval=1, maxval=12)
+  187: testStartDay = input.int(1, title="Backtest Start Day", minval=1, maxval=31)
+  188: 
+  189: testEndYear = input.int(2024, title="Backtest End Year", minval=2000)
+  190: testEndMonth = input.int(12, title="Backtest End Month", minval=1, maxval=12)
+  191: testEndDay = input.int(31, title="Backtest End Day", minval=1, maxval=31)
+  192: 
+  193: // Define the backtesting range
+  194: testStartTime = timestamp(testStartYear, testStartMonth, testStartDay, 00, 00)
+  195: testEndTime = timestamp(testEndYear, testEndMonth, testEndDay, 23, 59)
+  196: 
+  197: // Determine if the current bar is within the backtesting range
+  198: inBacktestRange = (time >= testStartTime) and (time <= testEndTime)
+  199: 
+  200: // Calculate the moving average and standard deviation
+  201: ma = ta.sma(src, length)
+  202: std_dev = ta.stdev(src, length)
+  203: 
+  204: // Calculate upper and lower bands
+  205: upper_band = ma + (std_dev * mult)
+  206: lower_band = ma - (std_dev * mult)
+  207: 
+  208: // Buy condition within the backtesting range
+  209: buyCondition = inBacktestRange and ta.crossover(src, lower_band)
+  210: 
+  211: // Plot the buy signal on the chart
+  212: plotshape(series=buyCondition, location=location.belowbar, color=color.green, style=shape.labelup, text="BUY")
+  213: 
+  214: // Execute buy orders based on the condition within the backtesting range
+  215: if (buyCondition)
+  216:     strategy.entry("Buy", strategy.long)
+  217: 
+  218: // Calculate the take profit and stop loss prices when a position is opened
+  219: entryPrice = na(strategy.opentrades.entry_price(0)) ? src : strategy.opentrades.entry_price(0)
+  220: takeProfitPrice = entryPrice * (1 + takeProfitPerc)
+  221: stopLossPrice = entryPrice * (1 - stopLossPerc)
+  222: 
+  223: // Take profit condition
+  224: takeProfitCondition = strategy.position_size > 0 and close >= takeProfitPrice
+  225: 
+  226: // Stop loss condition
+  227: stopLossCondition = strategy.position_size > 0 and close <= stopLossPrice
+  228: 
+  229: // Execute sell order when take profit condition is met within the backtesting range
+  230: if (takeProfitCondition and inBacktestRange)
+  231:     strategy.close("Buy", "Take Profit")
+  232: 
+  233: // Execute sell order when stop loss condition is met within the backtesting range
+  234: if (stopLossCondition and inBacktestRange)
+  235:     strategy.close("Buy", "Stop Loss")

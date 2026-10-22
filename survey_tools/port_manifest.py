@@ -5364,6 +5364,22 @@ SIZING = {
     458178: [
         ("strategy(): order size 10 (cash)", 137, 137),
     ],
+    # ---- FMZ-C, batch C203 (2026-10-22)
+    458179: [
+        ("Target 1 % / stop 0.5 % of the entry price (close tests); backtest dates", 181, 235),
+    ],
+    458182: [],
+    458183: [],
+    458184: [],
+    458185: [],
+    458192: [],
+    458194: [],
+    458197: [],
+    458200: [
+        ("Risk 1 % of equity over a 2 % stop; max 5 positions; stop 2 % of the average price", 210, 246),
+    ],
+    458201: [],
+    458232: [],
 }
 
 REJECTED_ON_READING = {
@@ -6789,6 +6805,13 @@ REJECTED_ON_READING = {
               "the long is held, up to three, all closed together by close_all when the "
               "stochastic RSI reaches 99 (no stop): the position size path is the strategy "
               "(criterion 1, as #430762, #439950)."),
+    # ---- FMZ-C, batch C203 (2026-10-22)
+    458198: ("2", "The 50 / 30 pips are passed to strategy.exit as limit= / stop= PRICES (pip = "
+              "mintick x 10, so the levels are the absolute prices 50 and 30): at any BTC price "
+              "the long's sell limit and the short's buy stop are marketable at the fill, so "
+              "every trade would close at its own fill, and the 30-candle gap divides "
+              "milliseconds by 1000 x mintick; both are instrument-specific price units "
+              "(criterion 2, as #441086)."),
 }
 
 DUPLICATE_ON_READING = {

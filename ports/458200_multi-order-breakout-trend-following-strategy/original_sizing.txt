@@ -1,0 +1,42 @@
+# Original sizing and money-management code, FMZ #458200 (多重订单突破趋势跟踪策略-Multi-Order-Breakout-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/458200  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk 1 % of equity over a 2 % stop; max 5 positions; stop 2 % of the average price  [lines 210-246]
+  210: risk_per_trade = input.float(1.0, "Risk Per Trade")
+  211: lookback = input(20, "Lookback Period")
+  212: breakout_mult = input.float(2.0, "Breakout Multiplier")
+  213: stop_loss_percent = input.float(2.0, "Stop Loss Percentage")
+  214: max_positions = input(5, "Maximum Open Positions")
+  215: atr_period = input(14, "ATR Period")
+  216: ma_len = input(100, "MA Length")
+  217: 
+  218: // Calculate Bollinger Bands and other indicators
+  219: [middle, upper, lower] = ta.bb(close, lookback, breakout_mult)
+  220: atr = ta.atr(atr_period)
+  221: sar = ta.sar(0.02, 0.02, 0.2)
+  222: 
+  223: ma = ta.ema(close, ma_len)
+  224: plot(ma, color=color.white)
+  225: 
+  226: // Entry conditions
+  227: long_condition = close > upper and close > sar and close > ma
+  228: 
+  229: // Exit conditions
+  230: exit_condition = ta.crossunder(close, middle) or ta.crossunder(close, sar)
+  231: 
+  232: // Count open positions
+  233: var open_positions = 0
+  234: 
+  235: // Dynamic position sizing
+  236: position_size = (strategy.equity * risk_per_trade/100) / (close * stop_loss_percent / 100)
+  237: 
+  238: 
+  239: // Strategy execution
+  240: if (long_condition and open_positions < max_positions and atr > ta.sma(atr, 100) and position_size > 0)
+  241:     strategy.entry("Long " + str.tostring(open_positions + 1), strategy.long, qty=position_size)
+  242:     open_positions := open_positions + 1
+  243: 
+  244: // Apply fixed stop loss to each position
+  245: for i = 1 to max_positions
+  246:     strategy.exit("SL " + str.tostring(i), "Long " + str.tostring(i), stop=strategy.position_avg_price * (1 - stop_loss_percent/100))
