@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #474838 (高级动态Fibonacci回撤趋势量化交易策略-Advanced-Dynamic-Fibonacci-Retracement-Trend-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/474838  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Exit at the 100-bar high / low (every bar)  [lines 147-150]
+  147: take_profit = high_level // Exit at the highest Fibonacci level (100%)
+  148: stop_loss = low_level    // Exit at the lowest Fibonacci level (0%)
+  149: 
+  150: strategy.exit("Sell", from_entry="Buy", limit=take_profit, stop=stop_loss)

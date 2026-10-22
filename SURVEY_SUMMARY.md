@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2718 |
+| PORTED | 2728 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 640 |
+| PORT_CANDIDATE | 628 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 380 |
+| REJECTED_ON_READING | 382 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2846,7 +2846,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474720 | `ports/474720_gold-trend-channel-reversal-momentum-strategy/` | PineScript | candle_pattern | coarse_bar_stop |  | 0 |
 | 474722 | `ports/474722_vix-advanced-volatility-mean-reversion-trading-strategy-mult/` | PineScript | mean_reversion | none | length x2, pct x2 | 4 |
 | 474804 | `ports/474804_dynamic-long-short-swing-trading-strategy-with-moving-averag/` | PineScript | ma_cross | coarse_bar_stop | short_len x2, long_len x2 | 4 |
-| | **2718 ports** | | | | | **12750** |
+| 474806 | `ports/474806_dual-bbi-bulls-and-bears-index-crossover-strategy/` | PineScript | ma_cross | none | a_scale x2, b_scale x2 | 4 |
+| 474808 | `ports/474808_trend-following-dynamic-grid-position-sizing-strategy/` | PineScript | volatility_channel_breakout | none | ttm_period x2, spacing x2 | 4 |
+| 474810 | `ports/474810_bollinger-breakout-with-mean-reversion-4h-quantitative-tradi/` | PineScript | bollinger_breakout | coarse_bar_stop | length x2, mult x2 | 4 |
+| 474815 | `ports/474815_rsi-dynamic-rsi-smart-timing-swing-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2 | 2 |
+| 474833 | `ports/474833_dual-timeframe-stochastic-momentum-trading-strategy/` | PineScript | stochastic_oscillator | trailing_stop_pending | length x2, tp_pct x2, sl_pct x2 | 8 |
+| 474834 | `ports/474834_adx-sar-enhanced-trend-following-system-dynamic-trend-identi/` | PineScript | directional_movement | none | adx_threshold x2, adx_len x2 | 4 |
+| 474838 | `ports/474838_fibonacci-advanced-dynamic-fibonacci-retracement-trend-quant/` | PineScript | pivot_levels | trailing_stop_pending | lookback x2, level x2 | 4 |
+| 474839 | `ports/474839_k-high-frequency-breakout-trading-strategy-based-on-candlest/` | PineScript | candle_pattern | none |  | 0 |
+| 474840 | `ports/474840_multi-period-bollinger-bands-touch-trend-reversal-quantitati/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 474843 | `ports/474843_multi-ema-crossover-momentum-trend-following-strategy/` | PineScript | ma_cross | trailing_stop_pending |  | 0 |
+| | **2728 ports** | | | | | **12784** |
 
 ## Rejected on reading
 
@@ -3232,6 +3242,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474709 | 增强型动量震荡与随机背离量化交易策略-Enhanced-Momentum-Oscillator-and-Stochastic-Divergence-Quantitative-Trading-Strategy.md | 1 | The target and stop are close +/- 0.0020 / 0.0040 in price (FX-sized, "40 pips"): on the header pair's 0.1 tick both levels sit at the signal close, so one of them is always at or through the fill open and every trade closes at its own fill (criterion 1, a zero-width bracket, as #451493). |
 | 474712 | 多移动平均线趋势强度交易策略-基于移动平均线偏离度的灵活性智能交易系统-Multi-MA-Trend-Intensity-Trading-Strategy-A-Flexible-Smart-Trading-System-Based-on-MA-Deviation.md | 1 | A qty_percent partial exit (50 % at 1 R) on every trade, with a risk-sized quantity: the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #436524). |
 | 474803 | 多重技术指标趋势追踪套利策略-Multi-Technical-Indicator-Trend-Following-Trading-Strategy.md | 1 | The trailing exit has trail_price = close x 0.98 (under the market, so armed at once) and trail_offset = 0.02 ticks (0.002 in price), re-sent every bar: it stops every trade at the first tick against it, so trades end at their entry price (criterion 1, a zero-width exit, as #451493). |
+| 474822 | 自适应布林通道动态仓位管理策略-Adaptive-Bollinger-Bands-Dynamic-Position-Management-Strategy.md | 1 | Partial closes: entries of qty 0.5 and strategy.close("Buy", qty = 0.1 / 0.5) on the basis re-cross and the lower-band break: the position is closed in parts, so the size path is part of the strategy (criterion 1, partial exits, as #436524). |
+| 474837 | 变量指数动态均线多层利润趋势跟踪策略-Variable-Index-Dynamic-Average-Multi-Tier-Profit-Trend-Following-Strategy.md | 1 | Multi-step take-profit on by default: six qty_percent partial exits (ATR and percent levels) per trade: the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #436524). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -1,0 +1,51 @@
+# Original sizing and money-management code, FMZ #474810 (布林带突破结合均值回归的四小时级别量化交易策略-Bollinger-Breakout-with-Mean-Reversion-4H-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/474810  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = equity x 3 / close; stop at the signal bar's low / high; commission 0.04 %  [lines 92-137]
+   92: strategy("Bollinger 4H Follow", overlay=true, initial_capital=300, commission_type=strategy.commission.percent, commission_value=0.04)
+   93: // StartYear = input(2022,"Backtest Start Year") 
+   94: // StartMonth = input(1,"Backtest Start Month") 
+   95: // StartDay = input(1,"Backtest Start Day")
+   96: 
+   97: // testStart = timestamp(StartYear,StartMonth,StartDay,0,0)
+   98: 
+   99: // EndYear = input(2023,"Backtest End Year")
+  100: // EndMonth = input(12,"Backtest End Month")
+  101: // EndDay = input(31,"Backtest End Day")
+  102: 
+  103: // testEnd = timestamp(EndYear,EndMonth,EndDay,0,0)
+  104: 
+  105: lev = 3
+  106: 
+  107: // Input parameters
+  108: length = input.int(20, title="Bollinger Band Length")
+  109: mult = input.float(2.0, title="Bollinger Band Multiplier")
+  110: 
+  111: // Bollinger Bands calculation
+  112: basis = ta.sma(close, length)
+  113: upperBand = basis + mult * ta.stdev(close, length)
+  114: lowerBand = basis - mult * ta.stdev(close, length)
+  115: 
+  116: // Conditions for Open Long
+  117: openLongCondition = strategy.position_size == 0 and close > open and (close + open) / 2 > upperBand
+  118: 
+  119: // Conditions for Open Short
+  120: openShortCondition = strategy.position_size == 0 and close < open and (close + open) / 2 < lowerBand
+  121: 
+  122: // Conditions for Close Long
+  123: closeLongCondition = strategy.position_size > 0 and strategy.position_size > 0 and (close < upperBand and open < upperBand and close < open)
+  124: 
+  125: // Conditions for Close Short
+  126: closeShortCondition = strategy.position_size < 0 and strategy.position_size < 0 and (close > lowerBand and open > lowerBand and close > open)
+  127: 
+  128: 
+  129: // Long entry
+  130: if openLongCondition
+  131:     strategy.entry("Long", strategy.long, qty=strategy.equity * lev / close)
+  132:     strategy.exit("Long SL", from_entry="Long", stop=low)  // Set Stop-Loss
+  133: 
+  134: // Short entry
+  135: if openShortCondition
+  136:     strategy.entry("Short", strategy.short, qty=strategy.equity * lev / close)
+  137:     strategy.exit("Short SL", from_entry="Short", stop=high)  // Set Stop-Loss

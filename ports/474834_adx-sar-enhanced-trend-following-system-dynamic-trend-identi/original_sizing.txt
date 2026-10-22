@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #474834 (增强型趋势跟踪策略基于ADX与抛物线SAR的动态趋势识别系统-Enhanced-Trend-Following-System-Dynamic-Trend-Identification-Based-on-ADX-and-Parabolic-SAR)
+# Source: https://www.fmz.com/strategy/474834  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

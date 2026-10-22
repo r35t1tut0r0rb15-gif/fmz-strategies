@@ -5900,6 +5900,31 @@ SIZING = {
     474804: [
         ("strategy(): 100 % of equity; size by 1 % risk of 10000; stop 1.5 ATR / target 3 ATR from avg", 100, 151),
     ],
+    # ---- FMZ-C, batch C224 (2026-10-22)
+    474806: [],
+    474808: [],
+    474810: [
+        ("qty = equity x 3 / close; stop at the signal bar's low / high; commission 0.04 %", 92, 137),
+    ],
+    474815: [
+        ("strategy(): 100 % of equity, commission 0.1 %, slippage 3", 89, 89),
+    ],
+    474833: [
+        ("Target 2 % / stop 1 % of the signal close", 111, 141),
+    ],
+    474834: [],
+    474838: [
+        ("Exit at the 100-bar high / low (every bar)", 147, 150),
+    ],
+    474839: [
+        ("Fixed size 1", 124, 134),
+    ],
+    474840: [
+        ("strategy(): margin 100 %", 95, 95),
+    ],
+    474843: [
+        ("strategy(): 10 % of equity; target 10 % / stop 5 % of the current close", 87, 140),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7439,6 +7464,13 @@ REJECTED_ON_READING = {
               "once) and trail_offset = 0.02 ticks (0.002 in price), re-sent every bar: it stops "
               "every trade at the first tick against it, so trades end at their entry price "
               "(criterion 1, a zero-width exit, as #451493)."),
+    # ---- FMZ-C, batch C224 (2026-10-22)
+    474822: ("1", "Partial closes: entries of qty 0.5 and strategy.close(\"Buy\", qty = 0.1 / 0.5) on "
+              "the basis re-cross and the lower-band break: the position is closed in parts, so "
+              "the size path is part of the strategy (criterion 1, partial exits, as #436524)."),
+    474837: ("1", "Multi-step take-profit on by default: six qty_percent partial exits (ATR and "
+              "percent levels) per trade: the position is closed in parts, so the size path is "
+              "part of the strategy (criterion 1, qty_percent partial exits, as #436524)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #474839 (基于K线收盘方向的高频交易突破策略-High-Frequency-Breakout-Trading-Strategy-Based-on-Candlestick-Close-Direction)
+# Source: https://www.fmz.com/strategy/474839  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Fixed size 1  [lines 124-134]
+  124: fixedPositionSize = 1
+  125: 
+  126: // Entry condition: buy after the close of a bullish candlestick
+  127: if (isBullish and tradesToday < 200)  // Limit to 200 trades per day
+  128:     strategy.entry("Buy", strategy.long, qty=fixedPositionSize)
+  129:     barsSinceTrade := 0
+  130:     tradesToday := tradesToday + 1
+  131: 
+  132: // Entry condition: sell after the close of a bearish candlestick
+  133: if (isBearish and tradesToday < 200)  // Limit to 200 trades per day
+  134:     strategy.entry("Sell", strategy.short, qty=fixedPositionSize)

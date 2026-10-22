@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #474808 (趋势跟踪网格动态调仓量化策略-Trend-Following-Dynamic-Grid-Position-Sizing-Strategy)
+# Source: https://www.fmz.com/strategy/474808  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
