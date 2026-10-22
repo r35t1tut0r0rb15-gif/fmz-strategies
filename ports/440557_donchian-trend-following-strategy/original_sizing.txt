@@ -1,0 +1,58 @@
+# Original sizing and money-management code, FMZ #440557 (多尼昌趋势跟踪策略Donchian-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/440557  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, per-order commission, slippage; risk-sized qty  [lines 160-212]
+  160: strategy(title="Donchian", overlay=true,
+  161:      pyramiding=0, initial_capital=1000,
+  162:      commission_type=strategy.commission.cash_per_order,
+  163:      commission_value=2, slippage=2)
+  164: 
+  165: // =============================================================================
+  166: // VARIABLES
+  167: // =============================================================================
+  168: 
+  169: donch_string = input.string(title="Length", options = ['20/10','50/20', '50/50', '20/20', '100/100'], defval='50/50')
+  170: permit_long  = input.bool(title = 'Permit long', defval = true)
+  171: permit_short  = input.bool(title = 'Permit short', defval = true)
+  172: risk_percent = input.float(title="Position Risk %", defval=0.5, step=0.25)
+  173: stopOffset = input.float(title="ATR mult", defval=2.0, step=0.5)
+  174: atrLen = input.int(title="ATR Length", defval=20)
+  175: close_in_end  = input.bool(title = 'Close in end', defval = true)
+  176: permit_stop  = input.bool(title = 'Permit stop', defval = false)
+  177: 
+  178: // =============================================================================
+  179: // CALCULATIONS
+  180: // =============================================================================
+  181: 
+  182: donch_len_big = 
+  183:  donch_string == '50/20' ? 50 : 
+  184:  donch_string == '50/50' ? 50 : 
+  185:  donch_string == '20/20' ? 20 : 
+  186:  donch_string == '20/10' ? 20 : 
+  187:  donch_string == '100/100' ? 100 : 
+  188:  na
+  189: donch_len_small = 
+  190:  donch_string == '50/20' ? 20 : 
+  191:  donch_string == '50/50' ? 50 : 
+  192:  donch_string == '20/20' ? 20 : 
+  193:  donch_string == '20/10' ? 10 : 
+  194:  donch_string == '100/100' ? 100 : 
+  195:  na
+  196: 
+  197: big_maxclose = ta.highest(close, donch_len_big)
+  198: big_minclose = ta.lowest(close, donch_len_big)
+  199: small_maxclose = ta.highest(close, donch_len_small)
+  200: small_minclose = ta.lowest(close, donch_len_small)
+  201: 
+  202: atrValue = ta.atr(atrLen)[1]
+  203: 
+  204: tradeWindow  = true
+  205: 
+  206: // =============================================================================
+  207: // NOTOPEN QTY
+  208: // =============================================================================
+  209: 
+  210: risk_usd = (risk_percent / 100) * strategy.equity
+  211: atr_currency = (atrValue * syminfo.pointvalue)
+  212: notopen_qty = risk_usd / (stopOffset * atr_currency)

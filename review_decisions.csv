@@ -245,6 +245,8 @@ fmz_id,file,final_outcome,criterion,reason
 440533,动量布林带双均线DCA策略Momentum-Bollinger-Bands-Dual-Moving-Average-DCA-Strategy.md,REJECTED_ON_READING,1,"Each signal adds contribution / close units with strategy.order (dollar-cost averaging, the close order is commented out): the position is a running sum of orders (criterion 1, as #430596)."
 440544,RSI趋势追踪止损策略RSI-Trend-Following-Strategy-with-Trailing-Stop-Loss.md,REJECTED_ON_READING,1,"Both entries test the close against request.security(syminfo.tickerid, 'D', [open, close], lookahead = barmerge.lookahead_on): the current day's final close on every intraday bar, a higher-timeframe value with lookahead (criterion 1)."
 440546,Ichimoku-Entries策略Ichimoku-Entries-Strategy.md,REJECTED_ON_READING,2,"The exits are strategy.exit(loss = close - close x 1 %, profit = close + close x 2 %): price levels passed to loss and profit, which are in ticks (criterion 2, as #437048, #437677)."
+440565,多时间框架枢轴点超趋势策略Pivot-SuperTrend-Strategy-Across-Multiple-Timeframes.md,REJECTED_ON_READING,1,"Every entry comes on a bar where Trend changes, and the 'if change(Trend): strategy.close_all()' written after the entries leaves that bar flat (the close_all-after-entry convention, as #430380): as written no position is ever held (as #430384)."
+440675,均线趋势跟踪策略Moving-Average-Trend-Following-Strategy.md,REJECTED_ON_READING,2,"The exits are strategy.exit(loss = atr(14), profit = 2 atr(14)): ATR price amounts passed to loss / profit, which are in ticks, with no /mintick (criterion 2, as #437048, #437677)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2076,3 +2078,13 @@ fmz_id,file,final_outcome,criterion,reason
 440545,基于均线交叉的趋势跟随策略Trend-Following-Strategy-Based-on-Moving-Average-Crossover.md,PORTED,,ports/440545_trend-following-strategy-based-on-moving-average-crossover/
 440548,改进波浪跟踪策略Improved-Wave-Trend-Tracking-Strategy.md,PORTED,,ports/440548_improved-wave-trend-tracking-strategy/
 440550,基于CCI和EMA的短线震荡策略CCI-and-EMA-Based-Scalping-Strategy.md,PORTED,,ports/440550_cci-ema-cci-and-ema-based-scalping-strategy/
+440551,基于RSI和MACD指标的交易策略Trading-Strategy-Based-on-RSI-and-MACD-Indicators.md,PORTED,,ports/440551_rsi-macd-trading-strategy-based-on-rsi-and-macd-indicators/
+440553,超级趋势RSI与EMA交叉策略SuperTrend-RSI-EMA-Crossover-Strategy.md,PORTED,,ports/440553_rsi-ema-supertrend-rsi-ema-crossover-strategy/
+440557,多尼昌趋势跟踪策略Donchian-Trend-Following-Strategy.md,PORTED,,ports/440557_donchian-trend-following-strategy/
+440558,递归带动量交易策略Recursive-Momentum-Trading-Strategy.md,PORTED,,ports/440558_recursive-momentum-trading-strategy/
+440559,极端的Noro趋势均线策略Extreme-version-of-Noros-Trend-Moving-Averages-Strategy.md,PORTED,,ports/440559_noro-extreme-version-of-noros-trend-moving-averages-strategy/
+440562,坎普敦15分钟蜡烛突破策略Cape-Town-15-min-Candle-Breakout-Strategy.md,PORTED,,ports/440562_15-cape-town-15-min-candle-breakout-strategy/
+440563,Supertrend结合RSI的量化交易策略Supertrend-Combined-with-RSI-Quantitative-Trading-Strategy.md,PORTED,,ports/440563_supertrend-rsi-supertrend-combined-with-rsi-quantitative-tra/
+440564,量化交易蜡烛形态与趋势追踪策略Quantitative-Candlestick-Pattern-and-Trend-Following-Strategy.md,PORTED,,ports/440564_quantitative-candlestick-pattern-and-trend-following-strateg/
+440677,跨时间框架动量追踪策略Cross-Timeframe-Momentum-Tracking-Strategy.md,PORTED,,ports/440677_cross-timeframe-momentum-tracking-strategy/
+440679,KDJ阳线突破买入策略KDJ-Golden-Cross-Long-Entry-Strategy.md,PORTED,,ports/440679_kdj-kdj-golden-cross-long-entry-strategy/

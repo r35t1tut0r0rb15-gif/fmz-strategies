@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #440564 (量化交易蜡烛形态与趋势追踪策略Quantitative-Candlestick-Pattern-and-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/440564  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 1000  [lines 224-224]
+  224: strategy("Candle analysis & long/short strategy (HF) inspired by TurtleBC", shorttitle="TurtleBC-V.Troussel", overlay=true,initial_capital=1000)

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1813 |
-| PORT_CANDIDATE | 1683 |
+| PORTED | 1823 |
+| PORT_CANDIDATE | 1671 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 565 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 246 |
+| REJECTED_ON_READING | 248 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1941,7 +1941,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440545 | `ports/440545_trend-following-strategy-based-on-moving-average-crossover/` | PineScript | hull_ma | none | ma1 x2, ma2 x2 | 4 |
 | 440548 | `ports/440548_improved-wave-trend-tracking-strategy/` | PineScript | wavetrend_oscillator | none | tp_pct x2, sl_pct x2 | 4 |
 | 440550 | `ports/440550_cci-ema-cci-and-ema-based-scalping-strategy/` | PineScript | ma_trend | none | cci_len x2, slow x2 | 4 |
-| | **1813 ports** | | | | | **8802** |
+| 440551 | `ports/440551_rsi-macd-trading-strategy-based-on-rsi-and-macd-indicators/` | PineScript | multi_indicator_confluence | coarse_bar_stop | sl x2, rsi_period x2 | 4 |
+| 440553 | `ports/440553_rsi-ema-supertrend-rsi-ema-crossover-strategy/` | PineScript | supertrend | none | factor x2, rsi_length x2 | 4 |
+| 440557 | `ports/440557_donchian-trend-following-strategy/` | PineScript | donchian_breakout | none | big x2, small x2 | 4 |
+| 440558 | `ports/440558_recursive-momentum-trading-strategy/` | PineScript | channel_reversal | none | length x2, lookback x2 | 4 |
+| 440559 | `ports/440559_noro-extreme-version-of-noros-trend-moving-averages-strategy/` | PineScript | ma_trend | none | slowlen x2, fastlen x2 | 4 |
+| 440562 | `ports/440562_15-cape-town-15-min-candle-breakout-strategy/` | PineScript | calendar_seasonal | none | utc_hour x2 | 2 |
+| 440563 | `ports/440563_supertrend-rsi-supertrend-combined-with-rsi-quantitative-tra/` | PineScript | supertrend | none | factor x2, exit_long x2 | 4 |
+| 440564 | `ports/440564_quantitative-candlestick-pattern-and-trend-following-strateg/` | PineScript | donchian_breakout | none | enter_fast x2, exit_fast x2 | 4 |
+| 440677 | `ports/440677_cross-timeframe-momentum-tracking-strategy/` | PineScript | combo_123_reversal | none | length x2, signal_length x2 | 4 |
+| 440679 | `ports/440679_kdj-kdj-golden-cross-long-entry-strategy/` | PineScript | stochastic_oscillator | none | ilong x2, isig x2 | 4 |
+| | **1823 ports** | | | | | **8840** |
 
 ## Rejected on reading
 
@@ -2193,6 +2203,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440533 | 动量布林带双均线DCA策略Momentum-Bollinger-Bands-Dual-Moving-Average-DCA-Strategy.md | 1 | Each signal adds contribution / close units with strategy.order (dollar-cost averaging, the close order is commented out): the position is a running sum of orders (criterion 1, as #430596). |
 | 440544 | RSI趋势追踪止损策略RSI-Trend-Following-Strategy-with-Trailing-Stop-Loss.md | 1 | Both entries test the close against request.security(syminfo.tickerid, 'D', [open, close], lookahead = barmerge.lookahead_on): the current day's final close on every intraday bar, a higher-timeframe value with lookahead (criterion 1). |
 | 440546 | Ichimoku-Entries策略Ichimoku-Entries-Strategy.md | 2 | The exits are strategy.exit(loss = close - close x 1 %, profit = close + close x 2 %): price levels passed to loss and profit, which are in ticks (criterion 2, as #437048, #437677). |
+| 440565 | 多时间框架枢轴点超趋势策略Pivot-SuperTrend-Strategy-Across-Multiple-Timeframes.md | 1 | Every entry comes on a bar where Trend changes, and the 'if change(Trend): strategy.close_all()' written after the entries leaves that bar flat (the close_all-after-entry convention, as #430380): as written no position is ever held (as #430384). |
+| 440675 | 均线趋势跟踪策略Moving-Average-Trend-Following-Strategy.md | 2 | The exits are strategy.exit(loss = atr(14), profit = 2 atr(14)): ATR price amounts passed to loss / profit, which are in ticks, with no /mintick (criterion 2, as #437048, #437677). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

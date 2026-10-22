@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #440559 (极端的Noro趋势均线策略Extreme-version-of-Noros-Trend-Moving-Averages-Strategy)
+# Source: https://www.fmz.com/strategy/440559  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 141-141]
+  141: strategy(title = "Noro's Trend MAs Strategy v1.9 Extreme", shorttitle = "Trend MAs str 1.9 extreme", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value=100.0, pyramiding=0)

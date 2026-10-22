@@ -4057,6 +4057,25 @@ SIZING = {
     440545: [],
     440548: [],
     440550: [],
+    # ---- FMZ-C, batch C137 (2026-10-22)
+    440551: [],
+    440553: [],
+    440557: [
+        ("strategy(): capital, per-order commission, slippage; risk-sized qty", 160, 212),
+    ],
+    440558: [
+        ("strategy(): commission 0.06 %, 100 % of equity, capital 1000", 156, 156),
+    ],
+    440559: [
+        ("strategy(): 100 % of equity", 141, 141),
+    ],
+    440562: [],
+    440563: [],
+    440564: [
+        ("strategy(): capital 1000", 224, 224),
+    ],
+    440677: [],
+    440679: [],
 }
 
 REJECTED_ON_READING = {
@@ -5086,6 +5105,14 @@ REJECTED_ON_READING = {
               "intraday bar, a higher-timeframe value with lookahead (criterion 1)."),
     440546: ("2", "The exits are strategy.exit(loss = close - close x 1 %, profit = close + close x 2 "
               "%): price levels passed to loss and profit, which are in ticks (criterion 2, as "
+              "#437048, #437677)."),
+    # ---- FMZ-C, batch C137 (2026-10-22)
+    440565: ("1", "Every entry comes on a bar where Trend changes, and the 'if change(Trend): "
+              "strategy.close_all()' written after the entries leaves that bar flat (the "
+              "close_all-after-entry convention, as #430380): as written no position is ever held "
+              "(as #430384)."),
+    440675: ("2", "The exits are strategy.exit(loss = atr(14), profit = 2 atr(14)): ATR price amounts "
+              "passed to loss / profit, which are in ticks, with no /mintick (criterion 2, as "
               "#437048, #437677)."),
 }
 
