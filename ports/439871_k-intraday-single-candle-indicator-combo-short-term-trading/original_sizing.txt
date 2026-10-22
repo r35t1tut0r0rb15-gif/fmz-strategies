@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #439871 (单根K线技术指标组合短期贸易策略Intraday-Single-Candle-Indicator-Combo-Short-Term-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/439871  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margins  [lines 156-156]
+  156: strategy("BankNifty_Bearish_Intraday", overlay=true, margin_long=100, margin_short=100)

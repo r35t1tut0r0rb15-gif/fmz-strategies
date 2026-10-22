@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1815 |
-| PORTED | 1702 |
+| PORT_CANDIDATE | 1803 |
+| PORTED | 1712 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 226 |
+| REJECTED_ON_READING | 228 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1830,7 +1830,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439854 | `ports/439854_qstick-bi-directional-crossing-zero-axis-qstick-indicator-ba/` | PineScript | candle_pattern | none | length x3 | 3 |
 | 439855 | `ports/439855_trend-tracking-stop-loss-take-profit-strategy/` | PineScript | atr_trailing_line | none | bb_period x2, atr_period x2 | 4 |
 | 439859 | `ports/439859_ema-ema-tracking-strategy/` | PineScript | ma_trend | none | ema_period x2, percent x2 | 4 |
-| | **1702 ports** | | | | | **8384** |
+| 439860 | `ports/439860_rsi-rsi-and-moving-average-breakout-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, trend_length x2 | 4 |
+| 439862 | `ports/439862_dual-moving-average-breakout-strategy/` | PineScript | ma_cross | none | prd1 x2, prd2 x2 | 4 |
+| 439863 | `ports/439863_ema-trend-following-strategy-based-on-dual-ema/` | PineScript | ma_trend | none | ema1 x2, ema2 x2 | 4 |
+| 439870 | `ports/439870_moving-average-crossover-trading-strategy/` | PineScript | ma_trend | none | e2 x2, e3 x2 | 4 |
+| 439871 | `ports/439871_k-intraday-single-candle-indicator-combo-short-term-trading/` | PineScript | multi_indicator_confluence | none | rsi_weak x2, adx_min x2 | 4 |
+| 439872 | `ports/439872_contrarian-donchian-channel-touch-entry-strategy-with-post-s/` | PineScript | donchian_breakout | coarse_bar_stop, trailing_stop_pending | length x2, sl x2 | 4 |
+| 439875 | `ports/439875_ema-dynamic-dual-ema-trailing-stop-strategy/` | PineScript | ma_trend | none | ema60_period x2, ema90_period x2 | 4 |
+| 439876 | `ports/439876_rsi-rsi-combined-with-bollinger-bands-and-dynamic-support-re/` | PineScript | rsi_oscillator | none | rsi_length x2, oversold x2 | 4 |
+| 439877 | `ports/439877_dual-moving-average-crossover-trading-strategy/` | PineScript | ma_cross | none | sl_mult x2, tp_mult x2 | 4 |
+| 439878 | `ports/439878_bandpass-filter-reversed-strategy/` | PineScript | cycle_filter | none | length x2, delta x2 | 4 |
+| | **1712 ports** | | | | | **8424** |
 
 ## Rejected on reading
 
@@ -2062,6 +2072,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439752 | 基于均线的震荡突破策略Oscillation-Breakthrough-Strategy-Based-on-Moving-Average.md | 1 | On the 1-day header chart every entry needs istradingsession = time('1', '0800-1600') to be defined, and a daily bar opens outside that session (its time is the session start), so the script as written never enters; an intraday reading is not the declared chart (as #430384). |
 | 439753 | 震荡盈利波段Grid策略Profit-Grid-Strategy-With-Oscillation.md | 1 | As written (Long, 'Grid - reentry', every filter and exit '---'), the grid level starts at 0, so the second bar of the data already moves it up and enters; no exit is ever sent and pyramiding blocks further entries: a buy-and-hold from the start of whatever data is loaded, with no repeatable rule at the source's settings (as #430384). The 500 base-currency grid gap is also an instrument-specific price distance. |
 | 439844 | 基于移动平均线金叉死叉交易策略Moving-Average-Crossover-Trading-Strategy.md | 2 | Apart from the reversing entries, the exits are strategy.exit(profit = close x 0.15, loss = close x 0.20): percents of the close in PRICE units passed as TICK counts, so the real distances are 15 % / 20 % of the price times the tick size (1.5 % / 2 % at a 0.1 tick on BTC, 15 % / 20 % at a 1.0 tick), an instrument-specific bracket with no generic reading (as #437048, #437677). |
+| 439881 | 基于随机入场的复合止损止盈策略Compound-Stop-Loss-and-Take-Profit-Strategy-Based-on-Random-Entry.md | 1 | The entries are a pseudo-random sequence (rd_number_entry = 16708 x previous mod 2147483647 mod 17, counted from the first bar, so it depends on where the data starts) and each trade is three entries closed one by one at 1 / 2 / 3 ATR targets (partial exits, criterion 1, as #436524); the time-based exit test (== 22 of a value mod 17) can never pass. |
+| 439883 | 基于EMA的日内-skillet-商交策略EMA-Intraday-Scalping-Strategy.md | 2 | Apart from the reversing entries, the only stop is strategy.exit(loss = stop_loss_level) with stop_loss_level = close -/+ 1.5 ATR: a price LEVEL passed as a TICK distance, so the real distance is about the whole price times the tick size, an instrument-specific stop with no generic reading (as #437677, #439275). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

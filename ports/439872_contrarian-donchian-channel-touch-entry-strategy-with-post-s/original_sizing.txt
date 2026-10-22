@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #439872 (反向唐肖通道承压交易策略Contrarian-Donchian-Channel-Touch-Entry-Strategy-with-Post-Stop-Loss-Pause-and-Trailing-Stop-Loss)
+# Source: https://www.fmz.com/strategy/439872  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity 0.01  [lines 168-168]
+  168: strategy("Contrarian Donchian Channel Strategy - Touch Entry with Post-SL Pause and Trailing Stop", overlay=true, default_qty_value=0.01, default_qty_type=strategy.percent_of_equity)

@@ -3871,6 +3871,21 @@ SIZING = {
     439854: [],
     439855: [],
     439859: [],
+    # ---- FMZ-C, batch C126 (2026-10-22)
+    439860: [],
+    439862: [],
+    439863: [],
+    439870: [],
+    439871: [
+        ("strategy(): margins", 156, 156),
+    ],
+    439872: [
+        ("strategy(): percent of equity 0.01", 168, 168),
+    ],
+    439875: [],
+    439876: [],
+    439877: [],
+    439878: [],
 }
 
 REJECTED_ON_READING = {
@@ -4821,6 +4836,16 @@ REJECTED_ON_READING = {
               "counts, so the real distances are 15 % / 20 % of the price times the tick size "
               "(1.5 % / 2 % at a 0.1 tick on BTC, 15 % / 20 % at a 1.0 tick), an "
               "instrument-specific bracket with no generic reading (as #437048, #437677)."),
+    # ---- FMZ-C, batch C126 (2026-10-22)
+    439881: ("1", "The entries are a pseudo-random sequence (rd_number_entry = 16708 x previous mod "
+              "2147483647 mod 17, counted from the first bar, so it depends on where the data "
+              "starts) and each trade is three entries closed one by one at 1 / 2 / 3 ATR targets "
+              "(partial exits, criterion 1, as #436524); the time-based exit test (== 22 of a "
+              "value mod 17) can never pass."),
+    439883: ("2", "Apart from the reversing entries, the only stop is strategy.exit(loss = "
+              "stop_loss_level) with stop_loss_level = close -/+ 1.5 ATR: a price LEVEL passed as "
+              "a TICK distance, so the real distance is about the whole price times the tick "
+              "size, an instrument-specific stop with no generic reading (as #437677, #439275)."),
 }
 
 DUPLICATE_ON_READING = {
