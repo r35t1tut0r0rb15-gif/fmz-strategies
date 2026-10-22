@@ -5342,6 +5342,28 @@ SIZING = {
     458134: [
         ("Risk 1 % of a 50000 capital over the ATR; stop 1.5 / target 3 ATR", 173, 226),
     ],
+    # ---- FMZ-C, batch C202 (2026-10-22)
+    458136: [],
+    458137: [
+        ("Gap threshold 150 / target 50 points (price units)", 308, 342),
+    ],
+    458140: [],
+    458142: [],
+    458144: [],
+    458145: [
+        ("Stop and target 2 ATR from the current close (re-sent every bar)", 187, 196),
+    ],
+    458146: [],
+    458171: [
+        ("Stop 2 % / target 4 % of the current close (re-sent every bar)", 235, 240),
+    ],
+    458174: [
+        ("Stop 1 % / target 2 % of the current close (re-sent every bar)", 201, 208),
+    ],
+    458176: [],
+    458178: [
+        ("strategy(): order size 10 (cash)", 137, 137),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -6762,6 +6784,11 @@ REJECTED_ON_READING = {
     458066: ("1", "The only exit closes when strategy.opentrades.profit (currency, for a 10 % of "
               "equity position) reaches 0.30 x the entry price (a price): where the trade ends "
               "depends on the position size (criterion 1, size-dependent exit, as #440336)."),
+    # ---- FMZ-C, batch C202 (2026-10-22)
+    458170: ("1", "pyramiding = 3: each stochastic-RSI cross-up in oversold adds another entry while "
+              "the long is held, up to three, all closed together by close_all when the "
+              "stochastic RSI reaches 99 (no stop): the position size path is the strategy "
+              "(criterion 1, as #430762, #439950)."),
 }
 
 DUPLICATE_ON_READING = {

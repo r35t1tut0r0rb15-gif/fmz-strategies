@@ -1,0 +1,40 @@
+# Original sizing and money-management code, FMZ #458137 (全面价格缺口短期趋势捕捉策略-Comprehensive-Price-Gap-Short-Term-Trend-Capture-Strategy)
+# Source: https://www.fmz.com/strategy/458137  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Gap threshold 150 / target 50 points (price units)  [lines 308-342]
+  308: targetPoints = input.int(50, title="Target Points", minval=1)
+  309: gapThreshold = input.int(150, title="Gap Threshold (in points)", minval=0)
+  310: 
+  311: // Calculate gap
+  312: prevClose = request.security(syminfo.tickerid, "D", close[1])
+  313: gap = open - prevClose
+  314: gapDown = gap < -gapThreshold
+  315: 
+  316: // Strategy logic
+  317: var float entryPrice = na
+  318: var float targetPrice = na
+  319: var bool inPosition = false
+  320: var bool targetHit = false
+  321: 
+  322: if (gapDown and not inPosition)
+  323:     entryPrice := open
+  324:     targetPrice := entryPrice - targetPoints
+  325:     inPosition := true
+  326:     targetHit := false
+  327: 
+  328: if (inPosition)
+  329:     if (low <= targetPrice)
+  330:         targetHit := true
+  331:         inPosition := false
+  332:     if (time >= timestamp(year, month, dayofmonth, 11, 0))
+  333:         inPosition := false
+  334: 
+  335: // Plotting
+  336: bgcolor(gapDown ? color.new(color.red, 90) : na)
+  337: plotshape(series=targetHit, location=location.belowbar, color=color.red, style=shape.labeldown, text="Target Hit", size=size.small)
+  338: 
+  339: // Strategy results
+  340: strategy.entry("Short", strategy.short, when=gapDown and not inPosition)
+  341: if (targetHit)
+  342:     strategy.exit("Exit Short", from_entry="Short", limit=targetPrice)

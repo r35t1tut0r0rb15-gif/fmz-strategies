@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #458144 (双均线动态趋势捕捉交易系统-Dual-EMA-Dynamic-Trend-Capture-Trading-System)
+# Source: https://www.fmz.com/strategy/458144  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

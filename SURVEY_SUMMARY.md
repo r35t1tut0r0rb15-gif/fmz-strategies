@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2484 |
+| PORTED | 2495 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 904 |
+| PORT_CANDIDATE | 892 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 352 |
+| REJECTED_ON_READING | 353 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2612,7 +2612,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 458128 | `ports/458128_three-week-high-low-momentum-trading-strategy/` | PineScript | momentum_breakout | none | lookback x2 | 2 |
 | 458133 | `ports/458133_multi-period-moving-average-crossover-trend-following-strate/` | PineScript | ma_cross | bar_size_pending | ma1 x2, ma2 x2, ma4 x2 | 8 |
 | 458134 | `ports/458134_rsi-multi-timeframe-moving-average-and-rsi-trend-trading-str/` | PineScript | multi_timeframe_ma | bar_size_pending, trailing_stop_pending | short_len x2, long_len x2, sl_atr x2 | 8 |
-| | **2484 ports** | | | | | **11662** |
+| 458136 | `ports/458136_multi-stochastic-oscillation-and-momentum-analysis-system/` | PineScript | stochastic_oscillator | none | length x2 | 2 |
+| 458137 | `ports/458137_comprehensive-price-gap-short-term-trend-capture-strategy/` | PineScript | breakout | trailing_stop_pending | gap_frac x2, target_frac x2 | 4 |
+| 458140 | `ports/458140_multi-period-dynamic-channel-crossover-strategy/` | PineScript | ichimoku | none | conversion x2, base x2, displace x2 | 8 |
+| 458142 | `ports/458142_ema-enhanced-dual-ema-pullback-breakout-trading-strategy/` | PineScript | ma_pullback | none | ema_len x2 | 2 |
+| 458144 | `ports/458144_dual-ema-dynamic-trend-capture-trading-system/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 458145 | `ports/458145_dynamic-mean-reversion-and-momentum-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | bb_len x2, bb_mult x2, rsi_len x2 | 8 |
+| 458146 | `ports/458146_multi-ema-and-supertrend-crossover-strategy/` | PineScript | supertrend | none | factor x2, ema_short x2 | 4 |
+| 458171 | `ports/458171_rsi-bollinger-bands-rsi-neutral-market-quantitative-trading/` | PineScript | bollinger_reversion | trailing_stop_pending | bb_len x2, bb_mult x2, rsi_len x2 | 8 |
+| 458174 | `ports/458174_dynamic-trend-following-trading-strategy-based-on-gann-angle/` | PineScript | pivot_levels | trailing_stop_pending | length x2 | 2 |
+| 458176 | `ports/458176_multi-indicator-dynamic-volatility-alert-trading-system/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 458178 | `ports/458178_dynamic-position-dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | shortlen x2, longlen x2 | 4 |
+| | **2495 ports** | | | | | **11712** |
 
 ## Rejected on reading
 
@@ -2970,6 +2981,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 458038 | SMA交叉多空策略结合峰值回撤控制与自动终止-SMA-Crossover-Long-Short-Strategy-with-Peak-Drawdown-Control-and-Auto-Termination.md | 1 | Entries stop for good once the strategy's own equity drawdown from its peak reaches 40 % (end_strategy): a size- and history-dependent equity gate on every trade (criterion 1, as #440336). |
 | 458045 | 动态移动止损双目标价均线交叉策略-Dynamic-Trailing-Stop-Dual-Target-Moving-Average-Crossover-Strategy.md | 1 | strategy.exit with qty = 0.75 / 0.25 x the trade size takes partial profits (and the stop moves to the entry): partial exits (criterion 1, as #436524). |
 | 458066 | 多指标结合期权交易策略-Multi-Indicator-Options-Trading-Strategy.md | 1 | The only exit closes when strategy.opentrades.profit (currency, for a 10 % of equity position) reaches 0.30 x the entry price (a price): where the trade ends depends on the position size (criterion 1, size-dependent exit, as #440336). |
+| 458170 | 多层级超买超卖震荡买入策略-Multi-Level-Oversold-Oscillator-Buy-Strategy.md | 1 | pyramiding = 3: each stochastic-RSI cross-up in oversold adds another entry while the long is held, up to three, all closed together by close_all when the stochastic RSI reaches 99 (no stop): the position size path is the strategy (criterion 1, as #430762, #439950). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

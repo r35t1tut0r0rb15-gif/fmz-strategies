@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #458171 (布林带RSI中性市场量化交易策略Bollinger-Bands-RSI-Neutral-Market-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/458171  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 % / target 4 % of the current close (re-sent every bar)  [lines 235-240]
+  235: stopLoss = input.float(2, title="Stop Loss (%)", step=0.1) / 100
+  236: takeProfit = input.float(4, title="Take Profit (%)", step=0.1) / 100
+  237: 
+  238: // Apply Stop Loss and Take Profit
+  239: strategy.exit("Take Profit/Stop Loss", from_entry="Buy", limit=close * (1 + takeProfit), stop=close * (1 - stopLoss))
+  240: strategy.exit("Take Profit/Stop Loss", from_entry="Sell", limit=close * (1 - takeProfit), stop=close * (1 + stopLoss))
