@@ -6815,6 +6815,28 @@ SIZING = {
     484921: [
         ("strategy(): 10 % of equity", 324, 324),
     ],
+    # ---- FMZ-C, batch C263 (2026-10-22)
+    485123: [
+        ("entries with qty = 1", 260, 266),
+    ],
+    485125: [
+        ("strategy(): capital 10000, 100 % of equity, commission 0.1 %", 174, 174),
+    ],
+    485126: [
+        ("strategy(): 10 % of equity", 138, 138),
+    ],
+    485283: [],
+    485292: [
+        ("strategy(): 10 % of equity", 165, 165),
+    ],
+    485293: [],
+    486561: [
+        ("strategy(): 10 % of equity", 183, 183),
+    ],
+    486562: [],
+    486564: [],
+    486566: [],
+    486567: [],
 }
 
 REJECTED_ON_READING = {
@@ -8614,6 +8636,12 @@ REJECTED_ON_READING = {
               "EMA filter: criterion 1, as #482783."),
     484924: ("2", "The take-profit and stop are fixed price amounts (50 / 30 'pips' x 0.1 = 5.0 / "
               "3.0, hard-coded for gold), added to the close (criterion 2, as #473377)."),
+    # ---- FMZ-C, batch C263 (2026-10-22)
+    485288: ("2", "The profit target is 20 'points' added to the average price as a fixed price "
+              "amount (criterion 2, as #473377); the timeframe test also closes everything on the "
+              "header's 5h chart."),
+    486563: ("2", "The take-profit and stop are dollar amounts divided by a share quantity (2000 / "
+              "100 and 1000 / 100), fixed price offsets from the entry (criterion 2, as #473377)."),
 }
 
 DUPLICATE_ON_READING = {

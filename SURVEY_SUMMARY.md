@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3112 |
+| PORTED | 3123 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 463 |
+| REJECTED_ON_READING | 465 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 159 |
+| PORT_CANDIDATE | 146 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3240,7 +3240,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 484912 | `ports/484912_multi-fibonacci-optimal-time-entry-strategy/` | PineScript | pivot_levels | none | length x3 | 3 |
 | 484919 | `ports/484919_double-bollinger-bands-extreme-reversal-trading-strategy/` | PineScript | bollinger_reversion | none | length x2, bb2_mult x2 | 4 |
 | 484921 | `ports/484921_multi-indicator-trend-confirmation-dynamic-risk-management-t/` | PineScript | supertrend | coarse_bar_stop | factor x2, atr_multiplier x2 | 4 |
-| | **3112 ports** | | | | | **14261** |
+| 485123 | `ports/485123_tsl-multi-directional-oscillator-trading-system-tsl-based-au/` | PineScript | volatility_stop_cross | none | swing x3 | 3 |
+| 485125 | `ports/485125_k-multi-timeframe-smoothed-moving-average-strategy-with-cand/` | PineScript | candle_pattern | none | len4 x2, ema_fast x2 | 4 |
+| 485126 | `ports/485126_zero-lag-moving-average-trend-crossover-strategy/` | PineScript | adaptive_average | none | length x3 | 3 |
+| 485283 | `ports/485283_rsi-rsi-reversal-fibonacci-bollinger-bands-quantitative-stra/` | PineScript | rsi_oscillator | trailing_stop_pending | rsi_os x2, rsi_length x2 | 4 |
+| 485292 | `ports/485292_multi-timeframe-trend-recognition-and-candlestick-pattern-tr/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop_pending | rr x3 | 3 |
+| 485293 | `ports/485293_multi-strategy-adaptive-market-condition-trading-system/` | PineScript | multi_indicator_confluence | none | fast x2, slow x2 | 4 |
+| 486561 | `ports/486561_multi-timeframe-trend-following-with-supertrend-momentum-opt/` | PineScript | supertrend | trailing_stop_pending | factor x2, atr_period x2 | 4 |
+| 486562 | `ports/486562_atr-multi-timeframe-trend-following-with-atr-volatility-base/` | PineScript | ma_cross | trailing_stop_pending | fast_length x2, slow_length x2 | 4 |
+| 486564 | `ports/486564_dual-moving-average-crossover-trading-system-a-quantitative/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 486566 | `ports/486566_rsi-moving-average-rsi-crossover-momentum-confirmation-strat/` | PineScript | ma_cross | none | sma_short_period x2, take_profit_perc x2 | 4 |
+| 486567 | `ports/486567_logarithmic-price-mean-reversion-dynamic-stop-loss-strategy/` | PineScript | zscore_reversion | none | window x2, z_entry x2 | 4 |
+| | **3123 ports** | | | | | **14302** |
 
 ## Rejected on reading
 
@@ -3709,6 +3720,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 484915 | 内部价格强度趋势反转交易系统-Internal-Bar-Strength-Trend-Reversal-Trading-System.md | 1 | pyramiding = 2 with repeated dollar-cost-averaging entries (a new entry whenever the price is lower than the last): criterion 1, as #473389. |
 | 484920 | VWMA-EMA均线交叉马丁格尔策略渐进式增仓优化量化交易系统-VWMA-EMA-Crossover-Martingale-Strategy-Progressive-Position-Scaling-Optimized-Quantitative-Trading-System.md | 1 | Martingale additions (up to 7 entries with the size doubled each time) on a VWMA / EMA filter: criterion 1, as #482783. |
 | 484924 | 多重技术指标黄金即时变动检测与风险管理策略-Multi-Technical-Indicator-Gold-Real-Time-Movement-Detection-and-Risk-Management-Strategy.md | 2 | The take-profit and stop are fixed price amounts (50 / 30 'pips' x 0.1 = 5.0 / 3.0, hard-coded for gold), added to the close (criterion 2, as #473377). |
+| 485288 | 均线突破固定利润目标自适应时间周期量化交易策略-Adaptive-Timeframe-SMA-Crossover-Strategy-with-Fixed-Profit-Targets.md | 2 | The profit target is 20 'points' added to the average price as a fixed price amount (criterion 2, as #473377); the timeframe test also closes everything on the header's 5h chart. |
+| 486563 | 多周期指数均线与MACD协同多空趋势量化交易策略-Multi-Timeframe-EMA-and-MACD-Enhanced-Trend-Quantification-Trading-Strategy.md | 2 | The take-profit and stop are dollar amounts divided by a share quantity (2000 / 100 and 1000 / 100), fixed price offsets from the entry (criterion 2, as #473377). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

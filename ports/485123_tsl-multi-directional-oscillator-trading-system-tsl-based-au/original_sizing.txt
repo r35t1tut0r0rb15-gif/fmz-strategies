@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #485123 (多重摆动指标交易系统基于TSL自动化多方向仓位管理策略-Multi-Directional-Oscillator-Trading-System-TSL-Based-Automated-Position-Management-Strategy)
+# Source: https://www.fmz.com/strategy/485123  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## entries with qty = 1  [lines 260-266]
+  260:     strategy.entry("Long", strategy.long, qty=1)  // Enter long with 1 unit
+  261:     strategy.close("Short")  // Close any open short positions
+  262:     alert("Buy Signal - Entry Long", alert.freq_once_per_bar_close)
+  263:     alert("Buy Entry Sound", alert.freq_once_per_bar_close)
+  264: 
+  265: if (Sell)
+  266:     strategy.entry("Short", strategy.short, qty=1)  // Enter short with 1 unit
