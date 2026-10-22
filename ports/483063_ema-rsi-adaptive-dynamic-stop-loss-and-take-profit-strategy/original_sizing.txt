@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483063 (基于EMA交叉与RSI过滤的自适应动态止盈止损策略-Adaptive-Dynamic-Stop-Loss-and-Take-Profit-Strategy-Based-on-EMA-Crossover-and-RSI-Filter)
+# Source: https://www.fmz.com/strategy/483063  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 82-82]
+   82: strategy("High Win Rate Dogecoin Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

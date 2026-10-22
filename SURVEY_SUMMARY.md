@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3043 |
+| PORTED | 3053 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 441 |
+| REJECTED_ON_READING | 444 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 250 |
+| PORT_CANDIDATE | 237 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3171,7 +3171,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 483054 | `ports/483054_dynamic-volatility-adjusted-ema-trend-trading-strategy-with/` | PineScript | ma_cross | none | atr_multiplier x2, stop_loss_percent x2 | 4 |
 | 483055 | `ports/483055_supertrend-adx-multi-indicator-momentum-trend-following-stra/` | PineScript | supertrend | none | supertrend_factor x2, supertrend_period x2 | 4 |
 | 483061 | `ports/483061_trend-breakout-trading-strategy-based-on-donchian-channel-an/` | PineScript | donchian_breakout | trailing_stop_pending | length x2, sma_length x2 | 4 |
-| | **3043 ports** | | | | | **13986** |
+| 483063 | `ports/483063_ema-rsi-adaptive-dynamic-stop-loss-and-take-profit-strategy/` | PineScript | ma_cross | bar_size_pending | atr_multiplier x2, fast_length x2 | 4 |
+| 483064 | `ports/483064_rsi-multi-indicator-adaptive-trading-strategy-based-on-gauss/` | PineScript | volatility_channel_breakout | none | period x2, mult x2 | 4 |
+| 483066 | `ports/483066_dynamic-trend-breakthrough-exponential-moving-average-crosso/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | ema_length x2, swing_length x2 | 4 |
+| 483072 | `ports/483072_dynamic-volatility-based-stop-loss-trend-momentum-trading-st/` | PineScript | macd_cross | trailing_stop_pending | macd_fast_length x2, ema_length x2 | 4 |
+| 483073 | `ports/483073_trend-detection-strategy-based-on-gaussian-channel-and-stoch/` | PineScript | mean_reversion_band | none | input_length x2, input_mult x2 | 4 |
+| 483080 | `ports/483080_adaptive-bollinger-bands-grid-trading-strategy-with-dynamic/` | PineScript | bollinger_reversion | none | grid_distance_percent x2, length x2 | 4 |
+| 483082 | `ports/483082_rsi-atr-dynamic-volatility-adjusted-dual-moving-average-cros/` | PineScript | ma_cross | none | stop_loss_perc x2, risk_reward_ratio x2 | 4 |
+| 483087 | `ports/483087_multi-period-bollinger-bands-crossover-trend-following-strat/` | PineScript | bollinger_reversion | none | length1 x2, mult x2 | 4 |
+| 483089 | `ports/483089_dynamic-breakout-falling-wedge-trendline-quantitative-tradin/` | PineScript | pivot_levels | coarse_bar_stop, trailing_stop_pending | pivot_bars x2, take_profit_percent x2 | 4 |
+| 483092 | `ports/483092_emas-price-range-breakout-momentum-trading-strategy-with-ema/` | PineScript | breakout | none | stop_frac x2, risk_reward x2 | 4 |
+| | **3053 ports** | | | | | **14026** |
 
 ## Rejected on reading
 
@@ -3618,6 +3628,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 483033 | 交易品种蜡烛线大小阈值交易策略-Futures-Candlestick-Size-Threshold-Trading-Strategy.md | 1 | The trading window is timestamp(year(timenow), month(timenow), dayofmonth(timenow), ...): it is built from the run's wall clock, so only bars of the day the script runs can trade (criterion 1, as #453230). |
 | 483049 | 基于支持位和趋势EMA的多空策略-Support-Level-and-Trend-EMA-Based-Long-Strategy.md | 1 | A 50 % partial take-profit (strategy.exit qty_percent = 50) with a risk-sized quantity: criterion 1, as #436524. |
 | 483051 | 动态流动性级联捕捉策略-Dynamic-Liquidity-Cascade-Capture-Strategy.md | 1 | buyCondition is valuewhen(longLiq, longLiq, 0..2), the value of longLiq at its own last three occurrences, which is always true once three have occurred: a buy sent on every later bar (constant-true, criterion 1, as #442261). |
+| 483067 | 多指标融合自适应趋势交易策略-Multi-Indicator-Adaptive-Trend-Trading-Strategy.md | 2 | The exits pass trail_points = 2 % x avgPrice, a price amount, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #482767). |
+| 483081 | 动态趋势确认的反转公平价值缺口量化交易策略-Dynamic-Trend-Confirmed-Inverted-Fair-Value-Gap-Quantitative-Trading-Strategy.md | 2 | stopLoss = 100 'points' is added to and subtracted from the close as a price amount for the stop, target and trailing tests (criterion 2, as #473377). |
+| 483086 | 多级布林带回归交易策略-Multi-Level-Bollinger-Bands-Mean-Reversion-Trading-Strategy.md | 1 | Five partial take-profits of 20 % of the position each (qty = position_size x 0.2) with adds allowed: criterion 1, as #436524. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

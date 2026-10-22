@@ -6647,6 +6647,30 @@ SIZING = {
     483054: [],
     483055: [],
     483061: [],
+    # ---- FMZ-C, batch C256 (2026-10-22)
+    483063: [
+        ("strategy(): 100 % of equity", 82, 82),
+    ],
+    483064: [
+        ("strategy(): capital 1000, 100 % of equity, commission 0.1 %", 100, 100),
+    ],
+    483066: [],
+    483072: [],
+    483073: [
+        ("strategy(): margin 100 / 100", 120, 120),
+    ],
+    483080: [],
+    483082: [
+        ("strategy(): 10 % of equity", 95, 95),
+        ("positionSize = equity x 2 % / (0.5 % x close)", 115, 138),
+    ],
+    483087: [],
+    483089: [
+        ("strategy(): margin 100 / 100", 108, 108),
+    ],
+    483092: [
+        ("strategy(): capital 10000, 1 % of equity", 103, 103),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8390,6 +8414,14 @@ REJECTED_ON_READING = {
     483051: ("1", "buyCondition is valuewhen(longLiq, longLiq, 0..2), the value of longLiq at its own "
               "last three occurrences, which is always true once three have occurred: a buy sent "
               "on every later bar (constant-true, criterion 1, as #442261)."),
+    # ---- FMZ-C, batch C256 (2026-10-22)
+    483067: ("2", "The exits pass trail_points = 2 % x avgPrice, a price amount, where the call takes "
+              "ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, "
+              "as #482767)."),
+    483081: ("2", "stopLoss = 100 'points' is added to and subtracted from the close as a price "
+              "amount for the stop, target and trailing tests (criterion 2, as #473377)."),
+    483086: ("1", "Five partial take-profits of 20 % of the position each (qty = position_size x 0.2) "
+              "with adds allowed: criterion 1, as #436524."),
 }
 
 DUPLICATE_ON_READING = {

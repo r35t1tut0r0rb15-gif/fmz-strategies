@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483073 (基于高斯通道与随机相对强弱指数过滤的趋势判断策略-Trend-Detection-Strategy-Based-on-Gaussian-Channel-and-Stochastic-RSI-Filter)
+# Source: https://www.fmz.com/strategy/483073  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin 100 / 100  [lines 120-120]
+  120: strategy("Gaussian Channel + Stochastic RSI Filter", overlay=true, margin_long=100, margin_short=100)

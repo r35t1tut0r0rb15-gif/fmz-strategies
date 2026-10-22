@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483089 (动态突破下降楔形趋势线量化交易策略-Dynamic-Breakout-Falling-Wedge-Trendline-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483089  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin 100 / 100  [lines 108-108]
+  108: strategy("Falling Wedge Strategy by Nitin", overlay=true, margin_long=100, margin_short=100)

@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #483082 (基于动态波动率调整的双均线交叉与RSI-ATR复合过滤交易系统-Dynamic-Volatility-Adjusted-Dual-Moving-Average-Crossover-System-with-RSI-ATR-Composite-Filter)
+# Source: https://www.fmz.com/strategy/483082  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 95-95]
+   95: strategy("Simplified MA Crossover Strategy with Disable Options", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## positionSize = equity x 2 % / (0.5 % x close)  [lines 115-138]
+  115: riskPercentage = input.float(2, title="Risk Percentage", minval=0.1) / 100
+  116: 
+  117: // Indicators
+  118: shortMA = ta.sma(close, shortLength)
+  119: longMA = ta.sma(close, longLength)
+  120: rsi = ta.rsi(close, rsiLength)
+  121: atr = ta.atr(atrLength)
+  122: 
+  123: // Conditions
+  124: longCondition = ta.crossover(shortMA, longMA)
+  125: shortCondition = ta.crossunder(shortMA, longMA)
+  126: 
+  127: // Apply RSI Filter (if enabled)
+  128: if (enableRSI)
+  129:     longCondition := longCondition and rsi < rsiOverbought
+  130:     shortCondition := shortCondition and rsi > rsiOversold
+  131: 
+  132: // Apply ATR Filter (if enabled)
+  133: if (enableATR)
+  134:     longCondition := longCondition and atr > minATR
+  135:     shortCondition := shortCondition and atr > minATR
+  136: 
+  137: // Risk Management
+  138: positionSize = strategy.equity * riskPercentage / (stopLossPerc * close)
