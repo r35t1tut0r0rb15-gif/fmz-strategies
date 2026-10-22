@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3104 |
+| PORTED | 3112 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 458 |
+| REJECTED_ON_READING | 463 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 172 |
+| PORT_CANDIDATE | 159 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3232,7 +3232,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 484583 | `ports/484583_bollinger-precision-risk-optimization-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | stop_loss_percent x2, take_profit_percent x2 | 4 |
 | 484584 | `ports/484584_multi-moving-average-trend-capture-and-crossover-confirmatio/` | PineScript | ma_trend | none | instant x2, longperiod x2 | 4 |
 | 484589 | `ports/484589_ema-dual-timeframe-ema-trend-recognition-and-trading-trigger/` | PineScript | multi_timeframe_ma | trailing_stop_pending | short_ema_1d x2, short_ema_1h x2 | 4 |
-| | **3104 ports** | | | | | **14230** |
+| 484592 | `ports/484592_dynamic-breakout-master-channel-strategy-an-adaptive-trading/` | PineScript | pivot_levels | none | period x2, channel_width x2 | 4 |
+| 484595 | `ports/484595_multi-indicator-trend-confirmation-momentum-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 484771 | `ports/484771_dual-moving-average-crossover-with-trading-window-and-risk-m/` | PineScript | ma_cross | none | fast_length x2, slow_length x2 | 4 |
+| 484773 | `ports/484773_atr-dynamic-atr-trailing-stop-trading-strategy-market-volati/` | PineScript | atr_trailing_line | none | key_value x2, atr_period x2 | 4 |
+| 484911 | `ports/484911_adx-trend-confirmation-stochastic-oscillation-strategy-dynam/` | PineScript | stochastic_oscillator | none | adx_threshold x2, stoch_k_period x2 | 4 |
+| 484912 | `ports/484912_multi-fibonacci-optimal-time-entry-strategy/` | PineScript | pivot_levels | none | length x3 | 3 |
+| 484919 | `ports/484919_double-bollinger-bands-extreme-reversal-trading-strategy/` | PineScript | bollinger_reversion | none | length x2, bb2_mult x2 | 4 |
+| 484921 | `ports/484921_multi-indicator-trend-confirmation-dynamic-risk-management-t/` | PineScript | supertrend | coarse_bar_stop | factor x2, atr_multiplier x2 | 4 |
+| | **3112 ports** | | | | | **14261** |
 
 ## Rejected on reading
 
@@ -3696,6 +3704,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 483943 | 多重均线追踪策略与动态仓位管理系统-Multi-EMA-Trend-Following-Strategy-with-Dynamic-Position-Management-System.md | 1 | Pyramided strategy.order entries (up to five, gated on opentrades counts) with 50 % partial exits (qty_percent) per tranche: criterion 1, as #436524 / #442261. |
 | 484095 | 多时间框架趋势追踪与动量确认量化交易策略-Multi-Timeframe-Trend-Following-and-Momentum-Confirmation-Quantitative-Trading-Strategy.md | 1 | A 50 % partial take-profit (qty_percent = 50) beside a trail whose trail_points is a price amount (atr x 10): criterion 1, as #436524 (the trail also fails criterion 2). |
 | 484588 | 斐波那契模式统计分析策略-Fibonacci-Pattern-Statistical-Analysis-Strategy.md | 1 | Seven partial take-profits of 14.28 % each (qty_percent): criterion 1, as #436524. |
+| 484769 | 多步骤非重绘Renko仿真趋势反转量化交易策略-Multi-Step-Non-Repainting-Renko-Emulation-Trend-Reversal-Quantitative-Trading-Strategy.md | 2 | The Renko brick size 3.0 is a fixed price amount and the script has no backtest header to scale it (criterion 2). |
+| 484914 | 增强型动态通道突破趋势跟踪交易系统-Enhanced-Dynamic-Channel-Breakout-Trend-Following-Trading-System.md | 1 | Turtle unit adding (Add Long / Add Short while held) gated on position_size / unitsSize, a size-dependent gate: criterion 1, as #442261 / #473389. |
+| 484915 | 内部价格强度趋势反转交易系统-Internal-Bar-Strength-Trend-Reversal-Trading-System.md | 1 | pyramiding = 2 with repeated dollar-cost-averaging entries (a new entry whenever the price is lower than the last): criterion 1, as #473389. |
+| 484920 | VWMA-EMA均线交叉马丁格尔策略渐进式增仓优化量化交易系统-VWMA-EMA-Crossover-Martingale-Strategy-Progressive-Position-Scaling-Optimized-Quantitative-Trading-System.md | 1 | Martingale additions (up to 7 entries with the size doubled each time) on a VWMA / EMA filter: criterion 1, as #482783. |
+| 484924 | 多重技术指标黄金即时变动检测与风险管理策略-Multi-Technical-Indicator-Gold-Real-Time-Movement-Detection-and-Risk-Management-Strategy.md | 2 | The take-profit and stop are fixed price amounts (50 / 30 'pips' x 0.1 = 5.0 / 3.0, hard-coded for gold), added to the close (criterion 2, as #473377). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

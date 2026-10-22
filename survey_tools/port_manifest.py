@@ -6794,6 +6794,27 @@ SIZING = {
     ],
     484584: [],
     484589: [],
+    # ---- FMZ-C, batch C262 (2026-10-22)
+    484592: [
+        ("strategy(): commission 0.1 %", 205, 205),
+    ],
+    484595: [],
+    484771: [
+        ("defaultQuantity = 2 per entry", 261, 261),
+    ],
+    484773: [
+        ("strategy(): 10 % of equity", 200, 200),
+    ],
+    484911: [
+        ("strategy(): capital 10000, 10 % of equity", 206, 206),
+    ],
+    484912: [
+        ("strategy(): 1 % of equity", 188, 188),
+    ],
+    484919: [],
+    484921: [
+        ("strategy(): 10 % of equity", 324, 324),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8582,6 +8603,17 @@ REJECTED_ON_READING = {
               "a price amount (atr x 10): criterion 1, as #436524 (the trail also fails criterion "
               "2)."),
     484588: ("1", "Seven partial take-profits of 14.28 % each (qty_percent): criterion 1, as #436524."),
+    # ---- FMZ-C, batch C262 (2026-10-22)
+    484769: ("2", "The Renko brick size 3.0 is a fixed price amount and the script has no backtest "
+              "header to scale it (criterion 2)."),
+    484914: ("1", "Turtle unit adding (Add Long / Add Short while held) gated on position_size / "
+              "unitsSize, a size-dependent gate: criterion 1, as #442261 / #473389."),
+    484915: ("1", "pyramiding = 2 with repeated dollar-cost-averaging entries (a new entry whenever "
+              "the price is lower than the last): criterion 1, as #473389."),
+    484920: ("1", "Martingale additions (up to 7 entries with the size doubled each time) on a VWMA / "
+              "EMA filter: criterion 1, as #482783."),
+    484924: ("2", "The take-profit and stop are fixed price amounts (50 / 30 'pips' x 0.1 = 5.0 / "
+              "3.0, hard-coded for gold), added to the close (criterion 2, as #473377)."),
 }
 
 DUPLICATE_ON_READING = {

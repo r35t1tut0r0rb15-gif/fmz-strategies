@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #484592 (动态突破大师通道策略基于支撑阻力突破的自适应交易系统-Dynamic-Breakout-Master-Channel-Strategy-An-Adaptive-Trading-System-Based-on-Support-and-Resistance-Breakouts)
+# Source: https://www.fmz.com/strategy/484592  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): commission 0.1 %  [lines 205-205]
+  205: strategy("Dynamic Breakout Master by tradingbauhaus ", overlay=true, max_bars_back=501, commission_type=strategy.commission.percent, commission_value=0.1)

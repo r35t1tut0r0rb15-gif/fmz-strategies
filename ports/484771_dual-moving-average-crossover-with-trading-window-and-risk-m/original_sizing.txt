@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #484771 (双均线交叉带定时交易窗口与止盈止损策略-Dual-Moving-Average-Crossover-with-Trading-Window-and-Risk-Management-Strategy)
+# Source: https://www.fmz.com/strategy/484771  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## defaultQuantity = 2 per entry  [lines 261-261]
+  261: defaultQuantity = input(2, title="Default Quantity")
