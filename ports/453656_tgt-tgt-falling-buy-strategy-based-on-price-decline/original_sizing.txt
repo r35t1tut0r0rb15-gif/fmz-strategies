@@ -1,0 +1,44 @@
+# Original sizing and money-management code, FMZ #453656 (TGT基于价格下跌买入策略-TGT-Falling-Buy-Strategy-Based-on-Price-Decline)
+# Source: https://www.fmz.com/strategy/453656  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin_long 100, margin_short 100; quantity balance / close (balance 1000)  [lines 100-138]
+  100: strategy("TGT Falling Buy", overlay=true, margin_long=100, margin_short=100)
+  101: var float buy_price = na
+  102: var float open_price = na
+  103: var float open_weekend = na 
+  104: var float close_weekend = na 
+  105: var bool trade=false
+  106: var float balance = 1000
+  107: // Definir el precio de compra inicial y la cantidad inicial
+  108: var float qty = na
+  109: // Verificar si el día de la semana es sábado (6) o domingo (0)
+  110: es_sabado = dayofweek == 1
+  111: es_domingo = dayofweek == 7
+  112: es_viernes = dayofweek == 6
+  113: 
+  114: // Calcular el valor del saldo inicial
+  115: balance_initial = balance
+  116: 
+  117: change_percent = ((close - close[1]) / close[1]) * 100
+  118: is_last_candle_negative = close < open
+  119: is_change_above_threshold = change_percent < -5
+  120: // Cambiar el color de la última vela si cumple las condiciones
+  121: barcolor(is_last_candle_negative and is_change_above_threshold ? color.yellow : na)
+  122: bgcolor(is_last_candle_negative and is_change_above_threshold ? color.yellow : na, transp=80)
+  123: // Guardar el precio de compra cuando se cumpla la condición del 5%
+  124: if is_change_above_threshold 
+  125:     // Calcular la cantidad basada en el precio de compra y el saldo
+  126:     qty := balance / close
+  127:     // Guardar el precio de compra
+  128:     buy_price := close
+  129:     open_price := open
+  130:     strategy.entry("Buy Trading",strategy.long,qty)
+  131:     alert("Comprar BTC", alert.freq_once_per_bar_close)
+  132:     trade :=true
+  133: //if (((close - strategy.position_avg_price) / strategy.position_avg_price) * 100 ) > 2
+  134: if close > strategy.position_avg_price
+  135:     // Calcular el valor de ganancia o pérdida
+  136:     pnl = (close - strategy.position_avg_price) * qty
+  137:     // Actualizar el saldo
+  138:     balance := balance_initial + pnl

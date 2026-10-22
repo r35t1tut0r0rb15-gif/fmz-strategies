@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2390 |
-| PORT_CANDIDATE | 1012 |
+| PORTED | 2400 |
+| PORT_CANDIDATE | 1000 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 338 |
+| REJECTED_ON_READING | 340 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2512,13 +2512,23 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 453271 | `ports/453271_macd-supertrend-macd-and-supertrend-combination-strategy/` | PineScript | supertrend | none | st_len x2, st_mult x2 | 4 |
 | 453273 | `ports/453273_moving-average-crossover-strategy-based-on-dual-moving-avera/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
 | 453276 | `ports/453276_percentage-threshold-quantitative-trading-strategy/` | PineScript | momentum_breakout | none | pct x3 | 3 |
+| 453277 | `ports/453277_starlight-moving-average-crossover-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
 | 453287 | `ports/453287_macd-rsi-macd-and-rsi-combined-natural-trading-strategy/` | PineScript | multi_indicator_confluence | none | rsi_len x2, gate_len x2, wma_len x2 | 8 |
 | 453645 | `ports/453645_10sma-macd-10sma-and-macd-dual-trend-following-trading-strat/` | PineScript | macd_cross | none | length x2, fast x2, slow x2 | 8 |
 | 453646 | `ports/453646_sma-sma-dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
 | 453647 | `ports/453647_bollinger-bands-and-moving-average-crossover-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
 | 453648 | `ports/453648_elliott-wave-stochastic-ema-strategy-elliott-ema/` | PineScript | ma_cross | none | ema_len x3 | 3 |
 | 453650 | `ports/453650_rsi-rsi-based-trading-strategy-with-percentage-based-take-pr/` | PineScript | rsi_oscillator | none | rsi_len x2, sl_pct x2, tp_pct x2 | 8 |
-| | **2390 ports** | | | | | **11122** |
+| 453653 | `ports/453653_macd-rsi-macd-and-rsi-multi-filter-intraday-trading-strategy/` | PineScript | macd_cross | none | fast x2, rsi_len x2, trend_slow x2 | 8 |
+| 453655 | `ports/453655_ema-rsi-dual-trend-strategy-with-ema-crossover-and-rsi-filte/` | PineScript | ma_cross | none | short_len x2, long_len x2, rsi_len x2 | 8 |
+| 453656 | `ports/453656_tgt-tgt-falling-buy-strategy-based-on-price-decline/` | PineScript | mean_reversion | none | drop_pct x3 | 3 |
+| 453657 | `ports/453657_supertrend-ema-supertrend-and-ema-combination-strategy/` | PineScript | supertrend | none | atr_len x2, mult x2, short_ema x2 | 8 |
+| 453661 | `ports/453661_williams-r-williams-r-dynamic-tp-sl-adjustment-strategy/` | PineScript | momentum_oscillator | coarse_bar_stop | length x2, k_atr x2 | 4 |
+| 453665 | `ports/453665_tsi-tsi-crossover-strategy/` | PineScript | momentum_oscillator | none | tsi_long x2, tsi_short x2, gap_bars x2 | 8 |
+| 453668 | `ports/453668_quantitative-trading-strategy-based-on-reversal-patterns-at/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop_pending | lookback x2, sl_pct x2, tp_pct x2 | 8 |
+| 454137 | `ports/454137_chande-kroll-atr-chande-kroll-stop-dynamic-atr-trend-followi/` | PineScript | volatility_stop_cross | none | stop_len x2, atr_mult x2, sma_len x2 | 8 |
+| 454141 | `ports/454141_bb-bb-breakout-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| | **2400 ports** | | | | | **11185** |
 
 ## Rejected on reading
 
@@ -2862,6 +2872,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 453247 | 移动平均线交叉策略MA-Cross-Strategy.md | 1 | Positions are opened and flattened with strategy.order (qty = the held size), so which side the strategy trades for the whole run depends on the first one-shot signal of the data, and the bracket levels are computed before the signals are re-assigned: strategy.order position bookkeeping (criterion 1, as #430596). |
 | 453266 | 基于CDC行动区的ATR止盈止损交易机器人策略-CDC-Action-Zone-Trading-Bot-Strategy-with-ATR-for-Take-Profit-and-Stop-Loss.md | 2 | The exits strategy.exit(profit = takeProfit) / (loss = stopLoss) pass price amounts (a price level and 5 % of the close) where the call takes tick distances: the exits are undefined as written (criterion 2, as #442076, #442115). |
 | 453281 | 动态时间框架高低点突破策略-Dynamic-Timeframe-High-Low-Breakout-Strategy.md | 1 | The breakout levels are request.security(syminfo.tickerid, '60', high / low / close) on the daily header chart: a 1-hour resolution below the chart's, whose value per daily bar is undefined (criterion 1, as #427518). |
+| 453654 | EMA均线与抛物线SAR组合策略-EMA-and-Parabolic-SAR-Combination-Strategy.md | 1 | Every bar closes all positions once timenow is past 15:15 of the day the script runs (exitTime is built from timenow's own date): with the wall-clock time of the run deciding whether any trade is held, the result depends on when the backtest is run, not on the data (criterion 1, as #453230). |
+| 453662 | EMA双均线交叉策略-EMA-Dual-Moving-Average-Crossover-Strategy.md | 1 | close_all fires when the day's equity change reaches -125 or +1000 currency units (strategy.equity against the day's start): a size-dependent equity gate on every trade (criterion 1, as #440336). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

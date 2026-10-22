@@ -5139,6 +5139,29 @@ SIZING = {
     453650: [
         ("strategy(): 10 % of equity, capital 100000, commission 0.1 %; stop 5 % / target 20 % (close tests)", 104, 149),
     ],
+    # ---- FMZ-C, batch C193 (2026-10-22)
+    453277: [],
+    453653: [],
+    453655: [],
+    453656: [
+        ("strategy(): margin_long 100, margin_short 100; quantity balance / close (balance 1000)", 100, 138),
+    ],
+    453657: [
+        ("strategy(): 10 % of equity", 84, 84),
+    ],
+    453661: [
+        ("TP / SL 60 ticks", 102, 151),
+    ],
+    453665: [
+        ("strategy(): margin_long 100, margin_short 100", 101, 101),
+    ],
+    453668: [
+        ("strategy(): 100 % of equity; stop 1 % beyond the bar's extreme, target 3 %", 109, 162),
+    ],
+    454137: [
+        ("Quantity riskMultiplier / lowest close x 1000 x equity / capital; capital 1000, commission 0.01 %, slippage 3", 91, 127),
+    ],
+    454141: [],
 }
 
 REJECTED_ON_READING = {
@@ -6509,6 +6532,14 @@ REJECTED_ON_READING = {
     453281: ("1", "The breakout levels are request.security(syminfo.tickerid, '60', high / low / "
               "close) on the daily header chart: a 1-hour resolution below the chart's, whose "
               "value per daily bar is undefined (criterion 1, as #427518)."),
+    # ---- FMZ-C, batch C193 (2026-10-22)
+    453654: ("1", "Every bar closes all positions once timenow is past 15:15 of the day the script "
+              "runs (exitTime is built from timenow's own date): with the wall-clock time of the "
+              "run deciding whether any trade is held, the result depends on when the backtest is "
+              "run, not on the data (criterion 1, as #453230)."),
+    453662: ("1", "close_all fires when the day's equity change reaches -125 or +1000 currency units "
+              "(strategy.equity against the day's start): a size-dependent equity gate on every "
+              "trade (criterion 1, as #440336)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #453277 (星光移动平均交叉策略-Starlight-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/453277  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

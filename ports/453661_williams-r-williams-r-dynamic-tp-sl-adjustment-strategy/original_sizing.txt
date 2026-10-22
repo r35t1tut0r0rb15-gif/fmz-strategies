@@ -1,0 +1,55 @@
+# Original sizing and money-management code, FMZ #453661 (Williams-R-动态调整止盈止损策略-Williams-R-Dynamic-TP-SL-Adjustment-Strategy)
+# Source: https://www.fmz.com/strategy/453661  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## TP / SL 60 ticks  [lines 102-151]
+  102: tp_level = input.int(defval=60, title="Take Profit (ticks)", minval=10, maxval=500, step=10)
+  103: sl_level = input.int(defval=60, title="Stop Loss (ticks)", minval=10, maxval=200, step=10)
+  104: 
+  105: // Williams %R calculation
+  106: length = input.int(defval=21, title="Length", minval=5, maxval=50, step=1)
+  107: willy = 100 * (close - ta.highest(length)) / (ta.highest(length) - ta.lowest(length))
+  108: 
+  109: // Exponential Moving Average (EMA) of Williams %R
+  110: ema_length = input.int(defval=13, title="EMA Length", minval=5, maxval=50, step=1)
+  111: ema_willy = ta.ema(willy, ema_length)
+  112: 
+  113: // User inputs for Williams %R thresholds
+  114: buy_threshold = -80
+  115: sell_threshold = -20
+  116: 
+  117: // User input to enable/disable specific trading hours
+  118: use_specific_hours = input.bool(defval=false, title="Use Specific Trading Hours")
+  119: start_hour = input(defval=timestamp("0000-01-01 09:00:00"), title="Start Hour")
+  120: end_hour = input(defval=timestamp("0000-01-01 11:00:00"), title="End Hour")
+  121: 
+  122: // User input to choose trade direction
+  123: trade_direction = input.string(defval="Both", title="Trade Direction", options=["Buy Only", "Sell Only", "Both"])
+  124: 
+  125: // User input to enable/disable "Minutes Before" and "Minutes After" options
+  126: enable_minutes_before_after = input.bool(defval=true, title="Enable Minutes Before/After Options")
+  127: minutes_before = enable_minutes_before_after ? input.int(defval=10, title="Minutes Before the Top of the Hour", minval=0, maxval=59, step=1) : 0
+  128: minutes_after = enable_minutes_before_after ? input.int(defval=10, title="Minutes After the Top of the Hour", minval=0, maxval=59, step=1) : 0
+  129: 
+  130: // Condition to check if the current minute is within the user-defined time window around the top of the hour
+  131: is_top_of_hour_range = (minute(time) >= (60 - minutes_before) and minute(time) <= 59) or (minute(time) >= 0 and minute(time) <= minutes_after)
+  132: 
+  133: // Condition to check if the current time is within the user-defined specific trading hours
+  134: in_specific_hours = true
+  135: if use_specific_hours
+  136:     in_specific_hours := (hour(time) * 60 + minute(time)) >= (hour(start_hour) * 60 + minute(start_hour)) and (hour(time) * 60 + minute(time)) <= (hour(end_hour) * 60 + minute(end_hour))
+  137: 
+  138: // Buy and Sell conditions with time-based restriction
+  139: buy_condition = ta.crossover(willy, buy_threshold) and is_top_of_hour_range and in_specific_hours
+  140: sell_condition = ta.crossunder(willy, sell_threshold) and is_top_of_hour_range and in_specific_hours
+  141: 
+  142: // Strategy entry and exit with TP and SL
+  143: if (trade_direction == "Buy Only" or trade_direction == "Both") and buy_condition
+  144:     strategy.entry("Buy", strategy.long)
+  145: 
+  146: if (trade_direction == "Sell Only" or trade_direction == "Both") and sell_condition
+  147:     strategy.entry("Sell", strategy.short)
+  148: 
+  149: // If a buy entry was taken, allow the trade to be closed after reaching TP and SL or if conditions for a sell entry are true
+  150: if (strategy.opentrades > 0)
+  151:     strategy.exit("TP/SL", profit=tp_level, loss=sl_level)

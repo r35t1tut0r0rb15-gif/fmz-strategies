@@ -1,0 +1,42 @@
+# Original sizing and money-management code, FMZ #454137 (Chande-Kroll止损动态ATR趋势跟踪策略-Chande-Kroll-Stop-Dynamic-ATR-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/454137  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantity riskMultiplier / lowest close x 1000 x equity / capital; capital 1000, commission 0.01 %, slippage 3  [lines 91-127]
+   91: strategy("Chande Kroll Stop Strategy", overlay=true, initial_capital = 1000, commission_type = strategy.commission.percent, commission_value = 0.01, slippage = 3)
+   92: 
+   93: // Chande Kroll Stop parameters
+   94: calcMode = input.string(title="Calculation Mode", defval="Exponential", options=["Linear", "Exponential"])
+   95: riskMultiplier = input(5, "Risk Multiplier")
+   96: atrPeriod = input(10, "ATR Period")
+   97: atrMultiplier = input(3, "ATR Multiplier")
+   98: stopLength = input(21, "Stop Length")
+   99: smaLength = input(21, "SMA Length")
+  100: 
+  101: // Calculate ATR
+  102: atr = ta.atr(atrPeriod)
+  103: 
+  104: // Calculate Chande Kroll Stop
+  105: highStop = ta.highest(high, stopLength) - atrMultiplier * atr
+  106: lowStop = ta.lowest(low, stopLength) + atrMultiplier * atr
+  107: 
+  108: sma21 = ta.sma(close, smaLength)
+  109: 
+  110: // Entry and Exit conditions
+  111: longCondition = ta.crossover(close, lowStop) and close > sma21
+  112: exitLongCondition = close < highStop
+  113: 
+  114: // Funktion zur Berechnung der Menge
+  115: calc_qty(mode, riskMultiplier) =>
+  116:     lowestClose = ta.lowest(close, 1560)
+  117:     if mode == "Exponential"
+  118:         qty = riskMultiplier / lowestClose * 1000 * strategy.equity / strategy.initial_capital
+  119:     else
+  120:         qty = riskMultiplier / lowestClose * 1000
+  121: 
+  122: // Berechnung der Menge basierend auf der Benutzerwahl
+  123: qty = calc_qty(calcMode, riskMultiplier)
+  124: 
+  125: // Execute strategy
+  126: if (longCondition)
+  127:     strategy.entry("Long", strategy.long, qty=qty)

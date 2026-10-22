@@ -337,6 +337,8 @@ fmz_id,file,final_outcome,criterion,reason
 453247,移动平均线交叉策略MA-Cross-Strategy.md,REJECTED_ON_READING,1,"Positions are opened and flattened with strategy.order (qty = the held size), so which side the strategy trades for the whole run depends on the first one-shot signal of the data, and the bracket levels are computed before the signals are re-assigned: strategy.order position bookkeeping (criterion 1, as #430596)."
 453266,基于CDC行动区的ATR止盈止损交易机器人策略-CDC-Action-Zone-Trading-Bot-Strategy-with-ATR-for-Take-Profit-and-Stop-Loss.md,REJECTED_ON_READING,2,"The exits strategy.exit(profit = takeProfit) / (loss = stopLoss) pass price amounts (a price level and 5 % of the close) where the call takes tick distances: the exits are undefined as written (criterion 2, as #442076, #442115)."
 453281,动态时间框架高低点突破策略-Dynamic-Timeframe-High-Low-Breakout-Strategy.md,REJECTED_ON_READING,1,"The breakout levels are request.security(syminfo.tickerid, '60', high / low / close) on the daily header chart: a 1-hour resolution below the chart's, whose value per daily bar is undefined (criterion 1, as #427518)."
+453654,EMA均线与抛物线SAR组合策略-EMA-and-Parabolic-SAR-Combination-Strategy.md,REJECTED_ON_READING,1,"Every bar closes all positions once timenow is past 15:15 of the day the script runs (exitTime is built from timenow's own date): with the wall-clock time of the run deciding whether any trade is held, the result depends on when the backtest is run, not on the data (criterion 1, as #453230)."
+453662,EMA双均线交叉策略-EMA-Dual-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"close_all fires when the day's equity change reaches -125 or +1000 currency units (strategy.equity against the day's start): a size-dependent equity gate on every trade (criterion 1, as #440336)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2741,9 +2743,19 @@ fmz_id,file,final_outcome,criterion,reason
 453271,MACD与Supertrend组合策略-MACD-and-Supertrend-Combination-Strategy.md,PORTED,,ports/453271_macd-supertrend-macd-and-supertrend-combination-strategy/
 453273,基于双均线交叉的移动平均线策略-Moving-Average-Crossover-Strategy-Based-on-Dual-Moving-Averages.md,PORTED,,ports/453273_moving-average-crossover-strategy-based-on-dual-moving-avera/
 453276,百分比阈值量化交易策略-Percentage-Threshold-Quantitative-Trading-Strategy.md,PORTED,,ports/453276_percentage-threshold-quantitative-trading-strategy/
+453277,星光移动平均交叉策略-Starlight-Moving-Average-Crossover-Strategy.md,PORTED,,ports/453277_starlight-moving-average-crossover-strategy/
 453287,MACD和RSI结合的自然交易策略-MACD-and-RSI-Combined-Natural-Trading-Strategy.md,PORTED,,ports/453287_macd-rsi-macd-and-rsi-combined-natural-trading-strategy/
 453645,10SMA与MACD双重趋势跟踪交易策略-10SMA-and-MACD-Dual-Trend-Following-Trading-Strategy.md,PORTED,,ports/453645_10sma-macd-10sma-and-macd-dual-trend-following-trading-strat/
 453646,SMA双均线交叉策略-SMA-Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/453646_sma-sma-dual-moving-average-crossover-strategy/
 453647,布林带交叉移动平均策略-Bollinger-Bands-and-Moving-Average-Crossover-Strategy.md,PORTED,,ports/453647_bollinger-bands-and-moving-average-crossover-strategy/
 453648,Elliott-Wave-Stochastic-EMA-Strategy-Elliott-波动随机EMA策略.md,PORTED,,ports/453648_elliott-wave-stochastic-ema-strategy-elliott-ema/
 453650,RSI基于百分比止盈止损的交易策略-RSI-based-Trading-Strategy-with-Percentage-based-Take-Profit-and-Stop-Loss.md,PORTED,,ports/453650_rsi-rsi-based-trading-strategy-with-percentage-based-take-pr/
+453653,MACD与RSI相结合的多重过滤日内交易策略-MACD-and-RSI-Multi-Filter-Intraday-Trading-Strategy.md,PORTED,,ports/453653_macd-rsi-macd-and-rsi-multi-filter-intraday-trading-strategy/
+453655,EMA交叉与RSI过滤的双重趋势策略-Dual-Trend-Strategy-with-EMA-Crossover-and-RSI-Filter.md,PORTED,,ports/453655_ema-rsi-dual-trend-strategy-with-ema-crossover-and-rsi-filte/
+453656,TGT基于价格下跌买入策略-TGT-Falling-Buy-Strategy-Based-on-Price-Decline.md,PORTED,,ports/453656_tgt-tgt-falling-buy-strategy-based-on-price-decline/
+453657,Supertrend和EMA组合策略-Supertrend-and-EMA-Combination-Strategy.md,PORTED,,ports/453657_supertrend-ema-supertrend-and-ema-combination-strategy/
+453661,Williams-R-动态调整止盈止损策略-Williams-R-Dynamic-TP-SL-Adjustment-Strategy.md,PORTED,,ports/453661_williams-r-williams-r-dynamic-tp-sl-adjustment-strategy/
+453665,TSI交叉策略-TSI-Crossover-Strategy.md,PORTED,,ports/453665_tsi-tsi-crossover-strategy/
+453668,基于支撑位和阻力位反转形态的量化交易策略-Quantitative-Trading-Strategy-Based-on-Reversal-Patterns-at-Support-and-Resistance-Levels.md,PORTED,,ports/453668_quantitative-trading-strategy-based-on-reversal-patterns-at/
+454137,Chande-Kroll止损动态ATR趋势跟踪策略-Chande-Kroll-Stop-Dynamic-ATR-Trend-Following-Strategy.md,PORTED,,ports/454137_chande-kroll-atr-chande-kroll-stop-dynamic-atr-trend-followi/
+454141,BB均线突破策略-BB-Breakout-Strategy.md,PORTED,,ports/454141_bb-bb-breakout-strategy/
