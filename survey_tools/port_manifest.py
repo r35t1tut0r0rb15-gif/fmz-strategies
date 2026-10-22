@@ -4380,6 +4380,28 @@ SIZING = {
         ("strategy(): margin_long 100, margin_short 100", 133, 133),
     ],
     442517: [],
+    # ---- FMZ-C, batch C157 (2026-10-22)
+    442519: [],
+    442520: [],
+    442523: [
+        ("strategy(): 100 % of equity", 145, 145),
+    ],
+    442526: [],
+    442527: [
+        ("strategy(): 100 % of equity, capital 1000, commission 0.03", 123, 123),
+        ("strategy.entry qty = (equity - position_size x close) / close", 169, 169),
+    ],
+    442532: [],
+    442536: [],
+    442537: [
+        ("strategy(): 100 % of equity, capital 1000000, commission 0.075, slippage 3", 167, 169),
+    ],
+    442538: [
+        ("strategy(): 100 % of equity, capital 10000, commission 0.075", 156, 156),
+    ],
+    442539: [
+        ("qty = floor(strategy.equity / close)", 183, 183),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -5548,6 +5570,15 @@ REJECTED_ON_READING = {
     442382: ("2", "The exit strategy.exit(loss = stopLoss, profit = takeProfit) passes price levels "
               "where the call takes tick distances, with no /mintick: the stop and target are "
               "undefined as written (criterion 2, as #437048, #437677)."),
+    # ---- FMZ-C, batch C157 (2026-10-22)
+    442525: ("2", "The signal source is request.security('NIFTY50', 'D', close), a named external "
+              "instrument (the Nifty 50 index, read as its open interest) used as the signal for "
+              "whatever chart is traded (SURVEY_README: another symbol -> criterion 2, as "
+              "#436659); the support and resistance levels 15000 / 16000 are also fixed index "
+              "prices."),
+    442528: ("1", "There is no exit of any kind: the first close crossing back over the previous "
+              "day's low opens one long that is held to the end of the data, a buy-and-hold from "
+              "near the data start (criterion 1, as #440692)."),
 }
 
 DUPLICATE_ON_READING = {

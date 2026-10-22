@@ -284,6 +284,8 @@ fmz_id,file,final_outcome,criterion,reason
 442343,双Donchian通道突破策略Dual-Donchian-Channel-Breakout-Strategy.md,REJECTED_ON_READING,1,"The take profit closes TP1Yuzde = 50 % of the position (strategy.exit with qty_percent = 50): partial exits (criterion 1, as #436524)."
 442378,基于收盘价突破的买入策略Buy-Strategy-Based-on-Close-Price-Breakthrough.md,REJECTED_ON_READING,1,"The take profit is a limit at entry_price x 1.005 with entry_price the input default 0, i.e. a sell limit at 0, which fills as soon as each long opens: as written no position is held beyond its fill (criterion 1, as #430384)."
 442382,基于趋势的止损追利策略Trend-Following-Strategy-with-Stop-Loss-and-Take-Profit.md,REJECTED_ON_READING,2,"The exit strategy.exit(loss = stopLoss, profit = takeProfit) passes price levels where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #437048, #437677)."
+442525,基于支持阻力动态调仓的Nifty-50量化交易策略Nifty-50-Quantitative-Trading-Strategy-Based-on-Dynamic-Position-Adjustment-with-Support-and-Resistance-Levels.md,REJECTED_ON_READING,2,"The signal source is request.security('NIFTY50', 'D', close), a named external instrument (the Nifty 50 index, read as its open interest) used as the signal for whatever chart is traded (SURVEY_README: another symbol -> criterion 2, as #436659); the support and resistance levels 15000 / 16000 are also fixed index prices."
+442528,动量突破回测支持阻力策略Momentum-Breakout-Backtesting-Support-Resistance-Strategy.md,REJECTED_ON_READING,1,"There is no exit of any kind: the first close crossing back over the previous day's low opens one long that is held to the end of the data, a buy-and-hold from near the data start (criterion 1, as #440692)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2316,3 +2318,13 @@ fmz_id,file,final_outcome,criterion,reason
 442512,四均线跨度趋势追踪策略Four-WMA-Trend-Tracking-Strategy.md,PORTED,,ports/442512_four-wma-trend-tracking-strategy/
 442516,MACD量化策略之双重叉叉均线突破策略Dual-Moving-Average-Crossover-MACD-Quantitative-Strategy.md,PORTED,,ports/442516_macd-dual-moving-average-crossover-macd-quantitative-strateg/
 442517,基于短期和长期移动平均线交叉策略MA-Crossover-Trading-Strategy-Based-on-Short-term-and-Long-term-Moving-Average-Crossovers.md,PORTED,,ports/442517_ma-crossover-trading-strategy-based-on-short-term-and-long-t/
+442519,突破回调开仓策略Breakthrough-Callback-Long-Strategy.md,PORTED,,ports/442519_breakthrough-callback-long-strategy/
+442520,双重和谐系统策略Harmonic-Dual-System-Strategy.md,PORTED,,ports/442520_harmonic-dual-system-strategy/
+442523,动态通道均线趋势跟踪策略Dynamic-Channel-Moving-Average-Trend-Tracking-Strategy.md,PORTED,,ports/442523_dynamic-channel-moving-average-trend-tracking-strategy/
+442526,双线突破金叉死叉趋势追踪策略Dual-Trendlines-Breakout-Golden-Cross-Death-Cross-Trend-Following-Strategy.md,PORTED,,ports/442526_dual-trendlines-breakout-golden-cross-death-cross-trend-foll/
+442527,MyQuant趋势识别策略MyQuant-Trend-Identifier-Strategy.md,PORTED,,ports/442527_myquant-myquant-trend-identifier-strategy/
+442532,均线交叉跳空策略Moving-Average-Crossover-Breakout-Strategy.md,PORTED,,ports/442532_moving-average-crossover-breakout-strategy/
+442536,基于RSI指标和ZigZag指标趋势追踪策略Trend-Tracking-Strategy-Based-on-RSI-and-ZigZag-Indicators.md,PORTED,,ports/442536_rsi-zigzag-trend-tracking-strategy-based-on-rsi-and-zigzag-i/
+442537,双EMA快慢线交叉策略Dual-EMA-Crossover-Strategy.md,PORTED,,ports/442537_ema-dual-ema-crossover-strategy/
+442538,超级趋势日线反转策略Super-Trend-Daily-Reversal-Strategy.md,PORTED,,ports/442538_super-trend-daily-reversal-strategy/
+442539,移动平均线金叉死叉交易策略Moving-Average-Crossover-MACD-Trading-Strategy.md,PORTED,,ports/442539_moving-average-crossover-macd-trading-strategy/

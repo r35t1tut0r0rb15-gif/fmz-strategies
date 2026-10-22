@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2012 |
-| PORT_CANDIDATE | 1443 |
+| PORTED | 2022 |
+| PORT_CANDIDATE | 1431 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 285 |
+| REJECTED_ON_READING | 287 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2140,7 +2140,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442512 | `ports/442512_four-wma-trend-tracking-strategy/` | PineScript | ma_cross | none | tp_pct x2, sl_pct x2 | 4 |
 | 442516 | `ports/442516_macd-dual-moving-average-crossover-macd-quantitative-strateg/` | PineScript | macd_cross | none | tp_pct x2, ma_len x2 | 4 |
 | 442517 | `ports/442517_ma-crossover-trading-strategy-based-on-short-term-and-long-t/` | PineScript | ma_cross | none | exit_candles x2, long_length x2 | 4 |
-| | **2012 ports** | | | | | **9553** |
+| 442519 | `ports/442519_breakthrough-callback-long-strategy/` | PineScript | candle_pattern | none |  | 0 |
+| 442520 | `ports/442520_harmonic-dual-system-strategy/` | PineScript | adaptive_average | none |  | 0 |
+| 442523 | `ports/442523_dynamic-channel-moving-average-trend-tracking-strategy/` | PineScript | volatility_channel_breakout | none | length x2, use_color x2 | 4 |
+| 442526 | `ports/442526_dual-trendlines-breakout-golden-cross-death-cross-trend-foll/` | PineScript | donchian_breakout | none | range_days x2, sma_len x2 | 4 |
+| 442527 | `ports/442527_myquant-myquant-trend-identifier-strategy/` | PineScript | adaptive_average | none | alma_len x2, heat_len x2 | 4 |
+| 442532 | `ports/442532_moving-average-crossover-breakout-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 442536 | `ports/442536_rsi-zigzag-trend-tracking-strategy-based-on-rsi-and-zigzag-i/` | PineScript | rsi_oscillator | none | length x2, zz_pct x2 | 4 |
+| 442537 | `ports/442537_ema-dual-ema-crossover-strategy/` | PineScript | ma_cross | none | tp_pct x2, fast x2 | 4 |
+| 442538 | `ports/442538_super-trend-daily-reversal-strategy/` | PineScript | supertrend | none | mult x2, sl_pct x2 | 4 |
+| 442539 | `ports/442539_moving-average-crossover-macd-trading-strategy/` | PineScript | macd_cross | none | confirm x2, fast x2 | 4 |
+| | **2022 ports** | | | | | **9585** |
 
 ## Rejected on reading
 
@@ -2431,6 +2441,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442343 | 双Donchian通道突破策略Dual-Donchian-Channel-Breakout-Strategy.md | 1 | The take profit closes TP1Yuzde = 50 % of the position (strategy.exit with qty_percent = 50): partial exits (criterion 1, as #436524). |
 | 442378 | 基于收盘价突破的买入策略Buy-Strategy-Based-on-Close-Price-Breakthrough.md | 1 | The take profit is a limit at entry_price x 1.005 with entry_price the input default 0, i.e. a sell limit at 0, which fills as soon as each long opens: as written no position is held beyond its fill (criterion 1, as #430384). |
 | 442382 | 基于趋势的止损追利策略Trend-Following-Strategy-with-Stop-Loss-and-Take-Profit.md | 2 | The exit strategy.exit(loss = stopLoss, profit = takeProfit) passes price levels where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #437048, #437677). |
+| 442525 | 基于支持阻力动态调仓的Nifty-50量化交易策略Nifty-50-Quantitative-Trading-Strategy-Based-on-Dynamic-Position-Adjustment-with-Support-and-Resistance-Levels.md | 2 | The signal source is request.security('NIFTY50', 'D', close), a named external instrument (the Nifty 50 index, read as its open interest) used as the signal for whatever chart is traded (SURVEY_README: another symbol -> criterion 2, as #436659); the support and resistance levels 15000 / 16000 are also fixed index prices. |
+| 442528 | 动量突破回测支持阻力策略Momentum-Breakout-Backtesting-Support-Resistance-Strategy.md | 1 | There is no exit of any kind: the first close crossing back over the previous day's low opens one long that is held to the end of the data, a buy-and-hold from near the data start (criterion 1, as #440692). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
