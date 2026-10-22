@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3181 |
+| PORTED | 3190 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 574 |
-| REJECTED_ON_READING | 484 |
+| REJECTED_ON_READING | 488 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 68 |
+| PORT_CANDIDATE | 55 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3309,7 +3309,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 489153 | `ports/489153_hourly-open-close-price-differential-smart-comparison-quanti/` | PineScript | gap | none | target_pct x3 | 3 |
 | 489154 | `ports/489154_multi-ema-crossover-momentum-strategy-with-risk-reward-optim/` | PineScript | ma_cross | coarse_bar_stop | stopLossPercent x2, riskRewardRatio x2 | 4 |
 | 489156 | `ports/489156_bollinger-bands-with-dual-sma-momentum-enhanced-quantitative/` | PineScript | bollinger_breakout | none | length x2, slowSmaLength x2 | 4 |
-| | **3181 ports** | | | | | **14530** |
+| 489157 | `ports/489157_20-ema-20-breakout-trend-following-quantitative-trading-stra/` | PineScript | ma_cross | none | emaLength x3 | 3 |
+| 489158 | `ports/489158_advanced-dual-moving-average-crossover-trading-system/` | PineScript | ma_cross | trailing_stop_pending | shortLength x2, longLength x2 | 4 |
+| 489186 | `ports/489186_supertrend-advanced-multi-functional-supertrend-trend-follow/` | PineScript | supertrend | none | mult x2, atrPeriod x2 | 4 |
+| 489187 | `ports/489187_ghost-moving-average-with-momentum-integration-and-fibonacci/` | PineScript | hull_ma | coarse_bar_stop, trailing_stop_pending | gmaLength x2, swingLookback x2 | 4 |
+| 489189 | `ports/489189_trendsync-pro-smc-trendsync-pro-smc-multi-timeframe-trend-fo/` | PineScript | pivot_breakout | none | trend_period x2, sl_percent x2 | 4 |
+| 489198 | `ports/489198_multi-momentum-indicator-trend-tracking-quantitative-trading/` | PineScript | ma_cross | none | emaFastLength x2, emaSlowLength x2 | 4 |
+| 489281 | `ports/489281_multi-timeframe-bollinger-band-breakout-reversion-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | mult x2, rr x2 | 4 |
+| 489285 | `ports/489285_smart-trading-momentum-and-moving-average-hybrid-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 489288 | `ports/489288_sma-dynamic-support-resistance-sma-crossover-trading-strateg/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| | **3190 ports** | | | | | **14565** |
 
 ## Rejected on reading
 
@@ -3799,6 +3808,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 489135 | 多重技术指标动态止损期货交易策略-Multi-Technical-Indicator-Dynamic-Stop-Loss-Futures-Trading-Strategy.md | 1 | Partial exits: strategy.exit(qty_percent = 50) at 1 R with a break-even stop for the rest, plus closes keyed on the account equity (criterion 1, as #436524). |
 | 489150 | 多周期唐奇安通道与ATR动态间隔波动跟踪交易策略-Multi-Timeframe-Donchian-Channel-and-ATR-Dynamic-Interval-Volatility-Following-Trading-Strategy.md | 1 | A grid / DCA ladder: fixed 5.1 USDT buys every 2 ATR under the last fill and partial 5.1 USDT sells every 2 ATR over it (criterion 1, as #484915). |
 | 489152 | 移动平均线交叉与动态波动率止损量化策略-Moving-Average-Crossover-with-Dynamic-Volatility-Based-Stop-Loss-Strategy.md | 1 | The only exit is strategy.exit re-sent every bar at the average price minus the current ATR (and 1.5 x that over it), a level that moves with each bar's ATR and cannot be held as a fixed or house-trail stop; without it the first long is held to the end (criterion 1, as #440975). |
+| 489284 | 多时间框架动量突破交易策略结合趋势跟踪与ATR风险管理-Multi-Timeframe-Momentum-Breakout-Trading-Strategy-with-Trend-Following-and-ATR-Risk-Management.md | 2 | The exits are strategy.exit(trail_points = 1.5 ATR, trail_offset = 1.5 ATR), price amounts passed as tick counts (criterion 2, as #482767). |
+| 489289 | 多周期指数移动平均云趋势跟踪做空策略-Multi-Timeframe-EMA-Cloud-Trend-Following-Short-Strategy.md | 1 | The only exit is strategy.exit sent on the signal bar from strategy.position_avg_price, which is na while flat, so the first short has no exit; a later signal while held arms a 1 % / 2 % bracket from the average price mid-trade, which cannot be held as a stop from the fill: without it the first short is held to the end (criterion 1, as #440975). |
+| 489292 | 重要区间MACD交叉动量趋势捕捉策略-Important-Zone-MACD-Crossover-Momentum-Trend-Capture-Strategy.md | 2 | The 'important zone' is the MACD line between -0.5 and +0.5, a fixed band in raw price units (the MACD is a price difference): it depends on the instrument's price scale (criterion 2, as #432339). |
+| 489294 | 多指标趋势动量融合策略-RSI-MACD-双重超趋势跟踪系统-Multi-Indicator-Trend-Momentum-Fusion-Strategy-RSI-MACD-Dual-Supertrend-Tracking-System.md | 2 | The exits include trail_points = 1 ATR, a price amount passed as a tick count (criterion 2, as #482767). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

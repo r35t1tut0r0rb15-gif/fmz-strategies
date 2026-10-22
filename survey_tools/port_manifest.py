@@ -6965,6 +6965,28 @@ SIZING = {
     489156: [
         ("strategy(): 100 % of equity, commission 0.1, slippage 3", 163, 163),
     ],
+    # ---- FMZ-C, batch C270 (2026-10-22)
+    489157: [
+        ("strategy(): 100 % of equity", 187, 187),
+    ],
+    489158: [],
+    489186: [],
+    489187: [
+        ("strategy(): 10 % of equity", 141, 141),
+    ],
+    489189: [
+        ("strategy(): 1 % of equity", 182, 182),
+    ],
+    489198: [],
+    489281: [
+        ("qty = floor(4000 / risk)", 215, 245),
+    ],
+    489285: [
+        ("qty = 3 % of 10000 / (1.5 ATR); 100 % of equity", 157, 228),
+    ],
+    489288: [
+        ("strategy(): 1 % of equity", 181, 181),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8836,6 +8858,19 @@ REJECTED_ON_READING = {
               "current ATR (and 1.5 x that over it), a level that moves with each bar's ATR and "
               "cannot be held as a fixed or house-trail stop; without it the first long is held "
               "to the end (criterion 1, as #440975)."),
+    # ---- FMZ-C, batch C270 (2026-10-22)
+    489284: ("2", "The exits are strategy.exit(trail_points = 1.5 ATR, trail_offset = 1.5 ATR), price "
+              "amounts passed as tick counts (criterion 2, as #482767)."),
+    489289: ("1", "The only exit is strategy.exit sent on the signal bar from "
+              "strategy.position_avg_price, which is na while flat, so the first short has no "
+              "exit; a later signal while held arms a 1 % / 2 % bracket from the average price "
+              "mid-trade, which cannot be held as a stop from the fill: without it the first "
+              "short is held to the end (criterion 1, as #440975)."),
+    489292: ("2", "The 'important zone' is the MACD line between -0.5 and +0.5, a fixed band in raw "
+              "price units (the MACD is a price difference): it depends on the instrument's price "
+              "scale (criterion 2, as #432339)."),
+    489294: ("2", "The exits include trail_points = 1 ATR, a price amount passed as a tick count "
+              "(criterion 2, as #482767)."),
 }
 
 DUPLICATE_ON_READING = {

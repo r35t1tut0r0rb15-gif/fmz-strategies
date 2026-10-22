@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #489288 (动态支撑阻力SMA交叉黄金交易策略三重确认与风险管理优化框架-Dynamic-Support-Resistance-SMA-Crossover-Trading-Strategy-Triple-Confirmation-with-Risk-Management-Optimization-Framework)
+# Source: https://www.fmz.com/strategy/489288  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 1 % of equity  [lines 181-181]
+  181: strategy("Gold Scalping 3M 10-20 SMA", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=1)
