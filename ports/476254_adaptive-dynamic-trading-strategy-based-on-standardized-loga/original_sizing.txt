@@ -1,0 +1,39 @@
+# Original sizing and money-management code, FMZ #476254 (基于标准化对数收益的自适应动态交易策略Adaptive-Dynamic-Trading-Strategy-Based-on-Standardized-Logarithmic-Returns)
+# Source: https://www.fmz.com/strategy/476254  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 % / target 4 % of the current close; risk 1 % (unused)  [lines 100-133]
+  100: risk_percentage = input.float(1.0, title="Risk Percentage per Trade", step=0.1) / 100
+  101: 
+  102: // Calculate the logarithmic returns
+  103: log_return = math.log(close / close[1])
+  104: 
+  105: // Calculate the rolling mean and standard deviation
+  106: rolling_mean = ta.sma(log_return, window)
+  107: rolling_std = ta.stdev(log_return, window)
+  108: 
+  109: // Calculate the Shiryaev-Zhou Index (SZI)
+  110: SZI = (log_return - rolling_mean) / rolling_std
+  111: 
+  112: // Generate signals based on the fixed threshold
+  113: long_signal = SZI < -threshold
+  114: short_signal = SZI > threshold
+  115: 
+  116: // Plot the signals on the main chart (overlay on price)
+  117: plotshape(series=long_signal, location=location.belowbar, color=color.green, style=shape.labelup, title="Buy Signal", text="BUY", offset=-1)
+  118: plotshape(series=short_signal, location=location.abovebar, color=color.red, style=shape.labeldown, title="Sell Signal", text="SELL", offset=-1)
+  119: 
+  120: // Strategy logic: Buy when SZI crosses below the negative threshold, Sell when it crosses above the positive threshold
+  121: if (long_signal)
+  122:     strategy.entry("Buy", strategy.long, comment="Long Entry")
+  123:     
+  124: if (short_signal)
+  125:     strategy.entry("Sell", strategy.short, comment="Short Entry")
+  126: 
+  127: // Calculate the stop loss and take profit levels based on the percentage of risk
+  128: stop_loss_pct = input.float(2.0, title="Stop Loss (%)") / 100
+  129: take_profit_pct = input.float(4.0, title="Take Profit (%)") / 100
+  130: 
+  131: // Set the stop loss and take profit levels based on the entry price
+  132: strategy.exit("Take Profit / Stop Loss", "Buy", stop=close * (1 - stop_loss_pct), limit=close * (1 + take_profit_pct))
+  133: strategy.exit("Take Profit / Stop Loss", "Sell", stop=close * (1 + stop_loss_pct), limit=close * (1 - take_profit_pct))

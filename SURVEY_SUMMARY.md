@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2777 |
+| PORTED | 2785 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 569 |
-| PORT_CANDIDATE | 568 |
-| REJECTED_ON_READING | 393 |
+| PORT_CANDIDATE | 556 |
+| REJECTED_ON_READING | 397 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2905,7 +2905,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 475635 | `ports/475635_rsi-multi-period-rsi-divergence-with-support-resistance-quan/` | PineScript | rsi_oscillator | trailing_stop_pending | rsi_length x2, sr_length x2 | 4 |
 | 475636 | `ports/475636_rsi-enhanced-mean-reversion-strategy-with-bollinger-bands-an/` | PineScript | bollinger_reversion | none | length x2, std_dev x2 | 4 |
 | 475637 | `ports/475637_atr-multi-ema-trend-following-swing-trading-strategy-with-at/` | PineScript | ma_cross | coarse_bar_stop | rr x2, ema_mid x2 | 4 |
-| | **2777 ports** | | | | | **12950** |
+| 476240 | `ports/476240_intelligent-exponential-moving-average-trading-strategy-opti/` | PineScript | ma_cross | none | ema_short x2, ema_long x2 | 4 |
+| 476242 | `ports/476242_ema-rsi-adaptive-multi-state-ema-rsi-momentum-strategy-with/` | PineScript | regime_switch | trailing_stop_pending | ci_length x2, fast x2 | 4 |
+| 476243 | `ports/476243_enhanced-fibonacci-trend-following-and-risk-management-strat/` | PineScript | channel_breakout | trailing_stop_pending | lookback x2, sma_length x2 | 4 |
+| 476244 | `ports/476244_ema-sma-multi-indicator-dynamic-trend-following-strategy-bas/` | PineScript | ma_cross | none | prd x2, window x2 | 4 |
+| 476248 | `ports/476248_rsi-ema-rsi-dual-ema-rsi-momentum-trend-reversal-trading-sys/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 476252 | `ports/476252_multi-indicator-trend-crossing-strategy-bull-market-support/` | PineScript | ma_cross | none | sma_length x2, ema_length x2 | 4 |
+| 476254 | `ports/476254_adaptive-dynamic-trading-strategy-based-on-standardized-loga/` | PineScript | zscore_reversion | trailing_stop_pending | window x2, threshold x2 | 4 |
+| 476255 | `ports/476255_multi-sma-and-stochastic-combined-trend-following-trading-st/` | PineScript | ma_cross | none | zone_length x2, sma_length x2 | 4 |
+| | **2785 ports** | | | | | **12982** |
 
 ## Rejected on reading
 
@@ -3304,6 +3312,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 475593 | 多时间周期流动性枢纽热力图量化策略-Multi-Timeframe-Liquidity-Pivot-Heatmap-Strategy.md | 1 | The take-profit and stop are money amounts ($200 / $100) turned into ticks by dividing by the open position size: the exit distance depends on the position's size (criterion 1, size-dependent exits). |
 | 475605 | 动态趋势动量优化策略结合G通道指标-Dynamic-Trend-Momentum-Optimization-Strategy-with-G-Channel-Indicator.md | 2 | strategy.exit's profit / loss fields take tick counts but receive price amounts (3 % x close / 1 % x close): a price amount in a tick field, so the distance in price depends on the instrument's tick size (criterion 2, as #442115). |
 | 475634 | 自适应趋势跟踪策略结合动态回撤控制系统-Adaptive-Trend-Following-Strategy-with-Dynamic-Drawdown-Control-System.md | 1 | strategy.close_all when the drawdown of strategy.equity from its peak exceeds 30 %: an exit set by the account's equity path (criterion 1, equity gates, as #453662). |
+| 476239 | 人工智能驱动的波动趋势价格系统背离交易策略-AI-Powered-Volatility-Price-System-Divergence-Trading-Strategy.md | 1 | strategy.close when (close - avg price) x position size reaches a fixed money target (1500 / 1000 INR): an exit that depends on the position's size (criterion 1, size-dependent money exits). |
+| 476245 | 动态趋势线突破反转交易策略-Dynamic-Trendline-Breakout-Reversal-Trading-Strategy.md | 1 | On a stop the script reverses with qty = the held size x 2 (capped at 1e12): a martingale doubling of the position (criterion 1, martingale adds). |
+| 476250 | 多级动态MACD趋势跟踪量化策略结合52周高低位延展研判系统-Multi-Level-Dynamic-MACD-Trend-Following-Strategy-with-52-Week-High-Low-Extension-Analysis-System.md | 1 | The weekly MACD and signal come from request.security("W", ..., lookahead=barmerge.lookahead_on) on a daily chart: the week's final values are read before the week ends (criterion 1, lookahead_on for a higher time frame). |
+| 476253 | 多重指标交叉趋势跟踪交易策略基于随机相对强弱与均线系统的量化分析-Multi-Indicator-Cross-Trend-Following-Trading-Strategy-Quantitative-Analysis-Based-on-Stochastic-RSI-and-Moving-Average-System.md | 1 | pyramiding=200 and strategy.entry on every bar the Stochastic RSI condition holds: repeat entries add to the position (criterion 1, pyramiding >= 2 with repeat entries). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

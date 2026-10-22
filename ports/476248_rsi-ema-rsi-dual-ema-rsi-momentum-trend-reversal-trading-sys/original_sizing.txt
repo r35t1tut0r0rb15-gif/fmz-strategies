@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #476248 (双均线RSI趋势反转交易策略-基于EMA和RSI的动量突破系统-Dual-EMA-RSI-Momentum-Trend-Reversal-Trading-System-A-Momentum-Breakthrough-Strategy-Based-on-EMA-and-RSI-Crossover)
+# Source: https://www.fmz.com/strategy/476248  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 % / target 2 % of the current close  [lines 129-132]
+  129: takeProfit = input.int(2, title="Take Profit (Risk-Reward)", minval=1)
+  130: stopLoss = input.int(1, title="Stop Loss (Risk-Reward)", minval=1)
+  131: 
+  132: strategy.exit("Exit Buy", "Buy", stop=close * (1 - stopLoss / 100), limit=close * (1 + takeProfit / 100))

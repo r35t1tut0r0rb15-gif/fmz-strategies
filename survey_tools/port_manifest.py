@@ -6043,6 +6043,27 @@ SIZING = {
     475637: [
         ("5 contracts; stop 1 ATR / target 1.5 ATR", 105, 138),
     ],
+    # ---- FMZ-C, batch C230 (2026-10-22)
+    476240: [],
+    476242: [
+        ("Stop 2 % / target 4 % of the current close", 148, 152),
+    ],
+    476243: [
+        ("ATR 12 x 1.8 stop / target from the current close", 118, 138),
+    ],
+    476244: [],
+    476248: [
+        ("Stop 1 % / target 2 % of the current close", 129, 132),
+    ],
+    476252: [
+        ("strategy(): 100 % of equity, commission 0.1 %, slippage 3", 92, 98),
+    ],
+    476254: [
+        ("Stop 2 % / target 4 % of the current close; risk 1 % (unused)", 100, 133),
+    ],
+    476255: [
+        ("Hard stop 50 ticks x tick size 1.0", 105, 106),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7632,6 +7653,18 @@ REJECTED_ON_READING = {
     475634: ("1", "strategy.close_all when the drawdown of strategy.equity from its peak exceeds 30 "
               "%: an exit set by the account's equity path (criterion 1, equity gates, as "
               "#453662)."),
+    # ---- FMZ-C, batch C230 (2026-10-22)
+    476239: ("1", "strategy.close when (close - avg price) x position size reaches a fixed money "
+              "target (1500 / 1000 INR): an exit that depends on the position's size (criterion "
+              "1, size-dependent money exits)."),
+    476245: ("1", "On a stop the script reverses with qty = the held size x 2 (capped at 1e12): a "
+              "martingale doubling of the position (criterion 1, martingale adds)."),
+    476250: ("1", "The weekly MACD and signal come from request.security(\"W\", ..., "
+              "lookahead=barmerge.lookahead_on) on a daily chart: the week's final values are "
+              "read before the week ends (criterion 1, lookahead_on for a higher time frame)."),
+    476253: ("1", "pyramiding=200 and strategy.entry on every bar the Stochastic RSI condition holds: "
+              "repeat entries add to the position (criterion 1, pyramiding >= 2 with repeat "
+              "entries)."),
 }
 
 DUPLICATE_ON_READING = {

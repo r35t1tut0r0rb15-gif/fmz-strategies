@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #476252 (多指标趋势交叉策略之牛市支撑带交易系统-Multi-Indicator-Trend-Crossing-Strategy-Bull-Market-Support-Band-Trading-System)
+# Source: https://www.fmz.com/strategy/476252  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission 0.1 %, slippage 3  [lines 92-98]
+   92: strategy(title='Demo GPT - Bull Market Support Band', 
+   93:      overlay=true, 
+   94:      default_qty_type=strategy.percent_of_equity, 
+   95:      default_qty_value=100, 
+   96:      commission_type=strategy.commission.percent, 
+   97:      commission_value=0.1, 
+   98:      slippage=3)

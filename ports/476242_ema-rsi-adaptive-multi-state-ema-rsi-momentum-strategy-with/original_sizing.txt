@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #476242 (自适应多状态EMA-RSI动量策略结合波动指数过滤系统-Adaptive-Multi-State-EMA-RSI-Momentum-Strategy-with-Choppiness-Index-Filter-System)
+# Source: https://www.fmz.com/strategy/476242  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 % / target 4 % of the current close  [lines 148-152]
+  148: stopLossPerc = input.float(2, title="Stop Loss (%)", minval=0.1, step=0.1) / 100
+  149: takeProfitPerc = input.float(4, title="Take Profit (%)", minval=0.1, step=0.1) / 100
+  150: 
+  151: strategy.exit("Exit Long", "Long", stop=close*(1-stopLossPerc), limit=close*(1+takeProfitPerc))
+  152: strategy.exit("Exit Short", "Short", stop=close*(1+stopLossPerc), limit=close*(1-takeProfitPerc))

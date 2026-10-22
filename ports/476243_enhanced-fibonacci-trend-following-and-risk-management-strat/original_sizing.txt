@@ -1,0 +1,26 @@
+# Original sizing and money-management code, FMZ #476243 (增强型斐波那契趋势跟踪与风险管理策略-Enhanced-Fibonacci-Trend-Following-and-Risk-Management-Strategy)
+# Source: https://www.fmz.com/strategy/476243  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## ATR 12 x 1.8 stop / target from the current close  [lines 118-138]
+  118: atr = ta.atr(12)
+  119: long_stop_loss = close - (atr * atr_multiplier)
+  120: long_take_profit = close + (atr * atr_multiplier)
+  121: short_stop_loss = close + (atr * atr_multiplier)
+  122: short_take_profit = close - (atr * atr_multiplier)
+  123: 
+  124: // Entry Conditions
+  125: buy_signal = close > fib_level_0_65 and close[1] <= fib_level_0_65 and in_uptrend
+  126: sell_signal = close < fib_level_0_65 and close[1] >= fib_level_0_65 and in_downtrend
+  127: 
+  128: // Execute Trades
+  129: if (buy_signal)
+  130:     strategy.entry("Buy", strategy.long)
+  131: if (sell_signal)
+  132:     strategy.entry("Sell", strategy.short)
+  133: 
+  134: // Exit Conditions
+  135: if (strategy.position_size > 0)
+  136:     strategy.exit("Exit Long", "Buy", stop=long_stop_loss, limit=long_take_profit)
+  137: if (strategy.position_size < 0)
+  138:     strategy.exit("Exit Short", "Sell", stop=short_stop_loss, limit=short_take_profit)
