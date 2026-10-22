@@ -6420,6 +6420,20 @@ SIZING = {
         ("strategy(): cash 50000, slippage 1, commission 0.01", 85, 87),
     ],
     482477: [],
+    # ---- FMZ-C, batch C246 (2026-10-22)
+    482489: [
+        ("strategy(): margin 100 / 100", 87, 87),
+    ],
+    482500: [],
+    482502: [
+        ("strategy(): capital 10000, 200 % of equity", 97, 97),
+    ],
+    482510: [
+        ("strategy(): 100 % of equity", 79, 79),
+    ],
+    482512: [],
+    482515: [],
+    482590: [],
 }
 
 REJECTED_ON_READING = {
@@ -8098,6 +8112,17 @@ REJECTED_ON_READING = {
               "the data starts (criterion 1, as #478711 / #430034)."),
     482456: ("1", "Each entry is qty 2 with two exits of qty 1 at separate targets and break-even "
               "exits for the rest: partial exits (criterion 1)."),
+    # ---- FMZ-C, batch C246 (2026-10-22)
+    482499: ("1", "Each entry has a take-profit exit for half the position (qty_percent = 50) beside "
+              "a close_all stop: partial exits (criterion 1)."),
+    482501: ("2", "The exits pass profit = close + (close - low) x 3, a price, where the call takes "
+              "ticks, with no /mintick: the target is undefined as written (criterion 2, as "
+              "#442115)."),
+    482504: ("2", "The exits pass trail_points = atr x 1.5, a price amount, where the call takes "
+              "ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, "
+              "as #442115)."),
+    482506: ("1", "pyramiding = 50 with up to four separate long entries per week at the S1-S4 "
+              "levels, each with its own target: grid adds (criterion 1)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -8155,4 +8180,6 @@ HELD_ON_READING = {
     482422: ("8", "The entry and exit lines are ta.vwma(close, 25) and ta.vwma(close, 8): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C244 (2026-10-22)
     482454: ("licence", "Held for Austin: the source carries a CC BY-NC-SA 4.0 licence (non-commercial, share-alike; the Andean Oscillator by alexgrover), so it is not ported until Austin decides (as #468315)."),
+    # ---- FMZ-C, batch C246 (2026-10-22)
+    482509: ("8", "The entry line is ta.vwma(close, 200) and the filters are weekly and daily VWMAs: volume-weighted averages (check 8, held with the other volume users)."),
 }

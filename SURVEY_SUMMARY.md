@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2939 |
+| PORTED | 2946 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 572 |
-| REJECTED_ON_READING | 420 |
-| PORT_CANDIDATE | 376 |
+| HELD_NEEDS_VOLUME | 573 |
+| REJECTED_ON_READING | 424 |
+| PORT_CANDIDATE | 364 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -3067,7 +3067,14 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482473 | `ports/482473_high-reward-to-risk-price-structure-breakout-trading-strateg/` | PineScript | donchian_breakout | coarse_bar_stop, trailing_stop_pending | lookback x2, rr_multiplier x2 | 4 |
 | 482474 | `ports/482474_gamma-weighted-momentum-based-bitcoin-futures-intelligent-tr/` | PineScript | ma_trend | none | length x2, gamma_factor x2 | 4 |
 | 482477 | `ports/482477_multi-period-ema-trend-following-with-support-resistance-hyb/` | PineScript | breakout | trailing_stop_pending | sup_res_lookback x2, atr_period x2 | 4 |
-| | **2939 ports** | | | | | **13583** |
+| 482489 | `ports/482489_adx-adaptive-risk-strategy-with-dual-ema-crossover-and-adx-m/` | PineScript | adx_trend | trailing_stop_pending | adx_threshold x2, risk_reward x2 | 4 |
+| 482500 | `ports/482500_multi-indicator-cross-adaptive-trend-following-trading-strat/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | stop_loss_perc x2, take_profit_perc x2 | 4 |
+| 482502 | `ports/482502_rsi-multi-period-ema-trend-detection-with-rsi-overbought-str/` | PineScript | ma_trend | none | rsi_exit x2, ema_entry x2 | 4 |
+| 482510 | `ports/482510_dual-ema-adaptive-optimization-strategy-with-dynamic-stop-ma/` | PineScript | ma_cross | none | sl_input x2, tp_input x2 | 4 |
+| 482512 | `ports/482512_qfl-qfl-oscillation-stop-loss-moving-average-strategy/` | PineScript | support_resistance | none | look_back_period x2, exit_profit_threshold x2 | 4 |
+| 482515 | `ports/482515_ema-neural-moving-average-crossover-trend-following-strategy/` | PineScript | ma_trend | none | ema_length x2, sma_fast x2 | 4 |
+| 482590 | `ports/482590_multi-timeframe-stochastic-oscillator-strategy-with-trend-co/` | PineScript | stochastic_oscillator | trailing_stop_pending | sl_pct x2, tp_pct x2 | 4 |
+| | **2946 ports** | | | | | **13611** |
 
 ## Rejected on reading
 
@@ -3493,6 +3500,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482432 | 动态趋势跟踪的EMA-ADX多级止盈策略-Dynamic-Trend-Following-EMA-ADX-Multi-Level-Take-Profit-Strategy.md | 1 | Three exits per entry close 30 % / 50 % / 20 % of the position (qty_percent): partial exits (criterion 1). |
 | 482444 | 多重支撑阻力位叠加动量反转交易策略-Multi-Level-Support-Resistance-Momentum-Reversal-Trading-Strategy.md | 1 | The Fibonacci levels come from the highest and lowest close since the first bar of the data (cumulative over every up bar): data-window levels that change with where the data starts (criterion 1, as #478711 / #430034). |
 | 482456 | 多周期趋势跟踪与随机震荡优化策略-Multi-Timeframe-Trend-Following-with-Stochastic-Oscillator-Strategy.md | 1 | Each entry is qty 2 with two exits of qty 1 at separate targets and break-even exits for the rest: partial exits (criterion 1). |
+| 482499 | 多重技术指标动态波段交易策略-Multi-Technical-Indicator-Dynamic-Wave-Trading-Strategy.md | 1 | Each entry has a take-profit exit for half the position (qty_percent = 50) beside a close_all stop: partial exits (criterion 1). |
+| 482501 | 指数移动平均线交叉脉冲趋势分析交易策略-Exponential-Moving-Average-Cross-Impulsive-Trend-Analysis-Trading-Strategy.md | 2 | The exits pass profit = close + (close - low) x 3, a price, where the call takes ticks, with no /mintick: the target is undefined as written (criterion 2, as #442115). |
+| 482504 | 多时框随机震荡趋势跟踪交易策略-Multi-Timeframe-Stochastic-Oscillator-Trend-Following-Trading-Strategy.md | 2 | The exits pass trail_points = atr x 1.5, a price amount, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #442115). |
+| 482506 | 基于均值回归的多层级支撑阻力周线交易策略-Multi-Level-Support-Resistance-Weekly-Mean-Reversion-Trading-Strategy.md | 1 | pyramiding = 50 with up to four separate long entries per week at the S1-S4 levels, each with its own target: grid adds (criterion 1). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
