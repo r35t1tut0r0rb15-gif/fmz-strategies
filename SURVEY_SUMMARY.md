@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1930 |
-| PORT_CANDIDATE | 1539 |
+| PORTED | 1940 |
+| PORT_CANDIDATE | 1527 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 566 |
-| REJECTED_ON_READING | 272 |
+| REJECTED_ON_READING | 274 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2058,7 +2058,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 441955 | `ports/441955_the-quantitative-trading-strategy-based-on-dynamic-moving-av/` | PineScript | calendar_seasonal | none | hma_len x2 | 2 |
 | 441958 | `ports/441958_overlay-trend-signals-strategy/` | PineScript | directional_movement | none | di_len x2, ema_len x2 | 4 |
 | 441959 | `ports/441959_dual-driver-quantized-reversal-tracking-strategy/` | PineScript | combo_123_reversal | none | length x2, length_kama x2 | 4 |
-| | **1930 ports** | | | | | **9251** |
+| 441961 | `ports/441961_doubly-confident-price-oscillation-quant-strategy/` | PineScript | combo_123_reversal | none | length x2, long_ema x2 | 4 |
+| 441962 | `ports/441962_cci-dcci-breakout-strategy/` | PineScript | momentum_oscillator | coarse_bar_stop | cci_len x2, atr_mult x2 | 4 |
+| 441963 | `ports/441963_multitimeframe-trend-hunter-strategy/` | PineScript | ichimoku | none | periods x2, multiplier x2 | 4 |
+| 441965 | `ports/441965_momentum-average-inverse-relief-pullback-strategy/` | PineScript | candle_pattern | none | ema_period x2 | 2 |
+| 441991 | `ports/441991_ema-dual-ema-indicator-based-trend-following-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 441997 | `ports/441997_v-sma-v-reversal-sma-strategy/` | PineScript | directional_movement | none | period x2, smooth_len x2 | 4 |
+| 442000 | `ports/442000_macd-ema-macd-ema-crossover-trend-tracking-strategy/` | PineScript | macd_cross | none | len1 x2, profit_long x2 | 4 |
+| 442004 | `ports/442004_dual-timeframe-volatility-spread-trading-strategy/` | PineScript | momentum_oscillator | none | short_sma x2, rsi_factor x2 | 4 |
+| 442006 | `ports/442006_byron-serpent-cloud-quant-strategy/` | PineScript | ichimoku | none | decision_weight x2, base_periods x2 | 4 |
+| 442010 | `ports/442010_dual-moving-average-intelligent-tracking-trading-strategy/` | PineScript | trend_filter | none | length x2, percent x2 | 4 |
+| | **1940 ports** | | | | | **9289** |
 
 ## Rejected on reading
 
@@ -2336,6 +2346,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 441177 | 基于均线金叉突破动量策略Dual-Moving-Average-With-Momentum-Breakout-Strategy.md | 1 | The first target closes Target1_exit_qty = 50 % of the position (strategy.exit with qty_percent = 50): partial exits (criterion 1, as #436524). |
 | 441954 | 三根K线反转趋势策略Three-Candle-Reversal-Trend-Strategy.md | 1 | pyramiding = 2 with repeated qty-1 "Long" / "Short" entries from two signal sets, adding to an open position on the way to the target: the position accumulates units (criterion 1, as #430762). |
 | 441960 | 基于波动趋势追踪策略Volatility-Trend-Tracking-Strategy.md | 1 | pyramiding = 10 and the entries fire while a position is open whenever the close is beyond the average price (martingale-style adds): the position accumulates units (criterion 1, as #430762). |
+| 441998 | 双均线黄金交叉趋势追踪策略Dual-Moving-Average-Golden-Cross-Trend-Trading-Strategy.md | 2 | The exits strategy.exit(loss = stop_loss, profit = take_profit) pass price levels (close -/+ pips x mintick) where the call takes tick distances: the stop and target are undefined as written (criterion 2, as #437048, #437677). |
+| 442007 | 基于BEAM波段的BTCdollar成本平均策略Bitcoin-Dollar-Cost-Averaging-Based-on-BEAM-Bands.md | 1 | A monthly DCA with pyramiding = 500 (five band entries each month) and partial limit exits (qty_percent 6.67 / 14.28 / 25 / 44.44): accumulation and partial exits (criterion 1, as #430762, #436524). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

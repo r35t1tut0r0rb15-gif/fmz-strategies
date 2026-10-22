@@ -4245,6 +4245,25 @@ SIZING = {
     441955: [],
     441958: [],
     441959: [],
+    # ---- FMZ-C, batch C149 (2026-10-22)
+    441961: [],
+    441962: [
+        ("strategy(): 100 % of equity, capital 10000, commission 0.04", 187, 194),
+    ],
+    441963: [
+        ("strategy(): 80 % of equity, capital 1000", 140, 140),
+    ],
+    441965: [],
+    441991: [],
+    441997: [],
+    442000: [
+        ("strategy(): 100 % of equity, capital 5000", 158, 158),
+    ],
+    442004: [
+        ("strategy.entry qty = equity / (close x count)", 153, 177),
+    ],
+    442006: [],
+    442010: [],
 }
 
 REJECTED_ON_READING = {
@@ -5364,6 +5383,13 @@ REJECTED_ON_READING = {
     441960: ("1", "pyramiding = 10 and the entries fire while a position is open whenever the close "
               "is beyond the average price (martingale-style adds): the position accumulates "
               "units (criterion 1, as #430762)."),
+    # ---- FMZ-C, batch C149 (2026-10-22)
+    441998: ("2", "The exits strategy.exit(loss = stop_loss, profit = take_profit) pass price levels "
+              "(close -/+ pips x mintick) where the call takes tick distances: the stop and "
+              "target are undefined as written (criterion 2, as #437048, #437677)."),
+    442007: ("1", "A monthly DCA with pyramiding = 500 (five band entries each month) and partial "
+              "limit exits (qty_percent 6.67 / 14.28 / 25 / 44.44): accumulation and partial "
+              "exits (criterion 1, as #430762, #436524)."),
 }
 
 DUPLICATE_ON_READING = {

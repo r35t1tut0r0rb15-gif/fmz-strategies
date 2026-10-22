@@ -271,6 +271,8 @@ fmz_id,file,final_outcome,criterion,reason
 441177,基于均线金叉突破动量策略Dual-Moving-Average-With-Momentum-Breakout-Strategy.md,REJECTED_ON_READING,1,"The first target closes Target1_exit_qty = 50 % of the position (strategy.exit with qty_percent = 50): partial exits (criterion 1, as #436524)."
 441954,三根K线反转趋势策略Three-Candle-Reversal-Trend-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 2 with repeated qty-1 ""Long"" / ""Short"" entries from two signal sets, adding to an open position on the way to the target: the position accumulates units (criterion 1, as #430762)."
 441960,基于波动趋势追踪策略Volatility-Trend-Tracking-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 10 and the entries fire while a position is open whenever the close is beyond the average price (martingale-style adds): the position accumulates units (criterion 1, as #430762)."
+441998,双均线黄金交叉趋势追踪策略Dual-Moving-Average-Golden-Cross-Trend-Trading-Strategy.md,REJECTED_ON_READING,2,"The exits strategy.exit(loss = stop_loss, profit = take_profit) pass price levels (close -/+ pips x mintick) where the call takes tick distances: the stop and target are undefined as written (criterion 2, as #437048, #437677)."
+442007,基于BEAM波段的BTCdollar成本平均策略Bitcoin-Dollar-Cost-Averaging-Based-on-BEAM-Bands.md,REJECTED_ON_READING,1,"A monthly DCA with pyramiding = 500 (five band entries each month) and partial limit exits (qty_percent 6.67 / 14.28 / 25 / 44.44): accumulation and partial exits (criterion 1, as #430762, #436524)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2220,3 +2222,13 @@ fmz_id,file,final_outcome,criterion,reason
 441955,固定止盈止损出场的量化交易策略The-Quantitative-Trading-Strategy-Based-on-Dynamic-Moving-Average-Breakthrough-Entry.md,PORTED,,ports/441955_the-quantitative-trading-strategy-based-on-dynamic-moving-av/
 441958,基于双向运动量指数策略Overlay-Trend-Signals-Strategy.md,PORTED,,ports/441958_overlay-trend-signals-strategy/
 441959,双管齐下量化反转追踪策略Dual-driver-Quantized-Reversal-Tracking-Strategy.md,PORTED,,ports/441959_dual-driver-quantized-reversal-tracking-strategy/
+441961,双自信价格震荡量化策略Doubly-Confident-Price-Oscillation-Quant-Strategy.md,PORTED,,ports/441961_doubly-confident-price-oscillation-quant-strategy/
+441962,动态CCI突破策略DCCI-Breakout-Strategy.md,PORTED,,ports/441962_cci-dcci-breakout-strategy/
+441963,多时间框架趋势猎手策略Multitimeframe-Trend-Hunter-Strategy.md,PORTED,,ports/441963_multitimeframe-trend-hunter-strategy/
+441965,动量平均倒数救济拉回策略Momentum-Average-Inverse-Relief-Pullback-Strategy.md,PORTED,,ports/441965_momentum-average-inverse-relief-pullback-strategy/
+441991,基于双EMA指标的趋势跟随策略Dual-EMA-Indicator-Based-Trend-Following-Strategy.md,PORTED,,ports/441991_ema-dual-ema-indicator-based-trend-following-strategy/
+441997,基于V型反转指标SMA策略V-Reversal-SMA-Strategy.md,PORTED,,ports/441997_v-sma-v-reversal-sma-strategy/
+442000,MACD-EMA黄金交叉趋势追踪策略MACD-EMA-Crossover-Trend-Tracking-Strategy.md,PORTED,,ports/442000_macd-ema-macd-ema-crossover-trend-tracking-strategy/
+442004,双时间轴波动率价差交易策略Dual-Timeframe-Volatility-Spread-Trading-Strategy.md,PORTED,,ports/442004_dual-timeframe-volatility-spread-trading-strategy/
+442006,华金斯蛇吻风云量化策略Byron-Serpent-Cloud-Quant-Strategy.md,PORTED,,ports/442006_byron-serpent-cloud-quant-strategy/
+442010,基于双均线智能追踪交易策略Dual-Moving-Average-Intelligent-Tracking-Trading-Strategy.md,PORTED,,ports/442010_dual-moving-average-intelligent-tracking-trading-strategy/
