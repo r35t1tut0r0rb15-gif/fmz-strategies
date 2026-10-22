@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #444352 (均线与超级趋势结合的日内多空动态平衡策略Dynamic-Intraday-Long-Short-Balancing-Strategy-Combining-Moving-Average-and-Supertrend)
+# Source: https://www.fmz.com/strategy/444352  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 134-134]
+  134: strategy("EQ - INTRA - Samsuga supertrend prod", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100, calc_on_every_tick = false)

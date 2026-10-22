@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #444363 (基于双均线交叉策略The-Dual-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/444363  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin_long 100, margin_short 100  [lines 150-150]
+  150: strategy("#2idagos", overlay=true, margin_long=100, margin_short=100)

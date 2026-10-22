@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #444336 (基于动量顺势策略Momentum-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/444336  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital 10000, pyramiding 1, slippage 2  [lines 132-132]
+  132: strategy("Aroon and ASH strategy - ETHERIUM [IkkeOmar]", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=100, pyramiding=1, commission_value=0, slippage=2)

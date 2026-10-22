@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #444344 (基于UT-Bot指标的ATR移动止损策略UT-Bot-Indicator-Based-ATR-Trailing-Stop-Strategy)
+# Source: https://www.fmz.com/strategy/444344  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trailing stop percent and levels (0.20 of the close)  [lines 127-150]
+  127: Trailperc = 0.20
+  128: price_stop_long = 0.0
+  129: 
+  130: if (strategy.position_size > 0)
+  131:     stopValue = close * (1 - Trailperc)
+  132:     price_stop_long := max(stopValue, price_stop_long[1])
+  133: else
+  134:     price_stop_long := 0
+  135: 
+  136: if (strategy.position_size > 0)
+  137:     strategy.exit(id="stoploss_long", stop=price_stop_long)
+  138: 
+  139: // Trailing stop loss for short positions
+  140: Trailperc_short = 0.20
+  141: price_stop_short = 0.0
+  142: 
+  143: if (strategy.position_size < 0)
+  144:     stopValue_short = close * (1 + Trailperc_short)
+  145:     price_stop_short := min(stopValue_short, price_stop_short[1])
+  146: else
+  147:     price_stop_short := 0
+  148: 
+  149: if (strategy.position_size < 0)
+  150:     strategy.exit(id="stoploss_short", stop=price_stop_short)

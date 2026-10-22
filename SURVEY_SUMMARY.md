@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2149 |
-| PORT_CANDIDATE | 1287 |
+| PORTED | 2159 |
+| PORT_CANDIDATE | 1275 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 304 |
+| REJECTED_ON_READING | 306 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2277,7 +2277,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 444018 | `ports/444018_macd-multi-stage-bollinger-bands-macd-crossover-signal-quant/` | PineScript | bollinger_breakout | none | length x2, atr_length x2 | 4 |
 | 444020 | `ports/444020_bitcoin-momentum-trailing-stop-strategy/` | PineScript | ma_trend | none | ema_length x2, trail_lookback x2 | 4 |
 | 444025 | `ports/444025_kd-bollinger-bands-and-stochastic-kd-crossover-strategy/` | PineScript | bollinger_reversion | none | length x2, kd_length x2 | 4 |
-| | **2149 ports** | | | | | **10067** |
+| 444034 | `ports/444034_range-filter-buy-sell-signals-strategy/` | PineScript | adaptive_average | none | rng_per x2, rng_qty x2 | 4 |
+| 444040 | `ports/444040_ema-rsi-ema-and-stochastic-rsi-based-multi-timeframe-trend-f/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 444042 | `ports/444042_trend-following-strategy-based-on-support-resistance-and-mom/` | PineScript | supertrend | none | factor x2, prd x2 | 4 |
+| 444336 | `ports/444336_momentum-trend-following-strategy/` | PineScript | trend_filter | none | len_upper x2, len_lower x2 | 4 |
+| 444338 | `ports/444338_bollinger-bands-and-moving-average-combined-with-relative-st/` | PineScript | bollinger_reversion | none | length x2, rsi_length x2 | 4 |
+| 444341 | `ports/444341_g-channel-ema-g-channel-and-ema-trend-following-strategy/` | PineScript | trend_filter | none | length x2, ema_length x2 | 4 |
+| 444344 | `ports/444344_ut-bot-atr-ut-bot-indicator-based-atr-trailing-stop-strategy/` | PineScript | ma_trend | trailing_stop_pending | ma_len x2 | 2 |
+| 444350 | `ports/444350_macd-samsuga-supertrend-macd-strategy/` | PineScript | supertrend | none | factor x2, atr_period x2 | 4 |
+| 444352 | `ports/444352_dynamic-intraday-long-short-balancing-strategy-combining-mov/` | PineScript | multi_timeframe_ma | none | factor x2, atr_period x2 | 4 |
+| 444363 | `ports/444363_the-dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| | **2159 ports** | | | | | **10105** |
 
 ## Rejected on reading
 
@@ -2587,6 +2597,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 443252 | 基于布林带的短线交易策略Short-Term-Trading-Strategy-Based-on-Bollinger-Bands.md | 2 | The exits strategy.exit(profit = close x (1 + 0.5 %), loss = close x (1 - 3 %)) pass price levels where the call takes tick distances, with no /mintick: the target and stop are undefined as written (criterion 2, as #442115, #437048). |
 | 443990 | SSL通道与绿量策略SSL-Channel-and-Green-Volume-Strategy.md | 2 | The exits strategy.exit(loss = close x (1 - 0.5 %), profit = close x (1 + 1 %)) pass price levels where the call takes tick distances, with no /mintick: the stops and targets are undefined as written (criterion 2, as #442076, #437048). |
 | 444024 | 基于随机RSI和EMA交叉的加密货币回调交易策略Crypto-Pullback-Trading-Strategy-Based-on-Stochastic-RSI-and-EMA-Crossover.md | 1 | pyramiding = 10 with level entries (close between the EMAs with the stochastic RSI under 25 / over 85) re-sent on every bar the condition holds: the position accumulates units (criterion 1, as #442112, #430762). |
+| 444028 | 抛物线SAR趋势跟踪策略-60Parabolic-SAR-Trend-Tracking-Strategy-60.md | 1 | pyramiding = 5 with a new long on each SAR crossover while a long is open (the short needs a 2 % down bar): the position accumulates units (criterion 1, as #442112, #430762). |
+| 444355 | 基于平均价海金阿什烛台与相对强弱指数的动态调仓策略Dynamic-Capital-Allocation-Strategy-Based-on-Heikin-Ashi-Candles-and-Relative-Strength-Index.md | 1 | pyramiding = 10000 with a 10 % of equity buy on every green Heikin Ashi candle after a red one until the RSI exit: dollar-cost averaging that accumulates units (criterion 1, as #442229, #430762). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

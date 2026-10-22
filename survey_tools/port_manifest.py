@@ -4621,6 +4621,27 @@ SIZING = {
     444018: [],
     444020: [],
     444025: [],
+    # ---- FMZ-C, batch C170 (2026-10-22)
+    444034: [],
+    444040: [],
+    444042: [],
+    444336: [
+        ("strategy(): 100 % of equity, capital 10000, pyramiding 1, slippage 2", 132, 132),
+    ],
+    444338: [],
+    444341: [],
+    444344: [
+        ("Trailing stop percent and levels (0.20 of the close)", 127, 150),
+    ],
+    444350: [
+        ("strategy(): 100 % of equity", 114, 114),
+    ],
+    444352: [
+        ("strategy(): 100 % of equity", 134, 134),
+    ],
+    444363: [
+        ("strategy(): margin_long 100, margin_short 100", 150, 150),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -5864,6 +5885,13 @@ REJECTED_ON_READING = {
     444024: ("1", "pyramiding = 10 with level entries (close between the EMAs with the stochastic RSI "
               "under 25 / over 85) re-sent on every bar the condition holds: the position "
               "accumulates units (criterion 1, as #442112, #430762)."),
+    # ---- FMZ-C, batch C170 (2026-10-22)
+    444028: ("1", "pyramiding = 5 with a new long on each SAR crossover while a long is open (the "
+              "short needs a 2 % down bar): the position accumulates units (criterion 1, as "
+              "#442112, #430762)."),
+    444355: ("1", "pyramiding = 10000 with a 10 % of equity buy on every green Heikin Ashi candle "
+              "after a red one until the RSI exit: dollar-cost averaging that accumulates units "
+              "(criterion 1, as #442229, #430762)."),
 }
 
 DUPLICATE_ON_READING = {

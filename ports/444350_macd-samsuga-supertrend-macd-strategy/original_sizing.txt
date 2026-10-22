@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #444350 (基于超级趋势和MACD的风险控制策略Samsuga-SuperTrend-MACD-Strategy)
+# Source: https://www.fmz.com/strategy/444350  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 114-114]
+  114: strategy("Samsuga supertrend", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

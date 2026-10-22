@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #444341 (G-Channel与EMA结合的趋势跟踪策略G-Channel-and-EMA-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/444341  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

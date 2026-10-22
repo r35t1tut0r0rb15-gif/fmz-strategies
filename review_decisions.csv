@@ -303,6 +303,8 @@ fmz_id,file,final_outcome,criterion,reason
 443252,基于布林带的短线交易策略Short-Term-Trading-Strategy-Based-on-Bollinger-Bands.md,REJECTED_ON_READING,2,"The exits strategy.exit(profit = close x (1 + 0.5 %), loss = close x (1 - 3 %)) pass price levels where the call takes tick distances, with no /mintick: the target and stop are undefined as written (criterion 2, as #442115, #437048)."
 443990,SSL通道与绿量策略SSL-Channel-and-Green-Volume-Strategy.md,REJECTED_ON_READING,2,"The exits strategy.exit(loss = close x (1 - 0.5 %), profit = close x (1 + 1 %)) pass price levels where the call takes tick distances, with no /mintick: the stops and targets are undefined as written (criterion 2, as #442076, #437048)."
 444024,基于随机RSI和EMA交叉的加密货币回调交易策略Crypto-Pullback-Trading-Strategy-Based-on-Stochastic-RSI-and-EMA-Crossover.md,REJECTED_ON_READING,1,"pyramiding = 10 with level entries (close between the EMAs with the stochastic RSI under 25 / over 85) re-sent on every bar the condition holds: the position accumulates units (criterion 1, as #442112, #430762)."
+444028,抛物线SAR趋势跟踪策略-60Parabolic-SAR-Trend-Tracking-Strategy-60.md,REJECTED_ON_READING,1,"pyramiding = 5 with a new long on each SAR crossover while a long is open (the short needs a 2 % down bar): the position accumulates units (criterion 1, as #442112, #430762)."
+444355,基于平均价海金阿什烛台与相对强弱指数的动态调仓策略Dynamic-Capital-Allocation-Strategy-Based-on-Heikin-Ashi-Candles-and-Relative-Strength-Index.md,REJECTED_ON_READING,1,"pyramiding = 10000 with a 10 % of equity buy on every green Heikin Ashi candle after a red one until the RSI exit: dollar-cost averaging that accumulates units (criterion 1, as #442229, #430762)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2472,3 +2474,13 @@ fmz_id,file,final_outcome,criterion,reason
 444018,基于多阶段布林带和MACD指标的量化交易策略Multi-Stage-Bollinger-Bands-MACD-Crossover-Signal-Quantitative-Trading-Strategy.md,PORTED,,ports/444018_macd-multi-stage-bollinger-bands-macd-crossover-signal-quant/
 444020,比特币动量跟踪止损策略Bitcoin-Momentum-Trailing-Stop-Strategy.md,PORTED,,ports/444020_bitcoin-momentum-trailing-stop-strategy/
 444025,布林带与随机指标KD交叉策略Bollinger-Bands-and-Stochastic-KD-Crossover-Strategy.md,PORTED,,ports/444025_kd-bollinger-bands-and-stochastic-kd-crossover-strategy/
+444034,基于价格波动范围的买卖信号过滤策略Range-Filter-Buy-Sell-Signals-Strategy.md,PORTED,,ports/444034_range-filter-buy-sell-signals-strategy/
+444040,基于EMA和随机RSI的多周期趋势跟踪交易策略EMA-and-Stochastic-RSI-based-Multi-timeframe-Trend-Following-Trading-Strategy.md,PORTED,,ports/444040_ema-rsi-ema-and-stochastic-rsi-based-multi-timeframe-trend-f/
+444042,基于支撑阻力和动量指标的多时间框架趋势跟踪策略Trend-Following-Strategy-Based-on-Support-Resistance-and-Momentum-Indicators-Across-Multiple-Timeframes.md,PORTED,,ports/444042_trend-following-strategy-based-on-support-resistance-and-mom/
+444336,基于动量顺势策略Momentum-Trend-Following-Strategy.md,PORTED,,ports/444336_momentum-trend-following-strategy/
+444338,布林带与移动平均线结合的相对强弱指标交易策略Bollinger-Bands-and-Moving-Average-Combined-with-Relative-Strength-Index-Trading-Strategy.md,PORTED,,ports/444338_bollinger-bands-and-moving-average-combined-with-relative-st/
+444341,G-Channel与EMA结合的趋势跟踪策略G-Channel-and-EMA-Trend-Following-Strategy.md,PORTED,,ports/444341_g-channel-ema-g-channel-and-ema-trend-following-strategy/
+444344,基于UT-Bot指标的ATR移动止损策略UT-Bot-Indicator-Based-ATR-Trailing-Stop-Strategy.md,PORTED,,ports/444344_ut-bot-atr-ut-bot-indicator-based-atr-trailing-stop-strategy/
+444350,基于超级趋势和MACD的风险控制策略Samsuga-SuperTrend-MACD-Strategy.md,PORTED,,ports/444350_macd-samsuga-supertrend-macd-strategy/
+444352,均线与超级趋势结合的日内多空动态平衡策略Dynamic-Intraday-Long-Short-Balancing-Strategy-Combining-Moving-Average-and-Supertrend.md,PORTED,,ports/444352_dynamic-intraday-long-short-balancing-strategy-combining-mov/
+444363,基于双均线交叉策略The-Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/444363_the-dual-moving-average-crossover-strategy/

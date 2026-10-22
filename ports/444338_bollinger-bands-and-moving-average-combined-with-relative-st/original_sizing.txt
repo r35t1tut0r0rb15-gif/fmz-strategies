@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #444338 (布林带与移动平均线结合的相对强弱指标交易策略Bollinger-Bands-and-Moving-Average-Combined-with-Relative-Strength-Index-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/444338  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
