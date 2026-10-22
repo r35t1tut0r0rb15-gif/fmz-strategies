@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2549 |
+| PORTED | 2558 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 832 |
-| HELD_NEEDS_VOLUME | 568 |
-| REJECTED_ON_READING | 358 |
+| PORT_CANDIDATE | 820 |
+| HELD_NEEDS_VOLUME | 569 |
+| REJECTED_ON_READING | 360 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2677,7 +2677,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 468333 | `ports/468333_adaptive-price-crossing-moving-average-trading-strategy/` | PineScript | hull_ma | coarse_bar_stop | hma_length x2, sl_frac x2, tp_frac x2 | 8 |
 | 468334 | `ports/468334_dual-indicator-trading-strategy-combining-trend-following-an/` | PineScript | macd_cross | coarse_bar_stop | trend_len x2, sl_mult x2, tp_mult x2 | 8 |
 | 468335 | `ports/468335_adaptive-risk-management-strategy-based-on-dual-moving-avera/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
-| | **2549 ports** | | | | | **12014** |
+| 468336 | `ports/468336_bollinger-bands-bollinger-bands-momentum-reversal-quantitati/` | PineScript | bollinger_reversion | trailing_stop_pending | period x2, multiplier x2 | 4 |
+| 468338 | `ports/468338_dual-moving-average-channel-trend-following-strategy/` | PineScript | ma_cross | trailing_stop_pending | short_len x2, long_len x2, ema_len x2 | 8 |
+| 468349 | `ports/468349_bollinger-band-overbought-oversold-strategy/` | PineScript | bollinger_reversion | none | length x2, low_b x2, high_b x2 | 8 |
+| 468350 | `ports/468350_adaptive-multi-level-trading-strategy-based-on-fibonacci-ret/` | PineScript | pivot_levels | coarse_bar_stop | lookback x2, tp_frac x2, sl_frac x2 | 8 |
+| 468351 | `ports/468351_ema-fibonacci-ema-crossover-fibonacci-reversal-strategy/` | PineScript | multi_indicator_confluence | trailing_stop_pending | ema_len x2, lookback x2 | 4 |
+| 468352 | `ports/468352_multi-dimensional-mathematical-model-trading-strategy/` | PineScript | trend_filter | none | reg_len x2, ema_len x2 | 4 |
+| 469615 | `ports/469615_bollinger-bands-precise-crossover-quantitative-strategy/` | PineScript | bollinger_reversion | none | length x2, multiplier x2 | 4 |
+| 469617 | `ports/469617_volatility-stop-cloud-strategy-with-moving-average-crossover/` | PineScript | volatility_stop_cross | none | length x2, factor_small x2, factor_big x2 | 8 |
+| 469618 | `ports/469618_multi-indicator-crossover-momentum-trading-strategy-with-opt/` | PineScript | ma_cross | coarse_bar_stop | fast x2, slow x2, tp_pct x2 | 8 |
+| | **2558 ports** | | | | | **12070** |
 
 ## Rejected on reading
 
@@ -3041,6 +3050,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 458245 | 基于艾略特波浪与汤姆德马克顺势交易策略-Elliott-Wave-and-Tom-DeMark-Trend-Following-Trading-Strategy.md | 1 | The long's limit and stop are the same price (wave1 = wave3 = valuewhen(wave_trend == 1, close, 0)) and the short's too (wave2 = wave4), sent on every bar including the signal bar: one of each pair is always marketable at the fill, so every trade closes at the open it fills at and no position is ever held as written (criterion 1, zero-length trades as #452827). |
 | 458265 | 高级马尔可夫模型技术指标融合交易策略Advanced-Markov-Model-Technical-Indicator-Fusion-Trading-Strategy.md | 1 | The trades follow math.random() draws (each bar's 'next state' is chosen by random numbers against fixed probabilities): no reproducible rule, and every run of the script trades differently (criterion 1). |
 | 468306 | 双均线交叉日内盈利目标策略-Dual-Moving-Average-Crossover-Strategy-with-Daily-Profit-Target.md | 1 | strategy.netprofit >= 200 (the 'daily' target is the cumulative net profit in currency) closes every position on every later bar: once the running profit of the sized trades passes 200 the strategy stops trading, so the trades depend on the position size and the account history (criterion 1, equity / net-profit gate). |
+| 468340 | 增强型突破策略与目标和止损优化-Enhanced-Breakout-Strategy-with-Targets-and-Stop-Loss-Optimization.md | 1 | The breakout levels are the high and low of the first 5 bars of whatever data is loaded (bar_index < 5), held for ever: where the trades fall depends on where the data starts (criterion 1, data-start-dependent levels). |
+| 469612 | 多级平衡量化交易策略-Multi-Level-Balanced-Quantitative-Trading-Strategy.md | 1 | pyramiding = 10 with up to 10 stacked entries per side whose quantities step 1, 2, 4, 8, 5 ... 10 as the same signals repeat, and closes per entry id: the position-size path is the strategy (criterion 1, as #430762, #439950). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

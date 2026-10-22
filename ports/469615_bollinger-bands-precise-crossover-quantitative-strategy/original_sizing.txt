@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #469615 (布林带精确交叉突破量化策略Bollinger-Bands-Precise-Crossover-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/469615  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

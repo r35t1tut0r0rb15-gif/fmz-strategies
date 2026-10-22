@@ -1,0 +1,100 @@
+# Original sizing and money-management code, FMZ #468350 (基于斐波那契回撤的自适应多级别交易策略-Adaptive-Multi-Level-Trading-Strategy-Based-on-Fibonacci-Retracement)
+# Source: https://www.fmz.com/strategy/468350  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity; target 50 / stop 20 pips  [lines 128-222]
+  128: strategy("Simple Fibonacci Retracement Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+  129: 
+  130: // Input period for high and low points identification
+  131: lookback = input.int(100, title="Lookback Period", minval=10)
+  132: 
+  133: // Input to choose Fibonacci calculation direction
+  134: fib_direction = input.string(title="Fibonacci Direction", defval="Top to Bottom", options=["Top to Bottom", "Bottom to Top"])
+  135: 
+  136: // Input for Fibonacci levels
+  137: fib_level_236 = input.float(0.236, title="Fib 23.6% Level")
+  138: fib_level_382 = input.float(0.382, title="Fib 38.2% Level")
+  139: fib_level_50 = input.float(0.5, title="Fib 50% Level")
+  140: fib_level_618 = input.float(0.618, title="Fib 61.8% Level")
+  141: 
+  142: // Input to choose the level for entry signals
+  143: buy_entry_level = input.string(title="Buy Entry Level", defval="Fib 61.8%", options=["Fib 23.6%", "Fib 38.2%", "Fib 50%", "Fib 61.8%"])
+  144: sell_entry_level = input.string(title="Sell Entry Level", defval="Fib 38.2%", options=["Fib 23.6%", "Fib 38.2%", "Fib 50%", "Fib 61.8%"])
+  145: 
+  146: // Input for take profit and stop loss in pips
+  147: take_profit_pips = input.int(50, title="Take Profit (pips)")
+  148: stop_loss_pips = input.int(20, title="Stop Loss (pips)")
+  149: 
+  150: // Identify high and low points within the lookback period
+  151: highestHigh = ta.highest(high, lookback)
+  152: lowestLow = ta.lowest(low, lookback)
+  153: 
+  154: // Calculate Fibonacci levels based on the selected direction
+  155: var float fib_0 = na
+  156: var float fib_100 = na
+  157: var float fib_236 = na
+  158: var float fib_382 = na
+  159: var float fib_50 = na
+  160: var float fib_618 = na
+  161: 
+  162: if fib_direction == "Top to Bottom"
+  163:     fib_0 := highestHigh
+  164:     fib_100 := lowestLow
+  165:     fib_236 := highestHigh - (highestHigh - lowestLow) * fib_level_236
+  166:     fib_382 := highestHigh - (highestHigh - lowestLow) * fib_level_382
+  167:     fib_50 := highestHigh - (highestHigh - lowestLow) * fib_level_50
+  168:     fib_618 := highestHigh - (highestHigh - lowestLow) * fib_level_618
+  169: else
+  170:     fib_0 := lowestLow
+  171:     fib_100 := highestHigh
+  172:     fib_236 := lowestLow + (highestHigh - lowestLow) * fib_level_236
+  173:     fib_382 := lowestLow + (highestHigh - lowestLow) * fib_level_382
+  174:     fib_50 := lowestLow + (highestHigh - lowestLow) * fib_level_50
+  175:     fib_618 := lowestLow + (highestHigh - lowestLow) * fib_level_618
+  176: 
+  177: // Determine which level to use for buy and sell signals based on user input
+  178: var float buy_fib_level = na
+  179: var float sell_fib_level = na
+  180: 
+  181: if buy_entry_level == "Fib 23.6%"
+  182:     buy_fib_level := fib_236
+  183: if buy_entry_level == "Fib 38.2%"
+  184:     buy_fib_level := fib_382
+  185: if buy_entry_level == "Fib 50%"
+  186:     buy_fib_level := fib_50
+  187: if buy_entry_level == "Fib 61.8%"
+  188:     buy_fib_level := fib_618
+  189: 
+  190: if sell_entry_level == "Fib 23.6%"
+  191:     sell_fib_level := fib_236
+  192: if sell_entry_level == "Fib 38.2%"
+  193:     sell_fib_level := fib_382
+  194: if sell_entry_level == "Fib 50%"
+  195:     sell_fib_level := fib_50
+  196: if sell_entry_level == "Fib 61.8%"
+  197:     sell_fib_level := fib_618
+  198: 
+  199: // Convert pips to price units (assuming 1 pip = 0.0001 for currency pairs like EURUSD)
+  200: pip_value = syminfo.mintick * 10
+  201: take_profit = take_profit_pips * pip_value
+  202: stop_loss = stop_loss_pips * pip_value
+  203: 
+  204: // Trading signals
+  205: var bool longSignal = na
+  206: var bool shortSignal = na
+  207: 
+  208: if fib_direction == "Top to Bottom"
+  209:     longSignal := ta.crossover(close, buy_fib_level) and close > buy_fib_level
+  210:     shortSignal := ta.crossunder(close, sell_fib_level) and close < sell_fib_level
+  211: else
+  212:     longSignal := ta.crossover(close, buy_fib_level) and close > buy_fib_level
+  213:     shortSignal := ta.crossunder(close, sell_fib_level) and close < sell_fib_level
+  214: 
+  215: // Execute trades based on signals with take profit and stop loss
+  216: if (longSignal)
+  217:     strategy.entry("Long", strategy.long, comment="BUY")
+  218:     strategy.exit("Take Profit/Stop Loss", "Long", limit=close + take_profit, stop=close - stop_loss)
+  219: 
+  220: if (shortSignal)
+  221:     strategy.entry("Short", strategy.short, comment="SELL")
+  222:     strategy.exit("Take Profit/Stop Loss", "Short", limit=close - take_profit, stop=close + stop_loss)

@@ -5489,6 +5489,26 @@ SIZING = {
     468335: [
         ("Risk 2.5 % of equity over a stop 1.5 % under the SMA 200 (size only)", 125, 139),
     ],
+    # ---- FMZ-C, batch C208 (2026-10-22)
+    468336: [
+        ("Stops at the current outer band (re-sent every bar)", 160, 167),
+    ],
+    468338: [
+        ("qty 1; stop ref / 70, target ref / 140; trailing exits 150 points away", 140, 198),
+    ],
+    468349: [],
+    468350: [
+        ("strategy(): 10 % of equity; target 50 / stop 20 pips", 128, 222),
+    ],
+    468351: [
+        ("Target / stop 2 % of the current close (re-sent every bar)", 202, 212),
+    ],
+    468352: [],
+    469615: [],
+    469617: [],
+    469618: [
+        ("strategy(): margin 100 / 100; target 3 % / stop 1 % of the average price", 123, 171),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -6940,6 +6960,13 @@ REJECTED_ON_READING = {
               "currency) closes every position on every later bar: once the running profit of the "
               "sized trades passes 200 the strategy stops trading, so the trades depend on the "
               "position size and the account history (criterion 1, equity / net-profit gate)."),
+    # ---- FMZ-C, batch C208 (2026-10-22)
+    468340: ("1", "The breakout levels are the high and low of the first 5 bars of whatever data is "
+              "loaded (bar_index < 5), held for ever: where the trades fall depends on where the "
+              "data starts (criterion 1, data-start-dependent levels)."),
+    469612: ("1", "pyramiding = 10 with up to 10 stacked entries per side whose quantities step 1, 2, "
+              "4, 8, 5 ... 10 as the same signals repeat, and closes per entry id: the "
+              "position-size path is the strategy (criterion 1, as #430762, #439950)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -6989,4 +7016,6 @@ HELD_ON_READING = {
     442220: ("8", "The channel averages include vwma(high, 12) and vwma(low, 12): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C206 (2026-10-22)
     468315: ("licence", "Held for Austin: the source says 'Copyright 2024 TRADINGWITHKAY. All rights reserved. Unauthorized use, distribution, and modification of this code are strictly prohibited.' The rules themselves are portable (RSI 14 zones 20 / 30 / 70 / 80 reversing, a 50-pip bracket = 50 price units at mintick x 10, 2-day bars). Port or reject on Austin's word; the review CSV labels every held row HELD_NEEDS_VOLUME (tool label)."),
+    # ---- FMZ-C, batch C208 (2026-10-22)
+    468337: ("8", "The trend filter compares vwma(close, 20) with vwma(close, 50): volume-weighted averages (check 8, held with the other volume users)."),
 }

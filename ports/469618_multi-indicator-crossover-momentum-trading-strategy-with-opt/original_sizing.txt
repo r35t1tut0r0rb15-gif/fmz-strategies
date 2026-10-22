@@ -1,0 +1,54 @@
+# Original sizing and money-management code, FMZ #469618 (多指标交叉动量交易策略结合止盈止损优化系统-Multi-Indicator-Crossover-Momentum-Trading-Strategy-with-Optimized-Take-Profit-and-Stop-Loss-System)
+# Source: https://www.fmz.com/strategy/469618  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin 100 / 100; target 3 % / stop 1 % of the average price  [lines 123-171]
+  123: strategy("Crypto Futures Day Trading with Profit/Limit/Loss", overlay=true, margin_long=100, margin_short=100)
+  124: 
+  125: // Parameters for the strategy
+  126: rsiPeriod = input.int(14, title="RSI Period")
+  127: rsiOverbought = input.int(70, title="RSI Overbought Level")
+  128: rsiOversold = input.int(30, title="RSI Oversold Level")
+  129: emaShortPeriod = input.int(9, title="Short EMA Period")
+  130: emaLongPeriod = input.int(21, title="Long EMA Period")
+  131: macdFastLength = input.int(12, title="MACD Fast Length")
+  132: macdSlowLength = input.int(26, title="MACD Slow Length")
+  133: macdSignalSmoothing = input.int(9, title="MACD Signal Smoothing")
+  134: 
+  135: // Parameters for Take Profit, Stop Loss, and Limit
+  136: takeProfitPercent = input.float(3, title="Take Profit %", step=0.1) // 3% by default
+  137: stopLossPercent = input.float(1, title="Stop Loss %", step=0.1) // 1% by default
+  138: limitRiskRewardRatio = input.float(2, title="Risk/Reward Ratio", step=0.1) // Example: 2:1 ratio
+  139: 
+  140: // Calculate RSI
+  141: rsi = ta.rsi(close, rsiPeriod)
+  142: 
+  143: // Calculate EMA (Exponential Moving Average)
+  144: emaShort = ta.ema(close, emaShortPeriod)
+  145: emaLong = ta.ema(close, emaLongPeriod)
+  146: 
+  147: // Calculate MACD
+  148: [macdLine, signalLine, _] = ta.macd(close, macdFastLength, macdSlowLength, macdSignalSmoothing)
+  149: 
+  150: // Calculate take profit and stop loss levels
+  151: takeProfitLong = strategy.position_avg_price * (1 + takeProfitPercent / 100)
+  152: stopLossLong = strategy.position_avg_price * (1 - stopLossPercent / 100)
+  153: 
+  154: takeProfitShort = strategy.position_avg_price * (1 - takeProfitPercent / 100)
+  155: stopLossShort = strategy.position_avg_price * (1 + stopLossPercent / 100)
+  156: 
+  157: // Entry conditions for long position
+  158: longCondition = ta.crossover(emaShort, emaLong) and rsi < rsiOverbought and macdLine > signalLine
+  159: if (longCondition)
+  160:     strategy.entry("Long", strategy.long)
+  161: 
+  162: // Exit conditions for long position based on stop loss and take profit
+  163: strategy.exit("Take Profit/Stop Loss Long", from_entry="Long", limit=takeProfitLong, stop=stopLossLong)
+  164: 
+  165: // Entry conditions for short position
+  166: shortCondition = ta.crossunder(emaShort, emaLong) and rsi > rsiOversold and macdLine < signalLine
+  167: if (shortCondition)
+  168:     strategy.entry("Short", strategy.short)
+  169: 
+  170: // Exit conditions for short position based on stop loss and take profit
+  171: strategy.exit("Take Profit/Stop Loss Short", from_entry="Short", limit=takeProfitShort, stop=stopLossShort)

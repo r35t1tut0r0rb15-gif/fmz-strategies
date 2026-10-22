@@ -1,0 +1,64 @@
+# Original sizing and money-management code, FMZ #468338 (双均线通道趋势跟踪策略-Dual-Moving-Average-Channel-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/468338  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty 1; stop ref / 70, target ref / 140; trailing exits 150 points away  [lines 140-198]
+  140: var float long_stop_loss = na
+  141: var float long_take_profit = na
+  142: 
+  143: if (enter_long or exit_long  )
+  144:     long_stop_loss := close
+  145: 
+  146: if (enter_long or exit_long)
+  147:     long_take_profit := close
+  148: 
+  149: // 根据进场价格计算止损和止盈点数 
+  150: stop_loss_points = long_stop_loss /70
+  151: take_profit_points  = long_take_profit /140
+  152: // 设置固定点数的止损和止
+  153: Along_stop_loss = close - stop_loss_points
+  154: Along_take_profit = close + take_profit_points
+  155: short_stop_loss = close + stop_loss_points
+  156: short_take_profit = close - take_profit_points
+  157: 
+  158: // 检查持仓利润是否达到300点
+  159: long_profit_target_reached = (strategy.position_size > 0 and (close - strategy.position_avg_price) >= take_profit_points)
+  160: short_profit_target_reached = (strategy.position_size < 0 and (strategy.position_avg_price - close) >= take_profit_points)
+  161: 
+  162: // 即时止损和止盈检查
+  163: long_stop_loss_hit = (strategy.position_size > 0 and close <= strategy.position_avg_price - stop_loss_points)
+  164: long_take_profit_hit = (strategy.position_size > 0 and close >= strategy.position_avg_price + take_profit_points)
+  165: short_stop_loss_hit = (strategy.position_size < 0 and close >= strategy.position_avg_price + stop_loss_points)
+  166: short_take_profit_hit = (strategy.position_size < 0 and close <= strategy.position_avg_price - take_profit_points)
+  167: // 上一根K棒的止盈止损检查
+  168: long_stop_loss_hit_prev = (strategy.position_size > 0 and low[1] <= strategy.position_avg_price - stop_loss_points)
+  169: long_take_profit_hit_prev = (strategy.position_size > 0 and high[1]>= strategy.position_avg_price + take_profit_points)
+  170: short_stop_loss_hit_prev = (strategy.position_size < 0 and high[1] >= strategy.position_avg_price + stop_loss_points)
+  171: short_take_profit_hit_prev = (strategy.position_size < 0 and low[1] <= strategy.position_avg_price - take_profit_points)
+  172: 
+  173: // 创建警报条件
+  174: alertcondition(long_stop_loss_hit, title="Long Stop Loss Hit", message="Long position stop loss hit")
+  175: alertcondition(long_take_profit_hit, title="Long Take Profit Hit", message="Long position take profit hit")
+  176: alertcondition(short_stop_loss_hit, title="Short Stop Loss Hit", message="Short position stop loss hit")
+  177: alertcondition(short_take_profit_hit, title="Short Take Profit Hit", message="Short position take profit hit")
+  178: // 移动止损输入
+  179: initialProfitLevel = input.float(9, title="Initial Profit Level (points)")
+  180: trailingStopIncrement = input.float(3, title="Trailing Stop Increment (points)")
+  181: if (close - long_take_profit >= 150)
+  182:     strategy.exit("多單移平", from_entry="Buy", trail_price=close+5 , trail_offset=5  )
+  183: if (close - long_take_profit <= -150)
+  184:     strategy.exit("空單移平", from_entry="Sell", trail_price=close-5 , trail_offset=5)
+  185: 
+  186: // 执行多单交易
+  187: if (enter_long or enter_long2  )
+  188:     strategy.entry("Buy", strategy.long, qty=1 , comment = "做多")
+  189: 
+  190: if (long_stop_loss_hit or long_take_profit_hit  ) 
+  191:     strategy.close("Buy",comment = "多單平倉")
+  192: //死亡交叉才跟著做空就打開
+  193: if (exit_long  or exit_long2  )
+  194:     strategy.entry("Sell" ,strategy.short, qty=1 , comment = "做空")
+  195: 
+  196: // 执行空单交易
+  197: if ( short_take_profit_hit or short_stop_loss_hit ) 
+  198:     strategy.close("Sell",comment = "空單平倉")
