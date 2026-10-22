@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2910 |
+| PORTED | 2918 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 570 |
-| REJECTED_ON_READING | 415 |
-| PORT_CANDIDATE | 412 |
+| HELD_NEEDS_VOLUME | 571 |
+| REJECTED_ON_READING | 418 |
+| PORT_CANDIDATE | 400 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -3038,7 +3038,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 481365 | `ports/481365_multi-indicator-trend-following-strategy-with-dynamic-risk-m/` | PineScript | ma_cross | coarse_bar_stop | ema_fast x2, ema_slow x2 | 4 |
 | 481370 | `ports/481370_adaptive-bollinger-bands-trend-following-strategy-with-multi/` | PineScript | bollinger_reversion | trailing_stop_pending | bars_till_close x2, sl_frac x2 | 4 |
 | 481393 | `ports/481393_rsi-dual-ema-rsi-momentum-breakout-trading-strategy/` | PineScript | ma_trend | none | ema_small x2, rsi_level x2 | 4 |
-| | **2910 ports** | | | | | **13475** |
+| 481394 | `ports/481394_rsi-dual-ema-and-stochastic-rsi-trend-following-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 482241 | `ports/482241_rsi-dual-ema-rsi-momentum-trend-following-strategy/` | PineScript | ma_cross | none | ema_short x2, ema_long x2 | 4 |
+| 482242 | `ports/482242_trinity-bar-based-trend-breakthrough-and-momentum-tracking-s/` | PineScript | candle_pattern | none |  | 0 |
+| 482419 | `ports/482419_trend-momentum-strategy-multi-period-dynamic-zigzag-wave-tim/` | PineScript | support_resistance | coarse_bar_stop, trailing_stop_pending | depth x2, deviation x2 | 4 |
+| 482424 | `ports/482424_dmiadx-momentum-trend-following-dmiadx-crossover-strategy/` | PineScript | adx_trend | coarse_bar_stop | adx_threshold x2, tp_pct x2 | 4 |
+| 482426 | `ports/482426_stochrsi-multi-period-gaussian-channel-with-stochrsi-trend-f/` | PineScript | volatility_band | none | sampling_period x2, multiplier x2 | 4 |
+| 482427 | `ports/482427_adaptive-multi-period-trading-strategy-based-on-wave-trend-m/` | PineScript | wavetrend | none | level x2, n2 x2 | 4 |
+| 482428 | `ports/482428_k-dynamic-third-bar-analysis-strategy-with-adaptive-trailing/` | PineScript | candle_pattern | trailing_stop_pending |  | 0 |
+| | **2918 ports** | | | | | **13499** |
 
 ## Rejected on reading
 
@@ -3459,6 +3467,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 481346 | 多周期市场疲劳度分析策略与风险管理系统-Multi-Timeframe-Market-Exhaustion-Analysis-Strategy-with-Risk-Management-System.md | 1 | strategy.close_all when the drawdown of strategy.equity from its peak reaches 10 %: an exit set by the account's equity path (criterion 1, equity gates, as #453662). |
 | 481356 | 动态趋势跟随多重指标分批止盈交易策略-Dynamic-Trend-Following-Multi-Indicator-Staged-Take-Profit-Trading-Strategy.md | 1 | The first take-profit sends strategy.order for a part of the position (firstTpQty, 50 % by input) before close_all at the second target: partial exits (criterion 1). |
 | 481371 | 多时间周期动态网格RSI趋势震荡交易策略-Multi-Timeframe-Dynamic-Grid-RSI-Trend-Oscillation-Trading-Strategy.md | 1 | A grid: "Long Grid n" / "Short Grid n" entries add base size x 1.5^n each time price moves a grid step against the position, with daily equity profit targets and an openprofit drawdown close: martingale adds and equity gates (criterion 1). |
+| 482420 | 开盘收盘均线交叉结合ADX动态指标的量化交易策略-Opening-and-Closing-Moving-Average-Crossover-Strategy-with-ADX-Dynamic-Indicator.md | 1 | The open / close MA series come from request.security at the alternate resolution with lookahead=barmerge.lookahead_on (useRes on by default): higher-bar values are read before the bar closes (criterion 1, lookahead_on for a higher time frame). |
+| 482430 | 多重指标动态跟踪趋势波段交易策略-Multi-Indicator-Dynamic-Trend-Following-Trading-Strategy.md | 2 | The exits pass trail_points = atr x 2.5, a price amount, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #442115). |
+| 482432 | 动态趋势跟踪的EMA-ADX多级止盈策略-Dynamic-Trend-Following-EMA-ADX-Multi-Level-Take-Profit-Strategy.md | 1 | Three exits per entry close 30 % / 50 % / 20 % of the position (qty_percent): partial exits (criterion 1). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -1,0 +1,114 @@
+# Original sizing and money-management code, FMZ #482419 (趋势动量策略-之字形多重周期动态波段择时系统-Trend-Momentum-Strategy-Multi-Period-Dynamic-ZigZag-Wave-Timing-System)
+# Source: https://www.fmz.com/strategy/482419  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 300 % of equity; stop 1 % / target 2 %  [lines 97-205]
+   97: strategy("Zig Zag + Williams %R Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=300)
+   98: 
+   99: // ====================
+  100: // === Parameters
+  101: // ====================
+  102: 
+  103: // Zig Zag parameters
+  104: zigzag_depth = input.int(5, title="Zig Zag Depth", minval=1)
+  105: zigzag_deviation = input.float(1.0, title="Zig Zag Deviation (%)", minval=0.1, step=0.1)
+  106: 
+  107: // Williams %R parameters
+  108: williams_length = input.int(14, title="Williams %R Length", minval=1)
+  109: williams_overbought = input.int(-20, title="Williams %R Overbought", minval=-100, maxval=0)
+  110: williams_oversold = input.int(-80, title="Williams %R Oversold", minval=-100, maxval=0)
+  111: 
+  112: // ====================
+  113: // === Zig Zag Calculation
+  114: // ====================
+  115: 
+  116: // Initialize variables
+  117: var float last_pivot_high = na
+  118: var float last_pivot_low = na
+  119: var int zz_dir = 0  // 1 for uptrend, -1 for downtrend
+  120: 
+  121: // Calculate pivots
+  122: pivot_high = ta.pivothigh(high, zigzag_depth, zigzag_depth)
+  123: pivot_low = ta.pivotlow(low, zigzag_depth, zigzag_depth)
+  124: 
+  125: // Update Zig Zag direction and last pivots with deviation
+  126: if (not na(pivot_high))
+  127:     if (zz_dir != -1)  // Only change to downtrend if not already in downtrend
+  128:         if (na(last_pivot_high) or (high[zigzag_depth] > last_pivot_high * (1 + zigzag_deviation / 100)))
+  129:             last_pivot_high := high[zigzag_depth]
+  130:             zz_dir := -1
+  131:             label.new(bar_index[zigzag_depth], high[zigzag_depth], text="PH", color=color.red, style=label.style_label_down)
+  132: 
+  133: if (not na(pivot_low))
+  134:     if (zz_dir != 1)  // Only change to uptrend if not already in uptrend
+  135:         if (na(last_pivot_low) or (low[zigzag_depth] < last_pivot_low * (1 - zigzag_deviation / 100)))
+  136:             last_pivot_low := low[zigzag_depth]
+  137:             zz_dir := 1
+  138:             label.new(bar_index[zigzag_depth], low[zigzag_depth], text="PL", color=color.green, style=label.style_label_up)
+  139: 
+  140: // ====================
+  141: // === Williams %R Calculation
+  142: // ====================
+  143: 
+  144: // Calculate Williams %R manually
+  145: highest_high = ta.highest(high, williams_length)
+  146: lowest_low = ta.lowest(low, williams_length)
+  147: williams_r = (highest_high - close) / (highest_high - lowest_low) * -100
+  148: 
+  149: // ====================
+  150: // === Trade Conditions
+  151: // ====================
+  152: 
+  153: // Assign crossover and crossunder results to variables
+  154: crossover_williams = ta.crossover(williams_r, williams_oversold)
+  155: crossunder_williams = ta.crossunder(williams_r, williams_overbought)
+  156: 
+  157: // Define trade conditions
+  158: longCondition = (zz_dir == 1) and crossover_williams
+  159: shortCondition = (zz_dir == -1) and crossunder_williams
+  160: 
+  161: // ====================
+  162: // === Trading
+  163: // ====================
+  164: 
+  165: // Enter Long
+  166: if (longCondition)
+  167:     strategy.entry("Long", strategy.long)
+  168:     label.new(bar_index, low, text="BUY", color=color.green, style=label.style_label_up)
+  169: 
+  170: // Enter Short
+  171: if (shortCondition)
+  172:     strategy.entry("Short", strategy.short)
+  173:     label.new(bar_index, high, text="SELL", color=color.red, style=label.style_label_down)
+  174: 
+  175: // ====================
+  176: // === Visualization
+  177: // ====================
+  178: 
+  179: // Plot Zig Zag pivot shapes
+  180: plotshape(series=(not na(pivot_high) and high[zigzag_depth] == last_pivot_high), title="Swing High", location=location.abovebar, color=color.red, style=shape.triangledown, size=size.small, text="ZZ High")
+  181: plotshape(series=(not na(pivot_low) and low[zigzag_depth] == last_pivot_low), title="Swing Low", location=location.belowbar, color=color.green, style=shape.triangleup, size=size.small, text="ZZ Low")
+  182: 
+  183: // Plot Williams %R
+  184: hline(williams_overbought, "Overbought", color=color.red, linestyle=hline.style_dashed)
+  185: hline(williams_oversold, "Oversold", color=color.green, linestyle=hline.style_dashed)
+  186: plot(williams_r, title="Williams %R", color=color.blue)
+  187: 
+  188: // Debug plot for Zig Zag direction
+  189: plot(zz_dir, title="Zig Zag Direction", color=color.orange, linewidth=2)
+  190: 
+  191: // ====================
+  192: // === Risk Management
+  193: // ====================
+  194: 
+  195: // Risk parameters
+  196: stop_loss_perc = input.float(1.0, title="Stop Loss (%)") / 100
+  197: take_profit_perc = input.float(2.0, title="Take Profit (%)") / 100
+  198: 
+  199: // Stop Loss and Take Profit for Long
+  200: if (longCondition)
+  201:     strategy.exit("Long Exit", from_entry="Long", stop=close * (1 - stop_loss_perc), limit=close * (1 + take_profit_perc))
+  202: 
+  203: // Stop Loss and Take Profit for Short
+  204: if (shortCondition)
+  205:     strategy.exit("Short Exit", from_entry="Short", stop=close * (1 + stop_loss_perc), limit=close * (1 - take_profit_perc))

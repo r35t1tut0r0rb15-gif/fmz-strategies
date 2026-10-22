@@ -6359,6 +6359,25 @@ SIZING = {
         ("SL 300 $ / TP 1000 $ (off) from the avg price; bars till close 10", 115, 182),
     ],
     481393: [],
+    # ---- FMZ-C, batch C243 (2026-10-22)
+    481394: [],
+    482241: [],
+    482242: [
+        ("strategy(): capital 100000, 200 % of equity", 108, 109),
+    ],
+    482419: [
+        ("strategy(): 300 % of equity; stop 1 % / target 2 %", 97, 205),
+    ],
+    482424: [
+        ("strategy(): 250 % of equity; stop 1 % / target 2 % of the avg price", 129, 162),
+    ],
+    482426: [
+        ("strategy(): 250 % of equity, commission 0.1 %", 101, 101),
+    ],
+    482427: [],
+    482428: [
+        ("strategy(): capital 100000, 250 % of equity; trailing stop at the previous low / high", 91, 173),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8022,6 +8041,15 @@ REJECTED_ON_READING = {
     481371: ("1", "A grid: \"Long Grid n\" / \"Short Grid n\" entries add base size x 1.5^n each time "
               "price moves a grid step against the position, with daily equity profit targets and "
               "an openprofit drawdown close: martingale adds and equity gates (criterion 1)."),
+    # ---- FMZ-C, batch C243 (2026-10-22)
+    482420: ("1", "The open / close MA series come from request.security at the alternate resolution "
+              "with lookahead=barmerge.lookahead_on (useRes on by default): higher-bar values are "
+              "read before the bar closes (criterion 1, lookahead_on for a higher time frame)."),
+    482430: ("2", "The exits pass trail_points = atr x 2.5, a price amount, where the call takes "
+              "ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, "
+              "as #442115)."),
+    482432: ("1", "Three exits per entry close 30 % / 50 % / 20 % of the position (qty_percent): "
+              "partial exits (criterion 1)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -8075,4 +8103,6 @@ HELD_ON_READING = {
     468337: ("8", "The trend filter compares vwma(close, 20) with vwma(close, 50): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C236 (2026-10-22)
     477603: ("8", "The default moving average of the wick length is ta.vwma: a volume-weighted average (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C243 (2026-10-22)
+    482422: ("8", "The entry and exit lines are ta.vwma(close, 25) and ta.vwma(close, 8): volume-weighted averages (check 8, held with the other volume users)."),
 }
