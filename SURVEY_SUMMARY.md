@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2106 |
-| PORT_CANDIDATE | 1335 |
+| PORTED | 2117 |
+| PORT_CANDIDATE | 1323 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 299 |
+| REJECTED_ON_READING | 300 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2234,7 +2234,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 443092 | `ports/443092_dual-timeframe-trend-following-strategy/` | PineScript | ma_trend | trailing_stop_pending | fast x2, slow x2 | 4 |
 | 443093 | `ports/443093_most-kama-trend-riding-strategy-based-on-most-and-kama/` | PineScript | adaptive_average | none | ma_length x2, percent x2 | 4 |
 | 443094 | `ports/443094_bollinger-bands-short-term-trading-strategy-based-on-bolling/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
-| | **2106 ports** | | | | | **9905** |
+| 443096 | `ports/443096_dual-moving-average-volatility-tracking-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 443099 | `ports/443099_dynamic-engulfing-trend-strategy/` | PineScript | candle_pattern | none | multiplier x2, engulf_pct x2 | 4 |
+| 443104 | `ports/443104_ema-dual-ema-crossover-trend-tracking-strategy/` | PineScript | multi_timeframe_ma | none | len3 x2, len2 x2 | 4 |
+| 443106 | `ports/443106_momentum-average-directional-movement-index-moving-average-c/` | PineScript | directional_movement | none | di_length x2, adx_active x2 | 4 |
+| 443108 | `ports/443108_k-scalping-bitcoin-scalping-strategy-based-on-moving-average/` | PineScript | ma_cross | trailing_stop_pending | fast x2, angle x2 | 4 |
+| 443118 | `ports/443118_macd-momentum-trend-momentum-trend-strategy-based-on-macd-an/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 443119 | `ports/443119_ema-rsi-ema-and-rsi-quantitative-trading-strategy/` | PineScript | ma_cross | none | rsi_length x2, overbought x2 | 4 |
+| 443121 | `ports/443121_momentum-crossover-strategy-with-dynamic-trailing-stop-loss/` | PineScript | directional_movement | none | short_ema x2, di_len x2 | 4 |
+| 443123 | `ports/443123_trend-following-moving-average-strategy/` | PineScript | donchian_breakout | none | period x2 | 2 |
+| 443124 | `ports/443124_the-momentum-breakout-strategy/` | PineScript | mean_reversion | none | buy_threshold x2, sell_threshold x2 | 4 |
+| 443125 | `ports/443125_the-compound-breakout-strategy/` | PineScript | mean_reversion | none | value1 x2, value2 x2 | 4 |
+| | **2117 ports** | | | | | **9947** |
 
 ## Rejected on reading
 
@@ -2539,6 +2550,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442926 | 卖涨回落策略Sell-the-Rallies-Strategy.md | 1 | pyramiding = 2 with a short entry on every new 2 % one-bar rally while a short is open: the position accumulates units (criterion 1, as #441954, #430762). |
 | 442940 | 支撑阻力趋势追踪策略Support-and-Resistance-Trend-Tracking-Strategy.md | 2 | The exits strategy.exit(loss = stopLossLevel, profit = targetPrice) pass price levels where the call takes tick distances, and the entries test the close against the fixed prices 100 / 200 (always above 200 on the BTC reading): undefined exits and instrument-specific levels (criterion 2, as #442076, #437048). |
 | 443044 | 升降通道突破策略SuperTrend-Breakout-Strategy.md | 1 | is_uptrend (close > hlc3 - 3 ATR) and is_downtrend (close < hlc3 + 3 ATR) both hold on nearly every bar, so trend_changed is nearly always true and both entries fire together; the later Short wins (as #437773): a sell-and-hold from near the data start (criterion 1, as #442261). |
+| 443110 | 多时间框架随机指数均线策略Multi-Timeframe-Stochastic-Strategy.md | 1 | pyramiding = 3 with repeated "Lungo" / "Corto" entries on each new stochastic crossing while a position is open (the trail_points-only exits place no trail): the position accumulates units (criterion 1, as #442112, #430762). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

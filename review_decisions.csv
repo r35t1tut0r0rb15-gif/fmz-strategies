@@ -298,6 +298,7 @@ fmz_id,file,final_outcome,criterion,reason
 442926,卖涨回落策略Sell-the-Rallies-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 2 with a short entry on every new 2 % one-bar rally while a short is open: the position accumulates units (criterion 1, as #441954, #430762)."
 442940,支撑阻力趋势追踪策略Support-and-Resistance-Trend-Tracking-Strategy.md,REJECTED_ON_READING,2,"The exits strategy.exit(loss = stopLossLevel, profit = targetPrice) pass price levels where the call takes tick distances, and the entries test the close against the fixed prices 100 / 200 (always above 200 on the BTC reading): undefined exits and instrument-specific levels (criterion 2, as #442076, #437048)."
 443044,升降通道突破策略SuperTrend-Breakout-Strategy.md,REJECTED_ON_READING,1,"is_uptrend (close > hlc3 - 3 ATR) and is_downtrend (close < hlc3 + 3 ATR) both hold on nearly every bar, so trend_changed is nearly always true and both entries fire together; the later Short wins (as #437773): a sell-and-hold from near the data start (criterion 1, as #442261)."
+443110,多时间框架随机指数均线策略Multi-Timeframe-Stochastic-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 3 with repeated ""Lungo"" / ""Corto"" entries on each new stochastic crossing while a position is open (the trail_points-only exits place no trail): the position accumulates units (criterion 1, as #442112, #430762)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2424,3 +2425,14 @@ fmz_id,file,final_outcome,criterion,reason
 443092,双时间框架趋势追踪策略Dual-Timeframe-Trend-Following-Strategy.md,PORTED,,ports/443092_dual-timeframe-trend-following-strategy/
 443093,基于MOST和KAMA的趋势跟踪策略Trend-Riding-Strategy-Based-on-MOST-and-KAMA.md,PORTED,,ports/443093_most-kama-trend-riding-strategy-based-on-most-and-kama/
 443094,基于Bollinger-Bands的短线交易策略Short-term-Trading-Strategy-Based-on-Bollinger-Bands.md,PORTED,,ports/443094_bollinger-bands-short-term-trading-strategy-based-on-bolling/
+443096,基于双均线波动率跟踪策略Dual-Moving-Average-Volatility-Tracking-Strategy.md,PORTED,,ports/443096_dual-moving-average-volatility-tracking-strategy/
+443099,基于动态吞噬趋势策略Dynamic-Engulfing-Trend-Strategy.md,PORTED,,ports/443099_dynamic-engulfing-trend-strategy/
+443104,双EMA金叉死叉趋势追踪策略Dual-EMA-Crossover-Trend-Tracking-Strategy.md,PORTED,,ports/443104_ema-dual-ema-crossover-trend-tracking-strategy/
+443106,动量平均向导指数移动平均交叉策略Momentum-Average-Directional-Movement-Index-Moving-Average-Crossover-Strategy.md,PORTED,,ports/443106_momentum-average-directional-movement-index-moving-average-c/
+443108,基于移动平均线交叉和K线形态的比特币scalping策略Bitcoin-Scalping-Strategy-Based-on-Moving-Average-Crossover-and-Candlestick-Patterns.md,PORTED,,ports/443108_k-scalping-bitcoin-scalping-strategy-based-on-moving-average/
+443118,基于MACD和布林带的Momentum-Trend策略Momentum-Trend-Strategy-Based-on-MACD-and-Bollinger-Bands.md,PORTED,,ports/443118_macd-momentum-trend-momentum-trend-strategy-based-on-macd-an/
+443119,基于EMA均线和RSI指标的量化交易策略EMA-and-RSI-Quantitative-Trading-Strategy.md,PORTED,,ports/443119_ema-rsi-ema-and-rsi-quantitative-trading-strategy/
+443121,动量指标交叉动态停损策略Momentum-Crossover-Strategy-with-Dynamic-Trailing-Stop-Loss.md,PORTED,,ports/443121_momentum-crossover-strategy-with-dynamic-trailing-stop-loss/
+443123,基于趋势追踪均线战略Trend-Following-Moving-Average-Strategy.md,PORTED,,ports/443123_trend-following-moving-average-strategy/
+443124,基于动量突破策略The-Momentum-Breakout-Strategy.md,PORTED,,ports/443124_the-momentum-breakout-strategy/
+443125,基于复合突破策略The-Compound-Breakout-Strategy.md,PORTED,,ports/443125_the-compound-breakout-strategy/

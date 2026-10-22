@@ -4546,6 +4546,24 @@ SIZING = {
     ],
     443093: [],
     443094: [],
+    # ---- FMZ-C, batch C166 (2026-10-22)
+    443096: [],
+    443099: [],
+    443104: [],
+    443106: [
+        ("strategy(): percent of equity", 123, 123),
+    ],
+    443108: [],
+    443118: [],
+    443119: [],
+    443121: [],
+    443123: [
+        ("strategy(): 20 % of equity, commission 0.005 per contract", 111, 111),
+    ],
+    443124: [],
+    443125: [
+        ("strategy(): 100 % of equity", 157, 157),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -5770,6 +5788,10 @@ REJECTED_ON_READING = {
               "hold on nearly every bar, so trend_changed is nearly always true and both entries "
               "fire together; the later Short wins (as #437773): a sell-and-hold from near the "
               "data start (criterion 1, as #442261)."),
+    # ---- FMZ-C, batch C166 (2026-10-22)
+    443110: ("1", "pyramiding = 3 with repeated \"Lungo\" / \"Corto\" entries on each new stochastic "
+              "crossing while a position is open (the trail_points-only exits place no trail): "
+              "the position accumulates units (criterion 1, as #442112, #430762)."),
 }
 
 DUPLICATE_ON_READING = {
