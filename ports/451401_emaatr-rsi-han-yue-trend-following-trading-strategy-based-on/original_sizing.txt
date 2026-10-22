@@ -1,0 +1,35 @@
+# Original sizing and money-management code, FMZ #451401 (漢越-基於多EMAATR和RSI的趨勢順勢交易策略-Han-Yue-Trend-Following-Trading-Strategy-Based-on-Multiple-EMAs-ATR-and-RSI)
+# Source: https://www.fmz.com/strategy/451401  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk 0.5 % of the initial capital per trade over the stop distance; RR 1.5  [lines 192-221]
+  192: risk= input(title="Rủi ro % per Trade", defval=0.5)
+  193: rr= input(title="RR", defval=1.5)
+  194: onlylong= input(defval=false)
+  195: onlyshort=input(defval=false)
+  196: 
+  197: stlong = mua and strategy.position_size<=0 ? low[1]:na
+  198: stoplong= fixnan(stlong)
+  199: 
+  200: stshort = ban and strategy.position_size>=0 ? high[1]:na
+  201: stopshort= fixnan(stshort)
+  202: 
+  203: enlong = mua and strategy.position_size<=0 ? close:na
+  204: entrylong =fixnan(enlong)
+  205: 
+  206: enshort = ban and strategy.position_size>=0 ? close:na
+  207: entryshort = fixnan(enshort)
+  208: 
+  209: amountL = risk/100* strategy.initial_capital / (entrylong - stoplong)
+  210: amountS = risk/100* strategy.initial_capital / (stopshort - entryshort)
+  211: 
+  212: TPlong= mua and strategy.position_size<=0? entrylong + (entrylong -stoplong)*rr:na
+  213: takeprofitlong =fixnan(TPlong)
+  214: TPshort = ban and strategy.position_size>=0? entryshort - (stopshort - entryshort)*rr:na 
+  215: takeprofitshort = fixnan(TPshort)
+  216: 
+  217: strategy.entry("Long", strategy.long , when = enlong and not onlyshort, qty= amountL )
+  218: strategy.exit("exitL", "Long", stop = stoplong, limit= takeprofitlong)
+  219: 
+  220: strategy.entry("Short", strategy.short , when = enshort and not onlylong, qty= amountS )
+  221: strategy.exit("exitS", "Short", stop = stopshort, limit= takeprofitshort)

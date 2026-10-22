@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #451516 (8小时-ema)
+# Source: https://www.fmz.com/strategy/451516  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Buy 0.99 x the balance at the last price; sell all stocks  [lines 56-61]
+   56:             exchange.Buy(ticker.Last, 0.99 * account.Balance / ticker.Last);
+   57:             bought = true;
+   58:         }
+   59: 
+   60:         if (bought && cross < 0) {
+   61:             exchange.Sell(ticker.Last, account.Stocks);

@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2310 |
-| PORT_CANDIDATE | 1107 |
+| PORTED | 2320 |
+| PORT_CANDIDATE | 1095 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 323 |
+| REJECTED_ON_READING | 325 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2438,7 +2438,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 451393 | `ports/451393_bmsb-bmsb-bollinger-supertrend-trading-strategy/` | PineScript | ma_trend | none | sma_len x2, ema_len x2 | 4 |
 | 451395 | `ports/451395_relative-strength-index-mean-reversion-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, sma_len x2 | 4 |
 | 451396 | `ports/451396_k-no-upper-wick-bullish-candle-breakout-strategy/` | PineScript | candle_pattern | none | wick_pct x2 | 2 |
-| | **2310 ports** | | | | | **10669** |
+| 451399 | `ports/451399_ema-rsi-30-ema-cross-strategy-with-rsi-divergence-30-minute/` | PineScript | ma_cross | none | fast x2, slow x2, rsi_len x2 | 8 |
+| 451401 | `ports/451401_emaatr-rsi-han-yue-trend-following-trading-strategy-based-on/` | PineScript | candle_pattern | none | rr x2 | 2 |
+| 451413 | `ports/451413_macd-dual-macd-optimization-strategy-combining-trend-followi/` | PineScript | macd | coarse_bar_stop | fast x2, slow x2, sma_len x2 | 8 |
+| 451487 | `ports/451487_triple-relative-strength-index-quantitative-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, sma_len x2 | 4 |
+| 451488 | `ports/451488_rsi-crypto-big-move-stochastic-rsi-strategy/` | PineScript | rsi_oscillator | none | lookback x2, move_pct x2 | 4 |
+| 451490 | `ports/451490_rsi-dual-rsi-differential-strategy/` | PineScript | rsi_oscillator | none | short_len x2, long_len x2, diff_lvl x2 | 8 |
+| 451492 | `ports/451492_atr-bollinger-band-atr-trend-following-strategy/` | PineScript | bollinger | none | length x2, mult x2, atr_len x2 | 8 |
+| 451516 | `ports/451516_8-ema/` | javascript | ma_cross | none | fast x2, slow x2 | 4 |
+| 451526 | `ports/451526_bollinger-bands-dynamic-breakout-strategy/` | PineScript | bollinger | none | length x2, mult x2 | 4 |
+| 451527 | `ports/451527_sr-sr-breakout-strategy/` | PineScript | breakout | none | prd x2, bo_len x2, width_pct x2 | 8 |
+| | **2320 ports** | | | | | **10727** |
 
 ## Rejected on reading
 
@@ -2767,6 +2777,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 449521 | KRK-aDa-Stochastic-Slow-Mean-Reversion-Strategy-with-AI-Enhancements-KRK-aDa-随机慢速均值回归策略与人工智能增强.md | 2 | The stops pass loss = close x 0.9 and loss = close x 1.1, price amounts where strategy.exit takes tick distances, with no /mintick: the stops are undefined as written (criterion 2, as #442076, #437048). |
 | 451024 | 移动平均线与相对强弱指数策略-Moving-Average-and-Relative-Strength-Index-Strategy.md | 1 | The only close is strategy.close('Venda'), an id that is never entered, so it never acts: the long entries have no exit at all (criterion 1, as #440692). |
 | 451028 | 基于支撑位和阻力位的技术分析交易策略-Trading-Strategy-Based-on-Support-and-Resistance-Levels-Using-Technical-Analysis.md | 1 | The levels are strict 7-bar pivots of the daily close requested on hourly bars, a series that stays flat for each day, so no pivot ever forms and no order can be sent (criterion 1). |
+| 451411 | DZ-Session-Breakout-Strategy-DZ交易时段突破策略.md | 1 | Every entry needs the London window (hour 13 to 15, or 16:00 exactly) on the bar's UTC open hour, and the header's 6-hour bars open at 0, 6, 12 and 18 UTC only: no order can fire as written (criterion 1, as #435514). |
+| 451493 | RSI量化交易策略-RSI-Quantitative-Trading-Strategy.md | 1 | Both exits set stop = limit = the bar's close (take profit and stop loss 0 %), attached to each entry: the long's sell limit under or sell stop over the fill fills at the entry open itself (the short's likewise), so every trade opens and closes at one price; the martingale entries are refused by pyramiding 1 (criterion 1, constant / never-trading). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

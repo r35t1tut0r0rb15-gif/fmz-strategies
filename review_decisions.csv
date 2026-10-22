@@ -322,6 +322,8 @@ fmz_id,file,final_outcome,criterion,reason
 449521,KRK-aDa-Stochastic-Slow-Mean-Reversion-Strategy-with-AI-Enhancements-KRK-aDa-随机慢速均值回归策略与人工智能增强.md,REJECTED_ON_READING,2,"The stops pass loss = close x 0.9 and loss = close x 1.1, price amounts where strategy.exit takes tick distances, with no /mintick: the stops are undefined as written (criterion 2, as #442076, #437048)."
 451024,移动平均线与相对强弱指数策略-Moving-Average-and-Relative-Strength-Index-Strategy.md,REJECTED_ON_READING,1,"The only close is strategy.close('Venda'), an id that is never entered, so it never acts: the long entries have no exit at all (criterion 1, as #440692)."
 451028,基于支撑位和阻力位的技术分析交易策略-Trading-Strategy-Based-on-Support-and-Resistance-Levels-Using-Technical-Analysis.md,REJECTED_ON_READING,1,"The levels are strict 7-bar pivots of the daily close requested on hourly bars, a series that stays flat for each day, so no pivot ever forms and no order can be sent (criterion 1)."
+451411,DZ-Session-Breakout-Strategy-DZ交易时段突破策略.md,REJECTED_ON_READING,1,"Every entry needs the London window (hour 13 to 15, or 16:00 exactly) on the bar's UTC open hour, and the header's 6-hour bars open at 0, 6, 12 and 18 UTC only: no order can fire as written (criterion 1, as #435514)."
+451493,RSI量化交易策略-RSI-Quantitative-Trading-Strategy.md,REJECTED_ON_READING,1,"Both exits set stop = limit = the bar's close (take profit and stop loss 0 %), attached to each entry: the long's sell limit under or sell stop over the fill fills at the entry open itself (the short's likewise), so every trade opens and closes at one price; the martingale entries are refused by pyramiding 1 (criterion 1, constant / never-trading)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2652,3 +2654,13 @@ fmz_id,file,final_outcome,criterion,reason
 451393,BMSB-布林麦克超级趋势交易策略-BMSB-Bollinger-SuperTrend-Trading-Strategy.md,PORTED,,ports/451393_bmsb-bmsb-bollinger-supertrend-trading-strategy/
 451395,相对强弱指数均值回归策略Relative-Strength-Index-Mean-Reversion-Strategy.md,PORTED,,ports/451395_relative-strength-index-mean-reversion-strategy/
 451396,无上引线看涨K线突破策略-No-Upper-Wick-Bullish-Candle-Breakout-Strategy.md,PORTED,,ports/451396_k-no-upper-wick-bullish-candle-breakout-strategy/
+451399,EMA交叉策略与RSI背离30分钟趋势识别和价格竭尽-EMA-Cross-Strategy-with-RSI-Divergence-30-Minute-Trend-Identification-and-Price-Exhaustion.md,PORTED,,ports/451399_ema-rsi-30-ema-cross-strategy-with-rsi-divergence-30-minute/
+451401,漢越-基於多EMAATR和RSI的趨勢順勢交易策略-Han-Yue-Trend-Following-Trading-Strategy-Based-on-Multiple-EMAs-ATR-and-RSI.md,PORTED,,ports/451401_emaatr-rsi-han-yue-trend-following-trading-strategy-based-on/
+451413,趋势跟踪与动量交易相结合的双重MACD优化策略-Dual-MACD-Optimization-Strategy-Combining-Trend-Following-and-Momentum-Trading.md,PORTED,,ports/451413_macd-dual-macd-optimization-strategy-combining-trend-followi/
+451487,三重相对强弱指数量化交易策略-Triple-Relative-Strength-Index-Quantitative-Trading-Strategy.md,PORTED,,ports/451487_triple-relative-strength-index-quantitative-trading-strategy/
+451488,加密货币大幅波动随机RSI策略-Crypto-Big-Move-Stochastic-RSI-Strategy.md,PORTED,,ports/451488_rsi-crypto-big-move-stochastic-rsi-strategy/
+451490,RSI双重差分策略-Dual-RSI-Differential-Strategy.md,PORTED,,ports/451490_rsi-dual-rsi-differential-strategy/
+451492,布林带ATR趋势跟踪策略-Bollinger-Band-ATR-Trend-Following-Strategy.md,PORTED,,ports/451492_atr-bollinger-band-atr-trend-following-strategy/
+451516,8小时-ema.md,PORTED,,ports/451516_8-ema/
+451526,Bollinger-Bands-Dynamic-Breakout-Strategy-动态布林带突破策略.md,PORTED,,ports/451526_bollinger-bands-dynamic-breakout-strategy/
+451527,SR-突破策略-SR-Breakout-Strategy.md,PORTED,,ports/451527_sr-sr-breakout-strategy/

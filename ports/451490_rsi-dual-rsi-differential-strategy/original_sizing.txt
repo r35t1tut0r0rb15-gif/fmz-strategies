@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #451490 (RSI双重差分策略-Dual-RSI-Differential-Strategy)
+# Source: https://www.fmz.com/strategy/451490  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity, capital 10000, commission 0.1 %, slippage 1; TP 15 % / SL 10 % (off)  [lines 91-105]
+   91: strategy("Dual RSI Differential - Strategy [presentTrading]", overlay=false, precision=3, 
+   92:  commission_value=0.1, commission_type=strategy.commission.percent, slippage=1, 
+   93:  currency=currency.USD, default_qty_type=strategy.percent_of_equity, default_qty_value=10, initial_capital=10000)
+   94: 
+   95: // Input parameters for user customization
+   96: tradeDirection = input.string("Both", "Trading Direction", options=["Long", "Short", "Both"])
+   97: lengthShort = input(21, title="Short RSI Period")
+   98: lengthLong = input(42, title="Long RSI Period")
+   99: rsiDiffLevel = input(5, title="RSI Difference Level")
+  100: useHoldDays = input.bool(true, title="Use Hold Days")
+  101: holdDays = input.int(5, title="Hold Days", minval=1, maxval=20, step=1)
+  102: TPSLCondition = input.string("None", "TPSL Condition", options=["TP", "SL", "Both", "None"])
+  103: 
+  104: takeProfitPerc = input(15.0, title="Take Profit (%)")
+  105: stopLossPerc = input(10.0, title="Stop Loss (%)")

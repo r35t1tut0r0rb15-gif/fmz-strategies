@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #451399 (EMA交叉策略与RSI背离30分钟趋势识别和价格竭尽-EMA-Cross-Strategy-with-RSI-Divergence-30-Minute-Trend-Identification-and-Price-Exhaustion)
+# Source: https://www.fmz.com/strategy/451399  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

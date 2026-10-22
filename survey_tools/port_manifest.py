@@ -4963,6 +4963,29 @@ SIZING = {
     451396: [
         ("strategy(): margin_long 100, margin_short 100", 93, 93),
     ],
+    # ---- FMZ-C, batch C185 (2026-10-22)
+    451399: [],
+    451401: [
+        ("Risk 0.5 % of the initial capital per trade over the stop distance; RR 1.5", 192, 221),
+    ],
+    451413: [
+        ("Stop 1 % / target 2 % of the average price (both ids)", 146, 153),
+    ],
+    451487: [],
+    451488: [
+        ("strategy(): 10 % of equity", 142, 142),
+    ],
+    451490: [
+        ("strategy(): 10 % of equity, capital 10000, commission 0.1 %, slippage 1; TP 15 % / SL 10 % (off)", 91, 105),
+    ],
+    451492: [],
+    451516: [
+        ("Buy 0.99 x the balance at the last price; sell all stocks", 56, 61),
+    ],
+    451526: [],
+    451527: [
+        ("SL 18 % / TP 18 % of the entry close (off by default)", 103, 106),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -6274,6 +6297,15 @@ REJECTED_ON_READING = {
     451028: ("1", "The levels are strict 7-bar pivots of the daily close requested on hourly bars, a "
               "series that stays flat for each day, so no pivot ever forms and no order can be "
               "sent (criterion 1)."),
+    # ---- FMZ-C, batch C185 (2026-10-22)
+    451411: ("1", "Every entry needs the London window (hour 13 to 15, or 16:00 exactly) on the bar's "
+              "UTC open hour, and the header's 6-hour bars open at 0, 6, 12 and 18 UTC only: no "
+              "order can fire as written (criterion 1, as #435514)."),
+    451493: ("1", "Both exits set stop = limit = the bar's close (take profit and stop loss 0 %), "
+              "attached to each entry: the long's sell limit under or sell stop over the fill "
+              "fills at the entry open itself (the short's likewise), so every trade opens and "
+              "closes at one price; the martingale entries are refused by pyramiding 1 (criterion "
+              "1, constant / never-trading)."),
 }
 
 DUPLICATE_ON_READING = {
