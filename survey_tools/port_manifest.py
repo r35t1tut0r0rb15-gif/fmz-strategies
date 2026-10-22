@@ -4281,6 +4281,20 @@ SIZING = {
         ("strategy(): capital 1000, cash quantity, commission 0.02 %", 256, 256),
         ("entryQty = 1 % of equity / sl %", 698, 705),
     ],
+    # ---- FMZ-C, batch C151 (2026-10-22)
+    442100: [],
+    442108: [],
+    442113: [],
+    442116: [],
+    442117: [],
+    442118: [],
+    442119: [
+        ("strategy(): 100 % of equity, capital 1000", 115, 115),
+    ],
+    442120: [],
+    442122: [
+        ("strategy(): 100 % of equity, capital 100000, commission 0.1 %", 146, 146),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -5419,6 +5433,18 @@ REJECTED_ON_READING = {
               "'30D', open / close) without [1] behaves as lookahead_on, so every daily bar uses "
               "the final close of the current multi-day bar (SURVEY_README request.security rule, "
               "as #427066)."),
+    # ---- FMZ-C, batch C151 (2026-10-22)
+    442110: ("1", "The only bracket is sent on the signal bar from strategy.position_avg_price: on a "
+              "first entry the position is flat (na, nothing placed) and on every later, "
+              "reversing entry the levels come from the previous position's average price, a "
+              "level the house stops (fractions of the new fill) cannot express (criterion 1, as "
+              "#440109, #440978)."),
+    442112: ("1", "pyramiding = 3 with repeated \"botsell20\" / \"botbuy20\" entries on every large "
+              "candle while a position is open: the position accumulates units (criterion 1, as "
+              "#430762)."),
+    442115: ("2", "The only exits pass trail_points = trail_offset = atr x 1.5, a price amount, where "
+              "the call takes ticks, with no /mintick: the trailing stop is undefined as written "
+              "(criterion 2, as #437048, #437677)."),
 }
 
 DUPLICATE_ON_READING = {

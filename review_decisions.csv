@@ -276,6 +276,9 @@ fmz_id,file,final_outcome,criterion,reason
 442076,基于K线方向的趋势追踪策略Trend-Following-Strategy-Based-on-Candlestick-Direction.md,REJECTED_ON_READING,2,"The exits strategy.exit(loss = close - atr, profit = close + 1.5 atr) pass price levels where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #437048, #437677)."
 442080,MACD基于均线的动态趋势判断策略MACD-Moving-Average-Combination-Cross-Period-Dynamic-Trend-Strategy.md,REJECTED_ON_READING,1,"Reads the future: request.security(HTF, count(), lookahead = barmerge.lookahead_on) with the default Lookahead input on, HTF = 'W' on a daily chart, so every daily bar uses the current week's final MACD score (SURVEY_README request.security rule)."
 442089,基于多时间框架趋势跟踪策略Multi-Timeframe-Strategy.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 request.security(syminfo.tickerid, '10D' / '15D' / '30D', open / close) without [1] behaves as lookahead_on, so every daily bar uses the final close of the current multi-day bar (SURVEY_README request.security rule, as #427066)."
+442110,动静交织的移动平均线交叉策略The-Interwoven-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"The only bracket is sent on the signal bar from strategy.position_avg_price: on a first entry the position is flat (na, nothing placed) and on every later, reversing entry the levels come from the previous position's average price, a level the house stops (fractions of the new fill) cannot express (criterion 1, as #440109, #440978)."
+442112,震荡反转CAT策略Reversal-Fluctuation-CAT-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 3 with repeated ""botsell20"" / ""botbuy20"" entries on every large candle while a position is open: the position accumulates units (criterion 1, as #430762)."
+442115,动量震荡追踪止损策略DYNAMIC-MOMENTUM-OSCILLATOR-TRAILING-STOP-STRATEGY.md,REJECTED_ON_READING,2,"The only exits pass trail_points = trail_offset = atr x 1.5, a price amount, where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #437048, #437677)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2244,3 +2247,12 @@ fmz_id,file,final_outcome,criterion,reason
 442090,大趋势指标多头策略Major-Trend-Indicator-Long.md,PORTED,,ports/442090_major-trend-indicator-long/
 442091,基于ABCD形态且带止损追踪和止盈追踪的全新量化交易策略Best-ABCD-Pattern-Trading-Strategy-with-Stop-Loss-and-Take-Profit-Tracking.md,PORTED,,ports/442091_abcd-best-abcd-pattern-trading-strategy-with-stop-loss-and-t/
 442097,基于SSL通道和波浪趋势的量化交易策略SSL-Channel-and-Wave-Trend-Quantitative-Trading-Strategy.md,PORTED,,ports/442097_ssl-ssl-channel-and-wave-trend-quantitative-trading-strategy/
+442100,超级趋势与移动平均线结合策略Supertrend-and-Moving-Average-Crossover-Strategy.md,PORTED,,ports/442100_supertrend-and-moving-average-crossover-strategy/
+442108,动量绝对值指标策略Absolute-Momentum-Indicator-Strategy.md,PORTED,,ports/442108_absolute-momentum-indicator-strategy/
+442113,基于形态与蜡烛线的量化交易策略Fractal-and-Pattern-Based-Quantitative-Trading-Strategy.md,PORTED,,ports/442113_fractal-and-pattern-based-quantitative-trading-strategy/
+442116,基于RSI布林带和支撑阻力策略Rational-Trading-Robot-Powered-by-RSI-Strategy.md,PORTED,,ports/442116_rsi-rational-trading-robot-powered-by-rsi-strategy/
+442117,基于动量趋势同步策略Momentum-Trend-Synergy-Strategy.md,PORTED,,ports/442117_momentum-trend-synergy-strategy/
+442118,动量均线交叉买卖策略Momentum-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/442118_momentum-moving-average-crossover-trading-strategy/
+442119,基于动量均线反转策略Momentum-Moving-Average-Reversal-Strategy.md,PORTED,,ports/442119_momentum-moving-average-reversal-strategy/
+442120,基于超趋势支撑阻力与ADX指标的高频交易策ADX-Filtered-SuperTrend-Pivot-Trading-Strategy.md,PORTED,,ports/442120_adx-adx-filtered-supertrend-pivot-trading-strategy/
+442122,通道突破反转交易策略Volatility-Breakout-Reversal-Trading-Strategy.md,PORTED,,ports/442122_volatility-breakout-reversal-trading-strategy/

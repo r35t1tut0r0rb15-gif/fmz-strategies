@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1949 |
-| PORT_CANDIDATE | 1515 |
+| PORTED | 1958 |
+| PORT_CANDIDATE | 1503 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 566 |
-| REJECTED_ON_READING | 277 |
+| REJECTED_ON_READING | 280 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2077,7 +2077,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442090 | `ports/442090_major-trend-indicator-long/` | PineScript | trend_filter | none | linreg_st1 x2, linreg_lt x2 | 4 |
 | 442091 | `ports/442091_abcd-best-abcd-pattern-trading-strategy-with-stop-loss-and-t/` | PineScript | reversal_pattern | none | stop_trail x2, tp_trigger x2 | 4 |
 | 442097 | `ports/442097_ssl-ssl-channel-and-wave-trend-quantitative-trading-strategy/` | PineScript | multi_indicator_confluence | none | sl_atr_mult x2, risk_reward x2 | 4 |
-| | **1949 ports** | | | | | **9325** |
+| 442100 | `ports/442100_supertrend-and-moving-average-crossover-strategy/` | PineScript | supertrend | none | atr_length x2, factor x2 | 4 |
+| 442108 | `ports/442108_absolute-momentum-indicator-strategy/` | PineScript | momentum_oscillator | none | length x2, top_band x2 | 4 |
+| 442113 | `ports/442113_fractal-and-pattern-based-quantitative-trading-strategy/` | PineScript | candle_pattern | none | channel x2, fractal x2 | 4 |
+| 442116 | `ports/442116_rsi-rational-trading-robot-powered-by-rsi-strategy/` | PineScript | bollinger_reversion | none | bb_length x2, bb_mult x2 | 4 |
+| 442117 | `ports/442117_momentum-trend-synergy-strategy/` | PineScript | rsi_oscillator | trailing_stop_pending | length_rmi x2, length_st x2 | 4 |
+| 442118 | `ports/442118_momentum-moving-average-crossover-trading-strategy/` | PineScript | macd_momentum | none | fast x2, slow x2 | 4 |
+| 442119 | `ports/442119_momentum-moving-average-reversal-strategy/` | PineScript | mean_reversion | none | sl x2, tp x2 | 4 |
+| 442120 | `ports/442120_adx-adx-filtered-supertrend-pivot-trading-strategy/` | PineScript | pivot_levels | none | pp_prd x2, atr_factor x2 | 4 |
+| 442122 | `ports/442122_volatility-breakout-reversal-trading-strategy/` | PineScript | volatility_channel_breakout | none | atr_length x2, arc_factor x2 | 4 |
+| | **1958 ports** | | | | | **9361** |
 
 ## Rejected on reading
 
@@ -2360,6 +2369,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442076 | 基于K线方向的趋势追踪策略Trend-Following-Strategy-Based-on-Candlestick-Direction.md | 2 | The exits strategy.exit(loss = close - atr, profit = close + 1.5 atr) pass price levels where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #437048, #437677). |
 | 442080 | MACD基于均线的动态趋势判断策略MACD-Moving-Average-Combination-Cross-Period-Dynamic-Trend-Strategy.md | 1 | Reads the future: request.security(HTF, count(), lookahead = barmerge.lookahead_on) with the default Lookahead input on, HTF = 'W' on a daily chart, so every daily bar uses the current week's final MACD score (SURVEY_README request.security rule). |
 | 442089 | 基于多时间框架趋势跟踪策略Multi-Timeframe-Strategy.md | 1 | Reads the future: Pine v2 request.security(syminfo.tickerid, '10D' / '15D' / '30D', open / close) without [1] behaves as lookahead_on, so every daily bar uses the final close of the current multi-day bar (SURVEY_README request.security rule, as #427066). |
+| 442110 | 动静交织的移动平均线交叉策略The-Interwoven-Moving-Average-Crossover-Strategy.md | 1 | The only bracket is sent on the signal bar from strategy.position_avg_price: on a first entry the position is flat (na, nothing placed) and on every later, reversing entry the levels come from the previous position's average price, a level the house stops (fractions of the new fill) cannot express (criterion 1, as #440109, #440978). |
+| 442112 | 震荡反转CAT策略Reversal-Fluctuation-CAT-Strategy.md | 1 | pyramiding = 3 with repeated "botsell20" / "botbuy20" entries on every large candle while a position is open: the position accumulates units (criterion 1, as #430762). |
+| 442115 | 动量震荡追踪止损策略DYNAMIC-MOMENTUM-OSCILLATOR-TRAILING-STOP-STRATEGY.md | 2 | The only exits pass trail_points = trail_offset = atr x 1.5, a price amount, where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #437048, #437677). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
