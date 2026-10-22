@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2990 |
+| PORTED | 3000 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 429 |
-| PORT_CANDIDATE | 315 |
+| REJECTED_ON_READING | 432 |
+| PORT_CANDIDATE | 302 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -3118,7 +3118,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482830 | `ports/482830_dynamic-bollinger-bands-breakout-quantitative-trading-strate/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
 | 482831 | `ports/482831_momentum-enhanced-supertrend-stochastic-dual-indicator-tradi/` | PineScript | supertrend | none | multiplier x2, atr_period x2 | 4 |
 | 482832 | `ports/482832_rsi-dual-moving-average-crossover-with-rsi-strength-filter-t/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
-| | **2990 ports** | | | | | **13779** |
+| 482833 | `ports/482833_advanced-momentum-oscillator-and-bollinger-bands-quantitativ/` | PineScript | bollinger_reversion | none | bb_length x2, cmo_length x2 | 4 |
+| 482836 | `ports/482836_atr-adaptive-risk-management-strategy-based-on-dynamic-atr-a/` | PineScript | ma_cross | coarse_bar_stop | short_period x2, long_period x2 | 4 |
+| 482837 | `ports/482837_multi-timeframe-stochastic-oscillator-swing-trading-strategy/` | PineScript | stochastic_oscillator | coarse_bar_stop, trailing_stop_pending | k_length x2, tp_sl_pct x2 | 4 |
+| 482838 | `ports/482838_rsi2-rsi2-based-dynamic-breakout-trading-strategy-with-movin/` | PineScript | rsi_oscillator | none | rsi_buy_level x2, max_bars x2 | 4 |
+| 482841 | `ports/482841_dynamic-adaptive-multi-timeframe-trend-following-and-range-r/` | PineScript | ichimoku | coarse_bar_stop, trailing_stop_pending | atr_mult x2, conversion_length x2 | 4 |
+| 482843 | `ports/482843_multi-ema-cloud-trend-trading-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| 482846 | `ports/482846_dual-moving-average-trend-trading-strategy-with-stop-loss-an/` | PineScript | ma_cross | coarse_bar_stop | stop_loss_percent x2, take_profit_percent x2 | 4 |
+| 482848 | `ports/482848_volatility-momentum-breakout-strategy-with-trend-and-momentu/` | PineScript | volatility_channel_breakout | trailing_stop_pending | atr_multiplier x2, lookback x2 | 4 |
+| 482849 | `ports/482849_adaptive-ema-crossover-dynamic-position-risk-management-stra/` | PineScript | ma_cross | none | mt_ema x2, rr x2 | 4 |
+| 482859 | `ports/482859_moving-average-based-supply-demand-zone-trading-system-with/` | PineScript | ma_cross | none | zone_lookback x2, take_profit_perc x2 | 4 |
+| | **3000 ports** | | | | | **13819** |
 
 ## Rejected on reading
 
@@ -3553,6 +3563,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482783 | 基于马丁格尔理论的网格式加仓策略模型-Grid-based-Position-Accumulation-Strategy-Based-on-Martingale-Theory.md | 1 | strategy.order buys are added on each 5 % drop with the quantity doubled each time, up to 10 doublings: martingale adds (criterion 1). |
 | 482785 | 移动均线趋势向量量化交易策略-Moving-Average-Trend-Direction-Quantitative-Strategy-with-Cross-Validation.md | 1 | The open / close MA series come from request.security at the alternate resolution (3 x the chart) with lookahead=barmerge.lookahead_on (useRes on by default): higher-bar values are read before the bar closes (criterion 1, lookahead_on for a higher time frame, as #482420). |
 | 482824 | 高级布林带指标组合动态趋势突破交易策略-Advanced-Bollinger-Bands-Multi-Indicator-Dynamic-Trend-Breakout-Trading-Strategy.md | 2 | The exits pass trail_offset = atr x 0.5, a price amount, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #482767). |
+| 482835 | 动态多周期趋势预测结合移动均线过滤策略-Dynamic-Multi-Period-Trend-Prediction-with-Moving-Average-Filter-Strategy.md | 1 | The model prediction is math.random() (a random number each bar): the trades are random, not a rule (criterion 1, as the C204-C206 math.random readings). |
+| 482840 | 指数移动平均线交叉结合动态止损策略-EMA-Crossover-Strategy-with-Dynamic-Trailing-Stop-Loss.md | 2 | initial_stop_loss_points = 20 and trail_distance = 10 are price amounts added to the entry price for the stop levels, with no scale (criterion 2, as #473377). |
+| 482860 | 指数移动平均与相对强弱指数交叉策略-Exponential-Moving-Average-and-Relative-Strength-Index-Crossover-Strategy.md | 2 | buyOffset / sellOffset = 2 are price amounts added to the EMA for the entry levels, and stopLossPoints = 20 is a price amount from the average price (criterion 2, as #473377). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

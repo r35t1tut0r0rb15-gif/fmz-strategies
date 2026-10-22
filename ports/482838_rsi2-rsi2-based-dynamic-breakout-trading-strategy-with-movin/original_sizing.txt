@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #482838 (基于RSI2的动态突破交易策略结合移动平均线过滤系统-RSI2-Based-Dynamic-Breakout-Trading-Strategy-with-Moving-Average-Filter-System)
+# Source: https://www.fmz.com/strategy/482838  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

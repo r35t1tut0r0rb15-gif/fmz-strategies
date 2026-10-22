@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #482837 (多时间框架随机指标波段交易策略与动态止盈止损系统-Multi-Timeframe-Stochastic-Oscillator-Swing-Trading-Strategy-with-Dynamic-Take-Profit-and-Stop-Loss)
+# Source: https://www.fmz.com/strategy/482837  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

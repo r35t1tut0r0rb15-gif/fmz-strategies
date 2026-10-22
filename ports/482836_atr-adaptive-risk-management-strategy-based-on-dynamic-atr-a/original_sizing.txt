@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482836 (基于动态ATR和双均线交叉的自适应风险管理策略-Adaptive-Risk-Management-Strategy-Based-on-Dynamic-ATR-and-Moving-Average-Crossover)
+# Source: https://www.fmz.com/strategy/482836  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## riskPercent input (feeds nothing)  [lines 118-118]
+  118: riskPercent = input.float(1, title="Risk Per Trade (%)", minval=0.1)

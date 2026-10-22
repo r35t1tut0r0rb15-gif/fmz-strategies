@@ -6530,6 +6530,29 @@ SIZING = {
         ("strategy(): 10 % of equity", 132, 132),
     ],
     482832: [],
+    # ---- FMZ-C, batch C251 (2026-10-22)
+    482833: [
+        ("strategy(): 10 % of equity", 103, 103),
+    ],
+    482836: [
+        ("riskPercent input (feeds nothing)", 118, 118),
+    ],
+    482837: [],
+    482838: [],
+    482841: [],
+    482843: [
+        ("strategy(): 10 % of equity", 105, 105),
+    ],
+    482846: [],
+    482848: [
+        ("strategy(): capital 10000, 5 % of equity, commission 0.1 %, slippage 1", 130, 130),
+        ("riskPercent input (feeds nothing)", 142, 142),
+    ],
+    482849: [
+        ("strategy(): 10 % of equity", 93, 93),
+        ("RiskPercent quantity: equity x 1 % / stop distance", 99, 124),
+    ],
+    482859: [],
 }
 
 REJECTED_ON_READING = {
@@ -8237,6 +8260,14 @@ REJECTED_ON_READING = {
     482824: ("2", "The exits pass trail_offset = atr x 0.5, a price amount, where the call takes "
               "ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, "
               "as #482767)."),
+    # ---- FMZ-C, batch C251 (2026-10-22)
+    482835: ("1", "The model prediction is math.random() (a random number each bar): the trades are "
+              "random, not a rule (criterion 1, as the C204-C206 math.random readings)."),
+    482840: ("2", "initial_stop_loss_points = 20 and trail_distance = 10 are price amounts added to "
+              "the entry price for the stop levels, with no scale (criterion 2, as #473377)."),
+    482860: ("2", "buyOffset / sellOffset = 2 are price amounts added to the EMA for the entry "
+              "levels, and stopLossPoints = 20 is a price amount from the average price "
+              "(criterion 2, as #473377)."),
 }
 
 DUPLICATE_ON_READING = {
