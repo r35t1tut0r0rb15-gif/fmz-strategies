@@ -1,0 +1,63 @@
+# Original sizing and money-management code, FMZ #455354 (高级RSI背离与均线组合的量化交易策略-Advanced-Quantitative-Trading-Strategy-Combining-RSI-Divergence-and-Moving-Averages)
+# Source: https://www.fmz.com/strategy/455354  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## SL / TP 11 / 33 pips x 0.1 from the average price (repeat signals only)  [lines 211-268]
+  211: stopLoss = input.float(11, title="Stop Loss (pips)", group="Trade Settings")
+  212: takeProfit = input.float(33, title="Take Profit (pips)", group="Trade Settings")
+  213: 
+  214: // RSI and MA calculation
+  215: ma(source, length, type) =>
+  216:     switch type
+  217:         "SMA" => ta.sma(source, length)
+  218:         "Bollinger Bands" => ta.sma(source, length)
+  219:         "EMA" => ta.ema(source, length)
+  220:         "SMMA (RMA)" => ta.rma(source, length)
+  221:         "WMA" => ta.wma(source, length)
+  222:         "VWMA" => ta.vwma(source, length)
+  223: 
+  224: up = ta.rma(math.max(ta.change(rsiSourceInput), 0), rsiLengthInput)
+  225: down = ta.rma(-math.min(ta.change(rsiSourceInput), 0), rsiLengthInput)
+  226: rsi = down == 0 ? 100 : up == 0 ? 0 : 100 - (100 / (1 + up / down))
+  227: rsiMA = ma(rsi, maLengthInput, maTypeInput)
+  228: isBB = maTypeInput == "Bollinger Bands"
+  229: 
+  230: // Divergence detection
+  231: lookbackRight = 5
+  232: lookbackLeft = 5
+  233: rangeUpper = 60
+  234: rangeLower = 5
+  235: 
+  236: plFound = na(ta.pivotlow(rsi, lookbackLeft, lookbackRight)) ? false : true
+  237: phFound = na(ta.pivothigh(rsi, lookbackLeft, lookbackRight)) ? false : true
+  238: 
+  239: _inRange(cond) =>
+  240:     bars = ta.barssince(cond == true)
+  241:     rangeLower <= bars and bars <= rangeUpper
+  242: 
+  243: // Bullish divergence
+  244: rsiHL = rsi[lookbackRight] > ta.valuewhen(plFound, rsi[lookbackRight], 1) and _inRange(plFound[1])
+  245: priceLL = low[lookbackRight] < ta.valuewhen(plFound, low[lookbackRight], 1)
+  246: bullishDivergence = priceLL and rsiHL and plFound
+  247: 
+  248: // Bearish divergence
+  249: rsiLH = rsi[lookbackRight] < ta.valuewhen(phFound, rsi[lookbackRight], 1) and _inRange(phFound[1])
+  250: priceHH = high[lookbackRight] > ta.valuewhen(phFound, high[lookbackRight], 1)
+  251: bearishDivergence = priceHH and rsiLH and phFound
+  252: 
+  253: // Entry conditions
+  254: longCondition = bullishDivergence and rsi < 40
+  255: shortCondition = bearishDivergence and rsi > 60
+  256: 
+  257: // Convert pips to price for Gold (assuming 1 pip = 0.1 for XAUUSD)
+  258: stopLossPrice = stopLoss * 0.1
+  259: takeProfitPrice = takeProfit * 0.1
+  260: 
+  261: // Execute trades
+  262: if (longCondition)
+  263:     strategy.entry("Long", strategy.long)
+  264:     strategy.exit("TP/SL", "Long", stop=strategy.position_avg_price - stopLossPrice, limit=strategy.position_avg_price + takeProfitPrice)
+  265: 
+  266: if (shortCondition)
+  267:     strategy.entry("Short", strategy.short)
+  268:     strategy.exit("TP/SL", "Short", stop=strategy.position_avg_price + stopLossPrice, limit=strategy.position_avg_price - takeProfitPrice)

@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #455358 (动态价差市场做市策略-Dynamic-Spread-Market-Making-Strategy)
+# Source: https://www.fmz.com/strategy/455358  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantity 1; inventory limit 100  [lines 158-179]
+  158: inventory_limit = input.int(100, title="Inventory Limit")
+  159: price_offset = input.float(0.01, title="Price Offset")
+  160: 
+  161: // Calculate the moving average as a simple method for price prediction
+  162: ma = ta.sma(close, length)
+  163: 
+  164: // Define buy and sell prices based on the moving average and spread
+  165: buy_price = ma * (1 - spread / 100) - price_offset
+  166: sell_price = ma * (1 + spread / 100) + price_offset
+  167: 
+  168: // Manage inventory (simplified for example purposes)
+  169: var float inventory = 0
+  170: 
+  171: // Execute buy order if below inventory limit
+  172: if close <= buy_price and inventory < inventory_limit
+  173:     strategy.entry("Buy", strategy.long, qty=1)
+  174:     inventory := inventory + 1
+  175: 
+  176: // Execute sell order if inventory is positive
+  177: if close >= sell_price and inventory > 0
+  178:     strategy.entry("Sell", strategy.short, qty=1)
+  179:     inventory := inventory - 1

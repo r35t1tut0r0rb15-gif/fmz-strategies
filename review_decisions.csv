@@ -343,6 +343,7 @@ fmz_id,file,final_outcome,criterion,reason
 454361,EMA多头均线交叉策略-EMA-Bullish-Crossover-Strategy.md,REJECTED_ON_READING,1,"The target is close + 0.001 (a forex-pip amount) on BTC: the limit sits at, or within a fraction of a cent of, the entry, so every long and short is closed at about its own fill price (criterion 1, as #451493)."
 454721,马尔可夫链概率转换状态量化交易策略-Markov-Chain-Probability-Transition-State-Quantitative-Trading-Strategy.md,REJECTED_ON_READING,1,"The 'Markov' state is overwritten by a counter that cycles 0-9 from the first bar of the data, so which bars buy, sell or close depends on where the data starts rather than on prices alone; the source also names no bar size (criterion 1)."
 454736,Supertrend双重触发的多步移动止盈策略Double-Supertrend-Multi-Step-Trailing-Take-Profit-Strategy.md,REJECTED_ON_READING,1,"The take-profit steps strategy.exit(qty_percent = 12 / 8 / 4 %) close parts of the position at 6 / 12 / 18 %: partial exits (criterion 1, as #436524)."
+454747,多重指数移动平均线交叉趋势跟踪策略-Multi-EMA-Crossover-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"The close condition includes strategy.netprofit / strategy.equity x 100 >= 20: once the closed profit reaches 20 % of equity every bar closes the long, a size- and history-dependent equity gate (criterion 1, as #440336)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2795,3 +2796,14 @@ fmz_id,file,final_outcome,criterion,reason
 454742,SuperTrend策略优化动态波动率跟踪与交易信号增强系统-SuperTrend-Strategy-Optimization-Dynamic-Volatility-Tracking-and-Enhanced-Trading-Signal-System.md,PORTED,,ports/454742_supertrend-supertrend-strategy-optimization-dynamic-volatili/
 454743,动态通道百分比包络策略-Dynamic-Channel-Percentage-Envelope-Strategy.md,PORTED,,ports/454743_dynamic-channel-percentage-envelope-strategy/
 454746,动态波动趋势捕捉策略-Dynamic-Oscillation-Trend-Capture-Strategy.md,PORTED,,ports/454746_dynamic-oscillation-trend-capture-strategy/
+454761,RSI与随机指标融合交叉策略-RSI-and-Stochastic-Fusion-Cross-Strategy.md,PORTED,,ports/454761_rsi-rsi-and-stochastic-fusion-cross-strategy/
+454762,基于机器学习的移动平均线交叉量化交易策略-Machine-Learning-Based-Moving-Average-Crossover-Quantitative-Trading-Strategy.md,PORTED,,ports/454762_machine-learning-based-moving-average-crossover-quantitative/
+454765,多周期斐波那契RSI黄金交叉趋势跟踪量化交易策略-Multi-Timeframe-Fibonacci-RSI-Golden-Cross-Trend-Following-Quantitative-Trading-Strategy.md,PORTED,,ports/454765_rsi-multi-timeframe-fibonacci-rsi-golden-cross-trend-followi/
+454767,多指标高杠杆短线交易策略-Multi-Indicator-High-Leverage-Short-Term-Trading-Strategy.md,PORTED,,ports/454767_multi-indicator-high-leverage-short-term-trading-strategy/
+455353,EMA-SMA多指标综合趋势跟踪策略-EMA-SMA-Multi-Indicator-Comprehensive-Trend-Following-Strategy.md,PORTED,,ports/455353_ema-sma-ema-sma-multi-indicator-comprehensive-trend-followin/
+455354,高级RSI背离与均线组合的量化交易策略-Advanced-Quantitative-Trading-Strategy-Combining-RSI-Divergence-and-Moving-Averages.md,PORTED,,ports/455354_rsi-advanced-quantitative-trading-strategy-combining-rsi-div/
+455357,基于布林带和分形突破的动态转折点策略-Dynamic-Reversal-Point-Strategy-Based-on-Bollinger-Bands-and-Fractal-Breakouts.md,PORTED,,ports/455357_dynamic-reversal-point-strategy-based-on-bollinger-bands-and/
+455358,动态价差市场做市策略-Dynamic-Spread-Market-Making-Strategy.md,PORTED,,ports/455358_dynamic-spread-market-making-strategy/
+455359,多重均线交叉趋势跟踪策略-Multi-Moving-Average-Crossover-Trend-Following-Strategy.md,PORTED,,ports/455359_multi-moving-average-crossover-trend-following-strategy/
+455361,多重动量线性回归交叉策略-Multi-Momentum-Linear-Regression-Crossover-Strategy.md,PORTED,,ports/455361_multi-momentum-linear-regression-crossover-strategy/
+455364,动态优化超级趋势交易策略-Dynamic-Optimized-Supertrend-Trading-Strategy.md,PORTED,,ports/455364_dynamic-optimized-supertrend-trading-strategy/

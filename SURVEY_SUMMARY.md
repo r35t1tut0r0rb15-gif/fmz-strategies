@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2432 |
+| PORTED | 2443 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 964 |
+| PORT_CANDIDATE | 952 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 344 |
+| REJECTED_ON_READING | 345 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2560,7 +2560,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 454742 | `ports/454742_supertrend-supertrend-strategy-optimization-dynamic-volatili/` | PineScript | supertrend | none | atr_len x2, mult x2 | 4 |
 | 454743 | `ports/454743_dynamic-channel-percentage-envelope-strategy/` | PineScript | mean_reversion | none | length x2, pct x2 | 4 |
 | 454746 | `ports/454746_dynamic-oscillation-trend-capture-strategy/` | PineScript | macd_cross | none | hilo_len x2, fast x2, slow x2 | 8 |
-| | **2432 ports** | | | | | **11373** |
+| 454761 | `ports/454761_rsi-rsi-and-stochastic-fusion-cross-strategy/` | PineScript | stochastic_oscillator | none | rsi_len x2, k_len x2 | 4 |
+| 454762 | `ports/454762_machine-learning-based-moving-average-crossover-quantitative/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 454765 | `ports/454765_rsi-multi-timeframe-fibonacci-rsi-golden-cross-trend-followi/` | PineScript | ma_cross | none | short_len x2, long_len x2, fib_len x2 | 8 |
+| 454767 | `ports/454767_multi-indicator-high-leverage-short-term-trading-strategy/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | short_len x2, long_len x2, atr_mult x2 | 8 |
+| 455353 | `ports/455353_ema-sma-ema-sma-multi-indicator-comprehensive-trend-followin/` | PineScript | multi_indicator_confluence | none | entry_lvl x3, close_lvl x2 | 6 |
+| 455354 | `ports/455354_rsi-advanced-quantitative-trading-strategy-combining-rsi-div/` | PineScript | rsi_oscillator | trailing_stop_pending | rsi_len x2, pivot x2 | 4 |
+| 455357 | `ports/455357_dynamic-reversal-point-strategy-based-on-bollinger-bands-and/` | PineScript | reversal_pattern | none | window x2 | 2 |
+| 455358 | `ports/455358_dynamic-spread-market-making-strategy/` | PineScript | mean_reversion | bar_size_pending | length x2, spread_pct x2 | 4 |
+| 455359 | `ports/455359_multi-moving-average-crossover-trend-following-strategy/` | PineScript | adaptive_average | none | length x2, vfactor x2 | 4 |
+| 455361 | `ports/455361_multi-momentum-linear-regression-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2, rsi_len x2 | 8 |
+| 455364 | `ports/455364_dynamic-optimized-supertrend-trading-strategy/` | PineScript | supertrend | trailing_stop_pending | atr_len x2, factor x2 | 4 |
+| | **2443 ports** | | | | | **11429** |
 
 ## Rejected on reading
 
@@ -2910,6 +2921,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 454361 | EMA多头均线交叉策略-EMA-Bullish-Crossover-Strategy.md | 1 | The target is close + 0.001 (a forex-pip amount) on BTC: the limit sits at, or within a fraction of a cent of, the entry, so every long and short is closed at about its own fill price (criterion 1, as #451493). |
 | 454721 | 马尔可夫链概率转换状态量化交易策略-Markov-Chain-Probability-Transition-State-Quantitative-Trading-Strategy.md | 1 | The 'Markov' state is overwritten by a counter that cycles 0-9 from the first bar of the data, so which bars buy, sell or close depends on where the data starts rather than on prices alone; the source also names no bar size (criterion 1). |
 | 454736 | Supertrend双重触发的多步移动止盈策略Double-Supertrend-Multi-Step-Trailing-Take-Profit-Strategy.md | 1 | The take-profit steps strategy.exit(qty_percent = 12 / 8 / 4 %) close parts of the position at 6 / 12 / 18 %: partial exits (criterion 1, as #436524). |
+| 454747 | 多重指数移动平均线交叉趋势跟踪策略-Multi-EMA-Crossover-Trend-Following-Strategy.md | 1 | The close condition includes strategy.netprofit / strategy.equity x 100 >= 20: once the closed profit reaches 20 % of equity every bar closes the long, a size- and history-dependent equity gate (criterion 1, as #440336). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -5223,6 +5223,26 @@ SIZING = {
     454742: [],
     454743: [],
     454746: [],
+    # ---- FMZ-C, batch C197 (2026-10-22)
+    454761: [],
+    454762: [],
+    454765: [],
+    454767: [
+        ("Stop / target 1.5 ATR 5 from the signal close", 184, 212),
+    ],
+    455353: [],
+    455354: [
+        ("SL / TP 11 / 33 pips x 0.1 from the average price (repeat signals only)", 211, 268),
+    ],
+    455357: [],
+    455358: [
+        ("Quantity 1; inventory limit 100", 158, 179),
+    ],
+    455359: [],
+    455361: [],
+    455364: [
+        ("Stop 1 ATR / target 2 ATR from the current close (every bar)", 170, 181),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -6614,6 +6634,10 @@ REJECTED_ON_READING = {
     # ---- FMZ-C, batch C196 (2026-10-22)
     454736: ("1", "The take-profit steps strategy.exit(qty_percent = 12 / 8 / 4 %) close parts of the "
               "position at 6 / 12 / 18 %: partial exits (criterion 1, as #436524)."),
+    # ---- FMZ-C, batch C197 (2026-10-22)
+    454747: ("1", "The close condition includes strategy.netprofit / strategy.equity x 100 >= 20: "
+              "once the closed profit reaches 20 % of equity every bar closes the long, a size- "
+              "and history-dependent equity gate (criterion 1, as #440336)."),
 }
 
 DUPLICATE_ON_READING = {
