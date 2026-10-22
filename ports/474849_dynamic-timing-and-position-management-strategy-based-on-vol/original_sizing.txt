@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #474849 (基于波动率的动态择时与仓位管理策略-Dynamic-Timing-and-Position-Management-Strategy-Based-on-Volatility)
+# Source: https://www.fmz.com/strategy/474849  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Size = capital x 1 % / stop distance (min 1)  [lines 129-141]
+  129: atr = ta.atr(length)
+  130: stop_distance = math.abs(close - vStop) // Distance to stop level
+  131: position_size = (initial_capital * (risk_per_trade / 100)) / stop_distance // Position size based on risk per trade
+  132: position_size := math.max(position_size, 1) // Ensure minimum size of 1
+  133: 
+  134: // Strategy Logic
+  135: if not na(vStop)
+  136:     if uptrend and not uptrend[1] // Transition to uptrend
+  137:         strategy.close("Short")
+  138:         strategy.entry("Long", strategy.long, qty=position_size)
+  139:     if not uptrend and uptrend[1] // Transition to downtrend
+  140:         strategy.close("Long")
+  141:         strategy.entry("Short", strategy.short, qty=position_size)

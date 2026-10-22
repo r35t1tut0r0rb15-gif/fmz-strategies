@@ -1,0 +1,45 @@
+# Original sizing and money-management code, FMZ #474874 (均线交叉结合RSI趋势动量跟踪策略-Moving-Average-Crossover-with-RSI-Trend-Momentum-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/474874  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 % / target 2 % of the current close (every bar)  [lines 99-138]
+   99: stopLossPercent = input.float(1, title="Stop Loss Percentage", minval=0.1, maxval=10.0) / 100
+  100: takeProfitPercent = input.float(2, title="Take Profit Percentage", minval=0.1, maxval=10.0) / 100
+  101: 
+  102: // --- Calculate Moving Averages ---
+  103: shortMA_value = ta.sma(close, shortMA)
+  104: longMA_value = ta.sma(close, longMA)
+  105: 
+  106: // --- Calculate RSI ---
+  107: rsi_value = ta.rsi(close, rsiLength)
+  108: 
+  109: // --- Buy and Sell Conditions ---
+  110: longCondition = ta.crossover(shortMA_value, longMA_value) and rsi_value > 50
+  111: shortCondition = ta.crossunder(shortMA_value, longMA_value) and rsi_value < 50
+  112: 
+  113: // --- Plot Moving Averages ---
+  114: plot(shortMA_value, color=color.blue, linewidth=2, title="Short MA")
+  115: plot(longMA_value, color=color.red, linewidth=2, title="Long MA")
+  116: 
+  117: // --- Plot RSI (Optional) ---
+  118: hline(rsiOverbought, "Overbought", color=color.red)
+  119: hline(rsiOversold, "Oversold", color=color.green)
+  120: plot(rsi_value, color=color.purple, title="RSI")
+  121: 
+  122: // --- Strategy Execution ---
+  123: if (longCondition)
+  124:     strategy.entry("Long", strategy.long)
+  125:     
+  126: if (shortCondition)
+  127:     strategy.entry("Short", strategy.short)
+  128: 
+  129: // --- Risk Management (Stop Loss and Take Profit) ---
+  130: longStopLoss = close * (1 - stopLossPercent)
+  131: longTakeProfit = close * (1 + takeProfitPercent)
+  132: 
+  133: shortStopLoss = close * (1 + stopLossPercent)
+  134: shortTakeProfit = close * (1 - takeProfitPercent)
+  135: 
+  136: // Set the stop loss and take profit for long and short positions
+  137: strategy.exit("Long Exit", from_entry="Long", stop=longStopLoss, limit=longTakeProfit)
+  138: strategy.exit("Short Exit", from_entry="Short", stop=shortStopLoss, limit=shortTakeProfit)

@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #474860 (多重指标趋势交易系统结合动量分析策略-Multi-Indicator-Trend-Trading-System-with-Momentum-Analysis-Strategy)
+# Source: https://www.fmz.com/strategy/474860  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Fixed qty 1  [lines 238-241]
+  238: if (buySignal)
+  239:     strategy.entry("Long", strategy.long, 1.0)
+  240: if (sellSignal)
+  241:     strategy.entry("Short", strategy.short, 1.0)

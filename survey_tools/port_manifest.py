@@ -5925,6 +5925,34 @@ SIZING = {
     474843: [
         ("strategy(): 10 % of equity; target 10 % / stop 5 % of the current close", 87, 140),
     ],
+    # ---- FMZ-C, batch C225 (2026-10-22)
+    474846: [
+        ("strategy(): 100 % of equity, capital 10000", 117, 117),
+    ],
+    474847: [
+        ("strategy(): 100 % of equity", 99, 99),
+    ],
+    474849: [
+        ("Size = capital x 1 % / stop distance (min 1)", 129, 141),
+    ],
+    474859: [],
+    474860: [
+        ("Fixed qty 1", 238, 241),
+    ],
+    474862: [],
+    474864: [
+        ("Stop 2 ATR / target 4 ATR from the signal close", 142, 158),
+    ],
+    474865: [
+        ("strategy(): fixed qty 1; buy / sell quantity 1", 117, 171),
+    ],
+    474869: [],
+    474874: [
+        ("Stop 1 % / target 2 % of the current close (every bar)", 99, 138),
+    ],
+    474876: [
+        ("strategy(): 100 % of equity; ATR stop / target x 2 (when=)", 92, 162),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7471,6 +7499,11 @@ REJECTED_ON_READING = {
     474837: ("1", "Multi-step take-profit on by default: six qty_percent partial exits (ATR and "
               "percent levels) per trade: the position is closed in parts, so the size path is "
               "part of the strategy (criterion 1, qty_percent partial exits, as #436524)."),
+    # ---- FMZ-C, batch C225 (2026-10-22)
+    474870: ("1", "The trailing exit has trail_price = avg x (1 - 2 / 89500) (at the entry price, so "
+              "armed at once) and trail_offset = (2 / 89500) x close ticks (under one tick of "
+              "0.1): it stops each trade at the first tick against it, so trades end at their "
+              "entry price (criterion 1, a zero-width exit, as #451493)."),
 }
 
 DUPLICATE_ON_READING = {

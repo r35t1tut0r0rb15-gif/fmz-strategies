@@ -1,0 +1,60 @@
+# Original sizing and money-management code, FMZ #474865 (动态趋势跟踪ATR多周期交易策略-Dynamic-Trend-Following-ATR-Multi-Period-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/474865  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): fixed qty 1; buy / sell quantity 1  [lines 117-171]
+  117: strategy(title='ADET GİRMELİ Trend İz Süren Stop Strategy', overlay=true, overlay=true,default_qty_type = strategy.fixed, default_qty_value = 1)
+  118: 
+  119: // Inputs
+  120: a = input(9, title='Key Value. "This changes the sensitivity"')
+  121: c = input(3, title='ATR Period')
+  122: h = input(false, title='Signals from Heikin Ashi Candles')
+  123: 
+  124: xATR = ta.atr(c)
+  125: nLoss = a * xATR
+  126: 
+  127: src = h ? request.security(ticker.heikinashi(syminfo.tickerid), timeframe.period, close, lookahead=barmerge.lookahead_off) : close
+  128: 
+  129: xATRTrailingStop = 0.0
+  130: iff_1 = src > nz(xATRTrailingStop[1], 0) ? src - nLoss : src + nLoss
+  131: iff_2 = src < nz(xATRTrailingStop[1], 0) and src[1] < nz(xATRTrailingStop[1], 0) ? math.min(nz(xATRTrailingStop[1]), src + nLoss) : iff_1
+  132: xATRTrailingStop := src > nz(xATRTrailingStop[1], 0) and src[1] > nz(xATRTrailingStop[1], 0) ? math.max(nz(xATRTrailingStop[1]), src - nLoss) : iff_2
+  133: 
+  134: pos = 0
+  135: iff_3 = src[1] > nz(xATRTrailingStop[1], 0) and src < nz(xATRTrailingStop[1], 0) ? -1 : nz(pos[1], 0)
+  136: pos := src[1] < nz(xATRTrailingStop[1], 0) and src > nz(xATRTrailingStop[1], 0) ? 1 : iff_3
+  137: 
+  138: xcolor = pos == -1 ? color.red : pos == 1 ? color.green : color.blue
+  139: 
+  140: ema = ta.ema(src, 1)
+  141: above = ta.crossover(ema, xATRTrailingStop)
+  142: below = ta.crossover(xATRTrailingStop, ema)
+  143: 
+  144: buy = src > xATRTrailingStop and above
+  145: sell = src < xATRTrailingStop and below
+  146: 
+  147: barbuy = src > xATRTrailingStop
+  148: barsell = src < xATRTrailingStop
+  149: // Alım ve Satım Sinyalleri
+  150: buySignal = src > xATRTrailingStop and above
+  151: sellSignal = src < xATRTrailingStop and below
+  152: 
+  153: // Kullanıcı girişi
+  154: sell_quantity = input.int(1, title="Sell Quantity", minval=1)
+  155: buy_quantity = input.int(1, title="Buy Quantity", minval=1)
+  156: 
+  157: // Portföy miktarı (örnek simülasyon verisi)
+  158: var portfolio_quantity = 0
+  159: 
+  160: // Sinyal üretimi (örnek sinyal, gerçek stratejinizle değiştirin)
+  161: indicator_signal = (src > xATRTrailingStop and above) ? "buy" : 
+  162:                    (src < xATRTrailingStop and below) ? "sell" : "hold"
+  163: 
+  164: // Şartlara göre al/sat
+  165: if indicator_signal == "buy" and portfolio_quantity < buy_quantity
+  166:     strategy.entry("Buy Order", strategy.long, qty=buy_quantity)
+  167:     portfolio_quantity := portfolio_quantity + buy_quantity
+  168: 
+  169: if indicator_signal == "sell" and portfolio_quantity >= sell_quantity
+  170:     strategy.close("Buy Order", qty=sell_quantity)
+  171:     portfolio_quantity := portfolio_quantity - sell_quantity

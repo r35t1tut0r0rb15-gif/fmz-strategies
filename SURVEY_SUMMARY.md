@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2728 |
+| PORTED | 2739 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 628 |
+| PORT_CANDIDATE | 616 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 382 |
+| REJECTED_ON_READING | 383 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2856,7 +2856,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474839 | `ports/474839_k-high-frequency-breakout-trading-strategy-based-on-candlest/` | PineScript | candle_pattern | none |  | 0 |
 | 474840 | `ports/474840_multi-period-bollinger-bands-touch-trend-reversal-quantitati/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
 | 474843 | `ports/474843_multi-ema-crossover-momentum-trend-following-strategy/` | PineScript | ma_cross | trailing_stop_pending |  | 0 |
-| | **2728 ports** | | | | | **12784** |
+| 474846 | `ports/474846_multi-technical-indicator-based-trend-following-and-momentum/` | PineScript | multi_indicator_confluence | none | ema_length x2, rsi_length x2 | 4 |
+| 474847 | `ports/474847_ema-macd-ema-macd-composite-strategy-for-trend-scalping/` | PineScript | multi_indicator_confluence | none | fast x2, slow x2 | 4 |
+| 474849 | `ports/474849_dynamic-timing-and-position-management-strategy-based-on-vol/` | PineScript | atr_trailing_line | none | length x2, factor x2 | 4 |
+| 474859 | `ports/474859_trend-following-cloud-momentum-divergence-strategy/` | PineScript | ichimoku | none |  | 0 |
+| 474860 | `ports/474860_multi-indicator-trend-trading-system-with-momentum-analysis/` | PineScript | multi_indicator_confluence | none |  | 0 |
+| 474862 | `ports/474862_smma-multi-ema-trend-following-strategy-with-smma-confirmati/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 474864 | `ports/474864_multi-indicator-trend-following-strategy-with-dynamic-channe/` | PineScript | volatility_channel_breakout | coarse_bar_stop | length x2, ema_length x2 | 4 |
+| 474865 | `ports/474865_atr-dynamic-trend-following-atr-multi-period-trading-strateg/` | PineScript | atr_trailing_line | none | key x2, atr_period x2 | 4 |
+| 474869 | `ports/474869_dynamic-pivot-points-with-golden-cross-optimization-system/` | PineScript | ma_cross | none | length_short x2, length_long x2 | 4 |
+| 474874 | `ports/474874_rsi-moving-average-crossover-with-rsi-trend-momentum-trackin/` | PineScript | ma_cross | trailing_stop_pending | short_ma x2, long_ma x2 | 4 |
+| 474876 | `ports/474876_multi-timeframe-trend-dynamic-atr-tracking-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| | **2739 ports** | | | | | **12820** |
 
 ## Rejected on reading
 
@@ -3244,6 +3255,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474803 | 多重技术指标趋势追踪套利策略-Multi-Technical-Indicator-Trend-Following-Trading-Strategy.md | 1 | The trailing exit has trail_price = close x 0.98 (under the market, so armed at once) and trail_offset = 0.02 ticks (0.002 in price), re-sent every bar: it stops every trade at the first tick against it, so trades end at their entry price (criterion 1, a zero-width exit, as #451493). |
 | 474822 | 自适应布林通道动态仓位管理策略-Adaptive-Bollinger-Bands-Dynamic-Position-Management-Strategy.md | 1 | Partial closes: entries of qty 0.5 and strategy.close("Buy", qty = 0.1 / 0.5) on the basis re-cross and the lower-band break: the position is closed in parts, so the size path is part of the strategy (criterion 1, partial exits, as #436524). |
 | 474837 | 变量指数动态均线多层利润趋势跟踪策略-Variable-Index-Dynamic-Average-Multi-Tier-Profit-Trend-Following-Strategy.md | 1 | Multi-step take-profit on by default: six qty_percent partial exits (ATR and percent levels) per trade: the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #436524). |
+| 474870 | 动量趋势跟踪型MACD-RSI双重确认交易策略-Momentum-Trend-Following-MACD-RSI-Dual-Confirmation-Trading-Strategy.md | 1 | The trailing exit has trail_price = avg x (1 - 2 / 89500) (at the entry price, so armed at once) and trail_offset = (2 / 89500) x close ticks (under one tick of 0.1): it stops each trade at the first tick against it, so trades end at their entry price (criterion 1, a zero-width exit, as #451493). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

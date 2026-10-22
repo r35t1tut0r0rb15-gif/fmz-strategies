@@ -1,0 +1,76 @@
+# Original sizing and money-management code, FMZ #474876 (多周期趋势动态波幅跟踪策略-Multi-Timeframe-Trend-Dynamic-ATR-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/474876  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; ATR stop / target x 2 (when=)  [lines 92-162]
+   92: strategy("TrenGuard Adaptive ATR Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+   93: 
+   94: // Parameters
+   95: emaShortPeriod = input.int(9, title="Short EMA Period", minval=1)
+   96: emaLongPeriod = input.int(21, title="Long EMA Period", minval=1)
+   97: rsiPeriod = input.int(14, title="RSI Period", minval=1)
+   98: rsiOverbought = input.int(70, title="RSI Overbought", minval=50)
+   99: rsiOversold = input.int(30, title="RSI Oversold", minval=1)
+  100: atrPeriod = input.int(14, title="ATR Period", minval=1)
+  101: atrMultiplierSL = input.float(2.0, title="ATR Multiplier for Stop-Loss", minval=0.1)
+  102: atrMultiplierTP = input.float(2.0, title="ATR Multiplier for Take-Profit", minval=0.1)
+  103: 
+  104: // Multi-timeframe settings
+  105: htfEMAEnabled = input.bool(true, title="Use Higher Timeframe EMA Confirmation?", inline="htf")
+  106: htfEMATimeframe = input.timeframe("D", title="Higher Timeframe", inline="htf")
+  107: 
+  108: // MACD Parameters
+  109: macdShortPeriod = input.int(12, title="MACD Short Period", minval=1)
+  110: macdLongPeriod = input.int(26, title="MACD Long Period", minval=1)
+  111: macdSignalPeriod = input.int(9, title="MACD Signal Period", minval=1)
+  112: 
+  113: // Select trade direction
+  114: tradeDirection = input.string("Both", title="Trade Direction", options=["Both", "Long", "Short"])
+  115: 
+  116: // Calculating indicators
+  117: emaShort = ta.ema(close, emaShortPeriod)
+  118: emaLong = ta.ema(close, emaLongPeriod)
+  119: rsiValue = ta.rsi(close, rsiPeriod)
+  120: atrValue = ta.atr(atrPeriod)
+  121: [macdLine, macdSignalLine, _] = ta.macd(close, macdShortPeriod, macdLongPeriod, macdSignalPeriod)
+  122: 
+  123: // Higher timeframe EMA confirmation
+  124: htfEMALong = request.security(syminfo.tickerid, htfEMATimeframe, ta.ema(close, emaLongPeriod))
+  125: 
+  126: // Trading conditions
+  127: longCondition = ta.crossover(emaShort, emaLong) and rsiValue < rsiOverbought and (not htfEMAEnabled or close > htfEMALong) and macdLine > macdSignalLine
+  128: shortCondition = ta.crossunder(emaShort, emaLong) and rsiValue > rsiOversold and (not htfEMAEnabled or close < htfEMALong) and macdLine < macdSignalLine
+  129: 
+  130: // Initial Stop-Loss and Take-Profit levels based on ATR
+  131: var float adaptiveStopLoss = na
+  132: var float adaptiveTakeProfit = na
+  133: 
+  134: if (strategy.position_size > 0) // Long Position
+  135:     if (longCondition) // Trend Confirmation
+  136:         adaptiveStopLoss := na(adaptiveStopLoss) ? close - atrValue * atrMultiplierSL : math.max(adaptiveStopLoss, close - atrValue * atrMultiplierSL)
+  137:         adaptiveTakeProfit := na(adaptiveTakeProfit) ? close + atrValue * atrMultiplierTP : math.max(adaptiveTakeProfit, close + atrValue * atrMultiplierTP)
+  138:     else
+  139:         adaptiveStopLoss := na(adaptiveStopLoss) ? close - atrValue * atrMultiplierSL : math.max(adaptiveStopLoss, close - atrValue * atrMultiplierSL)
+  140:         adaptiveTakeProfit := na(adaptiveTakeProfit) ? close + atrValue * atrMultiplierTP : math.max(adaptiveTakeProfit, close + atrValue * atrMultiplierTP)
+  141: 
+  142: if (strategy.position_size < 0) // Short Position
+  143:     if (shortCondition) // Trend Confirmation
+  144:         adaptiveStopLoss := na(adaptiveStopLoss) ? close + atrValue * atrMultiplierSL : math.min(adaptiveStopLoss, close + atrValue * atrMultiplierSL)
+  145:         adaptiveTakeProfit := na(adaptiveTakeProfit) ? close - atrValue * atrMultiplierTP : math.min(adaptiveTakeProfit, close - atrValue * atrMultiplierTP)
+  146:     else
+  147:         adaptiveStopLoss := na(adaptiveStopLoss) ? close + atrValue * atrMultiplierSL : math.min(adaptiveStopLoss, close + atrValue * atrMultiplierSL)
+  148:         adaptiveTakeProfit := na(adaptiveTakeProfit) ? close - atrValue * atrMultiplierTP : math.min(adaptiveTakeProfit, close - atrValue * atrMultiplierTP)
+  149: 
+  150: // Strategy Entry
+  151: if (longCondition and (tradeDirection == "Both" or tradeDirection == "Long"))
+  152:     strategy.entry("Long", strategy.long)
+  153:     
+  154: if (shortCondition and (tradeDirection == "Both" or tradeDirection == "Short"))
+  155:     strategy.entry("Short", strategy.short)
+  156: 
+  157: // Strategy Exit
+  158: if (strategy.position_size > 0) // Long Position
+  159:     strategy.exit("Exit Long", "Long", stop=adaptiveStopLoss, limit=adaptiveTakeProfit, when=shortCondition)
+  160: 
+  161: if (strategy.position_size < 0) // Short Position
+  162:     strategy.exit("Exit Short", "Short", stop=adaptiveStopLoss, limit=adaptiveTakeProfit, when=longCondition)

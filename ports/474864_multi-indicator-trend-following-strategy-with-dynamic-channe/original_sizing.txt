@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #474864 (多指标趋势跟踪策略结合动态信道和移动平均的交易系统-Multi-Indicator-Trend-Following-Strategy-with-Dynamic-Channel-and-Moving-Average-Trading-System)
+# Source: https://www.fmz.com/strategy/474864  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 ATR / target 4 ATR from the signal close  [lines 142-158]
+  142: // ATR-based SL and TP calculations
+  143: long_sl = close - 2 * atr_value  // 2 ATR below the entry for SL
+  144: long_tp = close + 4 * atr_value  // 4 ATR above the entry for TP
+  145: short_sl = close + 2 * atr_value // 2 ATR above the entry for SL (short)
+  146: short_tp = close - 4 * atr_value // 4 ATR below the entry for TP (short)
+  147: 
+  148: // Generate Buy signal only if the last signal was not Buy
+  149: if (buy_condition and not last_was_buy)
+  150:     strategy.entry("Buy", strategy.long)
+  151:     strategy.exit("Exit Buy", from_entry="Buy", stop=long_sl, limit=long_tp)
+  152:     last_was_buy := true
+  153:     last_was_sell := false
+  154: 
+  155: // Generate Sell signal only if the last signal was not Sell
+  156: if (sell_condition and not last_was_sell)
+  157:     strategy.entry("Sell", strategy.short)
+  158:     strategy.exit("Exit Sell", from_entry="Sell", stop=short_sl, limit=short_tp)
