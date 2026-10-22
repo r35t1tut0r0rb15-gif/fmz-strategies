@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #442254 (基于多EMA买入策略Multiple-EMA-Buy-Strategy)
+# Source: https://www.fmz.com/strategy/442254  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

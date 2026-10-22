@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #442256 (动能突破自适应均线交叉系统Adaptive-Moving-Average-Crossover-System-with-Momentum-Breakout)
+# Source: https://www.fmz.com/strategy/442256  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

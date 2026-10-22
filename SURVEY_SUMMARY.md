@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1968 |
-| PORT_CANDIDATE | 1491 |
+| PORTED | 1979 |
+| PORT_CANDIDATE | 1479 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 281 |
+| REJECTED_ON_READING | 282 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2096,7 +2096,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442225 | `ports/442225_ema-short-term-trading-strategy-based-on-ema/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 442228 | `ports/442228_dual-moving-average-chasing-strategy/` | PineScript | candle_pattern | none |  | 0 |
 | 442230 | `ports/442230_three-color-cross-trend-tracking-strategy/` | PineScript | candle_pattern | none | run x2 | 2 |
-| | **1968 ports** | | | | | **9391** |
+| 442233 | `ports/442233_macd-rsi-a-combined-rsi-strategy-with-moving-average-and-mac/` | PineScript | ma_cross | none | ema3_length x2, ema30_length x2 | 4 |
+| 442234 | `ports/442234_moving-average-trend-tracking-strategy/` | PineScript | directional_movement | coarse_bar_stop, trailing_stop | di_len x2, trail_pct x2 | 4 |
+| 442236 | `ports/442236_b-xtrender-b-xtrender-exponential-moving-average-crossover-s/` | PineScript | momentum_oscillator | coarse_bar_stop, trailing_stop | ma_len x2, trail_pct x2 | 4 |
+| 442250 | `ports/442250_reversal-momentum-strategy-with-double-confirmation/` | PineScript | combo_123_reversal | none | length x2, length_dcw x2 | 4 |
+| 442254 | `ports/442254_ema-multiple-ema-buy-strategy/` | PineScript | ma_trend | none | slowest x2 | 2 |
+| 442256 | `ports/442256_adaptive-moving-average-crossover-system-with-momentum-break/` | PineScript | ma_cross | none | ema_length x2 | 2 |
+| 442257 | `ports/442257_breakthrough-fair-value-gap-strategy/` | PineScript | candle_pattern | none | gap_back x2 | 2 |
+| 442259 | `ports/442259_bollinger-bands-breakout-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 442264 | `ports/442264_all-about-momentum-trading-strategy-with-stop-loss-for-gold/` | PineScript | momentum_oscillator | none | ema_length x2, entry_z x2 | 4 |
+| 442273 | `ports/442273_bollinger-bands-reversal-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 442275 | `ports/442275_quantitative-trading-strategy-based-on-ichimoku-cloud-and-mo/` | PineScript | ichimoku | none | len x2, base x2 | 4 |
+| | **1979 ports** | | | | | **9429** |
 
 ## Rejected on reading
 
@@ -2383,6 +2394,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442112 | 震荡反转CAT策略Reversal-Fluctuation-CAT-Strategy.md | 1 | pyramiding = 3 with repeated "botsell20" / "botbuy20" entries on every large candle while a position is open: the position accumulates units (criterion 1, as #430762). |
 | 442115 | 动量震荡追踪止损策略DYNAMIC-MOMENTUM-OSCILLATOR-TRAILING-STOP-STRATEGY.md | 2 | The only exits pass trail_points = trail_offset = atr x 1.5, a price amount, where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #437048, #437677). |
 | 442229 | 基于动态加仓策略Dynamic-Position-Building-Strategy.md | 1 | A DCA that buys on the close of every bar with pyramiding = 999 and cash sizes from remaining capital: the position accumulates units (criterion 1, as #430762). |
+| 442261 | 帕拉波尔振荡器寻找高点低点策略Parabola-Oscillator-Seeking-Highs-and-Lows-Strategy.md | 1 | longCondition and shortCondition are both the constant true, so every bar sends a long entry then a short entry; the last entry wins (as #437773), so as written the position is short from the first bar on, churning each bar: a sell-and-hold from the data start (criterion 1, as #430384). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

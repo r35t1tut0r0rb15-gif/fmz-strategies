@@ -4314,6 +4314,20 @@ SIZING = {
     ],
     442228: [],
     442230: [],
+    # ---- FMZ-C, batch C153 (2026-10-22)
+    442233: [],
+    442234: [],
+    442236: [],
+    442250: [],
+    442254: [],
+    442256: [],
+    442257: [
+        ("strategy(): 100 % of equity, pyramiding 1", 102, 102),
+    ],
+    442259: [],
+    442264: [],
+    442273: [],
+    442275: [],
 }
 
 REJECTED_ON_READING = {
@@ -5467,6 +5481,11 @@ REJECTED_ON_READING = {
     # ---- FMZ-C, batch C152 (2026-10-22)
     442229: ("1", "A DCA that buys on the close of every bar with pyramiding = 999 and cash sizes "
               "from remaining capital: the position accumulates units (criterion 1, as #430762)."),
+    # ---- FMZ-C, batch C153 (2026-10-22)
+    442261: ("1", "longCondition and shortCondition are both the constant true, so every bar sends a "
+              "long entry then a short entry; the last entry wins (as #437773), so as written the "
+              "position is short from the first bar on, churning each bar: a sell-and-hold from "
+              "the data start (criterion 1, as #430384)."),
 }
 
 DUPLICATE_ON_READING = {

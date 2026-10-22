@@ -280,6 +280,7 @@ fmz_id,file,final_outcome,criterion,reason
 442112,震荡反转CAT策略Reversal-Fluctuation-CAT-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 3 with repeated ""botsell20"" / ""botbuy20"" entries on every large candle while a position is open: the position accumulates units (criterion 1, as #430762)."
 442115,动量震荡追踪止损策略DYNAMIC-MOMENTUM-OSCILLATOR-TRAILING-STOP-STRATEGY.md,REJECTED_ON_READING,2,"The only exits pass trail_points = trail_offset = atr x 1.5, a price amount, where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #437048, #437677)."
 442229,基于动态加仓策略Dynamic-Position-Building-Strategy.md,REJECTED_ON_READING,1,"A DCA that buys on the close of every bar with pyramiding = 999 and cash sizes from remaining capital: the position accumulates units (criterion 1, as #430762)."
+442261,帕拉波尔振荡器寻找高点低点策略Parabola-Oscillator-Seeking-Highs-and-Lows-Strategy.md,REJECTED_ON_READING,1,"longCondition and shortCondition are both the constant true, so every bar sends a long entry then a short entry; the last entry wins (as #437773), so as written the position is short from the first bar on, churning each bar: a sell-and-hold from the data start (criterion 1, as #430384)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2268,3 +2269,14 @@ fmz_id,file,final_outcome,criterion,reason
 442225,基于EMA均线的短线交易策略Short-term-Trading-Strategy-Based-on-EMA.md,PORTED,,ports/442225_ema-short-term-trading-strategy-based-on-ema/
 442228,基于均线的追踪策略Dual-Moving-Average-Chasing-Strategy.md,PORTED,,ports/442228_dual-moving-average-chasing-strategy/
 442230,三色交叉趋势追踪策略Three-Color-Cross-Trend-Tracking-Strategy.md,PORTED,,ports/442230_three-color-cross-trend-tracking-strategy/
+442233,移动平均线与MACD结合的RSI指标交易策略A-Combined-RSI-Strategy-with-Moving-Average-and-MACD.md,PORTED,,ports/442233_macd-rsi-a-combined-rsi-strategy-with-moving-average-and-mac/
+442234,移动平均趋势跟踪策略Moving-Average-Trend-Tracking-Strategy.md,PORTED,,ports/442234_moving-average-trend-tracking-strategy/
+442236,指数均线交叉B-Xtrender策略B-Xtrender-Exponential-Moving-Average-Crossover-Strategy.md,PORTED,,ports/442236_b-xtrender-b-xtrender-exponential-moving-average-crossover-s/
+442250,基于双重反转动量策略Reversal-Momentum-Strategy-with-Double-Confirmation.md,PORTED,,ports/442250_reversal-momentum-strategy-with-double-confirmation/
+442254,基于多EMA买入策略Multiple-EMA-Buy-Strategy.md,PORTED,,ports/442254_ema-multiple-ema-buy-strategy/
+442256,动能突破自适应均线交叉系统Adaptive-Moving-Average-Crossover-System-with-Momentum-Breakout.md,PORTED,,ports/442256_adaptive-moving-average-crossover-system-with-momentum-break/
+442257,突破型公平价差策略Breakthrough-Fair-Value-Gap-Strategy.md,PORTED,,ports/442257_breakthrough-fair-value-gap-strategy/
+442259,基于布林带指标的简单量化交易策略Bollinger-Bands-Breakout-Strategy.md,PORTED,,ports/442259_bollinger-bands-breakout-strategy/
+442264,基于动量和标准差的黄金交易策略All-About-Momentum-Trading-Strategy-with-Stop-Loss-for-Gold.md,PORTED,,ports/442264_all-about-momentum-trading-strategy-with-stop-loss-for-gold/
+442273,玻尔福重复索纳策略Bollinger-Bands-Reversal-Strategy.md,PORTED,,ports/442273_bollinger-bands-reversal-strategy/
+442275,基于一目均衡和隐冲突的量化交易策略Quantitative-Trading-Strategy-Based-on-Ichimoku-Cloud-and-Moving-Average.md,PORTED,,ports/442275_quantitative-trading-strategy-based-on-ichimoku-cloud-and-mo/

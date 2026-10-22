@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #442257 (突破型公平价差策略Breakthrough-Fair-Value-Gap-Strategy)
+# Source: https://www.fmz.com/strategy/442257  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 1  [lines 102-102]
+  102: strategy("Fair Value Gap Strategy", "FVG Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100, pyramiding = 1)
