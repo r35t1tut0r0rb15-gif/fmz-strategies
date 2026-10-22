@@ -228,6 +228,7 @@ fmz_id,file,final_outcome,criterion,reason
 434606,移动平均线聚合MACD策略Moving-Average-Aggregation-MACD-Strategy.md,HELD_NEEDS_VOLUME,8,"One of the five averages is vwma(close, 136): a volume-weighted average (check 8, held with the other volume users)."
 434977,RSI拉升突破策略RSI-Breakout-Strategy.md,HELD_NEEDS_VOLUME,8,"The long and short exits test the close against vwma(close, 20): a volume-weighted average (check 8, held with the other volume users). (Also, on the 1-hour header chart no bar opens inside the 09:15-09:16 session window, so the day-range anchor is never set.)"
 436658,双均线黄金交叉量化策略Dual-Moving-Average-Golden-Cross-Quantitative-Strategy.md,HELD_NEEDS_VOLUME,8,"The long and short entries test the Hull line against rvwma3 = vwma(close, 42): a volume-weighted average (check 8, held with the other volume users)."
+439103,双移动均线黄金交叉策略Dual-Moving-Average-Golden-Cross-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rules use ma20 / ma50 / ma100 = vwma(close, 20 / 50 / 100): volume-weighted averages (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -1836,3 +1837,14 @@ fmz_id,file,final_outcome,criterion,reason
 439089,基于ATR波动性与HMA趋势偏差的双均线突破策略Baseline-Cross-Qualifier-ATR-Volatility-HMA-Trend-Bias-Mean-Reversion-Strategy.md,PORTED,,ports/439089_atr-hma-baseline-cross-qualifier-atr-volatility-hma-trend-bi/
 439094,动量突破优化趋势跟踪策略Momentum-Breakout-Optimization.md,PORTED,,ports/439094_momentum-breakout-optimization/
 439098,布林带穿越均值PB指标策略Bandpass-Mean-PB-Indicator-Strategy.md,PORTED,,ports/439098_pb-bandpass-mean-pb-indicator-strategy/
+439101,基于改进型MACD指标的短线交易策略Reverse-Momentum-Trading-Strategy.md,PORTED,,ports/439101_macd-reverse-momentum-trading-strategy/
+439104,动量均线交叉交易策略Momentum-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/439104_momentum-moving-average-crossover-trading-strategy/
+439106,8周期和21周期的移动平均线策略Dual-Moving-Average-Strategy.md,PORTED,,ports/439106_8-21-dual-moving-average-strategy/
+439111,定期追踪低谷均价策略Dollar-Cost-Averaging-After-Downtrend-Strategy.md,PORTED,,ports/439111_dollar-cost-averaging-after-downtrend-strategy/
+439181,动量位置型NoroBands波段策略NoroBands-Momentum-Position-Strategy.md,PORTED,,ports/439181_norobands-norobands-momentum-position-strategy/
+439183,基于EMA回调的Pullback空头策略Emma-Pullback-Short-Strategy.md,PORTED,,ports/439183_ema-pullback-emma-pullback-short-strategy/
+439188,双因子动量追踪反转策略Dual-Factor-Momentum-Tracking-Reversal-Strategy.md,PORTED,,ports/439188_dual-factor-momentum-tracking-reversal-strategy/
+439190,黄金快速突破EMA交易策略Gold-Fast-Breakthrough-EMA-Trading-Strategy.md,PORTED,,ports/439190_ema-gold-fast-breakthrough-ema-trading-strategy/
+439193,基于Parabolic-SARStoch和Security指标的多时间框架量化交易策略Parabolic-SAR-Stoch-and-Security-Indicator-Based-Multi-Timeframe-Quantitative-Trading-Strategy.md,PORTED,,ports/439193_parabolic-sarstoch-security-parabolic-sar-stoch-and-security/
+439200,多空均衡移动平均趋势跟随策略Multi-factor-Moving-Average-Trend-Following-Strategy.md,PORTED,,ports/439200_multi-factor-moving-average-trend-following-strategy/
+439201,基于布林带的突破策略Bollinger-Bands-Breakout-Strategy.md,PORTED,,ports/439201_bollinger-bands-breakout-strategy/

@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1923 |
-| PORTED | 1607 |
+| PORT_CANDIDATE | 1911 |
+| PORTED | 1618 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 563 |
+| HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | REJECTED_ON_READING | 214 |
@@ -1735,7 +1735,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439089 | `ports/439089_atr-hma-baseline-cross-qualifier-atr-volatility-hma-trend-bi/` | PineScript | ma_trend | trailing_stop_pending | baseline_len x2, qualifier_mult x2 | 4 |
 | 439094 | `ports/439094_momentum-breakout-optimization/` | PineScript | volatility_stop_cross | none | multiplier x2, length x2 | 4 |
 | 439098 | `ports/439098_pb-bandpass-mean-pb-indicator-strategy/` | PineScript | momentum_oscillator | none | period1 x2, period2 x2 | 4 |
-| | **1607 ports** | | | | | **8014** |
+| 439101 | `ports/439101_macd-reverse-momentum-trading-strategy/` | PineScript | macd_cross | none | r x2, fast x2 | 4 |
+| 439104 | `ports/439104_momentum-moving-average-crossover-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 439106 | `ports/439106_8-21-dual-moving-average-strategy/` | PineScript | ma_cross | none | angle x2, lookback x2 | 4 |
+| 439111 | `ports/439111_dollar-cost-averaging-after-downtrend-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| 439181 | `ports/439181_norobands-norobands-momentum-position-strategy/` | PineScript | volatility_channel_breakout | none | len x2, use_cb x2 | 4 |
+| 439183 | `ports/439183_ema-pullback-emma-pullback-short-strategy/` | PineScript | candle_pattern | none | ema_length x2, pullback_candles x2 | 4 |
+| 439188 | `ports/439188_dual-factor-momentum-tracking-reversal-strategy/` | PineScript | combo_123_reversal | none | length x2, gamma x2 | 4 |
+| 439190 | `ports/439190_ema-gold-fast-breakthrough-ema-trading-strategy/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 439193 | `ports/439193_parabolic-sarstoch-security-parabolic-sar-stoch-and-security/` | PineScript | multi_indicator_confluence | none | period_k x2, sar_max x2 | 4 |
+| 439200 | `ports/439200_multi-factor-moving-average-trend-following-strategy/` | PineScript | trend_confluence | none | stop_loss x2, sma_len x2 | 4 |
+| 439201 | `ports/439201_bollinger-bands-breakout-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| | **1618 ports** | | | | | **8058** |
 
 ## Rejected on reading
 

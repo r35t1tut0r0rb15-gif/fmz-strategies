@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #439106 (8周期和21周期的移动平均线策略Dual-Moving-Average-Strategy)
+# Source: https://www.fmz.com/strategy/439106  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital  [lines 165-165]
+  165: strategy(title="Dual Moving Average",initial_capital=10000,overlay=true)

@@ -1,0 +1,46 @@
+# Original sizing and money-management code, FMZ #439183 (基于EMA回调的Pullback空头策略Emma-Pullback-Short-Strategy)
+# Source: https://www.fmz.com/strategy/439183  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop input and exit  [lines 125-165]
+  125: stop_loss = input(1, title="Stop Loss (in ATR)")
+  126: 
+  127: // Calculate the EMA
+  128: ema = ema(close, ema_length)
+  129: 
+  130: // Define bearish impulse condition
+  131: bearish_impulse = crossover(close, ema)
+  132: 
+  133: // Define pullback condition
+  134: pullback_condition = false
+  135: for i = 1 to pullback_candles
+  136:     if close[i] > close[i - 1]
+  137:         pullback_condition := true
+  138:     else
+  139:         pullback_condition := false
+  140: 
+  141: // Define engulfing condition
+  142: engulfing_condition = false
+  143: for i = 1 to engulfing_candles
+  144:     if close[i] < open[i] and close[i-1] > open[i-1]
+  145:         engulfing_condition := true
+  146:     else
+  147:         engulfing_condition := false
+  148: 
+  149: // Define the entry condition
+  150: entry_condition = bearish_impulse and pullback_condition and engulfing_condition
+  151: 
+  152: // Plot the EMA on the chart
+  153: plot(ema, color=color.blue, title="50 EMA")
+  154: 
+  155: // Plot shapes on the chart to mark entry points
+  156: plotshape(entry_condition, style=shape.triangleup, location=location.belowbar, color=color.red, size=size.small)
+  157: 
+  158: // Define and plot the stop loss level
+  159: atr_value = atr(14)
+  160: stop_loss_level = close + atr_value * stop_loss
+  161: plot(stop_loss_level, color=color.red, title="Stop Loss")
+  162: 
+  163: // Strategy orders
+  164: strategy.entry("Short", strategy.short, when=entry_condition)
+  165: strategy.exit("Stop Loss/Target", from_entry="Short", stop=stop_loss_level, when=strategy.position_size[1] > 0)

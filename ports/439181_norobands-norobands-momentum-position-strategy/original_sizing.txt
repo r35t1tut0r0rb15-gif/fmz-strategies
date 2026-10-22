@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #439181 (动量位置型NoroBands波段策略NoroBands-Momentum-Position-Strategy)
+# Source: https://www.fmz.com/strategy/439181  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Pyramiding clauses and add signals  [lines 172-184]
+  172: up = trend == 1 and ((close < open or color == false) or close < hd) and (min < min[1] or usemm == false) and (close < strategy.position_avg_price or usepyr == false or strategy.position_size <= 0) ? 1 : 0
+  173: dn = trend == -1 and ((close > open or color == false) or close > ld) and (max > max[1] or usemm == false) and (close > strategy.position_avg_price or usepyr == false or strategy.position_size >= 0) ? 1 : 0 
+  174: up2 = close < open and lencb > sma * 3 and min < min[1] and fastrsi < 10 and (close < strategy.position_avg_price or usepyr == false or strategy.position_size <= 0) ? 1 : 0 //CryptoBottom
+  175: //dn2 = close > open and len > sma * 3 and max > max[1] and fastrsi > 90 ? 1 : 0 //CryptoBottom
+  176: up3 = fastrsi < 5 and usersi == true and (close < strategy.position_avg_price or usepyr == false or strategy.position_size <= 0) ? 1 : 0
+  177: //dn3 = fastrsi > 95 and usersi = true ? 1 : 0
+  178: 
+  179: //Avg Price
+  180: colpy = needpy == false ? na : black
+  181: plot(strategy.position_avg_price, color = colpy)
+  182: 
+  183: up4 = close < strategy.position_avg_price and usepyr == true and strategy.position_size >= 0 ? 1 : 0 
+  184: dn4 = close > strategy.position_avg_price and usepyr == true and strategy.position_size <= 0 ? 1 : 0 

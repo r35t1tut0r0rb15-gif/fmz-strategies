@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #439111 (定期追踪低谷均价策略Dollar-Cost-Averaging-After-Downtrend-Strategy)
+# Source: https://www.fmz.com/strategy/439111  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 1000, cash 1000, commission  [lines 137-149]
+  137: strategy(
+  138:  shorttitle            = 'DCA After Downtrend v2',
+  139:  title                 = 'DCA After Downtrend v2 (by BHD_Trade_Bot)',
+  140:  overlay               = true,
+  141:  calc_on_every_tick    = false,
+  142:  calc_on_order_fills   = false,
+  143:  use_bar_magnifier     = false,
+  144:  pyramiding            = 1000,
+  145:  initial_capital       = 0,
+  146:  default_qty_type      = strategy.cash,
+  147:  default_qty_value     = 1000,
+  148:  commission_type       = strategy.commission.percent,
+  149:  commission_value      = 1.1)

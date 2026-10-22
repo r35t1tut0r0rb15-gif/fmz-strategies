@@ -3695,6 +3695,30 @@ SIZING = {
     439098: [
         ("strategy(): capital", 137, 137),
     ],
+    # ---- FMZ-C, batch C117 (2026-10-22)
+    439101: [],
+    439104: [],
+    439106: [
+        ("strategy(): capital", 165, 165),
+    ],
+    439111: [
+        ("strategy(): pyramiding 1000, cash 1000, commission", 137, 149),
+    ],
+    439181: [
+        ("Pyramiding clauses and add signals", 172, 184),
+    ],
+    439183: [
+        ("Stop input and exit", 125, 165),
+    ],
+    439188: [],
+    439190: [
+        ("Profit target and commission inputs; bracket", 132, 157),
+    ],
+    439193: [],
+    439200: [
+        ("Position size and leverage", 163, 182),
+    ],
+    439201: [],
 }
 
 REJECTED_ON_READING = {
@@ -4621,4 +4645,6 @@ HELD_ON_READING = {
     434977: ("8", "The long and short exits test the close against vwma(close, 20): a volume-weighted average (check 8, held with the other volume users). (Also, on the 1-hour header chart no bar opens inside the 09:15-09:16 session window, so the day-range anchor is never set.)"),
     # ---- FMZ-C, batch C95 (2026-10-21)
     436658: ("8", "The long and short entries test the Hull line against rvwma3 = vwma(close, 42): a volume-weighted average (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C117 (2026-10-22)
+    439103: ("8", "The moving-average rules use ma20 / ma50 / ma100 = vwma(close, 20 / 50 / 100): volume-weighted averages (check 8, held with the other volume users)."),
 }

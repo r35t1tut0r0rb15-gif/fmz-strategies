@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #439188 (双因子动量追踪反转策略Dual-Factor-Momentum-Tracking-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/439188  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
