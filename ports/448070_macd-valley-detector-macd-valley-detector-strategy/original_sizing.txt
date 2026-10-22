@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #448070 (MACD-Valley-Detector-策略-MACD-Valley-Detector-Strategy)
+# Source: https://www.fmz.com/strategy/448070  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = 1; take profit high + 0.3  [lines 126-149]
+  126: qty=1
+  127: 
+  128: takeProfitValue =7
+  129: // stopLossValue = 1
+  130: 
+  131: 
+  132: // close[0] < close[1] and close[1] > close[2]
+  133: is_valley= delta[0] > delta[1] and delta[1]<delta[2]? 1:0
+  134: 
+  135: // plot(is_valley , "valley?")
+  136: 
+  137: if(is_valley==1 and MACD<=-0.4 and delta <0)
+  138: 	takeProfit = close +takeProfitValue
+  139: 	action = "buy"
+  140:     // strategy.entry("long", strategy.long, qty=qty)
+  141:     // // strategy.exit("exit", "long", stop=stopLoss, limit=takeProfit)
+  142:     // strategy.exit("exit", "long", limit=takeProfit)
+  143:     alert('{"TICKER":"'+syminfo.ticker+'","ACTION":"'+action+'","PRICE":"'+str.tostring(close)+'","TAKEPROFIT":"'+str.tostring(takeProfit)+'","QTY":"'+str.tostring(qty)+'"}')
+  144: 
+  145: if (ta.crossover(delta, 0))
+  146: 	stopLoss = low -0.3
+  147:     takeProfit = high +0.3
+  148: 	strategy.entry("MacdLE", strategy.long,qty=qty, comment="MacdLE")
+  149: 	strategy.exit("exit long", "MacdLE", limit=takeProfit)

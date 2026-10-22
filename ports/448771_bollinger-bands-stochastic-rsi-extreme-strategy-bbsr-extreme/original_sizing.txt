@@ -1,0 +1,48 @@
+# Original sizing and money-management code, FMZ #448771 (Bollinger-Bands-Stochastic-RSI-Extreme-Strategy-BBSR-Extreme-Strategy)
+# Source: https://www.fmz.com/strategy/448771  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop loss 1.5 % of the current close  [lines 118-160]
+  118: sl_pct = input.float(1.5, title="Stop Loss (%)", minval=0.1, maxval=50)
+  119: 
+  120: //Bollinger Inputs
+  121: length = input.int(20, title="Bollinger Band Length", minval=1)
+  122: mult = input.float(2.0, title="StdDev", minval=0.001, maxval=50)
+  123: 
+  124: //Bollinger Code
+  125: basis = ta.sma(src, length)
+  126: dev = mult * ta.stdev(src, length)
+  127: upper = basis + dev
+  128: lower = basis - dev
+  129: plot(basis, "BB Basis", color=color.new(#872323, 0), offset=offset)
+  130: p1 = plot(upper, "BB Upper", color=color.teal, offset=offset)
+  131: p2 = plot(lower, "BB Lower", color=color.teal, offset=offset)
+  132: fill(p1, p2, title="BB Background", color=color.new(#198787, 95))
+  133: 
+  134: //Stoch Inputs
+  135: smoothK = input.int(3, "K", minval=1)
+  136: smoothD = input.int(3, "D", minval=1)
+  137: lengthRSI = input.int(14, "RSI Length", minval=1)
+  138: lengthStoch = input.int(14, "Stochastic Length", minval=1)
+  139: 
+  140: upperlimit = input.float(90, "Upper Limit", minval=0.01)
+  141: lowerlimit = input.float(10, "Lower Limit", minval=0.01)
+  142: 
+  143: //Stochastic Code
+  144: rsi1 = ta.rsi(src, lengthRSI)
+  145: k = ta.sma(ta.stoch(rsi1, rsi1, rsi1, lengthStoch), smoothK)
+  146: d = ta.sma(k, smoothD)
+  147: 
+  148: //Evaluation
+  149: Bear = close[1] > upper[1] and close < upper and k[1] > upperlimit and d[1] > upperlimit
+  150: Bull = close[1] < lower[1] and close > lower and k[1] < lowerlimit and d[1] < lowerlimit
+  151: 
+  152: //Entering Trades
+  153: if (Bull)
+  154:     strategy.entry("Bull Entry", strategy.long)
+  155: if (Bear)
+  156:     strategy.entry("Bear Entry", strategy.short)
+  157: 
+  158: //Exiting Trades
+  159: strategy.exit("Exit Long", from_entry="Bull Entry", stop=close * (1 - sl_pct / 100), when=Bear or close < lower)
+  160: strategy.exit("Exit Short", from_entry="Bear Entry", stop=close * (1 + sl_pct / 100), when=Bull or close > upper)

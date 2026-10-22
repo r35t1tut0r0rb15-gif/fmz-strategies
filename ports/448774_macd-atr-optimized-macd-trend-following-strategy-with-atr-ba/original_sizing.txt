@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #448774 (基于MACD信号线交叉与ATR风险管理的优化趋势跟踪策略-Optimized-MACD-Trend-Following-Strategy-with-ATR-based-Risk-Management)
+# Source: https://www.fmz.com/strategy/448774  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## risk 2 % (unused); ATR stop / target multipliers  [lines 114-123]
+  114: riskPercent = input.float(2, title="Risk Percentage (%)") / 100 // 2% risk per trade
+  115: atrMultiplierSL = input.float(2, title="ATR Multiplier for Stop Loss")
+  116: atrMultiplierTP = input.float(5, title="ATR Multiplier for Take Profit")
+  117: 
+  118: // Calculate ATR for 5-minute timeframe
+  119: atr5 = ta.atr(5)
+  120: 
+  121: // Calculate stop loss and take profit levels based on ATR
+  122: stopLoss = atr5 * atrMultiplierSL
+  123: takeProfit = atr5 * atrMultiplierTP

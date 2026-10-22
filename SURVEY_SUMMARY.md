@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2237 |
-| PORT_CANDIDATE | 1191 |
+| PORTED | 2245 |
+| PORT_CANDIDATE | 1179 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 312 |
+| REJECTED_ON_READING | 316 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2365,7 +2365,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 446984 | `ports/446984_multi-indicator-trend-following-dynamic-risk-management-stra/` | PineScript | macd_cross | bar_size_pending, trailing_stop_pending | trail_mult x2, rr x2 | 4 |
 | 446986 | `ports/446986_rsi-rsi-and-bollinger-bands-double-strategy/` | PineScript | bollinger_reversion | none | rsi_len x2, bb_len x2 | 4 |
 | 446991 | `ports/446991_macd-tema-macd-tema-crossover-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
-| | **2237 ports** | | | | | **10399** |
+| 448061 | `ports/448061_rsi-bollinger-bands-stochastic-rsi-extreme-signal-strategy/` | PineScript | bollinger_reversion | none | length x2, upper_limit x2 | 4 |
+| 448066 | `ports/448066_rsi-macd-low-risk-stable-cryptocurrency-high-frequency-tradi/` | PineScript | multi_indicator_confluence | none | fast x2, slow x2 | 4 |
+| 448070 | `ports/448070_macd-valley-detector-macd-valley-detector-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| 448076 | `ports/448076_spark-spark-dynamic-position-sizing-and-dual-indicator-tradi/` | PineScript | supertrend | trailing_stop_pending | min_bars x2, rsi_len x2 | 4 |
+| 448771 | `ports/448771_bollinger-bands-stochastic-rsi-extreme-strategy-bbsr-extreme/` | PineScript | bollinger_reversion | trailing_stop_pending | length x2, upper_limit x2 | 4 |
+| 448772 | `ports/448772_zerolag-macd-zerolag-macd-long-short-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| 448774 | `ports/448774_macd-atr-optimized-macd-trend-following-strategy-with-atr-ba/` | PineScript | macd_cross | coarse_bar_stop | sl_mult x2, tp_mult x2 | 4 |
+| 448778 | `ports/448778_macd-crossover-strategy-macd/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| | **2245 ports** | | | | | **10431** |
 
 ## Rejected on reading
 
@@ -2683,6 +2691,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 446539 | 黄金短线交易策略-XAUUSD-Scalper-1m-XAUUSD-1-Minute-Scalping-Strategy.md | 2 | The exits strategy.exit(loss = 30 x atr, profit = 30 x atr) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048). |
 | 446755 | 双区间滤波动量交易策略-Dual-Range-Filter-Momentum-Trading-Strategy.md | 1 | The exits are four strategy.exit calls with qty_percent 5 / 8 / 13 / 21 at take-profit levels of 13-34 % of the average price: partial exits, which the house engine cannot hold (one position, all-in or all-out; as #436524). |
 | 446760 | 基于TD序列突破和回撤的买卖点策略-TD-Sequential-Breakout-and-Retracement-Buy-Sell-Strategy.md | 1 | After the first TD buy setup, valuewhen(buy, high, 0) is a positive price, so 'if TDbuyh' is true on every later bar: the long entry is re-sent forever and the short branch never runs again, one long held from the first buy (constant-true entry, criterion 1, as #442261). |
+| 448059 | 基于随机慢速指标的交易策略KRK-ADA-1H-Stochastic-Slow-Strategy-with-More-Entries-and-AI.md | 2 | Every exit passes profit = close x 500 and loss = close x 200, price amounts where strategy.exit takes tick distances, with no /mintick: the stops and targets are undefined as written (criterion 2, as #442076, #437048). |
+| 448060 | RSI双边交易策略-RSI-Dual-Side-Trading-Strategy.md | 1 | 'if strategy.opentrades < pyramiding' (5) re-sends the long entry on every bar and is called after the RSI entries, so the long wins every bar and the short never holds: a constant-true entry (criterion 1, as #442261). |
+| 448080 | Bollinger-Bands-Breakout-Strategy-布林线突破策略.md | 1 | 'if strategy.opentrades < pyramiding' (5) re-sends the long entry on every bar and is called after the band entries, so the long wins every bar and the short never holds: a constant-true entry (criterion 1, as #442261). |
+| 448767 | RSI-相对强弱指数策略-RSI-Relative-Strength-Index-Strategy.md | 2 | The exits pass trail_offset = 0.005, a fraction where the call takes ticks, and stop = 10, a price of 10 meant as points, with no /mintick: the trailing stop and the stop are undefined as written (criterion 2, as #442076, #437048). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

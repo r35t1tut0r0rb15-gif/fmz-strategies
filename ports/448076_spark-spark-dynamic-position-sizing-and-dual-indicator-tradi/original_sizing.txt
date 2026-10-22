@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #448076 (SPARK动态仓位与双重指标交易策略-SPARK-Dynamic-Position-Sizing-and-Dual-Indicator-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/448076  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = initial capital / close x 10 % x leverage; percent stop / target  [lines 115-133]
+  115: portfolioPercentage = input(10, title="Portfolio Percentage", minval=1, maxval=100)
+  116: // Leverage Input
+  117: leverage = input(1, title="Leverage", minval=1)
+  118: 
+  119: // Calculate position size according to portfolio percentage and leverage
+  120: positionSizePercent = portfolioPercentage / 100 * leverage
+  121: positionSize = (strategy.initial_capital / close) * positionSizePercent
+  122: 
+  123: // Take Profit and Stop Loss settings
+  124: useFixedTPSL = input(1, title="Use Fixed TP/SL", options=[1, 0])
+  125: tp_sl_step = 0.1
+  126: fixedTP = input(2.0, title="Fixed Take Profit (%)", step=tp_sl_step)
+  127: fixedSL = input(1.0, title="Fixed Stop Loss (%)", step=tp_sl_step)
+  128: 
+  129: // Calculate Take Profit and Stop Loss Levels
+  130: takeProfitLong = close * (1 + fixedTP / 100)
+  131: takeProfitShort = close * (1 - fixedTP / 100)
+  132: stopLossLong = close * (1 - fixedSL / 100)
+  133: stopLossShort = close * (1 + fixedSL / 100)

@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #448066 (基于RSI和MACD的低风险稳健型加密货币高频交易策略-Low-Risk-Stable-Cryptocurrency-High-Frequency-Trading-Strategy-Based-on-RSI-and-MACD)
+# Source: https://www.fmz.com/strategy/448066  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

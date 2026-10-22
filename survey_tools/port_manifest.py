@@ -4813,6 +4813,23 @@ SIZING = {
     ],
     446986: [],
     446991: [],
+    # ---- FMZ-C, batch C178 (2026-10-22)
+    448061: [],
+    448066: [],
+    448070: [
+        ("qty = 1; take profit high + 0.3", 126, 149),
+    ],
+    448076: [
+        ("qty = initial capital / close x 10 % x leverage; percent stop / target", 115, 133),
+    ],
+    448771: [
+        ("Stop loss 1.5 % of the current close", 118, 160),
+    ],
+    448772: [],
+    448774: [
+        ("risk 2 % (unused); ATR stop / target multipliers", 114, 123),
+    ],
+    448778: [],
 }
 
 REJECTED_ON_READING = {
@@ -6089,6 +6106,19 @@ REJECTED_ON_READING = {
               "TDbuyh' is true on every later bar: the long entry is re-sent forever and the "
               "short branch never runs again, one long held from the first buy (constant-true "
               "entry, criterion 1, as #442261)."),
+    # ---- FMZ-C, batch C178 (2026-10-22)
+    448059: ("2", "Every exit passes profit = close x 500 and loss = close x 200, price amounts where "
+              "strategy.exit takes tick distances, with no /mintick: the stops and targets are "
+              "undefined as written (criterion 2, as #442076, #437048)."),
+    448060: ("1", "'if strategy.opentrades < pyramiding' (5) re-sends the long entry on every bar and "
+              "is called after the RSI entries, so the long wins every bar and the short never "
+              "holds: a constant-true entry (criterion 1, as #442261)."),
+    448080: ("1", "'if strategy.opentrades < pyramiding' (5) re-sends the long entry on every bar and "
+              "is called after the band entries, so the long wins every bar and the short never "
+              "holds: a constant-true entry (criterion 1, as #442261)."),
+    448767: ("2", "The exits pass trail_offset = 0.005, a fraction where the call takes ticks, and "
+              "stop = 10, a price of 10 meant as points, with no /mintick: the trailing stop and "
+              "the stop are undefined as written (criterion 2, as #442076, #437048)."),
 }
 
 DUPLICATE_ON_READING = {
