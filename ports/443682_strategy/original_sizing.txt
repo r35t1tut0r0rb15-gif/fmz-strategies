@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #443682 (均线突破)
+# Source: https://www.fmz.com/strategy/443682  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## exchange.Buy amount = 95 % of the balance / price; Sell all stocks  [lines 50-53]
+   50:             exchange.Buy(ticker.Last, account.Balance * 0.95 / ticker.Last);
+   51:             bought = true;
+   52:         } else if (lastK.Close < lastMa && bought) {
+   53:             exchange.Sell(ticker.Last, account.Stocks);

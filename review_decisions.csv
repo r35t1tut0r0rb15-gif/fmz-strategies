@@ -300,6 +300,8 @@ fmz_id,file,final_outcome,criterion,reason
 443044,升降通道突破策略SuperTrend-Breakout-Strategy.md,REJECTED_ON_READING,1,"is_uptrend (close > hlc3 - 3 ATR) and is_downtrend (close < hlc3 + 3 ATR) both hold on nearly every bar, so trend_changed is nearly always true and both entries fire together; the later Short wins (as #437773): a sell-and-hold from near the data start (criterion 1, as #442261)."
 443110,多时间框架随机指数均线策略Multi-Timeframe-Stochastic-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 3 with repeated ""Lungo"" / ""Corto"" entries on each new stochastic crossing while a position is open (the trail_points-only exits place no trail): the position accumulates units (criterion 1, as #442112, #430762)."
 443238,快速RSI反转交易策略Fast-RSI-Reversal-Trading-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 5 with the long entry allowed again whenever the close is under the average price (and the short whenever above it): averaging into a losing position, the position accumulates units (criterion 1, as #430762)."
+443252,基于布林带的短线交易策略Short-Term-Trading-Strategy-Based-on-Bollinger-Bands.md,REJECTED_ON_READING,2,"The exits strategy.exit(profit = close x (1 + 0.5 %), loss = close x (1 - 3 %)) pass price levels where the call takes tick distances, with no /mintick: the target and stop are undefined as written (criterion 2, as #442115, #437048)."
+443990,SSL通道与绿量策略SSL-Channel-and-Green-Volume-Strategy.md,REJECTED_ON_READING,2,"The exits strategy.exit(loss = close x (1 - 0.5 %), profit = close x (1 + 1 %)) pass price levels where the call takes tick distances, with no /mintick: the stops and targets are undefined as written (criterion 2, as #442076, #437048)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2448,3 +2450,13 @@ fmz_id,file,final_outcome,criterion,reason
 443239,基于突破回归策略The-Breakout-Regression-Strategy.md,PORTED,,ports/443239_the-breakout-regression-strategy/
 443241,RSI与平滑RSI策略多头分型RSI-and-smoothed-RSI-bullish-divergence-strategy.md,PORTED,,ports/443241_rsi-rsi-rsi-and-smoothed-rsi-bullish-divergence-strategy/
 443243,基于HullMA百分比带的量化交易策略Quant-Trading-Strategy-Based-on-HullMA-Percentage-Bands.md,PORTED,,ports/443243_hullma-quant-trading-strategy-based-on-hullma-percentage-ban/
+443246,MACDRSI与EMA策略MACD-RSI-and-EMA-Strategy.md,PORTED,,ports/443246_macdrsi-ema-macd-rsi-and-ema-strategy/
+443247,黄金复合移动平均线交叉RSI混入策略Gold-Trading-with-Simons-Strategy.md,PORTED,,ports/443247_rsi-gold-trading-with-simons-strategy/
+443643,连续K线反转突破策略Consecutive-Candlestick-Reversal-Breakout-Strategy.md,PORTED,,ports/443643_k-consecutive-candlestick-reversal-breakout-strategy/
+443682,均线突破.md,PORTED,,ports/443682_strategy/
+443985,布林带突破回归交易策略Bollinger-Bands-Breakout-Reentry-Trading-Strategy.md,PORTED,,ports/443985_bollinger-bands-breakout-reentry-trading-strategy/
+443988,基于双均线交叉量化策略The-EMA-Cross-Quantitative-Strategy.md,PORTED,,ports/443988_the-ema-cross-quantitative-strategy/
+443992,基于RSI指标的双向交易策略RSI-based-Dual-Trading-Strategy.md,PORTED,,ports/443992_rsi-rsi-based-dual-trading-strategy/
+443993,最高最低价格止损策略Highest-High-Lowest-Low-Stop-Strategy.md,PORTED,,ports/443993_highest-high-lowest-low-stop-strategy/
+443997,基于布林带均值回归策略The-Bollinger-Bands-Mean-Reversion-Strategy.md,PORTED,,ports/443997_the-bollinger-bands-mean-reversion-strategy/
+444001,基于双均线交叉和止损策略的高效交易策略An-Efficient-Trading-Strategy-Based-on-Dual-Moving-Average-Crossover-and-Stop-Loss.md,PORTED,,ports/444001_an-efficient-trading-strategy-based-on-dual-moving-average-c/

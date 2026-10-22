@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2128 |
-| PORT_CANDIDATE | 1311 |
+| PORTED | 2138 |
+| PORT_CANDIDATE | 1299 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 301 |
+| REJECTED_ON_READING | 303 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2256,7 +2256,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 443239 | `ports/443239_the-breakout-regression-strategy/` | PineScript | donchian_breakout | none | high_lookback x2, exit_after x2 | 4 |
 | 443241 | `ports/443241_rsi-rsi-rsi-and-smoothed-rsi-bullish-divergence-strategy/` | PineScript | rsi_oscillator | none | rsi_curve x2, div_lookback x2 | 4 |
 | 443243 | `ports/443243_hullma-quant-trading-strategy-based-on-hullma-percentage-ban/` | PineScript | adaptive_average | none | length x2, band1 x2 | 4 |
-| | **2128 ports** | | | | | **9989** |
+| 443246 | `ports/443246_macdrsi-ema-macd-rsi-and-ema-strategy/` | PineScript | multi_indicator_confluence | none | ema_len2 x2, rsi_signal_len x2 | 4 |
+| 443247 | `ports/443247_rsi-gold-trading-with-simons-strategy/` | PineScript | candle_pattern | none | length21 x2, length200 x2 | 4 |
+| 443643 | `ports/443643_k-consecutive-candlestick-reversal-breakout-strategy/` | PineScript | reversal_pattern | none | bars_up x2, bars_down x2 | 4 |
+| 443682 | `ports/443682_strategy/` | javascript | ma_trend | none | period x2 | 2 |
+| 443985 | `ports/443985_bollinger-bands-breakout-reentry-trading-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 443988 | `ports/443988_the-ema-cross-quantitative-strategy/` | PineScript | ma_trend | none | ma1 x2, ma2 x2 | 4 |
+| 443992 | `ports/443992_rsi-rsi-based-dual-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, buy_level x2 | 4 |
+| 443993 | `ports/443993_highest-high-lowest-low-stop-strategy/` | PineScript | donchian_breakout | trailing_stop_pending |  | 0 |
+| 443997 | `ports/443997_the-bollinger-bands-mean-reversion-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 444001 | `ports/444001_an-efficient-trading-strategy-based-on-dual-moving-average-c/` | PineScript | ma_cross | none | stop_pct x2, slow x2 | 4 |
+| | **2138 ports** | | | | | **10023** |
 
 ## Rejected on reading
 
@@ -2563,6 +2573,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 443044 | 升降通道突破策略SuperTrend-Breakout-Strategy.md | 1 | is_uptrend (close > hlc3 - 3 ATR) and is_downtrend (close < hlc3 + 3 ATR) both hold on nearly every bar, so trend_changed is nearly always true and both entries fire together; the later Short wins (as #437773): a sell-and-hold from near the data start (criterion 1, as #442261). |
 | 443110 | 多时间框架随机指数均线策略Multi-Timeframe-Stochastic-Strategy.md | 1 | pyramiding = 3 with repeated "Lungo" / "Corto" entries on each new stochastic crossing while a position is open (the trail_points-only exits place no trail): the position accumulates units (criterion 1, as #442112, #430762). |
 | 443238 | 快速RSI反转交易策略Fast-RSI-Reversal-Trading-Strategy.md | 1 | pyramiding = 5 with the long entry allowed again whenever the close is under the average price (and the short whenever above it): averaging into a losing position, the position accumulates units (criterion 1, as #430762). |
+| 443252 | 基于布林带的短线交易策略Short-Term-Trading-Strategy-Based-on-Bollinger-Bands.md | 2 | The exits strategy.exit(profit = close x (1 + 0.5 %), loss = close x (1 - 3 %)) pass price levels where the call takes tick distances, with no /mintick: the target and stop are undefined as written (criterion 2, as #442115, #437048). |
+| 443990 | SSL通道与绿量策略SSL-Channel-and-Green-Volume-Strategy.md | 2 | The exits strategy.exit(loss = close x (1 - 0.5 %), profit = close x (1 + 1 %)) pass price levels where the call takes tick distances, with no /mintick: the stops and targets are undefined as written (criterion 2, as #442076, #437048). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -4584,6 +4584,21 @@ SIZING = {
         ("strategy(): 100 % of equity, commission 0.1", 144, 144),
     ],
     443243: [],
+    # ---- FMZ-C, batch C168 (2026-10-22)
+    443246: [],
+    443247: [],
+    443643: [],
+    443682: [
+        ("exchange.Buy amount = 95 % of the balance / price; Sell all stocks", 50, 53),
+    ],
+    443985: [],
+    443988: [
+        ("strategy(): 100 % of equity, capital 50000, commission 0.005 per contract", 135, 141),
+    ],
+    443992: [],
+    443993: [],
+    443997: [],
+    444001: [],
 }
 
 REJECTED_ON_READING = {
@@ -5816,6 +5831,13 @@ REJECTED_ON_READING = {
     443238: ("1", "pyramiding = 5 with the long entry allowed again whenever the close is under the "
               "average price (and the short whenever above it): averaging into a losing position, "
               "the position accumulates units (criterion 1, as #430762)."),
+    # ---- FMZ-C, batch C168 (2026-10-22)
+    443252: ("2", "The exits strategy.exit(profit = close x (1 + 0.5 %), loss = close x (1 - 3 %)) "
+              "pass price levels where the call takes tick distances, with no /mintick: the "
+              "target and stop are undefined as written (criterion 2, as #442115, #437048)."),
+    443990: ("2", "The exits strategy.exit(loss = close x (1 - 0.5 %), profit = close x (1 + 1 %)) "
+              "pass price levels where the call takes tick distances, with no /mintick: the stops "
+              "and targets are undefined as written (criterion 2, as #442076, #437048)."),
 }
 
 DUPLICATE_ON_READING = {
