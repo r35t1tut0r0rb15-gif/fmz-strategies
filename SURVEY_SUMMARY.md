@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2918 |
+| PORTED | 2927 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 571 |
-| REJECTED_ON_READING | 418 |
-| PORT_CANDIDATE | 400 |
+| HELD_NEEDS_VOLUME | 572 |
+| REJECTED_ON_READING | 420 |
+| PORT_CANDIDATE | 388 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -3046,7 +3046,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482426 | `ports/482426_stochrsi-multi-period-gaussian-channel-with-stochrsi-trend-f/` | PineScript | volatility_band | none | sampling_period x2, multiplier x2 | 4 |
 | 482427 | `ports/482427_adaptive-multi-period-trading-strategy-based-on-wave-trend-m/` | PineScript | wavetrend | none | level x2, n2 x2 | 4 |
 | 482428 | `ports/482428_k-dynamic-third-bar-analysis-strategy-with-adaptive-trailing/` | PineScript | candle_pattern | trailing_stop_pending |  | 0 |
-| | **2918 ports** | | | | | **13499** |
+| 482434 | `ports/482434_psar-advanced-quantitative-trading-strategy-combining-dynami/` | PineScript | bollinger_breakout | coarse_bar_stop, trailing_stop_pending | bb_length x2, rr x2 | 4 |
+| 482437 | `ports/482437_adaptive-trend-following-strategy-based-on-moving-average-cr/` | PineScript | ma_cross | coarse_bar_stop | short_len x2, long_len x2 | 4 |
+| 482441 | `ports/482441_multi-indicator-dynamic-equilibrium-quantitative-trading-sys/` | PineScript | rsi_oscillator | none | ema_short x2, ema_long x2 | 4 |
+| 482443 | `ports/482443_bollinger-bands-crossover-signal-filtering-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 482445 | `ports/482445_ichimoku-dynamic-ichimoku-moving-average-crossover-trend-swi/` | PineScript | ichimoku | none | tenkan x2, kijun x2 | 4 |
+| 482447 | `ports/482447_multi-indicator-trend-following-with-oscillator-alert-strate/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop | adx_min x2, trail_pct x2 | 4 |
+| 482450 | `ports/482450_ema-rsi-dynamic-ema-crossover-with-rsi-synergy-trading-syste/` | PineScript | ma_cross | coarse_bar_stop | sl_frac x2, tp_frac x2 | 4 |
+| 482451 | `ports/482451_rsi-gaussian-channel-with-stochastic-rsi-quantitative-tradin/` | PineScript | bollinger_reversion | none | gc_length x2, gc_mult x2 | 4 |
+| 482453 | `ports/482453_rsi-multi-period-rsi-signal-line-crossover-trend-following-s/` | PineScript | rsi_oscillator | none | length x2, smooth x2 | 4 |
+| | **2927 ports** | | | | | **13535** |
 
 ## Rejected on reading
 
@@ -3470,6 +3479,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482420 | 开盘收盘均线交叉结合ADX动态指标的量化交易策略-Opening-and-Closing-Moving-Average-Crossover-Strategy-with-ADX-Dynamic-Indicator.md | 1 | The open / close MA series come from request.security at the alternate resolution with lookahead=barmerge.lookahead_on (useRes on by default): higher-bar values are read before the bar closes (criterion 1, lookahead_on for a higher time frame). |
 | 482430 | 多重指标动态跟踪趋势波段交易策略-Multi-Indicator-Dynamic-Trend-Following-Trading-Strategy.md | 2 | The exits pass trail_points = atr x 2.5, a price amount, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #442115). |
 | 482432 | 动态趋势跟踪的EMA-ADX多级止盈策略-Dynamic-Trend-Following-EMA-ADX-Multi-Level-Take-Profit-Strategy.md | 1 | Three exits per entry close 30 % / 50 % / 20 % of the position (qty_percent): partial exits (criterion 1). |
+| 482444 | 多重支撑阻力位叠加动量反转交易策略-Multi-Level-Support-Resistance-Momentum-Reversal-Trading-Strategy.md | 1 | The Fibonacci levels come from the highest and lowest close since the first bar of the data (cumulative over every up bar): data-window levels that change with where the data starts (criterion 1, as #478711 / #430034). |
+| 482456 | 多周期趋势跟踪与随机震荡优化策略-Multi-Timeframe-Trend-Following-with-Stochastic-Oscillator-Strategy.md | 1 | Each entry is qty 2 with two exits of qty 1 at separate targets and break-even exits for the rest: partial exits (criterion 1). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

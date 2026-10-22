@@ -6378,6 +6378,29 @@ SIZING = {
     482428: [
         ("strategy(): capital 100000, 250 % of equity; trailing stop at the previous low / high", 91, 173),
     ],
+    # ---- FMZ-C, batch C244 (2026-10-22)
+    482434: [],
+    482437: [
+        ("input: trade size 1", 93, 93),
+    ],
+    482441: [
+        ("strategy(): 250 % of equity", 119, 119),
+    ],
+    482443: [],
+    482445: [],
+    482447: [
+        ("strategy(): fixed qty 1", 101, 101),
+    ],
+    482450: [
+        ("capital 15000, risk 1000, target 5000, lot size 1", 108, 111),
+        ("entries with qty = lot size", 148, 152),
+    ],
+    482451: [
+        ("strategy(): capital 10000, 200 % of equity, commission 0.1 %", 91, 91),
+    ],
+    482453: [
+        ("strategy(): capital 10000, 100 % of equity", 103, 103),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8050,6 +8073,12 @@ REJECTED_ON_READING = {
               "as #442115)."),
     482432: ("1", "Three exits per entry close 30 % / 50 % / 20 % of the position (qty_percent): "
               "partial exits (criterion 1)."),
+    # ---- FMZ-C, batch C244 (2026-10-22)
+    482444: ("1", "The Fibonacci levels come from the highest and lowest close since the first bar of "
+              "the data (cumulative over every up bar): data-window levels that change with where "
+              "the data starts (criterion 1, as #478711 / #430034)."),
+    482456: ("1", "Each entry is qty 2 with two exits of qty 1 at separate targets and break-even "
+              "exits for the rest: partial exits (criterion 1)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -8105,4 +8134,6 @@ HELD_ON_READING = {
     477603: ("8", "The default moving average of the wick length is ta.vwma: a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C243 (2026-10-22)
     482422: ("8", "The entry and exit lines are ta.vwma(close, 25) and ta.vwma(close, 8): volume-weighted averages (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C244 (2026-10-22)
+    482454: ("licence", "Held for Austin: the source carries a CC BY-NC-SA 4.0 licence (non-commercial, share-alike; the Andean Oscillator by alexgrover), so it is not ported until Austin decides (as #468315)."),
 }

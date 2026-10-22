@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #482450 (动态EMA交叉与RSI协同交易系统-Dynamic-EMA-Crossover-with-RSI-Synergy-Trading-System)
+# Source: https://www.fmz.com/strategy/482450  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## capital 15000, risk 1000, target 5000, lot size 1  [lines 108-111]
+  108: capital = 15000  // Capital: ₹15,000
+  109: risk_per_trade = 1000  // Risk per Trade: ₹1,000
+  110: target_per_trade = 5000  // Take Profit per Trade: ₹5,000
+  111: lot_size = input.int(1, title="Lot Size")  // Nifty option lot size (adjust as per your instrument)
+
+## entries with qty = lot size  [lines 148-152]
+  148:     strategy.entry("Buy", strategy.long, qty=lot_size)
+  149:     strategy.exit("Exit Buy", "Buy", stop=long_stop_loss, limit=long_take_profit)
+  150: 
+  151: if (sell_signal)
+  152:     strategy.entry("Sell", strategy.short, qty=lot_size)
