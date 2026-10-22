@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #477513 (高级量化趋势追踪与云图反转复合交易策略-Advanced-Quantitative-Trend-Following-and-Cloud-Reversal-Composite-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/477513  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1.5 % / target 3 % of the current close  [lines 137-147]
+  137: stopLossPercentage = input.float(1.5, title="Stop Loss Percentage", minval=0.1) / 100
+  138: takeProfitPercentage = input.float(3.0, title="Take Profit Percentage", minval=0.1) / 100
+  139: 
+  140: longStopLoss = close * (1 - stopLossPercentage)
+  141: longTakeProfit = close * (1 + takeProfitPercentage)
+  142: 
+  143: shortStopLoss = close * (1 + stopLossPercentage)
+  144: shortTakeProfit = close * (1 - takeProfitPercentage)
+  145: 
+  146: strategy.exit("Take Profit/Stop Loss", "Buy", stop=longStopLoss, limit=longTakeProfit)
+  147: strategy.exit("Take Profit/Stop Loss", "Sell", stop=shortStopLoss, limit=shortTakeProfit)

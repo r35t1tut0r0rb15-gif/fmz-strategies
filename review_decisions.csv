@@ -3215,3 +3215,15 @@ fmz_id,file,final_outcome,criterion,reason
 476269,基于动量指标的SMI交叉信号自适应预测策略-Momentum-Based-SMI-Crossover-Signal-Adaptive-Prediction-Strategy.md,PORTED,,ports/476269_smi-momentum-based-smi-crossover-signal-adaptive-prediction/
 476270,基于布林带的跨界动态区间量化交易策略-Cross-boundary-Dynamic-Range-Quantitative-Trading-Strategy-Based-on-Bollinger-Bands.md,PORTED,,ports/476270_cross-boundary-dynamic-range-quantitative-trading-strategy-b/
 476273,自适应趋势跟踪型动态趋势识别交易策略-Adaptive-Trend-Following-Dynamic-Trend-Recognition-Trading-Strategy.md,PORTED,,ports/476273_adaptive-trend-following-dynamic-trend-recognition-trading-s/
+476277,多周期分形突破订单块自适应交易策略-Multi-Period-Fractal-Breakout-Order-Block-Adaptive-Trading-Strategy.md,PORTED,,ports/476277_multi-period-fractal-breakout-order-block-adaptive-trading-s/
+476278,基于斐波那契07水平的趋势突破量化交易策略-Quantitative-Trading-Strategy-Based-on-Fibonacci-07-Level-Trend-Breakthrough.md,PORTED,,ports/476278_07-quantitative-trading-strategy-based-on-fibonacci-07-level/
+476279,基于布林带趋势背离的多层级量化交易策略-Multi-Level-Quantitative-Trading-Strategy-Based-on-Bollinger-Bands-Trend-Divergence.md,PORTED,,ports/476279_multi-level-quantitative-trading-strategy-based-on-bollinger/
+476280,云端布林通道交叉双均线量化趋势策略-Cloud-Based-Bollinger-Bands-Double-Moving-Average-Quantitative-Trend-Strategy.md,PORTED,,ports/476280_cloud-based-bollinger-bands-double-moving-average-quantitati/
+476281,三重超势指标与指数移动平均线趋势跟踪量化交易策略-Triple-Supertrend-and-Exponential-Moving-Average-Trend-Following-Quantitative-Trading-Strategy.md,PORTED,,ports/476281_triple-supertrend-and-exponential-moving-average-trend-follo/
+476283,基于多重技术指标的高频交易动态优化策略-Multi-Technical-Indicator-Based-High-Frequency-Dynamic-Optimization-Strategy.md,PORTED,,ports/476283_multi-technical-indicator-based-high-frequency-dynamic-optim/
+476284,多重技术指标协同交易策略系统-Multi-Technical-Indicator-Synergistic-Trading-System.md,PORTED,,ports/476284_multi-technical-indicator-synergistic-trading-system/
+477511,多层级多周期指数均线交叉动态盈利优化策略-Multi-Level-Multi-Period-EMA-Crossover-Dynamic-Take-Profit-Optimization-Strategy.md,PORTED,,ports/477511_multi-level-multi-period-ema-crossover-dynamic-take-profit-o/
+477513,高级量化趋势追踪与云图反转复合交易策略-Advanced-Quantitative-Trend-Following-and-Cloud-Reversal-Composite-Trading-Strategy.md,PORTED,,ports/477513_advanced-quantitative-trend-following-and-cloud-reversal-com/
+477516,趋势跟踪型RSI与移动平均线组合量化交易策略-Trend-Following-RSI-and-Moving-Average-Combined-Quantitative-Trading-Strategy.md,PORTED,,ports/477516_rsi-trend-following-rsi-and-moving-average-combined-quantita/
+477519,增强趋势多重信号动态交易策略-Enhanced-Trend-Multi-Signal-Dynamic-Trading-Strategy.md,PORTED,,ports/477519_enhanced-trend-multi-signal-dynamic-trading-strategy/
+477521,多重均线交叉结合Camarilla支撑阻力趋势交易系统-Multi-EMA-Crossover-with-Camarilla-Support-Resistance-Trend-Trading-System.md,PORTED,,ports/477521_camarilla-multi-ema-crossover-with-camarilla-support-resista/

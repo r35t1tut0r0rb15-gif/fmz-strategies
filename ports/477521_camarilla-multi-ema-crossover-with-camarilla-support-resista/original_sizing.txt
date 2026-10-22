@@ -1,0 +1,69 @@
+# Original sizing and money-management code, FMZ #477521 (多重均线交叉结合Camarilla支撑阻力趋势交易系统-Multi-EMA-Crossover-with-Camarilla-Support-Resistance-Trend-Trading-System)
+# Source: https://www.fmz.com/strategy/477521  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## capital 50000 x 100 % / close as qty; exit after 20 ticks  [lines 120-183]
+  120: initial_capital = input.float(50000, title="Initial Capital", minval=100)
+  121: position_size_percent = input.float(100, title="Position Size (% of Capital)", minval=0.1, maxval=100)
+  122: exit_mode = input.string("Price Movement", title="Exit Mode", options=["Price Movement", "Percentage Movement"])
+  123: exit_points = input.int(20, title="Exit After X Points", minval=1)
+  124: exit_percentage = input.float(1.0, title="Exit After X% Movement", minval=0.1, step=0.1)
+  125: 
+  126: // Calculate EMAs
+  127: ema20 = ta.ema(close, ema20_period)
+  128: ema50 = ta.ema(close, ema50_period)
+  129: ema100 = ta.ema(close, ema100_period)
+  130: ema200 = ta.ema(close, ema200_period)
+  131: 
+  132: // Signal conditions
+  133: long_entry_condition = close > ema200 and close > ema20 and close[1] <= ema200
+  134: long_exit_condition = (exit_mode == "Price Movement" and close - strategy.position_avg_price >= exit_points * syminfo.mintick) or 
+  135:                       (exit_mode == "Percentage Movement" and (close - strategy.position_avg_price) / strategy.position_avg_price * 100 >= exit_percentage)
+  136: short_entry_condition = close < ema200 and close < ema20 and close[1] >= ema200
+  137: short_exit_condition = (exit_mode == "Price Movement" and strategy.position_avg_price - close >= exit_points * syminfo.mintick) or 
+  138:                        (exit_mode == "Percentage Movement" and (strategy.position_avg_price - close) / strategy.position_avg_price * 100 >= exit_percentage)
+  139: 
+  140: // Plot EMAs with specified line widths
+  141: plot(ema20, color=color.green, title="EMA 20", linewidth=ema20_width)
+  142: plot(ema50, color=color.aqua, title="EMA 50", linewidth=ema50_width)
+  143: plot(ema100, color=color.blue, title="EMA 100", linewidth=ema100_width)
+  144: plot(ema200, color=color.red, title="EMA 200", linewidth=ema200_width)
+  145: 
+  146: // Camarilla Pivot Calculation
+  147: prev_high = request.security(syminfo.tickerid, "D", high[1])
+  148: prev_low = request.security(syminfo.tickerid, "D", low[1])
+  149: prev_close = request.security(syminfo.tickerid, "D", close[1])
+  150: 
+  151: R3 = prev_close + (prev_high - prev_low) * 1.1 / 2
+  152: S3 = prev_close - (prev_high - prev_low) * 1.1 / 2
+  153: 
+  154: // Central Pivot Range (CPR) Calculation
+  155: pivot = (prev_high + prev_low + prev_close) / 3
+  156: upper_cpr = pivot + (prev_high - prev_low)
+  157: lower_cpr = pivot - (prev_high - prev_low)
+  158: 
+  159: // Plot Camarilla R3, S3 and CPR levels
+  160: plot(R3, color=color.purple, title="Camarilla R3", linewidth=2)
+  161: plot(S3, color=color.purple, title="Camarilla S3", linewidth=2)
+  162: plot(pivot, color=color.yellow, title="CPR Pivot", linewidth=2)
+  163: plot(upper_cpr, color=color.green, title="CPR Upper", linewidth=1)
+  164: plot(lower_cpr, color=color.red, title="CPR Lower", linewidth=1)
+  165: 
+  166: // Backtesting: Capital and position size
+  167: capital = initial_capital
+  168: risk_per_trade = (position_size_percent / 100) * capital
+  169: 
+  170: // Long positions
+  171: if long_entry_condition
+  172:     strategy.entry("Long", strategy.long, qty=risk_per_trade / close)
+  173:     // Display entry price label
+  174:     label.new(bar_index, close, text="Entry: " + str.tostring(close), color=color.green, style=label.style_label_up, yloc=yloc.belowbar)
+  175: 
+  176: if long_exit_condition
+  177:     strategy.close("Long")
+  178:     // Display exit price label
+  179:     label.new(bar_index, close, text="Exit: " + str.tostring(close), color=color.red, style=label.style_label_down, yloc=yloc.abovebar)
+  180: 
+  181: // Short positions
+  182: if short_entry_condition
+  183:     strategy.entry("Short", strategy.short, qty=risk_per_trade / close)

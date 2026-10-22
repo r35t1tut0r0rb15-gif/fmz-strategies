@@ -1,0 +1,63 @@
+# Original sizing and money-management code, FMZ #477516 (趋势跟踪型RSI与移动平均线组合量化交易策略-Trend-Following-RSI-and-Moving-Average-Combined-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/477516  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 50000, qty 1; stop 1 % / target 2 %  [lines 108-165]
+  108: strategy("RSI + MA Trend Strategy (v6)",
+  109:      shorttitle="RSI_MA_Trend_v6",
+  110:      overlay=true,
+  111:      initial_capital=50000,
+  112:      default_qty_type=strategy.fixed,
+  113:      default_qty_value=1)
+  114: 
+  115: // ─────────────────────────────────────────────────────────────────────────────────────
+  116: // 1. USER INPUTS
+  117: // ─────────────────────────────────────────────────────────────────────────────────────
+  118: maLength       = input.int(50,   "Moving Average Length")
+  119: rsiLength      = input.int(14,   "RSI Length")
+  120: rsiBuyLevel    = input.int(55,   "RSI > X for Buy",  minval=1, maxval=99)
+  121: rsiSellLevel   = input.int(45,   "RSI < X for Sell", minval=1, maxval=99)
+  122: 
+  123: stopLossPerc   = input.float(1.0,  "Stop Loss %",    minval=0.1)
+  124: takeProfitPerc = input.float(2.0,  "Take Profit %",  minval=0.1)
+  125: 
+  126: // ─────────────────────────────────────────────────────────────────────────────────────
+  127: // 2. INDICATOR CALCULATIONS
+  128: // ─────────────────────────────────────────────────────────────────────────────────────
+  129: maValue = ta.sma(close, maLength)
+  130: rsiVal  = ta.rsi(close, rsiLength)
+  131: 
+  132: // Trend conditions
+  133: bullTrend = close > maValue
+  134: bearTrend = close < maValue
+  135: 
+  136: // RSI conditions
+  137: rsiBull   = rsiVal > rsiBuyLevel
+  138: rsiBear   = rsiVal < rsiSellLevel
+  139: 
+  140: // ─────────────────────────────────────────────────────────────────────────────────────
+  141: // 3. ENTRY CONDITIONS
+  142: // ─────────────────────────────────────────────────────────────────────────────────────
+  143: longCondition  = bullTrend and rsiBull
+  144: shortCondition = bearTrend and rsiBear
+  145: 
+  146: if longCondition
+  147:     strategy.entry("RSI MA Long", strategy.long)
+  148: if shortCondition
+  149:     strategy.entry("RSI MA Short", strategy.short)
+  150: 
+  151: // ─────────────────────────────────────────────────────────────────────────────────────
+  152: // 4. STOP LOSS & TAKE PROFIT
+  153: // ─────────────────────────────────────────────────────────────────────────────────────
+  154: stopLossLevel   = stopLossPerc   * 0.01
+  155: takeProfitLevel = takeProfitPerc * 0.01
+  156: 
+  157: if strategy.position_size > 0
+  158:     stopPriceLong = strategy.position_avg_price * (1 - stopLossLevel)
+  159:     tpPriceLong   = strategy.position_avg_price * (1 + takeProfitLevel)
+  160:     strategy.exit("Exit Long", from_entry="RSI MA Long", stop=stopPriceLong, limit=tpPriceLong)
+  161: 
+  162: if strategy.position_size < 0
+  163:     stopPriceShort = strategy.position_avg_price * (1 + stopLossLevel)
+  164:     tpPriceShort   = strategy.position_avg_price * (1 - takeProfitLevel)
+  165:     strategy.exit("Exit Short", from_entry="RSI MA Short", stop=stopPriceShort, limit=tpPriceShort)

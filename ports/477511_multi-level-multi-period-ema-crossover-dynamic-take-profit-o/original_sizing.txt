@@ -1,0 +1,65 @@
+# Original sizing and money-management code, FMZ #477511 (多层级多周期指数均线交叉动态盈利优化策略-Multi-Level-Multi-Period-EMA-Crossover-Dynamic-Take-Profit-Optimization-Strategy)
+# Source: https://www.fmz.com/strategy/477511  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## TP multipliers 0.5-2.0 of the signal bar's range; stop 3 % of the close  [lines 123-182]
+  123: tp1_multiplier = input.float(0.5, title="TP1 Multiplier", minval=0.1, maxval=5.0, step=0.1)
+  124: tp2_multiplier = input.float(1.0, title="TP2 Multiplier", minval=0.1, maxval=5.0, step=0.1)
+  125: tp3_multiplier = input.float(1.5, title="TP3 Multiplier", minval=0.1, maxval=5.0, step=0.1)
+  126: tp4_multiplier = input.float(2.0, title="TP4 Multiplier", minval=0.1, maxval=5.0, step=0.1)
+  127: 
+  128: // Define Take Profit Levels as float variables initialized with na
+  129: var float takeProfit1 = na
+  130: var float takeProfit2 = na
+  131: var float takeProfit3 = na
+  132: var float takeProfit4 = na
+  133: 
+  134: // Calculate take profit levels based on the multipliers
+  135: if buySignal
+  136:     takeProfit1 := high + (high - low) * tp1_multiplier  // TP1: Set TP at multiplier of previous range above the high
+  137:     takeProfit2 := high + (high - low) * tp2_multiplier  // TP2: Set TP at multiplier of previous range above the high
+  138:     takeProfit3 := high + (high - low) * tp3_multiplier  // TP3: Set TP at multiplier of previous range above the high
+  139:     takeProfit4 := high + (high - low) * tp4_multiplier  // TP4: Set TP at multiplier of previous range above the high
+  140: 
+  141: if sellSignal
+  142:     takeProfit1 := low - (high - low) * tp1_multiplier  // TP1: Set TP at multiplier of previous range below the low
+  143:     takeProfit2 := low - (high - low) * tp2_multiplier  // TP2: Set TP at multiplier of previous range below the low
+  144:     takeProfit3 := low - (high - low) * tp3_multiplier  // TP3: Set TP at multiplier of previous range below the low
+  145:     takeProfit4 := low - (high - low) * tp4_multiplier  // TP4: Set TP at multiplier of previous range below the low
+  146: 
+  147: // Plot Take Profit Levels on the chart
+  148: plot(takeProfit1, color=#b4b4b8, style=plot.style_line, linewidth=1, title="Take Profit 1")
+  149: plot(takeProfit2, color=#b4b4b8, style=plot.style_line, linewidth=1, title="Take Profit 2")
+  150: plot(takeProfit3, color=#b4b4b8, style=plot.style_line, linewidth=1, title="Take Profit 3")
+  151: plot(takeProfit4, color=#b4b4b8, style=plot.style_line, linewidth=1, title="Take Profit 4")
+  152: 
+  153: // Create buy and sell signals on the chart
+  154: plotshape(series=buySignal, location=location.belowbar, color=color.green, style=shape.labelup, title="Buy Signal", text="BUY")
+  155: plotshape(series=sellSignal, location=location.abovebar, color=color.red, style=shape.labeldown, title="Sell Signal", text="SELL")
+  156: 
+  157: // Highlight the candles based on trend direction
+  158: uptrend = ta.crossover(ema20, ema50)  // EMA 20 crosses above EMA 50 (Bullish)
+  159: downtrend = ta.crossunder(ema20, ema50)  // EMA 20 crosses below EMA 50 (Bearish)
+  160: 
+  161: // Highlighting candles based on trend
+  162: bgcolor(color = ema20 > ema50 ? color.new(color.green, 80) : ema20 < ema50 ? color.new(color.red, 80) : na)
+  163: 
+  164: // Execute buy and sell orders on the chart
+  165: strategy.entry("Buy", strategy.long, when=buySignal)
+  166: strategy.entry("Sell", strategy.short, when=sellSignal)
+  167: 
+  168: // Exit conditions based on Take Profit levels
+  169: strategy.exit("Take Profit 1", "Buy", limit=takeProfit1)
+  170: strategy.exit("Take Profit 2", "Buy", limit=takeProfit2)
+  171: strategy.exit("Take Profit 3", "Buy", limit=takeProfit3)
+  172: strategy.exit("Take Profit 4", "Buy", limit=takeProfit4)
+  173: 
+  174: strategy.exit("Take Profit 1", "Sell", limit=takeProfit1)
+  175: strategy.exit("Take Profit 2", "Sell", limit=takeProfit2)
+  176: strategy.exit("Take Profit 3", "Sell", limit=takeProfit3)
+  177: strategy.exit("Take Profit 4", "Sell", limit=takeProfit4)
+  178: 
+  179: // Optionally, add a stop loss
+  180: stopLoss = 0.03  // Example: 3% stop loss
+  181: strategy.exit("Stop Loss", "Buy", stop=close * (1 - stopLoss))
+  182: strategy.exit("Stop Loss", "Sell", stop=close * (1 + stopLoss))

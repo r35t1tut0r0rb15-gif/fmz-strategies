@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2795 |
+| PORTED | 2807 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 569 |
-| PORT_CANDIDATE | 544 |
+| PORT_CANDIDATE | 532 |
 | REJECTED_ON_READING | 399 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
@@ -2923,7 +2923,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 476269 | `ports/476269_smi-momentum-based-smi-crossover-signal-adaptive-prediction/` | PineScript | stochastic_oscillator | none | length_k x2, length_d x2 | 4 |
 | 476270 | `ports/476270_cross-boundary-dynamic-range-quantitative-trading-strategy-b/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
 | 476273 | `ports/476273_adaptive-trend-following-dynamic-trend-recognition-trading-s/` | PineScript | supertrend | none | kama_length x2, factor x2 | 4 |
-| | **2795 ports** | | | | | **13022** |
+| 476277 | `ports/476277_multi-period-fractal-breakout-order-block-adaptive-trading-s/` | PineScript | channel_breakout | none | n x3 | 3 |
+| 476278 | `ports/476278_07-quantitative-trading-strategy-based-on-fibonacci-07-level/` | PineScript | channel_breakout | none | lookback x2, tp_pct x2 | 4 |
+| 476279 | `ports/476279_multi-level-quantitative-trading-strategy-based-on-bollinger/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 476280 | `ports/476280_cloud-based-bollinger-bands-double-moving-average-quantitati/` | PineScript | ichimoku | none | conversion x2, span_b x2 | 4 |
+| 476281 | `ports/476281_triple-supertrend-and-exponential-moving-average-trend-follo/` | PineScript | supertrend | none | ema_length x2, atr_period x2 | 4 |
+| 476283 | `ports/476283_multi-technical-indicator-based-high-frequency-dynamic-optim/` | PineScript | ma_cross | none | adx_threshold x2, fast x2 | 4 |
+| 476284 | `ports/476284_multi-technical-indicator-synergistic-trading-system/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 477511 | `ports/477511_multi-level-multi-period-ema-crossover-dynamic-take-profit-o/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | tp1_mult x3, slow x2 | 6 |
+| 477513 | `ports/477513_advanced-quantitative-trend-following-and-cloud-reversal-com/` | PineScript | ichimoku | trailing_stop_pending | short_ema x2, kijun x2 | 4 |
+| 477516 | `ports/477516_rsi-trend-following-rsi-and-moving-average-combined-quantita/` | PineScript | rsi_oscillator | coarse_bar_stop | ma_length x2, tp_pct x2 | 4 |
+| 477519 | `ports/477519_enhanced-trend-multi-signal-dynamic-trading-strategy/` | PineScript | supertrend | none | factor x2, atr_period x2 | 4 |
+| 477521 | `ports/477521_camarilla-multi-ema-crossover-with-camarilla-support-resista/` | PineScript | ma_cross | none | exit_atr x2, ema_long x2 | 4 |
+| | **2807 ports** | | | | | **13071** |
 
 ## Rejected on reading
 

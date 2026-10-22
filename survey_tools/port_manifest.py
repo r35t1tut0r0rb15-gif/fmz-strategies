@@ -6087,6 +6087,33 @@ SIZING = {
     476273: [
         ("strategy(): commission 0.1 %, slippage 3", 93, 93),
     ],
+    # ---- FMZ-C, batch C232 (2026-10-22)
+    476277: [],
+    476278: [
+        ("Stop 1.2 % / target 1.8 % of strategy.position_avg_price", 95, 128),
+    ],
+    476279: [],
+    476280: [],
+    476281: [],
+    476283: [
+        ("strategy(): 10 % of equity; ATR 1.5 / 2.0 bracket from the avg price", 92, 151),
+    ],
+    476284: [
+        ("qty 1", 167, 167),
+    ],
+    477511: [
+        ("TP multipliers 0.5-2.0 of the signal bar's range; stop 3 % of the close", 123, 182),
+    ],
+    477513: [
+        ("Stop 1.5 % / target 3 % of the current close", 137, 147),
+    ],
+    477516: [
+        ("strategy(): capital 50000, qty 1; stop 1 % / target 2 %", 108, 165),
+    ],
+    477519: [],
+    477521: [
+        ("capital 50000 x 100 % / close as qty; exit after 20 ticks", 120, 183),
+    ],
 }
 
 REJECTED_ON_READING = {

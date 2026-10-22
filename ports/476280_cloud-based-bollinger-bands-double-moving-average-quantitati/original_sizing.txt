@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #476280 (云端布林通道交叉双均线量化趋势策略-Cloud-Based-Bollinger-Bands-Double-Moving-Average-Quantitative-Trend-Strategy)
+# Source: https://www.fmz.com/strategy/476280  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
