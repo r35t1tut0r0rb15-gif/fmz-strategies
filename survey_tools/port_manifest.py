@@ -3968,6 +3968,18 @@ SIZING = {
     440095: [],
     440096: [],
     440097: [],
+    # ---- FMZ-C, batch C131 (2026-10-22)
+    440100: [],
+    440102: [],
+    440103: [],
+    440104: [
+        ("strategy.initial_capital 50000; equity > 0 gate", 762, 765),
+    ],
+    440107: [],
+    440110: [],
+    440292: [],
+    440299: [],
+    440300: [],
 }
 
 REJECTED_ON_READING = {
@@ -4954,6 +4966,19 @@ REJECTED_ON_READING = {
     440085: ("1", "Each side has three take-profit exits closing 30 % of the position each "
               "(qty_percent = 30 at 1 / 2 / 6 units of the average price): partial exits "
               "(criterion 1, as #436524)."),
+    # ---- FMZ-C, batch C131 (2026-10-22)
+    440098: ("1", "Each entry has a strategy.exit closing 50 % of the position (qty_percent = 50 when "
+              "the high or low touches the fast channel): partial exits (criterion 1, as "
+              "#436524)."),
+    440109: ("1", "The only exit is a 10 % limit / 1 % stop bracket placed from the close of a later "
+              "sell-signal bar (any of the three supertrends turning up), not from the entry, and "
+              "kept while later entries are ignored; the house stops (fractions of the entry "
+              "fill) cannot express it, and without it the script is one long held from the first "
+              "signal to the end (as #430384)."),
+    440118: ("1", "Orders are strategy.order calls whose quantities are built from "
+              "strategy.position_size (running sums of 1 / 2 / 4 base units plus the held size), "
+              "and close_all is called on every bar: position-size-driven order sizing (criterion "
+              "1, as #430596)."),
 }
 
 DUPLICATE_ON_READING = {

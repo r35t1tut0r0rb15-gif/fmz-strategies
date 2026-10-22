@@ -233,6 +233,9 @@ fmz_id,file,final_outcome,criterion,reason
 440058,杠杆化马丁格尔期货交易策略Leveraged-Martingale-Futures-Trading-Strategy.md,REJECTED_ON_READING,1,"A leveraged martingale: after the first buy, each 1 % drop adds a 'Double Long' entry sized trade size x leverage x 2^n up to 10 times, and close_all fires on a take-profit of the size-weighted average price net of fees: the position size path is the strategy (as #435721)."
 440084,比特币期货头寸智能交易策略Bitcoin-Futures-Position-Trading-Strategy.md,REJECTED_ON_READING,3,"Every signal is the RSI 7 of request.security('BTC_USDT:swap', '', open) (the author's Bitfinex shorts series, replaced by a crypto-exchange perpetual): a separate instrument used as the signal source for the chart symbol, which the project's single-symbol bars do not carry (as #430742). Stored in flagged/ (rule C7)."
 440085,一种基于三重SMA自动追踪策略Triple-SMA-Auto-Tracking-Strategy.md,REJECTED_ON_READING,1,"Each side has three take-profit exits closing 30 % of the position each (qty_percent = 30 at 1 / 2 / 6 units of the average price): partial exits (criterion 1, as #436524)."
+440098,多时间框架趋势跟踪策略Swing-High-Low-Price-Channel-Strategy-V1.md,REJECTED_ON_READING,1,"Each entry has a strategy.exit closing 50 % of the position (qty_percent = 50 when the high or low touches the fast channel): partial exits (criterion 1, as #436524)."
+440109,自适应三重超级趋势策略Adaptive-Triple-Supertrend-Strategy.md,REJECTED_ON_READING,1,"The only exit is a 10 % limit / 1 % stop bracket placed from the close of a later sell-signal bar (any of the three supertrends turning up), not from the entry, and kept while later entries are ignored; the house stops (fractions of the entry fill) cannot express it, and without it the script is one long held from the first signal to the end (as #430384)."
+440118,基于Wave-Trend和VWMA的趋势跟踪量化策略Wave-Trend-and-VWMA-Based-Trend-Following-Quant-Strategy.md,REJECTED_ON_READING,1,"Orders are strategy.order calls whose quantities are built from strategy.position_size (running sums of 1 / 2 / 4 base units plus the held size), and close_all is called on every bar: position-size-driven order sizing (criterion 1, as #430596)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2004,3 +2007,12 @@ fmz_id,file,final_outcome,criterion,reason
 440095,移动平均差值零轴交叉策略Moving-Average-Difference-Zero-Cross-Strategy.md,PORTED,,ports/440095_moving-average-difference-zero-cross-strategy/
 440096,一种基于线性回归分析的量化交易策略Adaptive-Linear-Regression-Channel-Strategy.md,PORTED,,ports/440096_adaptive-linear-regression-channel-strategy/
 440097,动量强度反转交易策略Momentum-Reversal-Trading-Strategy.md,PORTED,,ports/440097_momentum-reversal-trading-strategy/
+440100,反转追踪蜡烛形态策略Reversal-Candlestick-Backtesting-Strategy.md,PORTED,,ports/440100_reversal-candlestick-backtesting-strategy/
+440102,三重EMA随机RSI交叉金叉策略Three-EMA-Stochastic-RSI-Crossover-Golden-Cross-Strategy.md,PORTED,,ports/440102_ema-rsi-three-ema-stochastic-rsi-crossover-golden-cross-stra/
+440103,关键反转信号回测策略Key-Reversal-Backtest-Strategy.md,PORTED,,ports/440103_key-reversal-backtest-strategy/
+440104,市场密码波浪B自动买卖策略Market-Cypher-Wave-B-Automated-Trading-Strategy.md,PORTED,,ports/440104_b-market-cypher-wave-b-automated-trading-strategy/
+440107,基于移动平均线的量化交易策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/440107_moving-average-crossover-strategy/
+440110,双移动平均线与Williams平均线组合策略Dual-Moving-Average-and-Williams-Average-Combination-Strategy.md,PORTED,,ports/440110_williams-dual-moving-average-and-williams-average-combinatio/
+440292,牛市追涨箱体买入策略Bull-Market-Breakout-Darvas-Box-Buy-Strategy.md,PORTED,,ports/440292_bull-market-breakout-darvas-box-buy-strategy/
+440299,时空优化多时间框架MACD策略Time-and-Space-Optimized-Multi-Timeframe-MACD-Strategy.md,PORTED,,ports/440299_macd-time-and-space-optimized-multi-timeframe-macd-strategy/
+440300,固定时间突破回测策略Fixed-Time-Breakback-Testing-Strategy.md,PORTED,,ports/440300_fixed-time-breakback-testing-strategy/

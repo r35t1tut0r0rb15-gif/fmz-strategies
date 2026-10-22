@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1755 |
-| PORTED | 1754 |
+| PORTED | 1763 |
+| PORT_CANDIDATE | 1743 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 234 |
+| REJECTED_ON_READING | 237 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1882,7 +1882,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440095 | `ports/440095_moving-average-difference-zero-cross-strategy/` | PineScript | ma_trend | none | ema_period x2 | 2 |
 | 440096 | `ports/440096_adaptive-linear-regression-channel-strategy/` | PineScript | volatility_channel_breakout | none | length x2, mult x2 | 4 |
 | 440097 | `ports/440097_momentum-reversal-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, oversold x2 | 4 |
-| | **1754 ports** | | | | | **8583** |
+| 440100 | `ports/440100_reversal-candlestick-backtesting-strategy/` | PineScript | candle_pattern | none | tp_frac x2, sl_frac x2 | 4 |
+| 440102 | `ports/440102_ema-rsi-three-ema-stochastic-rsi-crossover-golden-cross-stra/` | PineScript | multi_indicator_confluence | none | stop_factor x2, profit_factor x2 | 4 |
+| 440103 | `ports/440103_key-reversal-backtest-strategy/` | PineScript | reversal_pattern | none | tp_frac x2, sl_frac x2 | 4 |
+| 440104 | `ports/440104_b-market-cypher-wave-b-automated-trading-strategy/` | PineScript | wavetrend_oscillator | none | ob_level x2, avg_len x2 | 4 |
+| 440107 | `ports/440107_moving-average-crossover-strategy/` | PineScript | ma_trend | none | length x2 | 2 |
+| 440110 | `ports/440110_williams-dual-moving-average-and-williams-average-combinatio/` | PineScript | multi_indicator_confluence | none | length x2, l_length x2 | 4 |
+| 440292 | `ports/440292_bull-market-breakout-darvas-box-buy-strategy/` | PineScript | donchian_breakout | trailing_stop_pending | box_len x2 | 2 |
+| 440299 | `ports/440299_macd-time-and-space-optimized-multi-timeframe-macd-strategy/` | PineScript | macd_cross | none | tp x2, sl x2 | 4 |
+| 440300 | `ports/440300_fixed-time-breakback-testing-strategy/` | PineScript | candle_pattern | none | k_long x2, k_short x2 | 4 |
+| | **1763 ports** | | | | | **8615** |
 
 ## Rejected on reading
 
@@ -2122,6 +2131,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440058 | 杠杆化马丁格尔期货交易策略Leveraged-Martingale-Futures-Trading-Strategy.md | 1 | A leveraged martingale: after the first buy, each 1 % drop adds a 'Double Long' entry sized trade size x leverage x 2^n up to 10 times, and close_all fires on a take-profit of the size-weighted average price net of fees: the position size path is the strategy (as #435721). |
 | 440084 | 比特币期货头寸智能交易策略Bitcoin-Futures-Position-Trading-Strategy.md | 3 | Every signal is the RSI 7 of request.security('BTC_USDT:swap', '', open) (the author's Bitfinex shorts series, replaced by a crypto-exchange perpetual): a separate instrument used as the signal source for the chart symbol, which the project's single-symbol bars do not carry (as #430742). Stored in flagged/ (rule C7). |
 | 440085 | 一种基于三重SMA自动追踪策略Triple-SMA-Auto-Tracking-Strategy.md | 1 | Each side has three take-profit exits closing 30 % of the position each (qty_percent = 30 at 1 / 2 / 6 units of the average price): partial exits (criterion 1, as #436524). |
+| 440098 | 多时间框架趋势跟踪策略Swing-High-Low-Price-Channel-Strategy-V1.md | 1 | Each entry has a strategy.exit closing 50 % of the position (qty_percent = 50 when the high or low touches the fast channel): partial exits (criterion 1, as #436524). |
+| 440109 | 自适应三重超级趋势策略Adaptive-Triple-Supertrend-Strategy.md | 1 | The only exit is a 10 % limit / 1 % stop bracket placed from the close of a later sell-signal bar (any of the three supertrends turning up), not from the entry, and kept while later entries are ignored; the house stops (fractions of the entry fill) cannot express it, and without it the script is one long held from the first signal to the end (as #430384). |
+| 440118 | 基于Wave-Trend和VWMA的趋势跟踪量化策略Wave-Trend-and-VWMA-Based-Trend-Following-Quant-Strategy.md | 1 | Orders are strategy.order calls whose quantities are built from strategy.position_size (running sums of 1 / 2 / 4 base units plus the held size), and close_all is called on every bar: position-size-driven order sizing (criterion 1, as #430596). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
