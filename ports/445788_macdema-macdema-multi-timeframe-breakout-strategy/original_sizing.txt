@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #445788 (MACDEMA多时间尺度突破策略MACDEMA-Multi-Timeframe-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/445788  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 30000, commission 7.5 per order; loss 100 points  [lines 151-157]
+  151: strategy('Last week MACD+ 15day, 30day break through, by Ho.J', overlay=true, initial_capital=30000, commission_value = 7.5, commission_type=strategy.commission.cash_per_order, slippage = 0)
+  152: 
+  153: // 백테스팅 기간 설정
+  154: start_time = input(timestamp("Jan 19 2024 00:00:01"), confirm = true)
+  155: end_time = input(timestamp("MAR 19 2024 23:59:59"), confirm = true)
+  156: is_in_time = true
+  157: stopLoss = input.int(100, title="손절 수준")

@@ -2496,3 +2496,15 @@ fmz_id,file,final_outcome,criterion,reason
 444977,布林带与相对强弱指数结合策略Bollinger-Bands-RSI-Combination-Strategy.md,PORTED,,ports/444977_bollinger-bands-rsi-combination-strategy/
 444985,日内锤子反转形态多头策略Intraday-Hammer-Reversal-Pattern-Long-Strategy.md,PORTED,,ports/444985_intraday-hammer-reversal-pattern-long-strategy/
 444988,高低点自动预测与交易策略High-Low-Automatic-Forecasting-and-Trading-Strategy.md,PORTED,,ports/444988_high-low-automatic-forecasting-and-trading-strategy/
+445438,基于平均真实波幅和相对强弱指数的钱德勒出场策略ATR-Chandelier-Exit-Strategy-with-Relative-Strength-Index.md,PORTED,,ports/445438_atr-chandelier-exit-strategy-with-relative-strength-index/
+445449,基于9EMA动态仓位的5分钟双收盘价强势突破策略9EMA-Dynamic-Position-Sizing-Strategy-with-Two-5-Minute-Close-Breakouts.md,PORTED,,ports/445449_9ema-5-9ema-dynamic-position-sizing-strategy-with-two-5-minu/
+445451,一文中局部震荡趋势识别策略Ichimoku-Cloud-Local-Trend-Identification-Strategy.md,PORTED,,ports/445451_ichimoku-cloud-local-trend-identification-strategy/
+445464,基于双移动平均线交叉的量化交易策略Dual-Moving-Average-Crossover-Quantitative-Trading-Strategy.md,PORTED,,ports/445464_dual-moving-average-crossover-quantitative-trading-strategy/
+445467,基于动态多均线与MACD指标的XAUUSD交易策略Dynamic-Multi-SMA-and-MACD-based-XAUUSD-Trading-Strategy.md,PORTED,,ports/445467_macd-xauusd-dynamic-multi-sma-and-macd-based-xauusd-trading/
+445468,MACD与EMA结合的SMC策略SMC-Strategy-Combining-MACD-and-EMA.md,PORTED,,ports/445468_macd-ema-smc-smc-strategy-combining-macd-and-ema/
+445784,RSI双向交易策略与初始止损RSI-Dual-Directional-Trading-Strategy-with-Initial-Stop-Loss.md,PORTED,,ports/445784_rsi-rsi-dual-directional-trading-strategy-with-initial-stop/
+445786,Flawless-Victory-DCA-动量与波动率策略Flawless-Victory-DCA-Momentum-and-Volatility-Strategy.md,PORTED,,ports/445786_flawless-victory-dca-flawless-victory-dca-momentum-and-volat/
+445788,MACDEMA多时间尺度突破策略MACDEMA-Multi-Timeframe-Breakout-Strategy.md,PORTED,,ports/445788_macdema-macdema-multi-timeframe-breakout-strategy/
+445802,基于ATR双重跟踪止损的动态止盈止损策略Dynamic-Stop-Loss-and-Take-Profit-Strategy-Based-on-Dual-ATR-Trailing-Stop.md,PORTED,,ports/445802_atr-dynamic-stop-loss-and-take-profit-strategy-based-on-dual/
+445803,双均线趋势跟踪策略Double-Moving-Average-Trend-Following-Strategy.md,PORTED,,ports/445803_double-moving-average-trend-following-strategy/
+445804,烛台形态趋势过滤策略Candlestick-Pattern-Trend-Filter-Strategy.md,PORTED,,ports/445804_candlestick-pattern-trend-filter-strategy/

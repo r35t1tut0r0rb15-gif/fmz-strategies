@@ -1,0 +1,30 @@
+# Original sizing and money-management code, FMZ #445449 (基于9EMA动态仓位的5分钟双收盘价强势突破策略9EMA-Dynamic-Position-Sizing-Strategy-with-Two-5-Minute-Close-Breakouts)
+# Source: https://www.fmz.com/strategy/445449  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## fixedAmount 1000; qty = 1000 / close  [lines 140-164]
+  140: fixedAmount = 1000
+  141: 
+  142: // Calculate the 9-period EMA
+  143: ema9 = ta.ema(close, 9)
+  144: 
+  145: // Define time constraints (9:30 AM to 9:40 AM EST, adjust for your timezone)
+  146: sessionStart = 0930
+  147: sessionEnd = 0940
+  148: timeCondition = (hour * 100 + minute) >= sessionStart and (hour * 100 + minute) < sessionEnd
+  149: 
+  150: // Detect two consecutive 5-min bars where close is near 0.99 times the high and above 9 EMA
+  151: closeNearHighAndAboveEMA = close >= high * 0.99 and close > ema9
+  152: twoConsecutiveBars = closeNearHighAndAboveEMA and closeNearHighAndAboveEMA[1]
+  153: 
+  154: // Entry condition: Within the first 10 minutes of the day and two consecutive bars match criteria
+  155: entryCondition = twoConsecutiveBars
+  156: 
+  157: // Exit condition: First 5-min close below 9 EMA after entry
+  158: exitCondition = close < ema9
+  159: 
+  160: // Plot EMA for visualization
+  161: plot(ema9, color=color.blue, linewidth=2, title="9 EMA")
+  162: 
+  163: // Calculate position size
+  164: positionSize = fixedAmount / close

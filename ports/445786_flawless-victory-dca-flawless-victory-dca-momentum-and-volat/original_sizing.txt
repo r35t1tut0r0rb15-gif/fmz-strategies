@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #445786 (Flawless-Victory-DCA-动量与波动率策略Flawless-Victory-DCA-Momentum-and-Volatility-Strategy)
+# Source: https://www.fmz.com/strategy/445786  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital 100000; stop / take-profit percent of the average price  [lines 131-139]
+  131: strategy(overlay=true, shorttitle=" DCA Strategy", default_qty_type = strategy.percent_of_equity, initial_capital = 100000, default_qty_value = 100, pyramiding = 0, title="Flawless Victory DCA Strategy", currency = 'USD')
+  132: 
+  133: ////////// ** Inputs ** //////////
+  134: 
+  135: // Stoploss and Profits Inputs
+  136: stoploss_input = input(6.604, title='Stop Loss %', type=input.float, minval=0.01)/100
+  137: takeprofit_input = input(2.328, title='Take Profit %', type=input.float, minval=0.01)/100
+  138: stoploss_level = strategy.position_avg_price * (1 - stoploss_input)
+  139: takeprofit_level = strategy.position_avg_price * (1 + takeprofit_input)

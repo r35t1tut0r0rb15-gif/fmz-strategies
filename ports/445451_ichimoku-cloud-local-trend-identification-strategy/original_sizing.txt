@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #445451 (一文中局部震荡趋势识别策略Ichimoku-Cloud-Local-Trend-Identification-Strategy)
+# Source: https://www.fmz.com/strategy/445451  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin_long 100, margin_short 100  [lines 152-152]
+  152: strategy("Advanced_Ichimoku_Cloud_Strategy", overlay=true, margin_long=100, margin_short=100)

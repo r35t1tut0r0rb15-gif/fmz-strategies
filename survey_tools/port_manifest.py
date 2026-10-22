@@ -4662,6 +4662,35 @@ SIZING = {
         ("qty = 50000 / close; stop low[1], target close x 1.5", 113, 121),
     ],
     444988: [],
+    # ---- FMZ-C, batch C172 (2026-10-22)
+    445438: [],
+    445449: [
+        ("fixedAmount 1000; qty = 1000 / close", 140, 164),
+    ],
+    445451: [
+        ("strategy(): margin_long 100, margin_short 100", 152, 152),
+    ],
+    445464: [],
+    445467: [
+        ("strategy(): 10 % of equity", 132, 132),
+    ],
+    445468: [],
+    445784: [
+        ("strategy(): 100 % of equity; initial stop 6 % of the close", 174, 197),
+    ],
+    445786: [
+        ("strategy(): 100 % of equity, capital 100000; stop / take-profit percent of the average price", 131, 139),
+    ],
+    445788: [
+        ("strategy(): capital 30000, commission 7.5 per order; loss 100 points", 151, 157),
+    ],
+    445802: [],
+    445803: [
+        ("strategy(): 100 % of equity, capital 100, commission 0.15", 141, 141),
+    ],
+    445804: [
+        ("strategy(): 5 % of equity, capital 10000, commission 0.02 %", 142, 142),
+    ],
 }
 
 REJECTED_ON_READING = {

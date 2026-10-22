@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #445784 (RSI双向交易策略与初始止损RSI-Dual-Directional-Trading-Strategy-with-Initial-Stop-Loss)
+# Source: https://www.fmz.com/strategy/445784  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; initial stop 6 % of the close  [lines 174-197]
+  174: strategy("RSI Long and Short Strategy with Initial Stop Loss", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+  175: 
+  176: // Input parameters
+  177: rsi_length = input(14, title="RSI Length")
+  178: initial_stop_loss_percentage = input(6, title="Initial Stop Loss Percentage")
+  179: 
+  180: // Calculate RSI
+  181: rsi_1hour = request.security(syminfo.tickerid, "60", ta.rsi(close, rsi_length))
+  182: 
+  183: // Entry condition for Long trades
+  184: long_entry = rsi_1hour[1] < 60 and rsi_1hour >= 60
+  185: 
+  186: // Exit condition for Long trades
+  187: long_exit = rsi_1hour[1] > 60 and rsi_1hour <= 60
+  188: 
+  189: // Entry condition for Short trades
+  190: short_entry = rsi_1hour[1] > 40 and rsi_1hour <= 40
+  191: 
+  192: // Exit condition for Short trades
+  193: short_exit = rsi_1hour[1] < 40 and rsi_1hour >= 40
+  194: 
+  195: // Initial Stop Loss calculation
+  196: initial_stop_loss_long = close * (1 - initial_stop_loss_percentage / 100)
+  197: initial_stop_loss_short = close * (1 + initial_stop_loss_percentage / 100)

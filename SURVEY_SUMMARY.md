@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2170 |
-| PORT_CANDIDATE | 1263 |
+| PORTED | 2182 |
+| PORT_CANDIDATE | 1251 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
 | REJECTED_ON_READING | 307 |
@@ -2298,7 +2298,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 444977 | `ports/444977_bollinger-bands-rsi-combination-strategy/` | PineScript | bollinger_reversion | none | length x2, rsi_length x2 | 4 |
 | 444985 | `ports/444985_intraday-hammer-reversal-pattern-long-strategy/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop_pending | body_frac x2, target_mult x2 | 4 |
 | 444988 | `ports/444988_high-low-automatic-forecasting-and-trading-strategy/` | PineScript | breakout | none | session_hour x2, rsi_length x2 | 4 |
-| | **2170 ports** | | | | | **10149** |
+| 445438 | `ports/445438_atr-chandelier-exit-strategy-with-relative-strength-index/` | PineScript | volatility_stop_cross | trailing_stop_pending | atr_mult x2, sl_atr x2 | 4 |
+| 445449 | `ports/445449_9ema-5-9ema-dynamic-position-sizing-strategy-with-two-5-minu/` | PineScript | ma_trend | none | ema_len x2, near_high x2 | 4 |
+| 445451 | `ports/445451_ichimoku-cloud-local-trend-identification-strategy/` | PineScript | ichimoku | none | ppl1 x2, ppl2 x2 | 4 |
+| 445464 | `ports/445464_dual-moving-average-crossover-quantitative-trading-strategy/` | PineScript | ma_cross | none | length x2 | 2 |
+| 445467 | `ports/445467_macd-xauusd-dynamic-multi-sma-and-macd-based-xauusd-trading/` | PineScript | ma_cross | trailing_stop_pending | atr_mult x2, trend_len x2 | 4 |
+| 445468 | `ports/445468_macd-ema-smc-smc-strategy-combining-macd-and-ema/` | PineScript | macd_cross | none | ema_len x2, fast x2 | 4 |
+| 445784 | `ports/445784_rsi-rsi-dual-directional-trading-strategy-with-initial-stop/` | PineScript | rsi_oscillator | trailing_stop_pending | length x2, upper x2 | 4 |
+| 445786 | `ports/445786_flawless-victory-dca-flawless-victory-dca-momentum-and-volat/` | PineScript | bollinger_reversion | trailing_stop_pending | length x2, rsi_lower x2 | 4 |
+| 445788 | `ports/445788_macdema-macdema-multi-timeframe-breakout-strategy/` | PineScript | multi_timeframe_ma | none | loss_frac x2, week_ema x2 | 4 |
+| 445802 | `ports/445802_atr-dynamic-stop-loss-and-take-profit-strategy-based-on-dual/` | PineScript | atr_trailing_line | trailing_stop_pending | key1 x2, key2 x2 | 4 |
+| 445803 | `ports/445803_double-moving-average-trend-following-strategy/` | PineScript | ssl_channel | none | ssl_len x2 | 2 |
+| 445804 | `ports/445804_candlestick-pattern-trend-filter-strategy/` | PineScript | candle_pattern | none | fast x2, slow x2 | 4 |
+| | **2182 ports** | | | | | **10193** |
 
 ## Rejected on reading
 
