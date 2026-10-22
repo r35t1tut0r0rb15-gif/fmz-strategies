@@ -1,0 +1,59 @@
+# Original sizing and money-management code, FMZ #477944 (动态支撑阻力枢轴自适应量化交易策略-Dynamic-Support-and-Resistance-Adaptive-Pivot-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/477944  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 10 % / target 26 % of strategy.position_avg_price  [lines 103-156]
+  103: stop_loss_pct = input.float(10.0, title="Stop Loss %", tooltip="Stop loss percentage", minval=0.1) / 100
+  104: take_profit_pct = input.float(26.0, title="Take Profit %", tooltip="Take profit percentage", minval=0.1) / 100
+  105: 
+  106: // Functions to identify high and low pivots
+  107: pivot_high = ta.pivothigh(high, pivot_length, pivot_length)
+  108: pivot_low = ta.pivotlow(low, pivot_length, pivot_length)
+  109: 
+  110: // Storing support and resistance levels
+  111: var float resistance_level = na
+  112: var float support_level = na
+  113: var float last_pivot_high = na
+  114: var float last_pivot_low = na
+  115: 
+  116: // Updating support and resistance based on pivots
+  117: if (not na(pivot_high))
+  118:     resistance_level := high[pivot_length]
+  119:     last_pivot_high := high[pivot_length]
+  120: 
+  121: if (not na(pivot_low))
+  122:     support_level := low[pivot_length]
+  123:     last_pivot_low := low[pivot_length]
+  124: 
+  125: // Function to check if the current price is near a support or resistance level
+  126: is_near_resistance = (not na(resistance_level)) and (close >= resistance_level * (1 - support_resistance_distance / 100)) and (close <= resistance_level * (1 + support_resistance_distance / 100))
+  127: is_near_support = (not na(support_level)) and (close >= support_level * (1 - support_resistance_distance / 100)) and (close <= support_level * (1 + support_resistance_distance / 100))
+  128: 
+  129: // Cross conditions variables
+  130: long_cross = ta.crossover(close, support_level) and not na(support_level)
+  131: short_cross = ta.crossunder(close, resistance_level) and not na(resistance_level)
+  132: 
+  133: // Entry conditions
+  134: long_condition = is_near_support and long_cross  // Buy when crossing support from below
+  135: short_condition = is_near_resistance and short_cross  // Sell when crossing resistance from above
+  136: 
+  137: // Order execution
+  138: if (long_condition)
+  139:     strategy.entry("Long", strategy.long)
+  140: 
+  141: if (short_condition)
+  142:     strategy.entry("Short", strategy.short)
+  143: 
+  144: // Stop Loss and Take Profit
+  145: if (strategy.opentrades > 0)
+  146:     if (strategy.position_size > 0)  // For long position
+  147:         avg_price_long = strategy.position_avg_price
+  148:         long_stop_level = avg_price_long * (1 - stop_loss_pct)
+  149:         long_take_profit_level = avg_price_long * (1 + take_profit_pct)
+  150:         strategy.exit("Exit Long", from_entry="Long", stop=long_stop_level, limit=long_take_profit_level)
+  151: 
+  152:     if (strategy.position_size < 0)  // For short position
+  153:         avg_price_short = strategy.position_avg_price
+  154:         short_stop_level = avg_price_short * (1 + stop_loss_pct)
+  155:         short_take_profit_level = avg_price_short * (1 - take_profit_pct)
+  156:         strategy.exit("Exit Short", from_entry="Short", stop=short_stop_level, limit=short_take_profit_level)

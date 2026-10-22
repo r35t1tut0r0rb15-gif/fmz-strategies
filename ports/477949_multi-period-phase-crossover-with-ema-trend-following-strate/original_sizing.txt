@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #477949 (多周期相位交叉与指数移动平均趋势跟踪策略-Multi-Period-Phase-Crossover-with-EMA-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/477949  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

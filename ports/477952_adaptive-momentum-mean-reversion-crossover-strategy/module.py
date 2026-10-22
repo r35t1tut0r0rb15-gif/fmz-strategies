@@ -1,0 +1,82 @@
+"""Bollinger bands on the 2-bar rate of change, broker days, long only: ROC crossing over its lower band (18 / 1.7) buys, ROC crossing under its upper band (21 / 2.1) closes.
+Port of FMZ strategy #477952 "Adaptive Momentum Mean Reversion Crossover Strategy" (Adaptive Momentum Reversion Strategy).
+
+FMZ source id: 477952
+
+Source
+    https://www.fmz.com/strategy/477952 (PineScript v6, FMZ last modified 2025-01-10 15:26:18).
+    Verbatim copy: original_source.md. Read 2026-10-22 (FMZ-C).
+
+Original signal (original_source.md lines 73-131), ROC 2; lower band SMA 18 - 1.7 sd, upper band SMA 21 + 2.1 sd of ROC; commission 0.05 per contract, slippage 1; capital 50000
+    roc = (close - close[2]) / close[2] x 100;  crossover(roc, sma18 - 1.7 sd18) -> entry Long;  crossunder(roc, sma21 + 2.1 sd21) -> close Long
+
+Interpretation choices (Pine rules in SURVEY_README.md)
+    * ta.stdev is the population deviation. Long only. The commission and slippage settings are costs and
+      are not ported (house cost model); the capital is sizing. Daily bars are broker days (17:00
+      America/New_York), stamped with their first minute. FREQ = "1D" from the backtest header.
+
+Admission criteria
+    1 fits the interface: PASS, bar-close orders.
+    2 generic: PASS, ROC band re-entries and exits.
+    3 crypto-exchange-only: no (exchange pair in the header only).
+    4 signals only: capital stored; costs not ported.
+    5 ranges declared: GRID below (4 trials), before any backtest.
+    6 near-duplicates: no DG / ND group; ported (rule 7).
+    7 FMZ performance claims: ignored.
+Volume: not used (check 8).
+Session open: broker day (17:00 America/New_York, DST by the zone); no venue-open rule.
+Long only.
+
+Marks: none
+"""
+import numpy as np
+import pandas as pd
+
+NAME = "fmz_477952_roc2_bollinger_lower_cross_upper_exit_long"
+FAMILY = "bollinger_reversion"  # proposed 2026-10-22 (FMZ-C), user to confirm
+FREQ = "1D"  # backtest header period: 1d (broker days)
+PERIODS_PER_YEAR_OVERRIDE = None
+
+GRID = {
+    "roc_period": [2, 5],
+    "lower_sd": [1.7, 2.0],
+}
+DEFAULT_PARAMS = {"roc_period": 2, "lower_sd": 1.7, "lower_len": 18, "upper_len": 21, "upper_sd": 2.1}
+
+
+def broker_day(index):
+    """Broker day of each timestamp: the session ending 17:00 America/New_York, labelled by its
+    end date (as worker A's ports). The desktop binds this name to registry_schema.broker_day."""
+    ny = index.tz_convert("America/New_York")
+    return (ny + pd.Timedelta(hours=7)).normalize().tz_localize(None)
+
+
+def precompute(raw_1m_df, symbol_key, **params):
+    df = raw_1m_df[["open", "high", "low", "close"]].dropna(how="all")
+    if df.index.tz is None:
+        raise ValueError("raw_1m_df must have a tz-aware UTC index")
+    lab = broker_day(df.index)
+    bars = df.groupby(lab).agg({"open": "first", "high": "max", "low": "min", "close": "last"})
+    first = pd.Series(df.index, index=df.index).groupby(lab).first()
+    bars.index = pd.DatetimeIndex(first.loc[bars.index].values)   # each bar stamped with its first minute
+    if bars.index.tz is None:
+        bars.index = bars.index.tz_localize("UTC")
+    return bars
+
+
+def simulate(bars_df, **params):
+    p = {**DEFAULT_PARAMS, **params}
+    c = bars_df["close"]
+    k = int(p["roc_period"])
+    roc = (c - c.shift(k)) / c.shift(k) * 100
+    nl, nu = int(p["lower_len"]), int(p["upper_len"])
+    lower = roc.rolling(nl).mean() - float(p["lower_sd"]) * roc.rolling(nl).std(ddof=0)
+    upper = roc.rolling(nu).mean() + float(p["upper_sd"]) * roc.rolling(nu).std(ddof=0)
+    le = (roc > lower) & (roc.shift(1) <= lower.shift(1))
+    lx = (roc < upper) & (roc.shift(1) >= upper.shift(1))
+    false = pd.Series(False, index=c.index)
+    return le, lx, false, false.copy()
+
+
+def portfolio_kwargs(**params):
+    return {}

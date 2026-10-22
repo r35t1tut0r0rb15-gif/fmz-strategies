@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #477952 (自适应动量均值回归交叉策略Adaptive-Momentum-Mean-Reversion-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/477952  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 50000, commission 0.05 per contract, slippage 1  [lines 83-83]
+   83: strategy("Adaptive Momentum Reversion Strategy ", overlay=false, initial_capital=50000, pyramiding=0, commission_type=strategy.commission.cash_per_contract, commission_value=0.05, slippage=1)

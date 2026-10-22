@@ -1,0 +1,104 @@
+# Original sizing and money-management code, FMZ #477961 (三重探底反弹突破动量策略-Triple-Bottom-Rebound-Momentum-Breakthrough-Strategy)
+# Source: https://www.fmz.com/strategy/477961  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 100000, commission 0.001425, slippage 1; ATR 2 stop / 2 target  [lines 107-205]
+  107: strategy("反彈三次突破策略", overlay=true, initial_capital=100000, commission_value=0.001425, slippage=1)
+  108: 
+  109: // === 參數設定 ===
+  110: fast_length = input.int(5, title="快速均線週期")
+  111: slow_length = input.int(20, title="慢速均線週期")
+  112: atr_period = input.int(14, title="ATR 週期")
+  113: atr_factor = input.float(2.0, title="ATR 因子")
+  114: profit_factor = input.float(2.0, title="止盈因子")
+  115: 
+  116: // === 計算均線 ===
+  117: fast_ma = ta.ema(close, fast_length)
+  118: slow_ma = ta.ema(close, slow_length)
+  119: 
+  120: // === 均線交叉訊號 ===
+  121: long_signal = ta.crossover(fast_ma, slow_ma)
+  122: short_signal = ta.crossunder(fast_ma, slow_ma)
+  123: 
+  124: // === 計算 ATR ===
+  125: atr = ta.atr(atr_period)
+  126: 
+  127: // === 反彈三次突破策略 ===
+  128: var float low1 = na
+  129: var float low2 = na
+  130: var float low3 = na
+  131: var bool trend_down = false
+  132: var bool long_breakout = false
+  133: var line lower_line = na
+  134: var line upper_line = na
+  135: 
+  136: if (na(low1) or na(low2) or na(low3))
+  137:     // 初始化低點
+  138:     low1 := na
+  139:     low2 := na
+  140:     low3 := na
+  141: 
+  142: if (close < low3 or na(low3))
+  143:     // 更新低點
+  144:     low1 := low2
+  145:     low2 := low3
+  146:     low3 := close
+  147:     trend_down := true
+  148: 
+  149: if (trend_down and close > low2 and close > low1)
+  150:     // 確認反轉且第三次反彈比第二次高
+  151:     trend_down := false
+  152:     long_breakout := true
+  153: 
+  154: // 清除前一個反彈通道
+  155: if (not na(lower_line))
+  156:     line.delete(lower_line)
+  157: if (not na(upper_line))
+  158:     line.delete(upper_line)
+  159: 
+  160: // 繪製新的反彈通道
+  161: if (not na(low1) and not na(low3))    
+  162:     lower_line := line.new(x1=bar_index[2], y1=low1, x2=bar_index, y2=low3, color=color.yellow, width=2)
+  163:     upper_line := line.new(x1=bar_index[2], y1=low1 + (low3 - low1), x2=bar_index, y2=low3 + (low3 - low1), color=color.yellow, width=2)
+  164: 
+  165: // === 進出場條件 ===
+  166: var float last_long_exit = na
+  167: var float last_short_exit = na
+  168: var float stop_loss_long = na
+  169: var float take_profit_long = na
+  170: var float stop_loss_short = na
+  171: var float take_profit_short = na
+  172: 
+  173: var label stop_loss_label_long = na
+  174: var label take_profit_label_long = na
+  175: var label stop_loss_label_short = na
+  176: var label take_profit_label_short = na
+  177: 
+  178: if (long_signal or long_breakout)
+  179:     if na(last_short_exit) or (time - last_short_exit) > 2 * 60 * 60 * 1000  // 確保多頭出場後有一段時間間隔
+  180:         // 做多
+  181:         strategy.entry("做多", strategy.long)
+  182:         // 止損設置為最近低點下方
+  183:         stop_loss_long := low3 - atr_factor * atr
+  184:         take_profit_long := close + profit_factor * atr  // 設定止盈位置
+  185:         strategy.exit("止盈/止損", "做多", stop=stop_loss_long, limit=take_profit_long)
+  186:         last_long_exit := time  // 記錄多頭出場時間
+  187: 
+  188:         // 刪除之前的止盈止損標籤
+  189:         if (not na(stop_loss_label_long))
+  190:             label.delete(stop_loss_label_long)
+  191:         if (not na(take_profit_label_long))
+  192:             label.delete(take_profit_label_long)
+  193: 
+  194:         // 繪製新的止盈止損標籤
+  195:         stop_loss_label_long := label.new(x=bar_index, y=stop_loss_long, text=str.tostring(math.round(stop_loss_long * 10) / 10), color=color.red, style=label.style_label_down, textcolor=color.white, size=size.small)
+  196:         take_profit_label_long := label.new(x=bar_index, y=take_profit_long, text=str.tostring(math.round(take_profit_long * 10) / 10), color=color.green, style=label.style_label_up, textcolor=color.white, size=size.small)
+  197: 
+  198: if (short_signal)
+  199:     if na(last_long_exit) or (time - last_long_exit) > 2 * 60 * 60 * 1000  // 確保空頭出場後有一段時間間隔
+  200:         // 做空
+  201:         strategy.entry("做空", strategy.short)
+  202:         // 止損設置為最近高點上方
+  203:         stop_loss_short := high + atr_factor * atr
+  204:         take_profit_short := close - profit_factor * atr  // 設定止盈位置
+  205:         strategy.exit("止盈/止損", "做空", stop=stop_loss_short, limit=take_profit_short)

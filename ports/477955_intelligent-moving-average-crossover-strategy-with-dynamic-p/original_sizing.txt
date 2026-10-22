@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #477955 (智能均线交叉策略与动态止盈止损系统-Intelligent-Moving-Average-Crossover-Strategy-with-Dynamic-Profit-Loss-Management-System)
+# Source: https://www.fmz.com/strategy/477955  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 % / target 2 % of strategy.position_avg_price  [lines 98-114]
+   98: stop_loss_pct = input.float(1, title="Stop Loss (%)", minval=0.1) / 100
+   99: take_profit_pct = input.float(2, title="Take Profit (%)", minval=0.1) / 100
+  100: 
+  101: // Condições para compra e venda
+  102: compra = ta.crossover(ma7, ma40)
+  103: venda = ta.crossunder(ma7, ma40)
+  104: 
+  105: // Impede novas entradas enquanto já houver uma posição aberta
+  106: if (compra and strategy.position_size == 0)
+  107:     strategy.entry("Compra", strategy.long)
+  108: 
+  109: // Cálculo do preço de stop loss e take profit
+  110: stop_loss_price = strategy.position_avg_price * (1 - stop_loss_pct)
+  111: take_profit_price = strategy.position_avg_price * (1 + take_profit_pct)
+  112: 
+  113: // Estratégia de saída com stop loss e take profit
+  114: strategy.exit("Saída", from_entry="Compra", stop=stop_loss_price, limit=take_profit_price)

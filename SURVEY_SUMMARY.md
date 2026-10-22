@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2849 |
+| PORTED | 2859 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 570 |
-| PORT_CANDIDATE | 484 |
-| REJECTED_ON_READING | 404 |
+| PORT_CANDIDATE | 472 |
+| REJECTED_ON_READING | 406 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2977,7 +2977,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 477613 | `ports/477613_multi-technical-indicator-fusion-trend-following-quantitativ/` | PineScript | bollinger_reversion | none | rsi_low x2, bb_length x2 | 4 |
 | 477614 | `ports/477614_sma-long-term-trend-sma-crossover-quantitative-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 477943 | `ports/477943_rsi-dual-ema-rsi-divergence-strategy-a-trend-capture-system/` | PineScript | rsi_oscillator | none | rsi_long x2, slow x2 | 4 |
-| | **2849 ports** | | | | | **13234** |
+| 477944 | `ports/477944_dynamic-support-and-resistance-adaptive-pivot-trading-strate/` | PineScript | support_resistance | coarse_bar_stop | pivot_length x2, distance_pct x2 | 4 |
+| 477945 | `ports/477945_multi-period-bollinger-bands-trend-breakout-strategy-with-vo/` | PineScript | bollinger_breakout | coarse_bar_stop, trailing_stop_pending | length x2, rr x2 | 4 |
+| 477946 | `ports/477946_rsi-multi-moving-average-cross-trend-following-rsi-oscillati/` | PineScript | ma_trend | none | rsi_threshold x2, near_pct x2 | 4 |
+| 477949 | `ports/477949_multi-period-phase-crossover-with-ema-trend-following-strate/` | PineScript | ma_cross | none | length x2, offset_frac x2 | 4 |
+| 477951 | `ports/477951_ema-adaptive-dual-direction-ema-trend-trading-system-with-re/` | PineScript | ma_trend | none | interval_min x2, main_long x2 | 4 |
+| 477952 | `ports/477952_adaptive-momentum-mean-reversion-crossover-strategy/` | PineScript | bollinger_reversion | none | roc_period x2, lower_sd x2 | 4 |
+| 477955 | `ports/477955_intelligent-moving-average-crossover-strategy-with-dynamic-p/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 477956 | `ports/477956_enhanced-price-volume-trend-momentum-strategy/` | PineScript | macd | coarse_bar_stop, trailing_stop_pending | tp_atr x2, sl_atr x2 | 4 |
+| 477960 | `ports/477960_k-dual-timeframe-trend-reversal-candlestick-pattern-quantita/` | PineScript | candle_pattern | none | hold_periods x2, length x2 | 4 |
+| 477961 | `ports/477961_triple-bottom-rebound-momentum-breakthrough-strategy/` | PineScript | ma_cross | coarse_bar_stop | atr_factor x2, profit_factor x2 | 4 |
+| | **2859 ports** | | | | | **13274** |
 
 ## Rejected on reading
 
@@ -3387,6 +3397,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 477584 | 高级均线交叉趋势跟踪策略结合ATR动态止盈止损系统-Advanced-EMA-Crossover-Trend-Following-Strategy-with-ATR-Based-Dynamic-Stop-Management-System.md | 2 | The bracket's trail_points = atr x 2.0 is a price amount where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #442115). |
 | 477600 | 基于下跌幅度与目标利润的多头网格策略-Long-Grid-Strategy-Based-on-Drawdown-and-Target-Profit.md | 1 | A grid: the first bar buys with no market signal (active_trade false) and every profit close re-buys on the next bar, with a "Rebuy" add on each 5 % drop (ignored only by pyramiding 1): an always-invested buy from the first bar with DCA adds by design (criterion 1, as #433916 and the DCA rule). |
 | 477610 | 基于动态波动率的高频指数均线交叉量化策略-Dynamic-Volatility-Driven-High-Frequency-EMA-Crossover-Quantitative-Strategy.md | 2 | The trailing exits pass trail_points = atr x 1.5 and trail_offset = atr x 1.0, price amounts, where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #442115). |
+| 477950 | 回弹趋势双均线交易系统结合ATR动态止损优化策略-Dual-EMA-Pullback-Trading-System-with-ATR-Based-Dynamic-Stop-Loss-Optimization.md | 2 | The exits pass trail_offset = atr x 2.0, a price amount, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #442115). |
+| 477953 | 自适应多重均线动量突破交易策略-Adaptive-Multi-MA-Momentum-Breakthrough-Trading-Strategy.md | 1 | Every signal sends strategy.order (not strategy.entry) for 1 unit, which ignores pyramiding and nets with the open position: up to four buys or sells a bar accumulate units (criterion 1, repeat adds). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

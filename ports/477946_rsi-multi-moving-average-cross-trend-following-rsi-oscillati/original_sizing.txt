@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #477946 (多均线交叉趋势跟踪RSI波动策略-Multi-Moving-Average-Cross-Trend-Following-RSI-Oscillation-Strategy)
+# Source: https://www.fmz.com/strategy/477946  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target +25 % / stop -10 % of the avg price  [lines 125-131]
+  125: takeProfitLevel = strategy.position_avg_price * 1.25 // Take profit at +25%
+  126: stopLossLevel = strategy.position_avg_price * 0.90 // Stop loss at -10%
+  127: 
+  128: // Exit conditions
+  129: if strategy.position_size > 0
+  130:     strategy.exit("Take Profit", from_entry="Long", limit=takeProfitLevel)
+  131:     strategy.exit("Stop Loss", from_entry="Long", stop=stopLossLevel)

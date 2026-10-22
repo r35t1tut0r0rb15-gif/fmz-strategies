@@ -1,0 +1,43 @@
+# Original sizing and money-management code, FMZ #477945 (多周期布林带趋势突破策略结合波动率风控模型-Multi-Period-Bollinger-Bands-Trend-Breakout-Strategy-with-Volatility-Risk-Control-Model)
+# Source: https://www.fmz.com/strategy/477945  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = equity x 1 % / (ATR x R:R); ATR stop / 2 ATR target  [lines 104-141]
+  104: riskRewardRatio = input(2.0, title="Risk/Reward Ratio")
+  105: atrLength = input(14, title="ATR Length")
+  106: riskPercentage = input(1.0, title="Risk Percentage per Trade")
+  107: 
+  108: // Calculate Bollinger Bands
+  109: basis = ta.sma(close, length)
+  110: dev = stdDev * ta.stdev(close, length)
+  111: upperBand = basis + dev
+  112: lowerBand = basis - dev
+  113: 
+  114: // Calculate ATR for position sizing
+  115: atr = ta.atr(atrLength)
+  116: 
+  117: // Plot Bollinger Bands
+  118: plot(basis, color=color.blue, title="Basis")
+  119: plot(upperBand, color=color.red, title="Upper Band")
+  120: plot(lowerBand, color=color.green, title="Lower Band")
+  121: 
+  122: // Market Consolidation Detection
+  123: isConsolidating = (upperBand - lowerBand) < ta.sma(upperBand - lowerBand, length) * 0.5
+  124: 
+  125: // Breakout Conditions
+  126: longCondition = ta.crossover(close, upperBand) and not isConsolidating
+  127: shortCondition = ta.crossunder(close, lowerBand) and not isConsolidating
+  128: 
+  129: // Risk Management: Calculate position size
+  130: equity = strategy.equity
+  131: riskAmount = equity * (riskPercentage / 100)
+  132: positionSize = riskAmount / (atr * riskRewardRatio)
+  133: 
+  134: // Execute trades with risk management
+  135: if (longCondition)
+  136:     strategy.entry("Long", strategy.long, qty=positionSize)
+  137:     strategy.exit("Take Profit", from_entry="Long", limit=close + atr * riskRewardRatio, stop=close - atr)
+  138: 
+  139: if (shortCondition)
+  140:     strategy.entry("Short", strategy.short, qty=positionSize)
+  141:     strategy.exit("Take Profit", from_entry="Short", limit=close - atr * riskRewardRatio, stop=close + atr)

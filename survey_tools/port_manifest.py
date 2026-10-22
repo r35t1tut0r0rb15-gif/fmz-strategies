@@ -6212,6 +6212,31 @@ SIZING = {
     477613: [],
     477614: [],
     477943: [],
+    # ---- FMZ-C, batch C237 (2026-10-22)
+    477944: [
+        ("Stop 10 % / target 26 % of strategy.position_avg_price", 103, 156),
+    ],
+    477945: [
+        ("qty = equity x 1 % / (ATR x R:R); ATR stop / 2 ATR target", 104, 141),
+    ],
+    477946: [
+        ("Target +25 % / stop -10 % of the avg price", 125, 131),
+    ],
+    477949: [],
+    477951: [],
+    477952: [
+        ("strategy(): capital 50000, commission 0.05 per contract, slippage 1", 83, 83),
+    ],
+    477955: [
+        ("Stop 1 % / target 2 % of strategy.position_avg_price", 98, 114),
+    ],
+    477956: [
+        ("qty 1; TP 10 x ATR, SL 3 x ATR", 108, 153),
+    ],
+    477960: [],
+    477961: [
+        ("strategy(): capital 100000, commission 0.001425, slippage 1; ATR 2 stop / 2 target", 107, 205),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7840,6 +7865,13 @@ REJECTED_ON_READING = {
     477610: ("2", "The trailing exits pass trail_points = atr x 1.5 and trail_offset = atr x 1.0, "
               "price amounts, where the call takes ticks, with no /mintick: the trailing stop is "
               "undefined as written (criterion 2, as #442115)."),
+    # ---- FMZ-C, batch C237 (2026-10-22)
+    477950: ("2", "The exits pass trail_offset = atr x 2.0, a price amount, where the call takes "
+              "ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, "
+              "as #442115)."),
+    477953: ("1", "Every signal sends strategy.order (not strategy.entry) for 1 unit, which ignores "
+              "pyramiding and nets with the open position: up to four buys or sells a bar "
+              "accumulate units (criterion 1, repeat adds)."),
 }
 
 DUPLICATE_ON_READING = {
