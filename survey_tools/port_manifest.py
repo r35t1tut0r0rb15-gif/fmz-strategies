@@ -3780,6 +3780,31 @@ SIZING = {
         ("Investment per condition and the per-buy quantity", 128, 159),
     ],
     439372: [],
+    # ---- FMZ-C, batch C121 (2026-10-22)
+    439373: [
+        ("strategy(): capital, percent of equity 100, commission, pyramiding 1", 120, 120),
+    ],
+    439378: [
+        ("strategy(): percent of equity 100, commission", 139, 139),
+    ],
+    439594: [
+        ("strategy(): capital, percent of equity 100, pyramiding 1", 194, 194),
+    ],
+    439599: [],
+    439601: [
+        ("Capital and the dollar cost per position", 183, 240),
+    ],
+    439603: [
+        ("Position size per trade", 127, 154),
+    ],
+    439605: [],
+    439608: [
+        ("Entry size 1", 170, 170),
+    ],
+    439611: [],
+    439613: [
+        ("strategy(): capital, percent of equity 100", 183, 183),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -4698,6 +4723,15 @@ REJECTED_ON_READING = {
               "distance is about the whole price times the tick size, an instrument-specific stop "
               "with no generic reading (as #437787, #439275); strategy.close(\"Sell\") names an id "
               "that is never entered."),
+    # ---- FMZ-C, batch C121 (2026-10-22)
+    439607: ("1", "The only exit is strategy.close(\"Long Position\", qty_percent = 50): every close "
+              "takes half of the position, so trades end in partial exits (criterion 1, as "
+              "#436524)."),
+    439610: ("2", "The take-profit exit trails with trail_price = 0.03 (a price LEVEL, met at once) "
+              "and trail_offset = 0.03 TICKS: the intended 3 % trail is passed as a tick count, "
+              "so the real trail is 0.03 x the tick size behind the best price, an "
+              "instrument-specific trail with no generic reading (as #437048); the 5 % stop and "
+              "10 % target are re-sent every bar from the current close."),
 }
 
 DUPLICATE_ON_READING = {

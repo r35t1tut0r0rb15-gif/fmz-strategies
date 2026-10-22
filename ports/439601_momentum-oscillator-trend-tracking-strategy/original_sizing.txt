@@ -1,0 +1,63 @@
+# Original sizing and money-management code, FMZ #439601 (动量震荡器趋势跟踪策略Momentum-Oscillator-Trend-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/439601  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Capital and the dollar cost per position  [lines 183-240]
+  183: strategy('The Flash-Strategy (Momentum-RSI, EMA-crossover, ATR)', shorttitle='The Flash-Strategy (Momentum-RSI, EMA-crossover, ATR)', overlay=true,initial_capital = 1000)
+  184: //// author -  JS-TechTrading
+  185: 
+  186: // MOM Rsi indicator 
+  187: group_mom_rsi = "Rsi Of Momentum "
+  188: len = input.int(10, minval=1, title="Length Mom-Rsi", group =group_mom_rsi ,tooltip = 'This ind calculate Rsi value of Momentum we use this ind to determine power of trend')
+  189: src2 = close
+  190: mom = src2 - src2[len]
+  191: rsi_mom = ta.rsi(mom, len)
+  192: mom_rsi_val = input.int(60, minval=1, title="Mom-Rsi Limit Val", group =group_mom_rsi, tooltip = "When our Mom-Rsi value more then this we open LONG or Short, with help of this indicator we we determine the status of the trend")
+  193: 
+  194: // Super Trend Ind
+  195: group_supertrend = "SuperTrend indicator"
+  196: atrPeriod = input(10, "ATR Length SuperTrend", group = group_supertrend)
+  197: factor = input.float(3.0, "Factor SuperTrend", step = 0.01, group = group_supertrend)
+  198: 
+  199: [supertrend, direction] = ta.supertrend(factor, atrPeriod)
+  200: 
+  201: // Ema Indicator
+  202: group_most = "Ema indicator"
+  203: src = input(close, 'Source Ema Ind',group = group_most)
+  204: AP2 = input.int(defval=12, title='Length Ema Ind', minval=1,group = group_most)
+  205: Trail1 = ta.ema(src, AP2) //Ema func
+  206: AF2 = input.float(defval=1, title='Percent Ema Ind', minval=0.1,group = group_most) / 100
+  207: SL2 = Trail1 * AF2  // Stoploss Ema
+  208: Trail2 = 0.0
+  209: iff_1 = Trail1 > nz(Trail2[1], 0) ? Trail1 - SL2 : Trail1 + SL2
+  210: iff_2 = Trail1 < nz(Trail2[1], 0) and Trail1[1] < nz(Trail2[1], 0) ? math.min(nz(Trail2[1], 0), Trail1 + SL2) : iff_1
+  211: Trail2 := Trail1 > nz(Trail2[1], 0) and Trail1[1] > nz(Trail2[1], 0) ? math.max(nz(Trail2[1], 0), Trail1 - SL2) : iff_2
+  212: 
+  213: //EMA50/150/200
+  214: group_50_150_200="EMA50/150/200"
+  215: show_emas=input.bool(defval = true, title = "SHOW EMAS", group = group_50_150_200)
+  216: ema50= ta.ema(src, 50)
+  217: ema150 = ta.ema(src, 150)
+  218: ema200 = ta.ema(src, 200)
+  219: ema50_color=input.color(defval = color.purple, title = "EMA50 COLOR",group = group_50_150_200)
+  220: ema50_linewidth=input.int(defval = 2, title = "EMA50 LINEWIDTH", group = group_50_150_200)
+  221: ema150_color=input.color(defval = color.blue, title = "EMA150 COLOR", group = group_50_150_200)
+  222: ema150_linewidth=input.int(defval = 2, title = "EMA150 LINEWIDTH", group = group_50_150_200)
+  223: ema200_color=input.color(defval = color.black, title = "EMA200 COLOR", group = group_50_150_200)
+  224: ema200_linewidth=input.int(defval = 2, title = "EMA200 LINEWIDTH", group = group_50_150_200)
+  225: plot(show_emas ? ema50 : na, color = ema50_color, linewidth = ema50_linewidth)
+  226: plot(show_emas ? ema150 : na, color=ema150_color, linewidth = ema150_linewidth)
+  227: plot(show_emas ? ema200 : na, color = ema200_color, linewidth = ema200_linewidth)
+  228: 
+  229: //Bull = ta.barssince(Trail1 > Trail2 and close > Trail2 and low > Trail2) < ta.barssince(Trail2 > Trail1 and close < Trail2 and high < Trail2)
+  230: 
+  231: //TS1 = plot(Trail1, 'ExMov', style=plot.style_line, color=Trail1 > Trail2 ? color.rgb(33, 149, 243, 100) : color.rgb(255, 235, 59, 100), linewidth=2)
+  232: //TS2 = plot(Trail2, 'ema', style=plot.style_line, color=Trail1 > Trail2 ? color.rgb(76, 175, 79, 30) : color.rgb(255, 82, 82, 30), linewidth=2)
+  233: //fill(TS1, TS2, Bull  ? color.green : color.red, transp=90)
+  234: 
+  235: 
+  236: // Strategy Sett
+  237: group_strategy = "Settings of Strategy"
+  238: Start_Time = input(defval=timestamp('01 January 2000 13:30 +0000'), title='Start Time of BackTest', group =group_strategy)
+  239: End_Time = input(defval=timestamp('30 April 2030 19:30 +0000'), title='End Time of BackTest', group =group_strategy)
+  240: dollar = input.float(title='Dollar Cost Per Position* ', defval=50000, group =group_strategy)

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #439594 (追踪历史新高的量化交易策略-Trend-Following-Strategy-Based-on-Historical-High)
+# Source: https://www.fmz.com/strategy/439594  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, percent of equity 100, pyramiding 1  [lines 194-194]
+  194: strategy("All-time-high", "ATH", overlay=true, initial_capital=10000, default_qty_value=100, default_qty_type=strategy.percent_of_equity, pyramiding=1, commission_type=strategy.commission.cash_per_contract, commission_value=0.000)

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1875 |
-| PORTED | 1648 |
+| PORT_CANDIDATE | 1863 |
+| PORTED | 1658 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 220 |
+| REJECTED_ON_READING | 222 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1776,7 +1776,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439354 | `ports/439354_aroon-williams-ma-bb-adx-powerful-multi-indicator-strategy/` | PineScript | multi_indicator_confluence | none | pos_wil x2, pos_aroon1 x2 | 4 |
 | 439362 | `ports/439362_ema-ema-multi-dca-strategy-with-trailing-stop-loss-and-profi/` | PineScript | mean_reversion | none | atr_frac x2, band x2 | 4 |
 | 439372 | `ports/439372_dual-moving-average-price-channel-trading-strategy/` | PineScript | trend_filter | none | length x2, ema_length x2 | 4 |
-| | **1648 ports** | | | | | **8174** |
+| 439373 | `ports/439373_ma-quantitative-strategy-of-ma-strength-trend-tracking/` | PineScript | ma_trend | none | lookback x2, index_period x2 | 4 |
+| 439378 | `ports/439378_cryptocurrency-trend-following-strategy-based-on-heiken-ashi/` | PineScript | ma_cross | coarse_bar_stop | ma1_len x2, ma2_len x2 | 4 |
+| 439594 | `ports/439594_trend-following-strategy-based-on-historical-high/` | PineScript | mean_reversion | none | buy_frac x2, sell_frac x2 | 4 |
+| 439599 | `ports/439599_zero-lag-overlapping-moving-average-with-chandelier-exit-tra/` | PineScript | volatility_stop_cross | none | tp x2, length1 x2 | 4 |
+| 439601 | `ports/439601_momentum-oscillator-trend-tracking-strategy/` | PineScript | supertrend | none | mom_rsi_val x2, factor x2 | 4 |
+| 439603 | `ports/439603_dca-low-risk-dca-trend-trading-strategy/` | PineScript | candle_pattern | none | rsi_length x2, rsi_oversold x2 | 4 |
+| 439605 | `ports/439605_rsi-cci-rsi-amp-cci-combination-quantitative-trading-strateg/` | PineScript | momentum_oscillator | none | length x2, fast_length x2 | 4 |
+| 439608 | `ports/439608_bollinger-bands-channel-breakout-mean-reversion-strategy/` | PineScript | bollinger_reversion | coarse_bar_stop, trailing_stop_pending | length x2, mult x2 | 4 |
+| 439611 | `ports/439611_rsi-multi-timeframe-rsi-and-moving-average-trading-strategy/` | PineScript | stochastic_oscillator | none | swing x2, tp_exp x2 | 4 |
+| 439613 | `ports/439613_macd-macd-double-optimization-trading-strategy/` | PineScript | macd_cross | coarse_bar_stop | fast_long x2, slow_long x2 | 4 |
+| | **1658 ports** | | | | | **8214** |
 
 ## Rejected on reading
 
@@ -2002,6 +2012,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439363 | 基于动能量化追趋策略Heiken-Ashi-Momentum-Quant-Strategy.md | 1 | Every signal reads request.security("M" / "1D", [...], lookahead_on) on a daily chart: the monthly Heikin-Ashi values come from the month still in progress (its final close), so the rules use the future (criterion 1, as #438495). |
 | 439364 | 基于均线交叉的高频量化交易策略Intraday-Moving-Average-Crossover-Trading-Strategy.md | 2 | Apart from the reversing entries, the exits are strategy.exit(loss = close x 1 / 100, profit = close x 1 / 100): percents of the close in PRICE units passed as TICK counts, so the real distances are 1 % of the price times the tick size (0.1 % at a 0.1 tick on BTC, 1 % at a 1.0 tick), an instrument-specific bracket with no generic reading (as #437048, #437677). |
 | 439366 | 比特币和黄金5分钟震荡交易策略20Bitcoin-and-Gold-5-Minute-Scalping-Strategy-20.md | 2 | The only exit is strategy.exit(loss = stopLossLevel) with stopLossLevel = lowest(low, 2)[1] - ATR(14): a price LEVEL passed as a TICK distance, so the real distance is about the whole price times the tick size, an instrument-specific stop with no generic reading (as #437787, #439275); strategy.close("Sell") names an id that is never entered. |
+| 439607 | 多重技术指标配合的趋势追踪型量化策略Quantitative-Trend-Tracking-Strategy-Based-on-Multiple-Technical-Indicators.md | 1 | The only exit is strategy.close("Long Position", qty_percent = 50): every close takes half of the position, so trades end in partial exits (criterion 1, as #436524). |
+| 439610 | 影响周线的交易策略Weekly-Swing-Trading-Strategy.md | 2 | The take-profit exit trails with trail_price = 0.03 (a price LEVEL, met at once) and trail_offset = 0.03 TICKS: the intended 3 % trail is passed as a tick count, so the real trail is 0.03 x the tick size behind the best price, an instrument-specific trail with no generic reading (as #437048); the 5 % stop and 10 % target are re-sent every bar from the current close. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

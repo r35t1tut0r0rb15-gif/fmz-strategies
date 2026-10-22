@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #439608 (基于布林带通道的突破回归策略Bollinger-Bands-Channel-Breakout-Mean-Reversion-Strategy)
+# Source: https://www.fmz.com/strategy/439608  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Entry size 1  [lines 170-170]
+  170:     strategy.entry("Long", strategy.long, qty=1)

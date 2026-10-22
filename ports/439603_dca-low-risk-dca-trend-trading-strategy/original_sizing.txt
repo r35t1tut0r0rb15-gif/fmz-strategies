@@ -1,0 +1,33 @@
+# Original sizing and money-management code, FMZ #439603 (低风险DCA趋势交易策略Low-Risk-DCA-Trend-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/439603  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Position size per trade  [lines 127-154]
+  127: position_size = 50000
+  128: 
+  129: //// Plot short / long signals
+  130: 
+  131: // Get user input
+  132: rsiSource = input(title="RSI Source", type=input.source, defval=close)
+  133: rsiLength = input(title="RSI Length", type=input.integer, defval=14)
+  134: rsiOverbought = input(title="RSI Overbought Level", type=input.integer, defval=70)
+  135: rsiOversold = input(title="RSI Oversold Level", type=input.integer, defval=30)
+  136: 
+  137: // Get RSI value
+  138: rsiValue = rsi(rsiSource, rsiLength)
+  139: rsiOB = rsiValue >= rsiOverbought
+  140: rsiOS = rsiValue <= rsiOversold
+  141: 
+  142: // Identify engulfing candles
+  143: bullishEC = close > open[1] and close[1] < open[1]
+  144: bearishEC = close < open[1] and close[1] > open[1]
+  145: tradeSignal = ((rsiOS or rsiOS[1]) and bullishEC) or ((rsiOB or rsiOB[1]) and bearishEC)
+  146: 
+  147: // Plot signals to chart
+  148: plotshape(tradeSignal and bullishEC, title="Long", location=location.belowbar, color=color.green, transp=0, style=shape.triangleup, text="Long")
+  149: plotshape(tradeSignal and bearishEC, title="Short", location=location.abovebar, color=color.red, transp=0, style=shape.triangledown, text="Short")
+  150: 
+  151: //// DCA long trade when there is a bullish signal
+  152: 
+  153: if tradeSignal and bullishEC
+  154:     strategy.entry("OL", strategy.long, qty=position_size / close)

@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #439599 (零滞后叠加移动平均线结合悬臂线出口交易策略Zero-Lag-Overlapping-Moving-Average-with-Chandelier-Exit-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/439599  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
