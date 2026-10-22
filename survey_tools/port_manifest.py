@@ -5779,6 +5779,30 @@ SIZING = {
     473401: [
         ("Target 2 % / stop 1 % of avg", 91, 124),
     ],
+    # ---- FMZ-C, batch C219 (2026-10-22)
+    473402: [],
+    473404: [],
+    473405: [],
+    473410: [
+        ("strategy(): capital 2000, slippage 3; stop at the DSL band, target 1.5 R", 97, 282),
+    ],
+    473411: [],
+    473412: [
+        ("Target 2 ATR / stop 1 ATR from the signal close", 117, 125),
+    ],
+    473706: [
+        ("strategy(): 10 % of equity; stop 1 % / target 2 % of the signal close", 87, 128),
+    ],
+    473709: [
+        ("Stop 4 ATR / target 2 (2.237) ATR from the current close, every bar", 135, 137),
+    ],
+    473935: [],
+    473936: [
+        ("Stop = previous low / high; target 1 : 1", 114, 136),
+    ],
+    473937: [
+        ("Stop 16 % / target 9.5 % of avg", 99, 173),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7287,6 +7311,10 @@ REJECTED_ON_READING = {
     473391: ("1", "The stop is strategy.close when strategy.openprofit < -1 % of strategy.equity: an "
               "exit set by the position's money size against the equity (criterion 1, "
               "equity-share openprofit exits)."),
+    # ---- FMZ-C, batch C219 (2026-10-22)
+    473406: ("1", "useTakeProfit is on by default and exits in four qty_percent steps (25 / 20 / 10 / "
+              "15 % at 3 / 6 / 12 / 21 %): the position is closed in parts, so the size path is "
+              "part of the strategy (criterion 1, qty_percent partial exits, as #436524)."),
 }
 
 DUPLICATE_ON_READING = {

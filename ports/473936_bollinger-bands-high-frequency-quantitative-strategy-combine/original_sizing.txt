@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #473936 (布林带高频量化策略结合过高低点突破的多空策略-Bollinger-Bands-High-Frequency-Quantitative-Strategy-Combined-with-High-Low-Breakout-System)
+# Source: https://www.fmz.com/strategy/473936  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop = previous low / high; target 1 : 1  [lines 114-136]
+  114:     // Calculate target and stop loss
+  115:     stopLossPrice = prevLow
+  116:     targetPrice = prevHigh + (prevHigh - stopLossPrice)  // 1:1 RR target
+  117: 
+  118:     // Set stop loss and target orders
+  119:     strategy.exit("Sell", "Buy", limit=targetPrice, stop=stopLossPrice)
+  120: 
+  121:     // // Plot entry line
+  122:     // line.new(x1=bar_index, y1=prevHigh, x2=bar_index + 12, y2=prevHigh, color=color.green, width=2, style=line.style_solid)
+  123:     // // Plot stop loss line
+  124:     // line.new(x1=bar_index, y1=stopLossPrice, x2=bar_index + 12, y2=stopLossPrice, color=color.red, width=1, style=line.style_dashed)
+  125:     // // Plot target line
+  126:     // line.new(x1=bar_index, y1=targetPrice, x2=bar_index + 12, y2=targetPrice, color=color.blue, width=2, style=line.style_solid)
+  127: 
+  128: // Entry and exit for Sell signals
+  129: if (sellCondition)
+  130:     strategy.entry("Sell", strategy.short)
+  131:     // Calculate target and stop loss
+  132:     stopLossPriceSell = prevHigh
+  133:     targetPriceSell = prevLow - (stopLossPriceSell - prevLow)  // 1:1 RR target
+  134: 
+  135:     // Set stop loss and target orders
+  136:     strategy.exit("Cover", "Sell", limit=targetPriceSell, stop=stopLossPriceSell)

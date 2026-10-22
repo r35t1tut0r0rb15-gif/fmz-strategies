@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #473412 (多重指数均线交叉战略结合交易量ATR动态止损优化策略-Multi-Exponential-Moving-Average-Crossover-Strategy-with-Volume-Based-ATR-Dynamic-Stop-Loss-Optimization)
+# Source: https://www.fmz.com/strategy/473412  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 2 ATR / stop 1 ATR from the signal close  [lines 117-125]
+  117: // Execute long trade with dynamic stop loss and take profit
+  118: if (longCondition)
+  119:     strategy.entry("Long", strategy.long)
+  120:     strategy.exit("Take Profit/Stop Loss", "Long", limit=close + 2 * atr, stop=close - 1 * atr)
+  121: 
+  122: // Execute short trade with dynamic stop loss and take profit
+  123: if (shortCondition)
+  124:     strategy.entry("Short", strategy.short)
+  125:     strategy.exit("Take Profit/Stop Loss", "Short", limit=close - 2 * atr, stop=close + 1 * atr)

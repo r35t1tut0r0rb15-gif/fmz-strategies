@@ -1,0 +1,191 @@
+# Original sizing and money-management code, FMZ #473410 (动态信号线趋势追踪与波动率过滤策略-Dynamic-Signal-Line-Trend-Following-and-Volatility-Filtering-Strategy)
+# Source: https://www.fmz.com/strategy/473410  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 2000, slippage 3; stop at the DSL band, target 1.5 R  [lines 97-282]
+   97: strategy("DSL Strategy [DailyPanda]",
+   98:      initial_capital = 2000,
+   99:      commission_value=0.00,
+  100:      slippage=3,
+  101:      overlay = true)
+  102: 
+  103: //--------------------------------------------------------------------------------------------------------------------
+  104: // USER INPUTS
+  105: //--------------------------------------------------------------------------------------------------------------------
+  106: 
+  107: // DSL Indicator Inputs CP
+  108: int   len         = input.int(34, "Length", group="CP")      // Length for calculating DSL
+  109: int   offset      = input.int(30, "Offset", group="CP")      // Offset for threshold levels
+  110: float width       = input.float(1, "Bands Width", step = 0.1, maxval = 2, minval = 0.5, group="CP") // Width for ATR-based bands
+  111: float risk_reward = input.float(1.5, "Risk Reward", group="Risk Mgmt") // Risk Reward ratio
+  112: 
+  113: // Colors for upper and lower trends
+  114: color upper_col = input.color(color.lime, "+", inline = "col")
+  115: color lower_col = input.color(color.orange, "-", inline = "col")
+  116: 
+  117: // DSL-BELUGA
+  118: len_beluga  = input.int(10, "Beluga Length", group="BELUGA")
+  119: dsl_mode_inp = input.string("Fast", "DSL Lines Mode", options=["Fast", "Slow"], group="BELUGA")
+  120: dsl_mode    = dsl_mode_inp == "Fast" ? 2 : 1
+  121: 
+  122: // Colors for DSL-BELUGA
+  123: color color_up = #8BD8BD
+  124: color color_dn = #436cd3
+  125: 
+  126: i_lossPct = input.int(defval=100, title="% max day DD", minval=1, maxval=100, step=1, group="Risk Management")
+  127: i_goal = input.bool(title="Enable Daily Goal", defval=false, group="Risk Management")
+  128: i_goalPct = input.int(defval=4, title="% Daily Goal", minval=1, step=1, group="Risk Management")
+  129: 
+  130: 
+  131: //############################## RISK MANAGEMENT ##############################
+  132: // Set maximum intraday loss to our lossPct input
+  133: // strategy.risk.max_intraday_loss(i_lossPct, strategy.percent_of_equity)
+  134: //strategy.risk.max_intraday_loss(value=1200, type=strategy.cash)
+  135: 
+  136: // Store equity value from the beginning of the day
+  137: eqFromDayStart = ta.valuewhen(ta.change(dayofweek) > 0, strategy.equity, 0)
+  138: // Calculate change of the current equity from the beginning of the current day
+  139: eqChgPct = 100 * ((strategy.equity - eqFromDayStart - strategy.openprofit) / (strategy.equity-strategy.openprofit))
+  140: f_stopGain = eqChgPct >= i_goalPct and i_goal ? true : false
+  141: 
+  142: 
+  143: //--------------------------------------------------------------------------------------------------------------------
+  144: // INDICATOR CALCULATIONS
+  145: //--------------------------------------------------------------------------------------------------------------------
+  146: 
+  147: // Function to calculate DSL lines based on price
+  148: dsl_price(float price, int len) =>
+  149:     // Initialize DSL lines
+  150:     float dsl_up = na
+  151:     float dsl_dn = na
+  152:     float sma    = ta.sma(price, len)
+  153: 
+  154:     // Dynamic upper and lower thresholds calculated with offset
+  155:     float threshold_up = ta.highest(len)[offset] 
+  156:     float threshold_dn = ta.lowest(len)[offset] 
+  157: 
+  158:     // Calculate the DSL upper and lower lines based on price compared to the thresholds
+  159:     dsl_up := price > threshold_up ? sma : nz(dsl_up[1]) 
+  160:     dsl_dn := price < threshold_dn ? sma : nz(dsl_dn[1])
+  161: 
+  162:     // Return both DSL lines
+  163:     [dsl_up, dsl_dn]
+  164: 
+  165: // Function to calculate DSL bands based on ATR and width multiplier
+  166: dsl_bands(float dsl_up, float dsl_dn) =>
+  167:     float atr = ta.atr(200) * width // ATR-based calculation for bands
+  168:     float upper = dsl_up - atr       // Upper DSL band
+  169:     float lower = dsl_dn + atr       // Lower DSL band
+  170: 
+  171:     [upper, lower]
+  172: 
+  173: // Get DSL values based on the closing price
+  174: [dsl_up, dsl_dn] = dsl_price(close, len)
+  175: 
+  176: // Calculate the bands around the DSL lines
+  177: [dsl_up1, dsl_dn1] = dsl_bands(dsl_up, dsl_dn)
+  178: 
+  179: 
+  180: //--------------------------------------------------------------------------------------------------------------------
+  181: // DSL-BELUGA INDICATOR CALCULATIONS
+  182: //--------------------------------------------------------------------------------------------------------------------
+  183: 
+  184: // Calculate RSI with a period of 10
+  185: float RSI = ta.rsi(close, 10)
+  186: 
+  187: // Zero-Lag Exponential Moving Average function
+  188: zlema(src, length) =>
+  189:     int   lag      = math.floor((length - 1) / 2)
+  190:     float ema_data = 2 * src - src[lag]
+  191:     float ema2     = ta.ema(ema_data, length)
+  192:     ema2
+  193: 
+  194: // Discontinued Signal Lines function
+  195: dsl_lines(src, length)=>
+  196:     float up  = 0.
+  197:     float dn  = 0.
+  198:     up := (src > ta.sma(src, length)) ? nz(up[1]) + dsl_mode / length * (src - nz(up[1])) : nz(up[1])  
+  199:     dn := (src < ta.sma(src, length)) ? nz(dn[1]) + dsl_mode / length * (src - nz(dn[1])) : nz(dn[1])
+  200:     [up, dn]
+  201: 
+  202: // Calculate DSL lines for RSI
+  203: [lvlu, lvld] = dsl_lines(RSI, len_beluga)
+  204: 
+  205: // Calculate DSL oscillator using ZLEMA of the average of upper and lower DSL Lines
+  206: float dsl_osc = zlema((lvlu + lvld) / 2, 10)
+  207: 
+  208: // Calculate DSL Lines for the oscillator
+  209: [level_up, level_dn] = dsl_lines(dsl_osc, 10)
+  210: 
+  211: // Detect crossovers for signal generation
+  212: bool up_signal = ta.crossover(dsl_osc, level_dn) and dsl_osc < 55
+  213: bool dn_signal = ta.crossunder(dsl_osc, level_up) and dsl_osc > 50
+  214: 
+  215: //--------------------------------------------------------------------------------------------------------------------
+  216: // VISUALIZATION
+  217: //--------------------------------------------------------------------------------------------------------------------
+  218: 
+  219: // Plot the DSL lines on the chart
+  220: plot_dsl_up = plot(dsl_up, color=color.new(upper_col, 80), linewidth=1, title="DSL Up")
+  221: plot_dsl_dn = plot(dsl_dn, color=color.new(lower_col, 80), linewidth=1, title="DSL Down")
+  222: 
+  223: // Plot the DSL bands
+  224: plot_dsl_up1 = plot(dsl_up1, color=color.new(upper_col, 80), linewidth=1, title="DSL Upper Band")
+  225: plot_dsl_dn1 = plot(dsl_dn1, color=color.new(lower_col, 80), linewidth=1, title="DSL Lower Band")
+  226: 
+  227: // Fill the space between the DSL lines and bands with color
+  228: fill(plot_dsl_up, plot_dsl_up1, color=color.new(upper_col, 80))
+  229: fill(plot_dsl_dn, plot_dsl_dn1, color=color.new(lower_col, 80))
+  230: 
+  231: // Plot signals on the chart
+  232: plotshape(up_signal, title="Buy Signal", style=shape.triangleup, location=location.belowbar, size=size.tiny, text="Enter")
+  233: plotshape(dn_signal, title="Sell Signal", style=shape.triangledown, location=location.abovebar, size=size.tiny, text="Exit")
+  234: 
+  235: // Color the background on signal occurrences
+  236: bgcolor(up_signal ? color.new(color_up, 90) : na, title="Up Signal Background", editable = false)
+  237: bgcolor(dn_signal ? color.new(color_dn, 90) : na, title="Down Signal Background", editable = false)
+  238: 
+  239: //--------------------------------------------------------------------------------------------------------------------
+  240: // STRATEGY CONDITIONS AND EXECUTION
+  241: //--------------------------------------------------------------------------------------------------------------------
+  242: 
+  243: // Variables to hold stop loss and take profit prices
+  244: var float long_stop_loss_price  = na
+  245: var float long_take_profit_price = na
+  246: var float short_stop_loss_price = na
+  247: var float short_take_profit_price = na
+  248: float pos_size = math.abs(strategy.position_size)
+  249: 
+  250: // Long Entry Conditions
+  251: bool long_condition1 = not na(dsl_up1) and not na(dsl_dn) and dsl_up1 > dsl_dn
+  252: bool long_condition2 = open > dsl_up and close > dsl_up and open[1] > dsl_up and close[1] > dsl_up and open[2] > dsl_up and close[2] > dsl_up
+  253: bool long_condition3 = up_signal and pos_size == 0
+  254: bool long_condition  = long_condition1 and long_condition2 and long_condition3 and (not f_stopGain)
+  255: 
+  256: // Short Entry Conditions
+  257: bool short_condition1 = not na(dsl_dn1) and not na(dsl_up) and dsl_dn < dsl_up1
+  258: bool short_condition2 = open < dsl_dn1 and close < dsl_dn1 and open[1] < dsl_dn1 and close[1] < dsl_dn1 and open[2] < dsl_dn1 and close[2] < dsl_dn1
+  259: bool short_condition3 = dn_signal and pos_size == 0
+  260: bool short_condition  = short_condition1 and short_condition2 and short_condition3 and (not f_stopGain)
+  261: 
+  262: // Long Trade Execution
+  263: if (long_condition and not na(dsl_up1))
+  264:     long_stop_loss_price := dsl_up1
+  265:     float risk = close - long_stop_loss_price
+  266:     if (risk > 0)
+  267:         long_take_profit_price := close + risk * risk_reward
+  268:         strategy.entry("Long", strategy.long)
+  269:         strategy.exit("Exit Long", from_entry="Long", stop=long_stop_loss_price, limit=long_take_profit_price)
+  270: else if (strategy.position_size <= 0)
+  271:     // Reset when not in a long position
+  272:     long_stop_loss_price  := na
+  273:     long_take_profit_price := na
+  274: 
+  275: // Short Trade Execution
+  276: if (short_condition and not na(dsl_dn1))
+  277:     short_stop_loss_price := dsl_dn1
+  278:     float risk = short_stop_loss_price - close
+  279:     if (risk > 0)
+  280:         short_take_profit_price := close - risk * risk_reward
+  281:         strategy.entry("Short", strategy.short)
+  282:         strategy.exit("Exit Short", from_entry="Short", stop=short_stop_loss_price, limit=short_take_profit_price)

@@ -1,0 +1,47 @@
+# Original sizing and money-management code, FMZ #473706 (双均线交叉结合RSI动量优化交易策略-Dual-EMA-Crossover-with-RSI-Momentum-Enhanced-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/473706  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity; stop 1 % / target 2 % of the signal close  [lines 87-128]
+   87: strategy("abo 3llash - EMA + RSI Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+   88: 
+   89: // Parameters
+   90: emaShortLength = input.int(9, title="Short EMA Length")
+   91: emaLongLength = input.int(21, title="Long EMA Length")
+   92: rsiLength = input.int(14, title="RSI Length")
+   93: rsiOverbought = input.int(70, title="RSI Overbought Level")
+   94: rsiOversold = input.int(30, title="RSI Oversold Level")
+   95: stopLossPercent = input.float(1, title="Stop Loss Percentage") / 100
+   96: takeProfitPercent = input.float(2, title="Take Profit Percentage") / 100
+   97: 
+   98: // Calculating EMAs and RSI
+   99: emaShort = ta.ema(close, emaShortLength)
+  100: emaLong = ta.ema(close, emaLongLength)
+  101: rsi = ta.rsi(close, rsiLength)
+  102: 
+  103: // Buy and Sell Conditions
+  104: buyCondition = ta.crossover(emaShort, emaLong) and rsi < rsiOverbought
+  105: sellCondition = ta.crossunder(emaShort, emaLong) and rsi > rsiOversold
+  106: 
+  107: // Plotting the EMAs
+  108: plot(emaShort, title="Short EMA", color=color.blue)
+  109: plot(emaLong, title="Long EMA", color=color.red)
+  110: 
+  111: // Generating buy and sell signals on the chart
+  112: plotshape(series=buyCondition, title="Buy Signal", location=location.belowbar, color=color.green, style=shape.labelup, text="BUY")
+  113: plotshape(series=sellCondition, title="Sell Signal", location=location.abovebar, color=color.red, style=shape.labeldown, text="SELL")
+  114: 
+  115: // Strategy Execution
+  116: if (buyCondition)
+  117:     strategy.entry("Buy", strategy.long)
+  118:     // Set Stop Loss and Take Profit for Buy
+  119:     stopLossLevel = close * (1 - stopLossPercent)
+  120:     takeProfitLevel = close * (1 + takeProfitPercent)
+  121:     strategy.exit("Take Profit/Stop Loss", from_entry="Buy", stop=stopLossLevel, limit=takeProfitLevel)
+  122: 
+  123: if (sellCondition)
+  124:     strategy.entry("Sell", strategy.short)
+  125:     // Set Stop Loss and Take Profit for Sell
+  126:     stopLossLevel = close * (1 + stopLossPercent)
+  127:     takeProfitLevel = close * (1 - takeProfitPercent)
+  128:     strategy.exit("Take Profit/Stop Loss", from_entry="Sell", stop=stopLossLevel, limit=takeProfitLevel)

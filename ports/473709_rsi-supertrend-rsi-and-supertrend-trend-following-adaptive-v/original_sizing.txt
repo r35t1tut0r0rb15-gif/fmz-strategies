@@ -1,0 +1,8 @@
+# Original sizing and money-management code, FMZ #473709 (RSI与Supertrend趋势跟踪型自适应波动策略-RSI-and-Supertrend-Trend-Following-Adaptive-Volatility-Strategy)
+# Source: https://www.fmz.com/strategy/473709  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 4 ATR / target 2 (2.237) ATR from the current close, every bar  [lines 135-137]
+  135: atr = ta.atr(atrPeriod)
+  136: strategy.exit("Exit Long", "Long", stop=close - 4 * atr, limit=close + 2 * atr)
+  137: strategy.exit("Exit Short", "Short", stop=close + 4 * atr, limit=close - 2.237 * atr)

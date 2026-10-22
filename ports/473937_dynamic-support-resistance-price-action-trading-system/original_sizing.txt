@@ -1,0 +1,80 @@
+# Original sizing and money-management code, FMZ #473937 (Dynamic-Support-Resistance-Price-Action-Trading-System-动态支阻价格行为交易系统)
+# Source: https://www.fmz.com/strategy/473937  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 16 % / target 9.5 % of avg  [lines 99-173]
+   99: stop_loss_pct = input.float(16, title="Stop Loss percentage", minval=0.1) / 100
+  100: take_profit_pct = input.float(9.5, title="Take Profit percentage", minval=0.1) / 100
+  101: 
+  102: // Function to identify a Hammer
+  103: isHammer() =>
+  104:     body = close - open
+  105:     price_range = high - low
+  106:     lower_shadow = open - low
+  107:     upper_shadow = high - close
+  108:     body > 0 and lower_shadow > body * 2 and upper_shadow < body * 0.5 and price_range > 0
+  109: 
+  110: // Function to identify a Shooting Star
+  111: isShootingStar() =>
+  112:     body = open - close
+  113:     price_range = high - low
+  114:     lower_shadow = close - low
+  115:     upper_shadow = high - open
+  116:     body > 0 and upper_shadow > body * 2 and lower_shadow < body * 0.5 and price_range > 0
+  117: 
+  118: // Function to identify a Doji
+  119: isDoji() =>
+  120:     body = close - open
+  121:     price_range = high - low
+  122:     math.abs(body) < (price_range * 0.1)  // Doji has a small body
+  123: 
+  124: // Function to identify a Pin Bar
+  125: isPinBar() =>
+  126:     body = close - open
+  127:     price_range = high - low
+  128:     lower_shadow = open - low
+  129:     upper_shadow = high - close
+  130:     (upper_shadow > body * 2 and lower_shadow < body * 0.5) or (lower_shadow > body * 2 and upper_shadow < body * 0.5)
+  131: 
+  132: // Support and resistance levels 
+  133: support = ta.lowest(low, length)
+  134: resistance = ta.highest(high, length)
+  135: 
+  136: // Entry criteria
+  137: long_condition = (isHammer() or isDoji() or isPinBar()) and close <= support * (1 + sensitivity)
+  138: short_condition = (isShootingStar() or isDoji() or isPinBar()) and close >= resistance * (1 - sensitivity)
+  139: 
+  140: // Function to calculate stop loss and take profit (long)
+  141: calculate_levels(position_size, avg_price, stop_loss_pct, take_profit_pct) =>
+  142:     stop_loss_level = avg_price * (1 - stop_loss_pct)
+  143:     take_profit_level = avg_price * (1 + take_profit_pct)
+  144:     [stop_loss_level, take_profit_level]
+  145: 
+  146: // Function to calculate stop loss and take profit (short)
+  147: calculate_levels_short(position_size, avg_price, stop_loss_pct, take_profit_pct) =>
+  148:     stop_loss_level = avg_price * (1 + stop_loss_pct)
+  149:     take_profit_level = avg_price * (1 - take_profit_pct)
+  150:     [stop_loss_level, take_profit_level]
+  151: 
+  152: // Buy entry order with label
+  153: if (long_condition and strategy.opentrades == 0)
+  154:     strategy.entry("Buy", strategy.long)
+  155:     pattern = isHammer() ? "Hammer" : isDoji() ? "Doji" : isPinBar() ? "Pin Bar" : ""
+  156:     label.new(x=bar_index, y=low, text=pattern, color=color.green, textcolor=color.black, size=size.small)
+  157: 
+  158: // Sell entry order with label
+  159: if (short_condition and strategy.opentrades == 0)
+  160:     strategy.entry("Sell", strategy.short)
+  161:     pattern = isShootingStar() ? "Shooting Star" : isDoji() ? "Doji" : isPinBar() ? "Pin Bar" : ""
+  162:     label.new(x=bar_index, y=high, text=pattern, color=color.red, textcolor=color.black, size=size.small)
+  163: 
+  164: // Stop Loss and Take Profit management for open positions
+  165: if (strategy.opentrades > 0)
+  166:     if (strategy.position_size > 0)  // Long position
+  167:         avg_price_long = strategy.position_avg_price  // Average price of long position
+  168:         [long_stop_level, long_take_profit_level] = calculate_levels(strategy.position_size, avg_price_long, stop_loss_pct, take_profit_pct)
+  169:         strategy.exit("Exit Long", from_entry="Buy", stop=long_stop_level, limit=long_take_profit_level)
+  170:     if (strategy.position_size < 0)  // Short position
+  171:         avg_price_short = strategy.position_avg_price  // Average price of short position
+  172:         [short_stop_level, short_take_profit_level] = calculate_levels_short(strategy.position_size, avg_price_short, stop_loss_pct, take_profit_pct)
+  173:         strategy.exit("Exit Short", from_entry="Sell", stop=short_stop_level, limit=short_take_profit_level)

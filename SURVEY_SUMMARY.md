@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2666 |
+| PORTED | 2677 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 700 |
+| PORT_CANDIDATE | 688 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 372 |
+| REJECTED_ON_READING | 373 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2794,7 +2794,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 473398 | `ports/473398_heikin-ashi-sma-smoothed-heikin-ashi-with-sma-crossover-tren/` | PineScript | ma_cross | none | sma_long x2, smooth x2 | 4 |
 | 473399 | `ports/473399_multi-wave-trend-following-price-analysis-strategy/` | PineScript | candle_pattern | coarse_bar_stop | sl_frac x2, tp_frac x2 | 4 |
 | 473401 | `ports/473401_four-period-sma-breakthrough-trading-strategy-with-dynamic-p/` | PineScript | ma_cross | coarse_bar_stop | sma_len x2, tp_pct x2, sl_pct x2 | 8 |
-| | **2666 ports** | | | | | **12560** |
+| 473402 | `ports/473402_statistical-deviation-based-market-extreme-drawdown-strategy/` | PineScript | mean_reversion | none | lookback x2, threshold x2, exit_bars x2 | 8 |
+| 473404 | `ports/473404_dual-hull-moving-average-crossover-quantitative-strategy/` | PineScript | hull_ma | none | fast x2, slow x2 | 4 |
+| 473405 | `ports/473405_triple-ema-trend-following-quantitative-trading-strategy/` | PineScript | ma_cross | none | fast x2, mid x2, slow x2 | 8 |
+| 473410 | `ports/473410_dynamic-signal-line-trend-following-and-volatility-filtering/` | PineScript | trend_confluence | none | length x2, offset x2, risk_reward x2 | 8 |
+| 473411 | `ports/473411_dual-chain-hybrid-momentum-ema-tracking-trading-system/` | PineScript | multi_timeframe_ma | none | len1 x2, len2 x2 | 4 |
+| 473412 | `ports/473412_atr-multi-exponential-moving-average-crossover-strategy-with/` | PineScript | ma_cross | coarse_bar_stop |  | 0 |
+| 473706 | `ports/473706_rsi-dual-ema-crossover-with-rsi-momentum-enhanced-trading-st/` | PineScript | ma_cross | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
+| 473709 | `ports/473709_rsi-supertrend-rsi-and-supertrend-trend-following-adaptive-v/` | PineScript | supertrend | trailing_stop_pending | factor x2, atr_period x2 | 4 |
+| 473935 | `ports/473935_macd-rsi-macd-rsi-dynamic-crossover-quantitative-trading-sys/` | PineScript | macd_cross | none | overbought x2, oversold x2 | 4 |
+| 473936 | `ports/473936_bollinger-bands-high-frequency-quantitative-strategy-combine/` | PineScript | bollinger_reversion | coarse_bar_stop | length x2, mult x2 | 4 |
+| 473937 | `ports/473937_dynamic-support-resistance-price-action-trading-system/` | PineScript | candle_pattern | none | length x2, sensitivity x2 | 4 |
+| | **2677 ports** | | | | | **12612** |
 
 ## Rejected on reading
 
@@ -3172,6 +3183,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 473377 | 多重指标趋势突破量化交易策略-Multi-Indicator-Trend-Breakout-Quantitative-Trading-Strategy.md | 2 | strategy.exit's profit / loss fields take tick counts but receive prices (avg x 1.015 / avg x 0.99): a price amount in a tick field, so the distance in price depends on the instrument's tick size and price level (criterion 2, as #442115). |
 | 473389 | 动态RSI超卖反弹交易策略结合止损优化模型-Dynamic-RSI-Oversold-Rebound-Trading-Strategy-with-Stop-Loss-Optimization-Model.md | 1 | pyramiding = 2 with a long sent on every bar the RSI 8 is under 28: a second unit is added inside the trade, so the size path is part of the strategy (criterion 1, pyramiding >= 2 repeats). |
 | 473391 | Advanced-Fair-Value-Gap-Detection-Strategy-with-Dynamic-Risk-Management-and-Fixed-Take-Profit-基于动态风险管理和固定获利的高级公允价值缺口检测策略.md | 1 | The stop is strategy.close when strategy.openprofit < -1 % of strategy.equity: an exit set by the position's money size against the equity (criterion 1, equity-share openprofit exits). |
+| 473406 | Multi-Step-Volatility-Adjusted-Dynamic-SuperTrend-Strategy-多步波动率自适应动态超趋势策略.md | 1 | useTakeProfit is on by default and exits in four qty_percent steps (25 / 20 / 10 / 15 % at 3 / 6 / 12 / 21 %): the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #436524). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
