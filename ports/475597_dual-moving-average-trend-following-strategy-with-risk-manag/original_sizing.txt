@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #475597 (双均线趋势跟踪与风险控制策略-Dual-Moving-Average-Trend-Following-Strategy-with-Risk-Management)
+# Source: https://www.fmz.com/strategy/475597  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 % / target 0.5 % of the signal close  [lines 104-122]
+  104: stopLoss = 0.01  // 止损1%
+  105: takeProfit = 0.005  // 止盈0.5%
+  106: 
+  107: // 判断是否已有仓位
+  108: isLong = strategy.position_size > 0  // 当前是否为多头仓位
+  109: isShort = strategy.position_size < 0  // 当前是否为空头仓位
+  110: 
+  111: // 执行策略：做多时平空，做空时平多
+  112: if (longCondition and not isLong)  // 如果满足做多条件并且当前没有多头仓位
+  113:     if (isShort)  // 如果当前是空头仓位，先平空
+  114:         strategy.close("Short")
+  115:     strategy.entry("Long", strategy.long)  // 执行做多
+  116:     strategy.exit("Take Profit/Stop Loss", "Long", stop=close * (1 - stopLoss), limit=close * (1 + takeProfit))
+  117: 
+  118: if (shortCondition and not isShort)  // 如果满足做空条件并且当前没有空头仓位
+  119:     if (isLong)  // 如果当前是多头仓位，先平多
+  120:         strategy.close("Long")
+  121:     strategy.entry("Short", strategy.short)  // 执行做空
+  122:     strategy.exit("Take Profit/Stop Loss", "Short", stop=close * (1 + stopLoss), limit=close * (1 - takeProfit))

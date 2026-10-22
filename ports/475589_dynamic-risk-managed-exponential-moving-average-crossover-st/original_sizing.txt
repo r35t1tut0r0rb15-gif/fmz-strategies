@@ -1,0 +1,33 @@
+# Original sizing and money-management code, FMZ #475589 (动态风险管理的指数均线交叉策略-Dynamic-Risk-Managed-Exponential-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/475589  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Size by 1 % risk of equity; stop 1 % / target 2 % of the signal close; trail_offset  [lines 92-119]
+   92: riskPercent = input.float(1, title="Risk % Per Trade", step=0.1) / 100
+   93: rewardMultiplier = input.float(2, title="Reward Multiplier (R:R)", step=0.1)
+   94: trailOffsetPercent = input.float(0.5, title="Trailing Stop Offset %", step=0.1) / 100
+   95: 
+   96: // Calculate EMAs
+   97: fastEMA = ta.ema(close, fastLength)
+   98: slowEMA = ta.ema(close, slowLength)
+   99: 
+  100: // Plot EMAs
+  101: plot(fastEMA, color=color.blue, title="Fast EMA")
+  102: plot(slowEMA, color=color.red, title="Slow EMA")
+  103: 
+  104: // Account balance and dynamic position sizing
+  105: capital = strategy.equity
+  106: riskAmount = capital * riskPercent
+  107: 
+  108: // Define Stop Loss and Take Profit Levels
+  109: stopLossLevel = close * (1 - riskPercent)
+  110: takeProfitLevel = close * (1 + rewardMultiplier * riskPercent)
+  111: 
+  112: // Trailing stop offset
+  113: trailOffset = close * trailOffsetPercent
+  114: 
+  115: // Entry Condition: Bullish Crossover
+  116: if ta.crossover(fastEMA, slowEMA)
+  117:     positionSize = riskAmount / math.max(close - stopLossLevel, 0.01)  // Prevent division by zero
+  118:     strategy.entry("Long", strategy.long, qty=positionSize)
+  119:     strategy.exit("TakeProfit", from_entry="Long", stop=stopLossLevel, limit=takeProfitLevel, trail_offset=trailOffset)

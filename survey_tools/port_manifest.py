@@ -6000,6 +6000,28 @@ SIZING = {
     474980: [
         ("strategy(): 100 % of equity", 123, 123),
     ],
+    # ---- FMZ-C, batch C228 (2026-10-22)
+    474984: [
+        ("Stop / target 2 % of avg", 130, 155),
+    ],
+    475313: [],
+    475589: [
+        ("Size by 1 % risk of equity; stop 1 % / target 2 % of the signal close; trail_offset", 92, 119),
+    ],
+    475590: [
+        ("Stop 2.5 ATR / target 4 ATR from avg", 107, 169),
+    ],
+    475595: [],
+    475596: [
+        ("Commission 0.1 %, slippage 3", 93, 93),
+    ],
+    475597: [
+        ("Stop 1 % / target 0.5 % of the signal close", 104, 122),
+    ],
+    475598: [],
+    475604: [
+        ("$50000 per dip (qty = amount / close)", 112, 154),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7570,6 +7592,18 @@ REJECTED_ON_READING = {
     474983: ("1", "The daily RSI is requested with lookahead_on and no [1] offset, so every intraday "
               "bar reads the day's final RSI before the day ends (criterion 1, higher time frame "
               "with lookahead, as #427518)."),
+    # ---- FMZ-C, batch C228 (2026-10-22)
+    475588: ("2", "strategy.exit's profit / loss fields take tick counts but receive the percent "
+              "inputs (profit = 1.5, loss = 0.5): 1.5 / 0.5 ticks instead of 1.5 % / 0.5 %, a "
+              "unit mismatch, so the distance depends on the instrument's tick size (criterion 2, "
+              "as #442115)."),
+    475592: ("1", "Partial take-profits: two strategy.exit orders each for qty = position_size x 0.5 "
+              "(TP1 / TP2) plus a moved stop: the position is closed in parts, so the size path "
+              "is part of the strategy (criterion 1, partial exits, as #436524). The header also "
+              "says \"all rights reserved\"."),
+    475593: ("1", "The take-profit and stop are money amounts ($200 / $100) turned into ticks by "
+              "dividing by the open position size: the exit distance depends on the position's "
+              "size (criterion 1, size-dependent exits)."),
 }
 
 DUPLICATE_ON_READING = {

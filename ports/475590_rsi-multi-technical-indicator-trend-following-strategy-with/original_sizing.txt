@@ -1,0 +1,68 @@
+# Original sizing and money-management code, FMZ #475590 (多重技术指标趋势跟踪与动量RSI过滤交易策略-Multi-Technical-Indicator-Trend-Following-Strategy-with-RSI-Momentum-Filter)
+# Source: https://www.fmz.com/strategy/475590  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2.5 ATR / target 4 ATR from avg  [lines 107-169]
+  107: stopLossATR      = input.float(2.5, title="Stop Loss ATR Multiplier", minval=0.1, step=0.1)
+  108: takeProfitATR    = input.float(4,   title="Take Profit ATR Multiplier", minval=0.1, step=0.1)
+  109: 
+  110: // RSI inputs
+  111: rsiLength      = input.int(10, title="RSI Length", minval=1)
+  112: rsiOverbought  = input.float(65, title="RSI Overbought Level", minval=50.0, maxval=100.0)
+  113: rsiOversold    = input.float(30.0, title="RSI Oversold Level",   minval=0.0, maxval=50.0)
+  114: 
+  115: // Declare the RSI plot toggle input as a global variable
+  116: bool rsiPlotEnabled = input.bool(true, title="Show RSI in separate panel")
+  117: 
+  118: // Time filter inputs
+  119: i_startTime = input(title="Start Filter", defval=timestamp("01 Jan 2023 13:30 +0000"), group="Time Filter", tooltip="Start date & time to begin searching for setups")
+  120: i_endTime   = input(title="End Filter",   defval=timestamp("28 Apr 2099 19:30 +0000"), group="Time Filter", tooltip="End date & time to stop searching for setups")
+  121: 
+  122: // Date/time filtering logic
+  123: inDateRange = true
+  124: 
+  125: // Calculate EMAs
+  126: fastEMALine = ta.ema(close, fastEMA)
+  127: slowEMALine = ta.ema(close, slowEMA)
+  128: 
+  129: // Calculate ATR
+  130: atr = ta.atr(atrLength)
+  131: 
+  132: // Calculate Supertrend using fixed multiplier
+  133: up = high - (stMultiplier * atr)
+  134: dn = low +  (stMultiplier * atr)
+  135: 
+  136: var float trendUp = na
+  137: var float trendDown = na
+  138: var int trend = na
+  139: 
+  140: trendUp   := na(trendUp[1])   ? up : (close[1] > trendUp[1]   ? math.min(up, trendUp[1])   : up)
+  141: trendDown := na(trendDown[1]) ? dn : (close[1] < trendDown[1] ? math.max(dn, trendDown[1]) : dn)
+  142: 
+  143: trend := close > nz(trendUp[1]) ? 1 : close < nz(trendDown[1]) ? -1 : nz(trend[1], 1)
+  144: supertrend = trend == 1 ? trendUp : trendDown
+  145: 
+  146: // Calculate RSI
+  147: myRSI = ta.rsi(close, rsiLength)
+  148: 
+  149: // Entry conditions with RSI filter
+  150: longEntryCondition  = ta.crossover(fastEMALine, slowEMALine) and (trend == 1) and (myRSI < rsiOverbought)
+  151: shortEntryCondition = ta.crossunder(fastEMALine, slowEMALine) and (trend == -1) and (myRSI > rsiOversold)
+  152: 
+  153: // Strategy entries
+  154: if inDateRange and longEntryCondition and strategy.position_size <= 0
+  155:     strategy.entry("Long", strategy.long)
+  156: 
+  157: if inDateRange and shortEntryCondition and strategy.position_size >= 0
+  158:     strategy.entry("Short", strategy.short)
+  159: 
+  160: // Stops and targets
+  161: if strategy.position_size > 0
+  162:     longStopLoss   = strategy.position_avg_price - stopLossATR * atr
+  163:     longTakeProfit = strategy.position_avg_price + takeProfitATR * atr
+  164:     strategy.exit("Long SL/TP", "Long", stop=longStopLoss, limit=longTakeProfit)
+  165: 
+  166: if strategy.position_size < 0
+  167:     shortStopLoss   = strategy.position_avg_price + stopLossATR * atr
+  168:     shortTakeProfit = strategy.position_avg_price - takeProfitATR * atr
+  169:     strategy.exit("Short SL/TP", "Short", stop=shortStopLoss, limit=shortTakeProfit)

@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2758 |
+| PORTED | 2767 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 592 |
+| PORT_CANDIDATE | 580 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 388 |
+| REJECTED_ON_READING | 391 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2886,7 +2886,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474976 | `ports/474976_macd-atr-enhanced-mean-reversion-strategy-with-macd-atr-impl/` | PineScript | bollinger_reversion | coarse_bar_stop, trailing_stop_pending | bb_length x2, atr_mult x2 | 4 |
 | 474977 | `ports/474977_bollinger-bands-momentum-breakout-adaptive-trend-following-s/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
 | 474980 | `ports/474980_intelligent-volatility-range-trading-strategy-combining-boll/` | PineScript | supertrend | none | length_bb x2, factor x2 | 4 |
-| | **2758 ports** | | | | | **12888** |
+| 474984 | `ports/474984_rsi-macd-advanced-five-day-cross-analysis-strategy-based-on/` | PineScript | multi_indicator_confluence | coarse_bar_stop |  | 0 |
+| 475313 | `ports/475313_dual-momentum-oscillator-smart-timing-trading-strategy/` | PineScript | stochastic_oscillator | none | rsi_buy x2, stoch_buy x2 | 4 |
+| 475589 | `ports/475589_dynamic-risk-managed-exponential-moving-average-crossover-st/` | PineScript | ma_cross | coarse_bar_stop | fast x2, slow x2 | 4 |
+| 475590 | `ports/475590_rsi-multi-technical-indicator-trend-following-strategy-with/` | PineScript | supertrend | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 475595 | `ports/475595_multi-trendline-breakout-momentum-quantitative-strategy/` | PineScript | breakout | none | length x2, mult x2 | 4 |
+| 475596 | `ports/475596_triple-supertrend-and-bollinger-bands-multi-indicator-trend/` | PineScript | supertrend | bar_size_pending | length_bb x2, atr_period x2 | 4 |
+| 475597 | `ports/475597_dual-moving-average-trend-following-strategy-with-risk-manag/` | PineScript | ma_cross | coarse_bar_stop |  | 0 |
+| 475598 | `ports/475598_g-quantitative-long-short-switching-strategy-based-on-g-chan/` | PineScript | volatility_channel_breakout | none | length x2, ema_length x2 | 4 |
+| 475604 | `ports/475604_ath-multi-level-ath-dynamic-tracking-triple-entry-strategy/` | PineScript | mean_reversion | none | dip1 x2, recovery x2 | 4 |
+| | **2767 ports** | | | | | **12916** |
 
 ## Rejected on reading
 
@@ -3280,6 +3289,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474960 | MACD-RSI趋势动量交叉策略结合风险管理模型-MACD-RSI-Trend-Momentum-Cross-Strategy-with-Risk-Management-Model.md | 2 | strategy.exit's profit / loss fields take tick counts but receive price amounts (close x 2.4 % / close x 1.2 %): a price amount in a tick field, so the distance in price depends on the instrument's tick size (criterion 2, as #442115). |
 | 474981 | 黑天鹅波动与均线交叉动量跟踪策略-Black-Swan-Volatility-and-Moving-Average-Crossover-Momentum-Tracking-Strategy.md | 1 | pyramiding = 3 with an entry on every bar whose body exceeds 1.91 % of the close: up to three units are added on the same side, so the size path is part of the strategy (criterion 1, pyramiding >= 2 repeats). |
 | 474983 | 基于双RSI指标的自适应波段交易系统-Adaptive-Range-Trading-System-Based-on-Dual-RSI-Indicators.md | 1 | The daily RSI is requested with lookahead_on and no [1] offset, so every intraday bar reads the day's final RSI before the day ends (criterion 1, higher time frame with lookahead, as #427518). |
+| 475588 | 双指数移动平均线与相对强弱指数交叉策略-Dual-Exponential-Moving-Average-and-Relative-Strength-Index-Crossover-Strategy.md | 2 | strategy.exit's profit / loss fields take tick counts but receive the percent inputs (profit = 1.5, loss = 0.5): 1.5 / 0.5 ticks instead of 1.5 % / 0.5 %, a unit mismatch, so the distance depends on the instrument's tick size (criterion 2, as #442115). |
+| 475592 | 多重时框趋势追踪与ATR止盈止损策略-Multi-Timeframe-Trend-Following-Strategy-with-ATR-Based-Take-Profit-and-Stop-Loss.md | 1 | Partial take-profits: two strategy.exit orders each for qty = position_size x 0.5 (TP1 / TP2) plus a moved stop: the position is closed in parts, so the size path is part of the strategy (criterion 1, partial exits, as #436524). The header also says "all rights reserved". |
+| 475593 | 多时间周期流动性枢纽热力图量化策略-Multi-Timeframe-Liquidity-Pivot-Heatmap-Strategy.md | 1 | The take-profit and stop are money amounts ($200 / $100) turned into ticks by dividing by the open position size: the exit distance depends on the position's size (criterion 1, size-dependent exits). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

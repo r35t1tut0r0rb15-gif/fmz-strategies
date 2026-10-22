@@ -1,0 +1,48 @@
+# Original sizing and money-management code, FMZ #475604 (多层级跌幅ATH动态追踪三段买入策略-Multi-level-ATH-Dynamic-Tracking-Triple-Entry-Strategy)
+# Source: https://www.fmz.com/strategy/475604  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## $50000 per dip (qty = amount / close)  [lines 112-154]
+  112: buy_amount = input.float(50000.0, "Buy Amount ($)", step=100) // $1000 increments
+  113: 
+  114: // === Variables ===
+  115: var float all_time_high = na
+  116: var bool dip1_bought = false
+  117: var bool dip2_bought = false
+  118: var bool dip3_bought = false
+  119: 
+  120: // === Update All-Time High ===
+  121: if na(all_time_high)
+  122:     all_time_high := high
+  123: else
+  124:     // Update ATH to the previous bar's high to exclude current bar's high
+  125:     all_time_high := math.max(all_time_high[1], high[1])
+  126:     if high[1] > all_time_high[1]
+  127:         // New ATH reached on the previous bar
+  128:         dip1_bought := false
+  129:         dip2_bought := false
+  130:         dip3_bought := false
+  131: 
+  132: // === Calculate Percentage Drop from ATH ===
+  133: percent_drop = (all_time_high - close) / all_time_high * 100.0
+  134: 
+  135: // === Define Dip Conditions ===
+  136: buyDip1 = (percent_drop >= dip1) and not dip1_bought
+  137: buyDip2 = (percent_drop >= dip2) and not dip2_bought
+  138: buyDip3 = (percent_drop >= dip3) and not dip3_bought
+  139: 
+  140: // === Calculate Quantity to Buy ===
+  141: qty1 = buy_amount / close
+  142: 
+  143: // === Execute Buys on Dips ===
+  144: if buyDip1
+  145:     strategy.entry("Dip1 Buy", strategy.long, qty=qty1)
+  146:     dip1_bought := true
+  147: 
+  148: if buyDip2
+  149:     strategy.entry("Dip2 Buy", strategy.long, qty=qty1)
+  150:     dip2_bought := true
+  151: 
+  152: if buyDip3
+  153:     strategy.entry("Dip3 Buy", strategy.long, qty=qty1)
+  154:     dip3_bought := true

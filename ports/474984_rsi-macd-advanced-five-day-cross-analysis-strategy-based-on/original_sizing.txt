@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #474984 (基于RSI和MACD的五日内交叉灵活入场策略优化版本研究-Advanced-Five-Day-Cross-Analysis-Strategy-Based-on-RSI-and-MACD-Integration)
+# Source: https://www.fmz.com/strategy/474984  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target 2 % of avg  [lines 130-155]
+  130: takeProfitPercent = 0.02
+  131: stopLossPercent = 0.02
+  132: 
+  133: // Открытие шортовой позиции
+  134: if (shortCondition)
+  135:     strategy.entry("Short", strategy.short)
+  136: 
+  137: // Открытие лонговой позиции
+  138: if (longCondition)
+  139:     strategy.entry("Long", strategy.long)
+  140: 
+  141: // Рассчитываем стоп-лосс и тейк-профит для шорта
+  142: shortStopLoss = strategy.position_avg_price * (1 + stopLossPercent)
+  143: shortTakeProfit = strategy.position_avg_price * (1 - takeProfitPercent)
+  144: 
+  145: // Рассчитываем стоп-лосс и тейк-профит для лонга
+  146: longStopLoss = strategy.position_avg_price * (1 - stopLossPercent)
+  147: longTakeProfit = strategy.position_avg_price * (1 + takeProfitPercent)
+  148: 
+  149: // Устанавливаем выход по стоп-лоссу и тейк-профиту для шортов
+  150: if (strategy.position_size < 0) // Проверяем, что открыта шортовая позиция
+  151:     strategy.exit("Take Profit/Stop Loss Short", "Short", stop=shortStopLoss, limit=shortTakeProfit)
+  152: 
+  153: // Устанавливаем выход по стоп-лоссу и тейк-профиту для лонгов
+  154: if (strategy.position_size > 0) // Проверяем, что открыта лонговая позиция
+  155:     strategy.exit("Take Profit/Stop Loss Long", "Long", stop=longStopLoss, limit=longTakeProfit)
