@@ -4402,6 +4402,21 @@ SIZING = {
     442539: [
         ("qty = floor(strategy.equity / close)", 183, 183),
     ],
+    # ---- FMZ-C, batch C158 (2026-10-22)
+    442540: [],
+    442543: [],
+    442551: [
+        ("strategy(): 25 % of equity, capital 10000, commission 0.03", 141, 141),
+    ],
+    442553: [],
+    442556: [],
+    442558: [],
+    442561: [],
+    442567: [],
+    442618: [
+        ("strategy(): capital 10000, commission 0.05", 113, 117),
+        ("QtyTrade = equity (InitialBalance + netprofit[1]) x (1 + MarginFactor) / close[1] or 3.5 contracts", 123, 129),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -5579,6 +5594,18 @@ REJECTED_ON_READING = {
     442528: ("1", "There is no exit of any kind: the first close crossing back over the previous "
               "day's low opens one long that is held to the end of the data, a buy-and-hold from "
               "near the data start (criterion 1, as #440692)."),
+    # ---- FMZ-C, batch C158 (2026-10-22)
+    442542: ("2", "The only stops, strategy.exit(loss = close x 0.02), pass a price amount (2 % of "
+              "the close) where the call takes ticks, with no /mintick: the stop is undefined as "
+              "written (criterion 2, as #442115, #437048)."),
+    442546: ("1", "Orders are strategy.order('Buy' / 'Sell') with the default quantity, which add or "
+              "remove units instead of entering or reversing: each repeated signal changes the "
+              "net position by one unit, a running sum of orders (criterion 1, as #440533, "
+              "#430596)."),
+    442550: ("1", "Reads the future: Pine v2 security(syminfo.tickerid, 'W', ...) without [1] on the "
+              "4-hour chart behaves as lookahead_on, so every bar's two DEMA lines use the final "
+              "values of the current week, not known until it ends (SURVEY_README "
+              "request.security rule, as #441065, #434485)."),
 }
 
 DUPLICATE_ON_READING = {

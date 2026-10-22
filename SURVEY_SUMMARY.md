@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2022 |
-| PORT_CANDIDATE | 1431 |
+| PORTED | 2031 |
+| PORT_CANDIDATE | 1419 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 287 |
+| REJECTED_ON_READING | 290 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2150,7 +2150,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442537 | `ports/442537_ema-dual-ema-crossover-strategy/` | PineScript | ma_cross | none | tp_pct x2, fast x2 | 4 |
 | 442538 | `ports/442538_super-trend-daily-reversal-strategy/` | PineScript | supertrend | none | mult x2, sl_pct x2 | 4 |
 | 442539 | `ports/442539_moving-average-crossover-macd-trading-strategy/` | PineScript | macd_cross | none | confirm x2, fast x2 | 4 |
-| | **2022 ports** | | | | | **9585** |
+| 442540 | `ports/442540_ema-macd-ema-and-macd-trend-following-strategy/` | PineScript | macd_cross | none | ema_period x2, risk_frac x2 | 4 |
+| 442543 | `ports/442543_bull-flag-breakout-strategy/` | PineScript | candle_pattern | none | pole_mult x2, exit_bars x2 | 4 |
+| 442551 | `ports/442551_the-oscillating-breakthrough-strategy/` | PineScript | rsi_oscillator | none | over_sold x2, sl_pct x2 | 4 |
+| 442553 | `ports/442553_ma-trend-following-strategy-based-on-ma-lines/` | PineScript | ma_cross | none | length x2, stop_ratio x2 | 4 |
+| 442556 | `ports/442556_dual-moving-average-crossover-strategy-with-stop-loss-and-ta/` | PineScript | momentum_oscillator | coarse_bar_stop | length x2, tp_atr x2 | 4 |
+| 442558 | `ports/442558_sma-quantitative-trading-strategy-based-on-price-crossover-w/` | PineScript | ma_cross | none | sma_length x2 | 2 |
+| 442561 | `ports/442561_rsi-simple-cryptocurrency-trading-strategy-based-on-rsi/` | PineScript | rsi_oscillator | none | length x2, oversold x2 | 4 |
+| 442567 | `ports/442567_ema-momentum-breakout-ema-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 442618 | `ports/442618_triple-dynamic-moving-average-trend-tracking-strategy/` | PineScript | multi_timeframe_ma | none | length x2, length3 x2 | 4 |
+| | **2031 ports** | | | | | **9619** |
 
 ## Rejected on reading
 
@@ -2443,6 +2452,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442382 | 基于趋势的止损追利策略Trend-Following-Strategy-with-Stop-Loss-and-Take-Profit.md | 2 | The exit strategy.exit(loss = stopLoss, profit = takeProfit) passes price levels where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #437048, #437677). |
 | 442525 | 基于支持阻力动态调仓的Nifty-50量化交易策略Nifty-50-Quantitative-Trading-Strategy-Based-on-Dynamic-Position-Adjustment-with-Support-and-Resistance-Levels.md | 2 | The signal source is request.security('NIFTY50', 'D', close), a named external instrument (the Nifty 50 index, read as its open interest) used as the signal for whatever chart is traded (SURVEY_README: another symbol -> criterion 2, as #436659); the support and resistance levels 15000 / 16000 are also fixed index prices. |
 | 442528 | 动量突破回测支持阻力策略Momentum-Breakout-Backtesting-Support-Resistance-Strategy.md | 1 | There is no exit of any kind: the first close crossing back over the previous day's low opens one long that is held to the end of the data, a buy-and-hold from near the data start (criterion 1, as #440692). |
+| 442542 | 基于均线交易趋势策略The-Moving-Average-Crossover-Trading-Strategy.md | 2 | The only stops, strategy.exit(loss = close x 0.02), pass a price amount (2 % of the close) where the call takes ticks, with no /mintick: the stop is undefined as written (criterion 2, as #442115, #437048). |
+| 442546 | 双移动均线与布林带结合的趋势追踪策略Dual-Moving-Average-and-Bollinger-Band-Combination-Trend-Tracking-Strategy.md | 1 | Orders are strategy.order('Buy' / 'Sell') with the default quantity, which add or remove units instead of entering or reversing: each repeated signal changes the net position by one unit, a running sum of orders (criterion 1, as #440533, #430596). |
+| 442550 | 自适应移动均线交易策略Adaptive-Moving-Average-Trading-Strategy.md | 1 | Reads the future: Pine v2 security(syminfo.tickerid, 'W', ...) without [1] on the 4-hour chart behaves as lookahead_on, so every bar's two DEMA lines use the final values of the current week, not known until it ends (SURVEY_README request.security rule, as #441065, #434485). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

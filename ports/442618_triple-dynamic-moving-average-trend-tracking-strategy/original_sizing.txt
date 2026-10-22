@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #442618 (动态三均线趋势跟踪策略Triple-Dynamic-Moving-Average-Trend-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/442618  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 10000, commission 0.05  [lines 113-117]
+  113: strategy(title = "Triple MA HTF strategy - Dynamic Smoothing", shorttitle = "Triple MA strategy", overlay=true, 
+  114:          pyramiding=5, initial_capital = 10000,
+  115:          calc_on_order_fills=false,
+  116:          slippage = 0,
+  117:          commission_type=strategy.commission.percent, commission_value=0.05)
+
+## QtyTrade = equity (InitialBalance + netprofit[1]) x (1 + MarginFactor) / close[1] or 3.5 contracts  [lines 123-129]
+  123: InitialBalance = input.float(defval = 10000, title = "Initial Balance", minval = 1, maxval = 1000000, step = 1000, tooltip = "starting capital", group = RISKM)
+  124: LeverageEquity = input.bool(defval = true, title = "qty based on equity %", tooltip = "true turns on MarginFactor based on equity, false gives fixed qty for positionsize", group = RISKM)
+  125: MarginFactor = input.float(0, minval = - 0.9, maxval = 100, step = 0.1, tooltip = "Margin Factor, meaning that 0.5 will add 50% extra capital to determine ordersize quantity, 0.0 means 100% of equity is used to decide quantity of instrument", inline = "qty", group = RISKM)
+  126: QtyNr = input.float(defval = 3.5, title = "Quantity Contracts", minval = 0, maxval = 1000000, step = 0.01,  tooltip = "Margin Factor, meaning that 0.5 will add 50% extra capital to determine ordersize quantity, 0.0 means 100% of equity is used to decide quantity of instrument", inline = "qty", group = RISKM)
+  127: EquityCurrent = InitialBalance + strategy.netprofit[1]
+  128: QtyEquity = EquityCurrent * (1 + MarginFactor) / close[1]
+  129: QtyTrade = LeverageEquity ? QtyEquity : QtyNr
