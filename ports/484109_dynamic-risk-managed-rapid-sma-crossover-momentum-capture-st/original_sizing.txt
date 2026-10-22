@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #484109 (动态风险管理的快速均线交叉动量捕捉策略-Dynamic-Risk-Managed-Rapid-SMA-Crossover-Momentum-Capture-Strategy)
+# Source: https://www.fmz.com/strategy/484109  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 1 % of equity  [lines 150-150]
+  150: strategy("Stock & Options Hyper-Scalper", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=1)
+
+## positionSize = equity x 0.5 % / stop distance  [lines 183-185]
+  183: accountBalance = strategy.equity
+  184: riskAmount = accountBalance * riskPercentage  
+  185: positionSize = riskAmount / stopLoss  

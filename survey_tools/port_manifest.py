@@ -6769,6 +6769,31 @@ SIZING = {
         ("strategy(): 2 % of equity", 213, 213),
     ],
     484094: [],
+    # ---- FMZ-C, batch C261 (2026-10-22)
+    484096: [],
+    484098: [
+        ("strategy(): 100 % of equity", 173, 173),
+    ],
+    484101: [],
+    484109: [
+        ("strategy(): 1 % of equity", 150, 150),
+        ("positionSize = equity x 0.5 % / stop distance", 183, 185),
+    ],
+    484571: [
+        ("strategy(): margin 100 / 100", 183, 183),
+    ],
+    484578: [
+        ("strategy(): capital 100000, 100 % of equity, commission 0.01 %", 192, 192),
+    ],
+    484580: [],
+    484582: [
+        ("strategy(): 10 % of equity, commission 0.1 %", 190, 190),
+    ],
+    484583: [
+        ("strategy(): capital 10000, 2 % of equity", 185, 185),
+    ],
+    484584: [],
+    484589: [],
 }
 
 REJECTED_ON_READING = {
@@ -8552,6 +8577,11 @@ REJECTED_ON_READING = {
               "1, as #436524."),
     483943: ("1", "Pyramided strategy.order entries (up to five, gated on opentrades counts) with 50 "
               "% partial exits (qty_percent) per tranche: criterion 1, as #436524 / #442261."),
+    # ---- FMZ-C, batch C261 (2026-10-22)
+    484095: ("1", "A 50 % partial take-profit (qty_percent = 50) beside a trail whose trail_points is "
+              "a price amount (atr x 10): criterion 1, as #436524 (the trail also fails criterion "
+              "2)."),
+    484588: ("1", "Seven partial take-profits of 14.28 % each (qty_percent): criterion 1, as #436524."),
 }
 
 DUPLICATE_ON_READING = {

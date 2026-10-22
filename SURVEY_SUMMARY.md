@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3093 |
+| PORTED | 3104 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 456 |
+| REJECTED_ON_READING | 458 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 185 |
+| PORT_CANDIDATE | 172 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3221,7 +3221,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 484090 | `ports/484090_adaptive-volatility-based-trend-following-short-strategy-wit/` | PineScript | ma_trend | none | fast_ma_length x2, stop_loss_percent x2 | 4 |
 | 484092 | `ports/484092_atr-atr-enhanced-candlestick-reversal-pattern-recognition-an/` | PineScript | candle_pattern | trailing_stop_pending | atr_multiplier x2, atr_length x2 | 4 |
 | 484094 | `ports/484094_technical-chart-pattern-confirmation-momentum-strategy/` | PineScript | reversal_pattern | coarse_bar_stop, trailing_stop_pending | atr_length x2, tp_atr x2 | 4 |
-| | **3093 ports** | | | | | **14186** |
+| 484096 | `ports/484096_dynamic-color-threshold-volatility-analysis-trading-strategy/` | PineScript | heikin_ashi_trend | coarse_bar_stop | stop_frac x2, threshold_percent x2 | 4 |
+| 484098 | `ports/484098_multi-indicator-trend-reversal-volatility-conditional-select/` | PineScript | bollinger_reversion | trailing_stop_pending | bb_mult x2, rsi_length x2 | 4 |
+| 484101 | `ports/484101_multi-dimensional-chart-pattern-quantitative-strategy-a-tech/` | PineScript | reversal_pattern | coarse_bar_stop, trailing_stop_pending | atr_length x2, tp_atr x2 | 4 |
+| 484109 | `ports/484109_dynamic-risk-managed-rapid-sma-crossover-momentum-capture-st/` | PineScript | multi_indicator_confluence | coarse_bar_stop, trailing_stop_pending | stop_loss_multiplier x2, take_profit_multiplier x2 | 4 |
+| 484571 | `ports/484571_ema-multi-timeframe-ema-crossover-trend-following-strategy-w/` | PineScript | ma_cross | trailing_stop | trail_offset x2, ema_fast x2 | 4 |
+| 484578 | `ports/484578_atr-dual-ma-trend-pullback-trading-strategy-with-adaptive-at/` | PineScript | ma_pullback | coarse_bar_stop, trailing_stop_pending | fast_ma_length x2, sl_multiplier x2 | 4 |
+| 484580 | `ports/484580_atr-bollinger-bands-atr-risk-reward-trading-strategy/` | PineScript | bollinger_reversion | coarse_bar_stop, trailing_stop_pending | bollinger_length x2, risk_reward_ratio x2 | 4 |
+| 484582 | `ports/484582_automated-market-reversal-trading-strategy-based-on-stochast/` | PineScript | candle_pattern | trailing_stop_pending | thresh x2, trend_len x2 | 4 |
+| 484583 | `ports/484583_bollinger-precision-risk-optimization-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | stop_loss_percent x2, take_profit_percent x2 | 4 |
+| 484584 | `ports/484584_multi-moving-average-trend-capture-and-crossover-confirmatio/` | PineScript | ma_trend | none | instant x2, longperiod x2 | 4 |
+| 484589 | `ports/484589_ema-dual-timeframe-ema-trend-recognition-and-trading-trigger/` | PineScript | multi_timeframe_ma | trailing_stop_pending | short_ema_1d x2, short_ema_1h x2 | 4 |
+| | **3104 ports** | | | | | **14230** |
 
 ## Rejected on reading
 
@@ -3683,6 +3694,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 483681 | 双均线波动率自适应交易策略与多级利润优化系统-Dual-EMA-Volatility-Adaptive-Trading-Strategy-with-Multi-Tiered-Profit-Optimization-System.md | 1 | Two 50 % partial take-profits (qty_percent = 50) with a fixed 0.1 quantity: criterion 1, as #436524. |
 | 483937 | SSL通道双阶梯利润策略-SSL-Channel-Dual-Tranche-Profit-Strategy.md | 1 | Two-tranche exits: a 50 % partial take-profit (qty = entry qty / 2) then a break-even and trailing remainder keyed on the position size shrinking: criterion 1, as #436524. |
 | 483943 | 多重均线追踪策略与动态仓位管理系统-Multi-EMA-Trend-Following-Strategy-with-Dynamic-Position-Management-System.md | 1 | Pyramided strategy.order entries (up to five, gated on opentrades counts) with 50 % partial exits (qty_percent) per tranche: criterion 1, as #436524 / #442261. |
+| 484095 | 多时间框架趋势追踪与动量确认量化交易策略-Multi-Timeframe-Trend-Following-and-Momentum-Confirmation-Quantitative-Trading-Strategy.md | 1 | A 50 % partial take-profit (qty_percent = 50) beside a trail whose trail_points is a price amount (atr x 10): criterion 1, as #436524 (the trail also fails criterion 2). |
+| 484588 | 斐波那契模式统计分析策略-Fibonacci-Pattern-Statistical-Analysis-Strategy.md | 1 | Seven partial take-profits of 14.28 % each (qty_percent): criterion 1, as #436524. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

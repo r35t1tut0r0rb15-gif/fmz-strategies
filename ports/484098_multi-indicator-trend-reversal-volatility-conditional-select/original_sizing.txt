@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #484098 (多指标趋势反转波动率条件选择性期权销售策略-Multi-Indicator-Trend-Reversal-Volatility-Conditional-Selective-Options-Selling-Strategy)
+# Source: https://www.fmz.com/strategy/484098  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 173-173]
+  173: strategy("Nifty BankNifty Option Selling Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

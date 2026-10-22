@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #484101 (多维图表模式量化策略融合头肩顶底与双顶底形态的技术分析交易系统-Multi-Dimensional-Chart-Pattern-Quantitative-Strategy-A-Technical-Analysis-Trading-System-Integrating-Head-and-Shoulders-and-Double-Top-Bottom-Formations)
+# Source: https://www.fmz.com/strategy/484101  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
