@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2062 |
-| PORT_CANDIDATE | 1383 |
+| PORTED | 2072 |
+| PORT_CANDIDATE | 1371 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 295 |
+| REJECTED_ON_READING | 297 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2190,7 +2190,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442834 | `ports/442834_ema-the-dual-ema-price-swing-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
 | 442835 | `ports/442835_intelligent-accumulator-buy-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, band_len x2 | 4 |
 | 442837 | `ports/442837_four-dema-multi-timeframe-trend-strategy/` | PineScript | ma_trend | none | short x2, long3 x2 | 4 |
-| | **2062 ports** | | | | | **9739** |
+| 442838 | `ports/442838_stochrsi-stochrsi-reversal-trading-strategy/` | PineScript | rsi_oscillator | none | stoch_length x2, oversold x2 | 4 |
+| 442839 | `ports/442839_the-dual-quant-trading-system/` | PineScript | multi_indicator_confluence | none | fast_len x2, cci_len x2 | 4 |
+| 442842 | `ports/442842_donchian-channel-breakout-strategy/` | PineScript | donchian_breakout | none | period x2 | 2 |
+| 442847 | `ports/442847_ema-34-momentum-breakthrough-ema-34-crossover-strategy/` | PineScript | volatility_channel_breakout | none | length x2, exit_frac x2 | 4 |
+| 442861 | `ports/442861_vortex-trend-reversal-strategy/` | PineScript | momentum_oscillator | none | length x2, ema_length x2 | 4 |
+| 442863 | `ports/442863_momentum-crossover-bollinger-band-trend-tracking-strategy/` | PineScript | adaptive_average | none | keh x2 | 2 |
+| 442864 | `ports/442864_ema-multiple-timeframe-ema-trend-following-trading-strategy/` | PineScript | ma_trend | none | start x2, step x2 | 4 |
+| 442921 | `ports/442921_dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | sma_length x2, ema_length x2 | 4 |
+| 442923 | `ports/442923_dynamic-trailing-stop-long-only-trend-following-strategy-wit/` | PineScript | directional_movement | trailing_stop_pending | adx_threshold x2, atr_mult x2 | 4 |
+| 442924 | `ports/442924_short-term-trading-strategy-based-on-momentum-indicator/` | PineScript | volatility_channel_breakout | none | length2 x2, trigger x2 | 4 |
+| | **2072 ports** | | | | | **9775** |
 
 ## Rejected on reading
 
@@ -2491,6 +2501,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442822 | 基于订单块的动量突破策略The-Order-Block-Momentum-Breakout-Strategy.md | 1 | The only exits close when strategy.openprofit divided by the equity (initial capital plus netprofit) reaches +2 % or -1 %: an account-state gate whose price move depends on the position size against the equity, which the signal-only port cannot express (criterion 1, as #440336). |
 | 442833 | RSI指标多空分离交易策略RSI-Indicator-Long-Short-Separation-Trading-Strategy.md | 1 | pyramiding = 4 with a fixed quantity of 2 and repeated RSI-divergence entries while a position is open: the position accumulates units (criterion 1, as #442112, #430762). |
 | 442836 | 追踪熊市策略Follow-The-Bear-Strategy.md | 1 | The pinbar test is replaced by star = true, so on every confirmed bar while flat the script sends a new short (its filters are computed but never used) and re-sets the bracket from that bar: a constant-true entry, a short re-entered whenever flat (criterion 1, as #442261). |
+| 442860 | 动量追踪型双EMA移动平均线交叉策略Momentum-Tracking-Dual-EMA-Crossover-Strategy.md | 1 | Exits close parts of the position (qty_percent = 50 on the short) and every profit and stop exit is gated on strategy.openprofit over a cash order value of 1000: partial exits and cash-ratio exits (criterion 1, as #436524). |
+| 442926 | 卖涨回落策略Sell-the-Rallies-Strategy.md | 1 | pyramiding = 2 with a short entry on every new 2 % one-bar rally while a short is open: the position accumulates units (criterion 1, as #441954, #430762). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

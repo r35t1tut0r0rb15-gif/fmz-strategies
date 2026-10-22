@@ -4475,6 +4475,19 @@ SIZING = {
     442834: [],
     442835: [],
     442837: [],
+    # ---- FMZ-C, batch C162 (2026-10-22)
+    442838: [],
+    442839: [
+        ("strategy.entry qty = 1", 191, 200),
+    ],
+    442842: [],
+    442847: [],
+    442861: [],
+    442863: [],
+    442864: [],
+    442921: [],
+    442923: [],
+    442924: [],
 }
 
 REJECTED_ON_READING = {
@@ -5683,6 +5696,12 @@ REJECTED_ON_READING = {
               "the script sends a new short (its filters are computed but never used) and re-sets "
               "the bracket from that bar: a constant-true entry, a short re-entered whenever flat "
               "(criterion 1, as #442261)."),
+    # ---- FMZ-C, batch C162 (2026-10-22)
+    442860: ("1", "Exits close parts of the position (qty_percent = 50 on the short) and every profit "
+              "and stop exit is gated on strategy.openprofit over a cash order value of 1000: "
+              "partial exits and cash-ratio exits (criterion 1, as #436524)."),
+    442926: ("1", "pyramiding = 2 with a short entry on every new 2 % one-bar rally while a short is "
+              "open: the position accumulates units (criterion 1, as #441954, #430762)."),
 }
 
 DUPLICATE_ON_READING = {

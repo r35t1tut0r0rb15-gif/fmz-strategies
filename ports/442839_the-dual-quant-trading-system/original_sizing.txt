@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #442839 (基于双量化交易系统The-Dual-Quant-Trading-System)
+# Source: https://www.fmz.com/strategy/442839  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy.entry qty = 1  [lines 191-200]
+  191:     strategy.entry("Long", strategy.long, 1)
+  192:     
+  193: //longExit = close > strategy.opentrades.entry_price(0) + 1.5 or close < strategy.opentrades.entry_price(0) - 0.75
+  194: longExit = close < longStop or not validSession
+  195: if (longExit)
+  196:     strategy.close("Long")
+  197: 
+  198: shortCondition = Bear and cci < 100 and ta.crossunder(rsi,rsi2) and validSession
+  199: if (shortCondition)
+  200:     strategy.entry("Short", strategy.short, 1)
