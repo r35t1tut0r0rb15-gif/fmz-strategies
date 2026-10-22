@@ -1,0 +1,19 @@
+# Original sizing and money-management code, FMZ #449508 (MACD-V和斐波那契多时间框架动态止盈策略-MACD-V-and-Fibonacci-Multi-Timeframe-Dynamic-Take-Profit-Strategy)
+# Source: https://www.fmz.com/strategy/449508  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 1000 % of equity, margins 1/10 x 50, commission 0.05 %; trail / loss tick inputs  [lines 110-123]
+  110: strategy("Advanced MACD-V and Fibonacci Strategy with EMA Trailing TP", overlay=true, default_qty_type = strategy.percent_of_equity, default_qty_value=1000, margin_long=1./10*50, margin_short=1./10*50, slippage=0, commission_type=strategy.commission.percent, commission_value=0.05)
+  111: 
+  112: // Parametreler
+  113: fast_len = input.int(12, title="Fast Length", minval=1, group="MACD-V Settings")
+  114: slow_len = input.int(26, title="Slow Length", minval=1, group="MACD-V Settings")
+  115: signal_len = input.int(9, title="Signal Smoothing", minval=1, group="MACD-V Settings")
+  116: atr_len = input.int(26, title="ATR Length", minval=1, group="MACD-V Settings")
+  117: source = input.source(close, title="Source", group="MACD-V Settings")
+  118: 
+  119: //ema_length = input.int(20, title="EMA Length for Trailing TP", group="Trailing TP Settings")
+  120: trailing_profit = input.float(1000, title="Trailing Profit", minval=0.01, maxval=1000000, step=0.01, group="Trailing TP Settings")
+  121: trailing_offset = input.float(30000, title="Trailing Offset", minval=0.01, maxval=1000000, step=0.01, group="Trailing TP Settings")
+  122: trailing_factor = input.float(0.01, title="Trailing Factor", minval=0.01, maxval=1000000, step=0.01, group="Trailing TP Settings")
+  123: fix_loss = input.float(20000, title="Fix Loss", minval=0.01, maxval=1000000, step=0.01, group="Trailing TP Settings")

@@ -4830,6 +4830,20 @@ SIZING = {
         ("risk 2 % (unused); ATR stop / target multipliers", 114, 123),
     ],
     448778: [],
+    # ---- FMZ-C, batch C179 (2026-10-22)
+    449446: [
+        ("Take profit / stop loss percent inputs (exits commented out)", 107, 108),
+    ],
+    449506: [],
+    449508: [
+        ("strategy(): 1000 % of equity, margins 1/10 x 50, commission 0.05 %; trail / loss tick inputs", 110, 123),
+    ],
+    449510: [],
+    449518: [],
+    449519: [
+        ("Targets avg x 1.6 / x 0.75", 128, 131),
+    ],
+    449520: [],
 }
 
 REJECTED_ON_READING = {
@@ -6119,6 +6133,22 @@ REJECTED_ON_READING = {
     448767: ("2", "The exits pass trail_offset = 0.005, a fraction where the call takes ticks, and "
               "stop = 10, a price of 10 meant as points, with no /mintick: the trailing stop and "
               "the stop are undefined as written (criterion 2, as #442076, #437048)."),
+    # ---- FMZ-C, batch C179 (2026-10-22)
+    449445: ("1", "The only exit is strategy.close('L', qty_percent = 70), a partial close of the "
+              "position: partial exits, which the house engine cannot hold (one position, all-in "
+              "or all-out; as #436524)."),
+    449497: ("1", "'if strategy.opentrades < pyramiding' (10) re-sends the long entry on every bar "
+              "and is called after the band entries, so the long wins every bar and the short "
+              "never holds: a constant-true entry (criterion 1, as #442261)."),
+    449507: ("1", "Each entry's bracket is strategy.exit(qty_percent = 50, ...), closing half the "
+              "position, and the rest closes on the SMA turn: partial exits, which the house "
+              "engine cannot hold (as #436524)."),
+    449516: ("1", "The only exits are four take-profit limits with qty_percent 25 % each (0.25 as "
+              "written): partial exits, which the house engine cannot hold (one position, all-in "
+              "or all-out; as #436524)."),
+    449521: ("2", "The stops pass loss = close x 0.9 and loss = close x 1.1, price amounts where "
+              "strategy.exit takes tick distances, with no /mintick: the stops are undefined as "
+              "written (criterion 2, as #442076, #437048)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #449518 (横线突破捕捉趋势策略Trend-Capturing-Strategy-with-Horizontal-Line-Breakout)
+# Source: https://www.fmz.com/strategy/449518  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

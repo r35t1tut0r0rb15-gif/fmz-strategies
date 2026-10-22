@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #449519 (EMA23-EMA50双均线交叉量化交易策略-EMA23-EMA50-Double-Moving-Average-Crossover-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/449519  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Targets avg x 1.6 / x 0.75  [lines 128-131]
+  128: longTakeProfit = strategy.position_avg_price * 1.60
+  129: 
+  130: // Short işlemde kar alma seviyesi (%25)
+  131: shortTakeProfit = strategy.position_avg_price * 0.75

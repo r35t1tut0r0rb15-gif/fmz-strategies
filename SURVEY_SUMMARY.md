@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2245 |
-| PORT_CANDIDATE | 1179 |
+| PORTED | 2252 |
+| PORT_CANDIDATE | 1167 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 316 |
+| REJECTED_ON_READING | 321 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2373,7 +2373,14 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 448772 | `ports/448772_zerolag-macd-zerolag-macd-long-short-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
 | 448774 | `ports/448774_macd-atr-optimized-macd-trend-following-strategy-with-atr-ba/` | PineScript | macd_cross | coarse_bar_stop | sl_mult x2, tp_mult x2 | 4 |
 | 448778 | `ports/448778_macd-crossover-strategy-macd/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
-| | **2245 ports** | | | | | **10431** |
+| 449446 | `ports/449446_macd-bb-macd-bb-breakout-strategy/` | PineScript | macd_momentum | none | length x2, dev x2 | 4 |
+| 449506 | `ports/449506_quantitative-trading-strategy-based-on-moving-averages-and-b/` | PineScript | bollinger_reversion | none | k_open x2, k_close x2 | 4 |
+| 449508 | `ports/449508_macd-v-macd-v-and-fibonacci-multi-timeframe-dynamic-take-pro/` | PineScript | macd_momentum | trailing_stop_pending | k_atr x2, fib_lookback x2 | 4 |
+| 449510 | `ports/449510_macd-macd-golden-cross-and-death-cross-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| 449518 | `ports/449518_trend-capturing-strategy-with-horizontal-line-breakout/` | PineScript | mean_reversion | none |  | 0 |
+| 449519 | `ports/449519_ema23-ema50-ema23-ema50-double-moving-average-crossover-quan/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 449520 | `ports/449520_real-time-trendline-trading-based-on-pivot-points-and-slope/` | PineScript | breakout | none | length x2, mult x2 | 4 |
+| | **2252 ports** | | | | | **10455** |
 
 ## Rejected on reading
 
@@ -2695,6 +2702,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 448060 | RSI双边交易策略-RSI-Dual-Side-Trading-Strategy.md | 1 | 'if strategy.opentrades < pyramiding' (5) re-sends the long entry on every bar and is called after the RSI entries, so the long wins every bar and the short never holds: a constant-true entry (criterion 1, as #442261). |
 | 448080 | Bollinger-Bands-Breakout-Strategy-布林线突破策略.md | 1 | 'if strategy.opentrades < pyramiding' (5) re-sends the long entry on every bar and is called after the band entries, so the long wins every bar and the short never holds: a constant-true entry (criterion 1, as #442261). |
 | 448767 | RSI-相对强弱指数策略-RSI-Relative-Strength-Index-Strategy.md | 2 | The exits pass trail_offset = 0.005, a fraction where the call takes ticks, and stop = 10, a price of 10 meant as points, with no /mintick: the trailing stop and the stop are undefined as written (criterion 2, as #442076, #437048). |
+| 449445 | Wavetrend-大幅指标超跌反弹网格交易策略-Wavetrend-Large-Amplitude-Oversold-Rebound-Grid-Trading-Strategy.md | 1 | The only exit is strategy.close('L', qty_percent = 70), a partial close of the position: partial exits, which the house engine cannot hold (one position, all-in or all-out; as #436524). |
+| 449497 | 布林带突破策略-Bollinger-Bands-Breakout-Strategy.md | 1 | 'if strategy.opentrades < pyramiding' (10) re-sends the long entry on every bar and is called after the band entries, so the long wins every bar and the short never holds: a constant-true entry (criterion 1, as #442261). |
+| 449507 | 趋势捕捉策略-Trend-Catcher-Strategy.md | 1 | Each entry's bracket is strategy.exit(qty_percent = 50, ...), closing half the position, and the rest closes on the SMA turn: partial exits, which the house engine cannot hold (as #436524). |
+| 449516 | 移动平均线交叉多层获利策略-Moving-Average-Crossover-with-Multiple-Take-Profits-Strategy.md | 1 | The only exits are four take-profit limits with qty_percent 25 % each (0.25 as written): partial exits, which the house engine cannot hold (one position, all-in or all-out; as #436524). |
+| 449521 | KRK-aDa-Stochastic-Slow-Mean-Reversion-Strategy-with-AI-Enhancements-KRK-aDa-随机慢速均值回归策略与人工智能增强.md | 2 | The stops pass loss = close x 0.9 and loss = close x 1.1, price amounts where strategy.exit takes tick distances, with no /mintick: the stops are undefined as written (criterion 2, as #442076, #437048). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
