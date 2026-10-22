@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #445836 (布林带动态止盈与动态加仓策略-Bollinger-Band-Dynamic-Take-Profit-and-Dynamic-Position-Adding-Strategy)
+# Source: https://www.fmz.com/strategy/445836  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = initial_capital / 10000 (initial_capital set to 50000)  [lines 196-222]
+  196: strategy.initial_capital = 50000
+  197: if close < lower and not entryMade
+  198:     strategy.entry("롱", strategy.long, qty = strategy.initial_capital/10000)
+  199:     entryMade := true
+  200: if ta.crossover(close, basis) and entryMade and not upperCrossed
+  201:     basisCrossed := true
+  202: if close > upper
+  203:     upperCrossed := true
+  204: if close < lower and entryMade and basisCrossed and not upperCrossed and close < strategy.position_avg_price*add
+  205:     strategy.entry("추가롱", strategy.long, strategy.initial_capital/10000)
+  206:     basisCrossed := false
+  207: if close > upper
+  208:     strategy.close("롱")
+  209:     strategy.close("추가롱")
+  210:     entryMade := false
+  211:     basisCrossed := false
+  212:     upperCrossed := false
+  213: ///////////반대 포지션
+  214: if close > upper and not entryMade
+  215:     strategy.entry("s", strategy.short, qty = strategy.initial_capital/10000)
+  216:     entryMade := true
+  217: if ta.crossunder(close, basis) and entryMade and not lowerCrossed
+  218:     basisCrossed := true
+  219: if close < lower
+  220:     lowerCrossed := true
+  221: if close > upper and entryMade and basisCrossed and not lowerCrossed and close > strategy.position_avg_price*add
+  222:     strategy.entry("추가s", strategy.short, strategy.initial_capital/10000)

@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #445817 (基于MA和RSI的趋势跟踪摆动策略MA-and-RSI-based-Trend-Following-Swing-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/445817  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop loss percent and risk / reward inputs  [lines 152-174]
+  152: risk_reward_ratio = input(2.0, "Risk/Reward Ratio")
+  153: stop_loss_percent = input(2.0, "Stop Loss (%)")
+  154: 
+  155: // Moving Averages
+  156: ma_fast = ta.sma(close, ma_fast_length)
+  157: ma_slow = ta.sma(close, ma_slow_length)
+  158: 
+  159: // RSI
+  160: rsi = ta.rsi(close, rsi_length)
+  161: 
+  162: // Trend Identification
+  163: bullish_trend = ta.crossover(ma_fast, ma_slow)
+  164: bearish_trend = ta.crossunder(ma_fast, ma_slow)
+  165: 
+  166: // Entry Conditions
+  167: long_entry = bullish_trend and close > ma_fast and rsi < rsi_overbought
+  168: short_entry = bearish_trend and close < ma_fast and rsi > rsi_oversold
+  169: 
+  170: // Stop Loss and Take Profit Calculations
+  171: long_sl = close * (1 - stop_loss_percent / 100)
+  172: short_sl = close * (1 + stop_loss_percent / 100)
+  173: long_tp = close * (1 + (stop_loss_percent / 100) * risk_reward_ratio)
+  174: short_tp = close * (1 - (stop_loss_percent / 100) * risk_reward_ratio)

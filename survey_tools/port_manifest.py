@@ -4691,6 +4691,26 @@ SIZING = {
     445804: [
         ("strategy(): 5 % of equity, capital 10000, commission 0.02 %", 142, 142),
     ],
+    # ---- FMZ-C, batch C173 (2026-10-22)
+    445814: [],
+    445817: [
+        ("Stop loss percent and risk / reward inputs", 152, 174),
+    ],
+    445819: [],
+    445821: [],
+    445823: [],
+    445824: [],
+    445825: [],
+    445832: [
+        ("Tick size, trailing stop and stop loss inputs", 198, 239),
+    ],
+    445833: [
+        ("Take profit avg x stopLuse 1.04", 272, 361),
+    ],
+    445836: [
+        ("qty = initial_capital / 10000 (initial_capital set to 50000)", 196, 222),
+    ],
+    445840: [],
 }
 
 REJECTED_ON_READING = {
@@ -5945,6 +5965,12 @@ REJECTED_ON_READING = {
     444961: ("2", "The exits strategy.exit(loss = 0.01 x close, profit = 0.02 x close) pass price "
               "amounts where the call takes tick distances, with no /mintick: the stop and target "
               "are undefined as written (criterion 2, as #442076, #437048)."),
+    # ---- FMZ-C, batch C173 (2026-10-22)
+    445808: ("2", "The exits pass strategy.exit(loss = 100, profit = targetPriceLong / "
+              "targetPriceShort): a price level where the call takes a tick distance, with no "
+              "/mintick, so the target is undefined as written; the entry levels are absolute "
+              "prices (close > 100 and close > 70) that are always true on the listed pair "
+              "(criterion 2, as #442076, #437048)."),
 }
 
 DUPLICATE_ON_READING = {

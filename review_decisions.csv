@@ -306,6 +306,7 @@ fmz_id,file,final_outcome,criterion,reason
 444028,抛物线SAR趋势跟踪策略-60Parabolic-SAR-Trend-Tracking-Strategy-60.md,REJECTED_ON_READING,1,"pyramiding = 5 with a new long on each SAR crossover while a long is open (the short needs a 2 % down bar): the position accumulates units (criterion 1, as #442112, #430762)."
 444355,基于平均价海金阿什烛台与相对强弱指数的动态调仓策略Dynamic-Capital-Allocation-Strategy-Based-on-Heikin-Ashi-Candles-and-Relative-Strength-Index.md,REJECTED_ON_READING,1,"pyramiding = 10000 with a 10 % of equity buy on every green Heikin Ashi candle after a red one until the RSI exit: dollar-cost averaging that accumulates units (criterion 1, as #442229, #430762)."
 444961,基于双均线交叉的交易策略A-Trading-Strategy-Based-on-Dual-Moving-Average-Crossover.md,REJECTED_ON_READING,2,"The exits strategy.exit(loss = 0.01 x close, profit = 0.02 x close) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048)."
+445808,基于技术分析和资金管理的量化交易策略The-Support-Resistance-Psychology-Candlestick-Feedback-Money-Management-strategy.md,REJECTED_ON_READING,2,"The exits pass strategy.exit(loss = 100, profit = targetPriceLong / targetPriceShort): a price level where the call takes a tick distance, with no /mintick, so the target is undefined as written; the entry levels are absolute prices (close > 100 and close > 70) that are always true on the listed pair (criterion 2, as #442076, #437048)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2508,3 +2509,14 @@ fmz_id,file,final_outcome,criterion,reason
 445802,基于ATR双重跟踪止损的动态止盈止损策略Dynamic-Stop-Loss-and-Take-Profit-Strategy-Based-on-Dual-ATR-Trailing-Stop.md,PORTED,,ports/445802_atr-dynamic-stop-loss-and-take-profit-strategy-based-on-dual/
 445803,双均线趋势跟踪策略Double-Moving-Average-Trend-Following-Strategy.md,PORTED,,ports/445803_double-moving-average-trend-following-strategy/
 445804,烛台形态趋势过滤策略Candlestick-Pattern-Trend-Filter-Strategy.md,PORTED,,ports/445804_candlestick-pattern-trend-filter-strategy/
+445814,布林带EMA趋势跟踪策略Bollinger-Bands-EMA-Trend-Following-Strategy.md,PORTED,,ports/445814_ema-bollinger-bands-ema-trend-following-strategy/
+445817,基于MA和RSI的趋势跟踪摆动策略MA-and-RSI-based-Trend-Following-Swing-Trading-Strategy.md,PORTED,,ports/445817_ma-rsi-ma-and-rsi-based-trend-following-swing-trading-strate/
+445819,多重均线与RSI交叉交易策略Multiple-Moving-Averages-and-RSI-Crossover-Trading-Strategy.md,PORTED,,ports/445819_rsi-multiple-moving-averages-and-rsi-crossover-trading-strat/
+445821,双均线交叉优化止损策略Dual-Moving-Average-Crossover-with-Optimized-Stop-Loss-Strategy.md,PORTED,,ports/445821_dual-moving-average-crossover-with-optimized-stop-loss-strat/
+445823,赫尔移动平均交叉策略Hull-Moving-Average-Crossover-Strategy.md,PORTED,,ports/445823_hull-moving-average-crossover-strategy/
+445824,基于双时间框架EMA交叉信号的多空策略Dual-Timeframe-EMA-Crossover-Long-Short-Strategy.md,PORTED,,ports/445824_ema-dual-timeframe-ema-crossover-long-short-strategy/
+445825,双重指数移动平均云交叉自动交易策略Dual-Exponential-Moving-Average-Cloud-Crossover-Automated-Trading-Strategy.md,PORTED,,ports/445825_dual-exponential-moving-average-cloud-crossover-automated-tr/
+445832,RSI与EMA双重过滤策略RSI-and-EMA-Dual-Filter-Strategy.md,PORTED,,ports/445832_rsi-ema-rsi-and-ema-dual-filter-strategy/
+445833,TrippleMACD均线交叉与相对强弱指标结合的高频加密货币交易策略High-Frequency-Cryptocurrency-Trading-Strategy-Combining-TrippleMACD-Crossover-and-Relative-Strength-Index.md,PORTED,,ports/445833_tripplemacd-high-frequency-cryptocurrency-trading-strategy-c/
+445836,布林带动态止盈与动态加仓策略-Bollinger-Band-Dynamic-Take-Profit-and-Dynamic-Position-Adding-Strategy.md,PORTED,,ports/445836_bollinger-band-dynamic-take-profit-and-dynamic-position-addi/
+445840,唐奇安通道突破策略Donchian-Channel-Breakout-Strategy-with-ATRSL-Trailing-Stop.md,PORTED,,ports/445840_donchian-channel-breakout-strategy-with-atrsl-trailing-stop/

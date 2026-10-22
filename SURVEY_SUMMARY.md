@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2182 |
-| PORT_CANDIDATE | 1251 |
+| PORTED | 2193 |
+| PORT_CANDIDATE | 1239 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 307 |
+| REJECTED_ON_READING | 308 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2310,7 +2310,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 445802 | `ports/445802_atr-dynamic-stop-loss-and-take-profit-strategy-based-on-dual/` | PineScript | atr_trailing_line | trailing_stop_pending | key1 x2, key2 x2 | 4 |
 | 445803 | `ports/445803_double-moving-average-trend-following-strategy/` | PineScript | ssl_channel | none | ssl_len x2 | 2 |
 | 445804 | `ports/445804_candlestick-pattern-trend-filter-strategy/` | PineScript | candle_pattern | none | fast x2, slow x2 | 4 |
-| | **2182 ports** | | | | | **10193** |
+| 445814 | `ports/445814_ema-bollinger-bands-ema-trend-following-strategy/` | PineScript | bollinger_breakout | none | bb_len x2, ema_len x2 | 4 |
+| 445817 | `ports/445817_ma-rsi-ma-and-rsi-based-trend-following-swing-trading-strate/` | PineScript | ma_cross | trailing_stop_pending | sl x2, rr x2 | 4 |
+| 445819 | `ports/445819_rsi-multiple-moving-averages-and-rsi-crossover-trading-strat/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
+| 445821 | `ports/445821_dual-moving-average-crossover-with-optimized-stop-loss-strat/` | PineScript | ma_cross | none | fast x2, stop_mult x2 | 4 |
+| 445823 | `ports/445823_hull-moving-average-crossover-strategy/` | PineScript | hull_ma | none | length x2 | 2 |
+| 445824 | `ports/445824_ema-dual-timeframe-ema-crossover-long-short-strategy/` | PineScript | multi_timeframe_ma | none | short_ema x2, long_ema x2 | 4 |
+| 445825 | `ports/445825_dual-exponential-moving-average-cloud-crossover-automated-tr/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 445832 | `ports/445832_rsi-ema-rsi-and-ema-dual-filter-strategy/` | PineScript | rsi_oscillator | trailing_stop_pending | slow_len x2, rsi_dn x2 | 4 |
+| 445833 | `ports/445833_tripplemacd-high-frequency-cryptocurrency-trading-strategy-c/` | PineScript | macd_momentum | none | tp x2, rsi_max x2 | 4 |
+| 445836 | `ports/445836_bollinger-band-dynamic-take-profit-and-dynamic-position-addi/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 445840 | `ports/445840_donchian-channel-breakout-strategy-with-atrsl-trailing-stop/` | PineScript | donchian_breakout | none | don_len x2, atr_mult x2 | 4 |
+| | **2193 ports** | | | | | **10235** |
 
 ## Rejected on reading
 
@@ -2623,6 +2634,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 444028 | 抛物线SAR趋势跟踪策略-60Parabolic-SAR-Trend-Tracking-Strategy-60.md | 1 | pyramiding = 5 with a new long on each SAR crossover while a long is open (the short needs a 2 % down bar): the position accumulates units (criterion 1, as #442112, #430762). |
 | 444355 | 基于平均价海金阿什烛台与相对强弱指数的动态调仓策略Dynamic-Capital-Allocation-Strategy-Based-on-Heikin-Ashi-Candles-and-Relative-Strength-Index.md | 1 | pyramiding = 10000 with a 10 % of equity buy on every green Heikin Ashi candle after a red one until the RSI exit: dollar-cost averaging that accumulates units (criterion 1, as #442229, #430762). |
 | 444961 | 基于双均线交叉的交易策略A-Trading-Strategy-Based-on-Dual-Moving-Average-Crossover.md | 2 | The exits strategy.exit(loss = 0.01 x close, profit = 0.02 x close) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048). |
+| 445808 | 基于技术分析和资金管理的量化交易策略The-Support-Resistance-Psychology-Candlestick-Feedback-Money-Management-strategy.md | 2 | The exits pass strategy.exit(loss = 100, profit = targetPriceLong / targetPriceShort): a price level where the call takes a tick distance, with no /mintick, so the target is undefined as written; the entry levels are absolute prices (close > 100 and close > 70) that are always true on the listed pair (criterion 2, as #442076, #437048). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

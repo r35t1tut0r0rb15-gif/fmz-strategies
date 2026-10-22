@@ -1,0 +1,47 @@
+# Original sizing and money-management code, FMZ #445832 (RSI与EMA双重过滤策略RSI-and-EMA-Dual-Filter-Strategy)
+# Source: https://www.fmz.com/strategy/445832  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Tick size, trailing stop and stop loss inputs  [lines 198-239]
+  198: tick=input(0.5,title="Ticker size",type=input.float)
+  199: 
+  200: // Trend Filter input
+  201: filter=input(true,title="Trend Filter",type=input.bool)
+  202: 
+  203: // Trailing Stop percentage input
+  204: ts_percent = input(1, title="TrailingStop%")
+  205: 
+  206: // Stop Loss percentage input
+  207: sl_percent = input(0.3, title="Stop Loss %")
+  208: 
+  209: // Calculate RSI
+  210: src = close
+  211: up = rma(max(change(src), 0), len)
+  212: down = rma(-min(change(src), 0), len)
+  213: rsi = down == 0 ? 100 : up == 0 ? 0 : 100 - 100 / (1 + up / down)
+  214: 
+  215: // Calculate moving averages
+  216: mmslow = machoice == "SMA" ? sma(close, mmlen) : ema(close, mmlen)
+  217: mmfast = machoice == "SMA" ? sma(close, mmflen) : ema(close, mmflen)
+  218: 
+  219: // Plot moving averages
+  220: plot(mmslow, color=color.white)
+  221: plot(mmfast, color=color.yellow)
+  222: 
+  223: // Conditions for entry and exit
+  224: var lastLongEntryTime = 0
+  225: var lastShortEntryTime = 0
+  226: 
+  227: ConditionEntryL = if filter == true
+  228:     mmfast > mmslow and close > mmslow and rsi < RSIthreshDWN
+  229: else 
+  230:     mmfast > mmslow and rsi < RSIthreshDWN
+  231:     
+  232: ConditionEntryS = if filter == true
+  233:     mmfast < mmslow and close < mmslow and rsi > RSIthreshUP
+  234: else
+  235:     mmfast < mmslow and rsi > RSIthreshUP
+  236: 
+  237: // Calculate trailing stop and stop loss
+  238: ts_calc = close * (1/tick) * ts_percent * 0.01
+  239: sl_price = close * (1 - sl_percent / 100)
