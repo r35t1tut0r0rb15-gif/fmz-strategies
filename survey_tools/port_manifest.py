@@ -4217,6 +4217,25 @@ SIZING = {
     441102: [],
     441103: [],
     441132: [],
+    # ---- FMZ-C, batch C147 (2026-10-22)
+    441133: [],
+    441137: [
+        ("strategy(): default_qty_type cash", 106, 106),
+        ("strategy.entry qty = 5 % of equity / close (x 2, x 4 for the refused adds)", 124, 135),
+    ],
+    441138: [],
+    441141: [],
+    441142: [
+        ("strategy.entry qty = 1", 195, 195),
+    ],
+    441143: [],
+    441144: [],
+    441152: [
+        ("strategy.entry qty = 1", 160, 160),
+    ],
+    441157: [],
+    441158: [],
+    441160: [],
 }
 
 REJECTED_ON_READING = {
@@ -5319,6 +5338,11 @@ REJECTED_ON_READING = {
               "passes price levels (close + range x 2, low[1] - 100) where the call takes tick "
               "distances, with no /mintick: the target and stop are undefined as written "
               "(criterion 2, as #437048, #437677)."),
+    # ---- FMZ-C, batch C147 (2026-10-22)
+    441159: ("2", "The exits strategy.exit(profit = tpbuyval, loss = slbuyval) pass price levels "
+              "(valuewhen(buy, close) +- 0.2 %) where the call takes tick distances, with no "
+              "/mintick: the targets and stops are undefined as written (criterion 2, as #437048, "
+              "#437677)."),
 }
 
 DUPLICATE_ON_READING = {

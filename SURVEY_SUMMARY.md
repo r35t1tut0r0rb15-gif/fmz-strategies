@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1911 |
-| PORT_CANDIDATE | 1563 |
+| PORTED | 1922 |
+| PORT_CANDIDATE | 1551 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 566 |
-| REJECTED_ON_READING | 267 |
+| REJECTED_ON_READING | 268 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2039,7 +2039,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 441102 | `ports/441102_dual-smoothed-stochastic-bressert-strategy/` | PineScript | stochastic_oscillator | none | pds x2, ema_len x2 | 4 |
 | 441103 | `ports/441103_trend-following-stop-loss-strategy-based-on-trend-alert-indi/` | PineScript | atr_trailing_line | coarse_bar_stop | lookback x2, limit_mult x2 | 4 |
 | 441132 | `ports/441132_bottom-hunter-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | tp x2, sl x2 | 4 |
-| | **1911 ports** | | | | | **9179** |
+| 441133 | `ports/441133_a-dual-reversal-momentum-index-trading-strategy/` | PineScript | combo_123_reversal | none | length x2, length_rmi x2 | 4 |
+| 441137 | `ports/441137_rsi-rsi-dynamic-position-averaging-strategy/` | PineScript | rsi_oscillator | none | oversold x2, target x2 | 4 |
+| 441138 | `ports/441138_price-channel-price-channel-and-moving-average-based-trend-f/` | PineScript | trend_filter | none | length x2 | 2 |
+| 441141 | `ports/441141_dual-reversal-arbitrage-strategy/` | PineScript | combo_123_reversal | none | length x2, length_gso x2 | 4 |
+| 441142 | `ports/441142_reversal-tracking-strategy/` | PineScript | mean_reversion | none | bars x2, sl x2 | 4 |
+| 441143 | `ports/441143_sma-atr-sma-atr-dynamic-trailing-stop-strategy/` | PineScript | ma_trend | none | sma_length x2, atr_length x2 | 4 |
+| 441144 | `ports/441144_optimized-momentum-moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 441152 | `ports/441152_trend-tracking-strategy-based-on-moving-average-crossover/` | PineScript | ma_cross | none | rsi_entry x2, rsi_exit x2 | 4 |
+| 441157 | `ports/441157_rsi-rsi-indicator-cross-cycle-profit-and-stop-loss-strategy/` | PineScript | rsi_oscillator | none | rsi_period x2, rsi_thresh x2 | 4 |
+| 441158 | `ports/441158_rsi-advanced-rsi-indicator-trading-strategy/` | PineScript | rsi_oscillator | none | over_sold x2, weekly_over_sold x2 | 4 |
+| 441160 | `ports/441160_richards-turtle-trading-strategy/` | PineScript | donchian_breakout | none | length x2, stop_mult x2 | 4 |
+| | **1922 ports** | | | | | **9221** |
 
 ## Rejected on reading
 
@@ -2312,6 +2323,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 441049 | 基于双均线交叉策略Closing-Price-Comparison-Dual-Moving-Average-Crossover-Strategy.md | 1 | The long's exits close 50 % of the position (strategy.close with qty_percent = 50) on an open-profit test: partial exits (criterion 1, as #436524). |
 | 441065 | 双均线SuperTrend量化交易策略Dual-Moving-Average-Supertrend-Quantitative-Trading-Strategy.md | 1 | Reads the future: Pine v2 security(syminfo.tickerid, '120', ...) without [1] behaves as lookahead_on, so on every 5-minute bar the main SuperTrend uses the final close and ATR bands of the current 2-hour bar, not known until it ends (SURVEY_README request.security rule, as #434485). |
 | 441086 | 基于动量突破EMA策略Momentum-Breakthrough-EMA-Strategy.md | 2 | The only exit, strategy.exit(profit = target_price, loss = stop_loss_price), passes price levels (close + range x 2, low[1] - 100) where the call takes tick distances, with no /mintick: the target and stop are undefined as written (criterion 2, as #437048, #437677). |
+| 441159 | 动态斜率趋势线交易策略Dynamic-Slope-Trend-Line-Trading-Strategy.md | 2 | The exits strategy.exit(profit = tpbuyval, loss = slbuyval) pass price levels (valuewhen(buy, close) +- 0.2 %) where the call takes tick distances, with no /mintick: the targets and stops are undefined as written (criterion 2, as #437048, #437677). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

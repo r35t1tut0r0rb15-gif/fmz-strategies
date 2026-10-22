@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #441137 (基于RSI动态加仓策略RSI-Dynamic-Position-Averaging-Strategy)
+# Source: https://www.fmz.com/strategy/441137  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): default_qty_type cash  [lines 106-106]
+  106: strategy("RSI Martingale Strategy", overlay=true, default_qty_type=strategy.cash, currency=currency.USD)
+
+## strategy.entry qty = 5 % of equity / close (x 2, x 4 for the refused adds)  [lines 124-135]
+  124:     strategy.entry("Initial Buy", strategy.long, qty=(strategy.equity * initialInvestmentPercent / 100) / close)
+  125:     multiplier := 1
+  126: 
+  127: // Adjusting for errors and simplifying the Martingale logic
+  128: // Note: This section simplifies the aggressive position size adjustments without loops
+  129: if (not na(initialEntryPrice))
+  130:     if (close < initialEntryPrice * 0.995) // 0.5% drop from initial entry
+  131:         strategy.entry("Martingale Buy 1", strategy.long, qty=((strategy.equity * initialInvestmentPercent / 100) / close) * 2)
+  132:         multiplier := 2 // Adjusting multiplier for the next potential entry
+  133: 
+  134:     if (close < initialEntryPrice * 0.990) // Further drop
+  135:         strategy.entry("Martingale Buy 2", strategy.long, qty=((strategy.equity * initialInvestmentPercent / 100) / close) * 4)
