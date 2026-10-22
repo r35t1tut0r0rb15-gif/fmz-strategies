@@ -309,6 +309,7 @@ fmz_id,file,final_outcome,criterion,reason
 445808,基于技术分析和资金管理的量化交易策略The-Support-Resistance-Psychology-Candlestick-Feedback-Money-Management-strategy.md,REJECTED_ON_READING,2,"The exits pass strategy.exit(loss = 100, profit = targetPriceLong / targetPriceShort): a price level where the call takes a tick distance, with no /mintick, so the target is undefined as written; the entry levels are absolute prices (close > 100 and close > 70) that are always true on the listed pair (criterion 2, as #442076, #437048)."
 446523,基于RSI和双均线的1小时趋势追踪策略-RSI-and-Dual-Moving-Average-Based-1-Hour-Trend-Following-Strategy.md,REJECTED_ON_READING,2,"The exits strategy.exit(profit = 1.5 x atr, loss = atr) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048)."
 446539,黄金短线交易策略-XAUUSD-Scalper-1m-XAUUSD-1-Minute-Scalping-Strategy.md,REJECTED_ON_READING,2,"The exits strategy.exit(loss = 30 x atr, profit = 30 x atr) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048)."
+446755,双区间滤波动量交易策略-Dual-Range-Filter-Momentum-Trading-Strategy.md,REJECTED_ON_READING,1,"The exits are four strategy.exit calls with qty_percent 5 / 8 / 13 / 21 at take-profit levels of 13-34 % of the average price: partial exits, which the house engine cannot hold (one position, all-in or all-out; as #436524)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2544,3 +2545,14 @@ fmz_id,file,final_outcome,criterion,reason
 446541,EMA双均线交叉策略-EMA-Double-Moving-Average-Crossover-Strategy.md,PORTED,,ports/446541_ema-ema-double-moving-average-crossover-strategy/
 446542,MACD趋势跟踪策略-MACD-Trend-Following-Strategy.md,PORTED,,ports/446542_macd-macd-trend-following-strategy/
 446546,超级趋势与布林带组合策略-Supertrend-and-Bollinger-Bands-Combination-Strategy.md,PORTED,,ports/446546_supertrend-and-bollinger-bands-combination-strategy/
+446549,EMA-MACD-SuperTrend-ADX-ATR多重指标交易信号策略-EMA-MACD-SuperTrend-ADX-ATR-Multi-Indicator-Trading-Signal-Strategy.md,PORTED,,ports/446549_ema-macd-supertrend-adx-atr-ema-macd-supertrend-adx-atr-mult/
+446552,日内多头突破策略-Intraday-Bullish-Breakout-Strategy.md,PORTED,,ports/446552_intraday-bullish-breakout-strategy/
+446553,修正相对强弱指数趋势跟踪策略-Modified-Relative-Strength-Index-Trend-Following-Strategy.md,PORTED,,ports/446553_modified-relative-strength-index-trend-following-strategy/
+446554,布林带与DCA结合的高频交易策略-High-Frequency-Trading-Strategy-Combining-Bollinger-Bands-and-DCA.md,PORTED,,ports/446554_dca-high-frequency-trading-strategy-combining-bollinger-band/
+446555,Gaussian-Channel趋势追踪策略-Gaussian-Channel-Trend-Following-Strategy.md,PORTED,,ports/446555_gaussian-channel-gaussian-channel-trend-following-strategy/
+446556,EMA-RSI-趋势追踪与动量策略-EMA-RSI-Trend-Following-and-Momentum-Strategy.md,PORTED,,ports/446556_ema-rsi-ema-rsi-trend-following-and-momentum-strategy/
+446558,RSI-动量策略-RSI-Momentum-Strategy-with-Manual-TP-and-SL.md,PORTED,,ports/446558_rsi-rsi-momentum-strategy-with-manual-tp-and-sl/
+446560,均线金叉死叉策略-Moving-Average-Crossover-Strategy.md,PORTED,,ports/446560_moving-average-crossover-strategy/
+446561,EMA双均线交叉趋势追踪策略EMA-Dual-Moving-Average-Crossover-Trend-Following-Strategy.md,PORTED,,ports/446561_ema-ema-dual-moving-average-crossover-trend-following-strate/
+446567,亚洲盘高低点突破策略-Asian-Session-High-Low-Breakout-Strategy.md,PORTED,,ports/446567_asian-session-high-low-breakout-strategy/
+446752,基于时间序列数据的自适应动态阈值策略-Time-Series-Adaptive-Dynamic-Threshold-Strategy-Based-on-Equity-Data.md,PORTED,,ports/446752_time-series-adaptive-dynamic-threshold-strategy-based-on-equ/

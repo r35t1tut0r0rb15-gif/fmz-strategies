@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #446553 (修正相对强弱指数趋势跟踪策略-Modified-Relative-Strength-Index-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/446553  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

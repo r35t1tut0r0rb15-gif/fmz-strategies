@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #446560 (均线金叉死叉策略-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/446560  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target percent of the average price  [lines 140-143]
+  140: stopLossLevel = strategy.position_avg_price * (1 - 0.01)
+  141: takeProfitLevel = strategy.position_avg_price * (1 + 0.03)
+  142: strategy.exit("Stop Loss/Take Profit", "Long", stop=stopLossLevel, limit=takeProfitLevel)
+  143: strategy.exit("Stop Loss/Take Profit", "Short", stop=stopLossLevel, limit=takeProfitLevel)

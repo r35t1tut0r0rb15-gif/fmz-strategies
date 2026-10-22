@@ -1,0 +1,21 @@
+# Original sizing and money-management code, FMZ #446567 (亚洲盘高低点突破策略-Asian-Session-High-Low-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/446567  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target 300 ticks from each close  [lines 158-173]
+  158: var float stopLoss = 300 * syminfo.mintick
+  159: var float takeProfit = 300 * syminfo.mintick
+  160: 
+  161: if (not tradeOpened and not operationClosed and close < asiaSessionLow and tradesOpened < maxTrades and hour >= hourSessionStop + offsetHours)
+  162:     strategy.entry("Buy", strategy.long)
+  163:     tradeOpened := true
+  164:     tradesOpened := tradesOpened + 1 // Incrementiamo il contatore delle operazioni aperte
+  165: 
+  166: if (not tradeOpened and not operationClosed and close > asiaSessionHigh and tradesOpened < maxTrades and hour >= hourSessionStop + offsetHours)
+  167:     strategy.entry("Sell", strategy.short)
+  168:     tradeOpened := true
+  169:     tradesOpened := tradesOpened + 1 // Incrementiamo il contatore delle operazioni aperte
+  170: 
+  171: // Impostazione dello stop loss e del take profit
+  172: strategy.exit("Stop Loss / Take Profit", "Buy", stop=close - stopLoss, limit=close + takeProfit)
+  173: strategy.exit("Stop Loss / Take Profit", "Sell", stop=close + stopLoss, limit=close - takeProfit)

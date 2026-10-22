@@ -4761,6 +4761,34 @@ SIZING = {
     446541: [],
     446542: [],
     446546: [],
+    # ---- FMZ-C, batch C176 (2026-10-22)
+    446549: [
+        ("strategy(): 70 % of equity, capital 1000", 107, 111),
+    ],
+    446552: [
+        ("strategy(): margin_long 100, margin_short 100; ATR target / stop multipliers", 93, 167),
+    ],
+    446553: [],
+    446554: [
+        ("DCA quantities 50000 / close x 1.2 / 1.3 / 1.5 / 1.5", 116, 121),
+    ],
+    446555: [
+        ("strategy(): 100 % of equity, capital 1000, commission 0.1 %, slippage 3", 98, 98),
+    ],
+    446556: [
+        ("Take profit / stop loss percent inputs (drawn only); Bybit level", 122, 155),
+    ],
+    446558: [
+        ("Take profit / stop loss percent of the average price", 127, 136),
+    ],
+    446560: [
+        ("Stop / target percent of the average price", 140, 143),
+    ],
+    446561: [],
+    446567: [
+        ("Stop / target 300 ticks from each close", 158, 173),
+    ],
+    446752: [],
 }
 
 REJECTED_ON_READING = {
@@ -6028,6 +6056,10 @@ REJECTED_ON_READING = {
     446539: ("2", "The exits strategy.exit(loss = 30 x atr, profit = 30 x atr) pass price amounts "
               "where the call takes tick distances, with no /mintick: the stop and target are "
               "undefined as written (criterion 2, as #442076, #437048)."),
+    # ---- FMZ-C, batch C176 (2026-10-22)
+    446755: ("1", "The exits are four strategy.exit calls with qty_percent 5 / 8 / 13 / 21 at "
+              "take-profit levels of 13-34 % of the average price: partial exits, which the house "
+              "engine cannot hold (one position, all-in or all-out; as #436524)."),
 }
 
 DUPLICATE_ON_READING = {

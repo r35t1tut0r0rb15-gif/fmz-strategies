@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2215 |
-| PORT_CANDIDATE | 1215 |
+| PORTED | 2226 |
+| PORT_CANDIDATE | 1203 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 310 |
+| REJECTED_ON_READING | 311 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2343,7 +2343,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 446541 | `ports/446541_ema-ema-double-moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 446542 | `ports/446542_macd-macd-trend-following-strategy/` | PineScript | macd_cross | none | fast x2, slow x2 | 4 |
 | 446546 | `ports/446546_supertrend-and-bollinger-bands-combination-strategy/` | PineScript | supertrend | none | factor x2, bb_len x2 | 4 |
-| | **2215 ports** | | | | | **10315** |
+| 446549 | `ports/446549_ema-macd-supertrend-adx-atr-ema-macd-supertrend-adx-atr-mult/` | PineScript | multi_indicator_confluence | none | adx_min x2, factor x2 | 4 |
+| 446552 | `ports/446552_intraday-bullish-breakout-strategy/` | PineScript | reversal_pattern | bar_size_pending | tp_atr x2, sl_atr x2 | 4 |
+| 446553 | `ports/446553_modified-relative-strength-index-trend-following-strategy/` | PineScript | rsi_oscillator | none | ema_len x2, rsi_len x2 | 4 |
+| 446554 | `ports/446554_dca-high-frequency-trading-strategy-combining-bollinger-band/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 446555 | `ports/446555_gaussian-channel-gaussian-channel-trend-following-strategy/` | PineScript | volatility_channel_breakout | none | poles x2, period x2 | 4 |
+| 446556 | `ports/446556_ema-rsi-ema-rsi-trend-following-and-momentum-strategy/` | PineScript | rsi_oscillator | none | fast x2, rsi_lower x2 | 4 |
+| 446558 | `ports/446558_rsi-rsi-momentum-strategy-with-manual-tp-and-sl/` | PineScript | rsi_oscillator | bar_size_pending | length x2, bracket x2 | 4 |
+| 446560 | `ports/446560_moving-average-crossover-strategy/` | PineScript | ma_cross | bar_size_pending | fast x2, slow x2 | 4 |
+| 446561 | `ports/446561_ema-ema-dual-moving-average-crossover-trend-following-strate/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 446567 | `ports/446567_asian-session-high-low-breakout-strategy/` | PineScript | breakout | trailing_stop_pending | session_start x2, offset_hours x2 | 4 |
+| 446752 | `ports/446752_time-series-adaptive-dynamic-threshold-strategy-based-on-equ/` | PineScript | adaptive_average | none |  | 0 |
+| | **2226 ports** | | | | | **10355** |
 
 ## Rejected on reading
 
@@ -2659,6 +2670,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 445808 | 基于技术分析和资金管理的量化交易策略The-Support-Resistance-Psychology-Candlestick-Feedback-Money-Management-strategy.md | 2 | The exits pass strategy.exit(loss = 100, profit = targetPriceLong / targetPriceShort): a price level where the call takes a tick distance, with no /mintick, so the target is undefined as written; the entry levels are absolute prices (close > 100 and close > 70) that are always true on the listed pair (criterion 2, as #442076, #437048). |
 | 446523 | 基于RSI和双均线的1小时趋势追踪策略-RSI-and-Dual-Moving-Average-Based-1-Hour-Trend-Following-Strategy.md | 2 | The exits strategy.exit(profit = 1.5 x atr, loss = atr) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048). |
 | 446539 | 黄金短线交易策略-XAUUSD-Scalper-1m-XAUUSD-1-Minute-Scalping-Strategy.md | 2 | The exits strategy.exit(loss = 30 x atr, profit = 30 x atr) pass price amounts where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #442076, #437048). |
+| 446755 | 双区间滤波动量交易策略-Dual-Range-Filter-Momentum-Trading-Strategy.md | 1 | The exits are four strategy.exit calls with qty_percent 5 / 8 / 13 / 21 at take-profit levels of 13-34 % of the average price: partial exits, which the house engine cannot hold (one position, all-in or all-out; as #436524). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

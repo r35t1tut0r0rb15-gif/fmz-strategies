@@ -1,0 +1,39 @@
+# Original sizing and money-management code, FMZ #446556 (EMA-RSI-趋势追踪与动量策略-EMA-RSI-Trend-Following-and-Momentum-Strategy)
+# Source: https://www.fmz.com/strategy/446556  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take profit / stop loss percent inputs (drawn only); Bybit level  [lines 122-155]
+  122: takeProfitPerc = input(5, title="Take Profit %")
+  123: stopLossPerc = input(3, title="Stop Loss %")
+  124: bybitAccountLevel = input.string("VIP 0", title="Bybit Account Level", options=["VIP 0", "VIP 1", "VIP 2", "VIP 3", "VIP 4"])
+  125: 
+  126: // Calculate moving averages
+  127: fastMA = ta.ema(close, fastLength)
+  128: slowMA = ta.ema(close, slowLength)
+  129: 
+  130: // Calculate RSI
+  131: rsi = ta.rsi(close, rsiLength)
+  132: 
+  133: // Trading conditions
+  134: longCondition = (fastMA > slowMA) and (rsi < rsiLowerThreshold)
+  135: shortCondition = (fastMA < slowMA) and (rsi > rsiUpperThreshold)
+  136: 
+  137: // Set commission based on Bybit account level
+  138: commissionPerc = switch bybitAccountLevel
+  139:     "VIP 0" => 0.075
+  140:     "VIP 1" => 0.065
+  141:     "VIP 2" => 0.055
+  142:     "VIP 3" => 0.045
+  143:     "VIP 4" => 0.035
+  144:     => 0.075
+  145: 
+  146: // Calculate entry prices with commission
+  147: var float longEntryPrice = na
+  148: var float shortEntryPrice = na
+  149: 
+  150: longEntryPriceWithCommission = close * (1 + commissionPerc / 100)
+  151: shortEntryPriceWithCommission = close * (1 - commissionPerc / 100)
+  152: 
+  153: // Calculate take profit and stop loss prices
+  154: takeProfitPrice(entryPrice) => entryPrice * (1 + takeProfitPerc / 100)
+  155: stopLossPrice(entryPrice) => entryPrice * (1 - stopLossPerc / 100)

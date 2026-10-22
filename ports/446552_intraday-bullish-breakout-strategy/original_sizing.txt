@@ -1,0 +1,80 @@
+# Original sizing and money-management code, FMZ #446552 (日内多头突破策略-Intraday-Bullish-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/446552  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin_long 100, margin_short 100; ATR target / stop multipliers  [lines 93-167]
+   93: strategy("Intraday Bullish Script", overlay=true, margin_long=100, margin_short=100)
+   94: 
+   95: 
+   96: 
+   97: // Settings for Strategy 1
+   98: entryCondition1 = input.bool(true, title="Use Entry Condition - Strategy 1")
+   99: 
+  100: // Input for ATR multiplier for stop loss 
+  101: atrMultiplierforstoploss = input.float(2, title="ATR Multiplier for Stop Loss")
+  102: 
+  103: // Input for ATR multiplier for target price
+  104: atrMultiplierforlongs = input.float(4, title="ATR Multiplier for Target Price")
+  105: 
+  106: // Calculate ATR
+  107: atrLength = input.int(14, title="ATR Length")
+  108: atrValue = ta.atr(atrLength)
+  109: 
+  110: // Swing low condition - Strategy 1
+  111: swingLow1 = low == ta.lowest(low, 12) or low[1] == ta.lowest(low, 12)
+  112: 
+  113: 
+  114: /// 
+  115: maj_qual = 6  //input(6)
+  116: maj_len = 30  //input(30)
+  117: min_qual = 5  //input(5)
+  118: min_len = 5  //input(5)
+  119: 
+  120: lele(qual, len) =>
+  121:     bindex = 0.0
+  122:     bindex := nz(bindex[1], 0)
+  123:     sindex = 0.0
+  124:     sindex := nz(sindex[1], 0)
+  125:     ret = 0
+  126:     if close > close[4]
+  127:         bindex := bindex + 1
+  128:         bindex
+  129:     if close < close[4]
+  130:         sindex := sindex + 1
+  131:         sindex
+  132:     if bindex > qual and close < open and high >= ta.highest(high, len)
+  133:         bindex := 0
+  134:         ret := -1
+  135:         ret
+  136:     if sindex > qual and close > open and low <= ta.lowest(low, len)
+  137:         sindex := 0
+  138:         ret := 1
+  139:         
+  140: major = lele(maj_qual, maj_len)
+  141: minor = lele(min_qual, min_len)
+  142: 
+  143: ExaustionLow  = major ==  1 ? 1 : 0
+  144: 
+  145: Bullish3LineStrike = close[3] < open[3] and close[2] < open[2] and close[1] < open[1] and close > open[1]
+  146: 
+  147: // Entry and Exit Logic for Strategy 2
+  148: // Create variables to track trade directions and entry prices for each strategy
+  149: var int tradeDirection1 = na
+  150: 
+  151: var float entryLongPrice1 = na
+  152: 
+  153: 
+  154: // Calculate entry prices for long positions - Strategy 1
+  155: if (swingLow1 or Bullish3LineStrike)
+  156:     entryLongPrice1 := close
+  157:     tradeDirection1 := 1
+  158: 
+  159: 
+  160: 
+  161: // Calculate target prices for long positions based on ATR - Strategy 1
+  162: targetLongPrice1 = entryLongPrice1 + (atrMultiplierforlongs * atrValue)
+  163: 
+  164: 
+  165: 
+  166: // Calculate stop loss prices for long positions based on entry - Strategy 1
+  167: stopLossLongPrice1 = entryLongPrice1 - (atrMultiplierforstoploss * atrValue)
