@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #440952 (游离波段震荡跟踪策略Isolation-Band-Oscillation-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/440952  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): cash 10000, capital 10000, commission 0.03 %  [lines 162-162]
+  162: strategy("Chandelier Exit - Strategy",shorttitle="CE-STG" , overlay=true, default_qty_type=strategy.cash, default_qty_value=10000, initial_capital=10000, currency=currency.USD, commission_value=0.03, commission_type=strategy.commission.percent)

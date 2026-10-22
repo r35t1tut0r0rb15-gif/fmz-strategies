@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1861 |
-| PORT_CANDIDATE | 1623 |
+| PORTED | 1869 |
+| PORT_CANDIDATE | 1611 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 565 |
-| REJECTED_ON_READING | 258 |
+| REJECTED_ON_READING | 262 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -1989,7 +1989,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440866 | `ports/440866_trend-prediction-dual-moving-average-strategy/` | PineScript | wavetrend_oscillator | none | n1 x2, wt_factor x2 | 4 |
 | 440871 | `ports/440871_bollinger-bands-and-moving-averages-combination-strategy/` | PineScript | bollinger_breakout | none | ma1_length x2, ma2_length x2 | 4 |
 | 440878 | `ports/440878_macd-dmi-multi-timeframe-ichimoku-macd-and-dmi-combined-stra/` | PineScript | multi_indicator_confluence | none | adx_min x2, length_dmi x2 | 4 |
-| | **1861 ports** | | | | | **8987** |
+| 440952 | `ports/440952_isolation-band-oscillation-tracking-strategy/` | PineScript | volatility_stop_cross | none | length x2, mult x2 | 4 |
+| 440955 | `ports/440955_donchian-channel-width-trading-strategy/` | PineScript | volatility_regime | none | length x2, smoothe x2 | 4 |
+| 440957 | `ports/440957_triple-exponential-moving-average-profit-taking-and-stop-los/` | PineScript | ma_cross | coarse_bar_stop | tp_mult x2, sl_mult x2 | 4 |
+| 440964 | `ports/440964_momentum-breakout-trading-strategy/` | PineScript | volatility_stop_cross | none | a x2, adx_min x2 | 4 |
+| 440965 | `ports/440965_swing-trading-strategy-based-on-momentum/` | PineScript | ma_cross | bar_size_pending | short_ma x2, long_ma x2 | 4 |
+| 440976 | `ports/440976_sma-trend-following-strategy-based-on-multi-period-sma/` | PineScript | ma_trend | none | dir_span x2, zl_slow x2 | 4 |
+| 440977 | `ports/440977_bollinger-bands-breakout-quantitative-trading-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 440979 | `ports/440979_stochastic-rsi-ema-dual-indicator-stochastic-rsi-and-ema-tra/` | PineScript | stochastic_oscillator | none | stoch_length x2, ema1_period x2 | 4 |
+| | **1869 ports** | | | | | **9019** |
 
 ## Rejected on reading
 
@@ -2253,6 +2261,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440729 | 移动平均线结合的高效量化交易策略The-Efficient-Quant-Trading-Strategy-Combining.md | 1 | The entries test the close against request.security(syminfo.tickerid, 'D', close, lookahead = barmerge.lookahead_on): the current day's final close on every intraday bar, a higher-timeframe value with lookahead (criterion 1). |
 | 440793 | 移动平均和随机指标交易策略-Moving-Average-and-Stochastic-Trading-Strategy.md | 2 | The exits are strategy.exit(profit = close x (50 + 0.01)) and similar: price amounts passed to profit, which is in ticks (criterion 2, as #437048, #437677). |
 | 440874 | 趋势追踪移动平均线与K线形态组合策略Trend-Following-Strategy-with-Moving-Average-and-Candlestick-Patterns.md | 2 | The stop is strategy.exit(loss = strategy.position_avg_price x (1 - 2 %)): a price level passed to loss, which is in ticks (criterion 2, as #437048, #437677). |
+| 440949 | 双唐奇安通道突破策略Double-Donchian-Channel-Breakout-Strategy.md | 1 | The take-profit exits close TP1Yuzde = 50 % of the position (strategy.exit with qty_percent = 50): partial exits (criterion 1, as #436524). |
+| 440954 | 移动平均交叉优化策略Optimized-Moving-Average-Crossover-Strategy.md | 1 | strategy.close_all() is called unconditionally on every bar after the entries, so every entry bar ends flat (as #430380): as written no position is ever held (as #430384). |
+| 440975 | 基于市场多空力量的Ichimoku云突破策略Market-Sentiment-Based-Ichimoku-Breakout-Strategy.md | 1 | The only exit (default ATR trail) is a ratcheting stop at the 7-bar swing low minus one ATR(14), which the house trail (best high or close) cannot express, and entries need a flat position; without it the first long is held to the end (as #440109, #430384). |
+| 440978 | 基于均线交叉的长线追涨策略SMA-Crossover-Bullish-Trend-Following-Strategy.md | 1 | The only exit is a bracket sent on entry-signal bars from strategy.position_avg_price; on the signal bar the position is flat (average na) so nothing is placed, and the bracket is armed only by a later crossover while long: a delayed level the house stops (fixed at the fill) cannot express; without it the long is held (as #440109). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

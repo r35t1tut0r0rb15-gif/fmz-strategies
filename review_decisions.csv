@@ -257,6 +257,10 @@ fmz_id,file,final_outcome,criterion,reason
 440729,移动平均线结合的高效量化交易策略The-Efficient-Quant-Trading-Strategy-Combining.md,REJECTED_ON_READING,1,"The entries test the close against request.security(syminfo.tickerid, 'D', close, lookahead = barmerge.lookahead_on): the current day's final close on every intraday bar, a higher-timeframe value with lookahead (criterion 1)."
 440793,移动平均和随机指标交易策略-Moving-Average-and-Stochastic-Trading-Strategy.md,REJECTED_ON_READING,2,"The exits are strategy.exit(profit = close x (50 + 0.01)) and similar: price amounts passed to profit, which is in ticks (criterion 2, as #437048, #437677)."
 440874,趋势追踪移动平均线与K线形态组合策略Trend-Following-Strategy-with-Moving-Average-and-Candlestick-Patterns.md,REJECTED_ON_READING,2,"The stop is strategy.exit(loss = strategy.position_avg_price x (1 - 2 %)): a price level passed to loss, which is in ticks (criterion 2, as #437048, #437677)."
+440949,双唐奇安通道突破策略Double-Donchian-Channel-Breakout-Strategy.md,REJECTED_ON_READING,1,"The take-profit exits close TP1Yuzde = 50 % of the position (strategy.exit with qty_percent = 50): partial exits (criterion 1, as #436524)."
+440954,移动平均交叉优化策略Optimized-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"strategy.close_all() is called unconditionally on every bar after the entries, so every entry bar ends flat (as #430380): as written no position is ever held (as #430384)."
+440975,基于市场多空力量的Ichimoku云突破策略Market-Sentiment-Based-Ichimoku-Breakout-Strategy.md,REJECTED_ON_READING,1,"The only exit (default ATR trail) is a ratcheting stop at the 7-bar swing low minus one ATR(14), which the house trail (best high or close) cannot express, and entries need a flat position; without it the first long is held to the end (as #440109, #430384)."
+440978,基于均线交叉的长线追涨策略SMA-Crossover-Bullish-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"The only exit is a bracket sent on entry-signal bars from strategy.position_avg_price; on the signal bar the position is flat (average na) so nothing is placed, and the bracket is armed only by a later crossover while long: a delayed level the house stops (fixed at the fill) cannot express; without it the long is held (as #440109)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2136,3 +2140,11 @@ fmz_id,file,final_outcome,criterion,reason
 440866,基于趋势预测双均线策略Trend-Prediction-Dual-Moving-Average-Strategy.md,PORTED,,ports/440866_trend-prediction-dual-moving-average-strategy/
 440871,布林带和移动平均线组合策略Bollinger-Bands-and-Moving-Averages-Combination-Strategy.md,PORTED,,ports/440871_bollinger-bands-and-moving-averages-combination-strategy/
 440878,基于多时间框架的一云延伸MACD和DMI组合策略Multi-Timeframe-Ichimoku-MACD-and-DMI-Combined-Strategy.md,PORTED,,ports/440878_macd-dmi-multi-timeframe-ichimoku-macd-and-dmi-combined-stra/
+440952,游离波段震荡跟踪策略Isolation-Band-Oscillation-Tracking-Strategy.md,PORTED,,ports/440952_isolation-band-oscillation-tracking-strategy/
+440955,基于唐奇安通道指标开发的量化交易策略Donchian-Channel-Width-Trading-Strategy.md,PORTED,,ports/440955_donchian-channel-width-trading-strategy/
+440957,三指数均线止盈止损策略Triple-Exponential-Moving-Average-Profit-Taking-and-Stop-Loss-Strategy.md,PORTED,,ports/440957_triple-exponential-moving-average-profit-taking-and-stop-los/
+440964,基于动量突破交易策略Momentum-Breakout-Trading-Strategy.md,PORTED,,ports/440964_momentum-breakout-trading-strategy/
+440965,动量震荡跨均线交易策略Swing-Trading-Strategy-Based-on-Momentum.md,PORTED,,ports/440965_swing-trading-strategy-based-on-momentum/
+440976,基于多周期SMA指标的趋势跟踪策略Trend-Following-Strategy-Based-on-Multi-Period-SMA.md,PORTED,,ports/440976_sma-trend-following-strategy-based-on-multi-period-sma/
+440977,基于布林带突破的量化交易策略-Bollinger-Bands-Breakout-Quantitative-Trading-Strategy.md,PORTED,,ports/440977_bollinger-bands-breakout-quantitative-trading-strategy/
+440979,双重指标的Stochastic-RSI和EMA交易策略Dual-Indicator-Stochastic-RSI-and-EMA-Trading-Strategy.md,PORTED,,ports/440979_stochastic-rsi-ema-dual-indicator-stochastic-rsi-and-ema-tra/

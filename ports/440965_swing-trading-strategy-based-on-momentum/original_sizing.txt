@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #440965 (动量震荡跨均线交易策略Swing-Trading-Strategy-Based-on-Momentum)
+# Source: https://www.fmz.com/strategy/440965  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

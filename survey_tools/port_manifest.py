@@ -4140,6 +4140,17 @@ SIZING = {
     440866: [],
     440871: [],
     440878: [],
+    # ---- FMZ-C, batch C142 (2026-10-22)
+    440952: [
+        ("strategy(): cash 10000, capital 10000, commission 0.03 %", 162, 162),
+    ],
+    440955: [],
+    440957: [],
+    440964: [],
+    440965: [],
+    440976: [],
+    440977: [],
+    440979: [],
 }
 
 REJECTED_ON_READING = {
@@ -5208,6 +5219,21 @@ REJECTED_ON_READING = {
     # ---- FMZ-C, batch C141 (2026-10-22)
     440874: ("2", "The stop is strategy.exit(loss = strategy.position_avg_price x (1 - 2 %)): a price "
               "level passed to loss, which is in ticks (criterion 2, as #437048, #437677)."),
+    # ---- FMZ-C, batch C142 (2026-10-22)
+    440949: ("1", "The take-profit exits close TP1Yuzde = 50 % of the position (strategy.exit with "
+              "qty_percent = 50): partial exits (criterion 1, as #436524)."),
+    440954: ("1", "strategy.close_all() is called unconditionally on every bar after the entries, so "
+              "every entry bar ends flat (as #430380): as written no position is ever held (as "
+              "#430384)."),
+    440975: ("1", "The only exit (default ATR trail) is a ratcheting stop at the 7-bar swing low "
+              "minus one ATR(14), which the house trail (best high or close) cannot express, and "
+              "entries need a flat position; without it the first long is held to the end (as "
+              "#440109, #430384)."),
+    440978: ("1", "The only exit is a bracket sent on entry-signal bars from "
+              "strategy.position_avg_price; on the signal bar the position is flat (average na) "
+              "so nothing is placed, and the bracket is armed only by a later crossover while "
+              "long: a delayed level the house stops (fixed at the fill) cannot express; without "
+              "it the long is held (as #440109)."),
 }
 
 DUPLICATE_ON_READING = {
