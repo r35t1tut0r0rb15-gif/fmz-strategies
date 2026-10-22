@@ -267,6 +267,10 @@ fmz_id,file,final_outcome,criterion,reason
 441065,双均线SuperTrend量化交易策略Dual-Moving-Average-Supertrend-Quantitative-Trading-Strategy.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 security(syminfo.tickerid, '120', ...) without [1] behaves as lookahead_on, so on every 5-minute bar the main SuperTrend uses the final close and ATR bands of the current 2-hour bar, not known until it ends (SURVEY_README request.security rule, as #434485)."
 441086,基于动量突破EMA策略Momentum-Breakthrough-EMA-Strategy.md,REJECTED_ON_READING,2,"The only exit, strategy.exit(profit = target_price, loss = stop_loss_price), passes price levels (close + range x 2, low[1] - 100) where the call takes tick distances, with no /mintick: the target and stop are undefined as written (criterion 2, as #437048, #437677)."
 441159,动态斜率趋势线交易策略Dynamic-Slope-Trend-Line-Trading-Strategy.md,REJECTED_ON_READING,2,"The exits strategy.exit(profit = tpbuyval, loss = slbuyval) pass price levels (valuewhen(buy, close) +- 0.2 %) where the call takes tick distances, with no /mintick: the targets and stops are undefined as written (criterion 2, as #437048, #437677)."
+441174,动态均线与MACD交叉策略Dynamic-EMA-and-MACD-Crossover-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 10 with three long entry ids (MacdLE 1st in, 2nd in, all in) at 33 % of equity each, each closed by its own signal: the position accumulates units (criterion 1, as #430762)."
+441177,基于均线金叉突破动量策略Dual-Moving-Average-With-Momentum-Breakout-Strategy.md,REJECTED_ON_READING,1,"The first target closes Target1_exit_qty = 50 % of the position (strategy.exit with qty_percent = 50): partial exits (criterion 1, as #436524)."
+441954,三根K线反转趋势策略Three-Candle-Reversal-Trend-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 2 with repeated qty-1 ""Long"" / ""Short"" entries from two signal sets, adding to an open position on the way to the target: the position accumulates units (criterion 1, as #430762)."
+441960,基于波动趋势追踪策略Volatility-Trend-Tracking-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 10 and the entries fire while a position is open whenever the close is beyond the average price (martingale-style adds): the position accumulates units (criterion 1, as #430762)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2208,3 +2212,11 @@ fmz_id,file,final_outcome,criterion,reason
 441157,RSI指标跨周期交叉的止盈止损策略RSI-Indicator-Cross-Cycle-Profit-and-Stop-Loss-Strategy.md,PORTED,,ports/441157_rsi-rsi-indicator-cross-cycle-profit-and-stop-loss-strategy/
 441158,高级RSI指标交易策略Advanced-RSI-Indicator-Trading-Strategy.md,PORTED,,ports/441158_rsi-advanced-rsi-indicator-trading-strategy/
 441160,理查德海龟交易策略Richards-Turtle-Trading-Strategy.md,PORTED,,ports/441160_richards-turtle-trading-strategy/
+441163,量化交易双向S-R策略TD-Sequential-Dual-Direction-S-R-Trading-Strategy.md,PORTED,,ports/441163_s-r-td-sequential-dual-direction-s-r-trading-strategy/
+441164,双重动量指数与反转复合策略Double-Momentum-Index-and-Reversal-Hybrid-Strategy.md,PORTED,,ports/441164_double-momentum-index-and-reversal-hybrid-strategy/
+441178,基于Heikin-Ashi的超级趋势-trailing-stop损策略SuperTrend-Trailing-Stop-Strategy-Based-on-Heikin-Ashi.md,PORTED,,ports/441178_heikin-ashi-trailing-stop-supertrend-trailing-stop-strategy/
+441182,基于移动平均线交叉突破策略Crossing-Moving-Average-Breakout-Strategy.md,PORTED,,ports/441182_crossing-moving-average-breakout-strategy/
+441185,基于底部反转量化交易策略Quantitative-Trading-Strategy-for-Bottom-Reversal.md,PORTED,,ports/441185_quantitative-trading-strategy-for-bottom-reversal/
+441955,固定止盈止损出场的量化交易策略The-Quantitative-Trading-Strategy-Based-on-Dynamic-Moving-Average-Breakthrough-Entry.md,PORTED,,ports/441955_the-quantitative-trading-strategy-based-on-dynamic-moving-av/
+441958,基于双向运动量指数策略Overlay-Trend-Signals-Strategy.md,PORTED,,ports/441958_overlay-trend-signals-strategy/
+441959,双管齐下量化反转追踪策略Dual-driver-Quantized-Reversal-Tracking-Strategy.md,PORTED,,ports/441959_dual-driver-quantized-reversal-tracking-strategy/

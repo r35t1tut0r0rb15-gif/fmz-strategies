@@ -4236,6 +4236,15 @@ SIZING = {
     441157: [],
     441158: [],
     441160: [],
+    # ---- FMZ-C, batch C148 (2026-10-22)
+    441163: [],
+    441164: [],
+    441178: [],
+    441182: [],
+    441185: [],
+    441955: [],
+    441958: [],
+    441959: [],
 }
 
 REJECTED_ON_READING = {
@@ -5343,6 +5352,18 @@ REJECTED_ON_READING = {
               "(valuewhen(buy, close) +- 0.2 %) where the call takes tick distances, with no "
               "/mintick: the targets and stops are undefined as written (criterion 2, as #437048, "
               "#437677)."),
+    # ---- FMZ-C, batch C148 (2026-10-22)
+    441174: ("1", "pyramiding = 10 with three long entry ids (MacdLE 1st in, 2nd in, all in) at 33 % "
+              "of equity each, each closed by its own signal: the position accumulates units "
+              "(criterion 1, as #430762)."),
+    441177: ("1", "The first target closes Target1_exit_qty = 50 % of the position (strategy.exit "
+              "with qty_percent = 50): partial exits (criterion 1, as #436524)."),
+    441954: ("1", "pyramiding = 2 with repeated qty-1 \"Long\" / \"Short\" entries from two signal sets, "
+              "adding to an open position on the way to the target: the position accumulates "
+              "units (criterion 1, as #430762)."),
+    441960: ("1", "pyramiding = 10 and the entries fire while a position is open whenever the close "
+              "is beyond the average price (martingale-style adds): the position accumulates "
+              "units (criterion 1, as #430762)."),
 }
 
 DUPLICATE_ON_READING = {

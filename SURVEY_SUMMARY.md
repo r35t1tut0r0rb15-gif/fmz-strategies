@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1922 |
-| PORT_CANDIDATE | 1551 |
+| PORTED | 1930 |
+| PORT_CANDIDATE | 1539 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 566 |
-| REJECTED_ON_READING | 268 |
+| REJECTED_ON_READING | 272 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2050,7 +2050,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 441157 | `ports/441157_rsi-rsi-indicator-cross-cycle-profit-and-stop-loss-strategy/` | PineScript | rsi_oscillator | none | rsi_period x2, rsi_thresh x2 | 4 |
 | 441158 | `ports/441158_rsi-advanced-rsi-indicator-trading-strategy/` | PineScript | rsi_oscillator | none | over_sold x2, weekly_over_sold x2 | 4 |
 | 441160 | `ports/441160_richards-turtle-trading-strategy/` | PineScript | donchian_breakout | none | length x2, stop_mult x2 | 4 |
-| | **1922 ports** | | | | | **9221** |
+| 441163 | `ports/441163_s-r-td-sequential-dual-direction-s-r-trading-strategy/` | PineScript | reversal_pattern | coarse_bar_stop | price_flip x2, exit_len x2 | 4 |
+| 441164 | `ports/441164_double-momentum-index-and-reversal-hybrid-strategy/` | PineScript | combo_123_reversal | none | length x2, length_csi x2 | 4 |
+| 441178 | `ports/441178_heikin-ashi-trailing-stop-supertrend-trailing-stop-strategy/` | PineScript | supertrend | none | pd x2, factor x2 | 4 |
+| 441182 | `ports/441182_crossing-moving-average-breakout-strategy/` | PineScript | donchian_breakout | coarse_bar_stop | candles_back x2, bars_valid x2 | 4 |
+| 441185 | `ports/441185_quantitative-trading-strategy-for-bottom-reversal/` | PineScript | mean_reversion | none | rsi_level x2, dist_mult x2 | 4 |
+| 441955 | `ports/441955_the-quantitative-trading-strategy-based-on-dynamic-moving-av/` | PineScript | calendar_seasonal | none | hma_len x2 | 2 |
+| 441958 | `ports/441958_overlay-trend-signals-strategy/` | PineScript | directional_movement | none | di_len x2, ema_len x2 | 4 |
+| 441959 | `ports/441959_dual-driver-quantized-reversal-tracking-strategy/` | PineScript | combo_123_reversal | none | length x2, length_kama x2 | 4 |
+| | **1930 ports** | | | | | **9251** |
 
 ## Rejected on reading
 
@@ -2324,6 +2332,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 441065 | 双均线SuperTrend量化交易策略Dual-Moving-Average-Supertrend-Quantitative-Trading-Strategy.md | 1 | Reads the future: Pine v2 security(syminfo.tickerid, '120', ...) without [1] behaves as lookahead_on, so on every 5-minute bar the main SuperTrend uses the final close and ATR bands of the current 2-hour bar, not known until it ends (SURVEY_README request.security rule, as #434485). |
 | 441086 | 基于动量突破EMA策略Momentum-Breakthrough-EMA-Strategy.md | 2 | The only exit, strategy.exit(profit = target_price, loss = stop_loss_price), passes price levels (close + range x 2, low[1] - 100) where the call takes tick distances, with no /mintick: the target and stop are undefined as written (criterion 2, as #437048, #437677). |
 | 441159 | 动态斜率趋势线交易策略Dynamic-Slope-Trend-Line-Trading-Strategy.md | 2 | The exits strategy.exit(profit = tpbuyval, loss = slbuyval) pass price levels (valuewhen(buy, close) +- 0.2 %) where the call takes tick distances, with no /mintick: the targets and stops are undefined as written (criterion 2, as #437048, #437677). |
+| 441174 | 动态均线与MACD交叉策略Dynamic-EMA-and-MACD-Crossover-Strategy.md | 1 | pyramiding = 10 with three long entry ids (MacdLE 1st in, 2nd in, all in) at 33 % of equity each, each closed by its own signal: the position accumulates units (criterion 1, as #430762). |
+| 441177 | 基于均线金叉突破动量策略Dual-Moving-Average-With-Momentum-Breakout-Strategy.md | 1 | The first target closes Target1_exit_qty = 50 % of the position (strategy.exit with qty_percent = 50): partial exits (criterion 1, as #436524). |
+| 441954 | 三根K线反转趋势策略Three-Candle-Reversal-Trend-Strategy.md | 1 | pyramiding = 2 with repeated qty-1 "Long" / "Short" entries from two signal sets, adding to an open position on the way to the target: the position accumulates units (criterion 1, as #430762). |
+| 441960 | 基于波动趋势追踪策略Volatility-Trend-Tracking-Strategy.md | 1 | pyramiding = 10 and the entries fire while a position is open whenever the close is beyond the average price (martingale-style adds): the position accumulates units (criterion 1, as #430762). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #441178 (基于Heikin-Ashi的超级趋势-trailing-stop损策略SuperTrend-Trailing-Stop-Strategy-Based-on-Heikin-Ashi)
+# Source: https://www.fmz.com/strategy/441178  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
