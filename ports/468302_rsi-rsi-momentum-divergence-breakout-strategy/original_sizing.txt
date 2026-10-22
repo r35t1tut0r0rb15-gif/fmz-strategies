@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #468302 (RSI动量背离突破策略-RSI-Momentum-Divergence-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/468302  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 50 / stop 20 points from the current close (re-sent every bar)  [lines 276-277]
+  276: strategy.exit("Take Profit/Stop Loss", from_entry="Long", limit=close + 50, stop=close - 20)
+  277: strategy.exit("Take Profit/Stop Loss", from_entry="Short", limit=close - 50, stop=close + 20)

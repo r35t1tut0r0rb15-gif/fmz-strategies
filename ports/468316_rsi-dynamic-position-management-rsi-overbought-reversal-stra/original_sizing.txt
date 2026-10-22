@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #468316 (动态仓位管理RSI超买反转策略-Dynamic-Position-Management-RSI-Overbought-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/468316  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Fixed quantities 1 / 2 / 3 / 4 (scale-in)  [lines 121-131]
+  121:     strategy.entry("Short", strategy.short, qty=1) // Short 10% of the position
+  122: 
+  123: // Scaling in conditions
+  124: if (price_higher_than_entry)
+  125:     strategy.entry("Short2", strategy.short, qty=2) // Short 20% more of the position
+  126: 
+  127: if (price_higher_than_entry)
+  128:     strategy.entry("Short3", strategy.short, qty=3) // Short 30% more of the position
+  129: 
+  130: if (price_higher_than_entry)
+  131:     strategy.entry("Short4", strategy.short, qty=4) // Short 40% more of the position

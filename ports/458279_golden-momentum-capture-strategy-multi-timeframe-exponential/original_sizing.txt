@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #458279 (金叉动量捕捉策略多重时间框架指数移动平均线交叉系统-Golden-Momentum-Capture-Strategy-Multi-Timeframe-Exponential-Moving-Average-Crossover-System)
+# Source: https://www.fmz.com/strategy/458279  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

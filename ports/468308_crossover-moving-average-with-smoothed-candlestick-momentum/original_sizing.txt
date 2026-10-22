@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #468308 (交叉均线与平安蜡烛动量策略-Crossover-Moving-Average-with-Smoothed-Candlestick-Momentum-Strategy)
+# Source: https://www.fmz.com/strategy/468308  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

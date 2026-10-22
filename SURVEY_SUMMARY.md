@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2527 |
+| PORTED | 2537 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 856 |
-| HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 357 |
+| PORT_CANDIDATE | 844 |
+| HELD_NEEDS_VOLUME | 568 |
+| REJECTED_ON_READING | 358 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2655,7 +2655,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 458272 | `ports/458272_sma-fvg-sma-comprehensive-trading-system-combining-sma-cross/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
 | 458273 | `ports/458273_ema-sma-ema-sma-moving-average-crossover-momentum-indicator/` | PineScript | ma_cross | none | ema_len x2, sma1 x2, sma2 x2 | 8 |
 | 458274 | `ports/458274_supertrend-ema-supertrend-and-ema-crossover-quantitative-tra/` | PineScript | supertrend | coarse_bar_stop | ema_len x2, factor x2, bracket x2 | 8 |
-| | **2527 ports** | | | | | **11878** |
+| 458276 | `ports/458276_dual-moving-average-momentum-trading-strategy-time-optimized/` | PineScript | ma_cross | none | short_len x2, long_len x2, bracket x2 | 8 |
+| 458277 | `ports/458277_ichimoku-advanced-multi-timeframe-ichimoku-cloud-trading-str/` | PineScript | ichimoku | none | tenkan x2, kijun x2, span_b x2 | 8 |
+| 458278 | `ports/458278_triple-supertrend-crossover-strategy/` | PineScript | supertrend | none |  | 0 |
+| 458279 | `ports/458279_golden-momentum-capture-strategy-multi-timeframe-exponential/` | PineScript | ma_cross | none | fast x2, slow x2, trend x2 | 8 |
+| 468299 | `ports/468299_multi-indicator-synergy-long-term-trading-strategy/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop_pending | open_count x2, bracket x2, ma_len x2 | 8 |
+| 468302 | `ports/468302_rsi-rsi-momentum-divergence-breakout-strategy/` | PineScript | rsi_oscillator | trailing_stop_pending | rsi_len x2, window x2 | 4 |
+| 468305 | `ports/468305_dynamic-stop-loss-moving-average-crossover-strategy/` | PineScript | ma_cross | coarse_bar_stop | short_len x2, long_len x2, rr x2 | 8 |
+| 468308 | `ports/468308_crossover-moving-average-with-smoothed-candlestick-momentum/` | PineScript | candle_pattern | none | fast x2, slow x2 | 4 |
+| 468309 | `ports/468309_dynamic-trend-following-strategy-with-machine-learning-enhan/` | PineScript | ma_cross | none | short_len x2, long_len x2, sl_mult x2 | 8 |
+| 468316 | `ports/468316_rsi-dynamic-position-management-rsi-overbought-reversal-stra/` | PineScript | rsi_oscillator | none | sma_long x2, rsi_th x2, exit_th x2 | 8 |
+| | **2537 ports** | | | | | **11942** |
 
 ## Rejected on reading
 
@@ -3018,6 +3028,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 458243 | RSI超卖定期投资策略与冷却期优化RSI-Oversold-Periodic-Investment-Strategy-with-Cooldown-Optimization.md | 1 | Every RSI-under-30 bar at least 30 days after the last buy sends strategy.entry plus a strategy.order buy (the order is not limited by pyramiding), and nothing ever sells: a dollar-cost accumulation whose size path is the strategy (criterion 1, as #439958, #430762). |
 | 458245 | 基于艾略特波浪与汤姆德马克顺势交易策略-Elliott-Wave-and-Tom-DeMark-Trend-Following-Trading-Strategy.md | 1 | The long's limit and stop are the same price (wave1 = wave3 = valuewhen(wave_trend == 1, close, 0)) and the short's too (wave2 = wave4), sent on every bar including the signal bar: one of each pair is always marketable at the fill, so every trade closes at the open it fills at and no position is ever held as written (criterion 1, zero-length trades as #452827). |
 | 458265 | 高级马尔可夫模型技术指标融合交易策略Advanced-Markov-Model-Technical-Indicator-Fusion-Trading-Strategy.md | 1 | The trades follow math.random() draws (each bar's 'next state' is chosen by random numbers against fixed probabilities): no reproducible rule, and every run of the script trades differently (criterion 1). |
+| 468306 | 双均线交叉日内盈利目标策略-Dual-Moving-Average-Crossover-Strategy-with-Daily-Profit-Target.md | 1 | strategy.netprofit >= 200 (the 'daily' target is the cumulative net profit in currency) closes every position on every later bar: once the running profit of the sized trades passes 200 the strategy stops trading, so the trades depend on the position size and the account history (criterion 1, equity / net-profit gate). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

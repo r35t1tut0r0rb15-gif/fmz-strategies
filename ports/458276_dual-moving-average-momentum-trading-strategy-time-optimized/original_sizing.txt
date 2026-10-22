@@ -1,0 +1,60 @@
+# Original sizing and money-management code, FMZ #458276 (双均线动量交易策略基于时间优化的趋势跟踪系统-Dual-Moving-Average-Momentum-Trading-Strategy-Time-Optimized-Trend-Following-System)
+# Source: https://www.fmz.com/strategy/458276  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Targets 100 / 150, stops 100 / 1500 / 150 (price units)  [lines 178-232]
+  178: target_1 = input.int(100, minval=1, title="Target_1")
+  179: target_2 = input.int(150, minval=1, title="Target_2")
+  180: 
+  181: // User-defined input for the start and end times with default values
+  182: startTimeInput = input.int(12, title="Start Time for Session (UTC, in hours)", minval=0, maxval=23)
+  183: endTimeInput = input.int(17, title="End Time Session (UTC, in hours)", minval=0, maxval=23)
+  184: // Convert the input hours to minutes from midnight
+  185: startTime = startTimeInput * 60 
+  186: endTime = endTimeInput * 60  
+  187: 
+  188: // Function to convert the current exchange time to UTC time in minutes
+  189: toUTCTime(exchangeTime) =>
+  190:     exchangeTimeInMinutes = exchangeTime / 60000
+  191:     // Adjust for UTC time
+  192:     utcTime = exchangeTimeInMinutes % 1440
+  193:     utcTime
+  194: 
+  195: // Get the current time in UTC in minutes from midnight
+  196: utcTime = toUTCTime(time)
+  197: 
+  198: // Check if the current UTC time is within the allowed timeframe
+  199: isAllowedTime = (utcTime >= startTime and utcTime < endTime)
+  200: 
+  201: // Calculating moving averages
+  202: shortMAValue = ta.sma(close, shortMA)
+  203: longMAValue = ta.sma(close, longMA)
+  204: 
+  205: // Plotting the MAs
+  206: plot(shortMAValue, title="Short MA", color=color.blue)
+  207: plot(longMAValue, title="Long MA", color=color.red)
+  208: 
+  209: // Tracking buy and sell signals
+  210: var float buyEntryPrice_1 = na
+  211: var float buyEntryPrice_2 = na
+  212: var float sellEntryPrice_1 = na
+  213: var float sellEntryPrice_2 = na
+  214: 
+  215: // Logic for Buy and Sell signals
+  216: buySignal = ta.crossover(shortMAValue, longMAValue) and isAllowedTime
+  217: sellSignal = ta.crossunder(shortMAValue, longMAValue) and isAllowedTime
+  218: 
+  219: // Entry conditions for long and short trades
+  220: if (buySignal)
+  221:     strategy.entry("Buy_1", strategy.long)
+  222:     strategy.exit("TP_1", "Buy_1", limit=close + target_1, stop=close - 100)
+  223: 
+  224:     strategy.entry("Buy_2", strategy.long)
+  225:     strategy.exit("TP_2", "Buy_2", limit=close + target_2, stop=close - 1500)
+  226: 
+  227: if (sellSignal)
+  228:     strategy.entry("Sell_1", strategy.short)
+  229:     strategy.exit("TP_3", "Sell_1", limit=close - target_1, stop=close + 100)
+  230: 
+  231:     strategy.entry("Sell_2", strategy.short)
+  232:     strategy.exit("TP_4", "Sell_2", limit=close - target_2, stop=close + 150)

@@ -1,0 +1,46 @@
+# Original sizing and money-management code, FMZ #468299 (多指标协同长线交易策略-Multi-Indicator-Synergy-Long-Term-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/468299  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target 0.5 % of the signal close  [lines 190-230]
+  190: stopLossPercent = input(0.5, title="Porcentaje de Stop Loss (%)") / 100
+  191: takeProfitPercent = input(0.5, title="Porcentaje de Take Profit (%)") / 100
+  192: 
+  193: // Parámetros del Parabolic SAR
+  194: sarStart = input.float(0.02, title="Parabolic SAR Start")
+  195: sarIncrement = input.float(0.02, title="Parabolic SAR Increment")
+  196: sarMaximum = input.float(0.2, title="Parabolic SAR Maximum")
+  197: enableSARExit = input.bool(true, title="Activar Salida por Parabolic SAR")
+  198: closeOnSARClose = input.bool(true, title="Cerrar al Cierre de Vela con Parabolic SAR")
+  199: 
+  200: // Parámetros de la Media Móvil para salida
+  201: lengthSMAExit = input(5, title="Periodo de la Media Móvil para Salida")
+  202: enableSMAExit = input.bool(true, title="Activar Salida por Media Móvil")
+  203: 
+  204: // Parámetros para la condición de cierre por velas doji
+  205: enableDojiExit = input.bool(true, title="Activar Salida por Velas Doji")
+  206: 
+  207: // Cálculo de la media móvil de 200 periodos
+  208: ma200 = ta.sma(close, lengthMA)
+  209: 
+  210: // Cálculo de la media móvil para salida
+  211: maExit = ta.sma(close, lengthSMAExit)
+  212: 
+  213: // Cálculo del Parabolic SAR
+  214: sar = ta.sar(sarStart, sarIncrement, sarMaximum)
+  215: 
+  216: // Contar las velas rojas consecutivas
+  217: var int contador_velas_rojas = 0
+  218: contador_velas_rojas := close < open ? contador_velas_rojas + 1 : 0
+  219: 
+  220: // Condición para abrir una operación Long
+  221: puedeAbrirOperacion = (contador_velas_rojas < velas_rojas_limite)
+  222: condicion_long = (contador_velas_rojas >= velas_rojas_apertura) and (close > ma200) and puedeAbrirOperacion
+  223: 
+  224: // Abrir operación Long si se cumplen las condiciones
+  225: if (condicion_long)
+  226:     entryPrice = close
+  227:     stopLossPrice = entryPrice * (1 - stopLossPercent)
+  228:     takeProfitPrice = entryPrice * (1 + takeProfitPercent)
+  229:     strategy.entry("Compra", strategy.long)
+  230:     strategy.exit("Take Profit/Stop Loss", "Compra", limit=takeProfitPrice, stop=stopLossPrice)
