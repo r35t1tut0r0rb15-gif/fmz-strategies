@@ -1,0 +1,54 @@
+# Original sizing and money-management code, FMZ #477974 (动态趋势跟踪型双均线通道策略与风险管理系统-Dynamic-Trend-Following-Dual-Moving-Average-Channel-Strategy-with-Risk-Management-System)
+# Source: https://www.fmz.com/strategy/477974  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; stop 25 % under the highest high  [lines 100-148]
+  100: strategy("Moving Average Channel (MAC)", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+  101: 
+  102: // Parameters for Moving Averages
+  103: upperMALength = input.int(10, title="Upper MA Length")
+  104: lowerMALength = input.int(8, title="Lower MA Length")
+  105: stopLossPercent = input.float(25.0, title="Stop Loss (%)", minval=0.1) / 100
+  106: 
+  107: // Calculate Moving Averages
+  108: upperMA = ta.sma(high, upperMALength)
+  109: lowerMA = ta.sma(low, lowerMALength)
+  110: 
+  111: // Plot Moving Averages
+  112: plot(upperMA, color=color.red, title="Upper Moving Average")
+  113: plot(lowerMA, color=color.green, title="Lower Moving Average")
+  114: 
+  115: // Initialize variables
+  116: var int upperCounter = 0
+  117: var int lowerCounter = 0
+  118: var float entryPrice = na
+  119: var float highestPrice = na
+  120: 
+  121: // Update counters based on conditions
+  122: if (low <= upperMA)
+  123:     upperCounter := 0
+  124: else
+  125:     upperCounter += 1
+  126: 
+  127: if (high >= lowerMA)
+  128:     lowerCounter := 0
+  129: else
+  130:     lowerCounter += 1
+  131: 
+  132: // Entry condition: 5 consecutive bars above the Upper MA
+  133: if (upperCounter == 5 and strategy.position_size == 0)
+  134:     strategy.entry("Long", strategy.long)
+  135:     highestPrice := high  // Initialize highest price
+  136: 
+  137: // Update the highest price after entry
+  138: if (strategy.position_size > 0)
+  139:     highestPrice := na(highestPrice) ? high : math.max(highestPrice, high)
+  140: 
+  141: // Exit condition: 5 consecutive bars below the Lower MA
+  142: if (lowerCounter == 5 and strategy.position_size > 0)
+  143:     strategy.close("Long", comment="Exit: 5 bars below Lower MA")
+  144: 
+  145: // Stop-loss condition: Exit if market closes below 25% of the highest price since entry
+  146: stopLossCondition = low < highestPrice * (1 - stopLossPercent)
+  147: if (stopLossCondition and strategy.position_size > 0)
+  148:     strategy.close("Long", comment="Exit: Stop Loss")

@@ -1,0 +1,63 @@
+# Original sizing and money-management code, FMZ #478694 (动态趋势追踪与均线辅助的SuperTrend三重优化策略-Dynamic-Trend-Following-SuperTrend-Triple-Enhancement-Strategy)
+# Source: https://www.fmz.com/strategy/478694  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; stop 50 / trail 70 points  [lines 101-158]
+  101: strategy(" nifty supertrend triton", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+  102: 
+  103: // Input parameters
+  104: atrPeriod = input.int(16, "ATR Length", step=1)
+  105: factor = input.float(3.02, "Factor", step=0.01)
+  106: maPeriod = input.int(49, "Moving Average Period", step=1)
+  107: trailPoints = input.int(70, "Trailing Points", step=1)  // Points after which trailing stop activates
+  108: initialStopLossPoints = input.int(50, "Initial Stop Loss Points", step=1)  // Initial stop loss of 50 points
+  109: 
+  110: // Calculate Supertrend
+  111: [_, direction] = ta.supertrend(factor, atrPeriod)
+  112: 
+  113: // Calculate EMA
+  114: ema = ta.ema(close, maPeriod)
+  115: 
+  116: // Variables to track stop loss levels
+  117: var float trailStop = na
+  118: var float entryPrice = na
+  119: var float initialStopLoss = na  // To track the initial stop loss
+  120: 
+  121: // Generate buy and sell signals
+  122: if ta.change(direction) < 0 and close > ema
+  123:     if strategy.position_size == 0  // Only open a new long position if no current position
+  124:         strategy.entry("Buy", strategy.long)
+  125:         entryPrice := close  // Record the entry price for the long position
+  126:         initialStopLoss := entryPrice - initialStopLossPoints  // Set initial stop loss for long position
+  127:         trailStop := na  // Reset trailing stop for long
+  128: 
+  129: if ta.change(direction) > 0 and close < ema
+  130:     if strategy.position_size == 0  // Only open a new short position if no current position
+  131:         strategy.entry("Sell", strategy.short)
+  132:         entryPrice := close  // Record the entry price for the short position
+  133:         initialStopLoss := entryPrice + initialStopLossPoints  // Set initial stop loss for short position
+  134:         trailStop := na  // Reset trailing stop for short
+  135: 
+  136: // Apply initial stop loss for long positions
+  137: if (strategy.position_size > 0)  // Check if in a long position
+  138:     if close <= initialStopLoss  // If the price drops to or below the initial stop loss
+  139:         strategy.close("Buy", "Initial Stop Loss Hit")  // Exit the long position
+  140: 
+  141: // Apply trailing stop logic for long positions
+  142: if (strategy.position_size > 0)  // Check if in a long position
+  143:     if (close - entryPrice >= trailPoints)  // If the price has moved up by the threshold
+  144:         trailStop := na(trailStop) ? close - trailPoints : math.max(trailStop, close - trailPoints)  // Adjust trailing stop upwards
+  145:     if not na(trailStop) and close < trailStop  // If the price drops below the trailing stop
+  146:         strategy.close("Buy", "Trailing Stop Hit")  // Exit the long position
+  147: 
+  148: // Apply initial stop loss for short positions
+  149: if (strategy.position_size < 0)  // Check if in a short position
+  150:     if close >= initialStopLoss  // If the price rises to or above the initial stop loss
+  151:         strategy.close("Sell", "Initial Stop Loss Hit")  // Exit the short position
+  152: 
+  153: // Apply trailing stop logic for short positions
+  154: if (strategy.position_size < 0)  // Check if in a short position
+  155:     if (entryPrice - close >= trailPoints)  // If the price has moved down by the threshold
+  156:         trailStop := na(trailStop) ? close + trailPoints : math.min(trailStop, close + trailPoints)  // Adjust trailing stop downwards
+  157:     if not na(trailStop) and close > trailStop  // If the price rises above the trailing stop
+  158:         strategy.close("Sell", "Trailing Stop Hit")  // Exit the short position

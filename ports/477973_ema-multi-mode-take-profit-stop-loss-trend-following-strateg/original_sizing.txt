@@ -1,0 +1,85 @@
+# Original sizing and money-management code, FMZ #477973 (基于EMA马德里带和唐奇安通道的多模式止盈止损趋势跟踪策略-Multi-Mode-Take-Profit-Stop-Loss-Trend-Following-Strategy-Based-on-EMA-Madrid-Ribbon-and-Donchian-Channel)
+# Source: https://www.fmz.com/strategy/477973  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty 1 (contract size); risk-reward TP / SL, R:R 2; tick / dollar modes off  [lines 105-184]
+  105: strategy("Pamplona Enhanced TP/SL Toggleable", overlay=true, default_qty_type=strategy.fixed, default_qty_value=1)
+  106: 
+  107: // Input settings
+  108: use_tick_based = input.bool(false, title="Use Tick-Based TP/SL")
+  109: use_dollar_based = input.bool(false, title="Use Dollar-Based TP/SL")
+  110: use_risk_reward = input.bool(true, title="Use Risk-Reward TP/SL") // Default option
+  111: 
+  112: tick_size = input.float(0.1, title="Tick Size (for Tick-Based)", minval=0.0001, step=0.0001)
+  113: ticks = input.int(10, title="Ticks (for Tick-Based TP/SL)", minval=1)
+  114: dollar_tp = input.float(10.0, title="Dollar Take Profit (for Dollar-Based)", minval=0.01, step=0.01)
+  115: dollar_sl = input.float(10.0, title="Dollar Stop Loss (for Dollar-Based)", minval=0.01, step=0.01)
+  116: risk_reward_ratio = input.float(2.0, title="Risk-Reward Ratio (for Risk-Reward TP/SL)", minval=0.1, step=0.1)
+  117: contract_size = input.int(1, title="Contract Size", minval=1)
+  118: 
+  119: // Retrieve indicators
+  120: ema200 = ta.ema(close, 200)
+  121: src = close
+  122: ma05 = ta.ema(src, 5)
+  123: ma100 = ta.ema(src, 100)
+  124: madrid_green = ma05 > ma100
+  125: dlen = input.int(20, title="Donchian Channel Period")
+  126: highest_d = ta.highest(high, dlen)
+  127: lowest_d = ta.lowest(low, dlen)
+  128: donchian_green = close > highest_d[1]
+  129: donchian_red = close < lowest_d[1]
+  130: 
+  131: // Track signals
+  132: var int long_signal_count = 0
+  133: var int short_signal_count = 0
+  134: 
+  135: // Conditions
+  136: long_condition_raw = madrid_green and donchian_green and close > ema200
+  137: short_condition_raw = not madrid_green and donchian_red and close < ema200
+  138: 
+  139: // Update signal counters
+  140: if long_condition_raw
+  141:     long_signal_count += 1
+  142: else
+  143:     long_signal_count := 0
+  144: 
+  145: if short_condition_raw
+  146:     short_signal_count += 1
+  147: else
+  148:     short_signal_count := 0
+  149: 
+  150: // Final conditions to enter on the second signal
+  151: long_condition = long_signal_count == 2
+  152: short_condition = short_signal_count == 2
+  153: 
+  154: // Ensure exactly one TP/SL mode is enabled
+  155: tp_sl_mode_count = (use_tick_based ? 1 : 0) + (use_dollar_based ? 1 : 0) + (use_risk_reward ? 1 : 0)
+  156: if tp_sl_mode_count != 1
+  157:     runtime.error("Enable exactly ONE TP/SL mode (Tick-Based, Dollar-Based, or Risk-Reward).")
+  158: 
+  159: // Function to calculate TP/SL based on active mode
+  160: calc_tp_sl(entry_price, is_long) =>
+  161:     float tp = na
+  162:     float sl = na
+  163:     if use_tick_based
+  164:         tp := is_long ? entry_price + ticks * tick_size : entry_price - ticks * tick_size
+  165:         sl := is_long ? entry_price - ticks * tick_size : entry_price + ticks * tick_size
+  166:     else if use_dollar_based
+  167:         tp := is_long ? entry_price + (dollar_tp / contract_size) : entry_price - (dollar_tp / contract_size)
+  168:         sl := is_long ? entry_price - (dollar_sl / contract_size) : entry_price + (dollar_sl / contract_size)
+  169:     else if use_risk_reward
+  170:         risk = is_long ? close - low : high - close
+  171:         tp := is_long ? close + (risk * risk_reward_ratio) : close - (risk * risk_reward_ratio)
+  172:         sl := is_long ? close - risk : close + risk
+  173:     [tp, sl]
+  174: 
+  175: // Entry logic
+  176: if long_condition
+  177:     [take_profit, stop_loss] = calc_tp_sl(close, true)
+  178:     strategy.entry("Long", strategy.long, qty=contract_size)
+  179:     strategy.exit("Take Profit", from_entry="Long", limit=take_profit, stop=stop_loss)
+  180: 
+  181: if short_condition
+  182:     [take_profit, stop_loss] = calc_tp_sl(close, false)
+  183:     strategy.entry("Short", strategy.short, qty=contract_size)
+  184:     strategy.exit("Take Profit", from_entry="Short", limit=take_profit, stop=stop_loss)

@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #478686 (多维度云图价格突破趋势确认量化交易策略-Multi-Dimensional-Ichimoku-Cloud-Price-Breakthrough-Trend-Confirmation-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/478686  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

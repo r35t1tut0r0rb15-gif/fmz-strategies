@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #477975 (布林带与斐波那契日内趋势追踪策略-Bollinger-Bands-and-Fibonacci-Intraday-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/477975  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 50 / target 100 x mintick from the current close  [lines 151-155]
+  151: stopLoss = input.float(50, title="Stop Loss (pips)", minval=1)
+  152: takeProfit = input.float(100, title="Take Profit (pips)", minval=1)
+  153: 
+  154: strategy.exit("Exit Buy", "Buy", stop=close - stopLoss * syminfo.mintick, limit=close + takeProfit * syminfo.mintick)
+  155: strategy.exit("Exit Sell", "Sell", stop=close + stopLoss * syminfo.mintick, limit=close - takeProfit * syminfo.mintick)

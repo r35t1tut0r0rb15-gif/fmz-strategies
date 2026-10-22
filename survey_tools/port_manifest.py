@@ -6237,6 +6237,26 @@ SIZING = {
     477961: [
         ("strategy(): capital 100000, commission 0.001425, slippage 1; ATR 2 stop / 2 target", 107, 205),
     ],
+    # ---- FMZ-C, batch C238 (2026-10-22)
+    477973: [
+        ("qty 1 (contract size); risk-reward TP / SL, R:R 2; tick / dollar modes off", 105, 184),
+    ],
+    477974: [
+        ("strategy(): 100 % of equity; stop 25 % under the highest high", 100, 148),
+    ],
+    477975: [
+        ("Stop 50 / target 100 x mintick from the current close", 151, 155),
+    ],
+    477977: [],
+    478685: [
+        ("Trailing 5 % of the close (bar-close ratchet)", 109, 144),
+    ],
+    478686: [],
+    478687: [],
+    478690: [],
+    478694: [
+        ("strategy(): 100 % of equity; stop 50 / trail 70 points", 101, 158),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7872,6 +7892,14 @@ REJECTED_ON_READING = {
     477953: ("1", "Every signal sends strategy.order (not strategy.entry) for 1 unit, which ignores "
               "pyramiding and nets with the open position: up to four buys or sells a bar "
               "accumulate units (criterion 1, repeat adds)."),
+    # ---- FMZ-C, batch C238 (2026-10-22)
+    477970: ("1", "pyramiding=2 with repeat \"Buy\" / \"Sell\" entries, and every entry gated by the "
+              "drawdown of strategy.equity from its peak: units add and the account's equity path "
+              "gates trading (criterion 1, pyramiding >= 2 with repeat entries and equity gates)."),
+    477976: ("1", "\"Scale Buy\" / \"Scale Sell\" entries add 1 unit each time the close moves a point "
+              "against the average price: averaging down (criterion 1, DCA adds)."),
+    478691: ("1", "The long and short each send a \"Partial Take Profit\" exit with qty_percent=50 and "
+              "a break-even move for the other half: partial exits (criterion 1)."),
 }
 
 DUPLICATE_ON_READING = {

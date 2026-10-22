@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #478685 (动态神经网络RSI趋势跟踪交易策略-Dynamic-Neural-RSI-Trend-Following-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/478685  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trailing 5 % of the close (bar-close ratchet)  [lines 109-144]
+  109: trailStopPercent = input.float(5.0, title="Trailing Stop Loss (%)")
+  110: waitingPeriod = input.int(10, title="Waiting Period (Days)")
+  111: 
+  112: // Calculate 200 SMA
+  113: sma200 = ta.sma(close, smaLength)
+  114: 
+  115: // Calculate RSI
+  116: rsi = ta.rsi(close, rsiLength)
+  117: 
+  118: // Plot the 200 SMA and RSI
+  119: plot(sma200, color=color.blue, linewidth=2, title="200 SMA")
+  120: plot(rsi, color=color.purple, title="RSI", display=display.none)
+  121: 
+  122: // Define buy and sell conditions
+  123: var isLong = false
+  124: var float lastExitTime = na
+  125: var float trailStopPrice = na
+  126: 
+  127: // Explicitly declare timeSinceExit as float
+  128: float timeSinceExit = na(lastExitTime) ? na : (time - lastExitTime) / (24 * 60 * 60 * 1000)
+  129: canEnter = na(lastExitTime) or timeSinceExit > waitingPeriod
+  130: 
+  131: buyCondition = close > sma200 and rsi < rsiThreshold and canEnter
+  132: 
+  133: if (buyCondition and not isLong)
+  134:     strategy.entry("Buy", strategy.long)
+  135:     trailStopPrice := na
+  136:     isLong := true
+  137: 
+  138: // Update trailing stop loss if long
+  139: if (isLong)
+  140:     trailStopPrice := na(trailStopPrice) ? close * (1 - trailStopPercent / 100) : math.max(trailStopPrice, close * (1 - trailStopPercent / 100))
+  141: 
+  142: // Check for trailing stop loss or sell condition
+  143: if (isLong and (close < trailStopPrice or close < sma200))
+  144:     strategy.close("Buy")

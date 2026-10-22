@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2859 |
+| PORTED | 2868 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 570 |
-| PORT_CANDIDATE | 472 |
-| REJECTED_ON_READING | 406 |
+| PORT_CANDIDATE | 460 |
+| REJECTED_ON_READING | 409 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2987,7 +2987,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 477956 | `ports/477956_enhanced-price-volume-trend-momentum-strategy/` | PineScript | macd | coarse_bar_stop, trailing_stop_pending | tp_atr x2, sl_atr x2 | 4 |
 | 477960 | `ports/477960_k-dual-timeframe-trend-reversal-candlestick-pattern-quantita/` | PineScript | candle_pattern | none | hold_periods x2, length x2 | 4 |
 | 477961 | `ports/477961_triple-bottom-rebound-momentum-breakthrough-strategy/` | PineScript | ma_cross | coarse_bar_stop | atr_factor x2, profit_factor x2 | 4 |
-| | **2859 ports** | | | | | **13274** |
+| 477973 | `ports/477973_ema-multi-mode-take-profit-stop-loss-trend-following-strateg/` | PineScript | channel_breakout | coarse_bar_stop, trailing_stop_pending | dlen x2, rr x2 | 4 |
+| 477974 | `ports/477974_dynamic-trend-following-dual-moving-average-channel-strategy/` | PineScript | channel_breakout | none | count x2, stop_pct x2 | 4 |
+| 477975 | `ports/477975_bollinger-bands-and-fibonacci-intraday-trend-following-strat/` | PineScript | bollinger_reversion | trailing_stop_pending | length x2, mult x2 | 4 |
+| 477977 | `ports/477977_ema-multi-ema-crossover-trend-following-quantitative-trading/` | PineScript | ma_cross | none | short_ema x2, medium_ema x2 | 4 |
+| 478685 | `ports/478685_rsi-dynamic-neural-rsi-trend-following-trading-strategy/` | PineScript | rsi_oscillator | none | trail_pct x2, waiting_days x2 | 4 |
+| 478686 | `ports/478686_multi-dimensional-ichimoku-cloud-price-breakthrough-trend-co/` | PineScript | ichimoku | none | conversion x2, base x2 | 4 |
+| 478687 | `ports/478687_dynamic-support-resistance-bollinger-bands-multi-indicator-c/` | PineScript | support_resistance | bar_size_pending | prd x2, channel_w x2 | 4 |
+| 478690 | `ports/478690_t3-optimized-dual-t3-trend-tracking-strategy/` | PineScript | trend_tracker | none | t3_length x2, tott_coeff x2 | 4 |
+| 478694 | `ports/478694_supertrend-dynamic-trend-following-supertrend-triple-enhance/` | PineScript | supertrend | none | factor x2, ma_period x2 | 4 |
+| | **2868 ports** | | | | | **13310** |
 
 ## Rejected on reading
 
@@ -3399,6 +3408,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 477610 | 基于动态波动率的高频指数均线交叉量化策略-Dynamic-Volatility-Driven-High-Frequency-EMA-Crossover-Quantitative-Strategy.md | 2 | The trailing exits pass trail_points = atr x 1.5 and trail_offset = atr x 1.0, price amounts, where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #442115). |
 | 477950 | 回弹趋势双均线交易系统结合ATR动态止损优化策略-Dual-EMA-Pullback-Trading-System-with-ATR-Based-Dynamic-Stop-Loss-Optimization.md | 2 | The exits pass trail_offset = atr x 2.0, a price amount, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #442115). |
 | 477953 | 自适应多重均线动量突破交易策略-Adaptive-Multi-MA-Momentum-Breakthrough-Trading-Strategy.md | 1 | Every signal sends strategy.order (not strategy.entry) for 1 unit, which ignores pyramiding and nets with the open position: up to four buys or sells a bar accumulate units (criterion 1, repeat adds). |
+| 477970 | 金融市场多维趋势跟踪金字塔式交易策略Multi-Dimensional-Trend-Following-Pyramid-Trading-Strategy.md | 1 | pyramiding=2 with repeat "Buy" / "Sell" entries, and every entry gated by the drawdown of strategy.equity from its peak: units add and the account's equity path gates trading (criterion 1, pyramiding >= 2 with repeat entries and equity gates). |
+| 477976 | 多级指标叠加式相对强弱指数交易策略-Multi-level-Indicator-Overlapping-RSI-Trading-Strategy.md | 1 | "Scale Buy" / "Scale Sell" entries add 1 unit each time the close moves a point against the average price: averaging down (criterion 1, DCA adds). |
+| 478691 | RSI动态突破回调交易策略-RSI-Dynamic-Breakout-Retracement-Trading-Strategy.md | 1 | The long and short each send a "Partial Take Profit" exit with qty_percent=50 and a break-even move for the other half: partial exits (criterion 1). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
