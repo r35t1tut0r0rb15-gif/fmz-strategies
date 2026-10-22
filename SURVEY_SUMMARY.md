@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2957 |
+| PORTED | 2968 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 425 |
-| PORT_CANDIDATE | 352 |
+| REJECTED_ON_READING | 426 |
+| PORT_CANDIDATE | 340 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -3085,7 +3085,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482645 | `ports/482645_multi-indicator-dynamic-trend-crossover-quantitative-trading/` | PineScript | macd_cross | none | fast_ema_length x2, slow_ema_length x2 | 4 |
 | 482669 | `ports/482669_dual-moving-average-trend-detection-with-volatility-based-st/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | atr_mult x2, ema_slow_len x2 | 4 |
 | 482670 | `ports/482670_atr-multi-ema-trend-following-with-dynamic-atr-based-exit-st/` | PineScript | ma_cross | trailing_stop_pending | min_distance_atr x2, rsi_buy_low x2 | 4 |
-| | **2957 ports** | | | | | **13655** |
+| 482673 | `ports/482673_atr-dynamic-cloud-trend-atr-stop-loss-strategy/` | PineScript | ichimoku | none | atr_multiplier x2, displacement x2 | 4 |
+| 482678 | `ports/482678_macd-macd-based-al-brooks-price-action-trend-following-strat/` | PineScript | macd | trailing_stop_pending | length x2, macd_fast x2 | 4 |
+| 482684 | `ports/482684_ema-adx-multi-timeframe-dynamic-trend-following-strategy-wit/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | adx_threshold x2, bracket_frac x2 | 4 |
+| 482687 | `ports/482687_ema-intelligent-trend-following-trading-strategy-system-base/` | PineScript | ma_cross | none | ema_fast_length x2, ema_slow_length x2 | 4 |
+| 482764 | `ports/482764_adaptive-trend-following-strategy-based-on-dual-ema-crossove/` | PineScript | ma_cross | none | ema_fast_length x2, ema_slow_length x2 | 4 |
+| 482769 | `ports/482769_dual-moving-average-trend-following-system-with-adaptive-dyn/` | PineScript | momentum_oscillator | none | length_ma x2, run_up_threshold x2 | 4 |
+| 482771 | `ports/482771_quantum-spectral-momentum-trading-strategy-with-multi-compon/` | PineScript | zscore_momentum | trailing_stop_pending | sma_length x2, entry_band x2 | 4 |
+| 482773 | `ports/482773_atr-multi-indicator-trend-momentum-atr-target-trading-strate/` | PineScript | rsi_oscillator | none | atr_multiplier_target x2, atr_multiplier_stop x2 | 4 |
+| 482774 | `ports/482774_ema-atr-ema-cross-over-trend-following-strategy-with-atr-dyn/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | atr_mult x2, take_profit_perc x2 | 4 |
+| 482775 | `ports/482775_rsi-advanced-dual-moving-average-momentum-reversal-strategy/` | PineScript | bollinger_reversion | none | bb_length x2, bb_std_dev x2 | 4 |
+| 482778 | `ports/482778_5-5-ema-instant-divergence-breakout-trading-strategy/` | PineScript | ma_pullback | coarse_bar_stop, trailing_stop_pending | ema_length x2, target_multiplier x2 | 4 |
+| | **2968 ports** | | | | | **13699** |
 
 ## Rejected on reading
 
@@ -3516,6 +3527,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482504 | 多时框随机震荡趋势跟踪交易策略-Multi-Timeframe-Stochastic-Oscillator-Trend-Following-Trading-Strategy.md | 2 | The exits pass trail_points = atr x 1.5, a price amount, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #442115). |
 | 482506 | 基于均值回归的多层级支撑阻力周线交易策略-Multi-Level-Support-Resistance-Weekly-Mean-Reversion-Trading-Strategy.md | 1 | pyramiding = 50 with up to four separate long entries per week at the S1-S4 levels, each with its own target: grid adds (criterion 1). |
 | 482672 | 基于动态DCA的加密货币量化交易策略-Dynamic-DCA-based-Cryptocurrency-Quantitative-Trading-Strategy.md | 1 | pyramiding = 999 with up to 30 safety orders added as the price falls (scaled DCA averaging down): DCA adds (criterion 1). |
+| 482767 | 多指标交叉动态止盈止损趋势跟踪策略-Multi-Indicator-Crossover-Dynamic-Stop-Loss-Trend-Following-Strategy.md | 2 | The exit passes trail_points = atr x 0.5 and trail_offset = atr x 0.3, price amounts, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #442115). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

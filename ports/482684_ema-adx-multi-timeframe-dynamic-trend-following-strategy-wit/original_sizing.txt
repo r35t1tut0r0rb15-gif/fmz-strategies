@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #482684 (多重时间框架动态趋势跟踪策略结合EMA与ADX指标-Multi-Timeframe-Dynamic-Trend-Following-Strategy-with-EMA-and-ADX-Integration)
+# Source: https://www.fmz.com/strategy/482684  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 5 % of equity, commission 0.1, slippage 2  [lines 89-94]
+   89: strategy("DOGE Enhanced Trend Following Strategy", 
+   90:          overlay=true, 
+   91:          default_qty_type=strategy.percent_of_equity, 
+   92:          default_qty_value=5, 
+   93:          commission_value=0.1, 
+   94:          slippage=2)

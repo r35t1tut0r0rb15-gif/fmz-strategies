@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482778 (5均线即时背离突破交易策略-5-EMA-Instant-Divergence-Breakout-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482778  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin 100 / 100  [lines 111-111]
+  111: strategy("5 EMA (Instant Execution)", overlay=true, margin_long=100, margin_short=100)

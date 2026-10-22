@@ -6456,6 +6456,28 @@ SIZING = {
         ("tradeSize from strategy.equity x 2 % / atrSL, minimum 1", 160, 163),
         ("entries with qty = tradeSize", 171, 178),
     ],
+    # ---- FMZ-C, batch C248 (2026-10-22)
+    482673: [
+        ("strategy(): 10 % of equity", 99, 99),
+    ],
+    482678: [],
+    482684: [
+        ("strategy(): 5 % of equity, commission 0.1, slippage 2", 89, 94),
+    ],
+    482687: [],
+    482764: [],
+    482769: [],
+    482771: [],
+    482773: [],
+    482774: [
+        ("strategy(): capital 100000, 100 % of equity", 114, 114),
+    ],
+    482775: [
+        ("strategy(): 10 % of equity", 103, 103),
+    ],
+    482778: [
+        ("strategy(): margin 100 / 100", 111, 111),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8148,6 +8170,10 @@ REJECTED_ON_READING = {
     # ---- FMZ-C, batch C247 (2026-10-22)
     482672: ("1", "pyramiding = 999 with up to 30 safety orders added as the price falls (scaled DCA "
               "averaging down): DCA adds (criterion 1)."),
+    # ---- FMZ-C, batch C248 (2026-10-22)
+    482767: ("2", "The exit passes trail_points = atr x 0.5 and trail_offset = atr x 0.3, price "
+              "amounts, where the call takes ticks, with no /mintick: the trailing exit is "
+              "undefined as written (criterion 2, as #442115)."),
 }
 
 DUPLICATE_ON_READING = {
