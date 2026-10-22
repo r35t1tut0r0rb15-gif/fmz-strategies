@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #473366 (复合技术指标多维度趋势跟踪量化策略-Multi-Dimensional-Technical-Indicator-Trend-Following-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/473366  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Capital 100, risk 1 %, TP 2 %, SL 1 % (labels only); stop close x 0.99 after 5 % profit  [lines 107-142]
+  107: capital_inicial = input.float(100, "Capital Inicial ($)", minval=10)
+  108: risco_por_trade = input.float(1, "Risco por Trade (%)", minval=0.1, maxval=100)
+  109: take_profit_percent = input.float(2, "Take Profit (%)", minval=0.1)
+  110: stop_loss_percent = input.float(1, "Stop Loss (%)", minval=0.1)
+  111: trailing_stop_percent = input.float(5, "Trailing Stop Gatilho (%)", minval=0.1)
+  112: 
+  113: // Configuração de indicadores
+  114: usar_rsi = input.bool(true, "Usar RSI como Indicador")
+  115: usar_macd = input.bool(true, "Usar MACD como Indicador")
+  116: usar_ema = input.bool(true, "Usar EMA como Indicador")
+  117: 
+  118: // Indicadores
+  119: rsi_value = ta.rsi(close, 14)
+  120: [macd_line, signal_line, _] = ta.macd(close, 12, 26, 9)
+  121: ema_20 = ta.ema(close, 20)
+  122: ema_50 = ta.ema(close, 50)
+  123: 
+  124: // Condições de compra
+  125: compra_rsi = usar_rsi and rsi_value < 30
+  126: compra_macd = usar_macd and macd_line > signal_line
+  127: compra_ema = usar_ema and ema_20 > ema_50
+  128: compra = compra_rsi or compra_macd or compra_ema
+  129: 
+  130: // Condições de venda
+  131: venda_rsi = usar_rsi and rsi_value > 70
+  132: venda_macd = usar_macd and macd_line < signal_line
+  133: venda_ema = usar_ema and ema_20 < ema_50
+  134: venda = venda_rsi or venda_macd or venda_ema
+  135: 
+  136: // Calcular stop loss e take profit
+  137: stop_loss_price = strategy.position_avg_price * (1 - stop_loss_percent / 100)
+  138: take_profit_price = strategy.position_avg_price * (1 + take_profit_percent / 100)
+  139: 
+  140: // Adiciona trailing stop automático
+  141: if (strategy.position_size > 0 and close >= strategy.position_avg_price * (1 + trailing_stop_percent / 100))
+  142:     strategy.exit("Trailing Stop", from_entry="Compra", stop=close * 0.99)

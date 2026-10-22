@@ -1,0 +1,34 @@
+# Original sizing and money-management code, FMZ #473365 (双均线交叉自适应参数择时交易策略-Dual-Moving-Average-Crossover-Adaptive-Parameter-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/473365  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 % / target 2 % of the average price on the signal bar; trail_offset 1.5  [lines 93-121]
+   93: stopLossPerc = input.float(1, title="Stop Loss (%)", step=0.1) // Stop-loss percentage
+   94: takeProfitPerc = input.float(2, title="Take Profit (%)", step=0.1) // Take-profit percentage
+   95: trailStopPerc = input.float(1.5, title="Trailing Stop (%)", step=0.1) // Trailing stop percentage
+   96: 
+   97: // Calculate fast and slow moving averages
+   98: fastMA = ta.sma(close, fastLength)
+   99: slowMA = ta.sma(close, slowLength)
+  100: 
+  101: // Plot moving averages on the chart
+  102: plot(fastMA, color=color.blue, title="Fast Moving Average")
+  103: plot(slowMA, color=color.red, title="Slow Moving Average")
+  104: 
+  105: // Conditions for opening and closing positions
+  106: longCondition = ta.crossover(fastMA, slowMA) // Buy when fast moving average crosses above the slow moving average
+  107: shortCondition = ta.crossunder(fastMA, slowMA) // Sell when fast moving average crosses below the slow moving average
+  108: 
+  109: // Variables for stop-loss and take-profit levels
+  110: var float longStopLevel = na
+  111: var float longTakeProfitLevel = na
+  112: 
+  113: // Enter a long position
+  114: if (longCondition)
+  115:     longStopLevel := strategy.position_avg_price * (1 - stopLossPerc / 100)
+  116:     longTakeProfitLevel := strategy.position_avg_price * (1 + takeProfitPerc / 100)
+  117:     strategy.entry("Long", strategy.long)
+  118: 
+  119: // Manage stop-loss, take-profit, and trailing stop for long positions
+  120: if (strategy.position_size > 0)
+  121:     strategy.exit("Take Profit/Stop Loss", "Long", stop=longStopLevel, limit=longTakeProfitLevel, trail_offset=trailStopPerc)

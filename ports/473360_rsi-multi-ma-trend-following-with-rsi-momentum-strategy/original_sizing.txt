@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #473360 (多均线趋势追踪与RSI动量策略-Multi-MA-Trend-Following-with-RSI-Momentum-Strategy)
+# Source: https://www.fmz.com/strategy/473360  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target close +/- 250 points; trail_offset 25  [lines 124-128]
+  124:     strategy.exit("Take Profit", from_entry="Long", limit=close + 250, trail_offset=25)
+  125: 
+  126: if (shortCondition)
+  127:     strategy.entry("Short", strategy.short)
+  128:     strategy.exit("Take Profit", from_entry="Short", limit=close - 250, trail_offset=25)

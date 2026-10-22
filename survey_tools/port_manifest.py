@@ -5725,6 +5725,38 @@ SIZING = {
         ("strategy(): 100 % of equity, capital 100000; TP 7 % of the current close re-sent every bar", 93, 187),
     ],
     473351: [],
+    # ---- FMZ-C, batch C217 (2026-10-22)
+    473353: [
+        ("Stop 1 % / target 2 % of the average price on the signal bar; trail_offset 1.5", 122, 149),
+    ],
+    473354: [
+        ("strategy(): 100 % of equity, capital 1000", 105, 105),
+    ],
+    473356: [],
+    473360: [
+        ("Target close +/- 250 points; trail_offset 25", 124, 128),
+    ],
+    473361: [
+        ("strategy(): fixed qty 1; qty = equity x 20 / close, doubled on repeat entries (pyramiding 1)", 96, 154),
+    ],
+    473364: [
+        ("Stop 10 / target 15 x pointvalue from the signal close", 96, 148),
+    ],
+    473365: [
+        ("Stop 1 % / target 2 % of the average price on the signal bar; trail_offset 1.5", 93, 121),
+    ],
+    473366: [
+        ("Capital 100, risk 1 %, TP 2 %, SL 1 % (labels only); stop close x 0.99 after 5 % profit", 107, 142),
+    ],
+    473367: [
+        ("Stop / target 1 % of the current close (every bar)", 103, 130),
+    ],
+    473371: [
+        ("strategy(): 10 % of equity", 127, 127),
+    ],
+    473372: [
+        ("Stop 100 / target 150 points (off); commission 0.05 per contract", 90, 126),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7217,6 +7249,12 @@ REJECTED_ON_READING = {
               "profit = 0.02 x close in strategy.exit's tick fields): a price amount in a tick "
               "field, so the distance in price depends on the instrument's tick size (criterion "
               "2, as #442115)."),
+    # ---- FMZ-C, batch C217 (2026-10-22)
+    473362: ("1", "The TRAMA's var seed (tramaPrev) is set once, to the first bar's close, and never "
+              "updated, so trama = 0.8 x close + 0.2 x the first bar's close and its crossings "
+              "are crossings of the first bar's close: half of the entries (the bracketed Long / "
+              "Short ids) are set by where the data starts (criterion 1, a data-window level, as "
+              "#468340)."),
 }
 
 DUPLICATE_ON_READING = {

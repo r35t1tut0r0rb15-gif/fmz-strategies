@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #473371 (基于多区域SMC理论的智能趋势跟踪策略Multi-Zone-SMC-Theory-Based-Intelligent-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/473371  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 127-127]
+  127: strategy("SMC Strategy with Premium, Equilibrium, and Discount Zones", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)

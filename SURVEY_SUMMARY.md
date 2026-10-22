@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2646 |
+| PORTED | 2657 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 724 |
+| PORT_CANDIDATE | 712 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 368 |
+| REJECTED_ON_READING | 369 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2774,7 +2774,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 473346 | `ports/473346_adaptive-fvg-detection-and-ma-trend-trading-strategy-with-dy/` | PineScript | reversal_pattern | coarse_bar_stop, trailing_stop_pending | stop_pct x2, lookback x2, ma_period x2 | 8 |
 | 473350 | `ports/473350_atr-dual-moving-average-trend-following-strategy-with-atr-ba/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
 | 473351 | `ports/473351_dynamic-trading-system-with-stochastic-rsi-and-candlestick-c/` | PineScript | stochastic_oscillator | none | oversold x2, overbought x2 | 4 |
-| | **2646 ports** | | | | | **12480** |
+| 473353 | `ports/473353_macd-macd-multi-interval-dynamic-stop-loss-and-take-profit-t/` | PineScript | macd_cross | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
+| 473354 | `ports/473354_k-double-smoothed-moving-average-trend-following-strategy-ba/` | PineScript | ma_trend | none | len x2, len2 x2 | 4 |
+| 473356 | `ports/473356_sma-trend-following-gap-breakout-trading-system-with-sma-fil/` | PineScript | breakout | none | gap_pct x2, hold x2 | 4 |
+| 473360 | `ports/473360_rsi-multi-ma-trend-following-with-rsi-momentum-strategy/` | PineScript | ma_trend | trailing_stop_pending |  | 0 |
+| 473361 | `ports/473361_rsi-ema-multi-timeframe-rsi-ema-momentum-trading-strategy-wi/` | PineScript | rsi_oscillator | none |  | 0 |
+| 473364 | `ports/473364_multi-trend-following-and-structure-breakout-strategy/` | PineScript | ma_pullback | coarse_bar_stop | sl_frac x2, tp_frac x2 | 4 |
+| 473365 | `ports/473365_dual-moving-average-crossover-adaptive-parameter-trading-str/` | PineScript | ma_cross | coarse_bar_stop | fast x2, slow x2, sl_pct x2, tp_pct x2 | 16 |
+| 473366 | `ports/473366_multi-dimensional-technical-indicator-trend-following-quanti/` | PineScript | multi_indicator_confluence | trailing_stop_pending |  | 0 |
+| 473367 | `ports/473367_rsi-ema-dynamic-multi-period-quantitative-trading-strategy-c/` | PineScript | rsi_oscillator | trailing_stop_pending | ema_period x2, rsi_period x2 | 4 |
+| 473371 | `ports/473371_smc-multi-zone-smc-theory-based-intelligent-trend-following/` | PineScript | pivot_levels | none | swing_len x2, sma_len x2 | 4 |
+| 473372 | `ports/473372_momentum-indicator-oscillation-threshold-enhanced-trading-st/` | PineScript | mean_reversion | none | length x2, threshold x2 | 4 |
+| | **2657 ports** | | | | | **12524** |
 
 ## Rejected on reading
 
@@ -3148,6 +3159,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 472253 | 强化波林格均值回归量化策略-Enhanced-Bollinger-Mean-Reversion-Quantitative-Strategy.md | 2 | The exits pass ATR distances as prices (limit = 2 x atr, stop = 1 x atr): for BTC those are prices far under the market, so the long's sell limit and the short's buy stop are marketable at every fill and each trade would close at its own fill (criterion 2, distances as absolute prices, as #458198). |
 | 473237 | T3均线趋势跟踪与移动止损量化交易策略-T3-Moving-Average-Trend-Following-Strategy-with-Trailing-Stop-Loss.md | 1 | The exits are strategy.exit qty_percent = 50 partial closes (half the position at the stop / target, re-sent every bar): the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #439950). |
 | 473242 | 双均线MACD交叉日期可调节量化交易策略-Dual-Moving-Average-MACD-Crossover-Date-Adjustable-Quantitative-Trading-Strategy.md | 2 | The bracket passes percentages of the close as tick counts (loss = 0.01 x close, profit = 0.02 x close in strategy.exit's tick fields): a price amount in a tick field, so the distance in price depends on the instrument's tick size (criterion 2, as #442115). |
+| 473362 | TRAMA双均线交叉智能量化交易策略-TRAMA-Dual-Moving-Average-Crossover-Intelligent-Quantitative-Trading-Strategy.md | 1 | The TRAMA's var seed (tramaPrev) is set once, to the first bar's close, and never updated, so trama = 0.8 x close + 0.2 x the first bar's close and its crossings are crossings of the first bar's close: half of the entries (the bracketed Long / Short ids) are set by where the data starts (criterion 1, a data-window level, as #468340). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

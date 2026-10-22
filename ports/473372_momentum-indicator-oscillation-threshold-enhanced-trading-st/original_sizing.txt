@@ -1,0 +1,42 @@
+# Original sizing and money-management code, FMZ #473372 (动量指标波动阈值增强型交易策略-Momentum-Indicator-Oscillation-Threshold-Enhanced-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/473372  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 100 / target 150 points (off); commission 0.05 per contract  [lines 90-126]
+   90: strategy("CCI Threshold Strategy", overlay=false, initial_capital=50000, pyramiding=0, commission_type=strategy.commission.cash_per_contract, commission_value=0.05, slippage=1)
+   91: 
+   92: // --- Input Parameters ---
+   93: // Lookback period for CCI calculation
+   94: lookbackPeriod = input.int(12, minval=1, title="CCI Lookback Period")
+   95: // Buy threshold for CCI; typically represents an oversold condition
+   96: buyThreshold = input.int(-90, title="CCI Buy Threshold")
+   97: // Stop loss and take profit settings
+   98: stopLoss = input.float(100.0, minval=0.0, title="Stop Loss in Points")
+   99: takeProfit = input.float(150.0, minval=0.0, title="Take Profit in Points")
+  100: // Checkboxes to enable/disable SL and TP
+  101: useStopLoss = input.bool(false, title="Enable Stop Loss")
+  102: useTakeProfit = input.bool(false, title="Enable Take Profit")
+  103: 
+  104: // --- Calculate CCI ---
+  105: // CCI (Commodity Channel Index) is used as a momentum indicator to identify oversold and overbought conditions
+  106: cci = ta.cci(close, length=lookbackPeriod)
+  107: 
+  108: // --- Define Buy and Sell Conditions ---
+  109: // Buy condition: CCI drops below -90, indicating potential oversold levels
+  110: longCondition = cci < buyThreshold
+  111: 
+  112: // Sell condition: Close price crosses above the previous day's high, signaling potential exit
+  113: sellCondition = close > ta.highest(close[1], 1)
+  114: 
+  115: // --- Strategy Execution ---
+  116: // Buy entry based on the long condition
+  117: if (longCondition)
+  118:     strategy.entry("Buy", strategy.long)
+  119: 
+  120: // Close the long position based on the sell condition
+  121: if (sellCondition)
+  122:     strategy.close("Buy")
+  123: 
+  124: // Optional: Add stop loss and take profit for risk management
+  125: if (longCondition)
+  126:     strategy.exit("Sell", from_entry="Buy", loss=useStopLoss ? stopLoss : na, profit=useTakeProfit ? takeProfit : na)
