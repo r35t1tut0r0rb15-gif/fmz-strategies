@@ -6944,6 +6944,27 @@ SIZING = {
     489034: [
         ("strategy(): capital 5000, 100 % of equity", 110, 110),
     ],
+    # ---- FMZ-C, batch C269 (2026-10-22)
+    489035: [],
+    489039: [
+        ("risk 1 % of equity x leverage 5; margins 20", 235, 302),
+    ],
+    489041: [
+        ("strategy(): 10 % of equity", 161, 161),
+    ],
+    489056: [
+        ("strategy(): margins 100", 163, 163),
+    ],
+    489149: [
+        ("risk 1 % of equity x leverage 5; margin 20", 166, 218),
+    ],
+    489153: [
+        ("strategy(): 100 % of equity", 202, 202),
+    ],
+    489154: [],
+    489156: [
+        ("strategy(): 100 % of equity, commission 0.1, slippage 3", 163, 163),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8803,6 +8824,18 @@ REJECTED_ON_READING = {
               "trail_offset = 0.7 x distance), where distance is a price amount (entry - lower "
               "band) passed as a tick count (criterion 2, as #482767); the 6-day bars are also "
               "outside the house bar sizes."),
+    # ---- FMZ-C, batch C269 (2026-10-22)
+    489133: ("1", "The only exit is close > resistanceLevel, where resistanceLevel is set to the "
+              "bar's own high on every hourly bar (minute is always 0), so it can never be true: "
+              "the first buy is held to the end of the data (criterion 1, as #440692)."),
+    489135: ("1", "Partial exits: strategy.exit(qty_percent = 50) at 1 R with a break-even stop for "
+              "the rest, plus closes keyed on the account equity (criterion 1, as #436524)."),
+    489150: ("1", "A grid / DCA ladder: fixed 5.1 USDT buys every 2 ATR under the last fill and "
+              "partial 5.1 USDT sells every 2 ATR over it (criterion 1, as #484915)."),
+    489152: ("1", "The only exit is strategy.exit re-sent every bar at the average price minus the "
+              "current ATR (and 1.5 x that over it), a level that moves with each bar's ATR and "
+              "cannot be held as a fixed or house-trail stop; without it the first long is held "
+              "to the end (criterion 1, as #440975)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -8862,4 +8895,6 @@ HELD_ON_READING = {
     482454: ("licence", "Held for Austin: the source carries a CC BY-NC-SA 4.0 licence (non-commercial, share-alike; the Andean Oscillator by alexgrover), so it is not ported until Austin decides (as #468315)."),
     # ---- FMZ-C, batch C246 (2026-10-22)
     482509: ("8", "The entry line is ta.vwma(close, 200) and the filters are weekly and daily VWMAs: volume-weighted averages (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C269 (2026-10-22)
+    489134: ("8", "The bands are built on ta.vwma(hlc3, 200), a volume-weighted average (check 8, held with the other volume users)."),
 }

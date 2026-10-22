@@ -1,0 +1,73 @@
+# Original sizing and money-management code, FMZ #489039 (双模式自适应趋势交易策略EMA交叉结合ATR波动率风险管理系统-Dual-Mode-Adaptive-Trend-Trading-Strategy-EMA-Crossover-with-ATR-Volatility-Based-Risk-Management-System)
+# Source: https://www.fmz.com/strategy/489039  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## risk 1 % of equity x leverage 5; margins 20  [lines 235-302]
+  235: strategy("DOGE/USDT 5X Adaptive Trend Strategy", overlay=true, margin_long=20, margin_short=20)
+  236: 
+  237: // === Core Parameters ===
+  238: fastEMA = input.int(3, "Fast EMA Length", minval=1, maxval=20)
+  239: slowEMA = input.int(8, "Slow EMA Length", minval=2, maxval=50) 
+  240: trendEMA = input.int(55, "Trend EMA Length", minval=10, maxval=200)
+  241: atrPeriod = input.int(14, "ATR Period", minval=1, maxval=50)
+  242: tradeInterval = input.int(72, "Minutes Between Trades", minval=1, maxval=1440)
+  243: 
+  244: // Risk Management
+  245: slMultiplier = input.float(1.2, "Stop-Loss (ATR Multiple)", minval=0.5, maxval=5.0, step=0.1)
+  246: tpMultiplier = input.float(2.0, "Take-Profit (ATR Multiple)", minval=0.5, maxval=10.0, step=0.1)
+  247: riskPct = input.float(1.0, "Risk Per Trade (%)", minval=0.1, maxval=10.0, step=0.1)
+  248: leverage = 5.0  // Fixed 5x leverage
+  249: 
+  250: // Adaptive mode selection
+  251: useAdaptive = input.bool(true, "Use Adaptive Mode")
+  252: adaptivePeriod = input.int(14, "Adaptive Period")
+  253: 
+  254: // === Calculate Indicators ===
+  255: fastLine = ta.ema(close, fastEMA)
+  256: slowLine = ta.ema(close, slowEMA)
+  257: trendLine = ta.ema(close, trendEMA)
+  258: atrValue = ta.atr(atrPeriod)
+  259: 
+  260: // === Adaptive Trend Detection ===
+  261: // Determine market direction strength
+  262: rsiValue = ta.rsi(close, adaptivePeriod)
+  263: trendStrength = math.abs(rsiValue - 50) / 50 // 0 to 1 scale
+  264: isTrending = trendStrength > 0.3 // Above 0.3 indicates trending
+  265: 
+  266: // Determine trend direction
+  267: uptrend = ta.sma(close, 5) > ta.sma(close, 20)
+  268: downtrend = ta.sma(close, 5) < ta.sma(close, 20)
+  269: 
+  270: // === Visualize Indicators ===
+  271: p1 = plot(fastLine, "Fast EMA", color=#2196F3, linewidth=2)
+  272: p2 = plot(slowLine, "Slow EMA", color=#FF9800, linewidth=2)
+  273: p3 = plot(trendLine, "Trend EMA", color=#757575, linewidth=1)
+  274: 
+  275: // Cross detection
+  276: crossUp = ta.crossover(fastLine, slowLine)
+  277: crossDown = ta.crossunder(fastLine, slowLine)
+  278: plotshape(crossUp, "EMA Cross Up", style=shape.triangleup, location=location.belowbar, color=color.green, size=size.small)
+  279: plotshape(crossDown, "EMA Cross Down", style=shape.triangledown, location=location.abovebar, color=color.red, size=size.small)
+  280: 
+  281: // === Trade Logic ===
+  282: var int lastTradeBarIndex = 0
+  283: timeElapsed = (bar_index - lastTradeBarIndex) >= tradeInterval
+  284: noActivePosition = strategy.position_size == 0
+  285: 
+  286: // Adaptive entry conditions
+  287: longTrendEntry = crossUp and close > trendLine and uptrend and isTrending
+  288: shortTrendEntry = crossDown and close < trendLine and downtrend and isTrending
+  289: 
+  290: // Counter-trend entries (when market is not strongly trending)
+  291: longCounterEntry = crossUp and close < trendLine and not isTrending
+  292: shortCounterEntry = crossDown and close > trendLine and not isTrending
+  293: 
+  294: // Final entry signals
+  295: validLong = (useAdaptive ? (isTrending ? longTrendEntry : longCounterEntry) : crossUp) and timeElapsed and noActivePosition
+  296: validShort = (useAdaptive ? (isTrending ? shortTrendEntry : shortCounterEntry) : crossDown) and timeElapsed and noActivePosition
+  297: 
+  298: // Position sizing calculation
+  299: equity = strategy.equity
+  300: riskAmount = equity * (riskPct / 100)
+  301: stopDistance = atrValue * slMultiplier
+  302: positionSize = math.round((riskAmount / stopDistance) * leverage)

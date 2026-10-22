@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #489056 (多层布林通道支撑阻力价格突破交易策略-Multi-Layer-Bollinger-Bands-Support-Resistance-Price-Breakout-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/489056  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margins 100  [lines 163-163]
+  163: strategy("Gold BB Support/Resistance Strategy", overlay=true, margin_long=100, margin_short=100)

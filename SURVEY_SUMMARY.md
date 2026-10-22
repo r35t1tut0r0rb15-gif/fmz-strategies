@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3173 |
+| PORTED | 3181 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 480 |
+| HELD_NEEDS_VOLUME | 574 |
+| REJECTED_ON_READING | 484 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 81 |
+| PORT_CANDIDATE | 68 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3301,7 +3301,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 489031 | `ports/489031_automated-fibonacci-retracement-trading-system-strategy/` | PineScript | fibonacci | coarse_bar_stop, trailing_stop_pending | lookback x2, tp_pct x2 | 4 |
 | 489032 | `ports/489032_multi-indicator-dynamic-crossover-trend-following-quantitati/` | PineScript | ma_cross | trailing_stop_pending | sl_atr x2, tp_atr x2 | 4 |
 | 489034 | `ports/489034_sma20-50-sma20-50-bearish-trend-reversal-quantitative-tradin/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
-| | **3173 ports** | | | | | **14499** |
+| 489035 | `ports/489035_first-candle-breakout-with-stop-loss-or-end-of-day-closing-s/` | PineScript | opening_range_breakout | none | startHour x2, endHour x2 | 4 |
+| 489039 | `ports/489039_ema-atr-dual-mode-adaptive-trend-trading-strategy-ema-crosso/` | PineScript | ma_cross | coarse_bar_stop | tradeInterval x2, slMultiplier x2 | 4 |
+| 489041 | `ports/489041_dynamic-multi-indicator-trend-momentum-enhanced-trading-stra/` | PineScript | ma_cross | trailing_stop_pending | atr_multiplier x2, risk_reward_ratio x2 | 4 |
+| 489056 | `ports/489056_multi-layer-bollinger-bands-support-resistance-price-breakou/` | PineScript | bollinger_reversion | coarse_bar_stop | sr_pips x2, stop_pips x2 | 4 |
+| 489149 | `ports/489149_multi-timeframe-volatility-tracking-quantitative-strategy/` | PineScript | ma_cross | none | tradeInterval x2, slMultiplier x2 | 4 |
+| 489153 | `ports/489153_hourly-open-close-price-differential-smart-comparison-quanti/` | PineScript | gap | none | target_pct x3 | 3 |
+| 489154 | `ports/489154_multi-ema-crossover-momentum-strategy-with-risk-reward-optim/` | PineScript | ma_cross | coarse_bar_stop | stopLossPercent x2, riskRewardRatio x2 | 4 |
+| 489156 | `ports/489156_bollinger-bands-with-dual-sma-momentum-enhanced-quantitative/` | PineScript | bollinger_breakout | none | length x2, slowSmaLength x2 | 4 |
+| | **3181 ports** | | | | | **14530** |
 
 ## Rejected on reading
 
@@ -3787,6 +3795,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 488901 | 优化的基于平均真实波动范围的趋势策略v6固定趋势捕捉-Optimized-ATR-Based-Trend-Strategy-v6-Fixed-Trend-Capture.md | 2 | The exits include strategy.exit(trail_offset = 3.5 ATR), a price amount passed as a tick count (criterion 2, as #482767), beside a break-even stop keyed on the averaged price. |
 | 488908 | 动态多周期中轴趋势突破策略-Dynamic-Multi-Timeframe-Pivot-Trend-Breakthrough-Strategy.md | 1 | Four partial exits (strategy.exit x1..x4 with qty = 25 % of the entry each, at 3 / 5 / 7 / 10 % profit): the position is unwound in parts (criterion 1, as #436524). |
 | 489010 | 多层级布林带趋势跟踪与反转交易策略-Multi-level-Bollinger-Bands-Trend-Following-and-Reversal-Trading-Strategy.md | 2 | The trailing exit is strategy.exit(trail_price = entry + 2 x distance, trail_offset = 0.7 x distance), where distance is a price amount (entry - lower band) passed as a tick count (criterion 2, as #482767); the 6-day bars are also outside the house bar sizes. |
+| 489133 | BTST高概率突破策略与精选股票筛选系统-BTST-High-Probability-Breakout-Strategy-with-Selective-Stock-Screening-System.md | 1 | The only exit is close > resistanceLevel, where resistanceLevel is set to the bar's own high on every hourly bar (minute is always 0), so it can never be true: the first buy is held to the end of the data (criterion 1, as #440692). |
+| 489135 | 多重技术指标动态止损期货交易策略-Multi-Technical-Indicator-Dynamic-Stop-Loss-Futures-Trading-Strategy.md | 1 | Partial exits: strategy.exit(qty_percent = 50) at 1 R with a break-even stop for the rest, plus closes keyed on the account equity (criterion 1, as #436524). |
+| 489150 | 多周期唐奇安通道与ATR动态间隔波动跟踪交易策略-Multi-Timeframe-Donchian-Channel-and-ATR-Dynamic-Interval-Volatility-Following-Trading-Strategy.md | 1 | A grid / DCA ladder: fixed 5.1 USDT buys every 2 ATR under the last fill and partial 5.1 USDT sells every 2 ATR over it (criterion 1, as #484915). |
+| 489152 | 移动平均线交叉与动态波动率止损量化策略-Moving-Average-Crossover-with-Dynamic-Volatility-Based-Stop-Loss-Strategy.md | 1 | The only exit is strategy.exit re-sent every bar at the average price minus the current ATR (and 1.5 x that over it), a level that moves with each bar's ATR and cannot be held as a fixed or house-trail stop; without it the first long is held to the end (criterion 1, as #440975). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
