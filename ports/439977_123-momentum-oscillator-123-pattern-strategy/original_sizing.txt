@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #439977 (动量张弛指标与123形态策略Momentum-Oscillator-123-Pattern-Strategy)
+# Source: https://www.fmz.com/strategy/439977  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

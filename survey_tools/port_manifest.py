@@ -3911,6 +3911,28 @@ SIZING = {
     439964: [
         ("Tick bracket inputs", 152, 155),
     ],
+    # ---- FMZ-C, batch C128 (2026-10-22)
+    439970: [
+        ("strategy(): percent of equity 25, capital, commission", 113, 115),
+    ],
+    439972: [],
+    439973: [],
+    439977: [],
+    439978: [],
+    439979: [
+        ("Stop and target percent inputs", 241, 242),
+    ],
+    439981: [
+        ("Leverage and portfolio share; quantity", 186, 217),
+    ],
+    439984: [
+        ("Take-profit and stop percent inputs", 303, 306),
+    ],
+    439985: [],
+    439988: [
+        ("Stop percent and point inputs", 175, 178),
+    ],
+    439989: [],
 }
 
 REJECTED_ON_READING = {
@@ -4878,6 +4900,11 @@ REJECTED_ON_READING = {
     439958: ("1", "pyramiding = 1000 with a 1-unit buy on every RSI 2 crossover and no exit until a "
               "fixed end date (30 Nov 2023), after which every bar closes: an accumulation whose "
               "size path is the strategy (as #430762, #430248)."),
+    # ---- FMZ-C, batch C128 (2026-10-22)
+    439974: ("1", "Both MA series are read through security(tickerid, '7D' (7 x the chart period), "
+              "..., lookahead = barmerge.lookahead_on): on the daily chart the 7-day values are "
+              "seen from the first bar of the 7-day period, so every crossing uses the future "
+              "(criterion 1, as #438495)."),
 }
 
 DUPLICATE_ON_READING = {

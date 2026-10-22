@@ -1,0 +1,8 @@
+# Original sizing and money-management code, FMZ #439970 (季节反转跨期交易策略Seasonal-Reversal-Intertemporal-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/439970  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity 25, capital, commission  [lines 113-115]
+  113: strategy("Seasonality Benchmark ","Season",overlay=false,default_qty_type=strategy.percent_of_equity,
+  114:      default_qty_value=25,initial_capital=100000,currency="USD",
+  115:      commission_type=strategy.commission.percent,commission_value=0.5)

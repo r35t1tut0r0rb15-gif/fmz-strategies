@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1791 |
-| PORTED | 1722 |
+| PORT_CANDIDATE | 1779 |
+| PORTED | 1733 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 230 |
+| REJECTED_ON_READING | 231 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1850,7 +1850,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439962 | `ports/439962_intelligent-trailing-stop-loss-strategy/` | PineScript | parabolic_sar | none | af_increment x2, af_maximum x2 | 4 |
 | 439963 | `ports/439963_ema-macd-btc-ema-and-macd-based-btc-trading-strategy/` | PineScript | macd_cross | none | scale x2, ema_len x2 | 4 |
 | 439964 | `ports/439964_lagging-span-2-line-tracking-trading-strategy/` | PineScript | ichimoku | none | k x2, span_len x2 | 4 |
-| | **1722 ports** | | | | | **8462** |
+| 439970 | `ports/439970_seasonal-reversal-intertemporal-trading-strategy/` | PineScript | calendar_seasonal | none | entry_month x2, exit_month x2 | 4 |
+| 439972 | `ports/439972_kalman-filter-based-trend-tracking-strategy/` | PineScript | adaptive_average | none | scale x2, period x2 | 4 |
+| 439973 | `ports/439973_reversal-trading-strategy-based-on-moving-average-range/` | PineScript | mean_reversion | none | tlenght x2, sslenght x2 | 4 |
+| 439977 | `ports/439977_123-momentum-oscillator-123-pattern-strategy/` | PineScript | combo_123_reversal | none | length x2, scale x2 | 4 |
+| 439978 | `ports/439978_macd-histogram-this-strategy-makes-trading-decisions-based-o/` | PineScript | macd_momentum | none | hist_length x2, fast_length x2 | 4 |
+| 439979 | `ports/439979_trend-angle-moving-average-crossover-strategy/` | PineScript | ma_trend | coarse_bar_stop | ma_len x2, pcnt_change x2 | 4 |
+| 439981 | `ports/439981_mt-coordination-trading-strategy/` | PineScript | trend_filter | none | sma200_length x2, williams_length x2 | 4 |
+| 439984 | `ports/439984_stochrsi-blackbit-trader-xo-macro-trend-scanner-strategy/` | PineScript | ma_cross | none | takeprofit x2, stoploss x2 | 4 |
+| 439985 | `ports/439985_origix-ashi-strategy-based-on-smoothed-moving-average/` | PineScript | ma_trend | none | smoothed_ha_length x3 | 3 |
+| 439988 | `ports/439988_pete-wave-trading-system-strategy/` | PineScript | ma_cross | none | trailing_stop x2, step_frac x2 | 4 |
+| 439989 | `ports/439989_dual-indicators-breakthrough-strategy/` | PineScript | rsi_oscillator | none | rsi_period x2, rsi_lower x2 | 4 |
+| | **1733 ports** | | | | | **8505** |
 
 ## Rejected on reading
 
@@ -2086,6 +2097,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439883 | 基于EMA的日内-skillet-商交策略EMA-Intraday-Scalping-Strategy.md | 2 | Apart from the reversing entries, the only stop is strategy.exit(loss = stop_loss_level) with stop_loss_level = close -/+ 1.5 ATR: a price LEVEL passed as a TICK distance, so the real distance is about the whole price times the tick size, an instrument-specific stop with no generic reading (as #437677, #439275). |
 | 439950 | 动量均线盘整策略Momentum-Moving-Average-Consolidation-Strategy.md | 1 | pyramiding 2 with an 'Add' entry below the average price and strategy.close(qty_percent = 20) partial profit-taking when the RSI crosses under 80: the position path and the exits are partial (criterion 1, as #436524). |
 | 439958 | 基于RSI指标的Nifty交易策略Nifty-Trading-Strategy-Based-on-RSI-Indicator.md | 1 | pyramiding = 1000 with a 1-unit buy on every RSI 2 crossover and no exit until a fixed end date (30 Nov 2023), after which every bar closes: an accumulation whose size path is the strategy (as #430762, #430248). |
+| 439974 | 震荡型广谱移动平均线交易策略Oscillation-Spectrum-Moving-Average-Trading-Strategy.md | 1 | Both MA series are read through security(tickerid, '7D' (7 x the chart period), ..., lookahead = barmerge.lookahead_on): on the daily chart the 7-day values are seen from the first bar of the 7-day period, so every crossing uses the future (criterion 1, as #438495). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

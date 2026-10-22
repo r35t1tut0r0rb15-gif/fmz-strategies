@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #439978 (基于MACD指标的Histogram进行交易决策策略This-strategy-makes-trading-decisions-based-on-the-trend-of-MACD-Histogram)
+# Source: https://www.fmz.com/strategy/439978  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

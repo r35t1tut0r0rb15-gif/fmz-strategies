@@ -1,0 +1,37 @@
+# Original sizing and money-management code, FMZ #439981 (多时间轴协同交易策略MT-Coordination-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/439981  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Leverage and portfolio share; quantity  [lines 186-217]
+  186: leverage = input.float(1, title="Leverage", minval=1, step=0.1)
+  187: 
+  188: // Calculate position size based on the percentage of the portfolio and leverage
+  189: percentOfPortfolio = input.float(100, title="Percent of Portfolio")
+  190: 
+  191: // Define input options
+  192: rsiLength = input.int(14, title="RSI Length", minval=1)
+  193: williamsLength = input.int(2, title="Williams Fractals Length", minval=1)
+  194: sma21Length = input.int(21, title="SMA 21 Length", minval=1)
+  195: sma50Length = input.int(50, title="SMA 50 Length", minval=1)
+  196: sma200Length = input.int(200, title="SMA 200 Length", minval=1)
+  197: 
+  198: // Smoothed Moving Averages
+  199: sma21 = ta.sma(close, sma21Length)
+  200: sma50 = ta.sma(close, sma50Length)
+  201: sma200 = ta.sma(close, sma200Length)
+  202: 
+  203: // RSI
+  204: rsiValue = ta.rsi(close, rsiLength)
+  205: 
+  206: // Williams Fractals
+  207: fractalUp = ta.highest(close, williamsLength)
+  208: fractalDown = ta.lowest(close, williamsLength)
+  209: 
+  210: // Conditions for Buy Entry
+  211: buyCondition = close > sma21 and close > sma50 and close > sma200 and rsiValue > 50 and high > fractalUp[1]
+  212: 
+  213: // Conditions for Sell Entry
+  214: sellCondition = close < sma21 and close < sma50 and close < sma200 and rsiValue < 50 and low < fractalDown[1]
+  215: 
+  216: positionSizePercent = percentOfPortfolio / 100 * leverage
+  217: positionSize = strategy.equity * positionSizePercent / close

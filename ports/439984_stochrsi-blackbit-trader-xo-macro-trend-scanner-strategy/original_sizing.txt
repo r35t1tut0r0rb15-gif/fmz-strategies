@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #439984 (双移动平均线与StochRSI交叉的趋势追踪策略BlackBit-Trader-XO-Macro-Trend-Scanner-Strategy)
+# Source: https://www.fmz.com/strategy/439984  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit and stop percent inputs  [lines 303-306]
+  303: takeprofit=input.float(defval=0.3,title="Enter The Take Profit %",group="TP/SL CONDITION INPUTS HERE")/100
+  304: stoploss=input.float(defval=0.16,title="Enter The Stop %",group="TP/SL CONDITION INPUTS HERE")/100
+  305: tp = strategy.opentrades.entry_price(0)*takeprofit/syminfo.mintick
+  306: sl = strategy.opentrades.entry_price(0)*stoploss/syminfo.mintick

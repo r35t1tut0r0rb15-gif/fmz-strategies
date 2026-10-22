@@ -229,6 +229,7 @@ fmz_id,file,final_outcome,criterion,reason
 439883,基于EMA的日内-skillet-商交策略EMA-Intraday-Scalping-Strategy.md,REJECTED_ON_READING,2,"Apart from the reversing entries, the only stop is strategy.exit(loss = stop_loss_level) with stop_loss_level = close -/+ 1.5 ATR: a price LEVEL passed as a TICK distance, so the real distance is about the whole price times the tick size, an instrument-specific stop with no generic reading (as #437677, #439275)."
 439950,动量均线盘整策略Momentum-Moving-Average-Consolidation-Strategy.md,REJECTED_ON_READING,1,"pyramiding 2 with an 'Add' entry below the average price and strategy.close(qty_percent = 20) partial profit-taking when the RSI crosses under 80: the position path and the exits are partial (criterion 1, as #436524)."
 439958,基于RSI指标的Nifty交易策略Nifty-Trading-Strategy-Based-on-RSI-Indicator.md,REJECTED_ON_READING,1,"pyramiding = 1000 with a 1-unit buy on every RSI 2 crossover and no exit until a fixed end date (30 Nov 2023), after which every bar closes: an accumulation whose size path is the strategy (as #430762, #430248)."
+439974,震荡型广谱移动平均线交易策略Oscillation-Spectrum-Moving-Average-Trading-Strategy.md,REJECTED_ON_READING,1,"Both MA series are read through security(tickerid, '7D' (7 x the chart period), ..., lookahead = barmerge.lookahead_on): on the daily chart the 7-day values are seen from the first bar of the 7-day period, so every crossing uses the future (criterion 1, as #438495)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1968,3 +1969,14 @@ fmz_id,file,final_outcome,criterion,reason
 439962,智能追踪止损策略Intelligent-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/439962_intelligent-trailing-stop-loss-strategy/
 439963,基于EMA均线和MACD指标的BTC交易策略EMA-and-MACD-Based-BTC-Trading-Strategy.md,PORTED,,ports/439963_ema-macd-btc-ema-and-macd-based-btc-trading-strategy/
 439964,二级平滑移动平均线追踪交易策略Lagging-Span-2-Line-Tracking-Trading-Strategy.md,PORTED,,ports/439964_lagging-span-2-line-tracking-trading-strategy/
+439970,季节反转跨期交易策略Seasonal-Reversal-Intertemporal-Trading-Strategy.md,PORTED,,ports/439970_seasonal-reversal-intertemporal-trading-strategy/
+439972,基于卡尔曼滤波的趋势跟踪策略Kalman-Filter-Based-Trend-Tracking-Strategy.md,PORTED,,ports/439972_kalman-filter-based-trend-tracking-strategy/
+439973,基于移动平均线跨度的反转交易策略Reversal-Trading-Strategy-Based-on-Moving-Average-Range.md,PORTED,,ports/439973_reversal-trading-strategy-based-on-moving-average-range/
+439977,动量张弛指标与123形态策略Momentum-Oscillator-123-Pattern-Strategy.md,PORTED,,ports/439977_123-momentum-oscillator-123-pattern-strategy/
+439978,基于MACD指标的Histogram进行交易决策策略This-strategy-makes-trading-decisions-based-on-the-trend-of-MACD-Histogram.md,PORTED,,ports/439978_macd-histogram-this-strategy-makes-trading-decisions-based-o/
+439979,趋势角度均线交叉策略Trend-Angle-Moving-Average-Crossover-Strategy.md,PORTED,,ports/439979_trend-angle-moving-average-crossover-strategy/
+439981,多时间轴协同交易策略MT-Coordination-Trading-Strategy.md,PORTED,,ports/439981_mt-coordination-trading-strategy/
+439984,双移动平均线与StochRSI交叉的趋势追踪策略BlackBit-Trader-XO-Macro-Trend-Scanner-Strategy.md,PORTED,,ports/439984_stochrsi-blackbit-trader-xo-macro-trend-scanner-strategy/
+439985,基于平滑均线的启源阿须策略Origix-Ashi-Strategy-Based-on-Smoothed-Moving-Average.md,PORTED,,ports/439985_origix-ashi-strategy-based-on-smoothed-moving-average/
+439988,皮特波浪交易系统策略Pete-Wave-Trading-System-Strategy.md,PORTED,,ports/439988_pete-wave-trading-system-strategy/
+439989,基于双重指标突破策略Dual-Indicators-Breakthrough-Strategy.md,PORTED,,ports/439989_dual-indicators-breakthrough-strategy/
