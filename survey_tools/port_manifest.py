@@ -4488,6 +4488,24 @@ SIZING = {
     442921: [],
     442923: [],
     442924: [],
+    # ---- FMZ-C, batch C163 (2026-10-22)
+    442927: [],
+    442928: [],
+    442929: [
+        ("strategy(): 100 % of equity, capital 1000", 117, 117),
+    ],
+    442930: [
+        ("strategy(): margin 100, qty 1, capital 100", 211, 211),
+    ],
+    442935: [],
+    442936: [],
+    442937: [],
+    442939: [],
+    442946: [],
+    442947: [],
+    442953: [
+        ("positionSize = strategy.equity x 2 / close", 158, 159),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -5702,6 +5720,11 @@ REJECTED_ON_READING = {
               "partial exits and cash-ratio exits (criterion 1, as #436524)."),
     442926: ("1", "pyramiding = 2 with a short entry on every new 2 % one-bar rally while a short is "
               "open: the position accumulates units (criterion 1, as #441954, #430762)."),
+    # ---- FMZ-C, batch C163 (2026-10-22)
+    442940: ("2", "The exits strategy.exit(loss = stopLossLevel, profit = targetPrice) pass price "
+              "levels where the call takes tick distances, and the entries test the close against "
+              "the fixed prices 100 / 200 (always above 200 on the BTC reading): undefined exits "
+              "and instrument-specific levels (criterion 2, as #442076, #437048)."),
 }
 
 DUPLICATE_ON_READING = {

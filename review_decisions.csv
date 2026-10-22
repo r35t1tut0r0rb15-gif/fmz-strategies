@@ -296,6 +296,7 @@ fmz_id,file,final_outcome,criterion,reason
 442836,追踪熊市策略Follow-The-Bear-Strategy.md,REJECTED_ON_READING,1,"The pinbar test is replaced by star = true, so on every confirmed bar while flat the script sends a new short (its filters are computed but never used) and re-sets the bracket from that bar: a constant-true entry, a short re-entered whenever flat (criterion 1, as #442261)."
 442860,动量追踪型双EMA移动平均线交叉策略Momentum-Tracking-Dual-EMA-Crossover-Strategy.md,REJECTED_ON_READING,1,"Exits close parts of the position (qty_percent = 50 on the short) and every profit and stop exit is gated on strategy.openprofit over a cash order value of 1000: partial exits and cash-ratio exits (criterion 1, as #436524)."
 442926,卖涨回落策略Sell-the-Rallies-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 2 with a short entry on every new 2 % one-bar rally while a short is open: the position accumulates units (criterion 1, as #441954, #430762)."
+442940,支撑阻力趋势追踪策略Support-and-Resistance-Trend-Tracking-Strategy.md,REJECTED_ON_READING,2,"The exits strategy.exit(loss = stopLossLevel, profit = targetPrice) pass price levels where the call takes tick distances, and the entries test the close against the fixed prices 100 / 200 (always above 200 on the BTC reading): undefined exits and instrument-specific levels (criterion 2, as #442076, #437048)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2388,3 +2389,14 @@ fmz_id,file,final_outcome,criterion,reason
 442921,基于双移动平均线突破策略Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/442921_dual-moving-average-crossover-strategy/
 442923,动态移动止损长仓与季节性过滤的价格突破策略Dynamic-Trailing-Stop-Long-Only-Trend-Following-Strategy-with-Seasonality-Filter.md,PORTED,,ports/442923_dynamic-trailing-stop-long-only-trend-following-strategy-wit/
 442924,基于动量指标的短期交易策略Short-term-Trading-Strategy-Based-on-Momentum-Indicator.md,PORTED,,ports/442924_short-term-trading-strategy-based-on-momentum-indicator/
+442927,多时间周期动量反转策略Momentum-Reversal-Strategy-Based-on-Multiple-Timeframes.md,PORTED,,ports/442927_momentum-reversal-strategy-based-on-multiple-timeframes/
+442928,基于-Stochastics-Momentum-Index-的趋势追踪策略Momentum-Surfer-Strategy-Based-on-Stochastics-Momentum-Index.md,PORTED,,ports/442928_stochastics-momentum-index-momentum-surfer-strategy-based-on/
+442929,动态均线回拉交易策略Pullback-Trading-Strategy-Based-on-Dynamic-Moving-Average.md,PORTED,,ports/442929_pullback-trading-strategy-based-on-dynamic-moving-average/
+442930,动态持仓盈利追踪交易策略Dynamic-Trailing-Take-Profit-Trading-Strategy.md,PORTED,,ports/442930_dynamic-trailing-take-profit-trading-strategy/
+442935,动量矩形通道双均线交易策略Momentum-Rectangle-Channel-Dual-Moving-Average-Trading-Strategy.md,PORTED,,ports/442935_momentum-rectangle-channel-dual-moving-average-trading-strat/
+442936,基于多尺度唐奇逐步通道的交易策略Donchain-Channel-Based-Trading-Strategy.md,PORTED,,ports/442936_donchain-channel-based-trading-strategy/
+442937,基于动态追踪止损策略Dynamic-Trailing-Stop-Strategy.md,PORTED,,ports/442937_dynamic-trailing-stop-strategy/
+442939,基于MACD与RSI结合的交叉策略MACD-Crossover-Strategy-with-RSI-Confirmation.md,PORTED,,ports/442939_macd-rsi-macd-crossover-strategy-with-rsi-confirmation/
+442946,双重随机滤波器敏锐离散分析策略Awesome-Oscillator-Double-Stochastic-Filtered-Divergence-Trading-Strategy.md,PORTED,,ports/442946_awesome-oscillator-double-stochastic-filtered-divergence-tra/
+442947,双重趋势追踪量化策略Combo-Quantitative-Trend-Tracking-Strategy.md,PORTED,,ports/442947_combo-quantitative-trend-tracking-strategy/
+442953,基于双时间框架趋势追踪策略An-Advanced-Dual-Timeframe-Trend-Tracking-Strategy-for-a-Hot-Stock.md,PORTED,,ports/442953_an-advanced-dual-timeframe-trend-tracking-strategy-for-a-hot/

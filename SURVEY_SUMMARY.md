@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2072 |
-| PORT_CANDIDATE | 1371 |
+| PORTED | 2083 |
+| PORT_CANDIDATE | 1359 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 297 |
+| REJECTED_ON_READING | 298 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2200,7 +2200,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442921 | `ports/442921_dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | sma_length x2, ema_length x2 | 4 |
 | 442923 | `ports/442923_dynamic-trailing-stop-long-only-trend-following-strategy-wit/` | PineScript | directional_movement | trailing_stop_pending | adx_threshold x2, atr_mult x2 | 4 |
 | 442924 | `ports/442924_short-term-trading-strategy-based-on-momentum-indicator/` | PineScript | volatility_channel_breakout | none | length2 x2, trigger x2 | 4 |
-| | **2072 ports** | | | | | **9775** |
+| 442927 | `ports/442927_momentum-reversal-strategy-based-on-multiple-timeframes/` | PineScript | candle_pattern | none | range_mult x2, tp_pct x2 | 4 |
+| 442928 | `ports/442928_stochastics-momentum-index-momentum-surfer-strategy-based-on/` | PineScript | momentum_oscillator | none | a x2, ob x2 | 4 |
+| 442929 | `ports/442929_pullback-trading-strategy-based-on-dynamic-moving-average/` | PineScript | mean_reversion | none | ma_length1 x2, ma_length2 x2 | 4 |
+| 442930 | `ports/442930_dynamic-trailing-take-profit-trading-strategy/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 442935 | `ports/442935_momentum-rectangle-channel-dual-moving-average-trading-strat/` | PineScript | adaptive_average | none | fast_period x2 | 2 |
+| 442936 | `ports/442936_donchain-channel-based-trading-strategy/` | PineScript | donchian_breakout | none | longer x2, shorter x2 | 4 |
+| 442937 | `ports/442937_dynamic-trailing-stop-strategy/` | PineScript | volatility_channel_breakout | none | long_frac x2, short_frac x2 | 4 |
+| 442939 | `ports/442939_macd-rsi-macd-crossover-strategy-with-rsi-confirmation/` | PineScript | macd_cross | none | exit_after_bars x2, fast_length x2 | 4 |
+| 442946 | `ports/442946_awesome-oscillator-double-stochastic-filtered-divergence-tra/` | PineScript | momentum_oscillator | none | stoch_len x2, oversold x2 | 4 |
+| 442947 | `ports/442947_combo-quantitative-trend-tracking-strategy/` | PineScript | combo_123_reversal | none | length x2, length_ro x2 | 4 |
+| 442953 | `ports/442953_an-advanced-dual-timeframe-trend-tracking-strategy-for-a-hot/` | PineScript | multi_timeframe_ma | trailing_stop_pending | fast x2, slow x2 | 4 |
+| | **2083 ports** | | | | | **9817** |
 
 ## Rejected on reading
 
@@ -2503,6 +2514,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442836 | 追踪熊市策略Follow-The-Bear-Strategy.md | 1 | The pinbar test is replaced by star = true, so on every confirmed bar while flat the script sends a new short (its filters are computed but never used) and re-sets the bracket from that bar: a constant-true entry, a short re-entered whenever flat (criterion 1, as #442261). |
 | 442860 | 动量追踪型双EMA移动平均线交叉策略Momentum-Tracking-Dual-EMA-Crossover-Strategy.md | 1 | Exits close parts of the position (qty_percent = 50 on the short) and every profit and stop exit is gated on strategy.openprofit over a cash order value of 1000: partial exits and cash-ratio exits (criterion 1, as #436524). |
 | 442926 | 卖涨回落策略Sell-the-Rallies-Strategy.md | 1 | pyramiding = 2 with a short entry on every new 2 % one-bar rally while a short is open: the position accumulates units (criterion 1, as #441954, #430762). |
+| 442940 | 支撑阻力趋势追踪策略Support-and-Resistance-Trend-Tracking-Strategy.md | 2 | The exits strategy.exit(loss = stopLossLevel, profit = targetPrice) pass price levels where the call takes tick distances, and the entries test the close against the fixed prices 100 / 200 (always above 200 on the BTC reading): undefined exits and instrument-specific levels (criterion 2, as #442076, #437048). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

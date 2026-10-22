@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #442930 (动态持仓盈利追踪交易策略Dynamic-Trailing-Take-Profit-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/442930  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin 100, qty 1, capital 100  [lines 211-211]
+  211: strategy("TrailingTakeProfit example", overlay=true, margin_long=100, margin_short=100, default_qty_value = 1, initial_capital = 100)

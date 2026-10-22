@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #442953 (基于双时间框架趋势追踪策略An-Advanced-Dual-Timeframe-Trend-Tracking-Strategy-for-a-Hot-Stock)
+# Source: https://www.fmz.com/strategy/442953  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## positionSize = strategy.equity x 2 / close  [lines 158-159]
+  158: riskPercent = 2
+  159: positionSize = strategy.equity * riskPercent / close
