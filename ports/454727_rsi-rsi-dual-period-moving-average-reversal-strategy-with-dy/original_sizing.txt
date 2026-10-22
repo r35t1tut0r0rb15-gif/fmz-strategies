@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #454727 (RSI双周期均线反转策略与动态风险管理系统-RSI-Dual-Period-Moving-Average-Reversal-Strategy-with-Dynamic-Risk-Management-System)
+# Source: https://www.fmz.com/strategy/454727  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 % of the signal close  [lines 163-186]
+  163: stopLossPerc = input.float(1.0, title="Stop Loss (%)")
+  164: 
+  165: // Indicadores
+  166: rsi = ta.rsi(close, rsiPeriod)
+  167: emaFast = ta.ema(close, fastLength)
+  168: emaSlow = ta.ema(close, slowLength)
+  169: 
+  170: // Señales de entrada y salida
+  171: longCondition = (close > emaSlow) and (close < emaFast) and (ta.crossover(rsi, rsiOversold))
+  172: shortCondition = (close < emaSlow) and (close > emaFast) and (ta.crossunder(rsi, rsiOverbought))
+  173: exitLongCondition = ta.crossover(close, emaFast)
+  174: exitShortCondition = ta.crossunder(close, emaFast)
+  175: 
+  176: // Estrategia Long
+  177: if (longCondition)
+  178:     strategy.entry("Long", strategy.long)
+  179:     // Cálculo del Stop Loss
+  180:     strategy.exit("Exit Long", "Long", stop=close * (1 - stopLossPerc / 100))
+  181: 
+  182: // Estrategia Short
+  183: if (shortCondition)
+  184:     strategy.entry("Short", strategy.short)
+  185:     // Cálculo del Stop Loss
+  186:     strategy.exit("Exit Short", "Short", stop=close * (1 + stopLossPerc / 100))

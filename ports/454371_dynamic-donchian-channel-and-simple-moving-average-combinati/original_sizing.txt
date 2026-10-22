@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #454371 (动态唐奇安通道与简单移动平均线结合的量化策略-Dynamic-Donchian-Channel-and-Simple-Moving-Average-Combination-Quantitative-Strategy)
+# Source: https://www.fmz.com/strategy/454371  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

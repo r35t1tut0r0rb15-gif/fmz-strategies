@@ -1,0 +1,44 @@
+# Original sizing and money-management code, FMZ #454369 (动态斐波那契回撤交易策略-Dynamic-Fibonacci-Retracement-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/454369  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop at the averaged 78.6 % level, target 2R from the average price (every bar)  [lines 114-152]
+  114: risk_reward_ratio = input.float(2.0, title="Risk/Reward Ratio")
+  115: 
+  116: // Moving Averages
+  117: ma_200 = ta.sma(close, len_200)
+  118: ma_50 = ta.sma(close, len_50)
+  119: 
+  120: // Fibonacci Retracement Levels
+  121: var float fib_50_level = na
+  122: var float fib_786_level = na
+  123: 
+  124: if (close > ma_200 and close > ma_50)
+  125:     // Calculate retracements for different periods
+  126:     retrace_21_high = ta.highest(high, len_21)
+  127:     retrace_21_low = ta.lowest(low, len_21)
+  128:     retrace_21_mid = (retrace_21_high + retrace_21_low) / 2
+  129:     
+  130:     retrace_50_high = ta.highest(high, len_50)
+  131:     retrace_50_low = ta.lowest(low, len_50)
+  132:     retrace_50_mid = (retrace_50_high + retrace_50_low) / 2
+  133:     
+  134:     retrace_9_high = ta.highest(high, len_9)
+  135:     retrace_9_low = ta.lowest(low, len_9)
+  136:     retrace_9_mid = (retrace_9_high + retrace_9_low) / 2
+  137: 
+  138:     // Choose the retracement to use (you can adjust this logic)
+  139:     fib_50_level := (retrace_21_mid + retrace_50_mid + retrace_9_mid) / 3
+  140:     fib_786_level := (retrace_21_high + retrace_50_high + retrace_9_high) / 3 - ((retrace_21_high + retrace_50_high + retrace_9_high - (retrace_21_low + retrace_50_low + retrace_9_low)) * 0.786)
+  141: 
+  142: // Strategy Entry
+  143: longCondition = close > ma_200 and close > ma_50 and close <= fib_50_level
+  144: 
+  145: if (longCondition)
+  146:     strategy.entry("Long", strategy.long)
+  147: 
+  148: // Strategy Exit
+  149: takeProfitLevel = strategy.position_avg_price + (strategy.position_avg_price - fib_786_level) * risk_reward_ratio
+  150: stopLossLevel = fib_786_level
+  151: 
+  152: strategy.exit("Take Profit", "Long", limit=takeProfitLevel, stop=stopLossLevel)

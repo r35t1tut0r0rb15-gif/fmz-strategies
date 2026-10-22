@@ -5193,6 +5193,22 @@ SIZING = {
     454352: [
         ("Stop 1 ATR / target 2 ATR beyond the bar's low / high, every bar", 118, 141),
     ],
+    # ---- FMZ-C, batch C195 (2026-10-22)
+    454362: [],
+    454364: [],
+    454366: [],
+    454368: [],
+    454369: [
+        ("Stop at the averaged 78.6 % level, target 2R from the average price (every bar)", 114, 152),
+    ],
+    454371: [],
+    454727: [
+        ("Stop 1 % of the signal close", 163, 186),
+    ],
+    454728: [
+        ("Take profit 5 % / stop 3 % of the signal close (close tests)", 126, 167),
+    ],
+    454730: [],
 }
 
 REJECTED_ON_READING = {
@@ -6571,6 +6587,16 @@ REJECTED_ON_READING = {
     453662: ("1", "close_all fires when the day's equity change reaches -125 or +1000 currency units "
               "(strategy.equity against the day's start): a size-dependent equity gate on every "
               "trade (criterion 1, as #440336)."),
+    # ---- FMZ-C, batch C195 (2026-10-22)
+    454359: ("1", "The only exit arms when strategy.netprofit (closed-trade profit in currency) "
+              "reaches 1.2 x the average price (a price level): a size- and history-dependent "
+              "gate on the stop, with no other exit for the long (criterion 1, as #440336)."),
+    454361: ("1", "The target is close + 0.001 (a forex-pip amount) on BTC: the limit sits at, or "
+              "within a fraction of a cent of, the entry, so every long and short is closed at "
+              "about its own fill price (criterion 1, as #451493)."),
+    454721: ("1", "The 'Markov' state is overwritten by a counter that cycles 0-9 from the first bar "
+              "of the data, so which bars buy, sell or close depends on where the data starts "
+              "rather than on prices alone; the source also names no bar size (criterion 1)."),
 }
 
 DUPLICATE_ON_READING = {

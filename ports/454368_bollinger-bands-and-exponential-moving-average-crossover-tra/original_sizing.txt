@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #454368 (布林带与指数移动平均结合交易策略-Bollinger-Bands-and-Exponential-Moving-Average-Crossover-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/454368  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

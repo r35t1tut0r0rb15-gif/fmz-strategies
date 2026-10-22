@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2412 |
+| PORTED | 2421 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 988 |
+| PORT_CANDIDATE | 976 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 340 |
+| REJECTED_ON_READING | 343 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2540,7 +2540,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 454341 | `ports/454341_fisher-fisher-transform-dynamic-threshold-trend-following-st/` | PineScript | momentum_oscillator | none | length x2, threshold x2 | 4 |
 | 454351 | `ports/454351_rsi-rsi-low-point-reversal-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, sl_pct x2, tp_pct x2 | 8 |
 | 454352 | `ports/454352_rsi-short-term-quantitative-trading-strategy-based-on-dual-m/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2, rsi_len x2 | 8 |
-| | **2412 ports** | | | | | **11257** |
+| 454362 | `ports/454362_trend-following-adaptive-expected-value-assessment-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 454364 | `ports/454364_emarsita-ema-rsi-ta-multi-indicator-trading-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2, trend_len x2 | 8 |
+| 454366 | `ports/454366_ema-ema-and-supertrend-combination-quantitative-trading-stra/` | PineScript | supertrend | none | ema_len x2, atr_len x2, mult x2 | 8 |
+| 454368 | `ports/454368_bollinger-bands-and-exponential-moving-average-crossover-tra/` | PineScript | bollinger_reversion | none | length x2, mult x2, ema_len x2 | 8 |
+| 454369 | `ports/454369_dynamic-fibonacci-retracement-trading-strategy/` | PineScript | ma_pullback | trailing_stop_pending | len_200 x2, len_50 x2 | 4 |
+| 454371 | `ports/454371_dynamic-donchian-channel-and-simple-moving-average-combinati/` | PineScript | donchian_breakout | none | period x2, sma_len x2 | 4 |
+| 454727 | `ports/454727_rsi-rsi-dual-period-moving-average-reversal-strategy-with-dy/` | PineScript | rsi_oscillator | coarse_bar_stop, trailing_stop_pending | fast x2, slow x2, sl_pct x2 | 8 |
+| 454728 | `ports/454728_dynamic-take-profit-and-stop-loss-dual-moving-average-crosso/` | PineScript | ma_cross | none | short_len x2, long_len x2, tp_pct x2 | 8 |
+| 454730 | `ports/454730_cci-cci-momentum-divergence-trend-trading-strategy/` | PineScript | momentum_oscillator | none | cci_len x2, rsi_len x2 | 4 |
+| | **2421 ports** | | | | | **11313** |
 
 ## Rejected on reading
 
@@ -2886,6 +2895,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 453281 | 动态时间框架高低点突破策略-Dynamic-Timeframe-High-Low-Breakout-Strategy.md | 1 | The breakout levels are request.security(syminfo.tickerid, '60', high / low / close) on the daily header chart: a 1-hour resolution below the chart's, whose value per daily bar is undefined (criterion 1, as #427518). |
 | 453654 | EMA均线与抛物线SAR组合策略-EMA-and-Parabolic-SAR-Combination-Strategy.md | 1 | Every bar closes all positions once timenow is past 15:15 of the day the script runs (exitTime is built from timenow's own date): with the wall-clock time of the run deciding whether any trade is held, the result depends on when the backtest is run, not on the data (criterion 1, as #453230). |
 | 453662 | EMA双均线交叉策略-EMA-Dual-Moving-Average-Crossover-Strategy.md | 1 | close_all fires when the day's equity change reaches -125 or +1000 currency units (strategy.equity against the day's start): a size-dependent equity gate on every trade (criterion 1, as #440336). |
+| 454359 | EMA动态止损交易策略-EMA-Dynamic-Stop-Loss-Trading-Strategy.md | 1 | The only exit arms when strategy.netprofit (closed-trade profit in currency) reaches 1.2 x the average price (a price level): a size- and history-dependent gate on the stop, with no other exit for the long (criterion 1, as #440336). |
+| 454361 | EMA多头均线交叉策略-EMA-Bullish-Crossover-Strategy.md | 1 | The target is close + 0.001 (a forex-pip amount) on BTC: the limit sits at, or within a fraction of a cent of, the entry, so every long and short is closed at about its own fill price (criterion 1, as #451493). |
+| 454721 | 马尔可夫链概率转换状态量化交易策略-Markov-Chain-Probability-Transition-State-Quantitative-Trading-Strategy.md | 1 | The 'Markov' state is overwritten by a counter that cycles 0-9 from the first bar of the data, so which bars buy, sell or close depends on where the data starts rather than on prices alone; the source also names no bar size (criterion 1). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
