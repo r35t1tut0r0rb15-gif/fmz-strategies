@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2878 |
+| PORTED | 2890 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 570 |
-| PORT_CANDIDATE | 448 |
+| PORT_CANDIDATE | 436 |
 | REJECTED_ON_READING | 411 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
@@ -3006,7 +3006,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 478712 | `ports/478712_machine-learning-adaptive-supertrend-quantitative-trading-st/` | PineScript | supertrend | trailing_stop_pending | factor x2, training x2 | 4 |
 | 478720 | `ports/478720_multi-smoothed-moving-average-dynamic-crossover-trend-follow/` | PineScript | ma_cross | trailing_stop_pending | slength x2, siglen x2 | 4 |
 | 478721 | `ports/478721_multi-indicator-dynamic-trend-detection-and-risk-management/` | PineScript | rsi_oscillator | coarse_bar_stop | tp_pct x2, sl_pct x2 | 4 |
-| | **2878 ports** | | | | | **13350** |
+| 478724 | `ports/478724_advanced-multi-indicator-multi-dimensional-trend-cross-quant/` | PineScript | ichimoku | none | ema_fast x2, ema_slow x2 | 4 |
+| 478725 | `ports/478725_adaptive-multi-strategy-dynamic-switching-system-a-quantitat/` | PineScript | ma_trend | coarse_bar_stop, trailing_stop_pending | band x2, tp_trend x2 | 4 |
+| 478727 | `ports/478727_macd-dual-crossover-trend-following-strategy-ema-and-macd-sy/` | PineScript | macd | coarse_bar_stop, trailing_stop_pending | lookback x2, risk_mult x2 | 4 |
+| 478733 | `ports/478733_rsi-dynamic-trend-rsi-indicator-crossing-strategy/` | PineScript | rsi_oscillator | none | wma_length x2, ema_length x2 | 4 |
+| 478734 | `ports/478734_rsi-dynamic-rsi-quantitative-trading-strategy-with-multiple/` | PineScript | rsi_oscillator | none | ma2_length x2, ma3_length x2 | 4 |
+| 478736 | `ports/478736_ema-ema-trend-with-round-number-breakout-trading-strategy/` | PineScript | candle_pattern | trailing_stop_pending | ema_length x2 | 2 |
+| 478737 | `ports/478737_multi-timeframe-trading-strategy-combining-harmonic-patterns/` | PineScript | support_resistance | trailing_stop_pending | pattern_length x2, rr_mult x2 | 4 |
+| 478740 | `ports/478740_dynamic-stop-loss-adjustment-elephant-bar-trend-following-st/` | PineScript | candle_pattern | trailing_stop_pending | size_mult x2, profit_mult x2 | 4 |
+| 478742 | `ports/478742_rsi-dynamic-ema-system-combined-with-rsi-momentum-indicator/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 478743 | `ports/478743_adaptive-trend-following-and-multi-confirmation-trading-stra/` | PineScript | channel_breakout | none | dlen x2, coral_period x2 | 4 |
+| 478744 | `ports/478744_rsi-dual-moving-average-rsi-multi-signal-trend-trading-strat/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 478747 | `ports/478747_adaptive-bollinger-bands-mean-reversion-trading-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | bb_length x2, tp_pct x2 | 4 |
+| | **2890 ports** | | | | | **13396** |
 
 ## Rejected on reading
 

@@ -3311,3 +3311,15 @@ fmz_id,file,final_outcome,criterion,reason
 478712,机器学习自适应超级趋势量化交易策略-Machine-Learning-Adaptive-SuperTrend-Quantitative-Trading-Strategy.md,PORTED,,ports/478712_machine-learning-adaptive-supertrend-quantitative-trading-st/
 478720,多重平滑均线动态交叉趋势跟踪与多重确认量化交易策略-Multi-Smoothed-Moving-Average-Dynamic-Crossover-Trend-Following-Strategy-with-Multiple-Confirmations.md,PORTED,,ports/478720_multi-smoothed-moving-average-dynamic-crossover-trend-follow/
 478721,多指标动态趋势判断与风险管理交易策略-Multi-Indicator-Dynamic-Trend-Detection-and-Risk-Management-Trading-Strategy.md,PORTED,,ports/478721_multi-indicator-dynamic-trend-detection-and-risk-management/
+478724,多指标多维度趋势交叉高级量化策略-Advanced-Multi-Indicator-Multi-Dimensional-Trend-Cross-Quantitative-Strategy.md,PORTED,,ports/478724_advanced-multi-indicator-multi-dimensional-trend-cross-quant/
+478725,自适应多策略动态切换系统融合趋势跟踪与区间震荡的量化交易策略-Adaptive-Multi-Strategy-Dynamic-Switching-System-A-Quantitative-Trading-Strategy-Combining-Trend-Following-and-Range-Oscillation.md,PORTED,,ports/478725_adaptive-multi-strategy-dynamic-switching-system-a-quantitat/
+478727,双重交叉趋势追踪策略指数均线与MACD协同交易系统-Dual-Crossover-Trend-Following-Strategy-EMA-and-MACD-Synergistic-Trading-System.md,PORTED,,ports/478727_macd-dual-crossover-trend-following-strategy-ema-and-macd-sy/
+478733,动态趋势判定RSI指标交叉策略-Dynamic-Trend-RSI-Indicator-Crossing-Strategy.md,PORTED,,ports/478733_rsi-dynamic-trend-rsi-indicator-crossing-strategy/
+478734,多均线交叉辅助RSI动态参数量化交易策略-Dynamic-RSI-Quantitative-Trading-Strategy-with-Multiple-Moving-Average-Crossover.md,PORTED,,ports/478734_rsi-dynamic-rsi-quantitative-trading-strategy-with-multiple/
+478736,EMA趋势结合轮回位突破交易策略-EMA-Trend-with-Round-Number-Breakout-Trading-Strategy.md,PORTED,,ports/478736_ema-ema-trend-with-round-number-breakout-trading-strategy/
+478737,谐波模式与威廉指标结合的多时间周期交易策略-Multi-Timeframe-Trading-Strategy-Combining-Harmonic-Patterns-and-Williams-R.md,PORTED,,ports/478737_multi-timeframe-trading-strategy-combining-harmonic-patterns/
+478740,动态调整止损的大象柱形态趋势跟踪策略-Dynamic-Stop-Loss-Adjustment-Elephant-Bar-Trend-Following-Strategy.md,PORTED,,ports/478740_dynamic-stop-loss-adjustment-elephant-bar-trend-following-st/
+478742,动态均线系统结合RSI动量指标的日内交易优化策略-Dynamic-EMA-System-Combined-with-RSI-Momentum-Indicator-for-Optimized-Intraday-Trading-Strategy.md,PORTED,,ports/478742_rsi-dynamic-ema-system-combined-with-rsi-momentum-indicator/
+478743,自适应趋势跟踪与多重确认交易策略Adaptive-Trend-Following-and-Multi-Confirmation-Trading-Strategy.md,PORTED,,ports/478743_adaptive-trend-following-and-multi-confirmation-trading-stra/
+478744,双均线-RSI多重信号趋势交易策略-Dual-Moving-Average-RSI-Multi-Signal-Trend-Trading-Strategy.md,PORTED,,ports/478744_rsi-dual-moving-average-rsi-multi-signal-trend-trading-strat/
+478747,自适应布林带趋势反转量化交易策略-Adaptive-Bollinger-Bands-Mean-Reversion-Trading-Strategy.md,PORTED,,ports/478747_adaptive-bollinger-bands-mean-reversion-trading-strategy/

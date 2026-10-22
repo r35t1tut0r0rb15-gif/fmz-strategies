@@ -1,0 +1,45 @@
+# Original sizing and money-management code, FMZ #478737 (谐波模式与威廉指标结合的多时间周期交易策略-Multi-Timeframe-Trading-Strategy-Combining-Harmonic-Patterns-and-Williams-R)
+# Source: https://www.fmz.com/strategy/478737  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 0.618 of the price, stop buffer 0.5 %  [lines 112-151]
+  112: riskRewardMultiplier = input.float(0.618, title="Take-Profit Risk/Reward Multiplier")
+  113: stopLossBuffer = input.float(0.005, title="Stop-Loss Buffer (%)")
+  114: 
+  115: // === Manual Calculation of William Percent Range (WPR) ===
+  116: highestHigh = ta.highest(high, wprLength)
+  117: lowestLow = ta.lowest(low, wprLength)
+  118: wpr = ((highestHigh - close) / (highestHigh - lowestLow)) * -100
+  119: 
+  120: // === Harmonic Pattern Detection (Simplified Approximation) ===
+  121: // Calculate price pivots
+  122: pivotHigh = ta.pivothigh(high, patternLength, patternLength)
+  123: pivotLow = ta.pivotlow(low, patternLength, patternLength)
+  124: 
+  125: // Detect Bullish and Bearish Harmonic Patterns
+  126: bullishPattern = pivotLow and close > ta.lowest(close, patternLength)  // Simplified detection for bullish patterns
+  127: bearishPattern = pivotHigh and close < ta.highest(close, patternLength)  // Simplified detection for bearish patterns
+  128: 
+  129: // === Entry Conditions ===
+  130: longCondition = bullishPattern and wpr < wprOversold
+  131: shortCondition = bearishPattern and wpr > wprOverbought
+  132: 
+  133: // === Stop-Loss and Take-Profit Levels ===
+  134: longEntryPrice = close
+  135: longSL = ta.valuewhen(longCondition, low, 0) * (1 - stopLossBuffer)  // Stop-loss for long trades
+  136: longTP = longEntryPrice * (1 + riskRewardMultiplier)  // Take-profit for long trades
+  137: 
+  138: shortEntryPrice = close
+  139: shortSL = ta.valuewhen(shortCondition, high, 0) * (1 + stopLossBuffer)  // Stop-loss for short trades
+  140: shortTP = shortEntryPrice * (1 - riskRewardMultiplier)  // Take-profit for short trades
+  141: 
+  142: // === Backtesting Logic ===
+  143: // Long Trade
+  144: if longCondition
+  145:     strategy.entry("Long", strategy.long)
+  146:     strategy.exit("Long Exit", "Long", stop=longSL, limit=longTP)
+  147: 
+  148: // Short Trade
+  149: if shortCondition
+  150:     strategy.entry("Short", strategy.short)
+  151:     strategy.exit("Short Exit", "Short", stop=shortSL, limit=shortTP)

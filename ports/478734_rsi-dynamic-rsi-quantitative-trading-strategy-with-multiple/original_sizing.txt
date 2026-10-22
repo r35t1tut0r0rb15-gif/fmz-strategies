@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #478734 (多均线交叉辅助RSI动态参数量化交易策略-Dynamic-RSI-Quantitative-Trading-Strategy-with-Multiple-Moving-Average-Crossover)
+# Source: https://www.fmz.com/strategy/478734  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 200 % of equity  [lines 123-123]
+  123: strategy(title="Relative Strength Index with MA Strategy", shorttitle="RSI-MA Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=200)

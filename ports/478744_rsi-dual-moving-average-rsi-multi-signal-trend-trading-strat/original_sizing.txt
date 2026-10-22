@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #478744 (双均线-RSI多重信号趋势交易策略-Dual-Moving-Average-RSI-Multi-Signal-Trend-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/478744  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

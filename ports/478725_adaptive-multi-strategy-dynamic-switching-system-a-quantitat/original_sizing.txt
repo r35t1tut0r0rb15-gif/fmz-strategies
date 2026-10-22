@@ -1,0 +1,76 @@
+# Original sizing and money-management code, FMZ #478725 (自适应多策略动态切换系统融合趋势跟踪与区间震荡的量化交易策略-Adaptive-Multi-Strategy-Dynamic-Switching-System-A-Quantitative-Trading-Strategy-Combining-Trend-Following-and-Range-Oscillation)
+# Source: https://www.fmz.com/strategy/478725  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 %; target 6 % (trend) / 4 % (range) of the signal close  [lines 91-161]
+   91: stop_loss_percent = input.float(0.02, title="Stop Loss Percent", step=0.001, minval=0.001)
+   92: take_profit_trend = input.float(0.06, title="Take Profit Percent (Trend)", step=0.001, minval=0.001)
+   93: take_profit_range = input.float(0.04, title="Take Profit Percent (Range)", step=0.001, minval=0.001)
+   94: 
+   95: // Moving Averages
+   96: ma_slow = ta.sma(close, ma_length)
+   97: ma_fast = ta.sma(close, ma_length_fast)
+   98: 
+   99: // Bollinger Bands
+  100: bb_basis = ta.sma(close, bb_length)
+  101: bb_dev = ta.stdev(close, bb_length)
+  102: bb_upper = bb_basis + bb_std_dev * bb_dev
+  103: bb_lower = bb_basis - bb_std_dev * bb_dev
+  104: 
+  105: // RSI
+  106: rsi = ta.rsi(close, rsi_length)
+  107: 
+  108: // Market Conditions
+  109: is_trending_up = close > ma_slow
+  110: is_trending_down = close < ma_slow
+  111: is_range_bound = not (is_trending_up or is_trending_down)
+  112: 
+  113: // Entry Conditions
+  114: long_trend_entry = is_trending_up and close >= ma_slow * 1.02
+  115: short_trend_entry = is_trending_down and close <= ma_slow * 0.98
+  116: long_ma_crossover = ta.crossover(ma_fast, ma_slow)
+  117: short_ma_crossover = ta.crossunder(ma_fast, ma_slow)
+  118: long_range_entry = is_range_bound and close <= bb_lower * 0.97
+  119: short_range_entry = is_range_bound and close >= bb_upper * 1.03
+  120: long_rsi_entry = is_range_bound and rsi < 30
+  121: short_rsi_entry = is_range_bound and rsi > 70
+  122: 
+  123: // Entry and Exit Logic
+  124: if long_trend_entry
+  125:     strategy.entry("Long Trend", strategy.long)
+  126:     strategy.exit("Exit Long Trend", from_entry="Long Trend", stop=close * (1 - stop_loss_percent), limit=close * (1 + take_profit_trend))
+  127:     alert("Entered Long Trend", alert.freq_once_per_bar)
+  128: 
+  129: if short_trend_entry
+  130:     strategy.entry("Short Trend", strategy.short)
+  131:     strategy.exit("Exit Short Trend", from_entry="Short Trend", stop=close * (1 + stop_loss_percent), limit=close * (1 - take_profit_trend))
+  132:     alert("Entered Short Trend", alert.freq_once_per_bar)
+  133: 
+  134: if long_ma_crossover
+  135:     strategy.entry("Long MA Crossover", strategy.long)
+  136:     strategy.exit("Exit Long MA Crossover", from_entry="Long MA Crossover", stop=close * (1 - stop_loss_percent), limit=close * (1 + take_profit_trend))
+  137:     alert("Entered Long MA Crossover", alert.freq_once_per_bar)
+  138: 
+  139: if short_ma_crossover
+  140:     strategy.entry("Short MA Crossover", strategy.short)
+  141:     strategy.exit("Exit Short MA Crossover", from_entry="Short MA Crossover", stop=close * (1 + stop_loss_percent), limit=close * (1 - take_profit_trend))
+  142:     alert("Entered Short MA Crossover", alert.freq_once_per_bar)
+  143: 
+  144: if long_range_entry
+  145:     strategy.entry("Long Range", strategy.long)
+  146:     strategy.exit("Exit Long Range", from_entry="Long Range", stop=close * (1 - stop_loss_percent), limit=close * (1 + take_profit_range))
+  147:     alert("Entered Long Range", alert.freq_once_per_bar)
+  148: 
+  149: if short_range_entry
+  150:     strategy.entry("Short Range", strategy.short)
+  151:     strategy.exit("Exit Short Range", from_entry="Short Range", stop=close * (1 + stop_loss_percent), limit=close * (1 - take_profit_range))
+  152:     alert("Entered Short Range", alert.freq_once_per_bar)
+  153: 
+  154: if long_rsi_entry
+  155:     strategy.entry("Long RSI", strategy.long)
+  156:     strategy.exit("Exit Long RSI", from_entry="Long RSI", stop=close * (1 - stop_loss_percent), limit=close * (1 + take_profit_range))
+  157:     alert("Entered Long RSI", alert.freq_once_per_bar)
+  158: 
+  159: if short_rsi_entry
+  160:     strategy.entry("Short RSI", strategy.short)
+  161:     strategy.exit("Exit Short RSI", from_entry="Short RSI", stop=close * (1 + stop_loss_percent), limit=close * (1 - take_profit_range))

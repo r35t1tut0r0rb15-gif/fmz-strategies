@@ -1,0 +1,47 @@
+# Original sizing and money-management code, FMZ #478736 (EMA趋势结合轮回位突破交易策略-EMA-Trend-with-Round-Number-Breakout-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/478736  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 200 % of equity; stop 1 % / target 1.5 % of the current close  [lines 107-148]
+  107: strategy("The Gold Box Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=200)
+  108: 
+  109: // Inputs
+  110: roundNumberInterval = input.int(5, title="Round Number Interval ($)", minval=1)
+  111: useEMA = input.bool(true, title="Use 20 EMA for Confluence")
+  112: emaLength = input.int(20, title="EMA Length")
+  113: 
+  114: // Session times for London and NY
+  115: londonSession = input("0300-1200", title="London Session (NY Time)")
+  116: nySession = input("0800-1700", title="New York Session (NY Time)")
+  117: 
+  118: // EMA Calculation
+  119: emaValue = ta.ema(close, emaLength)
+  120: 
+  121: // Plot Round Number Levels
+  122: roundLow = math.floor(low / roundNumberInterval) * roundNumberInterval
+  123: roundHigh = math.ceil(high / roundNumberInterval) * roundNumberInterval
+  124: 
+  125: // for level = roundLow to roundHigh by roundNumberInterval
+  126: //     line.new(x1=bar_index - 1, y1=level, x2=bar_index, y2=level, color=color.new(color.gray, 80), extend=extend.both)
+  127: 
+  128: // Session Filter
+  129: inLondonSession = not na(time("1", londonSession))
+  130: inNYSession = not na(time("1", nySession))
+  131: inSession = true
+  132: 
+  133: // Detect Bullish and Bearish Engulfing patterns
+  134: bullishEngulfing = close > open[1] and open < close[1] and close > emaValue and inSession
+  135: bearishEngulfing = close < open[1] and open > close[1] and close < emaValue and inSession
+  136: 
+  137: // Entry Conditions
+  138: if bullishEngulfing
+  139:     strategy.entry("Long", strategy.long, comment="Bullish Engulfing with EMA Confluence")
+  140: if bearishEngulfing
+  141:     strategy.entry("Short", strategy.short, comment="Bearish Engulfing with EMA Confluence")
+  142: 
+  143: // Stop Loss and Take Profit
+  144: stopLossPercent = input.float(1.0, title="Stop Loss (%)", minval=0.1) / 100
+  145: takeProfitPercent = input.float(1.5, title="Take Profit (%)", minval=0.1) / 100
+  146: 
+  147: strategy.exit("Exit Long", "Long", stop=close * (1 - stopLossPercent), limit=close * (1 + takeProfitPercent))
+  148: strategy.exit("Exit Short", "Short", stop=close * (1 + stopLossPercent), limit=close * (1 - takeProfitPercent))

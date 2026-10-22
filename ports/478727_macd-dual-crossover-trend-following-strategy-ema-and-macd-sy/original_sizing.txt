@@ -1,0 +1,89 @@
+# Original sizing and money-management code, FMZ #478727 (双重交叉趋势追踪策略指数均线与MACD协同交易系统-Dual-Crossover-Trend-Following-Strategy-EMA-and-MACD-Synergistic-Trading-System)
+# Source: https://www.fmz.com/strategy/478727  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 100000, 200 % of equity; 5-bar stop, TP 3.5 R from the avg price  [lines 102-185]
+  102: strategy(title="MACD + EMA9 3 h",
+  103:      shorttitle="MACD+EMA9+StopTP_5candles",
+  104:      overlay=true,
+  105:      initial_capital=100000,    // Ajuste conforme desejar
+  106:      default_qty_type=strategy.percent_of_equity,
+  107:      default_qty_value=200)      // Ajuste % de risco ou quantidade
+  108: 
+  109: // ----- Entradas (Inputs) -----
+  110: emaLen          = input.int(9,     "Período da EMA 9", minval=1)
+  111: macdFastLen     = input.int(12,    "Período MACD Rápido", minval=1)
+  112: macdSlowLen     = input.int(26,    "Período MACD Lento",  minval=1)
+  113: macdSignalLen   = input.int(9,     "Período MACD Signal", minval=1)
+  114: riskMultiplier  = input.float(3.5, "Fator de Multiplicação do Risco (TP)")
+  115: lookbackCandles = input.int(5,     "Quantidade de candles p/ Stop", minval=1)
+  116: 
+  117: // ----- Cálculo da EMA -----
+  118: ema9 = ta.ema(close, emaLen)
+  119: 
+  120: // ----- Cálculo do MACD -----
+  121: [macdLine, signalLine, histLine] = ta.macd(close, macdFastLen, macdSlowLen, macdSignalLen)
+  122: // DIF cruza DEA para cima ou para baixo
+  123: macdCrossover   = ta.crossover(macdLine, signalLine)   // DIF cruza DEA p/ cima
+  124: macdCrossunder  = ta.crossunder(macdLine, signalLine)  // DIF cruza DEA p/ baixo
+  125: 
+  126: // ----- Condições de Compra/Venda -----
+  127: 
+  128: // Compra quando:
+  129: // 1) Preço cruza EMA9 de baixo pra cima
+  130: // 2) MACD cruza a linha de sinal para cima
+  131: buySignal = ta.crossover(close, ema9) and macdCrossover
+  132: 
+  133: // Venda quando:
+  134: // 1) Preço cruza EMA9 de cima pra baixo
+  135: // 2) MACD cruza a linha de sinal para baixo
+  136: sellSignal = ta.crossunder(close, ema9) and macdCrossunder
+  137: 
+  138: // ----- Execução das ordens -----
+  139: 
+  140: // Identifica o menor e o maior preço dos últimos 'lookbackCandles' candles.
+  141: // A função ta.lowest() e ta.highest() consideram, por padrão, a barra atual também.
+  142: // Se você quiser EXCLUIR a barra atual, use low[1] / high[1] dentro do ta.lowest() / ta.highest().
+  143: lowestLow5  = ta.lowest(low, lookbackCandles)
+  144: highestHigh5= ta.highest(high, lookbackCandles)
+  145: 
+  146: // >>> Quando há sinal de COMPRA <<<
+  147: if (buySignal)
+  148:     // Fecha posição vendida, se existir
+  149:     strategy.close("Sell")
+  150:     // Entra comprado
+  151:     strategy.entry("Buy", strategy.long)
+  152:     
+  153:     // STOP: abaixo do menor preço dos últimos 5 candles
+  154:     stopPrice = lowestLow5
+  155:     // Risco = (preço de entrada) - (stop)
+  156:     // Note que strategy.position_avg_price só fica disponível a partir da barra seguinte.
+  157:     // Por isso, o exit costuma funcionar corretamente apenas na barra seguinte.
+  158:     // Para fins de teste, podemos usar 'close' como proxy do "entry" (ou aceitar essa limitação).
+  159:     // A forma "correta" de usar strategy.position_avg_price seria via calc_on_order_fills = true,
+  160:     // mas isso pode exigir algumas configurações adicionais.
+  161:     risk = strategy.position_avg_price - stopPrice
+  162:     
+  163:     // Take Profit = entrada + 2,5 * risco
+  164:     takeProfitPrice = strategy.position_avg_price + riskMultiplier * risk
+  165: 
+  166:     // Registra a saída (stop e alvo) vinculada à posição "Buy"
+  167:     strategy.exit("Exit Buy", "Buy", stop=stopPrice, limit=takeProfitPrice)
+  168: 
+  169: // >>> Quando há sinal de VENDA <<<
+  170: if (sellSignal)
+  171:     // Fecha posição comprada, se existir
+  172:     strategy.close("Buy")
+  173:     // Entra vendido
+  174:     strategy.entry("Sell", strategy.short)
+  175:     
+  176:     // STOP: acima do maior preço dos últimos 5 candles
+  177:     stopPrice = highestHigh5
+  178:     // Risco = (stop) - (preço de entrada)
+  179:     risk = stopPrice - strategy.position_avg_price
+  180:     
+  181:     // Take Profit = entrada - 2,5 * risco
+  182:     takeProfitPrice = strategy.position_avg_price - riskMultiplier * risk
+  183: 
+  184:     // Registra a saída (stop e alvo) vinculada à posição "Sell"
+  185:     strategy.exit("Exit Sell", "Sell", stop=stopPrice, limit=takeProfitPrice)

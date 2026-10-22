@@ -1,0 +1,45 @@
+# Original sizing and money-management code, FMZ #478740 (动态调整止损的大象柱形态趋势跟踪策略-Dynamic-Stop-Loss-Adjustment-Elephant-Bar-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/478740  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop at the previous low / high + body / 5; target 1.8 bodies  [lines 170-209]
+  170: stop_loss_compra = low[1] + (barra_tamanho / 5)  // Para compra, stop é na mínima do candle anterior ajustado
+  171: stop_loss_venda = high[1] - (barra_tamanho / 5) // Para venda, stop é na máxima do candle anterior ajustado
+  172: 
+  173: // Take Profit inicial (multiplicador configurado)
+  174: take_profit_compra = close + percentual_lucro * barra_tamanho
+  175: take_profit_venda = close - percentual_lucro * barra_tamanho
+  176: 
+  177: // Variáveis para controle do progresso do preço
+  178: lucro_alvo_60 = close + 0.6 * (take_profit_compra - close)  // 60% do alvo
+  179: lucro_alvo_80 = close + 0.8 * (take_profit_compra - close)  // 80% do alvo
+  180: lucro_alvo_90 = close + 0.9 * (take_profit_compra - close)  // 90% do alvo
+  181: 
+  182: // Ajustes dinâmicos do Stop Loss e Alvo
+  183: if (strategy.position_size > 0)  // Para compras
+  184:     if (high >= lucro_alvo_60)
+  185:         stop_loss_compra := close + 0.1 * barra_tamanho  // Ajusta Stop para 10% acima da entrada
+  186:     if (high >= lucro_alvo_80)
+  187:         stop_loss_compra := close + 0.5 * barra_tamanho  // Ajusta Stop para 50% acima da entrada
+  188:     if (high >= lucro_alvo_90)
+  189:         stop_loss_compra := close + 0.8 * barra_tamanho  // Ajusta Stop para 80% acima da entrada
+  190:         take_profit_compra := close + 0.5 * barra_tamanho  // Ajusta Alvo para +50% do último fechamento
+  191: 
+  192: if (strategy.position_size < 0)  // Para vendas
+  193:     if (low <= lucro_alvo_60)
+  194:         stop_loss_venda := close - 0.1 * barra_tamanho  // Ajusta Stop para 10% abaixo da entrada
+  195:     if (low <= lucro_alvo_80)
+  196:         stop_loss_venda := close - 0.5 * barra_tamanho  // Ajusta Stop para 50% abaixo da entrada
+  197:     if (low <= lucro_alvo_90)
+  198:         stop_loss_venda := close - 0.8 * barra_tamanho  // Ajusta Stop para 80% abaixo da entrada
+  199:         take_profit_venda := close - 0.5 * barra_tamanho  // Ajusta Alvo para -50% do último fechamento
+  200: 
+  201: // Executando as ordens de compra e venda
+  202: if (not executou_entrada) and (comprar_condicao)
+  203:     strategy.entry("Compra", strategy.long)
+  204:     strategy.exit("Stop Compra", "Compra", stop=stop_loss_compra, limit=take_profit_compra)
+  205:     executou_entrada := true  // Marca que a entrada foi feita
+  206: 
+  207: if (not executou_entrada) and (vender_condicao)
+  208:     strategy.entry("Venda", strategy.short)
+  209:     strategy.exit("Stop Venda", "Venda", stop=stop_loss_venda, limit=take_profit_venda)

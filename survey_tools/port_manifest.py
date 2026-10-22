@@ -6280,6 +6280,35 @@ SIZING = {
     478721: [
         ("TP 1 % / SL 5 % of strategy.position_avg_price", 118, 179),
     ],
+    # ---- FMZ-C, batch C240 (2026-10-22)
+    478724: [],
+    478725: [
+        ("Stop 2 %; target 6 % (trend) / 4 % (range) of the signal close", 91, 161),
+    ],
+    478727: [
+        ("strategy(): capital 100000, 200 % of equity; 5-bar stop, TP 3.5 R from the avg price", 102, 185),
+    ],
+    478733: [],
+    478734: [
+        ("strategy(): 200 % of equity", 123, 123),
+    ],
+    478736: [
+        ("strategy(): 200 % of equity; stop 1 % / target 1.5 % of the current close", 107, 148),
+    ],
+    478737: [
+        ("Target 0.618 of the price, stop buffer 0.5 %", 112, 151),
+    ],
+    478740: [
+        ("Stop at the previous low / high + body / 5; target 1.8 bodies", 170, 209),
+    ],
+    478742: [
+        ("qty 20 / close (20 % of equity default); stop 1 % / target 2 %", 107, 145),
+    ],
+    478743: [],
+    478744: [],
+    478747: [
+        ("strategy(): 200 % of equity; stop 1 % / target 2 %", 119, 161),
+    ],
 }
 
 REJECTED_ON_READING = {
