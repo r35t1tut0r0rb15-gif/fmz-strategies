@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #446440 (基于K线蜡烛图的看涨吞没和看跌吞没策略Bullish-and-Bearish-Engulfing-Strategy-Based-on-Candlestick-Patterns)
+# Source: https://www.fmz.com/strategy/446440  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

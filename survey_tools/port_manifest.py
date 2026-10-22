@@ -4711,6 +4711,31 @@ SIZING = {
         ("qty = initial_capital / 10000 (initial_capital set to 50000)", 196, 222),
     ],
     445840: [],
+    # ---- FMZ-C, batch C174 (2026-10-22)
+    446232: [],
+    446428: [],
+    446433: [],
+    446438: [
+        ("strategy(): margin_long 100, margin_short 100", 100, 100),
+    ],
+    446440: [],
+    446441: [
+        ("Risk / reward, lookback, break-even and daily loss inputs", 179, 186),
+    ],
+    446444: [],
+    446453: [],
+    446456: [
+        ("strategy(): 100 % of equity, margin_long 100", 97, 97),
+    ],
+    446457: [
+        ("strategy(): 100 % of equity, capital 10000, margins 100 / 100", 117, 117),
+    ],
+    446458: [
+        ("stopLossPercentage 1.5", 107, 123),
+    ],
+    446460: [
+        ("position_size input 1 (qty)", 133, 162),
+    ],
 }
 
 REJECTED_ON_READING = {

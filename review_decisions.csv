@@ -2520,3 +2520,15 @@ fmz_id,file,final_outcome,criterion,reason
 445833,TrippleMACD均线交叉与相对强弱指标结合的高频加密货币交易策略High-Frequency-Cryptocurrency-Trading-Strategy-Combining-TrippleMACD-Crossover-and-Relative-Strength-Index.md,PORTED,,ports/445833_tripplemacd-high-frequency-cryptocurrency-trading-strategy-c/
 445836,布林带动态止盈与动态加仓策略-Bollinger-Band-Dynamic-Take-Profit-and-Dynamic-Position-Adding-Strategy.md,PORTED,,ports/445836_bollinger-band-dynamic-take-profit-and-dynamic-position-addi/
 445840,唐奇安通道突破策略Donchian-Channel-Breakout-Strategy-with-ATRSL-Trailing-Stop.md,PORTED,,ports/445840_donchian-channel-breakout-strategy-with-atrsl-trailing-stop/
+446232,基于趋势动量的多指标均线交叉策略Trend-Momentum-Based-Multi-Indicator-Moving-Average-Crossover-Strategy.md,PORTED,,ports/446232_trend-momentum-based-multi-indicator-moving-average-crossove/
+446428,基于多重移动平均线RSI-和标准差出场的蜡烛线高度突破交易策略Multi-EMA-RSI-and-Standard-Deviation-Based-Exit-Candlestick-Height-Breakout-Trading-Strategy.md,PORTED,,ports/446428_rsi-multi-ema-rsi-and-standard-deviation-based-exit-candlest/
+446433,基于三连阳-阴和双均线的量化交易策略Quantitative-Trading-Strategy-Based-on-Three-Consecutive-Bullish-Bearish-Candles-and-Dual-Moving-Averages.md,PORTED,,ports/446433_quantitative-trading-strategy-based-on-three-consecutive-bul/
+446438,基于布林带的多头策略Bollinger-Bands-Long-Only-Strategy.md,PORTED,,ports/446438_bollinger-bands-long-only-strategy/
+446440,基于K线蜡烛图的看涨吞没和看跌吞没策略Bullish-and-Bearish-Engulfing-Strategy-Based-on-Candlestick-Patterns.md,PORTED,,ports/446440_k-bullish-and-bearish-engulfing-strategy-based-on-candlestic/
+446441,ADR均线交叉策略-融合多维度技术指标和严格止盈止损的交易方法EMA-Cross-ADR-Strategy-A-Multidimensional-Technical-Indicator-Based-Trading-Method-with-Strict-Risk-Management.md,PORTED,,ports/446441_adr-ema-cross-adr-strategy-a-multidimensional-technical-indi/
+446444,移动平均交叉量化策略Moving-Average-Crossover-Quantitative-Strategy.md,PORTED,,ports/446444_moving-average-crossover-quantitative-strategy/
+446453,基于方差和移动平均线的波动幅度策略-Variance-and-Moving-Averages-Based-Volatility-Strategy.md,PORTED,,ports/446453_variance-and-moving-averages-based-volatility-strategy/
+446456,布林5分钟突破日内交易策略-Bollinger-5-Minute-Breakout-Intraday-Trading-Strategy.md,PORTED,,ports/446456_5-bollinger-5-minute-breakout-intraday-trading-strategy/
+446457,SMA均线交叉策略SMA-Moving-Average-Crossover-Strategy.md,PORTED,,ports/446457_sma-sma-moving-average-crossover-strategy/
+446458,RSI止损追踪交易策略-RSI-Stop-Loss-Tracking-Trading-Strategy.md,PORTED,,ports/446458_rsi-rsi-stop-loss-tracking-trading-strategy/
+446460,基于目标止损比例和固定仓位的EMA交叉策略-EMA-Crossover-Strategy-with-Target-Stop-loss-Ratio-and-Fixed-Position-Size.md,PORTED,,ports/446460_ema-ema-crossover-strategy-with-target-stop-loss-ratio-and-f/

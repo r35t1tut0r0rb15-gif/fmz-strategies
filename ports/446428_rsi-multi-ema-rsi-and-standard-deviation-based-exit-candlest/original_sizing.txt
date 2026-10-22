@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #446428 (基于多重移动平均线RSI-和标准差出场的蜡烛线高度突破交易策略Multi-EMA-RSI-and-Standard-Deviation-Based-Exit-Candlestick-Height-Breakout-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/446428  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

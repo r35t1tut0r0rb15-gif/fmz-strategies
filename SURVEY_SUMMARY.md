@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2193 |
-| PORT_CANDIDATE | 1239 |
+| PORTED | 2205 |
+| PORT_CANDIDATE | 1227 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
 | REJECTED_ON_READING | 308 |
@@ -2321,7 +2321,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 445833 | `ports/445833_tripplemacd-high-frequency-cryptocurrency-trading-strategy-c/` | PineScript | macd_momentum | none | tp x2, rsi_max x2 | 4 |
 | 445836 | `ports/445836_bollinger-band-dynamic-take-profit-and-dynamic-position-addi/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
 | 445840 | `ports/445840_donchian-channel-breakout-strategy-with-atrsl-trailing-stop/` | PineScript | donchian_breakout | none | don_len x2, atr_mult x2 | 4 |
-| | **2193 ports** | | | | | **10235** |
+| 446232 | `ports/446232_trend-momentum-based-multi-indicator-moving-average-crossove/` | PineScript | multi_indicator_confluence | none | slow x2, rsi_len x2 | 4 |
+| 446428 | `ports/446428_rsi-multi-ema-rsi-and-standard-deviation-based-exit-candlest/` | PineScript | breakout | none | candle_count x2, exit_len x2 | 4 |
+| 446433 | `ports/446433_quantitative-trading-strategy-based-on-three-consecutive-bul/` | PineScript | candle_pattern | none |  | 0 |
+| 446438 | `ports/446438_bollinger-bands-long-only-strategy/` | PineScript | bollinger_breakout | none | mult_upper x2, mult_lower x2 | 4 |
+| 446440 | `ports/446440_k-bullish-and-bearish-engulfing-strategy-based-on-candlestic/` | PineScript | candle_pattern | none |  | 0 |
+| 446441 | `ports/446441_adr-ema-cross-adr-strategy-a-multidimensional-technical-indi/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | rr x2, lookback x2 | 4 |
+| 446444 | `ports/446444_moving-average-crossover-quantitative-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 446453 | `ports/446453_variance-and-moving-averages-based-volatility-strategy/` | PineScript | ma_trend | none | var_max x2, var_len x2 | 4 |
+| 446456 | `ports/446456_5-bollinger-5-minute-breakout-intraday-trading-strategy/` | PineScript | bollinger_breakout | none | mult_upper x2, mult_lower x2 | 4 |
+| 446457 | `ports/446457_sma-sma-moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 446458 | `ports/446458_rsi-rsi-stop-loss-tracking-trading-strategy/` | PineScript | rsi_oscillator | none | threshold x2, stop_pct x2 | 4 |
+| 446460 | `ports/446460_ema-ema-crossover-strategy-with-target-stop-loss-ratio-and-f/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| | **2205 ports** | | | | | **10275** |
 
 ## Rejected on reading
 

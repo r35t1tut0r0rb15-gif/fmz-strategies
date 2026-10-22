@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #446458 (RSI止损追踪交易策略-RSI-Stop-Loss-Tracking-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/446458  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## stopLossPercentage 1.5  [lines 107-123]
+  107: stopLossPercentage = 1.5
+  108: 
+  109: // Calculate RSI
+  110: rsiLength = 14
+  111: rsiValue = ta.rsi(close, rsiLength)
+  112: 
+  113: // Initialize variables
+  114: var bool positionOpen = false
+  115: var float entryPrice = na
+  116: var float stopLossPrice = na
+  117: 
+  118: // Enter position when RSI crosses below threshold
+  119: if ta.crossunder(rsiValue, rsiThreshold)
+  120:     strategy.entry('Long', strategy.long)
+  121:     positionOpen := true
+  122:     entryPrice := close
+  123:     stopLossPrice := entryPrice * (1 - stopLossPercentage / 100)
