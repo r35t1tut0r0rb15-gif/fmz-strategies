@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #489638 (EMA-34-动态止损交叉策略趋势跟踪与风险管理的智能结合-EMA-34-Dynamic-Stop-Loss-Crossover-Strategy-Intelligent-Combination-of-Trend-Following-and-Risk-Management)
+# Source: https://www.fmz.com/strategy/489638  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 186-186]
+  186: strategy("EMA 34 Crossover with Break Even Stop Loss", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

@@ -7010,6 +7010,29 @@ SIZING = {
     489634: [
         ("strategy(): 10 % of equity", 173, 173),
     ],
+    # ---- FMZ-C, batch C272 (2026-10-22)
+    489638: [
+        ("strategy(): 100 % of equity", 186, 186),
+    ],
+    489646: [
+        ("strategy(): capital 10000, 100 % of equity", 175, 175),
+    ],
+    489650: [
+        ("lot = 1 % of 1000 / (1 ATR)", 194, 206),
+    ],
+    489654: [
+        ("risk 0.5 % of equity / |close - open|; capital 10000", 228, 257),
+    ],
+    489658: [
+        ("strategy(): 100 % of equity", 204, 204),
+    ],
+    489734: [
+        ("strategy(): capital 1000, 100 % of equity", 196, 196),
+    ],
+    489893: [],
+    489966: [
+        ("strategy(): 10 % of equity", 179, 179),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8902,6 +8925,20 @@ REJECTED_ON_READING = {
               "1, as #436524)."),
     489333: ("2", "The exits include trail_points = sl / 2, a pip-based price amount passed as a tick "
               "count (criterion 2, as #482767)."),
+    # ---- FMZ-C, batch C272 (2026-10-22)
+    489651: ("2", "The take-profit and stop are 50 'points' of mintick x 100, meant as fixed index "
+              "points for an Indian option (both 'option' entries are plain shorts of the chart "
+              "symbol): fixed price amounts (criterion 2, as #473377); the 15:24 IST close-all "
+              "never fires on daily bars."),
+    489653: ("2", "The trailing exits use trail_price = high - 10 / low + 10, a fixed 10-unit price "
+              "offset, with trail_offset 2 (criterion 2, as #482767)."),
+    489656: ("2", "The exits are strategy.exit(trail_offset = ATR 10), a price amount passed as a "
+              "tick count (criterion 2, as #482767)."),
+    489737: ("2", "The trailing exits use trail_price = high - 10 / low + 10, a fixed 10-unit price "
+              "offset, with trail_offset 2 (criterion 2, as #482767; its ND partner #489653 "
+              "likewise)."),
+    489742: ("1", "Martingale sizing: the bet doubles after a loss up to a capital cap (criterion 1, "
+              "as #484920)."),
 }
 
 DUPLICATE_ON_READING = {

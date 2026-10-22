@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #489966 (多指标协同动态风险管理短线交易策略EMAMACDRSI结合ATR自适应止损止盈技术-Multi-Indicator-Synergistic-Dynamic-Risk-Management-Scalping-Strategy-EMAMACDRSI-with-ATR-Adaptive-Stop-Loss-Take-Profit-Technique)
+# Source: https://www.fmz.com/strategy/489966  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 179-179]
+  179: strategy("Scalping 15min: EMA + MACD + RSI + ATR-based SL/TP", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)

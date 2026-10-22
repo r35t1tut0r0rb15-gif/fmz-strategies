@@ -1,0 +1,35 @@
+# Original sizing and money-management code, FMZ #489654 (三重指数移动平均与三重相对移动平均自适应通道交叉策略-Triple-EMA-and-Triple-RMA-Adaptive-Channel-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/489654  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## risk 0.5 % of equity / |close - open|; capital 10000  [lines 228-257]
+  228: strategy("EMA3 & RMA3 ATR Strategy", overlay=true, initial_capital=10000, currency=currency.USD)
+  229: 
+  230: // —— 输入参数 ——
+  231: ema_len = input.int(3, "EMA周期")
+  232: ema_mult = input.float(1.5, "EMA通道ATR乘数", step=0.1)
+  233: rma_len = input.int(3, "RMA周期")
+  234: rma_mult = input.float(1.0, "RMA通道ATR乘数", step=0.1)
+  235: atr_len = input.int(3, "ATR周期")
+  236: 
+  237: // —— 核心计算 ——
+  238: ema_val = ta.ema(close, ema_len)
+  239: atr_val = ta.atr(atr_len)
+  240: ema_upper = ema_val + atr_val * ema_mult
+  241: ema_lower = ema_val - atr_val * ema_mult
+  242: 
+  243: rma_val = ta.rma(close, rma_len)
+  244: rma_upper = rma_val + atr_val * rma_mult
+  245: rma_lower = rma_val - atr_val * rma_mult
+  246: 
+  247: // —— 信号条件 ——
+  248: ema_buy = barstate.isconfirmed and close > ema_upper
+  249: ema_sell = barstate.isconfirmed and close < ema_lower
+  250: rma_buy = barstate.isconfirmed and close > rma_upper
+  251: rma_sell = barstate.isconfirmed and close < rma_lower
+  252: 
+  253: // —— 仓位计算 ——
+  254: risk_percent = 0.5 // 单次风险0.5%
+  255: position_size(price, stop_price) => 
+  256:     risk_amount = strategy.equity * risk_percent / 100
+  257:     math.abs(price - stop_price) > 0 ? (risk_amount / math.abs(price - stop_price)) : na

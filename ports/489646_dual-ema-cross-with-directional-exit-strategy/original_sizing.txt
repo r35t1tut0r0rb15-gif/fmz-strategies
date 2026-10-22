@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #489646 (双指数移动平均交叉转向退出策略-Dual-EMA-Cross-with-Directional-Exit-Strategy)
+# Source: https://www.fmz.com/strategy/489646  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 10000, 100 % of equity  [lines 175-175]
+  175: strategy("EMA Cross Strategy with EMA Turning Exit", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=100, pyramiding=0)

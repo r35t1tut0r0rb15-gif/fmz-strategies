@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3200 |
+| PORTED | 3208 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 574 |
-| REJECTED_ON_READING | 491 |
+| REJECTED_ON_READING | 496 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 42 |
+| PORT_CANDIDATE | 29 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3328,7 +3328,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 489324 | `ports/489324_ema-ema-assisted-extreme-point-reversal-trading-strategy/` | PineScript | cci | none | ccimomLength x2, rsiOversold x2 | 4 |
 | 489332 | `ports/489332_dynamic-ema-crossover-with-rsi-trend-confirmation-quantitati/` | PineScript | ma_cross | none | sl_pct x2, tf_take_profit_ratio x2 | 4 |
 | 489634 | `ports/489634_atr-15-multi-indicator-adaptive-volatility-atr-dynamic-sl-tp/` | PineScript | multi_indicator_confluence | trailing_stop_pending | emaLength x2, rsiOB x2 | 4 |
-| | **3200 ports** | | | | | **14604** |
+| 489638 | `ports/489638_ema-34-ema-34-dynamic-stop-loss-crossover-strategy-intellige/` | PineScript | ma_cross | none | ema_length x2, rr x2 | 4 |
+| 489646 | `ports/489646_dual-ema-cross-with-directional-exit-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 489650 | `ports/489650_emaxrsi-dynamic-volatility-adaptive-ema-rsi-crossover-strate/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | stopLossMultiplier x2, takeProfitMultiplier x2 | 4 |
+| 489654 | `ports/489654_triple-ema-and-triple-rma-adaptive-channel-crossover-strateg/` | PineScript | keltner_channel | coarse_bar_stop | ema_mult x2, atr_len x2 | 4 |
+| 489658 | `ports/489658_rsi-macd-rsi-and-macd-cross-period-dynamic-trading-strategy/` | PineScript | macd | trailing_stop_pending | takeProfitPerc x2, stopLossPerc x2 | 4 |
+| 489734 | `ports/489734_multi-exponential-moving-average-with-directional-trend-filt/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 489893 | `ports/489893_multi-factor-mean-reversion-strategy-a-mean-reversion-tradin/` | PineScript | stochastic | none | length x2, bbLength x2 | 4 |
+| 489966 | `ports/489966_emamacdrsi-atr-multi-indicator-synergistic-dynamic-risk-mana/` | PineScript | multi_indicator_confluence | trailing_stop_pending | emaLength x2, rsiOB x2 | 4 |
+| | **3208 ports** | | | | | **14636** |
 
 ## Rejected on reading
 
@@ -3825,6 +3833,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 489295 | 多重蜡烛形态识别与自动交易策略-Multi-Candlestick-Pattern-Recognition-and-Automated-Trading-Strategy.md | 2 | The exits are strategy.exit(loss = 0.5 % x close, profit = 1 % x close): price amounts passed as tick counts in loss / profit (criterion 2, as #473377). |
 | 489304 | 多重指数移动平均线交叉策略-Multi-EMA-Crossover-Strategy.md | 1 | pyramiding 4 with four separately named 25 % entries (one per EMA pair), each closed by its own condition: the position is built and unwound in units (criterion 1, as #436524). |
 | 489333 | 高级价格行情突破与反转检测策略-Advanced-Price-Action-Breakout-and-Reversal-Detection-Strategy.md | 2 | The exits include trail_points = sl / 2, a pip-based price amount passed as a tick count (criterion 2, as #482767). |
+| 489651 | 动态趋势过滤ATM期权卖出策略结合EMA交叉与RSI动量确认-Dynamic-Trend-Filtered-ATM-Option-Selling-Strategy-with-EMA-Crossover-and-RSI-Momentum-Confirmation.md | 2 | The take-profit and stop are 50 'points' of mintick x 100, meant as fixed index points for an Indian option (both 'option' entries are plain shorts of the chart symbol): fixed price amounts (criterion 2, as #473377); the 15:24 IST close-all never fires on daily bars. |
+| 489653 | 双指数均线交叉与尾随止损结合的量化交易策略-Dual-EMA-Crossover-Strategy-with-Dynamic-Trailing-Stop-Mechanism.md | 2 | The trailing exits use trail_price = high - 10 / low + 10, a fixed 10-unit price offset, with trail_offset 2 (criterion 2, as #482767). |
+| 489656 | 动态ATR网格回撤捕捉量化交易策略-Dynamic-ATR-Grid-Pullback-Capture-Quantitative-Trading-Strategy.md | 2 | The exits are strategy.exit(trail_offset = ATR 10), a price amount passed as a tick count (criterion 2, as #482767). |
+| 489737 | 高效趋势捕捉型指数移动平均线交叉与动态追踪止损策略-Advanced-Trend-Capture-EMA-Crossover-Strategy-with-Dynamic-Trailing-Stop.md | 2 | The trailing exits use trail_price = high - 10 / low + 10, a fixed 10-unit price offset, with trail_offset 2 (criterion 2, as #482767; its ND partner #489653 likewise). |
+| 489742 | 八阶蜡烛模式序列马丁格尔策略-Eight-Candle-Pattern-Sequence-Martingale-Strategy.md | 1 | Martingale sizing: the bet doubles after a loss up to a capital cap (criterion 1, as #484920). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
