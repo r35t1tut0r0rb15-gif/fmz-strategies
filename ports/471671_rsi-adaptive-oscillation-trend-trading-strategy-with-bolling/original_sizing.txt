@@ -1,0 +1,73 @@
+# Original sizing and money-management code, FMZ #471671 (结合布林带与RSI的自适应震荡趋势交易策略-Adaptive-Oscillation-Trend-Trading-Strategy-with-Bollinger-Bands-and-RSI-Integration)
+# Source: https://www.fmz.com/strategy/471671  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 3, capital 100000; trade size 1 ETH  [lines 98-165]
+   98: strategy("[ETH] Optimized Trend Strategy", shorttitle="Lorenzo-SuperScalping", overlay=true, pyramiding=3, initial_capital=100000, currency=currency.USD)
+   99: 
+  100: // === Input Parameters === //
+  101: trade_size = input.float(1.0, title="Trade Size (ETH)")
+  102: rsi_length = input.int(14, minval=1, title="RSI Length")
+  103: bb_length = input.int(20, minval=1, title="Bollinger Bands Length")
+  104: bb_mult = input.float(2.0, title="Bollinger Bands Multiplier")
+  105: macd_fast = input.int(12, minval=1, title="MACD Fast Length")
+  106: macd_slow = input.int(26, minval=1, title="MACD Slow Length")
+  107: macd_signal = input.int(9, minval=1, title="MACD Signal Length")
+  108: 
+  109: // === Indicators === //
+  110: // RSI
+  111: rsi = ta.rsi(close, rsi_length)
+  112: 
+  113: // Bollinger Bands
+  114: basis = ta.sma(close, bb_length)
+  115: dev = ta.stdev(close, bb_length) * bb_mult
+  116: upper_band = basis + dev
+  117: lower_band = basis - dev
+  118: plot(basis, color=color.blue, title="BB Basis")
+  119: plot(upper_band, color=color.red, title="BB Upper")
+  120: plot(lower_band, color=color.green, title="BB Lower")
+  121: 
+  122: // MACD
+  123: [macd_line, signal_line, _] = ta.macd(close, macd_fast, macd_slow, macd_signal)
+  124: macd_cross_up = ta.crossover(macd_line, signal_line)
+  125: macd_cross_down = ta.crossunder(macd_line, signal_line)
+  126: 
+  127: // === Signal Control Variables === //
+  128: var bool last_signal_buy = na
+  129: var int last_trade_bar = na
+  130: 
+  131: // === Buy Signal Condition === //
+  132: // - RSI below 45
+  133: // - Price near or below the lower Bollinger Band
+  134: // - MACD crossover
+  135: buy_signal = (rsi < 45 and close < lower_band * 1.02 and macd_cross_up)
+  136: 
+  137: // === Sell Signal Condition === //
+  138: // - RSI above 55
+  139: // - Price near or above the upper Bollinger Band
+  140: // - MACD crossunder
+  141: sell_signal = (rsi > 55 and close > upper_band * 0.98 and macd_cross_down)
+  142: 
+  143: // Ensure enough bars between trades
+  144: min_bars_between_trades = input.int(15, title="Minimum Bars Between Trades")
+  145: time_elapsed = na(last_trade_bar) or (bar_index - last_trade_bar) >= min_bars_between_trades
+  146: 
+  147: // === Execute Trades with Conditions === //
+  148: can_buy = buy_signal and (na(last_signal_buy) or not last_signal_buy) and time_elapsed
+  149: can_sell = sell_signal and (not na(last_signal_buy) and last_signal_buy) and time_elapsed
+  150: 
+  151: if (can_buy)
+  152:     // Close any existing short position before opening a long
+  153:     if strategy.position_size < 0
+  154:         strategy.close("Short")
+  155: 
+  156:     strategy.entry("Long", strategy.long, qty=trade_size)
+  157:     last_signal_buy := true
+  158:     last_trade_bar := bar_index
+  159: 
+  160: if (can_sell)
+  161:     // Close any existing long position and open a short position
+  162:     if strategy.position_size > 0
+  163:         strategy.close("Long")
+  164: 
+  165:     strategy.entry("Short", strategy.short, qty=trade_size)

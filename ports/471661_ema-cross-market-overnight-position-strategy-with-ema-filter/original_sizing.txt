@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #471661 (基于EMA指标的跨市场多空趋势隔夜持仓策略-Cross-Market-Overnight-Position-Strategy-with-EMA-Filter)
+# Source: https://www.fmz.com/strategy/471661  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity, commission 0.02 %, slippage 1, capital 10000  [lines 109-109]
+  109: strategy("Overnight Positioning with EMA Confirmation - Strategy [presentTrading]", overlay=true, precision=3, commission_value=0.02, commission_type=strategy.commission.percent, slippage=1, currency=currency.USD, default_qty_type=strategy.percent_of_equity, default_qty_value=10, initial_capital=10000)

@@ -1,0 +1,42 @@
+# Original sizing and money-management code, FMZ #471687 (多指标融合均值回归趋势跟踪策略-Multi-Indicator-Fusion-Mean-Reversion-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/471687  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 10 ATR from the signal close  [lines 108-144]
+  108: atrLength = input.int(10, title="Период ATR")
+  109: atrMultiplier = input.float(10, title="ATR множитель для стоп-лосса")
+  110: 
+  111: // Параметры MACD
+  112: macdFastLength = input.int(8, title="Период быстрой EMA для MACD")
+  113: macdSlowLength = input.int(26, title="Период медленной EMA для MACD")
+  114: macdSignalLength = input.int(5, title="Период сигнальной линии MACD")
+  115: 
+  116: // === Рассчёт индикаторов ===
+  117: // Скользящая средняя
+  118: ma = if maType == "SMA"
+  119:     ta.sma(close, maLength)
+  120: else
+  121:     ta.ema(close, maLength)
+  122: 
+  123: // ATR (Средний истинный диапазон)
+  124: atr = ta.atr(atrLength)
+  125: 
+  126: // MACD
+  127: [macdLine, signalLine, _] = ta.macd(close, macdFastLength, macdSlowLength, macdSignalLength)
+  128: 
+  129: // Условия для входа на покупку и продажу
+  130: longCondition = ta.crossover(macdLine, signalLine) and close < ma
+  131: shortCondition = ta.crossunder(macdLine, signalLine) and close > ma
+  132: 
+  133: // === Управление позициями ===
+  134: if (longCondition)
+  135:     strategy.entry("Buy", strategy.long)
+  136:     // Стоп-лосс на основе ATR
+  137:     stopLossLevel = close - atr * atrMultiplier
+  138:     strategy.exit("Take Profit/Stop Loss", "Buy", stop=stopLossLevel)
+  139: 
+  140: if (shortCondition)
+  141:     strategy.entry("Sell", strategy.short)
+  142:     // Стоп-лосс на основе ATR
+  143:     stopLossLevel = close + atr * atrMultiplier
+  144:     strategy.exit("Take Profit/Stop Loss", "Sell", stop=stopLossLevel)

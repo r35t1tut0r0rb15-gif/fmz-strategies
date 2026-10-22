@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2558 |
+| PORTED | 2569 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 820 |
+| PORT_CANDIDATE | 808 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 360 |
+| REJECTED_ON_READING | 361 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2686,7 +2686,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 469615 | `ports/469615_bollinger-bands-precise-crossover-quantitative-strategy/` | PineScript | bollinger_reversion | none | length x2, multiplier x2 | 4 |
 | 469617 | `ports/469617_volatility-stop-cloud-strategy-with-moving-average-crossover/` | PineScript | volatility_stop_cross | none | length x2, factor_small x2, factor_big x2 | 8 |
 | 469618 | `ports/469618_multi-indicator-crossover-momentum-trading-strategy-with-opt/` | PineScript | ma_cross | coarse_bar_stop | fast x2, slow x2, tp_pct x2 | 8 |
-| | **2558 ports** | | | | | **12070** |
+| 469622 | `ports/469622_ema-macd-rsi-ema-macd-rsi-crossover-strategy/` | PineScript | macd_cross | coarse_bar_stop | rsi_len x2, atr_mult x2 | 4 |
+| 471659 | `ports/471659_multi-technical-indicator-based-mean-reversion-and-trend-fol/` | PineScript | bollinger_reversion | none | bb_period x2, rsi_period x2 | 4 |
+| 471661 | `ports/471661_ema-cross-market-overnight-position-strategy-with-ema-filter/` | PineScript | ma_trend | none | ema_length x2 | 2 |
+| 471662 | `ports/471662_fibonacci-retracement-and-extension-multi-indicator-quantita/` | PineScript | pivot_levels | none | range_len x2, fast x2, slow x2 | 8 |
+| 471671 | `ports/471671_rsi-adaptive-oscillation-trend-trading-strategy-with-bolling/` | PineScript | macd_cross | none | min_gap x2, bb_length x2 | 4 |
+| 471672 | `ports/471672_rsi-triple-validated-rsi-mean-reversion-with-moving-average/` | PineScript | rsi_oscillator | none | entry_th x2, exit_th x2, sma_len x2 | 8 |
+| 471686 | `ports/471686_post-open-breakout-trading-strategy-with-dynamic-atr-based-p/` | PineScript | breakout | trailing_stop_pending |  | 0 |
+| 471687 | `ports/471687_multi-indicator-fusion-mean-reversion-trend-following-strate/` | PineScript | macd_cross | coarse_bar_stop | ma_length x2, atr_mult x2 | 4 |
+| 471688 | `ports/471688_rsi-dual-moving-average-rsi-trend-momentum-strategy/` | PineScript | rsi_oscillator | none | short_len x2, long_len x2, rsi_len x2 | 8 |
+| 471689 | `ports/471689_high-win-rate-trend-mean-reversion-trading-strategy/` | PineScript | bollinger_reversion | coarse_bar_stop, trailing_stop_pending | bb_length x2, rr x2 | 4 |
+| 471690 | `ports/471690_open-market-exposure-dynamic-position-adjustment-quantitativ/` | PineScript | momentum_oscillator | trailing_stop_pending | threshold x2 | 2 |
+| | **2569 ports** | | | | | **12118** |
 
 ## Rejected on reading
 
@@ -3052,6 +3063,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 468306 | 双均线交叉日内盈利目标策略-Dual-Moving-Average-Crossover-Strategy-with-Daily-Profit-Target.md | 1 | strategy.netprofit >= 200 (the 'daily' target is the cumulative net profit in currency) closes every position on every later bar: once the running profit of the sized trades passes 200 the strategy stops trading, so the trades depend on the position size and the account history (criterion 1, equity / net-profit gate). |
 | 468340 | 增强型突破策略与目标和止损优化-Enhanced-Breakout-Strategy-with-Targets-and-Stop-Loss-Optimization.md | 1 | The breakout levels are the high and low of the first 5 bars of whatever data is loaded (bar_index < 5), held for ever: where the trades fall depends on where the data starts (criterion 1, data-start-dependent levels). |
 | 469612 | 多级平衡量化交易策略-Multi-Level-Balanced-Quantitative-Trading-Strategy.md | 1 | pyramiding = 10 with up to 10 stacked entries per side whose quantities step 1, 2, 4, 8, 5 ... 10 as the same signals repeat, and closes per entry id: the position-size path is the strategy (criterion 1, as #430762, #439950). |
+| 471673 | RSI动态止损智能交易策略-RSI-Dynamic-Stop-Loss-Intelligent-Trading-Strategy.md | 1 | The take-profits are strategy.exit qty_percent = 33 / 66 / 100 partial exits (TP 1 / 2 / 3 at 5 / 10 / 15 %): the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #439950). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

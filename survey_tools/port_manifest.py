@@ -5509,6 +5509,32 @@ SIZING = {
     469618: [
         ("strategy(): margin 100 / 100; target 3 % / stop 1 % of the average price", 123, 171),
     ],
+    # ---- FMZ-C, batch C209 (2026-10-22)
+    469622: [
+        ("Stop 1 ATR from the signal close", 140, 180),
+    ],
+    471659: [],
+    471661: [
+        ("strategy(): 10 % of equity, commission 0.02 %, slippage 1, capital 10000", 109, 109),
+    ],
+    471662: [],
+    471671: [
+        ("strategy(): pyramiding 3, capital 100000; trade size 1 ETH", 98, 165),
+    ],
+    471672: [],
+    471686: [
+        ("Stop 2 ATR / target 4 ATR from the current close (re-sent every bar)", 129, 181),
+    ],
+    471687: [
+        ("Stop 10 ATR from the signal close", 108, 144),
+    ],
+    471688: [],
+    471689: [
+        ("Risk 2 % of equity over a 1 ATR stop; target 0.75 ATR", 133, 173),
+    ],
+    471690: [
+        ("Target 2 % / stop 1 % of the current close (re-sent every bar)", 95, 133),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -6967,6 +6993,10 @@ REJECTED_ON_READING = {
     469612: ("1", "pyramiding = 10 with up to 10 stacked entries per side whose quantities step 1, 2, "
               "4, 8, 5 ... 10 as the same signals repeat, and closes per entry id: the "
               "position-size path is the strategy (criterion 1, as #430762, #439950)."),
+    # ---- FMZ-C, batch C209 (2026-10-22)
+    471673: ("1", "The take-profits are strategy.exit qty_percent = 33 / 66 / 100 partial exits (TP 1 "
+              "/ 2 / 3 at 5 / 10 / 15 %): the position is closed in parts, so the size path is "
+              "part of the strategy (criterion 1, qty_percent partial exits, as #439950)."),
 }
 
 DUPLICATE_ON_READING = {

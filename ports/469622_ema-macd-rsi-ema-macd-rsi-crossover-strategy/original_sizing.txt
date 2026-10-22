@@ -1,0 +1,46 @@
+# Original sizing and money-management code, FMZ #469622 (EMA-MACD-RSI-交叉策略-EMA-MACD-RSI-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/469622  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 ATR from the signal close  [lines 140-180]
+  140: atr_length = input(12, title="ATR Période")
+  141: atr_multiplier = input(1.0, title="Multiplicateur ATR pour Stop")
+  142: 
+  143: // ─────────────────────────────────────────────────────────────
+  144: // Calcul des EMA
+  145: ema_fast = ta.ema(close, ema_fast_length)
+  146: ema_slow = ta.ema(close, ema_slow_length)
+  147: ema_long = ta.ema(close, ema_long_length)
+  148: 
+  149: // Calcul du RSI
+  150: rsi = ta.rsi(close, rsi_length)
+  151: 
+  152: // Calcul du MACD
+  153: [macdLine, signalLine, _] = ta.macd(close, macd_fast_length, macd_slow_length, macd_signal_length)
+  154: 
+  155: // Calcul de l'ATR pour gérer les stops
+  156: atr_value = ta.atr(atr_length)
+  157: 
+  158: // ─────────────────────────────────────────────────────────────
+  159: // Conditions d'achat et de vente basées sur MACD, EMA et RSI
+  160: buy_condition = (ta.crossover(ema_fast, ema_slow) or ta.crossover(macdLine, signalLine)) and rsi > rsi_oversold
+  161: sell_condition = (ta.crossunder(ema_fast, ema_slow) or ta.crossunder(macdLine, signalLine)) and rsi < rsi_overbought
+  162: 
+  163: // ─────────────────────────────────────────────────────────────
+  164: // Vérification des positions ouvertes pour éviter les doublons
+  165: long_position = strategy.position_size > 0  // Position d'achat ouverte
+  166: short_position = strategy.position_size < 0  // Position de vente ouverte
+  167: 
+  168: // ─────────────────────────────────────────────────────────────
+  169: // Gestion des positions et Stop Loss
+  170: long_stop = close - atr_value * atr_multiplier
+  171: short_stop = close + atr_value * atr_multiplier
+  172: 
+  173: // Entrer les positions uniquement si aucune position n'est ouverte dans la même direction
+  174: if (buy_condition and not long_position)
+  175:     strategy.entry("Buy", strategy.long)
+  176:     strategy.exit("Exit Buy", from_entry="Buy", stop=long_stop)
+  177: 
+  178: if (sell_condition and not short_position)
+  179:     strategy.entry("Sell", strategy.short)
+  180:     strategy.exit("Exit Sell", from_entry="Sell", stop=short_stop)

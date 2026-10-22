@@ -1,0 +1,58 @@
+# Original sizing and money-management code, FMZ #471686 (Post-Open-Breakout-Trading-Strategy-with-Dynamic-ATR-Based-Position-Management-基于ATR动态管理的开市突破交易策略)
+# Source: https://www.fmz.com/strategy/471686  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 ATR / target 4 ATR from the current close (re-sent every bar)  [lines 129-181]
+  129: atrLength = 14
+  130: atrStopLossMultiplier = 2.0  // Moltiplicatore per Stop Loss
+  131: atrTakeProfitMultiplier = 4.0  // Moltiplicatore per Take Profit modificato a 4.0
+  132: atrValue = ta.atr(atrLength)  // Valore ATR calcolato qui
+  133: 
+  134: // Condizione di lateralizzazione - Prezzo vicino alla SMA delle Bande di Bollinger
+  135: lateralization = math.abs(close - smaBB) < (0.01 * close) and (daxOpen or usOpen)
+  136: 
+  137: // Identificazione della resistenza e del breakout
+  138: var float resistanceLevel = na
+  139: resistanceTouches = 0
+  140: 
+  141: for i = 1 to 20
+  142:     if high[i] > high[i+1] and high[i] > high[i-1]
+  143:         resistanceLevel := high[i]
+  144:         resistanceTouches := resistanceTouches + 1
+  145: 
+  146: // Condizione di Breakout: Il prezzo attuale supera la resistenza identificata
+  147: breakoutCondition = close > resistanceLevel and resistanceTouches >= 2
+  148: 
+  149: // Filtro di mercato rialzista a lungo termine - Entrare solo se il prezzo è sopra la EMA a 200 periodi
+  150: bullMarket = close > emaLong
+  151: 
+  152: // Filtro di trend a breve termine
+  153: trendFilter = ta.ema(close, emaLength)  // Filtro di trend a breve termine
+  154: trendDown = close < trendFilter  // Condizione di downtrend basata sul trend a breve termine
+  155: 
+  156: // Evitare l'entrata durante un pullback - Verifica se le due candele precedenti sono rosse
+  157: firstRedCandle = close[1] < open[1]  // La prima candela precedente è rossa
+  158: secondRedCandle = close[2] < open[2]  // La seconda candela precedente è rossa
+  159: avoidPullbackCondition = not (firstRedCandle and secondRedCandle)  // Entrare solo se non entrambe sono rosse
+  160: 
+  161: // Condizione Panic Candle - La candela deve chiudere negativa
+  162: panicCandle = close < open and (daxOpen or usOpen)
+  163: 
+  164: // Condizione di Entrata Long
+  165: longCondition = breakoutCondition and lateralization and close > ema and rsi > rsiThreshold and adx > adxThreshold and not trendDown and avoidPullbackCondition and bullMarket and panicCandle
+  166: 
+  167: // Stop Loss e Take Profit dinamici basati su ATR
+  168: atrStopLoss = close - (atrValue * atrStopLossMultiplier)  // Stop Loss dinamico usando ATR con moltiplicatore 2.0
+  169: atrTakeProfit = close + (atrValue * atrTakeProfitMultiplier)  // Take Profit dinamico usando ATR con moltiplicatore 4.0
+  170: 
+  171: // Entrata Long: Ordine eseguito alla chiusura della candela
+  172: if (longCondition and strategy.opentrades == 0 and barstate.isconfirmed)
+  173:     strategy.entry("Long", strategy.long)
+  174: 
+  175: // Disegna linee per Stop Loss e Take Profit
+  176: // line.new(x1=bar_index, y1=atrStopLoss, x2=bar_index + 1, y2=atrStopLoss, color=color.red, width=2, style=line.style_solid)  // Linea di Stop Loss (rossa)
+  177: // line.new(x1=bar_index, y1=atrTakeProfit, x2=bar_index + 1, y2=atrTakeProfit, color=color.green, width=2, style=line.style_solid)  // Linea di Take Profit (verde)
+  178: 
+  179: // Uscita: Stop Loss o Take Profit raggiunti
+  180: if (strategy.opentrades > 0)
+  181:     strategy.exit("Exit Long", "Long", stop=atrStopLoss, limit=atrTakeProfit)
