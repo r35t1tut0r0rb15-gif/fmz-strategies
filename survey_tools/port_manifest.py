@@ -6720,6 +6720,28 @@ SIZING = {
     483495: [
         ("strategy(): capital 100000, 10 % of equity", 91, 91),
     ],
+    # ---- FMZ-C, batch C259 (2026-10-22)
+    483503: [
+        ("risk-sized quantity: equity x 1 % / stop distance", 97, 135),
+    ],
+    483504: [
+        ("strategy(): 100 % of equity, commission 0.01", 93, 93),
+        ("qty = equity x leverage 5 / close", 95, 98),
+    ],
+    483505: [
+        ("strategy(): capital 1000, 100 % of equity", 97, 97),
+    ],
+    483509: [
+        ("strategy(): capital 100000, 10 % of equity", 91, 91),
+    ],
+    483510: [],
+    483514: [],
+    483518: [],
+    483525: [],
+    483528: [
+        ("strategy(): 10 % of equity", 103, 103),
+    ],
+    483674: [],
 }
 
 REJECTED_ON_READING = {
@@ -8488,6 +8510,13 @@ REJECTED_ON_READING = {
     483498: ("1", "A 50 % partial take-profit (qty_percent = 50) beside a trail whose trail_points / "
               "trail_offset are price amounts (riskValue x 0.8): criterion 1, as #436524 (the "
               "trail also fails criterion 2)."),
+    # ---- FMZ-C, batch C259 (2026-10-22)
+    483500: ("1", "Three partial take-profits of 33 % / 33 % / 34 % (qty_percent): criterion 1, as "
+              "#436524."),
+    483508: ("1", "The only exit is strategy.close(\"MacdLE\"), an id that is never entered, so nothing "
+              "ever closes the long (criterion 1, as #440692)."),
+    483526: ("1", "A partial close of half the lots (strategy.close qty = 0.01 of 0.02) at a "
+              "tick-based profit: criterion 1, as #436524."),
 }
 
 DUPLICATE_ON_READING = {

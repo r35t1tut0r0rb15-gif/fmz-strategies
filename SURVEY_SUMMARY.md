@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3073 |
+| PORTED | 3083 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 450 |
+| REJECTED_ON_READING | 453 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 211 |
+| PORT_CANDIDATE | 198 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3201,7 +3201,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 483126 | `ports/483126_rsi-rsi-dual-momentum-trend-reversal-strategy-based-on-rsi-a/` | PineScript | stochastic_oscillator | none | rsi_length x2, stoch_length x2 | 4 |
 | 483130 | `ports/483130_rsi-atr-dynamic-ema-crossover-with-rsi-momentum-and-atr-vola/` | PineScript | ma_cross | none | ema_fast_length x2, ema_slow_length x2 | 4 |
 | 483495 | `ports/483495_dynamic-dual-moving-average-crossover-strategy-with-single-t/` | PineScript | ma_cross | none | ema_period9 x2, ema_period21 x2 | 4 |
-| | **3073 ports** | | | | | **14106** |
+| 483503 | `ports/483503_dynamic-dual-ema-trend-following-strategy/` | PineScript | volatility_channel_breakout | trailing_stop_pending | length x2, long_term_length x2 | 4 |
+| 483504 | `ports/483504_momentum-threshold-driven-balance-of-power-trading-strategy/` | PineScript | momentum_oscillator | none | entry_level x2, exit_level x2 | 4 |
+| 483505 | `ports/483505_multi-period-momentum-driven-adaptive-volatility-filtered-st/` | PineScript | momentum_breakout | none | stop_loss x2, take_profit x2 | 4 |
+| 483509 | `ports/483509_dynamic-moving-average-crossover-trend-following-strategy/` | PineScript | ma_cross | none | sma_length x2, ema_fast_period x2 | 4 |
+| 483510 | `ports/483510_multi-temporal-trend-identification-adaptive-position-manage/` | PineScript | supertrend | none | factor x2, dema_length x2 | 4 |
+| 483514 | `ports/483514_dynamic-supply-demand-zone-midline-reversal-strategy/` | PineScript | mean_reversion_band | trailing_stop_pending | length x2, midline_length x2 | 4 |
+| 483518 | `ports/483518_rsi-adaptive-trading-strategy-based-on-rsi-momentum-indicato/` | PineScript | rsi_oscillator | trailing_stop_pending | rsi_period x2, rsi_oversold x2 | 4 |
+| 483525 | `ports/483525_rsi-momentum-enhanced-simple-moving-average-and-rsi-strategy/` | PineScript | ma_cross | none | short_length x2, long_length x2 | 4 |
+| 483528 | `ports/483528_rsi-psar-dynamic-rsi-and-psar-crossover-strategy-with-risk-m/` | PineScript | parabolic_sar | trailing_stop_pending | tp_percent x2, sl_percent x2 | 4 |
+| 483674 | `ports/483674_sma-rsi-cross-momentum-trend-following-strategy-sma-rsi-cros/` | PineScript | ma_trend | none | sma_length x2, rsi_length x2 | 4 |
+| | **3083 ports** | | | | | **14146** |
 
 ## Rejected on reading
 
@@ -3657,6 +3667,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 483125 | 动态ATR优化的日内高低点突破交易策略-Dynamic-ATR-Optimized-Intraday-High-Low-Breakout-Trading-Strategy.md | 1 | As written it can never trade: todayLow includes the current bar, so close <= min(prevDayLow, todayLow) - buffer is impossible (the close is never under the bar's own low), and likewise for the short (criterion 1, as #430384). |
 | 483496 | 多重指标动量突破趋势交易策略-Multi-Indicator-Momentum-Breakout-Trend-Trading-Strategy.md | 2 | The exits pass loss = longSL / shortSL and profit = longTP / shortTP, which are price LEVELS, where loss= / profit= take ticks (criterion 2, as #473377). |
 | 483498 | 多核心回归动态反应器趋势跟踪策略-Multi-Kernel-Regression-Dynamic-Reactor-Trend-Following-Strategy.md | 1 | A 50 % partial take-profit (qty_percent = 50) beside a trail whose trail_points / trail_offset are price amounts (riskValue x 0.8): criterion 1, as #436524 (the trail also fails criterion 2). |
+| 483500 | 多核心回归动态趋势跟踪交易策略-Multi-Kernel-Regression-Dynamic-Trend-Trading-Strategy.md | 1 | Three partial take-profits of 33 % / 33 % / 34 % (qty_percent): criterion 1, as #436524. |
+| 483508 | 均线-MACD趋势反转量化交易策略-EMA-MACD-Trend-Reversal-Quantitative-Trading-Strategy.md | 1 | The only exit is strategy.close("MacdLE"), an id that is never entered, so nothing ever closes the long (criterion 1, as #440692). |
+| 483526 | 双指数移动平均线趋势跟踪与分步退出交易策略-Dual-EMA-Trend-Following-Strategy-with-Staged-Position-Exit.md | 1 | A partial close of half the lots (strategy.close qty = 0.01 of 0.02) at a tick-based profit: criterion 1, as #436524. |
 
 ## Flagged and stored under criterion 3 (253 files)
 

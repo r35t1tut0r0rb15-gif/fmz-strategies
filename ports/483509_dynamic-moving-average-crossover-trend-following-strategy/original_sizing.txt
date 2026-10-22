@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483509 (动态均线交叉趋势跟踪组合策略-Dynamic-Moving-Average-Crossover-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/483509  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 100000, 10 % of equity  [lines 91-91]
+   91: strategy("交易策略（自定义EMA/SMA参数）", overlay=true, initial_capital=100000, currency=currency.EUR, default_qty_type=strategy.percent_of_equity, default_qty_value=10)

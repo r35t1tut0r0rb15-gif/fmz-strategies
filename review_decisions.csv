@@ -449,6 +449,9 @@ fmz_id,file,final_outcome,criterion,reason
 483125,动态ATR优化的日内高低点突破交易策略-Dynamic-ATR-Optimized-Intraday-High-Low-Breakout-Trading-Strategy.md,REJECTED_ON_READING,1,"As written it can never trade: todayLow includes the current bar, so close <= min(prevDayLow, todayLow) - buffer is impossible (the close is never under the bar's own low), and likewise for the short (criterion 1, as #430384)."
 483496,多重指标动量突破趋势交易策略-Multi-Indicator-Momentum-Breakout-Trend-Trading-Strategy.md,REJECTED_ON_READING,2,"The exits pass loss = longSL / shortSL and profit = longTP / shortTP, which are price LEVELS, where loss= / profit= take ticks (criterion 2, as #473377)."
 483498,多核心回归动态反应器趋势跟踪策略-Multi-Kernel-Regression-Dynamic-Reactor-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"A 50 % partial take-profit (qty_percent = 50) beside a trail whose trail_points / trail_offset are price amounts (riskValue x 0.8): criterion 1, as #436524 (the trail also fails criterion 2)."
+483500,多核心回归动态趋势跟踪交易策略-Multi-Kernel-Regression-Dynamic-Trend-Trading-Strategy.md,REJECTED_ON_READING,1,"Three partial take-profits of 33 % / 33 % / 34 % (qty_percent): criterion 1, as #436524."
+483508,均线-MACD趋势反转量化交易策略-EMA-MACD-Trend-Reversal-Quantitative-Trading-Strategy.md,REJECTED_ON_READING,1,"The only exit is strategy.close(""MacdLE""), an id that is never entered, so nothing ever closes the long (criterion 1, as #440692)."
+483526,双指数移动平均线趋势跟踪与分步退出交易策略-Dual-EMA-Trend-Following-Strategy-with-Staged-Position-Exit.md,REJECTED_ON_READING,1,"A partial close of half the lots (strategy.close qty = 0.01 of 0.02) at a tick-based profit: criterion 1, as #436524."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -3548,3 +3551,13 @@ fmz_id,file,final_outcome,criterion,reason
 483126,基于RSI和随机RSI的双重动量趋势反转策略-Dual-Momentum-Trend-Reversal-Strategy-Based-on-RSI-and-Stochastic-RSI.md,PORTED,,ports/483126_rsi-rsi-dual-momentum-trend-reversal-strategy-based-on-rsi-a/
 483130,动态均线交叉结合RSI动量和ATR波动率的多层级确认交易策略-Dynamic-EMA-Crossover-with-RSI-Momentum-and-ATR-Volatility-Multi-Level-Confirmation-Trading-Strategy.md,PORTED,,ports/483130_rsi-atr-dynamic-ema-crossover-with-rsi-momentum-and-atr-vola/
 483495,双均线动态交叉策略之指数移动均线交叉执行单次交易系统-Dynamic-Dual-Moving-Average-Crossover-Strategy-with-Single-Trade-Execution-System-using-Exponential-Moving-Averages.md,PORTED,,ports/483495_dynamic-dual-moving-average-crossover-strategy-with-single-t/
+483503,动态双均线趋势跟踪策略-Dynamic-Dual-EMA-Trend-Following-Strategy.md,PORTED,,ports/483503_dynamic-dual-ema-trend-following-strategy/
+483504,动量阈值驱动的平衡力量交易策略-Momentum-Threshold-Driven-Balance-of-Power-Trading-Strategy.md,PORTED,,ports/483504_momentum-threshold-driven-balance-of-power-trading-strategy/
+483505,多周期动量驱动型自适应波动率过滤策略-Multi-Period-Momentum-Driven-Adaptive-Volatility-Filtered-Strategy.md,PORTED,,ports/483505_multi-period-momentum-driven-adaptive-volatility-filtered-st/
+483509,动态均线交叉趋势跟踪组合策略-Dynamic-Moving-Average-Crossover-Trend-Following-Strategy.md,PORTED,,ports/483509_dynamic-moving-average-crossover-trend-following-strategy/
+483510,多重时序趋势甄别型自适应动态调仓策略-Multi-Temporal-Trend-Identification-Adaptive-Position-Management-Strategy.md,PORTED,,ports/483510_multi-temporal-trend-identification-adaptive-position-manage/
+483514,动态供需区间中线反转策略-Dynamic-Supply-Demand-Zone-Midline-Reversal-Strategy.md,PORTED,,ports/483514_dynamic-supply-demand-zone-midline-reversal-strategy/
+483518,基于RSI动量指标的自适应交易策略-Adaptive-Trading-Strategy-Based-on-RSI-Momentum-Indicator.md,PORTED,,ports/483518_rsi-adaptive-trading-strategy-based-on-rsi-momentum-indicato/
+483525,基于动量增强型简单移动平均线和RSI的趋势跟踪策略-Momentum-Enhanced-Simple-Moving-Average-and-RSI-Strategy-for-Trend-Following.md,PORTED,,ports/483525_rsi-momentum-enhanced-simple-moving-average-and-rsi-strategy/
+483528,动态RSI与PSAR交叉策略结合风险管理系统-Dynamic-RSI-and-PSAR-Crossover-Strategy-with-Risk-Management-System.md,PORTED,,ports/483528_rsi-psar-dynamic-rsi-and-psar-crossover-strategy-with-risk-m/
+483674,交叉动能趋势跟踪策略SMA-RSI交叉动量系统-Cross-Momentum-Trend-Following-Strategy-SMA-RSI-Cross-Momentum-System.md,PORTED,,ports/483674_sma-rsi-cross-momentum-trend-following-strategy-sma-rsi-cros/

@@ -1,0 +1,44 @@
+# Original sizing and money-management code, FMZ #483503 (动态双均线趋势跟踪策略-Dynamic-Dual-EMA-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/483503  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## risk-sized quantity: equity x 1 % / stop distance  [lines 97-135]
+   97: riskPerTrade = input.float(1.0, title="Risk per Trade (%)", minval=0.1, maxval=10.0)
+   98: 
+   99: // Additional inputs for strategy customization
+  100: useFilter = input.bool(true, title="Use 200 EMA Filter")
+  101: tradeDirection = input.string("Both", title="Trade Direction", options=["Long", "Short", "Both"])
+  102: 
+  103: // EMAs based on the high and low prices and long-term EMA
+  104: emaHigh = ta.ema(high, length)
+  105: emaLow = ta.ema(low, length)
+  106: ema200 = ta.ema(close, longTermLength)
+  107: 
+  108: // Plotting EMAs on the chart
+  109: plot(emaHigh, color=color.green, title="High EMA")
+  110: plot(emaLow, color=color.red, title="Low EMA")
+  111: plot(ema200, color=color.blue, title="200 EMA")
+  112: 
+  113: // Entry conditions with optional EMA filter
+  114: longCondition = close > emaHigh and (useFilter ? close > ema200 : true)
+  115: shortCondition = close < emaLow and (useFilter ? close < ema200 : true)
+  116: 
+  117: // Calculating stop-loss and position size
+  118: longStop = emaLow
+  119: shortStop = emaHigh
+  120: riskPerShareLong = close - longStop
+  121: riskPerShareShort = shortStop - close
+  122: equity = strategy.equity
+  123: 
+  124: // Ensure risk per share is positive for calculations
+  125: riskPerShareLong := riskPerShareLong > 0 ? riskPerShareLong : 0.01
+  126: riskPerShareShort := riskPerShareShort > 0 ? riskPerShareShort : 0.01
+  127: 
+  128: positionSizeLong = (equity * riskPerTrade / 100) / riskPerShareLong
+  129: positionSizeShort = (equity * riskPerTrade / 100) / riskPerShareShort
+  130: 
+  131: // Ensure position sizes are positive before entering trades
+  132: if (longCondition and (tradeDirection == "Long" or tradeDirection == "Both") and positionSizeLong > 0)
+  133:     strategy.entry("Long", strategy.long, qty= positionSizeLong)
+  134: if (shortCondition and (tradeDirection == "Short" or tradeDirection == "Both") and positionSizeShort > 0)
+  135:     strategy.entry("Short", strategy.short, qty=positionSizeShort)
