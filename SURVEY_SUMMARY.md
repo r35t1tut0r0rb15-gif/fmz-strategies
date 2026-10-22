@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1979 |
-| PORT_CANDIDATE | 1479 |
+| PORTED | 1990 |
+| PORT_CANDIDATE | 1467 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 282 |
+| REJECTED_ON_READING | 283 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2107,7 +2107,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442264 | `ports/442264_all-about-momentum-trading-strategy-with-stop-loss-for-gold/` | PineScript | momentum_oscillator | none | ema_length x2, entry_z x2 | 4 |
 | 442273 | `ports/442273_bollinger-bands-reversal-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
 | 442275 | `ports/442275_quantitative-trading-strategy-based-on-ichimoku-cloud-and-mo/` | PineScript | ichimoku | none | len x2, base x2 | 4 |
-| | **1979 ports** | | | | | **9429** |
+| 442341 | `ports/442341_ema-breakthrough-trap-strategy/` | PineScript | reversal_pattern | coarse_bar_stop | length x2, ema_length x2 | 4 |
+| 442342 | `ports/442342_bollinger-bands-breakout-trading-strategy/` | PineScript | bollinger_breakout | trailing_stop_pending | length x2, mult x2 | 4 |
+| 442346 | `ports/442346_rsi-divergence-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, oversold x2 | 4 |
+| 442347 | `ports/442347_tradingvma-tradingvma-variable-moving-average-trading-strate/` | PineScript | adaptive_average | none | length x2 | 2 |
+| 442349 | `ports/442349_momentum-indicator-aggregation-trading-strategy/` | PineScript | multi_indicator_confluence | none | ema_short x2, ema_long x2 | 4 |
+| 442361 | `ports/442361_rsi-multi-timeframe-bollinger-bands-breakout-strategy-incorp/` | PineScript | bollinger_reversion | none | length x2, period x2 | 4 |
+| 442363 | `ports/442363_breakout-trading-system/` | PineScript | donchian_breakout | none | length x2 | 2 |
+| 442365 | `ports/442365_extreme-reversal-setup-strategy/` | PineScript | reversal_pattern | none | bars_back x2, body_mult x2 | 4 |
+| 442367 | `ports/442367_rsiadxatr-reversal-trading-strategy-with-bollinger-bands-rsi/` | PineScript | bollinger_reversion | none | length x2, adx_max x2 | 4 |
+| 442368 | `ports/442368_bollinger-crossing-death-golden-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 442369 | `ports/442369_atr-best-atr-stop-multiple-strategy/` | PineScript | ma_cross | none | fast x2, atr_mult x2 | 4 |
+| | **1990 ports** | | | | | **9469** |
 
 ## Rejected on reading
 
@@ -2395,6 +2406,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442115 | 动量震荡追踪止损策略DYNAMIC-MOMENTUM-OSCILLATOR-TRAILING-STOP-STRATEGY.md | 2 | The only exits pass trail_points = trail_offset = atr x 1.5, a price amount, where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #437048, #437677). |
 | 442229 | 基于动态加仓策略Dynamic-Position-Building-Strategy.md | 1 | A DCA that buys on the close of every bar with pyramiding = 999 and cash sizes from remaining capital: the position accumulates units (criterion 1, as #430762). |
 | 442261 | 帕拉波尔振荡器寻找高点低点策略Parabola-Oscillator-Seeking-Highs-and-Lows-Strategy.md | 1 | longCondition and shortCondition are both the constant true, so every bar sends a long entry then a short entry; the last entry wins (as #437773), so as written the position is short from the first bar on, churning each bar: a sell-and-hold from the data start (criterion 1, as #430384). |
+| 442343 | 双Donchian通道突破策略Dual-Donchian-Channel-Breakout-Strategy.md | 1 | The take profit closes TP1Yuzde = 50 % of the position (strategy.exit with qty_percent = 50): partial exits (criterion 1, as #436524). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

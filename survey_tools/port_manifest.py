@@ -4328,6 +4328,20 @@ SIZING = {
     442264: [],
     442273: [],
     442275: [],
+    # ---- FMZ-C, batch C154 (2026-10-22)
+    442341: [],
+    442342: [
+        ("strategy(): 100 % of equity, capital 100, commission 0.15 %", 108, 108),
+    ],
+    442346: [],
+    442347: [],
+    442349: [],
+    442361: [],
+    442363: [],
+    442365: [],
+    442367: [],
+    442368: [],
+    442369: [],
 }
 
 REJECTED_ON_READING = {
@@ -5486,6 +5500,9 @@ REJECTED_ON_READING = {
               "long entry then a short entry; the last entry wins (as #437773), so as written the "
               "position is short from the first bar on, churning each bar: a sell-and-hold from "
               "the data start (criterion 1, as #430384)."),
+    # ---- FMZ-C, batch C154 (2026-10-22)
+    442343: ("1", "The take profit closes TP1Yuzde = 50 % of the position (strategy.exit with "
+              "qty_percent = 50): partial exits (criterion 1, as #436524)."),
 }
 
 DUPLICATE_ON_READING = {

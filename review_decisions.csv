@@ -281,6 +281,7 @@ fmz_id,file,final_outcome,criterion,reason
 442115,动量震荡追踪止损策略DYNAMIC-MOMENTUM-OSCILLATOR-TRAILING-STOP-STRATEGY.md,REJECTED_ON_READING,2,"The only exits pass trail_points = trail_offset = atr x 1.5, a price amount, where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #437048, #437677)."
 442229,基于动态加仓策略Dynamic-Position-Building-Strategy.md,REJECTED_ON_READING,1,"A DCA that buys on the close of every bar with pyramiding = 999 and cash sizes from remaining capital: the position accumulates units (criterion 1, as #430762)."
 442261,帕拉波尔振荡器寻找高点低点策略Parabola-Oscillator-Seeking-Highs-and-Lows-Strategy.md,REJECTED_ON_READING,1,"longCondition and shortCondition are both the constant true, so every bar sends a long entry then a short entry; the last entry wins (as #437773), so as written the position is short from the first bar on, churning each bar: a sell-and-hold from the data start (criterion 1, as #430384)."
+442343,双Donchian通道突破策略Dual-Donchian-Channel-Breakout-Strategy.md,REJECTED_ON_READING,1,"The take profit closes TP1Yuzde = 50 % of the position (strategy.exit with qty_percent = 50): partial exits (criterion 1, as #436524)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2280,3 +2281,14 @@ fmz_id,file,final_outcome,criterion,reason
 442264,基于动量和标准差的黄金交易策略All-About-Momentum-Trading-Strategy-with-Stop-Loss-for-Gold.md,PORTED,,ports/442264_all-about-momentum-trading-strategy-with-stop-loss-for-gold/
 442273,玻尔福重复索纳策略Bollinger-Bands-Reversal-Strategy.md,PORTED,,ports/442273_bollinger-bands-reversal-strategy/
 442275,基于一目均衡和隐冲突的量化交易策略Quantitative-Trading-Strategy-Based-on-Ichimoku-Cloud-and-Moving-Average.md,PORTED,,ports/442275_quantitative-trading-strategy-based-on-ichimoku-cloud-and-mo/
+442341,基于均线突破陷阱策略EMA-Breakthrough-Trap-Strategy.md,PORTED,,ports/442341_ema-breakthrough-trap-strategy/
+442342,布林带突破交易策略Bollinger-Bands-Breakout-Trading-Strategy.md,PORTED,,ports/442342_bollinger-bands-breakout-trading-strategy/
+442346,相对强弱指数发散策略RSI-Divergence-Strategy.md,PORTED,,ports/442346_rsi-divergence-strategy/
+442347,可变移动平均线-TradingVMA-策略TradingVMA-Variable-Moving-Average-Trading-Strategy.md,PORTED,,ports/442347_tradingvma-tradingvma-variable-moving-average-trading-strate/
+442349,基于动量指标聚合交易策略Momentum-Indicator-Aggregation-Trading-Strategy.md,PORTED,,ports/442349_momentum-indicator-aggregation-trading-strategy/
+442361,基于布林带突破和RSI指标的多时间框架趋势策略Multi-timeframe-Bollinger-Bands-Breakout-Strategy-Incorporating-RSI.md,PORTED,,ports/442361_rsi-multi-timeframe-bollinger-bands-breakout-strategy-incorp/
+442363,突破交易系统策略Breakout-Trading-System.md,PORTED,,ports/442363_breakout-trading-system/
+442365,反转极端设置策略Extreme-Reversal-Setup-Strategy.md,PORTED,,ports/442365_extreme-reversal-setup-strategy/
+442367,玻尔班带RSIADXATR反转交易策略Reversal-Trading-Strategy-with-Bollinger-Bands-RSI-ADX-and-ATR.md,PORTED,,ports/442367_rsiadxatr-reversal-trading-strategy-with-bollinger-bands-rsi/
+442368,基于金叉死叉布林带策略Bollinger-Crossing-Death-Golden-Strategy.md,PORTED,,ports/442368_bollinger-crossing-death-golden-strategy/
+442369,最佳ATR停损倍数策略Best-ATR-Stop-Multiple-Strategy.md,PORTED,,ports/442369_atr-best-atr-stop-multiple-strategy/

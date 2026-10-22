@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #442365 (反转极端设置策略Extreme-Reversal-Setup-Strategy)
+# Source: https://www.fmz.com/strategy/442365  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
