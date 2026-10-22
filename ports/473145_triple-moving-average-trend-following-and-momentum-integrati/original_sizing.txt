@@ -1,0 +1,73 @@
+# Original sizing and money-management code, FMZ #473145 (三重均线趋势跟踪与动量融合量化交易策略-Triple-Moving-Average-Trend-Following-and-Momentum-Integration-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/473145  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 7 / target 100 / trail 15 points from the current close  [lines 111-178]
+  111: sl_points = 7 // 5 points stop loss
+  112: tp_points = 100 // 100 points target profit
+  113: trail_points = 15 // Trailing stop loss every 10 points
+  114: 
+  115: // Validate input
+  116: if FfastLength < 1
+  117:     FfastLength := 1
+  118: if FslowLength < 1
+  119:     FslowLength := 1
+  120: if FsignalLength < 1
+  121:     FsignalLength := 1
+  122: 
+  123: // Get real close price
+  124: realC = close
+  125: 
+  126: // Triple EMA definition
+  127: ema1 = ta.ema(realC, len)
+  128: ema2 = ta.ema(ema1, len)
+  129: ema3 = ta.ema(ema2, len)
+  130: 
+  131: // Triple EMA trend calculation
+  132: avg = 3 * (ema1 - ema2) + ema3
+  133: 
+  134: // Filter formula
+  135: Fsource = close
+  136: FfastMA = ta.ema(Fsource, FfastLength)
+  137: FslowMA = ta.ema(Fsource, FslowLength)
+  138: Fmacd = FfastMA - FslowMA
+  139: Fsignal = ta.sma(Fmacd, FsignalLength)
+  140: 
+  141: // Plot EMAs for visual reference
+  142: shortema = ta.ema(close, 9)
+  143: longema = ta.ema(close, 15)
+  144: yma = ta.ema(close, 5)
+  145: plot(shortema, color=color.green)
+  146: plot(longema, color=color.red)
+  147: plot(yma, color=#e9f72c)
+  148: 
+  149: // Entry conditions
+  150: firstCrossover = ta.crossover(Fmacd, Fsignal) and avg > avg[1]
+  151: secondCrossover = ta.crossover(shortema, longema)  // Assuming you meant to cross shortema with longema
+  152: thirdCrossover = ta.crossover(close, yma)
+  153: 
+  154: var bool entryConditionMet = false
+  155: 
+  156: if (firstCrossover)
+  157:     entryConditionMet := true
+  158: 
+  159: longSignal = entryConditionMet and secondCrossover and thirdCrossover
+  160: 
+  161: // Strategy execution
+  162: if (longSignal)
+  163:     strategy.entry("Long", strategy.long)
+  164:     entryConditionMet := false  // Reset the entry condition after taking a trade
+  165: 
+  166: // Calculate stop loss and take profit prices
+  167: var float long_sl = na
+  168: var float long_tp = na
+  169: 
+  170: if strategy.position_size > 0  // Long position
+  171:     long_sl := close - sl_points
+  172:     long_tp := close + tp_points
+  173:     
+  174:     // Adjust stop loss with trailing logic
+  175:     if (close - long_sl > trail_points)
+  176:         long_sl := close - trail_points
+  177:         
+  178:     strategy.exit("Exit Long", "Long", stop=long_sl, limit=long_tp)

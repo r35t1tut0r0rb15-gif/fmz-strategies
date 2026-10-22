@@ -1,0 +1,55 @@
+# Original sizing and money-management code, FMZ #473236 (多重技术指标趋势跟踪策略结合云图突破与止损系统-Multi-Technical-Indicator-Trend-Following-Strategy-with-Ichimoku-Cloud-Breakout-and-Stop-Loss-System)
+# Source: https://www.fmz.com/strategy/473236  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop at the cloud edge of the signal bar  [lines 154-203]
+  154: var float trailingStopLoss = na
+  155: 
+  156: // Check for MA conditions (apply only if enabled)
+  157: maConditionLong = not useMAFilter or (useMAFilter and ma50 > ma200)
+  158: maConditionShort = not useMAFilter or (useMAFilter and ma50 < ma200)
+  159: 
+  160: // Check for Ichimoku Cloud conditions
+  161: ichimokuLongCondition = close > math.max(senkouA, senkouB)
+  162: ichimokuShortCondition = close < math.min(senkouA, senkouB)
+  163: 
+  164: // Check for RSI conditions (apply only if enabled)
+  165: rsiConditionLong = not useRSIFilter or (useRSIFilter and rsiSource > rsiOverbought)
+  166: rsiConditionShort = not useRSIFilter or (useRSIFilter and rsiSource < rsiOversold)
+  167: 
+  168: // Combine conditions for entry
+  169: longCondition = maConditionLong and tenkan > kijun and ichimokuLongCondition and rsiConditionLong
+  170: shortCondition = maConditionShort and tenkan < kijun and ichimokuShortCondition and rsiConditionShort
+  171: 
+  172: // Date and time filter
+  173: withinDateRange = true
+  174: 
+  175: // Check for Long Condition
+  176: if (longCondition and withinDateRange) 
+  177:     strategy.entry("Long", strategy.long)
+  178:     trailingStopLoss := math.min(senkouA, senkouB)
+  179:     alert("Buy Signal: Entering Long Position", alert.freq_once_per_bar_close)
+  180: 
+  181: // Check for Short Condition
+  182: if (shortCondition and withinDateRange) 
+  183:     strategy.entry("Short", strategy.short)
+  184:     trailingStopLoss := math.max(senkouA, senkouB)
+  185:     alert("Sell Signal: Entering Short Position", alert.freq_once_per_bar_close)
+  186: 
+  187: // Exit conditions
+  188: exitLongCondition = close < kijun or tenkan < kijun
+  189: exitShortCondition = close > kijun or tenkan > kijun
+  190: 
+  191: if (exitLongCondition and strategy.position_size > 0)
+  192:     strategy.close("Long")
+  193:     alert("Exit Signal: Closing Long Position", alert.freq_once_per_bar_close)
+  194: 
+  195: if (exitShortCondition and strategy.position_size < 0)
+  196:     strategy.close("Short")
+  197:     alert("Exit Signal: Closing Short Position", alert.freq_once_per_bar_close)
+  198: 
+  199: // Apply trailing stop loss
+  200: if (strategy.position_size > 0)
+  201:     strategy.exit("Trailing Stop Long", stop=trailingStopLoss)
+  202: else if (strategy.position_size < 0)
+  203:     strategy.exit("Trailing Stop Short", stop=trailingStopLoss)

@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2612 |
+| PORTED | 2623 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 760 |
+| PORT_CANDIDATE | 748 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 366 |
+| REJECTED_ON_READING | 367 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2740,7 +2740,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 473136 | `ports/473136_dual-moving-average-momentum-tracking-quantitative-strategy/` | PineScript | ma_cross | none | len x2, smoothing x2 | 4 |
 | 473140 | `ports/473140_adaptive-bollinger-breakout-with-moving-average-quantitative/` | PineScript | bollinger_breakout | none | length x2, std_dev x2 | 4 |
 | 473141 | `ports/473141_z-z-score-and-supertrend-based-dynamic-trading-strategy-long/` | PineScript | mean_reversion | none | len x2, factor x2 | 4 |
-| | **2612 ports** | | | | | **12326** |
+| 473145 | `ports/473145_triple-moving-average-trend-following-and-momentum-integrati/` | PineScript | macd_cross | trailing_stop_pending | len x2, fast x2, slow x2 | 8 |
+| 473147 | `ports/473147_ema-crossover-strategy-with-stop-loss-and-take-profit-optimi/` | PineScript | ma_cross | coarse_bar_stop | fast x2, slow x2, tp_pct x2 | 8 |
+| 473148 | `ports/473148_atr-multi-sma-support-level-false-breakout-strategy-with-atr/` | PineScript | pivot_levels | coarse_bar_stop, trailing_stop_pending | lookback x2, atr_mult x2 | 4 |
+| 473153 | `ports/473153_rsi-dynamic-cost-averaging-strategy-system-based-on-bollinge/` | PineScript | bollinger_reversion | trailing_stop_pending | length x2, mult x2 | 4 |
+| 473154 | `ports/473154_atr-multi-timeframe-trend-following-strategy-with-atr-volati/` | PineScript | ma_cross | none | fast x2, slow x2, atr_mult x2 | 8 |
+| 473155 | `ports/473155_dynamic-take-profit-smart-trailing-strategy/` | PineScript | mean_reversion | coarse_bar_stop | drop_pct x2, tp_pct x2 | 4 |
+| 473157 | `ports/473157_advanced-dual-moving-average-momentum-trend-following-tradin/` | PineScript | ma_trend | none | fast x2, slow x2, filt x2 | 8 |
+| 473233 | `ports/473233_rsi-rsi-dynamic-exit-level-momentum-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, close_long x2, close_short x2 | 8 |
+| 473234 | `ports/473234_fibonacci-advanced-timeframe-fibonacci-retracement-with-high/` | PineScript | pivot_levels | none | low_look x2, high_look x2, level x2 | 8 |
+| 473235 | `ports/473235_dual-standard-deviation-bollinger-bands-momentum-breakout-st/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 473236 | `ports/473236_multi-technical-indicator-trend-following-strategy-with-ichi/` | PineScript | ichimoku | trailing_stop_pending | rsi_ob x2, rsi_os x2 | 4 |
+| | **2623 ports** | | | | | **12394** |
 
 ## Rejected on reading
 
@@ -3112,6 +3123,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 471711 | 基于-RSI-动量和多层级止盈止损的智能自适应交易系统-RSI-Momentum-based-Smart-Adaptive-Trading-System-with-Multi-level-Risk-Management.md | 1 | close_all fires when hour(timenow) == 15 and minute(timenow) == 25, i.e. on the clock of the machine running the script, not the bar's time; the stop / target are fixed 100 / 150 price units from the average price (criterion 1, timenow gate). |
 | 471718 | 智能时间周期多空轮动均衡交易策略-Intelligent-Time-Based-Long-Short-Rotation-Balanced-Trading-Strategy.md | 1 | The strategy trades only while bar_index >= last_bar_index - 499 (the last 500 bars of whatever data is loaded) and has no market signal, only a timed long / short rotation: where it trades depends on where the data ends (criterion 1, data-end-dependent window). |
 | 472253 | 强化波林格均值回归量化策略-Enhanced-Bollinger-Mean-Reversion-Quantitative-Strategy.md | 2 | The exits pass ATR distances as prices (limit = 2 x atr, stop = 1 x atr): for BTC those are prices far under the market, so the long's sell limit and the short's buy stop are marketable at every fill and each trade would close at its own fill (criterion 2, distances as absolute prices, as #458198). |
+| 473237 | T3均线趋势跟踪与移动止损量化交易策略-T3-Moving-Average-Trend-Following-Strategy-with-Trailing-Stop-Loss.md | 1 | The exits are strategy.exit qty_percent = 50 partial closes (half the position at the stop / target, re-sent every bar): the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #439950). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

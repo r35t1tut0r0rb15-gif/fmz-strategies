@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #473147 (指数移动平均线交叉策略与止损止盈优化系统-EMA-Crossover-Strategy-with-Stop-Loss-and-Take-Profit-Optimization-System)
+# Source: https://www.fmz.com/strategy/473147  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1.5 % / target 3 % of the average price  [lines 108-126]
+  108: stopLossPercent = 1.5  // Stop-loss at 1.5%
+  109: takeProfitPercent = 3.0  // Take-profit at 3%
+  110: 
+  111: // Calculate stop-loss and take-profit levels for long and short positions
+  112: longStopLoss = strategy.position_avg_price * (1 - stopLossPercent / 100)
+  113: longTakeProfit = strategy.position_avg_price * (1 + takeProfitPercent / 100)
+  114: 
+  115: shortStopLoss = strategy.position_avg_price * (1 + stopLossPercent / 100)
+  116: shortTakeProfit = strategy.position_avg_price * (1 - takeProfitPercent / 100)
+  117: 
+  118: // Enter long position with stop-loss and take-profit
+  119: if (longCondition)
+  120:     strategy.entry("Long", strategy.long)
+  121:     strategy.exit("Take Profit/Stop Loss", "Long", stop=longStopLoss, limit=longTakeProfit)
+  122: 
+  123: // Enter short position with stop-loss and take-profit
+  124: if (shortCondition)
+  125:     strategy.entry("Short", strategy.short)
+  126:     strategy.exit("Take Profit/Stop Loss", "Short", stop=shortStopLoss, limit=shortTakeProfit)

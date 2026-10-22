@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #473155 (动态止盈智能追踪策略-Dynamic-Take-Profit-Smart-Trailing-Strategy)
+# Source: https://www.fmz.com/strategy/473155  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 1.23 % of the average price; trail_offset 0.6 % (price in ticks)  [lines 94-117]
+   94: targetProfit = input.float(1.23, title="目标利润百分比", step=0.01) / 100
+   95: trailingStopPercent = input.float(0.6, title="Trailing Stop Percentage", step=0.01) / 100
+   96: 
+   97: // 计算每根K线的涨跌幅
+   98: priceDrop = open * (1.0 + percentDrop)
+   99: isBuySignal = low <= priceDrop
+  100: 
+  101: // 在当前K线下方标注买入信号（可选）
+  102: plotshape(series=isBuySignal, location=location.belowbar, color=color.green, style=plotShapeStyle, size=size.small, title="Buy Signal", text="Buy")
+  103: 
+  104: // 显示信息
+  105: if bar_index == na
+  106:     label.new(x=bar_index, y=na, text=str.tostring(percentDrop * 100, format.mintick) + "% Drop", xloc=xloc.bar_index, yloc=yloc.price, style=label.style_label_down, color=color.new(color.green, 0))
+  107: else
+  108:     label.delete(na)
+  109: 
+  110: // 策略逻辑
+  111: if (isBuySignal)
+  112:     strategy.entry("买入", strategy.long)
+  113: 
+  114: // 目标卖出价
+  115: if (strategy.position_size > 0)
+  116:     targetSellPrice = strategy.position_avg_price * (1 + targetProfit)
+  117:     strategy.exit("卖出", from_entry="买入", limit=targetSellPrice, trail_offset=strategy.position_avg_price * trailingStopPercent)

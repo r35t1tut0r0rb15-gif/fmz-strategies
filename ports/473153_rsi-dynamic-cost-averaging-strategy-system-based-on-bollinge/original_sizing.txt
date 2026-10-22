@@ -1,0 +1,44 @@
+# Original sizing and money-management code, FMZ #473153 (基于布林带和RSI的动态成本平均策略系统-Dynamic-Cost-Averaging-Strategy-System-Based-on-Bollinger-Bands-and-RSI)
+# Source: https://www.fmz.com/strategy/473153  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## DCA size 1 % of equity (unused); target 5 % of the current close  [lines 140-178]
+  140: dcaPositionSizePercent = input.float(1, title="DCA Position Size (%)", tooltip="Percentage of equity to use in each DCA step")
+  141: takeProfitPercentage = input.float(5, title="Take Profit (%)", tooltip="Take profit percentage for DCA strategy")
+  142: 
+  143: // Calculate DCA position size
+  144: equity = strategy.equity  // Account equity
+  145: dcaPositionSize = (equity * dcaPositionSizePercent) / 100  // DCA position size as percentage of equity
+  146: 
+  147: // Bollinger Bands Calculation
+  148: basis = ta.sma(close, length)
+  149: dev = mult * ta.stdev(close, length)
+  150: upper = basis + dev
+  151: lower = basis - dev
+  152: 
+  153: // RSI Calculation
+  154: rsi = ta.rsi(close, rsiLength)
+  155: 
+  156: // Plotting Bollinger Bands and RSI levels
+  157: plot(upper, color=color.red, title="Bollinger Upper")
+  158: plot(lower, color=color.green, title="Bollinger Lower")
+  159: hline(rsiBuyLevel, "RSI Buy Level", color=color.green)
+  160: hline(rsiSellLevel, "RSI Sell Level", color=color.red)
+  161: 
+  162: // Buy and Sell Signals
+  163: buySignal = (rsi < rsiBuyLevel and close <= lower)
+  164: sellSignal = (rsi > rsiSellLevel and close >= upper)
+  165: 
+  166: // DCA Strategy: Enter Long or Short based on signals with calculated position size
+  167: if (buySignal)
+  168:     strategy.entry("DCA Buy", strategy.long)
+  169: 
+  170: if (sellSignal)
+  171:     strategy.entry("DCA Sell", strategy.short)
+  172: 
+  173: // Take Profit Logic
+  174: if (strategy.position_size > 0)  // If long
+  175:     strategy.exit("Take Profit Long", from_entry="DCA Buy", limit=close * (1 + takeProfitPercentage / 100))
+  176: 
+  177: if (strategy.position_size < 0)  // If short
+  178:     strategy.exit("Take Profit Short", from_entry="DCA Sell", limit=close * (1 - takeProfitPercentage / 100))

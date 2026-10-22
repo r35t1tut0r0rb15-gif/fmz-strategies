@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #473157 (高级双均线动量趋势跟踪交易系统Advanced-Dual-Moving-Average-Momentum-Trend-Following-Trading-System)
+# Source: https://www.fmz.com/strategy/473157  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty 1 (MyQty unused)  [lines 108-118]
+  108: MyQty = 10000000 / close
+  109: 
+  110: // // Plot signals to chart
+  111: // plotshape(not LongExit and strategy.position_size > 0 and bIndicator, title='Hold', location=location.abovebar, color=color.new(color.blue, 0), style=shape.square, text='Hold', textcolor=color.new(color.blue, 0))
+  112: // plotshape(LongExit and bIndicator and strategy.position_size > 0, title='Exit', location=location.belowbar, color=color.new(color.red, 0), style=shape.triangledown, text='Sell', textcolor=color.new(color.red, 0))
+  113: // plotshape(LongEntry and strategy.position_size == 0 and bIndicator, '', shape.arrowup, location.abovebar, color.new(color.green, 0), text='Buy', textcolor=color.new(color.green, 0))
+  114: // plotshape(not LongEntry and strategy.position_size == 0 and bIndicator, '', shape.circle, location.belowbar, color.new(color.yellow, 0), text='Wait', textcolor=color.new(color.black, 0))
+  115: 
+  116: 
+  117: if time >= start and time < end
+  118:     strategy.entry('Enter Long', strategy.long, qty=1, when=LongEntry)

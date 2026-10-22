@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #473234 (高级时间框架Fibonacci回撤与高低点条件突破交易系统-Advanced-Timeframe-Fibonacci-Retracement-with-High-Low-Breakout-Trading-System)
+# Source: https://www.fmz.com/strategy/473234  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

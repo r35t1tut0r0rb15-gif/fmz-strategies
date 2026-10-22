@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #473148 (多重均线支撑位假突破策略结合ATR止损系统-Multi-SMA-Support-Level-False-Breakout-Strategy-with-ATR-Stop-Loss-System)
+# Source: https://www.fmz.com/strategy/473148  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop = low - ATR; target = 10-bar high  [lines 123-145]
+  123: var float entryPrice = na
+  124: var float stopLoss = na
+  125: var float targetProfit = na
+  126: longCondition = isUptrend and low[1] < support and close > support
+  127: 
+  128: if (longCondition)
+  129:     entryPrice := open
+  130:     stopLoss := low - atr
+  131:     targetProfit := swingHigh
+  132: 
+  133: // Plot signals and lines on chart
+  134: plotshape(longCondition, title="Buy Signal", location=location.belowbar, color=color.green, style=shape.labelup, text="BUY")
+  135: 
+  136: // Plot levels for entry, stop loss, and target
+  137: plot(entryPrice, title="Entry Price", color=color.blue, linewidth=2, style=plot.style_linebr)
+  138: plot(stopLoss, title="Stop Loss", color=color.red, linewidth=2, style=plot.style_linebr)
+  139: plot(targetProfit, title="Target Profit", color=color.green, linewidth=2, style=plot.style_linebr)
+  140: 
+  141: // Backtest: Simulate exit points for the strategy
+  142: if (longCondition)
+  143:     strategy.entry("Long", strategy.long)
+  144:     if (na(stopLoss) == false and na(targetProfit) == false)
+  145:         strategy.exit("Take Profit/Stop Loss", "Long", stop=stopLoss, limit=targetProfit)

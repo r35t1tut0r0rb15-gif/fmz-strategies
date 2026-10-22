@@ -5636,6 +5636,36 @@ SIZING = {
         ("qty = equity / close", 125, 132),
     ],
     473141: [],
+    # ---- FMZ-C, batch C214 (2026-10-22)
+    473145: [
+        ("Stop 7 / target 100 / trail 15 points from the current close", 111, 178),
+    ],
+    473147: [
+        ("Stop 1.5 % / target 3 % of the average price", 108, 126),
+    ],
+    473148: [
+        ("Stop = low - ATR; target = 10-bar high", 123, 145),
+    ],
+    473153: [
+        ("DCA size 1 % of equity (unused); target 5 % of the current close", 140, 178),
+    ],
+    473154: [
+        ("Trailing stop 1.5 ATR / target 2 ATR", 133, 151),
+    ],
+    473155: [
+        ("Target 1.23 % of the average price; trail_offset 0.6 % (price in ticks)", 94, 117),
+    ],
+    473157: [
+        ("qty 1 (MyQty unused)", 108, 118),
+    ],
+    473233: [],
+    473234: [],
+    473235: [
+        ("strategy(): 20 % of equity, capital 30", 104, 104),
+    ],
+    473236: [
+        ("Stop at the cloud edge of the signal bar", 154, 203),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7118,6 +7148,11 @@ REJECTED_ON_READING = {
               "those are prices far under the market, so the long's sell limit and the short's "
               "buy stop are marketable at every fill and each trade would close at its own fill "
               "(criterion 2, distances as absolute prices, as #458198)."),
+    # ---- FMZ-C, batch C214 (2026-10-22)
+    473237: ("1", "The exits are strategy.exit qty_percent = 50 partial closes (half the position at "
+              "the stop / target, re-sent every bar): the position is closed in parts, so the "
+              "size path is part of the strategy (criterion 1, qty_percent partial exits, as "
+              "#439950)."),
 }
 
 DUPLICATE_ON_READING = {

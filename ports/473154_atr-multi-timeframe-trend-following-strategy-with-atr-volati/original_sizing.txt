@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #473154 (多周期趋势跟踪与ATR波动率管理策略-Multi-Timeframe-Trend-Following-Strategy-with-ATR-Volatility-Management)
+# Source: https://www.fmz.com/strategy/473154  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trailing stop 1.5 ATR / target 2 ATR  [lines 133-151]
+  133: // Trailing Stop-Loss and Take-Profit levels
+  134: var float trailStopLoss = na
+  135: var float trailTakeProfit = na
+  136: 
+  137: // Exit conditions
+  138: var bool exitLongCondition = na
+  139: var bool exitShortCondition = na
+  140: 
+  141: if (strategy.position_size != 0)
+  142:     if (strategy.position_size > 0) // Long Position
+  143:         trailStopLoss := na(trailStopLoss) ? close - atrValue * atrMultiplier : math.max(trailStopLoss, close - atrValue * atrMultiplier)
+  144:         trailTakeProfit := close + atrValue * takeProfitATRMultiplier
+  145:         exitLongCondition := close <= trailStopLoss or close >= trailTakeProfit
+  146:         strategy.exit("Exit Long", "Long", stop=trailStopLoss, limit=trailTakeProfit, when=exitLongCondition)
+  147:     else // Short Position
+  148:         trailStopLoss := na(trailStopLoss) ? close + atrValue * atrMultiplier : math.min(trailStopLoss, close + atrValue * atrMultiplier)
+  149:         trailTakeProfit := close - atrValue * takeProfitATRMultiplier
+  150:         exitShortCondition := close >= trailStopLoss or close <= trailTakeProfit
+  151:         strategy.exit("Exit Short", "Short", stop=trailStopLoss, limit=trailTakeProfit, when=exitShortCondition)
