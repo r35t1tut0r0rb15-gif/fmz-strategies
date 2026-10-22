@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2320 |
-| PORT_CANDIDATE | 1095 |
+| PORTED | 2332 |
+| PORT_CANDIDATE | 1083 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
 | REJECTED_ON_READING | 325 |
@@ -2448,7 +2448,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 451516 | `ports/451516_8-ema/` | javascript | ma_cross | none | fast x2, slow x2 | 4 |
 | 451526 | `ports/451526_bollinger-bands-dynamic-breakout-strategy/` | PineScript | bollinger | none | length x2, mult x2 | 4 |
 | 451527 | `ports/451527_sr-sr-breakout-strategy/` | PineScript | breakout | none | prd x2, bo_len x2, width_pct x2 | 8 |
-| | **2320 ports** | | | | | **10727** |
+| 451528 | `ports/451528_bmsb-breakout-strategy-bmsb/` | PineScript | ma_trend | none | sma_len x2, ema_len x2 | 4 |
+| 451698 | `ports/451698_atr-atr-average-breakout-strategy/` | PineScript | volatility_channel_breakout | none | length x2, mult x2 | 4 |
+| 451700 | `ports/451700_bollinger-bands-bollinger-bands-strategy-precision-trading-f/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 451702 | `ports/451702_ma-rejection-strategy-with-adx-filter/` | PineScript | ma_pullback | none | fast x2, slow x2, adx_min x2 | 8 |
+| 451703 | `ports/451703_macd-dynamic-macd-and-ichimoku-cloud-trading-strategy/` | PineScript | ichimoku | none | sl_atr x2, tp_atr x2 | 4 |
+| 451704 | `ports/451704_william-alligator-moving-average-trend-catcher-strategy/` | PineScript | ma_trend | none | jaw x2, trend_len x2 | 4 |
+| 451705 | `ports/451705_ichimoku-cloud-and-moving-average-strategy/` | PineScript | ichimoku | none | short_ma x2, long_ma x2 | 4 |
+| 451706 | `ports/451706_rsi-macd-rsi-and-macd-combined-long-short-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, ob x2, os x2 | 8 |
+| 451712 | `ports/451712_rsiadx-multi-factor-trend-following-quantitative-trading-str/` | PineScript | multi_indicator_confluence | none | fast x2, slow x2, adx_min x2 | 8 |
+| 451713 | `ports/451713_upperband-super-moving-average-and-upperband-crossover-strat/` | PineScript | volatility_channel_breakout | none | factor x2, length x2 | 4 |
+| 451715 | `ports/451715_k-k-consecutive-candles-bull-bear-strategy/` | PineScript | candle_pattern | none | k x2, k_atr x2 | 4 |
+| 451723 | `ports/451723_laguerre-rsi-adx-laguerre-rsi-with-adx-filtered-trading-sign/` | PineScript | rsi_oscillator | none | alpha x2, adx_level x2 | 4 |
+| | **2332 ports** | | | | | **10787** |
 
 ## Rejected on reading
 

@@ -2664,3 +2664,15 @@ fmz_id,file,final_outcome,criterion,reason
 451516,8小时-ema.md,PORTED,,ports/451516_8-ema/
 451526,Bollinger-Bands-Dynamic-Breakout-Strategy-动态布林带突破策略.md,PORTED,,ports/451526_bollinger-bands-dynamic-breakout-strategy/
 451527,SR-突破策略-SR-Breakout-Strategy.md,PORTED,,ports/451527_sr-sr-breakout-strategy/
+451528,BMSB-Breakout-Strategy-BMSB-突破策略.md,PORTED,,ports/451528_bmsb-breakout-strategy-bmsb/
+451698,ATR均线突破策略-ATR-Average-Breakout-Strategy.md,PORTED,,ports/451698_atr-atr-average-breakout-strategy/
+451700,Bollinger-Bands-布林带策略精准交易实现最大收益-Bollinger-Bands-Strategy-Precision-Trading-for-Maximum-Gains.md,PORTED,,ports/451700_bollinger-bands-bollinger-bands-strategy-precision-trading-f/
+451702,基于平均方向指数过滤器的均线拒绝策略-MA-Rejection-Strategy-with-ADX-Filter.md,PORTED,,ports/451702_ma-rejection-strategy-with-adx-filter/
+451703,动态MACD和一目均衡图交易策略-Dynamic-MACD-and-Ichimoku-Cloud-Trading-Strategy.md,PORTED,,ports/451703_macd-dynamic-macd-and-ichimoku-cloud-trading-strategy/
+451704,威廉鳄鱼均线趋势捕捉策略-William-Alligator-Moving-Average-Trend-Catcher-Strategy.md,PORTED,,ports/451704_william-alligator-moving-average-trend-catcher-strategy/
+451705,一云多均线交易策略-Ichimoku-Cloud-and-Moving-Average-Strategy.md,PORTED,,ports/451705_ichimoku-cloud-and-moving-average-strategy/
+451706,RSI与MACD结合的多空策略-RSI-and-MACD-Combined-Long-Short-Strategy.md,PORTED,,ports/451706_rsi-macd-rsi-and-macd-combined-long-short-strategy/
+451712,基于RSIADX和一目均衡图的多因子趋势跟踪量化交易策略-Multi-factor-Trend-Following-Quantitative-Trading-Strategy-Based-on-RSI-ADX-and-Ichimoku-Cloud.md,PORTED,,ports/451712_rsiadx-multi-factor-trend-following-quantitative-trading-str/
+451713,超级均线与Upperband交叉策略-Super-Moving-Average-and-Upperband-Crossover-Strategy.md,PORTED,,ports/451713_upperband-super-moving-average-and-upperband-crossover-strat/
+451715,K线连续数目牛熊判断策略-K-Consecutive-Candles-Bull-Bear-Strategy.md,PORTED,,ports/451715_k-k-consecutive-candles-bull-bear-strategy/
+451723,Laguerre-RSI与ADX滤波交易信号策略-Laguerre-RSI-with-ADX-Filtered-Trading-Signals-Strategy.md,PORTED,,ports/451723_laguerre-rsi-adx-laguerre-rsi-with-adx-filtered-trading-sign/

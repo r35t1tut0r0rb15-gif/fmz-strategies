@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #451704 (威廉鳄鱼均线趋势捕捉策略-William-Alligator-Moving-Average-Trend-Catcher-Strategy)
+# Source: https://www.fmz.com/strategy/451704  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 80 % of equity, capital 10000, commission 0.01 %  [lines 89-89]
+   89: strategy("Alligator + MA Trend Catcher [TradeDots]", overlay=true, initial_capital = 10000, default_qty_type = strategy.percent_of_equity, default_qty_value = 80, commission_type = strategy.commission.percent, commission_value = 0.01)

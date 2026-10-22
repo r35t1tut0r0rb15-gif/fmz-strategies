@@ -4986,6 +4986,29 @@ SIZING = {
     451527: [
         ("SL 18 % / TP 18 % of the entry close (off by default)", 103, 106),
     ],
+    # ---- FMZ-C, batch C186 (2026-10-22)
+    451528: [],
+    451698: [
+        ("Risk 1 % of equity over the ATR as the quantity; stop / take-profit 'percentages' used as ATR multiples", 107, 144),
+    ],
+    451700: [],
+    451702: [],
+    451703: [
+        ("Exit loss 5 / profit 10 ticks", 132, 136),
+    ],
+    451704: [
+        ("strategy(): 80 % of equity, capital 10000, commission 0.01 %", 89, 89),
+    ],
+    451705: [],
+    451706: [],
+    451712: [
+        ("strategy(): margin_long 100, margin_short 100", 90, 90),
+    ],
+    451713: [],
+    451715: [
+        ("Stop loss / take profit 500 ticks; trailing start 200 ticks, give-back 50 %", 97, 100),
+    ],
+    451723: [],
 }
 
 REJECTED_ON_READING = {

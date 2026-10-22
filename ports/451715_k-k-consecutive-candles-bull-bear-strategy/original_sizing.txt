@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #451715 (K线连续数目牛熊判断策略-K-Consecutive-Candles-Bull-Bear-Strategy)
+# Source: https://www.fmz.com/strategy/451715  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop loss / take profit 500 ticks; trailing start 200 ticks, give-back 50 %  [lines 97-100]
+   97: stopLossTicks = input.int(500, title="Stop Loss (Ticks)")
+   98: takeProfitTicks = input.int(500, title="Take Profit (Ticks)")
+   99: iTGT = input.int(200,"iTGT")  // 移動停利點
+  100: iPcnt = input.int(50,"iPcnt")  // 移動停利%

@@ -1,0 +1,43 @@
+# Original sizing and money-management code, FMZ #451698 (ATR均线突破策略-ATR-Average-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/451698  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk 1 % of equity over the ATR as the quantity; stop / take-profit 'percentages' used as ATR multiples  [lines 107-144]
+  107: risk_percentage = input.float(1.0, "Risk Percentage", minval=0.1, maxval=10.0)
+  108: stop_loss_percentage = input.float(1.0, "Stop Loss Percentage", minval=0.1, maxval=10.0)
+  109: take_profit_percentage = input.float(2.0, "Take Profit Percentage", minval=0.1, maxval=10.0)
+  110: 
+  111: // ATR calculation
+  112: atr_value = ta.atr(length)
+  113: 
+  114: // Average price calculation
+  115: average_price = ta.sma(close, length)
+  116: 
+  117: // Upper and lower bounds for consolidation detection
+  118: upper_bound = average_price + multiplier * atr_value
+  119: lower_bound = average_price - multiplier * atr_value
+  120: 
+  121: // Consolidation detection
+  122: is_consolidating = (high < upper_bound) and (low > lower_bound)
+  123: 
+  124: // Breakout detection
+  125: is_breakout_up = high > upper_bound
+  126: is_breakout_down = low < lower_bound
+  127: 
+  128: // Entry conditions
+  129: enter_long = is_breakout_up and not is_consolidating
+  130: enter_short = is_breakout_down and not is_consolidating
+  131: 
+  132: // Exit conditions
+  133: exit_long = low < (average_price - atr_value * stop_loss_percentage) or high > (average_price + atr_value * take_profit_percentage)
+  134: exit_short = high > (average_price + atr_value * stop_loss_percentage) or low < (average_price - atr_value * take_profit_percentage)
+  135: 
+  136: // Risk calculation
+  137: risk_per_trade = strategy.equity * (risk_percentage / 100)
+  138: position_size = risk_per_trade / atr_value
+  139: 
+  140: // Strategy
+  141: if (enter_long)
+  142:     strategy.entry("Long", strategy.long, qty=position_size)
+  143: if (enter_short)
+  144:     strategy.entry("Short", strategy.short, qty=position_size)
