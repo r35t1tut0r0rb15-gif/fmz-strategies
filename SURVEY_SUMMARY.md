@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2288 |
-| PORT_CANDIDATE | 1131 |
+| PORTED | 2298 |
+| PORT_CANDIDATE | 1119 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 321 |
+| REJECTED_ON_READING | 323 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2416,7 +2416,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 449965 | `ports/449965_bollinger-bands-breakout-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
 | 449967 | `ports/449967_macd-trading-strategy-based-on-consecutive-macd-golden-and-d/` | PineScript | macd_cross | none | tp x2, sl x2 | 4 |
 | 449968 | `ports/449968_rsi-rsi-direction-change-strategy/` | PineScript | rsi_oscillator | none | change x2, exit_move x2 | 4 |
-| | **2288 ports** | | | | | **10587** |
+| 449969 | `ports/449969_moving-average-crossover-strategy/` | PineScript | ma_cross | none | k_atr x2, slow x2 | 4 |
+| 449970 | `ports/449970_dual-moving-average-crossover-entry-strategy/` | PineScript | ma_trend | none | ma_len x2 | 2 |
+| 449971 | `ports/449971_macd-rsi-ichimoku-macd-rsi-ichimoku-momentum-trend-following/` | PineScript | ichimoku | none | len1 x2, len2 x2 | 4 |
+| 450857 | `ports/450857_bollinger-bands-stochastic-oscillator-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 450860 | `ports/450860_most-most-and-dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 450868 | `ports/450868_dynamic-take-profit-and-stop-loss-trading-strategy-based-on/` | PineScript | mean_reversion | coarse_bar_stop | n_falls x2, tp x2 | 4 |
+| 451023 | `ports/451023_ema-ema-dynamic-trend-following-trading-strategy/` | PineScript | volatility_channel_breakout | none | f x2, highest_len x2 | 4 |
+| 451026 | `ports/451026_kdj-kdj-trending-view-with-signals-and-ma-strategy/` | PineScript | stochastic_oscillator | none | kdj_len x2, ma_len x2 | 4 |
+| 451027 | `ports/451027_rsi50-ema-rsi50-ema-long-only-strategy/` | PineScript | volatility_channel_breakout | none | length x2, mult x2 | 4 |
+| 451029 | `ports/451029_automated-trading-strategy-based-on-rsi-overbought-and-overs/` | PineScript | rsi_oscillator | none | rsi_len x2, exit_minutes x2 | 4 |
+| | **2298 ports** | | | | | **10625** |
 
 ## Rejected on reading
 
@@ -2743,6 +2753,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 449507 | 趋势捕捉策略-Trend-Catcher-Strategy.md | 1 | Each entry's bracket is strategy.exit(qty_percent = 50, ...), closing half the position, and the rest closes on the SMA turn: partial exits, which the house engine cannot hold (as #436524). |
 | 449516 | 移动平均线交叉多层获利策略-Moving-Average-Crossover-with-Multiple-Take-Profits-Strategy.md | 1 | The only exits are four take-profit limits with qty_percent 25 % each (0.25 as written): partial exits, which the house engine cannot hold (one position, all-in or all-out; as #436524). |
 | 449521 | KRK-aDa-Stochastic-Slow-Mean-Reversion-Strategy-with-AI-Enhancements-KRK-aDa-随机慢速均值回归策略与人工智能增强.md | 2 | The stops pass loss = close x 0.9 and loss = close x 1.1, price amounts where strategy.exit takes tick distances, with no /mintick: the stops are undefined as written (criterion 2, as #442076, #437048). |
+| 451024 | 移动平均线与相对强弱指数策略-Moving-Average-and-Relative-Strength-Index-Strategy.md | 1 | The only close is strategy.close('Venda'), an id that is never entered, so it never acts: the long entries have no exit at all (criterion 1, as #440692). |
+| 451028 | 基于支撑位和阻力位的技术分析交易策略-Trading-Strategy-Based-on-Support-and-Resistance-Levels-Using-Technical-Analysis.md | 1 | The levels are strict 7-bar pivots of the daily close requested on hourly bars, a series that stays flat for each day, so no pivot ever forms and no order can be sent (criterion 1). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

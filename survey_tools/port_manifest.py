@@ -4915,6 +4915,27 @@ SIZING = {
         ("TP / SL fractions 0.01", 113, 116),
     ],
     449968: [],
+    # ---- FMZ-C, batch C183 (2026-10-22)
+    449969: [
+        ("Profit target 150 ticks", 125, 137),
+    ],
+    449970: [],
+    449971: [],
+    450857: [],
+    450860: [
+        ("strategy(): 10 % of equity", 101, 101),
+    ],
+    450868: [
+        ("Target 1.5 % / stop 1 % of the average price", 126, 170),
+    ],
+    451023: [],
+    451026: [
+        ("qty 1; margin inputs (unused)", 119, 153),
+    ],
+    451027: [
+        ("strategy(): 100 % of equity", 92, 92),
+    ],
+    451029: [],
 }
 
 REJECTED_ON_READING = {
@@ -6220,6 +6241,12 @@ REJECTED_ON_READING = {
     449521: ("2", "The stops pass loss = close x 0.9 and loss = close x 1.1, price amounts where "
               "strategy.exit takes tick distances, with no /mintick: the stops are undefined as "
               "written (criterion 2, as #442076, #437048)."),
+    # ---- FMZ-C, batch C183 (2026-10-22)
+    451024: ("1", "The only close is strategy.close('Venda'), an id that is never entered, so it "
+              "never acts: the long entries have no exit at all (criterion 1, as #440692)."),
+    451028: ("1", "The levels are strict 7-bar pivots of the daily close requested on hourly bars, a "
+              "series that stays flat for each day, so no pivot ever forms and no order can be "
+              "sent (criterion 1)."),
 }
 
 DUPLICATE_ON_READING = {

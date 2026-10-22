@@ -1,0 +1,40 @@
+# Original sizing and money-management code, FMZ #451026 (KDJ趋势跟踪与信号移动平均策略-KDJ-Trending-View-with-Signals-and-MA-Strategy)
+# Source: https://www.fmz.com/strategy/451026  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty 1; margin inputs (unused)  [lines 119-153]
+  119: longMargin = input.float(2.0, title="Long Margin", step=0.01)
+  120: shortMargin = input.float(2.0, title="Short Margin", step=0.01)
+  121: 
+  122: // MA Settings
+  123: maLength = input.int(20, title="MA Length")
+  124: maType = input.string("SMA", title="MA Type (SMA, EMA, etc.)")
+  125: 
+  126: // Calculate KDJ
+  127: kdj_highest = ta.highest(high, kdjLength)
+  128: kdj_lowest = ta.lowest(low, kdjLength)
+  129: kdjRSV = 100 * ((close - kdj_lowest) / (kdj_highest - kdj_lowest))
+  130: kdjK = ta.sma(kdjRSV, kdjSignal)
+  131: kdjD = ta.sma(kdjK, kdjSignal)
+  132: kdjJ = 3 * kdjK - 2 * kdjD
+  133: 
+  134: // Calculate Moving Average
+  135: ma = ta.sma(close, maLength) // SMA kullanarak ortalama hesaplama
+  136: 
+  137: // Determine MA Direction
+  138: maCrossUp = ta.crossover(close, ma)
+  139: maCrossDown = ta.crossunder(close, ma)
+  140: 
+  141: // Plot MA with Direction Color Change
+  142: maColor = maCrossUp ? color.green : maCrossDown ? color.red : color.gray
+  143: plot(ma, color=maColor, title="Moving Average")
+  144: 
+  145: // Plot Trading Signals
+  146: plotshape(kdjJ >= kdjOverbought ? low : na, style=shape.triangleup, location=location.belowbar, color=color.red, size=size.small, title="Short Signal")
+  147: plotshape(kdjJ <= kdjOversold ? high : na, style=shape.triangledown, location=location.abovebar, color=color.green, size=size.small, title="Long Signal")
+  148: 
+  149: // Trading Strategy with Manual Margin and MA Strategy
+  150: if (kdjJ >= kdjOverbought and maCrossDown)
+  151:     strategy.entry("Short", strategy.short, qty=1, comment="Short Entry")
+  152: if (kdjJ <= kdjOversold and maCrossUp)
+  153:     strategy.entry("Long", strategy.long, qty=1, comment="Long Entry")

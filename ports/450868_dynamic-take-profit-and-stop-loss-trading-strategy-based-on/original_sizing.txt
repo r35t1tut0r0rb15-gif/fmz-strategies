@@ -1,0 +1,50 @@
+# Original sizing and money-management code, FMZ #450868 (基于三根连续阴线和均线的动态止盈止损交易策略-Dynamic-Take-Profit-and-Stop-Loss-Trading-Strategy-Based-on-Three-Consecutive-Bearish-Candles-and-Moving-Averages)
+# Source: https://www.fmz.com/strategy/450868  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 1.5 % / stop 1 % of the average price  [lines 126-170]
+  126: porcentaje_cierre_arriba = input.float(1.5, title="Porcentaje de cierre arriba (%)", step=0.1)
+  127: porcentaje_cierre_abajo = input.float(1.0, title="Porcentaje de cierre abajo (%)", step=0.1)
+  128: 
+  129: // Definir las medias móviles para el cierre de la operación
+  130: periodos_media_movil_cierre = input.int(10, title="Períodos de la media móvil para cierre")
+  131: periodos_media_movil_200 = input.int(200, title="Períodos de la media móvil de 200")
+  132: 
+  133: // Definir el rango de fechas para la simulación
+  134: start_date = timestamp(2024, 1, 1, 0, 0)
+  135: end_date = timestamp(2024, 12, 31, 23, 59)
+  136: 
+  137: // Calcular la media móvil para el cierre de la operación
+  138: sma_cierre = ta.sma(close, periodos_media_movil_cierre)
+  139: sma_200 = ta.sma(close, periodos_media_movil_200)
+  140: 
+  141: // Calcular si el precio está por encima o por debajo de la media móvil para el cierre de la operación
+  142: precio_por_encima_sma_cierre = close > sma_cierre
+  143: precio_por_debajo_sma_cierre = close < sma_cierre
+  144: 
+  145: // Calcular si se han producido num_cierres_decrecientes consecutivos
+  146: if (ta.change(close) < 0)
+  147:     cierres_decrecientes_consecutivos := cierres_decrecientes_consecutivos + 1
+  148: else
+  149:     cierres_decrecientes_consecutivos := 0
+  150: 
+  151: es_cierres_consecutivos = cierres_decrecientes_consecutivos >= num_cierres_decrecientes
+  152: 
+  153: // Definir condiciones de entrada y salida de la estrategia dentro del rango de fechas y con el precio por encima de la SMA de 200
+  154: condicion_entrada = es_cierres_consecutivos and close > sma_200
+  155: condicion_cierre_sma = (precio_por_encima_sma_cierre[1] and not precio_por_encima_sma_cierre) or (not precio_por_encima_sma_cierre[1] and precio_por_encima_sma_cierre)
+  156: 
+  157: // Calcular precios de salida basados en porcentajes
+  158: precio_salida_arriba = strategy.position_avg_price * (1 + porcentaje_cierre_arriba / 100)
+  159: precio_salida_abajo = strategy.position_avg_price * (1 - porcentaje_cierre_abajo / 100)
+  160: 
+  161: // Ejecutar operación en largo dentro del rango de fechas y con el precio por encima de la SMA de 200
+  162: if (condicion_entrada and strategy.opentrades == 0)
+  163:     strategy.entry("Long", strategy.long)
+  164: 
+  165: // Cerrar operación en largo si se cumple la condición de salida por cambio en el cruce de la media móvil dentro del rango de fechas
+  166: if (strategy.position_size > 0 and condicion_cierre_sma)
+  167:     strategy.close("Long")
+  168: 
+  169: // Cerrar operación en largo si el precio alcanza el porcentaje de cierre arriba o abajo dentro del rango de fechas
+  170: strategy.exit("Stop Loss", "Long", limit=precio_salida_arriba, stop=precio_salida_abajo)

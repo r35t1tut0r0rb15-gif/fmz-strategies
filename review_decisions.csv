@@ -320,6 +320,8 @@ fmz_id,file,final_outcome,criterion,reason
 449507,趋势捕捉策略-Trend-Catcher-Strategy.md,REJECTED_ON_READING,1,"Each entry's bracket is strategy.exit(qty_percent = 50, ...), closing half the position, and the rest closes on the SMA turn: partial exits, which the house engine cannot hold (as #436524)."
 449516,移动平均线交叉多层获利策略-Moving-Average-Crossover-with-Multiple-Take-Profits-Strategy.md,REJECTED_ON_READING,1,"The only exits are four take-profit limits with qty_percent 25 % each (0.25 as written): partial exits, which the house engine cannot hold (one position, all-in or all-out; as #436524)."
 449521,KRK-aDa-Stochastic-Slow-Mean-Reversion-Strategy-with-AI-Enhancements-KRK-aDa-随机慢速均值回归策略与人工智能增强.md,REJECTED_ON_READING,2,"The stops pass loss = close x 0.9 and loss = close x 1.1, price amounts where strategy.exit takes tick distances, with no /mintick: the stops are undefined as written (criterion 2, as #442076, #437048)."
+451024,移动平均线与相对强弱指数策略-Moving-Average-and-Relative-Strength-Index-Strategy.md,REJECTED_ON_READING,1,"The only close is strategy.close('Venda'), an id that is never entered, so it never acts: the long entries have no exit at all (criterion 1, as #440692)."
+451028,基于支撑位和阻力位的技术分析交易策略-Trading-Strategy-Based-on-Support-and-Resistance-Levels-Using-Technical-Analysis.md,REJECTED_ON_READING,1,"The levels are strict 7-bar pivots of the daily close requested on hourly bars, a series that stays flat for each day, so no pivot ever forms and no order can be sent (criterion 1)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2628,3 +2630,13 @@ fmz_id,file,final_outcome,criterion,reason
 449965,Bollinger-Bands-Breakout-Strategy-布林带突破策略.md,PORTED,,ports/449965_bollinger-bands-breakout-strategy/
 449967,基于连续MACD金叉死叉的交易策略-Trading-Strategy-Based-on-Consecutive-MACD-Golden-and-Death-Crosses.md,PORTED,,ports/449967_macd-trading-strategy-based-on-consecutive-macd-golden-and-d/
 449968,RSI变动方向改变策略-RSI-Direction-Change-Strategy.md,PORTED,,ports/449968_rsi-rsi-direction-change-strategy/
+449969,移动平均交叉策略-Moving-Average-Crossover-Strategy.md,PORTED,,ports/449969_moving-average-crossover-strategy/
+449970,双均线交叉开仓策略-Dual-Moving-Average-Crossover-Entry-Strategy.md,PORTED,,ports/449970_dual-moving-average-crossover-entry-strategy/
+449971,MACD-RSI-一目均衡Ichimoku动量趋势多头策略-MACD-RSI-Ichimoku-Momentum-Trend-Following-Long-Strategy.md,PORTED,,ports/449971_macd-rsi-ichimoku-macd-rsi-ichimoku-momentum-trend-following/
+450857,Bollinger-Bands-Stochastic-Oscillator-Strategy-布林带随机振荡器策略.md,PORTED,,ports/450857_bollinger-bands-stochastic-oscillator-strategy/
+450860,MOST与双均线交叉策略-MOST-and-Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/450860_most-most-and-dual-moving-average-crossover-strategy/
+450868,基于三根连续阴线和均线的动态止盈止损交易策略-Dynamic-Take-Profit-and-Stop-Loss-Trading-Strategy-Based-on-Three-Consecutive-Bearish-Candles-and-Moving-Averages.md,PORTED,,ports/450868_dynamic-take-profit-and-stop-loss-trading-strategy-based-on/
+451023,EMA动态趋势追踪交易策略-EMA-Dynamic-Trend-Following-Trading-Strategy.md,PORTED,,ports/451023_ema-ema-dynamic-trend-following-trading-strategy/
+451026,KDJ趋势跟踪与信号移动平均策略-KDJ-Trending-View-with-Signals-and-MA-Strategy.md,PORTED,,ports/451026_kdj-kdj-trending-view-with-signals-and-ma-strategy/
+451027,RSI50_EMA长仓策略-RSI50_EMA-Long-Only-Strategy.md,PORTED,,ports/451027_rsi50-ema-rsi50-ema-long-only-strategy/
+451029,基于相对强弱指数的超买超卖自动化交易策略-Automated-Trading-Strategy-Based-on-RSI-Overbought-and-Oversold-Levels.md,PORTED,,ports/451029_automated-trading-strategy-based-on-rsi-overbought-and-overs/
