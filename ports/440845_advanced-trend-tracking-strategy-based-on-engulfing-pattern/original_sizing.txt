@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #440845 (基于吞噬模型与量化指标的高级趋势跟踪策略Advanced-Trend-Tracking-Strategy-Based-on-Engulfing-Pattern-and-Quantitative-Indicators)
+# Source: https://www.fmz.com/strategy/440845  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1850 |
-| PORT_CANDIDATE | 1635 |
+| PORTED | 1861 |
+| PORT_CANDIDATE | 1623 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 565 |
-| REJECTED_ON_READING | 257 |
+| REJECTED_ON_READING | 258 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -1978,7 +1978,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440831 | `ports/440831_spiral-cross-strategy-with-moving-average-confirmation/` | PineScript | directional_movement | none | period x2, ma_len x2 | 4 |
 | 440832 | `ports/440832_rsi-trend-following-rsi-scalping-strategy/` | PineScript | rsi_oscillator | none | take_profit x2, exit_rsi x2 | 4 |
 | 440833 | `ports/440833_fisher-yurik-trailing-stop-strategy/` | PineScript | momentum_oscillator | trailing_stop, coarse_bar_stop | period x2, activate x2 | 4 |
-| | **1850 ports** | | | | | **8945** |
+| 440845 | `ports/440845_advanced-trend-tracking-strategy-based-on-engulfing-pattern/` | PineScript | pivot_reversal | none | bars x2 | 2 |
+| 440847 | `ports/440847_ema-ema-rsi-hidden-divergence-trend-following-strategy/` | PineScript | rsi_oscillator | none | profitfactor x2, lo_len x2 | 4 |
+| 440849 | `ports/440849_ichimoku-market-potential-ichimoku-bullish-cloud-strategy/` | PineScript | ichimoku | none | conversion x2, base x2 | 4 |
+| 440851 | `ports/440851_moving-average-displaced-envelope-strategy/` | PineScript | ma_envelope_reversion | none | per x2, disp x2 | 4 |
+| 440853 | `ports/440853_dmi-balance-buy-sell-strategy/` | PineScript | directional_movement | bar_size_pending | length x2, adx_smoothing x2 | 4 |
+| 440862 | `ports/440862_dazzling-bolts-trend-following-strategy/` | PineScript | ma_pullback | coarse_bar_stop | atrm x2, emalength x2 | 4 |
+| 440863 | `ports/440863_dual-breakthrough-moving-average-trading-strategy/` | PineScript | multi_indicator_confluence | none | malen x2, rsilen x2 | 4 |
+| 440864 | `ports/440864_dual-moving-average-reversal-strategy/` | PineScript | ma_trend | trailing_stop, coarse_bar_stop | stop_loss x2, trail_trigger x2 | 4 |
+| 440866 | `ports/440866_trend-prediction-dual-moving-average-strategy/` | PineScript | wavetrend_oscillator | none | n1 x2, wt_factor x2 | 4 |
+| 440871 | `ports/440871_bollinger-bands-and-moving-averages-combination-strategy/` | PineScript | bollinger_breakout | none | ma1_length x2, ma2_length x2 | 4 |
+| 440878 | `ports/440878_macd-dmi-multi-timeframe-ichimoku-macd-and-dmi-combined-stra/` | PineScript | multi_indicator_confluence | none | adx_min x2, length_dmi x2 | 4 |
+| | **1861 ports** | | | | | **8987** |
 
 ## Rejected on reading
 
@@ -2241,6 +2252,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440727 | 动量突破银线策略Momentum-Breakthrough-Silver-Line-Strategy.md | 1 | strategy.close_all() is called unconditionally on every bar after the entries (in both option blocks), so every entry bar ends flat (as #430380): as written no position is ever held (as #430384). |
 | 440729 | 移动平均线结合的高效量化交易策略The-Efficient-Quant-Trading-Strategy-Combining.md | 1 | The entries test the close against request.security(syminfo.tickerid, 'D', close, lookahead = barmerge.lookahead_on): the current day's final close on every intraday bar, a higher-timeframe value with lookahead (criterion 1). |
 | 440793 | 移动平均和随机指标交易策略-Moving-Average-and-Stochastic-Trading-Strategy.md | 2 | The exits are strategy.exit(profit = close x (50 + 0.01)) and similar: price amounts passed to profit, which is in ticks (criterion 2, as #437048, #437677). |
+| 440874 | 趋势追踪移动平均线与K线形态组合策略Trend-Following-Strategy-with-Moving-Average-and-Candlestick-Patterns.md | 2 | The stop is strategy.exit(loss = strategy.position_avg_price x (1 - 2 %)): a price level passed to loss, which is in ticks (criterion 2, as #437048, #437677). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

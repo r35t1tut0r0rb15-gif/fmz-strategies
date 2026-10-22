@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #440847 (基于EMA和隐藏背离的趋势追踪策略EMA-RSI-Hidden-Divergence-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/440847  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity, capital 5000  [lines 146-146]
+  146: strategy(title="EMA RSI ATR Hidden Div Strat", shorttitle="Hidden Div Strat", overlay = true, pyramiding = 0, max_bars_back=3000, calc_on_order_fills = false, commission_type =  strategy.commission.percent, commission_value = 0, default_qty_type = strategy.percent_of_equity, default_qty_value = 10, initial_capital=5000, currency=currency.USD)

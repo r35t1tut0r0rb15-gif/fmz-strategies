@@ -4122,6 +4122,24 @@ SIZING = {
         ("strategy(): capital 1000, 30 % of equity, commission 0.1 %", 118, 118),
     ],
     440833: [],
+    # ---- FMZ-C, batch C141 (2026-10-22)
+    440845: [],
+    440847: [
+        ("strategy(): 10 % of equity, capital 5000", 146, 146),
+    ],
+    440849: [],
+    440851: [],
+    440853: [],
+    440862: [
+        ("order size floor(initial capital / close)", 185, 186),
+    ],
+    440863: [],
+    440864: [
+        ("strategy(): capital, commission, slippage; capital-percentage order quantity", 319, 727),
+    ],
+    440866: [],
+    440871: [],
+    440878: [],
 }
 
 REJECTED_ON_READING = {
@@ -5187,6 +5205,9 @@ REJECTED_ON_READING = {
               "intraday bar, a higher-timeframe value with lookahead (criterion 1)."),
     440793: ("2", "The exits are strategy.exit(profit = close x (50 + 0.01)) and similar: price "
               "amounts passed to profit, which is in ticks (criterion 2, as #437048, #437677)."),
+    # ---- FMZ-C, batch C141 (2026-10-22)
+    440874: ("2", "The stop is strategy.exit(loss = strategy.position_avg_price x (1 - 2 %)): a price "
+              "level passed to loss, which is in ticks (criterion 2, as #437048, #437677)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -256,6 +256,7 @@ fmz_id,file,final_outcome,criterion,reason
 440727,动量突破银线策略Momentum-Breakthrough-Silver-Line-Strategy.md,REJECTED_ON_READING,1,"strategy.close_all() is called unconditionally on every bar after the entries (in both option blocks), so every entry bar ends flat (as #430380): as written no position is ever held (as #430384)."
 440729,移动平均线结合的高效量化交易策略The-Efficient-Quant-Trading-Strategy-Combining.md,REJECTED_ON_READING,1,"The entries test the close against request.security(syminfo.tickerid, 'D', close, lookahead = barmerge.lookahead_on): the current day's final close on every intraday bar, a higher-timeframe value with lookahead (criterion 1)."
 440793,移动平均和随机指标交易策略-Moving-Average-and-Stochastic-Trading-Strategy.md,REJECTED_ON_READING,2,"The exits are strategy.exit(profit = close x (50 + 0.01)) and similar: price amounts passed to profit, which is in ticks (criterion 2, as #437048, #437677)."
+440874,趋势追踪移动平均线与K线形态组合策略Trend-Following-Strategy-with-Moving-Average-and-Candlestick-Patterns.md,REJECTED_ON_READING,2,"The stop is strategy.exit(loss = strategy.position_avg_price x (1 - 2 %)): a price level passed to loss, which is in ticks (criterion 2, as #437048, #437677)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2124,3 +2125,14 @@ fmz_id,file,final_outcome,criterion,reason
 440831,螺旋十字星与移动平均确认策略Spiral-Cross-Strategy-with-Moving-Average-Confirmation.md,PORTED,,ports/440831_spiral-cross-strategy-with-moving-average-confirmation/
 440832,基于RSI的追踪趋势策略Trend-Following-RSI-Scalping-Strategy.md,PORTED,,ports/440832_rsi-trend-following-rsi-scalping-strategy/
 440833,渔夫指标移动止损策略Fisher-Yurik-Trailing-Stop-Strategy.md,PORTED,,ports/440833_fisher-yurik-trailing-stop-strategy/
+440845,基于吞噬模型与量化指标的高级趋势跟踪策略Advanced-Trend-Tracking-Strategy-Based-on-Engulfing-Pattern-and-Quantitative-Indicators.md,PORTED,,ports/440845_advanced-trend-tracking-strategy-based-on-engulfing-pattern/
+440847,基于EMA和隐藏背离的趋势追踪策略EMA-RSI-Hidden-Divergence-Trend-Following-Strategy.md,PORTED,,ports/440847_ema-ema-rsi-hidden-divergence-trend-following-strategy/
+440849,市场潜力量Ichimoku多头云策略Market-Potential-Ichimoku-Bullish-Cloud-Strategy.md,PORTED,,ports/440849_ichimoku-market-potential-ichimoku-bullish-cloud-strategy/
+440851,移动平均位移包络线策略Moving-Average-Displaced-Envelope-Strategy.md,PORTED,,ports/440851_moving-average-displaced-envelope-strategy/
+440853,动向指数多空平衡买卖策略DMI-Balance-Buy-Sell-Strategy.md,PORTED,,ports/440853_dmi-balance-buy-sell-strategy/
+440862,三移动平均趋势跟踪策略Dazzling-Bolts-Trend-Following-Strategy.md,PORTED,,ports/440862_dazzling-bolts-trend-following-strategy/
+440863,基于双向突破均线交易策略Dual-Breakthrough-Moving-Average-Trading-Strategy.md,PORTED,,ports/440863_dual-breakthrough-moving-average-trading-strategy/
+440864,基于双均线的长线反转策略Dual-Moving-Average-Reversal-Strategy.md,PORTED,,ports/440864_dual-moving-average-reversal-strategy/
+440866,基于趋势预测双均线策略Trend-Prediction-Dual-Moving-Average-Strategy.md,PORTED,,ports/440866_trend-prediction-dual-moving-average-strategy/
+440871,布林带和移动平均线组合策略Bollinger-Bands-and-Moving-Averages-Combination-Strategy.md,PORTED,,ports/440871_bollinger-bands-and-moving-averages-combination-strategy/
+440878,基于多时间框架的一云延伸MACD和DMI组合策略Multi-Timeframe-Ichimoku-MACD-and-DMI-Combined-Strategy.md,PORTED,,ports/440878_macd-dmi-multi-timeframe-ichimoku-macd-and-dmi-combined-stra/
