@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2657 |
+| PORTED | 2666 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 712 |
+| PORT_CANDIDATE | 700 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 369 |
+| REJECTED_ON_READING | 372 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2785,7 +2785,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 473367 | `ports/473367_rsi-ema-dynamic-multi-period-quantitative-trading-strategy-c/` | PineScript | rsi_oscillator | trailing_stop_pending | ema_period x2, rsi_period x2 | 4 |
 | 473371 | `ports/473371_smc-multi-zone-smc-theory-based-intelligent-trend-following/` | PineScript | pivot_levels | none | swing_len x2, sma_len x2 | 4 |
 | 473372 | `ports/473372_momentum-indicator-oscillation-threshold-enhanced-trading-st/` | PineScript | mean_reversion | none | length x2, threshold x2 | 4 |
-| | **2657 ports** | | | | | **12524** |
+| 473383 | `ports/473383_dual-ema-trend-momentum-trading-strategy/` | PineScript | ma_cross | none |  | 0 |
+| 473385 | `ports/473385_rsi-multi-ma-crossover-with-rsi-dynamic-trailing-stop-loss-q/` | PineScript | ma_cross | none |  | 0 |
+| 473386 | `ports/473386_dual-ema-dynamic-zone-trend-following-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 473387 | `ports/473387_atr-advanced-dual-ema-strategy-with-atr-volatility-filter-sy/` | PineScript | ma_cross | none | fast x2, slow x2, atr_threshold x2 | 8 |
+| 473396 | `ports/473396_ema-dual-ema-indicator-smart-crossing-trading-system-with-dy/` | PineScript | ma_cross | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
+| 473397 | `ports/473397_hull-ema-reflected-ema-trend-determination-strategy-based-on/` | PineScript | hull_ma | none | correction_pct x2, smooth x2 | 4 |
+| 473398 | `ports/473398_heikin-ashi-sma-smoothed-heikin-ashi-with-sma-crossover-tren/` | PineScript | ma_cross | none | sma_long x2, smooth x2 | 4 |
+| 473399 | `ports/473399_multi-wave-trend-following-price-analysis-strategy/` | PineScript | candle_pattern | coarse_bar_stop | sl_frac x2, tp_frac x2 | 4 |
+| 473401 | `ports/473401_four-period-sma-breakthrough-trading-strategy-with-dynamic-p/` | PineScript | ma_cross | coarse_bar_stop | sma_len x2, tp_pct x2, sl_pct x2 | 8 |
+| | **2666 ports** | | | | | **12560** |
 
 ## Rejected on reading
 
@@ -3160,6 +3169,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 473237 | T3均线趋势跟踪与移动止损量化交易策略-T3-Moving-Average-Trend-Following-Strategy-with-Trailing-Stop-Loss.md | 1 | The exits are strategy.exit qty_percent = 50 partial closes (half the position at the stop / target, re-sent every bar): the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #439950). |
 | 473242 | 双均线MACD交叉日期可调节量化交易策略-Dual-Moving-Average-MACD-Crossover-Date-Adjustable-Quantitative-Trading-Strategy.md | 2 | The bracket passes percentages of the close as tick counts (loss = 0.01 x close, profit = 0.02 x close in strategy.exit's tick fields): a price amount in a tick field, so the distance in price depends on the instrument's tick size (criterion 2, as #442115). |
 | 473362 | TRAMA双均线交叉智能量化交易策略-TRAMA-Dual-Moving-Average-Crossover-Intelligent-Quantitative-Trading-Strategy.md | 1 | The TRAMA's var seed (tramaPrev) is set once, to the first bar's close, and never updated, so trama = 0.8 x close + 0.2 x the first bar's close and its crossings are crossings of the first bar's close: half of the entries (the bracketed Long / Short ids) are set by where the data starts (criterion 1, a data-window level, as #468340). |
+| 473377 | 多重指标趋势突破量化交易策略-Multi-Indicator-Trend-Breakout-Quantitative-Trading-Strategy.md | 2 | strategy.exit's profit / loss fields take tick counts but receive prices (avg x 1.015 / avg x 0.99): a price amount in a tick field, so the distance in price depends on the instrument's tick size and price level (criterion 2, as #442115). |
+| 473389 | 动态RSI超卖反弹交易策略结合止损优化模型-Dynamic-RSI-Oversold-Rebound-Trading-Strategy-with-Stop-Loss-Optimization-Model.md | 1 | pyramiding = 2 with a long sent on every bar the RSI 8 is under 28: a second unit is added inside the trade, so the size path is part of the strategy (criterion 1, pyramiding >= 2 repeats). |
+| 473391 | Advanced-Fair-Value-Gap-Detection-Strategy-with-Dynamic-Risk-Management-and-Fixed-Take-Profit-基于动态风险管理和固定获利的高级公允价值缺口检测策略.md | 1 | The stop is strategy.close when strategy.openprofit < -1 % of strategy.equity: an exit set by the position's money size against the equity (criterion 1, equity-share openprofit exits). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

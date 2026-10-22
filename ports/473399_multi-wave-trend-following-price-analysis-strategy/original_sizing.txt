@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #473399 (多重波动趋势追踪价格变化分析策略-Multi-Wave-Trend-Following-Price-Analysis-Strategy)
+# Source: https://www.fmz.com/strategy/473399  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 / target 6 in price from the signal close  [lines 91-126]
+   91: stopLossDistance = input(2, title="Distanza Stop Loss")
+   92: takeProfitDistance = input(6, title="Distanza Take Profit")
+   93: 
+   94: // Funzione per il conteggio dei massimi e minimi
+   95: var int countUp = 0
+   96: var int countDown = 0
+   97: 
+   98: // Calcola i massimi e minimi
+   99: if (low > low[1] and low[1] > low[2])
+  100:     countUp := countUp + 1
+  101:     countDown := 0
+  102: else if (high < high[1] and high[1] < high[2])
+  103:     countDown := countDown + 1
+  104:     countUp := 0
+  105: else
+  106:     countUp := 0
+  107:     countDown := 0
+  108: 
+  109: // Segnali di acquisto e vendita
+  110: longSignal = countUp == 3
+  111: shortSignal = countDown == 3
+  112: 
+  113: // Impostazione dello stop loss e take profit
+  114: longStopLoss = close - stopLossDistance
+  115: longTakeProfit = close + takeProfitDistance
+  116: shortStopLoss = close + stopLossDistance
+  117: shortTakeProfit = close - takeProfitDistance
+  118: 
+  119: // Esegui le operazioni
+  120: if (longSignal)
+  121:     strategy.entry("Long", strategy.long)
+  122:     strategy.exit("Take Profit", "Long", limit=longTakeProfit, stop=longStopLoss)
+  123: 
+  124: if (shortSignal)
+  125:     strategy.entry("Short", strategy.short)
+  126:     strategy.exit("Take Profit", "Short", limit=shortTakeProfit, stop=shortStopLoss)

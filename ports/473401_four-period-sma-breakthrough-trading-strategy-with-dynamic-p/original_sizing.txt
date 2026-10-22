@@ -1,0 +1,39 @@
+# Original sizing and money-management code, FMZ #473401 (四周期均线突破交易策略与动态止盈止损系统-Four-Period-SMA-Breakthrough-Trading-Strategy-with-Dynamic-Profit-Loss-Management-System)
+# Source: https://www.fmz.com/strategy/473401  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 2 % / stop 1 % of avg  [lines 91-124]
+   91: takeProfitPercent = input.float(2.0, title="Take Profit (%)", step=0.1)  // Default: 2%
+   92: stopLossPercent = input.float(1.0, title="Stop Loss (%)", step=0.1)  // Default: 1%
+   93: 
+   94: // Calculate 4-period SMA
+   95: sma = ta.sma(close, smaLength)
+   96: 
+   97: // Plot SMA
+   98: plot(sma, color=color.blue, title="4SMA Line")
+   99: 
+  100: // Entry Conditions
+  101: longCondition = ta.crossover(close, sma)  // Price crosses above SMA (bullish signal)
+  102: shortCondition = ta.crossunder(close, sma)  // Price crosses below SMA (bearish signal)
+  103: 
+  104: // Strategy Logic
+  105: if (longCondition)
+  106:     strategy.entry("Long", strategy.long)  // Enter long position
+  107: 
+  108: if (shortCondition)
+  109:     strategy.entry("Short", strategy.short)  // Enter short position
+  110: 
+  111: // Calculate Take Profit and Stop Loss
+  112: longTakeProfit = strategy.position_avg_price * (1 + takeProfitPercent / 100)  // TP for long
+  113: longStopLoss = strategy.position_avg_price * (1 - stopLossPercent / 100)      // SL for long
+  114: 
+  115: shortTakeProfit = strategy.position_avg_price * (1 - takeProfitPercent / 100) // TP for short
+  116: shortStopLoss = strategy.position_avg_price * (1 + stopLossPercent / 100)     // SL for short
+  117: 
+  118: // Exit for Long
+  119: if (strategy.position_size > 0)  // If in a long position
+  120:     strategy.exit("Long TP/SL", from_entry="Long", limit=longTakeProfit, stop=longStopLoss)
+  121: 
+  122: // Exit for Short
+  123: if (strategy.position_size < 0)  // If in a short position
+  124:     strategy.exit("Short TP/SL", from_entry="Short", limit=shortTakeProfit, stop=shortStopLoss)

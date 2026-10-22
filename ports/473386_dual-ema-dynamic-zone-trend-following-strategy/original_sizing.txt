@@ -1,0 +1,53 @@
+# Original sizing and money-management code, FMZ #473386 (双均线动态区域趋势跟踪策略-Dual-EMA-Dynamic-Zone-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/473386  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty 1; commission 0.1 %, slippage 3  [lines 87-134]
+   87: strategy("NUTJP CDC ActionZone 2024", overlay=true, precision=6, commission_value=0.1, slippage=3)
+   88: 
+   89: //****************************************************************************//
+   90: // CDC Action Zone is based on a simple EMA crossover
+   91: // between [default] EMA12 and EMA26
+   92: //****************************************************************************//
+   93: 
+   94: // Define User Input Variables
+   95: xsrc = input.source(title='Source Data', defval=close)
+   96: xprd1 = input.int(title='Fast EMA period', defval=12)
+   97: xprd2 = input.int(title='Slow EMA period', defval=26)
+   98: xsmooth = input.int(title='Smoothing period (1 = no smoothing)', defval=1)
+   99: fillSW = input.bool(title='Paint Bar Colors', defval=true)
+  100: fastSW = input.bool(title='Show fast moving average line', defval=true)
+  101: slowSW = input.bool(title='Show slow moving average line', defval=true)
+  102: 
+  103: xfixtf = input.bool(title='** Use Fixed time frame Mode (advanced) **', defval=false)
+  104: xtf = input.timeframe(title='** Fix chart to which time frame? **', defval='D')
+  105: 
+  106: startDate = input(timestamp("2018-01-01 00:00"), title="Start Date")
+  107: endDate = input(timestamp("2069-12-31 23:59"), title="End Date")
+  108: 
+  109: //****************************************************************************//
+  110: // Calculate Indicators
+  111: f_secureSecurity(_symbol, _res, _src) => request.security(_symbol, _res, _src[1], lookahead=barmerge.lookahead_on)
+  112: 
+  113: xPrice = ta.ema(xsrc, xsmooth)
+  114: 
+  115: FastMA = xfixtf ? ta.ema(f_secureSecurity(syminfo.tickerid, xtf, ta.ema(xsrc, xprd1)), xsmooth) : ta.ema(xPrice, xprd1)
+  116: 
+  117: SlowMA = xfixtf ? ta.ema(f_secureSecurity(syminfo.tickerid, xtf, ta.ema(xsrc, xprd2)), xsmooth) : ta.ema(xPrice, xprd2)
+  118: 
+  119: Bull = FastMA > SlowMA
+  120: Bear = FastMA < SlowMA
+  121: 
+  122: // Define Color Zones
+  123: Green = Bull and xPrice > FastMA
+  124: Red = Bear and xPrice < FastMA
+  125: 
+  126: // Buy and Sell Conditions
+  127: buycond = Green and not Green[1]
+  128: sellcond = Red and not Red[1]
+  129: 
+  130: inDateRange = true
+  131: 
+  132: if inDateRange
+  133:     if buycond
+  134:         strategy.entry("Long", strategy.long, qty=1)

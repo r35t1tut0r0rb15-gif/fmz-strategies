@@ -5757,6 +5757,28 @@ SIZING = {
     473372: [
         ("Stop 100 / target 150 points (off); commission 0.05 per contract", 90, 126),
     ],
+    # ---- FMZ-C, batch C218 (2026-10-22)
+    473383: [],
+    473385: [
+        ("Stop 1 % beyond the signal bar's low / high; 1 % close ratchet", 114, 162),
+    ],
+    473386: [
+        ("qty 1; commission 0.1 %, slippage 3", 87, 134),
+    ],
+    473387: [
+        ("strategy(): 10 % of equity", 89, 89),
+    ],
+    473396: [
+        ("strategy(): 100 % of equity; stop 5 % / target 10 % of avg", 87, 136),
+    ],
+    473397: [],
+    473398: [],
+    473399: [
+        ("Stop 2 / target 6 in price from the signal close", 91, 126),
+    ],
+    473401: [
+        ("Target 2 % / stop 1 % of avg", 91, 124),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7255,6 +7277,16 @@ REJECTED_ON_READING = {
               "are crossings of the first bar's close: half of the entries (the bracketed Long / "
               "Short ids) are set by where the data starts (criterion 1, a data-window level, as "
               "#468340)."),
+    # ---- FMZ-C, batch C218 (2026-10-22)
+    473377: ("2", "strategy.exit's profit / loss fields take tick counts but receive prices (avg x "
+              "1.015 / avg x 0.99): a price amount in a tick field, so the distance in price "
+              "depends on the instrument's tick size and price level (criterion 2, as #442115)."),
+    473389: ("1", "pyramiding = 2 with a long sent on every bar the RSI 8 is under 28: a second unit "
+              "is added inside the trade, so the size path is part of the strategy (criterion 1, "
+              "pyramiding >= 2 repeats)."),
+    473391: ("1", "The stop is strategy.close when strategy.openprofit < -1 % of strategy.equity: an "
+              "exit set by the position's money size against the equity (criterion 1, "
+              "equity-share openprofit exits)."),
 }
 
 DUPLICATE_ON_READING = {

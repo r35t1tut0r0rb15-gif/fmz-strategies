@@ -1,0 +1,54 @@
+# Original sizing and money-management code, FMZ #473385 (多重均线交叉与RSI动态追踪止损量化交易策略-Multi-MA-Crossover-with-RSI-Dynamic-Trailing-Stop-Loss-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/473385  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 % beyond the signal bar's low / high; 1 % close ratchet  [lines 114-162]
+  114: trailingStopPercent = 1.0
+  115: 
+  116: // Variables to store the entry candle high and low
+  117: var float longEntryLow = na
+  118: var float shortEntryHigh = na
+  119: 
+  120: // Variables for trailing stop levels
+  121: var float longTrailingStop = na
+  122: var float shortTrailingStop = na
+  123: 
+  124: // Exit conditions
+  125: exitLongCondition = rsiValue > 80
+  126: exitShortCondition = rsiValue < 22
+  127: 
+  128: // Stop-loss conditions (price drops below long entry candle low * 1% or exceeds short entry candle high * 1%)
+  129: longStopLoss = longEntryLow > 0 and close < longEntryLow * 0.99
+  130: shortStopLoss = shortEntryHigh > 0 and close > shortEntryHigh * 1.01
+  131: 
+  132: // Execute Buy Order and store the entry candle low for long stop-loss
+  133: if (longCondition)
+  134:     strategy.entry("Long", strategy.long)
+  135:     longEntryLow := low  // Store the low of the candle where long entry happened
+  136:     longTrailingStop := close * (1 - trailingStopPercent / 100)  // Initialize trailing stop at entry
+  137: 
+  138: // Execute Sell Order and store the entry candle high for short stop-loss
+  139: if (shortCondition)
+  140:     strategy.entry("Short", strategy.short)
+  141:     shortEntryHigh := high  // Store the high of the candle where short entry happened
+  142:     shortTrailingStop := close * (1 + trailingStopPercent / 100)  // Initialize trailing stop at entry
+  143: 
+  144: // Update trailing stop for long position
+  145: if (strategy.opentrades > 0 and strategy.position_size > 0)
+  146:     longTrailingStop := math.max(longTrailingStop, close * (1 - trailingStopPercent / 100))  // Update trailing stop as price moves up
+  147: 
+  148: // Update trailing stop for short position
+  149: if (strategy.opentrades > 0 and strategy.position_size < 0)
+  150:     shortTrailingStop := math.min(shortTrailingStop, close * (1 + trailingStopPercent / 100))  // Update trailing stop as price moves down
+  151: 
+  152: // Exit Buy Position when RSI is above 80, Stop-Loss triggers, or trailing stop is hit
+  153: if (exitLongCondition or longStopLoss or close < longTrailingStop)
+  154:     strategy.close("Long")
+  155:     longEntryLow := na  // Reset the entry low after the long position is closed
+  156:     longTrailingStop := na  // Reset the trailing stop
+  157: 
+  158: // Exit Sell Position when RSI is below 22, Stop-Loss triggers, or trailing stop is hit
+  159: if (exitShortCondition or shortStopLoss or close > shortTrailingStop)
+  160:     strategy.close("Short")
+  161:     shortEntryHigh := na  // Reset the entry high after the short position is closed
+  162:     shortTrailingStop := na  // Reset the trailing stop
