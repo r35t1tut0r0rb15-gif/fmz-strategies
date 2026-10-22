@@ -5380,6 +5380,31 @@ SIZING = {
     ],
     458201: [],
     458232: [],
+    # ---- FMZ-C, batch C204 (2026-10-22)
+    458233: [],
+    458234: [
+        ("strategy(): 10 % of equity, initial capital 10000", 161, 161),
+    ],
+    458237: [
+        ("Profit 100 / loss 20 ticks; qty 1", 215, 231),
+    ],
+    458240: [],
+    458242: [
+        ("Trail 1 tick after 1 tick of profit", 229, 245),
+    ],
+    458247: [
+        ("Target 2 % / stop 1 % of the average price", 162, 209),
+    ],
+    458249: [
+        ("Target 1 % of the signal close; stop low[1] / high[1] (dynamic 1 % off)", 186, 241),
+    ],
+    458250: [
+        ("Target / stop 1.5 % of the signal close (bar-close tests)", 183, 278),
+    ],
+    458252: [],
+    458254: [
+        ("Stop 1 % / target 2 % of the signal close", 192, 241),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -6812,6 +6837,16 @@ REJECTED_ON_READING = {
               "every trade would close at its own fill, and the 30-candle gap divides "
               "milliseconds by 1000 x mintick; both are instrument-specific price units "
               "(criterion 2, as #441086)."),
+    # ---- FMZ-C, batch C204 (2026-10-22)
+    458243: ("1", "Every RSI-under-30 bar at least 30 days after the last buy sends strategy.entry "
+              "plus a strategy.order buy (the order is not limited by pyramiding), and nothing "
+              "ever sells: a dollar-cost accumulation whose size path is the strategy (criterion "
+              "1, as #439958, #430762)."),
+    458245: ("1", "The long's limit and stop are the same price (wave1 = wave3 = valuewhen(wave_trend "
+              "== 1, close, 0)) and the short's too (wave2 = wave4), sent on every bar including "
+              "the signal bar: one of each pair is always marketable at the fill, so every trade "
+              "closes at the open it fills at and no position is ever held as written (criterion "
+              "1, zero-length trades as #452827)."),
 }
 
 DUPLICATE_ON_READING = {

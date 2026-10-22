@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2506 |
+| PORTED | 2516 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 880 |
+| PORT_CANDIDATE | 868 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 354 |
+| REJECTED_ON_READING | 356 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2634,7 +2634,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 458200 | `ports/458200_multi-order-breakout-trend-following-strategy/` | PineScript | bollinger_breakout | coarse_bar_stop | lookback x2, breakout_mult x2, sl_pct x2 | 8 |
 | 458201 | `ports/458201_multi-ema-crossover-momentum-strategy/` | PineScript | ma_cross | none | fast x2, slow x2, trend x2 | 8 |
 | 458232 | `ports/458232_rsi-momentum-driven-ema-rsi-crossover-strategy/` | PineScript | rsi_oscillator | none | ema_len x2, buy_th x2, sell_th x2 | 8 |
-| | **2506 ports** | | | | | **11764** |
+| 458233 | `ports/458233_multi-ema-crossover-strategy-with-trend-confirmation/` | PineScript | ma_cross | none | fast x2, slow x2, trend x2 | 8 |
+| 458234 | `ports/458234_multi-candlestick-pattern-recognition-and-trading-strategy/` | PineScript | candle_pattern | none |  | 0 |
+| 458237 | `ports/458237_macd-dual-macd-trend-confirmation-trading-system/` | PineScript | macd_cross | coarse_bar_stop | tp_atr x2, sl_atr x2 | 4 |
+| 458240 | `ports/458240_trend-structure-break-with-order-block-and-fair-value-gap-st/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 458242 | `ports/458242_hma-optimized-multi-timeframe-hma-quantitative-trading-strat/` | PineScript | hull_ma | coarse_bar_stop, trailing_stop | length x2, trail_pct x2 | 4 |
+| 458247 | `ports/458247_adaptive-quantitative-trading-strategy-with-dual-moving-aver/` | PineScript | ma_cross | none | short_len x2, long_len x2, tp_pct x2 | 8 |
+| 458249 | `ports/458249_dual-moving-average-trend-capture-strategy-with-dynamic-stop/` | PineScript | ma_cross | none | ma_len x2, filter_len x2, tp_pct x2 | 8 |
+| 458250 | `ports/458250_lorenzian-classification-multi-timeframe-target-strategy/` | PineScript | adaptive_average | none | length x2, lookback x2, target_pct x2 | 8 |
+| 458252 | `ports/458252_rsi-dual-rsi-strategy-advanced-trend-capture-system-combinin/` | PineScript | rsi_oscillator | none | len x2, xbars x2 | 4 |
+| 458254 | `ports/458254_triple-ema-with-dynamic-support-resistance-trading-strategy/` | PineScript | ma_cross | coarse_bar_stop | short_len x2, mid_len x2, sl_pct x2 | 8 |
+| | **2516 ports** | | | | | **11820** |
 
 ## Rejected on reading
 
@@ -2994,6 +3004,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 458066 | 多指标结合期权交易策略-Multi-Indicator-Options-Trading-Strategy.md | 1 | The only exit closes when strategy.opentrades.profit (currency, for a 10 % of equity position) reaches 0.30 x the entry price (a price): where the trade ends depends on the position size (criterion 1, size-dependent exit, as #440336). |
 | 458170 | 多层级超买超卖震荡买入策略-Multi-Level-Oversold-Oscillator-Buy-Strategy.md | 1 | pyramiding = 3: each stochastic-RSI cross-up in oversold adds another entry while the long is held, up to three, all closed together by close_all when the stochastic RSI reaches 99 (no stop): the position size path is the strategy (criterion 1, as #430762, #439950). |
 | 458198 | 多重均线交叉与时间间隔整合策略-Multi-EMA-Crossover-with-Time-Interval-Integration-Strategy.md | 2 | The 50 / 30 pips are passed to strategy.exit as limit= / stop= PRICES (pip = mintick x 10, so the levels are the absolute prices 50 and 30): at any BTC price the long's sell limit and the short's buy stop are marketable at the fill, so every trade would close at its own fill, and the 30-candle gap divides milliseconds by 1000 x mintick; both are instrument-specific price units (criterion 2, as #441086). |
+| 458243 | RSI超卖定期投资策略与冷却期优化RSI-Oversold-Periodic-Investment-Strategy-with-Cooldown-Optimization.md | 1 | Every RSI-under-30 bar at least 30 days after the last buy sends strategy.entry plus a strategy.order buy (the order is not limited by pyramiding), and nothing ever sells: a dollar-cost accumulation whose size path is the strategy (criterion 1, as #439958, #430762). |
+| 458245 | 基于艾略特波浪与汤姆德马克顺势交易策略-Elliott-Wave-and-Tom-DeMark-Trend-Following-Trading-Strategy.md | 1 | The long's limit and stop are the same price (wave1 = wave3 = valuewhen(wave_trend == 1, close, 0)) and the short's too (wave2 = wave4), sent on every bar including the signal bar: one of each pair is always marketable at the fill, so every trade closes at the open it fills at and no position is ever held as written (criterion 1, zero-length trades as #452827). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

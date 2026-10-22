@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #458237 (双重MACD趋势确认交易系统-Dual-MACD-Trend-Confirmation-Trading-System)
+# Source: https://www.fmz.com/strategy/458237  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Profit 100 / loss 20 ticks; qty 1  [lines 215-231]
+  215: ProfitDelta = 100
+  216: LossDelta = 20
+  217: 
+  218: //================
+  219: //枚数
+  220: //================
+  221: Size = 1
+  222: 
+  223: //================
+  224: //注文・決済
+  225: //================
+  226: //strategy.entryでエントリー,qtyでサイズ指定,
+  227: //エントリータイミング今回は46行目BuyPoint = BuyPoint_MACDGC and BuyPoint_crossnow
+  228: if BuyPoint
+  229:     strategy.entry(id='long', direction=strategy.long, qty=Size)
+  230: //profit利確までの幅,loss損切までの幅(stopというので移動平均線に到達したらなどの損切設定なども可能）
+  231: strategy.exit(id='exit', from_entry='long', profit=ProfitDelta, loss=LossDelta)

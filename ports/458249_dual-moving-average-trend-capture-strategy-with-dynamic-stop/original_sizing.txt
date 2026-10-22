@@ -1,0 +1,61 @@
+# Original sizing and money-management code, FMZ #458249 (双均线趋势捕捉策略结合动态止损和过滤器-Dual-Moving-Average-Trend-Capture-Strategy-with-Dynamic-Stop-Loss-and-Filter)
+# Source: https://www.fmz.com/strategy/458249  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 1 % of the signal close; stop low[1] / high[1] (dynamic 1 % off)  [lines 186-241]
+  186: takeProfitPercent = input.float(1.0, "Take Profit (%)", step=0.1)
+  187: filterMaLength = input.int(50, "Filter MA Length")
+  188: filterMaType = input.string("SMA", "Filter MA Type", options=["SMA", "EMA", "WMA"])
+  189: useDynamicStopLoss = input.bool(false, "Use Dynamic Stop Loss")
+  190: dynamicStopLossPercent = input.float(1.0, "Dynamic Stop Loss (%)", step=0.1)
+  191: 
+  192: // Выбор типа основной скользящей средней
+  193: float ma = na
+  194: switch maType
+  195:     "SMA" => ma := ta.sma(close, maLength)
+  196:     "EMA" => ma := ta.ema(close, maLength)
+  197:     "WMA" => ma := ta.wma(close, maLength)
+  198: 
+  199: // Выбор типа скользящей средней фильтра
+  200: float filterMa = na
+  201: switch filterMaType
+  202:     "SMA" => filterMa := ta.sma(close, filterMaLength)
+  203:     "EMA" => filterMa := ta.ema(close, filterMaLength)
+  204:     "WMA" => filterMa := ta.wma(close, filterMaLength)
+  205: 
+  206: // Построение скользящих средних
+  207: plot(ma, color=color.blue, linewidth=2, title="Moving Average")
+  208: plot(filterMa, color=color.orange, linewidth=2, title="Filter Moving Average")
+  209: 
+  210: // Логика открытия позиций
+  211: longCondition = ta.crossover(close, ma) and close > filterMa
+  212: shortCondition = ta.crossunder(close, ma) and close < filterMa
+  213: 
+  214: var bool inPosition = false
+  215: var float entryPrice = na
+  216: var float takeProfitLevel = na
+  217: var float stopLossLevel = na
+  218: 
+  219: if (longCondition and not inPosition and strategy.position_size == 0)
+  220:     entryPrice := close
+  221:     takeProfitLevel := close * (1 + takeProfitPercent / 100)
+  222:     if (useDynamicStopLoss)
+  223:         stopLossLevel := close * (1 - dynamicStopLossPercent / 100)
+  224:     else
+  225:         stopLossLevel := low[1]
+  226:     strategy.entry("Long", strategy.long)
+  227:     strategy.exit("Take Profit/Stop Loss", from_entry="Long", limit=takeProfitLevel, stop=stopLossLevel)
+  228:     // line.new(bar_index, entryPrice, bar_index + 1, entryPrice, color=color.blue, width=2)
+  229:     // line.new(bar_index, takeProfitLevel, bar_index + 1, takeProfitLevel, color=color.green, width=2, style=line.style_dashed)
+  230:     // line.new(bar_index, stopLossLevel, bar_index + 1, stopLossLevel, color=color.red, width=2, style=line.style_dashed)
+  231:     inPosition := true
+  232: 
+  233: if (shortCondition and not inPosition and strategy.position_size == 0)
+  234:     entryPrice := close
+  235:     takeProfitLevel := close * (1 - takeProfitPercent / 100)
+  236:     if (useDynamicStopLoss)
+  237:         stopLossLevel := close * (1 + dynamicStopLossPercent / 100)
+  238:     else
+  239:         stopLossLevel := high[1]
+  240:     strategy.entry("Short", strategy.short)
+  241:     strategy.exit("Take Profit/Stop Loss", from_entry="Short", limit=takeProfitLevel, stop=stopLossLevel)

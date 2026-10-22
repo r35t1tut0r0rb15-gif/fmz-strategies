@@ -1,0 +1,53 @@
+# Original sizing and money-management code, FMZ #458247 (双均线交叉带止盈止损的自适应量化交易策略-Adaptive-Quantitative-Trading-Strategy-with-Dual-Moving-Average-Crossover-and-Take-Profit-Stop-Loss)
+# Source: https://www.fmz.com/strategy/458247  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 2 % / stop 1 % of the average price  [lines 162-209]
+  162: take_profit_perc = input.float(2.0, title="Take Profit (%)", minval=0.1)
+  163: stop_loss_perc = input.float(1.0, title="Stop Loss (%)", minval=0.1)
+  164: 
+  165: // Вычисление скользящих средних
+  166: short_ma = ta.sma(close, short_ma_length)
+  167: long_ma = ta.sma(close, long_ma_length)
+  168: 
+  169: // Отображение скользящих средних
+  170: plot(short_ma, color=color.blue, title="Short MA")
+  171: plot(long_ma, color=color.red, title="Long MA")
+  172: 
+  173: // Сигналы на покупку и продажу
+  174: buy_signal = ta.crossover(short_ma, long_ma)
+  175: sell_signal = ta.crossunder(short_ma, long_ma)
+  176: 
+  177: // Отображение сигналов на графике
+  178: plotshape(series=buy_signal, location=location.belowbar, color=color.green, style=shape.labelup, title="Buy Signal", text="BUY")
+  179: plotshape(series=sell_signal, location=location.abovebar, color=color.red, style=shape.labeldown, title="Sell Signal", text="SELL")
+  180: 
+  181: // Добавление текстовых меток на график
+  182: if (buy_signal)
+  183:     label.new(bar_index, low, "Вставай в лонг", style=label.style_label_up, color=color.green, textcolor=color.white)
+  184: if (sell_signal)
+  185:     label.new(bar_index, high, "Вставай в шорт", style=label.style_label_down, color=color.red, textcolor=color.white)
+  186: 
+  187: // Условный трейдинг (для стратегии)
+  188: if (buy_signal)
+  189:     // Открытие длинной позиции при пересечении краткосрочной MA вверх через долгосрочную MA
+  190:     strategy.entry("Buy", strategy.long)
+  191: 
+  192: if (sell_signal)
+  193:     // Закрытие длинной позиции при пересечении краткосрочной MA вниз через долгосрочную MA
+  194:     strategy.close("Buy")
+  195:     
+  196:     // Открытие короткой позиции при пересечении краткосрочной MA вниз через долгосрочную MA
+  197:     strategy.entry("Sell", strategy.short)
+  198: 
+  199: // Применение тейк-профита и стоп-лосса для длинной позиции
+  200: if (strategy.position_size > 0 and strategy.position_avg_price > 0)
+  201:     long_tp_price = strategy.position_avg_price * (1 + take_profit_perc / 100)
+  202:     long_sl_price = strategy.position_avg_price * (1 - stop_loss_perc / 100)
+  203:     strategy.exit("Take Profit/Stop Loss", from_entry="Buy", limit=long_tp_price, stop=long_sl_price)
+  204: 
+  205: // Применение тейк-профита и стоп-лосса для короткой позиции
+  206: if (strategy.position_size < 0 and strategy.position_avg_price > 0)
+  207:     short_tp_price = strategy.position_avg_price * (1 - take_profit_perc / 100)
+  208:     short_sl_price = strategy.position_avg_price * (1 + stop_loss_perc / 100)
+  209:     strategy.exit("Take Profit/Stop Loss", from_entry="Sell", limit=short_tp_price, stop=short_sl_price)

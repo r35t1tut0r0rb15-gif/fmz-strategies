@@ -1,0 +1,101 @@
+# Original sizing and money-management code, FMZ #458250 (基于洛伦兹分类法的多时间框架交易策略Lorenzian-Classification-Multi-Timeframe-Target-Strategy)
+# Source: https://www.fmz.com/strategy/458250  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target / stop 1.5 % of the signal close (bar-close tests)  [lines 183-278]
+  183: targetPercentage = input.float(1.5, "Target Percentage (%)", step=0.1) // Target percentage for exit
+  184: higherTimeframe = input.timeframe("D", "Higher Timeframe") // Higher timeframe for multi-timeframe analysis
+  185: 
+  186: // Lorenzian Classification calculation for current timeframe
+  187: ema1 = ta.ema(hlc3, length)
+  188: ema2 = ta.ema(ema1, length)
+  189: ema3 = ta.ema(ema2, length)
+  190: 
+  191: d = ema1 - ema2
+  192: ci = d / (0.015 * ta.ema(math.abs(d), length)) * 100
+  193: 
+  194: lorenzian = ema3 + ci
+  195: 
+  196: // Lorenzian Classification calculation for higher timeframe
+  197: hlc3_htf = request.security(syminfo.tickerid, higherTimeframe, (high + low + close)/3 )
+  198: ema1_htf = ta.ema(hlc3_htf, length)
+  199: ema2_htf = ta.ema(ema1_htf, length)
+  200: ema3_htf = ta.ema(ema2_htf, length)
+  201: 
+  202: d_htf = ema1_htf - ema2_htf
+  203: ci_htf = d_htf / (0.015 * ta.ema(math.abs(d_htf), length)) * 100
+  204: 
+  205: lorenzian_htf = ema3_htf + ci_htf
+  206: 
+  207: // Signal generation
+  208: crossUp = ta.crossover(close, lorenzian)
+  209: crossDown = ta.crossunder(close, lorenzian)
+  210: 
+  211: // Determine color based on price position relative to the line
+  212: lineColor = close > ema3 ? color.green : color.red
+  213: lineColorH = close > ema3_htf ? color.blue : color.red
+  214: 
+  215: // Plot the line with dynamic color
+  216: plot(ema3, color=lineColor, title="EMA3", linewidth=2)
+  217: plot(ema3_htf, color=lineColorH, title="EMA3 HTF", linewidth=2)
+  218: 
+  219: // Function to check for opposite movement
+  220: oppositeMove(isLong) =>
+  221:     if isLong
+  222:         lowest = ta.lowest(low, lookback)
+  223:         lowest < lorenzian[lookback]
+  224:     else
+  225:         highest = ta.highest(high, lookback)
+  226:         highest > lorenzian[lookback]
+  227: 
+  228: // Generate buy and sell signals
+  229: buySignal = crossUp and oppositeMove(true)
+  230: sellSignal = crossDown and oppositeMove(false)
+  231: 
+  232: // Calculate and manage target price
+  233: var float targetPrice = na
+  234: var float plotTargetPrice = na
+  235: var float entryPrice = na
+  236: 
+  237: // Variables to track trade outcomes
+  238: var int targetMet = 0
+  239: var int targetNotMet = 0
+  240: var int totalTrades = 0
+  241: 
+  242: if (buySignal)
+  243:     strategy.entry("Buy", strategy.long)
+  244:     entryPrice := close
+  245:     targetPrice := entryPrice * (1 + targetPercentage/100)
+  246:     plotTargetPrice := targetPrice
+  247:     totalTrades := totalTrades + 1
+  248: 
+  249: if (sellSignal)
+  250:     strategy.entry("Sell", strategy.short)
+  251:     entryPrice := close
+  252:     targetPrice := entryPrice * (1 - targetPercentage/100)
+  253:     plotTargetPrice := targetPrice
+  254:     totalTrades := totalTrades + 1
+  255: 
+  256: // Check if target price is met to exit
+  257: if (not na(targetPrice))
+  258:     if (strategy.position_size > 0 and high >= targetPrice) // Long position exit condition
+  259:         strategy.close("Buy")
+  260:         targetPrice := na
+  261:         entryPrice := na
+  262:         targetMet := targetMet + 1
+  263:     else if (strategy.position_size > 0 and low < entryPrice * (1 - targetPercentage/100)) // Stop loss for long
+  264:         strategy.close("Buy")
+  265:         targetPrice := na
+  266:         entryPrice := na
+  267:         targetNotMet := targetNotMet + 1
+  268:     
+  269:     if (strategy.position_size < 0 and low <= targetPrice) // Short position exit condition
+  270:         strategy.close("Sell")
+  271:         targetPrice := na
+  272:         entryPrice := na
+  273:         targetMet := targetMet + 1
+  274:     else if (strategy.position_size < 0 and high > entryPrice * (1 + targetPercentage/100)) // Stop loss for short
+  275:         strategy.close("Sell")
+  276:         targetPrice := na
+  277:         entryPrice := na
+  278:         targetNotMet := targetNotMet + 1

@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #458242 (HMA优化多周期量化交易策略与动态止损结合-Optimized-Multi-Timeframe-HMA-Quantitative-Trading-Strategy-with-Dynamic-Stop-Loss)
+# Source: https://www.fmz.com/strategy/458242  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Trail 1 tick after 1 tick of profit  [lines 229-245]
+  229: slPoints = input.int(title='Profit Points Before Stop', minval=0, maxval=1000, step=1, defval=1, confirm=false)
+  230: 
+  231: slOffset = input.int(title='Then Trailing Stop Loss of ', minval=1, maxval=1000, step=1, defval=1, confirm=false)
+  232: 
+  233: //trades//
+  234: 
+  235: // Long Entry Function//
+  236: 
+  237: if Session and ta.crossover(HULL[0] , HULL[2])
+  238:     strategy.entry('long', strategy.long)
+  239:     strategy.exit('trailing stop', from_entry='long', trail_points=slPoints, trail_offset=slOffset)
+  240: 
+  241: // Short Entry Function//
+  242: 
+  243: if Session and ta.crossunder(HULL[0] , HULL[2])
+  244:     strategy.entry('short', strategy.short)
+  245:     strategy.exit('trailing stop', from_entry='short', trail_points=slPoints, trail_offset=slOffset)
