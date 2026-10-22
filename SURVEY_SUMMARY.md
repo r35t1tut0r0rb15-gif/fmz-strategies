@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1890 |
-| PORT_CANDIDATE | 1587 |
+| PORTED | 1900 |
+| PORT_CANDIDATE | 1575 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 565 |
-| REJECTED_ON_READING | 265 |
+| HELD_NEEDS_VOLUME | 566 |
+| REJECTED_ON_READING | 266 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2018,7 +2018,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 441043 | `ports/441043_rsi-exponential-moving-average-and-relative-strength-index-c/` | PineScript | ma_cross | none | trend_len x2, rsi_length x2 | 4 |
 | 441044 | `ports/441044_willy-wonka-breakout-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, oversold x2 | 4 |
 | 441048 | `ports/441048_ichimoku-macd-stochastic-ichimoku-cloud-macd-and-stochastic/` | PineScript | ichimoku | coarse_bar_stop | sl_mult x2, tp_mult x2 | 4 |
-| | **1890 ports** | | | | | **9101** |
+| 441052 | `ports/441052_dual-moving-average-oscillator-stock-strategy/` | PineScript | momentum_oscillator | none | long_length x2, short_length x2 | 4 |
+| 441055 | `ports/441055_robust-dual-moving-average-trading-strategy/` | PineScript | mean_reversion | none | rsi_length x2, trend_len x2 | 4 |
+| 441057 | `ports/441057_rsi-engulfing-candle-rsi-trading-strategy/` | PineScript | candle_pattern | coarse_bar_stop | rsi_length x2, oversold x2 | 4 |
+| 441058 | `ports/441058_super-trend-following-strategy-based-on-moving-averages/` | PineScript | ma_trend | none | len2 x2, len4 x2 | 4 |
+| 441062 | `ports/441062_rsi-moving-average-and-rsi-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 441067 | `ports/441067_dynamic-sma-cross-trend-strategy/` | PineScript | ma_cross | none | fast x2, medium x2 | 4 |
+| 441068 | `ports/441068_rsi-wma-rsi-and-wma-crossover-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, wma_length x2 | 4 |
+| 441073 | `ports/441073_dual-moving-average-tracking-stop-loss-strategy/` | PineScript | atr_trailing_line | none | ema_period x2, delta x2 | 4 |
+| 441074 | `ports/441074_rsi-relative-strength-index-long-term-quant-strategy/` | PineScript | rsi_oscillator | none | length x2, rs_value x2 | 4 |
+| 441076 | `ports/441076_quant-trading-strategy-based-on-supertrend-channel/` | PineScript | supertrend | none | length x2, mult x2 | 4 |
+| | **1900 ports** | | | | | **9141** |
 
 ## Rejected on reading
 
@@ -2289,6 +2299,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440981 | 毕达哥蜡烛图MACD指标背离趋势跟踪策略Demigod-Candlestick-MACD-Divergence-Trend-Following-Strategy.md | 1 | pyramiding = 100 with fixed qty-1 entries repeated on every signal while a position is open: the position accumulates units (criterion 1, as #430762). |
 | 440992 | 双向自适应布林带趋势追踪策略-Adaptive-Bollinger-Bands-Trend-Tracking-Strategy.md | 1 | A DCA ladder: repeated qty-1 "Buy" entries as each fib level fills, and a qty-0 "Close ALL" entry at the average-price target: the position accumulates units (criterion 1, as #430762). |
 | 441049 | 基于双均线交叉策略Closing-Price-Comparison-Dual-Moving-Average-Crossover-Strategy.md | 1 | The long's exits close 50 % of the position (strategy.close with qty_percent = 50) on an open-profit test: partial exits (criterion 1, as #436524). |
+| 441065 | 双均线SuperTrend量化交易策略Dual-Moving-Average-Supertrend-Quantitative-Trading-Strategy.md | 1 | Reads the future: Pine v2 security(syminfo.tickerid, '120', ...) without [1] behaves as lookahead_on, so on every 5-minute bar the main SuperTrend uses the final close and ATR bands of the current 2-hour bar, not known until it ends (SURVEY_README request.security rule, as #434485). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

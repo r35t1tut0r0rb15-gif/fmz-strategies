@@ -4187,6 +4187,22 @@ SIZING = {
     ],
     441044: [],
     441048: [],
+    # ---- FMZ-C, batch C145 (2026-10-22)
+    441052: [],
+    441055: [],
+    441057: [],
+    441058: [],
+    441062: [],
+    441067: [
+        ("strategy(): 10 % of equity", 161, 161),
+        ("strategy.entry qty = 1 % of capital 100000 / (2 atr(14))", 196, 196),
+    ],
+    441068: [],
+    441073: [
+        ("strategy(): 100 % of equity, capital 1000", 124, 124),
+    ],
+    441074: [],
+    441076: [],
 }
 
 REJECTED_ON_READING = {
@@ -5279,6 +5295,11 @@ REJECTED_ON_READING = {
     # ---- FMZ-C, batch C144 (2026-10-22)
     441049: ("1", "The long's exits close 50 % of the position (strategy.close with qty_percent = 50) "
               "on an open-profit test: partial exits (criterion 1, as #436524)."),
+    # ---- FMZ-C, batch C145 (2026-10-22)
+    441065: ("1", "Reads the future: Pine v2 security(syminfo.tickerid, '120', ...) without [1] "
+              "behaves as lookahead_on, so on every 5-minute bar the main SuperTrend uses the "
+              "final close and ATR bands of the current 2-hour bar, not known until it ends "
+              "(SURVEY_README request.security rule, as #434485)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -5322,4 +5343,6 @@ HELD_ON_READING = {
     439103: ("8", "The moving-average rules use ma20 / ma50 / ma100 = vwma(close, 20 / 50 / 100): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C133 (2026-10-22)
     440372: ("8", "The default moving-average type is VWMA: vwma(close, 66) against vwma(open, 66), volume-weighted averages (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C145 (2026-10-22)
+    441075: ("8", "The MA rating includes vwma(close, 20): a volume-weighted average (check 8, held with the other volume users)."),
 }

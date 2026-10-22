@@ -1,0 +1,34 @@
+# #441062 基于均线和RSI交叉策略Moving-Average-and-RSI-Crossover-Strategy -> `fmz_441062_sma10_50_cross_rsi_filter_long`
+
+- FMZ source id: 441062 (lineage).
+- Source: https://www.fmz.com/strategy/441062 (PineScript v5, author ChaoZhang, FMZ last
+  modified 2024-02-05 11:52:42). Verbatim here as `original_source.md`. Read 2026-10-22 (FMZ-C).
+- Status: PORTED (batch C145). Not run.
+
+## Criteria
+
+| # | Outcome | Notes |
+|---|---|---|
+| 1 | PASS | Bar-close orders |
+| 2 | PASS | SMA crossings with RSI filters |
+| 3 | PASS | Exchange pair in the header only. |
+| 4 | DONE | No sizing code. |
+| 5 | DECLARED | See grid. |
+| 6 | PORTED (rule 7) | No `DG` or `ND` group. |
+| 7 | IGNORED |  |
+
+## Declared grid (criterion 5)
+
+`fast` [10, 20] x `slow` [50, 100]: **4 trials**; RSI 14 and its levels fixed.
+
+## Ambiguities resolved
+
+- Long only. FREQ = "1min".
+
+## FAMILY (proposed, user to confirm)
+
+`FAMILY = "ma_cross"`.
+
+## Marks
+
+`none`

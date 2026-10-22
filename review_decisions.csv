@@ -264,6 +264,7 @@ fmz_id,file,final_outcome,criterion,reason
 440981,毕达哥蜡烛图MACD指标背离趋势跟踪策略Demigod-Candlestick-MACD-Divergence-Trend-Following-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 100 with fixed qty-1 entries repeated on every signal while a position is open: the position accumulates units (criterion 1, as #430762)."
 440992,双向自适应布林带趋势追踪策略-Adaptive-Bollinger-Bands-Trend-Tracking-Strategy.md,REJECTED_ON_READING,1,"A DCA ladder: repeated qty-1 ""Buy"" entries as each fib level fills, and a qty-0 ""Close ALL"" entry at the average-price target: the position accumulates units (criterion 1, as #430762)."
 441049,基于双均线交叉策略Closing-Price-Comparison-Dual-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"The long's exits close 50 % of the position (strategy.close with qty_percent = 50) on an open-profit test: partial exits (criterion 1, as #436524)."
+441065,双均线SuperTrend量化交易策略Dual-Moving-Average-Supertrend-Quantitative-Trading-Strategy.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 security(syminfo.tickerid, '120', ...) without [1] behaves as lookahead_on, so on every 5-minute bar the main SuperTrend uses the final close and ATR bands of the current 2-hour bar, not known until it ends (SURVEY_README request.security rule, as #434485)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -281,6 +282,7 @@ fmz_id,file,final_outcome,criterion,reason
 436658,双均线黄金交叉量化策略Dual-Moving-Average-Golden-Cross-Quantitative-Strategy.md,HELD_NEEDS_VOLUME,8,"The long and short entries test the Hull line against rvwma3 = vwma(close, 42): a volume-weighted average (check 8, held with the other volume users)."
 439103,双移动均线黄金交叉策略Dual-Moving-Average-Golden-Cross-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rules use ma20 / ma50 / ma100 = vwma(close, 20 / 50 / 100): volume-weighted averages (check 8, held with the other volume users)."
 440372,趋势跟踪均线交叉策略Trend-Tracking-Moving-Average-Crossover-Strategy.md,HELD_NEEDS_VOLUME,8,"The default moving-average type is VWMA: vwma(close, 66) against vwma(open, 66), volume-weighted averages (check 8, held with the other volume users)."
+441075,收益率理论波动指标量化策略Profit-rate-theory-volatility-index-quantification-strategy.md,HELD_NEEDS_VOLUME,8,"The MA rating includes vwma(close, 20): a volume-weighted average (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -2172,3 +2174,13 @@ fmz_id,file,final_outcome,criterion,reason
 441043,均线与RSI指标结合的趋势跟踪策略Exponential-Moving-Average-and-Relative-Strength-Index-Combination-Trend-Following-Strategy.md,PORTED,,ports/441043_rsi-exponential-moving-average-and-relative-strength-index-c/
 441044,威利旺卡突破策略Willy-Wonka-Breakout-Strategy.md,PORTED,,ports/441044_willy-wonka-breakout-strategy/
 441048,基于Ichimoku云图MACD和Stochastic的多时间框架趋势跟踪策略Ichimoku-Cloud-MACD-and-Stochastic-Based-Multi-Timeframe-Trend-Tracking-Strategy.md,PORTED,,ports/441048_ichimoku-macd-stochastic-ichimoku-cloud-macd-and-stochastic/
+441052,双平滑均线振荡器股票策略Dual-Moving-Average-Oscillator-Stock-Strategy.md,PORTED,,ports/441052_dual-moving-average-oscillator-stock-strategy/
+441055,双移动平均线稳健交易策略Robust-Dual-Moving-Average-Trading-Strategy.md,PORTED,,ports/441055_robust-dual-moving-average-trading-strategy/
+441057,蜡烛包裹RSI交易策略Engulfing-Candle-RSI-Trading-Strategy.md,PORTED,,ports/441057_rsi-engulfing-candle-rsi-trading-strategy/
+441058,多重移动平均线趋势跟随策略Super-Trend-Following-Strategy-Based-on-Moving-Averages.md,PORTED,,ports/441058_super-trend-following-strategy-based-on-moving-averages/
+441062,基于均线和RSI交叉策略Moving-Average-and-RSI-Crossover-Strategy.md,PORTED,,ports/441062_rsi-moving-average-and-rsi-crossover-strategy/
+441067,动态均线交叉趋势策略Dynamic-SMA-Cross-Trend-Strategy.md,PORTED,,ports/441067_dynamic-sma-cross-trend-strategy/
+441068,RSI和WMA交叉策略RSI-and-WMA-Crossover-Strategy.md,PORTED,,ports/441068_rsi-wma-rsi-and-wma-crossover-strategy/
+441073,双移动均线追踪止损策略Dual-Moving-Average-Tracking-Stop-Loss-Strategy.md,PORTED,,ports/441073_dual-moving-average-tracking-stop-loss-strategy/
+441074,基于RSI的长线量化策略Relative-Strength-Index-Long-term-Quant-Strategy.md,PORTED,,ports/441074_rsi-relative-strength-index-long-term-quant-strategy/
+441076,基于超趋势通道的量化交易策略Quant-Trading-Strategy-Based-on-SuperTrend-Channel.md,PORTED,,ports/441076_quant-trading-strategy-based-on-supertrend-channel/
