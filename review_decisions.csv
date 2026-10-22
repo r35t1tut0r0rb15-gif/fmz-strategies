@@ -2304,3 +2304,15 @@ fmz_id,file,final_outcome,criterion,reason
 442397,基于均线和EMA的跨时间框架趋势策略Multi-Timeframe-Moving-Average-and-EMA-Based-Trend-Strategy.md,PORTED,,ports/442397_ema-multi-timeframe-moving-average-and-ema-based-trend-strat/
 442399,递归移动趋势均线结合123形态反转的组合策略Recursive-Moving-Trend-Average-Combined-with-123-Reversal-Pattern-Strategy.md,PORTED,,ports/442399_123-recursive-moving-trend-average-combined-with-123-reversa/
 442401,双EMA穿越与布林带回转策略Reversal-Trading-Strategy-with-EMA-Crossover-and-Bollinger-Bands.md,PORTED,,ports/442401_ema-reversal-trading-strategy-with-ema-crossover-and-bolling/
+442402,基于月相的双向交易策略Bidirectional-Trading-Strategy-Based-on-Moon-Phases.md,PORTED,,ports/442402_bidirectional-trading-strategy-based-on-moon-phases/
+442403,三重指数移动平均带策略Three-RSI-Moving-Average-Bands-Strategy.md,PORTED,,ports/442403_three-rsi-moving-average-bands-strategy/
+442410,基于Renko平均线的趋势追踪策略Trend-Following-Strategy-Based-on-Renko-Moving-Average.md,PORTED,,ports/442410_renko-trend-following-strategy-based-on-renko-moving-average/
+442502,宽带震荡锁定策略Bollinger-Bands-Consolidation-Strategy.md,PORTED,,ports/442502_bollinger-bands-consolidation-strategy/
+442506,基于RVI和EMA的比特币交易策略Bitcoin-Trading-Strategy-Based-on-RVI-and-EMA.md,PORTED,,ports/442506_rvi-ema-bitcoin-trading-strategy-based-on-rvi-and-ema/
+442507,基于对数空间一目均衡指标的跨品种策略Log-Ichimoku-Cross-Variety-Strategy.md,PORTED,,ports/442507_log-ichimoku-cross-variety-strategy/
+442508,基于EMA平均线交叉的趋势追踪策略Trend-Following-Strategy-Based-on-EMA-Crossover.md,PORTED,,ports/442508_ema-trend-following-strategy-based-on-ema-crossover/
+442509,基于均线交叉的趋势追踪策略Trend-Tracking-Strategy-Based-on-Moving-Average-Crossover.md,PORTED,,ports/442509_trend-tracking-strategy-based-on-moving-average-crossover/
+442511,基于Nadaraya-Watson回归和ATR通道的趋势跟踪策略Trend-Following-Strategy-Based-on-Nadaraya-Watson-Regression-and-ATR-Channel.md,PORTED,,ports/442511_nadaraya-watson-atr-trend-following-strategy-based-on-nadara/
+442512,四均线跨度趋势追踪策略Four-WMA-Trend-Tracking-Strategy.md,PORTED,,ports/442512_four-wma-trend-tracking-strategy/
+442516,MACD量化策略之双重叉叉均线突破策略Dual-Moving-Average-Crossover-MACD-Quantitative-Strategy.md,PORTED,,ports/442516_macd-dual-moving-average-crossover-macd-quantitative-strateg/
+442517,基于短期和长期移动平均线交叉策略MA-Crossover-Trading-Strategy-Based-on-Short-term-and-Long-term-Moving-Average-Crossovers.md,PORTED,,ports/442517_ma-crossover-trading-strategy-based-on-short-term-and-long-t/

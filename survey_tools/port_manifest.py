@@ -4359,6 +4359,27 @@ SIZING = {
     ],
     442399: [],
     442401: [],
+    # ---- FMZ-C, batch C156 (2026-10-22)
+    442402: [
+        ("strategy(): 100 % of equity, capital 100000, commission 0.1", 152, 152),
+    ],
+    442403: [
+        ("strategy(): 100 % of equity, capital 100, commission 0.03", 132, 132),
+    ],
+    442410: [],
+    442502: [],
+    442506: [],
+    442507: [],
+    442508: [
+        ("strategy(): 100 % of equity, capital 100000, commission 0.025", 179, 179),
+    ],
+    442509: [],
+    442511: [],
+    442512: [],
+    442516: [
+        ("strategy(): margin_long 100, margin_short 100", 133, 133),
+    ],
+    442517: [],
 }
 
 REJECTED_ON_READING = {

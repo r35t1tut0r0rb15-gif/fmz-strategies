@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2000 |
-| PORT_CANDIDATE | 1455 |
+| PORTED | 2012 |
+| PORT_CANDIDATE | 1443 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
 | REJECTED_ON_READING | 285 |
@@ -2128,7 +2128,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442397 | `ports/442397_ema-multi-timeframe-moving-average-and-ema-based-trend-strat/` | PineScript | mean_reversion | none | max_profit_closes x2, max_bars x2 | 4 |
 | 442399 | `ports/442399_123-recursive-moving-trend-average-combined-with-123-reversa/` | PineScript | combo_123_reversal | none | length x2, length_rmta x2 | 4 |
 | 442401 | `ports/442401_ema-reversal-trading-strategy-with-ema-crossover-and-bolling/` | PineScript | bollinger_reversion | none | ema_short x2, bb_length x2 | 4 |
-| | **2000 ports** | | | | | **9507** |
+| 442402 | `ports/442402_bidirectional-trading-strategy-based-on-moon-phases/` | PineScript | calendar_seasonal | none | flip_day x2 | 2 |
+| 442403 | `ports/442403_three-rsi-moving-average-bands-strategy/` | PineScript | rsi_oscillator | none | rsi_norm x2, rsi_slow x2 | 4 |
+| 442410 | `ports/442410_renko-trend-following-strategy-based-on-renko-moving-average/` | PineScript | ma_cross | none | length x2, tp_atr x2 | 4 |
+| 442502 | `ports/442502_bollinger-bands-consolidation-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 442506 | `ports/442506_rvi-ema-bitcoin-trading-strategy-based-on-rvi-and-ema/` | PineScript | momentum_oscillator | none | length x2, atr_sl x2 | 4 |
+| 442507 | `ports/442507_log-ichimoku-cross-variety-strategy/` | PineScript | ichimoku | none | conversion x2, span_b x2 | 4 |
+| 442508 | `ports/442508_ema-trend-following-strategy-based-on-ema-crossover/` | PineScript | ma_trend | coarse_bar_stop | fast x2, slow x2 | 4 |
+| 442509 | `ports/442509_trend-tracking-strategy-based-on-moving-average-crossover/` | PineScript | ma_cross | none | slow x2, short_slow x2 | 4 |
+| 442511 | `ports/442511_nadaraya-watson-atr-trend-following-strategy-based-on-nadara/` | PineScript | volatility_channel_breakout | none | coef x2, atr_len x2 | 4 |
+| 442512 | `ports/442512_four-wma-trend-tracking-strategy/` | PineScript | ma_cross | none | tp_pct x2, sl_pct x2 | 4 |
+| 442516 | `ports/442516_macd-dual-moving-average-crossover-macd-quantitative-strateg/` | PineScript | macd_cross | none | tp_pct x2, ma_len x2 | 4 |
+| 442517 | `ports/442517_ma-crossover-trading-strategy-based-on-short-term-and-long-t/` | PineScript | ma_cross | none | exit_candles x2, long_length x2 | 4 |
+| | **2012 ports** | | | | | **9553** |
 
 ## Rejected on reading
 

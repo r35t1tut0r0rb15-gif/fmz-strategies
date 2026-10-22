@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #442403 (三重指数移动平均带策略Three-RSI-Moving-Average-Bands-Strategy)
+# Source: https://www.fmz.com/strategy/442403  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital 100, commission 0.03  [lines 132-132]
+  132: strategy(title="3 RSI MA movement crypto strategy", overlay=true, initial_capital = 100, default_qty_type=strategy.percent_of_equity, default_qty_value=100, commission_type=strategy.commission.percent, commission_value=0.03, pyramiding=1  )
