@@ -1,0 +1,40 @@
+# Original sizing and money-management code, FMZ #476265 (动态均线趋势跟踪与相对强弱指标确认交易策略-Dynamic-Moving-Average-Trend-Following-with-RSI-Confirmation-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/476265  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 % (drawn only)  [lines 95-129]
+   95: stopLossPercent = input.float(2, title="Stop Loss Percentage", minval=0.1)  // Stop Loss percentage
+   96: 
+   97: // Calculations
+   98: emaShort = ta.ema(close, shortEMA)
+   99: emaLong = ta.ema(close, longEMA)
+  100: 
+  101: rsiValue = ta.rsi(close, 14)
+  102: 
+  103: // Buy and Sell Conditions
+  104: buySignal = ta.crossover(emaShort, emaLong) and rsiValue > confirmationRSI
+  105: sellSignal = ta.crossunder(emaShort, emaLong) and rsiValue < confirmationRSI
+  106: 
+  107: // Plotting Signals
+  108: plotshape(buySignal, title="Buy Signal", location=location.belowbar, color=color.green, style=shape.labelup, text="BUY")
+  109: plotshape(sellSignal, title="Sell Signal", location=location.abovebar, color=color.red, style=shape.labeldown, text="SELL")
+  110: 
+  111: // Plotting EMAs
+  112: plot(emaShort, title="Short EMA", color=color.yellow)
+  113: plot(emaLong, title="Long EMA", color=color.purple)
+  114: 
+  115: // Strategy logic
+  116: strategy.entry("Buy", strategy.long, when=buySignal)
+  117: strategy.entry("Sell", strategy.short, when=sellSignal)
+  118: 
+  119: // Calculate stop loss price based on stopLossPercent
+  120: longStopLossPrice = strategy.position_avg_price * (1 - stopLossPercent / 100)
+  121: shortStopLossPrice = strategy.position_avg_price * (1 + stopLossPercent / 100)
+  122: 
+  123: // Draw stop loss line for long positions
+  124: if (strategy.position_size > 0)  // For long positions
+  125:     line.new(x1=bar_index, y1=longStopLossPrice, x2=bar_index + 1, y2=longStopLossPrice, color=color.red, width=2, style=line.style_dashed)
+  126: 
+  127: // Draw stop loss line for short positions
+  128: if (strategy.position_size < 0)  // For short positions
+  129:     line.new(x1=bar_index, y1=shortStopLossPrice, x2=bar_index + 1, y2=shortStopLossPrice, color=color.green, width=2, style=line.style_dashed)

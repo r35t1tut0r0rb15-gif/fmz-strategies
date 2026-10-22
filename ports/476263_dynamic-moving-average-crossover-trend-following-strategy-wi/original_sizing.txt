@@ -1,0 +1,83 @@
+# Original sizing and money-management code, FMZ #476263 (动态移动均线交叉趋势跟踪策略-Dynamic-Moving-Average-Crossover-Trend-Following-Strategy-with-Adaptive-Risk-Management)
+# Source: https://www.fmz.com/strategy/476263  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; TP 10 / SL 5 %, dynamic TP 20 / SL 2.5 %  [lines 97-174]
+   97: strategy("My Moving Average Crossover Strategy with Take Profit and Stop Loss", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+   98: //risk_free_rate = float(request.security("IRUS", "D", close)/request.security("IRUS", "D", close[1]) - 1  ))
+   99: 
+  100: 
+  101: 
+  102: 
+  103: // MA periods
+  104: fastLength = input.int(5, title="Fast MA Length")
+  105: slowLength = input.int(12, title="Slow MA Length")
+  106: 
+  107: 
+  108: 
+  109: 
+  110: // Take Profit and Stop Loss
+  111: takeProfitLevel = input(10, title="Take Profit (пункты)") // Take profit % from the last price
+  112: stopLossLevel = input(5, title="Stop Loss (пункты)") // Stop loss  % from the last price
+  113: takeProfitLevel_dyn = input(20, title="Dynamic Take Profit (пункты)") // Move TP if current_price higher buy_px
+  114: stopLossLevel_dyn =  input(2.5, title="Dynamic Stop Loss (пункты)") // S Move SL if current_price higher buy_px
+  115: 
+  116: 
+  117: // Вычисление скользящих средних
+  118: fastMA = ta.sma(close, fastLength)
+  119: slowMA= ta.sma(close, slowLength)
+  120: 
+  121: 
+  122: // Conditions for Sell and Buy
+  123: longCondition = ta.crossover (fastMA, slowMA) // покупаем, если короткая MA персекает длинную снизу-вверх
+  124: shortCondition = ta.crossunder(fastMA, slowMA) // продаем, если короткая MA персекает длинную сверху-вниз
+  125: 
+  126: 
+  127: 
+  128: 
+  129: // Buy position condition
+  130: if (longCondition)
+  131:     strategy.entry("Buy", strategy.long)
+  132: 
+  133: 
+  134: 
+  135: 
+  136: 
+  137: 
+  138: // Dynamic TP SL leveles
+  139: takeProfitPrice = strategy.position_avg_price * (1+ takeProfitLevel / 100)
+  140: stopLossPrice = strategy.position_avg_price * (1-stopLossLevel / 100)
+  141: 
+  142: 
+  143: entryPrice = strategy.position_avg_price
+  144: 
+  145: 
+  146: 
+  147: 
+  148: if (strategy.position_size > 0) // если есть открытая позиция
+  149: 
+  150: 
+  151: 
+  152: 
+  153:     // takeProfitPrice := entryPrice * (1+ takeProfitLevel / 100)
+  154:     // stopLossPrice := entryPrice * (1-stopLossLevel / 100)
+  155: 
+  156: 
+  157:     // // Перемещение Stop Loss и Take Profit
+  158:     if (close > entryPrice)
+  159:    
+  160:         takeProfitPrice := close * (1+ takeProfitLevel_dyn / 100)
+  161:         stopLossPrice := close * (1- stopLossLevel_dyn/ 100)
+  162: 
+  163: 
+  164: 
+  165: 
+  166: 
+  167: 
+  168: if (shortCondition)
+  169:     strategy.close("Buy")
+  170: 
+  171: 
+  172: 
+  173: 
+  174: strategy.exit("Take Profit/Stop loss", "Buy", limit=takeProfitPrice, stop=stopLossPrice)

@@ -1,0 +1,27 @@
+# Original sizing and money-management code, FMZ #476270 (基于布林带的跨界动态区间量化交易策略-Cross-boundary-Dynamic-Range-Quantitative-Trading-Strategy-Based-on-Bollinger-Bands)
+# Source: https://www.fmz.com/strategy/476270  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 86; qty = 86 USDT / close  [lines 89-110]
+   89: strategy("Bollinger Bands Strategy", overlay=true, initial_capital=86, default_qty_type=strategy.percent_of_equity)
+   90: 
+   91: // Parameter für die Bollinger-Bänder
+   92: length = input.int(20, title="Bollinger Bands Length")
+   93: mult = input.float(2.0, title="Bollinger Bands Multiplier")
+   94: 
+   95: // Berechnung der Bollinger-Bänder
+   96: basis = ta.sma(close, length)
+   97: upper = basis + mult * ta.stdev(close, length)
+   98: lower = basis - mult * ta.stdev(close, length)
+   99: 
+  100: // Startkapital
+  101: usdt_balance = 86.0 // Anfangsbetrag in USDT
+  102: zerebro_balance = 52.0 // Anfangsbetrag in ZEREBRO
+  103: 
+  104: // Bedingungen für Kauf- und Verkaufssignale
+  105: longCondition = ta.crossover(close, lower)
+  106: shortCondition = ta.crossunder(close, upper)
+  107: 
+  108: // Kauf- und Verkaufslogik
+  109: if (longCondition and usdt_balance > 0)
+  110:     strategy.entry("Buy", strategy.long, qty=usdt_balance / close)

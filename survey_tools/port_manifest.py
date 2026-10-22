@@ -6064,6 +6064,29 @@ SIZING = {
     476255: [
         ("Hard stop 50 ticks x tick size 1.0", 105, 106),
     ],
+    # ---- FMZ-C, batch C231 (2026-10-22)
+    476256: [],
+    476259: [
+        ("Stop 3 % of strategy.position_avg_price", 180, 188),
+    ],
+    476260: [
+        ("strategy(): 10 % of equity", 97, 97),
+    ],
+    476262: [],
+    476263: [
+        ("strategy(): 100 % of equity; TP 10 / SL 5 %, dynamic TP 20 / SL 2.5 %", 97, 174),
+    ],
+    476265: [
+        ("Stop 2 % (drawn only)", 95, 129),
+    ],
+    476268: [],
+    476269: [],
+    476270: [
+        ("strategy(): capital 86; qty = 86 USDT / close", 89, 110),
+    ],
+    476273: [
+        ("strategy(): commission 0.1 %, slippage 3", 93, 93),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7665,6 +7688,12 @@ REJECTED_ON_READING = {
     476253: ("1", "pyramiding=200 and strategy.entry on every bar the Stochastic RSI condition holds: "
               "repeat entries add to the position (criterion 1, pyramiding >= 2 with repeat "
               "entries)."),
+    # ---- FMZ-C, batch C231 (2026-10-22)
+    476261: ("1", "Three strategy.exit targets with qty_percent 50 / 30 / 20 scale the position out "
+              "in parts (criterion 1, partial exits)."),
+    476264: ("1", "Five entry ids (Step1-3, Pullback, Above50) add 20 % / 40 % parts to the long and "
+              "the EMA 5 / 13 cross-down closes only one part: staged adds and partial closes "
+              "(criterion 1, DCA adds and partial exits)."),
 }
 
 DUPLICATE_ON_READING = {

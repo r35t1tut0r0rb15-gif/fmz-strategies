@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2785 |
+| PORTED | 2795 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 569 |
-| PORT_CANDIDATE | 556 |
-| REJECTED_ON_READING | 397 |
+| PORT_CANDIDATE | 544 |
+| REJECTED_ON_READING | 399 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2913,7 +2913,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 476252 | `ports/476252_multi-indicator-trend-crossing-strategy-bull-market-support/` | PineScript | ma_cross | none | sma_length x2, ema_length x2 | 4 |
 | 476254 | `ports/476254_adaptive-dynamic-trading-strategy-based-on-standardized-loga/` | PineScript | zscore_reversion | trailing_stop_pending | window x2, threshold x2 | 4 |
 | 476255 | `ports/476255_multi-sma-and-stochastic-combined-trend-following-trading-st/` | PineScript | ma_cross | none | zone_length x2, sma_length x2 | 4 |
-| | **2785 ports** | | | | | **12982** |
+| 476256 | `ports/476256_multi-ema-cross-with-oscillator-and-dynamic-support-resistan/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | atr_length x2, atr_mult x2 | 4 |
+| 476259 | `ports/476259_dynamic-moving-average-and-bollinger-bands-cross-strategy-wi/` | PineScript | bollinger_reversion | coarse_bar_stop, trailing_stop_pending | bb_length x2, ma_length x2 | 4 |
+| 476260 | `ports/476260_multi-ema-dynamic-trend-capture-quantitative-trading-strateg/` | PineScript | ma_cross | none | fast x2, filter x2 | 4 |
+| 476262 | `ports/476262_adaptive-trading-strategy-based-on-stochastic-rsi-dual-line/` | PineScript | stochastic_oscillator | none | k_period x2, lower_band x2 | 4 |
+| 476263 | `ports/476263_dynamic-moving-average-crossover-trend-following-strategy-wi/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| 476265 | `ports/476265_dynamic-moving-average-trend-following-with-rsi-confirmation/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 476268 | `ports/476268_multiple-moving-average-crossover-signal-enhanced-trading-st/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 476269 | `ports/476269_smi-momentum-based-smi-crossover-signal-adaptive-prediction/` | PineScript | stochastic_oscillator | none | length_k x2, length_d x2 | 4 |
+| 476270 | `ports/476270_cross-boundary-dynamic-range-quantitative-trading-strategy-b/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 476273 | `ports/476273_adaptive-trend-following-dynamic-trend-recognition-trading-s/` | PineScript | supertrend | none | kama_length x2, factor x2 | 4 |
+| | **2795 ports** | | | | | **13022** |
 
 ## Rejected on reading
 
@@ -3316,6 +3326,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 476245 | 动态趋势线突破反转交易策略-Dynamic-Trendline-Breakout-Reversal-Trading-Strategy.md | 1 | On a stop the script reverses with qty = the held size x 2 (capped at 1e12): a martingale doubling of the position (criterion 1, martingale adds). |
 | 476250 | 多级动态MACD趋势跟踪量化策略结合52周高低位延展研判系统-Multi-Level-Dynamic-MACD-Trend-Following-Strategy-with-52-Week-High-Low-Extension-Analysis-System.md | 1 | The weekly MACD and signal come from request.security("W", ..., lookahead=barmerge.lookahead_on) on a daily chart: the week's final values are read before the week ends (criterion 1, lookahead_on for a higher time frame). |
 | 476253 | 多重指标交叉趋势跟踪交易策略基于随机相对强弱与均线系统的量化分析-Multi-Indicator-Cross-Trend-Following-Trading-Strategy-Quantitative-Analysis-Based-on-Stochastic-RSI-and-Moving-Average-System.md | 1 | pyramiding=200 and strategy.entry on every bar the Stochastic RSI condition holds: repeat entries add to the position (criterion 1, pyramiding >= 2 with repeat entries). |
+| 476261 | 多层次机构订单流动量化策略与动态分仓优化系统-Multi-Level-Institutional-Order-Flow-Quantitative-Strategy-with-Dynamic-Position-Scaling-System.md | 1 | Three strategy.exit targets with qty_percent 50 / 30 / 20 scale the position out in parts (criterion 1, partial exits). |
+| 476264 | 动态多周期指数移动平均交叉策略与回撤优化系统-Dynamic-Multi-Period-Exponential-Moving-Average-Cross-Strategy-with-Pullback-Optimization-System.md | 1 | Five entry ids (Step1-3, Pullback, Above50) add 20 % / 40 % parts to the long and the EMA 5 / 13 cross-down closes only one part: staged adds and partial closes (criterion 1, DCA adds and partial exits). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

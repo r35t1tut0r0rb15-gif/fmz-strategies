@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #476259 (动态均线与布林带交叉策略结合固定止损优化模型-Dynamic-Moving-Average-and-Bollinger-Bands-Cross-Strategy-with-Fixed-Stop-Loss-Optimization-Model)
+# Source: https://www.fmz.com/strategy/476259  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 3 % of strategy.position_avg_price  [lines 180-188]
+  180: fixed_stop_loss_percent = 3.0 / 100.0
+  181: 
+  182: if (long_condition)
+  183:     strategy.entry("Long", strategy.long)
+  184:     strategy.exit("Stop Long", "Long", stop=strategy.position_avg_price * (1 - fixed_stop_loss_percent))
+  185: 
+  186: if (short_condition)
+  187:     strategy.entry("Short", strategy.short)
+  188:     strategy.exit("Stop Short", "Short", stop=strategy.position_avg_price * (1 + fixed_stop_loss_percent))
