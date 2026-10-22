@@ -1,0 +1,103 @@
+# Original sizing and money-management code, FMZ #453212 (MA-MACD-BB多指标交易策略回测工具-MA-MACD-BB-Multi-Indicator-Trading-Strategy-Backtesting-Tool)
+# Source: https://www.fmz.com/strategy/453212  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantity floor(equity x 100 % / close)  [lines 118-215]
+  118: positionSize = input.float(100.0, title="Each position's capital allocation %", minval=0.0, maxval = 100.0) / 100
+  119: 
+  120: //@variable Input parameters for MACD
+  121: fast_length = input.int(12, title="MACD Fast Length")
+  122: slow_length = input.int(26, title="MACD Slow Length")
+  123: signal_smoothing = input.int(9, title="MACD Signal Smoothing")
+  124: macd_source = input.source(close, title="MACD Source")
+  125: 
+  126: //@variable Input parameters for Moving Average
+  127: ma_length = input.int(50, title="Moving Average Length")
+  128: 
+  129: //@variable Input parameters for Bollinger Bands
+  130: bb_length = input.int(20, title="Bollinger Bands Length")
+  131: bb_mult = input.float(2.0, title="Bollinger Bands Multiplier")
+  132: 
+  133: // Choosing the Strategy
+  134: int x = na
+  135: if which_ta == "MA"
+  136:     x := 1
+  137: else if which_ta == "MACD"
+  138:     x := 2
+  139: else if which_ta == "BB"
+  140:     x := 3
+  141: 
+  142: // Calculate MACD and Signal line
+  143: [macdLine, signalLine, _] = ta.macd(macd_source, fast_length, slow_length, signal_smoothing)
+  144: 
+  145: // Calculate Moving Average
+  146: ma = ta.sma(close, ma_length)
+  147: 
+  148: // Calculate Bollinger Bands
+  149: basis = ta.sma(close, bb_length)
+  150: dev = bb_mult * ta.stdev(close, bb_length)
+  151: upper = basis + dev
+  152: lower = basis - dev
+  153: 
+  154: // Plotting MACD and Signal lines
+  155: plot(x == 2 ? macdLine : na, color=color.blue, title="MACD Line")
+  156: plot(x == 2 ? signalLine : na, color=color.red, title="Signal Line")
+  157: 
+  158: // Plotting histogram
+  159: histogram = macdLine - signalLine
+  160: plot(x == 2 ? histogram : na, color=color.gray, style=plot.style_histogram, title="MACD Histogram")
+  161: 
+  162: // Plotting Moving Average
+  163: plot(x == 1 ? ma : na, color=color.orange, title="Moving Average")
+  164: 
+  165: // Plotting Bollinger Bands
+  166: plot(x == 3 ? upper : na, color=color.green, title="Upper Bollinger Band")
+  167: plot(x == 3 ? lower : na, color=color.red, title="Lower Bollinger Band")
+  168: plot(x == 3 ? basis : na, color=color.blue, title="Basis Bollinger Band")
+  169: 
+  170: // Generate buy signals
+  171: buySignalMACD = ta.crossover(macdLine, signalLine)
+  172: buySignalMA = ta.crossover(close, ma)
+  173: buySignalBB = close < lower
+  174: sellSignalBBExit = close > basis
+  175: 
+  176: // Generate sell signals
+  177: sellSignalMACD = ta.crossunder(macdLine, signalLine)
+  178: sellSignalMA = ta.crossunder(close, ma)
+  179: sellSignalBB = close > upper
+  180: buySignalBBExit = close < basis
+  181: 
+  182: // Plot buy signals on the chart
+  183: plotshape(series=buySignalMACD and x == 2 and which_camp=="Long" and strategy.opentrades == 0 ? buySignalMACD : na, title="Buy Signal MACD", location=location.belowbar, color=color.lime, style=shape.labelup, text="BUY MACD")
+  184: plotshape(series=buySignalMA and x == 1 and which_camp=="Long" and strategy.opentrades == 0 ? buySignalMA : na, title="Buy Signal MA", location=location.belowbar, color=color.lime, style=shape.labelup, text="BUY MA")
+  185: plotshape(series=buySignalBB and x == 3 and which_camp=="Long" and strategy.opentrades == 0 ? buySignalBB : na, title="Buy Signal BB", location=location.belowbar, color=color.lime, style=shape.labelup, text="BUY BB")
+  186: 
+  187: // Plot sell signals on the chart
+  188: plotshape(series=sellSignalMACD and x == 2 and which_camp=="Short" and strategy.opentrades == 0 ? sellSignalMACD : na, title="Sell Signal MACD", location=location.abovebar, color=color.red, style=shape.labeldown, text="SELL MACD")
+  189: plotshape(series=sellSignalMA and x == 1 and which_camp=="Short" and strategy.opentrades == 0 ? sellSignalMA : na, title="Sell Signal MA", location=location.abovebar, color=color.red, style=shape.labeldown, text="SELL MA")
+  190: plotshape(series=sellSignalBB and x == 3 and which_camp=="Short" and strategy.opentrades == 0 ? sellSignalBB : na, title="Sell Signal BB", location=location.abovebar, color=color.red, style=shape.labeldown, text="SELL BB")
+  191: 
+  192: // Calculate stop loss and take profit levels
+  193: accountSize = strategy.equity
+  194: positionSizeAmount = accountSize * positionSize
+  195: 
+  196: // Calculate order size based on stop loss amount
+  197: orderSize = math.floor(positionSizeAmount / close)
+  198: 
+  199: // Enter long positions based on buy signals
+  200: if strategy.opentrades == 0
+  201:     if (buySignalMACD) and x == 2 and which_camp == "Long"
+  202:         strategy.entry("Buy MACD", strategy.long, qty=orderSize)
+  203:     if (buySignalMA) and x == 1 and which_camp == "Long"
+  204:         strategy.entry("Buy MA", strategy.long, qty=orderSize)
+  205:     if (buySignalBB) and x == 3 and which_camp == "Long"
+  206:         strategy.entry("Buy BB", strategy.long, qty=orderSize)
+  207: 
+  208: // Enter short positions based on sell signals
+  209: if strategy.opentrades == 0
+  210:     if (sellSignalMACD) and x == 2 and which_camp == "Short"
+  211:         strategy.entry("Sell MACD", strategy.short, qty=orderSize)
+  212:     if (sellSignalMA) and x == 1 and which_camp == "Short"
+  213:         strategy.entry("Sell MA", strategy.short, qty=orderSize)
+  214:     if (sellSignalBB) and x == 3 and which_camp == "Short"
+  215:         strategy.entry("Sell BB", strategy.short, qty=orderSize)

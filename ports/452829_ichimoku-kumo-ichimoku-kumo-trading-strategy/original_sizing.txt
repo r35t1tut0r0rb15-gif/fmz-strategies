@@ -1,0 +1,86 @@
+# Original sizing and money-management code, FMZ #452829 (Ichimoku-Kumo交易策略Ichimoku-Kumo-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/452829  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 30 % of equity, capital 10000, margin 10, commission 0.1 %; trail 3 ATR 5  [lines 95-175]
+   95: strategy(
+   96:      "Kumo Trade Concept", 
+   97:      overlay=true,
+   98:      initial_capital=10000,
+   99:      currency=currency.USDT,
+  100:      default_qty_type=strategy.percent_of_equity, 
+  101:      default_qty_value=30,
+  102:      commission_type=strategy.commission.percent,
+  103:      commission_value=0.1,
+  104:      margin_long=10, 
+  105:      margin_short=10)
+  106: 
+  107: 
+  108: // ICHIMOKU Lines 
+  109: //  INPUTS
+  110: tenkanSenPeriods = input.int(9, minval=1, title="Tenkan-sen")
+  111: kijunSenPeriods = input.int(26, minval=1, title="Kijun-sen")
+  112: senkouBPeriod = input.int(52, minval=1, title="Senkou span B")
+  113: displacement = input.int(26, minval=1, title="Chikou span")
+  114: 
+  115: donchian(len) => math.avg(ta.lowest(len), ta.highest(len))
+  116: tenkanSen = donchian(tenkanSenPeriods)
+  117: kijunSen = donchian(kijunSenPeriods)
+  118: senkouA = math.avg(tenkanSen, kijunSen)
+  119: senkouB = donchian(senkouBPeriod)
+  120: 
+  121: // Other Indicators
+  122: float   atrValue    = ta.atr(5)
+  123: 
+  124: // Calculate Senkou Span A 25 bars back
+  125: senkouA_current = math.avg(tenkanSen[25], kijunSen[25])
+  126: // Calculate Senkou Span B 25 bars back
+  127: senkouB_current = math.avg(ta.highest(senkouBPeriod)[25], ta.lowest(senkouBPeriod)[25])
+  128: 
+  129: // Kumo top bottom 
+  130: senkou_max = (senkouA_current >= senkouB_current) ? senkouA_current : senkouB_current
+  131: senkou_min = (senkouB_current >= senkouA_current) ? senkouA_current : senkouB_current
+  132: 
+  133: // Trade Setups
+  134: long_setup = (kijunSen > senkou_max) and (close < senkou_min) 
+  135: short_setup = (kijunSen < senkou_min ) and ( close > senkou_max ) 
+  136: 
+  137: // Check long_setup for the last 10 bars
+  138: long_setup_last_10 = false
+  139: for i = 0 to 50
+  140:     if long_setup[i]
+  141:         long_setup_last_10 := true
+  142: short_setup_last_10 = false
+  143: for i = 0 to 50
+  144:     if short_setup[i]
+  145:         short_setup_last_10 := true
+  146: 
+  147: 
+  148: closeSenkouCross = (close > senkou_max) and barstate.isconfirmed 
+  149: closeKijunCross = (close > kijunSen ) 
+  150: 
+  151: senkouCloseCross = close < senkou_min
+  152: kijunCloseCross = close < kijunSen
+  153: 
+  154: 
+  155: // Handle Trades
+  156: // Enter Trade
+  157: var float trailStopLong = na
+  158: var float trailStopShort = na
+  159: if ( closeSenkouCross and long_setup_last_10 and closeKijunCross ) 
+  160:     strategy.entry(id="Buy", direction = strategy.long)
+  161:     trailStopLong := na
+  162: if senkouCloseCross and short_setup_last_10 and kijunCloseCross
+  163:     strategy.entry(id="Sell", direction = strategy.short)
+  164:     trailStopShort := na
+  165: 
+  166: 
+  167: // Update trailing stop
+  168: float temp_trailStop_long = ta.highest(high, 5) - (atrValue * 3)
+  169: float temp_trailStop_short = ta.lowest(low, 5) + (atrValue * 3)
+  170: if strategy.position_size > 0
+  171:     if temp_trailStop_long > trailStopLong or na(trailStopLong)
+  172:         trailStopLong := temp_trailStop_long
+  173: if strategy.position_size < 0
+  174:     if temp_trailStop_short < trailStopShort or na(trailStopShort)
+  175:         trailStopShort := temp_trailStop_short

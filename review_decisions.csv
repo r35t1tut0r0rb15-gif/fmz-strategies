@@ -331,6 +331,8 @@ fmz_id,file,final_outcome,criterion,reason
 452353,双均线回归交易策略-Dual-Moving-Average-Regression-Trading-Strategy.md,REJECTED_ON_READING,1,"Sixteen take-profit exits close qty_percent = 5 % each (partial exits), and the trailing multiplier switches on the count of closed trades: partial-position and trade-history-dependent exits (criterion 1, as #436524)."
 452358,短线做空高流通货币对策略-Short-term-Short-Selling-Strategy-for-High-liquidity-Currency-Pairs.md,REJECTED_ON_READING,1,"strategy.entry('Short') is sent on every bar with no open trade (strategy.opentrades == 0) and the exits only end it after 7 bars or a price move: a short re-entered from the data start onwards with no signal (criterion 1, constant-true entry, as #442261)."
 452698,动态仓位管理每日交易策略Dynamic-Position-Management-Daily-Trading-Strategy.md,REJECTED_ON_READING,1,"On the daily header chart every bar is a new day, so a long is opened on the second bar and each take-profit close is followed on the same bar by a new long entry (the short is opened only when no long is): one long held from the data start (criterion 1, buy-and-hold from the data start, as #430384)."
+453228,TURTLE-ATR布林带突破策略-TURTLE-ATR-Bollinger-Bands-Breakout-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 3 with strategy.entry('Long') on every bar the close stays over the 10-bar high (and the short likewise): the position accumulates units (criterion 1, as #442112, #430762)."
+453230,基于波动率和动量指标的波林格带RSI随机RSI策略-Bollinger-Bands-RSI-Stochastic-RSI-Strategy-Based-on-Volatility-and-Momentum-Indicators.md,REJECTED_ON_READING,1,"Every entry is gated by dayofmonth(timenow) != dayofmonth(lastTradeDay), where timenow is the wall-clock time the script runs at and lastTradeDay stores a day number read back as a timestamp: whether any trade happens depends on the day of the run, not on the data (criterion 1)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2712,3 +2714,13 @@ fmz_id,file,final_outcome,criterion,reason
 452741,RSI与MA组合策略RSI-and-MA-Combination-Strategy.md,PORTED,,ports/452741_rsi-ma-rsi-and-ma-combination-strategy/
 452742,混合双态Z评分量化策略-Hybrid-Binomial-Z-Score-Quantitative-Strategy.md,PORTED,,ports/452742_z-hybrid-binomial-z-score-quantitative-strategy/
 452743,基于波动率和回归线的多空市场机制优化策略-Volatility-and-Linear-Regression-based-Long-Short-Market-Regime-Optimization-Strategy.md,PORTED,,ports/452743_volatility-and-linear-regression-based-long-short-market-reg/
+452819,波林格带和EMA趋势跟踪策略-Bollinger-Bands-and-EMA-Trend-Following-Strategy.md,PORTED,,ports/452819_ema-bollinger-bands-and-ema-trend-following-strategy/
+452820,EMA-交叉动态止盈止损交易策略-EMA-Crossover-Trading-Strategy-with-Dynamic-Take-Profit-and-Stop-Loss.md,PORTED,,ports/452820_ema-ema-crossover-trading-strategy-with-dynamic-take-profit/
+452821,均线交叉移动止盈止损策略-Moving-Average-Crossover-with-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/452821_moving-average-crossover-with-trailing-stop-loss-strategy/
+452822,G-Channel-Trend-Detection-Strategy-G-Channel趋势检测策略.md,PORTED,,ports/452822_g-channel-trend-detection-strategy-g-channel/
+452824,EMA趋势动量K线形态策略-EMA-Trend-Momentum-Candlestick-Pattern-Strategy.md,PORTED,,ports/452824_ema-k-ema-trend-momentum-candlestick-pattern-strategy/
+452827,动态ATR止盈止损移动均线交叉策略-Dynamic-ATR-Stop-Loss-and-Take-Profit-Moving-Average-Crossover-Strategy.md,PORTED,,ports/452827_atr-dynamic-atr-stop-loss-and-take-profit-moving-average-cro/
+452829,Ichimoku-Kumo交易策略Ichimoku-Kumo-Trading-Strategy.md,PORTED,,ports/452829_ichimoku-kumo-ichimoku-kumo-trading-strategy/
+452830,RSISupertrend趋势跟踪交易策略-RSISupertrend-Trend-Following-Trading-Strategy.md,PORTED,,ports/452830_rsisupertrend-rsisupertrend-trend-following-trading-strategy/
+453212,MA-MACD-BB多指标交易策略回测工具-MA-MACD-BB-Multi-Indicator-Trading-Strategy-Backtesting-Tool.md,PORTED,,ports/453212_ma-macd-bb-ma-macd-bb-multi-indicator-trading-strategy-backt/
+453223,Keltner-Channels-EMA-ATR-Strategy-Keltner通道EMA-ATR策略.md,PORTED,,ports/453223_keltner-channels-ema-atr-strategy-keltner-ema-atr/

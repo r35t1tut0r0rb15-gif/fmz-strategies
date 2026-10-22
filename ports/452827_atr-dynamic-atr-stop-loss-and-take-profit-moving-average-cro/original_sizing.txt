@@ -1,0 +1,35 @@
+# Original sizing and money-management code, FMZ #452827 (动态ATR止盈止损移动均线交叉策略-Dynamic-ATR-Stop-Loss-and-Take-Profit-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/452827  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop close - 1.5 ATR / target close + 3 ATR; risk 1 % (unused)  [lines 85-114]
+   85: riskPerTrade = input(1, title="Risk Per Trade (%)") / 100
+   86: 
+   87: // Time-based conditions
+   88: isLondonSession = hour >= 8 and hour <= 15
+   89: isAsianSession = hour >= 0 and hour <= 7
+   90: isEuropeanSession = hour >= 7 and hour <= 14
+   91: 
+   92: // Moving Averages
+   93: fastMA = ta.sma(close, fastLength)
+   94: slowMA = ta.sma(close, slowLength)
+   95: 
+   96: // Average True Range (ATR) for dynamic stop loss and take profit
+   97: atr = ta.atr(atrLength)
+   98: 
+   99: // Buy and Sell Conditions
+  100: buySignal = ta.crossover(fastMA, slowMA)
+  101: sellSignal = ta.crossunder(fastMA, slowMA)
+  102: 
+  103: // Dynamic stop loss and take profit
+  104: stopLoss = close - atr * 1.5
+  105: takeProfit = close + atr * 3
+  106: 
+  107: // Strategy Logic
+  108: if (buySignal and isEuropeanSession)
+  109:     strategy.entry("Buy", strategy.long)
+  110:     strategy.exit("Take Profit/Stop Loss", "Buy", limit=takeProfit, stop=stopLoss)
+  111: 
+  112: if (sellSignal and isEuropeanSession)
+  113:     strategy.entry("Sell", strategy.short)
+  114:     strategy.exit("Take Profit/Stop Loss", "Sell", limit=takeProfit, stop=stopLoss)

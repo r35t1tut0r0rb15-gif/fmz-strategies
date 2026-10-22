@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2361 |
-| PORT_CANDIDATE | 1047 |
+| PORTED | 2371 |
+| PORT_CANDIDATE | 1035 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 332 |
+| REJECTED_ON_READING | 334 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2489,7 +2489,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 452741 | `ports/452741_rsi-ma-rsi-and-ma-combination-strategy/` | PineScript | rsi_oscillator | none | ob x2, short_len x2, long_len x2 | 8 |
 | 452742 | `ports/452742_z-hybrid-binomial-z-score-quantitative-strategy/` | PineScript | mean_reversion | none | sma_len x2, z_thr x2, lookback x2 | 8 |
 | 452743 | `ports/452743_volatility-and-linear-regression-based-long-short-market-reg/` | PineScript | trend_filter | none | length x2, atr_mult x2, thr_frac x2 | 8 |
-| | **2361 ports** | | | | | **10966** |
+| 452819 | `ports/452819_ema-bollinger-bands-and-ema-trend-following-strategy/` | PineScript | bollinger_breakout | trailing_stop_pending | ema_len x2, sl_pct x2, tp_pct x2 | 8 |
+| 452820 | `ports/452820_ema-ema-crossover-trading-strategy-with-dynamic-take-profit/` | PineScript | ma_cross | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
+| 452821 | `ports/452821_moving-average-crossover-with-trailing-stop-loss-strategy/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2, tp_frac x2 | 8 |
+| 452822 | `ports/452822_g-channel-trend-detection-strategy-g-channel/` | PineScript | volatility_channel_breakout | bar_size_pending, trailing_stop_pending | length x2 | 2 |
+| 452824 | `ports/452824_ema-k-ema-trend-momentum-candlestick-pattern-strategy/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop_pending | ema_len x2, sl_pct x2 | 4 |
+| 452827 | `ports/452827_atr-dynamic-atr-stop-loss-and-take-profit-moving-average-cro/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | fast x2, slow x2, sl_atr x2 | 8 |
+| 452829 | `ports/452829_ichimoku-kumo-ichimoku-kumo-trading-strategy/` | PineScript | ichimoku | none | setup_lookback x2, trail_atr x2 | 4 |
+| 452830 | `ports/452830_rsisupertrend-rsisupertrend-trend-following-trading-strategy/` | PineScript | supertrend | none | st_len x2, st_mult x2, rsi_len x2 | 8 |
+| 453212 | `ports/453212_ma-macd-bb-ma-macd-bb-multi-indicator-trading-strategy-backt/` | PineScript | ma_cross | none | ma_length x3 | 3 |
+| 453223 | `ports/453223_keltner-channels-ema-atr-strategy-keltner-ema-atr/` | PineScript | volatility_channel_breakout | none | length x2, mult x2, atr_len x2 | 8 |
+| | **2371 ports** | | | | | **11023** |
 
 ## Rejected on reading
 
@@ -2827,6 +2837,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 452353 | 双均线回归交易策略-Dual-Moving-Average-Regression-Trading-Strategy.md | 1 | Sixteen take-profit exits close qty_percent = 5 % each (partial exits), and the trailing multiplier switches on the count of closed trades: partial-position and trade-history-dependent exits (criterion 1, as #436524). |
 | 452358 | 短线做空高流通货币对策略-Short-term-Short-Selling-Strategy-for-High-liquidity-Currency-Pairs.md | 1 | strategy.entry('Short') is sent on every bar with no open trade (strategy.opentrades == 0) and the exits only end it after 7 bars or a price move: a short re-entered from the data start onwards with no signal (criterion 1, constant-true entry, as #442261). |
 | 452698 | 动态仓位管理每日交易策略Dynamic-Position-Management-Daily-Trading-Strategy.md | 1 | On the daily header chart every bar is a new day, so a long is opened on the second bar and each take-profit close is followed on the same bar by a new long entry (the short is opened only when no long is): one long held from the data start (criterion 1, buy-and-hold from the data start, as #430384). |
+| 453228 | TURTLE-ATR布林带突破策略-TURTLE-ATR-Bollinger-Bands-Breakout-Strategy.md | 1 | pyramiding = 3 with strategy.entry('Long') on every bar the close stays over the 10-bar high (and the short likewise): the position accumulates units (criterion 1, as #442112, #430762). |
+| 453230 | 基于波动率和动量指标的波林格带RSI随机RSI策略-Bollinger-Bands-RSI-Stochastic-RSI-Strategy-Based-on-Volatility-and-Momentum-Indicators.md | 1 | Every entry is gated by dayofmonth(timenow) != dayofmonth(lastTradeDay), where timenow is the wall-clock time the script runs at and lastTradeDay stores a day number read back as a timestamp: whether any trade happens depends on the day of the run, not on the data (criterion 1). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

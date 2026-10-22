@@ -1,0 +1,59 @@
+# Original sizing and money-management code, FMZ #452822 (G-Channel-Trend-Detection-Strategy-G-Channel趋势检测策略)
+# Source: https://www.fmz.com/strategy/452822  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take profit 5 % / stop 2 % of the current close, re-sent every bar  [lines 86-139]
+   86: take_profit_percent = input.float(5.0, title="Take Profit (%)")
+   87: stop_loss_percent = input.float(2.0, title="Stop Loss (%)")
+   88: showcross = input.bool(true, title="Show Cross")
+   89: 
+   90: // Initialize variables
+   91: var float a = na
+   92: var float b = na
+   93: 
+   94: // Calculate a and b
+   95: a := math.max(src, nz(a[1])) - (nz(a[1]) - nz(b[1])) / length
+   96: b := math.min(src, nz(b[1])) + (nz(a[1]) - nz(b[1])) / length
+   97: 
+   98: // Calculate average
+   99: avg = (a + b) / 2
+  100: 
+  101: // Determine trend and color
+  102: crossup = ta.crossunder(b, close)
+  103: crossdn = ta.crossunder(a, close)
+  104: bullish = ta.barssince(crossdn) <= ta.barssince(crossup)
+  105: c = bullish ? color.lime : color.red
+  106: 
+  107: // Plotting
+  108: p1 = plot(avg, "Average", color=c, linewidth=1)
+  109: p2 = plot(close, "Close price", color=c, linewidth=1)
+  110: fill(p1, p2, c)
+  111: 
+  112: // Generate buy and sell signals
+  113: buy_signal = showcross and bullish and not bullish[1]
+  114: sell_signal = showcross and not bullish and bullish[1]
+  115: 
+  116: // Plot buy and sell signals on chart
+  117: plotshape(buy_signal ? avg : na, location=location.belowbar, style=shape.labeldown, color=color.new(color.lime, 0), size=size.tiny, text="Buy", textcolor=color.white, offset=-1)
+  118: plotshape(sell_signal ? avg : na, location=location.abovebar, style=shape.labelup, color=color.new(color.red, 0), size=size.tiny, text="Sell", textcolor=color.white, offset=-1)
+  119: 
+  120: // Alerts
+  121: alertcondition(buy_signal, title="Buy Signal", message="Buy Signal Detected")
+  122: alertcondition(sell_signal, title="Sell Signal", message="Sell Signal Detected")
+  123: 
+  124: // Calculate take profit and stop loss levels
+  125: take_profit_level = close * (1 + take_profit_percent / 100)
+  126: stop_loss_level = close * (1 - stop_loss_percent / 100)
+  127: 
+  128: // Strategy Entry and Exit
+  129: if (buy_signal)
+  130:     strategy.entry("Buy", strategy.long)
+  131: 
+  132: if (sell_signal)
+  133:     strategy.entry("Sell", strategy.short)
+  134: 
+  135: // Define the take profit and stop loss conditions for long positions
+  136: strategy.exit("Take Profit/Stop Loss", "Buy", limit=take_profit_level, stop=stop_loss_level)
+  137: 
+  138: // Define the take profit and stop loss conditions for short positions
+  139: strategy.exit("Take Profit/Stop Loss", "Sell", limit=close * (1 - take_profit_percent / 100), stop=close * (1 + stop_loss_percent / 100))

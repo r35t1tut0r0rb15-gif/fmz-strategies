@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #452824 (EMA趋势动量K线形态策略-EMA-Trend-Momentum-Candlestick-Pattern-Strategy)
+# Source: https://www.fmz.com/strategy/452824  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 % of the signal close  [lines 103-128]
+  103: stopLossPct = input.float(2, title="止损百分比") / 100  // 止损百分比
+  104: 
+  105: // 计算EMA和AO指标
+  106: ema = ta.ema(close, emaLength)
+  107: ao = ta.sma(high, aoShortLength) - ta.sma(low, aoLongLength)
+  108: 
+  109: // 定义趋势方向
+  110: isBullish = close > ema
+  111: 
+  112: // 定义K线形态
+  113: bullishK = close > open and close[1] < open[1] and open < close[1] and close > high[1] // 看涨吞没形态
+  114: 
+  115: // 定义买入信号
+  116: longCondition = bullishK and isBullish and ao > 0
+  117: 
+  118: // 绘制EMA
+  119: plot(ema, title="EMA", color=color.blue)
+  120: 
+  121: // 计算止损点
+  122: stopLossLevelLong = close * (1 - stopLossPct)
+  123: 
+  124: // 策略执行并标注信号
+  125: if (longCondition)
+  126:     strategy.entry("做多", strategy.long)
+  127:     label.new(bar_index, high, text="买入", style=label.style_label_up, color=color.green, textcolor=color.white)
+  128:     strategy.exit("止损", from_entry="做多", stop=stopLossLevelLong)

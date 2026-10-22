@@ -1,0 +1,21 @@
+# Original sizing and money-management code, FMZ #452821 (均线交叉移动止盈止损策略-Moving-Average-Crossover-with-Trailing-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/452821  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantity 1; take profit close + 6 (stop close - 2 in the alert only)  [lines 103-118]
+  103: qty = 1
+  104: 
+  105: // Specify crossover conditions
+  106: longCondition = ta.crossover(shortSMA, longSMA)
+  107: shortCondition = ta.crossunder(shortSMA, longSMA)
+  108: 
+  109: // // Execute trade if condition is True
+  110: if (longCondition)
+  111:     stopLoss = close -2
+  112:     // stopLoss=1
+  113:     takeProfit = close +6
+  114: 
+  115:     action = "buy"
+  116:     strategy.entry("long", strategy.long, qty=qty)
+  117:     // strategy.exit("exit", "long", stop=stopLoss, limit=takeProfit)
+  118:     strategy.exit("exit", "long",  limit=takeProfit)

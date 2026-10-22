@@ -5067,6 +5067,35 @@ SIZING = {
     452741: [],
     452742: [],
     452743: [],
+    # ---- FMZ-C, batch C190 (2026-10-22)
+    452819: [
+        ("Stop 0.5 % / target 1 % of the signal close; risk 1 % of equity over the stop distance", 135, 159),
+    ],
+    452820: [
+        ("Target 8 % / stop 2.5 % of the average price", 126, 156),
+    ],
+    452821: [
+        ("Quantity 1; take profit close + 6 (stop close - 2 in the alert only)", 103, 118),
+    ],
+    452822: [
+        ("Take profit 5 % / stop 2 % of the current close, re-sent every bar", 86, 139),
+    ],
+    452824: [
+        ("Stop 2 % of the signal close", 103, 128),
+    ],
+    452827: [
+        ("Stop close - 1.5 ATR / target close + 3 ATR; risk 1 % (unused)", 85, 114),
+    ],
+    452829: [
+        ("strategy(): 30 % of equity, capital 10000, margin 10, commission 0.1 %; trail 3 ATR 5", 95, 175),
+    ],
+    452830: [],
+    453212: [
+        ("Quantity floor(equity x 100 % / close)", 118, 215),
+    ],
+    453223: [
+        ("strategy(): 10 % of equity", 122, 122),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -6414,6 +6443,14 @@ REJECTED_ON_READING = {
               "second bar and each take-profit close is followed on the same bar by a new long "
               "entry (the short is opened only when no long is): one long held from the data "
               "start (criterion 1, buy-and-hold from the data start, as #430384)."),
+    # ---- FMZ-C, batch C190 (2026-10-22)
+    453228: ("1", "pyramiding = 3 with strategy.entry('Long') on every bar the close stays over the "
+              "10-bar high (and the short likewise): the position accumulates units (criterion 1, "
+              "as #442112, #430762)."),
+    453230: ("1", "Every entry is gated by dayofmonth(timenow) != dayofmonth(lastTradeDay), where "
+              "timenow is the wall-clock time the script runs at and lastTradeDay stores a day "
+              "number read back as a timestamp: whether any trade happens depends on the day of "
+              "the run, not on the data (criterion 1)."),
 }
 
 DUPLICATE_ON_READING = {
