@@ -5611,6 +5611,31 @@ SIZING = {
         ("Target 30 % of the average price", 127, 156),
     ],
     472974: [],
+    # ---- FMZ-C, batch C213 (2026-10-22)
+    473121: [
+        ("ATR 14 x 2 exit bands around the close", 127, 152),
+    ],
+    473122: [
+        ("Risk 1 % of a 100000 balance over the swing stop distance; band target and swing stop", 105, 188),
+    ],
+    473123: [
+        ("Trade size 5 ETH; target 9 % / stop 9.9 % of the average price", 88, 154),
+    ],
+    473124: [],
+    473125: [
+        ("Stop 2 ATR / target 3 ATR from the average price", 120, 122),
+    ],
+    473128: [],
+    473131: [
+        ("strategy(): 100 % of equity, commission 0.1 %, slippage 3", 93, 93),
+    ],
+    473132: [],
+    473134: [],
+    473136: [],
+    473140: [
+        ("qty = equity / close", 125, 132),
+    ],
+    473141: [],
 }
 
 REJECTED_ON_READING = {

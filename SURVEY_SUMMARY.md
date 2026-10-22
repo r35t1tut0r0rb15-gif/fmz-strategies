@@ -11,9 +11,9 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2600 |
+| PORTED | 2612 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 772 |
+| PORT_CANDIDATE | 760 |
 | HELD_NEEDS_VOLUME | 569 |
 | REJECTED_ON_READING | 366 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -2728,7 +2728,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 472971 | `ports/472971_dual-moving-average-crossover-trend-following-strategy-with/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 472973 | `ports/472973_rsi-dual-timeframe-supertrend-with-rsi-optimization-system/` | PineScript | supertrend | none | factor x2, tp_pct x2 | 4 |
 | 472974 | `ports/472974_dual-ema-momentum-trend-trading-strategy-with-full-body-cand/` | PineScript | candle_pattern | none | body_frac x2, ema_slow x2 | 4 |
-| | **2600 ports** | | | | | **12269** |
+| 473121 | `ports/473121_atr-atr-volatility-and-moving-average-based-adaptive-trend-f/` | PineScript | ma_cross | none | ma_len x2 | 2 |
+| 473122 | `ports/473122_advanced-trend-trading-strategy-based-on-bollinger-bands-and/` | PineScript | bollinger_reversion | trailing_stop_pending | length x2, wick_ratio x2 | 4 |
+| 473123 | `ports/473123_avmqts-adaptive-volatility-and-momentum-quantitative-trading/` | PineScript | macd_cross | coarse_bar_stop | momentum_length x2, tp_pct x2, sl_pct x2 | 8 |
+| 473124 | `ports/473124_sar-dynamic-trading-strategy-system-based-on-parabolic-sar-i/` | PineScript | parabolic_sar | none | start x2, maximum x2 | 4 |
+| 473125 | `ports/473125_rsi-atr-mean-reversion-strategy-with-bollinger-bands-rsi-and/` | PineScript | bollinger_reversion | trailing_stop_pending | length x2, std_dev x2, sl_atr x2 | 8 |
+| 473128 | `ports/473128_rsi-dynamic-trend-quantitative-strategy-based-on-bollinger-b/` | PineScript | bollinger_reversion | none | length x2, rsi_len x2 | 4 |
+| 473131 | `ports/473131_macd-macd-dynamic-oscillation-cross-prediction-strategy/` | PineScript | macd_momentum | none | fast x2, slow x2, signal x2 | 8 |
+| 473132 | `ports/473132_macd-ema-macd-ema-multi-period-dynamic-crossover-quantitativ/` | PineScript | macd_cross | none | setting x3 | 3 |
+| 473134 | `ports/473134_adaptive-trend-following-strategy-based-on-momentum-oscillat/` | PineScript | momentum_oscillator | none | cmo_period x2, hold x2 | 4 |
+| 473136 | `ports/473136_dual-moving-average-momentum-tracking-quantitative-strategy/` | PineScript | ma_cross | none | len x2, smoothing x2 | 4 |
+| 473140 | `ports/473140_adaptive-bollinger-breakout-with-moving-average-quantitative/` | PineScript | bollinger_breakout | none | length x2, std_dev x2 | 4 |
+| 473141 | `ports/473141_z-z-score-and-supertrend-based-dynamic-trading-strategy-long/` | PineScript | mean_reversion | none | len x2, factor x2 | 4 |
+| | **2612 ports** | | | | | **12326** |
 
 ## Rejected on reading
 

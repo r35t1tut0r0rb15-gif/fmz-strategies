@@ -2987,3 +2987,15 @@ fmz_id,file,final_outcome,criterion,reason
 472971,双均线交叉趋势追踪策略结合动态止盈止损系统-Dual-Moving-Average-Crossover-Trend-Following-Strategy-with-Dynamic-Stop-Loss-and-Take-Profit-System.md,PORTED,,ports/472971_dual-moving-average-crossover-trend-following-strategy-with/
 472973,双时间周期超级趋势与RSI策略优化系统-Dual-Timeframe-Supertrend-with-RSI-Optimization-System.md,PORTED,,ports/472973_rsi-dual-timeframe-supertrend-with-rsi-optimization-system/
 472974,双均线动量趋势交易策略结合满实体烛线信号系统-Dual-EMA-Momentum-Trend-Trading-Strategy-with-Full-Body-Candle-Signal-System.md,PORTED,,ports/472974_dual-ema-momentum-trend-trading-strategy-with-full-body-cand/
+473121,基于ATR波动率和均线的自适应趋势跟踪退出策略-ATR-Volatility-and-Moving-Average-Based-Adaptive-Trend-Following-Exit-Strategy.md,PORTED,,ports/473121_atr-atr-volatility-and-moving-average-based-adaptive-trend-f/
+473122,基于玻林格带与蜡烛图形态的高级趋势交易策略-Advanced-Trend-Trading-Strategy-Based-on-Bollinger-Bands-and-Candlestick-Patterns.md,PORTED,,ports/473122_advanced-trend-trading-strategy-based-on-bollinger-bands-and/
+473123,自适应波动率与动量量化交易系统AVMQTS-Adaptive-Volatility-and-Momentum-Quantitative-Trading-System-AVMQTS.md,PORTED,,ports/473123_avmqts-adaptive-volatility-and-momentum-quantitative-trading/
+473124,基于抛物线SAR指标的动态交易策略系统-Dynamic-Trading-Strategy-System-Based-on-Parabolic-SAR-Indicator.md,PORTED,,ports/473124_sar-dynamic-trading-strategy-system-based-on-parabolic-sar-i/
+473125,均值回归型布林带RSI策略结合ATR动态止损优化系统-Mean-Reversion-Strategy-with-Bollinger-Bands-RSI-and-ATR-Based-Dynamic-Stop-Loss-System.md,PORTED,,ports/473125_rsi-atr-mean-reversion-strategy-with-bollinger-bands-rsi-and/
+473128,基于布林带和RSI交叉的动态趋势量化策略-Dynamic-Trend-Quantitative-Strategy-Based-on-Bollinger-Bands-and-RSI-Cross.md,PORTED,,ports/473128_rsi-dynamic-trend-quantitative-strategy-based-on-bollinger-b/
+473131,MACD动态波动交叉预测策略-MACD-Dynamic-Oscillation-Cross-Prediction-Strategy.md,PORTED,,ports/473131_macd-macd-dynamic-oscillation-cross-prediction-strategy/
+473132,MACD-EMA多周期动态交叉量化交易系统-MACD-EMA-Multi-Period-Dynamic-Crossover-Quantitative-Trading-System.md,PORTED,,ports/473132_macd-ema-macd-ema-multi-period-dynamic-crossover-quantitativ/
+473134,基于动量震荡交易的自适应趋势跟踪策略-Adaptive-Trend-Following-Strategy-Based-on-Momentum-Oscillator.md,PORTED,,ports/473134_adaptive-trend-following-strategy-based-on-momentum-oscillat/
+473136,双均线交叉动量跟踪量化策略-Dual-Moving-Average-Momentum-Tracking-Quantitative-Strategy.md,PORTED,,ports/473136_dual-moving-average-momentum-tracking-quantitative-strategy/
+473140,自适应波段突破结合均线交叉量化策略系统-Adaptive-Bollinger-Breakout-with-Moving-Average-Quantitative-Strategy-System.md,PORTED,,ports/473140_adaptive-bollinger-breakout-with-moving-average-quantitative/
+473141,基于Z分数和超级趋势的动态交易策略多空切换系统-Z-Score-and-Supertrend-Based-Dynamic-Trading-Strategy-Long-Short-Switching-System.md,PORTED,,ports/473141_z-z-score-and-supertrend-based-dynamic-trading-strategy-long/

@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #473128 (基于布林带和RSI交叉的动态趋势量化策略-Dynamic-Trend-Quantitative-Strategy-Based-on-Bollinger-Bands-and-RSI-Cross)
+# Source: https://www.fmz.com/strategy/473128  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

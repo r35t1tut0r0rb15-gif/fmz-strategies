@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #473132 (MACD-EMA多周期动态交叉量化交易系统-MACD-EMA-Multi-Period-Dynamic-Crossover-Quantitative-Trading-System)
+# Source: https://www.fmz.com/strategy/473132  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #473121 (基于ATR波动率和均线的自适应趋势跟踪退出策略-ATR-Volatility-and-Moving-Average-Based-Adaptive-Trend-Following-Exit-Strategy)
+# Source: https://www.fmz.com/strategy/473121  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## ATR 14 x 2 exit bands around the close  [lines 127-152]
+  127: atrLength = input(14, title="ATR Length")
+  128: atrMultiplier = input(2.0, title="ATR Multiplier")
+  129: maLength = input(50, title="Moving Average Length")
+  130: 
+  131: // Calculate ATR and moving average
+  132: atrValue = ta.atr(atrLength)
+  133: maValue = ta.sma(close, maLength)
+  134: 
+  135: // Calculate upper and lower ATR bands
+  136: upperBand = close + atrMultiplier * atrValue
+  137: lowerBand = close - atrMultiplier * atrValue
+  138: 
+  139: // Plot ATR bands
+  140: plot(upperBand, title="Upper ATR Band", color=color.red, linewidth=2)
+  141: plot(lowerBand, title="Lower ATR Band", color=color.green, linewidth=2)
+  142: 
+  143: // Entry condition (for demonstration: long if price above moving average)
+  144: longCondition = ta.crossover(close, maValue)
+  145: if (longCondition)
+  146:     strategy.entry("Long", strategy.long)
+  147: 
+  148: // Exit conditions (exit if price crosses the upper or lower ATR bands)
+  149: if (close >= upperBand)
+  150:     strategy.close("Long", comment="Exit on Upper ATR Band")
+  151: if (close <= lowerBand)
+  152:     strategy.close("Long", comment="Exit on Lower ATR Band")

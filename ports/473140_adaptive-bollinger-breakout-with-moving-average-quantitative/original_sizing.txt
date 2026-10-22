@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #473140 (自适应波段突破结合均线交叉量化策略系统-Adaptive-Bollinger-Breakout-with-Moving-Average-Quantitative-Strategy-System)
+# Source: https://www.fmz.com/strategy/473140  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = equity / close  [lines 125-132]
+  125: size = strategy.equity / close // Menentukan ukuran posisi berdasarkan ekuitas saat ini
+  126: 
+  127: // Eksekusi order
+  128: if (longCondition)
+  129:     strategy.entry("Long", strategy.long, qty=size)
+  130: 
+  131: if (shortCondition)
+  132:     strategy.entry("Short", strategy.short, qty=size)

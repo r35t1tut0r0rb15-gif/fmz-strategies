@@ -1,0 +1,89 @@
+# Original sizing and money-management code, FMZ #473122 (基于玻林格带与蜡烛图形态的高级趋势交易策略-Advanced-Trend-Trading-Strategy-Based-on-Bollinger-Bands-and-Candlestick-Patterns)
+# Source: https://www.fmz.com/strategy/473122  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk 1 % of a 100000 balance over the swing stop distance; band target and swing stop  [lines 105-188]
+  105: accountBalance = 100000  // Account balance in dollars
+  106: riskPercentage = 1.0     // Risk percentage per trade
+  107: riskAmount = (riskPercentage / 100) * accountBalance // Fixed 1% risk amount
+  108: 
+  109: // Request daily data for calculations
+  110: dailyHigh = request.security(syminfo.tickerid, timeFrame, high)
+  111: dailyLow = request.security(syminfo.tickerid, timeFrame, low)
+  112: dailyClose = request.security(syminfo.tickerid, timeFrame, close)
+  113: dailyOpen = request.security(syminfo.tickerid, timeFrame, open)
+  114: 
+  115: // Calculate Bollinger Bands on the daily time frame
+  116: dailyBasis = request.security(syminfo.tickerid, timeFrame, ta.sma(source, length))
+  117: dailyDev = mult * request.security(syminfo.tickerid, timeFrame, ta.stdev(source, length))
+  118: dailyUpperBand = dailyBasis + dailyDev
+  119: dailyLowerBand = dailyBasis - dailyDev
+  120: 
+  121: // Calculate the body and wick sizes on the daily time frame
+  122: dailyBodySize = math.abs(dailyOpen - dailyClose)
+  123: dailyUpperWickSize = dailyHigh - math.max(dailyOpen, dailyClose)
+  124: dailyLowerWickSize = math.min(dailyOpen, dailyClose) - dailyLow
+  125: 
+  126: // Conditions for a candle with an upper wick or lower wick that touches the Bollinger Bands
+  127: upperWickCondition = (dailyUpperWickSize / dailyBodySize >= wickToBodyRatio) and (dailyHigh > dailyUpperBand)
+  128: lowerWickCondition = (dailyLowerWickSize / dailyBodySize >= wickToBodyRatio) and (dailyLow < dailyLowerBand)
+  129: 
+  130: // Define the swing high and swing low for stop loss placement
+  131: var float swingLow = na
+  132: var float swingHigh = na
+  133: 
+  134: if (ta.pivothigh(dailyHigh, 5, 5))
+  135:     swingHigh := dailyHigh[5]
+  136: 
+  137: if (ta.pivotlow(dailyLow, 5, 5))
+  138:     swingLow := dailyLow[5]
+  139: 
+  140: // Determine entry price based on chosen fill option
+  141: var float longEntryPrice = na
+  142: var float shortEntryPrice = na
+  143: 
+  144: if lowerWickCondition
+  145:     longEntryPrice := fillOption == "Daily Close" ? dailyClose :
+  146:                       fillOption == "Daily Open" ? dailyOpen :
+  147:                       fillOption == "HOD" ? dailyHigh : dailyLow
+  148: 
+  149: if upperWickCondition
+  150:     shortEntryPrice := fillOption == "Daily Close" ? dailyClose :
+  151:                        fillOption == "Daily Open" ? dailyOpen :
+  152:                        fillOption == "HOD" ? dailyHigh : dailyLow
+  153: 
+  154: // Execute the long and short entries with expiration
+  155: var int longOrderExpiry = na
+  156: var int shortOrderExpiry = na
+  157: 
+  158: if not na(longEntryPrice)
+  159:     longOrderExpiry := bar_index + 2  // Order expires after 2 days
+  160: 
+  161: if not na(shortEntryPrice)
+  162:     shortOrderExpiry := bar_index + 2  // Order expires after 2 days
+  163: 
+  164: // Check expiration and execute orders
+  165: if (longEntryPrice and bar_index <= longOrderExpiry and high >= longEntryPrice)
+  166:     longStopDistance = close - nz(swingLow, close)
+  167:     longPositionSize = longStopDistance > 0 ? riskAmount / longStopDistance : na
+  168:     if (not na(longPositionSize))
+  169:         strategy.entry("Long", strategy.long, qty=longPositionSize)
+  170:     longEntryPrice := na  // Reset after entry
+  171: 
+  172: if (shortEntryPrice and bar_index <= shortOrderExpiry and low <= shortEntryPrice)
+  173:     shortStopDistance = nz(swingHigh, close) - close
+  174:     shortPositionSize = shortStopDistance > 0 ? riskAmount / shortStopDistance : na
+  175:     if (not na(shortPositionSize))
+  176:         strategy.entry("Short", strategy.short, qty=shortPositionSize)
+  177:     shortEntryPrice := na  // Reset after entry
+  178: 
+  179: // Exit logic: hit the opposing Bollinger Band
+  180: if (strategy.position_size > 0) // Long position
+  181:     strategy.exit("Exit Long", "Long", limit=dailyUpperBand)
+  182: else if (strategy.position_size < 0) // Short position
+  183:     strategy.exit("Exit Short", "Short", limit=dailyLowerBand)
+  184: 
+  185: if (strategy.position_size > 0) // Long position
+  186:     strategy.exit("Stop Loss Long", "Long", stop=swingLow)
+  187: else if (strategy.position_size < 0) // Short position
+  188:     strategy.exit("Stop Loss Short", "Short", stop=swingHigh)
