@@ -6631,6 +6631,22 @@ SIZING = {
         ("strategy(): 2 % of equity", 101, 101),
     ],
     483038: [],
+    # ---- FMZ-C, batch C255 (2026-10-22)
+    483040: [],
+    483042: [],
+    483044: [],
+    483045: [],
+    483047: [],
+    483048: [
+        ("strategy(): capital 1000, 1000 % of equity", 100, 100),
+    ],
+    483050: [
+        ("strategy(): capital 100000, 100 % of equity, pyramiding 0", 92, 98),
+    ],
+    483052: [],
+    483054: [],
+    483055: [],
+    483061: [],
 }
 
 REJECTED_ON_READING = {
@@ -8368,6 +8384,12 @@ REJECTED_ON_READING = {
     483033: ("1", "The trading window is timestamp(year(timenow), month(timenow), "
               "dayofmonth(timenow), ...): it is built from the run's wall clock, so only bars of "
               "the day the script runs can trade (criterion 1, as #453230)."),
+    # ---- FMZ-C, batch C255 (2026-10-22)
+    483049: ("1", "A 50 % partial take-profit (strategy.exit qty_percent = 50) with a risk-sized "
+              "quantity: criterion 1, as #436524."),
+    483051: ("1", "buyCondition is valuewhen(longLiq, longLiq, 0..2), the value of longLiq at its own "
+              "last three occurrences, which is always true once three have occurred: a buy sent "
+              "on every later bar (constant-true, criterion 1, as #442261)."),
 }
 
 DUPLICATE_ON_READING = {

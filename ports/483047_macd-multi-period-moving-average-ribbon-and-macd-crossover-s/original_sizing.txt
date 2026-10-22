@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #483047 (多周期均线带及MACD交叉策略系统-Multi-Period-Moving-Average-Ribbon-and-MACD-Crossover-Strategy-System)
+# Source: https://www.fmz.com/strategy/483047  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

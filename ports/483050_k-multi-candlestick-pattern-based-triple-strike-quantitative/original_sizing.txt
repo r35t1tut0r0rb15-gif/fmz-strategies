@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #483050 (基于多重K线形态的三重打击量化交易策略-Multi-Candlestick-Pattern-Based-Triple-Strike-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483050  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 100000, 100 % of equity, pyramiding 0  [lines 92-98]
+   92: strategy(title='3 Line Strike [TTF] - Strategy',
+   93:      shorttitle='3LS Strategy [TTF]',
+   94:      overlay=true,
+   95:      initial_capital=100000,
+   96:      default_qty_type=strategy.percent_of_equity,
+   97:      default_qty_value=100,
+   98:      pyramiding=0)

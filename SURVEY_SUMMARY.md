@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3032 |
+| PORTED | 3043 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 439 |
-| PORT_CANDIDATE | 263 |
+| REJECTED_ON_READING | 441 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
+| PORT_CANDIDATE | 250 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3160,7 +3160,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 483035 | `ports/483035_dynamic-range-breakout-trading-strategy-based-on-bollinger-b/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
 | 483037 | `ports/483037_sma-rsi-adx-multi-indicator-trend-following-strategy-sma-dua/` | PineScript | ma_cross | trailing_stop | trail_pct x2, sma_fast x2 | 4 |
 | 483038 | `ports/483038_dynamic-multi-indicator-trend-recognition-strategy-with-trip/` | PineScript | multi_indicator_vote | none | length x2, dyn_len x2 | 4 |
-| | **3032 ports** | | | | | **13947** |
+| 483040 | `ports/483040_multi-period-donchian-channel-trend-following-and-divergence/` | PineScript | donchian_breakout | none | dlen x3 | 3 |
+| 483042 | `ports/483042_enhanced-ichimoku-cloud-trading-strategy-with-dynamic-crosso/` | PineScript | ichimoku | none | conversion_periods x2, base_periods x2 | 4 |
+| 483044 | `ports/483044_dynamic-multi-indicator-optimized-trend-following-strategy/` | PineScript | ichimoku | coarse_bar_stop, trailing_stop_pending | atr_multiplier x2, bb_width_threshold x2 | 4 |
+| 483045 | `ports/483045_triple-moving-average-cross-filter-trading-system/` | PineScript | ma_cross | none | fast_length x2, trend_filter_length x2 | 4 |
+| 483047 | `ports/483047_macd-multi-period-moving-average-ribbon-and-macd-crossover-s/` | PineScript | macd_cross | none | ma1_length x2, ma2_length x2 | 4 |
+| 483048 | `ports/483048_bollinger-dynamic-exit-trading-system-based-on-bollinger-ban/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 483050 | `ports/483050_k-multi-candlestick-pattern-based-triple-strike-quantitative/` | PineScript | candle_pattern | none |  | 0 |
+| 483052 | `ports/483052_momentum-and-volatility-based-trend-breakthrough-trading-str/` | PineScript | bollinger_reversion | none | bb_length x2, cmo_length x2 | 4 |
+| 483054 | `ports/483054_dynamic-volatility-adjusted-ema-trend-trading-strategy-with/` | PineScript | ma_cross | none | atr_multiplier x2, stop_loss_percent x2 | 4 |
+| 483055 | `ports/483055_supertrend-adx-multi-indicator-momentum-trend-following-stra/` | PineScript | supertrend | none | supertrend_factor x2, supertrend_period x2 | 4 |
+| 483061 | `ports/483061_trend-breakout-trading-strategy-based-on-donchian-channel-an/` | PineScript | donchian_breakout | trailing_stop_pending | length x2, sma_length x2 | 4 |
+| | **3043 ports** | | | | | **13986** |
 
 ## Rejected on reading
 
@@ -3605,6 +3616,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482916 | 多层级RSI交叉回归增仓策略-Multi-Level-RSI-Cross-Under-Regression-Pyramiding-Strategy.md | 1 | Pyramided buys gated on position_size against equity x 0.066 x 15 (a size-dependent gate) and a 50 % partial close (qty_percent): criterion 1, as #436524. |
 | 483022 | 基于市场情绪的动态阈值交易策略-Dynamic-Market-Sentiment-Threshold-Trading-Strategy.md | 1 | The 'Fear and Greed' values are a fixed demo array of eight numbers cycled by bar_index: the trades follow the bar count, not the market (criterion 1). |
 | 483033 | 交易品种蜡烛线大小阈值交易策略-Futures-Candlestick-Size-Threshold-Trading-Strategy.md | 1 | The trading window is timestamp(year(timenow), month(timenow), dayofmonth(timenow), ...): it is built from the run's wall clock, so only bars of the day the script runs can trade (criterion 1, as #453230). |
+| 483049 | 基于支持位和趋势EMA的多空策略-Support-Level-and-Trend-EMA-Based-Long-Strategy.md | 1 | A 50 % partial take-profit (strategy.exit qty_percent = 50) with a risk-sized quantity: criterion 1, as #436524. |
+| 483051 | 动态流动性级联捕捉策略-Dynamic-Liquidity-Cascade-Capture-Strategy.md | 1 | buyCondition is valuewhen(longLiq, longLiq, 0..2), the value of longLiq at its own last three occurrences, which is always true once three have occurred: a buy sent on every later bar (constant-true, criterion 1, as #442261). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
