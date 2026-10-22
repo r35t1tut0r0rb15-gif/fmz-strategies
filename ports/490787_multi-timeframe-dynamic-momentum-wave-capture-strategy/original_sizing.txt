@@ -1,0 +1,87 @@
+# Original sizing and money-management code, FMZ #490787 (多时段动态动量波动捕捉策略-Multi-Timeframe-Dynamic-Momentum-Wave-Capture-Strategy)
+# Source: https://www.fmz.com/strategy/490787  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = 100 USD / risk; cash 10000  [lines 179-260]
+  179: strategy("Enhanced Momentum Wave Catcher", overlay=true,
+  180:   default_qty_type=strategy.cash,
+  181:   default_qty_value=10000,
+  182:   initial_capital=10000,
+  183:   currency="USD")
+  184: 
+  185: // Inputs
+  186: fastEmaLength = input.int(12, "12 EMA Length", minval=1)
+  187: slowEmaHighLength = input.int(200, "200 High EMA Length", minval=1)
+  188: slowEmaLowLength = input.int(200, "200 Low EMA Length", minval=1)
+  189: oversoldLevel = input.int(-50, "Oversold Level")
+  190: overboughtLevel = input.int(50, "Overbought Level")
+  191: riskAmount = input.float(100.0, "Risk Amount ($)", minval=1.0)
+  192: rrRatio = input.float(3.0, "Risk-Reward Ratio", minval=0.1)
+  193: confirmationBars = input.int(1, "Confirmation Bars After Extreme", minval=0)
+  194: 
+  195: // Calculate EMAs
+  196: fastEma = ta.ema(close, fastEmaLength)
+  197: slowEmaHigh = ta.ema(high, slowEmaHighLength)
+  198: slowEmaLow = ta.ema(low, slowEmaLowLength)
+  199: 
+  200: // Hourly close
+  201: hourlyClose = request.security(syminfo.tickerid, "60", close)
+  202: 
+  203: // Enhanced Momentum Wave Calculation
+  204: f_wavetrend(src, chlen, avg, malen) =>
+  205:     esa = ta.ema(src, chlen)
+  206:     de = ta.ema(math.abs(src - esa), chlen)
+  207:     ci = (src - esa) / (0.015 * de)
+  208:     wt1 = ta.ema(ci, avg)
+  209:     wt2 = ta.sma(wt1, malen)
+  210:     wtCrossUp = ta.crossover(wt1, wt2)
+  211:     wtCrossDown = ta.crossunder(wt1, wt2)
+  212:     [wt1, wt2, wtCrossUp, wtCrossDown]
+  213: 
+  214: [wt1, wt2, wtCrossUp, wtCrossDown] = f_wavetrend(hlc3, 9, 12, 3)
+  215: 
+  216: // Track extremes with improved detection
+  217: var int oversoldBars = 0
+  218: var int overboughtBars = 0
+  219: var float extremeLow = na
+  220: var float extremeHigh = na
+  221: 
+  222: // Enhanced extreme detection
+  223: if wt2 <= oversoldLevel
+  224:     oversoldBars := oversoldBars + 1
+  225:     extremeLow := na(extremeLow) ? low : math.min(low, extremeLow)
+  226: else
+  227:     oversoldBars := 0
+  228:     extremeLow := na
+  229: 
+  230: if wt2 >= overboughtLevel
+  231:     overboughtBars := overboughtBars + 1
+  232:     extremeHigh := na(extremeHigh) ? high : math.max(high, extremeHigh)
+  233: else
+  234:     overboughtBars := 0
+  235:     extremeHigh := na
+  236: 
+  237: // Hourly Channel Status
+  238: var bool hourlyAboveChannel = false
+  239: var bool hourlyBelowChannel = false
+  240: 
+  241: if barstate.isconfirmed
+  242:     if hourlyClose > slowEmaHigh
+  243:         hourlyAboveChannel := true
+  244:         hourlyBelowChannel := false
+  245:     else if hourlyClose < slowEmaLow
+  246:         hourlyAboveChannel := false
+  247:         hourlyBelowChannel := true
+  248: 
+  249: // Entry Conditions with improved wave detection
+  250: longCondition = hourlyAboveChannel and (oversoldBars > confirmationBars or wtCrossUp) and close > fastEma
+  251: shortCondition = hourlyBelowChannel and (overboughtBars > confirmationBars or wtCrossDown) and close < fastEma
+  252: 
+  253: // Dynamic Stops
+  254: longStop = math.min(extremeLow, slowEmaLow * 0.998)
+  255: shortStop = math.max(extremeHigh, slowEmaHigh * 1.002)
+  256: 
+  257: // Position Sizing
+  258: calculatePositionSize(entryPrice, stopPrice) =>
+  259:     riskPerUnit = math.abs(entryPrice - stopPrice)
+  260:     riskPerUnit > 0 ? riskAmount / riskPerUnit : na

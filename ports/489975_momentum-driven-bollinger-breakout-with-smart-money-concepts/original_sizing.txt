@@ -1,0 +1,72 @@
+# Original sizing and money-management code, FMZ #489975 (动量驱动型布林带突破与智能资金概念融合策略-Momentum-Driven-Bollinger-Breakout-with-Smart-Money-Concepts-Integration-Strategy)
+# Source: https://www.fmz.com/strategy/489975  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = 5 % of equity / close; capital 100000  [lines 184-250]
+  184: strategy('02 SMC + BB Breakout v4 + Momentum Color', overlay=true, initial_capital=100000)
+  185: 
+  186: // Inputs
+  187: length = input.int(55, title='Bollinger Bands Length')
+  188: mult = input.float(2.0, title='Standard Deviation Multiplier')
+  189: higher_tf = input.timeframe('1D', title='Higher Timeframe Confirmation')
+  190: confirm_trend = input.bool(true, title='Use Higher Timeframe Trend')
+  191: show_smc = input.bool(true, title='Show SMC Elements')
+  192: ob_length = input.int(20, title="Order Block Lookback", minval=5)
+  193: swing_length = input.int(12, title="Swing Lookback", minval=5)
+  194: momentum_filter = input.bool(true, title="Require Momentum Candle for Entry")
+  195: momentum_body_percent = input.float(70, title="Momentum Candle Body %", minval=1, maxval=100) / 100.0 // Percentage of the candle's range that must be the body
+  196: 
+  197: // Bollinger Bands Calculation
+  198: basis = ta.sma(close, length)
+  199: upper_band = basis + mult * ta.stdev(close, length)
+  200: lower_band = basis - mult * ta.stdev(close, length)
+  201: 
+  202: // Higher Timeframe Confirmation
+  203: higher_tf_close = request.security(syminfo.tickerid, higher_tf, close)
+  204: higher_tf_sma = ta.sma(higher_tf_close, length)
+  205: higher_tf_trend = higher_tf_close > higher_tf_sma
+  206: 
+  207: // Smart Money Concepts (SMC)
+  208: // Order Blocks (Simplified as recent price clusters)
+  209: order_block_high = ta.highest(high, ob_length)
+  210: order_block_low = ta.lowest(low, ob_length)
+  211: 
+  212: // Liquidity Zones
+  213: recent_swing_high = ta.highest(high, swing_length)
+  214: recent_swing_low = ta.lowest(low, swing_length)
+  215: 
+  216: // Market Structure Shift (MSS)
+  217: previous_high = ta.valuewhen(high > ta.highest(high[1], swing_length), high[1], 0)
+  218: previous_low = ta.valuewhen(low < ta.lowest(low[1], swing_length), low[1], 0)
+  219: shift_to_bullish = close > previous_high
+  220: shift_to_bearish = close < previous_low
+  221: 
+  222: // Momentum Candle Check (Strong Body)
+  223: candle_range = high - low
+  224: candle_body = math.abs(close - open)
+  225: body_percentage = candle_range > 0 ? candle_body / candle_range : 0 // Avoid division by zero if range is 0
+  226: 
+  227: long_momentum = body_percentage >= momentum_body_percent and close > open
+  228: short_momentum = body_percentage >= momentum_body_percent and close < open
+  229: 
+  230: // --- START: Momentum Candle Coloring ---
+  231: // Use color.lime for a neon green effect and color.red for neon red.
+  232: bullish_momentum_color = long_momentum ? color.lime : na
+  233: bearish_momentum_color = short_momentum ? color.red : na
+  234: barcolor(bullish_momentum_color, title="Bullish Momentum Candle")
+  235: barcolor(bearish_momentum_color, title="Bearish Momentum Candle")
+  236: // --- END: Momentum Candle Coloring ---
+  237: 
+  238: // Entry Conditions
+  239: long_condition = ta.crossover(close, upper_band) and (not confirm_trend or higher_tf_trend) and shift_to_bullish and (not momentum_filter or long_momentum)
+  240: short_condition = ta.crossunder(close, lower_band) and (not confirm_trend or not higher_tf_trend) and shift_to_bearish and (not momentum_filter or short_momentum)
+  241: 
+  242: // Exit Conditions (TWEAKED)
+  243: exit_long = ta.crossunder(close, basis) or close < (order_block_low * 0.99)
+  244: exit_short = ta.crossover(close, basis) or close > (order_block_high * 1.01)
+  245: 
+  246: // Calculate 5% of equity for position size
+  247: risk_percent = 5.0 // Use float for percentage calculation
+  248: capital_per_trade = (strategy.equity * risk_percent) / 100
+  249: trade_qty = capital_per_trade / close
+  250: trade_qty := trade_qty < 0.000001 ? 0.000001 : trade_qty // Ensure minimum trade quantity if calculated qty is too small

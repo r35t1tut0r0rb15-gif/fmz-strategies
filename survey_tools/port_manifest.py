@@ -7033,6 +7033,29 @@ SIZING = {
     489966: [
         ("strategy(): 10 % of equity", 179, 179),
     ],
+    # ---- FMZ-C, batch C273 (2026-10-22)
+    489975: [
+        ("qty = 5 % of equity / close; capital 100000", 184, 250),
+    ],
+    490042: [
+        ("strategy(): capital 100000, 10 % of equity", 211, 211),
+    ],
+    490060: [
+        ("strategy(): 10 % of equity, commission 0.01 %", 179, 179),
+    ],
+    490517: [
+        ("strategy(): 100 % of equity", 212, 212),
+    ],
+    490787: [
+        ("qty = 100 USD / risk; cash 10000", 179, 260),
+    ],
+    490794: [
+        ("strategy(): 10 % of equity, margins 0", 152, 152),
+    ],
+    490795: [],
+    490805: [
+        ("strategy(): 10 % of equity", 173, 173),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8939,6 +8962,21 @@ REJECTED_ON_READING = {
               "likewise)."),
     489742: ("1", "Martingale sizing: the bet doubles after a loss up to a capital cap (criterion 1, "
               "as #484920)."),
+    # ---- FMZ-C, batch C273 (2026-10-22)
+    490059: ("1", "Dollar-cost averaging (1-2-6 DCA adds at 1 % / 2 % drops) with partial "
+              "take-profits by strategy.order (25 % / 50 % of the position): criterion 1, as "
+              "#484915 / #436524."),
+    490570: ("1", "A DCA bot: a base order plus two safety orders of growing USD size on ATR drops, "
+              "closed together (criterion 1, as #484915)."),
+    490798: ("2", "The stop and target are the engulfing zone -/+ 30 pips of 0.0001 (a fixed 0.003 "
+              "price offset), an FX-sized price amount (criterion 2, as #473377)."),
+    490804: ("2", "The exits include trail_points = trail_offset = 0.8 ATR, price amounts passed as "
+              "tick counts (criterion 2, as #482767)."),
+    490908: ("2", "The target and stop are 60000 / 25000 ticks from the entry ('punti'), with a "
+              "break-even at 30000: read at the header coin's price (TRX about 0.2, tick 0.00001) "
+              "the stop sits 125 % under the entry and the target 300 % over it; they are fixed "
+              "point amounts for another instrument with no generic reading (criterion 2, as "
+              "#473377)."),
 }
 
 DUPLICATE_ON_READING = {

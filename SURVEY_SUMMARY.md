@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3208 |
+| PORTED | 3216 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 574 |
-| REJECTED_ON_READING | 496 |
+| REJECTED_ON_READING | 501 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 29 |
+| PORT_CANDIDATE | 16 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3336,7 +3336,15 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 489734 | `ports/489734_multi-exponential-moving-average-with-directional-trend-filt/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 489893 | `ports/489893_multi-factor-mean-reversion-strategy-a-mean-reversion-tradin/` | PineScript | stochastic | none | length x2, bbLength x2 | 4 |
 | 489966 | `ports/489966_emamacdrsi-atr-multi-indicator-synergistic-dynamic-risk-mana/` | PineScript | multi_indicator_confluence | trailing_stop_pending | emaLength x2, rsiOB x2 | 4 |
-| | **3208 ports** | | | | | **14636** |
+| 489975 | `ports/489975_momentum-driven-bollinger-breakout-with-smart-money-concepts/` | PineScript | bollinger_breakout | none | length x2, momentum_body_percent x2 | 4 |
+| 490042 | `ports/490042_multi-indicator-divergence-trading-system-with-advanced-risk/` | PineScript | multi_indicator_confluence | trailing_stop | stopLossPercent x2, takeProfitPercent x2 | 4 |
+| 490060 | `ports/490060_hull-ema-rsi-multi-indicator-crossover-momentum-trend-follow/` | PineScript | hull_ma | coarse_bar_stop, trailing_stop_pending | hmaLength x2, profitFactor x2 | 4 |
+| 490517 | `ports/490517_rsi-multi-confirmation-ema-trend-and-stochastic-rsi-momentum/` | PineScript | ma_cross | none | fastLength x2, slowLength x2 | 4 |
+| 490787 | `ports/490787_multi-timeframe-dynamic-momentum-wave-capture-strategy/` | PineScript | wavetrend | trailing_stop_pending | rrRatio x2, overboughtLevel x2 | 4 |
+| 490794 | `ports/490794_macd-technical-indicator-distance-measurement-and-macd-rever/` | PineScript | macd | none | fast x2, slow x2 | 4 |
+| 490795 | `ports/490795_multi-signal-convergence-cloud-edge-breakout-strategy/` | PineScript | ichimoku | none | bullishThreshold x2, bearishThreshold x2 | 4 |
+| 490805 | `ports/490805_moving-average-and-momentum-candle-trend-following-system/` | PineScript | candlestick_pattern | coarse_bar_stop | sl_pct x2, maLength x2 | 4 |
+| | **3216 ports** | | | | | **14668** |
 
 ## Rejected on reading
 
@@ -3838,6 +3846,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 489656 | 动态ATR网格回撤捕捉量化交易策略-Dynamic-ATR-Grid-Pullback-Capture-Quantitative-Trading-Strategy.md | 2 | The exits are strategy.exit(trail_offset = ATR 10), a price amount passed as a tick count (criterion 2, as #482767). |
 | 489737 | 高效趋势捕捉型指数移动平均线交叉与动态追踪止损策略-Advanced-Trend-Capture-EMA-Crossover-Strategy-with-Dynamic-Trailing-Stop.md | 2 | The trailing exits use trail_price = high - 10 / low + 10, a fixed 10-unit price offset, with trail_offset 2 (criterion 2, as #482767; its ND partner #489653 likewise). |
 | 489742 | 八阶蜡烛模式序列马丁格尔策略-Eight-Candle-Pattern-Sequence-Martingale-Strategy.md | 1 | Martingale sizing: the bet doubles after a loss up to a capital cap (criterion 1, as #484920). |
+| 490059 | 多指标确认均线突破DCA动态止盈策略-Multi-Indicator-Confirmation-EMA-Breakout-with-DCA-and-Dynamic-Take-Profit-Strategy.md | 1 | Dollar-cost averaging (1-2-6 DCA adds at 1 % / 2 % drops) with partial take-profits by strategy.order (25 % / 50 % of the position): criterion 1, as #484915 / #436524. |
+| 490570 | 智能波动跟踪型DCA策略与双轨止损系统-Intelligent-Volatility-Responsive-DCA-Strategy-with-Dual-Trailing-Stop-System.md | 1 | A DCA bot: a base order plus two safety orders of growing USD size on ATR drops, closed together (criterion 1, as #484915). |
+| 490798 | 15分钟图表吞没突破多重确认策略-15-Minute-Engulfing-Breakout-Multi-Confirmation-Strategy.md | 2 | The stop and target are the engulfing zone -/+ 30 pips of 0.0001 (a fixed 0.003 price offset), an FX-sized price amount (criterion 2, as #473377). |
+| 490804 | 多指标协同短线趋势跟踪策略-Multi-Indicator-Synergistic-Short-Term-Trend-Following-Strategy.md | 2 | The exits include trail_points = trail_offset = 0.8 ATR, price amounts passed as tick counts (criterion 2, as #482767). |
+| 490908 | 多时间尺度动量趋势追踪与风险管理量化交易策略-Multi-Timeframe-Momentum-Trend-Tracking-and-Risk-Management-Quantitative-Trading-Strategy.md | 2 | The target and stop are 60000 / 25000 ticks from the entry ('punti'), with a break-even at 30000: read at the header coin's price (TRX about 0.2, tick 0.00001) the stop sits 125 % under the entry and the target 300 % over it; they are fixed point amounts for another instrument with no generic reading (criterion 2, as #473377). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
