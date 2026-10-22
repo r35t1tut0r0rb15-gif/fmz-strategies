@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #439993 (支撑阻力震荡交易策略Quantitative-Support-and-Resistance-Oscillation-Strategy)
+# Source: https://www.fmz.com/strategy/439993  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Entry size 1  [lines 189-190]
+  189: strategy.entry("L", strategy.long, 1, when = signalBuy and testPeriod() and uptrend) 
+  190: strategy.entry("S", strategy.short, 1, when = signalSell and testPeriod() and uptrend ==false) 

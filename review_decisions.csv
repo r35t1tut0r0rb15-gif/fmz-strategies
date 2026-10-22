@@ -230,6 +230,7 @@ fmz_id,file,final_outcome,criterion,reason
 439950,动量均线盘整策略Momentum-Moving-Average-Consolidation-Strategy.md,REJECTED_ON_READING,1,"pyramiding 2 with an 'Add' entry below the average price and strategy.close(qty_percent = 20) partial profit-taking when the RSI crosses under 80: the position path and the exits are partial (criterion 1, as #436524)."
 439958,基于RSI指标的Nifty交易策略Nifty-Trading-Strategy-Based-on-RSI-Indicator.md,REJECTED_ON_READING,1,"pyramiding = 1000 with a 1-unit buy on every RSI 2 crossover and no exit until a fixed end date (30 Nov 2023), after which every bar closes: an accumulation whose size path is the strategy (as #430762, #430248)."
 439974,震荡型广谱移动平均线交易策略Oscillation-Spectrum-Moving-Average-Trading-Strategy.md,REJECTED_ON_READING,1,"Both MA series are read through security(tickerid, '7D' (7 x the chart period), ..., lookahead = barmerge.lookahead_on): on the daily chart the 7-day values are seen from the first bar of the 7-day period, so every crossing uses the future (criterion 1, as #438495)."
+440058,杠杆化马丁格尔期货交易策略Leveraged-Martingale-Futures-Trading-Strategy.md,REJECTED_ON_READING,1,"A leveraged martingale: after the first buy, each 1 % drop adds a 'Double Long' entry sized trade size x leverage x 2^n up to 10 times, and close_all fires on a take-profit of the size-weighted average price net of fees: the position size path is the strategy (as #435721)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1980,3 +1981,14 @@ fmz_id,file,final_outcome,criterion,reason
 439985,基于平滑均线的启源阿须策略Origix-Ashi-Strategy-Based-on-Smoothed-Moving-Average.md,PORTED,,ports/439985_origix-ashi-strategy-based-on-smoothed-moving-average/
 439988,皮特波浪交易系统策略Pete-Wave-Trading-System-Strategy.md,PORTED,,ports/439988_pete-wave-trading-system-strategy/
 439989,基于双重指标突破策略Dual-Indicators-Breakthrough-Strategy.md,PORTED,,ports/439989_dual-indicators-breakthrough-strategy/
+439991,三EMA配合DMI和MACD的趋势跟踪策略Trend-Following-Strategy-with-3-EMAs-DMI-and-MACD.md,PORTED,,ports/439991_ema-dmi-macd-trend-following-strategy-with-3-emas-dmi-and-ma/
+439993,支撑阻力震荡交易策略Quantitative-Support-and-Resistance-Oscillation-Strategy.md,PORTED,,ports/439993_quantitative-support-and-resistance-oscillation-strategy/
+439994,基于DMI和RSI的趋势跟随策略Trend-Following-Strategy-Based-on-DMI-and-RSI.md,PORTED,,ports/439994_dmi-rsi-trend-following-strategy-based-on-dmi-and-rsi/
+440005,基于CMO和WMA的双均线交易策略CMO-and-WMA-Based-Dual-Moving-Average-Trading-Strategy.md,PORTED,,ports/440005_cmo-wma-cmo-and-wma-based-dual-moving-average-trading-strate/
+440056,双K线预测闭合策略Dual-Candlestick-Prediction-Close-Strategy.md,PORTED,,ports/440056_k-dual-candlestick-prediction-close-strategy/
+440057,动量讨价还价策略Momentum-Pullback-Strategy.md,PORTED,,ports/440057_momentum-pullback-strategy/
+440062,双均线反转与ATR-trailing-stop组合策略Combination-Strategy-of-Dual-Moving-Average-Reversal-and-ATR-Trailing-Stop.md,PORTED,,ports/440062_atr-trailing-stop-combination-strategy-of-dual-moving-averag/
+440065,三重叠加随机动量策略Triple-Overlapping-Stochastic-Momentum-Strategy.md,PORTED,,ports/440065_triple-overlapping-stochastic-momentum-strategy/
+440066,线性回归与双均线短线策略-Linear-Regression-and-Dual-Moving-Average-Short-Term-Strategy.md,PORTED,,ports/440066_linear-regression-and-dual-moving-average-short-term-strateg/
+440073,一个简单高效的MACD量化交易策略MACD-Crypto-Trading-Strategy.md,PORTED,,ports/440073_macd-macd-crypto-trading-strategy/
+440075,双均线交叉-golden-cross-交易策略Golden-Cross-SMA-Trading-Strategy.md,PORTED,,ports/440075_golden-cross-golden-cross-sma-trading-strategy/

@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1779 |
-| PORTED | 1733 |
+| PORT_CANDIDATE | 1767 |
+| PORTED | 1744 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 231 |
+| REJECTED_ON_READING | 232 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1861,7 +1861,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439985 | `ports/439985_origix-ashi-strategy-based-on-smoothed-moving-average/` | PineScript | ma_trend | none | smoothed_ha_length x3 | 3 |
 | 439988 | `ports/439988_pete-wave-trading-system-strategy/` | PineScript | ma_cross | none | trailing_stop x2, step_frac x2 | 4 |
 | 439989 | `ports/439989_dual-indicators-breakthrough-strategy/` | PineScript | rsi_oscillator | none | rsi_period x2, rsi_lower x2 | 4 |
-| | **1733 ports** | | | | | **8505** |
+| 439991 | `ports/439991_ema-dmi-macd-trend-following-strategy-with-3-emas-dmi-and-ma/` | PineScript | directional_movement | none | di_len x2, di_level x2 | 4 |
+| 439993 | `ports/439993_quantitative-support-and-resistance-oscillation-strategy/` | PineScript | multi_indicator_confluence | none | sma_lengh x2, oversold x2 | 4 |
+| 439994 | `ports/439994_dmi-rsi-trend-following-strategy-based-on-dmi-and-rsi/` | PineScript | directional_movement | none | stop_factor x2, rsi_length x2 | 4 |
+| 440005 | `ports/440005_cmo-wma-cmo-and-wma-based-dual-moving-average-trading-strate/` | PineScript | momentum_oscillator | none | length x2, buy_zone x2 | 4 |
+| 440056 | `ports/440056_k-dual-candlestick-prediction-close-strategy/` | PineScript | candle_pattern | none | ltf x2 | 2 |
+| 440057 | `ports/440057_momentum-pullback-strategy/` | PineScript | ma_trend | none | ema_len x2, rire x2 | 4 |
+| 440062 | `ports/440062_atr-trailing-stop-combination-strategy-of-dual-moving-averag/` | PineScript | combo_123_reversal | none | length x2, n_atr_multip x2 | 4 |
+| 440065 | `ports/440065_triple-overlapping-stochastic-momentum-strategy/` | PineScript | stochastic_oscillator | none | nsig x2, q2 x2 | 4 |
+| 440066 | `ports/440066_linear-regression-and-dual-moving-average-short-term-strateg/` | PineScript | trend_filter | none | len x2, length x2 | 4 |
+| 440073 | `ports/440073_macd-macd-crypto-trading-strategy/` | PineScript | macd_momentum | none | fast_length x2, slow_length x2 | 4 |
+| 440075 | `ports/440075_golden-cross-golden-cross-sma-trading-strategy/` | PineScript | ma_cross | none | sh_len x2, lg_len x2 | 4 |
+| | **1744 ports** | | | | | **8547** |
 
 ## Rejected on reading
 
@@ -2098,6 +2109,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439950 | 动量均线盘整策略Momentum-Moving-Average-Consolidation-Strategy.md | 1 | pyramiding 2 with an 'Add' entry below the average price and strategy.close(qty_percent = 20) partial profit-taking when the RSI crosses under 80: the position path and the exits are partial (criterion 1, as #436524). |
 | 439958 | 基于RSI指标的Nifty交易策略Nifty-Trading-Strategy-Based-on-RSI-Indicator.md | 1 | pyramiding = 1000 with a 1-unit buy on every RSI 2 crossover and no exit until a fixed end date (30 Nov 2023), after which every bar closes: an accumulation whose size path is the strategy (as #430762, #430248). |
 | 439974 | 震荡型广谱移动平均线交易策略Oscillation-Spectrum-Moving-Average-Trading-Strategy.md | 1 | Both MA series are read through security(tickerid, '7D' (7 x the chart period), ..., lookahead = barmerge.lookahead_on): on the daily chart the 7-day values are seen from the first bar of the 7-day period, so every crossing uses the future (criterion 1, as #438495). |
+| 440058 | 杠杆化马丁格尔期货交易策略Leveraged-Martingale-Futures-Trading-Strategy.md | 1 | A leveraged martingale: after the first buy, each 1 % drop adds a 'Double Long' entry sized trade size x leverage x 2^n up to 10 times, and close_all fires on a take-profit of the size-weighted average price net of fees: the position size path is the strategy (as #435721). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

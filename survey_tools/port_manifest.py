@@ -3933,6 +3933,24 @@ SIZING = {
         ("Stop percent and point inputs", 175, 178),
     ],
     439989: [],
+    # ---- FMZ-C, batch C129 (2026-10-22)
+    439991: [],
+    439993: [
+        ("Entry size 1", 189, 190),
+    ],
+    439994: [
+        ("strategy(): capital, percent of equity 10; stop factor", 128, 142),
+    ],
+    440005: [],
+    440056: [],
+    440057: [],
+    440062: [],
+    440065: [],
+    440066: [],
+    440073: [],
+    440075: [
+        ("Stop and target percent inputs", 359, 366),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -4905,6 +4923,11 @@ REJECTED_ON_READING = {
               "..., lookahead = barmerge.lookahead_on): on the daily chart the 7-day values are "
               "seen from the first bar of the 7-day period, so every crossing uses the future "
               "(criterion 1, as #438495)."),
+    # ---- FMZ-C, batch C129 (2026-10-22)
+    440058: ("1", "A leveraged martingale: after the first buy, each 1 % drop adds a 'Double Long' "
+              "entry sized trade size x leverage x 2^n up to 10 times, and close_all fires on a "
+              "take-profit of the size-weighted average price net of fees: the position size path "
+              "is the strategy (as #435721)."),
 }
 
 DUPLICATE_ON_READING = {
