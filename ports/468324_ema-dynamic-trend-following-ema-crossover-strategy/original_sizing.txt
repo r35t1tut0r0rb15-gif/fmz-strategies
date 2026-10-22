@@ -1,0 +1,54 @@
+# Original sizing and money-management code, FMZ #468324 (动态趋势跟踪EMA交叉策略-Dynamic-Trend-Following-EMA-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/468324  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 55 / stop 30 ticks; trail_offset 25 x mintick  [lines 169-217]
+  169: takeProfitTicks = input.int(55, title="Take Profit (in Ticks)")
+  170: stopLossTicks = input.int(30, title="Stop Loss (in Ticks)")
+  171: trailingStopTicks = input.int(25, title="Trailing Stop (in Ticks)")
+  172: 
+  173: // Security data
+  174: openPrice = request.security(syminfo.tickerid, timeframe, open)
+  175: closePrice = request.security(syminfo.tickerid, timeframe, close)
+  176: 
+  177: // Calculate high and low for the user-defined period
+  178: highCustomPeriod = ta.highest(closePrice, highLowPeriod)
+  179: lowCustomPeriod = ta.lowest(closePrice, highLowPeriod)
+  180: 
+  181: // Calculate customizable EMAs
+  182: ema55 = ta.ema(closePrice, ema55Period)
+  183: ema200 = ta.ema(closePrice, ema200Period)
+  184: 
+  185: // Plotting the open, close, high/low, and EMAs for reference
+  186: plot(openPrice, color=color.red, title="Open Price")
+  187: plot(closePrice, color=color.green, title="Close Price")
+  188: plot(highCustomPeriod, color=color.blue, title="High", linewidth=1)
+  189: plot(lowCustomPeriod, color=color.orange, title="Low", linewidth=1)
+  190: plot(ema55, color=color.purple, title="55 EMA", linewidth=1)
+  191: plot(ema200, color=color.fuchsia, title="200 EMA", linewidth=1)
+  192: 
+  193: // Determine trend direction
+  194: bullishTrend = ema55 > ema200
+  195: bearishTrend = ema55 < ema200
+  196: 
+  197: // Define entry conditions
+  198: longCondition = bullishTrend and ta.crossover(closePrice, lowCustomPeriod) and ta.crossover(closePrice, ema55)
+  199: shortCondition = bearishTrend and ta.crossunder(closePrice, highCustomPeriod) and ta.crossunder(closePrice, ema55)
+  200: 
+  201: // Entry conditions and auto take profit, stop loss, and trailing stop
+  202: if (boxClose)
+  203:     if (longCondition)
+  204:         takeProfitPriceLong = closePrice + takeProfitTicks * syminfo.mintick
+  205:         stopLossPriceLong = closePrice - stopLossTicks * syminfo.mintick
+  206:         strategy.entry("Long", strategy.long)
+  207:         strategy.exit("Take Profit Long", "Long", limit=takeProfitPriceLong, stop=stopLossPriceLong, trail_offset=trailingStopTicks * syminfo.mintick)
+  208:         // Plot visual signal for long entry
+  209:         label.new(bar_index, closePrice, "Buy", color=color.green, textcolor=color.white, style=label.style_label_up, size=size.small)
+  210:         // Send alert for long entry
+  211:         alert("Long entry signal - price: " + str.tostring(closePrice), alert.freq_once_per_bar)
+  212:         
+  213:     if (shortCondition)
+  214:         takeProfitPriceShort = closePrice - takeProfitTicks * syminfo.mintick
+  215:         stopLossPriceShort = closePrice + stopLossTicks * syminfo.mintick
+  216:         strategy.entry("Short", strategy.short)
+  217:         strategy.exit("Take Profit Short", "Short", limit=takeProfitPriceShort, stop=stopLossPriceShort, trail_offset=trailingStopTicks * syminfo.mintick)

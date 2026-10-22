@@ -5456,6 +5456,39 @@ SIZING = {
     468316: [
         ("Fixed quantities 1 / 2 / 3 / 4 (scale-in)", 121, 131),
     ],
+    # ---- FMZ-C, batch C207 (2026-10-22)
+    468319: [
+        ("Stop 1.5 ATR / target 3 ATR from the average price", 121, 165),
+    ],
+    468320: [
+        ("Slope threshold 0.5 (price units)", 129, 132),
+    ],
+    468322: [
+        ("Target 3.5 % / stop 1.4 % (unused) of the signal close; add-on qty 3", 154, 195),
+    ],
+    468323: [
+        ("Stop 2 ATR / target 3 ATR from the average price", 150, 154),
+    ],
+    468324: [
+        ("Target 55 / stop 30 ticks; trail_offset 25 x mintick", 169, 217),
+    ],
+    468325: [
+        ("strategy(): 100 % of equity; brackets 1.5 / 0.5 % and 0.5 / 0.2 % of the entry price", 157, 285),
+    ],
+    468328: [
+        ("Stop SMA 90 of the signal bar; target 1.5 x the risk", 146, 216),
+    ],
+    468330: [],
+    468331: [],
+    468333: [
+        ("Stop 1.25 / target 37.5 (price units); 2 contracts", 142, 185),
+    ],
+    468334: [
+        ("Stop 1.5 ATR / target 2 ATR from the signal close", 115, 145),
+    ],
+    468335: [
+        ("Risk 2.5 % of equity over a stop 1.5 % under the SMA 200 (size only)", 125, 139),
+    ],
 }
 
 REJECTED_ON_READING = {

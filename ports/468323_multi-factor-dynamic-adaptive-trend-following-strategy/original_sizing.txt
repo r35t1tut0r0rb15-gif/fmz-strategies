@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #468323 (多因子动态适应型趋势跟踪策略-Multi-Factor-Dynamic-Adaptive-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/468323  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 ATR / target 3 ATR from the average price  [lines 150-154]
+  150: stopLoss = 2 * atr
+  151: takeProfit = 3 * atr
+  152: 
+  153: strategy.exit("Exit Long", "Long", stop = strategy.position_avg_price - stopLoss, limit = strategy.position_avg_price + takeProfit)
+  154: strategy.exit("Exit Short", "Short", stop = strategy.position_avg_price + stopLoss, limit = strategy.position_avg_price - takeProfit)

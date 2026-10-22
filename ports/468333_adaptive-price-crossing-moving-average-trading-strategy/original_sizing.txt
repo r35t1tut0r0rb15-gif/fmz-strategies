@@ -1,0 +1,49 @@
+# Original sizing and money-management code, FMZ #468333 (自适应价格交叉均线交易策略-Adaptive-Price-Crossing-Moving-Average-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/468333  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1.25 / target 37.5 (price units); 2 contracts  [lines 142-185]
+  142: long_sl_amount = 1.25
+  143: long_tp_amount = 37.5
+  144: short_sl_amount = 1.25
+  145: short_tp_amount = 37.5
+  146: 
+  147: // Number of contracts
+  148: contracts = 2
+  149: 
+  150: // Function to calculate SL and TP prices based on entry price and dollar amounts
+  151: long_sl_price(entry_price) =>
+  152:     entry_price - long_sl_amount
+  153: 
+  154: long_tp_price(entry_price) =>
+  155:     entry_price + long_tp_amount
+  156: 
+  157: short_sl_price(entry_price) =>
+  158:     entry_price + short_sl_amount
+  159: 
+  160: short_tp_price(entry_price) =>
+  161:     entry_price - short_tp_amount
+  162: 
+  163: // Trading conditions
+  164: price_intersects_hma = ta.crossover(close, hma_value) or ta.crossunder(close, hma_value)
+  165: 
+  166: // Long and Short Conditions based on price intersecting HMA
+  167: long_condition = ta.crossover(close, hma_value)
+  168: short_condition = ta.crossunder(close, hma_value)
+  169: 
+  170: // Track open positions
+  171: var bool long_open = false
+  172: var bool short_open = false
+  173: 
+  174: // Handle Long Positions
+  175: if (long_condition and not long_open)
+  176:     entry_price = close
+  177:     strategy.entry("Long", strategy.long, qty=contracts)
+  178:     strategy.exit("Exit Long", from_entry="Long", stop=long_sl_price(entry_price), limit=long_tp_price(entry_price))
+  179:     long_open := true
+  180: 
+  181: // Handle Short Positions
+  182: if (short_condition and not short_open)
+  183:     entry_price = close
+  184:     strategy.entry("Short", strategy.short, qty=contracts)
+  185:     strategy.exit("Exit Short", from_entry="Short", stop=short_sl_price(entry_price), limit=short_tp_price(entry_price))

@@ -1,0 +1,47 @@
+# Original sizing and money-management code, FMZ #468322 (多周期RSI超卖反转策略-Multi-Timeframe-RSI-Oversold-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/468322  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 3.5 % / stop 1.4 % (unused) of the signal close; add-on qty 3  [lines 154-195]
+  154: stopLossPercent = input.float(1.4, title="Stop Loss (%)") / 100 // Convert percentage to a decimal.
+  155: takeProfitPercent = input.float(3.5, title="Take Profit (%)") / 100 // Convert percentage to a decimal.
+  156: 
+  157: // Calculate RSI and EMA
+  158: rsiValue = ta.rsi(rsiSource, rsiPeriod)
+  159: longEma = ta.ema(rsiSource, emaPeriod)
+  160: 
+  161: // Plot the EMA
+  162: plot(longEma, title="EMA", color=color.blue, linewidth=1)
+  163: 
+  164: // Entry conditions for long trades
+  165: longCondition = rsiValue < rsiEntryValue 
+  166: 
+  167: // Exit conditions for long trades
+  168: rsiExitCondition = rsiValue > rsiExitValue
+  169: 
+  170: // Tracking the entry price, setting stop loss, and take profit
+  171: var float entryPrice = na
+  172: if (longCondition)
+  173:     entryPrice := close
+  174: stopLossPrice = entryPrice * (1 - stopLossPercent)
+  175: takeProfitPrice = entryPrice * (1 + takeProfitPercent)
+  176: stopLossHit = close < stopLossPrice
+  177: takeProfitHit = close > takeProfitPrice
+  178: 
+  179: // Execute trades using the if statement
+  180: if (longCondition)
+  181:     strategy.entry("Long", strategy.long)
+  182: 
+  183: // Distinct exit conditions
+  184: if (rsiExitCondition)
+  185:     strategy.close("Long", comment="RSI Exit")
+  186: 
+  187: if (takeProfitHit)
+  188:     strategy.close("Long", comment="Take Profit Hit")
+  189: 
+  190: 
+  191: ///add a more limit buy
+  192: morebuy=entryPrice*(0.98)
+  193: buymore=close<morebuy
+  194: if buymore
+  195:     strategy.entry('add more', strategy.long, qty = 3, comment = 'letgo bitch')

@@ -2915,3 +2915,15 @@ fmz_id,file,final_outcome,criterion,reason
 468308,交叉均线与平安蜡烛动量策略-Crossover-Moving-Average-with-Smoothed-Candlestick-Momentum-Strategy.md,PORTED,,ports/468308_crossover-moving-average-with-smoothed-candlestick-momentum/
 468309,动态趋势跟踪策略与机器学习增强型风险管理Dynamic-Trend-Following-Strategy-with-Machine-Learning-Enhanced-Risk-Management.md,PORTED,,ports/468309_dynamic-trend-following-strategy-with-machine-learning-enhan/
 468316,动态仓位管理RSI超买反转策略-Dynamic-Position-Management-RSI-Overbought-Reversal-Strategy.md,PORTED,,ports/468316_rsi-dynamic-position-management-rsi-overbought-reversal-stra/
+468319,EMA-MACD-动量跟踪策略EMA-MACD-Momentum-Tracking-Strategy.md,PORTED,,ports/468319_ema-macd-ema-macd-momentum-tracking-strategy/
+468320,高斯交叉EMA趋势滑点追踪策略-Gaussian-Cross-EMA-Trend-Retracement-Strategy.md,PORTED,,ports/468320_ema-gaussian-cross-ema-trend-retracement-strategy/
+468322,多周期RSI超卖反转策略-Multi-Timeframe-RSI-Oversold-Reversal-Strategy.md,PORTED,,ports/468322_rsi-multi-timeframe-rsi-oversold-reversal-strategy/
+468323,多因子动态适应型趋势跟踪策略-Multi-Factor-Dynamic-Adaptive-Trend-Following-Strategy.md,PORTED,,ports/468323_multi-factor-dynamic-adaptive-trend-following-strategy/
+468324,动态趋势跟踪EMA交叉策略-Dynamic-Trend-Following-EMA-Crossover-Strategy.md,PORTED,,ports/468324_ema-dynamic-trend-following-ema-crossover-strategy/
+468325,EMA与CCI多重交叉趋势追踪策略-Multi-EMA-and-CCI-Crossover-Trend-Following-Strategy.md,PORTED,,ports/468325_ema-cci-multi-ema-and-cci-crossover-trend-following-strategy/
+468328,EMA-SMA-CCI-ATR-均线完美排列策略与趋势魔法指标自动交易系统-EMA-SMA-CCI-ATR-Perfect-Order-Moving-Average-Strategy-with-Trend-Magic-Indicator-Auto-Trading-System.md,PORTED,,ports/468328_ema-sma-cci-atr-ema-sma-cci-atr-perfect-order-moving-average/
+468330,双重珊瑚趋势交叉策略-Dual-Coral-Trend-Crossover-Strategy.md,PORTED,,ports/468330_dual-coral-trend-crossover-strategy/
+468331,多指标组合动态止损趋势跟踪策略-Multi-Indicator-Dynamic-Stop-Loss-Trend-Following-Strategy.md,PORTED,,ports/468331_multi-indicator-dynamic-stop-loss-trend-following-strategy/
+468333,自适应价格交叉均线交易策略-Adaptive-Price-Crossing-Moving-Average-Trading-Strategy.md,PORTED,,ports/468333_adaptive-price-crossing-moving-average-trading-strategy/
+468334,趋势跟踪与动量结合的双指标交易策略-Dual-Indicator-Trading-Strategy-Combining-Trend-Following-and-Momentum.md,PORTED,,ports/468334_dual-indicator-trading-strategy-combining-trend-following-an/
+468335,基于双均线的黄金交叉自适应风险管理策略-Adaptive-Risk-Management-Strategy-Based-on-Dual-Moving-Average-Golden-Cross.md,PORTED,,ports/468335_adaptive-risk-management-strategy-based-on-dual-moving-avera/

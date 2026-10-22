@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #468320 (高斯交叉EMA趋势滑点追踪策略-Gaussian-Cross-EMA-Trend-Retracement-Strategy)
+# Source: https://www.fmz.com/strategy/468320  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Slope threshold 0.5 (price units)  [lines 129-132]
+  129: flat_threshold = 0.5
+  130: 
+  131: // Check if the EMA is flat or inclined
+  132: ema_is_inclined = math.abs(ema_slope) > flat_threshold

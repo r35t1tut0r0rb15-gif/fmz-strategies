@@ -1,0 +1,50 @@
+# Original sizing and money-management code, FMZ #468319 (EMA-MACD-动量跟踪策略EMA-MACD-Momentum-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/468319  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1.5 ATR / target 3 ATR from the average price  [lines 121-165]
+  121: atrLength = input.int(14, title="ATR Length")
+  122: atrMultiplier = input.float(1.5, title="ATR Multiplier")
+  123: 
+  124: // Calculate EMAs
+  125: fastEMA = ta.ema(close, fastLength)
+  126: slowEMA = ta.ema(close, slowLength)
+  127: 
+  128: // Calculate MACD
+  129: [macdLine, signalLine, macdHist] = ta.macd(close, macdShortLength, macdLongLength, macdSignalLength)
+  130: 
+  131: // Calculate ATR
+  132: atrValue = ta.atr(atrLength)
+  133: 
+  134: // Plot EMAs
+  135: plot(fastEMA, color=color.green, title="Fast EMA")
+  136: plot(slowEMA, color=color.red, title="Slow EMA")
+  137: 
+  138: // Plot MACD
+  139: hline(0, "Zero Line", color=color.gray)
+  140: plot(macdLine - signalLine, color=color.blue, title="MACD Histogram", style=plot.style_columns)
+  141: plot(macdLine, color=color.green, title="MACD Line")
+  142: plot(signalLine, color=color.orange, title="Signal Line")
+  143: 
+  144: // Entry conditions
+  145: longCondition = ta.crossover(fastEMA, slowEMA) and ta.crossover(macdLine, signalLine)
+  146: shortCondition = ta.crossunder(fastEMA, slowEMA) and ta.crossunder(macdLine, signalLine)
+  147: 
+  148: // Execute trades
+  149: if (longCondition)
+  150:     strategy.entry("Long", strategy.long)
+  151: 
+  152: if (shortCondition)
+  153:     strategy.entry("Short", strategy.short)
+  154: 
+  155: // Dynamic Stop Loss and Take Profit based on ATR
+  156: longSL = strategy.position_avg_price - atrValue * atrMultiplier
+  157: longTP = strategy.position_avg_price + atrValue * atrMultiplier * 2
+  158: shortSL = strategy.position_avg_price + atrValue * atrMultiplier
+  159: shortTP = strategy.position_avg_price - atrValue * atrMultiplier * 2
+  160: 
+  161: if (strategy.position_size > 0)
+  162:     strategy.exit("Take Profit/Stop Loss", "Long", stop=longSL, limit=longTP)
+  163: 
+  164: if (strategy.position_size < 0)
+  165:     strategy.exit("Take Profit/Stop Loss", "Short", stop=shortSL, limit=shortTP)

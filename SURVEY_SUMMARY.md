@@ -11,9 +11,9 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2537 |
+| PORTED | 2549 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 844 |
+| PORT_CANDIDATE | 832 |
 | HELD_NEEDS_VOLUME | 568 |
 | REJECTED_ON_READING | 358 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -2665,7 +2665,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 468308 | `ports/468308_crossover-moving-average-with-smoothed-candlestick-momentum/` | PineScript | candle_pattern | none | fast x2, slow x2 | 4 |
 | 468309 | `ports/468309_dynamic-trend-following-strategy-with-machine-learning-enhan/` | PineScript | ma_cross | none | short_len x2, long_len x2, sl_mult x2 | 8 |
 | 468316 | `ports/468316_rsi-dynamic-position-management-rsi-overbought-reversal-stra/` | PineScript | rsi_oscillator | none | sma_long x2, rsi_th x2, exit_th x2 | 8 |
-| | **2537 ports** | | | | | **11942** |
+| 468319 | `ports/468319_ema-macd-ema-macd-momentum-tracking-strategy/` | PineScript | macd_cross | coarse_bar_stop, trailing_stop_pending | fast x2, slow x2, atr_mult x2 | 8 |
+| 468320 | `ports/468320_ema-gaussian-cross-ema-trend-retracement-strategy/` | PineScript | candle_pattern | none | ema_len x2, flat_frac x2 | 4 |
+| 468322 | `ports/468322_rsi-multi-timeframe-rsi-oversold-reversal-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, entry_th x2, tp_pct x2 | 8 |
+| 468323 | `ports/468323_multi-factor-dynamic-adaptive-trend-following-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop, trailing_stop_pending | sl_atr x2, tp_atr x2 | 4 |
+| 468324 | `ports/468324_ema-dynamic-trend-following-ema-crossover-strategy/` | PineScript | ma_trend | coarse_bar_stop | ema_fast x2, tp_atr x2, sl_atr x2 | 8 |
+| 468325 | `ports/468325_ema-cci-multi-ema-and-cci-crossover-trend-following-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | max_wait x2, cci_level x2 | 4 |
+| 468328 | `ports/468328_ema-sma-cci-atr-ema-sma-cci-atr-perfect-order-moving-average/` | PineScript | multi_indicator_confluence | none | cci_period x2, rr x2 | 4 |
+| 468330 | `ports/468330_dual-coral-trend-crossover-strategy/` | PineScript | adaptive_average | none | p1 x2, p2 x2 | 4 |
+| 468331 | `ports/468331_multi-indicator-dynamic-stop-loss-trend-following-strategy/` | PineScript | atr_trailing_line | none | key x2, atr_len x2, hull_len x2 | 8 |
+| 468333 | `ports/468333_adaptive-price-crossing-moving-average-trading-strategy/` | PineScript | hull_ma | coarse_bar_stop | hma_length x2, sl_frac x2, tp_frac x2 | 8 |
+| 468334 | `ports/468334_dual-indicator-trading-strategy-combining-trend-following-an/` | PineScript | macd_cross | coarse_bar_stop | trend_len x2, sl_mult x2, tp_mult x2 | 8 |
+| 468335 | `ports/468335_adaptive-risk-management-strategy-based-on-dual-moving-avera/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| | **2549 ports** | | | | | **12014** |
 
 ## Rejected on reading
 

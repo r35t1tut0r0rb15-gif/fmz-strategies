@@ -1,0 +1,134 @@
+# Original sizing and money-management code, FMZ #468325 (EMA与CCI多重交叉趋势追踪策略-Multi-EMA-and-CCI-Crossover-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/468325  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; brackets 1.5 / 0.5 % and 0.5 / 0.2 % of the entry price  [lines 157-285]
+  157: strategy("EMA & CCI Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+  158: 
+  159: // Параметры EMA
+  160: ema8_length = 8
+  161: ema12_length = 12
+  162: ema24_length = 24
+  163: ema72_length = 72
+  164: 
+  165: // Расчет EMA
+  166: ema8 = ta.ema(close, ema8_length)
+  167: ema12 = ta.ema(close, ema12_length)
+  168: ema24 = ta.ema(close, ema24_length)
+  169: ema72 = ta.ema(close, ema72_length)
+  170: 
+  171: // Параметры CCI
+  172: cci_length = 20
+  173: cci_overbought = 150
+  174: cci_oversold = -150
+  175: 
+  176: // Параметры тейк-профита и стоп-лосса
+  177: takeProfitPercent = input.float(1.5, title="Take Profit (%)", step=0.1)
+  178: stopLossPercent = input.float(0.5, title="Stop Loss (%)", step=0.1)
+  179: takeProfitPercentTime = input.float(0.5, title="Take Profit (%) for Time-based", step=0.1)
+  180: stopLossPercentTime = input.float(0.2, title="Stop Loss (%) for Time-based", step=0.1)
+  181: max_wait_bars = input.float(2, title="Max wait candles", step=1)
+  182: // Расчет CCI
+  183: cci = ta.cci(close, cci_length)
+  184: 
+  185: // Состояние открытой позиции
+  186: sz = strategy.position_size
+  187: 
+  188: // Флаги для отслеживания пересечений EMA вверх
+  189: var int ema8_cross_index_up = na
+  190: var int ema12_cross_index_up = na
+  191: var int ema24_cross_index_up = na
+  192: 
+  193: // Флаги для отслеживания пересечений EMA вниз
+  194: var int ema8_cross_index_down = na
+  195: var int ema12_cross_index_down = na
+  196: var int ema24_cross_index_down = na
+  197: 
+  198: // Проверка пересечения EMA с 72 вверх и обновление индекса пересечения
+  199: if (ta.crossover(ema8, ema72))
+  200:     ema8_cross_index_up := bar_index
+  201: if (ta.crossover(ema12, ema72))
+  202:     ema12_cross_index_up := bar_index
+  203: if (ta.crossover(ema24, ema72))
+  204:     ema24_cross_index_up := bar_index
+  205: 
+  206: // Проверка пересечений EMA вниз и обновление индекса пересечения
+  207: if (ta.crossunder(ema8, ema72))
+  208:     ema8_cross_index_down := bar_index
+  209: if (ta.crossunder(ema12, ema72))
+  210:     ema12_cross_index_down := bar_index
+  211: if (ta.crossunder(ema24, ema72))
+  212:     ema24_cross_index_down := bar_index
+  213: 
+  214: // Условия пересечения за одну свечу (лонг и шорт)
+  215: cross_condition_one_candle_long = (na(ema8_cross_index_up) == false and (bar_index - ema8_cross_index_up) == 0) and
+  216:                                   (na(ema12_cross_index_up) == false and (bar_index - ema12_cross_index_up) == 0) and
+  217:                                   (na(ema24_cross_index_up) == false and (bar_index - ema24_cross_index_up) == 0)
+  218: 
+  219: cross_condition_one_candle_short = (na(ema8_cross_index_down) == false and (bar_index - ema8_cross_index_down) == 0) and
+  220:                                    (na(ema12_cross_index_down) == false and (bar_index - ema12_cross_index_down) == 0) and
+  221:                                    (na(ema24_cross_index_down) == false and (bar_index - ema24_cross_index_down) == 0)
+  222: 
+  223: // Условия пересечения в течение указанного времени (лонг и шорт)
+  224: cross_condition_within_time_long = (not na(ema8_cross_index_up) and (bar_index - ema8_cross_index_up) <= max_wait_bars) and
+  225:                                    (not na(ema12_cross_index_up) and (bar_index - ema12_cross_index_up) <= max_wait_bars) and
+  226:                                    (not na(ema24_cross_index_up) and (bar_index - ema24_cross_index_up) <= max_wait_bars)
+  227: 
+  228: cross_condition_within_time_short = (not na(ema8_cross_index_down) and (bar_index - ema8_cross_index_down) <= max_wait_bars) and (not na(ema12_cross_index_down) and (bar_index - ema12_cross_index_down) <= max_wait_bars) and (not na(ema24_cross_index_down) and (bar_index - ema24_cross_index_down) <= max_wait_bars)
+  229: 
+  230: // Условие для открытия лонга
+  231: long_condition_one = cross_condition_one_candle_long and cci > cci_overbought and close > ema72
+  232: long_condition_time = cross_condition_within_time_long and cci > cci_overbought and close > ema72
+  233: 
+  234: // Условие для открытия шорта
+  235: short_condition_one = cross_condition_one_candle_short and cci < cci_oversold and close < ema72
+  236: short_condition_time = cross_condition_within_time_short and cci < cci_oversold and close < ema72
+  237: 
+  238: // Вход в лонг
+  239: if (long_condition_one and sz == 0)
+  240:     strategy.entry(id='Long_one', direction=strategy.long)
+  241: 
+  242: if (long_condition_time and sz == 0)
+  243:     strategy.entry(id='Long_time', direction=strategy.long)
+  244: 
+  245: // Вход в шорт
+  246: if (short_condition_one and sz == 0)
+  247:     strategy.entry(id='Short_one', direction=strategy.short)
+  248: 
+  249: if (short_condition_time and sz == 0)
+  250:     strategy.entry(id='Short_time', direction=strategy.short)
+  251: 
+  252: // Вычисление цен тейк-профита и стоп-лосса для лонга
+  253: if (sz > 0 and strategy.opentrades.entry_id(0) == 'Long_one')
+  254:     entryPriceLong = strategy.opentrades.entry_price(0)
+  255:     takeProfitPriceLong = entryPriceLong * (1 + takeProfitPercent / 100)
+  256:     stopLossPriceLong = entryPriceLong * (1 - stopLossPercent / 100)
+  257:     strategy.exit("Close long one", "Long_one", limit=takeProfitPriceLong, stop=stopLossPriceLong)
+  258:     ema8_cross_index_up := na
+  259:     ema12_cross_index_up := na
+  260:     ema24_cross_index_up := na
+  261: 
+  262: if (sz > 0 and strategy.opentrades.entry_id(0) == 'Long_time')
+  263:     entryPriceLongTime = strategy.opentrades.entry_price(0)
+  264:     takeProfitPriceLongTime = entryPriceLongTime * (1 + takeProfitPercentTime / 100)
+  265:     stopLossPriceLongTime = entryPriceLongTime * (1 - stopLossPercentTime / 100)
+  266:     strategy.exit("Close long time", "Long_time", limit=takeProfitPriceLongTime, stop=stopLossPriceLongTime)
+  267:     ema8_cross_index_up := na
+  268:     ema12_cross_index_up := na
+  269:     ema24_cross_index_up := na
+  270: 
+  271: // Вычисление цен тейк-профита и стоп-лосса для шорта
+  272: if (sz < 0 and strategy.opentrades.entry_id(0) == 'Short_one')
+  273:     entryPriceShort = strategy.opentrades.entry_price(0)
+  274:     takeProfitPriceShort = entryPriceShort * (1 - takeProfitPercent / 100)
+  275:     stopLossPriceShort = entryPriceShort * (1 + stopLossPercent / 100)
+  276:     strategy.exit("Close short one", "Short_one", limit=takeProfitPriceShort, stop=stopLossPriceShort)
+  277:     ema8_cross_index_down := na
+  278:     ema12_cross_index_down := na
+  279:     ema24_cross_index_down := na
+  280: 
+  281: if (sz < 0 and strategy.opentrades.entry_id(0) == 'Short_time')
+  282:     entryPriceShortTime = strategy.opentrades.entry_price(0)
+  283:     takeProfitPriceShortTime = entryPriceShortTime * (1 - takeProfitPercentTime / 100)
+  284:     stopLossPriceShortTime = entryPriceShortTime * (1 + stopLossPercentTime / 100)
+  285:     strategy.exit("Close short time", "Short_time", limit=takeProfitPriceShortTime, stop=stopLossPriceShortTime)

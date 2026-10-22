@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #468335 (基于双均线的黄金交叉自适应风险管理策略-Adaptive-Risk-Management-Strategy-Based-on-Dual-Moving-Average-Golden-Cross)
+# Source: https://www.fmz.com/strategy/468335  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk 2.5 % of equity over a stop 1.5 % under the SMA 200 (size only)  [lines 125-139]
+  125: // Set the stop-loss to 1.5% below the 200-day moving average
+  126: stopLoss = ma200 * 0.985  // 1.5% below the 200-day MA
+  127: 
+  128: // Risk management (1.5% of total equity)
+  129: riskPercent = 0.025  // 1.5% risk
+  130: equity = strategy.equity
+  131: riskAmount = equity * riskPercent
+  132: 
+  133: // Calculate the distance between the entry price (close) and the stop-loss
+  134: stopDistance = close - stopLoss
+  135: 
+  136: // Calculate position size based on the risk amount and stop-loss distance
+  137: if (goldenCross and stopDistance > 0)
+  138:     positionSize = riskAmount / stopDistance
+  139:     strategy.entry("Long", strategy.long, qty=positionSize)
