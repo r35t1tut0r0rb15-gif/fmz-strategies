@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3000 |
+| PORTED | 3012 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 432 |
-| PORT_CANDIDATE | 302 |
+| REJECTED_ON_READING | 433 |
+| PORT_CANDIDATE | 289 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -3128,7 +3128,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482848 | `ports/482848_volatility-momentum-breakout-strategy-with-trend-and-momentu/` | PineScript | volatility_channel_breakout | trailing_stop_pending | atr_multiplier x2, lookback x2 | 4 |
 | 482849 | `ports/482849_adaptive-ema-crossover-dynamic-position-risk-management-stra/` | PineScript | ma_cross | none | mt_ema x2, rr x2 | 4 |
 | 482859 | `ports/482859_moving-average-based-supply-demand-zone-trading-system-with/` | PineScript | ma_cross | none | zone_lookback x2, take_profit_perc x2 | 4 |
-| | **3000 ports** | | | | | **13819** |
+| 482861 | `ports/482861_ict-multi-dimensional-dynamic-ict-trading-strategy-with-engu/` | PineScript | candle_pattern | trailing_stop_pending | stop_loss_perc x2, take_profit_perc x2 | 4 |
+| 482863 | `ports/482863_atr-five-minute-opening-breakout-strategy-with-dynamic-atr-b/` | PineScript | opening_range | trailing_stop_pending | sl_factor x2, tp_factor x2 | 4 |
+| 482870 | `ports/482870_ema-dynamic-ema-crossover-with-adaptive-swing-high-low-strat/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | ema_length x2, swing_length x2 | 4 |
+| 482872 | `ports/482872_macd-ema-bidirectional-macd-momentum-and-ema-trend-trading-s/` | PineScript | macd_cross | trailing_stop_pending | ema_length x2, tp_ratio x2 | 4 |
+| 482873 | `ports/482873_multi-level-quantitative-trend-trading-strategy-based-on-sup/` | PineScript | pivot_levels | none | pivot_bars x2, tolerance x2 | 4 |
+| 482878 | `ports/482878_triple-bollinger-band-standard-deviation-trend-following-str/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 482879 | `ports/482879_adx-multi-indicator-trend-following-strategy-with-adx-dynami/` | PineScript | rsi_oscillator | trailing_stop_pending | sl_multiplier x2, risk_to_reward x2 | 4 |
+| 482886 | `ports/482886_high-frequency-quantitative-multi-timeframe-heatmap-sniper-s/` | PineScript | mean_reversion_band | none | lookback x2, sensitivity x2 | 4 |
+| 482887 | `ports/482887_bollinger-bands-rsi-momentum-reversal-quantitative-trading-s/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 482889 | `ports/482889_multi-indicator-crossover-trend-following-strategy-with-fibo/` | PineScript | ma_cross | none | fast_length x2, slow_length x2 | 4 |
+| 482890 | `ports/482890_multi-band-statistical-trend-analysis-strategy/` | PineScript | volatility_channel_breakout | none | length x2, upper_quantile x2 | 4 |
+| 482891 | `ports/482891_rsi-macd-dynamic-stop-loss-trend-following-strategy-with-rsi/` | PineScript | macd_cross | none | stop_loss_percent x2, rsi_length x2 | 4 |
+| | **3012 ports** | | | | | **13867** |
 
 ## Rejected on reading
 
@@ -3566,6 +3578,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482835 | 动态多周期趋势预测结合移动均线过滤策略-Dynamic-Multi-Period-Trend-Prediction-with-Moving-Average-Filter-Strategy.md | 1 | The model prediction is math.random() (a random number each bar): the trades are random, not a rule (criterion 1, as the C204-C206 math.random readings). |
 | 482840 | 指数移动平均线交叉结合动态止损策略-EMA-Crossover-Strategy-with-Dynamic-Trailing-Stop-Loss.md | 2 | initial_stop_loss_points = 20 and trail_distance = 10 are price amounts added to the entry price for the stop levels, with no scale (criterion 2, as #473377). |
 | 482860 | 指数移动平均与相对强弱指数交叉策略-Exponential-Moving-Average-and-Relative-Strength-Index-Crossover-Strategy.md | 2 | buyOffset / sellOffset = 2 are price amounts added to the EMA for the entry levels, and stopLossPoints = 20 is a price amount from the average price (criterion 2, as #473377). |
+| 482876 | 多重指标协同交易系统-基于趋势动量复合信号策略-Multi-Indicator-Synergy-Trading-System-Trend-Momentum-Composite-Signal-Strategy.md | 2 | The exits pass trail_offset = trailingStopPerc x close, a price amount, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #482767). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

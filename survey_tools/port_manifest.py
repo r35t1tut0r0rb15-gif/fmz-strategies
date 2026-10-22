@@ -6553,6 +6553,35 @@ SIZING = {
         ("RiskPercent quantity: equity x 1 % / stop distance", 99, 124),
     ],
     482859: [],
+    # ---- FMZ-C, batch C252 (2026-10-22)
+    482861: [
+        ("strategy(): 10 % of equity", 111, 111),
+    ],
+    482863: [],
+    482870: [],
+    482872: [
+        ("strategy(): 10 % of equity", 111, 111),
+    ],
+    482873: [
+        ("strategy(): capital 10000, 10 % of equity", 111, 111),
+    ],
+    482878: [
+        ("strategy(): 10 % of equity, pyramiding 0", 97, 97),
+    ],
+    482879: [
+        ("strategy(): 1 % of equity", 99, 99),
+    ],
+    482886: [
+        ("strategy(): 1 % of equity", 106, 106),
+    ],
+    482887: [],
+    482889: [],
+    482890: [
+        ("strategy(): 10 % of equity, capital 5000", 103, 105),
+    ],
+    482891: [
+        ("strategy(): capital 300, 10 % of equity, commission 0.1 %", 96, 96),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8268,6 +8297,10 @@ REJECTED_ON_READING = {
     482860: ("2", "buyOffset / sellOffset = 2 are price amounts added to the EMA for the entry "
               "levels, and stopLossPoints = 20 is a price amount from the average price "
               "(criterion 2, as #473377)."),
+    # ---- FMZ-C, batch C252 (2026-10-22)
+    482876: ("2", "The exits pass trail_offset = trailingStopPerc x close, a price amount, where the "
+              "call takes ticks, with no /mintick: the trailing exit is undefined as written "
+              "(criterion 2, as #482767)."),
 }
 
 DUPLICATE_ON_READING = {
