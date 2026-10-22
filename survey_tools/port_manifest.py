@@ -4089,6 +4089,18 @@ SIZING = {
     ],
     440700: [],
     440701: [],
+    # ---- FMZ-C, batch C139 (2026-10-22)
+    440713: [
+        ("strategy(): capital 100, commission 0.05, qty 5", 181, 181),
+    ],
+    440717: [],
+    440720: [],
+    440724: [],
+    440728: [],
+    440794: [],
+    440797: [
+        ("strategy(): capital 1000, fixed qty 0.5, slippage 25", 132, 132),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -5141,6 +5153,19 @@ REJECTED_ON_READING = {
     440711: ("1", "Pyramiding 3 with repeated 'Long' / 'Short' entries of an equity-based lot, and "
               "exits sent as qty-0 'Close' entries: accumulation with position-size-dependent "
               "orders (criterion 1, as #430762)."),
+    # ---- FMZ-C, batch C139 (2026-10-22)
+    440715: ("2", "The exits pass strategy.position_avg_price +/- 50 / 100 x mintick (price levels) "
+              "to profit and loss, which are in ticks (criterion 2, as #437048, #437677)."),
+    440719: ("1", "The first take-profit closes 50 % of the position (strategy.close with qty_percent "
+              "= 50) and moves the stop to break-even: partial exits (criterion 1, as #436524)."),
+    440727: ("1", "strategy.close_all() is called unconditionally on every bar after the entries (in "
+              "both option blocks), so every entry bar ends flat (as #430380): as written no "
+              "position is ever held (as #430384)."),
+    440729: ("1", "The entries test the close against request.security(syminfo.tickerid, 'D', close, "
+              "lookahead = barmerge.lookahead_on): the current day's final close on every "
+              "intraday bar, a higher-timeframe value with lookahead (criterion 1)."),
+    440793: ("2", "The exits are strategy.exit(profit = close x (50 + 0.01)) and similar: price "
+              "amounts passed to profit, which is in ticks (criterion 2, as #437048, #437677)."),
 }
 
 DUPLICATE_ON_READING = {

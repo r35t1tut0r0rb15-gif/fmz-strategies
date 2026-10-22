@@ -11,12 +11,12 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1831 |
-| PORT_CANDIDATE | 1659 |
+| PORTED | 1838 |
+| PORT_CANDIDATE | 1647 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 565 |
+| REJECTED_ON_READING | 257 |
 | FLAGGED_CRYPTO_ONLY | 253 |
-| REJECTED_ON_READING | 252 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
@@ -1959,7 +1959,14 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440698 | `ports/440698_ichimoku-cloud-trend-following-strategy/` | PineScript | ichimoku | none | tenkan x2, kijun x2 | 4 |
 | 440700 | `ports/440700_quantitative-trend-tracking-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | mult x2, rsi_comp x2 | 4 |
 | 440701 | `ports/440701_golden-bollinger-band-gap-reversion-system/` | PineScript | rsi_oscillator | coarse_bar_stop | k_br x2, adx_max x2 | 4 |
-| | **1831 ports** | | | | | **8872** |
+| 440713 | `ports/440713_renko-renko-atr-trend-reversal-strategy/` | PineScript | renko_bricks | none | atr_len x2, sl_pct x2 | 4 |
+| 440717 | `ports/440717_dual-channel-breakout-strategy/` | PineScript | bollinger_reversion | coarse_bar_stop | k_sl x2, bb_dev x2 | 4 |
+| 440720 | `ports/440720_momentum-indicator-crossover-strategy/` | PineScript | rsi_oscillator | none | length x2, length3 x2 | 4 |
+| 440724 | `ports/440724_rwi-rwi-volatility-contrarian-strategy/` | PineScript | momentum_oscillator | none | length x2, threshold x2 | 4 |
+| 440728 | `ports/440728_dual-moving-average-crossover-and-williams-indicator-combo-s/` | PineScript | combo_123_reversal | none | length x2, n_wma x2 | 4 |
+| 440794 | `ports/440794_ergotic-momentum-direction-convergence-trading-strategy/` | PineScript | momentum_oscillator | none | s x2, smth_len x2 | 4 |
+| 440797 | `ports/440797_parabolic-period-and-bollinger-band-combined-moving-stop-los/` | PineScript | parabolic_sar | coarse_bar_stop | swing x2, ema_v x2 | 4 |
+| | **1838 ports** | | | | | **8900** |
 
 ## Rejected on reading
 
@@ -2217,6 +2224,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440691 | 动态止损追踪策略Trailing-Stop-Loss-Percent-Strategy.md | 1 | The entry condition is always true and its block resets the trailing level to 95 % of the current bar's high on every bar, so the long only closes on a single 1-minute bar with a 5 % range and re-enters at once: a buy-and-hold from the data start (criterion 1, as #430384). |
 | 440692 | 阴阳吊颈线策略Yin-Yang-Hanging-Man-Strategy.md | 1 | There is no exit of any kind: the first doji (body under 0.05 price units) opens one long that is held to the end of the data, a buy-and-hold from near the data start (criterion 1, as #430384). |
 | 440711 | 基于区间突破的双向趋势追踪策略Dual-directional-Trend-Tracking-Strategy-Based-on-Range-Breakout.md | 1 | Pyramiding 3 with repeated 'Long' / 'Short' entries of an equity-based lot, and exits sent as qty-0 'Close' entries: accumulation with position-size-dependent orders (criterion 1, as #430762). |
+| 440715 | 一种趋势追踪突破回调策略Breakout-Pullback-Strategy.md | 2 | The exits pass strategy.position_avg_price +/- 50 / 100 x mintick (price levels) to profit and loss, which are in ticks (criterion 2, as #437048, #437677). |
+| 440719 | 高效震荡突破双安全盈亏策略Efficient-Oscillation-Breakthrough-Dual-Stop-Profit-and-Stop-Loss-Strategy.md | 1 | The first take-profit closes 50 % of the position (strategy.close with qty_percent = 50) and moves the stop to break-even: partial exits (criterion 1, as #436524). |
+| 440727 | 动量突破银线策略Momentum-Breakthrough-Silver-Line-Strategy.md | 1 | strategy.close_all() is called unconditionally on every bar after the entries (in both option blocks), so every entry bar ends flat (as #430380): as written no position is ever held (as #430384). |
+| 440729 | 移动平均线结合的高效量化交易策略The-Efficient-Quant-Trading-Strategy-Combining.md | 1 | The entries test the close against request.security(syminfo.tickerid, 'D', close, lookahead = barmerge.lookahead_on): the current day's final close on every intraday bar, a higher-timeframe value with lookahead (criterion 1). |
+| 440793 | 移动平均和随机指标交易策略-Moving-Average-and-Stochastic-Trading-Strategy.md | 2 | The exits are strategy.exit(profit = close x (50 + 0.01)) and similar: price amounts passed to profit, which is in ticks (criterion 2, as #437048, #437677). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

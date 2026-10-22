@@ -251,6 +251,11 @@ fmz_id,file,final_outcome,criterion,reason
 440691,动态止损追踪策略Trailing-Stop-Loss-Percent-Strategy.md,REJECTED_ON_READING,1,"The entry condition is always true and its block resets the trailing level to 95 % of the current bar's high on every bar, so the long only closes on a single 1-minute bar with a 5 % range and re-enters at once: a buy-and-hold from the data start (criterion 1, as #430384)."
 440692,阴阳吊颈线策略Yin-Yang-Hanging-Man-Strategy.md,REJECTED_ON_READING,1,"There is no exit of any kind: the first doji (body under 0.05 price units) opens one long that is held to the end of the data, a buy-and-hold from near the data start (criterion 1, as #430384)."
 440711,基于区间突破的双向趋势追踪策略Dual-directional-Trend-Tracking-Strategy-Based-on-Range-Breakout.md,REJECTED_ON_READING,1,"Pyramiding 3 with repeated 'Long' / 'Short' entries of an equity-based lot, and exits sent as qty-0 'Close' entries: accumulation with position-size-dependent orders (criterion 1, as #430762)."
+440715,一种趋势追踪突破回调策略Breakout-Pullback-Strategy.md,REJECTED_ON_READING,2,"The exits pass strategy.position_avg_price +/- 50 / 100 x mintick (price levels) to profit and loss, which are in ticks (criterion 2, as #437048, #437677)."
+440719,高效震荡突破双安全盈亏策略Efficient-Oscillation-Breakthrough-Dual-Stop-Profit-and-Stop-Loss-Strategy.md,REJECTED_ON_READING,1,"The first take-profit closes 50 % of the position (strategy.close with qty_percent = 50) and moves the stop to break-even: partial exits (criterion 1, as #436524)."
+440727,动量突破银线策略Momentum-Breakthrough-Silver-Line-Strategy.md,REJECTED_ON_READING,1,"strategy.close_all() is called unconditionally on every bar after the entries (in both option blocks), so every entry bar ends flat (as #430380): as written no position is ever held (as #430384)."
+440729,移动平均线结合的高效量化交易策略The-Efficient-Quant-Trading-Strategy-Combining.md,REJECTED_ON_READING,1,"The entries test the close against request.security(syminfo.tickerid, 'D', close, lookahead = barmerge.lookahead_on): the current day's final close on every intraday bar, a higher-timeframe value with lookahead (criterion 1)."
+440793,移动平均和随机指标交易策略-Moving-Average-and-Stochastic-Trading-Strategy.md,REJECTED_ON_READING,2,"The exits are strategy.exit(profit = close x (50 + 0.01)) and similar: price amounts passed to profit, which is in ticks (criterion 2, as #437048, #437677)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2100,3 +2105,10 @@ fmz_id,file,final_outcome,criterion,reason
 440698,均衡尺云图趋势跟踪策略Ichimoku-Cloud-Trend-Following-Strategy.md,PORTED,,ports/440698_ichimoku-cloud-trend-following-strategy/
 440700,量化趋势追踪策略Quantitative-Trend-Tracking-Strategy.md,PORTED,,ports/440700_quantitative-trend-tracking-strategy/
 440701,黄金布林带跳空回归系统Golden-Bollinger-Band-Gap-Reversion-System.md,PORTED,,ports/440701_golden-bollinger-band-gap-reversion-system/
+440713,基于Renko平均真实波幅的趋势反转策略Renko-ATR-Trend-Reversal-Strategy.md,PORTED,,ports/440713_renko-renko-atr-trend-reversal-strategy/
+440717,基于双通道突破策略-Dual-Channel-Breakout-Strategy.md,PORTED,,ports/440717_dual-channel-breakout-strategy/
+440720,动量指标均线交叉策略Momentum-Indicator-Crossover-Strategy.md,PORTED,,ports/440720_momentum-indicator-crossover-strategy/
+440724,RWI波动率反转策略RWI-Volatility-Contrarian-Strategy.md,PORTED,,ports/440724_rwi-rwi-volatility-contrarian-strategy/
+440728,双移动平均线穿越与威廉姆斯指标组合策略Dual-Moving-Average-Crossover-and-Williams-Indicator-Combo-Strategy.md,PORTED,,ports/440728_dual-moving-average-crossover-and-williams-indicator-combo-s/
+440794,量化交易动量方向收敛策略Ergotic-Momentum-Direction-Convergence-Trading-Strategy.md,PORTED,,ports/440794_ergotic-momentum-direction-convergence-trading-strategy/
+440797,帕罗贝尔周期与布林带结合的移动止损策略Parabolic-Period-and-Bollinger-Band-Combined-Moving-Stop-Loss-Strategy.md,PORTED,,ports/440797_parabolic-period-and-bollinger-band-combined-moving-stop-los/
