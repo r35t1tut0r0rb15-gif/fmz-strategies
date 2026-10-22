@@ -241,6 +241,7 @@ fmz_id,file,final_outcome,criterion,reason
 440354,动态均价追踪策略Dynamic-Average-Price-Tracking-Strategy.md,REJECTED_ON_READING,1,"The script averages down: while the open loss is 10 % or more it adds 50 % of the held size to the long (pyramiding through strategy.position_size and position_avg_price) and holds until a 10 % gain on the average price: accumulation (criterion 1, as #435721, #430762)."
 440430,基于RSI指标的股票交易双向金字塔策略RSI-Indicator-Based-Stock-Trading-Pyramiding-Strategy.md,REJECTED_ON_READING,1,"Up to seven long entries (Entry 1 .. Entry 7) are added while the RSI stays oversold, one per strategy.opentrades count, each with its own exit: pyramiding accumulation (criterion 1, as #430762)."
 440436,移动平均线交叉策略Simple-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,2,"The stop is strategy.exit(loss = close x (1 - 1 %)): a price level passed to loss, which is in ticks (criterion 2, as #437048, #437677)."
+440502,双边突破K线波动通道策略Dual-Breakout-Volatility-Channel-Strategy.md,REJECTED_ON_READING,1,"Two take-profit exits close 15 % and then the rest of the position (qty_percent = 15 at 4.5 %, 100 at 20 %): partial exits (criterion 1, as #436524)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -2052,3 +2053,14 @@ fmz_id,file,final_outcome,criterion,reason
 440444,基于自适应移动平均线的趋势跟踪策略Trend-Following-Strategy-Based-on-Adaptive-Moving-Average.md,PORTED,,ports/440444_trend-following-strategy-based-on-adaptive-moving-average/
 440449,基于双MACD量化交易策略Dual-MACD-Quantitative-Trading-Strategy.md,PORTED,,ports/440449_macd-dual-macd-quantitative-trading-strategy/
 440451,双7日突破策略Double-7-Days-Breakout-Strategy.md,PORTED,,ports/440451_7-double-7-days-breakout-strategy/
+440454,基于Vix修复线性回归的低点捕捉策略Vix-Fix-Linear-Regression-Bottom-Fishing-Strategy.md,PORTED,,ports/440454_vix-vix-fix-linear-regression-bottom-fishing-strategy/
+440456,基于RSI指标的反转交易策略An-RSI-Reversal-Trading-Strategy.md,PORTED,,ports/440456_rsi-an-rsi-reversal-trading-strategy/
+440458,双均线缠论策略Dual-Moving-Average-Confluence-Strategy.md,PORTED,,ports/440458_dual-moving-average-confluence-strategy/
+440460,基于K线的双向突破交易策略Dual-Breakthrough-Strategy.md,PORTED,,ports/440460_k-dual-breakthrough-strategy/
+440465,多周期MACD指标交易策略Multi-Timeframe-MACD-Trading-Strategy.md,PORTED,,ports/440465_macd-multi-timeframe-macd-trading-strategy/
+440467,基于多指标的趋势跟踪策略Trend-Following-Strategy-Based-on-Multiple-Indicators.md,PORTED,,ports/440467_trend-following-strategy-based-on-multiple-indicators/
+440503,SMART专业量化交易策略SMART-Professional-Quantitative-Trading-Strategy.md,PORTED,,ports/440503_smart-smart-professional-quantitative-trading-strategy/
+440504,双MA动量突破策略Dual-MA-Momentum-Breakout-Strategy.md,PORTED,,ports/440504_ma-dual-ma-momentum-breakout-strategy/
+440505,双均线价格通道趋势追踪策略Trend-Trading-Strategy-Based-on-Price-Channel-of-Double-Moving-Averages.md,PORTED,,ports/440505_trend-trading-strategy-based-on-price-channel-of-double-movi/
+440507,基于renko股票日内低点回撤的stock日内交易策略Intraday-Trading-Strategy-for-Stocks-Based-on-Renko-Low-Point-Retracement.md,PORTED,,ports/440507_renko-stock-intraday-trading-strategy-for-stocks-based-on-re/
+440509,牛市追踪系统Bull-Market-Tracking-System.md,PORTED,,ports/440509_bull-market-tracking-system/

@@ -4025,6 +4025,24 @@ SIZING = {
     440451: [
         ("strategy(): 100 % of equity", 142, 142),
     ],
+    # ---- FMZ-C, batch C135 (2026-10-22)
+    440454: [
+        ("strategy(): capital 100000, 100 % of equity, commission 0.01 %", 134, 137),
+    ],
+    440456: [],
+    440458: [],
+    440460: [
+        ("strategy(): capital, 2 contracts, commission 0.075 %", 189, 193),
+    ],
+    440465: [
+        ("strategy(): capital 10000, 100 % of equity, commission 0.04 %", 211, 212),
+    ],
+    440467: [],
+    440503: [],
+    440504: [],
+    440505: [],
+    440507: [],
+    440509: [],
 }
 
 REJECTED_ON_READING = {
@@ -5042,6 +5060,9 @@ REJECTED_ON_READING = {
               "accumulation (criterion 1, as #430762)."),
     440436: ("2", "The stop is strategy.exit(loss = close x (1 - 1 %)): a price level passed to loss, "
               "which is in ticks (criterion 2, as #437048, #437677)."),
+    # ---- FMZ-C, batch C135 (2026-10-22)
+    440502: ("1", "Two take-profit exits close 15 % and then the rest of the position (qty_percent = "
+              "15 at 4.5 %, 100 at 20 %): partial exits (criterion 1, as #436524)."),
 }
 
 DUPLICATE_ON_READING = {

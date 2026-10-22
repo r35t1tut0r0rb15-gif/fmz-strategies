@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1793 |
-| PORT_CANDIDATE | 1707 |
+| PORTED | 1804 |
+| PORT_CANDIDATE | 1695 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 565 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 242 |
+| REJECTED_ON_READING | 243 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1921,7 +1921,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440444 | `ports/440444_trend-following-strategy-based-on-adaptive-moving-average/` | PineScript | adaptive_average | none | length1 x2, exit_filter x2 | 4 |
 | 440449 | `ports/440449_macd-dual-macd-quantitative-trading-strategy/` | PineScript | macd_cross | trailing_stop_pending, coarse_bar_stop | tp x2, sign_len x2 | 4 |
 | 440451 | `ports/440451_7-double-7-days-breakout-strategy/` | PineScript | mean_reversion | none | value1 x2, value2 x2 | 4 |
-| | **1793 ports** | | | | | **8729** |
+| 440454 | `ports/440454_vix-vix-fix-linear-regression-bottom-fishing-strategy/` | PineScript | volatility_spike_reversal | none | atr_mult x2, pd x2 | 4 |
+| 440456 | `ports/440456_rsi-an-rsi-reversal-trading-strategy/` | PineScript | rsi_oscillator | none | level_frac x2, length x2 | 4 |
+| 440458 | `ports/440458_dual-moving-average-confluence-strategy/` | PineScript | ma_cross | none | ts x2, tp x2 | 4 |
+| 440460 | `ports/440460_k-dual-breakthrough-strategy/` | PineScript | candle_pattern | none | lag x2 | 2 |
+| 440465 | `ports/440465_macd-multi-timeframe-macd-trading-strategy/` | PineScript | macd_cross | none | ma_length x2, bse x2 | 4 |
+| 440467 | `ports/440467_trend-following-strategy-based-on-multiple-indicators/` | PineScript | bollinger_reversion | none | sellprofit x2, atr_multi x2 | 4 |
+| 440503 | `ports/440503_smart-smart-professional-quantitative-trading-strategy/` | PineScript | slope_momentum | none | lookback x2 | 2 |
+| 440504 | `ports/440504_ma-dual-ma-momentum-breakout-strategy/` | PineScript | multi_indicator_confluence | none | thresh x2, atr_mult x2 | 4 |
+| 440505 | `ports/440505_trend-trading-strategy-based-on-price-channel-of-double-movi/` | PineScript | ma_trend | none | tp x2, sl x2 | 4 |
+| 440507 | `ports/440507_renko-stock-intraday-trading-strategy-for-stocks-based-on-re/` | PineScript | volatility_spike_reversal | none | pd x2, ph x2 | 4 |
+| 440509 | `ports/440509_bull-market-tracking-system/` | PineScript | multi_indicator_confluence | none | k_tp x2, len4 x2 | 4 |
+| | **1804 ports** | | | | | **8769** |
 
 ## Rejected on reading
 
@@ -2169,6 +2180,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 440354 | 动态均价追踪策略Dynamic-Average-Price-Tracking-Strategy.md | 1 | The script averages down: while the open loss is 10 % or more it adds 50 % of the held size to the long (pyramiding through strategy.position_size and position_avg_price) and holds until a 10 % gain on the average price: accumulation (criterion 1, as #435721, #430762). |
 | 440430 | 基于RSI指标的股票交易双向金字塔策略RSI-Indicator-Based-Stock-Trading-Pyramiding-Strategy.md | 1 | Up to seven long entries (Entry 1 .. Entry 7) are added while the RSI stays oversold, one per strategy.opentrades count, each with its own exit: pyramiding accumulation (criterion 1, as #430762). |
 | 440436 | 移动平均线交叉策略Simple-Moving-Average-Crossover-Strategy.md | 2 | The stop is strategy.exit(loss = close x (1 - 1 %)): a price level passed to loss, which is in ticks (criterion 2, as #437048, #437677). |
+| 440502 | 双边突破K线波动通道策略Dual-Breakout-Volatility-Channel-Strategy.md | 1 | Two take-profit exits close 15 % and then the rest of the position (qty_percent = 15 at 4.5 %, 100 at 20 %): partial exits (criterion 1, as #436524). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
