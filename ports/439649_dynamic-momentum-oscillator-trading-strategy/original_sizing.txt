@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #439649 (动态动量震荡器交易策略Dynamic-Momentum-Oscillator-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/439649  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

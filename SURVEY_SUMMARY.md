@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1863 |
-| PORTED | 1658 |
+| PORT_CANDIDATE | 1851 |
+| PORTED | 1670 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -1786,7 +1786,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439608 | `ports/439608_bollinger-bands-channel-breakout-mean-reversion-strategy/` | PineScript | bollinger_reversion | coarse_bar_stop, trailing_stop_pending | length x2, mult x2 | 4 |
 | 439611 | `ports/439611_rsi-multi-timeframe-rsi-and-moving-average-trading-strategy/` | PineScript | stochastic_oscillator | none | swing x2, tp_exp x2 | 4 |
 | 439613 | `ports/439613_macd-macd-double-optimization-trading-strategy/` | PineScript | macd_cross | coarse_bar_stop | fast_long x2, slow_long x2 | 4 |
-| | **1658 ports** | | | | | **8214** |
+| 439614 | `ports/439614_imacdema-multi-indicator-decision-tree-strategy-imacd-ema-an/` | PineScript | ichimoku | none | ema_length x2, length_ma x2 | 4 |
+| 439620 | `ports/439620_multi-ema-bullish-trend-strategy/` | PineScript | ma_trend | coarse_bar_stop, trailing_stop | trail x2 | 2 |
+| 439621 | `ports/439621_precise-trend-reversal-moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 439622 | `ports/439622_ema-ribbon-strategy/` | PineScript | ma_cross | none | length1 x2, length8 x2 | 4 |
+| 439624 | `ports/439624_emas-dynamic-moving-emas-combination-quant-strategy/` | PineScript | ma_trend | none | length x2, length4 x2 | 4 |
+| 439625 | `ports/439625_the-gauss-wave-forecasting-strategy/` | PineScript | ma_trend | none | p x3 | 3 |
+| 439639 | `ports/439639_cci-dynamic-cci-support-and-resistance-strategy/` | PineScript | pivot_levels | none | ksl x2, ktp x2 | 4 |
+| 439643 | `ports/439643_rsi-etf-reversal-rsi-trend-tracking-etf-trading-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, exit_rsi x2 | 4 |
+| 439649 | `ports/439649_dynamic-momentum-oscillator-trading-strategy/` | PineScript | momentum_oscillator | none | osc_len x2, ma_len x2 | 4 |
+| 439693 | `ports/439693_this-strategy-is-a-momentum-strategy-based-on-moving-average/` | PineScript | ma_cross | coarse_bar_stop | sl x2, tp x2 | 4 |
+| 439695 | `ports/439695_rsi-crypto-rsi-mini-sniper-quick-response-trend-following-st/` | PineScript | rsi_oscillator | none | tp x2, sl x2 | 4 |
+| 439696 | `ports/439696_a-dual-moving-average-confirmation-advantage-line-strategy/` | PineScript | trend_filter | none | length x2, lengthx x2 | 4 |
+| | **1670 ports** | | | | | **8259** |
 
 ## Rejected on reading
 

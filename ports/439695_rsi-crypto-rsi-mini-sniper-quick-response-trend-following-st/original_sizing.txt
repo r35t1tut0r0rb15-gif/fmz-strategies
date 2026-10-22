@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #439695 (快速响应型加密货币RSI趋势跟踪策略Crypto-RSI-Mini-Sniper-Quick-Response-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/439695  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit and stop percent inputs  [lines 236-237]
+  236: tp_1 = input.float(5.0, title="Take Profit 1 (%)") 
+  237: sl = input.float(2.0, title="Stop Loss (%)") 

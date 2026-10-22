@@ -1896,3 +1896,15 @@ fmz_id,file,final_outcome,criterion,reason
 439608,基于布林带通道的突破回归策略Bollinger-Bands-Channel-Breakout-Mean-Reversion-Strategy.md,PORTED,,ports/439608_bollinger-bands-channel-breakout-mean-reversion-strategy/
 439611,基于RSI和平均线的多时间框架交易策略Multi-timeframe-RSI-and-Moving-Average-Trading-Strategy.md,PORTED,,ports/439611_rsi-multi-timeframe-rsi-and-moving-average-trading-strategy/
 439613,MACD双向优化交易策略MACD-Double-Optimization-Trading-Strategy.md,PORTED,,ports/439613_macd-macd-double-optimization-trading-strategy/
+439614,多指标决策树策略IMACDEMA和一目均衡表Multi-Indicator-Decision-Tree-Strategy-IMACD-EMA-and-Ichimoku.md,PORTED,,ports/439614_imacdema-multi-indicator-decision-tree-strategy-imacd-ema-an/
+439620,多重均线多头趋势策略Multi-EMA-Bullish-Trend-Strategy.md,PORTED,,ports/439620_multi-ema-bullish-trend-strategy/
+439621,精准捕捉趋势反转的移动均线交叉策略Precise-Trend-Reversal-Moving-Average-Crossover-Strategy.md,PORTED,,ports/439621_precise-trend-reversal-moving-average-crossover-strategy/
+439622,移动平均线叠带策略EMA-Ribbon-Strategy.md,PORTED,,ports/439622_ema-ribbon-strategy/
+439624,动态移动EMAS组合量化策略Dynamic-Moving-EMAs-Combination-Quant-Strategy.md,PORTED,,ports/439624_emas-dynamic-moving-emas-combination-quant-strategy/
+439625,高斯波浪预测策略The-Gauss-Wave-Forecasting-Strategy.md,PORTED,,ports/439625_the-gauss-wave-forecasting-strategy/
+439639,动态CCI支撑阻力策略Dynamic-CCI-Support-and-Resistance-Strategy.md,PORTED,,ports/439639_cci-dynamic-cci-support-and-resistance-strategy/
+439643,反转向量RSI趋势跟踪ETF交易策略Reversal-RSI-Trend-Tracking-ETF-Trading-Strategy.md,PORTED,,ports/439643_rsi-etf-reversal-rsi-trend-tracking-etf-trading-strategy/
+439649,动态动量震荡器交易策略Dynamic-Momentum-Oscillator-Trading-Strategy.md,PORTED,,ports/439649_dynamic-momentum-oscillator-trading-strategy/
+439693,基于移动平均线的动量策略This-strategy-is-a-momentum-strategy-based-on-moving-average-lines.md,PORTED,,ports/439693_this-strategy-is-a-momentum-strategy-based-on-moving-average/
+439695,快速响应型加密货币RSI趋势跟踪策略Crypto-RSI-Mini-Sniper-Quick-Response-Trend-Following-Strategy.md,PORTED,,ports/439695_rsi-crypto-rsi-mini-sniper-quick-response-trend-following-st/
+439696,双重确认的优势均线策略A-Dual-Moving-Average-Confirmation-Advantage-Line-Strategy.md,PORTED,,ports/439696_a-dual-moving-average-confirmation-advantage-line-strategy/

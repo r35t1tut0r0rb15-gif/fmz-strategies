@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #439693 (基于移动平均线的动量策略This-strategy-is-a-momentum-strategy-based-on-moving-average-lines)
+# Source: https://www.fmz.com/strategy/439693  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop and target percent inputs  [lines 166-170]
+  166: sl_inp = input(10, title='Stop Loss %', type=float)/100
+  167: tp_inp = input(30, title='Take Profit %', type=float)/100
+  168: 
+  169: stop_level = strategy.position_avg_price * (1 - sl_inp)
+  170: take_level = strategy.position_avg_price * (1 + tp_inp)

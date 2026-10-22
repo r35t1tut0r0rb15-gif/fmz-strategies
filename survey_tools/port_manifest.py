@@ -3805,6 +3805,25 @@ SIZING = {
     439613: [
         ("strategy(): capital, percent of equity 100", 183, 183),
     ],
+    # ---- FMZ-C, batch C122 (2026-10-22)
+    439614: [],
+    439620: [],
+    439621: [],
+    439622: [],
+    439624: [],
+    439625: [],
+    439639: [],
+    439643: [],
+    439649: [],
+    439693: [
+        ("Stop and target percent inputs", 166, 170),
+    ],
+    439695: [
+        ("Take-profit and stop percent inputs", 236, 237),
+    ],
+    439696: [
+        ("strategy(): capital, percent of equity 100, commission, pyramiding 1", 131, 131),
+    ],
 }
 
 REJECTED_ON_READING = {
