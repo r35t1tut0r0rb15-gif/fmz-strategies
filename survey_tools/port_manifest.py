@@ -6582,6 +6582,33 @@ SIZING = {
     482891: [
         ("strategy(): capital 300, 10 % of equity, commission 0.1 %", 96, 96),
     ],
+    # ---- FMZ-C, batch C253 (2026-10-22)
+    482895: [
+        ("strategy(): 10 % of equity", 85, 85),
+    ],
+    482897: [
+        ("strategy(): 1 % of equity", 139, 139),
+        ("lotSize = 0.1 per entry", 142, 142),
+    ],
+    482901: [],
+    482904: [
+        ("strategy(): capital 10000, 100 % of equity, commission 0.1 %", 105, 112),
+    ],
+    482906: [
+        ("strategy(): capital 10000, 10 % of equity", 90, 91),
+    ],
+    482917: [
+        ("strategy(): capital 10000, 10 % of equity", 105, 105),
+    ],
+    482919: [
+        ("strategy(): 10 % of equity", 107, 107),
+    ],
+    482920: [
+        ("strategy(): pyramiding 0, capital 10000, 100 % of equity", 96, 96),
+    ],
+    482921: [
+        ("strategy(): capital 100000, 100 % of equity, pyramiding 0", 98, 104),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8301,6 +8328,18 @@ REJECTED_ON_READING = {
     482876: ("2", "The exits pass trail_offset = trailingStopPerc x close, a price amount, where the "
               "call takes ticks, with no /mintick: the trailing exit is undefined as written "
               "(criterion 2, as #482767)."),
+    # ---- FMZ-C, batch C253 (2026-10-22)
+    482899: ("2", "The trailing exit passes trail_points = close x 0.005 and trail_offset = close x "
+              "0.002, price amounts, where the call takes ticks, with no /mintick: the trailing "
+              "exit is undefined as written (criterion 2, as #482767)."),
+    482902: ("2", "The exits are stop = low - 10 / high + 10 and limit = high + 10 / low - 10: fixed "
+              "price amounts with no scale (criterion 2, as #473377)."),
+    482909: ("1", "DCA accumulation: up to four buys of a risk-sized quantity while RSI < 30, with "
+              "the exit level taken from the average of the buy closes (as the C204-C206 DCA "
+              "readings, criterion 1)."),
+    482916: ("1", "Pyramided buys gated on position_size against equity x 0.066 x 15 (a "
+              "size-dependent gate) and a 50 % partial close (qty_percent): criterion 1, as "
+              "#436524."),
 }
 
 DUPLICATE_ON_READING = {

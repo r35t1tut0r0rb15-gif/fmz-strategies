@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #482897 (多重技术指标均线交叉趋势跟踪量化交易策略-Multi-Technical-Indicator-Moving-Average-Crossover-Trend-Following-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/482897  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 1 % of equity  [lines 139-139]
+  139: strategy("TradingBot Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=1)
+
+## lotSize = 0.1 per entry  [lines 142-142]
+  142: lotSize = input.float(0.1, title="Lot Size")

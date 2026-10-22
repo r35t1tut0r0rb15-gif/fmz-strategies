@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3012 |
+| PORTED | 3021 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 433 |
-| PORT_CANDIDATE | 289 |
+| REJECTED_ON_READING | 437 |
+| PORT_CANDIDATE | 276 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -3140,7 +3140,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482889 | `ports/482889_multi-indicator-crossover-trend-following-strategy-with-fibo/` | PineScript | ma_cross | none | fast_length x2, slow_length x2 | 4 |
 | 482890 | `ports/482890_multi-band-statistical-trend-analysis-strategy/` | PineScript | volatility_channel_breakout | none | length x2, upper_quantile x2 | 4 |
 | 482891 | `ports/482891_rsi-macd-dynamic-stop-loss-trend-following-strategy-with-rsi/` | PineScript | macd_cross | none | stop_loss_percent x2, rsi_length x2 | 4 |
-| | **3012 ports** | | | | | **13867** |
+| 482895 | `ports/482895_rsi-adaptive-market-trading-strategy-based-on-rsi-overbought/` | PineScript | rsi_oscillator | trailing_stop_pending | rsi_length x2, tp_percent x2 | 4 |
+| 482897 | `ports/482897_multi-technical-indicator-moving-average-crossover-trend-fol/` | PineScript | multi_indicator_confluence | none | bb_period x2, rsi_period x2 | 4 |
+| 482901 | `ports/482901_rsi-adx-dynamic-moving-average-trend-following-strategy-with/` | PineScript | ma_trend | coarse_bar_stop | ma_length x2, atr_mult x2 | 4 |
+| 482904 | `ports/482904_ema-rsi-multi-timeframe-bitcoin-trading-strategy-based-on-em/` | PineScript | multi_timeframe_ma | none | ema_len x2, regime_atr x2 | 4 |
+| 482906 | `ports/482906_composite-trend-moving-average-reversal-trading-strategy/` | PineScript | ma_pullback | none | period_a x2, reaction_perc x2 | 4 |
+| 482917 | `ports/482917_nadaraya-watson-multi-dimensional-integration-trading-strate/` | PineScript | adaptive_average | none | smooth_length x2, take_profit_perc x2 | 4 |
+| 482919 | `ports/482919_triple-ema-fisher-transform-triple-ema-and-fisher-transform/` | PineScript | momentum_oscillator | none | tema_length x2, fisher_length x2 | 4 |
+| 482920 | `ports/482920_ema-ema-and-candlestick-based-dynamic-price-trend-following/` | PineScript | candle_pattern | none | fast x2, slow x2 | 4 |
+| 482921 | `ports/482921_adx-three-line-strike-momentum-trend-following-strategy-with/` | PineScript | candle_pattern | trailing_stop_pending | adx_threshold x2, tp_atr x2 | 4 |
+| | **3021 ports** | | | | | **13903** |
 
 ## Rejected on reading
 
@@ -3579,6 +3588,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482840 | 指数移动平均线交叉结合动态止损策略-EMA-Crossover-Strategy-with-Dynamic-Trailing-Stop-Loss.md | 2 | initial_stop_loss_points = 20 and trail_distance = 10 are price amounts added to the entry price for the stop levels, with no scale (criterion 2, as #473377). |
 | 482860 | 指数移动平均与相对强弱指数交叉策略-Exponential-Moving-Average-and-Relative-Strength-Index-Crossover-Strategy.md | 2 | buyOffset / sellOffset = 2 are price amounts added to the EMA for the entry levels, and stopLossPoints = 20 is a price amount from the average price (criterion 2, as #473377). |
 | 482876 | 多重指标协同交易系统-基于趋势动量复合信号策略-Multi-Indicator-Synergy-Trading-System-Trend-Momentum-Composite-Signal-Strategy.md | 2 | The exits pass trail_offset = trailingStopPerc x close, a price amount, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #482767). |
+| 482899 | 动态突破追踪止损交易策略基于波动率的多周期价格突破模型-Dynamic-Breakout-Trading-Strategy-with-Multi-Period-Volatility-Based-Price-Breakthrough-Model.md | 2 | The trailing exit passes trail_points = close x 0.005 and trail_offset = close x 0.002, price amounts, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #482767). |
+| 482902 | 综合K线图形态与趋势线技术分析策略-Comprehensive-Candlestick-and-Trendline-Pattern-Analysis-Strategy.md | 2 | The exits are stop = low - 10 / high + 10 and limit = high + 10 / low - 10: fixed price amounts with no scale (criterion 2, as #473377). |
+| 482909 | 基于相对强弱指数和平均真实波幅的多层次动态成本均摊波段交易策略-Multi-Level-Dynamic-Cost-Averaging-Swing-Trading-Strategy-Based-on-RSI-and-ATR.md | 1 | DCA accumulation: up to four buys of a risk-sized quantity while RSI < 30, with the exit level taken from the average of the buy closes (as the C204-C206 DCA readings, criterion 1). |
+| 482916 | 多层级RSI交叉回归增仓策略-Multi-Level-RSI-Cross-Under-Regression-Pyramiding-Strategy.md | 1 | Pyramided buys gated on position_size against equity x 0.066 x 15 (a size-dependent gate) and a 50 % partial close (qty_percent): criterion 1, as #436524. |
 
 ## Flagged and stored under criterion 3 (253 files)
 
