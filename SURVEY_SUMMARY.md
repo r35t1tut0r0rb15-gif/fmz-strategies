@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2868 |
+| PORTED | 2878 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 570 |
-| PORT_CANDIDATE | 460 |
-| REJECTED_ON_READING | 409 |
+| PORT_CANDIDATE | 448 |
+| REJECTED_ON_READING | 411 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2996,7 +2996,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 478687 | `ports/478687_dynamic-support-resistance-bollinger-bands-multi-indicator-c/` | PineScript | support_resistance | bar_size_pending | prd x2, channel_w x2 | 4 |
 | 478690 | `ports/478690_t3-optimized-dual-t3-trend-tracking-strategy/` | PineScript | trend_tracker | none | t3_length x2, tott_coeff x2 | 4 |
 | 478694 | `ports/478694_supertrend-dynamic-trend-following-supertrend-triple-enhance/` | PineScript | supertrend | none | factor x2, ma_period x2 | 4 |
-| | **2868 ports** | | | | | **13310** |
+| 478695 | `ports/478695_outside-bar-dual-trend-confirmation-trading-strategy-based-o/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop_pending | tp_ratio x2, sl_ratio x2 | 4 |
+| 478700 | `ports/478700_15-efficient-price-channel-trading-strategy-based-on-15-minu/` | PineScript | opening_range | none | capture_hour x2, capture_minute x2 | 4 |
+| 478701 | `ports/478701_rsi-multi-indicator-trend-following-with-rsi-overbought-over/` | PineScript | macd | none | ema_short x2, rsi_exit x2 | 4 |
+| 478705 | `ports/478705_60-year-end-trend-following-momentum-trading-strategy60-day/` | PineScript | ma_cross | none | length x2, slope_len x2 | 4 |
+| 478706 | `ports/478706_triple-ema-trend-following-multi-indicator-quantitative-trad/` | PineScript | ma_cross | coarse_bar_stop | atr_mult x2, tp_mult x2 | 4 |
+| 478707 | `ports/478707_multi-ema-trend-following-strategy-with-dynamic-volatility-f/` | PineScript | candle_pattern | none | filter_number x2, ema_trend x2 | 4 |
+| 478708 | `ports/478708_volatility-stop-based-ema-trend-following-trading-strategy/` | PineScript | volatility_stop | none | length x2, ema_length x2 | 4 |
+| 478712 | `ports/478712_machine-learning-adaptive-supertrend-quantitative-trading-st/` | PineScript | supertrend | trailing_stop_pending | factor x2, training x2 | 4 |
+| 478720 | `ports/478720_multi-smoothed-moving-average-dynamic-crossover-trend-follow/` | PineScript | ma_cross | trailing_stop_pending | slength x2, siglen x2 | 4 |
+| 478721 | `ports/478721_multi-indicator-dynamic-trend-detection-and-risk-management/` | PineScript | rsi_oscillator | coarse_bar_stop | tp_pct x2, sl_pct x2 | 4 |
+| | **2878 ports** | | | | | **13350** |
 
 ## Rejected on reading
 
@@ -3411,6 +3421,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 477970 | 金融市场多维趋势跟踪金字塔式交易策略Multi-Dimensional-Trend-Following-Pyramid-Trading-Strategy.md | 1 | pyramiding=2 with repeat "Buy" / "Sell" entries, and every entry gated by the drawdown of strategy.equity from its peak: units add and the account's equity path gates trading (criterion 1, pyramiding >= 2 with repeat entries and equity gates). |
 | 477976 | 多级指标叠加式相对强弱指数交易策略-Multi-level-Indicator-Overlapping-RSI-Trading-Strategy.md | 1 | "Scale Buy" / "Scale Sell" entries add 1 unit each time the close moves a point against the average price: averaging down (criterion 1, DCA adds). |
 | 478691 | RSI动态突破回调交易策略-RSI-Dynamic-Breakout-Retracement-Trading-Strategy.md | 1 | The long and short each send a "Partial Take Profit" exit with qty_percent=50 and a break-even move for the other half: partial exits (criterion 1). |
+| 478711 | 动态波浪趋势与斐波那契综合量化交易策略-Dynamic-WaveTrend-and-Fibonacci-Integrated-Quantitative-Trading-Strategy.md | 1 | The Fibonacci levels use the lowest low and highest high since the first bar of the chart (var levels widened on every bar): levels set by the data window's start (criterion 1, data-window levels, as #430034). |
+| 478713 | 多重通道动态支撑阻力肯尼通道策略-Multi-Channel-Dynamic-Support-Resistance-Keltner-Channel-Strategy.md | 1 | The long entry needs close > request.security(higher time frame, sma(close, 20), lookahead_on): the higher bar's final value is read before it closes (criterion 1, lookahead_on for a higher time frame). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

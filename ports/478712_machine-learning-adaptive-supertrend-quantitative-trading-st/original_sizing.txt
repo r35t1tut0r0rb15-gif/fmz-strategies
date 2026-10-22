@@ -1,0 +1,68 @@
+# Original sizing and money-management code, FMZ #478712 (机器学习自适应超级趋势量化交易策略-Machine-Learning-Adaptive-SuperTrend-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/478712  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 200 % of equity; SL 2 ATR, TP 1.5 x SL  [lines 89-151]
+   89: strategy("Adaptive SuperTrend Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=200)
+   90: 
+   91: // Import Indicator Components
+   92: atr_len = input.int(10, "ATR Length", group="SuperTrend Settings")
+   93: fact = input.float(3, "SuperTrend Factor", group="SuperTrend Settings")
+   94: training_data_period = input.int(100, "Training Data Length", group="K-Means Settings")
+   95: 
+   96: // Volatility Clustering
+   97: volatility = ta.atr(atr_len)
+   98: upper = ta.highest(volatility, training_data_period)
+   99: lower = ta.lowest(volatility, training_data_period)
+  100: 
+  101: high_volatility = lower + (upper-lower) * 0.75
+  102: medium_volatility = lower + (upper-lower) * 0.5
+  103: low_volatility = lower + (upper-lower) * 0.25
+  104: 
+  105: cluster = volatility >= high_volatility ? 0 : volatility >= medium_volatility ? 1 : 2
+  106: 
+  107: // SuperTrend Calculation
+  108: pine_supertrend(factor, atr) =>
+  109:     src = hl2
+  110:     upperBand = src + factor * atr
+  111:     lowerBand = src - factor * atr
+  112:     prevLowerBand = nz(lowerBand[1])
+  113:     prevUpperBand = nz(upperBand[1])
+  114: 
+  115:     lowerBand := lowerBand > prevLowerBand or close[1] < prevLowerBand ? lowerBand : prevLowerBand
+  116:     upperBand := upperBand < prevUpperBand or close[1] > prevUpperBand ? upperBand : prevUpperBand
+  117:     int _direction = na
+  118:     float superTrend = na
+  119:     prevSuperTrend = superTrend[1]
+  120:     if na(atr[1])
+  121:         _direction := 1
+  122:     else if prevSuperTrend == prevUpperBand
+  123:         _direction := close > upperBand ? -1 : 1
+  124:     else
+  125:         _direction := close < lowerBand ? 1 : -1
+  126:     superTrend := _direction == -1 ? lowerBand : upperBand
+  127:     [superTrend, _direction]
+  128: 
+  129: [ST, dir] = pine_supertrend(fact, volatility)
+  130: 
+  131: // Entry Conditions
+  132: longEntry = ta.crossunder(dir, 0) and cluster > 1 and close > ST
+  133: shortEntry = ta.crossover(dir, 0) and cluster == 0 and close < ST
+  134: 
+  135: // Stop Loss & Take Profit
+  136: atr_mult = input.float(2, "ATR Multiplier for SL/TP", group="Risk Management")
+  137: sl = atr_mult * ta.atr(atr_len)
+  138: 
+  139: longStopLoss = close - sl
+  140: longTakeProfit = close + (sl * 1.5)
+  141: shortStopLoss = close + sl
+  142: shortTakeProfit = close - (sl * 1.5)
+  143: 
+  144: // Execute Trades
+  145: if longEntry
+  146:     strategy.entry("Long", strategy.long)
+  147:     strategy.exit("Take Profit", from_entry="Long", limit=longTakeProfit, stop=longStopLoss)
+  148: 
+  149: if shortEntry
+  150:     strategy.entry("Short", strategy.short)
+  151:     strategy.exit("Take Profit", from_entry="Short", limit=shortTakeProfit, stop=shortStopLoss)

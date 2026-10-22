@@ -6257,6 +6257,29 @@ SIZING = {
     478694: [
         ("strategy(): 100 % of equity; stop 50 / trail 70 points", 101, 158),
     ],
+    # ---- FMZ-C, batch C239 (2026-10-22)
+    478695: [
+        ("TP 0.5 x / SL 1.0 x the outside bar height", 133, 152),
+    ],
+    478700: [
+        ("strategy(): 100 % of equity", 99, 99),
+    ],
+    478701: [],
+    478705: [],
+    478706: [
+        ("strategy(): 100 % of equity; risk 2 %; ATR 1.5 stop / 2.0 target", 124, 166),
+    ],
+    478707: [],
+    478708: [],
+    478712: [
+        ("strategy(): 200 % of equity; SL 2 ATR, TP 1.5 x SL", 89, 151),
+    ],
+    478720: [
+        ("strategy(): 200 % of equity; ATR 1.5 stop / 2 target", 99, 170),
+    ],
+    478721: [
+        ("TP 1 % / SL 5 % of strategy.position_avg_price", 118, 179),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7900,6 +7923,13 @@ REJECTED_ON_READING = {
               "against the average price: averaging down (criterion 1, DCA adds)."),
     478691: ("1", "The long and short each send a \"Partial Take Profit\" exit with qty_percent=50 and "
               "a break-even move for the other half: partial exits (criterion 1)."),
+    # ---- FMZ-C, batch C239 (2026-10-22)
+    478711: ("1", "The Fibonacci levels use the lowest low and highest high since the first bar of "
+              "the chart (var levels widened on every bar): levels set by the data window's start "
+              "(criterion 1, data-window levels, as #430034)."),
+    478713: ("1", "The long entry needs close > request.security(higher time frame, sma(close, 20), "
+              "lookahead_on): the higher bar's final value is read before it closes (criterion 1, "
+              "lookahead_on for a higher time frame)."),
 }
 
 DUPLICATE_ON_READING = {

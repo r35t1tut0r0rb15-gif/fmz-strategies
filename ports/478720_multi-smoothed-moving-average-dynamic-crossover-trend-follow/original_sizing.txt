@@ -1,0 +1,77 @@
+# Original sizing and money-management code, FMZ #478720 (多重平滑均线动态交叉趋势跟踪与多重确认量化交易策略-Multi-Smoothed-Moving-Average-Dynamic-Crossover-Trend-Following-Strategy-with-Multiple-Confirmations)
+# Source: https://www.fmz.com/strategy/478720  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 200 % of equity; ATR 1.5 stop / 2 target  [lines 99-170]
+   99: strategy("Optimized Triple Smoothed MA Crossover Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=200)
+  100: 
+  101: // === Input Settings ===
+  102: slength = input.int(7, "Main Smoothing Length", group="Moving Average Settings")
+  103: siglen = input.int(12, "Signal Length", group="Moving Average Settings")
+  104: src = input.source(close, "Data Source", group="Moving Average Settings")
+  105: mat = input.string("EMA", "Triple Smoothed MA Type", ["EMA", "SMA", "RMA", "WMA"], group="Moving Average Settings")
+  106: mat1 = input.string("EMA", "Signal Type", ["EMA", "SMA", "RMA", "WMA"], group="Moving Average Settings")
+  107: 
+  108: // === Trend Confirmation (Higher Timeframe Filter) ===
+  109: useTrendFilter = input.bool(true, "Enable Trend Filter (200 EMA)", group="Trend Confirmation")
+  110: trendMA = ta.ema(close, 200)
+  111: 
+  112: // === Momentum Filter (RSI Confirmation) ===
+  113: useRSIFilter = input.bool(true, "Enable RSI Confirmation", group="Momentum Confirmation")
+  114: rsi = ta.rsi(close, 14)
+  115: rsiThreshold = input.int(50, "RSI Threshold", group="Momentum Confirmation")
+  116: 
+  117: // === Volatility Filter (ATR) ===
+  118: useATRFilter = input.bool(true, "Enable ATR Filter", group="Volatility Filtering")
+  119: atr = ta.atr(14)
+  120: atrMa = ta.sma(atr, 14)
+  121: 
+  122: // === Risk Management (ATR-Based Stop Loss) ===
+  123: useAdaptiveSL = input.bool(true, "Use ATR-Based Stop Loss", group="Risk Management")
+  124: atrMultiplier = input.float(1.5, "ATR Multiplier for SL", minval=0.5, maxval=5, group="Risk Management")
+  125: takeProfitMultiplier = input.float(2, "Take Profit Multiplier", group="Risk Management")
+  126: 
+  127: // === Moving Average Function ===
+  128: ma(source, length, MAtype) =>
+  129:     switch MAtype
+  130:         "SMA" => ta.sma(source, length)
+  131:         "EMA" => ta.ema(source, length)
+  132:         "RMA" => ta.rma(source, length)
+  133:         "WMA" => ta.wma(source, length)
+  134: 
+  135: // === Triple Smoothed Calculation ===
+  136: tripleSmoothedMA = ma(ma(ma(src, slength, mat), slength, mat), slength, mat)
+  137: signalLine = ma(tripleSmoothedMA, siglen, mat1)
+  138: 
+  139: // === Crossovers (Entry Signals) ===
+  140: bullishCrossover = ta.crossunder(signalLine, tripleSmoothedMA)
+  141: bearishCrossover = ta.crossover(signalLine, tripleSmoothedMA)
+  142: 
+  143: // === Additional Confirmation Conditions ===
+  144: trendLongCondition = not useTrendFilter or (close > trendMA)  // Only long if price is above 200 EMA
+  145: trendShortCondition = not useTrendFilter or (close < trendMA) // Only short if price is below 200 EMA
+  146: 
+  147: rsiLongCondition = not useRSIFilter or (rsi > rsiThreshold)  // RSI above 50 for longs
+  148: rsiShortCondition = not useRSIFilter or (rsi < rsiThreshold) // RSI below 50 for shorts
+  149: 
+  150: atrCondition = not useATRFilter or (atr > atrMa)  // ATR must be above its MA for volatility confirmation
+  151: 
+  152: // === Final Trade Entry Conditions ===
+  153: longCondition = bullishCrossover and trendLongCondition and rsiLongCondition and atrCondition
+  154: shortCondition = bearishCrossover and trendShortCondition and rsiShortCondition and atrCondition
+  155: 
+  156: // === ATR-Based Stop Loss & Take Profit ===
+  157: longSL = close - (atr * atrMultiplier)
+  158: longTP = close + (atr * takeProfitMultiplier)
+  159: 
+  160: shortSL = close + (atr * atrMultiplier)
+  161: shortTP = close - (atr * takeProfitMultiplier)
+  162: 
+  163: // === Strategy Execution ===
+  164: if longCondition
+  165:     strategy.entry("Long", strategy.long)
+  166:     strategy.exit("Long Exit", from_entry="Long", stop=longSL, limit=longTP)
+  167: 
+  168: if shortCondition
+  169:     strategy.entry("Short", strategy.short)
+  170:     strategy.exit("Short Exit", from_entry="Short", stop=shortSL, limit=shortTP)

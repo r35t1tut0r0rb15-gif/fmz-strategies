@@ -1,0 +1,67 @@
+# Original sizing and money-management code, FMZ #478721 (多指标动态趋势判断与风险管理交易策略-Multi-Indicator-Dynamic-Trend-Detection-and-Risk-Management-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/478721  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## TP 1 % / SL 5 % of strategy.position_avg_price  [lines 118-179]
+  118: longTakeProfitPct = input.float(1.0, title="Long Take Profit %", minval=0.1, step=0.1) / 100
+  119: longStopLossPct = input.float(5.0, title="Long Stop Loss %", minval=0.1, step=0.1) / 100
+  120: shortTakeProfitPct = input.float(1.0, title="Short Take Profit %", minval=0.1, step=0.1) / 100
+  121: shortStopLossPct = input.float(5.0, title="Short Stop Loss %", minval=0.1, step=0.1) / 100
+  122: 
+  123: // Obliczenia wskaźników
+  124: rsiValue = ta.rsi(close, rsiPeriod)
+  125: 
+  126: highLowRange = ta.highest(high, chopPeriod) - ta.lowest(low, chopPeriod)
+  127: chopIndex = 100 * math.log10(highLowRange / ta.sma(close, chopPeriod)) / math.log10(2)
+  128: 
+  129: stoch = ta.stoch(close, high, low, stochK)
+  130: k = stoch[0]
+  131: d = stoch[1]
+  132: 
+  133: // Obliczenia SMA
+  134: smaValue = ta.sma(close, smaPeriod)
+  135: 
+  136: // Warunki kupna i sprzedaży
+  137: buyCondition = (rsiValue < 30) and (chopIndex < 50) and (ta.crossover(k, d))
+  138: sellCondition = (rsiValue > 70) and (chopIndex < 50) and (ta.crossunder(k, d))
+  139: 
+  140: var float longStopLevel = na
+  141: var float longTakeProfitLevel = na
+  142: var float shortStopLevel = na
+  143: var float shortTakeProfitLevel = na
+  144: 
+  145: // Wejście w pozycję długą
+  146: if (buyCondition and na(longStopLevel))
+  147:     strategy.entry("Long", strategy.long)
+  148:     longStopLevel := na // Zresetuj poziom Stop Loss
+  149:     longTakeProfitLevel := na // Zresetuj poziom Take Profit
+  150: 
+  151: // Wejście w pozycję krótką
+  152: if (sellCondition and na(shortStopLevel))
+  153:     strategy.entry("Short", strategy.short)
+  154:     shortStopLevel := na // Zresetuj poziom Stop Loss
+  155:     shortTakeProfitLevel := na // Zresetuj poziom Take Profit
+  156: 
+  157: // Ustaw poziomy Take Profit i Stop Loss na podstawie ceny wejścia w pozycję
+  158: if (strategy.position_size > 0 and na(longTakeProfitLevel))
+  159:     longStopLevel := strategy.position_avg_price * (1 - longStopLossPct)
+  160:     longTakeProfitLevel := strategy.position_avg_price * (1 + longTakeProfitPct)
+  161: 
+  162: if (strategy.position_size < 0 and na(shortTakeProfitLevel))
+  163:     shortStopLevel := strategy.position_avg_price * (1 + shortStopLossPct)
+  164:     shortTakeProfitLevel := strategy.position_avg_price * (1 - shortTakeProfitPct)
+  165: 
+  166: // Resetowanie poziomów po wyjściu z pozycji
+  167: if (strategy.position_size == 0)
+  168:     longStopLevel := na
+  169:     longTakeProfitLevel := na
+  170:     shortStopLevel := na
+  171:     shortTakeProfitLevel := na
+  172: 
+  173: // Wyjście z pozycji długiej
+  174: if (strategy.position_size > 0)
+  175:     strategy.exit("Take Profit", "Long", limit=longTakeProfitLevel, stop=longStopLevel)
+  176: 
+  177: // Wyjście z pozycji krótkiej
+  178: if (strategy.position_size < 0)
+  179:     strategy.exit("Take Profit", "Short", limit=shortTakeProfitLevel, stop=shortStopLevel)

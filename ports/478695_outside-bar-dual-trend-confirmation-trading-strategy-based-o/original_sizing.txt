@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #478695 (基于移动平均线和Outside-Bar模式的双重趋势确认交易策略-Dual-Trend-Confirmation-Trading-Strategy-Based-on-Moving-Averages-and-Outside-Bar-Pattern)
+# Source: https://www.fmz.com/strategy/478695  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## TP 0.5 x / SL 1.0 x the outside bar height  [lines 133-152]
+  133: outsideBarHeight = high - low  // Chiều cao của nến Outside Bar
+  134: 
+  135: // Calculate TP and SL levels
+  136: tpRatio = 0.5  // TP = 50% chiều cao nến Outside Bar
+  137: slRatio = 1.0  // SL = 100% chiều cao nến Outside Bar
+  138: 
+  139: tpLevelLong = close + outsideBarHeight * tpRatio  // TP cho lệnh mua
+  140: slLevelLong = close - outsideBarHeight * slRatio  // SL cho lệnh mua
+  141: 
+  142: tpLevelShort = close - outsideBarHeight * tpRatio  // TP cho lệnh bán
+  143: slLevelShort = close + outsideBarHeight * slRatio  // SL cho lệnh bán
+  144: 
+  145: // Strategy logic
+  146: if (outsideBarCrossAbove)
+  147:     strategy.entry("Buy", strategy.long)
+  148:     strategy.exit("Take Profit/Stop Loss", "Buy", stop=slLevelLong, limit=tpLevelLong)  // Thêm TP và SL
+  149: 
+  150: if (outsideBarCrossBelow)
+  151:     strategy.entry("Sell", strategy.short)
+  152:     strategy.exit("Take Profit/Stop Loss", "Sell", stop=slLevelShort, limit=tpLevelShort)  // Thêm TP và SL

@@ -1,0 +1,48 @@
+# Original sizing and money-management code, FMZ #478706 (三重均线趋势追踪多指标组合量化交易策略-Triple-EMA-Trend-Following-Multi-Indicator-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/478706  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; risk 2 %; ATR 1.5 stop / 2.0 target  [lines 124-166]
+  124: strategy("Daily Strategy with Triple EMA, DMI, DPO, RSI, and ATR", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+  125: 
+  126: // Input parameters
+  127: fastEmaLength = input.int(10, title="Fast EMA Length")
+  128: mediumEmaLength = input.int(25, title="Medium EMA Length")
+  129: slowEmaLength = input.int(50, title="Slow EMA Length")
+  130: dmiLength = input.int(14, title="DMI Length")
+  131: adxSmoothing = input.int(14, title="ADX Smoothing")
+  132: dpoLength = input.int(14, title="DPO Length")
+  133: rsiLength = input.int(14, title="RSI Length")
+  134: atrLength = input.int(14, title="ATR Length")
+  135: riskPercentage = input.float(2.0, title="Risk Percentage", step=0.1)
+  136: atrMultiplier = input.float(1.5, title="ATR Multiplier for Stop Loss", step=0.1)
+  137: tpMultiplier = input.float(2.0, title="ATR Multiplier for Take Profit", step=0.1)
+  138: 
+  139: // Calculate EMAs
+  140: fastEma = ta.ema(close, fastEmaLength)
+  141: mediumEma = ta.ema(close, mediumEmaLength)
+  142: slowEma = ta.ema(close, slowEmaLength)
+  143: 
+  144: // Calculate other indicators
+  145: [adx, diPlus, diMinus] = ta.dmi(dmiLength, adxSmoothing)
+  146: dpo = close - ta.sma(close, dpoLength)
+  147: rsi = ta.rsi(close, rsiLength)
+  148: atr = ta.atr(atrLength)
+  149: 
+  150: // Trading logic
+  151: longCondition = ta.crossover(fastEma, mediumEma) and fastEma > slowEma and mediumEma > slowEma and adx > 25 and rsi > 50 and dpo > 0
+  152: shortCondition = ta.crossunder(fastEma, mediumEma) and fastEma < slowEma and mediumEma < slowEma and adx > 25 and rsi < 50 and dpo < 0
+  153: 
+  154: // Risk management
+  155: riskAmount = (strategy.equity * riskPercentage) / 100
+  156: stopLoss = atr * atrMultiplier
+  157: takeProfit = atr * tpMultiplier
+  158: 
+  159: // Entry and exit logic
+  160: if (longCondition)
+  161:     strategy.entry("Buy", strategy.long)
+  162:     strategy.exit("Exit Long", "Buy", stop=close - stopLoss, limit=close + takeProfit)
+  163: 
+  164: if (shortCondition)
+  165:     strategy.entry("Sell", strategy.short)
+  166:     strategy.exit("Exit Short", "Sell", stop=close + stopLoss, limit=close - takeProfit)
