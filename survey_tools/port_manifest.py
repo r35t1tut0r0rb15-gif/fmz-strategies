@@ -4890,6 +4890,31 @@ SIZING = {
         ("lot size 0.4", 118, 155),
     ],
     449942: [],
+    # ---- FMZ-C, batch C182 (2026-10-22)
+    449947: [],
+    449948: [
+        ("strategy(): 100 % of equity, commission 0.035 %", 109, 109),
+    ],
+    449949: [
+        ("qty = 1000 / close; target 5 % of the entry close", 100, 138),
+    ],
+    449954: [
+        ("qty = equity x leverage 3 / close", 131, 171),
+    ],
+    449955: [],
+    449956: [
+        ("strategy(): 10 % of equity; ATR stop / target multipliers", 100, 127),
+    ],
+    449957: [],
+    449958: [
+        ("qty 1; stop 2 % of the signal close", 123, 152),
+    ],
+    449961: [],
+    449965: [],
+    449967: [
+        ("TP / SL fractions 0.01", 113, 116),
+    ],
+    449968: [],
 }
 
 REJECTED_ON_READING = {

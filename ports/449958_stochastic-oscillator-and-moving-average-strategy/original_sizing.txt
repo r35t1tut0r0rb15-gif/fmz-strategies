@@ -1,0 +1,35 @@
+# Original sizing and money-management code, FMZ #449958 (随机震荡指标与移动平均线策略-Stochastic-Oscillator-and-Moving-Average-Strategy)
+# Source: https://www.fmz.com/strategy/449958  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty 1; stop 2 % of the signal close  [lines 123-152]
+  123: capital = 500
+  124: 
+  125: // Tamaño de posición (10% del capital)
+  126: positionSize = 1
+  127: 
+  128: // Stop Loss (2% del precio de entrada)
+  129: stopLossPercent = input.int(2, title="Stop Loss (%)") / 100
+  130: 
+  131: // Cálculo del Estocástico
+  132: k = ta.sma(ta.stoch(close, high, low, length), smoothK)
+  133: d = ta.sma(k, smoothD)
+  134: 
+  135: // Cálculo de la Media Móvil
+  136: ma = ta.sma(maSource, maLength)
+  137: 
+  138: // Condiciones de entrada en largo y corto
+  139: longCondition = ta.crossunder(k, oversold) and ma > ma[1]
+  140: shortCondition = ta.crossover(k, overbought) and ma < ma[1]
+  141: 
+  142: // Condiciones de salida
+  143: exitLongCondition = ta.crossover(k, ma) and ma < ma[1]
+  144: exitShortCondition = ta.crossunder(k, ma) and ma > ma[1]
+  145: 
+  146: // Estrategia
+  147: if (longCondition)
+  148:     strategy.entry("Long", strategy.long, qty=positionSize)
+  149:     strategy.exit("Exit Long", "Long", stop=close * (1 - stopLossPercent))
+  150: if (shortCondition)
+  151:     strategy.entry("Short", strategy.short, qty=positionSize)
+  152:     strategy.exit("Exit Short", "Short", stop=close * (1 + stopLossPercent))

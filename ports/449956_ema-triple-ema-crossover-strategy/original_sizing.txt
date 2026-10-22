@@ -1,0 +1,33 @@
+# Original sizing and money-management code, FMZ #449956 (三重EMA交叉策略Triple-EMA-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/449956  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity; ATR stop / target multipliers  [lines 100-127]
+  100: strategy("Triple EMA Crossover Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+  101: 
+  102: // Input for EMA periods
+  103: fastLength = input(10, title="Fast EMA Length")
+  104: mediumLength = input(25, title="Medium EMA Length")
+  105: slowLength = input(50, title="Slow EMA Length")
+  106: riskMultiplier = input(3.0, title="Risk Multiplier for Stop Loss and Take Profit")
+  107: 
+  108: // Calculating EMAs
+  109: fastEMA = ta.ema(close, fastLength)
+  110: mediumEMA = ta.ema(close, mediumLength)
+  111: slowEMA = ta.ema(close, slowLength)
+  112: 
+  113: // Plot EMAs
+  114: plot(fastEMA, color=color.red, title="Fast EMA")
+  115: plot(mediumEMA, color=color.orange, title="Medium EMA")
+  116: plot(slowEMA, color=color.yellow, title="Slow EMA")
+  117: 
+  118: // Define the crossover conditions for a bullish and bearish signal
+  119: bullishCrossover = ta.crossover(fastEMA, slowEMA) and mediumEMA > slowEMA
+  120: bearishCrossover = ta.crossunder(fastEMA, slowEMA) and mediumEMA < slowEMA
+  121: 
+  122: // ATR for stop and limit calculations
+  123: atr = ta.atr(14)
+  124: longStopLoss = close - atr * riskMultiplier
+  125: shortStopLoss = close + atr * riskMultiplier
+  126: longTakeProfit = close + atr * riskMultiplier * 2
+  127: shortTakeProfit = close - atr * riskMultiplier * 2

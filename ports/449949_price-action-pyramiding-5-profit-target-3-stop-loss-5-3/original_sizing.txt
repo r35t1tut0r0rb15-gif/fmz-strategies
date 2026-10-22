@@ -1,0 +1,44 @@
+# Original sizing and money-management code, FMZ #449949 (Price-Action-Pyramiding-5-Profit-Target-3-Stop-Loss-价格行为-金字塔加仓-5止盈-3止损)
+# Source: https://www.fmz.com/strategy/449949  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = 1000 / close; target 5 % of the entry close  [lines 100-138]
+  100: investment_amount = input(1000.0, title="Investicijų suma")
+  101: 
+  102: 
+  103: // Nustatyti nuostolių ir pelno pasiekimo procentus
+  104: lossPercentage = input(3, title="Nuostolio procentas (%)") / 100
+  105: 
+  106: 
+  107: // Kintamasis saugoti atidarytoms pozicijoms
+  108: var int[] entryIndexes = array.new_int(0)
+  109: var float[] entryPrices = array.new_float(0)
+  110: 
+  111: 
+  112: // Kintamasis, nustatantis, ar turėtume atidaryti naują poziciją
+  113: var bool should_buy = false
+  114: var int open_candle_count = 0
+  115: var int positionCounter = 1 // Pozicijos skaitiklis
+  116: 
+  117: 
+  118: // Įėjimo logika (pirkti, kai kaina krenta)
+  119: if (hour >= 0 and hour <= 23) // Tikrina, ar yra 24 valandų
+  120:     should_buy := false
+  121:     for i = 1 to 5
+  122:         should_buy := should_buy or (close < close[i] * (1 - lossPercentage))
+  123:     if (should_buy and open_candle_count >= 5)
+  124:         strategy.entry("Pirkti_" + str.tostring(positionCounter), strategy.long, qty=investment_amount / close)
+  125:         array.push(entryIndexes, bar_index)  // Įrašyti atidarymo laiko indeksą
+  126:         array.push(entryPrices, close) // Įrašyti atidarymo kainą
+  127:         open_candle_count := 0
+  128:         positionCounter := positionCounter + 1 // Atnaujinti pozicijos skaitiklį
+  129:     else
+  130:         open_candle_count := open_candle_count + 1
+  131: 
+  132: 
+  133: // Išėjimo logika (uždaryti, kai pasiekiamas pelno lygis)
+  134: for i = 0 to array.size(entryIndexes) - 1
+  135:     var float takeProfitPrice = na // Nustatyti pradinę reikšmę "na"
+  136:     if array.size(entryPrices) > i and array.size(entryPrices) > 0
+  137:         takeProfitPrice := array.get(entryPrices, i) * 1.05 // Skaičiuojamas pelno pasiekimo lygis: 5% aukščiau atidarymo kainos
+  138:     strategy.exit("TakeProfit_" + str.tostring(i+1), "Pirkti_" + str.tostring(i+1), limit=takeProfitPrice) // Pridėti pelno pasiekimo lygį kaip išėjimo lygį

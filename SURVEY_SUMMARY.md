@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2276 |
-| PORT_CANDIDATE | 1143 |
+| PORTED | 2288 |
+| PORT_CANDIDATE | 1131 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
 | REJECTED_ON_READING | 321 |
@@ -2404,7 +2404,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 449851 | `ports/449851_ema-rsi-macd-atr-enhanced-ema-crossover-strategy-with-rsi-ma/` | PineScript | ma_cross | trailing_stop_pending | sl_frac x2, atr_rise x2 | 4 |
 | 449941 | `ports/449941_gm-8-adx-gm-8-adx-dual-moving-average-strategy/` | PineScript | directional_movement | none | adx_threshold x2, adx_period x2 | 4 |
 | 449942 | `ports/449942_khaled-tamims-avellaneda-stoikov-strategy-khaled-tamims-avel/` | PineScript | mean_reversion | none | band_frac x2 | 2 |
-| | **2276 ports** | | | | | **10539** |
+| 449947 | `ports/449947_bollinger-bands-double-standard-deviation-filtering-5-minute/` | PineScript | bollinger_reversion | none | length x2, k x2 | 4 |
+| 449948 | `ports/449948_turnaround-tuesday-strategy-weekend-filter/` | PineScript | calendar_seasonal | none | ma_period x2, rsi_max x2 | 4 |
+| 449949 | `ports/449949_price-action-pyramiding-5-profit-target-3-stop-loss-5-3/` | PineScript | mean_reversion | coarse_bar_stop | drop x2, target x2 | 4 |
+| 449954 | `ports/449954_exponential-moving-average-crossover-leverage-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 449955 | `ports/449955_rsi-moving-average-and-rsi-comprehensive-trading-strategy/` | PineScript | ma_cross | none | rsi_len x2, ob x2 | 4 |
+| 449956 | `ports/449956_ema-triple-ema-crossover-strategy/` | PineScript | ma_cross | trailing_stop_pending | risk_mult x2, slow x2 | 4 |
+| 449957 | `ports/449957_pivot-and-momentum-strategy/` | PineScript | pivot_levels | none | roc_len x2, stoch_len x2 | 4 |
+| 449958 | `ports/449958_stochastic-oscillator-and-moving-average-strategy/` | PineScript | stochastic_oscillator | trailing_stop_pending | length x2, sl x2 | 4 |
+| 449961 | `ports/449961_bollinger-bands-standard-deviation-breakout-strategy/` | PineScript | bollinger_breakout | none | length x2, k x2 | 4 |
+| 449965 | `ports/449965_bollinger-bands-breakout-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 449967 | `ports/449967_macd-trading-strategy-based-on-consecutive-macd-golden-and-d/` | PineScript | macd_cross | none | tp x2, sl x2 | 4 |
+| 449968 | `ports/449968_rsi-rsi-direction-change-strategy/` | PineScript | rsi_oscillator | none | change x2, exit_move x2 | 4 |
+| | **2288 ports** | | | | | **10587** |
 
 ## Rejected on reading
 

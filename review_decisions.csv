@@ -2616,3 +2616,15 @@ fmz_id,file,final_outcome,criterion,reason
 449851,EMA与RSI-MACD-ATR结合的双均线交叉策略-Enhanced-EMA-Crossover-Strategy-with-RSI-MACD-ATR.md,PORTED,,ports/449851_ema-rsi-macd-atr-enhanced-ema-crossover-strategy-with-rsi-ma/
 449941,GM-8-ADX-双均线策略-GM-8-ADX-Dual-Moving-Average-Strategy.md,PORTED,,ports/449941_gm-8-adx-gm-8-adx-dual-moving-average-strategy/
 449942,Khaled-Tamims-Avellaneda-Stoikov-Strategy-Khaled-Tamims-Avellaneda-Stoikov-Strategy.md,PORTED,,ports/449942_khaled-tamims-avellaneda-stoikov-strategy-khaled-tamims-avel/
+449947,布林带标准差双层过滤五分钟量化交易策略-Bollinger-Bands-Double-Standard-Deviation-Filtering-5-Minute-Quantitative-Trading-Strategy.md,PORTED,,ports/449947_bollinger-bands-double-standard-deviation-filtering-5-minute/
+449948,周二反转策略周末过滤-Turnaround-Tuesday-Strategy-Weekend-Filter.md,PORTED,,ports/449948_turnaround-tuesday-strategy-weekend-filter/
+449949,Price-Action-Pyramiding-5-Profit-Target-3-Stop-Loss-价格行为-金字塔加仓-5止盈-3止损.md,PORTED,,ports/449949_price-action-pyramiding-5-profit-target-3-stop-loss-5-3/
+449954,指数移动平均线交叉杠杆策略-Exponential-Moving-Average-Crossover-Leverage-Strategy.md,PORTED,,ports/449954_exponential-moving-average-crossover-leverage-strategy/
+449955,移动平均线与RSI综合交易策略-Moving-Average-and-RSI-Comprehensive-Trading-Strategy.md,PORTED,,ports/449955_rsi-moving-average-and-rsi-comprehensive-trading-strategy/
+449956,三重EMA交叉策略Triple-EMA-Crossover-Strategy.md,PORTED,,ports/449956_ema-triple-ema-crossover-strategy/
+449957,Pivot-and-Momentum-Strategy-枢轴动量策略.md,PORTED,,ports/449957_pivot-and-momentum-strategy/
+449958,随机震荡指标与移动平均线策略-Stochastic-Oscillator-and-Moving-Average-Strategy.md,PORTED,,ports/449958_stochastic-oscillator-and-moving-average-strategy/
+449961,Bollinger-Bands-Standard-Deviation-Breakout-Strategy-布林带标准差突破策略.md,PORTED,,ports/449961_bollinger-bands-standard-deviation-breakout-strategy/
+449965,Bollinger-Bands-Breakout-Strategy-布林带突破策略.md,PORTED,,ports/449965_bollinger-bands-breakout-strategy/
+449967,基于连续MACD金叉死叉的交易策略-Trading-Strategy-Based-on-Consecutive-MACD-Golden-and-Death-Crosses.md,PORTED,,ports/449967_macd-trading-strategy-based-on-consecutive-macd-golden-and-d/
+449968,RSI变动方向改变策略-RSI-Direction-Change-Strategy.md,PORTED,,ports/449968_rsi-rsi-direction-change-strategy/

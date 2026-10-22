@@ -1,0 +1,46 @@
+# Original sizing and money-management code, FMZ #449954 (指数移动平均线交叉杠杆策略-Exponential-Moving-Average-Crossover-Leverage-Strategy)
+# Source: https://www.fmz.com/strategy/449954  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = equity x leverage 3 / close  [lines 131-171]
+  131: leverage = input.float(3.0, title="Leverage Multiplier", minval=1.0, maxval=10.0, step=0.1)
+  132: 
+  133: // Input for choosing between EMA and MA
+  134: useEMA = input.bool(true, title="Use EMA (true) or MA (false)?")
+  135: 
+  136: // Input source and lengths for MAs
+  137: src = close
+  138: ema1_length = input.int(20, title='EMA/MA-1 Length')
+  139: ema2_length = input.int(55, title='EMA/MA-2 Length')
+  140: 
+  141: // Calculate the MAs based on user selection
+  142: pema1 = useEMA ? ta.ema(src, ema1_length) : ta.sma(src, ema1_length)
+  143: pema2 = useEMA ? ta.ema(src, ema2_length) : ta.sma(src, ema2_length)
+  144: 
+  145: // Tracking the crossover condition for strategy entry
+  146: crossedAbove = ta.crossover(pema1, pema2)
+  147: 
+  148: // Define a variable to track if a valid entry condition has been met
+  149: var bool readyToEnter = false
+  150: 
+  151: // Check for MA crossover and update readyToEnter
+  152: if (crossedAbove)
+  153:     readyToEnter := true
+  154: 
+  155: // Entry condition: Enter when price touches MA-1 after the crossover // and (low <= pema1 and high >= pema1)
+  156: entryCondition = readyToEnter
+  157: 
+  158: // Reset readyToEnter after entry
+  159: if (entryCondition)
+  160:     readyToEnter := false
+  161: 
+  162: // Exit condition: Price crosses under MA-1
+  163: exitCondition = ta.crossunder(pema1, pema2)
+  164: 
+  165: // Check if the current bar's time is within the specified period
+  166: inBacktestPeriod = true
+  167: 
+  168: // Execute trade logic only within the specified date range and apply leverage to position sizing
+  169: if (inBacktestPeriod)
+  170:     if (entryCondition)
+  171:         strategy.entry("Long", strategy.long, qty=strategy.equity * leverage / close)

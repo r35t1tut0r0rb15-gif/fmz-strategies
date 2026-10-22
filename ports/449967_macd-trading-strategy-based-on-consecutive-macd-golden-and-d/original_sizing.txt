@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #449967 (基于连续MACD金叉死叉的交易策略-Trading-Strategy-Based-on-Consecutive-MACD-Golden-and-Death-Crosses)
+# Source: https://www.fmz.com/strategy/449967  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## TP / SL fractions 0.01  [lines 113-116]
+  113: long_win = input.float(defval = 0.01,title = "多单止盈设置", tooltip = "0.01代表1%" )
+  114: long_lose= input.float(0.01,"多单止损设置")
+  115: short_win = input.float(0.01,"空单止盈设置")
+  116: short_lose = input.float(0.01,"空单止损设置")
