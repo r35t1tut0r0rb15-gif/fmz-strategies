@@ -1,0 +1,67 @@
+# Original sizing and money-management code, FMZ #471707 (双均线交叉RSI动量策略与风险收益优化系统-Dual-Moving-Average-Cross-RSI-Momentum-Strategy-with-Risk-Reward-Optimization-System)
+# Source: https://www.fmz.com/strategy/471707  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 1.5 ATR x risk / reward 2 from the signal close  [lines 104-165]
+  104: riskRewardRatio = input(2, title="Risk/Reward Ratio") // 2:1
+  105: atrMultiplier = input(1.5, title="ATR Multiplier") // Multiplier for ATR to set stop loss
+  106: 
+  107: // Calculate indicators
+  108: smaShort = ta.sma(close, smaShortLength)
+  109: smaLong = ta.sma(close, smaLongLength)
+  110: rsi = ta.rsi(close, lengthRSI)
+  111: atr = ta.atr(14)
+  112: 
+  113: // Entry conditions
+  114: longCondition = (smaShort > smaLong) and (rsi < rsiOversold) // Buy when short SMA is above long SMA and RSI is oversold
+  115: shortCondition = (smaShort < smaLong) and (rsi > rsiOverbought) // Sell when short SMA is below long SMA and RSI is overbought
+  116: 
+  117: // Variables for trade management
+  118: var float entryPrice = na
+  119: var float takeProfit = na
+  120: var int entryBarIndex = na
+  121: 
+  122: // Entry logic for long trades
+  123: if (longCondition and (strategy.position_size == 0))
+  124:     entryPrice := close
+  125:     takeProfit := entryPrice + (entryPrice - (entryPrice - (atr * atrMultiplier))) * riskRewardRatio
+  126:     strategy.entry("Buy", strategy.long)
+  127:     entryBarIndex := bar_index // Record the entry bar index
+  128:     label.new(bar_index, high, "BUY", style=label.style_label_up, color=color.green, textcolor=color.white, size=size.small)
+  129: 
+  130: // Entry logic for short trades
+  131: if (shortCondition and (strategy.position_size == 0))
+  132:     entryPrice := close
+  133:     takeProfit := entryPrice - (entryPrice - (entryPrice + (atr * atrMultiplier))) * riskRewardRatio
+  134:     strategy.entry("Sell", strategy.short)
+  135:     entryBarIndex := bar_index // Record the entry bar index
+  136:     label.new(bar_index, low, "SELL", style=label.style_label_down, color=color.red, textcolor=color.white, size=size.small)
+  137: 
+  138: // Manage trade duration and exit after a minimum of 3 hours
+  139: if (strategy.position_size != 0)
+  140:     // Check if the trade has been open for at least 3 hours (180 minutes)
+  141:     if (bar_index - entryBarIndex >= 180) // 3 hours in 1-minute bars
+  142:         if (strategy.position_size > 0)
+  143:             strategy.exit("Take Profit Long", from_entry="Buy", limit=takeProfit)
+  144:         else
+  145:             strategy.exit("Take Profit Short", from_entry="Sell", limit=takeProfit)
+  146: 
+  147: // Background colors for active trades
+  148: var color tradeColor = na
+  149: if (strategy.position_size > 0)
+  150:     tradeColor := color.new(color.green, 90) // Light green for long trades
+  151: else if (strategy.position_size < 0)
+  152:     tradeColor := color.new(color.red, 90) // Light red for short trades
+  153: else
+  154:     tradeColor := na // No color when no trade is active
+  155: 
+  156: bgcolor(tradeColor, title="Trade Background")
+  157: 
+  158: // Plotting position tools
+  159: if (strategy.position_size > 0)
+  160:     // Plot long position tool
+  161:     strategy.exit("TP Long", limit=takeProfit)
+  162:     
+  163: if (strategy.position_size < 0)
+  164:     // Plot short position tool
+  165:     strategy.exit("TP Short", limit=takeProfit)

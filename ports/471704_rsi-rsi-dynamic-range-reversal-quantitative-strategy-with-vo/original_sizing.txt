@@ -1,0 +1,33 @@
+# Original sizing and money-management code, FMZ #471704 (RSI动态区间反转量化策略与波动率优化模型-RSI-Dynamic-Range-Reversal-Quantitative-Strategy-with-Volatility-Optimization-Model)
+# Source: https://www.fmz.com/strategy/471704  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## 10 contracts  [lines 104-131]
+  104: contracts = 10
+  105: 
+  106: // Date Range for Backtesting
+  107: startDate = timestamp("2024-09-10 00:00")
+  108: endDate = timestamp("2024-11-09 23:59")
+  109: 
+  110: // Limit trades to the backtesting period
+  111: inDateRange = true
+  112: 
+  113: // RSI buy/sell conditions with convergence/divergence sensitivity
+  114: buySignalOverbought = ta.crossover(rsi, rsiOverbought - convergenceLevel)
+  115: sellSignalOversold = ta.crossunder(rsi, rsiOversold + convergenceLevel)
+  116: buySignalOversold = ta.crossunder(rsi, rsiOversold - convergenceLevel)
+  117: sellSignalOverbought = ta.crossover(rsi, rsiOverbought + convergenceLevel)
+  118: 
+  119: // Execute trades only within the specified date range
+  120: if (inDateRange)
+  121:     // Buy when RSI crosses above 80 (overbought)
+  122:     if (buySignalOverbought)
+  123:         strategy.entry("Buy Overbought", strategy.long, qty=contracts)
+  124:     
+  125:     // Sell when RSI crosses below 30 (oversold)
+  126:     if (sellSignalOversold)
+  127:         strategy.close("Buy Overbought")
+  128: 
+  129:     // Buy when RSI crosses below 30 (oversold)
+  130:     if (buySignalOversold)
+  131:         strategy.entry("Buy Oversold", strategy.long, qty=contracts)

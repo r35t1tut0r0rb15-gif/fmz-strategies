@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2569 |
+| PORTED | 2580 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 808 |
+| PORT_CANDIDATE | 796 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 361 |
+| REJECTED_ON_READING | 362 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2697,7 +2697,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 471688 | `ports/471688_rsi-dual-moving-average-rsi-trend-momentum-strategy/` | PineScript | rsi_oscillator | none | short_len x2, long_len x2, rsi_len x2 | 8 |
 | 471689 | `ports/471689_high-win-rate-trend-mean-reversion-trading-strategy/` | PineScript | bollinger_reversion | coarse_bar_stop, trailing_stop_pending | bb_length x2, rr x2 | 4 |
 | 471690 | `ports/471690_open-market-exposure-dynamic-position-adjustment-quantitativ/` | PineScript | momentum_oscillator | trailing_stop_pending | threshold x2 | 2 |
-| | **2569 ports** | | | | | **12118** |
+| 471691 | `ports/471691_e9-32-e9-shark-32-pattern-quantitative-price-breakout-strate/` | PineScript | breakout | coarse_bar_stop, trailing_stop_pending | target_mult x2 | 2 |
+| 471694 | `ports/471694_rsi-ema-multi-period-rsi-momentum-and-triple-ema-trend-follo/` | PineScript | momentum_oscillator | coarse_bar_stop |  | 0 |
+| 471695 | `ports/471695_combined-momentum-sma-crossover-strategy-with-market-sentime/` | PineScript | ma_cross | none | short_len x2, long_len x2, res_len x2 | 8 |
+| 471696 | `ports/471696_sar-parabolic-sar-divergence-trading-strategy/` | PineScript | parabolic_sar | none | sar_start x2, lookback x2 | 4 |
+| 471697 | `ports/471697_emarsi-adx-multi-technical-indicator-crossover-momentum-quan/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2, adx_th x2 | 8 |
+| 471698 | `ports/471698_123-dynamic-holding-period-strategy-based-on-123-point-rever/` | PineScript | reversal_pattern | none | days_to_hold x2, ma_len x2 | 4 |
+| 471702 | `ports/471702_multi-period-technical-analysis-and-market-sentiment-trading/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 471703 | `ports/471703_bollinger-bands-momentum-trend-following-quantitative-strate/` | PineScript | bollinger_reversion | none | length x2, mult x2, ema_len x2 | 8 |
+| 471704 | `ports/471704_rsi-rsi-dynamic-range-reversal-quantitative-strategy-with-vo/` | PineScript | rsi_oscillator | none | sensitivity x2, rsi_len x2 | 4 |
+| 471707 | `ports/471707_rsi-dual-moving-average-cross-rsi-momentum-strategy-with-ris/` | PineScript | rsi_oscillator | none | short_len x2, long_len x2, rr x2 | 8 |
+| 471709 | `ports/471709_rsi-ao-rsi-and-ao-synergistic-trend-following-quantitative-t/` | PineScript | momentum_oscillator | none | tp_pct x2, sl_pct x2 | 4 |
+| | **2580 ports** | | | | | **12172** |
 
 ## Rejected on reading
 
@@ -3064,6 +3075,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 468340 | 增强型突破策略与目标和止损优化-Enhanced-Breakout-Strategy-with-Targets-and-Stop-Loss-Optimization.md | 1 | The breakout levels are the high and low of the first 5 bars of whatever data is loaded (bar_index < 5), held for ever: where the trades fall depends on where the data starts (criterion 1, data-start-dependent levels). |
 | 469612 | 多级平衡量化交易策略-Multi-Level-Balanced-Quantitative-Trading-Strategy.md | 1 | pyramiding = 10 with up to 10 stacked entries per side whose quantities step 1, 2, 4, 8, 5 ... 10 as the same signals repeat, and closes per entry id: the position-size path is the strategy (criterion 1, as #430762, #439950). |
 | 471673 | RSI动态止损智能交易策略-RSI-Dynamic-Stop-Loss-Intelligent-Trading-Strategy.md | 1 | The take-profits are strategy.exit qty_percent = 33 / 66 / 100 partial exits (TP 1 / 2 / 3 at 5 / 10 / 15 %): the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #439950). |
+| 471708 | 适应性趋势动量RSI策略结合均线过滤系统-Adaptive-Trend-Momentum-RSI-Strategy-with-Moving-Average-Filter-System.md | 1 | Entries are allowed only while time >= timenow minus 2500 days (a window measured back from the moment the script runs), with qty = equity / close: which trades exist depends on the run date (criterion 1, timenow gate). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

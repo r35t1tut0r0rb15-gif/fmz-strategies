@@ -5535,6 +5535,32 @@ SIZING = {
     471690: [
         ("Target 2 % / stop 1 % of the current close (re-sent every bar)", 95, 133),
     ],
+    # ---- FMZ-C, batch C210 (2026-10-22)
+    471691: [
+        ("Target one pattern range beyond the break; stop 1 % of the current close", 178, 209),
+    ],
+    471694: [
+        ("Break-even stop at the close", 148, 166),
+    ],
+    471695: [],
+    471696: [],
+    471697: [
+        ("Bracket from the average price x risk / reward 2", 113, 132),
+    ],
+    471698: [],
+    471702: [],
+    471703: [
+        ("Stop 1 % of the average price (off)", 135, 163),
+    ],
+    471704: [
+        ("10 contracts", 104, 131),
+    ],
+    471707: [
+        ("Target 1.5 ATR x risk / reward 2 from the signal close", 104, 165),
+    ],
+    471709: [
+        ("Target 2 % / stop 1 % of the average price", 111, 216),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -6997,6 +7023,10 @@ REJECTED_ON_READING = {
     471673: ("1", "The take-profits are strategy.exit qty_percent = 33 / 66 / 100 partial exits (TP 1 "
               "/ 2 / 3 at 5 / 10 / 15 %): the position is closed in parts, so the size path is "
               "part of the strategy (criterion 1, qty_percent partial exits, as #439950)."),
+    # ---- FMZ-C, batch C210 (2026-10-22)
+    471708: ("1", "Entries are allowed only while time >= timenow minus 2500 days (a window measured "
+              "back from the moment the script runs), with qty = equity / close: which trades "
+              "exist depends on the run date (criterion 1, timenow gate)."),
 }
 
 DUPLICATE_ON_READING = {

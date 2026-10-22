@@ -1,0 +1,111 @@
+# Original sizing and money-management code, FMZ #471709 (RSI与AO协同趋势追踪型量化交易策略-RSI-and-AO-Synergistic-Trend-Following-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/471709  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 2 % / stop 1 % of the average price  [lines 111-216]
+  111: takeProfitPerc = input.float(title="Take Profit (%)", defval=2.0, minval=0.0, step=0.1)
+  112: stopLossPerc = input.float(title="Stop Loss (%)", defval=1.0, minval=0.0, step=0.1)
+  113: 
+  114: // -----------------------------
+  115: // --- Awesome Oscillator (AO) Calculation ---
+  116: // -----------------------------
+  117: 
+  118: // Calculate the Awesome Oscillator
+  119: ao = ta.sma(hl2, aoShortPeriod) - ta.sma(hl2, aoLongPeriod)
+  120: 
+  121: // Detect AO Crossing Zero
+  122: aoCrossOverZero = ta.crossover(ao, 0)
+  123: aoCrossUnderZero = ta.crossunder(ao, 0)
+  124: 
+  125: // -----------------------------
+  126: // --- Relative Strength Index (RSI) Calculation ---
+  127: // -----------------------------
+  128: 
+  129: // Calculate RSI
+  130: rsiValue = ta.rsi(close, rsiPeriod)
+  131: 
+  132: // Detect RSI Crossing 50
+  133: rsiCrossOver50 = ta.crossover(rsiValue, 50)
+  134: rsiCrossUnder50 = ta.crossunder(rsiValue, 50)
+  135: 
+  136: // -----------------------------
+  137: // --- Plotting Arrows and Labels ---
+  138: // -----------------------------
+  139: 
+  140: // Plot AO Cross Over Arrow (AO+)
+  141: plotshape(series=aoCrossOverZero,
+  142:           location=location.belowbar,
+  143:           color=color.green,
+  144:           style=shape.labelup,
+  145:           title="AO Crosses Above Zero",
+  146:           text="AO+",
+  147:           textcolor=color.white,
+  148:           size=size.small)
+  149: 
+  150: // Plot AO Cross Under Arrow (AO-)
+  151: plotshape(series=aoCrossUnderZero,
+  152:           location=location.abovebar,
+  153:           color=color.red,
+  154:           style=shape.labeldown,
+  155:           title="AO Crosses Below Zero",
+  156:           text="AO-",
+  157:           textcolor=color.white,
+  158:           size=size.small)
+  159: 
+  160: // Plot RSI Cross Over Arrow (RSI Up)
+  161: plotshape(series=rsiCrossOver50,
+  162:           location=location.belowbar,
+  163:           color=color.blue,
+  164:           style=shape.labelup,
+  165:           title="RSI Crosses Above 50",
+  166:           text="RSI Up",
+  167:           textcolor=color.white,
+  168:           size=size.small)
+  169: 
+  170: // Plot RSI Cross Under Arrow (RSI Down)
+  171: plotshape(series=rsiCrossUnder50,
+  172:           location=location.abovebar,
+  173:           color=color.orange,
+  174:           style=shape.labeldown,
+  175:           title="RSI Crosses Below 50",
+  176:           text="RSI Down",
+  177:           textcolor=color.white,
+  178:           size=size.small)
+  179: 
+  180: // -----------------------------
+  181: // --- Buy Signal Condition ---
+  182: // -----------------------------
+  183: 
+  184: // Define Buy Signal: AO is negative and previous bar's RSI > 50
+  185: buySignal = (ao < 0) and (rsiValue[1] > 50)
+  186: 
+  187: // Plot Buy Signal
+  188: plotshape(series=buySignal,
+  189:           location=location.belowbar,
+  190:           color=color.lime,
+  191:           style=shape.triangleup,
+  192:           title="Buy Signal",
+  193:           text="BUY",
+  194:           textcolor=color.black,
+  195:           size=size.small)
+  196: 
+  197: // -----------------------------
+  198: // --- Strategy Execution ---
+  199: // -----------------------------
+  200: 
+  201: // Entry Condition
+  202: if buySignal
+  203:     strategy.entry("Long", strategy.long)
+  204: 
+  205: // Exit Conditions
+  206: // Calculate Stop Loss and Take Profit Prices
+  207: if strategy.position_size > 0
+  208:     // Entry price
+  209:     entryPrice = strategy.position_avg_price
+  210: 
+  211:     // Stop Loss and Take Profit Levels
+  212:     stopLevel = entryPrice * (1 - stopLossPerc / 100)
+  213:     takeProfitLevel = entryPrice * (1 + takeProfitPerc / 100)
+  214: 
+  215:     // Submit Stop Loss and Take Profit Orders
+  216:     strategy.exit("Exit Long", from_entry="Long", stop=stopLevel, limit=takeProfitLevel)

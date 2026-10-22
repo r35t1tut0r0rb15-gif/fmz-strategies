@@ -1,0 +1,25 @@
+# Original sizing and money-management code, FMZ #471697 (多重技术指标交叉动量量化交易策略-基于EMARSI和ADX的整合分析-Multi-Technical-Indicator-Crossover-Momentum-Quantitative-Trading-Strategy-Integration-Analysis-Based-on-EMA-RSI-and-ADX)
+# Source: https://www.fmz.com/strategy/471697  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Bracket from the average price x risk / reward 2  [lines 113-132]
+  113: riskRewardRatio = input.float(2.0, title="Risk/Reward Ratio")
+  114: 
+  115: // EMA Calculations
+  116: fastEMA = ta.ema(close, lenFast)
+  117: slowEMA = ta.ema(close, lenSlow)
+  118: 
+  119: // RSI Calculation
+  120: rsiValue = ta.rsi(close, rsiPeriod)
+  121: 
+  122: // ADX Calculation
+  123: [plusDI, minusDI, adxValue] = ta.dmi(adxPeriod, adxSmoothing)
+  124: 
+  125: // Entry Conditions
+  126: buyCondition = ta.crossover(fastEMA, slowEMA) and rsiValue < 60 and adxValue > adxThreshold
+  127: sellCondition = ta.crossunder(fastEMA, slowEMA) and rsiValue > 40 and adxValue > adxThreshold
+  128: 
+  129: // Entry logic
+  130: if (buyCondition)
+  131:     strategy.entry("Buy", strategy.long)
+  132:     strategy.exit("Sell", from_entry="Buy", limit=close + (close - strategy.position_avg_price) * riskRewardRatio, stop=close - (close - strategy.position_avg_price))

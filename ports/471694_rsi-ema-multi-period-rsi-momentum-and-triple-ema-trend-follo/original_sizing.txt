@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #471694 (多周期RSI动量与三重EMA趋势跟踪复合策略-Multi-Period-RSI-Momentum-and-Triple-EMA-Trend-Following-Composite-Strategy)
+# Source: https://www.fmz.com/strategy/471694  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Break-even stop at the close  [lines 148-166]
+  148: if (ta.crossover(rsiValue, rsiNeutral) and inPositionShort)
+  149:     strategy.exit("Break Even", "Sell", stop=close)
+  150: 
+  151: // Trading logic for 5-minute timeframe
+  152: var float lastBearishClose = na
+  153: 
+  154: if (close < ema3 and close[1] >= ema3) // Check if the current close is below EMA200
+  155:     lastBearishClose := close
+  156: 
+  157: if (not na(lastBearishClose) and close > lastBearishClose and not inPositionLong)
+  158:     strategy.entry("Buy", strategy.long)
+  159:     inPositionLong := true
+  160: 
+  161: if (rsiValue > rsiOverbought and inPositionLong)
+  162:     strategy.close("Buy")
+  163:     inPositionLong := false
+  164: 
+  165: if (ta.crossunder(rsiValue, rsiNeutral) and inPositionLong)
+  166:     strategy.exit("Break Even", "Buy", stop=close)
