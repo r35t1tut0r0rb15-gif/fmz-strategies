@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #439964 (二级平滑移动平均线追踪交易策略Lagging-Span-2-Line-Tracking-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/439964  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Tick bracket inputs  [lines 152-155]
+  152: TPLong = input.int(10000, minval = 30, title ="Long Kar Al Puanı", step=10)
+  153: SLLong = input.int(7500, minval = 30, title ="Long Zarar Durdur Puanı", step=10)
+  154: TPShort = input.int(20000, minval = 30, title ="Short Kar Al Puanı", step=10)
+  155: SLShort = input.int(7500, minval = 30, title ="Short Zarar Durdur Puanı", step=10)

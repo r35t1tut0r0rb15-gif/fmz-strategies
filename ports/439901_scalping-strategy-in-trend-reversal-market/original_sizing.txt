@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #439901 (收益捕捉策略在趋势反转市的应用Scalping-Strategy-in-Trend-Reversal-Market)
+# Source: https://www.fmz.com/strategy/439901  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

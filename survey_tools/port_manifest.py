@@ -3886,6 +3886,31 @@ SIZING = {
     439876: [],
     439877: [],
     439878: [],
+    # ---- FMZ-C, batch C127 (2026-10-22)
+    439899: [
+        ("strategy(): percent of equity 5", 179, 179),
+    ],
+    439901: [],
+    439938: [],
+    439949: [
+        ("Take-profit, stop and trailing point inputs", 415, 425),
+    ],
+    439954: [
+        ("strategy(): pyramiding 2, fixed 2, capital", 163, 163),
+    ],
+    439957: [
+        ("Risk inputs and the unused position-size function", 170, 180),
+    ],
+    439960: [
+        ("Leverage and lot", 163, 230),
+    ],
+    439962: [],
+    439963: [
+        ("Equity / close amount", 148, 148),
+    ],
+    439964: [
+        ("Tick bracket inputs", 152, 155),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -4846,6 +4871,13 @@ REJECTED_ON_READING = {
               "stop_loss_level) with stop_loss_level = close -/+ 1.5 ATR: a price LEVEL passed as "
               "a TICK distance, so the real distance is about the whole price times the tick "
               "size, an instrument-specific stop with no generic reading (as #437677, #439275)."),
+    # ---- FMZ-C, batch C127 (2026-10-22)
+    439950: ("1", "pyramiding 2 with an 'Add' entry below the average price and "
+              "strategy.close(qty_percent = 20) partial profit-taking when the RSI crosses under "
+              "80: the position path and the exits are partial (criterion 1, as #436524)."),
+    439958: ("1", "pyramiding = 1000 with a 1-unit buy on every RSI 2 crossover and no exit until a "
+              "fixed end date (30 Nov 2023), after which every bar closes: an accumulation whose "
+              "size path is the strategy (as #430762, #430248)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -227,6 +227,8 @@ fmz_id,file,final_outcome,criterion,reason
 439844,基于移动平均线金叉死叉交易策略Moving-Average-Crossover-Trading-Strategy.md,REJECTED_ON_READING,2,"Apart from the reversing entries, the exits are strategy.exit(profit = close x 0.15, loss = close x 0.20): percents of the close in PRICE units passed as TICK counts, so the real distances are 15 % / 20 % of the price times the tick size (1.5 % / 2 % at a 0.1 tick on BTC, 15 % / 20 % at a 1.0 tick), an instrument-specific bracket with no generic reading (as #437048, #437677)."
 439881,基于随机入场的复合止损止盈策略Compound-Stop-Loss-and-Take-Profit-Strategy-Based-on-Random-Entry.md,REJECTED_ON_READING,1,"The entries are a pseudo-random sequence (rd_number_entry = 16708 x previous mod 2147483647 mod 17, counted from the first bar, so it depends on where the data starts) and each trade is three entries closed one by one at 1 / 2 / 3 ATR targets (partial exits, criterion 1, as #436524); the time-based exit test (== 22 of a value mod 17) can never pass."
 439883,基于EMA的日内-skillet-商交策略EMA-Intraday-Scalping-Strategy.md,REJECTED_ON_READING,2,"Apart from the reversing entries, the only stop is strategy.exit(loss = stop_loss_level) with stop_loss_level = close -/+ 1.5 ATR: a price LEVEL passed as a TICK distance, so the real distance is about the whole price times the tick size, an instrument-specific stop with no generic reading (as #437677, #439275)."
+439950,动量均线盘整策略Momentum-Moving-Average-Consolidation-Strategy.md,REJECTED_ON_READING,1,"pyramiding 2 with an 'Add' entry below the average price and strategy.close(qty_percent = 20) partial profit-taking when the RSI crosses under 80: the position path and the exits are partial (criterion 1, as #436524)."
+439958,基于RSI指标的Nifty交易策略Nifty-Trading-Strategy-Based-on-RSI-Indicator.md,REJECTED_ON_READING,1,"pyramiding = 1000 with a 1-unit buy on every RSI 2 crossover and no exit until a fixed end date (30 Nov 2023), after which every bar closes: an accumulation whose size path is the strategy (as #430762, #430248)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -1956,3 +1958,13 @@ fmz_id,file,final_outcome,criterion,reason
 439876,RSI与布林带支撑阻力动态结合量化策略RSI-Combined-with-Bollinger-Bands-and-Dynamic-Support-Resistance-Quantitative-Strategy.md,PORTED,,ports/439876_rsi-rsi-combined-with-bollinger-bands-and-dynamic-support-re/
 439877,双移动平均线跨度交易策略Dual-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/439877_dual-moving-average-crossover-trading-strategy/
 439878,一种基于带通滤波反转策略Bandpass-Filter-Reversed-Strategy.md,PORTED,,ports/439878_bandpass-filter-reversed-strategy/
+439899,双向EMA交叉量化交易策Bidirectional-EMA-Cross-Quant-Trading-Strategy.md,PORTED,,ports/439899_ema-bidirectional-ema-cross-quant-trading-strategy/
+439901,收益捕捉策略在趋势反转市的应用Scalping-Strategy-in-Trend-Reversal-Market.md,PORTED,,ports/439901_scalping-strategy-in-trend-reversal-market/
+439938,一种基于均线的趋势跟踪策略Adaptive-Moving-Average-Tracking-Strategy.md,PORTED,,ports/439938_adaptive-moving-average-tracking-strategy/
+439949,基于趋势过滤的快速QQE交叉策略Fast-QQE-Crossover-Trading-Strategy-Based-on-Trend-Filter.md,PORTED,,ports/439949_qqe-fast-qqe-crossover-trading-strategy-based-on-trend-filte/
+439954,RSI多空分歧指标The-RSI-Divergence-Indicator-Strategy.md,PORTED,,ports/439954_rsi-the-rsi-divergence-indicator-strategy/
+439957,基于RSI和EMA的趋势跟踪策略RSI-and-EMA-Based-Trend-Following-Strategy.md,PORTED,,ports/439957_rsi-ema-rsi-and-ema-based-trend-following-strategy/
+439960,动量寻找策略Momentum-Finding-Strategy.md,PORTED,,ports/439960_momentum-finding-strategy/
+439962,智能追踪止损策略Intelligent-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/439962_intelligent-trailing-stop-loss-strategy/
+439963,基于EMA均线和MACD指标的BTC交易策略EMA-and-MACD-Based-BTC-Trading-Strategy.md,PORTED,,ports/439963_ema-macd-btc-ema-and-macd-based-btc-trading-strategy/
+439964,二级平滑移动平均线追踪交易策略Lagging-Span-2-Line-Tracking-Trading-Strategy.md,PORTED,,ports/439964_lagging-span-2-line-tracking-trading-strategy/

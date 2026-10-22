@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #439949 (基于趋势过滤的快速QQE交叉策略Fast-QQE-Crossover-Trading-Strategy-Based-on-Trend-Filter)
+# Source: https://www.fmz.com/strategy/439949  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit, stop and trailing point inputs  [lines 415-425]
+  415: inpTakeProfit   = input(defval = 0, title = "Take Profit Points", minval = 0)
+  416: inpStopLoss     = input(defval = 0, title = "Stop Loss Points", minval = 0)
+  417: inpTrailStop    = input(defval = 100, title = "Trailing Stop Loss Points", minval = 0)
+  418: inpTrailOffset  = input(defval = 0, title = "Trailing Stop Loss Offset Points", minval = 0)
+  419: 
+  420: // === RISK MANAGEMENT VALUE PREP ===
+  421: // if an input is less than 1, assuming not wanted so we assign 'na' value to disable it.
+  422: useTakeProfit   = inpTakeProfit  >= 1 ? inpTakeProfit  : na
+  423: useStopLoss     = inpStopLoss    >= 1 ? inpStopLoss    : na
+  424: useTrailStop    = inpTrailStop   >= 1 ? inpTrailStop   : na
+  425: useTrailOffset  = inpTrailOffset >= 1 ? inpTrailOffset : na

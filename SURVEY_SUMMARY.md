@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1803 |
-| PORTED | 1712 |
+| PORT_CANDIDATE | 1791 |
+| PORTED | 1722 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 228 |
+| REJECTED_ON_READING | 230 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1840,7 +1840,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439876 | `ports/439876_rsi-rsi-combined-with-bollinger-bands-and-dynamic-support-re/` | PineScript | rsi_oscillator | none | rsi_length x2, oversold x2 | 4 |
 | 439877 | `ports/439877_dual-moving-average-crossover-trading-strategy/` | PineScript | ma_cross | none | sl_mult x2, tp_mult x2 | 4 |
 | 439878 | `ports/439878_bandpass-filter-reversed-strategy/` | PineScript | cycle_filter | none | length x2, delta x2 | 4 |
-| | **1712 ports** | | | | | **8424** |
+| 439899 | `ports/439899_ema-bidirectional-ema-cross-quant-trading-strategy/` | PineScript | ma_cross | none | ema1 x2, ema7 x2 | 4 |
+| 439901 | `ports/439901_scalping-strategy-in-trend-reversal-market/` | PineScript | stochastic_oscillator | none | len_b x2, rsi_ct x2 | 4 |
+| 439938 | `ports/439938_adaptive-moving-average-tracking-strategy/` | PineScript | donchian_breakout | none | length x3 | 3 |
+| 439949 | `ports/439949_qqe-fast-qqe-crossover-trading-strategy-based-on-trend-filte/` | PineScript | momentum_oscillator | none | threshold x2, len2 x2 | 4 |
+| 439954 | `ports/439954_rsi-the-rsi-divergence-indicator-strategy/` | PineScript | reversal_pattern | none | len x2, tp_level x2 | 4 |
+| 439957 | `ports/439957_rsi-ema-rsi-and-ema-based-trend-following-strategy/` | PineScript | rsi_oscillator | none | rsi_length x2, oversold x2 | 4 |
+| 439960 | `ports/439960_momentum-finding-strategy/` | PineScript | momentum_oscillator | none | length_kc x3 | 3 |
+| 439962 | `ports/439962_intelligent-trailing-stop-loss-strategy/` | PineScript | parabolic_sar | none | af_increment x2, af_maximum x2 | 4 |
+| 439963 | `ports/439963_ema-macd-btc-ema-and-macd-based-btc-trading-strategy/` | PineScript | macd_cross | none | scale x2, ema_len x2 | 4 |
+| 439964 | `ports/439964_lagging-span-2-line-tracking-trading-strategy/` | PineScript | ichimoku | none | k x2, span_len x2 | 4 |
+| | **1722 ports** | | | | | **8462** |
 
 ## Rejected on reading
 
@@ -2074,6 +2084,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439844 | 基于移动平均线金叉死叉交易策略Moving-Average-Crossover-Trading-Strategy.md | 2 | Apart from the reversing entries, the exits are strategy.exit(profit = close x 0.15, loss = close x 0.20): percents of the close in PRICE units passed as TICK counts, so the real distances are 15 % / 20 % of the price times the tick size (1.5 % / 2 % at a 0.1 tick on BTC, 15 % / 20 % at a 1.0 tick), an instrument-specific bracket with no generic reading (as #437048, #437677). |
 | 439881 | 基于随机入场的复合止损止盈策略Compound-Stop-Loss-and-Take-Profit-Strategy-Based-on-Random-Entry.md | 1 | The entries are a pseudo-random sequence (rd_number_entry = 16708 x previous mod 2147483647 mod 17, counted from the first bar, so it depends on where the data starts) and each trade is three entries closed one by one at 1 / 2 / 3 ATR targets (partial exits, criterion 1, as #436524); the time-based exit test (== 22 of a value mod 17) can never pass. |
 | 439883 | 基于EMA的日内-skillet-商交策略EMA-Intraday-Scalping-Strategy.md | 2 | Apart from the reversing entries, the only stop is strategy.exit(loss = stop_loss_level) with stop_loss_level = close -/+ 1.5 ATR: a price LEVEL passed as a TICK distance, so the real distance is about the whole price times the tick size, an instrument-specific stop with no generic reading (as #437677, #439275). |
+| 439950 | 动量均线盘整策略Momentum-Moving-Average-Consolidation-Strategy.md | 1 | pyramiding 2 with an 'Add' entry below the average price and strategy.close(qty_percent = 20) partial profit-taking when the RSI crosses under 80: the position path and the exits are partial (criterion 1, as #436524). |
+| 439958 | 基于RSI指标的Nifty交易策略Nifty-Trading-Strategy-Based-on-RSI-Indicator.md | 1 | pyramiding = 1000 with a 1-unit buy on every RSI 2 crossover and no exit until a fixed end date (30 Nov 2023), after which every bar closes: an accumulation whose size path is the strategy (as #430762, #430248). |
 
 ## Flagged and stored under criterion 3 (253 files)
 
