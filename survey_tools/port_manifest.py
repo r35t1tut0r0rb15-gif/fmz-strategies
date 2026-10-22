@@ -5666,6 +5666,34 @@ SIZING = {
     473236: [
         ("Stop at the cloud edge of the signal bar", 154, 203),
     ],
+    # ---- FMZ-C, batch C215 (2026-10-22)
+    473238: [
+        ("strategy(): 100 % of equity, capital 10000", 90, 90),
+    ],
+    473245: [],
+    473246: [],
+    473248: [
+        ("Lot 1; stop 300 / target 600 ticks from the current close", 102, 131),
+    ],
+    473250: [
+        ("Target 0.4 % / stop 2.5 % of the average price", 99, 125),
+    ],
+    473252: [
+        ("Loss 100 / profit 200 ticks", 107, 138),
+    ],
+    473262: [
+        ("Take-profit 1.5 % (computed, never sent)", 106, 131),
+    ],
+    473263: [
+        ("strategy(): 10 % of equity, commission 0.1 %, slippage 1; partial TPs (off)", 96, 179),
+    ],
+    473265: [
+        ("Stop 1.5 ATR / target 3.5 ATR from the signal close", 121, 133),
+    ],
+    473266: [],
+    473268: [
+        ("Stop low x 0.98 / limit high x 1.04 (re-sent every bar)", 134, 137),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7153,6 +7181,11 @@ REJECTED_ON_READING = {
               "the stop / target, re-sent every bar): the position is closed in parts, so the "
               "size path is part of the strategy (criterion 1, qty_percent partial exits, as "
               "#439950)."),
+    # ---- FMZ-C, batch C215 (2026-10-22)
+    473242: ("2", "The bracket passes percentages of the close as tick counts (loss = 0.01 x close, "
+              "profit = 0.02 x close in strategy.exit's tick fields): a price amount in a tick "
+              "field, so the distance in price depends on the instrument's tick size (criterion "
+              "2, as #442115)."),
 }
 
 DUPLICATE_ON_READING = {

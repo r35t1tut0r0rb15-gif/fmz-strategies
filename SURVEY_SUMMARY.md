@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2623 |
+| PORTED | 2634 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 748 |
+| PORT_CANDIDATE | 736 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 367 |
+| REJECTED_ON_READING | 368 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2751,7 +2751,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 473234 | `ports/473234_fibonacci-advanced-timeframe-fibonacci-retracement-with-high/` | PineScript | pivot_levels | none | low_look x2, high_look x2, level x2 | 8 |
 | 473235 | `ports/473235_dual-standard-deviation-bollinger-bands-momentum-breakout-st/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
 | 473236 | `ports/473236_multi-technical-indicator-trend-following-strategy-with-ichi/` | PineScript | ichimoku | trailing_stop_pending | rsi_ob x2, rsi_os x2 | 4 |
-| | **2623 ports** | | | | | **12394** |
+| 473238 | `ports/473238_advanced-flexible-multi-period-moving-average-crossover-stra/` | PineScript | multi_timeframe_ma | none | ma_length x2 | 2 |
+| 473245 | `ports/473245_rsi-multi-period-moving-average-and-rsi-momentum-cross-strat/` | PineScript | ma_cross | none | short_period x2, long_period x2 | 4 |
+| 473246 | `ports/473246_double-seven-strategy-trend-following-and-mean-reversion-dua/` | PineScript | mean_reversion | none | window x2, ma_len x2 | 4 |
+| 473248 | `ports/473248_rsi-macd-rsi-macd-multi-signal-trading-system-with-dynamic-s/` | PineScript | macd_cross | trailing_stop_pending | rsi_os x2, rsi_ob x2 | 4 |
+| 473250 | `ports/473250_smiubs-dual-momentum-squeeze-trading-system-smiubs-indicator/` | PineScript | momentum_oscillator | coarse_bar_stop | tp_pct x2, sl_pct x2 | 4 |
+| 473252 | `ports/473252_triple-ema-crossover-trading-strategy-with-dynamic-stop-loss/` | PineScript | ma_cross | coarse_bar_stop | sl_atr x2, tp_atr x2 | 4 |
+| 473262 | `ports/473262_enhanced-multi-indicator-trend-reversal-intelligence-strateg/` | PineScript | macd_cross | none |  | 0 |
+| 473263 | `ports/473263_atr-atr-fusion-trend-optimization-model-strategy/` | PineScript | momentum_oscillator | none | long_th x2, short_th x2 | 4 |
+| 473265 | `ports/473265_atr-multi-ema-trend-following-strategy-with-dynamic-atr-targ/` | PineScript | ma_pullback | coarse_bar_stop | sl_atr x2, tp_atr x2 | 4 |
+| 473266 | `ports/473266_bollinger-bands-and-rsi-combined-trading-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2, exit_rsi x2 | 8 |
+| 473268 | `ports/473268_dynamic-dual-moving-average-crossover-quantitative-trading-s/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
+| | **2634 ports** | | | | | **12436** |
 
 ## Rejected on reading
 
@@ -3124,6 +3135,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 471718 | 智能时间周期多空轮动均衡交易策略-Intelligent-Time-Based-Long-Short-Rotation-Balanced-Trading-Strategy.md | 1 | The strategy trades only while bar_index >= last_bar_index - 499 (the last 500 bars of whatever data is loaded) and has no market signal, only a timed long / short rotation: where it trades depends on where the data ends (criterion 1, data-end-dependent window). |
 | 472253 | 强化波林格均值回归量化策略-Enhanced-Bollinger-Mean-Reversion-Quantitative-Strategy.md | 2 | The exits pass ATR distances as prices (limit = 2 x atr, stop = 1 x atr): for BTC those are prices far under the market, so the long's sell limit and the short's buy stop are marketable at every fill and each trade would close at its own fill (criterion 2, distances as absolute prices, as #458198). |
 | 473237 | T3均线趋势跟踪与移动止损量化交易策略-T3-Moving-Average-Trend-Following-Strategy-with-Trailing-Stop-Loss.md | 1 | The exits are strategy.exit qty_percent = 50 partial closes (half the position at the stop / target, re-sent every bar): the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #439950). |
+| 473242 | 双均线MACD交叉日期可调节量化交易策略-Dual-Moving-Average-MACD-Crossover-Date-Adjustable-Quantitative-Trading-Strategy.md | 2 | The bracket passes percentages of the close as tick counts (loss = 0.01 x close, profit = 0.02 x close in strategy.exit's tick fields): a price amount in a tick field, so the distance in price depends on the instrument's tick size (criterion 2, as #442115). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

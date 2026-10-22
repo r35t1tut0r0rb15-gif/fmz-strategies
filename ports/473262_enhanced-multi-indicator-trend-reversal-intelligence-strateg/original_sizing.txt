@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #473262 (增强型趋势反转多指标交叉智能策略-Enhanced-Multi-Indicator-Trend-Reversal-Intelligence-Strategy)
+# Source: https://www.fmz.com/strategy/473262  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Take-profit 1.5 % (computed, never sent)  [lines 106-131]
+  106: take_profit_percent = 1.5  // Тейк-профит на уровне 1.5% от цены входа
+  107: 
+  108: // Индикаторы EMA (ускоренные для более частых сигналов)
+  109: ema_20 = ta.ema(close, ema_fast)
+  110: ema_50 = ta.ema(close, ema_slow)
+  111: 
+  112: // MACD с более короткими периодами для большей чувствительности
+  113: [macd_line, signal_line, _] = ta.macd(close, macd_short, macd_long, macd_signal)
+  114: 
+  115: // Индикатор RSI с упрощенными уровнями для большего количества сигналов
+  116: rsi = ta.rsi(close, rsi_length)
+  117: 
+  118: // Сигналы на покупку и продажу с ослабленными условиями
+  119: buy_signal = ta.crossover(macd_line, signal_line) and ema_20 > ema_50 and rsi > 40
+  120: sell_signal = ta.crossunder(macd_line, signal_line) and ema_20 < ema_50 and rsi < 60
+  121: 
+  122: // Логика открытия сделок и расчет тейк-профита
+  123: var float take_profit_price = na  // переменная для хранения уровня тейк-профита
+  124: 
+  125: if (buy_signal)
+  126:     strategy.entry("Buy", strategy.long)
+  127:     take_profit_price := close * (1 + take_profit_percent / 100)  // уровень тейк-профита для покупки
+  128: 
+  129: if (sell_signal)
+  130:     strategy.entry("Sell", strategy.short)
+  131:     take_profit_price := close * (1 - take_profit_percent / 100)  // уровень тейк-профита для продажи

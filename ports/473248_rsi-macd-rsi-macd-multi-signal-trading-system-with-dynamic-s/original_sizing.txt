@@ -1,0 +1,35 @@
+# Original sizing and money-management code, FMZ #473248 (RSI-MACD多重信号交易系统结合动态止盈止损策略-RSI-MACD-Multi-Signal-Trading-System-with-Dynamic-Stop-Management)
+# Source: https://www.fmz.com/strategy/473248  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Lot 1; stop 300 / target 600 ticks from the current close  [lines 102-131]
+  102: lotSize = input(1, title="Tamanho do Lote")
+  103: slPips = input(300, title="Stop-Loss (pips)")  // Definido pelo usuário
+  104: tpPips = input(600, title="Take-Profit (pips)")  // Definido pelo usuário
+  105: 
+  106: // Cálculos do RSI e MACD
+  107: rsi = ta.rsi(close, rsiPeriod)
+  108: [macdLine, signalLine, _] = ta.macd(close, macdFast, macdSlow, macdSignal)
+  109: 
+  110: // Condições de compra
+  111: buyCondition = (rsi < rsiOversold) and (macdLine > signalLine) and (ta.crossover(macdLine, signalLine))
+  112: 
+  113: // Condições de venda
+  114: sellCondition = (rsi > rsiOverbought) and (macdLine < signalLine) and (ta.crossunder(macdLine, signalLine))
+  115: 
+  116: // Executa a compra
+  117: if (buyCondition)
+  118:     strategy.entry("Compra", strategy.long, qty=lotSize)
+  119:     label.new(bar_index, close, "Compra", color=color.green, style=label.style_label_up, textcolor=color.white, size=size.small)
+  120: 
+  121: // Executa a venda
+  122: if (sellCondition)
+  123:     strategy.entry("Venda", strategy.short, qty=lotSize)
+  124:     label.new(bar_index, close, "Venda", color=color.red, style=label.style_label_down, textcolor=color.white, size=size.small)
+  125: 
+  126: // Saídas com Stop-Loss e Take-Profit
+  127: if (strategy.position_size > 0)  // Para posições de compra
+  128:     strategy.exit("Saída Compra", from_entry="Compra", stop=close - slPips * syminfo.mintick, limit=close + tpPips * syminfo.mintick)
+  129: 
+  130: if (strategy.position_size < 0)  // Para posições de venda
+  131:     strategy.exit("Saída Venda", from_entry="Venda", stop=close + slPips * syminfo.mintick, limit=close - tpPips * syminfo.mintick)

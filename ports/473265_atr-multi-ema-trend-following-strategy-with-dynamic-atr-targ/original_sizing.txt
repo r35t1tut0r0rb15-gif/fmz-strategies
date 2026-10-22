@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #473265 (多均线趋势跟踪与ATR动态目标策略-Multi-EMA-Trend-Following-Strategy-with-Dynamic-ATR-Targets)
+# Source: https://www.fmz.com/strategy/473265  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1.5 ATR / target 3.5 ATR from the signal close  [lines 121-133]
+  121: var float stopLossLevel = na
+  122: var float takeProfitLevel = na
+  123: 
+  124: // Check conditions on each bar close
+  125: if (bar_index > 0) // Ensures there is data to check
+  126:     if emaCondition and pullbackCondition and strategy.position_size == 0 // Only buy if no open position
+  127:         stopLossLevel := close - (1.5 * atr)  // Set stop loss based on ATR at buy price
+  128:         takeProfitLevel := close + (3.5 * atr)   // Set take profit based on ATR at buy price
+  129:         strategy.entry("Buy", strategy.long)
+  130: 
+  131: // Set stop loss and take profit for the active trade
+  132: if strategy.position_size > 0
+  133:     strategy.exit("Take Profit", from_entry="Buy", limit=takeProfitLevel, stop=stopLossLevel)

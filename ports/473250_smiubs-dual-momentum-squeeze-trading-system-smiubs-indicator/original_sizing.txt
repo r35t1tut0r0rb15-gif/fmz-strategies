@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #473250 (双重动量挤压交易系统SMIUBS指标组合策略-Dual-Momentum-Squeeze-Trading-System-SMIUBS-Indicator-Combination-Strategy)
+# Source: https://www.fmz.com/strategy/473250  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 0.4 % / stop 2.5 % of the average price  [lines 99-125]
+   99: stopLossPerc = input.float(2.5, title="Stop Loss Percentage", step=0.1) / 100
+  100: 
+  101: // Define Squeeze Momentum logic
+  102: smi = ta.sma(close - ta.lowest(low, smiLength), smiSmoothing) - ta.sma(ta.highest(high, smiLength) - close, smiSmoothing)
+  103: squeezeMomentum = ta.sma(smi, smiSmoothing)
+  104: smiUp = squeezeMomentum > squeezeMomentum[1]
+  105: smiDown = squeezeMomentum < squeezeMomentum[1]
+  106: 
+  107: // Define Ultimate Buy/Sell Indicator logic (you can customize the conditions)
+  108: ultimateBuy = ta.crossover(close, ta.sma(close, ultBuyLength))
+  109: ultimateSell = ta.crossunder(close, ta.sma(close, ultBuyLength))
+  110: 
+  111: 
+  112: // Trading logic: Short entry (Squeeze Momentum from green to red and Ultimate Sell signal)
+  113: shortCondition = smiDown and ultimateSell
+  114: if (shortCondition)
+  115:     strategy.entry("Short", strategy.short)
+  116: 
+  117: //Set short target (exit when price decreases by 0.2%)
+  118: shortTarget = strategy.position_avg_price * 0.996
+  119: 
+  120: // Set stop loss for short (5% above the entry price)
+  121: shortStop = strategy.position_avg_price * (1 + stopLossPerc)
+  122: 
+  123: // Exit logic for short
+  124: if (strategy.position_size < 0)
+  125:     strategy.exit("Exit Short", "Short", limit=shortTarget, stop=shortStop)

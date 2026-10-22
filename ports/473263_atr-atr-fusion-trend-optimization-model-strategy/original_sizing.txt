@@ -1,0 +1,89 @@
+# Original sizing and money-management code, FMZ #473263 (ATR融合趋势优化模型策略-ATR-Fusion-Trend-Optimization-Model-Strategy)
+# Source: https://www.fmz.com/strategy/473263  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity, commission 0.1 %, slippage 1; partial TPs (off)  [lines 96-179]
+   96: strategy("Fibonacci ATR Fusion - Strategy [presentTrading]", overlay=false, precision=3, commission_value= 0.1, commission_type=strategy.commission.percent, slippage= 1, currency=currency.USD, default_qty_type = strategy.percent_of_equity, default_qty_value = 10, initial_capital=10000)
+   97: 
+   98: // Calculate True High and True Low
+   99: tradingDirection = input.string(title="Trading Direction", defval="Both", options=["Long", "Short", "Both"])
+  100: 
+  101: // Trading Condition Thresholds
+  102: long_entry_threshold = input.float(58.0, title="Long Entry Threshold")
+  103: short_entry_threshold = input.float(42.0, title="Short Entry Threshold")
+  104: long_exit_threshold = input.float(42.0, title="Long Exit Threshold")
+  105: short_exit_threshold = input.float(58.0, title="Short Exit Threshold")
+  106: 
+  107: // Enable or Disable 4-Step Take Profit
+  108: useTakeProfit = input.bool(false, title="Enable 4-Step Take Profit")
+  109: 
+  110: // Take Profit Levels (as multiples of ATR)
+  111: tp1ATR = input.float(3.0, title="Take Profit Level 1 ATR Multiplier")
+  112: tp2ATR = input.float(8.0, title="Take Profit Level 2 ATR Multiplier")
+  113: tp3ATR = input.float(14.0, title="Take Profit Level 3 ATR Multiplier")
+  114: 
+  115: // Take Profit Percentages
+  116: tp1_percent = input.float(12.0, title="TP Level 1 Percentage", minval=0.0, maxval=100.0)
+  117: tp2_percent = input.float(12.0, title="TP Level 2 Percentage", minval=0.0, maxval=100.0)
+  118: tp3_percent = input.float(12.0, title="TP Level 3 Percentage", minval=0.0, maxval=100.0)
+  119: 
+  120: true_low = math.min(low, close[1])
+  121: true_high = math.max(high, close[1])
+  122: 
+  123: // Calculate True Range
+  124: true_range = true_high - true_low
+  125: 
+  126: // Calculate BP (Buying Pressure)
+  127: bp = close - true_low
+  128: 
+  129: // Calculate ratios for different periods
+  130: calc_ratio(len) =>
+  131:     sum_bp = math.sum(bp, len)
+  132:     sum_tr = math.sum(true_range, len)
+  133:     100 * sum_bp / sum_tr
+  134: 
+  135: // Calculate weighted average of different timeframes
+  136: weighted_avg = (5 * calc_ratio(8) + 4 * calc_ratio(13) + 3 * calc_ratio(21) + 2 * calc_ratio(34) + calc_ratio(55)) / (5 + 4 + 3 + 2 + 1)
+  137: weighted_avg_sma = ta.sma(weighted_avg,3)
+  138: 
+  139: // Plot the indicator
+  140: plot(weighted_avg, "Fibonacci ATR", color=color.blue, linewidth=2)
+  141: plot(weighted_avg_sma, "SMA Fibonacci ATR", color=color.yellow, linewidth=2)
+  142: 
+  143: // Define trading conditions
+  144: longCondition = ta.crossover(weighted_avg_sma, long_entry_threshold)  // Enter long when weighted average crosses above threshold
+  145: shortCondition = ta.crossunder(weighted_avg_sma, short_entry_threshold) // Enter short when weighted average crosses below threshold
+  146: longExit = ta.crossunder(weighted_avg_sma, long_exit_threshold)
+  147: shortExit = ta.crossover(weighted_avg_sma, short_exit_threshold)
+  148: 
+  149: 
+  150: atrPeriod = 14
+  151: atrValue = ta.atr(atrPeriod)
+  152: 
+  153: if (tradingDirection == "Long" or tradingDirection == "Both")
+  154:     if (longCondition)
+  155:         strategy.entry("Long", strategy.long)
+  156:         // Set Take Profit levels for Long positions
+  157:         if useTakeProfit
+  158:             tpPrice1 = strategy.position_avg_price + tp1ATR * atrValue
+  159:             tpPrice2 = strategy.position_avg_price + tp2ATR * atrValue
+  160:             tpPrice3 = strategy.position_avg_price + tp3ATR * atrValue
+  161:             // Close partial positions at each Take Profit level
+  162:             strategy.exit("TP1 Long", from_entry="Long", qty_percent=tp1_percent, limit=tpPrice1)
+  163:             strategy.exit("TP2 Long", from_entry="Long", qty_percent=tp2_percent, limit=tpPrice2)
+  164:             strategy.exit("TP3 Long", from_entry="Long", qty_percent=tp3_percent, limit=tpPrice3)
+  165:     if (longExit)
+  166:         strategy.close("Long")
+  167: 
+  168: if (tradingDirection == "Short" or tradingDirection == "Both")
+  169:     if (shortCondition)
+  170:         strategy.entry("Short", strategy.short)
+  171:         // Set Take Profit levels for Short positions
+  172:         if useTakeProfit
+  173:             tpPrice1 = strategy.position_avg_price - tp1ATR * atrValue
+  174:             tpPrice2 = strategy.position_avg_price - tp2ATR * atrValue
+  175:             tpPrice3 = strategy.position_avg_price - tp3ATR * atrValue
+  176:             // Close partial positions at each Take Profit level
+  177:             strategy.exit("TP1 Short", from_entry="Short", qty_percent=tp1_percent, limit=tpPrice1)
+  178:             strategy.exit("TP2 Short", from_entry="Short", qty_percent=tp2_percent, limit=tpPrice2)
+  179:             strategy.exit("TP3 Short", from_entry="Short", qty_percent=tp3_percent, limit=tpPrice3)

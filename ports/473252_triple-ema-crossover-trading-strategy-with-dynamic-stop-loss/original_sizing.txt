@@ -1,0 +1,37 @@
+# Original sizing and money-management code, FMZ #473252 (三均线交叉均线跟踪交易策略结合动态止盈止损-Triple-EMA-Crossover-Trading-Strategy-with-Dynamic-Stop-Loss-and-Take-Profit)
+# Source: https://www.fmz.com/strategy/473252  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Loss 100 / profit 200 ticks  [lines 107-138]
+  107: stopLossPoints = input(100, title="Stop Loss Points")
+  108: takeProfitPoints = input(200, title="Take Profit Points")
+  109: 
+  110: // Calculate EMAs
+  111: ema9 = ta.ema(close, ema9Length)
+  112: ema15 = ta.ema(close, ema15Length)
+  113: ema50 = ta.ema(close, ema50Length)
+  114: 
+  115: // Detect crossovers
+  116: crossover_above = ta.crossover(ema9, ema15)
+  117: crossover_below = ta.crossunder(ema9, ema15)
+  118: 
+  119: // Plot EMAs
+  120: plot(ema9, color=color.blue, title="EMA 9")
+  121: plot(ema15, color=color.red, title="EMA 15")
+  122: // Make the 50 EMA invisible
+  123: plot(ema50, color=color.new(color.white, 100), title="EMA 50", display=display.none)
+  124: 
+  125: // Plot buy and sell signals as shapes
+  126: plotshape(crossover_above and close > ema50, style=shape.triangleup, location=location.belowbar, color=color.green, size=size.small)
+  127: plotshape(crossover_below and close < ema50, style=shape.triangledown, location=location.abovebar, color=color.red, size=size.small)
+  128: 
+  129: // Execute trades
+  130: if (crossover_above and close > ema50)
+  131:     strategy.entry("Buy", strategy.long)
+  132: 
+  133: if (crossover_below and close < ema50)
+  134:     strategy.close("Buy")
+  135: 
+  136: // Apply stop loss and take profit
+  137: if (crossover_above and close > ema50)
+  138:     strategy.exit("Exit", from_entry="Buy", loss=stopLossPoints, profit=takeProfitPoints)
