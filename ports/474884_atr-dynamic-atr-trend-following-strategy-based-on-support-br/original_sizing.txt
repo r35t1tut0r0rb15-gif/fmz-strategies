@@ -1,0 +1,69 @@
+# Original sizing and money-management code, FMZ #474884 (基于支撑位突破的动态ATR趋势跟踪策略-Dynamic-ATR-Trend-Following-Strategy-Based-on-Support-Breakout)
+# Source: https://www.fmz.com/strategy/474884  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Lot size by 1 % risk of equity; stop 2 ATR / target 6 ATR from the current close  [lines 104-167]
+  104: input_risk_percentage = input.float(1, title="Risk Percentage", step=0.1)
+  105: input_atr_length = input.int(14, title="ATR Length")
+  106: input_ema_short = input.int(50, title="EMA Short")
+  107: input_ema_long = input.int(200, title="EMA Long")
+  108: 
+  109: // === Calculations ===
+  110: atr = ta.atr(input_atr_length)
+  111: ema_short = ta.ema(close, input_ema_short)
+  112: ema_long = ta.ema(close, input_ema_long)
+  113: 
+  114: // === Utility Functions ===
+  115: // Identify Order Blocks
+  116: is_order_block(price, direction) =>
+  117:     ((high[1] > high[2] and low[1] > low[2] and direction == 1) or (high[1] < high[2] and low[1] < low[2] and direction == -1))
+  118: 
+  119: // Identify Imbalance Zones
+  120: is_imbalance() =>
+  121:     range_high = high[1]
+  122:     range_low = low[1]
+  123:     range_high > close and range_low < close
+  124: 
+  125: // Calculate Lot Size Based on Risk
+  126: calculate_lot_size(stop_loss_points, account_balance) =>
+  127:     risk_amount = account_balance * (input_risk_percentage / 100)
+  128:     lot_size = risk_amount / (stop_loss_points * syminfo.pointvalue)
+  129:     lot_size
+  130: 
+  131: // Determine if Market is Consolidating
+  132: is_consolidating() =>
+  133:     (ta.highest(high, 20) - ta.lowest(low, 20)) / atr < 2
+  134: 
+  135: // === Visual Enhancements ===
+  136: // Plot Order Blocks
+  137: // if is_order_block(close, 1)
+  138: //     line.new(x1=bar_index[1], y1=low[1], x2=bar_index, y2=low[1], color=color.green, width=2, extend=extend.right)
+  139: // if is_order_block(close, -1)
+  140: //     line.new(x1=bar_index[1], y1=high[1], x2=bar_index, y2=high[1], color=color.red, width=2, extend=extend.right)
+  141: 
+  142: // Highlight Imbalance Zones
+  143: // if is_imbalance()
+  144: //     box.new(left=bar_index[1], top=high[1], right=bar_index, bottom=low[1], bgcolor=color.new(color.orange, 80))
+  145: 
+  146: // === Logic for Trend Confirmation ===
+  147: is_bullish_trend = ema_short > ema_long
+  148: is_bearish_trend = ema_short < ema_long
+  149: 
+  150: // === Entry Logic ===
+  151: account_balance = strategy.equity
+  152: if not is_consolidating()
+  153:     if is_bullish_trend
+  154:         stop_loss = close - atr * 2
+  155:         take_profit = close + (math.abs(close - (close - atr * 2)) * 3)
+  156:         stop_loss_points = math.abs(close - stop_loss) / syminfo.pointvalue
+  157:         lot_size = calculate_lot_size(stop_loss_points, account_balance)
+  158:         strategy.entry("Buy", strategy.long, qty=lot_size)
+  159:         strategy.exit("TP/SL", "Buy", stop=stop_loss, limit=take_profit)
+  160: 
+  161:     if is_bearish_trend
+  162:         stop_loss = close + atr * 2
+  163:         take_profit = close - (math.abs(close - (close + atr * 2)) * 3)
+  164:         stop_loss_points = math.abs(close - stop_loss) / syminfo.pointvalue
+  165:         lot_size = calculate_lot_size(stop_loss_points, account_balance)
+  166:         strategy.entry("Sell", strategy.short, qty=lot_size)
+  167:         strategy.exit("TP/SL", "Sell", stop=stop_loss, limit=take_profit)

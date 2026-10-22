@@ -1,0 +1,40 @@
+# Original sizing and money-management code, FMZ #474958 (双均线交叉风险收益智能调控策略-Dual-EMA-Crossover-Strategy-with-Smart-Risk-Reward-Control)
+# Source: https://www.fmz.com/strategy/474958  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 30 % of equity; stop at previous opens, target 2 R  [lines 87-121]
+   87: strategy("EMA Cross - Any Direction", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=30)
+   88: 
+   89: // Input for EMAs
+   90: ema_short_length = input(15, title="Short EMA Length")
+   91: ema_long_length = input(50, title="Long EMA Length")
+   92: 
+   93: // Calculate EMAs
+   94: ema_short = ta.ema(close, ema_short_length)
+   95: ema_long = ta.ema(close, ema_long_length)
+   96: 
+   97: // Plot EMAs
+   98: plot(ema_short, color=color.blue, title="15 EMA")
+   99: plot(ema_long, color=color.red, title="50 EMA")
+  100: 
+  101: // Entry Conditions (Any EMA Cross)
+  102: cross_condition = ta.crossover(ema_short, ema_long) or ta.crossunder(ema_short, ema_long)
+  103: 
+  104: // Determine Trade Direction
+  105: is_long = ta.crossover(ema_short, ema_long)
+  106: is_short = ta.crossunder(ema_short, ema_long)
+  107: 
+  108: // Stop Loss and Take Profit
+  109: long_stop_loss = ta.lowest(open[1], 2)  // Lowest open of the last 2 candles
+  110: short_stop_loss = ta.highest(open[1], 2) // Highest open of the last 2 candles
+  111: long_take_profit = close + 2 * (close - long_stop_loss)
+  112: short_take_profit = close - 2 * (short_stop_loss - close)
+  113: 
+  114: // Execute Trades
+  115: if (cross_condition)
+  116:     if (is_long)
+  117:         strategy.entry("Long", strategy.long)
+  118:         strategy.exit("Exit Long", "Long", stop=long_stop_loss, limit=long_take_profit)
+  119:     else if (is_short)
+  120:         strategy.entry("Short", strategy.short)
+  121:         strategy.exit("Exit Short", "Short", stop=short_stop_loss, limit=short_take_profit)

@@ -5953,6 +5953,26 @@ SIZING = {
     474876: [
         ("strategy(): 100 % of equity; ATR stop / target x 2 (when=)", 92, 162),
     ],
+    # ---- FMZ-C, batch C226 (2026-10-22)
+    474880: [
+        ("Take profit 5 % / stop 2 % of the stored max price", 201, 224),
+    ],
+    474881: [],
+    474883: [],
+    474884: [
+        ("Lot size by 1 % risk of equity; stop 2 ATR / target 6 ATR from the current close", 104, 167),
+    ],
+    474885: [
+        ("qty 1", 125, 128),
+    ],
+    474953: [],
+    474955: [],
+    474958: [
+        ("strategy(): 30 % of equity; stop at previous opens, target 2 R", 87, 121),
+    ],
+    474959: [
+        ("Stop 1.1 ATR / target 2 ATR from avg", 130, 144),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7504,6 +7524,18 @@ REJECTED_ON_READING = {
               "armed at once) and trail_offset = (2 / 89500) x close ticks (under one tick of "
               "0.1): it stops each trade at the first tick against it, so trades end at their "
               "entry price (criterion 1, a zero-width exit, as #451493)."),
+    # ---- FMZ-C, batch C226 (2026-10-22)
+    474879: ("1", "Dollar-cost averaging: strategy.order('DCA Buy', long, investment / close) on "
+              "every cross under the lower band, with no exit until a fixed close date: the "
+              "position is a running sum of orders, so the size path is the strategy (criterion "
+              "1, DCA accumulation, as #430762)."),
+    474956: ("1", "No exit, and the entry test passes on the first bars of the data (its averages are "
+              "still na and comparisons with na are false, so the 'clean' loop finds nothing to "
+              "block): the first bar's long is held to the end of the data, a single buy-and-hold "
+              "trade (criterion 1, as #433916)."),
+    474960: ("2", "strategy.exit's profit / loss fields take tick counts but receive price amounts "
+              "(close x 2.4 % / close x 1.2 %): a price amount in a tick field, so the distance "
+              "in price depends on the instrument's tick size (criterion 2, as #442115)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #474955 (历史新高突破结合月线均线过滤的趋势跟踪量化交易策略-Historical-High-Breakthrough-with-Monthly-Moving-Average-Filter-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/474955  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

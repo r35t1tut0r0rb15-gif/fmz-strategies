@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #474885 (基于价格形态的双底双顶自动交易策略-Price-Pattern-Based-Double-Bottom-and-Top-Automated-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/474885  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty 1  [lines 125-128]
+  125:     strategy.entry("Long", strategy.long, qty=1)
+  126: 
+  127: if (shortCondition)
+  128:     strategy.entry("Short", strategy.short, qty=1)

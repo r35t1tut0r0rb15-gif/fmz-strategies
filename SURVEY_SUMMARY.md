@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2739 |
+| PORTED | 2748 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 616 |
+| PORT_CANDIDATE | 604 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 383 |
+| REJECTED_ON_READING | 386 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2867,7 +2867,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474869 | `ports/474869_dynamic-pivot-points-with-golden-cross-optimization-system/` | PineScript | ma_cross | none | length_short x2, length_long x2 | 4 |
 | 474874 | `ports/474874_rsi-moving-average-crossover-with-rsi-trend-momentum-trackin/` | PineScript | ma_cross | trailing_stop_pending | short_ma x2, long_ma x2 | 4 |
 | 474876 | `ports/474876_multi-timeframe-trend-dynamic-atr-tracking-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
-| | **2739 ports** | | | | | **12820** |
+| 474880 | `ports/474880_macd-rsi-multi-indicator-synergistic-trading-strategy-with-b/` | PineScript | multi_indicator_confluence | none | lookback_fib x2, sl_pct x2 | 4 |
+| 474881 | `ports/474881_zigzag-aroon-adaptive-trend-following-and-reversal-detection/` | PineScript | directional_movement | none | depth x2, aroon_length x2 | 4 |
+| 474883 | `ports/474883_multiple-moving-average-and-stochastic-oscillator-crossover/` | PineScript | stochastic_oscillator | none |  | 0 |
+| 474884 | `ports/474884_atr-dynamic-atr-trend-following-strategy-based-on-support-br/` | PineScript | ma_trend | trailing_stop_pending | ema_short x2, ema_long x2 | 4 |
+| 474885 | `ports/474885_price-pattern-based-double-bottom-and-top-automated-trading/` | PineScript | reversal_pattern | none | length x2 | 2 |
+| 474953 | `ports/474953_vidya-atr-dynamic-volatility-index-vidya-with-atr-trend-foll/` | PineScript | adaptive_average | none | vidya_length x2, band x2 | 4 |
+| 474955 | `ports/474955_historical-high-breakthrough-with-monthly-moving-average-fil/` | PineScript | breakout | none | sma_len x2 | 2 |
+| 474958 | `ports/474958_dual-ema-crossover-strategy-with-smart-risk-reward-control/` | PineScript | ma_cross | coarse_bar_stop | short_len x2, long_len x2 | 4 |
+| 474959 | `ports/474959_rsi-atr-multi-period-ema-crossover-with-rsi-momentum-and-atr/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop_pending | short_ema x2, long_ema x2 | 4 |
+| | **2748 ports** | | | | | **12848** |
 
 ## Rejected on reading
 
@@ -3256,6 +3265,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474822 | 自适应布林通道动态仓位管理策略-Adaptive-Bollinger-Bands-Dynamic-Position-Management-Strategy.md | 1 | Partial closes: entries of qty 0.5 and strategy.close("Buy", qty = 0.1 / 0.5) on the basis re-cross and the lower-band break: the position is closed in parts, so the size path is part of the strategy (criterion 1, partial exits, as #436524). |
 | 474837 | 变量指数动态均线多层利润趋势跟踪策略-Variable-Index-Dynamic-Average-Multi-Tier-Profit-Trend-Following-Strategy.md | 1 | Multi-step take-profit on by default: six qty_percent partial exits (ATR and percent levels) per trade: the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #436524). |
 | 474870 | 动量趋势跟踪型MACD-RSI双重确认交易策略-Momentum-Trend-Following-MACD-RSI-Dual-Confirmation-Trading-Strategy.md | 1 | The trailing exit has trail_price = avg x (1 - 2 / 89500) (at the entry price, so armed at once) and trail_offset = (2 / 89500) x close ticks (under one tick of 0.1): it stops each trade at the first tick against it, so trades end at their entry price (criterion 1, a zero-width exit, as #451493). |
+| 474879 | 均值回归型布林带美元成本平均投资策略-Mean-Reversion-Bollinger-Band-Dollar-Cost-Averaging-Investment-Strategy.md | 1 | Dollar-cost averaging: strategy.order('DCA Buy', long, investment / close) on every cross under the lower band, with no exit until a fixed close date: the position is a running sum of orders, so the size path is the strategy (criterion 1, DCA accumulation, as #430762). |
+| 474956 | 多均线组合趋势跟踪战略-基于EMA与SMA指标的长期投资信号系统-Multi-Moving-Average-Trend-Following-Strategy-Long-term-Investment-Signal-System-Based-on-EMA-and-SMA-Indicators.md | 1 | No exit, and the entry test passes on the first bars of the data (its averages are still na and comparisons with na are false, so the 'clean' loop finds nothing to block): the first bar's long is held to the end of the data, a single buy-and-hold trade (criterion 1, as #433916). |
+| 474960 | MACD-RSI趋势动量交叉策略结合风险管理模型-MACD-RSI-Trend-Momentum-Cross-Strategy-with-Risk-Management-Model.md | 2 | strategy.exit's profit / loss fields take tick counts but receive price amounts (close x 2.4 % / close x 1.2 %): a price amount in a tick field, so the distance in price depends on the instrument's tick size (criterion 2, as #442115). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

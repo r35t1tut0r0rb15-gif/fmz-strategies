@@ -1,0 +1,20 @@
+# Original sizing and money-management code, FMZ #474959 (多周期均线穿越结合RSI动量与ATR波动率的趋势跟踪策略-Multi-Period-EMA-Crossover-with-RSI-Momentum-and-ATR-Volatility-Based-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/474959  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1.1 ATR / target 2 ATR from avg  [lines 130-144]
+  130: stop_loss_level = 1.1 * atr_value
+  131: take_profit_level = 2.0 * atr_value
+  132: 
+  133: // Execute Strategy Entry
+  134: if (long_condition)
+  135:     strategy.entry("Buy", strategy.long)
+  136: 
+  137: // Adjust SL and TP levels using the entry price
+  138: if (strategy.position_size > 0)
+  139:     // Calculate SL and TP relative to the entry price
+  140:     stop_price = strategy.position_avg_price - stop_loss_level
+  141:     limit_price = strategy.position_avg_price + take_profit_level
+  142: 
+  143:     // Exit strategy with SL and TP
+  144:     strategy.exit("Exit", from_entry="Buy", stop=stop_price, limit=limit_price)
