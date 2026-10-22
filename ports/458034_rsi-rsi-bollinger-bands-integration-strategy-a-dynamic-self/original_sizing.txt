@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #458034 (RSI-布林通道整合策略动态自适应的多指标交易系统-RSI-Bollinger-Bands-Integration-Strategy-A-Dynamic-Self-Adaptive-Multi-Indicator-Trading-System)
+# Source: https://www.fmz.com/strategy/458034  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop / target 2 ATR from the signal bar's low  [lines 174-209]
+  174: take_risk = input(2,  title="Multiplo ATR - Take", inline="Take", group = "Gerenciamento")
+  175: stop_risk = input(2,  title="Multiplo ATR - Stop", inline="Stop", group = "Gerenciamento")
+  176: 
+  177: // Calculate Bollinger Bands with period 30 and multiplier 1.5
+  178: [middle, upper, lower] = ta.bb(close, 30, 1.5)
+  179: 
+  180: // Calculate RSI with period 13
+  181: rsi13 = ta.rsi(close, 9)
+  182: 
+  183: // Calculate ATR with period 10
+  184: atr10 = ta.atr(10)
+  185: 
+  186: // Entry condition based on strategy rules
+  187: compra = close[2] < lower[1] and close[1]>open[1] and rsi13[1] <= 25
+  188: saida =  rsi13 > 75
+  189: 
+  190: 
+  191: // Plot buy signal shape on the chart
+  192: plotshape(series=compra, location=location.belowbar, color=color.green, style=shape.labeldown, text="Buy Signal")
+  193: 
+  194: // Initialize variables for stop loss and take profit
+  195: var float stop_loss = na
+  196: var float take_profit = na
+  197: 
+  198: // Logic for strategy execution
+  199: if compra and  strategy.position_size == 0 
+  200:     // Entry long position
+  201:     strategy.entry("Long", strategy.long)
+  202:     
+  203:     // Calculate stop loss and take profit levels
+  204:     stop_loss := low - ( stop_risk * atr10)
+  205:     take_profit := low + (take_risk * atr10)
+  206:     
+  207:     // Exit conditions
+  208: if strategy.position_size > 0 
+  209:     strategy.exit("Canal Acionado", "Long", limit=take_profit , stop = stop_loss)

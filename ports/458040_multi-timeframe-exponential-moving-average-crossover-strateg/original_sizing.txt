@@ -1,0 +1,36 @@
+# Original sizing and money-management code, FMZ #458040 (多时间框架融合型指数均线交叉策略-Multi-Timeframe-Exponential-Moving-Average-Crossover-Strategy-with-Risk-Reward-Optimization)
+# Source: https://www.fmz.com/strategy/458040  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1.5 ATR, target 5R from the average price (signal bars only)  [lines 163-193]
+  163: rrRatio = input.float(5.0, "Risk-Reward Ratio", minval=1.0, step=0.1)
+  164: 
+  165: // ?????????? ?? ????
+  166: ema_fast = ta.ema(close, fastEMA)
+  167: ema_slow = ta.ema(close, slowEMA)
+  168: atr = ta.atr(atrPeriod)
+  169: 
+  170: // ???? ????????? EMA
+  171: htf_ema_fast = request.security(syminfo.tickerid, "240", ta.ema(close, fastEMA))
+  172: htf_ema_slow = request.security(syminfo.tickerid, "240", ta.ema(close, slowEMA))
+  173: 
+  174: // ?????? ???????
+  175: upTrend = ema_fast > ema_slow and close > htf_ema_fast
+  176: downTrend = ema_fast < ema_slow and close < htf_ema_slow
+  177: 
+  178: // ?????? ???????
+  179: longCondition = upTrend and ta.crossover(close, ema_slow)
+  180: shortCondition = downTrend and ta.crossunder(close, ema_slow)
+  181: 
+  182: // ????? ?? ??????? ?? ????
+  183: riskAmount = atr * 1.5
+  184: rewardAmount = riskAmount * rrRatio
+  185: 
+  186: // ???????? ?????
+  187: if (longCondition)
+  188:     strategy.entry("Long", strategy.long)
+  189:     strategy.exit("Exit Long", "Long", stop=strategy.position_avg_price - riskAmount, limit=strategy.position_avg_price + rewardAmount)
+  190: 
+  191: if (shortCondition)
+  192:     strategy.entry("Short", strategy.short)
+  193:     strategy.exit("Exit Short", "Short", stop=strategy.position_avg_price + riskAmount, limit=strategy.position_avg_price - rewardAmount)

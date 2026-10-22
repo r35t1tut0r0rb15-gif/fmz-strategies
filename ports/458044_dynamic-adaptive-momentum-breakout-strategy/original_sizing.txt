@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #458044 (动态自适应动量突破策略-Dynamic-Adaptive-Momentum-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/458044  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin_long 100, margin_short 100  [lines 249-249]
+  249: strategy("Adaptive Momentum Strategy", overlay=true, margin_long=100, margin_short=100)

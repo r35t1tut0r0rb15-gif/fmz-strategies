@@ -1,0 +1,37 @@
+# Original sizing and money-management code, FMZ #458043 (自适应移动平均交叉追踪止损策略-Adaptive-Moving-Average-Crossover-with-Trailing-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/458043  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantity (capital + net profit) / close; trailing stop 2 stdev  [lines 166-197]
+  166: fancy_tests = input.bool(true,"Enable Fancy Changes")
+  167: longLossPerc = input.float(2, title="Trailing Stop Loss (%)",
+  168:      minval=0.0, step=0.1) * 0.01
+  169: stdMult = input.float(2.0, title="Standard Deviation Multiplier",
+  170:      minval=0.0, step=0.01)
+  171: 
+  172: float fastMA = ta.sma(close, FSMA)
+  173: float slowMA = ta.sma(close, SLMA)
+  174: float closMA = ta.sma(close, 25)
+  175: 
+  176: confidence = 1.0
+  177: if (fancy_tests)
+  178:     longLossPerc := stdMult * ta.stdev(ohlc4, 20)/close
+  179: balance = strategy.initial_capital + strategy.netprofit
+  180: balanceInContracts = balance* confidence/close
+  181: 
+  182: // Enter a long position when `fastMA` crosses over `slowMA`.
+  183: if ta.crossover(fastMA, slowMA)
+  184:     strategy.entry("BUY", strategy.long, qty=balanceInContracts)
+  185: //longStopPrice  = strategy.position_avg_price * (1 - longLossPerc)
+  186: //Trailing Stop loss Code
+  187: longStopPrice = 0.0
+  188: percLoss = longLossPerc
+  189: longStopPrice := if strategy.position_size > 0
+  190:     //if (strategy.openprofit_percent/100.0 > longLossPerc)
+  191:     //    percLoss := math.min(strategy.openprofit_percent/200.0, longLossPerc)
+  192:     stopValue = close * (1 - percLoss)
+  193:     math.max(stopValue, longStopPrice[1])
+  194: else
+  195:     0
+  196: if strategy.position_size > 0
+  197:     strategy.exit("STP", stop=longStopPrice)

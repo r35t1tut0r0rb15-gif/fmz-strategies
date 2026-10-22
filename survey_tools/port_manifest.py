@@ -5266,6 +5266,27 @@ SIZING = {
         ("Target 100 / stop 50 points from the average price", 180, 208),
     ],
     458031: [],
+    # ---- FMZ-C, batch C199 (2026-10-22)
+    458033: [
+        ("Target 0.08955 % / stop 0.04477 % of the average price", 157, 195),
+    ],
+    458034: [
+        ("Stop / target 2 ATR from the signal bar's low", 174, 209),
+    ],
+    458036: [],
+    458040: [
+        ("Stop 1.5 ATR, target 5R from the average price (signal bars only)", 163, 193),
+    ],
+    458041: [
+        ("strategy(): 100 % of equity", 230, 230),
+    ],
+    458043: [
+        ("Quantity (capital + net profit) / close; trailing stop 2 stdev", 166, 197),
+    ],
+    458044: [
+        ("strategy(): margin_long 100, margin_short 100", 249, 249),
+    ],
+    458047: [],
 }
 
 REJECTED_ON_READING = {
@@ -6669,6 +6690,19 @@ REJECTED_ON_READING = {
     458029: ("1", "pyramiding = 2 with the 'Long' / 'Short' entries sent again on a later crossing "
               "while the trade is still open (a cross back that opens nothing in between): the "
               "position adds units (criterion 1, as #442112, #430762)."),
+    # ---- FMZ-C, batch C199 (2026-10-22)
+    458035: ("1", "Both 'pivots' are high[1] + low[1] + close[1] / 3 (about 2.3 times the price, "
+              "operator precedence), so low <= pivotLow holds on every bar: a long sent on every "
+              "bar and no short ever (criterion 1, constant-true entry, as #442261)."),
+    458037: ("1", "The take-profit target is solved from the script's own balance bookkeeping "
+              "(CurrentBalance, Accom, PositionTarget of a 1000 USDT start, 90 % position size), "
+              "so where a trade closes depends on the position size and the history of past "
+              "trades (criterion 1, size- and history-dependent exit, as #440336)."),
+    458038: ("1", "Entries stop for good once the strategy's own equity drawdown from its peak "
+              "reaches 40 % (end_strategy): a size- and history-dependent equity gate on every "
+              "trade (criterion 1, as #440336)."),
+    458045: ("1", "strategy.exit with qty = 0.75 / 0.25 x the trade size takes partial profits (and "
+              "the stop moves to the entry): partial exits (criterion 1, as #436524)."),
 }
 
 DUPLICATE_ON_READING = {

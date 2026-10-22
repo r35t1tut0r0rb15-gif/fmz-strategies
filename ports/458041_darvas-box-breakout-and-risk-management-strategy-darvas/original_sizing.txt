@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #458041 (Darvas-Box-Breakout-and-Risk-Management-Strategy-Darvas-盒子突破与风险管理策略)
+# Source: https://www.fmz.com/strategy/458041  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 230-230]
+  230: strategy("Darvas Box Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

@@ -1,0 +1,44 @@
+# Original sizing and money-management code, FMZ #458033 (多时框趋势跟踪与订单区块结合的量化交易策略-Multi-Timeframe-Trend-Following-and-Order-Block-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/458033  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 0.08955 % / stop 0.04477 % of the average price  [lines 157-195]
+  157: profit_percent = input.float(0.08955, "Porcentaje de ganancia", step=0.00001, minval=0)
+  158: stop_loss_percent = input.float(0.04477, "Porcentaje de stop loss", step=0.00001, minval=0)
+  159: // Función para calcular el Order Block
+  160: order_block(src, len) =>
+  161:     highest = ta.highest(high, len)
+  162:     lowest = ta.lowest(low, len)
+  163:     mid = (highest + lowest) / 2
+  164:     ob = src > mid ? highest : lowest
+  165:     ob
+  166: // Cálculo del Order Block
+  167: ob = order_block(src, length)
+  168: // Función para detectar cambios de tendencia
+  169: trend_change(src, len) =>
+  170:     up = ta.crossover(src, ta.sma(src, len))
+  171:     down = ta.crossunder(src, ta.sma(src, len))
+  172:     [up, down]
+  173: // Detectar cambios de tendencia
+  174: [trend_up, trend_down] = trend_change(src, length)
+  175: // Calcular EMA 50 y EMA 200 en timeframe de 1 hora
+  176: ema50_1h = request.security(syminfo.tickerid, "60", ta.ema(close, 50))
+  177: ema200_1h = request.security(syminfo.tickerid, "60", ta.ema(close, 200))
+  178: // Condiciones de EMA
+  179: ema_buy_condition = ema50_1h > ema200_1h
+  180: ema_sell_condition = ema50_1h < ema200_1h
+  181: // Señales de compra y venta
+  182: buy_signal = trend_up and close > ob and ema_buy_condition
+  183: sell_signal = trend_down and close < ob and ema_sell_condition
+  184: // Ejecutar la estrategia
+  185: if (buy_signal)
+  186:     strategy.entry("Compra", strategy.long)
+  187: if (sell_signal)
+  188:     strategy.entry("Venta", strategy.short)
+  189: // Calcular precios de toma de ganancias y stop loss
+  190: if (strategy.position_size != 0)
+  191:     entry_price = strategy.position_avg_price
+  192:     is_long = strategy.position_size > 0
+  193:     take_profit = entry_price * (1 + (is_long ? 1 : -1) * profit_percent / 100)
+  194:     stop_loss = entry_price * (1 + (is_long ? -1 : 1) * stop_loss_percent / 100)
+  195:     strategy.exit(is_long ? "Long TP/SL" : "Short TP/SL", limit=take_profit, stop=stop_loss)
