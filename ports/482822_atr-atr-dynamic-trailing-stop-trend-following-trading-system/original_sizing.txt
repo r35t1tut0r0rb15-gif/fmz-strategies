@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482822 (ATR动态追踪止损的趋势跟踪交易系统-ATR-Dynamic-Trailing-Stop-Trend-Following-Trading-System)
+# Source: https://www.fmz.com/strategy/482822  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 115-115]
+  115: strategy("Enhanced UT Bot with Long & Short Trades", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2978 |
+| PORTED | 2990 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 573 |
-| REJECTED_ON_READING | 428 |
-| PORT_CANDIDATE | 328 |
+| REJECTED_ON_READING | 429 |
+| PORT_CANDIDATE | 315 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -3106,7 +3106,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482800 | `ports/482800_multiple-moving-average-crossover-trend-capture-strategy/` | PineScript | ma_cross | none | t_length x2, f_length x2 | 4 |
 | 482802 | `ports/482802_multi-level-take-profit-and-dynamic-stop-loss-enhanced-quant/` | PineScript | candle_pattern | coarse_bar_stop |  | 0 |
 | 482803 | `ports/482803_granville-macd-trend-following-trading-strategy-based-on-gra/` | PineScript | macd_cross | coarse_bar_stop, trailing_stop_pending | ema_period x2, tp_mult x2 | 4 |
-| | **2978 ports** | | | | | **13735** |
+| 482804 | `ports/482804_price-range-and-breakout-based-efficient-quantitative-tradin/` | PineScript | breakout | none | prd x2, conslen x2 | 4 |
+| 482805 | `ports/482805_supertrend-momentum-trend-following-supertrend-and-stochasti/` | PineScript | supertrend | none | factor x2, atr_length x2 | 4 |
+| 482806 | `ports/482806_macd-sar-momentum-trend-following-dual-indicator-macd-and-pa/` | PineScript | macd_cross | none | fast_len x2, sar_max x2 | 4 |
+| 482809 | `ports/482809_nadaraya-watson-intelligent-trend-following-strategy-system/` | PineScript | adaptive_average | none | bandwidth x2, lookback x2 | 4 |
+| 482816 | `ports/482816_srsi-macd-dynamic-adaptive-multi-indicator-crossing-strategy/` | PineScript | stochastic_oscillator | coarse_bar_stop, trailing_stop_pending | risk_factor x2, rsi_length x2 | 4 |
+| 482817 | `ports/482817_volatility-spike-indicator-smart-trading-strategy/` | PineScript | momentum_breakout | coarse_bar_stop | spike_threshold x2, profit_target x2 | 4 |
+| 482820 | `ports/482820_multi-moving-average-and-bollinger-bands-crossover-options-q/` | PineScript | bollinger_reversion | trailing_stop_pending | fast x2, dev x2 | 4 |
+| 482822 | `ports/482822_atr-atr-dynamic-trailing-stop-trend-following-trading-system/` | PineScript | atr_trailing_line | trailing_stop_pending | key_value x2, atr_period x2 | 4 |
+| 482826 | `ports/482826_advanced-multi-pattern-breakout-trading-strategy/` | PineScript | candle_pattern | none |  | 0 |
+| 482830 | `ports/482830_dynamic-bollinger-bands-breakout-quantitative-trading-strate/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
+| 482831 | `ports/482831_momentum-enhanced-supertrend-stochastic-dual-indicator-tradi/` | PineScript | supertrend | none | multiplier x2, atr_period x2 | 4 |
+| 482832 | `ports/482832_rsi-dual-moving-average-crossover-with-rsi-strength-filter-t/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| | **2990 ports** | | | | | **13779** |
 
 ## Rejected on reading
 
@@ -3540,6 +3552,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 482767 | 多指标交叉动态止盈止损趋势跟踪策略-Multi-Indicator-Crossover-Dynamic-Stop-Loss-Trend-Following-Strategy.md | 2 | The exit passes trail_points = atr x 0.5 and trail_offset = atr x 0.3, price amounts, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #442115). |
 | 482783 | 基于马丁格尔理论的网格式加仓策略模型-Grid-based-Position-Accumulation-Strategy-Based-on-Martingale-Theory.md | 1 | strategy.order buys are added on each 5 % drop with the quantity doubled each time, up to 10 doublings: martingale adds (criterion 1). |
 | 482785 | 移动均线趋势向量量化交易策略-Moving-Average-Trend-Direction-Quantitative-Strategy-with-Cross-Validation.md | 1 | The open / close MA series come from request.security at the alternate resolution (3 x the chart) with lookahead=barmerge.lookahead_on (useRes on by default): higher-bar values are read before the bar closes (criterion 1, lookahead_on for a higher time frame, as #482420). |
+| 482824 | 高级布林带指标组合动态趋势突破交易策略-Advanced-Bollinger-Bands-Multi-Indicator-Dynamic-Trend-Breakout-Trading-Strategy.md | 2 | The exits pass trail_offset = atr x 0.5, a price amount, where the call takes ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, as #482767). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #482809 (基于Nadaraya-Watson核估计和移动平均交叉的智能趋势跟踪策略系统-Intelligent-Trend-Following-Strategy-System-Based-on-Nadaraya-Watson-Kernel-Estimation-and-Moving-Average-Crossover)
+# Source: https://www.fmz.com/strategy/482809  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 109-109]
+  109: strategy("Nadaraya-Watson Strategy with Moving Average Crossover", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10, max_bars_back=500)

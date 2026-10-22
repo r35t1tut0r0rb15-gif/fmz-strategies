@@ -6501,6 +6501,35 @@ SIZING = {
     482803: [
         ("strategy(): capital 100000, 10 % of equity", 99, 99),
     ],
+    # ---- FMZ-C, batch C250 (2026-10-22)
+    482804: [],
+    482805: [
+        ("strategy(): 10 % of equity", 107, 107),
+    ],
+    482806: [],
+    482809: [
+        ("strategy(): 10 % of equity", 109, 109),
+    ],
+    482816: [
+        ("strategy(): 10 % of equity", 97, 97),
+    ],
+    482817: [
+        ("strategy(): 100 % of equity, margin 100 / 100", 98, 98),
+        ("fixed_investment = 30000 USDT per trade", 101, 101),
+        ("qty_long / qty_short = fixed_investment / close", 122, 123),
+    ],
+    482820: [],
+    482822: [
+        ("strategy(): 100 % of equity", 115, 115),
+    ],
+    482826: [],
+    482830: [
+        ("strategy(): 100 % of equity, commission 0.1 %, slippage 0", 121, 121),
+    ],
+    482831: [
+        ("strategy(): 10 % of equity", 132, 132),
+    ],
+    482832: [],
 }
 
 REJECTED_ON_READING = {
@@ -8204,6 +8233,10 @@ REJECTED_ON_READING = {
               "(3 x the chart) with lookahead=barmerge.lookahead_on (useRes on by default): "
               "higher-bar values are read before the bar closes (criterion 1, lookahead_on for a "
               "higher time frame, as #482420)."),
+    # ---- FMZ-C, batch C250 (2026-10-22)
+    482824: ("2", "The exits pass trail_offset = atr x 0.5, a price amount, where the call takes "
+              "ticks, with no /mintick: the trailing exit is undefined as written (criterion 2, "
+              "as #482767)."),
 }
 
 DUPLICATE_ON_READING = {
