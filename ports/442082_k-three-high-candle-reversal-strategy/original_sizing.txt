@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #442082 (三高K线反转策略Three-High-Candle-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/442082  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy.entry qty = 1  [lines 144-144]
+  144:     strategy.entry("Enter Long", strategy.long, qty=1)

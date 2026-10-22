@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 1940 |
-| PORT_CANDIDATE | 1527 |
+| PORTED | 1949 |
+| PORT_CANDIDATE | 1515 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 566 |
-| REJECTED_ON_READING | 274 |
+| REJECTED_ON_READING | 277 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2068,7 +2068,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442004 | `ports/442004_dual-timeframe-volatility-spread-trading-strategy/` | PineScript | momentum_oscillator | none | short_sma x2, rsi_factor x2 | 4 |
 | 442006 | `ports/442006_byron-serpent-cloud-quant-strategy/` | PineScript | ichimoku | none | decision_weight x2, base_periods x2 | 4 |
 | 442010 | `ports/442010_dual-moving-average-intelligent-tracking-trading-strategy/` | PineScript | trend_filter | none | length x2, percent x2 | 4 |
-| | **1940 ports** | | | | | **9289** |
+| 442013 | `ports/442013_macd-rsi-a-combined-strategy-with-macd-and-rsi/` | PineScript | macd_cross | none | fast_length x2, slow_length x2 | 4 |
+| 442014 | `ports/442014_multi-timeframe-rsi-srsi-trading-strategy/` | PineScript | rsi_oscillator | none | tr_dur x2, diff x2 | 4 |
+| 442077 | `ports/442077_ema-ema-crossover-trend-following-trading-strategy/` | PineScript | ma_cross | none | fast x2, profit_pct x2 | 4 |
+| 442078 | `ports/442078_signal-smoothing-ehlers-cyber-cycle-strategy/` | PineScript | cycle_filter | none | alpha x2, lag x2 | 4 |
+| 442082 | `ports/442082_k-three-high-candle-reversal-strategy/` | PineScript | candle_pattern | none | target x2, stop x2 | 4 |
+| 442085 | `ports/442085_macd-multi-timeframe-macd-indicator-crossover-trading-strate/` | PineScript | ma_trend | none | wma_length x2, ema2_length x2 | 4 |
+| 442090 | `ports/442090_major-trend-indicator-long/` | PineScript | trend_filter | none | linreg_st1 x2, linreg_lt x2 | 4 |
+| 442091 | `ports/442091_abcd-best-abcd-pattern-trading-strategy-with-stop-loss-and-t/` | PineScript | reversal_pattern | none | stop_trail x2, tp_trigger x2 | 4 |
+| 442097 | `ports/442097_ssl-ssl-channel-and-wave-trend-quantitative-trading-strategy/` | PineScript | multi_indicator_confluence | none | sl_atr_mult x2, risk_reward x2 | 4 |
+| | **1949 ports** | | | | | **9325** |
 
 ## Rejected on reading
 
@@ -2348,6 +2357,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 441960 | 基于波动趋势追踪策略Volatility-Trend-Tracking-Strategy.md | 1 | pyramiding = 10 and the entries fire while a position is open whenever the close is beyond the average price (martingale-style adds): the position accumulates units (criterion 1, as #430762). |
 | 441998 | 双均线黄金交叉趋势追踪策略Dual-Moving-Average-Golden-Cross-Trend-Trading-Strategy.md | 2 | The exits strategy.exit(loss = stop_loss, profit = take_profit) pass price levels (close -/+ pips x mintick) where the call takes tick distances: the stop and target are undefined as written (criterion 2, as #437048, #437677). |
 | 442007 | 基于BEAM波段的BTCdollar成本平均策略Bitcoin-Dollar-Cost-Averaging-Based-on-BEAM-Bands.md | 1 | A monthly DCA with pyramiding = 500 (five band entries each month) and partial limit exits (qty_percent 6.67 / 14.28 / 25 / 44.44): accumulation and partial exits (criterion 1, as #430762, #436524). |
+| 442076 | 基于K线方向的趋势追踪策略Trend-Following-Strategy-Based-on-Candlestick-Direction.md | 2 | The exits strategy.exit(loss = close - atr, profit = close + 1.5 atr) pass price levels where the call takes tick distances, with no /mintick: the stop and target are undefined as written (criterion 2, as #437048, #437677). |
+| 442080 | MACD基于均线的动态趋势判断策略MACD-Moving-Average-Combination-Cross-Period-Dynamic-Trend-Strategy.md | 1 | Reads the future: request.security(HTF, count(), lookahead = barmerge.lookahead_on) with the default Lookahead input on, HTF = 'W' on a daily chart, so every daily bar uses the current week's final MACD score (SURVEY_README request.security rule). |
+| 442089 | 基于多时间框架趋势跟踪策略Multi-Timeframe-Strategy.md | 1 | Reads the future: Pine v2 request.security(syminfo.tickerid, '10D' / '15D' / '30D', open / close) without [1] behaves as lookahead_on, so every daily bar uses the final close of the current multi-day bar (SURVEY_README request.security rule, as #427066). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

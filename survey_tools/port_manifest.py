@@ -4264,6 +4264,23 @@ SIZING = {
     ],
     442006: [],
     442010: [],
+    # ---- FMZ-C, batch C150 (2026-10-22)
+    442013: [],
+    442014: [],
+    442077: [],
+    442078: [
+        ("strategy(): 100 % of equity, commission 0.1 %", 146, 146),
+    ],
+    442082: [
+        ("strategy.entry qty = 1", 144, 144),
+    ],
+    442085: [],
+    442090: [],
+    442091: [],
+    442097: [
+        ("strategy(): capital 1000, cash quantity, commission 0.02 %", 256, 256),
+        ("entryQty = 1 % of equity / sl %", 698, 705),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -5390,6 +5407,18 @@ REJECTED_ON_READING = {
     442007: ("1", "A monthly DCA with pyramiding = 500 (five band entries each month) and partial "
               "limit exits (qty_percent 6.67 / 14.28 / 25 / 44.44): accumulation and partial "
               "exits (criterion 1, as #430762, #436524)."),
+    # ---- FMZ-C, batch C150 (2026-10-22)
+    442076: ("2", "The exits strategy.exit(loss = close - atr, profit = close + 1.5 atr) pass price "
+              "levels where the call takes tick distances, with no /mintick: the stop and target "
+              "are undefined as written (criterion 2, as #437048, #437677)."),
+    442080: ("1", "Reads the future: request.security(HTF, count(), lookahead = "
+              "barmerge.lookahead_on) with the default Lookahead input on, HTF = 'W' on a daily "
+              "chart, so every daily bar uses the current week's final MACD score (SURVEY_README "
+              "request.security rule)."),
+    442089: ("1", "Reads the future: Pine v2 request.security(syminfo.tickerid, '10D' / '15D' / "
+              "'30D', open / close) without [1] behaves as lookahead_on, so every daily bar uses "
+              "the final close of the current multi-day bar (SURVEY_README request.security rule, "
+              "as #427066)."),
 }
 
 DUPLICATE_ON_READING = {

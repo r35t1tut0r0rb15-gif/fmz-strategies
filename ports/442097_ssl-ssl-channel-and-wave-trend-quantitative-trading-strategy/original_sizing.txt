@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #442097 (基于SSL通道和波浪趋势的量化交易策略SSL-Channel-and-Wave-Trend-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/442097  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 1000, cash quantity, commission 0.02 %  [lines 256-256]
+  256: strategy("SSL + Wave Trend Strategy", overlay = IS_OVERLAY, initial_capital = INITIAL_CAPITAL, currency = currency.NONE, max_labels_count = MAX_DRAWINGS, max_boxes_count = MAX_DRAWINGS, max_lines_count = MAX_DRAWINGS, default_qty_type = strategy.cash, commission_type = strategy.commission.percent, commission_value = DEFAULT_COMMISSION)
+
+## entryQty = 1 % of equity / sl %  [lines 698-705]
+  698: riskAmt             = strategy.equity * accountRiskPercent / 100
+  699: entryQty            = math.abs(riskAmt / slPercent * 100)  / close
+  700: 
+  701: if openLong
+  702:     if strategy.position_size < 0
+  703:         printTpSlNotHitBox(tradeEntryBar + 1, bar_index + 1, strategy.position_avg_price, slPrice, tpPrice)
+  704:         printTradeExitLabel(bar_index + 1, math.max(tpPrice, slPrice), strategy.position_size, strategy.position_avg_price, strategy.openprofit)
+  705:     strategy.entry("Long", strategy.long, qty = entryQty, alert_message = "Long Entry")
