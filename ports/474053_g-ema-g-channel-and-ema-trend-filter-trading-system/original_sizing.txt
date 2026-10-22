@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #474053 (G通道与EMA趋势过滤交易系统-G-Channel-and-EMA-Trend-Filter-Trading-System)
+# Source: https://www.fmz.com/strategy/474053  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

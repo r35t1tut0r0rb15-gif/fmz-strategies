@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2688 |
+| PORTED | 2697 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 676 |
+| PORT_CANDIDATE | 664 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 374 |
+| REJECTED_ON_READING | 377 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2816,7 +2816,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474038 | `ports/474038_rsi-five-ema-rsi-trend-following-dynamic-channel-trading-sys/` | PineScript | ma_cross | coarse_bar_stop | fast x2, slow x2 | 4 |
 | 474049 | `ports/474049_rsi-triangle-breakout-with-rsi-momentum-strategy/` | PineScript | breakout | none | len x2, rsi_buy x2 | 4 |
 | 474050 | `ports/474050_multi-indicator-crossover-momentum-trend-following-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | lips_len x2, teeth_len x2 | 4 |
-| | **2688 ports** | | | | | **12638** |
+| 474051 | `ports/474051_dynamic-dual-moving-average-breakthrough-trading-system-dyna/` | PineScript | ma_cross | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
+| 474052 | `ports/474052_rsi-dynamic-stop-loss-multi-period-rsi-trend-following-strat/` | PineScript | ma_cross | coarse_bar_stop | tp_mult x2, sl_mult x2 | 4 |
+| 474053 | `ports/474053_g-ema-g-channel-and-ema-trend-filter-trading-system/` | PineScript | volatility_channel_breakout | none | length x2, ema_len x2 | 4 |
+| 474058 | `ports/474058_multi-ema-crossover-with-momentum-indicators-trading-strateg/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | sl_pct x2, tp_pct x2 | 4 |
+| 474061 | `ports/474061_rsi-multi-period-moving-average-and-rsi-momentum-cross-trend/` | PineScript | candle_pattern | none | fast x2, slow x2 | 4 |
+| 474062 | `ports/474062_dual-timeframe-dynamic-support-trading-system/` | PineScript | multi_timeframe_ma | none | short_sma x2, long_sma x2 | 4 |
+| 474065 | `ports/474065_ema-crossover-momentum-trend-following-strategy-dual-ema-cro/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 474075 | `ports/474075_rsi-multi-dimensional-dynamic-breakout-trading-system-based/` | PineScript | bollinger_breakout | coarse_bar_stop, trailing_stop_pending | length x2, mult x2, rr x2 | 8 |
+| 474630 | `ports/474630_triple-bollinger-bands-touch-trend-following-quantitative-tr/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| | **2697 ports** | | | | | **12678** |
 
 ## Rejected on reading
 
@@ -3196,6 +3205,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 473391 | Advanced-Fair-Value-Gap-Detection-Strategy-with-Dynamic-Risk-Management-and-Fixed-Take-Profit-基于动态风险管理和固定获利的高级公允价值缺口检测策略.md | 1 | The stop is strategy.close when strategy.openprofit < -1 % of strategy.equity: an exit set by the position's money size against the equity (criterion 1, equity-share openprofit exits). |
 | 473406 | Multi-Step-Volatility-Adjusted-Dynamic-SuperTrend-Strategy-多步波动率自适应动态超趋势策略.md | 1 | useTakeProfit is on by default and exits in four qty_percent steps (25 / 20 / 10 / 15 % at 3 / 6 / 12 / 21 %): the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #436524). |
 | 473942 | 高频混合技术分析量化策略-High-Frequency-Hybrid-Technical-Analysis-Quantitative-Strategy.md | 2 | strategy.exit's profit / loss fields take tick counts but receive ATR price amounts (profit = 3 x ATR, loss = ATR): a price amount in a tick field, so the distance in price depends on the instrument's tick size (criterion 2, as #442115). |
+| 474055 | 多重形态识别与SR分位交易策略-Multi-Pattern-Recognition-and-SR-Level-Trading-Strategy.md | 1 | The S/R level is refreshed only on bars where bar_index % 21 == 0, counted from the first bar of the loaded data, and the entries compare it with the double-bottom levels: which bars set the level depends on where the data starts (criterion 1, a data-start schedule, as #430034 / #468340). |
+| 474057 | MACD-KDJ联动的马丁格尔金字塔式量化交易策略-MACD-KDJ-Combined-Martingale-Pyramiding-Quantitative-Trading-Strategy.md | 1 | Martingale pyramiding: up to 5 additions to the open position (strategy.entry on the same id with qty = initial x multiplier^n after a drop and rebound), so the size path is part of the strategy (criterion 1, stepped adds, as #430762). |
+| 474064 | Multi-Step-ATR-Trading-Strategy-with-Dynamic-Profit-Taking-多层级-ATR-动态获利交易策略.md | 1 | Multi-step take-profit on by default: seven qty_percent partial exits (10 % each at ATR and percent levels): the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #436524). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

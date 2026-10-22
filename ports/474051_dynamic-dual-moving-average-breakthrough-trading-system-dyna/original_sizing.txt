@@ -1,0 +1,59 @@
+# Original sizing and money-management code, FMZ #474051 (双均线动态突破交易系统Dynamic-Dual-Moving-Average-Breakthrough-Trading-System-Dynamic-Dual-Moving-Average-Breakthrough-Trading-System)
+# Source: https://www.fmz.com/strategy/474051  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity; stop 5 % / target 10 % of avg  [lines 103-156]
+  103: strategy("EMA Cross Strategy", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+  104: 
+  105: // 添加策略参数设置
+  106: var showLabels = input.bool(true, "显示标签", group="显示设置")
+  107: var stopLossPercent = input.float(5.0, "止损百分比", minval=0.1, maxval=20.0, step=0.1, group="风险管理")
+  108: var takeProfitPercent = input.float(10.0, "止盈百分比", step=0.1, group="风险管理")
+  109: 
+  110: // EMA参数设置
+  111: var emaFastLength = input.int(9, "快速EMA周期", minval=1, maxval=200, group="EMA设置")
+  112: var emaSlowLength = input.int(21, "慢速EMA周期", minval=1, maxval=200, group="EMA设置")
+  113: 
+  114: // 计算EMA
+  115: ema_fast = ta.ema(close, emaFastLength)
+  116: ema_slow = ta.ema(close, emaSlowLength)
+  117: 
+  118: // 绘制EMA线
+  119: plot(ema_fast, "快速EMA", color=color.blue, linewidth=2)
+  120: plot(ema_slow, "慢速EMA", color=color.red, linewidth=2)
+  121: 
+  122: // 检测交叉
+  123: crossOver = ta.crossover(ema_fast, ema_slow)  
+  124: crossUnder = ta.crossunder(ema_fast, ema_slow)
+  125: 
+  126: // 格式化时间显示 (UTC+8)
+  127: utc8Time = time + 8 * 60 * 60 * 1000
+  128: timeStr = str.format("{0,date,MM-dd HH:mm}", utc8Time)
+  129: 
+  130: // 计算止损止盈价格
+  131: longStopLoss = strategy.position_avg_price * (1 - stopLossPercent / 100)
+  132: longTakeProfit = strategy.position_avg_price * (1 + takeProfitPercent / 100)
+  133: shortStopLoss = strategy.position_avg_price * (1 + stopLossPercent / 100)
+  134: shortTakeProfit = strategy.position_avg_price * (1 - takeProfitPercent / 100)
+  135: 
+  136: // 交易逻辑
+  137: if crossOver
+  138:     if strategy.position_size < 0  
+  139:         strategy.close("做空")     
+  140:     strategy.entry("做多", strategy.long)  
+  141:     if showLabels
+  142:         label.new(bar_index, high, text="做多入场\n" + timeStr + "\n入场价: " + str.tostring(close) + "\n止损价: " + str.tostring(longStopLoss) + "\n止盈价: " + str.tostring(longTakeProfit), color=color.green, textcolor=color.white, style=label.style_label_down, yloc=yloc.abovebar)
+  143: 
+  144: if crossUnder
+  145:     if strategy.position_size > 0  
+  146:         strategy.close("做多")     
+  147:     strategy.entry("做空", strategy.short)  
+  148:     if showLabels
+  149:         label.new(bar_index, low, text="做空入场\n" + timeStr + "\n入场价: " + str.tostring(close) + "\n止损价: " + str.tostring(shortStopLoss) + "\n止盈价: " + str.tostring(shortTakeProfit), color=color.red, textcolor=color.white, style=label.style_label_up, yloc=yloc.belowbar)
+  150: 
+  151: // 设置止损止盈
+  152: if strategy.position_size > 0  // 多仓止损止盈
+  153:     strategy.exit("多仓止损止盈", "做多", stop=longStopLoss, limit=longTakeProfit)
+  154:     
+  155: if strategy.position_size < 0  // 空仓止损止盈
+  156:     strategy.exit("空仓止损止盈", "做空", stop=shortStopLoss, limit=shortTakeProfit) 

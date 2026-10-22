@@ -1,0 +1,50 @@
+# Original sizing and money-management code, FMZ #474075 (基于布林带和RSI的多维度动态突破交易系统-Multi-Dimensional-Dynamic-Breakout-Trading-System-Based-on-Bollinger-Bands-and-RSI)
+# Source: https://www.fmz.com/strategy/474075  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 % / target 2 % x 2 of the signal close  [lines 107-151]
+  107: risk_reward_ratio = input(2.0, title="Risk/Reward Ratio")
+  108: 
+  109: // === Trade Direction Option ===
+  110: trade_direction = input.string("Both", title="Trade Direction", options=["Long", "Short", "Both"])
+  111: 
+  112: // === Bollinger Bands Calculation ===
+  113: basis = ta.sma(src, length)
+  114: dev = mult * ta.stdev(src, length)
+  115: upper_band = basis + dev
+  116: lower_band = basis - dev
+  117: 
+  118: // === RSI Calculation ===
+  119: rsi_val = ta.rsi(src, rsi_length)
+  120: 
+  121: // === Breakout Conditions ===
+  122: // Long: Prijs sluit boven de bovenste Bollinger Band en RSI > RSI Midline
+  123: long_condition = close > upper_band and rsi_val > rsi_midline and (trade_direction == "Long" or trade_direction == "Both")
+  124: 
+  125: // Short: Prijs sluit onder de onderste Bollinger Band en RSI < RSI Midline
+  126: short_condition = close < lower_band and rsi_val < rsi_midline and (trade_direction == "Short" or trade_direction == "Both")
+  127: 
+  128: // === Entry Prices ===
+  129: var float entry_price_long = na
+  130: var float entry_price_short = na
+  131: 
+  132: if (long_condition)
+  133:     entry_price_long := close
+  134:     strategy.entry("Long", strategy.long, when=long_condition)
+  135: 
+  136: if (short_condition)
+  137:     entry_price_short := close
+  138:     strategy.entry("Short", strategy.short, when=short_condition)
+  139: 
+  140: // === Stop-Loss and Take-Profit ===
+  141: long_stop_loss = entry_price_long * 0.98  // 2% onder instapprijs
+  142: long_take_profit = entry_price_long * (1 + (0.02 * risk_reward_ratio))
+  143: 
+  144: short_stop_loss = entry_price_short * 1.02  // 2% boven instapprijs
+  145: short_take_profit = entry_price_short * (1 - (0.02 * risk_reward_ratio))
+  146: 
+  147: if (strategy.position_size > 0)  // Long Positie
+  148:     strategy.exit("Exit Long", "Long", stop=long_stop_loss, limit=long_take_profit)
+  149: 
+  150: if (strategy.position_size < 0)  // Short Positie
+  151:     strategy.exit("Exit Short", "Short", stop=short_stop_loss, limit=short_take_profit)

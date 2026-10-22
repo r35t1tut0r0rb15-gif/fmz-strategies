@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #474061 (多周期均线与RSI动量交叉趋势跟踪策略-Multi-Period-Moving-Average-and-RSI-Momentum-Cross-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/474061  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 95-95]
+   95: strategy("Comprehensive Trading Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)

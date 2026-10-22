@@ -5829,6 +5829,28 @@ SIZING = {
     474050: [
         ("strategy(): 10 % of equity; stop at the 5-bar extreme, target 2 R", 101, 169),
     ],
+    # ---- FMZ-C, batch C221 (2026-10-22)
+    474051: [
+        ("strategy(): 100 % of equity; stop 5 % / target 10 % of avg", 103, 156),
+    ],
+    474052: [
+        ("Size from a typed balance, risk 1.5 %, leverage 2; target 4 ATR / stop 2 ATR", 94, 135),
+    ],
+    474053: [],
+    474058: [
+        ("Stop 1.5 % / target 3 % of avg on the signal bar", 112, 169),
+    ],
+    474061: [
+        ("strategy(): 10 % of equity", 95, 95),
+    ],
+    474062: [
+        ("strategy(): 100 % of equity, commission 0.1 %, slippage 3", 99, 99),
+    ],
+    474065: [],
+    474075: [
+        ("Stop 2 % / target 2 % x 2 of the signal close", 107, 151),
+    ],
+    474630: [],
 }
 
 REJECTED_ON_READING = {
@@ -7345,6 +7367,17 @@ REJECTED_ON_READING = {
     473942: ("2", "strategy.exit's profit / loss fields take tick counts but receive ATR price "
               "amounts (profit = 3 x ATR, loss = ATR): a price amount in a tick field, so the "
               "distance in price depends on the instrument's tick size (criterion 2, as #442115)."),
+    # ---- FMZ-C, batch C221 (2026-10-22)
+    474055: ("1", "The S/R level is refreshed only on bars where bar_index % 21 == 0, counted from "
+              "the first bar of the loaded data, and the entries compare it with the "
+              "double-bottom levels: which bars set the level depends on where the data starts "
+              "(criterion 1, a data-start schedule, as #430034 / #468340)."),
+    474057: ("1", "Martingale pyramiding: up to 5 additions to the open position (strategy.entry on "
+              "the same id with qty = initial x multiplier^n after a drop and rebound), so the "
+              "size path is part of the strategy (criterion 1, stepped adds, as #430762)."),
+    474064: ("1", "Multi-step take-profit on by default: seven qty_percent partial exits (10 % each "
+              "at ATR and percent levels): the position is closed in parts, so the size path is "
+              "part of the strategy (criterion 1, qty_percent partial exits, as #436524)."),
 }
 
 DUPLICATE_ON_READING = {
