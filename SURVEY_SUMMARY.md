@@ -11,9 +11,9 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2400 |
-| PORT_CANDIDATE | 1000 |
+| PORTED | 2412 |
 | REJECTED | 994 |
+| PORT_CANDIDATE | 988 |
 | HELD_NEEDS_VOLUME | 567 |
 | REJECTED_ON_READING | 340 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -2528,7 +2528,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 453668 | `ports/453668_quantitative-trading-strategy-based-on-reversal-patterns-at/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop_pending | lookback x2, sl_pct x2, tp_pct x2 | 8 |
 | 454137 | `ports/454137_chande-kroll-atr-chande-kroll-stop-dynamic-atr-trend-followi/` | PineScript | volatility_stop_cross | none | stop_len x2, atr_mult x2, sma_len x2 | 8 |
 | 454141 | `ports/454141_bb-bb-breakout-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
-| | **2400 ports** | | | | | **11185** |
+| 454143 | `ports/454143_ema-ema-crossover-momentum-scalping-strategy/` | PineScript | ma_cross | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
+| 454144 | `ports/454144_rsi-rsi-trend-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, sl_pct x2, max_hours x2 | 8 |
+| 454145 | `ports/454145_200-trend-following-strategy-based-on-200-day-moving-average/` | PineScript | stochastic_oscillator | coarse_bar_stop, trailing_stop_pending | stoch_len x2, sl_frac x2, tp_frac x2 | 8 |
+| 454146 | `ports/454146_g-ema-atr-g-trend-ema-atr-intelligent-trading-strategy/` | PineScript | volatility_channel_breakout | trailing_stop_pending | length x2, ema_len x2 | 4 |
+| 454147 | `ports/454147_ema-rsi-macd-ema-rsi-macd-dynamic-take-profit-and-stop-loss/` | PineScript | multi_indicator_confluence | coarse_bar_stop | k_atr x2, ema3_len x2 | 4 |
+| 454150 | `ports/454150_moving-average-crossover-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 454151 | `ports/454151_ema-ema-trend-filter-strategy/` | PineScript | ma_cross | none | fast x2, slow x2, trend_len x2 | 8 |
+| 454334 | `ports/454334_volatility-range-trading-strategy-based-on-stochastic-oscill/` | PineScript | stochastic_oscillator | coarse_bar_stop | stoch_len x2, gap_bars x2, atr_mult x2 | 8 |
+| 454339 | `ports/454339_mean-reversion-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 454341 | `ports/454341_fisher-fisher-transform-dynamic-threshold-trend-following-st/` | PineScript | momentum_oscillator | none | length x2, threshold x2 | 4 |
+| 454351 | `ports/454351_rsi-rsi-low-point-reversal-strategy/` | PineScript | rsi_oscillator | none | rsi_len x2, sl_pct x2, tp_pct x2 | 8 |
+| 454352 | `ports/454352_rsi-short-term-quantitative-trading-strategy-based-on-dual-m/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2, rsi_len x2 | 8 |
+| | **2412 ports** | | | | | **11257** |
 
 ## Rejected on reading
 

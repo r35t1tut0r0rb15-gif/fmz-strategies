@@ -2759,3 +2759,15 @@ fmz_id,file,final_outcome,criterion,reason
 453668,基于支撑位和阻力位反转形态的量化交易策略-Quantitative-Trading-Strategy-Based-on-Reversal-Patterns-at-Support-and-Resistance-Levels.md,PORTED,,ports/453668_quantitative-trading-strategy-based-on-reversal-patterns-at/
 454137,Chande-Kroll止损动态ATR趋势跟踪策略-Chande-Kroll-Stop-Dynamic-ATR-Trend-Following-Strategy.md,PORTED,,ports/454137_chande-kroll-atr-chande-kroll-stop-dynamic-atr-trend-followi/
 454141,BB均线突破策略-BB-Breakout-Strategy.md,PORTED,,ports/454141_bb-bb-breakout-strategy/
+454143,EMA交叉动量短线交易策略-EMA-Crossover-Momentum-Scalping-Strategy.md,PORTED,,ports/454143_ema-ema-crossover-momentum-scalping-strategy/
+454144,RSI趋势策略-RSI-Trend-Strategy.md,PORTED,,ports/454144_rsi-rsi-trend-strategy/
+454145,基于200日均线和随机振子的趋势追踪策略-Trend-Following-Strategy-Based-on-200-Day-Moving-Average-and-Stochastic-Oscillator.md,PORTED,,ports/454145_200-trend-following-strategy-based-on-200-day-moving-average/
+454146,G趋势EMA-ATR智能交易策略G-Trend-EMA-ATR-Intelligent-Trading-Strategy.md,PORTED,,ports/454146_g-ema-atr-g-trend-ema-atr-intelligent-trading-strategy/
+454147,EMA-RSI-MACD动态止盈止损交易策略-EMA-RSI-MACD-Dynamic-Take-Profit-and-Stop-Loss-Trading-Strategy.md,PORTED,,ports/454147_ema-rsi-macd-ema-rsi-macd-dynamic-take-profit-and-stop-loss/
+454150,移动平均线交叉策略-Moving-Average-Crossover-Strategy.md,PORTED,,ports/454150_moving-average-crossover-strategy/
+454151,EMA趋势过滤策略EMA-Trend-Filter-Strategy.md,PORTED,,ports/454151_ema-ema-trend-filter-strategy/
+454334,基于随机振荡指标的波动区间交易策略-Volatility-Range-Trading-Strategy-Based-on-Stochastic-Oscillator.md,PORTED,,ports/454334_volatility-range-trading-strategy-based-on-stochastic-oscill/
+454339,均值回归策略-Mean-Reversion-Strategy.md,PORTED,,ports/454339_mean-reversion-strategy/
+454341,Fisher变换动态阈值趋势跟踪策略-Fisher-Transform-Dynamic-Threshold-Trend-Following-Strategy.md,PORTED,,ports/454341_fisher-fisher-transform-dynamic-threshold-trend-following-st/
+454351,RSI低点反转策略-RSI-Low-Point-Reversal-Strategy.md,PORTED,,ports/454351_rsi-rsi-low-point-reversal-strategy/
+454352,基于双均线交叉RSI和随机指标的短线量化交易策略-Short-term-Quantitative-Trading-Strategy-Based-on-Dual-Moving-Average-Crossover-RSI-and-Stochastic-Indicators.md,PORTED,,ports/454352_rsi-short-term-quantitative-trading-strategy-based-on-dual-m/

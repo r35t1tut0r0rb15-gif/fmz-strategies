@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #454352 (基于双均线交叉RSI和随机指标的短线量化交易策略-Short-term-Quantitative-Trading-Strategy-Based-on-Dual-Moving-Average-Crossover-RSI-and-Stochastic-Indicators)
+# Source: https://www.fmz.com/strategy/454352  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 ATR / target 2 ATR beyond the bar's low / high, every bar  [lines 118-141]
+  118: risk = input(1, title="Riesgo en ATR")
+  119: reward_ratio = input(2, title="Ratio Riesgo/Beneficio")
+  120: atr_length = input(14, title="Periodo del ATR")
+  121: atr = ta.atr(atr_length)
+  122: stop_loss = risk * atr
+  123: take_profit = reward_ratio * stop_loss
+  124: 
+  125: // Señal de compra
+  126: long_condition = ta.crossover(fast_ma, slow_ma) and rsi < rsi_overbought and stoch_k < stoch_overbought
+  127: if (long_condition)
+  128:     strategy.entry("Compra", strategy.long)
+  129: 
+  130: // Señal de venta
+  131: short_condition = ta.crossunder(fast_ma, slow_ma) and rsi > rsi_oversold and stoch_k > stoch_oversold
+  132: if (short_condition)
+  133:     strategy.entry("Venta", strategy.short)
+  134: 
+  135: // Configurar Stop-Loss y Take-Profit para posiciones largas
+  136: if (strategy.position_size > 0)
+  137:     strategy.exit("Take Profit/Stop Loss", from_entry="Compra", stop=low - stop_loss, limit=high + take_profit)
+  138: 
+  139: // Configurar Stop-Loss y Take-Profit para posiciones cortas
+  140: if (strategy.position_size < 0)
+  141:     strategy.exit("Take Profit/Stop Loss", from_entry="Venta", stop=high + stop_loss, limit=low - take_profit)

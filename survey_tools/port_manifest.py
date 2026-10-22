@@ -5162,6 +5162,37 @@ SIZING = {
         ("Quantity riskMultiplier / lowest close x 1000 x equity / capital; capital 1000, commission 0.01 %, slippage 3", 91, 127),
     ],
     454141: [],
+    # ---- FMZ-C, batch C194 (2026-10-22)
+    454143: [
+        ("Stop 0.7 % / target 0.5 % of the average price", 100, 136),
+    ],
+    454144: [
+        ("strategy(): capital 20, commission 0.1 %; order size 20 USDT; stop 1 %; max duration 24 h", 98, 160),
+    ],
+    454145: [
+        ("Lot 1; stop close -+ 1.00, target close +- 16", 119, 127),
+    ],
+    454146: [
+        ("Stop 2 ATR / target 4 ATR from the signal close", 142, 154),
+    ],
+    454147: [
+        ("TP / SL 10 pips x mintick", 115, 165),
+    ],
+    454150: [
+        ("Quantity 1 % of a 100 balance over the bar range, x 1.1 / 0.9 by net profit", 100, 138),
+    ],
+    454151: [],
+    454334: [
+        ("Quantity 1; stop / target 2 ATR; risk 0.01 % (unused)", 108, 137),
+    ],
+    454339: [],
+    454341: [],
+    454351: [
+        ("Stop 2 % / target 5 % of the signal close (close tests)", 92, 122),
+    ],
+    454352: [
+        ("Stop 1 ATR / target 2 ATR beyond the bar's low / high, every bar", 118, 141),
+    ],
 }
 
 REJECTED_ON_READING = {

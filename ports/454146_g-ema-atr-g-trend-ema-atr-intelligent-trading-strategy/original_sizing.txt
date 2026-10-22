@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #454146 (G趋势EMA-ATR智能交易策略G-Trend-EMA-ATR-Intelligent-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/454146  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 ATR / target 4 ATR from the signal close  [lines 142-154]
+  142: longStopLoss = close - 2 * atrValue
+  143: longTakeProfit = close + 4 * atrValue
+  144: shortStopLoss = close + 2 * atrValue
+  145: shortTakeProfit = close - 4 * atrValue
+  146: 
+  147: // Execute Strategy with ATR-based stop loss and take profit
+  148: if (buyCondition)
+  149:     strategy.entry("Buy", strategy.long)
+  150:     strategy.exit("Sell", "Buy", stop=longStopLoss, limit=longTakeProfit)
+  151: 
+  152: if (sellCondition)
+  153:     strategy.entry("Sell", strategy.short)
+  154:     strategy.exit("Cover", "Sell", stop=shortStopLoss, limit=shortTakeProfit)

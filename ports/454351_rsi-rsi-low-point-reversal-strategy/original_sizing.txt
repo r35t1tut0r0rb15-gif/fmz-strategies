@@ -1,0 +1,36 @@
+# Original sizing and money-management code, FMZ #454351 (RSI低点反转策略-RSI-Low-Point-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/454351  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 2 % / target 5 % of the signal close (close tests)  [lines 92-122]
+   92: stopLossPercent = input.float(2.0, title="Stop Loss (%)")
+   93: takeProfitPercent = input.float(5.0, title="Take Profit (%)")
+   94: 
+   95: // Cálculo do RSI
+   96: rsi = ta.rsi(close, rsiLength)
+   97: 
+   98: // Sinal de Compra
+   99: buySignal = ta.crossover(rsi, oversold)
+  100: 
+  101: // Plotando o sinal de compra
+  102: plotshape(series=buySignal, location=location.belowbar, color=color.green, style=shape.labelup, title="Compra", text="Buy")
+  103: 
+  104: // Variáveis para Stop Loss e Take Profit
+  105: var float longStop = na
+  106: var float longTake = na
+  107: 
+  108: // Entrando na posição de compra
+  109: if (buySignal)
+  110:     entryPrice = close
+  111:     longStop := entryPrice * (1 - stopLossPercent / 100)
+  112:     longTake := entryPrice * (1 + takeProfitPercent / 100)
+  113:     strategy.entry("Compra", strategy.long)
+  114:     label.new(x=bar_index, y=low, text="Compra", style=label.style_label_up, color=color.green)
+  115: 
+  116: // Gerenciamento de Stop Loss e Take Profit
+  117: if (strategy.position_size > 0)
+  118:     if (close <= longStop)
+  119:         strategy.close("Compra", comment="Stop Loss")
+  120:         label.new(x=bar_index, y=low, text="Stop Loss", style=label.style_label_down, color=color.red)
+  121:     if (close >= longTake)
+  122:         strategy.close("Compra", comment="Take Profit")

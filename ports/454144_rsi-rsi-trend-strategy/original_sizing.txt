@@ -1,0 +1,68 @@
+# Original sizing and money-management code, FMZ #454144 (RSI趋势策略-RSI-Trend-Strategy)
+# Source: https://www.fmz.com/strategy/454144  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 20, commission 0.1 %; order size 20 USDT; stop 1 %; max duration 24 h  [lines 98-160]
+   98: strategy("Simple RSI Strategy", overlay=true,  initial_capital=20, commission_value=0.1, commission_type=strategy.commission.percent)
+   99: 
+  100: // Define the hardcoded date (Year, Month, Day, Hour, Minute)
+  101: var hardcodedYear = 2024
+  102: var hardcodedMonth = 6
+  103: var hardcodedDay = 10
+  104: 
+  105: // Convert the hardcoded date to a timestamp
+  106: var start_date = timestamp(hardcodedYear, hardcodedMonth, hardcodedDay)
+  107: 
+  108: // settings
+  109: order_size_usdt = input.float(20, title="Order Size (USDT)")
+  110: rsiLength = input.int(9, title="RSI Length")
+  111: rsiBuyThreshold = input.int(30, title="RSI Buy Threshold")
+  112: rsiSellThreshold = input.int(70, title="RSI Sell Threshold")
+  113: rsibuystrat = input.int(1, title="buy strat 1=achieved,2=recross")
+  114: rsisellstrat = input.int(1, title="sell strat 1=achieved,2=recross")
+  115: stoploss = input.int(1, title="Stop loss percent")
+  116: max_duration = input(24, title="Max Position Duration (hours)")*60
+  117: 
+  118: // emaPeriod = input.int(50, title="EMA Period")
+  119: // smaPeriod = input.int(200, title="SMA Period")
+  120: 
+  121: rsi = ta.rsi(close, rsiLength) 
+  122: // ma_rsi = ta.sma(rsi, rsiLength)
+  123: // ema = ta.ema(close,emaPeriod)
+  124: // sma = ta.sma(close,smaPeriod)
+  125: // plot(sma, color=color.red, title="exp Moving Average")
+  126: // plot(smal, color=color.blue, title="Simple Moving Average")
+  127: 
+  128: longCondition = ((ta.crossunder(rsi, rsiBuyThreshold) and rsibuystrat==1) or (ta.crossover(rsi, rsiBuyThreshold) and rsibuystrat==2) ) and strategy.position_size == 0
+  129: shortCondition = ( (ta.crossover(rsi, rsiSellThreshold) and rsisellstrat==1) or (ta.crossunder(rsi, rsiSellThreshold) and rsisellstrat==2) ) and strategy.position_size > 0 
+  130: 
+  131: // Execute Buy and Sell orders
+  132: if (longCondition)
+  133: 	positionSize = order_size_usdt / close
+  134: 	strategy.entry("Long", strategy.long,qty=positionSize)
+  135: 	if (stoploss>0)
+  136: 		stopLossPrice = close * (1 - stoploss/100 )
+  137: 		strategy.exit("Stop Loss", from_entry="Long", stop=stopLossPrice)
+  138: 	
+  139: if (shortCondition )//or stopCondition)
+  140: 	strategy.close("Long")
+  141: 
+  142: //add condition open time
+  143: if (strategy.position_size > 0 and max_duration >0)
+  144: 	var float entry_time = na
+  145: 	if (strategy.opentrades > 0)
+  146: 		entry_time := nz(strategy.opentrades.entry_time(0), na)
+  147: 	else
+  148: 		entry_time := na
+  149: 
+  150: 	current_time = time
+  151: 	var float duration_minutes = -1
+  152: 	if (not na(entry_time))
+  153: 		duration_minutes := (current_time - entry_time) / 60000
+  154: 
+  155: 	
+  156: 	// Close positions after a certain duration (e.g., 60 minutes)
+  157: 	// if ( duration_minutes > max_duration and close>=strategy.opentrades.entry_price(0))
+  158: 	if ( duration_minutes > max_duration )
+  159: 		label.new(bar_index, high, text="Duration: " + str.tostring(duration_minutes/60) + " hrs", color=color.blue, textcolor=color.white, style=label.style_label_down, size=size.small)
+  160: 		strategy.close("Long")

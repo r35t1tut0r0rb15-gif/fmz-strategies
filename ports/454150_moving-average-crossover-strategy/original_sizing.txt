@@ -1,0 +1,44 @@
+# Original sizing and money-management code, FMZ #454150 (移动平均线交叉策略-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/454150  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantity 1 % of a 100 balance over the bar range, x 1.1 / 0.9 by net profit  [lines 100-138]
+  100: account_balance = input(100, title="Account Balance") // Add your account balance here
+  101: 
+  102: // Calculate moving averages
+  103: fast_ma = ta.sma(source, fast_length)
+  104: slow_ma = ta.sma(source, slow_length)
+  105: 
+  106: // Plot moving averages
+  107: plot(fast_ma, color=color.blue, title="Fast MA")
+  108: plot(slow_ma, color=color.red, title="Slow MA")
+  109: 
+  110: // Generate buy/sell signals
+  111: buy_signal = ta.crossover(fast_ma, slow_ma)
+  112: sell_signal = ta.crossunder(fast_ma, slow_ma)
+  113: 
+  114: // Plot buy/sell signals
+  115: plotshape(buy_signal, style=shape.triangleup, location=location.belowbar, color=color.green, size=size.small, title="Buy Signal")
+  116: plotshape(sell_signal, style=shape.triangledown, location=location.abovebar, color=color.red, size=size.small, title="Sell Signal")
+  117: 
+  118: // Calculate the risk per trade
+  119: risk_per_trade = account_balance * 0.01
+  120: 
+  121: // Calculate the number of shares to buy
+  122: shares_to_buy = risk_per_trade / (high - low)
+  123: 
+  124: // Calculate the profit or loss
+  125: profit_or_loss = strategy.netprofit
+  126: 
+  127: // Adjust the position size based on the profit or loss
+  128: if (profit_or_loss > 0)
+  129:     shares_to_buy = shares_to_buy * 1.1 // Increase the position size by 10% when in profit
+  130: else
+  131:     shares_to_buy = shares_to_buy * 0.9 // Decrease the position size by 10% when in loss
+  132: 
+  133: // Execute orders
+  134: if (buy_signal)
+  135:     strategy.entry("Buy", strategy.long, qty=shares_to_buy)
+  136:     
+  137: if (sell_signal)
+  138:     strategy.entry("Sell", strategy.short, qty=shares_to_buy)

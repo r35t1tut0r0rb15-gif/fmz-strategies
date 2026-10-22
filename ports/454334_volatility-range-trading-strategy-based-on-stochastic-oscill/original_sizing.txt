@@ -1,0 +1,35 @@
+# Original sizing and money-management code, FMZ #454334 (基于随机振荡指标的波动区间交易策略-Volatility-Range-Trading-Strategy-Based-on-Stochastic-Oscillator)
+# Source: https://www.fmz.com/strategy/454334  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantity 1; stop / target 2 ATR; risk 0.01 % (unused)  [lines 108-137]
+  108: riskPerTrade = input.float(0.01, title="Risk per Trade (%)", minval=0.01, maxval=100, step=0.01)
+  109: barsBetweenTrades = input.int(20, title="Bars Between Trades", minval=1)
+  110: 
+  111: // Calculate Stochastic Oscillator
+  112: k = ta.sma(ta.stoch(close, high, low, stochLength), 3)
+  113: d = ta.sma(k, 3)
+  114: 
+  115: // Variables to Track Time Since Last Trade
+  116: var lastTradeBar = 0
+  117: barsSinceLastTrade = bar_index - lastTradeBar
+  118: 
+  119: // Risk Management
+  120: atr = ta.atr(14)
+  121: stopLoss = 2 * atr
+  122: takeProfit = 2 * atr
+  123: riskAmount = strategy.equity * riskPerTrade / 100
+  124: positionSize = 1
+  125: 
+  126: // Entry Conditions
+  127: longCondition = k < oversoldLevel and strategy.position_size == 0 and barsSinceLastTrade >= barsBetweenTrades
+  128: shortCondition = k > overboughtLevel and strategy.position_size == 0 and barsSinceLastTrade >= barsBetweenTrades
+  129: 
+  130: // Entry/Exit Orders
+  131: if longCondition
+  132:     strategy.entry("Long", strategy.long, qty=positionSize)
+  133:     strategy.exit("Long Exit", "Long", stop=close - stopLoss, limit=close + takeProfit)
+  134:     lastTradeBar := bar_index // Update last trade bar
+  135: if shortCondition
+  136:     strategy.entry("Short", strategy.short, qty=positionSize)
+  137:     strategy.exit("Short Exit", "Short", stop=close + stopLoss, limit=close - takeProfit)

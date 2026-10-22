@@ -236,11 +236,12 @@ Last updated 2026-10-22 by FMZ-C (desktop GAME_CHAMBER, batches C1-; rules 2026-
 | C191 | 453232 - 453266 | 453232, 453234, 453235, 453237, 453238, 453242, 453244, 453246, 453264 | 453233, 453247, 453266 |
 | C192 | 453267 - 453650 | 453267, 453271, 453273, 453276, 453287, 453645, 453646, 453647, 453648, 453650 | 453281 |
 | C193 | 453277 - 454141 | 453277, 453653, 453655, 453656, 453657, 453661, 453665, 453668, 454137, 454141 | 453654, 453662 |
+| C194 | 454143 - 454352 | 454143, 454144, 454145, 454146, 454147, 454150, 454151, 454334, 454339, 454341, 454351, 454352 | - |
 
 ## Next
 
 1. Continue the queue: `overall == PORT_CANDIDATE` in `screening.csv`, ascending `fmz_id`,
-   skipping ids already in `review_decisions.csv`. **Next id: 454143** (worker A works upward
+   skipping ids already in `review_decisions.csv`. **Next id: 454359** (worker A works upward
    from 126968 on branch `survey`; worker B ports ids >= 439378 on `survey-b`, then works
    down from 439377; A stops when its next id is one B has done).
    Worker A's log with resume points: `reports/cloud_porting_A_LOG_2026-10-07.md`.

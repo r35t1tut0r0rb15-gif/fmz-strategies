@@ -1,0 +1,56 @@
+# Original sizing and money-management code, FMZ #454147 (EMA-RSI-MACD动态止盈止损交易策略-EMA-RSI-MACD-Dynamic-Take-Profit-and-Stop-Loss-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/454147  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## TP / SL 10 pips x mintick  [lines 115-165]
+  115: tpPips = input.int(10, title="Take Profit (pips)")
+  116: slPips = input.int(10, title="Stop Loss (pips)")
+  117: 
+  118: // HLCC4 calculation
+  119: hlcc4_custom = (high + low + close + close) / 4
+  120: 
+  121: // Calculate EMA and RSI based on HLCC4
+  122: ema1 = ta.ema(hlcc4_custom, ema1Length)
+  123: ema2 = ta.ema(hlcc4_custom, ema2Length)
+  124: ema3 = ta.ema(hlcc4_custom, ema3Length)
+  125: rsi = ta.rsi(hlcc4_custom, rsiLength)
+  126: 
+  127: // Calculate MACD Histogram
+  128: [a, b, histogram] = ta.macd(hlcc4_custom, macdFastLength, macdSlowLength, macdSignalSmoothing)
+  129: 
+  130: // EMA1 and EMA2 crossover conditions
+  131: emaCrossUp = ta.crossover(ema1, ema2)
+  132: emaCrossDown = ta.crossunder(ema1, ema2)
+  133: 
+  134: // BUY signal conditions
+  135: buySignal = emaCrossUp and hlcc4_custom > ema3 and rsi > rsiThreshold and close > open and histogram > 0
+  136: 
+  137: // SELL signal conditions
+  138: sellSignal = emaCrossDown and hlcc4_custom < ema3 and rsi < rsiThreshold and close < open and histogram < 0
+  139: 
+  140: var float entryPrice = na
+  141: var float tpPrice = na
+  142: var float slPrice = na
+  143: 
+  144: // Check if there is an open position and a contrary signal appears, then close all old orders first
+  145: if strategy.opentrades > 0
+  146:     if sellSignal and strategy.position_size > 0
+  147:         strategy.close("Buy", comment="Close Buy Order")
+  148:     if buySignal and strategy.position_size < 0
+  149:         strategy.close("Sell", comment="Close Sell Order")
+  150: 
+  151: // Place a BUY order when there is a BUY signal and set TP and SL based on pips
+  152: if buySignal and strategy.position_size == 0
+  153:     entryPrice := close
+  154:     tpPrice := entryPrice + tpPips * syminfo.mintick
+  155:     slPrice := entryPrice - slPips * syminfo.mintick
+  156:     strategy.entry("Buy", strategy.long)
+  157:     strategy.exit("Take Profit/Stop Loss", "Buy", limit=tpPrice, stop=slPrice)
+  158: 
+  159: // Place a SELL order when there is a SELL signal and set TP and SL based on pips
+  160: if sellSignal and strategy.position_size == 0
+  161:     entryPrice := close
+  162:     tpPrice := entryPrice - tpPips * syminfo.mintick
+  163:     slPrice := entryPrice + slPips * syminfo.mintick
+  164:     strategy.entry("Sell", strategy.short)
+  165:     strategy.exit("Take Profit/Stop Loss", "Sell", limit=tpPrice, stop=slPrice)
