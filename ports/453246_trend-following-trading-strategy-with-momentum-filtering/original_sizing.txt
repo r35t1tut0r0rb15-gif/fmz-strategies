@@ -1,0 +1,32 @@
+# Original sizing and money-management code, FMZ #453246 (趋势跟随与动量过滤相结合的交易策略-Trend-Following-Trading-Strategy-with-Momentum-Filtering)
+# Source: https://www.fmz.com/strategy/453246  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 % beyond the 10-bar close extreme, re-sent every bar  [lines 100-126]
+  100: stopLossPct = input(1.0, title="Stop Loss %") / 100
+  101: rsiLength = input(14, title="RSI Length")
+  102: rsiThreshold = input(50, title="RSI Threshold")
+  103: 
+  104: // Moving averages
+  105: fastMA = ta.sma(close, fastLength)
+  106: slowMA = ta.sma(close, slowLength)
+  107: 
+  108: // MACD
+  109: [macdLine, signalLine, _] = ta.macd(close, fastLength, slowLength, signalLength)
+  110: 
+  111: // RSI
+  112: rsi = ta.rsi(close, rsiLength)
+  113: 
+  114: // Entry conditions with RSI filter
+  115: bullishSignal = ta.crossover(macdLine, signalLine) and rsi > rsiThreshold
+  116: bearishSignal = ta.crossunder(macdLine, signalLine) and rsi < rsiThreshold
+  117: 
+  118: // Calculate stop loss levels
+  119: longStopLoss = ta.highest(close, 10)[1] * (1 - stopLossPct)
+  120: shortStopLoss = ta.lowest(close, 10)[1] * (1 + stopLossPct)
+  121: 
+  122: // Execute trades
+  123: strategy.entry("Long", strategy.long, when=bullishSignal)
+  124: strategy.entry("Short", strategy.short, when=bearishSignal)
+  125: strategy.exit("Exit Long", "Long", stop=longStopLoss)
+  126: strategy.exit("Exit Short", "Short", stop=shortStopLoss)

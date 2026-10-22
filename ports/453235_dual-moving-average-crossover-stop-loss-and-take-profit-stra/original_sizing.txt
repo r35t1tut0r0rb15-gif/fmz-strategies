@@ -1,0 +1,58 @@
+# Original sizing and money-management code, FMZ #453235 (双均线交叉止盈止损策略-Dual-Moving-Average-Crossover-Stop-Loss-and-Take-Profit-Strategy)
+# Source: https://www.fmz.com/strategy/453235  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 50 / target 200 points from the average price  [lines 104-156]
+  104: stopLossPoints = input.float(50, title="Stop Loss (Points)")
+  105: profitTargetPoints = input.float(200, title="Profit Target (Points)")
+  106: 
+  107: // Calculate EMAs
+  108: price = close
+  109: emafast = ta.ema(price, ema_5)
+  110: emaslow = ta.ema(price, ema_200)
+  111: 
+  112: // Plot EMAs on chart
+  113: plot(emafast, title="5-period EMA", color=color.black)
+  114: plot(emaslow, title="200-period EMA", color=color.blue)
+  115: 
+  116: // Extra lines if needed
+  117: ema_13 = input.int(13, title="13 EMA")
+  118: ema_13_line = ta.ema(price, ema_13)
+  119: plot(ema_13_line, title="13-period EMA", color=color.rgb(156, 39, 176, 90))
+  120: 
+  121: ema_20 = input.int(20, title="20 EMA")
+  122: ema_20_line = ta.ema(price, ema_20)
+  123: plot(ema_20_line, title="20-period EMA", color=color.red)
+  124: 
+  125: 
+  126: // Define entry conditions
+  127: longCondition = ta.crossover(emafast, emaslow)
+  128: shortCondition = ta.crossunder(emafast, emaslow)
+  129: 
+  130: // Counter to keep track of the number of bars since the entry
+  131: var int barCount = na
+  132: 
+  133: // Reset counter and enter long trade
+  134: if (longCondition)
+  135:     strategy.entry("Long", strategy.long, comment="Long")
+  136:     barCount := 0
+  137: 
+  138: // Reset counter and enter short trade
+  139: if (shortCondition)
+  140:     strategy.entry("Short", strategy.short, comment="Short")
+  141:     barCount := 0
+  142: 
+  143: // Increment counter if in trade
+  144: if (strategy.opentrades > 0)
+  145:     barCount += 1
+  146: 
+  147: // Calculate entry price
+  148: entryPrice = strategy.position_avg_price
+  149: 
+  150: // Exit long trade if stop loss, profit target hit, or 200 points have been reached
+  151: if (strategy.position_size > 0)
+  152:     strategy.exit("Take Profit/Stop Loss", "Long", stop=entryPrice - stopLossPoints, limit=entryPrice + profitTargetPoints)
+  153: 
+  154: // Exit short trade if stop loss, profit target hit, or 200 points have been reached
+  155: if (strategy.position_size < 0)
+  156:     strategy.exit("Take Profit/Stop Loss", "Short", stop=entryPrice + stopLossPoints, limit=entryPrice - profitTargetPoints)

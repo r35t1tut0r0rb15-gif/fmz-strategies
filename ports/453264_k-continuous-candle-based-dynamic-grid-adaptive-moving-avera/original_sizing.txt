@@ -1,0 +1,29 @@
+# Original sizing and money-management code, FMZ #453264 (基于连续K线动态网格自适应均线动态止损策略-Continuous-Candle-Based-Dynamic-Grid-Adaptive-Moving-Average-with-Dynamic-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/453264  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantity 1; stop 11 % under close[1] (low test)  [lines 93-116]
+   93: stopLossPercent = input.float(11, title="Stop Loss Percentage", minval=0.1) / 100
+   94: 
+   95: // Identify if the previous 3 candles are consecutively higher
+   96: longCondition = close[3] > close[4] and close[2] > close[3] and close[1] > close[2]
+   97: 
+   98: // Identify if the previous 3 candles are consecutively lower
+   99: exitCondition = close[3] < close[4] and close[2] < close[3] and close[1] < close[2]
+  100: 
+  101: // Initialize the entry price and stop loss variables
+  102: var float entryPrice = na
+  103: var float stopLoss = na
+  104: 
+  105: // Update the entry price and stop loss if the long condition is met
+  106: if (longCondition)
+  107:     entryPrice := close[1]
+  108:     stopLoss := entryPrice * (1 - stopLossPercent)
+  109: 
+  110: // Enter the long position at the open of the 4th candle
+  111: if (longCondition)
+  112:     strategy.entry("Long", strategy.long, qty=1)
+  113: 
+  114: // Exit the position if exit condition is met or stop loss is hit
+  115: if (exitCondition or (strategy.position_size > 0 and low <= stopLoss))
+  116:     strategy.close("Long")

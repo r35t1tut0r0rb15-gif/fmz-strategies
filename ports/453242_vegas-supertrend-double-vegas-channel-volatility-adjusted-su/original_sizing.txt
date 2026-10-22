@@ -1,0 +1,31 @@
+# Original sizing and money-management code, FMZ #453242 (双重Vegas通道波动性调整SuperTrend量化交易策略-Double-Vegas-Channel-Volatility-Adjusted-SuperTrend-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/453242  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity, capital 10000, commission 0.1 %, slippage 1; TP 30 % / SL 20 % (off)  [lines 76-101]
+   76: strategy("Double Vegas SuperTrend Enhanced - Strategy [presentTrading]", shorttitle="Double Vegas SuperTrend Enhanced - Strategy [presentTrading]", overlay=true, overlay = false, 
+   77:  precision=3, commission_value= 0.1, commission_type=strategy.commission.percent, slippage= 1, currency=currency.USD, default_qty_type = strategy.percent_of_equity, 
+   78:  default_qty_value = 10, initial_capital= 10000)
+   79: 
+   80: 
+   81: // Input settings allow the user to customize the strategy's parameters.
+   82: tradeDirectionChoice = input.string(title="Trade Direction", defval="Both", options=["Long", "Short", "Both"]) // Option to select the trading direction
+   83: 
+   84: // Settings for the first Vegas SuperTrend
+   85: atrPeriod1 = input(10, "ATR Period for SuperTrend 1") // Length of the ATR for volatility measurement
+   86: vegasWindow1 = input(100, "Vegas Window Length 1") // Length of the moving average for the Vegas Channel
+   87: superTrendMultiplier1 = input(5, "SuperTrend Multiplier Base 1") // Base multiplier for the SuperTrend calculation
+   88: volatilityAdjustment1 = input.float(5, "Volatility Adjustment Factor 1") // Factor to adjust the SuperTrend sensitivity to the Vegas Channel width
+   89: 
+   90: // Settings for the second Vegas SuperTrend
+   91: atrPeriod2 = input(5, "ATR Period for SuperTrend 2") // Length of the ATR for volatility measurement
+   92: vegasWindow2 = input(200, "Vegas Window Length 2") // Length of the moving average for the Vegas Channel
+   93: superTrendMultiplier2 = input(7, "SuperTrend Multiplier Base 2") // Base multiplier for the SuperTrend calculation
+   94: volatilityAdjustment2 = input.float(7, "Volatility Adjustment Factor 2") // Factor to adjust the SuperTrend sensitivity to the Vegas Channel width
+   95: 
+   96: // Settings for Hold Days and TPSL Conditions
+   97: useHoldDays = input.bool(true, title="Use Hold Days")
+   98: holdDays = input.int(5, title="Hold Days", minval=1, maxval=60, step=1)
+   99: TPSLCondition = input.string("None", "TPSL Condition", options=["TP", "SL", "Both", "None"])
+  100: takeProfitPerc = input(30.0, title="Take Profit (%)")
+  101: stopLossPerc = input(20.0, title="Stop Loss (%)")

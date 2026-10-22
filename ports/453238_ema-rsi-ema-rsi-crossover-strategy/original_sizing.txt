@@ -1,0 +1,74 @@
+# Original sizing and money-management code, FMZ #453238 (EMA与RSI交叉策略-EMA-RSI-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/453238  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin_long 100, margin_short 100; stop ATR + body, target 1.2 x  [lines 98-166]
+   98: strategy("EMA RSI Cross", overlay=true, margin_long=100, margin_short=100)
+   99: 
+  100: // add RSI
+  101: 
+  102: rsi_period = input.int(7,"RSI Period")
+  103: rsi_val =  ta.rsi(close[1],rsi_period)
+  104: plot(rsi_val, color=color.blue, linewidth=2, title="RSI")
+  105: 
+  106: buyRsiFlag = rsi_val < 20
+  107: sellRsiFlag = rsi_val > 80
+  108: 
+  109: // add EMA
+  110: ema = ta.ema(close, 50)
+  111: plot(ema, color=color.red, linewidth=2, title="EMA")
+  112: 
+  113: 
+  114: // check buy
+  115: 
+  116: // buy when the price is below ema 
+  117: buyFlag = ema > close ? true : false
+  118: 
+  119: // sell when the price is above ema
+  120: sellFlag = ema < close ? true : false
+  121: 
+  122: 
+  123: bgcolor(buyFlag and buyRsiFlag ? color.green : na )
+  124: bgcolor(sellFlag and sellRsiFlag ? color.red : na )
+  125: 
+  126: 
+  127: 
+  128: 
+  129: // Check if current candle's body is bigger than previous candle's body and of opposite color
+  130: is_body_bigger_long = math.abs(close - open) > math.abs(close[1] - open[1]) and close > open != close[1] > open[1]
+  131: 
+  132: 
+  133: greenCandle = close > close[1]
+  134: redCandle = close < close[1]
+  135: // Mark the candle
+  136: bgcolor(is_body_bigger_long and greenCandle and buyFlag  ? color.blue : na, transp=70)
+  137: 
+  138: 
+  139: // ENTRY ---------------------
+  140: 
+  141: // Input for ATR period
+  142: atr_length = input(14, title="ATR Length")
+  143: 
+  144: // Calculate ATR
+  145: atr_value = ta.atr(atr_length)
+  146: 
+  147: // Calculate stop loss and take profit levels
+  148: candleBody = math.abs(close-open)
+  149: slDist = atr_value + candleBody
+  150: 
+  151: stop_loss_long = close - slDist
+  152: take_profit_long = close + (1.2 * slDist) 
+  153: 
+  154: 
+  155: stop_loss_short = high + slDist
+  156: take_profit_short = high - (1.2 * slDist)
+  157: 
+  158: // Entry and exit conditions
+  159: if (buyFlag and buyRsiFlag  and strategy.opentrades >= 0 and greenCandle)
+  160:     strategy.entry("Long", strategy.long)
+  161:     strategy.exit("Take Profit/Stop Loss", "Long", stop=stop_loss_long, limit=take_profit_long)
+  162: 
+  163: // Entry and exit conditions
+  164: if (sellFlag and sellRsiFlag   and strategy.opentrades <= 0 and redCandle)
+  165:     strategy.entry("Short", strategy.short)
+  166:     strategy.exit("Take Profit/Stop Loss", "Short", stop=stop_loss_short, limit=take_profit_short)

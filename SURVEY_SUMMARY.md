@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2371 |
-| PORT_CANDIDATE | 1035 |
+| PORTED | 2380 |
+| PORT_CANDIDATE | 1023 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
-| REJECTED_ON_READING | 334 |
+| REJECTED_ON_READING | 337 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2499,7 +2499,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 452830 | `ports/452830_rsisupertrend-rsisupertrend-trend-following-trading-strategy/` | PineScript | supertrend | none | st_len x2, st_mult x2, rsi_len x2 | 8 |
 | 453212 | `ports/453212_ma-macd-bb-ma-macd-bb-multi-indicator-trading-strategy-backt/` | PineScript | ma_cross | none | ma_length x3 | 3 |
 | 453223 | `ports/453223_keltner-channels-ema-atr-strategy-keltner-ema-atr/` | PineScript | volatility_channel_breakout | none | length x2, mult x2, atr_len x2 | 8 |
-| | **2371 ports** | | | | | **11023** |
+| 453232 | `ports/453232_bollinger-bands-accurate-entry-and-risk-control-strategy-bol/` | PineScript | bollinger_breakout | none | length x3 | 3 |
+| 453234 | `ports/453234_tema-tema-dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | len1 x2, len2 x2 | 4 |
+| 453235 | `ports/453235_dual-moving-average-crossover-stop-loss-and-take-profit-stra/` | PineScript | ma_cross | none | sl_frac x2, tp_frac x2 | 4 |
+| 453237 | `ports/453237_moving-average-convergence-momentum-cloud-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 453238 | `ports/453238_ema-rsi-ema-rsi-crossover-strategy/` | PineScript | rsi_oscillator | coarse_bar_stop, trailing_stop_pending | rsi_len x2, ema_len x2, tp_mult x2 | 8 |
+| 453242 | `ports/453242_vegas-supertrend-double-vegas-channel-volatility-adjusted-su/` | PineScript | supertrend | none | mult1 x2, mult2 x2, hold_days x2 | 8 |
+| 453244 | `ports/453244_rsi-rsi-and-linear-regression-channel-trading-strategy/` | PineScript | mean_reversion | none | channel_len x2, rsi_len x2 | 4 |
+| 453246 | `ports/453246_trend-following-trading-strategy-with-momentum-filtering/` | PineScript | macd_cross | trailing_stop_pending | fast x2, slow x2, rsi_len x2 | 8 |
+| 453264 | `ports/453264_k-continuous-candle-based-dynamic-grid-adaptive-moving-avera/` | PineScript | momentum_breakout | none | stop_pct x2 | 2 |
+| | **2380 ports** | | | | | **11068** |
 
 ## Rejected on reading
 
@@ -2839,6 +2848,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 452698 | 动态仓位管理每日交易策略Dynamic-Position-Management-Daily-Trading-Strategy.md | 1 | On the daily header chart every bar is a new day, so a long is opened on the second bar and each take-profit close is followed on the same bar by a new long entry (the short is opened only when no long is): one long held from the data start (criterion 1, buy-and-hold from the data start, as #430384). |
 | 453228 | TURTLE-ATR布林带突破策略-TURTLE-ATR-Bollinger-Bands-Breakout-Strategy.md | 1 | pyramiding = 3 with strategy.entry('Long') on every bar the close stays over the 10-bar high (and the short likewise): the position accumulates units (criterion 1, as #442112, #430762). |
 | 453230 | 基于波动率和动量指标的波林格带RSI随机RSI策略-Bollinger-Bands-RSI-Stochastic-RSI-Strategy-Based-on-Volatility-and-Momentum-Indicators.md | 1 | Every entry is gated by dayofmonth(timenow) != dayofmonth(lastTradeDay), where timenow is the wall-clock time the script runs at and lastTradeDay stores a day number read back as a timestamp: whether any trade happens depends on the day of the run, not on the data (criterion 1). |
+| 453233 | 多时间尺度SMA趋势跟踪与动态止损策略-Multi-Timeframe-SMA-Trend-Following-Strategy-with-Dynamic-Stop-Loss.md | 1 | The trend filter is request.security(syminfo.tickerid, '240', ..., lookahead_on) on the 6-hour header chart: a 4-hour resolution below the chart's, whose value per chart bar is undefined (criterion 1, as #427518). |
+| 453247 | 移动平均线交叉策略MA-Cross-Strategy.md | 1 | Positions are opened and flattened with strategy.order (qty = the held size), so which side the strategy trades for the whole run depends on the first one-shot signal of the data, and the bracket levels are computed before the signals are re-assigned: strategy.order position bookkeeping (criterion 1, as #430596). |
+| 453266 | 基于CDC行动区的ATR止盈止损交易机器人策略-CDC-Action-Zone-Trading-Bot-Strategy-with-ATR-for-Take-Profit-and-Stop-Loss.md | 2 | The exits strategy.exit(profit = takeProfit) / (loss = stopLoss) pass price amounts (a price level and 5 % of the close) where the call takes tick distances: the exits are undefined as written (criterion 2, as #442076, #442115). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

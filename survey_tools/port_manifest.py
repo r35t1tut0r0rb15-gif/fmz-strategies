@@ -5096,6 +5096,28 @@ SIZING = {
     453223: [
         ("strategy(): 10 % of equity", 122, 122),
     ],
+    # ---- FMZ-C, batch C191 (2026-10-22)
+    453232: [],
+    453234: [
+        ("strategy(): initial capital 25000", 101, 101),
+    ],
+    453235: [
+        ("Stop 50 / target 200 points from the average price", 104, 156),
+    ],
+    453237: [],
+    453238: [
+        ("strategy(): margin_long 100, margin_short 100; stop ATR + body, target 1.2 x", 98, 166),
+    ],
+    453242: [
+        ("strategy(): 10 % of equity, capital 10000, commission 0.1 %, slippage 1; TP 30 % / SL 20 % (off)", 76, 101),
+    ],
+    453244: [],
+    453246: [
+        ("Stop 1 % beyond the 10-bar close extreme, re-sent every bar", 100, 126),
+    ],
+    453264: [
+        ("Quantity 1; stop 11 % under close[1] (low test)", 93, 116),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -6451,6 +6473,17 @@ REJECTED_ON_READING = {
               "timenow is the wall-clock time the script runs at and lastTradeDay stores a day "
               "number read back as a timestamp: whether any trade happens depends on the day of "
               "the run, not on the data (criterion 1)."),
+    # ---- FMZ-C, batch C191 (2026-10-22)
+    453233: ("1", "The trend filter is request.security(syminfo.tickerid, '240', ..., lookahead_on) "
+              "on the 6-hour header chart: a 4-hour resolution below the chart's, whose value per "
+              "chart bar is undefined (criterion 1, as #427518)."),
+    453247: ("1", "Positions are opened and flattened with strategy.order (qty = the held size), so "
+              "which side the strategy trades for the whole run depends on the first one-shot "
+              "signal of the data, and the bracket levels are computed before the signals are "
+              "re-assigned: strategy.order position bookkeeping (criterion 1, as #430596)."),
+    453266: ("2", "The exits strategy.exit(profit = takeProfit) / (loss = stopLoss) pass price "
+              "amounts (a price level and 5 % of the close) where the call takes tick distances: "
+              "the exits are undefined as written (criterion 2, as #442076, #442115)."),
 }
 
 DUPLICATE_ON_READING = {
