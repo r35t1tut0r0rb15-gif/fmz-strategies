@@ -4506,6 +4506,30 @@ SIZING = {
     442953: [
         ("positionSize = strategy.equity x 2 / close", 158, 159),
     ],
+    # ---- FMZ-C, batch C164 (2026-10-22)
+    442954: [
+        ("strategy(): 100 % of equity, capital 100, commission 0.1", 181, 181),
+    ],
+    442955: [
+        ("strategy(): qty 1, capital 25000, commission 3.02 per contract", 135, 135),
+    ],
+    442957: [],
+    442959: [],
+    442961: [],
+    442964: [],
+    442966: [
+        ("strategy(): margin_long / margin_short 100", 144, 144),
+    ],
+    442967: [],
+    442971: [
+        ("strategy(): cash quantity, capital 1000, commission 0.01", 186, 186),
+        ("risk-based quantity: equity x 3 % / stop percent", 409, 411),
+    ],
+    442973: [
+        ("strategy(): 100 % of equity", 124, 124),
+    ],
+    442975: [],
+    442979: [],
 }
 
 REJECTED_ON_READING = {

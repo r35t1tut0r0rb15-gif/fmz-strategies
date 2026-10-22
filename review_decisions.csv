@@ -2400,3 +2400,15 @@ fmz_id,file,final_outcome,criterion,reason
 442946,双重随机滤波器敏锐离散分析策略Awesome-Oscillator-Double-Stochastic-Filtered-Divergence-Trading-Strategy.md,PORTED,,ports/442946_awesome-oscillator-double-stochastic-filtered-divergence-tra/
 442947,双重趋势追踪量化策略Combo-Quantitative-Trend-Tracking-Strategy.md,PORTED,,ports/442947_combo-quantitative-trend-tracking-strategy/
 442953,基于双时间框架趋势追踪策略An-Advanced-Dual-Timeframe-Trend-Tracking-Strategy-for-a-Hot-Stock.md,PORTED,,ports/442953_an-advanced-dual-timeframe-trend-tracking-strategy-for-a-hot/
+442954,基于快慢均线交叉策略Fast-and-Slow-Moving-Averages-Crossover-Strategy.md,PORTED,,ports/442954_fast-and-slow-moving-averages-crossover-strategy/
+442955,玻尔兰德波带跟踪策略Bollinger-Band-Tracking-Strategy.md,PORTED,,ports/442955_bollinger-band-tracking-strategy/
+442957,基于双均线金叉死叉策略Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/442957_dual-moving-average-crossover-strategy/
+442959,基于均线的趋势跟踪策略Trend-Tracking-Strategy-Based-on-Moving-Average.md,PORTED,,ports/442959_trend-tracking-strategy-based-on-moving-average/
+442961,玛雅寻宝指南Mayan-Treasure-Hunting-Guide.md,PORTED,,ports/442961_mayan-treasure-hunting-guide/
+442964,一目均衡图趋势追踪策略Ichimoku-Cloud-Trend-Following-Strategy.md,PORTED,,ports/442964_ichimoku-cloud-trend-following-strategy/
+442966,基于量化震荡指标组合策略Quantitative-Oscillation-Indicator-Combination-Strategy.md,PORTED,,ports/442966_quantitative-oscillation-indicator-combination-strategy/
+442967,动量均线交叉EMA九股MACD策略Momentum-Line-Crossover-EMA-Nine-Stock-MACD-Strategy.md,PORTED,,ports/442967_ema-macd-momentum-line-crossover-ema-nine-stock-macd-strateg/
+442971,基于压缩指标的多时间框架交易策略Multi-Timeframe-Trend-Trading-Strategy-Based-on-Compressed-Indicators.md,PORTED,,ports/442971_multi-timeframe-trend-trading-strategy-based-on-compressed-i/
+442973,黄金交叉短期突破策略Short-term-Breakthrough-Strategy-Based-on-Golden-Crossover.md,PORTED,,ports/442973_short-term-breakthrough-strategy-based-on-golden-crossover/
+442975,基于移动平均线均回复策略Based-on-the-Moving-Average-Reversion-Strategy.md,PORTED,,ports/442975_based-on-the-moving-average-reversion-strategy/
+442979,布林带趋势突破交易策略Bollinger-Bands-Breakout-Trend-Trading-Strategy.md,PORTED,,ports/442979_bollinger-bands-breakout-trend-trading-strategy/

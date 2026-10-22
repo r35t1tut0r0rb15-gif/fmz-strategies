@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #442954 (基于快慢均线交叉策略Fast-and-Slow-Moving-Averages-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/442954  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital 100, commission 0.1  [lines 181-181]
+  181: strategy(title='Fast v Slow Moving Averages Strategy', shorttitle = 'Fast v Slow', overlay=true, pyramiding=0, default_qty_value=100, default_qty_type=strategy.percent_of_equity, precision=7, currency=currency.USD, commission_value=0.1, commission_type=strategy.commission.percent, initial_capital=initial_balance)

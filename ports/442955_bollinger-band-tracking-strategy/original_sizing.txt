@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #442955 (玻尔兰德波带跟踪策略Bollinger-Band-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/442955  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): qty 1, capital 25000, commission 3.02 per contract  [lines 135-135]
+  135: strategy(title="BB Strategy (Basic)",overlay=true, initial_capital=25000, default_qty_value=1, commission_type=strategy.commission.cash_per_contract, commission_value=3.02)

@@ -11,8 +11,8 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2083 |
-| PORT_CANDIDATE | 1359 |
+| PORTED | 2095 |
+| PORT_CANDIDATE | 1347 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 567 |
 | REJECTED_ON_READING | 298 |
@@ -2211,7 +2211,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 442946 | `ports/442946_awesome-oscillator-double-stochastic-filtered-divergence-tra/` | PineScript | momentum_oscillator | none | stoch_len x2, oversold x2 | 4 |
 | 442947 | `ports/442947_combo-quantitative-trend-tracking-strategy/` | PineScript | combo_123_reversal | none | length x2, length_ro x2 | 4 |
 | 442953 | `ports/442953_an-advanced-dual-timeframe-trend-tracking-strategy-for-a-hot/` | PineScript | multi_timeframe_ma | trailing_stop_pending | fast x2, slow x2 | 4 |
-| | **2083 ports** | | | | | **9817** |
+| 442954 | `ports/442954_fast-and-slow-moving-averages-crossover-strategy/` | PineScript | ma_cross | none | fast_bars x2, slow_bars x2 | 4 |
+| 442955 | `ports/442955_bollinger-band-tracking-strategy/` | PineScript | bollinger_reversion | trailing_stop, coarse_bar_stop | length x2, trail_pct x2 | 4 |
+| 442957 | `ports/442957_dual-moving-average-crossover-strategy/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | profit x2, len3 x2 | 4 |
+| 442959 | `ports/442959_trend-tracking-strategy-based-on-moving-average/` | PineScript | ma_cross | none | sma_period x2 | 2 |
+| 442961 | `ports/442961_mayan-treasure-hunting-guide/` | PineScript | ma_cross | none | length x2 | 2 |
+| 442964 | `ports/442964_ichimoku-cloud-trend-following-strategy/` | PineScript | ichimoku | none | conversion x2, span_b x2 | 4 |
+| 442966 | `ports/442966_quantitative-oscillation-indicator-combination-strategy/` | PineScript | cycle_filter | none | length x2, rms_length x2 | 4 |
+| 442967 | `ports/442967_ema-macd-momentum-line-crossover-ema-nine-stock-macd-strateg/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
+| 442971 | `ports/442971_multi-timeframe-trend-trading-strategy-based-on-compressed-i/` | PineScript | multi_indicator_confluence | none | lp_period x2, swing_length x2 | 4 |
+| 442973 | `ports/442973_short-term-breakthrough-strategy-based-on-golden-crossover/` | PineScript | rsi_oscillator | none | malong x2, mashort x2 | 4 |
+| 442975 | `ports/442975_based-on-the-moving-average-reversion-strategy/` | PineScript | mean_reversion | none | big x2, pct_below x2 | 4 |
+| 442979 | `ports/442979_bollinger-bands-breakout-trend-trading-strategy/` | PineScript | bollinger_breakout | trailing_stop_pending | length x2, mult x2 | 4 |
+| | **2095 ports** | | | | | **9861** |
 
 ## Rejected on reading
 
