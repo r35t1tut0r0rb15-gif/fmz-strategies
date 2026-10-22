@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #439246 (指数平滑随机指标异动策略Exponential-Smoothed-Stochastic-Oscillator-Strategy)
+# Source: https://www.fmz.com/strategy/439246  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): percent of equity 100  [lines 151-151]
+  151: strategy("Exponential Stochastic Strategy", overlay=false, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

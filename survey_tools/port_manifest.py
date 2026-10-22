@@ -3747,6 +3747,29 @@ SIZING = {
     439243: [
         ("strategy(): cash 1000, commission", 116, 119),
     ],
+    # ---- FMZ-C, batch C119 (2026-10-22)
+    439244: [
+        ("Capital, commission and the risk input", 204, 209),
+        ("Risk-based quantity", 364, 366),
+    ],
+    439246: [
+        ("strategy(): percent of equity 100", 151, 151),
+    ],
+    439248: [],
+    439260: [],
+    439262: [],
+    439266: [
+        ("strategy(): capital, pyramiding 0", 130, 130),
+    ],
+    439268: [],
+    439273: [
+        ("strategy(): margins, pyramiding 4; capital, risk and ATR quantity", 163, 200),
+    ],
+    439338: [],
+    439339: [],
+    439348: [
+        ("Entry size 1", 191, 191),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -4634,6 +4657,13 @@ REJECTED_ON_READING = {
               "close, lookahead = barmerge.lookahead_on): on a daily chart the month's and week's "
               "FINAL close is used from their first bar (look-ahead); the entry requires "
               "monthclose > monthopen and weekclose > weekopen."),
+    # ---- FMZ-C, batch C119 (2026-10-22)
+    439275: ("2", "The only stop is strategy.exit(loss = trailStop) with trailStop = close - 2 x "
+              "ATR(14): a price LEVEL passed as a TICK distance, so the real distance is the "
+              "price itself times the tick size (about 10 % of the price at a 0.1 tick on BTC, "
+              "the whole price at a 1.0 tick), an instrument-specific bracket with no generic "
+              "reading (as #437048, #437787). The daily supply / demand zones only colour the "
+              "background."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #439244 (双重EMA与RSI结合的趋势跟踪策略Dual-EMA-and-RSI-Combined-Trend-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/439244  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Capital, commission and the risk input  [lines 204-209]
+  204: INITIAL_CAPITAL = 1000
+  205: DEFAULT_COMMISSION = 0.02
+  206: MAX_DRAWINGS = 500
+  207: IS_OVERLAY = true
+  208: 
+  209: strategy("Risk Management Strategy Template", "Strategy Template", overlay = IS_OVERLAY, initial_capital = INITIAL_CAPITAL, currency = currency.NONE, max_labels_count = MAX_DRAWINGS, max_boxes_count = MAX_DRAWINGS, max_lines_count = MAX_DRAWINGS, default_qty_type = strategy.cash, commission_type = strategy.commission.percent, commission_value = DEFAULT_COMMISSION)
+
+## Risk-based quantity  [lines 364-366]
+  364: // Risk calculations
+  365: riskAmt             = strategy.equity * accountRiskPercent / 100
+  366: entryQty            = math.abs(riskAmt / slPercent * 100)  / close

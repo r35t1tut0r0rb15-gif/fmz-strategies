@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #439348 (基于高斯误差函数的量化交易策略An-Analysis-of-Quantitative-Trading-Strategy-Based-on-Gaussian-Error-Function)
+# Source: https://www.fmz.com/strategy/439348  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Entry size 1  [lines 191-191]
+  191: strategy.entry("long", strategy.long, 1, when = nPSignal < 0 and ndPSignal > 0)

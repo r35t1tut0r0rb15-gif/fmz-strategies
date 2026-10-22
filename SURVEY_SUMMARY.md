@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORT_CANDIDATE | 1899 |
-| PORTED | 1630 |
+| PORT_CANDIDATE | 1887 |
+| PORTED | 1641 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 564 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| REJECTED_ON_READING | 214 |
+| REJECTED_ON_READING | 215 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -1758,7 +1758,18 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439240 | `ports/439240_b-dual-b-intelligent-tracking-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
 | 439241 | `ports/439241_bottom-fishing-strategy/` | PineScript | rsi_oscillator | none | rsi_entry x2, ma_len x2 | 4 |
 | 439243 | `ports/439243_rsi-ema-hull-and-rsi-opportunity-tracking-strategy/` | PineScript | hull_ma | none | ema_len x2, hull_len x2 | 4 |
-| | **1630 ports** | | | | | **8106** |
+| 439244 | `ports/439244_ema-rsi-dual-ema-and-rsi-combined-trend-tracking-strategy/` | PineScript | rsi_oscillator | none | sl_mult x2, risk_reward x2 | 4 |
+| 439246 | `ports/439246_exponential-smoothed-stochastic-oscillator-strategy/` | PineScript | stochastic_oscillator | none | length x2, ex x2 | 4 |
+| 439248 | `ports/439248_hilo-hilo-activator-buy-sell-signals-strategy/` | PineScript | volatility_stop_cross | none | period x2, shift x2 | 4 |
+| 439260 | `ports/439260_sma-atr-sma-and-atr-based-trend-tracking-strategy/` | PineScript | trend_filter | trailing_stop_pending | sma_len x2, run x2 | 4 |
+| 439262 | `ports/439262_sma-eth-london-sma-cross-eth-reversal-trading-strategy/` | PineScript | ma_cross | none | sma_length x3 | 3 |
+| 439266 | `ports/439266_stochastic-index-short-term-trading-strategy-based-on-stocha/` | PineScript | stochastic_oscillator | none | sm1 x2, level x2 | 4 |
+| 439268 | `ports/439268_t3-trend-following-trading-strategy-based-on-t3-indicator/` | PineScript | ma_trend | none | length x2, b x2 | 4 |
+| 439273 | `ports/439273_bollinger-bands-based-trend-following-strategy/` | PineScript | ma_trend | trailing_stop_pending | len1 x2, len2 x2 | 4 |
+| 439338 | `ports/439338_dual-moving-average-trading-strategy/` | PineScript | ma_cross | bar_size_pending | ma1_length x2, ma2_length x2 | 4 |
+| 439339 | `ports/439339_a-dual-moving-average-crossover-strategy/` | PineScript | ma_cross | trailing_stop_pending | fast_length x2, slow_length x2 | 4 |
+| 439348 | `ports/439348_an-analysis-of-quantitative-trading-strategy-based-on-gaussi/` | PineScript | momentum_oscillator | none | n_points x3 | 3 |
+| | **1641 ports** | | | | | **8148** |
 
 ## Rejected on reading
 
@@ -1978,6 +1989,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 438025 | 质数波带回测策略Prime-Number-Bands-Backtest-Strategy.md | 2 | The bands are the nearest prime numbers above the high and below the low (integer steps of the quote unit; on fractional prices the price itself): a property of the quote's numeric scale, not of the market (as #430985, #430847). |
 | 438481 | 基于RSI-V形态的短线盈利策略-RSI-V-shaped-Pattern-Swing-Trading-Strategy.md | 1 | Exits close half and three quarters of the position on RSI crossings (strategy.close with qty = position_size x 1/2, x 3/4): partial exits, which the house engine cannot hold (as #436524). |
 | 438495 | 趋势追踪型EMA突破策略Trend-Tracking-EMA-Breakout-Strategy.md | 1 | monthclose / weekclose / dayclose = request.security(tickerid, 'M' / 'W' / 'D', close, lookahead = barmerge.lookahead_on): on a daily chart the month's and week's FINAL close is used from their first bar (look-ahead); the entry requires monthclose > monthopen and weekclose > weekopen. |
+| 439275 | 基于供需区域与EMA滑动止损的交易策略Trading-Strategy-Based-on-Supply-and-Demand-Zones-with-EMA-and-Trailing-Stop.md | 2 | The only stop is strategy.exit(loss = trailStop) with trailStop = close - 2 x ATR(14): a price LEVEL passed as a TICK distance, so the real distance is the price itself times the tick size (about 10 % of the price at a 0.1 tick on BTC, the whole price at a 1.0 tick), an instrument-specific bracket with no generic reading (as #437048, #437787). The daily supply / demand zones only colour the background. |
 
 ## Flagged and stored under criterion 3 (253 files)
 
