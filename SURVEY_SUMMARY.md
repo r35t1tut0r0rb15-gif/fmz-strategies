@@ -11,13 +11,13 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3190 |
+| PORTED | 3200 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 574 |
-| REJECTED_ON_READING | 488 |
+| REJECTED_ON_READING | 491 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| PORT_CANDIDATE | 55 |
+| PORT_CANDIDATE | 42 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3318,7 +3318,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 489281 | `ports/489281_multi-timeframe-bollinger-band-breakout-reversion-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | mult x2, rr x2 | 4 |
 | 489285 | `ports/489285_smart-trading-momentum-and-moving-average-hybrid-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 489288 | `ports/489288_sma-dynamic-support-resistance-sma-crossover-trading-strateg/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
-| | **3190 ports** | | | | | **14565** |
+| 489296 | `ports/489296_triple-candle-breakout-momentum-heikin-ashi-trading-system/` | PineScript | heikin_ashi | none | streak x3 | 3 |
+| 489297 | `ports/489297_ema-supertrend-multi-timeframe-trend-following-strategy-base/` | PineScript | supertrend | none | Multiplier x2, Periods x2 | 4 |
+| 489300 | `ports/489300_configurable-moving-average-crossover-strategy/` | PineScript | ma_cross | none | maPeriodA x2, maPeriodC x2 | 4 |
+| 489301 | `ports/489301_quantitative-long-short-trend-tracking-dynamic-stop-loss-str/` | PineScript | atr_trailing_line | none | a x2, c x2 | 4 |
+| 489309 | `ports/489309_dow-theory-trend-adaptive-momentum-strategy/` | PineScript | market_structure | none | pivotLookback x2, sl_pct x2 | 4 |
+| 489311 | `ports/489311_dynamic-trend-identification-strategy-with-exponential-movin/` | PineScript | ma_trend | none | atrMultStrong x2, emaFastLen x2 | 4 |
+| 489320 | `ports/489320_kdj-multi-timeframe-adaptive-dynamic-kdj-indicator-strategy/` | PineScript | stochastic | trailing_stop_pending | smoothingLength x2, trendLength x2 | 4 |
+| 489324 | `ports/489324_ema-ema-assisted-extreme-point-reversal-trading-strategy/` | PineScript | cci | none | ccimomLength x2, rsiOversold x2 | 4 |
+| 489332 | `ports/489332_dynamic-ema-crossover-with-rsi-trend-confirmation-quantitati/` | PineScript | ma_cross | none | sl_pct x2, tf_take_profit_ratio x2 | 4 |
+| 489634 | `ports/489634_atr-15-multi-indicator-adaptive-volatility-atr-dynamic-sl-tp/` | PineScript | multi_indicator_confluence | trailing_stop_pending | emaLength x2, rsiOB x2 | 4 |
+| | **3200 ports** | | | | | **14604** |
 
 ## Rejected on reading
 
@@ -3812,6 +3822,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 489289 | 多周期指数移动平均云趋势跟踪做空策略-Multi-Timeframe-EMA-Cloud-Trend-Following-Short-Strategy.md | 1 | The only exit is strategy.exit sent on the signal bar from strategy.position_avg_price, which is na while flat, so the first short has no exit; a later signal while held arms a 1 % / 2 % bracket from the average price mid-trade, which cannot be held as a stop from the fill: without it the first short is held to the end (criterion 1, as #440975). |
 | 489292 | 重要区间MACD交叉动量趋势捕捉策略-Important-Zone-MACD-Crossover-Momentum-Trend-Capture-Strategy.md | 2 | The 'important zone' is the MACD line between -0.5 and +0.5, a fixed band in raw price units (the MACD is a price difference): it depends on the instrument's price scale (criterion 2, as #432339). |
 | 489294 | 多指标趋势动量融合策略-RSI-MACD-双重超趋势跟踪系统-Multi-Indicator-Trend-Momentum-Fusion-Strategy-RSI-MACD-Dual-Supertrend-Tracking-System.md | 2 | The exits include trail_points = 1 ATR, a price amount passed as a tick count (criterion 2, as #482767). |
+| 489295 | 多重蜡烛形态识别与自动交易策略-Multi-Candlestick-Pattern-Recognition-and-Automated-Trading-Strategy.md | 2 | The exits are strategy.exit(loss = 0.5 % x close, profit = 1 % x close): price amounts passed as tick counts in loss / profit (criterion 2, as #473377). |
+| 489304 | 多重指数移动平均线交叉策略-Multi-EMA-Crossover-Strategy.md | 1 | pyramiding 4 with four separately named 25 % entries (one per EMA pair), each closed by its own condition: the position is built and unwound in units (criterion 1, as #436524). |
+| 489333 | 高级价格行情突破与反转检测策略-Advanced-Price-Action-Breakout-and-Reversal-Detection-Strategy.md | 2 | The exits include trail_points = sl / 2, a pip-based price amount passed as a tick count (criterion 2, as #482767). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

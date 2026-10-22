@@ -6987,6 +6987,29 @@ SIZING = {
     489288: [
         ("strategy(): 1 % of equity", 181, 181),
     ],
+    # ---- FMZ-C, batch C271 (2026-10-22)
+    489296: [],
+    489297: [
+        ("strategy(): 100 % of equity", 177, 177),
+    ],
+    489300: [
+        ("strategy(): 10 % of equity, commission 0.06 %", 126, 126),
+    ],
+    489301: [
+        ("strategy(): 100 % of equity, commission 0.1, slippage 3", 142, 142),
+    ],
+    489309: [],
+    489311: [
+        ("strategy(): capital 10000, 100 % of equity", 151, 151),
+    ],
+    489320: [],
+    489324: [],
+    489332: [
+        ("strategy(): 10 % of equity", 247, 247),
+    ],
+    489634: [
+        ("strategy(): 10 % of equity", 173, 173),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -8871,6 +8894,14 @@ REJECTED_ON_READING = {
               "scale (criterion 2, as #432339)."),
     489294: ("2", "The exits include trail_points = 1 ATR, a price amount passed as a tick count "
               "(criterion 2, as #482767)."),
+    # ---- FMZ-C, batch C271 (2026-10-22)
+    489295: ("2", "The exits are strategy.exit(loss = 0.5 % x close, profit = 1 % x close): price "
+              "amounts passed as tick counts in loss / profit (criterion 2, as #473377)."),
+    489304: ("1", "pyramiding 4 with four separately named 25 % entries (one per EMA pair), each "
+              "closed by its own condition: the position is built and unwound in units (criterion "
+              "1, as #436524)."),
+    489333: ("2", "The exits include trail_points = sl / 2, a pip-based price amount passed as a tick "
+              "count (criterion 2, as #482767)."),
 }
 
 DUPLICATE_ON_READING = {

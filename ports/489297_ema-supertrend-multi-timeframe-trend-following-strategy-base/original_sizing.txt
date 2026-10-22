@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #489297 (基于EMA和Supertrend结合的多时间框架趋势跟踪策略-Multi-timeframe-Trend-Following-Strategy-Based-on-EMA-and-Supertrend-Combination)
+# Source: https://www.fmz.com/strategy/489297  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 177-177]
+  177: strategy('Supertrend Strategy for Renko', overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

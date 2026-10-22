@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #489634 (多指标结合的自适应波动ATR动态止盈止损15分钟图表趋势跟踪策略-Multi-Indicator-Adaptive-Volatility-ATR-Dynamic-SL-TP-15-Minute-Chart-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/489634  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 173-173]
+  173: strategy("Scalping 15min: EMA + MACD + RSI + ATR-based SL/TP", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)

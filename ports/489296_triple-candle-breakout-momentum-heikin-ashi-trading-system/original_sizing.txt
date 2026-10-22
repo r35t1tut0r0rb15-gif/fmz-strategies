@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #489296 (三次蜡烛突破动量平滑平均交易策略-Triple-Candle-Breakout-Momentum-Heikin-Ashi-Trading-System)
+# Source: https://www.fmz.com/strategy/489296  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
