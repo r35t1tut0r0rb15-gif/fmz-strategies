@@ -2843,3 +2843,15 @@ fmz_id,file,final_outcome,criterion,reason
 458062,多重指数移动平均交叉策略-Multi-EMA-Crossover-Stop-Strategy.md,PORTED,,ports/458062_multi-ema-crossover-stop-strategy/
 458063,多重EMA交叉结合斐波那契扩展的趋势跟踪策略-Multi-EMA-Crossover-with-Fibonacci-Extension-Trend-Following-Strategy.md,PORTED,,ports/458063_ema-multi-ema-crossover-with-fibonacci-extension-trend-follo/
 458064,双均线趋势跟踪策略与RSI过滤器-Dual-Moving-Average-Trend-Following-Strategy-with-RSI-Filter.md,PORTED,,ports/458064_rsi-dual-moving-average-trend-following-strategy-with-rsi-fi/
+458067,Magic-Channel-Price-Action-Trading-Strategy-魔法通道价格行为交易策略.md,PORTED,,ports/458067_magic-channel-price-action-trading-strategy/
+458069,基于超级趋势指标的精准交易策略与风险管理系统-Precision-Trading-Strategy-and-Risk-Management-System-Based-on-SuperTrend-Indicator.md,PORTED,,ports/458069_precision-trading-strategy-and-risk-management-system-based/
+458070,突破区间动量交易策略-Breakout-Zone-Momentum-Trading-Strategy.md,PORTED,,ports/458070_breakout-zone-momentum-trading-strategy/
+458071,多指标背离买卖策略与自适应止盈止损-Multi-Indicator-Divergence-Trading-Strategy-with-Adaptive-Take-Profit-and-Stop-Loss.md,PORTED,,ports/458071_multi-indicator-divergence-trading-strategy-with-adaptive-ta/
+458074,多重指标趋势追踪策略-Multi-Indicator-Trend-Following-Strategy.md,PORTED,,ports/458074_multi-indicator-trend-following-strategy/
+458076,多周期市场动量交叉策略-Multi-Timeframe-Market-Momentum-Crossover-Strategy.md,PORTED,,ports/458076_multi-timeframe-market-momentum-crossover-strategy/
+458077,自适应趋势跟踪交易策略200均线突破与动态风险管理系统-Adaptive-Trend-Following-Trading-Strategy-200-EMA-Breakout-with-Dynamic-Risk-Management-System.md,PORTED,,ports/458077_200-adaptive-trend-following-trading-strategy-200-ema-breako/
+458078,EMA交叉与布林带双重入场策略结合趋势跟踪与波动突破的量化交易系统EMA-Crossover-with-Bollinger-Bands-Double-Entry-Strategy-A-Quantitative-Trading-System-Combining-Trend-Following-and-Volatility-Breakout.md,PORTED,,ports/458078_ema-ema-crossover-with-bollinger-bands-double-entry-strategy/
+458079,高级均值回归交易策略基于标准差的动态区间突破系统-Advanced-Mean-Reversion-Trading-Strategy-Dynamic-Range-Breakout-System-Based-on-Standard-Deviation.md,PORTED,,ports/458079_advanced-mean-reversion-trading-strategy-dynamic-range-break/
+458128,三周期高低点动量交易策略-Three-Week-High-Low-Momentum-Trading-Strategy.md,PORTED,,ports/458128_three-week-high-low-momentum-trading-strategy/
+458133,多周期均线交叉趋势跟踪策略-Multi-Period-Moving-Average-Crossover-Trend-Following-Strategy.md,PORTED,,ports/458133_multi-period-moving-average-crossover-trend-following-strate/
+458134,多周期确认的移动平均线与RSI趋势交易策略-Multi-Timeframe-Moving-Average-and-RSI-Trend-Trading-Strategy.md,PORTED,,ports/458134_rsi-multi-timeframe-moving-average-and-rsi-trend-trading-str/

@@ -5315,6 +5315,33 @@ SIZING = {
     458064: [
         ("Target 2 % / stop 0.5 % of the reference close (close tests)", 208, 258),
     ],
+    # ---- FMZ-C, batch C201 (2026-10-22)
+    458067: [
+        ("Stop 0.1 % / target 0.1 % of the current close (re-sent every bar)", 241, 278),
+    ],
+    458069: [
+        ("Target 1 % / stop 1 % of the signal close", 201, 222),
+    ],
+    458070: [],
+    458071: [
+        ("Target 20 % / stop 10 % of the average price", 230, 269),
+    ],
+    458074: [],
+    458076: [
+        ("Risk 2 % of equity (unused); fixed 1 contract; stop 10 / target 15 ticks", 177, 218),
+    ],
+    458077: [
+        ("Stop 1 % / target 2 % of the signal close", 186, 221),
+    ],
+    458078: [
+        ("Risk 3 % / 1.5 % of equity over the stop distance; stop 1 ATR under the signal close", 202, 300),
+    ],
+    458079: [],
+    458128: [],
+    458133: [],
+    458134: [
+        ("Risk 1 % of a 50000 capital over the ATR; stop 1.5 / target 3 ATR", 173, 226),
+    ],
 }
 
 REJECTED_ON_READING = {

@@ -1,0 +1,43 @@
+# Original sizing and money-management code, FMZ #458067 (Magic-Channel-Price-Action-Trading-Strategy-魔法通道价格行为交易策略)
+# Source: https://www.fmz.com/strategy/458067  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 0.1 % / target 0.1 % of the current close (re-sent every bar)  [lines 241-278]
+  241: stoplossPercent = input.float(0.1, title="Stoploss Percentage", minval=0.01) / 100
+  242: takeProfitPercent = input.float(0.1, title="Take Profit Percentage", minval=0.01) / 100
+  243: 
+  244: // Function definition for Magic channel calculation
+  245: computeMagicChannel(period) =>
+  246:     (ta.lowest(low, period) + ta.highest(high, period)) / 2
+  247: 
+  248: // Calculating the lines
+  249: convLine = computeMagicChannel(conversionPeriod)
+  250: baseLine = computeMagicChannel(basePeriod)
+  251: leadingSpan1 = (convLine + baseLine) / 2
+  252: leadingSpan2 = computeMagicChannel(laggingSpanPeriod)
+  253: displacedLead1 = leadingSpan1[displace]
+  254: displacedLead2 = leadingSpan2[displace]
+  255: 
+  256: // Defining entry signals
+  257: buyCondition = close > displacedLead2 and displacedLead1 > displacedLead2 and ta.crossover(close, baseLine)
+  258: sellCondition = close < displacedLead1 and displacedLead1 < displacedLead2 and ta.crossunder(close, baseLine)
+  259: 
+  260: // Executing strategy entries based on signals
+  261: if (buyCondition)
+  262:     strategy.entry("Enter Long", strategy.long)
+  263: 
+  264: if (sellCondition)
+  265:     strategy.entry("Enter Short", strategy.short)
+  266: 
+  267: // Stoploss and Take Profit conditions
+  268: stopLossLong = close * (1 - stoplossPercent)
+  269: stopLossShort = close * (1 + stoplossPercent)
+  270: takeProfitLong = close * (1 + takeProfitPercent)
+  271: takeProfitShort = close * (1 - takeProfitPercent)
+  272: 
+  273: // Apply stop-loss and take profit orders
+  274: if (strategy.position_size > 0)
+  275:     strategy.exit("Exit Long", from_entry="Enter Long", stop=stopLossLong, limit=takeProfitLong)
+  276: 
+  277: if (strategy.position_size < 0)
+  278:     strategy.exit("Exit Short", from_entry="Enter Short", stop=stopLossShort, limit=takeProfitShort)

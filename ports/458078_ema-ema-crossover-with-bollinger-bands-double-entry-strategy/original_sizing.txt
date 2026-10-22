@@ -1,0 +1,104 @@
+# Original sizing and money-management code, FMZ #458078 (EMA交叉与布林带双重入场策略结合趋势跟踪与波动突破的量化交易系统EMA-Crossover-with-Bollinger-Bands-Double-Entry-Strategy-A-Quantitative-Trading-System-Combining-Trend-Following-and-Volatility-Breakout)
+# Source: https://www.fmz.com/strategy/458078  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk 3 % / 1.5 % of equity over the stop distance; stop 1 ATR under the signal close  [lines 202-300]
+  202: atrMultiplier = input.float(1.0, "ATR Multiplier")
+  203: useATRStopLoss = input.bool(true, "Use ATR Stop Loss")
+  204: stopLossDays = input.int(5, "Number of days for stop loss", minval=1, maxval=50)
+  205: riskPerTrade = input.float(3.0, "Risk per trade (%)", minval=0.1, maxval=5, step=0.1)
+  206: bbRiskPerTrade = input.float(1.5, "Risk for BB breakout trade (%)", minval=0.1, maxval=5, step=0.1)
+  207: 
+  208: // Bollinger Bands parameters
+  209: bbLength = input.int(55, "BB Length")
+  210: bbMult = input.float(0.9, "BB Standard Deviation")
+  211: useBBPauseResume = input.bool(false, "Use BB for Pause/Resume trading")
+  212: 
+  213: // Backtesting dates
+  214: startDate = input(timestamp("2020-01-01"), "Start Date")
+  215: endDate = input(timestamp("9999-12-31"), "End Date")
+  216: 
+  217: // Calculate EMAs
+  218: fastEMA = ta.ema(close, fastLength)
+  219: slowEMA = ta.ema(close, slowLength)
+  220: 
+  221: // Calculate ATR
+  222: atr = ta.atr(atrPeriod)
+  223: 
+  224: // Calculate Bollinger Bands
+  225: bbBasis = ta.sma(close, bbLength)
+  226: bbDev = bbMult * ta.stdev(close, bbLength)
+  227: bbUpper = bbBasis + bbDev
+  228: bbLower = bbBasis - bbDev
+  229: 
+  230: // Define trading conditions
+  231: longCondition = ta.crossover(fastEMA, slowEMA)
+  232: shortCondition = ta.crossunder(fastEMA, slowEMA)
+  233: bullish = fastEMA > slowEMA
+  234: bearish = fastEMA < slowEMA
+  235: 
+  236: // Bollinger Bands breakout
+  237: bbBreakout = close > bbUpper and close[1] <= bbUpper[1]
+  238: 
+  239: // Calculate lowest low for stop loss
+  240: lowestLow = ta.lowest(low, stopLossDays)
+  241: 
+  242: // Variables to store entry price and stop loss
+  243: var float entryPrice = na
+  244: var float stopLoss = na
+  245: var bool inPosition = false
+  246: var bool pauseTrading = false
+  247: 
+  248: // Entry logic
+  249: entryConditions = (longCondition or (bbBreakout and bullish)) and
+  250:                   (not useBBPauseResume or close > bbBasis) and
+  251:                   not pauseTrading
+  252: 
+  253: if entryConditions and not inPosition
+  254:     entryPrice := close
+  255:     atrStopLoss = close - (atr * atrMultiplier)
+  256:     lowStopLoss = lowestLow
+  257:     stopLoss := useATRStopLoss ? atrStopLoss : lowStopLoss
+  258:     
+  259:     riskAmount = strategy.equity * (riskPerTrade / 100)
+  260:     positionSize = riskAmount / (close - stopLoss)
+  261:     
+  262:     strategy.entry("Long", strategy.long, qty=positionSize)
+  263:     inPosition := true
+  264:     pauseTrading := false
+  265:     
+  266:     alert("BUY," + syminfo.ticker + ",EntryPrice=" + str.tostring(close) + ",StopLoss=" + str.tostring(stopLoss) + ",PositionSize=" + str.tostring(positionSize), alert.freq_once_per_bar_close)
+  267: 
+  268: // Additional entry on BB breakout
+  269: if inPosition and bbBreakout and bullish and (not useBBPauseResume or close > bbBasis)
+  270:     bbRiskAmount = strategy.equity * (bbRiskPerTrade / 100)
+  271:     bbPositionSize = bbRiskAmount / (close - stopLoss)
+  272:     
+  273:     strategy.entry("Long_BB", strategy.long, qty=bbPositionSize)
+  274:     
+  275:     alert("ADD," + syminfo.ticker + ",EntryPrice=" + str.tostring(close) + ",StopLoss=" + str.tostring(stopLoss) + ",PositionSize=" + str.tostring(bbPositionSize), alert.freq_once_per_bar_close)
+  276: 
+  277: // Exit logic
+  278: if shortCondition or (useBBPauseResume and inPosition and close < bbBasis)
+  279:     if shortCondition
+  280:         strategy.close_all(comment="EMA Crossdown")
+  281:         inPosition := false
+  282:         pauseTrading := false
+  283:         alert("SELL," + syminfo.ticker + ",Reason=EMA_Crossdown", alert.freq_once_per_bar_close)
+  284:     else if useBBPauseResume
+  285:         strategy.close_all(comment="Close under BB basic")
+  286:         pauseTrading := true
+  287:         alert("SELL," + syminfo.ticker + ",Reason=Below_BB_Basic", alert.freq_once_per_bar_close)
+  288:     
+  289:     entryPrice := na
+  290:     stopLoss := na
+  291: 
+  292: // Resume trading if price closes above BB basic
+  293: if useBBPauseResume and pauseTrading and close > bbBasis
+  294:     pauseTrading := false
+  295:     alert("RESUME," + syminfo.ticker, alert.freq_once_per_bar_close)
+  296: 
+  297: // Stop loss
+  298: if strategy.position_size > 0
+  299:     strategy.exit("Stop Loss", "Long", stop=stopLoss)
+  300:     strategy.exit("Stop Loss", "Long_BB", stop=stopLoss)

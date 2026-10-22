@@ -1,0 +1,41 @@
+# Original sizing and money-management code, FMZ #458077 (自适应趋势跟踪交易策略200均线突破与动态风险管理系统-Adaptive-Trend-Following-Trading-Strategy-200-EMA-Breakout-with-Dynamic-Risk-Management-System)
+# Source: https://www.fmz.com/strategy/458077  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 1 % / target 2 % of the signal close  [lines 186-221]
+  186: stopLossPercent = input.float(1.0, title="Stop Loss (%)", step=0.1)
+  187: takeProfitPercent = input.float(2.0, title="Take Profit (%)", step=0.1)
+  188: 
+  189: // Enable buy and sell strategies
+  190: enableBuy = input.bool(true, title="Enable Buy Strategy")
+  191: enableSell = input.bool(true, title="Enable Sell Strategy")
+  192: 
+  193: // Calculate 200 EMA
+  194: ema200 = ta.ema(close, emaLength)
+  195: 
+  196: // Plot the EMA on the chart
+  197: plot(ema200, color=color.blue, title="200 EMA")
+  198: 
+  199: // Buy condition: close is above the 200 EMA
+  200: if (enableBuy and ta.crossover(close, ema200))
+  201:     // Define stop loss and take profit levels
+  202:     stopLossPrice = close * (1 - stopLossPercent / 100)
+  203:     takeProfitPrice = close * (1 + takeProfitPercent / 100)
+  204:     
+  205:     // Enter long position
+  206:     strategy.entry("Buy", strategy.long)
+  207:     
+  208:     // Set stop loss and take profit
+  209:     strategy.exit("Take Profit/Stop Loss", "Buy", stop=stopLossPrice, limit=takeProfitPrice)
+  210: 
+  211: // Sell condition: close is below the 200 EMA
+  212: if (enableSell and ta.crossunder(close, ema200))
+  213:     // Define stop loss and take profit levels
+  214:     stopLossPrice = close * (1 + stopLossPercent / 100)
+  215:     takeProfitPrice = close * (1 - takeProfitPercent / 100)
+  216:     
+  217:     // Enter short position
+  218:     strategy.entry("Sell", strategy.short)
+  219:     
+  220:     // Set stop loss and take profit
+  221:     strategy.exit("Take Profit/Stop Loss", "Sell", stop=stopLossPrice, limit=takeProfitPrice)

@@ -11,9 +11,9 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2472 |
+| PORTED | 2484 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 916 |
+| PORT_CANDIDATE | 904 |
 | HELD_NEEDS_VOLUME | 567 |
 | REJECTED_ON_READING | 352 |
 | FLAGGED_CRYPTO_ONLY | 253 |
@@ -2600,7 +2600,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 458062 | `ports/458062_multi-ema-crossover-stop-strategy/` | PineScript | ma_cross | none | length x2, length2 x2 | 4 |
 | 458063 | `ports/458063_ema-multi-ema-crossover-with-fibonacci-extension-trend-follo/` | PineScript | ma_trend | none | swing_len x2 | 2 |
 | 458064 | `ports/458064_rsi-dual-moving-average-trend-following-strategy-with-rsi-fi/` | PineScript | rsi_oscillator | none | sma_len x2, confirm x2, tp_pct x2 | 8 |
-| | **2472 ports** | | | | | **11588** |
+| 458067 | `ports/458067_magic-channel-price-action-trading-strategy/` | PineScript | ichimoku | trailing_stop_pending | conversion x2, base x2, displace x2 | 8 |
+| 458069 | `ports/458069_precision-trading-strategy-and-risk-management-system-based/` | PineScript | supertrend | coarse_bar_stop | atr_len x2, factor x2, bracket x2 | 8 |
+| 458070 | `ports/458070_breakout-zone-momentum-trading-strategy/` | PineScript | ma_cross | none | sma_len x2, breaker x2 | 4 |
+| 458071 | `ports/458071_multi-indicator-divergence-trading-strategy-with-adaptive-ta/` | PineScript | multi_indicator_confluence | none | tp_pct x2, sl_pct x2 | 4 |
+| 458074 | `ports/458074_multi-indicator-trend-following-strategy/` | PineScript | ma_trend | none | rsi_len x2, long_th x2, short_th x2 | 8 |
+| 458076 | `ports/458076_multi-timeframe-market-momentum-crossover-strategy/` | PineScript | macd_cross | none | sl_atr x2, tp_atr x2 | 4 |
+| 458077 | `ports/458077_200-adaptive-trend-following-trading-strategy-200-ema-breako/` | PineScript | ma_cross | coarse_bar_stop | ema_len x2, sl_pct x2, tp_pct x2 | 8 |
+| 458078 | `ports/458078_ema-ema-crossover-with-bollinger-bands-double-entry-strategy/` | PineScript | ma_cross | coarse_bar_stop | fast x2, slow x2, atr_mult x2 | 8 |
+| 458079 | `ports/458079_advanced-mean-reversion-trading-strategy-dynamic-range-break/` | PineScript | bollinger_reversion | none | length x2, k x2 | 4 |
+| 458128 | `ports/458128_three-week-high-low-momentum-trading-strategy/` | PineScript | momentum_breakout | none | lookback x2 | 2 |
+| 458133 | `ports/458133_multi-period-moving-average-crossover-trend-following-strate/` | PineScript | ma_cross | bar_size_pending | ma1 x2, ma2 x2, ma4 x2 | 8 |
+| 458134 | `ports/458134_rsi-multi-timeframe-moving-average-and-rsi-trend-trading-str/` | PineScript | multi_timeframe_ma | bar_size_pending, trailing_stop_pending | short_len x2, long_len x2, sl_atr x2 | 8 |
+| | **2484 ports** | | | | | **11662** |
 
 ## Rejected on reading
 

@@ -1,0 +1,45 @@
+# Original sizing and money-management code, FMZ #458071 (多指标背离买卖策略与自适应止盈止损-Multi-Indicator-Divergence-Trading-Strategy-with-Adaptive-Take-Profit-and-Stop-Loss)
+# Source: https://www.fmz.com/strategy/458071  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Target 20 % / stop 10 % of the average price  [lines 230-269]
+  230: takeProfitPerc = input(20.0, "Take Profit (%)") / 100.0
+  231: stopLossPerc = input(10.0, "Stop Loss (%)") / 100.0
+  232: 
+  233: // Calculate RSI
+  234: rsi = ta.rsi(close, rsiLength)
+  235: 
+  236: // Calculate MACD
+  237: [macdLine, signalLine, _] = ta.macd(close, macdShortLength, macdLongLength, macdSignalSmoothing)
+  238: 
+  239: // Calculate Stochastic
+  240: stoch = ta.stoch(close, high, low, stochLength)
+  241: 
+  242: // Determine divergences
+  243: rsiDivergence = ta.crossover(rsi, ta.sma(rsi, 14))
+  244: macdDivergence = ta.crossover(macdLine, signalLine)
+  245: stochDivergence = ta.crossover(stoch, ta.sma(stoch, 14))
+  246: 
+  247: // Determine buy/sell conditions
+  248: buyCondition = rsiDivergence and macdDivergence and stochDivergence
+  249: sellCondition = rsiDivergence and macdDivergence and not stochDivergence
+  250: 
+  251: // Execute buy/sell orders
+  252: if (buyCondition)
+  253:     strategy.entry("Buy", strategy.long)
+  254: 
+  255: if (sellCondition)
+  256:     strategy.entry("Sell", strategy.short)
+  257: 
+  258: // Calculate take profit and stop loss levels
+  259: longTakeProfitPrice = strategy.position_avg_price * (1 + takeProfitPerc)
+  260: longStopLossPrice = strategy.position_avg_price * (1 - stopLossPerc)
+  261: shortTakeProfitPrice = strategy.position_avg_price * (1 - takeProfitPerc)
+  262: shortStopLossPrice = strategy.position_avg_price * (1 + stopLossPerc)
+  263: 
+  264: // Close positions at take profit or stop loss level
+  265: if (strategy.position_size > 0)
+  266:     strategy.exit("Take Profit/Stop Loss", "Buy", limit=longTakeProfitPrice, stop=longStopLossPrice)
+  267: 
+  268: if (strategy.position_size < 0)
+  269:     strategy.exit("Take Profit/Stop Loss", "Sell", limit=shortTakeProfitPrice, stop=shortStopLossPrice)

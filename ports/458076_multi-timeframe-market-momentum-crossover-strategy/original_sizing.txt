@@ -1,0 +1,47 @@
+# Original sizing and money-management code, FMZ #458076 (多周期市场动量交叉策略-Multi-Timeframe-Market-Momentum-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/458076  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk 2 % of equity (unused); fixed 1 contract; stop 10 / target 15 ticks  [lines 177-218]
+  177: riskPercentage = input.float(2, title="每筆交易的風險比例 (%)")
+  178: stopLossPoints = 10
+  179: takeProfitPoints = 15
+  180: 
+  181: // 設置倫敦和紐約市場的開盤時間
+  182: londonOpen = timestamp("GMT+0", year, month, dayofmonth, 8, 0)
+  183: londonClose = timestamp("GMT+0", year, month, dayofmonth, 17, 0)
+  184: nyOpen = timestamp("GMT+0", year, month, dayofmonth, 13, 30)
+  185: nyClose = timestamp("GMT+0", year, month, dayofmonth, 20, 0)
+  186: 
+  187: // 計算MACD
+  188: [macdLine, signalLine, _] = ta.macd(close, fastLength, slowLength, signalSmoothing)
+  189: macdHist = macdLine - signalLine
+  190: 
+  191: // 畫出MACD線
+  192: hline(0, "0軸", color=color.gray)
+  193: plot(macdLine, color=color.blue, title="MACD 快線")
+  194: plot(signalLine, color=color.red, title="MACD 慢線")
+  195: plot(macdHist, color=color.green, style=plot.style_histogram, title="MACD Histogram")
+  196: 
+  197: // 動態計算每筆交易的風險和止損、止盈點數
+  198: capital = strategy.equity
+  199: riskAmount = capital * (riskPercentage / 100)
+  200: contracts = 1
+  201: stopLossValue = stopLossPoints * syminfo.mintick
+  202: takeProfitValue = takeProfitPoints * syminfo.mintick
+  203: 
+  204: // 確定是否在交易時段內
+  205: isLondonOpen = (time >= londonOpen and time <= londonClose)
+  206: isNyOpen = (time >= nyOpen and time <= nyClose)
+  207: 
+  208: // 偏空進場條件
+  209: shortCondition = ta.crossover(signalLine, macdLine) and macdLine > 0 and (isLondonOpen or isNyOpen)
+  210: if (shortCondition)
+  211:     strategy.entry("Short", strategy.short, qty=contracts)
+  212:     strategy.exit("Take Profit/Stop Loss", "Short", limit=close - takeProfitValue, stop=close + stopLossValue)
+  213: 
+  214: // 偏多進場條件
+  215: longCondition = ta.crossunder(signalLine, macdLine) and macdLine < 0 and (isLondonOpen or isNyOpen)
+  216: if (longCondition)
+  217:     strategy.entry("Long", strategy.long, qty=contracts)
+  218:     strategy.exit("Take Profit/Stop Loss", "Long", limit=close + takeProfitValue, stop=close - stopLossValue)

@@ -1,0 +1,59 @@
+# Original sizing and money-management code, FMZ #458134 (多周期确认的移动平均线与RSI趋势交易策略-Multi-Timeframe-Moving-Average-and-RSI-Trend-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/458134  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Risk 1 % of a 50000 capital over the ATR; stop 1.5 / target 3 ATR  [lines 173-226]
+  173: atr_length = input.int(14, title="ATR Length")
+  174: risk_percentage = input.float(1, title="Risk Percentage", step=0.1) / 100
+  175: capital = input.float(50000, title="Capital")
+  176: 
+  177: // Higher Time Frame (1-hour) Indicators
+  178: short_ma_1h = request.security(syminfo.tickerid, "60", ta.sma(close, short_ma_length))
+  179: long_ma_1h = request.security(syminfo.tickerid, "60", ta.sma(close, long_ma_length))
+  180: rsi_1h = request.security(syminfo.tickerid, "60", ta.rsi(close, rsi_length))
+  181: 
+  182: // Lower Time Frame (15-minute) Confirmation Indicators
+  183: short_ma_15m = ta.sma(close, short_ma_length)
+  184: long_ma_15m = ta.sma(close, long_ma_length)
+  185: rsi_15m = ta.rsi(close, rsi_length)
+  186: 
+  187: // ATR for dynamic stop loss and take profit
+  188: atr = ta.atr(atr_length)
+  189: 
+  190: // Position sizing
+  191: position_size = (capital * risk_percentage) / atr
+  192: 
+  193: // Strategy Conditions on 1-hour chart
+  194: longCondition_1h = (short_ma_1h > long_ma_1h) and (rsi_1h < rsi_overbought)
+  195: shortCondition_1h = (short_ma_1h < long_ma_1h) and (rsi_1h > rsi_oversold)
+  196: 
+  197: // Entry Confirmation on 15-minute chart
+  198: longCondition_15m = (short_ma_15m > long_ma_15m) and (rsi_15m < rsi_overbought)
+  199: shortCondition_15m = (short_ma_15m < long_ma_15m) and (rsi_15m > rsi_oversold)
+  200: 
+  201: // Combine Conditions
+  202: longCondition = longCondition_1h and longCondition_15m
+  203: shortCondition = shortCondition_1h and shortCondition_15m
+  204: 
+  205: // Dynamic stop loss and take profit
+  206: long_stop_loss = close - 1.5 * atr
+  207: long_take_profit = close + 3 * atr
+  208: short_stop_loss = close + 1.5 * atr
+  209: short_take_profit = close - 3 * atr
+  210: 
+  211: // Plotting Moving Averages
+  212: plot(short_ma_1h, color=color.blue, title="Short MA (1H)")
+  213: plot(long_ma_1h, color=color.red, title="Long MA (1H)")
+  214: 
+  215: // Highlighting Long and Short Conditions
+  216: bgcolor(longCondition ? color.new(color.green, 90) : na, title="Long Signal Background")
+  217: bgcolor(shortCondition ? color.new(color.red, 90) : na, title="Short Signal Background")
+  218: 
+  219: // Generate Buy/Sell Signals with dynamic stop loss and take profit
+  220: if (longCondition)
+  221:     strategy.entry("Long", strategy.long, qty=position_size)
+  222:     strategy.exit("Long Exit", "Long", stop=long_stop_loss, limit=long_take_profit)
+  223: 
+  224: if (shortCondition)
+  225:     strategy.entry("Short", strategy.short, qty=position_size)
+  226:     strategy.exit("Short Exit", "Short", stop=short_stop_loss, limit=short_take_profit)
