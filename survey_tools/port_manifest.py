@@ -4295,6 +4295,25 @@ SIZING = {
     442122: [
         ("strategy(): 100 % of equity, capital 100000, commission 0.1 %", 146, 146),
     ],
+    # ---- FMZ-C, batch C152 (2026-10-22)
+    442126: [
+        ("strategy(): 100 % of equity", 145, 145),
+    ],
+    442127: [
+        ("lots = risk x (capital + net profit) / SL points", 249, 251),
+    ],
+    442206: [],
+    442207: [],
+    442211: [],
+    442214: [
+        ("strategy(): 100 % of equity, capital 5000", 195, 195),
+    ],
+    442221: [],
+    442225: [
+        ("strategy(): capital 10000, commission 1", 106, 106),
+    ],
+    442228: [],
+    442230: [],
 }
 
 REJECTED_ON_READING = {
@@ -5445,6 +5464,9 @@ REJECTED_ON_READING = {
     442115: ("2", "The only exits pass trail_points = trail_offset = atr x 1.5, a price amount, where "
               "the call takes ticks, with no /mintick: the trailing stop is undefined as written "
               "(criterion 2, as #437048, #437677)."),
+    # ---- FMZ-C, batch C152 (2026-10-22)
+    442229: ("1", "A DCA that buys on the close of every bar with pyramiding = 999 and cash sizes "
+              "from remaining capital: the position accumulates units (criterion 1, as #430762)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -5490,4 +5512,6 @@ HELD_ON_READING = {
     440372: ("8", "The default moving-average type is VWMA: vwma(close, 66) against vwma(open, 66), volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C145 (2026-10-22)
     441075: ("8", "The MA rating includes vwma(close, 20): a volume-weighted average (check 8, held with the other volume users)."),
+    # ---- FMZ-C, batch C152 (2026-10-22)
+    442220: ("8", "The channel averages include vwma(high, 12) and vwma(low, 12): volume-weighted averages (check 8, held with the other volume users)."),
 }

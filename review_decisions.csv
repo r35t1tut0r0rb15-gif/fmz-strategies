@@ -279,6 +279,7 @@ fmz_id,file,final_outcome,criterion,reason
 442110,动静交织的移动平均线交叉策略The-Interwoven-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"The only bracket is sent on the signal bar from strategy.position_avg_price: on a first entry the position is flat (na, nothing placed) and on every later, reversing entry the levels come from the previous position's average price, a level the house stops (fractions of the new fill) cannot express (criterion 1, as #440109, #440978)."
 442112,震荡反转CAT策略Reversal-Fluctuation-CAT-Strategy.md,REJECTED_ON_READING,1,"pyramiding = 3 with repeated ""botsell20"" / ""botbuy20"" entries on every large candle while a position is open: the position accumulates units (criterion 1, as #430762)."
 442115,动量震荡追踪止损策略DYNAMIC-MOMENTUM-OSCILLATOR-TRAILING-STOP-STRATEGY.md,REJECTED_ON_READING,2,"The only exits pass trail_points = trail_offset = atr x 1.5, a price amount, where the call takes ticks, with no /mintick: the trailing stop is undefined as written (criterion 2, as #437048, #437677)."
+442229,基于动态加仓策略Dynamic-Position-Building-Strategy.md,REJECTED_ON_READING,1,"A DCA that buys on the close of every bar with pyramiding = 999 and cash sizes from remaining capital: the position accumulates units (criterion 1, as #430762)."
 427574,鹰眼短线交易策略Hawk-Eye-Short-term-Trading-Strategy.md,HELD_NEEDS_VOLUME,8,"The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."
 427734,多动量指标组合策略Multi-Momentum-Indicators-Combo-Strategy.md,HELD_NEEDS_VOLUME,8,"The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."
 429461,多重移动平均线趋势跟踪策略Multi-Moving-Average-Rating-Trend-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."
@@ -297,6 +298,7 @@ fmz_id,file,final_outcome,criterion,reason
 439103,双移动均线黄金交叉策略Dual-Moving-Average-Golden-Cross-Strategy.md,HELD_NEEDS_VOLUME,8,"The moving-average rules use ma20 / ma50 / ma100 = vwma(close, 20 / 50 / 100): volume-weighted averages (check 8, held with the other volume users)."
 440372,趋势跟踪均线交叉策略Trend-Tracking-Moving-Average-Crossover-Strategy.md,HELD_NEEDS_VOLUME,8,"The default moving-average type is VWMA: vwma(close, 66) against vwma(open, 66), volume-weighted averages (check 8, held with the other volume users)."
 441075,收益率理论波动指标量化策略Profit-rate-theory-volatility-index-quantification-strategy.md,HELD_NEEDS_VOLUME,8,"The MA rating includes vwma(close, 20): a volume-weighted average (check 8, held with the other volume users)."
+442220,多周期移动平均线通道趋势跟踪策略Multi-Period-Moving-Average-Channel-Trend-Following-Strategy.md,HELD_NEEDS_VOLUME,8,"The channel averages include vwma(high, 12) and vwma(low, 12): volume-weighted averages (check 8, held with the other volume users)."
 128126,基于ATR波动率指标构建的通道策略Channel-strategy-based-on-ATR.md,DUPLICATE_ON_READING,6,"of #127691: Same rules and defaults as #127691 (SLOSS 2, N 200, M 4; parameters as arguments instead of constants, HHV/LLV inline instead of named). Exact duplicate in behaviour (rule 7)."
 11604,RSI_now_sb_ok.md,PORTED,,ports/11604_rsi-now-sb-ok/
 42283,KingKeltner趋势策略_低频.md,PORTED,,ports/42283_kingkeltner/
@@ -2256,3 +2258,13 @@ fmz_id,file,final_outcome,criterion,reason
 442119,基于动量均线反转策略Momentum-Moving-Average-Reversal-Strategy.md,PORTED,,ports/442119_momentum-moving-average-reversal-strategy/
 442120,基于超趋势支撑阻力与ADX指标的高频交易策ADX-Filtered-SuperTrend-Pivot-Trading-Strategy.md,PORTED,,ports/442120_adx-adx-filtered-supertrend-pivot-trading-strategy/
 442122,通道突破反转交易策略Volatility-Breakout-Reversal-Trading-Strategy.md,PORTED,,ports/442122_volatility-breakout-reversal-trading-strategy/
+442126,动量砖策略Momentum-Brick-Strategy.md,PORTED,,ports/442126_momentum-brick-strategy/
+442127,自适应零滞后指数移动平均线量化交易策略Adaptive-Zero-Lag-Exponential-Moving-Average-Quantitative-Trading-Strategy.md,PORTED,,ports/442127_adaptive-zero-lag-exponential-moving-average-quantitative-tr/
+442206,一目均衡表震荡指标交易策略Ichimoku-Cloud-Oscillator-Trading-Strategy.md,PORTED,,ports/442206_ichimoku-cloud-oscillator-trading-strategy/
+442207,基于均差平滑的趋势跟踪策略Trend-Following-Strategy-Based-on-Smoothed-Deviation.md,PORTED,,ports/442207_trend-following-strategy-based-on-smoothed-deviation/
+442211,CDC动作区域策略CDC-Action-Zone-Strategy.md,PORTED,,ports/442211_cdc-cdc-action-zone-strategy/
+442214,指标组合突破趋势追踪策略Strategy-of-Indicators-Combination-Breakthrough-Trend-Tracking.md,PORTED,,ports/442214_strategy-of-indicators-combination-breakthrough-trend-tracki/
+442221,基于动量震荡率优化策略Rate-of-Change-Optimization-Strategy.md,PORTED,,ports/442221_rate-of-change-optimization-strategy/
+442225,基于EMA均线的短线交易策略Short-term-Trading-Strategy-Based-on-EMA.md,PORTED,,ports/442225_ema-short-term-trading-strategy-based-on-ema/
+442228,基于均线的追踪策略Dual-Moving-Average-Chasing-Strategy.md,PORTED,,ports/442228_dual-moving-average-chasing-strategy/
+442230,三色交叉趋势追踪策略Three-Color-Cross-Trend-Tracking-Strategy.md,PORTED,,ports/442230_three-color-cross-trend-tracking-strategy/

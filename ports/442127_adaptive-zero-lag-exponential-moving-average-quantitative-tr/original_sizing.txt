@@ -1,0 +1,8 @@
+# Original sizing and money-management code, FMZ #442127 (自适应零滞后指数移动平均线量化交易策略Adaptive-Zero-Lag-Exponential-Moving-Average-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/442127  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## lots = risk x (capital + net profit) / SL points  [lines 249-251]
+  249:     balance = strategy.initial_capital + strategy.netprofit
+  250:     lots = ((risk * balance)/fixedSL)*1
+  251:     strategy.entry("BUY", strategy.long, qty=lots, oca_name="BUY",  when=buy)

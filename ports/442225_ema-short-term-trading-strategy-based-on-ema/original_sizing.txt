@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #442225 (基于EMA均线的短线交易策略Short-term-Trading-Strategy-Based-on-EMA)
+# Source: https://www.fmz.com/strategy/442225  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 10000, commission 1  [lines 106-106]
+  106: strategy("Jan 2024 Daily (Short)", initial_capital = 10000, overlay=true, commission_value = 1)
