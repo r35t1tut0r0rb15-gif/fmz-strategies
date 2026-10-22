@@ -1,0 +1,40 @@
+# Original sizing and money-management code, FMZ #472248 (多重EMA交叉趋势跟踪与动态止盈止损优化策略-Multi-EMA-Crossover-Trend-Following-Strategy-with-Dynamic-Stop-Loss-and-Take-Profit-Optimization)
+# Source: https://www.fmz.com/strategy/472248  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop 50 / target 100 ticks  [lines 110-144]
+  110: slTicks = input.int(50, title="Stop Loss (ticks)", minval=1)
+  111: tpTicks = input.int(100, title="Take Profit (ticks)", minval=1)
+  112: 
+  113: // Input settings for moving averages
+  114: shortMAPeriod = input.int(21, title="Short MA Period")
+  115: longMAPeriod = input.int(50, title="Long MA Period")
+  116: thirdMAPeriod = input.int(200, title="Third MA Period")
+  117: 
+  118: // Calculate moving averages
+  119: shortMA = ta.ema(close, shortMAPeriod) // Short EMA (21-period)
+  120: longMA = ta.ema(close, longMAPeriod) // Long EMA (50-period)
+  121: thirdMA = ta.ema(close, thirdMAPeriod) // Third EMA (200-period)
+  122: 
+  123: // Detect crossovers for entry signals
+  124: bullishCross = ta.crossover(shortMA, longMA) and close > thirdMA
+  125: bearishCross = ta.crossunder(shortMA, longMA) and close < thirdMA
+  126: 
+  127: // Initialize variables for SL and TP
+  128: var float longSL = na
+  129: var float longTP = na
+  130: var float shortSL = na
+  131: var float shortTP = na
+  132: 
+  133: // Execute trades based on crossovers
+  134: if (bullishCross) 
+  135:     longSL := close - slTicks * syminfo.mintick
+  136:     longTP := close + tpTicks * syminfo.mintick
+  137:     strategy.entry("Long", strategy.long)
+  138:     strategy.exit("Exit Long", "Long", stop=longSL, limit=longTP)
+  139: 
+  140: if (bearishCross)
+  141:     shortSL := close + slTicks * syminfo.mintick
+  142:     shortTP := close - tpTicks * syminfo.mintick
+  143:     strategy.entry("Short", strategy.short)
+  144:     strategy.exit("Exit Short", "Short", stop=shortSL, limit=shortTP)

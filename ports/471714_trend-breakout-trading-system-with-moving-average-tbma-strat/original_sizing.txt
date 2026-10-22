@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #471714 (趋势突破交易系统移动平均线突破策略-Trend-Breakout-Trading-System-with-Moving-Average-TBMA-Strategy)
+# Source: https://www.fmz.com/strategy/471714  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Stop = 7-bar low; target 2 x the risk  [lines 104-116]
+  104: lowestLow = ta.lowest(low, 7)
+  105: 
+  106: // Stop Loss darajasini belgilash
+  107: longSL = lowestLow  // SL oxirgi 7 shamning minimumiga teng
+  108: 
+  109: // Take Profit darajasini SL ga nisbatan 2 baravar ko'p qilib belgilash
+  110: longTP = longSL + (close - longSL) * 2  // TP 2:1 nisbatida
+  111: 
+  112: // Savdo bajarish
+  113: if longSignal
+  114:     strategy.entry("Long", strategy.long)
+  115:     strategy.exit("Take Profit", "Long", limit=longTP)
+  116:     strategy.exit("Stop Loss", "Long", stop=longSL)

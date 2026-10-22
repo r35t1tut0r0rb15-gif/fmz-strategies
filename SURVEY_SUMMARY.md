@@ -11,11 +11,11 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 2580 |
+| PORTED | 2589 |
 | REJECTED | 994 |
-| PORT_CANDIDATE | 796 |
+| PORT_CANDIDATE | 784 |
 | HELD_NEEDS_VOLUME | 569 |
-| REJECTED_ON_READING | 362 |
+| REJECTED_ON_READING | 365 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2708,7 +2708,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 471704 | `ports/471704_rsi-rsi-dynamic-range-reversal-quantitative-strategy-with-vo/` | PineScript | rsi_oscillator | none | sensitivity x2, rsi_len x2 | 4 |
 | 471707 | `ports/471707_rsi-dual-moving-average-cross-rsi-momentum-strategy-with-ris/` | PineScript | rsi_oscillator | none | short_len x2, long_len x2, rr x2 | 8 |
 | 471709 | `ports/471709_rsi-ao-rsi-and-ao-synergistic-trend-following-quantitative-t/` | PineScript | momentum_oscillator | none | tp_pct x2, sl_pct x2 | 4 |
-| | **2580 ports** | | | | | **12172** |
+| 471713 | `ports/471713_atr-atr-based-multi-trend-following-strategy-with-take-profi/` | PineScript | supertrend | coarse_bar_stop | periods x2, multiplier x2, tp_pct x2 | 8 |
+| 471714 | `ports/471714_trend-breakout-trading-system-with-moving-average-tbma-strat/` | PineScript | ma_cross | coarse_bar_stop, trailing_stop_pending | trend_len x2, low_len x2, rr x2 | 8 |
+| 471715 | `ports/471715_macd-advanced-macd-dynamic-trend-quantitative-trading-strate/` | PineScript | macd_cross | none | setting x3 | 3 |
+| 471719 | `ports/471719_multi-timeframe-ema-trend-momentum-trading-strategy/` | PineScript | ma_pullback | trailing_stop_pending | pullback_pct x2, sl_atr x2 | 4 |
+| 471720 | `ports/471720_multi-level-moving-average-with-candlestick-pattern-recognit/` | PineScript | candle_pattern | none | ema_input x2 | 2 |
+| 471725 | `ports/471725_multi-ma-trend-strength-capture-with-momentum-profit-taking/` | PineScript | ma_cross | none | move_pct x2, adx_th x2 | 4 |
+| 471729 | `ports/471729_dual-moving-average-crossover-with-dynamic-risk-management-s/` | PineScript | ma_cross | none | fast x2, slow x2, sl_pct x2 | 8 |
+| 472246 | `ports/472246_dual-moving-average-crossover-strategy-with-dynamic-risk-man/` | PineScript | ma_cross | none | short_len x2, long_len x2, tp_pct x2 | 8 |
+| 472248 | `ports/472248_ema-multi-ema-crossover-trend-following-strategy-with-dynami/` | PineScript | ma_cross | coarse_bar_stop | sl_atr x2, tp_atr x2 | 4 |
+| | **2589 ports** | | | | | **12221** |
 
 ## Rejected on reading
 
@@ -3076,6 +3085,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 469612 | 多级平衡量化交易策略-Multi-Level-Balanced-Quantitative-Trading-Strategy.md | 1 | pyramiding = 10 with up to 10 stacked entries per side whose quantities step 1, 2, 4, 8, 5 ... 10 as the same signals repeat, and closes per entry id: the position-size path is the strategy (criterion 1, as #430762, #439950). |
 | 471673 | RSI动态止损智能交易策略-RSI-Dynamic-Stop-Loss-Intelligent-Trading-Strategy.md | 1 | The take-profits are strategy.exit qty_percent = 33 / 66 / 100 partial exits (TP 1 / 2 / 3 at 5 / 10 / 15 %): the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #439950). |
 | 471708 | 适应性趋势动量RSI策略结合均线过滤系统-Adaptive-Trend-Momentum-RSI-Strategy-with-Moving-Average-Filter-System.md | 1 | Entries are allowed only while time >= timenow minus 2500 days (a window measured back from the moment the script runs), with qty = equity / close: which trades exist depends on the run date (criterion 1, timenow gate). |
+| 471710 | 自适应RSI震荡阈值动态交易策略-Adaptive-RSI-Oscillator-Dynamic-Trading-Strategy-with-Threshold-Optimization.md | 1 | Besides the 28-bar exit, the stop closes when strategy.opentrades.profit(0) <= -1600 (currency, for a 10 % of equity position): where trades end depends on the position size and account (criterion 1, size-dependent exit, as #458066). |
+| 471711 | 基于-RSI-动量和多层级止盈止损的智能自适应交易系统-RSI-Momentum-based-Smart-Adaptive-Trading-System-with-Multi-level-Risk-Management.md | 1 | close_all fires when hour(timenow) == 15 and minute(timenow) == 25, i.e. on the clock of the machine running the script, not the bar's time; the stop / target are fixed 100 / 150 price units from the average price (criterion 1, timenow gate). |
+| 471718 | 智能时间周期多空轮动均衡交易策略-Intelligent-Time-Based-Long-Short-Rotation-Balanced-Trading-Strategy.md | 1 | The strategy trades only while bar_index >= last_bar_index - 499 (the last 500 bars of whatever data is loaded) and has no market signal, only a timed long / short rotation: where it trades depends on where the data ends (criterion 1, data-end-dependent window). |
 
 ## Flagged and stored under criterion 3 (253 files)
 

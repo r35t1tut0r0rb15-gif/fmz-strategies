@@ -5561,6 +5561,28 @@ SIZING = {
     471709: [
         ("Target 2 % / stop 1 % of the average price", 111, 216),
     ],
+    # ---- FMZ-C, batch C211 (2026-10-22)
+    471713: [
+        ("Target 5 % / stop 2 % of the average price; date window", 142, 165),
+    ],
+    471714: [
+        ("Stop = 7-bar low; target 2 x the risk", 104, 116),
+    ],
+    471715: [],
+    471719: [
+        ("Stop 1.5 ATR / target 3 ATR from the signal close", 101, 168),
+    ],
+    471720: [],
+    471725: [],
+    471729: [
+        ("Stop 2.5 % / target 4 % of the signal close (close tests)", 103, 125),
+    ],
+    472246: [
+        ("Stop 1 % / target 2 % of the signal close; capital 10000", 94, 145),
+    ],
+    472248: [
+        ("Stop 50 / target 100 ticks", 110, 144),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -7027,6 +7049,17 @@ REJECTED_ON_READING = {
     471708: ("1", "Entries are allowed only while time >= timenow minus 2500 days (a window measured "
               "back from the moment the script runs), with qty = equity / close: which trades "
               "exist depends on the run date (criterion 1, timenow gate)."),
+    # ---- FMZ-C, batch C211 (2026-10-22)
+    471710: ("1", "Besides the 28-bar exit, the stop closes when strategy.opentrades.profit(0) <= "
+              "-1600 (currency, for a 10 % of equity position): where trades end depends on the "
+              "position size and account (criterion 1, size-dependent exit, as #458066)."),
+    471711: ("1", "close_all fires when hour(timenow) == 15 and minute(timenow) == 25, i.e. on the "
+              "clock of the machine running the script, not the bar's time; the stop / target are "
+              "fixed 100 / 150 price units from the average price (criterion 1, timenow gate)."),
+    471718: ("1", "The strategy trades only while bar_index >= last_bar_index - 499 (the last 500 "
+              "bars of whatever data is loaded) and has no market signal, only a timed long / "
+              "short rotation: where it trades depends on where the data ends (criterion 1, "
+              "data-end-dependent window)."),
 }
 
 DUPLICATE_ON_READING = {
