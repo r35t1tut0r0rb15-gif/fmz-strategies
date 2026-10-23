@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #442370 (量化交易策略之双均线突破策略Quantitative-Trading-Strategy-Based-on-Double-Moving-Average-Crossover)
+# Source: https://www.fmz.com/strategy/442370  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital 100000  [lines 162-162]
+  162: strategy('Pine Script Tutorial Example Strategy 1', overlay=true, initial_capital=100000, default_qty_value=100, default_qty_type=strategy.percent_of_equity)

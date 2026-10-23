@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #442246 (布林带与日内强度指数均值回归策略Bollinger-Band-Mean-Reversion-Strategy-with-Intraday-Intensity-Index)
+# Source: https://www.fmz.com/strategy/442246  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

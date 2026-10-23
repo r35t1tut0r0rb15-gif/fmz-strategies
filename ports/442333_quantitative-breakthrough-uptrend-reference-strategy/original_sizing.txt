@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #442333 (突破型上升趋势参考策略Quantitative-Breakthrough-Uptrend-Reference-Strategy)
+# Source: https://www.fmz.com/strategy/442333  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital 1500, commission 0.01 %  [lines 132-132]
+  132: strategy("Quantitative Trend Strategy- Uptrend long", 'Steady Uptrend Strategy', overlay=true, initial_capital = 1500, default_qty_value = 100, commission_type = strategy.commission.percent, commission_value = 0.01, default_qty_type = strategy.percent_of_equity)

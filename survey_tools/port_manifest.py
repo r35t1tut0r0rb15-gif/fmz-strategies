@@ -7639,6 +7639,24 @@ SIZING = {
         ("strategy(): 100 % of equity", 148, 148),
     ],
     442212: [],
+    # ---- FMZ-C, batch V27 (2026-10-23)
+    442213: [],
+    442220: [],
+    442224: [],
+    442246: [],
+    442252: [
+        ("strategy(): 100 % of equity, capital 10000", 161, 161),
+    ],
+    442333: [
+        ("strategy(): 100 % of equity, capital 1500, commission 0.01 %", 132, 132),
+    ],
+    442364: [],
+    442370: [
+        ("strategy(): 100 % of equity, capital 100000", 162, 162),
+    ],
+    442386: [],
+    442504: [],
+    442545: [],
 }
 
 REJECTED_ON_READING = {
@@ -9836,6 +9854,11 @@ REJECTED_ON_READING = {
               "source feed's units (criterion 2, as #426785)."),
     442016: ("2", "Every exit is limit = avg -+ 0.75 / stop = avg +- 0.5: fixed distances in the "
               "quote currency of the source's chart (price-unit levels -> criterion 2)."),
+    # ---- FMZ-C, batch V27 (2026-10-23)
+    442555: ("1", "On the 1-day header chart every entry needs barInSession('0915-1455'), and a daily "
+              "bar opens outside that session (its time is the day's start), so the script as "
+              "written never enters (and the square-off closes any position); an intraday reading "
+              "is not the declared chart (as #439752)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -9864,7 +9887,6 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C133 (2026-10-22)
     # ---- FMZ-C, batch C145 (2026-10-22)
     # ---- FMZ-C, batch C152 (2026-10-22)
-    442220: ("8", "The channel averages include vwma(high, 12) and vwma(low, 12): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C206 (2026-10-22)
     468315: ("licence", "Held for Austin: the source says 'Copyright 2024 TRADINGWITHKAY. All rights reserved. Unauthorized use, distribution, and modification of this code are strictly prohibited.' The rules themselves are portable (RSI 14 zones 20 / 30 / 70 / 80 reversing, a 50-pip bracket = 50 price units at mintick x 10, 2-day bars). Port or reject on Austin's word; the review CSV labels every held row HELD_NEEDS_VOLUME (tool label)."),
     # ---- FMZ-C, batch C208 (2026-10-22)
