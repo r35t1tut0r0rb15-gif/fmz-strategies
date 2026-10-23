@@ -7089,6 +7089,22 @@ SIZING = {
     ],
     # ---- FMZ-C, batch C276 (2026-10-23)
     453281: [],
+    # ---- FMZ-C, batch V1 (2026-10-23)
+    128125: [
+        ("LOTS := MAX(MINAMOUNT, INTPART(MONEYTOT / O x 0.8)); entries BPK(LOTS) / SPK(LOTS)", 67, 79),
+    ],
+    129078: [],
+    313041: [
+        ("account balance tests and exchange.Buy(-1, 600)", 89, 99),
+    ],
+    360014: [],
+    360018: [],
+    361332: [],
+    361480: [],
+    361966: [],
+    362012: [
+        ("strategy(): pyramiding 1, capital 10000; leverage and reinvest inputs", 96, 114),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9021,6 +9037,18 @@ REJECTED_ON_READING = {
               "price amounts passed as tick counts (criterion 2, as #482767)."),
     492009: ("2", "The exits are a 10 / 10-point trail and a limit of 100 'points' added to the "
               "price, a fixed price amount (criterion 2, as #473377)."),
+    # ---- FMZ-C, batch V1 (2026-10-23)
+    52801: ("1", "Entries are local stop orders (buy stop at the 10-bar high, valid for the next "
+              "bar) and the exit a trailing stop order: resting stop orders that fill inside a "
+              "bar at their own price, which the bar-signal contract cannot express "
+              "(SURVEY_README rule 5, as the static screen's stop/limit-entry rejections)."),
+    182656: ("3", "The entries are triggered by BitMEX's liquidation websocket feed (XBTUSD "
+              "liquidations over 250,000 contracts) with a Bybit swap account: "
+              "crypto-exchange-only data that the project's bars do not carry. Stored in flagged/ "
+              "(rule C7)."),
+    313036: ("1", "A multi-coin screener over every Binance USDT perpetual (HttpQuery exchangeInfo) "
+              "that adds to losing positions (补仓 at 20 % and 200 % margin losses) and takes "
+              "profit by margin share: DCA adds and size-dependent exits (criterion 1)."),
 }
 
 DUPLICATE_ON_READING = {

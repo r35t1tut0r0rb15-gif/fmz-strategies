@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #362012 (MACD-Willy-Strategy)
+# Source: https://www.fmz.com/strategy/362012  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 1, capital 10000; leverage and reinvest inputs  [lines 96-114]
+   96: strategy("MACD Willy Strategy", overlay=true, pyramiding=1, initial_capital=10000) 
+   97: 
+   98: // ******************** Trade Period **************************************
+   99: startY = input(title='Start Year', defval=2011, group = "Trading window")
+  100: startM = input.int(title='Start Month', defval=1, minval=1, maxval=12, group = "Trading window")
+  101: startD = input.int(title='Start Day', defval=1, minval=1, maxval=31, group = "Trading window")
+  102: finishY = input(title='Finish Year', defval=2050, group = "Trading window")
+  103: finishM = input.int(title='Finish Month', defval=12, minval=1, maxval=12, group = "Trading window")
+  104: finishD = input.int(title='Finish Day', defval=31, minval=1, maxval=31, group = "Trading window")
+  105: //timestart = timestamp(startY, startM, startD, 00, 00)
+  106: //timefinish = timestamp(finishY, finishM, finishD, 23, 59)
+  107: // t1 = time(timeframe.period, "0945-1545:23456") 
+  108: // window = time >= timestart and time <= timefinish and t1 ? true : false 
+  109: // t2 = time(timeframe.period, "0930-1555:23456")
+  110: // window2 = time >= timestart and time <= timefinish and t2 ? true : false 
+  111: 
+  112: leverage = input.float(1, title="Leverage (if applicable)", step=0.1, group = "Trading Options")
+  113: reinvest = input.bool(defval=false,title="Reinvest profit", group = "Trading Options")
+  114: reinvest_percent = input.float(defval=20, title = "Reinvest percentage", group="Trading Options")

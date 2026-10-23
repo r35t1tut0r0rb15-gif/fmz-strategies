@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3228 |
+| PORTED | 3237 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 574 |
-| REJECTED_ON_READING | 505 |
+| HELD_NEEDS_VOLUME | 562 |
+| REJECTED_ON_READING | 508 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -136,9 +136,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 126968 | `ports/126968_strategy/` | MyLanguage | donchian_breakout | none | short_period x3, long_period x3, stop_atr x3 | 27 |
 | 127101 | `ports/127101_macdma-macdma-indicator-combination-strategy/` | MyLanguage | ma_trend | none | ma_fast x3, ma_slow x3, stop_atr x3 | 27 |
 | 127691 | `ports/127691_atr-channel-strategy-based-on-atr-volatility-indicator/` | MyLanguage | donchian_breakout | none | n x3, m x3, sl_atr x3 | 27 |
+| 128125 | `ports/128125_break-high-and-low-volume-index-weighting-strategy/` | MyLanguage | momentum_breakout | none | n x2, sloss x2 | 4 |
 | 128249 | `ports/128249_kd-trading-strategy-of-traditional-ma-index-and-kd-index/` | MyLanguage | ma_trend_oscillator_pullback | none | n x3, nkd x3, sl_atr x3 | 27 |
 | 128250 | `ports/128250_rsi-combination-of-double-ma-and-rsi/` | MyLanguage | ma_trend | none | n1 x3, n2 x3, sl_atr x3 | 27 |
 | 128418 | `ports/128418_dmi-dmi-and-high-low-strategy/` | MyLanguage | ma_trend | none | n x3, m x3 | 9 |
+| 129078 | `ports/129078_relative-strength-strategy-based-on-price/` | MyLanguage | momentum_breakout | none | n x2, m x2 | 4 |
 | 132298 | `ports/132298_m-language-turtle-trading-strategy-implementationsv-10/` | MyLanguage | donchian_breakout | none | entry_period x3, exit_period x3, stop_atr x3 | 27 |
 | 146391 | `ports/146391_bollmaboll/` | python | bollinger_breakout | none | bo x3, ma x3, ma2 x3 | 27 |
 | 156699 | `ports/156699_02/` | MyLanguage | ma_envelope_breakout | bar_size_pending | n x4 | 4 |
@@ -158,14 +160,19 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 271523 | `ports/271523_strategy/` | python | ma_trend | none | hh_weeks x3, ma_weeks x3 | 9 |
 | 288889 | `ports/288889_01rsi/` | python | rsi_oscillator | none | rsi_period x3, zone x2 | 6 |
 | 301620 | `ports/301620_exodus/` | javascript | ma_trend | none | within x3, stop_atr x3, win_loss x2 | 18 |
+| 313041 | `ports/313041_keltner-10-v23-dev/` | python | keltner_channel | none | k x2, vol_mult x2 | 4 |
 | 318486 | `ports/318486_strategy/` | javascript | ma_trend | none | ma_exit x3, ma_entry x3 | 9 |
 | 333269 | `ports/333269_strategy/` | javascript | ma_trend | none | ema1 x3, ema2 x3, tp_atr x3 | 27 |
 | 345036 | `ports/345036_atr-rsi/` | javascript | rsi_oscillator | none | rsi_period x3, atrma_period x3 | 9 |
 | 345289 | `ports/345289_strategy/` | javascript | ma_trend_oscillator_pullback | none | fast_ma x2, slow_ma x2, rsi_period x2 | 8 |
 | 356844 | `ports/356844_macd-pine/` | PineScript | macd_momentum | none | fast x3, slow x3 | 9 |
 | 359806 | `ports/359806_supertrend/` | PineScript | supertrend | none | factor x3, atr_period x3 | 9 |
+| 360014 | `ports/360014_alphatrend-use-mfi/` | PineScript | atr_trailing_line | none | coeff x2, ap x2 | 4 |
+| 360018 | `ports/360018_get-your-trend/` | PineScript | multi_indicator_confluence | none | volume_f x2, th x2 | 4 |
 | 360536 | `ports/360536_turtles-strategy/` | PineScript | donchian_breakout | none | bo_length x3, fs_length x3, te_length x3 | 27 |
+| 361332 | `ports/361332_sentiment-oscillator/` | PineScript | macd_momentum | none | ms_len x2, ema_len2 x2 | 4 |
 | 361360 | `ports/361360_multiple-timeframe-trading/` | PineScript | multi_timeframe_ma | none | ema_length x4 | 4 |
+| 361480 | `ports/361480_alphatrend/` | PineScript | atr_trailing_line | none | coeff x2, ap x2 | 4 |
 | 361508 | `ports/361508_squeeze-momentum-indicator/` | PineScript | momentum_oscillator_turn | none | length_kc x4 | 4 |
 | 361521 | `ports/361521_indicator-wavetrend-oscillator/` | PineScript | wavetrend_oscillator | none | n1 x3, ob_level x3 | 9 |
 | 361532 | `ports/361532_macd-custom-indicator-multiple-time-frameall-available-optio/` | PineScript | macd_momentum | none | gap_atr x3, fast x2, slow x2 | 12 |
@@ -187,12 +194,14 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 361844 | `ports/361844_jma-dwma-by-multigrain/` | PineScript | ma_trend | none | jma_len x3, dwma_len x3 | 9 |
 | 361847 | `ports/361847_tom-demark-sequential-heat-map/` | PineScript | td_sequential | bar_size_pending | lookback x3, count x2 | 6 |
 | 361880 | `ports/361880_triple-supertrend-with-ema-and-adx/` | PineScript | supertrend | none | m1 x2, m2 x2, m3 x2 | 8 |
+| 361966 | `ports/361966_buy-sell-strat/` | PineScript | ma_cross | none | vol_factor x2, slow x2 | 4 |
 | 361969 | `ports/361969_qqe-mod-ssl-hybrid-waddah-attar-explosion/` | PineScript | multi_indicator_confluence | coarse_bar_stop | baseline_len x3, swing_len x3, sensitivity x2 | 18 |
 | 361974 | `ports/361974_williams-r-smoothed/` | PineScript | williams_r_oscillator | none | length x3, fast x3 | 9 |
 | 361977 | `ports/361977_ichimoku-cloud-smooth-oscillator/` | PineScript | ichimoku | none | conversion x3, base x3 | 9 |
 | 361996 | `ports/361996_ha-market-bias/` | PineScript | heikin_ashi_trend | none | ha_len x2, ha_len2 x2 | 4 |
 | 362000 | `ports/362000_heikin-ashi-trend/` | PineScript | heikin_ashi_trend | none | ema_len x3, smooth x3 | 9 |
 | 362004 | `ports/362004_rsi-buy-sell-signals/` | PineScript | ma_envelope_reversion | none | length x3, env_atr x3 | 9 |
+| 362012 | `ports/362012_macd-willy-strategy/` | PineScript | multi_indicator_confluence | none | emalen1 x2, w_length x2 | 4 |
 | 362031 | `ports/362031_chande-kroll-stop/` | PineScript | volatility_stop_cross | bar_size_pending | p x2, q x2, x x2 | 8 |
 | 362055 | `ports/362055_big-snapper-alerts-r30-chaiking-volatility-condition-tp-rsi/` | PineScript | multi_indicator_confluence | none | st_factor x2, st_len x2, len_coloured x3 | 12 |
 | 362059 | `ports/362059_best-tradingview-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | bb_len x2, bb_mult x2, slow_sma x2 | 8 |
@@ -3355,7 +3364,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491892 | `ports/491892_ema-ema-dual-crossover-dynamic-stop-loss-quantitative-strate/` | PineScript | ma_cross | none | length10 x2, length20 x2 | 4 |
 | 491897 | `ports/491897_multi-factor-trend-following-quantitative-strategy/` | PineScript | parabolic_sar | coarse_bar_stop, trailing_stop_pending | adxThreshold x2, atrMultiplier x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | rsi_divergence | trailing_stop_pending | lookLeft x2, rangeUpper x2 | 4 |
-| | **3228 ports** | | | | | **14715** |
+| | **3237 ports** | | | | | **14751** |
 
 ## Rejected on reading
 
@@ -3367,10 +3376,12 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 21370 | Python-机器学习之-SVM-预测买卖.md | 2 | Linear SVM trained on raw Open/Close price levels with an absolute 2-unit label threshold: the model is tied to the instrument's price scale. Also predicts the forming bar from its first tick (criterion 1). |
 | 23531 | R-Breaker-交易策略.md | 1 | R-Breaker: entries/exits trigger when the tick price crosses pivot levels inside the bar (intraday level-break fills). |
 | 23874 | R-Breaker11-交易策略.md | 1 | R-Breaker variant: same tick-price pivot level breaks inside the bar as #23531. |
+| 52801 | 布林均线突破_vnpy_botvs实现版.md | 1 | Entries are local stop orders (buy stop at the 10-bar high, valid for the next bar) and the exit a trailing stop order: resting stop orders that fill inside a bar at their own price, which the bar-signal contract cannot express (SURVEY_README rule 5, as the static screen's stop/limit-entry rejections). |
 | 62163 | talib简单应用之查找三只乌鸦.md | 1 | talib demo: sells once when three black crows appear on the forming bar, then throws; no exit, not a trading strategy. |
 | 170557 | 单商品小卖部策略V20_年化130.md | 1 | Inventory-ratio ladder (grid-like): buys/sells 10-20 % of equity whenever the tick price is 3 % beyond a 30-min channel midpoint or 7 % from the last trade price, keeping cash between 10 % and 90 %. The position is a continuously rebalanced inventory driven by tick prices and the last fill, not entries/exits on bars. |
 | 170842 | OKex期货测试for新手.md | 1 | Not a signal strategy: an OKEx futures order-API demo (opens two buy orders once, then only logs orders and positions). |
 | 177631 | 大中小三周期跃迁策略V20_现货_测试.md | 1 | Inventory-ratio ladder: every 15 minutes buys or sells 5-20 % of equity when the tick price moves between Bollinger-relative zones of the daily bars, keeping cash between 10 % and 90 %. The position is a continuously rebalanced inventory, not entries/exits (the hourly band width is also undefined in the code). |
+| 182656 | Bybit-算法接针-VWAP-BTC.md | 3 | The entries are triggered by BitMEX's liquidation websocket feed (XBTUSD liquidations over 250,000 contracts) with a Bybit swap account: crypto-exchange-only data that the project's bars do not carry. Stored in flagged/ (rule C7). |
 | 187874 | 标定值或均线交叉策略.md | 2 | Entries and exits fire on hard-coded BTC price levels (REF(C,1) < 6725 buys, > 10000 sells, 'Gann levels'). Without them only an MA(10/30) cross remains, which would be a different strategy. |
 | 191622 | 割庄神器.md | 1 | Order-level ladder on perpetual swaps: opens on a daily-range test of > 20 price units, then keeps resting limit orders k = 11 price units above/below the fill, averaging in and martingale-style profit targets; fills inside the bar at set prices (also hard-coded price units, criterion 2). |
 | 201007 | 抛硬币策略.md | 1 | Coin-flip strategy: entries and exits are drawn from Math.random(); no deterministic signal to port. (Its trailing take-profit and stop are attached to random entries.) |
@@ -3378,6 +3389,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 255502 | 恒温器-震荡修正为-最高价-最低价-添加增减仓选项-添加额外张数功能-修正cmi数据刷新日期问一天一次变为1小时一次-ok-准备修正一些功能.md | 1 | Two concurrent sub-systems (CMI shock / trend) each holding its own hedged futures position with ATR-step scale-in or scale-out ladders, extra-lot counters and departure callbacks. The outcome is defined by the ladder of partial exits, which cannot be reduced to one net position's entry/exit signals without changing the strategy. |
 | 266142 | 均仓策略.md | 1 | Pure 50/50 coin/cash rebalancing (buy or sell 1 % / 10 % slices when the coin share leaves 0.49-0.51); no entry or exit signal. |
 | 299799 | ahr999定投策略.md | 2 | AHR999 dollar-cost averaging: the indicator is a Bitcoin-only model (price vs a log-price curve fitted to days since the 2009 genesis block); the code throws for any other pair. Also periodic accumulation, not entries/exits. |
+| 313036 | 测试-关于使用kdj与vol量筛选可能会涨的币种.md | 1 | A multi-coin screener over every Binance USDT perpetual (HttpQuery exchangeInfo) that adds to losing positions (补仓 at 20 % and 200 % margin losses) and takes profit by margin share: DCA adds and size-dependent exits (criterion 1). |
 | 361719 | Demark-Reversal-Points.md | 1 | Signals come from request.security(syminfo.tickerid, '18000', src)[1]: '18000' is not a valid Pine resolution (minutes? seconds?), so the higher timeframe the counts run on is undefined. Porting would mean choosing a bar size (rule 1 forbids); needs the project to define it. |
 | 363557 | Pivot-Points-High-Low-Multi-Time-Frame.md | 1 | Pivots come from request.security(syminfo.tickerid, '240', get_phpl(), lookahead_on) without [1]: on historical bars the 4 h pivot is visible from the first 5 m bar of the 4 h bar that confirms it, i.e. it reads the future (SURVEY_README request.security rule). |
 | 363572 | OCC-Strategy-R51.md | 1 | Both MA series are read through request.security(..., stratRes, lookahead_on) without [1] (alternate resolution on by default, 3x the chart period): on historical bars the higher-timeframe values are visible before that bar closes, i.e. they read the future. |

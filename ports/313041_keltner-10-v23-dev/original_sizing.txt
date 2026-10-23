@@ -1,0 +1,16 @@
+# Original sizing and money-management code, FMZ #313041 (Keltner通道突破止损加盈利10即长期持有策略-v23-dev-多周期)
+# Source: https://www.fmz.com/strategy/313041  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## account balance tests and exchange.Buy(-1, 600)  [lines 89-99]
+   89:         if (account['Balance'] >= 600 and amount < 0.001):
+   90:             if long==True and account['Balance'] < 400 and amount<0.01:
+   91:                 Log('balance is ', account['Balance'], ' 余额不足400，退出！')
+   92:                 return
+   93:             elif long== True  and account['Balance'] >= 600: #第一次开多仓
+   94:                 Log('balance is ', account['Balance'])
+   95:                 Log('多仓位时间: ', rn.time, ' open is ', rn.open , ' close is ', rn.close, ' upper is ', upper.iloc[-1], ' volume 0\1 is', volume0 , 'volume 1 is ', volume1 , 
+   96:                 ' plus is ',plus.iloc[-1], ' minus is ', minus.iloc[-1], '@')
+   97:                 exchange.Buy(-1,600)
+   98:                 last_price = rn.close + 10
+   99:                 Sleep(1000*60*15)

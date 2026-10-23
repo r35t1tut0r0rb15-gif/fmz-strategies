@@ -1,0 +1,18 @@
+# Original sizing and money-management code, FMZ #128125 (高低点突破成交量指数加权策略Break-High-and-Low-Volume-Index-Weighting-Strategy)
+# Source: https://www.fmz.com/strategy/128125  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## LOTS := MAX(MINAMOUNT, INTPART(MONEYTOT / O x 0.8)); entries BPK(LOTS) / SPK(LOTS)  [lines 67-79]
+   67: LOTS:=MAX(MINAMOUNT,INTPART(MONEYTOT/O * 0.8));
+   68: VJQ:EMA(V*(C-REF(C,NC)),N);
+   69: B:=VJQ>0;
+   70: S:=VJQ<0;
+   71: BUYPK:=BARPOS>N AND BKVOL=0 AND B AND H>=HHV(H,N);
+   72: SELLPK:=BARPOS>N AND SKVOL=0 AND S AND L<=LLV(L,N);
+   73: BUYP:=SKVOL>0 AND B;
+   74: SELLP:=BKVOL>0 AND S;
+   75: 
+   76: // 入场
+   77: // Enter
+   78: SELLPK,SPK(LOTS);
+   79: BUYPK,BPK(LOTS);
