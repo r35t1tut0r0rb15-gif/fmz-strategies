@@ -7826,6 +7826,19 @@ SIZING = {
     481367: [],
     482421: [],
     482431: [],
+    # ---- FMZ-C, batch V39 (2026-10-23)
+    482464: [],
+    482465: [],
+    482509: [
+        ("strategy(): 10 % of equity", 99, 99),
+    ],
+    482513: [],
+    482766: [],
+    482776: [
+        ("strategy(): capital, 5 % of equity, commission, slippage", 119, 121),
+    ],
+    482777: [],
+    482780: [],
 }
 
 REJECTED_ON_READING = {
@@ -10140,6 +10153,16 @@ REJECTED_ON_READING = {
     482423: ("1", "The trend filter reads request.security(syminfo.tickerid, \"60\", ta.ema(close, 50)) "
               "on the header's 1-day chart: a lower-timeframe security read (as #427518); its "
               "09:00 / 15:00 clock rules never occur on daily bars."),
+    # ---- FMZ-C, batch V39 (2026-10-23)
+    482475: ("1", "The trend filter reads request.security(syminfo.tickerid, \"60\", ta.ema(close, "
+              "100)) on the header's 2-hour chart: a lower-timeframe security read (as #427518)."),
+    482507: ("1", "All candle levels come from request.security(syminfo.tickerid, \"240\", ...) on the "
+              "header's 6-hour chart: a lower-timeframe security read (as #427518)."),
+    482588: ("2", "The 'very low' latch resets on crossover(delta_sma, 10000): a fixed threshold in "
+              "raw volume units (absolute volume threshold, criterion 2, as #426785)."),
+    482652: ("1", "The entries read request.security(syminfo.tickerid, \"240\", ...) EMA, VWAP and RSI "
+              "on the header's 1-day chart: lower-timeframe security reads (as #427518); the "
+              "quantity is also equity x 1 % / (1.5 x ATR)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -10176,7 +10199,6 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C244 (2026-10-22)
     482454: ("licence", "Held for Austin: the source carries a CC BY-NC-SA 4.0 licence (non-commercial, share-alike; the Andean Oscillator by alexgrover), so it is not ported until Austin decides (as #468315)."),
     # ---- FMZ-C, batch C246 (2026-10-22)
-    482509: ("8", "The entry line is ta.vwma(close, 200) and the filters are weekly and daily VWMAs: volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C269 (2026-10-22)
     489134: ("8", "The bands are built on ta.vwma(hlc3, 200), a volume-weighted average (check 8, held with the other volume users)."),
 }

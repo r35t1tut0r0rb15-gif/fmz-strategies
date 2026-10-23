@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #482777 (多指标整合日内量化交易策略基于VWAP-Fibonacci-RSI-SMA的动态信号系统-Multi-Indicator-Intraday-Quantitative-Trading-Strategy-Dynamic-Signal-System-Based-on-VWAP-Fibonacci-RSI-SMA)
+# Source: https://www.fmz.com/strategy/482777  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #482766 (VWAP波动反转策略在标准差通道上的多空突破系统-VWAP-Volatility-Reversal-Strategy-with-Standard-Deviation-Channel-Breakout-System)
+# Source: https://www.fmz.com/strategy/482766  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

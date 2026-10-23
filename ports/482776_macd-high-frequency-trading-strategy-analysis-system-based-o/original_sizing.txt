@@ -1,0 +1,8 @@
+# Original sizing and money-management code, FMZ #482776 (基于布林带和MACD指标的高频交易策略分析系统-High-Frequency-Trading-Strategy-Analysis-System-Based-on-Bollinger-Bands-and-MACD-Indicators)
+# Source: https://www.fmz.com/strategy/482776  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, 5 % of equity, commission, slippage  [lines 119-121]
+  119: strategy("Bollinger Bounce Reversal Strategy - Visual Edition", overlay=true, initial_capital=10000, 
+  120:      default_qty_type=strategy.percent_of_equity, default_qty_value=5, 
+  121:      commission_type=strategy.commission.percent, commission_value=0.1, slippage=1)
