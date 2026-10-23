@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #433132 (反转捕捉策略Reversal-Catcher-Strategy)
+# Source: https://www.fmz.com/strategy/433132  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## long entry qty 1  [lines 224-224]
+  224:         strategy.entry("enter long", strategy.long, 1, limit=na, stop=na, comment="Long[E]")
+
+## short entry qty 1  [lines 229-229]
+  229:         strategy.entry("enter short", strategy.short, 1, limit=na, stop=na, comment="Short[E]")

@@ -7400,6 +7400,26 @@ SIZING = {
     432845: [],
     432879: [],
     432909: [],
+    # ---- FMZ-C, batch V14 (2026-10-23)
+    433078: [
+        ("strategy(): 1 % of equity default, commission 0.075 %", 234, 234),
+        ("contracts = equity x leverage / close", 808, 808),
+    ],
+    433096: [
+        ("strategy(): 20 % of equity, capital 10000, commission 0.075 %", 122, 122),
+    ],
+    433099: [],
+    433132: [
+        ("long entry qty 1", 224, 224),
+        ("short entry qty 1", 229, 229),
+    ],
+    433423: [
+        ("strategy(): margin_long 100, margin_short 100", 142, 142),
+    ],
+    433436: [
+        ("strategy(): 100 % of equity, capital 1000000", 133, 133),
+    ],
+    433454: [],
 }
 
 REJECTED_ON_READING = {
@@ -9458,6 +9478,23 @@ REJECTED_ON_READING = {
     432765: ("1", "With pyramiding 2 an 'Add' entry is sent while long when the close is under the "
               "average price and above the VWAP: averaging down, the size path is part of the "
               "strategy (criterion 1, as #431669)."),
+    # ---- FMZ-C, batch V14 (2026-10-23)
+    433031: ("1", "sqm_val_low = security(tickerid, lower_resolution, ..., lookahead_on) with "
+              "lower_resolution = '30' on the 15-minute header chart: the 30-minute bar's final "
+              "squeeze value is read from its first 15-minute bar, and every entry needs it "
+              "rising (look-ahead, criterion 1, as #441065)."),
+    433080: ("1", "The trend line av is a VWAP reset by newSession = change(security(tickerid, '1', "
+              "time)) on the 1-hour header chart: a 1-minute resolution below the chart's, whose "
+              "value per bar is undefined (as #427518); av feeds the long5 / sell5 entry rules."),
+    433102: ("1", "The entry reads request.security(tickerid, '1' / '30' / '39', ...) on the 1-hour "
+              "header chart: resolutions below the chart's, whose values per bar are undefined "
+              "(as #427518); it also tests the ATR 15 against the fixed price levels 140 and 123."),
+    433147: ("2", "grav = 10^4 / close is added to or taken from the 'pos' line every bar: a step of "
+              "about 0.27 USD on the source's BTC but about 9000 on EURUSD, so the line and every "
+              "entry depend on the price units (criterion 2, fixed price-unit offsets)."),
+    433512: ("1", "With pyramiding 3 a new entry is added while long (ids 'L<lev>X'), moving the stop "
+              "up by 0.2 x the risk on each add, and each size is leverage x risk: adds, which "
+              "the house engine does not do (criterion 1, as #430550)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #433436 (双均线交叉突破策略-Dual-Moving-Average-Crossover-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/433436  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital 1000000  [lines 133-133]
+  133: strategy(title = "stub", default_qty_type = strategy.percent_of_equity, default_qty_value = 100, initial_capital=1000000, overlay = false)//, calc_on_order_fills=true, calc_on_every_tick=true)

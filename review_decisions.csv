@@ -165,11 +165,16 @@ fmz_id,file,final_outcome,criterion,reason
 432988,基于波动带震荡器的反转跟踪策略CCTBBO-Reversal-Tracking-Strategy.md,REJECTED_ON_READING,1,"Reads the future: Pine v2 request.security(syminfo.tickerid, '1440', high) without [1] behaves as lookahead_on, so on every 45-minute bar the oscillator uses the final high of the current day, not known until the day ends (SURVEY_README request.security rule, as #430661)."
 432992,布林带金叉死叉策略Bollinger-Break-Out-Strategy-with-Pyramiding.md,REJECTED_ON_READING,1,"pyramiding = 4: further entries are added while the price is below the averaged-down level, and the stop, target and add levels are all measured from strategy.position_avg_price of the stacked units (a pyramided ladder, as #426570)."
 433015,基于均线的原始趋势跟踪策略ORIGINAL-PRIMITIVE-TREND-TRACKING-STRATEGY-BASED-ON-MOVING-AVERAGE.md,REJECTED_ON_READING,1,"pyramiding = 10: the long and short signals add further units only while the close is beyond strategy.position_avg_price of the stacked position (useus), so the signals depend on the averaged price of the ladder (a pyramided ladder, as #426570)."
+433031,基于双时间框架和动量指标的自适应止盈止损策略Adaptive-Take-Profit-and-Stop-Loss-Strategy-Based-on-Dual-Time-Frames-and-Momentum-Indicators.md,REJECTED_ON_READING,1,"sqm_val_low = security(tickerid, lower_resolution, ..., lookahead_on) with lower_resolution = '30' on the 15-minute header chart: the 30-minute bar's final squeeze value is read from its first 15-minute bar, and every entry needs it rising (look-ahead, criterion 1, as #441065)."
 433074,跨时间框架超级趋势震荡突破策略Cross-Timeframe-SuperTrend-Breakout-Strategy.md,REJECTED_ON_READING,1,"The signals compare the close with request.security(syminfo.tickerid, '1', ...) and request.security(syminfo.tickerid, '5', ...) supertrends on the 1-hour header chart: resolutions below the chart's, whose value per bar is undefined (as #430587)."
+433080,基于时间序列分解和成交量加权的布林带技术指标策略Trend-Following-Strategy-Based-on-Time-Series-Decomposition-and-Volume-Weighted-Bollinger-Bands.md,REJECTED_ON_READING,1,"The trend line av is a VWAP reset by newSession = change(security(tickerid, '1', time)) on the 1-hour header chart: a 1-minute resolution below the chart's, whose value per bar is undefined (as #427518); av feeds the long5 / sell5 entry rules."
+433102,基于量价指标的多空平衡交易策略Volume-Price-Indicator-Balanced-Trading-Strategy.md,REJECTED_ON_READING,1,"The entry reads request.security(tickerid, '1' / '30' / '39', ...) on the 1-hour header chart: resolutions below the chart's, whose values per bar are undefined (as #427518); it also tests the ATR 15 against the fixed price levels 140 and 123."
 433108,高级布林带均线网格趋势追踪策略Advanced-Bollinger-Band-Moving-Average-Grid-Trend-Tracking-Strategy.md,REJECTED_ON_READING,1,"Entries are strategy.order('多(buy)' / '空(sell)') calls on four grid levels with no pyramiding limit, so each level touched adds a unit and an opposite order reduces rather than reverses: the position path depends on the order sizes (as #430596)."
 433125,动能区ATR反转订单量化策略Action-Zone-ATR-Reverse-Order-Quant-Strategy.md,REJECTED_ON_READING,1,"After the minimum hold the reverse-order flag is armed on every bar (unless the over-band test clears it), so the opposite entry fires on the bar after the position goes flat, which is usually when the ratcheting EMA - 2 ATR stop order fills inside a bar: the entries depend on an intrabar stop fill the house trail cannot express."
+433147,基于轨迹平均振幅的多时igkeit交易策略Gyroscopic-Bands-Strategy-Based-on-Multi-Time-Frame-and-Average-Amplitude.md,REJECTED_ON_READING,2,"grav = 10^4 / close is added to or taken from the 'pos' line every bar: a step of about 0.27 USD on the source's BTC but about 9000 on EURUSD, so the line and every entry depend on the price units (criterion 2, fixed price-unit offsets)."
 433400,动态双向补仓策略Dynamic-Two-way-Add-Position-Strategy.md,REJECTED_ON_READING,1,"Entries are allowed only while strategy.netprofit < 150000 (a profit target of the account), so the signals depend on the position size and the P&L path (as #427139); the bracket is 3 / 8 ticks."
 433448,双均线震荡突破策略Dual-Moving-Average-Oscillation-Breakthrough-Strategy.md,REJECTED_ON_READING,1,"The trend filter reads request.security(syminfo.tickerid, '120', ...) on the 1-day header chart: a resolution below the chart's, whose value per bar is undefined (as #430587); the bracket is also in ticks."
+433512,基于K线形态的动量突破交易策略momentum-breakout-trading-strategy.md,REJECTED_ON_READING,1,"With pyramiding 3 a new entry is added while long (ids 'L<lev>X'), moving the stop up by 0.2 x the risk on each add, and each size is leverage x risk: adds, which the house engine does not do (criterion 1, as #430550)."
 433521,基于RSI均线交叉策略RSI-Moving-Average-Crossover-Strategy.md,REJECTED_ON_READING,1,"The only exit is strategy.exit(profit = close x 1.20, loss = close x 0.95) in ticks, placed only once the exit condition fires (12 % / 9.5 % at BTC's 0.1 tick, a different size on any other tick): a bracket armed by a later signal, from the entry price, which the stops (live from the entry) cannot express, and whose size depends on the symbol's tick."
 433539,基于转折点的RSI背离策略Pivot-based-RSI-Divergence-Strategy.md,REJECTED_ON_READING,1,"The take-profits close 3/4 or 1/2 of the position at four RSI levels (strategy.close with qty), with pyramiding 2: partial exits cannot be expressed as one net position's signals (as #365389)."
 433541,基于移动均线的突破交易策略Moving-Average-Breakout-Strategy.md,REJECTED_ON_READING,1,strategy.order entries with a 50 % partial exit at half the target and the rest at the full target (qty_percent): partial exits of the net position (as #365389).
@@ -1653,9 +1658,12 @@ fmz_id,file,final_outcome,criterion,reason
 433068,Ichimoku云图量化策略Ichimoku-Cloud-Quant-Strategy.md,PORTED,,ports/433068_ichimoku-ichimoku-cloud-quant-strategy/
 433069,动量反转双轨配对策略Combo-Momentum-Reversal-Dual-Rail-Matching-Strategy.md,PORTED,,ports/433069_combo-momentum-reversal-dual-rail-matching-strategy/
 433075,基于T3和CCI指标的趋势追踪策略T3-CCI-Trend-Tracking-Strategy.md,PORTED,,ports/433075_t3-cci-t3-cci-trend-tracking-strategy/
+433078,多指标趋势追踪策略Multi-indicator-Trend-Following-Strategy.md,PORTED,,ports/433078_multi-indicator-trend-following-strategy/
 433079,基于价格去趋势振荡器的量化交易策略Detrended-Price-Oscillator-Quantitative-Trading-Strategy.md,PORTED,,ports/433079_detrended-price-oscillator-quantitative-trading-strategy/
 433094,平滑移动平均线交叉策略EMA-Crossover-Strategy.md,PORTED,,ports/433094_ema-crossover-strategy/
+433096,均线加权标准差交易策略Weighted-Standard-Deviation-Trading-Strategy.md,PORTED,,ports/433096_weighted-standard-deviation-trading-strategy/
 433097,基于月度买入日期的量化投资策略Quantitative-Investment-Strategy-Based-on-Monthly-Buy-Date.md,PORTED,,ports/433097_quantitative-investment-strategy-based-on-monthly-buy-date/
+433099,双均线套利策略Dual-Moving-Average-Arbitrage-Strategy.md,PORTED,,ports/433099_dual-moving-average-arbitrage-strategy/
 433101,三重SMA自适应K线交叉长线策略Twisted-SMA-Adaptive-Crossover-Long-Line-Strategy.md,PORTED,,ports/433101_sma-k-twisted-sma-adaptive-crossover-long-line-strategy/
 433104,Ichimoku-Kinko-Hyo趋势跟踪策略Ichimoku-Kinko-Hyo-indicator-Balancing-Trend-Strategy.md,PORTED,,ports/433104_ichimoku-kinko-hyo-ichimoku-kinko-hyo-indicator-balancing-tr/
 433113,坚实稳健的移动平均系统策略Solid-Moving-Average-System-Strategy.md,PORTED,,ports/433113_solid-moving-average-system-strategy/
@@ -1665,6 +1673,7 @@ fmz_id,file,final_outcome,criterion,reason
 433124,MACD趋势追踪策略MACD-Trend-Following-Strategy.md,PORTED,,ports/433124_macd-macd-trend-following-strategy/
 433126,三分钟短仓专家顾问策略3-Min-Short-Only-Expert-Advisor-Strategy.md,PORTED,,ports/433126_3-min-short-only-expert-advisor-strategy/
 433128,RSI跳空反转策略RSI-Gap-Reversal-Strategy.md,PORTED,,ports/433128_rsi-rsi-gap-reversal-strategy/
+433132,反转捕捉策略Reversal-Catcher-Strategy.md,PORTED,,ports/433132_reversal-catcher-strategy/
 433137,动态移动平均线跟踪策略Dynamic-Moving-Average-Tracking-Strategy.md,PORTED,,ports/433137_dynamic-moving-average-tracking-strategy/
 433138,双线交叉反转策略Dual-Moving-Average-Crossover-Reversal-Strategy.md,PORTED,,ports/433138_dual-moving-average-crossover-reversal-strategy/
 433148,一目均衡移动平均趋势追踪策略Ichimoku-Backtester-with-TP-SL-and-Cloud-Confirmation.md,PORTED,,ports/433148_ichimoku-backtester-with-tp-sl-and-cloud-confirmation/
@@ -1672,6 +1681,7 @@ fmz_id,file,final_outcome,criterion,reason
 433398,相对强度指数平盘反转策略Relative-Strength-Index-Flat-Reversal-Strategy.md,PORTED,,ports/433398_relative-strength-index-flat-reversal-strategy/
 433401,KST指标获利策略KST-Indicator-Profit-Strategy.md,PORTED,,ports/433401_kst-kst-indicator-profit-strategy/
 433403,空间导向价格反转策略Price-Reversal-Strategy-Guided-by-Price-Channel.md,PORTED,,ports/433403_price-reversal-strategy-guided-by-price-channel/
+433423,Alpha趋势跟踪止损策略Alpha-Trend-Strategy-with-Trailing-Stop-Loss.md,PORTED,,ports/433423_alpha-alpha-trend-strategy-with-trailing-stop-loss/
 433424,基于EMA指标的旗形趋势追踪策略Trend-Tracking-Flag-Pattern-Strategy-Based-on-EMA-Indicators.md,PORTED,,ports/433424_ema-trend-tracking-flag-pattern-strategy-based-on-ema-indica/
 433425,基于双均线交叉交易策略-A-Double-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/433425_a-double-moving-average-crossover-trading-strategy/
 433426,高低突破回测策略High-Low-Breaker-Backtest-Strategy.md,PORTED,,ports/433426_high-low-breaker-backtest-strategy/
@@ -1679,11 +1689,13 @@ fmz_id,file,final_outcome,criterion,reason
 433431,四重指标均线回转策略Four-Indicator-Momentum-Reversal-Strategy.md,PORTED,,ports/433431_four-indicator-momentum-reversal-strategy/
 433433,基于均线的趋势追踪型策略Trend-Following-Strategy-Based-on-Moving-Averages.md,PORTED,,ports/433433_trend-following-strategy-based-on-moving-averages/
 433434,基于RSI指标的量化交易策略Quantitative-Trading-Strategy-Based-on-RSI-Indicator.md,PORTED,,ports/433434_rsi-quantitative-trading-strategy-based-on-rsi-indicator/
+433436,双均线交叉突破策略-Dual-Moving-Average-Crossover-Breakout-Strategy.md,PORTED,,ports/433436_dual-moving-average-crossover-breakout-strategy/
 433439,基于SSL通道指标的趋势跟踪策略No-Nonsense-SSL-Channel-Trading-Strategy.md,PORTED,,ports/433439_ssl-no-nonsense-ssl-channel-trading-strategy/
 433441,价格平均线交叉策略Cross-Moving-Average-Price-Strategy.md,PORTED,,ports/433441_cross-moving-average-price-strategy/
 433442,趋势突破双均线过滤策略Range-Breakthrough-Dual-Moving-Average-Filtering-Strategy.md,PORTED,,ports/433442_range-breakthrough-dual-moving-average-filtering-strategy/
 433447,动量平滑移动平均线与移动平均线交叉策略Momentum-Smooth-Moving-Average-Line-and-Moving-Average-Line-Crossover-Strategy.md,PORTED,,ports/433447_momentum-smooth-moving-average-line-and-moving-average-line/
 433452,蜡烛形态策略-Candlestick-Pattern-Strategy.md,PORTED,,ports/433452_candlestick-pattern-strategy/
+433454,超级Z量化趋势策略Super-Z-Quantitative-Trend-Strategy.md,PORTED,,ports/433454_z-super-z-quantitative-trend-strategy/
 433456,动态RSI与CCI结合的多因子量化交易策略Dynamic-RSI-and-CCI-Combined-Multi-factor-Quantitative-Trading-Strategy.md,PORTED,,ports/433456_rsi-cci-dynamic-rsi-and-cci-combined-multi-factor-quantitati/
 433540,双重趋势反转移动平均线组合策略Combo-Trend-Reversal-Moving-Average-Crossover-Strategy.md,PORTED,,ports/433540_combo-trend-reversal-moving-average-crossover-strategy/
 433544,动量策略的RSI指标聚合RSI-Momentum-Aggregation-Strategy.md,PORTED,,ports/433544_rsi-rsi-momentum-aggregation-strategy/
