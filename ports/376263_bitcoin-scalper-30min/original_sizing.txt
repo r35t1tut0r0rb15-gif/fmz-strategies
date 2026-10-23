@@ -1,0 +1,22 @@
+# Original sizing and money-management code, FMZ #376263 (Bitcoin-Scalper-30MIN)
+# Source: https://www.fmz.com/strategy/376263  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 1, capital 10000, 100 % of equity, commission  [lines 70-70]
+   70: strategy("Bitcoin Scalper [30MIN]", overlay=true,  pyramiding=1,initial_capital = 10000, default_qty_type= strategy.percent_of_equity, default_qty_value = 100, calc_on_order_fills=false, slippage=0,commission_type=strategy.commission.percent,commission_value=0.04)
+
+## volume leverage inputs and Lev_vol  [lines 477-484]
+  477: Act_Lev                 =           input(true,                                 title="Activate leverage?"                                                                                                                  )
+  478: Max_Lev                 =           input(2,                                    title="Max lev.",                                                               type    = input.integer,   minval = 1,     maxval = 2       )
+  479: sma_length_lev          =           input(70,                                   title="Volume lenght lev.",                                                     minval  = 1                                                 )      
+  480: 
+  481: Long      = (longCond and not in_longCondition) or (longCond and Final_Long_tp) or (longCond and Final_Long_sl) or (longCond and not longCondition and (last_long_tp >= nz(last_longCondition))) or (longCond and not longCondition and (last_long_sl >= nz(last_longCondition)))
+  482: Short     = (shortCond and not in_shortCondition) or (shortCond and Final_Short_tp) or (shortCond and Final_Short_sl) or (shortCond and not shortCondition and (last_short_tp >= nz(last_shortCondition))) or (shortCond and not shortCondition and (last_short_sl >= nz(last_shortCondition)))
+  483: 
+  484: Lev_vol                 =                               Act_Lev  ?              min(Max_Lev,max(1, round(volume/sma(volume,sma_length_lev)))) : 1
+
+## entry qty = Lev_vol  [lines 554-554]
+  554:     strategy.entry("L"                          ,1,                                                             when = L_   and testPeriod , qty = Lev_vol              )
+
+## entry qty = Lev_vol  [lines 562-562]
+  562:     strategy.entry("S"                          ,0,                                                             when = S_   and testPeriod  , qty = Lev_vol         )

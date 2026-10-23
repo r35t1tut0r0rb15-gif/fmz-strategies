@@ -24,6 +24,7 @@ fmz_id,file,final_outcome,criterion,reason
 363572,OCC-Strategy-R51.md,REJECTED_ON_READING,1,"Both MA series are read through request.security(..., stratRes, lookahead_on) without [1] (alternate resolution on by default, 3x the chart period): on historical bars the higher-timeframe values are visible before that bar closes, i.e. they read the future."
 365389,TradingView-Alerts-to-MT4-MT5-dynamic-variables-NON-REPAINTING.md,REJECTED_ON_READING,1,"The exit is a two-step ladder: 50 % of the position at a 150-tick profit (qty_percent=50), the rest at 400 ticks or a pivot stop; a partial exit cannot be expressed as one net position's signals, and tick distances are instrument-specific (an MT4 alert template; criterion 2 too)."
 365687,Flawless-Victory-Strategy.md,REJECTED_ON_READING,2,"strategy.entry(""Sell"", when = Sell_1) passes no direction (Pine v4 requires the long argument), so whether the Sell signal opens a long, a short or nothing is undefined as written (criterion 2); the v1 defaults trade only through it and Buy_1."
+366538,Low-Scanner-strategy-crypto.md,REJECTED_ON_READING,1,"The exits close the position in parts (qty_percent 25 / 25 / 25 at three targets), and the house engine has no partial exits (criterion 1, README rule 5)."
 368717,Inverted-Hammer-Extended-Options.md,REJECTED_ON_READING,1,"Long entries only (inverted hammer below EMA 10), with no exit, stop or reversal anywhere: after the first signal the position is held for the rest of the data, so there is no repeatable entry/exit rule to test (as #62163)."
 368734,Brick-count-Renko.md,REJECTED_ON_READING,1,"The orders test bar counts as booleans: `if brick_red` (non-green bars among the last 40) is true unless 40 green bars in a row, so the script is long on practically every bar; the brick cross it labels never reaches the orders. No defined signal to test."
 369999,Directional-Movement-Oscillator-DMI.md,REJECTED_ON_READING,1,"The orders test a float and a plot handle as booleans: `if diosc` (DI+ - DI-, true whenever non-zero) -> long, `else if p2` (a plot id) -> short. Long on practically every bar; the short branch depends on how the runtime casts a plot handle. No defined signal to test."
@@ -718,7 +719,9 @@ fmz_id,file,final_outcome,criterion,reason
 365858,SSL-Channel.md,PORTED,,ports/365858_ssl-channel/
 365859,Range-Filter-Buy-and-Sell.md,PORTED,,ports/365859_range-filter-buy-and-sell/
 365892,Super-Trend-Daily-20-BF.md,PORTED,,ports/365892_super-trend-daily-20-bf/
+365895,Volume-Divergence.md,PORTED,,ports/365895_volume-divergence/
 365898,Scalping-EMA-ADX-RSI-with-Buy-Sell.md,PORTED,,ports/365898_scalping-ema-adx-rsi-with-buy-sell/
+365902,72s-Adaptive-Hull-Moving-Average.md,PORTED,,ports/365902_72s-adaptive-hull-moving-average/
 365905,Schaff-Trend-Cycle.md,PORTED,,ports/365905_schaff-trend-cycle/
 365907,SWING-TRADE-SIGNALS.md,PORTED,,ports/365907_swing-trade-signals/
 366385,Super-trend-B.md,PORTED,,ports/366385_super-trend-b/
@@ -727,10 +730,14 @@ fmz_id,file,final_outcome,criterion,reason
 366391,Low-finder.md,PORTED,,ports/366391_low-finder/
 366404,Peak-detector.md,PORTED,,ports/366404_peak-detector/
 366407,SuperTREX.md,PORTED,,ports/366407_supertrex/
+366415,HIGH-LOW-SAR.md,PORTED,,ports/366415_high-low-sar/
+366419,SuperB.md,PORTED,,ports/366419_superb/
 366430,blackcat-L2-Reversal-Labels-Strategy.md,PORTED,,ports/366430_blackcat-l2-reversal-labels-strategy/
 366641,Delta-RSI-Oscillator-Strategy.md,PORTED,,ports/366641_delta-rsi-oscillator-strategy/
 366930,Slope-Adaptive-Moving-Average.md,PORTED,,ports/366930_slope-adaptive-moving-average/
+366935,Price-Divergence-Strategy-v10.md,PORTED,,ports/366935_price-divergence-strategy-v10/
 366936,Pivot-Trend.md,PORTED,,ports/366936_pivot-trend/
+366938,OBV-MACD-Indicator.md,PORTED,,ports/366938_obv-macd-indicator/
 366941,RSI-Divergence-Indicator.md,PORTED,,ports/366941_rsi-divergence-indicator/
 366942,Parabolic-SAR.md,PORTED,,ports/366942_parabolic-sar/
 366943,AK-MACD-BB-INDICATOR-V-100.md,PORTED,,ports/366943_ak-macd-bb-indicator-v-100/
@@ -751,6 +758,11 @@ fmz_id,file,final_outcome,criterion,reason
 370653,SuperTrend.md,PORTED,,ports/370653_supertrend/
 370655,Gann-High-Low.md,PORTED,,ports/370655_gann-high-low/
 370711,T-Step-LSMA.md,PORTED,,ports/370711_t-step-lsma/
+375951,Big-candle分享.md,PORTED,,ports/375951_big-candle/
+376259,EtHEriOOOm-30MIN.md,PORTED,,ports/376259_etheriooom-30min/
+376260,ETHUSDTPERP-BOT-30min.md,PORTED,,ports/376260_ethusdtperp-bot-30min/
+376261,Vitalik-Scalpe.md,PORTED,,ports/376261_vitalik-scalpe/
+376263,Bitcoin-Scalper-30MIN.md,PORTED,,ports/376263_bitcoin-scalper-30min/
 376314,Bully-Signals.md,PORTED,,ports/376314_bully-signals/
 379757,PlanB-Quant-Investing-101-v2.md,PORTED,,ports/379757_planb-quant-investing-101-v2/
 379760,RSI-ZIGZAG22.md,PORTED,,ports/379760_rsi-zigzag22/

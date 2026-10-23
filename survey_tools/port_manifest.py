@@ -7128,6 +7128,35 @@ SIZING = {
         ("entry type, backtest days", 387, 390),
     ],
     365322: [],
+    # ---- FMZ-C, batch V3 (2026-10-23)
+    365895: [],
+    365902: [],
+    366415: [],
+    366419: [],
+    366935: [
+        ("strategy(): pyramiding 0, capital 10000, 10 % of equity", 85, 86),
+    ],
+    366938: [],
+    375951: [
+        ("strategy(): pyramiding 1, capital 10000, 100 % of equity, commission", 44, 44),
+        ("qty percent input (100)", 111, 111),
+    ],
+    376259: [
+        ("strategy(): pyramiding 1, capital 10000, 100 % of equity, commission 0.04 %", 68, 68),
+    ],
+    376260: [
+        ("strategy(): pyramiding 1, capital 10000, 100 % of equity, commission", 46, 46),
+        ("qty percent input (100)", 180, 180),
+    ],
+    376261: [
+        ("strategy(): pyramiding 1, capital 10000, 100 % of equity, commission 0.03 %", 77, 77),
+    ],
+    376263: [
+        ("strategy(): pyramiding 1, capital 10000, 100 % of equity, commission", 70, 70),
+        ("volume leverage inputs and Lev_vol", 477, 484),
+        ("entry qty = Lev_vol", 554, 554),
+        ("entry qty = Lev_vol", 562, 562),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9077,6 +9106,9 @@ REJECTED_ON_READING = {
               "long argument), so whether the Sell signal opens a long, a short or nothing is "
               "undefined as written (criterion 2); the v1 defaults trade only through it and "
               "Buy_1."),
+    # ---- FMZ-C, batch V3 (2026-10-23)
+    366538: ("1", "The exits close the position in parts (qty_percent 25 / 25 / 25 at three targets), "
+              "and the house engine has no partial exits (criterion 1, README rule 5)."),
 }
 
 DUPLICATE_ON_READING = {
