@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #435282 (基于量化指标多空信号的多空双向交易策略Dual-directional-Trading-Strategy-Based-on-Quantitative-Indicators-Bullish-and-Bearish-Signals)
+# Source: https://www.fmz.com/strategy/435282  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## contracts = equity x leverage / close x risk %  [lines 271-271]
+  271:     contracts = get_round((strategy.equity * trade_leverage / close) * (trade_risk / 100), 4)

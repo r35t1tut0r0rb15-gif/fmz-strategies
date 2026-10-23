@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #435885 (Kifier隐藏式MFI-STOCH指标交易-趋势操盘策略Kifiers-Hidden-MFI-STOCH-Divergence-Trend-Breaker-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/435885  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 95 % of equity, margin 100  [lines 159-159]
+  159: strategy("Kifier's MFI/STOCH Hidden Divergence/Trend Beater", shorttitle = "Kifier's MFI/STOCH", overlay=false, margin_long=100, margin_short=100, default_qty_type  = strategy.percent_of_equity, default_qty_value = 95, max_boxes_count = 500)

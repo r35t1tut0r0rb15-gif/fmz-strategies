@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #435467 (线性MACD解锁交易视图中线性回归的魔力Linear-MACD-Unlocking-the-Magic-of-Linear-Regression-in-TradingView)
+# Source: https://www.fmz.com/strategy/435467  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin_long 100, margin_short 100  [lines 101-101]
+  101: strategy("Linear On MACD", overlay=true, margin_long=100, margin_short=100)
