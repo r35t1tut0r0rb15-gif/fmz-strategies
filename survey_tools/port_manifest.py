@@ -7284,6 +7284,34 @@ SIZING = {
     429461: [
         ("strategy() with commented sizing arguments", 166, 166),
     ],
+    # ---- FMZ-C, batch V9 (2026-10-23)
+    429465: [],
+    429474: [
+        ("strategy(): pyramiding 0, capital 20000, 100 % of equity, commission 0.075", 277, 277),
+        ("contracts = equity / close x leverage", 667, 668),
+    ],
+    429476: [],
+    429495: [
+        ("strategy(): pyramiding 1", 169, 169),
+    ],
+    429562: [],
+    429579: [
+        ("strategy(): pyramiding 1, capital 1000, 100 % of equity, commission 0.075 %", 148, 148),
+    ],
+    429773: [
+        ("commented strategy(): 10000 % of equity, commission 0.005", 165, 165),
+    ],
+    429775: [],
+    430014: [
+        ("strategy(): pyramiding 1, 100 % of equity", 183, 183),
+    ],
+    430154: [
+        ("strategy(): pyramiding 1", 185, 185),
+    ],
+    430252: [
+        ("strategy(): 100 % of equity, pyramiding 1", 138, 138),
+        ("lot = equity / close x capital %", 183, 183),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9294,6 +9322,11 @@ REJECTED_ON_READING = {
               "USD larger than the one before ($1000 first), with the stop / target measured from "
               "the running quantity-weighted average: accumulation with growing size (criterion "
               "1, as #440430, #427443)."),
+    # ---- FMZ-C, batch V9 (2026-10-23)
+    430260: ("2", "The Trend Magic entries need the source above / below the line by 5 PRICE units "
+              "('Is Crypto?' on: src > MagicTrend + 5): a fixed price distance that is tiny on "
+              "BTC and larger than the whole price on FX, so the rule has no instrument-free "
+              "reading (criterion 2, as #426809)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -9308,7 +9341,6 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C11 (2026-10-16)
     # ---- FMZ-C, batch C24 (2026-10-16)
     # ---- FMZ-C, batch C27 (2026-10-16)
-    429562: ("8", "The trend filter compares vwma(close, 30) with vwma(close, 200): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C34 (2026-10-16)
     430278: ("8", "The trend line is vwma(k + k_two, 30): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C35 (2026-10-16)

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #430154 (基于多维度指标决策的短期趋势策略Multi-indicator-Decision-Based-Short-Term-Trend-Strategy)
+# Source: https://www.fmz.com/strategy/430154  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 1  [lines 185-185]
+  185: strategy(title="EmperorBTC's VWAP Strategy", shorttitle="EMP-VWAP", overlay=true, pyramiding=1)

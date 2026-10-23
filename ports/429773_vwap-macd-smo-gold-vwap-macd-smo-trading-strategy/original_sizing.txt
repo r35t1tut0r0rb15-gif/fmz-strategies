@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #429773 (黄金VWAP-MACD-SMO交易策略Gold-VWAP-MACD-SMO-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/429773  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## commented strategy(): 10000 % of equity, commission 0.005  [lines 165-165]
+  165: // strategy("VWAP Gold strategy", overlay = true, default_qty_type = strategy.percent_of_equity, default_qty_value = 10000, calc_on_every_tick = true, commission_type = strategy.commission.percent, commission_value = 0.005)

@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #429474 (趋势跟踪四元素策略Trend-Tracking-Four-Elements-Strategy)
+# Source: https://www.fmz.com/strategy/429474  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 0, capital 20000, 100 % of equity, commission 0.075  [lines 277-277]
+  277: strategy('Strategy Myth-Busting #6 - PSAR+MA+SQZMOM+HVI - [MYN]', max_bars_back=5000, overlay=true, pyramiding=0, initial_capital=20000, currency='USD', default_qty_type=strategy.percent_of_equity, default_qty_value=100.0, commission_value=0.075, use_bar_magnifier = false)
+
+## contracts = equity / close x leverage  [lines 667-668]
+  667: leverage = input.float(1, 'Leverage', step=.5, group='Leverage')
+  668: contracts = math.min(math.max(.000001, strategy.equity / close * leverage), 1000000000)

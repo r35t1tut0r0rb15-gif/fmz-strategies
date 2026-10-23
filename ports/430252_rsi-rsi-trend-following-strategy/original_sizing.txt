@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #430252 (基于RSI指标的趋势跟随策略RSI-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/430252  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, pyramiding 1  [lines 138-138]
+  138: strategy(title = "Gidra's RSI or MFI Strategy v0.1", shorttitle = "Gidra's RSI or MFI v0.1", overlay = false, default_qty_type = strategy.percent_of_equity, default_qty_value = 100, pyramiding = 1)
+
+## lot = equity / close x capital %  [lines 183-183]
+  183: lot = strategy.position_size == 0 ? strategy.equity / close * capital / 100 : lot[1]

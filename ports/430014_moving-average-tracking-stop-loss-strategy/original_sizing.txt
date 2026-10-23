@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #430014 (追踪止损移动平均策略Moving-Average-Tracking-Stop-Loss-Strategy)
+# Source: https://www.fmz.com/strategy/430014  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 1, 100 % of equity  [lines 183-183]
+  183: strategy("MOST Multi MAs", overlay=true, pyramiding=1, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
