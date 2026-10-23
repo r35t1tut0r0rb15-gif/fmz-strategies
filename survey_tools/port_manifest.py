@@ -7709,6 +7709,19 @@ SIZING = {
     453270: [],
     453279: [],
     453659: [],
+    # ---- FMZ-C, batch V31 (2026-10-23)
+    453669: [],
+    453670: [],
+    454356: [
+        ("strategy(): 10 % of equity", 110, 110),
+    ],
+    454766: [],
+    454768: [],
+    457794: [],
+    457812: [],
+    458053: [],
+    458068: [],
+    458143: [],
 }
 
 REJECTED_ON_READING = {
@@ -9943,6 +9956,13 @@ REJECTED_ON_READING = {
               "when price crosses a level beyond the first entry, each with its own exit order: "
               "adds with separate exits, which the house engine does not do (criterion 1, as "
               "#433905)."),
+    # ---- FMZ-C, batch V31 (2026-10-23)
+    453660: ("1", "Entries need drawdown < 500 and every position is closed once max_equity - "
+              "strategy.equity >= 500 (cash): an equity drawdown gate in account currency that "
+              "depends on size and history (criterion 1, as #440336)."),
+    454148: ("2", "Entries need abs(close - resistance) > 0.01 (distanceThresh = 1 / 100): a fixed "
+              "distance in the quote currency of the source's chart (price-unit levels -> "
+              "criterion 2)."),
 }
 
 DUPLICATE_ON_READING = {
