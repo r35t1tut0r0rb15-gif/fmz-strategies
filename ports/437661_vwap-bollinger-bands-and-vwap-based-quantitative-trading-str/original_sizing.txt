@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #437661 (基于布林带和VWAP的量化交易策略Bollinger-Bands-and-VWAP-based-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/437661  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): fixed qty 3, pyramiding 2, capital 10000  [lines 132-132]
+  132: strategy(title="VWAP and BB strategy [EEMANI]", overlay=true,pyramiding=2, default_qty_value=3, default_qty_type=strategy.fixed,    initial_capital=10000, currency=currency.USD)

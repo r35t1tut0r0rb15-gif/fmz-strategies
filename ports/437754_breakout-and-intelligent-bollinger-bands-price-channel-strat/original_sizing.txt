@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #437754 (突破与智能反转布林带价格通道策略Breakout-and-Intelligent-Bollinger-Bands-Price-Channel-Strategy)
+# Source: https://www.fmz.com/strategy/437754  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

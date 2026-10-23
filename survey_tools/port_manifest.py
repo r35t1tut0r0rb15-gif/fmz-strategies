@@ -7521,6 +7521,30 @@ SIZING = {
         ("strategy(): 50 % of equity, capital 1000, pyramiding 1", 131, 131),
     ],
     437011: [],
+    # ---- FMZ-C, batch V20 (2026-10-23)
+    437024: [],
+    437032: [],
+    437039: [
+        ("entry qty 1", 324, 327),
+    ],
+    437386: [],
+    437561: [
+        ("strategy(): 100 % of equity, capital 20000, commission 0.025 %", 213, 213),
+    ],
+    437652: [
+        ("strategy(): 10 % of equity", 144, 144),
+    ],
+    437655: [
+        ("strategy(): 10000 cash per trade, commission 0.04 %", 127, 127),
+    ],
+    437661: [
+        ("strategy(): fixed qty 3, pyramiding 2, capital 10000", 132, 132),
+    ],
+    437680: [
+        ("strategy(): 100 % of equity, commission 0.075 %", 178, 178),
+        ("contracts = equity / close x leverage", 478, 478),
+    ],
+    437754: [],
 }
 
 REJECTED_ON_READING = {
@@ -9649,6 +9673,13 @@ REJECTED_ON_READING = {
               "position) with avg x 0.9 - close (a price): the stop level depends on the position "
               "size and the price units (criterion 2); the other exits also pass the qty 0.1 as "
               "the 'when' argument."),
+    # ---- FMZ-C, batch V20 (2026-10-23)
+    437683: ("1", "With pyramiding 5 the BUY entry adds while long, and five exits close the position "
+              "in parts (qty_percent 20 / 40 / 60 / 80 / 100 at 0.4 .. 1.2 %): adds and partial "
+              "exits, which the house engine does not do (criterion 1, as #431417)."),
+    437691: ("2", "Every entry needs request.security(sym = 'BTC_USDT:swap', '3', ...) VWAP bands and "
+              "close: a named external instrument used as the signal source for whatever chart is "
+              "traded (SURVEY_README: another symbol -> criterion 2, as #436659)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #437680 (结合趋势和震荡的量化交易策略Trend-and-Oscillation-Double-Strategy)
+# Source: https://www.fmz.com/strategy/437680  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission 0.075 %  [lines 178-178]
+  178: strategy('Strategy Myth-Busting #8 - TrendSurfers+TrendOsc - [MYN]', max_bars_back=5000, overlay=true, pyramiding=0, initial_capital=20000, currency='USD', default_qty_type=strategy.percent_of_equity, default_qty_value=100.0, commission_value=0.075, use_bar_magnifier = false)
+
+## contracts = equity / close x leverage  [lines 478-478]
+  478: contracts = math.min(math.max(.000001, strategy.equity / close * leverage), 1000000000)

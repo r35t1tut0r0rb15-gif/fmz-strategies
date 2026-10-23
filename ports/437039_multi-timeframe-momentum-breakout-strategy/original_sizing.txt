@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #437039 (多时间周期动量突破策略Multi-Timeframe-Momentum-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/437039  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## entry qty 1  [lines 324-327]
+  324:     strategy.entry("Buy", strategy.long, qty = 1)
+  325: 
+  326: if (rsi < 40 and adx> adxThreshold and diminus>diThreshold)
+  327:     strategy.entry("Sell", strategy.short, qty = 1)
