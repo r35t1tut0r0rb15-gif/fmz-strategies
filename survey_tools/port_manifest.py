@@ -7932,6 +7932,29 @@ SIZING = {
     ],
     488249: [],
     488295: [],
+    # ---- FMZ-C, batch V45 (2026-10-23)
+    488502: [
+        ("strategy(): capital, 100 % of equity", 197, 197),
+    ],
+    488520: [
+        ("strategy(): capital, 10 % of equity", 158, 158),
+    ],
+    488539: [
+        ("strategy(): 10 % of equity", 118, 118),
+    ],
+    488545: [
+        ("strategy(): 5 % of equity", 102, 102),
+    ],
+    488862: [],
+    488882: [
+        ("strategy(): capital, 10 % of equity", 165, 165),
+    ],
+    488894: [
+        ("strategy(): 2 % of equity", 145, 145),
+    ],
+    488898: [
+        ("strategy(): 10 % of equity", 118, 118),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -10309,6 +10332,20 @@ REJECTED_ON_READING = {
               "raw units and a 09:30-12:00 session."),
     488285: ("1", "The levels read request.security(syminfo.tickerid, \"15\", ...) on the header's "
               "1-hour chart: a lower-timeframe security read (as #427518)."),
+    # ---- FMZ-C, batch V45 (2026-10-23)
+    488546: ("2", "The exit passes atr x 2 (a price amount) as trail_points and trail_offset, which "
+              "are in ticks (criterion 2, as #440334)."),
+    488865: ("1", "The gap logic reads request.security(syminfo.tickerid, \"30\", close[1]) on the "
+              "header's 2-day chart: a lower-timeframe security read (as #427518); it also tests "
+              "gapSize > 50 / < 30 in price units and sizes by an ATR ratio."),
+    488896: ("1", "The source is garbled: two lines of another script (strategy.entry calls) precede "
+              "the strategy() declaration and the //@version=6 annotation is glued to the end of "
+              "a code line, so as written it does not compile (cannot trade as written, as "
+              "#451028); its rules also use a 9-12 clock session and a first-candle capture that "
+              "cannot hold on the header's bars."),
+    489011: ("1", "The header's bars are 1 day, where ta.vwap(close) is the bar's own close, so close "
+              "> vwap / close < vwap never hold and neither call nor put can fire: the script "
+              "cannot trade (as #468342)."),
 }
 
 DUPLICATE_ON_READING = {

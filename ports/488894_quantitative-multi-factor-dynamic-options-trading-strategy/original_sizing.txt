@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #488894 (量化多因子动态期权交易策略-Quantitative-Multi-Factor-Dynamic-Options-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/488894  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 2 % of equity  [lines 145-145]
+  145: strategy("Vinayz Options Stratergy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=2)

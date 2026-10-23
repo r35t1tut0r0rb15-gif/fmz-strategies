@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #488539 (多维技术指标复合趋势追踪量化交易策略-Multi-Dimensional-Technical-Indicator-Composite-Trend-Tracking-Quantitative-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/488539  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 118-118]
+  118: strategy("Advanced BTC/USDT Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
