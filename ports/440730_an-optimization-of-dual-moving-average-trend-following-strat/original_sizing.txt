@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #440730 (双移动平均量化交易策略An-Optimization-of-Dual-Moving-Average-Trend-Following-Strategy-Based-on-Indicators-Combination)
+# Source: https://www.fmz.com/strategy/440730  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): commission 0.2 %, capital 10000  [lines 129-129]
+  129: strategy(title="2 MA | Trend Following", overlay=true, pyramiding=1, commission_type=strategy.commission.percent, commission_value=0.2, initial_capital=10000)
+
+## qty = equity x 2 % / (2 x ATR)  [lines 308-314]
+  308: strategy.entry("Long", strategy.long, comment="Long", when = long_entry, qty=positionSize)
+  309: if (strategy.position_size > 0)
+  310:     strategy.close("Long", when = (long_exit), comment="Close Long")
+  311:     strategy.exit("Long", stop = sl, comment="Exit Long")
+  312: 
+  313: //SHORT STRATEGY
+  314: strategy.entry("Short", strategy.short, comment="Short", when = short_entry, qty=positionSize_short)

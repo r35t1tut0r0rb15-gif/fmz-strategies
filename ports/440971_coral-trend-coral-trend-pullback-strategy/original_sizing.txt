@@ -1,0 +1,15 @@
+# Original sizing and money-management code, FMZ #440971 (基于回测试区间Coral-Trend指标的瑞波策略Coral-Trend-Pullback-Strategy)
+# Source: https://www.fmz.com/strategy/440971  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = equity x 1 % / stop % / close  [lines 580-589]
+  580:     strategy.entry("Long", strategy.long, qty = entryQty, alert_message = "Long Entry")
+  581:     enteringTrade   := true
+  582:     inLong          := true
+  583:     inShort         := false
+  584: 
+  585: if openShort
+  586:     if strategy.position_size > 0
+  587:         printTpSlNotHitBox(tradeEntryBar + 1, bar_index + 1, strategy.position_avg_price, slPrice, tpPrice)
+  588:         printTradeExitLabel(bar_index + 1, math.max(tpPrice, slPrice), strategy.position_size, strategy.position_avg_price, strategy.openprofit)
+  589:     strategy.entry("Short", strategy.short, qty = entryQty, alert_message = "Short Entry")

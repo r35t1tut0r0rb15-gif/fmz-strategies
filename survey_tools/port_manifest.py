@@ -7600,6 +7600,26 @@ SIZING = {
     440461: [
         ("contracts = equity x leverage / close x risk %", 253, 260),
     ],
+    # ---- FMZ-C, batch V25 (2026-10-23)
+    440526: [],
+    440535: [],
+    440538: [],
+    440552: [],
+    440730: [
+        ("strategy(): commission 0.2 %, capital 10000", 129, 129),
+        ("qty = equity x 2 % / (2 x ATR)", 308, 314),
+    ],
+    440813: [],
+    440877: [
+        ("strategy(): 10 % of equity, capital 10000", 177, 178),
+    ],
+    440962: [
+        ("entry qty 1 (the equity-based qty is computed and unused)", 211, 218),
+    ],
+    440971: [
+        ("qty = equity x 1 % / stop % / close", 580, 589),
+    ],
+    441047: [],
 }
 
 REJECTED_ON_READING = {
@@ -9778,6 +9798,14 @@ REJECTED_ON_READING = {
               "source feed's units (criterion 2, as #426785). Also, ta.vwap(close, 20) passes 20 "
               "as the reset anchor, so the VWAP restarts every bar and equals the close: close > "
               "vwap never holds and the script cannot trade."),
+    # ---- FMZ-C, batch V25 (2026-10-23)
+    440688: ("2", "The second state compares the market facilitation index (high - low) / volume x "
+              "10000 with fixed zones 1 and 6.2: a threshold in units of price per volume of the "
+              "source feed (absolute volume thresholds -> criterion 2, as #426785)."),
+    440714: ("1", "In Pine v2 2 / (Fastend + 1) and 2 / (SC + 1) are integer divisions (0): both KAMA "
+              "smoothing constants are 0, so nAMA and nAMA2 stay 0 and are never unequal, and the "
+              "FRAMA weight is log(0); buyEntry / sellEntry can never be true and no order can be "
+              "sent (criterion 1, as #451028)."),
 }
 
 DUPLICATE_ON_READING = {
