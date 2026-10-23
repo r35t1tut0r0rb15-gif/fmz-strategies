@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #430677 (多因子策略Multi-factor-Strategy)
+# Source: https://www.fmz.com/strategy/430677  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## commented strategy(): pyramiding 12, capital 25000, 20 % of equity  [lines 248-248]
+  248: // strategy("Strategy_1", shorttitle="Strategy1",overlay=true ,pyramiding = 12, initial_capital=25000, currency='EUR', commission_type = strategy.commission.cash_per_order, commission_value = 3, default_qty_type = strategy.percent_of_equity, default_qty_value = 20)

@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #430594 (基于量价弥长计的波动力量策略VB-Strategy-Based-on-Volume-Balances)
+# Source: https://www.fmz.com/strategy/430594  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy.order 1-unit adds  [lines 250-250]
+  250:         strategy.order("LONG", true, 1, when = (low+high)/2)
+
+## strategy.order 1-unit adds  [lines 261-261]
+  261:         strategy.order("SHORT", false, 1, when = (low+high)/2)

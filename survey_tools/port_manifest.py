@@ -7312,6 +7312,31 @@ SIZING = {
         ("strategy(): 100 % of equity, pyramiding 1", 138, 138),
         ("lot = equity / close x capital %", 183, 183),
     ],
+    # ---- FMZ-C, batch V10 (2026-10-23)
+    430261: [],
+    430278: [],
+    430371: [
+        ("strategy(): capital 100000, 10 % of equity", 199, 200),
+    ],
+    430385: [
+        ("strategy(): capital 1000, 100 % of equity, commission 0.1 %", 160, 160),
+    ],
+    430551: [
+        ("commented strategy(): 1 % of equity, pyramiding 33, commission 0.10", 326, 327),
+    ],
+    430578: [
+        ("strategy(): capital 1000, 100 % of equity, commission 0.025", 240, 240),
+    ],
+    430588: [
+        ("strategy(): capital 1000, 100 % of equity, commission 0.1 %", 190, 190),
+    ],
+    430594: [
+        ("strategy.order 1-unit adds", 250, 250),
+        ("strategy.order 1-unit adds", 261, 261),
+    ],
+    430677: [
+        ("commented strategy(): pyramiding 12, capital 25000, 20 % of equity", 248, 248),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9327,6 +9352,19 @@ REJECTED_ON_READING = {
               "('Is Crypto?' on: src > MagicTrend + 5): a fixed price distance that is tiny on "
               "BTC and larger than the whole price on FX, so the rule has no instrument-free "
               "reading (criterion 2, as #426809)."),
+    # ---- FMZ-C, batch V10 (2026-10-23)
+    430272: ("2", "The exits compare the EFI ((close[1] - close) x volume / 1000) with the fixed "
+              "levels 22000 and 14000, and the entries with 9, and a short exit compares an SMA "
+              "price with a deviation divided by 10: absolute price x volume levels of the "
+              "source's feed with no meaning on another instrument or on broker tick volume "
+              "(criterion 2, as #426785)."),
+    430550: ("1", "The take-profits close a third of the position at each of 1R, 2R and 3R "
+              "(strategy.close with qty = initial size / 3): partial exits, which the house "
+              "engine does not do (criterion 1, as #426892)."),
+    430561: ("2", "Every entry needs volume > vwma(close, 20) x 1: the bar's volume compared with a "
+              "PRICE average, true or false according to the instrument's price level and the "
+              "feed's volume units (criterion 2, an instrument-specific comparison); and the ORB "
+              "session 09:15-09:30 never holds an hourly bar's open."),
 }
 
 DUPLICATE_ON_READING = {
@@ -9342,12 +9380,8 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C24 (2026-10-16)
     # ---- FMZ-C, batch C27 (2026-10-16)
     # ---- FMZ-C, batch C34 (2026-10-16)
-    430278: ("8", "The trend line is vwma(k + k_two, 30): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C35 (2026-10-16)
-    430385: ("8", "The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C36 (2026-10-16)
-    430551: ("8", "The grid lines are vwma(highest / lowest, 14): volume-weighted averages (check 8, held with the other volume users)."),
-    430588: ("8", "The trend line is vwma(hl2, 400): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C45 (2026-10-17)
     431414: ("8", "The trend line is vwma(close, 33) and its RSI: a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C52 (2026-10-17)

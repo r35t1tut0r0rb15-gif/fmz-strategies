@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #430551 (动态RSI矩形Grid策略RSI-Box-Grid-Strategy)
+# Source: https://www.fmz.com/strategy/430551  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## commented strategy(): 1 % of equity, pyramiding 33, commission 0.10  [lines 326-327]
+  326: // strategy("RSI Box Strategy (pseudo-Grid Bot)", overlay=true, initial_capital = 10000, 
+  327: //  default_qty_type = strategy.percent_of_equity, default_qty_value = 1, pyramiding = 33, commission_value=0.10)

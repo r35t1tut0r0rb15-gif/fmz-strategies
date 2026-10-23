@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #430385 (动量突破双向交易策略Momentum-Breakout-Reversal-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/430385  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital 1000, 100 % of equity, commission 0.1 %  [lines 160-160]
+  160: strategy(title="Monthly Returns in Strategies with Market Benchmark", shorttitle="Monthly P&L With Market", initial_capital= 1000, overlay=true,default_qty_type = strategy.percent_of_equity, default_qty_value = 100, commission_type = strategy.commission.percent, commission_value = 0.1)
