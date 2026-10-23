@@ -1,0 +1,8 @@
+# Original sizing and money-management code, FMZ #446985 (VWMA-ADX-基于动量与趋势的比特币多头策略-VWMA-ADX-Momentum-and-Trend-Based-Bitcoin-Long-Strategy)
+# Source: https://www.fmz.com/strategy/446985  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital 1000  [lines 98-100]
+   98: strategy("Long BTC Strategy", overlay=true, 
+   99:      default_qty_type = strategy.percent_of_equity, 
+  100:      default_qty_value = 100, initial_capital = 1000, currency = currency.USD)

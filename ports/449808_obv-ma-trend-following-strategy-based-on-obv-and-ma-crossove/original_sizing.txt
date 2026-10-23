@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #449808 (基于OBV与MA交叉信号的趋势跟踪策略-Trend-Following-Strategy-Based-on-OBV-and-MA-Crossover-Signals)
+# Source: https://www.fmz.com/strategy/449808  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, margin 0.1, slippage 1, commission 0.1 %  [lines 112-115]
+  112: strategy(title="OBVious MA Strategy [1000X]", overlay=false, 
+  113:          initial_capital=10000, margin_long=0.1, margin_short=0.1,
+  114:          default_qty_type=strategy.percent_of_equity, default_qty_value=100,
+  115:          slippage=1, commission_type=strategy.commission.percent, commission_value=0.1)

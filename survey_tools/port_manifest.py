@@ -7671,6 +7671,20 @@ SIZING = {
     445456: [],
     446435: [],
     446538: [],
+    # ---- FMZ-C, batch V29 (2026-10-23)
+    446753: [],
+    446985: [
+        ("strategy(): 100 % of equity, capital 1000", 98, 100),
+    ],
+    448079: [],
+    449721: [],
+    449808: [
+        ("strategy(): 100 % of equity, margin 0.1, slippage 1, commission 0.1 %", 112, 115),
+    ],
+    451025: [
+        ("entry qty 1 (tradeQty)", 139, 141),
+    ],
+    451491: [],
 }
 
 REJECTED_ON_READING = {
@@ -9882,6 +9896,24 @@ REJECTED_ON_READING = {
               "currency of the source's chart (price-unit levels -> criterion 2)."),
     445457: ("2", "Entries need volume > 10000 (vol_threshold): an absolute volume threshold in the "
               "source feed's units (criterion 2, as #426785)."),
+    # ---- FMZ-C, batch V29 (2026-10-23)
+    448058: ("1", "While in a position the strategy adds 'Long Add' / 'Short Add' entries (pyramid "
+              "sizes) whenever price moves 50 % beyond the average, and only the first entry ids "
+              "carry the trailing exits: adds with separate exits, which the house engine does "
+              "not do (criterion 1, as #433905)."),
+    448073: ("1", "The QFL DCA strategy adds up to four 'DCA Order' entries on every new signal while "
+              "the floating loss is -5 % or worse, doubling the size each time, with a "
+              "take-profit at the average price + the median drop: averaging-down adds that move "
+              "the exit level (DCA, criterion 1, as #438056)."),
+    449523: ("2", "Entries need range = high - low > 0.005: a fixed range in the quote currency of "
+              "the source's chart (price-unit levels -> criterion 2)."),
+    451392: ("2", "Entries need volume > 1000 (volume_threshold), and the exits sit 100 / 1500 price "
+              "units from the close: an absolute volume threshold and price-unit levels "
+              "(criterion 2, as #426785)."),
+    451400: ("1", "On the 1-day header chart the entries need emaHigher = request.security(tickerid, "
+              "'15', ema(close, 200)): a 15-minute series inside daily bars, a lower-timeframe "
+              "read whose value is the day's last 15-minute value, unknown at the daily close it "
+              "is used with (criterion 1, as #427518)."),
 }
 
 DUPLICATE_ON_READING = {
