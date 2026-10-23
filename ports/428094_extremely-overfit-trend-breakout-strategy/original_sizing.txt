@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #428094 (趋势突破策略Extremely-Overfit-Trend-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/428094  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): commission 0.16 %, 100 % of equity, pyramiding 1  [lines 199-199]
+  199: strategy("Extremely Overfit", overlay=true, commission_type=strategy.commission.percent, commission_value=.16, default_qty_type=strategy.percent_of_equity, default_qty_value=100, pyramiding = 1)

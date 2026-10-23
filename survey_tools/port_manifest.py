@@ -7258,6 +7258,32 @@ SIZING = {
         ("commented strategy(): cash 10000, capital 10000", 209, 209),
     ],
     428058: [],
+    # ---- FMZ-C, batch V8 (2026-10-23)
+    428094: [
+        ("strategy(): commission 0.16 %, 100 % of equity, pyramiding 1", 199, 199),
+    ],
+    428095: [
+        ("commented strategy(): capital 1000, 25 % of equity", 223, 223),
+    ],
+    428580: [
+        ("strategy(): pyramiding 0, capital 20000, 100 % of equity, commission 0.075", 208, 208),
+        ("contracts = equity / close x leverage", 454, 455),
+    ],
+    428617: [
+        ("strategy(): capital 10000, 100 % of equity, commission 0.075 %", 184, 184),
+    ],
+    428621: [],
+    428787: [
+        ("strategy(): capital 1000, 100 % of equity, commission 0.1 %", 124, 124),
+    ],
+    428887: [
+        ("strategy(): pyramiding 2, fixed quantity, capital 10000", 180, 180),
+    ],
+    428967: [],
+    429077: [],
+    429461: [
+        ("strategy() with commented sizing arguments", 166, 166),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9258,6 +9284,16 @@ REJECTED_ON_READING = {
               "source's feed, the initial stops are close - 5 / close + 1 PRICE units and the "
               "trend line is shifted by 22 / 16 price units: instrument-specific thresholds and "
               "distances (criterion 2, as #426785, #426931)."),
+    # ---- FMZ-C, batch V8 (2026-10-23)
+    428070: ("1", "With pyramiding 10, the 'Bollinger Bands re-entry' sends further entries on the "
+              "open side when the close falls under the lower band at least 0.5 % below the last "
+              "entry (the mirror for shorts), each sized by a volume leverage factor, and the "
+              "target / stop follow the running average price: averaging down, the size path is "
+              "the strategy (criterion 1, as #440354)."),
+    428689: ("1", "Up to 5 pyramided entries (pyramiding 5) on repeated RSI-VWAP crossings, each 500 "
+              "USD larger than the one before ($1000 first), with the stop / target measured from "
+              "the running quantity-weighted average: accumulation with growing size (criterion "
+              "1, as #440430, #427443)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -9271,7 +9307,6 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C10 (2026-10-16)
     # ---- FMZ-C, batch C11 (2026-10-16)
     # ---- FMZ-C, batch C24 (2026-10-16)
-    429461: ("8", "The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C27 (2026-10-16)
     429562: ("8", "The trend filter compares vwma(close, 30) with vwma(close, 200): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C34 (2026-10-16)
