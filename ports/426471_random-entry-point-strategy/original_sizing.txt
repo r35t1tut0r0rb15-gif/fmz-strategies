@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426471 (Random-Entry-Point-Strategy)
+# Source: https://www.fmz.com/strategy/426471  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## commented strategy(): cash 500, capital 1000, commission 0.07  [lines 93-93]
+   93: // strategy(title="Random entry points",overlay=true, default_qty_type=strategy.cash, default_qty_value=500, currency="USD", initial_capital = 1000, commission_type=strategy.commission.percent, commission_value=0.07)

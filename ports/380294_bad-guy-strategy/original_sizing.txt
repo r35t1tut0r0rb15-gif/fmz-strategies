@@ -1,0 +1,14 @@
+# Original sizing and money-management code, FMZ #380294 (Bad-guy-strategy)
+# Source: https://www.fmz.com/strategy/380294  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 1, capital 10000, 100 % of equity, commission 0.04 %  [lines 49-49]
+   49: strategy("坏b的策略", overlay = true, pyramiding=1,initial_capital = 10000, default_qty_type= strategy.percent_of_equity, default_qty_value = 100, calc_on_order_fills=false, slippage=0,commission_type=strategy.commission.percent,commission_value=0.04)
+
+## leverage inputs (off)  [lines 274-276]
+  274: Act_Lev                 =           input(false,                                title="Activate leverage?"                                                                                                                  )
+  275: Max_Lev                 =           input(3,                                    title="Max lev.",                                                               type    = input.integer,   minval = 1,     maxval = 5       )
+  276: o_lev          =           input(50,                                   title="Volume lenght lev.",                                                     minval  = 1                                                 )
+
+## risk input  [lines 311-311]
+  311: risk                =                   input(100,                                                                                                                                                                          group= "BACKTEST")

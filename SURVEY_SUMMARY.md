@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3259 |
+| PORTED | 3270 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 538 |
-| REJECTED_ON_READING | 510 |
+| HELD_NEEDS_VOLUME | 526 |
+| REJECTED_ON_READING | 511 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -355,14 +355,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 376261 | `ports/376261_vitalik-scalpe/` | PineScript | multi_indicator_confluence | bar_size_pending, trailing_stop_pending | volume_f x2, th x2 | 4 |
 | 376263 | `ports/376263_bitcoin-scalper-30min/` | PineScript | multi_indicator_confluence | trailing_stop_pending | volume_f x2, rmi_len x2 | 4 |
 | 376314 | `ports/376314_bully-signals/` | PineScript | rsi_oscillator | none | rsi_len x2, sf x2, qqe x2 | 8 |
+| 377541 | `ports/377541_alphatrend-strategy/` | PineScript | atr_trailing_line | none | coeff x2, ap x2 | 4 |
 | 379757 | `ports/379757_planb-quant-investing-101-v2/` | PineScript | rsi_oscillator | none | sell_level x2, drop x2, buy_level x2 | 8 |
 | 379760 | `ports/379760_rsi-zigzag22/` | PineScript | rsi_oscillator | none | length x3, zz_pct x3 | 9 |
 | 380007 | `ports/380007_simple-1m-scalper-by-thimblemunch/` | PineScript | multi_indicator_confluence | bar_size_pending | trend_len x2, trend_mult x2, stc_len x2 | 8 |
 | 380219 | `ports/380219_candle-strength/` | PineScript | candle_pattern | none |  | 0 |
 | 380245 | `ports/380245_tue-adx-macd-confluence-strategy/` | PineScript | directional_movement | coarse_bar_stop | di_len x2, stop_atr x3 | 6 |
+| 380250 | `ports/380250_arnaud-legoux-moving-average-cross-alma/` | PineScript | ma_crossover | coarse_bar_stop | alma1 x2, alma2 x2 | 4 |
 | 380251 | `ports/380251_ema-scalpeur-rsi-short/` | PineScript | ma_trend | none | ema_l x2, ema_l2 x2, rsi_len x2 | 8 |
 | 380277 | `ports/380277_gooners-btc-weekly-rsi-hack-strategy/` | PineScript | rsi_oscillator | none | length x3, level x3 | 9 |
 | 380291 | `ports/380291_ema-2155200/` | PineScript | ma_trend | none | fast x2, mid x2, slow x2 | 8 |
+| 380294 | `ports/380294_bad-guy-strategy/` | PineScript | multi_indicator_confluence | trailing_stop_pending, coarse_bar_stop | tp_l x2, sl x2 | 4 |
 | 380331 | `ports/380331_moving-average-cross/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
 | 380369 | `ports/380369_bullish-bearish-engulfing/` | PineScript | candle_pattern | bar_size_pending | scale x3, min_atr x3 | 9 |
 | 380396 | `ports/380396_simple-buy-sell-signals/` | PineScript | ma_trend_oscillator_pullback | none | rsi_len x2, ma2_len x2 | 4 |
@@ -377,6 +380,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 425773 | `ports/425773_ema-cross-jc-intraday-with-trailing-sl/` | PineScript | ma_trend | none | slow x2, fast x2, sl_atr x2 | 8 |
 | 425796 | `ports/425796_trade02-ma/` | MyLanguage | directional_movement | none | N x3 | 3 |
 | 425797 | `ports/425797_trade03/` | MyLanguage | ma_trend | none | S1 x2, s1_atr x3 | 6 |
+| 425799 | `ports/425799_trade04-atr/` | MyLanguage | channel_breakout | none | length1 x2, x x2 | 4 |
+| 425800 | `ports/425800_trade05-k-atr/` | MyLanguage | channel_breakout | none | lenth x2, atrs x2 | 4 |
 | 425882 | `ports/425882_ema200-and-stochastic-rsi-strategy/` | PineScript | stochastic_oscillator | none | wick_pct x2, change_pct x2, ema_len x2 | 8 |
 | 426136 | `ports/426136_simple-ema20-strategy-stochastic/` | PineScript | ma_trend | none | ema_len x3, period_k x2 | 6 |
 | 426137 | `ports/426137_bollinger-bands-ema-9/` | PineScript | bollinger_reversion | none | length x2, mult x3 | 6 |
@@ -389,10 +394,13 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426298 | `ports/426298_the-gunbot-bands-strategy/` | PineScript | bollinger_reversion | none | tp_atr x3, sl_atr x3, ts_atr x2 | 18 |
 | 426300 | `ports/426300_the-genesis-crossover-trading-strategy/` | PineScript | ma_trend | coarse_bar_stop | sl_atr x3 | 3 |
 | 426322 | `ports/426322_combo-backtest-123-reversal-relative-volatility-index/` | PineScript | multi_indicator_confluence | none | length x2, rvi_period x2, buy_zone x2 | 8 |
+| 426323 | `ports/426323_quantitative-trend-trading-strategy-using-polynomial-regress/` | PineScript | regression_channel | none | length x2, angulo x2 | 4 |
 | 426335 | `ports/426335_sma-crossover-trading-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
+| 426336 | `ports/426336_stochastic-rsi-trading-strategy/` | PineScript | stochastic_rsi | none | length x2, os_level x2 | 4 |
 | 426338 | `ports/426338_ema-trading-strategy/` | PineScript | ma_trend | none | length x3 | 3 |
 | 426339 | `ports/426339_bollinger-band-breakout-strategy/` | PineScript | bollinger_breakout | none | length x2, mult x2 | 4 |
 | 426340 | `ports/426340_dual-moving-average-breakout-strategy/` | PineScript | ma_trend | none | len_sma x3, len_ema x3 | 9 |
+| 426355 | `ports/426355_rsi-breakout-vwap-strategy/` | PineScript | rsi_threshold | none | length x2, lateleave x2 | 4 |
 | 426359 | `ports/426359_multi-indicator-configurable-strategy-generator/` | PineScript | multi_indicator_confluence | none | sl_pct x2, tp_pct x2, max_in_row x2 | 8 |
 | 426360 | `ports/426360_zero-lag-macd-dema-breakout-strategy/` | PineScript | macd_momentum | none | fast x2, slow x2 | 4 |
 | 426363 | `ports/426363_hma-and-cci-combo-trend-following-strategy/` | PineScript | momentum_oscillator_turn | none | hma_len x3, cci_len x2 | 6 |
@@ -400,9 +408,12 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 426368 | `ports/426368_dual-moving-average-crossover-tracking-strategy/` | PineScript | ma_trend | none | lma1 x3, lma2 x2 | 6 |
 | 426376 | `ports/426376_bullish-harami-reversal-strategy/` | PineScript | candle_pattern | none | sl_atr x3 | 3 |
 | 426377 | `ports/426377_dual-moving-average-indicators-fusion-strategy/` | PineScript | multi_indicator_confluence | none | length x2, apo_short x1, apo_long x2 | 4 |
+| 426389 | `ports/426389_cryptocurrency-rsi-curve-tracking-strategy/` | PineScript | rsi_threshold | trailing_stop_pending | period x2, sl x2 | 4 |
 | 426391 | `ports/426391_ultra-long-period-rsi-reversal-strategy/` | PineScript | rsi_oscillator | none | length x3, band x2 | 6 |
+| 426394 | `ports/426394_cmf-momentum-breakthrough-moving-average-strategy/` | PineScript | money_flow | trailing_stop_pending | cmf_period x2, atr_mult x2 | 4 |
 | 426460 | `ports/426460_sell-in-may-buy-in-september-strategy/` | PineScript | calendar_seasonal | none | buy_month x3, sell_month x1 | 3 |
 | 426461 | `ports/426461_noros-fast-rsi-breakthrough-strategy/` | PineScript | rsi_oscillator | none | fast x2, limit x2 | 4 |
+| 426471 | `ports/426471_random-entry-point-strategy/` | PineScript | random_benchmark | none | i x2, take_profit x2 | 4 |
 | 426477 | `ports/426477_multi-indicator-convergence-trading-strategy/` | PineScript | multi_indicator_confluence | coarse_bar_stop | rsi_diff x2, tp_atr x3 | 6 |
 | 426482 | `ports/426482_stoch-dual-ma-stoch-indicators-combo-trading-strategy/` | PineScript | stochastic_oscillator | none | l_ma x2, l_ema x2, stk_long x2 | 8 |
 | 426483 | `ports/426483_ema-quadruple-ema-indicators-trading-strategy/` | PineScript | ma_trend | none | ema_slow x2, ema_fast x2, length x2 | 8 |
@@ -3386,7 +3397,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491892 | `ports/491892_ema-ema-dual-crossover-dynamic-stop-loss-quantitative-strate/` | PineScript | ma_cross | none | length10 x2, length20 x2 | 4 |
 | 491897 | `ports/491897_multi-factor-trend-following-quantitative-strategy/` | PineScript | parabolic_sar | coarse_bar_stop, trailing_stop_pending | adxThreshold x2, atrMultiplier x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | rsi_divergence | trailing_stop_pending | lookLeft x2, rangeUpper x2 | 4 |
-| | **3259 ports** | | | | | **14839** |
+| | **3270 ports** | | | | | **14883** |
 
 ## Rejected on reading
 
@@ -3422,6 +3433,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 368734 | Brick-count-Renko.md | 1 | The orders test bar counts as booleans: `if brick_red` (non-green bars among the last 40) is true unless 40 green bars in a row, so the script is long on practically every bar; the brick cross it labels never reaches the orders. No defined signal to test. |
 | 369999 | Directional-Movement-Oscillator-DMI.md | 1 | The orders test a float and a plot handle as booleans: `if diosc` (DI+ - DI-, true whenever non-zero) -> long, `else if p2` (a plot id) -> short. Long on practically every bar; the short branch depends on how the runtime casts a plot handle. No defined signal to test. |
 | 370728 | Smooth-HA-Candles-MTF-v1.md | 1 | The orders read a nested request: security(heikinashi(ticker), 'D', x) where x is itself security(ticker, 'D', open[1], lookahead_on). Which daily bar (and whether Heikin-Ashi or regular prices) reaches the orders depends on how the runtime resolves a nested request on a different ticker; the higher-timeframe values are undefined without choosing (as #361719). |
+| 376304 | Goblin-Town-60min-可用版.md | 1 | Each signal opens two entries (L_1 and L_2, or S_1 and S_2), each with its own exit at a different target (0.9 % and 1.7 %), with pyramiding 100: the position is closed in parts and re-entered in adds, which the house engine does not do (criterion 1, as #440430). |
 | 380446 | BTC-bot.md | 1 | The exit is a four-step take-profit ladder (25 % of the position at +3 %, +5 %, +7 %, the rest at +10 %, all with a 15 % stop, in ticks): partial exits cannot be expressed as one net position's signals (as #365389). |
 | 380530 | Trade-Hour-V3.md | 1 | strategy.order (not entry) adds a unit on every bar whose hour equals an hour estimated from cumulative ROC x hour statistics since the first bar, with no exit or reversal: the position is a running sum of orders, so the size path is the strategy. |
 | 392636 | MACD-Strategy.md | 1 | The exit is a partial take-profit ladder (10 % of the position at +2 %, 50 % at +5 %, the rest on a close below an ATR stop): partial exits cannot be expressed as one net position's signals (as #365389). pyramiding=2 also stacks entries. |

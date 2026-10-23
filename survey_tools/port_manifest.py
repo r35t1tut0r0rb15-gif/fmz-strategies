@@ -7157,6 +7157,40 @@ SIZING = {
         ("entry qty = Lev_vol", 554, 554),
         ("entry qty = Lev_vol", 562, 562),
     ],
+    # ---- FMZ-C, batch V4 (2026-10-23)
+    377541: [
+        ("strategy(): margin 100 % long / short", 61, 61),
+    ],
+    380250: [],
+    380294: [
+        ("strategy(): pyramiding 1, capital 10000, 100 % of equity, commission 0.04 %", 49, 49),
+        ("leverage inputs (off)", 274, 276),
+        ("risk input", 311, 311),
+    ],
+    425799: [
+        ("LOTS from MONEY, MARGIN, UNIT", 51, 51),
+    ],
+    425800: [
+        ("LOTS from MONEY, MARGIN, UNIT", 49, 49),
+    ],
+    426323: [
+        ("commented strategy(): fixed 2, capital 10000, pyramiding 5", 72, 84),
+        ("qty = round(equity / close)", 208, 208),
+        ("qty = round(equity / close)", 215, 215),
+    ],
+    426336: [],
+    426355: [
+        ("strategy(): pyramiding 3, commission 0.04", 65, 65),
+        ("bet 0.1 coin", 86, 86),
+    ],
+    426389: [
+        ("strategy(): capital 1000, 100 % of equity, commission 0.03 %, pyramiding 1", 72, 72),
+        ("risk / leverage quantity", 130, 132),
+    ],
+    426394: [],
+    426471: [
+        ("commented strategy(): cash 500, capital 1000, commission 0.07", 93, 93),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9109,6 +9143,11 @@ REJECTED_ON_READING = {
     # ---- FMZ-C, batch V3 (2026-10-23)
     366538: ("1", "The exits close the position in parts (qty_percent 25 / 25 / 25 at three targets), "
               "and the house engine has no partial exits (criterion 1, README rule 5)."),
+    # ---- FMZ-C, batch V4 (2026-10-23)
+    376304: ("1", "Each signal opens two entries (L_1 and L_2, or S_1 and S_2), each with its own "
+              "exit at a different target (0.9 % and 1.7 %), with pyramiding 100: the position is "
+              "closed in parts and re-entered in adds, which the house engine does not do "
+              "(criterion 1, as #440430)."),
 }
 
 DUPLICATE_ON_READING = {

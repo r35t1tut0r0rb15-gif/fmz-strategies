@@ -29,6 +29,7 @@ fmz_id,file,final_outcome,criterion,reason
 368734,Brick-count-Renko.md,REJECTED_ON_READING,1,"The orders test bar counts as booleans: `if brick_red` (non-green bars among the last 40) is true unless 40 green bars in a row, so the script is long on practically every bar; the brick cross it labels never reaches the orders. No defined signal to test."
 369999,Directional-Movement-Oscillator-DMI.md,REJECTED_ON_READING,1,"The orders test a float and a plot handle as booleans: `if diosc` (DI+ - DI-, true whenever non-zero) -> long, `else if p2` (a plot id) -> short. Long on practically every bar; the short branch depends on how the runtime casts a plot handle. No defined signal to test."
 370728,Smooth-HA-Candles-MTF-v1.md,REJECTED_ON_READING,1,"The orders read a nested request: security(heikinashi(ticker), 'D', x) where x is itself security(ticker, 'D', open[1], lookahead_on). Which daily bar (and whether Heikin-Ashi or regular prices) reaches the orders depends on how the runtime resolves a nested request on a different ticker; the higher-timeframe values are undefined without choosing (as #361719)."
+376304,Goblin-Town-60min-可用版.md,REJECTED_ON_READING,1,"Each signal opens two entries (L_1 and L_2, or S_1 and S_2), each with its own exit at a different target (0.9 % and 1.7 %), with pyramiding 100: the position is closed in parts and re-entered in adds, which the house engine does not do (criterion 1, as #440430)."
 380446,BTC-bot.md,REJECTED_ON_READING,1,"The exit is a four-step take-profit ladder (25 % of the position at +3 %, +5 %, +7 %, the rest at +10 %, all with a 15 % stop, in ticks): partial exits cannot be expressed as one net position's signals (as #365389)."
 380530,Trade-Hour-V3.md,REJECTED_ON_READING,1,"strategy.order (not entry) adds a unit on every bar whose hour equals an hour estimated from cumulative ROC x hour statistics since the first bar, with no exit or reversal: the position is a running sum of orders, so the size path is the strategy."
 392636,MACD-Strategy.md,REJECTED_ON_READING,1,"The exit is a partial take-profit ladder (10 % of the position at +2 %, 50 % at +5 %, the rest on a close below an ATR stop): partial exits cannot be expressed as one net position's signals (as #365389). pyramiding=2 also stacks entries."
@@ -764,14 +765,17 @@ fmz_id,file,final_outcome,criterion,reason
 376261,Vitalik-Scalpe.md,PORTED,,ports/376261_vitalik-scalpe/
 376263,Bitcoin-Scalper-30MIN.md,PORTED,,ports/376263_bitcoin-scalper-30min/
 376314,Bully-Signals.md,PORTED,,ports/376314_bully-signals/
+377541,AlphaTrend-Strategy.md,PORTED,,ports/377541_alphatrend-strategy/
 379757,PlanB-Quant-Investing-101-v2.md,PORTED,,ports/379757_planb-quant-investing-101-v2/
 379760,RSI-ZIGZAG22.md,PORTED,,ports/379760_rsi-zigzag22/
 380007,Simple-1m-Scalper-by-thimblemunch.md,PORTED,,ports/380007_simple-1m-scalper-by-thimblemunch/
 380219,Candle-Strength.md,PORTED,,ports/380219_candle-strength/
 380245,TUE-ADX-MACD-Confluence-Strategy.md,PORTED,,ports/380245_tue-adx-macd-confluence-strategy/
+380250,Arnaud-Legoux-Moving-Average-Cross-ALMA.md,PORTED,,ports/380250_arnaud-legoux-moving-average-cross-alma/
 380251,EMA-SCALPEUR-RSi-SHORT.md,PORTED,,ports/380251_ema-scalpeur-rsi-short/
 380277,Gooners-BTC-Weekly-RSI-Hack-Strategy.md,PORTED,,ports/380277_gooners-btc-weekly-rsi-hack-strategy/
 380291,EMA-2155200.md,PORTED,,ports/380291_ema-2155200/
+380294,Bad-guy-strategy.md,PORTED,,ports/380294_bad-guy-strategy/
 380331,Moving-Average-Cross.md,PORTED,,ports/380331_moving-average-cross/
 380369,Bullish-Bearish-Engulfing.md,PORTED,,ports/380369_bullish-bearish-engulfing/
 380396,Simple-Buy-Sell-Signals.md,PORTED,,ports/380396_simple-buy-sell-signals/
@@ -786,6 +790,8 @@ fmz_id,file,final_outcome,criterion,reason
 425773,EMA-Cross-JC-Intraday-with-Trailing-SL.md,PORTED,,ports/425773_ema-cross-jc-intraday-with-trailing-sl/
 425796,Trade02-阿隆指标MA策略.md,PORTED,,ports/425796_trade02-ma/
 425797,Trade03-双均线波动率差过滤.md,PORTED,,ports/425797_trade03/
+425799,Trade04-双均线ATR通道高低点.md,PORTED,,ports/425799_trade04-atr/
+425800,Trade05-K线支撑阻力ATR止盈.md,PORTED,,ports/425800_trade05-k-atr/
 425882,EMA200-and-Stochastic-RSI-Strategy.md,PORTED,,ports/425882_ema200-and-stochastic-rsi-strategy/
 426136,Simple-EMA20-Strategy-Stochastic.md,PORTED,,ports/426136_simple-ema20-strategy-stochastic/
 426137,Bollinger-Bands-EMA-9.md,PORTED,,ports/426137_bollinger-bands-ema-9/
@@ -798,10 +804,13 @@ fmz_id,file,final_outcome,criterion,reason
 426298,The-Gunbot-Bands-Strategy.md,PORTED,,ports/426298_the-gunbot-bands-strategy/
 426300,The-Genesis-Crossover-Trading-Strategy.md,PORTED,,ports/426300_the-genesis-crossover-trading-strategy/
 426322,Combo-Backtest-123-Reversal-Relative-Volatility-Index.md,PORTED,,ports/426322_combo-backtest-123-reversal-relative-volatility-index/
+426323,Quantitative-Trend-Trading-Strategy-Using-Polynomial-Regression.md,PORTED,,ports/426323_quantitative-trend-trading-strategy-using-polynomial-regress/
 426335,SMA-Crossover-Trading-Strategy.md,PORTED,,ports/426335_sma-crossover-trading-strategy/
+426336,Stochastic-RSI-Trading-Strategy.md,PORTED,,ports/426336_stochastic-rsi-trading-strategy/
 426338,EMA-Trading-Strategy.md,PORTED,,ports/426338_ema-trading-strategy/
 426339,Bollinger-Band-Breakout-strategy.md,PORTED,,ports/426339_bollinger-band-breakout-strategy/
 426340,Dual-Moving-Average-Breakout-Strategy.md,PORTED,,ports/426340_dual-moving-average-breakout-strategy/
+426355,RSI-Breakout-VWAP-Strategy.md,PORTED,,ports/426355_rsi-breakout-vwap-strategy/
 426359,Multi-Indicator-Configurable-Strategy-Generator.md,PORTED,,ports/426359_multi-indicator-configurable-strategy-generator/
 426360,Zero-Lag-MACD-DEMA-Breakout-Strategy.md,PORTED,,ports/426360_zero-lag-macd-dema-breakout-strategy/
 426363,HMA-and-CCI-Combo-Trend-Following-Strategy.md,PORTED,,ports/426363_hma-and-cci-combo-trend-following-strategy/
@@ -809,9 +818,12 @@ fmz_id,file,final_outcome,criterion,reason
 426368,Dual-Moving-Average-Crossover-Tracking-Strategy.md,PORTED,,ports/426368_dual-moving-average-crossover-tracking-strategy/
 426376,Bullish-Harami-Reversal-Strategy.md,PORTED,,ports/426376_bullish-harami-reversal-strategy/
 426377,Dual-Moving-Average-Indicators-Fusion-Strategy.md,PORTED,,ports/426377_dual-moving-average-indicators-fusion-strategy/
+426389,Cryptocurrency-RSI-Curve-Tracking-Strategy.md,PORTED,,ports/426389_cryptocurrency-rsi-curve-tracking-strategy/
 426391,Ultra-Long-Period-RSI-Reversal-Strategy.md,PORTED,,ports/426391_ultra-long-period-rsi-reversal-strategy/
+426394,CMF-Momentum-Breakthrough-Moving-Average-Strategy.md,PORTED,,ports/426394_cmf-momentum-breakthrough-moving-average-strategy/
 426460,Sell-in-May-Buy-in-September-Strategy.md,PORTED,,ports/426460_sell-in-may-buy-in-september-strategy/
 426461,Noros-Fast-RSI-Breakthrough-Strategy.md,PORTED,,ports/426461_noros-fast-rsi-breakthrough-strategy/
+426471,Random-Entry-Point-Strategy.md,PORTED,,ports/426471_random-entry-point-strategy/
 426477,Multi-Indicator-Convergence-Trading-Strategy.md,PORTED,,ports/426477_multi-indicator-convergence-trading-strategy/
 426482,双均线Stoch指标组合交易策略Dual-MA-Stoch-Indicators-Combo-Trading-Strategy.md,PORTED,,ports/426482_stoch-dual-ma-stoch-indicators-combo-trading-strategy/
 426483,四重EMA指标交易策略Quadruple-EMA-Indicators-Trading-Strategy.md,PORTED,,ports/426483_ema-quadruple-ema-indicators-trading-strategy/

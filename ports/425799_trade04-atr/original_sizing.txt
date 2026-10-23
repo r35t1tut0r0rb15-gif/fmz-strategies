@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #425799 (Trade04-双均线ATR通道高低点)
+# Source: https://www.fmz.com/strategy/425799  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## LOTS from MONEY, MARGIN, UNIT  [lines 51-51]
+   51: LOTS:=MAX(1,INTPART(percent/100*MONEY*C/(MARGIN*UNIT)));//币本

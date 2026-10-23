@@ -1,0 +1,24 @@
+# Original sizing and money-management code, FMZ #426323 (Quantitative-Trend-Trading-Strategy-Using-Polynomial-Regression)
+# Source: https://www.fmz.com/strategy/426323  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## commented strategy(): fixed 2, capital 10000, pyramiding 5  [lines 72-84]
+   72: // strategy(title = " underground09",
+   73: //          shorttitle = "Under09",
+   74: //          overlay = true,
+   75: //          precision = 8,
+   76: //          calc_on_order_fills = true,
+   77: //          calc_on_every_tick = true,
+   78: //          backtest_fill_limits_assumption = 0,
+   79: //          default_qty_type = strategy.fixed,
+   80: //          default_qty_value = 2,
+   81: //          initial_capital = 10000,
+   82: //          pyramiding=5,
+   83: //          currency = currency.USD,
+   84: //          linktoseries = true)
+
+## qty = round(equity / close)  [lines 208-208]
+  208:     cantidad = round(strategy.equity / close ) 
+
+## qty = round(equity / close)  [lines 215-215]
+  215:     cantidad = round(strategy.equity / close ) 
