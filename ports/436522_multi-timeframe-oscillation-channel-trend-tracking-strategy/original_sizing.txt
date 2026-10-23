@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #436522 (多时间框架震荡通道趋势追踪策略Multi-Timeframe-Oscillation-Channel-Trend-Tracking-Strategy)
+# Source: https://www.fmz.com/strategy/436522  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## entry qty 1  [lines 164-165]
+  164: strategy.entry("enter long", true, 1, when = Long and not Long[1] and (vwapfilter and close > vwap or not vwapfilter))
+  165: strategy.entry("enter short", false, 1, when = Short and not Short[1] and (vwapfilter and close < vwap or not vwapfilter))

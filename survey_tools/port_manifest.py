@@ -7482,6 +7482,26 @@ SIZING = {
     435894: [],
     435958: [],
     435966: [],
+    # ---- FMZ-C, batch V18 (2026-10-23)
+    435975: [
+        ("strategy(): margin_long 100, margin_short 100", 122, 122),
+    ],
+    435991: [
+        ("strategy(): 100 % of equity, capital 100000", 191, 191),
+    ],
+    436107: [
+        ("strategy(): 100 % of equity, capital 1000, commission 0.01 %", 142, 142),
+    ],
+    436239: [
+        ("strategy(): 100 % of equity", 143, 143),
+    ],
+    436244: [],
+    436248: [
+        ("contracts = equity / close x leverage", 293, 293),
+    ],
+    436522: [
+        ("entry qty 1", 164, 165),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9580,6 +9600,24 @@ REJECTED_ON_READING = {
               "(criterion 1, as #430758)."),
     435167: ("1", "Two take-profits close the position in parts (qty_percent 20 at 8 % and 30 at 16 "
               "%): partial exits, which the house engine does not do (criterion 1, as #430758)."),
+    # ---- FMZ-C, batch V18 (2026-10-23)
+    435970: ("2", "Entry set 1 needs res > 0, the 50-bar return of the chart against "
+              "request.security(comparativeTickerId = 'BTC_USDT:swap', close): a named external "
+              "instrument used as a signal source for whatever chart is traded (SURVEY_README: "
+              "another symbol -> criterion 2, as #436659)."),
+    435988: ("2", "The Ease of Movement value 1000000 x (change of the midpoint move) / (volume / "
+              "range) is compared with the fixed zones 4000 and -4000: a price-squared-per-volume "
+              "figure against absolute levels, with no meaning on another instrument or on broker "
+              "tick volume (criterion 2, as #432209)."),
+    436095: ("1", "The trailing stop reads request.security(tickerid, '5', hlc3) on the 1-hour header "
+              "chart: a 5-minute resolution below the chart's, whose value per bar is undefined "
+              "(as #427518); the stop signal also becomes the strategy's close signal."),
+    436101: ("1", "Three take-profits close the position in parts (qty_percent 25 / 25 / 25 at 10.5 / "
+              "11 / 11.5 %, the rest at 12 %): partial exits, which the house engine does not do "
+              "(criterion 1, as #430758)."),
+    436221: ("1", "Every indicator is read through security(tickerid, res = '5', ...) on the 1-day "
+              "header chart: a 5-minute resolution below the chart's, whose value per bar is "
+              "undefined (as #427518); the first target also closes 20 % only (a partial exit)."),
 }
 
 DUPLICATE_ON_READING = {

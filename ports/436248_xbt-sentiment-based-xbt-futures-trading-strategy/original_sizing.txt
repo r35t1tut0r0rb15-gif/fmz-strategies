@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #436248 (基于情绪的XBT期货交易策略Sentiment-Based-XBT-Futures-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/436248  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## contracts = equity / close x leverage  [lines 293-293]
+  293: contracts=(strategy.equity/close)*leverage

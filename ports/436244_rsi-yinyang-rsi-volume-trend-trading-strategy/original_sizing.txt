@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #436244 (基于RSI和交易量的阴阳双轨趋势交易策略YinYang-RSI-Volume-Trend-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/436244  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

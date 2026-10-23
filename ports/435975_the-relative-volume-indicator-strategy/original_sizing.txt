@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #435975 (相对量指标策略The-Relative-Volume-Indicator-Strategy)
+# Source: https://www.fmz.com/strategy/435975  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): margin_long 100, margin_short 100  [lines 122-122]
+  122: strategy(title="Relative Volume & RSI Pop", shorttitle="VOL & RSI Pop", overlay=false, precision=2, margin_long=100, margin_short=100)
