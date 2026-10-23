@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #434436 (基于加权移动平均线交叉的量化交易策略Weighted-Quantitative-Moving-Average-Crossover-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/434436  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, commission 0.18 %  [lines 129-129]
+  129: strategy("Brad VWMACD Strategy 2233", overlay=false, max_bars_back=500,default_qty_type=strategy.percent_of_equity,commission_type=strategy.commission.percent, commission_value=0.18, default_qty_value=100)

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #434177 (基于价格突破的自适应波动交易策略Adaptive-Volatility-Breakout-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/434177  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10000 cash per lot, pyramiding 1  [lines 135-135]
+  135: strategy(title="TradingGroundhog - Strategy & Fractal V1 - Short term", overlay=true, max_bars_back = 4000, max_labels_count=500, commission_type=strategy.commission.percent, commission_value=0.00,default_qty_type=strategy.cash, default_qty_value= cash_given_per_lot, pyramiding=pyramid_val)

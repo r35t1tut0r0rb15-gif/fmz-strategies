@@ -182,6 +182,7 @@ fmz_id,file,final_outcome,criterion,reason
 433581,P-Signal多时间框架交易策略P-Signal-Multi-Timeframe-Trading-Strategy.md,REJECTED_ON_READING,1,"Three long entries ('long_D', 'long_W', 'long_M', one unit each, pyramiding 3) open and close on their own daily, weekly and monthly P-signals: each unit leaves on its own exit, i.e. partial exits of the net position (as #426781)."
 433588,动量波动追踪策略Noros-Bollinger-Tracking-Strategy.md,REJECTED_ON_READING,1,"pyramiding 5 with trend entries allowed only while the close is beyond strategy.position_avg_price of the stacked position: the signals depend on the averaged price of the ladder (as #426570, #433015)."
 433904,轨迹追踪指数移动均线策略Trend-Following-Exponential-Moving-Average-Strategy.md,REJECTED_ON_READING,1,"Two long entry ids with different exits: the pullback entry's target and trailing stop are re-placed every bar a fixed number of ticks around the latest close, and the initial entry's exit is a resting stop at the close of the exit-signal bar; the exit rule depends on which id opened the position, with moving tick levels, which one module's signals and stops cannot express."
+433905,基于多时间框架的量化波段交易策略Bitcoin-Quantitative-Band-Trading-Strategy-Based-on-Multiple-Timeframes.md,REJECTED_ON_READING,1,"Five pyramided entries (Entry 1 .. 5, pyramiding 5), each with its own exit from its own entry price (profit / loss of 3 % / 10 % of the close in ticks): multi-entry with separate targets, which the house engine does not do (criterion 1, as #430550)."
 433916,月度抛物线突破策略Monthly-Parabolic-Breakout-Strategy.md,REJECTED_ON_READING,1,"No exit: strategy.exit('Sell', 'Buy', bar_index[30]) passes bar_index[30] as a quantity with no price or time level, so the first entry is held to the end of the data, a single buy-and-hold trade (as #428718)."
 433918,先机获利的移动平均早盘退出策略Early-Profit-Taking-Moving-Average-Opening-Bell-Exit-Strategy.md,REJECTED_ON_READING,1,"The exit order 'Close Long' is a 2000-tick target outside 10:00-16:00 and is replaced by a 500-tick stop inside that window (same id, re-issued by the clock), so the bracket of an open trade switches by time of day, which fixed per-trade stops cannot express."
 433920,动态网格交易策略Dynamic-Grid-Trading-Strategy.md,REJECTED_ON_READING,1,"Grid ladder: fifteen entry ids on levels around an SMA 300, each bought below its level and closed above the next one; the position is a sum of grid units (as #430596)."
@@ -540,7 +541,6 @@ fmz_id,file,final_outcome,criterion,reason
 491891,多时间框架趋势突破策略与RSI过滤及ATR风险管理-Multi-Timeframe-Trend-Breakout-Strategy-with-RSI-Filter-and-ATR-Based-Risk-Management.md,REJECTED_ON_READING,2,"The exits include trail_points / trail_offset of ATR multiples, price amounts passed as tick counts (criterion 2, as #482767); the source has no backtest header either."
 491914,价格行为结构突破-跟踪止损策略-Price-Action-Structural-Breakout-Strategy-with-Trailing-Stop.md,REJECTED_ON_READING,2,"The only exits are strategy.exit(trail_points = 1 ATR, trail_offset = 0.5 ATR), price amounts passed as tick counts (criterion 2, as #482767)."
 492009,双均线过滤的ATR自适应趋势跟踪策略-Dual-EMA-Filtered-ATR-Adaptive-Trend-Following-Strategy.md,REJECTED_ON_READING,2,"The exits are a 10 / 10-point trail and a limit of 100 'points' added to the price, a fixed price amount (criterion 2, as #473377)."
-433969,双重均线交叉移动平均策略Dual-Moving-Average-Crossover-Strategy.md,HELD_NEEDS_VOLUME,8,"The slow line is vwma(high, 7): a volume-weighted average (check 8, held with the other volume users)."
 434606,移动平均线聚合MACD策略Moving-Average-Aggregation-MACD-Strategy.md,HELD_NEEDS_VOLUME,8,"One of the five averages is vwma(close, 136): a volume-weighted average (check 8, held with the other volume users)."
 434977,RSI拉升突破策略RSI-Breakout-Strategy.md,HELD_NEEDS_VOLUME,8,"The long and short exits test the close against vwma(close, 20): a volume-weighted average (check 8, held with the other volume users). (Also, on the 1-hour header chart no bar opens inside the 09:15-09:16 session window, so the day-range anchor is never set.)"
 436658,双均线黄金交叉量化策略Dual-Moving-Average-Golden-Cross-Quantitative-Strategy.md,HELD_NEEDS_VOLUME,8,"The long and short entries test the Hull line against rvwma3 = vwma(close, 42): a volume-weighted average (check 8, held with the other volume users)."
@@ -1722,15 +1722,18 @@ fmz_id,file,final_outcome,criterion,reason
 433914,基于RSI和MA均线的量化交易策略RSI-and-Moving-Average-Based-Quantitative-Trading-Strategy.md,PORTED,,ports/433914_rsi-ma-rsi-and-moving-average-based-quantitative-trading-str/
 433922,双指标组合疯狂日内scalping策略Dual-Indicators-Combo-Crazy-Intraday-Scalping-Strategy.md,PORTED,,ports/433922_scalping-dual-indicators-combo-crazy-intraday-scalping-strat/
 433923,双移动平均线交叉策略Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/433923_dual-moving-average-crossover-strategy/
+433925,基于价格量变动的趋势策略Modified-Price-Volume-Trend-Strategy-Based-on-Price-Volume-Changes.md,PORTED,,ports/433925_modified-price-volume-trend-strategy-based-on-price-volume-c/
 433936,神圣十字策略Holy-Grail-Strategy.md,PORTED,,ports/433936_holy-grail-strategy/
 433946,基于ATR和MA组合的超级趋势交易策略Supertrend-Trading-Strategy-Based-on-ATR-and-MA-Combination.md,PORTED,,ports/433946_atr-ma-supertrend-trading-strategy-based-on-atr-and-ma-combi/
 433948,基于频道和线性回归的Hull-MA摆荡策略Hull-MA-Channel-and-Linear-Regression-Swing-Trading-Strategy.md,PORTED,,ports/433948_hull-ma-hull-ma-channel-and-linear-regression-swing-trading/
 433949,移动平均线反转跨越策略Moving-Average-Line-Reverse-Crossover-Strategy.md,PORTED,,ports/433949_moving-average-line-reverse-crossover-strategy/
 433950,双移动均线金叉死叉反转策略Dual-Moving-Average-Crossover-Reversal-Strategy.md,PORTED,,ports/433950_dual-moving-average-crossover-reversal-strategy/
+433958,多指标组合震荡定位突破策略Oscillation-Positioning-Breakthrough-Strategy-with-Multiple-Indicators.md,PORTED,,ports/433958_oscillation-positioning-breakthrough-strategy-with-multiple/
 433959,基于价格波动性的趋势跟踪止损策略-Volatility-Stop-Tracking-Strategy.md,PORTED,,ports/433959_volatility-stop-tracking-strategy/
 433960,双均线与RSI组合的MT5马丁格尔scalping策略RSI-and-Moving-Average-Combination-MT5-Martingale-Scalping-Strategy.md,PORTED,,ports/433960_rsi-mt5-scalping-rsi-and-moving-average-combination-mt5-mart/
 433966,波浪趋势多止损多止盈策略Multi-Take-Profit-and-Stop-Loss-WaveTrend-Trend-Following-Strategy.md,PORTED,,ports/433966_multi-take-profit-and-stop-loss-wavetrend-trend-following-st/
 433968,动量双均线交易策略Momentum-Dual-Moving-Average-Trading-Strategy.md,PORTED,,ports/433968_momentum-dual-moving-average-trading-strategy/
+433969,双重均线交叉移动平均策略Dual-Moving-Average-Crossover-Strategy.md,PORTED,,ports/433969_dual-moving-average-crossover-strategy/
 433970,动量指数型金叉交易策略Momentum-Exponential-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/433970_momentum-exponential-moving-average-crossover-trading-strate/
 433971,四重指数移动平均线交易策略Quadriple-Exponential-Moving-Average-Trading-Strategy.md,PORTED,,ports/433971_quadriple-exponential-moving-average-trading-strategy/
 434159,大悦多因子量化策略The-Great-Delight-Multifactor-Quantitative-Strategy.md,PORTED,,ports/434159_the-great-delight-multifactor-quantitative-strategy/
@@ -1738,6 +1741,7 @@ fmz_id,file,final_outcome,criterion,reason
 434166,Fisher变换指标回测策略Fisher-Transform-Backtest-Strategy.md,PORTED,,ports/434166_fisher-fisher-transform-backtest-strategy/
 434167,比特币-移动平均线交叉策略-Bitcoin-MA-Crossover-Strategy.md,PORTED,,ports/434167_bitcoin-ma-crossover-strategy/
 434175,高点减指数移动平均线策略High-Minus-Exponential-Moving-Average-Stock-Strategy.md,PORTED,,ports/434175_high-minus-exponential-moving-average-stock-strategy/
+434177,基于价格突破的自适应波动交易策略Adaptive-Volatility-Breakout-Trading-Strategy.md,PORTED,,ports/434177_adaptive-volatility-breakout-trading-strategy/
 434183,双重均线震荡交易策略Double-Moving-Average-Oscillation-Trading-Strategy.md,PORTED,,ports/434183_double-moving-average-oscillation-trading-strategy/
 434187,突破均线交易策略Momentum-Breakout-Moving-Average-Trading-Strategy.md,PORTED,,ports/434187_momentum-breakout-moving-average-trading-strategy/
 434192,海龟突破策略Turtle-Breakout-Strategy.md,PORTED,,ports/434192_turtle-breakout-strategy/
@@ -1749,11 +1753,14 @@ fmz_id,file,final_outcome,criterion,reason
 434293,双均线突破策略Dual-Moving-Average-Breakthrough-Strategy.md,PORTED,,ports/434293_dual-moving-average-breakthrough-strategy/
 434294,八日反转动量策略Eight-Days-Reversal-Momentum-Strategy.md,PORTED,,ports/434294_eight-days-reversal-momentum-strategy/
 434295,超级趋势多时间框架回测策略SuperTrend-Multi-Timeframe-Backtest-Strategy.md,PORTED,,ports/434295_supertrend-multi-timeframe-backtest-strategy/
+434296,EMA-ADX-VOL-加密货币杀手EMA-ADX-VOL-CRYPTO-KILLER.md,PORTED,,ports/434296_ema-adx-vol-ema-adx-vol-crypto-killer/
 434299,交叉均线金叉死叉策略Cross-Moving-Average-Golden-Cross-Death-Cross-Strategy.md,PORTED,,ports/434299_cross-moving-average-golden-cross-death-cross-strategy/
+434301,流量主导型震荡量化策略Volume-driven-Oscillation-Quant-Strategy.md,PORTED,,ports/434301_volume-driven-oscillation-quant-strategy/
 434304,移动平均线交叉穿越策略Moving-Average-Crossover-Strategy.md,PORTED,,ports/434304_moving-average-crossover-strategy/
 434305,反转PercentR连费通道策略PercentR-Reversa-Channe-Strategy.md,PORTED,,ports/434305_percentr-percentr-reversa-channe-strategy/
 434325,STARC通道回测策略STARC-Channel-Backtest-Strategy.md,PORTED,,ports/434325_starc-starc-channel-backtest-strategy/
 434326,低频傅里叶变换趋势跟踪移动平均线策略Low-Frequency-Fourier-Transform-Trend-Following-Moving-Average-Strategy.md,PORTED,,ports/434326_low-frequency-fourier-transform-trend-following-moving-avera/
+434328,混合均线突破Turtle交易策略Hybrid-Moving-Average-Breakout-Turtle-Trading-Strategy.md,PORTED,,ports/434328_turtle-hybrid-moving-average-breakout-turtle-trading-strateg/
 434330,基于价格反转的TTM银隼震荡策略TTM-Falcon-Oscillator-Reversal-Strategy-Based-on-Price-Reversion.md,PORTED,,ports/434330_ttm-ttm-falcon-oscillator-reversal-strategy-based-on-price-r/
 434332,动量型指数趋势跟随策略Momentum-Index-ETF-Trend-Following-Strategy.md,PORTED,,ports/434332_momentum-index-etf-trend-following-strategy/
 434336,平均最高最低波动交易策略Average-Highest-High-and-Lowest-Low-Swinger-Strategy.md,PORTED,,ports/434336_average-highest-high-and-lowest-low-swinger-strategy/
@@ -1761,8 +1768,10 @@ fmz_id,file,final_outcome,criterion,reason
 434345,自适应ATR-ADX趋势策略V2An-Adaptive-ATR-ADX-Trend-Strategy-V2.md,PORTED,,ports/434345_atr-adx-v2an-adaptive-atr-adx-trend-strategy-v2/
 434428,Reversal-Bollinger-Bands-Strategy反转波动带策略.md,PORTED,,ports/434428_reversal-bollinger-bands-strategy/
 434434,双均线交叉趋势策略Dual-Moving-Average-Crossover-Trend-Strategy.md,PORTED,,ports/434434_dual-moving-average-crossover-trend-strategy/
+434436,基于加权移动平均线交叉的量化交易策略Weighted-Quantitative-Moving-Average-Crossover-Trading-Strategy.md,PORTED,,ports/434436_weighted-quantitative-moving-average-crossover-trading-strat/
 434445,均线黄金交叉1止盈策略1-Profit-Moving-Average-Cross-Strategy.md,PORTED,,ports/434445_1-1-profit-moving-average-cross-strategy/
 434446,三重SuperTrend和Stoch-RSI策略Triple-SuperTrend-and-Stoch-RSI-Strategy.md,PORTED,,ports/434446_supertrend-stoch-rsi-triple-supertrend-and-stoch-rsi-strateg/
+434449,基于布林带百分比指标的去趋势策略BB-Percentage-Index-Trend-Fading-Strategy.md,PORTED,,ports/434449_bb-percentage-index-trend-fading-strategy/
 434458,双均线ADX择时策略Dual-Moving-Average-ADX-Timing-Strategy.md,PORTED,,ports/434458_adx-dual-moving-average-adx-timing-strategy/
 434466,动态K线大阳线交易策略Dynamic-Candlestick-Big-Yang-Line-Trading-Strategy.md,PORTED,,ports/434466_k-dynamic-candlestick-big-yang-line-trading-strategy/
 434467,三重移动平均线顺势交易策略Improved-Moving-Average-Crossover-Strategy-with-Market-Trend-Guidance.md,PORTED,,ports/434467_improved-moving-average-crossover-strategy-with-market-trend/
@@ -1779,9 +1788,11 @@ fmz_id,file,final_outcome,criterion,reason
 434527,自适应移动平均线策略Malas-Adaptive-Moving-Average-Strategy.md,PORTED,,ports/434527_malas-adaptive-moving-average-strategy/
 434551,黄金通道反转策略Fibonacci-Retracement-Reversal-Strategy.md,PORTED,,ports/434551_fibonacci-retracement-reversal-strategy/
 434552,标准分数价格突破策略Z-Score-Price-Breakout-Strategy.md,PORTED,,ports/434552_z-score-price-breakout-strategy/
+434555,结合多重指标的比特币日内交易策略Johns-Bitcoin-Intraday-Trading-Strategy-Based-on-Multiple-Indicators.md,PORTED,,ports/434555_johns-bitcoin-intraday-trading-strategy-based-on-multiple-in/
 434556,动量交叉均线策略Dynamic-Momentum-Strategy.md,PORTED,,ports/434556_dynamic-momentum-strategy/
 434558,基于SMA和EMA指标的短线交易策略Short-term-Trading-Strategy-Based-on-SMA-and-EMA.md,PORTED,,ports/434558_sma-ema-short-term-trading-strategy-based-on-sma-and-ema/
 434562,RSI鳄鱼交易策略Alligator-RSI-Trading-Strategy.md,PORTED,,ports/434562_rsi-alligator-rsi-trading-strategy/
+434579,双重优化组合反转EMA加权交易策略Comb-Reverse-EMA-Volume-Weighting-Optimization-Trading-Strategies.md,PORTED,,ports/434579_ema-comb-reverse-ema-volume-weighting-optimization-trading-s/
 434581,日内交易关键点策略Intraday-Pivot-Points-Trading-Strategy.md,PORTED,,ports/434581_intraday-pivot-points-trading-strategy/
 434585,唐奇安通道带跟踪止损策略Donchian-Channel-With-Trailing-Stop-Loss-Strategy.md,PORTED,,ports/434585_donchian-channel-with-trailing-stop-loss-strategy/
 434586,动量反转缩量突破型低吸金叉策略Camarilla-Pivot-Points-Breakthrough-and-Momentum-Reversal-Low-Absorption-Golden-Cross-Strategy.md,PORTED,,ports/434586_camarilla-pivot-points-breakthrough-and-momentum-reversal-lo/

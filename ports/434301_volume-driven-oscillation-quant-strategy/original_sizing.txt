@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #434301 (流量主导型震荡量化策略Volume-driven-Oscillation-Quant-Strategy)
+# Source: https://www.fmz.com/strategy/434301  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

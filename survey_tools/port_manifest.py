@@ -7420,6 +7420,31 @@ SIZING = {
         ("strategy(): 100 % of equity, capital 1000000", 133, 133),
     ],
     433454: [],
+    # ---- FMZ-C, batch V15 (2026-10-23)
+    433925: [],
+    433958: [],
+    433969: [],
+    434177: [
+        ("strategy(): 10000 cash per lot, pyramiding 1", 135, 135),
+    ],
+    434296: [
+        ("strategy(): 100 % of equity, capital 10000, commission 0.03 %", 154, 154),
+    ],
+    434301: [],
+    434328: [
+        ("strategy(): default qty 10, pyramiding 0", 146, 146),
+    ],
+    434436: [
+        ("strategy(): 100 % of equity, commission 0.18 %", 129, 129),
+    ],
+    434449: [
+        ("strategy(): 100 % of equity, pyramiding 100", 128, 128),
+        ("lot = equity / close x capital %", 182, 182),
+    ],
+    434555: [
+        ("strategy(): 10000 cash per trade, capital 10000", 148, 148),
+    ],
+    434579: [],
 }
 
 REJECTED_ON_READING = {
@@ -9495,6 +9520,11 @@ REJECTED_ON_READING = {
     433512: ("1", "With pyramiding 3 a new entry is added while long (ids 'L<lev>X'), moving the stop "
               "up by 0.2 x the risk on each add, and each size is leverage x risk: adds, which "
               "the house engine does not do (criterion 1, as #430550)."),
+    # ---- FMZ-C, batch V15 (2026-10-23)
+    433905: ("1", "Five pyramided entries (Entry 1 .. 5, pyramiding 5), each with its own exit from "
+              "its own entry price (profit / loss of 3 % / 10 % of the close in ticks): "
+              "multi-entry with separate targets, which the house engine does not do (criterion "
+              "1, as #430550)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -9516,7 +9546,6 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C52 (2026-10-17)
     # ---- FMZ-C, batch C53 (2026-10-17)
     # ---- FMZ-C, batch C64 (2026-10-17)
-    433969: ("8", "The slow line is vwma(high, 7): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C69 (2026-10-17)
     434606: ("8", "One of the five averages is vwma(close, 136): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C72 (2026-10-17)
