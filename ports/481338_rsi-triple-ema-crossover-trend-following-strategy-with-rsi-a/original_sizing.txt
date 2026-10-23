@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #481338 (三均线交叉趋势跟踪策略结合RSI和成交量确认系统-Triple-EMA-Crossover-Trend-Following-Strategy-with-RSI-and-Volume-Confirmation-System)
+# Source: https://www.fmz.com/strategy/481338  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

@@ -7815,6 +7815,17 @@ SIZING = {
     481091: [
         ("strategy(): 200 % of equity", 99, 99),
     ],
+    # ---- FMZ-C, batch V38 (2026-10-23)
+    481098: [],
+    481117: [],
+    481338: [],
+    481339: [
+        ("strategy(): 10 % of equity", 103, 103),
+    ],
+    481348: [],
+    481367: [],
+    482421: [],
+    482431: [],
 }
 
 REJECTED_ON_READING = {
@@ -10114,6 +10125,21 @@ REJECTED_ON_READING = {
               "fixed price distance (criterion 2)."),
     478729: ("2", "Entries need volume > 100000 (volumeThreshold): an absolute volume threshold in "
               "the source feed's units (criterion 2, as #426785)."),
+    # ---- FMZ-C, batch V38 (2026-10-23)
+    481101: ("1", "The supply / demand zones read request.security(syminfo.tickerid, \"15\", "
+              "ta.highest(high, 50)) and the lowest low on the header's 1-day chart: a "
+              "lower-timeframe security read, which the house bars cannot reproduce (as #427518, "
+              "#475618)."),
+    481368: ("2", "stochRsi = ta.stoch(close, 14, 3, 3) passes the constants 14 and 3 as the high and "
+              "low series, so it is 100 x (close - 3) / 11 and the tests stochRsi > 20 / < 80 "
+              "depend on the raw price level (always true / never true at BTC prices): price-unit "
+              "levels (criterion 2)."),
+    482422: ("2", "The entry needs the EMA 50's angle, atan((ma50 - ma50[14]) / 14) in degrees, >= 45 "
+              "(long) or <= 45 (short): a slope in raw price units per bar, so the test depends "
+              "on the instrument's price scale (criterion 2)."),
+    482423: ("1", "The trend filter reads request.security(syminfo.tickerid, \"60\", ta.ema(close, 50)) "
+              "on the header's 1-day chart: a lower-timeframe security read (as #427518); its "
+              "09:00 / 15:00 clock rules never occur on daily bars."),
 }
 
 DUPLICATE_ON_READING = {
@@ -10147,7 +10173,6 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C208 (2026-10-22)
     # ---- FMZ-C, batch C236 (2026-10-22)
     # ---- FMZ-C, batch C243 (2026-10-22)
-    482422: ("8", "The entry and exit lines are ta.vwma(close, 25) and ta.vwma(close, 8): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C244 (2026-10-22)
     482454: ("licence", "Held for Austin: the source carries a CC BY-NC-SA 4.0 licence (non-commercial, share-alike; the Andean Oscillator by alexgrover), so it is not ported until Austin decides (as #468315)."),
     # ---- FMZ-C, batch C246 (2026-10-22)
