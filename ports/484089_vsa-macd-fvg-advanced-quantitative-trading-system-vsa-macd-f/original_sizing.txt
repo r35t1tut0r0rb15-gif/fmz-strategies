@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #484089 (多维度量化交易系统高级VSA-MACD-FVG策略分析与优化框架-Advanced-Quantitative-Trading-System-VSA-MACD-FVG-Strategy-Analysis-and-Optimization-Framework)
+# Source: https://www.fmz.com/strategy/484089  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

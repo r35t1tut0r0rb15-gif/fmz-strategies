@@ -7899,6 +7899,26 @@ SIZING = {
     483680: [
         ("risk-based qty from the initial capital", 223, 245),
     ],
+    # ---- FMZ-C, batch V43 (2026-10-23)
+    483935: [
+        ("strategy(): 15 % of equity, commission", 207, 207),
+    ],
+    484089: [],
+    484091: [
+        ("strategy(): capital, 10 % of equity", 229, 229),
+    ],
+    484579: [],
+    484581: [
+        ("strategy(): capital", 141, 141),
+    ],
+    484597: [],
+    485128: [
+        ("strategy(): 10 % of equity", 189, 189),
+    ],
+    485291: [],
+    486572: [
+        ("strategy(): commission", 150, 150),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -10254,6 +10274,16 @@ REJECTED_ON_READING = {
     483527: ("2", "Its exits pass ATR price amounts as trail_points / trail_offset (ticks) (as "
               "#440334), and it sizes and halts trading by dollar risk and a $7,500 weekly-loss "
               "limit on netprofit: price amounts passed as ticks and cash rules (criterion 2)."),
+    # ---- FMZ-C, batch V43 (2026-10-23)
+    483938: ("2", "The long needs close <= 21662.5 + 100 (a fixed support price and a 100-point "
+              "proximity) and the exits are 100 / 200 points from the entry: price-unit levels "
+              "(criterion 2)."),
+    484917: ("2", "trail_points = close - 2 x ATR (a price level) is passed as a tick count, so the "
+              "trailing activation distance is a price amount read as ticks (criterion 2, as "
+              "#440334); the quantity is a fixed 1000."),
+    485127: ("2", "The volatility filter needs atr > 1.5 in price units, and the ADX divides by "
+              "max(DM sum, 1) (a price-unit floor): the entries depend on the instrument's price "
+              "scale (criterion 2)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #485128 (固定范围成交量分布与锚定加权成交量平均价结合的趋势判断与动态止损策略-Fixed-Range-Volume-Profile-And-Anchored-VWAP-Trend-Identification-Strategy-With-Dynamic-Stop-Loss)
+# Source: https://www.fmz.com/strategy/485128  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity  [lines 189-189]
+  189: strategy("FRVP + AVWAP Improved By NgashCT", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
