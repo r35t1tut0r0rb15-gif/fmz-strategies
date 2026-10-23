@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #426617 (基于终极波动指标的反转做多策略Long-Reversal-Strategy-Based-on-Ultimate-Oscillator)
+# Source: https://www.fmz.com/strategy/426617  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 2, 20 % of equity, capital 10000  [lines 94-94]
+   94: strategy(title="Ultimate Oscillator [Long] Strategy",  shorttitle="UO" , overlay=false, pyramiding=2,     default_qty_type=strategy.percent_of_equity,  default_qty_value=20, initial_capital=10000, currency=currency.USD)  //default_qty_value=10, default_qty_type=strategy.fixed,
+
+## risk-based qty1  [lines 188-191]
+  188: qty1 = (strategy.equity  * riskCapital / 100 ) /  (close*stopLoss/100)  
+  189: 
+  190: //check if cash is sufficient  to buy qty1  , if capital not available use the available capital only
+  191: qty1:= (qty1 * close >= strategy.equity ) ? (strategy.equity / close) : qty1

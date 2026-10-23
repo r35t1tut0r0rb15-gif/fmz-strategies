@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #426569 (韦氏布林带交易策略Weis-Wave-Bollinger-Band-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/426569  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## commented strategy(): 10 % of equity  [lines 116-116]
+  116: // strategy("Weis BB Strategy", overlay=false, default_qty_type = strategy.percent_of_equity, default_qty_value = 10,max_lines_count = 500, max_labels_count = 500)

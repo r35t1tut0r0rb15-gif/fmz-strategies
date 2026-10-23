@@ -1,0 +1,11 @@
+# Original sizing and money-management code, FMZ #426804 (晨星K线突破策略Morning-Star-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/426804  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 1, capital 10000, 10 % of equity, slippage 1, commission 0.075 %  [lines 134-139]
+  134: strategy("PURE MORNING 2.0", overlay=true, pyramiding=1,
+  135:          initial_capital=10000, 
+  136:          default_qty_type=strategy.percent_of_equity, default_qty_value=10,
+  137:          slippage=1,backtest_fill_limits_assumption=1,use_bar_magnifier= true,
+  138:          commission_type=strategy.commission.percent, commission_value=0.075
+  139:          )

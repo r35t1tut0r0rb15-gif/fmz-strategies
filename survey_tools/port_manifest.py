@@ -7191,6 +7191,27 @@ SIZING = {
     426471: [
         ("commented strategy(): cash 500, capital 1000, commission 0.07", 93, 93),
     ],
+    # ---- FMZ-C, batch V5 (2026-10-23)
+    426563: [
+        ("strategy(): pyramiding 0, capital 20000, 100 % of equity, commission 0.075", 104, 104),
+        ("contracts = equity / close x leverage", 201, 202),
+    ],
+    426569: [
+        ("commented strategy(): 10 % of equity", 116, 116),
+    ],
+    426591: [
+        ("qty = equity / close", 90, 91),
+    ],
+    426617: [
+        ("strategy(): pyramiding 2, 20 % of equity, capital 10000", 94, 94),
+        ("risk-based qty1", 188, 191),
+    ],
+    426804: [
+        ("strategy(): pyramiding 1, capital 10000, 10 % of equity, slippage 1, commission 0.075 %", 134, 139),
+    ],
+    426845: [
+        ("strategy(): capital 10000, 100 % of equity, commission 0", 139, 139),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9148,6 +9169,30 @@ REJECTED_ON_READING = {
               "exit at a different target (0.9 % and 1.7 %), with pyramiding 100: the position is "
               "closed in parts and re-entered in adds, which the house engine does not do "
               "(criterion 1, as #440430)."),
+    # ---- FMZ-C, batch V5 (2026-10-23)
+    426555: ("1", "On the 4-day header chart every entry needs a bar inside both the 09:30-16:00 and "
+              "10:00-12:10 sessions, and a 4-day bar opens at 00:00, outside both, so the script "
+              "as written never enters; an intraday reading is not the declared chart (criterion "
+              "1, as #439752)."),
+    426572: ("1", "On the 1-hour header chart both entries need time('15', '1515-1530'), and an "
+              "hourly bar opens on the hour, outside that window, so the script never enters; and "
+              "no exit is ever sent (the exits are commented out), so an entry would be held for "
+              "ever (criterion 1, as #439752, #451024)."),
+    426578: ("2", "strategy.exit(profit = take_profit, trail_offset = trailing_stop) passes PRICE "
+              "levels (the average price x 1.035 and x 0.99) as TICK distances, so the target and "
+              "the trail offset are about the price times the tick size: instrument-specific "
+              "exits with no generic reading (criterion 2, as #439366)."),
+    426785: ("2", "The entry needs sum(volume, 5) > 250000 and obv[5] > 15: absolute volume levels of "
+              "the source's BTC_USDT spot feed, with no meaning on another instrument or on "
+              "broker tick volume (criterion 2, an instrument-specific threshold); the stop names "
+              "the entry id 'exit', which is never entered."),
+    426809: ("2", "The trend line is hl2 -/+ 4 x rsi(seed, 21): an RSI value (0-100) used as a PRICE "
+              "distance of up to 400 price units, about 1 % on BTC (the only instrument the "
+              "network weights were trained for, as the source says) but more than the whole "
+              "price on FX (criterion 2, an instrument-specific price distance)."),
+    426892: ("1", "Each signal opens two entries (long1 / long2, short1 / short2) of 0.5 each with "
+              "their own targets (0.7 % and 1.8 %), with pyramiding 100: the position is closed "
+              "in parts, which the house engine does not do (criterion 1, as #440430)."),
 }
 
 DUPLICATE_ON_READING = {

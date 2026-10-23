@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #426563 (通用回测策略模板Universal-Strategy-Backtest-Template)
+# Source: https://www.fmz.com/strategy/426563  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 0, capital 20000, 100 % of equity, commission 0.075  [lines 104-104]
+  104: strategy('Strategy Backtesting Template [MYN]', max_bars_back=5000, overlay=true, pyramiding=0, initial_capital=20000, currency='USD', default_qty_type=strategy.percent_of_equity, default_qty_value=100.0, commission_value=0.075, use_bar_magnifier = true)
+
+## contracts = equity / close x leverage  [lines 201-202]
+  201: leverage = input.float(1, 'Leverage', step=.5, group='Leverage')
+  202: contracts = math.min(math.max(.000001, strategy.equity / close * leverage), 1000000000)
