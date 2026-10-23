@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3227 |
+| PORTED | 3228 |
 | REJECTED | 994 |
 | HELD_NEEDS_VOLUME | 574 |
-| REJECTED_ON_READING | 506 |
+| REJECTED_ON_READING | 505 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -2512,6 +2512,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 453273 | `ports/453273_moving-average-crossover-strategy-based-on-dual-moving-avera/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
 | 453276 | `ports/453276_percentage-threshold-quantitative-trading-strategy/` | PineScript | momentum_breakout | none | pct x3 | 3 |
 | 453277 | `ports/453277_starlight-moving-average-crossover-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
+| 453281 | `ports/453281_dynamic-timeframe-high-low-breakout-strategy/` | PineScript | momentum_breakout | none | points_frac x3 | 3 |
 | 453287 | `ports/453287_macd-rsi-macd-and-rsi-combined-natural-trading-strategy/` | PineScript | multi_indicator_confluence | none | rsi_len x2, gate_len x2, wma_len x2 | 8 |
 | 453645 | `ports/453645_10sma-macd-10sma-and-macd-dual-trend-following-trading-strat/` | PineScript | macd_cross | none | length x2, fast x2, slow x2 | 8 |
 | 453646 | `ports/453646_sma-sma-dual-moving-average-crossover-strategy/` | PineScript | ma_cross | none | short_len x2, long_len x2 | 4 |
@@ -3354,7 +3355,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491892 | `ports/491892_ema-ema-dual-crossover-dynamic-stop-loss-quantitative-strate/` | PineScript | ma_cross | none | length10 x2, length20 x2 | 4 |
 | 491897 | `ports/491897_multi-factor-trend-following-quantitative-strategy/` | PineScript | parabolic_sar | coarse_bar_stop, trailing_stop_pending | adxThreshold x2, atrMultiplier x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | rsi_divergence | trailing_stop_pending | lookLeft x2, rangeUpper x2 | 4 |
-| | **3227 ports** | | | | | **14712** |
+| | **3228 ports** | | | | | **14715** |
 
 ## Rejected on reading
 
@@ -3697,7 +3698,6 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 453233 | 多时间尺度SMA趋势跟踪与动态止损策略-Multi-Timeframe-SMA-Trend-Following-Strategy-with-Dynamic-Stop-Loss.md | 1 | The trend filter is request.security(syminfo.tickerid, '240', ..., lookahead_on) on the 6-hour header chart: a 4-hour resolution below the chart's, whose value per chart bar is undefined (criterion 1, as #427518). |
 | 453247 | 移动平均线交叉策略MA-Cross-Strategy.md | 1 | Positions are opened and flattened with strategy.order (qty = the held size), so which side the strategy trades for the whole run depends on the first one-shot signal of the data, and the bracket levels are computed before the signals are re-assigned: strategy.order position bookkeeping (criterion 1, as #430596). |
 | 453266 | 基于CDC行动区的ATR止盈止损交易机器人策略-CDC-Action-Zone-Trading-Bot-Strategy-with-ATR-for-Take-Profit-and-Stop-Loss.md | 2 | The exits strategy.exit(profit = takeProfit) / (loss = stopLoss) pass price amounts (a price level and 5 % of the close) where the call takes tick distances: the exits are undefined as written (criterion 2, as #442076, #442115). |
-| 453281 | 动态时间框架高低点突破策略-Dynamic-Timeframe-High-Low-Breakout-Strategy.md | 1 | The breakout levels are request.security(syminfo.tickerid, '60', high / low / close) on the daily header chart: a 1-hour resolution below the chart's, whose value per daily bar is undefined (criterion 1, as #427518). |
 | 453654 | EMA均线与抛物线SAR组合策略-EMA-and-Parabolic-SAR-Combination-Strategy.md | 1 | Every bar closes all positions once timenow is past 15:15 of the day the script runs (exitTime is built from timenow's own date): with the wall-clock time of the run deciding whether any trade is held, the result depends on when the backtest is run, not on the data (criterion 1, as #453230). |
 | 453662 | EMA双均线交叉策略-EMA-Dual-Moving-Average-Crossover-Strategy.md | 1 | close_all fires when the day's equity change reaches -125 or +1000 currency units (strategy.equity against the day's start): a size-dependent equity gate on every trade (criterion 1, as #440336). |
 | 454359 | EMA动态止损交易策略-EMA-Dynamic-Stop-Loss-Trading-Strategy.md | 1 | The only exit arms when strategy.netprofit (closed-trade profit in currency) reaches 1.2 x the average price (a price level): a size- and history-dependent gate on the stop, with no other exit for the long (criterion 1, as #440336). |

@@ -7087,6 +7087,8 @@ SIZING = {
     492007: [
         ("strategy(): 10 % of equity", 120, 120),
     ],
+    # ---- FMZ-C, batch C276 (2026-10-23)
+    453281: [],
 }
 
 REJECTED_ON_READING = {
@@ -8454,9 +8456,6 @@ REJECTED_ON_READING = {
               "amounts (a price level and 5 % of the close) where the call takes tick distances: "
               "the exits are undefined as written (criterion 2, as #442076, #442115)."),
     # ---- FMZ-C, batch C192 (2026-10-22)
-    453281: ("1", "The breakout levels are request.security(syminfo.tickerid, '60', high / low / "
-              "close) on the daily header chart: a 1-hour resolution below the chart's, whose "
-              "value per daily bar is undefined (criterion 1, as #427518)."),
     # ---- FMZ-C, batch C193 (2026-10-22)
     453654: ("1", "Every bar closes all positions once timenow is past 15:15 of the day the script "
               "runs (exitTime is built from timenow's own date): with the wall-clock time of the "
