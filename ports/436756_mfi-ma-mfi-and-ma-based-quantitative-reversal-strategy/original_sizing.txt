@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #436756 (基于MFI和MA的量化反转策略MFI-and-MA-Based-Quantitative-Reversal-Strategy)
+# Source: https://www.fmz.com/strategy/436756  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

@@ -7502,6 +7502,25 @@ SIZING = {
     436522: [
         ("entry qty 1", 164, 165),
     ],
+    # ---- FMZ-C, batch V19 (2026-10-23)
+    436605: [
+        ("strategy(): fixed qty 0.5, capital 1000, slippage 25", 167, 167),
+    ],
+    436609: [
+        ("long size = equity x 2 % / (2 x ATR 14)", 389, 389),
+        ("short size", 407, 407),
+    ],
+    436645: [],
+    436658: [],
+    436756: [],
+    436759: [
+        ("entry qty 1", 222, 223),
+    ],
+    436906: [],
+    437003: [
+        ("strategy(): 50 % of equity, capital 1000, pyramiding 1", 131, 131),
+    ],
+    437011: [],
 }
 
 REJECTED_ON_READING = {
@@ -9618,6 +9637,18 @@ REJECTED_ON_READING = {
     436221: ("1", "Every indicator is read through security(tickerid, res = '5', ...) on the 1-day "
               "header chart: a 5-minute resolution below the chart's, whose value per bar is "
               "undefined (as #427518); the first target also closes 20 % only (a partial exit)."),
+    # ---- FMZ-C, batch V19 (2026-10-23)
+    436608: ("1", "Every buy / sell volume series is read through request.security(tickerid, "
+              "customTimeframe = '60', ...) on the 1-day header chart: a 60-minute resolution "
+              "below the chart's, whose value per bar is undefined (as #427518); the entries also "
+              "need a weekly VWAP from security('W')."),
+    436789: ("2", "The OBV filter compares obv_osc (OBV x 0.01 minus its EMA 20, in volume units) "
+              "with the fixed levels 0.1 / -0.1: absolute volume levels of the source's feed, "
+              "with no meaning on broker tick volume (criterion 2, as #434676)."),
+    436991: ("2", "The last exit compares strategy.openprofit (account currency for the 0.1-unit "
+              "position) with avg x 0.9 - close (a price): the stop level depends on the position "
+              "size and the price units (criterion 2); the other exits also pass the qty 0.1 as "
+              "the 'when' argument."),
 }
 
 DUPLICATE_ON_READING = {
@@ -9642,7 +9673,6 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C69 (2026-10-17)
     # ---- FMZ-C, batch C72 (2026-10-17)
     # ---- FMZ-C, batch C95 (2026-10-21)
-    436658: ("8", "The long and short entries test the Hull line against rvwma3 = vwma(close, 42): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C117 (2026-10-22)
     439103: ("8", "The moving-average rules use ma20 / ma50 / ma100 = vwma(close, 20 / 50 / 100): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C133 (2026-10-22)
