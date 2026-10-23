@@ -7955,6 +7955,22 @@ SIZING = {
     488898: [
         ("strategy(): 10 % of equity", 118, 118),
     ],
+    # ---- FMZ-C, batch V46 (2026-10-23)
+    489033: [
+        ("strategy(): 10 % of equity", 284, 284),
+    ],
+    489042: [],
+    489134: [
+        ("strategy(): 100 % of equity", 189, 189),
+    ],
+    489144: [
+        ("strategy(): 100 % of equity", 216, 216),
+    ],
+    489160: [],
+    489280: [
+        ("strategy(): capital", 169, 169),
+    ],
+    489286: [],
 }
 
 REJECTED_ON_READING = {
@@ -10346,6 +10362,23 @@ REJECTED_ON_READING = {
     489011: ("1", "The header's bars are 1 day, where ta.vwap(close) is the bar's own close, so close "
               "> vwap / close < vwap never hold and neither call nor put can fire: the script "
               "cannot trade (as #468342)."),
+    # ---- FMZ-C, batch V46 (2026-10-23)
+    489048: ("1", "Each trade is split into two strategy.exit orders of 25 % and 75 % (qty_tp1 / "
+              "qty_tp2) with a break-even move once the first fills: partial exits (criterion 1, "
+              "as #430758); it also sizes by a fixed 25000 cash per position with pyramiding 2."),
+    489161: ("2", "Both entry candles need high - low >= 17: a fixed range in the source's price "
+              "units (criterion 2, fixed price-unit levels, as #432212); on the header's 1-day "
+              "chart the daily security values and ta.vwap(close) are also the bar itself."),
+    489195: ("2", "The stop and targets sit 2.5, 3.5 and 8 price units from the close (25 / 35 / 80 "
+              "'XAUUSD pips' x 0.1) and entries use qty = 100: fixed price-unit distances "
+              "(criterion 2, as #451392); on the header's DOGE they are never reached."),
+    489319: ("1", "Every bar closes all positions once strategy.equity is under 98 % of the start "
+              "(the 'new day' reset (time - time) > 86400000 never fires) or under 90 %, with "
+              "entries sized by 2 % of capital / (2 ATR): a size- and history-dependent equity "
+              "gate (criterion 1, as #440336)."),
+    489330: ("2", "Entries need ATR 14 > 2.0 (minVolatility, 'adjust for TSLA'): a fixed level in the "
+              "source's price units (criterion 2, as #432212); true on every bar of the header's "
+              "BTC."),
 }
 
 DUPLICATE_ON_READING = {
@@ -10383,5 +10416,4 @@ HELD_ON_READING = {
     482454: ("licence", "Held for Austin: the source carries a CC BY-NC-SA 4.0 licence (non-commercial, share-alike; the Andean Oscillator by alexgrover), so it is not ported until Austin decides (as #468315)."),
     # ---- FMZ-C, batch C246 (2026-10-22)
     # ---- FMZ-C, batch C269 (2026-10-22)
-    489134: ("8", "The bands are built on ta.vwma(hlc3, 200), a volume-weighted average (check 8, held with the other volume users)."),
 }
