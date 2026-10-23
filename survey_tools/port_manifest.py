@@ -7839,6 +7839,19 @@ SIZING = {
     ],
     482777: [],
     482780: [],
+    # ---- FMZ-C, batch V40 (2026-10-23)
+    482782: [
+        ("strategy(): 10 % of equity", 108, 108),
+    ],
+    482819: [],
+    482823: [],
+    482850: [
+        ("strategy(): 10 % of equity", 108, 108),
+    ],
+    482867: [],
+    482875: [],
+    482880: [],
+    482881: [],
 }
 
 REJECTED_ON_READING = {
@@ -10163,6 +10176,20 @@ REJECTED_ON_READING = {
     482652: ("1", "The entries read request.security(syminfo.tickerid, \"240\", ...) EMA, VWAP and RSI "
               "on the header's 1-day chart: lower-timeframe security reads (as #427518); the "
               "quantity is also equity x 1 % / (1.5 x ATR)."),
+    # ---- FMZ-C, batch V40 (2026-10-23)
+    482795: ("1", "The trend filter reads request.security(syminfo.tickerid, \"D\", ...) EMA 9 / WMA 20 "
+              "/ WMA 200 on the header's 5-day chart: lower-timeframe security reads (as "
+              "#427518)."),
+    482829: ("1", "pyramiding = 3 with the same entry id re-sent on every qualifying bar while open "
+              "(red-then-green candle sequences with a volume z-score >= 1.5 repeat): repeated "
+              "adds (criterion 1, as #442112); the quantity is also a fixed 200 in cash on a 50 "
+              "capital."),
+    482874: ("2", "ta.supertrend(10, 3) returns [line, direction], which the script names st_upper / "
+              "st_lower, so the buy needs close > st_lower = the direction (+1 or -1): a raw "
+              "price compared with 1, true or false by the instrument's price scale (criterion "
+              "2); the factor and period are also swapped, and there is no backtest header."),
+    482877: ("2", "Entries need volume > 100000 (minVol): an absolute volume threshold in the source "
+              "feed's units (criterion 2, as #426785)."),
 }
 
 DUPLICATE_ON_READING = {

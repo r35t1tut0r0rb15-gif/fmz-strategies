@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #482867 (五分钟三重确认趋势交易策略与风险管理系统-Five-Minute-Triple-Confirmation-Trend-Trading-Strategy-with-Risk-Management-System)
+# Source: https://www.fmz.com/strategy/482867  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
