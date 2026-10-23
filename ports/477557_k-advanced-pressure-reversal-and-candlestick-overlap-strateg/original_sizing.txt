@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #477557 (高级压力反转与K线重叠策略Advanced-Pressure-Reversal-and-Candlestick-Overlap-Strategy)
+# Source: https://www.fmz.com/strategy/477557  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): fixed qty 0.1; entry qty 0.1  [lines 92-96]
+   92: strategy("Pressure Reversal & Candle Overlap", overlay=true, default_qty_type=strategy.fixed, default_qty_value=0.1)
+   93:  
+   94: // Parameters
+   95: take_profit_percent = 20  // Take Profit Percentage
+   96: qty = 0.1  // Quantity to trade (BTC)

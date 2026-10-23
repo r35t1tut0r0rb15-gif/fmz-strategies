@@ -484,6 +484,7 @@ fmz_id,file,final_outcome,criterion,reason
 475593,多时间周期流动性枢纽热力图量化策略-Multi-Timeframe-Liquidity-Pivot-Heatmap-Strategy.md,REJECTED_ON_READING,1,"The take-profit and stop are money amounts ($200 / $100) turned into ticks by dividing by the open position size: the exit distance depends on the position's size (criterion 1, size-dependent exits)."
 475594,基于RSI动量和ADX趋势强度的资金管理系统-RSI-Momentum-and-ADX-Trend-Strength-Based-Capital-Management-System.md,REJECTED_ON_READING,1,"Two strategy.exit calls each close 50 % (TP1 with the stop, TP2 alone): partial exits (criterion 1, as #430758); it also closes everything on an equity drawdown over 30 % (as #440336) and needs volume > 1e6 and ATR > 2 in raw units (criterion 2)."
 475605,动态趋势动量优化策略结合G通道指标-Dynamic-Trend-Momentum-Optimization-Strategy-with-G-Channel-Indicator.md,REJECTED_ON_READING,2,"strategy.exit's profit / loss fields take tick counts but receive price amounts (3 % x close / 1 % x close): a price amount in a tick field, so the distance in price depends on the instrument's tick size (criterion 2, as #442115)."
+475618,多重滤网趋势突破智能均线交易策略-Multi-Filter-Trend-Breakthrough-Smart-Moving-Average-Trading-Strategy.md,REJECTED_ON_READING,1,"The trend filter reads request.security(syminfo.tickerid, ""15"", ta.ema(close, 50)) on the header's 1-hour chart: a lower-timeframe security read, which the house bars cannot reproduce (as #427518); the quantity is also equity x risk / ATR."
 475634,自适应趋势跟踪策略结合动态回撤控制系统-Adaptive-Trend-Following-Strategy-with-Dynamic-Drawdown-Control-System.md,REJECTED_ON_READING,1,"strategy.close_all when the drawdown of strategy.equity from its peak exceeds 30 %: an exit set by the account's equity path (criterion 1, equity gates, as #453662)."
 476239,人工智能驱动的波动趋势价格系统背离交易策略-AI-Powered-Volatility-Price-System-Divergence-Trading-Strategy.md,REJECTED_ON_READING,1,"strategy.close when (close - avg price) x position size reaches a fixed money target (1500 / 1000 INR): an exit that depends on the position's size (criterion 1, size-dependent money exits)."
 476245,动态趋势线突破反转交易策略-Dynamic-Trendline-Breakout-Reversal-Trading-Strategy.md,REJECTED_ON_READING,1,"On a stop the script reverses with qty = the held size x 2 (capped at 1e12): a martingale doubling of the position (criterion 1, martingale adds)."
@@ -3698,10 +3699,15 @@ fmz_id,file,final_outcome,criterion,reason
 475596,三重超趋势与布林带融合的多指标趋势跟踪策略-Triple-Supertrend-and-Bollinger-Bands-Multi-Indicator-Trend-Following-Strategy.md,PORTED,,ports/475596_triple-supertrend-and-bollinger-bands-multi-indicator-trend/
 475597,双均线趋势跟踪与风险控制策略-Dual-Moving-Average-Trend-Following-Strategy-with-Risk-Management.md,PORTED,,ports/475597_dual-moving-average-trend-following-strategy-with-risk-manag/
 475598,基于G通道和指数移动平均的量化多空转换策略-Quantitative-Long-Short-Switching-Strategy-Based-on-G-Channel-and-EMA.md,PORTED,,ports/475598_g-quantitative-long-short-switching-strategy-based-on-g-chan/
+475601,多重指标波动率交易RSI-EMA-ATR策略-Multi-Indicator-Volatility-Trading-RSI-EMA-ATR-Strategy.md,PORTED,,ports/475601_rsi-ema-atr-multi-indicator-volatility-trading-rsi-ema-atr-s/
+475602,多指标趋势跟踪期权交易EMA交叉策略-Multi-Indicator-Trend-Following-Options-Trading-EMA-Cross-Strategy.md,PORTED,,ports/475602_ema-multi-indicator-trend-following-options-trading-ema-cros/
+475603,自适应VWAP波段基于Garman-Klass波动率动态跟踪策略-Adaptive-VWAP-Bands-with-Garman-Klass-Volatility-Dynamic-Tracking-Strategy.md,PORTED,,ports/475603_vwap-garman-klass-adaptive-vwap-bands-with-garman-klass-vola/
 475604,多层级跌幅ATH动态追踪三段买入策略-Multi-level-ATH-Dynamic-Tracking-Triple-Entry-Strategy.md,PORTED,,ports/475604_ath-multi-level-ath-dynamic-tracking-triple-entry-strategy/
 475606,EMA均线动态突破与反转策略-Dynamic-EMA-Breakthrough-and-Reversal-Strategy.md,PORTED,,ports/475606_ema-dynamic-ema-breakthrough-and-reversal-strategy/
 475619,多重均线趋势跟踪交易策略-Multi-Moving-Average-Trend-Following-Trading-Strategy.md,PORTED,,ports/475619_multi-moving-average-trend-following-trading-strategy/
+475623,突破结构与成交量确认的多重条件智能交易策略-Break-of-Structure-with-Volume-Confirmation-Multi-Condition-Intelligent-Trading-Strategy.md,PORTED,,ports/475623_break-of-structure-with-volume-confirmation-multi-condition/
 475624,动态跟踪型波浪趋势策略-Dynamic-Wave-Trend-Tracking-Strategy.md,PORTED,,ports/475624_dynamic-wave-trend-tracking-strategy/
+475626,多指标组合动态交易优化策略-Multi-Indicator-Dynamic-Trading-Optimization-Strategy.md,PORTED,,ports/475626_multi-indicator-dynamic-trading-optimization-strategy/
 475627,自适应指数均线动态调仓突破交易策略-Adaptive-EMA-Dynamic-Position-Break-out-Trading-Strategy.md,PORTED,,ports/475627_adaptive-ema-dynamic-position-break-out-trading-strategy/
 475628,MACD-RSI交叉趋势跟踪策略结合布林带优化系统-MACD-RSI-Crossover-Trend-Following-Strategy-with-Bollinger-Bands-Optimization-System.md,PORTED,,ports/475628_macd-rsi-macd-rsi-crossover-trend-following-strategy-with-bo/
 475630,EMA交叉与蜡烛体穿透结合动态买入策略-Dynamic-Buy-Entry-Strategy-Combining-EMA-Crossing-and-Candle-Body-Penetration.md,PORTED,,ports/475630_ema-dynamic-buy-entry-strategy-combining-ema-crossing-and-ca/
@@ -3713,6 +3719,7 @@ fmz_id,file,final_outcome,criterion,reason
 476242,自适应多状态EMA-RSI动量策略结合波动指数过滤系统-Adaptive-Multi-State-EMA-RSI-Momentum-Strategy-with-Choppiness-Index-Filter-System.md,PORTED,,ports/476242_ema-rsi-adaptive-multi-state-ema-rsi-momentum-strategy-with/
 476243,增强型斐波那契趋势跟踪与风险管理策略-Enhanced-Fibonacci-Trend-Following-and-Risk-Management-Strategy.md,PORTED,,ports/476243_enhanced-fibonacci-trend-following-and-risk-management-strat/
 476244,基于EMA和SMA的多重指标动态趋势跟踪策略-Multi-Indicator-Dynamic-Trend-Following-Strategy-Based-on-EMA-and-SMA.md,PORTED,,ports/476244_ema-sma-multi-indicator-dynamic-trend-following-strategy-bas/
+476247,多指标组合高频波段策略-Multi-Indicator-High-Frequency-Range-Trading-Strategy.md,PORTED,,ports/476247_multi-indicator-high-frequency-range-trading-strategy/
 476248,双均线RSI趋势反转交易策略-基于EMA和RSI的动量突破系统-Dual-EMA-RSI-Momentum-Trend-Reversal-Trading-System-A-Momentum-Breakthrough-Strategy-Based-on-EMA-and-RSI-Crossover.md,PORTED,,ports/476248_rsi-ema-rsi-dual-ema-rsi-momentum-trend-reversal-trading-sys/
 476252,多指标趋势交叉策略之牛市支撑带交易系统-Multi-Indicator-Trend-Crossing-Strategy-Bull-Market-Support-Band-Trading-System.md,PORTED,,ports/476252_multi-indicator-trend-crossing-strategy-bull-market-support/
 476254,基于标准化对数收益的自适应动态交易策略Adaptive-Dynamic-Trading-Strategy-Based-on-Standardized-Logarithmic-Returns.md,PORTED,,ports/476254_adaptive-dynamic-trading-strategy-based-on-standardized-loga/
@@ -3743,16 +3750,20 @@ fmz_id,file,final_outcome,criterion,reason
 477528,自适应通道突破策略与动态支阻位交易系统-Adaptive-Channel-Breakout-Strategy-with-Dynamic-Support-and-Resistance-Trading-System.md,PORTED,,ports/477528_adaptive-channel-breakout-strategy-with-dynamic-support-and/
 477529,多周期趋势线性吞没形态量化交易策略-Multi-Period-Trend-Linear-Engulfing-Pattern-Quantitative-Trading-Strategy.md,PORTED,,ports/477529_multi-period-trend-linear-engulfing-pattern-quantitative-tra/
 477530,动态指数均线交叉策略结合ADX趋势强度过滤系统-Dynamic-EMA-Crossover-Strategy-with-ADX-Trend-Strength-Filtering-System.md,PORTED,,ports/477530_adx-dynamic-ema-crossover-strategy-with-adx-trend-strength-f/
+477531,动态交易理论的指数移动平均与累积成交量周期交叉策略-Dynamic-Trading-Theory-Exponential-Moving-Average-and-Cumulative-Volume-Period-Crossover-Strategy.md,PORTED,,ports/477531_dynamic-trading-theory-exponential-moving-average-and-cumula/
+477532,多重指标动态波动交易策略-Multi-Indicator-Dynamic-Volatility-Trading-Strategy.md,PORTED,,ports/477532_multi-indicator-dynamic-volatility-trading-strategy/
 477533,双均线随机震荡策略系统趋势跟踪与动量结合的量化交易模型-Dual-EMA-Stochastic-Oscillator-System-A-Quantitative-Trading-Model-Combining-Trend-Following-and-Momentum.md,PORTED,,ports/477533_dual-ema-stochastic-oscillator-system-a-quantitative-trading/
 477535,动态双重技术指标超卖超买确认交易策略-Dynamic-Dual-Technical-Indicator-Oversold-Overbought-Confirmation-Trading-Strategy.md,PORTED,,ports/477535_dynamic-dual-technical-indicator-oversold-overbought-confirm/
 477537,自适应趋势流动性多重过滤交易策略-Adaptive-Trend-Flow-Multiple-Filter-Trading-Strategy.md,PORTED,,ports/477537_adaptive-trend-flow-multiple-filter-trading-strategy/
 477549,双均线交叉动态趋势追踪量化交易策略-Dual-EMA-Crossover-Dynamic-Trend-Following-Quantitative-Trading-Strategy.md,PORTED,,ports/477549_dual-ema-crossover-dynamic-trend-following-quantitative-trad/
 477550,RSI趋势突破与动量增强交易策略-RSI-Trend-Breakthrough-and-Momentum-Enhancement-Trading-Strategy.md,PORTED,,ports/477550_rsi-rsi-trend-breakthrough-and-momentum-enhancement-trading/
+477551,双周期移动平均线结合RSI动量和成交量的趋势跟踪策略-Dual-Period-Moving-Average-with-RSI-Momentum-and-Volume-Trend-Following-Strategy.md,PORTED,,ports/477551_rsi-dual-period-moving-average-with-rsi-momentum-and-volume/
 477552,多指标融合动态移动平均线交叉量化策略-Multi-Indicator-Dynamic-Moving-Average-Crossover-Quantitative-Strategy.md,PORTED,,ports/477552_multi-indicator-dynamic-moving-average-crossover-quantitativ/
 477553,多重均线超级趋势结合布林带突破交易策略-Multi-Moving-Average-Supertrend-with-Bollinger-Breakout-Trading-Strategy.md,PORTED,,ports/477553_multi-moving-average-supertrend-with-bollinger-breakout-trad/
 477554,动量趋势交叉云图交易策略-Momentum-Trend-Ichimoku-Cloud-Trading-Strategy.md,PORTED,,ports/477554_momentum-trend-ichimoku-cloud-trading-strategy/
 477555,RSI与布林带协同波段交易策略-RSI-and-Bollinger-Bands-Synergistic-Swing-Trading-Strategy.md,PORTED,,ports/477555_rsi-rsi-and-bollinger-bands-synergistic-swing-trading-strate/
 477556,双指数均线动量交叉量化交易策略-Dual-Exponential-Moving-Average-Momentum-Crossover-Trading-Strategy.md,PORTED,,ports/477556_dual-exponential-moving-average-momentum-crossover-trading-s/
+477557,高级压力反转与K线重叠策略Advanced-Pressure-Reversal-and-Candlestick-Overlap-Strategy.md,PORTED,,ports/477557_k-advanced-pressure-reversal-and-candlestick-overlap-strateg/
 477560,动态ATR调整的指数均线交叉策略-Dynamic-ATR-Adjusted-EMA-Crossover-Strategy.md,PORTED,,ports/477560_atr-dynamic-atr-adjusted-ema-crossover-strategy/
 477561,组合式动量与均值回归高频量化策略-Combined-Momentum-and-Mean-Reversion-High-Frequency-Quantitative-Strategy.md,PORTED,,ports/477561_combined-momentum-and-mean-reversion-high-frequency-quantita/
 477562,多指标交叉动态动量策略-Multi-Indicator-Dynamic-Momentum-Cross-Strategy.md,PORTED,,ports/477562_multi-indicator-dynamic-momentum-cross-strategy/
@@ -3762,6 +3773,7 @@ fmz_id,file,final_outcome,criterion,reason
 477579,布林带突破动量跟踪交易策略-Bollinger-Bands-Breakout-Momentum-Trading-Strategy.md,PORTED,,ports/477579_bollinger-bands-breakout-momentum-trading-strategy/
 477580,高级WaveTrend与EMA-Ribbon融合交易策略-Advanced-WaveTrend-and-EMA-Ribbon-Fusion-Trading-Strategy.md,PORTED,,ports/477580_wavetrend-ema-ribbon-advanced-wavetrend-and-ema-ribbon-fusio/
 477581,双均线-RSI联动期权量化交易策略-Dual-Moving-Average-RSI-Synergy-Options-Quantitative-Trading-Strategy.md,PORTED,,ports/477581_rsi-dual-moving-average-rsi-synergy-options-quantitative-tra/
+477582,多周期均线趋势跟踪与成交量加权定价交叉策略-Multi-Period-Moving-Average-Trend-Following-with-VWAP-Cross-Strategy.md,PORTED,,ports/477582_multi-period-moving-average-trend-following-with-vwap-cross/
 477583,均值回归型布林带交易策略结合理性回归信号-Mean-Reversion-Bollinger-Bands-Trading-Strategy-with-Rational-Return-Signal.md,PORTED,,ports/477583_mean-reversion-bollinger-bands-trading-strategy-with-rationa/
 477587,高级斐波那契回撤趋势追踪与反转交易策略-Advanced-Fibonacci-Retracement-Trend-Following-and-Reversal-Trading-Strategy.md,PORTED,,ports/477587_advanced-fibonacci-retracement-trend-following-and-reversal/
 477590,跨越式价格突破趋势策略基于多周期关键价格水平的量化交易系统-Multi-Period-Price-Level-Breakout-Trend-Trading-System-Based-on-Key-Price-Levels.md,PORTED,,ports/477590_multi-period-price-level-breakout-trend-trading-system-based/

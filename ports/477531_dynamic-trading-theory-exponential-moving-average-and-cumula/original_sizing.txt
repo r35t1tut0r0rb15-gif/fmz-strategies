@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #477531 (动态交易理论的指数移动平均与累积成交量周期交叉策略-Dynamic-Trading-Theory-Exponential-Moving-Average-and-Cumulative-Volume-Period-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/477531  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, qty 1, per-contract commission  [lines 112-112]
+  112: strategy(shorttitle="⟡Sapphire⟡ EMA/CVP", title="[Sapphire] EMA/CVP Strategy", initial_capital= 50000, currency= currency.USD,default_qty_value = 1,commission_type= strategy.commission.cash_per_contract,overlay= true )

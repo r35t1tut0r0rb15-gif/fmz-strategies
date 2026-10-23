@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #475601 (多重指标波动率交易RSI-EMA-ATR策略-Multi-Indicator-Volatility-Trading-RSI-EMA-ATR-Strategy)
+# Source: https://www.fmz.com/strategy/475601  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, commission  [lines 105-105]
+  105: strategy("Scalp Master BTCUSDT Strategy", overlay=true, max_labels_count=500, initial_capital=10000, commission_type=strategy.commission.percent, commission_value=0.1)

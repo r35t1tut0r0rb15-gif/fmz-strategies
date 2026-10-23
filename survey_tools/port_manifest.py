@@ -7777,6 +7777,28 @@ SIZING = {
     ],
     474978: [],
     474982: [],
+    # ---- FMZ-C, batch V36 (2026-10-23)
+    475601: [
+        ("strategy(): capital, commission", 105, 105),
+    ],
+    475602: [
+        ("strategy(): fixed qty 1; entry qty 1", 90, 90),
+    ],
+    475603: [],
+    475623: [],
+    475626: [
+        ("strategy(): 100 % of equity", 101, 101),
+    ],
+    476247: [],
+    477531: [
+        ("strategy(): capital, qty 1, per-contract commission", 112, 112),
+    ],
+    477532: [],
+    477551: [],
+    477557: [
+        ("strategy(): fixed qty 0.1; entry qty 0.1", 92, 96),
+    ],
+    477582: [],
 }
 
 REJECTED_ON_READING = {
@@ -10058,6 +10080,10 @@ REJECTED_ON_READING = {
               "exits (criterion 1, as #430758); it also closes everything on an equity drawdown "
               "over 30 % (as #440336) and needs volume > 1e6 and ATR > 2 in raw units (criterion "
               "2)."),
+    # ---- FMZ-C, batch V36 (2026-10-23)
+    475618: ("1", "The trend filter reads request.security(syminfo.tickerid, \"15\", ta.ema(close, 50)) "
+              "on the header's 1-hour chart: a lower-timeframe security read, which the house "
+              "bars cannot reproduce (as #427518); the quantity is also equity x risk / ATR."),
 }
 
 DUPLICATE_ON_READING = {
