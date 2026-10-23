@@ -16,8 +16,9 @@ Interpretation choices (Pine rules in SURVEY_README.md)
       (the day's own value only on its last bar), computed on broker days built from the module's bars
       (as earlier ports). The stop is set on the bar the position changes, from the fill price and that
       bar's ATR, and sent from that bar's close; the house engine needs the distance at the fill, so the
-      port uses the signal bar's ATR (2 x ATR[signal] / fill, as #434677) and arms it at the fill. A close
-      acts only on a position the bar's entries leave unchanged. The ATR risk sizing (2 % of equity) is
+      port uses the signal bar's ATR (2 x ATR[signal] / fill, as #434677) and arms it at the fill; the
+      signals follow that stop, so a stopped position re-enters on the next qualifying bar, as Pine's
+      repeated entry does. A close acts only on a position the bar's entries leave unchanged. The ATR risk sizing (2 % of equity) is
       sizing. Volume is not used (the MA types are SMA). REVERSAL INTENDED. Stop module: portfolio_kwargs
       {} (driver D4). Stops on 4-hour bars: mark coarse_bar_stop. FREQ = "4h" from the backtest header.
 
@@ -142,11 +143,24 @@ def simulate(bars_df, **params):
     lg = (bull & (lo > psar)).to_numpy()
     sh = (bear & (h < psar)).to_numpy()
     bu, be = bull.to_numpy(), bear.to_numpy()
+    pc = c.shift(1)
+    tr = pd.concat([h - lo, (h - pc).abs(), (lo - pc).abs()], axis=1).max(axis=1).where(pc.notna())
+    dist = (float(p["sl_mult"]) * _rma(tr, int(p["atr_len"]))).to_numpy()
+    ov, hv, lv = (bars_df[k].to_numpy(dtype=float) for k in ("open", "high", "low"))
     m = len(lg)
     le, lx = np.zeros(m, dtype=bool), np.zeros(m, dtype=bool)
     se, sx = np.zeros(m, dtype=bool), np.zeros(m, dtype=bool)
-    pos = 0
+    tgt, lvl = 0, np.nan
     for i in range(m):
+        if i > 0 and le[i - 1]:
+            lvl = ov[i] - dist[i - 1]                  # the stop the engine arms at this fill
+        elif i > 0 and se[i - 1]:
+            lvl = ov[i] + dist[i - 1]
+        if tgt == 1 and lv[i] <= lvl:                  # stopped inside the bar: flat, entries may follow
+            tgt = 0
+        elif tgt == -1 and hv[i] >= lvl:
+            tgt = 0
+        pos = tgt
         new = pos
         if lg[i] and new != 1:
             new = 1
@@ -157,7 +171,7 @@ def simulate(bars_df, **params):
                 new = 0
             elif pos == -1 and bu[i]:
                 new = 0
-        if new != pos:
+        if new != pos and i + 1 < m:
             if new == 1:
                 le[i] = True
             elif new == -1:
@@ -166,7 +180,7 @@ def simulate(bars_df, **params):
                 lx[i] = True
             else:
                 sx[i] = True
-            pos = new
+            tgt = new
     ix = bars_df.index
     return (pd.Series(le, index=ix), pd.Series(lx, index=ix),
             pd.Series(se, index=ix), pd.Series(sx, index=ix))

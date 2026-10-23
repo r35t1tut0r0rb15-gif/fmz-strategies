@@ -7620,6 +7620,25 @@ SIZING = {
         ("qty = equity x 1 % / stop % / close", 580, 589),
     ],
     441047: [],
+    # ---- FMZ-C, batch V26 (2026-10-23)
+    441054: [],
+    441063: [
+        ("strategy(): 1 % of equity, commission 0.075 %", 181, 181),
+        ("contracts = equity / close x leverage", 374, 403),
+    ],
+    441075: [
+        ("strategy(): 100 % of equity, commission 0.1 %", 143, 143),
+    ],
+    441184: [
+        ("strategy(): 100 % of equity", 128, 128),
+        ("qty = equity x 1 % x 2 / ATR", 151, 166),
+    ],
+    442011: [],
+    442019: [],
+    442093: [
+        ("strategy(): 100 % of equity", 148, 148),
+    ],
+    442212: [],
 }
 
 REJECTED_ON_READING = {
@@ -9806,6 +9825,17 @@ REJECTED_ON_READING = {
               "smoothing constants are 0, so nAMA and nAMA2 stay 0 and are never unequal, and the "
               "FRAMA weight is log(0); buyEntry / sellEntry can never be true and no order can be "
               "sent (criterion 1, as #451028)."),
+    # ---- FMZ-C, batch V26 (2026-10-23)
+    441176: ("1", "The first exit closes a third of the position (strategy.close qty = position_size "
+              "/ 3) when the VWAP crosses under the upper band, the rest on the lower band or the "
+              "stop: partial exits, which the house engine does not do (criterion 1, as #430758)."),
+    441969: ("2", "Every exit is limit = avg + 2 / stop = avg - 0.7 (and the mirror for the short): "
+              "fixed distances in the quote currency of the source's chart (price-unit levels -> "
+              "criterion 2)."),
+    442008: ("2", "Entries need volume > 250 (volThreshold): an absolute volume threshold in the "
+              "source feed's units (criterion 2, as #426785)."),
+    442016: ("2", "Every exit is limit = avg -+ 0.75 / stop = avg +- 0.5: fixed distances in the "
+              "quote currency of the source's chart (price-unit levels -> criterion 2)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -9833,7 +9863,6 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C117 (2026-10-22)
     # ---- FMZ-C, batch C133 (2026-10-22)
     # ---- FMZ-C, batch C145 (2026-10-22)
-    441075: ("8", "The MA rating includes vwma(close, 20): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C152 (2026-10-22)
     442220: ("8", "The channel averages include vwma(high, 12) and vwma(low, 12): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C206 (2026-10-22)

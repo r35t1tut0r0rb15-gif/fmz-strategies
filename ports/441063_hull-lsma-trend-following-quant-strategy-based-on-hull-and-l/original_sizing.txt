@@ -1,0 +1,38 @@
+# Original sizing and money-management code, FMZ #441063 (基于Hull指标和LSMA指标的趋势跟踪量化策略Trend-Following-Quant-Strategy-Based-on-Hull-and-LSMA-Indicators)
+# Source: https://www.fmz.com/strategy/441063  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 1 % of equity, commission 0.075 %  [lines 181-181]
+  181: strategy('Strategy Myth-Busting #9 - HullSuite+LSMA - [MYN]', max_bars_back=5000, overlay=true, pyramiding=0, initial_capital=1000, currency='USD', default_qty_type=strategy.percent_of_equity, default_qty_value=1.0, commission_value=0.075, use_bar_magnifier = false)
+
+## contracts = equity / close x leverage  [lines 374-403]
+  374: contracts = math.min(math.max(.000001, strategy.equity / close * leverage), 1000000000)
+  375: 
+  376: 
+  377: /// Trade State Management
+  378: // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+  379: 
+  380: isInLongPosition = strategy.position_size > 0
+  381: isInShortPosition = strategy.position_size < 0
+  382: 
+  383: /// ProfitView Alert Syntax String Generation
+  384: // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+  385: 
+  386: alertSyntaxPrefix = input.string(defval='CRYPTANEX_99FTX_Strategy-Name-Here', title='Alert Syntax Prefix', group='ProfitView Alert Syntax')
+  387: alertSyntaxBase = alertSyntaxPrefix + '\n#' + str.tostring(open) + ',' + str.tostring(high) + ',' + str.tostring(low) + ',' + str.tostring(close) + ',' + str.tostring(volume) + ','
+  388: 
+  389: 
+  390: /// Trade Execution
+  391: // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+  392: 
+  393: longConditionCalc = (longCondition and isADXEnabledAndAboveThreshold)
+  394: shortConditionCalc = (shortCondition and isADXEnabledAndAboveThreshold)
+  395: 
+  396: if calcPeriod
+  397:     if longConditionCalc and tradeDirection != 'Short Only' and isInLongPosition == false
+  398:         strategy.entry('Long', strategy.long, qty=contracts)
+  399: 
+  400:         alert(message=alertSyntaxBase + 'side:long', freq=alert.freq_once_per_bar_close)
+  401: 
+  402:     if shortConditionCalc and tradeDirection != 'Long Only' and isInShortPosition == false
+  403:         strategy.entry('Short', strategy.short, qty=contracts)
