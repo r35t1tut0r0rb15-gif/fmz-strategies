@@ -7545,6 +7545,19 @@ SIZING = {
         ("contracts = equity / close x leverage", 478, 478),
     ],
     437754: [],
+    # ---- FMZ-C, batch V21 (2026-10-23)
+    437780: [],
+    438014: [],
+    438379: [],
+    438455: [],
+    438469: [],
+    438479: [],
+    438480: [],
+    438489: [],
+    438500: [],
+    438772: [
+        ("strategy(): 100 % of equity, capital 10000, commission 0.075 %", 162, 162),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9680,6 +9693,15 @@ REJECTED_ON_READING = {
     437691: ("2", "Every entry needs request.security(sym = 'BTC_USDT:swap', '3', ...) VWAP bands and "
               "close: a named external instrument used as the signal source for whatever chart is "
               "traded (SURVEY_README: another symbol -> criterion 2, as #436659)."),
+    # ---- FMZ-C, batch V21 (2026-10-23)
+    438056: ("1", "Entries are strategy.order calls on every buy / sell signal with no pyramiding "
+              "limit (the 'Scalping DCA' panel): each signal adds to the position, and an "
+              "opposite order nets it down instead of reversing; adds of separate size are not "
+              "something the house engine does (criterion 1, as #433905)."),
+    438502: ("1", "The 1-day chart's MACD filter reads request.security(tickerid, '360', ...): a "
+              "6-hour series inside daily bars, a lower-timeframe read whose value on each daily "
+              "bar is the day's last 6-hour value, unknown at the daily close it is used with "
+              "(criterion 1, as #427518)."),
 }
 
 DUPLICATE_ON_READING = {

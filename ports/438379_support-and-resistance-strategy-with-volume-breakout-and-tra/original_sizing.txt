@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #438379 (基于支撑阻力与均量突破的跟踪止损策略Support-and-Resistance-Strategy-with-Volume-Breakout-and-Trailing-Stop-Loss)
+# Source: https://www.fmz.com/strategy/438379  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
