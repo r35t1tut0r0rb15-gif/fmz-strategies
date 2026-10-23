@@ -7355,6 +7355,29 @@ SIZING = {
         ("strategy(): pyramiding 1, 20 % of equity, capital 10000", 159, 159),
         ("risk-based qty1", 198, 201),
     ],
+    # ---- FMZ-C, batch V12 (2026-10-23)
+    431892: [],
+    431959: [
+        ("strategy(): 100 % of equity, capital 1000, commission 0.03 %", 152, 152),
+    ],
+    431970: [
+        ("strategy(): 100 % of equity, capital 100, commission 0.08 %", 174, 174),
+    ],
+    432095: [
+        ("strategy(): 100 % of equity, capital 100000", 174, 174),
+    ],
+    432116: [],
+    432239: [
+        ("strategy(): 100 % of equity, commission 0.018 %", 132, 132),
+    ],
+    432240: [],
+    432241: [
+        ("strategy(): margin_long 100, margin_short 100", 169, 169),
+    ],
+    432303: [
+        ("Quantity input (1 unit)", 162, 162),
+        ("entry qty = Quantity", 186, 186),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9396,6 +9419,19 @@ REJECTED_ON_READING = {
     431669: ("1", "With pyramiding 2 an 'Add' entry is sent while long when the close is under the "
               "average price and the ZVWAP crosses zero: averaging down, the size path is part of "
               "the strategy (criterion 1, as #440354)."),
+    # ---- FMZ-C, batch V12 (2026-10-23)
+    432209: ("2", "The Ease of Movement half compares 1000000 x (change of the midpoint move) / "
+              "(volume / range) with the fixed zones 4000 and -4000: a price-squared-per-volume "
+              "figure against absolute levels, with no meaning on another instrument or on broker "
+              "tick volume, and the combined signal needs both halves (criterion 2, as #426785)."),
+    432212: ("2", "The exit's 'ADX' is rma(close, 14) > 30: the close's own level against a fixed "
+              "price of 30, true on every bar of the source's BTC and false on most house "
+              "instruments, so the exit is decided by the source's price units (criterion 2, "
+              "fixed price-unit levels)."),
+    432233: ("1", "Two exits close the position in parts (qty_percent 15 at the first target, the "
+              "rest at the second) and with pyramiding 2 a second entry is added while long when "
+              "the RVI is over 35: partial exits and adds, which the house engine does not do "
+              "(criterion 1, as #430758)."),
 }
 
 DUPLICATE_ON_READING = {

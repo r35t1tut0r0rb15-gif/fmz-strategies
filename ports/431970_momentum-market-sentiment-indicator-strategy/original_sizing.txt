@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #431970 (动量市场情绪指标策略Momentum-Market-Sentiment-Indicator-Strategy)
+# Source: https://www.fmz.com/strategy/431970  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity, capital 100, commission 0.08 %  [lines 174-174]
+  174: strategy("Sentiment Oscillator", "Sentiment", overlay=false, initial_capital=100, default_qty_type=strategy.percent_of_equity, default_qty_value=100, commission_type=strategy.commission.percent, commission_value=0.08)

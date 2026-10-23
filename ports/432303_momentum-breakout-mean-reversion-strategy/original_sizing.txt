@@ -1,0 +1,9 @@
+# Original sizing and money-management code, FMZ #432303 (动量突破均线策略Momentum-Breakout-Mean-Reversion-Strategy)
+# Source: https://www.fmz.com/strategy/432303  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantity input (1 unit)  [lines 162-162]
+  162: Quantity = input(1, minval=1, title="Quantity")
+
+## entry qty = Quantity  [lines 186-186]
+  186: strategy.entry(id="L1", long=true, qty=Quantity, when=(Cond00 and Cond01 and Cond02 and Cond03 and Cond04))
