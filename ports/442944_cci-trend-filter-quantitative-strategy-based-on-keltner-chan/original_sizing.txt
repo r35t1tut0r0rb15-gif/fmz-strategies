@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #442944 (基于肯特纳通道和CCI指标的趋势过滤量化策略Trend-Filter-Quantitative-Strategy-Based-on-Keltner-Channels-and-CCI-Indicator)
+# Source: https://www.fmz.com/strategy/442944  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

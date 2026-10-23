@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #442640 (基于四重交叉策略Quadruple-Crossing-Strategy)
+# Source: https://www.fmz.com/strategy/442640  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity, capital 100000, commission 0.1 %  [lines 145-145]
+  145: strategy("Quadruple Cross Strategy", overlay=true, initial_capital=100000, currency="TRY", default_qty_type=strategy.percent_of_equity, default_qty_value=10, pyramiding=0, commission_type=strategy.commission.percent, commission_value=0.1)

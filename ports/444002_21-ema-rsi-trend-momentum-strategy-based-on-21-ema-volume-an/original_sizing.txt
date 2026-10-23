@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #444002 (基于21日EMA成交量和RSI的趋势动量策略Trend-Momentum-Strategy-Based-on-21-EMA-Volume-and-RSI)
+# Source: https://www.fmz.com/strategy/444002  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

@@ -7657,6 +7657,20 @@ SIZING = {
     442386: [],
     442504: [],
     442545: [],
+    # ---- FMZ-C, batch V28 (2026-10-23)
+    442640: [
+        ("strategy(): 10 % of equity, capital 100000, commission 0.1 %", 145, 145),
+    ],
+    442832: [],
+    442944: [],
+    443141: [
+        ("strategy(): 90 % of equity, capital 100, commission 0.04 %", 154, 154),
+    ],
+    444002: [],
+    444980: [],
+    445456: [],
+    446435: [],
+    446538: [],
 }
 
 REJECTED_ON_READING = {
@@ -9859,6 +9873,15 @@ REJECTED_ON_READING = {
               "bar opens outside that session (its time is the day's start), so the script as "
               "written never enters (and the square-off closes any position); an intraday reading "
               "is not the declared chart (as #439752)."),
+    # ---- FMZ-C, batch V28 (2026-10-23)
+    442932: ("1", "The entries need openSeriesAlt / closeSeriesAlt = request.security(tickerid, 3 x "
+              "the chart period, ..., lookahead_on) with no [1] offset: a higher-timeframe value "
+              "read with lookahead_on, which on historical bars sees the 3-day bar's final value "
+              "before it closes (criterion 1, as #441065)."),
+    444041: ("2", "Every trade's target is close + 3 / close - 3: a fixed distance in the quote "
+              "currency of the source's chart (price-unit levels -> criterion 2)."),
+    445457: ("2", "Entries need volume > 10000 (vol_threshold): an absolute volume threshold in the "
+              "source feed's units (criterion 2, as #426785)."),
 }
 
 DUPLICATE_ON_READING = {
