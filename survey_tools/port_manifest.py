@@ -7971,6 +7971,18 @@ SIZING = {
         ("strategy(): capital", 169, 169),
     ],
     489286: [],
+    # ---- FMZ-C, batch V47 (2026-10-23)
+    489639: [
+        ("strategy(): 100 % of equity", 132, 133),
+    ],
+    489731: [
+        ("strategy(): 100 % of equity", 203, 203),
+    ],
+    489736: [],
+    490057: [
+        ("strategy(): 10 % of equity, commission 0.045 %", 173, 173),
+    ],
+    490793: [],
 }
 
 REJECTED_ON_READING = {
@@ -10379,6 +10391,26 @@ REJECTED_ON_READING = {
     489330: ("2", "Entries need ATR 14 > 2.0 (minVolatility, 'adjust for TSLA'): a fixed level in the "
               "source's price units (criterion 2, as #432212); true on every bar of the header's "
               "BTC."),
+    # ---- FMZ-C, batch V47 (2026-10-23)
+    489633: ("2", "The trend test compares the supertrend DIRECTION (-1 / +1) with the close "
+              "(direction < close, direction > close): on prices above 1 every bar is an "
+              "'up-trend' and no short can fire, on prices under 1 the result flips, so the "
+              "signals depend on the price units (criterion 2, fixed price-unit levels, as "
+              "#432212)."),
+    489644: ("2", "The stop sits stopPoints = 20 price units beyond the signal bar's low / high and "
+              "entries use a fixed qty of 1: a fixed price distance (criterion 2, as #477603)."),
+    489652: ("2", "The exit passes close x 0.005 (a price amount) as trail_points and trail_offset, "
+              "which are in ticks (criterion 2, as #440334)."),
+    489894: ("2", "Entries need volume > 500 (minVol): an absolute volume threshold in the source "
+              "feed's units (criterion 2, as #426785); the exits also pass close x 1.5 % (a price "
+              "amount) as trail ticks (as #440334)."),
+    489971: ("2", "The exit passes ATR x 1.5 (a price amount) as trail_points and trail_offset, which "
+              "are in ticks (criterion 2, as #440334)."),
+    490046: ("1", "The trend votes read request.security on the 1, 5 and 15-minute timeframes on the "
+              "header's 1-hour chart: lower-timeframe security reads (criterion 1, as #427518)."),
+    490074: ("1", "The trend filter reads request.security(..., '15', ...) on the header's 1-hour "
+              "chart: a lower-timeframe security read (criterion 1, as #427518); it also needs "
+              "volume >= 10 (raw units) and passes ATR price amounts as trail ticks."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #489639 (多重均线与成交量加权趋势交叉分析系统-Multi-EMA-and-VWAP-Trend-Confirmation-Analysis-System)
+# Source: https://www.fmz.com/strategy/489639  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 132-133]
+  132: strategy("LUX CLARA - EMA + VWAP (No ATR Filter) - v6", overlay=true, 
+  133:      default_qty_type=strategy.percent_of_equity, default_qty_value=100)
