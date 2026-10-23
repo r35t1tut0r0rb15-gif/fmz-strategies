@@ -7919,6 +7919,19 @@ SIZING = {
     486572: [
         ("strategy(): commission", 150, 150),
     ],
+    # ---- FMZ-C, batch V44 (2026-10-23)
+    488018: [],
+    488029: [],
+    488128: [
+        ("strategy(): 30 % of equity", 185, 185),
+    ],
+    488137: [],
+    488138: [],
+    488146: [
+        ("strategy(): 100 % of equity", 258, 258),
+    ],
+    488249: [],
+    488295: [],
 }
 
 REJECTED_ON_READING = {
@@ -10284,6 +10297,18 @@ REJECTED_ON_READING = {
     485127: ("2", "The volatility filter needs atr > 1.5 in price units, and the ADX divides by "
               "max(DM sum, 1) (a price-unit floor): the entries depend on the instrument's price "
               "scale (criterion 2)."),
+    # ---- FMZ-C, batch V44 (2026-10-23)
+    488166: ("2", "strategy.exit(profit = position_avg_price x 1.005, trail_offset = atr x 100): "
+              "price amounts passed to profit / trail_offset, which are in ticks (criterion 2, as "
+              "#440334); the quantity is also risk-scaled."),
+    488167: ("2", "strategy.exit(profit = close x 4 %, loss = close x 2 %): price amounts passed to "
+              "profit / loss, which are in ticks (criterion 2, as #440334); its 'liquidity "
+              "supertrend' trend also compares the close with its own previous +-1 value."),
+    488277: ("1", "strategy.close(..., qty_percent = 50) on the first high-volume red candle: a "
+              "partial exit (criterion 1, as #430758); the breakout also needs volume > 100000 in "
+              "raw units and a 09:30-12:00 session."),
+    488285: ("1", "The levels read request.security(syminfo.tickerid, \"15\", ...) on the header's "
+              "1-hour chart: a lower-timeframe security read (as #427518)."),
 }
 
 DUPLICATE_ON_READING = {
