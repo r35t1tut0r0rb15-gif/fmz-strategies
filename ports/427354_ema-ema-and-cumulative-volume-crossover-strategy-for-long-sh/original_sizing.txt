@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #427354 (基于EMA和累积成交量的多空交易策略EMA-and-Cumulative-Volume-Crossover-Strategy-for-Long-Short)
+# Source: https://www.fmz.com/strategy/427354  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 1, 20 % of equity, capital 10000  [lines 127-127]
+  127: strategy("EMA_cumulativeVolume_crossover[Strategy]", overlay=true, pyramiding=1, default_qty_type=strategy.percent_of_equity,  default_qty_value=20, initial_capital=10000)
+
+## risk-based qty1  [lines 157-160]
+  157: qty1 = (strategy.equity  * riskCapital / 100 ) /  (close*stopLoss/100)  
+  158: 
+  159: //check if cash is sufficient  to buy qty1  , if capital not available use the available capital only
+  160: qty1:= (qty1 * close >= strategy.equity ) ? (strategy.equity / close) : qty1

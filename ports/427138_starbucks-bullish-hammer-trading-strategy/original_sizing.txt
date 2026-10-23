@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #427138 (多头锤形线交易策略Starbucks-Bullish-Hammer-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427138  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy.order 1 unit and max_position_size 10  [lines 160-161]
+  160:     strategy.order("Buy", true, 1, when=longCondition)
+  161: strategy.risk.max_position_size(10)

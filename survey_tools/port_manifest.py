@@ -7212,6 +7212,29 @@ SIZING = {
     426845: [
         ("strategy(): capital 10000, 100 % of equity, commission 0", 139, 139),
     ],
+    # ---- FMZ-C, batch V6 (2026-10-23)
+    426920: [
+        ("strategy(): capital 10000, 100 % of equity, commission 0.00005 per contract", 143, 143),
+    ],
+    427091: [],
+    427116: [
+        ("strategy(): capital 10000, 100 % of equity, commission 0.075 %", 177, 177),
+    ],
+    427138: [
+        ("strategy.order 1 unit and max_position_size 10", 160, 161),
+    ],
+    427183: [],
+    427192: [],
+    427279: [
+        ("commented strategy(): margin 100 / 100, capital 100000", 159, 159),
+    ],
+    427307: [
+        ("strategy(): margin_long / margin_short 1", 159, 159),
+    ],
+    427354: [
+        ("strategy(): pyramiding 1, 20 % of equity, capital 10000", 127, 127),
+        ("risk-based qty1", 157, 160),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9193,6 +9216,17 @@ REJECTED_ON_READING = {
     426892: ("1", "Each signal opens two entries (long1 / long2, short1 / short2) of 0.5 each with "
               "their own targets (0.7 % and 1.8 %), with pyramiding 100: the position is closed "
               "in parts, which the house engine does not do (criterion 1, as #440430)."),
+    # ---- FMZ-C, batch V6 (2026-10-23)
+    426931: ("2", "The long entry needs volume > VOLUME_CHECK = 200: an absolute volume level of the "
+              "source's BTC_USDT feed, with no meaning on another instrument or on broker tick "
+              "volume (criterion 2, as #426785); and the initial stops are close - 0 / close + 0, "
+              "a stop at the signal close itself."),
+    427262: ("2", "The index is (high - low) / volume x 10000 against the fixed levels 1 and 6.2: a "
+              "price-range-per-volume ratio in the source feed's units, so the levels mean "
+              "nothing on another instrument or on broker tick volume (criterion 2, as #426785)."),
+    427443: ("1", "A 3Commas-style DCA bot: a base order, then up to 5 safety orders of growing size "
+              "(x 2) at growing distances below the first price, closed together at 22 % over the "
+              "average price: the size path is the strategy (criterion 1, DCA, as #440354)."),
 }
 
 DUPLICATE_ON_READING = {
