@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #432347 (基于布林带黄金分割法的均衡回归交易策略Mean-Reversion-Trading-Strategy-Based-on-Bollinger-Bands-and-Golden-Ratio)
+# Source: https://www.fmz.com/strategy/432347  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 1, 20 % of equity, capital 10000  [lines 167-167]
+  167: strategy(title="Bollinger Band with Fib Golden Ratio (0.618)",  shorttitle="Bollinger Band with Fib Golden Ratio" , overlay=true, pyramiding=1,     default_qty_type=strategy.percent_of_equity,  default_qty_value=20, initial_capital=10000, currency=currency.USD)  

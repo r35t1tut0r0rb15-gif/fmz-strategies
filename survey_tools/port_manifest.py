@@ -7378,6 +7378,28 @@ SIZING = {
         ("Quantity input (1 unit)", 162, 162),
         ("entry qty = Quantity", 186, 186),
     ],
+    # ---- FMZ-C, batch V13 (2026-10-23)
+    432312: [
+        ("strategy(): cash 10000 per trade, capital 10000", 209, 209),
+    ],
+    432343: [
+        ("strategy(): 100 % of equity, pyramiding 0", 141, 141),
+    ],
+    432347: [
+        ("strategy(): pyramiding 1, 20 % of equity, capital 10000", 167, 167),
+    ],
+    432754: [],
+    432756: [],
+    432773: [],
+    432774: [
+        ("strategy(): initial capital 1000", 121, 121),
+    ],
+    432808: [
+        ("entry qty = 10000 / close", 210, 210),
+    ],
+    432845: [],
+    432879: [],
+    432909: [],
 }
 
 REJECTED_ON_READING = {
@@ -9432,6 +9454,10 @@ REJECTED_ON_READING = {
               "rest at the second) and with pyramiding 2 a second entry is added while long when "
               "the RVI is over 35: partial exits and adds, which the house engine does not do "
               "(criterion 1, as #430758)."),
+    # ---- FMZ-C, batch V13 (2026-10-23)
+    432765: ("1", "With pyramiding 2 an 'Add' entry is sent while long when the close is under the "
+              "average price and above the VWAP: averaging down, the size path is part of the "
+              "strategy (criterion 1, as #431669)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -9451,9 +9477,7 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C36 (2026-10-16)
     # ---- FMZ-C, batch C45 (2026-10-17)
     # ---- FMZ-C, batch C52 (2026-10-17)
-    432347: ("8", "The band basis is vwma(hlc3, 50): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C53 (2026-10-17)
-    432773: ("8", "The fast line is vwma(close, 3): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C64 (2026-10-17)
     433969: ("8", "The slow line is vwma(high, 7): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C69 (2026-10-17)
