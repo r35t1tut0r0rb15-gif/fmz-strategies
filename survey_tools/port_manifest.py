@@ -7799,6 +7799,22 @@ SIZING = {
         ("strategy(): fixed qty 0.1; entry qty 0.1", 92, 96),
     ],
     477582: [],
+    # ---- FMZ-C, batch V37 (2026-10-23)
+    477958: [],
+    478689: [
+        ("strategy(): capital, 100 % of equity, commission, pyramiding 1", 106, 106),
+    ],
+    478716: [
+        ("strategy(): 100 % of equity", 92, 92),
+    ],
+    478717: [
+        ("strategy(): commission, slippage", 117, 117),
+    ],
+    478745: [],
+    478749: [],
+    481091: [
+        ("strategy(): 200 % of equity", 99, 99),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -10084,6 +10100,20 @@ REJECTED_ON_READING = {
     475618: ("1", "The trend filter reads request.security(syminfo.tickerid, \"15\", ta.ema(close, 50)) "
               "on the header's 1-hour chart: a lower-timeframe security read, which the house "
               "bars cannot reproduce (as #427518); the quantity is also equity x risk / ATR."),
+    # ---- FMZ-C, batch V37 (2026-10-23)
+    477591: ("2", "The entries and exits use fixed price distances (close - todayLow > 200, close - "
+              "open < 10, high - buyPrice > 30 / 50, sellPrice - low > 30 / 80) and intraday "
+              "clock times (09:15, 15:00) that never occur on the header's daily bars: price-unit "
+              "levels (criterion 2)."),
+    477594: ("1", "Three strategy.exit calls each close 13 % of the position (TP1 / TP2 / TP3): "
+              "partial exits (criterion 1, as #430758)."),
+    477602: ("2", "The close needs close - lastEntryPrice >= 2 (profitTarget in dollars): a "
+              "price-unit level (criterion 2); the order gap also reads timenow (the wall clock), "
+              "and on the daily header the VWAP restarts every bar."),
+    477603: ("2", "The entry needs the total wick length > its VWMA 20 + 10 points (ma_offset): a "
+              "fixed price distance (criterion 2)."),
+    478729: ("2", "Entries need volume > 100000 (volumeThreshold): an absolute volume threshold in "
+              "the source feed's units (criterion 2, as #426785)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -10116,7 +10146,6 @@ HELD_ON_READING = {
     468315: ("licence", "Held for Austin: the source says 'Copyright 2024 TRADINGWITHKAY. All rights reserved. Unauthorized use, distribution, and modification of this code are strictly prohibited.' The rules themselves are portable (RSI 14 zones 20 / 30 / 70 / 80 reversing, a 50-pip bracket = 50 price units at mintick x 10, 2-day bars). Port or reject on Austin's word; the review CSV labels every held row HELD_NEEDS_VOLUME (tool label)."),
     # ---- FMZ-C, batch C208 (2026-10-22)
     # ---- FMZ-C, batch C236 (2026-10-22)
-    477603: ("8", "The default moving average of the wick length is ta.vwma: a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C243 (2026-10-22)
     482422: ("8", "The entry and exit lines are ta.vwma(close, 25) and ta.vwma(close, 8): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C244 (2026-10-22)

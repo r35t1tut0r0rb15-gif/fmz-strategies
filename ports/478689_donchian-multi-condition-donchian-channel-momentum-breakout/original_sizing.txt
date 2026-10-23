@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #478689 (基于多重条件的Donchian通道动量突破策略-Multi-Condition-Donchian-Channel-Momentum-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/478689  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, 100 % of equity, commission, pyramiding 1  [lines 106-106]
+  106: strategy("Breakout Strategy", overlay=true, calc_on_every_tick=false, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=100, commission_type=strategy.commission.percent, commission_value=0.1, pyramiding=1, fill_orders_on_standard_ohlc=true)
