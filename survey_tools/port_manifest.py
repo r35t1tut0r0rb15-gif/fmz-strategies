@@ -7445,6 +7445,20 @@ SIZING = {
         ("strategy(): 10000 cash per trade, capital 10000", 148, 148),
     ],
     434579: [],
+    # ---- FMZ-C, batch V16 (2026-10-23)
+    434606: [],
+    434677: [
+        ("long size = equity x 2 % / (2 x ATR 7)", 445, 445),
+        ("short size = equity x 2 % / (2 x ATR 7)", 463, 463),
+    ],
+    435091: [
+        ("strategy(): 100 % of equity", 180, 180),
+    ],
+    435095: [],
+    435137: [],
+    435162: [
+        ("strategy(): 100 % of equity, commission 0.125 %", 136, 136),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9525,6 +9539,24 @@ REJECTED_ON_READING = {
               "its own entry price (profit / loss of 3 % / 10 % of the close in ticks): "
               "multi-entry with separate targets, which the house engine does not do (criterion "
               "1, as #430550)."),
+    # ---- FMZ-C, batch V16 (2026-10-23)
+    434676: ("2", "One of the three entry sets needs the volume of one of the last 3 bars to be at "
+              "least 10 units (volume_trigger = 10): an absolute volume level of the source's "
+              "feed, with no meaning on broker tick volume (criterion 2, as #426785)."),
+    434709: ("1", "Seven pyramided entries (Entry 1 .. 7), each with its own exit from its own entry "
+              "price (3 % / 10 % of the close in ticks): multi-entry with separate targets, which "
+              "the house engine does not do (criterion 1, as #433905)."),
+    434977: ("1", "The day's high / low range starts at the bar opening inside the '0915-0916' "
+              "session; on the 1-hour header chart no bar opens in that window, so the range "
+              "length is na and no entry can fire (as #439752); the exits also wait for the "
+              "1511-1530 window."),
+    434996: ("1", "Two exits close the position in parts (qty_percent 50 at 1 % and 50 at 2 %): "
+              "partial exits, which the house engine does not do (criterion 1, as #430758)."),
+    435131: ("1", "Three exits close the position in parts (qty_percent 33 / 33 / 34 at 1 / 2 / 3 %, "
+              "with ATR trail offsets): partial exits, which the house engine does not do "
+              "(criterion 1, as #430758)."),
+    435167: ("1", "Two take-profits close the position in parts (qty_percent 20 at 8 % and 30 at 16 "
+              "%): partial exits, which the house engine does not do (criterion 1, as #430758)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -9547,9 +9579,7 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C53 (2026-10-17)
     # ---- FMZ-C, batch C64 (2026-10-17)
     # ---- FMZ-C, batch C69 (2026-10-17)
-    434606: ("8", "One of the five averages is vwma(close, 136): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C72 (2026-10-17)
-    434977: ("8", "The long and short exits test the close against vwma(close, 20): a volume-weighted average (check 8, held with the other volume users). (Also, on the 1-hour header chart no bar opens inside the 09:15-09:16 session window, so the day-range anchor is never set.)"),
     # ---- FMZ-C, batch C95 (2026-10-21)
     436658: ("8", "The long and short entries test the Hull line against rvwma3 = vwma(close, 42): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C117 (2026-10-22)

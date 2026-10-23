@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #435091 (基于交易量震荡指标的长短线交叉策略Volume-Oscillator-Long-and-Short-Term-Moving-Average-Crossover-Strategy)
+# Source: https://www.fmz.com/strategy/435091  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 180-180]
+  180: strategy("SB_Volume_oscillator_Prev_high_low", overlay=true,default_qty_type = strategy.percent_of_equity, default_qty_value = 100)

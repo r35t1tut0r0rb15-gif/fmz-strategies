@@ -319,6 +319,7 @@ Last updated 2026-10-23 by FMZ-C (desktop GAME_CHAMBER, batches C1-; rules 2026-
 | C274 | 490914 - 491897 | 490914, 490919, 491035, 491038, 491505, 491506, 491508, 491514, 491892, 491897 | 491510, 491890, 491891 |
 | C275 | 491914 - 492009 | 492007 | 491914, 492009 |
 | C276 | 453281 - 453281 | 453281 | - |
+| V16 | 434606 - 435167 | 434606, 434677, 435091, 435095, 435137, 435162 | 434676, 434709, 434977, 434996, 435131, 435167 |
 | V15 | 433905 - 434579 | 433925, 433958, 433969, 434177, 434296, 434301, 434328, 434436, 434449, 434555, 434579 | 433905 |
 | V14 | 433031 - 433512 | 433078, 433096, 433099, 433132, 433423, 433436, 433454 | 433031, 433080, 433102, 433147, 433512 |
 | V13 | 432312 - 432909 | 432312, 432343, 432347, 432754, 432756, 432773, 432774, 432808, 432845, 432879, 432909 | 432765 |
@@ -338,7 +339,7 @@ Last updated 2026-10-23 by FMZ-C (desktop GAME_CHAMBER, batches C1-; rules 2026-
 ## Next
 
 1. Continue the queue: `overall == PORT_CANDIDATE` in `screening.csv`, ascending `fmz_id`,
-   skipping ids already in `review_decisions.csv`. **Next id: 434606** (worker A works upward
+   skipping ids already in `review_decisions.csv`. **Next id: 435270** (worker A works upward
    from 126968 on branch `survey`; worker B ports ids >= 439378 on `survey-b`, then works
    down from 439377; A stops when its next id is one B has done).
    Worker A's log with resume points: `reports/cloud_porting_A_LOG_2026-10-07.md`.
