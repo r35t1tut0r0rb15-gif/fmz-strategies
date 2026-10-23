@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #473382 (多重趋势动量交叉策略结合波动率优化系统-Multi-Trend-Momentum-Crossover-Strategy-with-Volatility-Optimization-System)
+# Source: https://www.fmz.com/strategy/473382  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

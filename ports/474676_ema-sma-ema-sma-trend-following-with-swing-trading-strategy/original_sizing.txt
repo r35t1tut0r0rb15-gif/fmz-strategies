@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #474676 (EMA-SMA趋势跟踪与波段交易策略结合成交量过滤和百分比止盈止损系统-EMA-SMA-Trend-Following-with-Swing-Trading-Strategy-Combined-Volume-Filter-and-Percentage-Take-Profit-Stop-Loss-System)
+# Source: https://www.fmz.com/strategy/474676  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

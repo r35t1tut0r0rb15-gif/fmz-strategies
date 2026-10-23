@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #473264 (基于标准差和移动平均线的Elders力量指数量化交易策略-Elders-Force-Index-Quantitative-Trading-Strategy-Based-on-Standard-Deviation-and-Moving-Averages)
+# Source: https://www.fmz.com/strategy/473264  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

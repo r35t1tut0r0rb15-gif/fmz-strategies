@@ -11,12 +11,12 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3535 |
+| PORTED | 3544 |
 | REJECTED | 994 |
-| REJECTED_ON_READING | 594 |
+| REJECTED_ON_READING | 597 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
-| HELD_NEEDS_VOLUME | 178 |
+| HELD_NEEDS_VOLUME | 166 |
 | DUPLICATE_ON_READING | 1 |
 | **Total** | **5806** |
 
@@ -3064,8 +3064,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 473248 | `ports/473248_rsi-macd-rsi-macd-multi-signal-trading-system-with-dynamic-s/` | PineScript | macd_cross | trailing_stop_pending | rsi_os x2, rsi_ob x2 | 4 |
 | 473250 | `ports/473250_smiubs-dual-momentum-squeeze-trading-system-smiubs-indicator/` | PineScript | momentum_oscillator | coarse_bar_stop | tp_pct x2, sl_pct x2 | 4 |
 | 473252 | `ports/473252_triple-ema-crossover-trading-strategy-with-dynamic-stop-loss/` | PineScript | ma_cross | coarse_bar_stop | sl_atr x2, tp_atr x2 | 4 |
+| 473261 | `ports/473261_rsi-rsi-trend-momentum-trading-strategy-with-dual-ma-and-vol/` | PineScript | rsi_reversion | coarse_bar_stop | rsi_os x2, sl x2 | 4 |
 | 473262 | `ports/473262_enhanced-multi-indicator-trend-reversal-intelligence-strateg/` | PineScript | macd_cross | none |  | 0 |
 | 473263 | `ports/473263_atr-atr-fusion-trend-optimization-model-strategy/` | PineScript | momentum_oscillator | none | long_th x2, short_th x2 | 4 |
+| 473264 | `ports/473264_elders-elders-force-index-quantitative-trading-strategy-base/` | PineScript | force_index | trailing_stop_pending | numdev x2, tp_mult x2 | 4 |
 | 473265 | `ports/473265_atr-multi-ema-trend-following-strategy-with-dynamic-atr-targ/` | PineScript | ma_pullback | coarse_bar_stop | sl_atr x2, tp_atr x2 | 4 |
 | 473266 | `ports/473266_bollinger-bands-and-rsi-combined-trading-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2, exit_rsi x2 | 8 |
 | 473268 | `ports/473268_dynamic-dual-moving-average-crossover-quantitative-trading-s/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
@@ -3092,10 +3094,12 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 473367 | `ports/473367_rsi-ema-dynamic-multi-period-quantitative-trading-strategy-c/` | PineScript | rsi_oscillator | trailing_stop_pending | ema_period x2, rsi_period x2 | 4 |
 | 473371 | `ports/473371_smc-multi-zone-smc-theory-based-intelligent-trend-following/` | PineScript | pivot_levels | none | swing_len x2, sma_len x2 | 4 |
 | 473372 | `ports/473372_momentum-indicator-oscillation-threshold-enhanced-trading-st/` | PineScript | mean_reversion | none | length x2, threshold x2 | 4 |
+| 473382 | `ports/473382_multi-trend-momentum-crossover-strategy-with-volatility-opti/` | PineScript | trend_agreement | coarse_bar_stop | tp x2, sl x2 | 4 |
 | 473383 | `ports/473383_dual-ema-trend-momentum-trading-strategy/` | PineScript | ma_cross | none |  | 0 |
 | 473385 | `ports/473385_rsi-multi-ma-crossover-with-rsi-dynamic-trailing-stop-loss-q/` | PineScript | ma_cross | none |  | 0 |
 | 473386 | `ports/473386_dual-ema-dynamic-zone-trend-following-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 473387 | `ports/473387_atr-advanced-dual-ema-strategy-with-atr-volatility-filter-sy/` | PineScript | ma_cross | none | fast x2, slow x2, atr_threshold x2 | 8 |
+| 473395 | `ports/473395_obv-sma-rsi-obv-sma-crossover-with-rsi-filter-multi-dimensio/` | PineScript | obv | coarse_bar_stop | obv_len x2, sl x2 | 4 |
 | 473396 | `ports/473396_ema-dual-ema-indicator-smart-crossing-trading-system-with-dy/` | PineScript | ma_cross | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
 | 473397 | `ports/473397_hull-ema-reflected-ema-trend-determination-strategy-based-on/` | PineScript | hull_ma | none | correction_pct x2, smooth x2 | 4 |
 | 473398 | `ports/473398_heikin-ashi-sma-smoothed-heikin-ashi-with-sma-crossover-tren/` | PineScript | ma_cross | none | sma_long x2, smooth x2 | 4 |
@@ -3107,6 +3111,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 473410 | `ports/473410_dynamic-signal-line-trend-following-and-volatility-filtering/` | PineScript | trend_confluence | none | length x2, offset x2, risk_reward x2 | 8 |
 | 473411 | `ports/473411_dual-chain-hybrid-momentum-ema-tracking-trading-system/` | PineScript | multi_timeframe_ma | none | len1 x2, len2 x2 | 4 |
 | 473412 | `ports/473412_atr-multi-exponential-moving-average-crossover-strategy-with/` | PineScript | ma_cross | coarse_bar_stop |  | 0 |
+| 473669 | `ports/473669_multi-technical-indicator-trend-following-trading-strategy/` | PineScript | rsi_momentum | none | fast x2, slow x2 | 4 |
 | 473706 | `ports/473706_rsi-dual-ema-crossover-with-rsi-momentum-enhanced-trading-st/` | PineScript | ma_cross | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
 | 473709 | `ports/473709_rsi-supertrend-rsi-and-supertrend-trend-following-adaptive-v/` | PineScript | supertrend | trailing_stop_pending | factor x2, atr_period x2 | 4 |
 | 473935 | `ports/473935_macd-rsi-macd-rsi-dynamic-crossover-quantitative-trading-sys/` | PineScript | macd_cross | none | overbought x2, oversold x2 | 4 |
@@ -3136,9 +3141,12 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474632 | `ports/474632_multi-strategy-technical-analysis-trading-system/` | PineScript | macd_momentum | none |  | 0 |
 | 474634 | `ports/474634_rsi-atr-rsi-atr-momentum-volatility-combined-trading-strateg/` | PineScript | rsi_oscillator | coarse_bar_stop | k_atr x2, rsi_ma_length x2 | 4 |
 | 474635 | `ports/474635_rsi-bollinger-bands-and-rsi-combined-dynamic-trading-strateg/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
+| 474636 | `ports/474636_dynamic-dual-ema-crossover-strategy-with-adaptive-profit-los/` | PineScript | ma_cross | coarse_bar_stop | tp_mult x2, sl_mult x2 | 4 |
 | 474668 | `ports/474668_atr-multi-level-intelligent-dynamic-trailing-stop-strategy-b/` | PineScript | bollinger_reversion | none | length x2, atr_mult x2 | 4 |
 | 474670 | `ports/474670_advanced-dynamic-trailing-stop-with-risk-reward-targeting-st/` | PineScript | candle_pattern | coarse_bar_stop, trailing_stop_pending | lookback x2, rr x2 | 4 |
 | 474672 | `ports/474672_multi-indicator-trend-momentum-crossover-quantitative-strate/` | PineScript | supertrend | none | st_mult x2, st_len x2 | 4 |
+| 474675 | `ports/474675_vwap-vwap-standard-deviation-mean-reversion-trading-strategy/` | PineScript | vwap | none | std_mult x2, length x2 | 4 |
+| 474676 | `ports/474676_ema-sma-ema-sma-trend-following-with-swing-trading-strategy/` | PineScript | swing_breakout | coarse_bar_stop | pivot x2, tp x2 | 4 |
 | 474679 | `ports/474679_daily-range-breakout-single-direction-trading-strategy/` | PineScript | breakout | coarse_bar_stop | sl_frac x2, tp_frac x2 | 4 |
 | 474681 | `ports/474681_rsi-dynamic-rsi-oscillator-polynomial-fitting-indicator-tren/` | PineScript | momentum_oscillator | none | rsi_len x2, window x2 | 4 |
 | 474682 | `ports/474682_heikin-ashi-multi-timeframe-smoothed-heikin-ashi-trend-follo/` | PineScript | ma_trend | coarse_bar_stop | sl_pct x2, tp_pct x2 | 4 |
@@ -3149,6 +3157,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474706 | `ports/474706_fractal-breakout-momentum-trading-strategy-with-take-profit/` | PineScript | pivot_levels | coarse_bar_stop, trailing_stop_pending | trig_frac x2, tp_frac x2 | 4 |
 | 474707 | `ports/474707_multi-indicator-trend-following-strategy-with-profit-optimiz/` | PineScript | parabolic_sar | trailing_stop_pending | sma_len x2, target_pct x2 | 4 |
 | 474708 | `ports/474708_multi-timeframe-fibonacci-retracement-with-trend-breakout-tr/` | PineScript | pivot_levels | trailing_stop_pending | fib1 x2, sl_pct x2 | 4 |
+| 474710 | `ports/474710_multi-factor-counter-trend-trading-strategy/` | PineScript | keltner_reversion | none | count x2, mult x2 | 4 |
 | 474717 | `ports/474717_advanced-ema-momentum-trend-trading-strategy/` | PineScript | momentum_oscillator | coarse_bar_stop | len x2, stop_pct x2 | 4 |
 | 474720 | `ports/474720_gold-trend-channel-reversal-momentum-strategy/` | PineScript | candle_pattern | coarse_bar_stop |  | 0 |
 | 474722 | `ports/474722_vix-advanced-volatility-mean-reversion-trading-strategy-mult/` | PineScript | mean_reversion | none | length x2, pct x2 | 4 |
@@ -3662,7 +3671,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491892 | `ports/491892_ema-ema-dual-crossover-dynamic-stop-loss-quantitative-strate/` | PineScript | ma_cross | none | length10 x2, length20 x2 | 4 |
 | 491897 | `ports/491897_multi-factor-trend-following-quantitative-strategy/` | PineScript | parabolic_sar | coarse_bar_stop, trailing_stop_pending | adxThreshold x2, atrMultiplier x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | rsi_divergence | trailing_stop_pending | lookLeft x2, rangeUpper x2 | 4 |
-| | **3535 ports** | | | | | **15918** |
+| | **3544 ports** | | | | | **15954** |
 
 ## Rejected on reading
 
@@ -4123,7 +4132,9 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 473130 | VWAP-ATR动态价格行为交易系统-VWAP-ATR-Dynamic-Price-Action-Trading-System.md | 1 | The header's bars are 1 day, where ta.vwap(close) is the bar's own close, so close > vwap / close < vwap and the crossings of it never hold: the script cannot trade (as #451028). |
 | 473162 | 多指标交叉趋势跟踪与量价结合的自适应交易策略-Multi-Indicator-Cross-Trend-Tracking-and-Volume-Price-Combined-Adaptive-Trading-Strategy.md | 2 | Entries need 60000 <= close <= 80000 (BTC prices) and volume > 100 (raw volume units): price-unit levels and an absolute volume threshold (criterion 2, as #426785). |
 | 473237 | T3均线趋势跟踪与移动止损量化交易策略-T3-Moving-Average-Trend-Following-Strategy-with-Trailing-Stop-Loss.md | 1 | The exits are strategy.exit qty_percent = 50 partial closes (half the position at the stop / target, re-sent every bar): the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #439950). |
+| 473241 | 高频动态多指标均线交叉策略-High-Frequency-Dynamic-Multi-Indicator-Moving-Average-Crossover-Strategy.md | 1 | The header's bars are 1 day, where ta.vwap(close) is the bar's own close, so close > vwap and close < vwap never hold and neither entry can fire: the script cannot trade (as #451028, #468342). |
 | 473242 | 双均线MACD交叉日期可调节量化交易策略-Dual-Moving-Average-MACD-Crossover-Date-Adjustable-Quantitative-Trading-Strategy.md | 2 | The bracket passes percentages of the close as tick counts (loss = 0.01 x close, profit = 0.02 x close in strategy.exit's tick fields): a price amount in a tick field, so the distance in price depends on the instrument's tick size (criterion 2, as #442115). |
+| 473358 | 多层级斐波那契均线趋势追踪策略-Multi-Level-Fibonacci-EMA-Trend-Following-Strategy.md | 2 | Entries need sma(volume, 24) > 500000 (volumeThreshold): an absolute volume threshold in the source feed's units (criterion 2, as #426785). |
 | 473362 | TRAMA双均线交叉智能量化交易策略-TRAMA-Dual-Moving-Average-Crossover-Intelligent-Quantitative-Trading-Strategy.md | 1 | The TRAMA's var seed (tramaPrev) is set once, to the first bar's close, and never updated, so trama = 0.8 x close + 0.2 x the first bar's close and its crossings are crossings of the first bar's close: half of the entries (the bracketed Long / Short ids) are set by where the data starts (criterion 1, a data-window level, as #468340). |
 | 473377 | 多重指标趋势突破量化交易策略-Multi-Indicator-Trend-Breakout-Quantitative-Trading-Strategy.md | 2 | strategy.exit's profit / loss fields take tick counts but receive prices (avg x 1.015 / avg x 0.99): a price amount in a tick field, so the distance in price depends on the instrument's tick size and price level (criterion 2, as #442115). |
 | 473389 | 动态RSI超卖反弹交易策略结合止损优化模型-Dynamic-RSI-Oversold-Rebound-Trading-Strategy-with-Stop-Loss-Optimization-Model.md | 1 | pyramiding = 2 with a long sent on every bar the RSI 8 is under 28: a second unit is added inside the trade, so the size path is part of the strategy (criterion 1, pyramiding >= 2 repeats). |
@@ -4133,6 +4144,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 474055 | 多重形态识别与SR分位交易策略-Multi-Pattern-Recognition-and-SR-Level-Trading-Strategy.md | 1 | The S/R level is refreshed only on bars where bar_index % 21 == 0, counted from the first bar of the loaded data, and the entries compare it with the double-bottom levels: which bars set the level depends on where the data starts (criterion 1, a data-start schedule, as #430034 / #468340). |
 | 474057 | MACD-KDJ联动的马丁格尔金字塔式量化交易策略-MACD-KDJ-Combined-Martingale-Pyramiding-Quantitative-Trading-Strategy.md | 1 | Martingale pyramiding: up to 5 additions to the open position (strategy.entry on the same id with qty = initial x multiplier^n after a drop and rebound), so the size path is part of the strategy (criterion 1, stepped adds, as #430762). |
 | 474064 | Multi-Step-ATR-Trading-Strategy-with-Dynamic-Profit-Taking-多层级-ATR-动态获利交易策略.md | 1 | Multi-step take-profit on by default: seven qty_percent partial exits (10 % each at ATR and percent levels): the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #436524). |
+| 474686 | 多时间周期动态止损EMA-Squeeze交易策略-Multi-Timeframe-Dynamic-Stop-Loss-EMA-Squeeze-Trading-Strategy.md | 1 | Its entries read request.security(syminfo.tickerid, lower_resolution, ..., lookahead = barmerge.lookahead_on) without [1], and on the header's 1-hour chart lower_resolution is '240' (a higher timeframe): the 4-hour close, high and low are read before that bar ends (HTF lookahead_on without [1], as #441065). |
 | 474709 | 增强型动量震荡与随机背离量化交易策略-Enhanced-Momentum-Oscillator-and-Stochastic-Divergence-Quantitative-Trading-Strategy.md | 1 | The target and stop are close +/- 0.0020 / 0.0040 in price (FX-sized, "40 pips"): on the header pair's 0.1 tick both levels sit at the signal close, so one of them is always at or through the fill open and every trade closes at its own fill (criterion 1, a zero-width bracket, as #451493). |
 | 474712 | 多移动平均线趋势强度交易策略-基于移动平均线偏离度的灵活性智能交易系统-Multi-MA-Trend-Intensity-Trading-Strategy-A-Flexible-Smart-Trading-System-Based-on-MA-Deviation.md | 1 | A qty_percent partial exit (50 % at 1 R) on every trade, with a risk-sized quantity: the position is closed in parts, so the size path is part of the strategy (criterion 1, qty_percent partial exits, as #436524). |
 | 474803 | 多重技术指标趋势追踪套利策略-Multi-Technical-Indicator-Trend-Following-Trading-Strategy.md | 1 | The trailing exit has trail_price = close x 0.98 (under the market, so armed at once) and trail_offset = 0.02 ticks (0.002 in price), re-sent every bar: it stops every trade at the first tick against it, so trades end at their entry price (criterion 1, a zero-width exit, as #451493). |

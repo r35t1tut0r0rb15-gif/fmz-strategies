@@ -7745,6 +7745,20 @@ SIZING = {
     473146: [
         ("strategy(): 100 % of equity", 119, 119),
     ],
+    # ---- FMZ-C, batch V34 (2026-10-23)
+    473261: [
+        ("strategy(): capital, 100 % of equity, pyramiding 1, commission", 103, 103),
+    ],
+    473264: [],
+    473382: [],
+    473395: [],
+    473669: [],
+    474636: [],
+    474675: [],
+    474676: [],
+    474710: [
+        ("strategy(): capital, 80 % of equity, commission", 95, 95),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -10009,6 +10023,16 @@ REJECTED_ON_READING = {
     473162: ("2", "Entries need 60000 <= close <= 80000 (BTC prices) and volume > 100 (raw volume "
               "units): price-unit levels and an absolute volume threshold (criterion 2, as "
               "#426785)."),
+    # ---- FMZ-C, batch V34 (2026-10-23)
+    473241: ("1", "The header's bars are 1 day, where ta.vwap(close) is the bar's own close, so close "
+              "> vwap and close < vwap never hold and neither entry can fire: the script cannot "
+              "trade (as #451028, #468342)."),
+    473358: ("2", "Entries need sma(volume, 24) > 500000 (volumeThreshold): an absolute volume "
+              "threshold in the source feed's units (criterion 2, as #426785)."),
+    474686: ("1", "Its entries read request.security(syminfo.tickerid, lower_resolution, ..., "
+              "lookahead = barmerge.lookahead_on) without [1], and on the header's 1-hour chart "
+              "lower_resolution is '240' (a higher timeframe): the 4-hour close, high and low are "
+              "read before that bar ends (HTF lookahead_on without [1], as #441065)."),
 }
 
 DUPLICATE_ON_READING = {
