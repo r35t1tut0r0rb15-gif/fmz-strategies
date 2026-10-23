@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #474952 (基于RSIMACD和成交量的多指标组合自适应交易策略-Multi-Indicator-Adaptive-Trading-Strategy-Based-on-RSI-MACD-and-Volume)
+# Source: https://www.fmz.com/strategy/474952  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, commission, slippage  [lines 101-101]
+  101: strategy("Liraz sh Strategy - RSI MACD Strategy with Bullish Engulfing and Net Volume", overlay=true, currency=currency.NONE, initial_capital=100000, commission_type=strategy.commission.percent, commission_value=0.1, slippage=3)

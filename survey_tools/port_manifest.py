@@ -7759,6 +7759,24 @@ SIZING = {
     474710: [
         ("strategy(): capital, 80 % of equity, commission", 95, 95),
     ],
+    # ---- FMZ-C, batch V35 (2026-10-23)
+    474711: [],
+    474813: [
+        ("strategy(): 100 % of equity", 97, 97),
+    ],
+    474836: [],
+    474844: [],
+    474850: [
+        ("strategy(): 10 % of equity; risk-based qty with leverage", 117, 117),
+        ("position size from equity, ATR and leverage", 157, 160),
+    ],
+    474858: [],
+    474868: [],
+    474952: [
+        ("strategy(): capital, commission, slippage", 101, 101),
+    ],
+    474978: [],
+    474982: [],
 }
 
 REJECTED_ON_READING = {
@@ -10033,6 +10051,13 @@ REJECTED_ON_READING = {
               "lookahead = barmerge.lookahead_on) without [1], and on the header's 1-hour chart "
               "lower_resolution is '240' (a higher timeframe): the 4-hour close, high and low are "
               "read before that bar ends (HTF lookahead_on without [1], as #441065)."),
+    # ---- FMZ-C, batch V35 (2026-10-23)
+    474842: ("1", "Each take-profit and stop-loss closes part of the position (qty_percent 30 / 40 / "
+              "30 at three levels each): partial exits (criterion 1, as #430758)."),
+    475594: ("1", "Two strategy.exit calls each close 50 % (TP1 with the stop, TP2 alone): partial "
+              "exits (criterion 1, as #430758); it also closes everything on an equity drawdown "
+              "over 30 % (as #440336) and needs volume > 1e6 and ATR > 2 in raw units (criterion "
+              "2)."),
 }
 
 DUPLICATE_ON_READING = {

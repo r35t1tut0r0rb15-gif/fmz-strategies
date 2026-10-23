@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #474858 (多指标趋势跟踪与波动突破策略-Multi-Indicator-Trend-Following-and-Volatility-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/474858  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

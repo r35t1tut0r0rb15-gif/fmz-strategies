@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #474850 (多市场自适应多指标组合趋势跟踪策略-Multi-Market-Adaptive-Multi-Indicator-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/474850  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 10 % of equity; risk-based qty with leverage  [lines 117-117]
+  117: strategy("Multi-Market Adaptive Trading Strategy", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+## position size from equity, ATR and leverage  [lines 157-160]
+  157: // Calculate Position Size
+  158: account_size = strategy.equity
+  159: risk_amount = math.min(account_size * (i_risk_percent / 100), account_size * (i_max_position_size / 100))
+  160: position_size = (risk_amount / (atr * volatility_factor)) * leverage

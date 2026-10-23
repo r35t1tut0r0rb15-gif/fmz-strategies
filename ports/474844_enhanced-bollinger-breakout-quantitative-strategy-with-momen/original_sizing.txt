@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #474844 (布林带趋势突破增强型量化策略结合指标动量过滤系统-Enhanced-Bollinger-Breakout-Quantitative-Strategy-with-Momentum-Filter-Integration-System)
+# Source: https://www.fmz.com/strategy/474844  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
