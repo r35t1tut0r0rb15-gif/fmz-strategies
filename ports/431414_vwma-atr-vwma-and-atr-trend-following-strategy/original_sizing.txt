@@ -1,0 +1,12 @@
+# Original sizing and money-management code, FMZ #431414 (基于VWMA及ATR的趋势跟踪策略VWMA-and-ATR-Trend-Following-Strategy)
+# Source: https://www.fmz.com/strategy/431414  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): pyramiding 1, 20 % of equity, capital 10000  [lines 159-159]
+  159: strategy(title="VWMA_withATRstops_strategy V2", overlay=true, pyramiding=1,     default_qty_type=strategy.percent_of_equity,  default_qty_value=20, initial_capital=10000, currency=currency.USD)  //default_qty_value=10, default_qty_type=strategy.fixed,
+
+## risk-based qty1  [lines 198-201]
+  198: qty1 = (strategy.equity  * riskCapital / 100 ) /  (close*stopLoss/100)  
+  199: 
+  200: //check if cash is sufficient  to buy qty1  , if capital not available use the available capital only
+  201: qty1:= (qty1 * close >= strategy.equity ) ? (strategy.equity / close) : qty1

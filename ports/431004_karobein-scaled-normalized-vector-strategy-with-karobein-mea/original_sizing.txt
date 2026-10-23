@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #431004 (基于态势的Karobein均值回归策略Scaled-Normalized-Vector-Strategy-with-Karobein-Mean-Reversion)
+# Source: https://www.fmz.com/strategy/431004  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## 1-unit entries  [lines 234-235]
+  234: strategy.entry("L", true, 1, when=longCondition)
+  235: strategy.entry("S", false, 1, when=shortCondition)

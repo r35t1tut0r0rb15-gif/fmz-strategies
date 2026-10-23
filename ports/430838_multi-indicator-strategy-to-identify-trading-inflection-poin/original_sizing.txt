@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #430838 (多指标识别交易反转点的量化交易策略Multi-indicator-Strategy-to-Identify-Trading-Inflection-Points-in-Quant-Trading)
+# Source: https://www.fmz.com/strategy/430838  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## commented strategy(): 1.5 % of equity, capital 10000, slippage 2  [lines 272-272]
+  272: // strategy("WOMBO COMBO: 100/200EMA & VWAP & MACD", shorttitle="WOMBO COMBO", default_qty_type=strategy.percent_of_equity, default_qty_value=1.5, initial_capital=10000,slippage=2, currency=currency.USD, overlay=true)

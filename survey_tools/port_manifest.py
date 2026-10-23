@@ -7337,6 +7337,24 @@ SIZING = {
     430677: [
         ("commented strategy(): pyramiding 12, capital 25000, 20 % of equity", 248, 248),
     ],
+    # ---- FMZ-C, batch V11 (2026-10-23)
+    430833: [
+        ("strategy(): 100 % of equity, commission 0.25 %", 338, 340),
+    ],
+    430838: [
+        ("commented strategy(): 1.5 % of equity, capital 10000, slippage 2", 272, 272),
+    ],
+    430839: [],
+    430854: [],
+    431004: [
+        ("1-unit entries", 234, 235),
+    ],
+    431218: [],
+    431266: [],
+    431414: [
+        ("strategy(): pyramiding 1, 20 % of equity, capital 10000", 159, 159),
+        ("risk-based qty1", 198, 201),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9365,6 +9383,19 @@ REJECTED_ON_READING = {
               "PRICE average, true or false according to the instrument's price level and the "
               "feed's volume units (criterion 2, an instrument-specific comparison); and the ORB "
               "session 09:15-09:30 never holds an hourly bar's open."),
+    # ---- FMZ-C, batch V11 (2026-10-23)
+    430758: ("1", "Four exits close the position in parts (qty_percent 25 / 25 / 25 and the rest) at "
+              "four targets: partial exits, which the house engine does not do (criterion 1, as "
+              "#366538)."),
+    430991: ("2", "The state switches on the 7-bar average signed volume crossing the fixed levels "
+              "40000 and -35000: absolute volume levels of the source's feed, with no meaning on "
+              "another instrument or on broker tick volume (criterion 2, as #426785)."),
+    431417: ("1", "With pyramiding 5 the script re-enters (adds) while long, and the partial-profit "
+              "switch is on (strategy.close with qty = position / 3): adds and partial exits, "
+              "which the house engine does not do (criterion 1, as #430550)."),
+    431669: ("1", "With pyramiding 2 an 'Add' entry is sent while long when the close is under the "
+              "average price and the ZVWAP crosses zero: averaging down, the size path is part of "
+              "the strategy (criterion 1, as #440354)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -9383,7 +9414,6 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C35 (2026-10-16)
     # ---- FMZ-C, batch C36 (2026-10-16)
     # ---- FMZ-C, batch C45 (2026-10-17)
-    431414: ("8", "The trend line is vwma(close, 33) and its RSI: a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C52 (2026-10-17)
     432347: ("8", "The band basis is vwma(hlc3, 50): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C53 (2026-10-17)
