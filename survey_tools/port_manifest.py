@@ -7732,6 +7732,19 @@ SIZING = {
     458248: [],
     458275: [],
     468326: [],
+    # ---- FMZ-C, batch V33 (2026-10-23)
+    468337: [
+        ("entry qty = round(equity x leverage / close, 2) with leverage 1 (all equity)", 148, 148),
+    ],
+    471663: [],
+    471664: [],
+    471693: [],
+    471721: [],
+    472935: [],
+    473137: [],
+    473146: [
+        ("strategy(): 100 % of equity", 119, 119),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9982,6 +9995,20 @@ REJECTED_ON_READING = {
     458203: ("1", "pyramiding = 3 with the same entry id re-sent on every qualifying bar while open "
               "(direction / RSI 50 / candle colour / rising volume repeat often), each re-sending "
               "the shared bracket: repeated adds (criterion 1, as #442112)."),
+    # ---- FMZ-C, batch V33 (2026-10-23)
+    468342: ("1", "The header's bars are 1 day, where ta.vwap(close) restarts every bar and equals "
+              "the bar's close, so buySignal (close > vwap) and sellSignal (close < vwap) never "
+              "hold: the script cannot trade (as #451028); its 15:59 end-of-day close never "
+              "occurs on daily bars either."),
+    471674: ("1", "strategy.close(..., qty_percent = 50) halves the position once the close is 1.5 "
+              "ATR in profit: a partial exit (criterion 1, as #430758); it also adds a daily loss "
+              "limit in account currency and a price-unit slippage floor of 5."),
+    473130: ("1", "The header's bars are 1 day, where ta.vwap(close) is the bar's own close, so close "
+              "> vwap / close < vwap and the crossings of it never hold: the script cannot trade "
+              "(as #451028)."),
+    473162: ("2", "Entries need 60000 <= close <= 80000 (BTC prices) and volume > 100 (raw volume "
+              "units): price-unit levels and an absolute volume threshold (criterion 2, as "
+              "#426785)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -10013,7 +10040,6 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C206 (2026-10-22)
     468315: ("licence", "Held for Austin: the source says 'Copyright 2024 TRADINGWITHKAY. All rights reserved. Unauthorized use, distribution, and modification of this code are strictly prohibited.' The rules themselves are portable (RSI 14 zones 20 / 30 / 70 / 80 reversing, a 50-pip bracket = 50 price units at mintick x 10, 2-day bars). Port or reject on Austin's word; the review CSV labels every held row HELD_NEEDS_VOLUME (tool label)."),
     # ---- FMZ-C, batch C208 (2026-10-22)
-    468337: ("8", "The trend filter compares vwma(close, 20) with vwma(close, 50): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C236 (2026-10-22)
     477603: ("8", "The default moving average of the wick length is ta.vwma: a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C243 (2026-10-22)

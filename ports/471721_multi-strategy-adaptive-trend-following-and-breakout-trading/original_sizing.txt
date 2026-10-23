@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #471721 (多策略自适应趋势跟踪与突破交易系统-Multi-Strategy-Adaptive-Trend-Following-and-Breakout-Trading-System)
+# Source: https://www.fmz.com/strategy/471721  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
