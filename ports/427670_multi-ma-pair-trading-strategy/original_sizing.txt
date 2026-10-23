@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427670 (多均线配对交易策略Multi-MA-Pair-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/427670  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## Quantity input 1  [lines 218-218]
+  218: Quantity = input(1, minval=1, title="Quantity")

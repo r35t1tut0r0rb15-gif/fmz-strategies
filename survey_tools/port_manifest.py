@@ -7235,6 +7235,29 @@ SIZING = {
         ("strategy(): pyramiding 1, 20 % of equity, capital 10000", 127, 127),
         ("risk-based qty1", 157, 160),
     ],
+    # ---- FMZ-C, batch V7 (2026-10-23)
+    427466: [
+        ("strategy(): 10 % of equity, capital 10000, commission 0.1 %, slippage 1", 136, 138),
+    ],
+    427517: [],
+    427527: [
+        ("strategy(): capital 1000, 100 % of equity, commission 0.025, pyramiding 0", 180, 180),
+    ],
+    427574: [],
+    427670: [
+        ("Quantity input 1", 218, 218),
+    ],
+    427734: [],
+    427820: [
+        ("strategy(): margin_long / margin_short 1", 182, 182),
+    ],
+    427928: [
+        ("strategy(): 100 % of equity", 225, 225),
+    ],
+    427993: [
+        ("commented strategy(): cash 10000, capital 10000", 209, 209),
+    ],
+    428058: [],
 }
 
 REJECTED_ON_READING = {
@@ -9227,6 +9250,14 @@ REJECTED_ON_READING = {
     427443: ("1", "A 3Commas-style DCA bot: a base order, then up to 5 safety orders of growing size "
               "(x 2) at growing distances below the first price, closed together at 22 % over the "
               "average price: the size path is the strategy (criterion 1, DCA, as #440354)."),
+    # ---- FMZ-C, batch V7 (2026-10-23)
+    427826: ("1", "The default strategy input is 'dca long': up to 10 more long entries every 2 % "
+              "drop, closed together 2 % over the running average (the 'simple' mode is not "
+              "selected): the size path is the strategy (criterion 1, DCA, as #427443)."),
+    427870: ("2", "The entries need volume > 16 (long) / > 42 (short), absolute volume levels of the "
+              "source's feed, the initial stops are close - 5 / close + 1 PRICE units and the "
+              "trend line is shifted by 22 / 16 price units: instrument-specific thresholds and "
+              "distances (criterion 2, as #426785, #426931)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -9238,9 +9269,7 @@ DUPLICATE_ON_READING = {
 # written to review_decisions.csv as HELD_NEEDS_VOLUME.
 HELD_ON_READING = {
     # ---- FMZ-C, batch C10 (2026-10-16)
-    427574: ("8", "The trend filter uses vwma(close, 55) and vwma(close, 144): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C11 (2026-10-16)
-    427734: ("8", "The combined condition uses DEVWRSI = ema(ema(vwma(rsi, 7), 7), 7): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C24 (2026-10-16)
     429461: ("8", "The moving-average rating includes vwma(close, 10/20/50/100/200): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C27 (2026-10-16)

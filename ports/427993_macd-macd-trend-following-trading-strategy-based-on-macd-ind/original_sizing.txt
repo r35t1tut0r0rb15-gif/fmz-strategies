@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #427993 (基于MACD指标的趋势跟踪交易策略MACD-Trend-Following-Trading-Strategy-Based-on-MACD-Indicator)
+# Source: https://www.fmz.com/strategy/427993  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## commented strategy(): cash 10000, capital 10000  [lines 209-209]
+  209: // strategy(title="自用策略v0.2",calc_on_order_fills=false,calc_on_every_tick =false, initial_capital=10000,commission_type=strategy.commission.percent, commission_value=0.00,overlay = true,default_qty_type = strategy.cash, default_qty_value = 10000)
