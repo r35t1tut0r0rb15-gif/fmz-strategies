@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483129 (高级量化交易多均线交叉体系配合成交量过滤策略-Advanced-Quantitative-Trading-Multi-Moving-Average-Crossover-System-with-Volume-Filter-Strategy)
+# Source: https://www.fmz.com/strategy/483129  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): 100 % of equity  [lines 103-103]
+  103: strategy("Optimized Moving Average Crossover Strategy with Volume Filter", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)

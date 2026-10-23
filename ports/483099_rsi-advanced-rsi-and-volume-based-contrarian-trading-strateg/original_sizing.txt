@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #483099 (量化交易中基于RSI与成交量的高级反转策略-Advanced-RSI-and-Volume-Based-Contrarian-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483099  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): capital, 10 % of equity, pyramiding 0  [lines 111-111]
+  111: strategy("RSI & Volume Contrarian Strategy", overlay=true, initial_capital=100000, default_qty_type=strategy.percent_of_equity, default_qty_value=10, pyramiding=0)

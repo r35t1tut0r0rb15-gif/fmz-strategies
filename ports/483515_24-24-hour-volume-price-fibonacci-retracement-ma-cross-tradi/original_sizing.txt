@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #483515 (24小时量价结合斐波那契回调交叉均线交易策略-24-Hour-Volume-Price-Fibonacci-Retracement-MA-Cross-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483515  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)

@@ -7872,6 +7872,33 @@ SIZING = {
     483088: [
         ("strategy(): capital, 50 in cash, commission; trend-strength qty", 96, 131),
     ],
+    # ---- FMZ-C, batch V42 (2026-10-23)
+    483093: [],
+    483094: [
+        ("strategy(): capital, 10 % of equity", 95, 95),
+    ],
+    483099: [
+        ("strategy(): capital, 10 % of equity, pyramiding 0", 111, 111),
+    ],
+    483101: [
+        ("strategy(): capital, 100 % of equity", 110, 110),
+    ],
+    483129: [
+        ("strategy(): 100 % of equity", 103, 103),
+    ],
+    483502: [
+        ("strategy(): 100 % of equity", 94, 94),
+    ],
+    483511: [
+        ("strategy(): 5 % of equity; risk-based qty", 93, 136),
+    ],
+    483515: [],
+    483519: [
+        ("strategy(): capital, 100 % of equity", 147, 147),
+    ],
+    483680: [
+        ("risk-based qty from the initial capital", 223, 245),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -10219,6 +10246,14 @@ REJECTED_ON_READING = {
     483069: ("2", "The exits pass ATR price amounts (atr x 0.75 / 0.8, atr x 3) as trail_offset / "
               "trail_points, which are in ticks: price amounts passed as tick counts (criterion "
               "2, as #440334); the quantities are also equity-risk sizes."),
+    # ---- FMZ-C, batch V42 (2026-10-23)
+    483127: ("1", "The header's bars are 1 day, where ta.vwap(close) is the bar's own close, so close "
+              "< vwap / close > vwap never hold and neither entry can fire: the script cannot "
+              "trade (as #468342); its exits also use fixed 50-point distances and 15:01 IST "
+              "clock times."),
+    483527: ("2", "Its exits pass ATR price amounts as trail_points / trail_offset (ticks) (as "
+              "#440334), and it sizes and halts trading by dollar risk and a $7,500 weekly-loss "
+              "limit on netprofit: price amounts passed as ticks and cash rules (criterion 2)."),
 }
 
 DUPLICATE_ON_READING = {

@@ -1,0 +1,28 @@
+# Original sizing and money-management code, FMZ #483680 (指数移动均线烛台停止交易策略-Exponential-Moving-Average-Candle-Stop-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/483680  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## risk-based qty from the initial capital  [lines 223-245]
+  223: risk_per_trade_percent = 2.5  // افزایش ریسک به 2.5٪ برای موقعیت‌های بیشتر
+  224: 
+  225: 
+  226: if not breakout_detected
+  227:     if position == 0 and is_candle_stop(final_trend)
+  228:         risk_amount_usd = strategy.initial_capital * (risk_per_trade_percent / 100)
+  229:         if final_trend == "up"
+  230:             stop_loss_price := close * 0.975 // Stop loss at 2.5% below entry for longs
+  231:             if (close - stop_loss_price) != 0
+  232:                 position_size_usd = risk_amount_usd / (close - stop_loss_price)
+  233:                 amount = position_size_usd / close
+  234:                 strategy.entry("Long", strategy.long, qty=amount)
+  235:                 position := amount
+  236:                 entry_price := close
+  237:         else if final_trend == "down"
+  238:             stop_loss_price := close * 1.025 // Stop loss at 2.5% above entry for shorts
+  239:             if (stop_loss_price - close) != 0
+  240:                 position_size_usd = risk_amount_usd / (stop_loss_price - close)
+  241:                 amount = position_size_usd / close
+  242:                 if rsi >= rsi_overbought // RSI condition for short entry - No Change, still using RSI but not enforcing it for now - Consider removing RSI condition as well for max trades
+  243:                     strategy.entry("Short", strategy.short, qty=amount)
+  244:                     position := amount
+  245:                     entry_price := close
