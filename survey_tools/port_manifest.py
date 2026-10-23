@@ -7722,6 +7722,16 @@ SIZING = {
     458053: [],
     458068: [],
     458143: [],
+    # ---- FMZ-C, batch V32 (2026-10-23)
+    458177: [],
+    458180: [],
+    458193: [],
+    458204: [],
+    458238: [],
+    458244: [],
+    458248: [],
+    458275: [],
+    468326: [],
 }
 
 REJECTED_ON_READING = {
@@ -9963,6 +9973,15 @@ REJECTED_ON_READING = {
     454148: ("2", "Entries need abs(close - resistance) > 0.01 (distanceThresh = 1 / 100): a fixed "
               "distance in the quote currency of the source's chart (price-unit levels -> "
               "criterion 2)."),
+    # ---- FMZ-C, batch V32 (2026-10-23)
+    458149: ("2", "Entries need crossover(vo, 1.0) with vo = ema(volume, 20) - sma(volume, 20) (exits "
+              "crossunder(vo, -1.0)): a fixed threshold in raw volume units, which depend on the "
+              "feed and the instrument (absolute volume thresholds -> criterion 2, as #426785)."),
+    458150: ("1", "Once the high reaches 10 % beyond the entry close, strategy.close(..., qty_percent "
+              "= 50) closes half the position: a partial exit (criterion 1, as #430758)."),
+    458203: ("1", "pyramiding = 3 with the same entry id re-sent on every qualifying bar while open "
+              "(direction / RSI 50 / candle colour / rising volume repeat often), each re-sending "
+              "the shared bracket: repeated adds (criterion 1, as #442112)."),
 }
 
 DUPLICATE_ON_READING = {

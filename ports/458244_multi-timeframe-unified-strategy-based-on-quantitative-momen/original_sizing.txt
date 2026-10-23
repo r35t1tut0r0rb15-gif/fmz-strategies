@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #458244 (基于量化动量和收敛发散的多时间框架统一策略-Multi-Timeframe-Unified-Strategy-Based-on-Quantitative-Momentum-and-Convergence-Divergence)
+# Source: https://www.fmz.com/strategy/458244  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
