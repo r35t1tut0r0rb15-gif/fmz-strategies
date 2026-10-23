@@ -7571,6 +7571,14 @@ SIZING = {
     439270: [],
     439272: [],
     439345: [],
+    # ---- FMZ-C, batch V23 (2026-10-23)
+    439609: [],
+    439745: [],
+    439746: [],
+    439748: [],
+    439856: [],
+    439956: [],
+    439961: [],
 }
 
 REJECTED_ON_READING = {
@@ -9723,6 +9731,23 @@ REJECTED_ON_READING = {
     439107: ("2", "Entries need close > 200 and the close below 100 (resistanceLevel / supportLevel "
               "inputs): fixed price levels in the quote currency of the source's chart "
               "(price-unit levels -> criterion 2)."),
+    # ---- FMZ-C, batch V23 (2026-10-23)
+    439595: ("1", "On the 1-day chart every signal reads security(tickerid, tostring(18), ..., "
+              "lookahead_on): an 18-minute series inside daily bars, a lower-timeframe read whose "
+              "value is the day's last 18-minute bar, unknown at the daily close it is used with "
+              "(criterion 1, as #427518)."),
+    439617: ("2", "Entries need sd > 150, where sd is the volume-weighted deviation of hlc3 around "
+              "the weekly VWAP in price units: a fixed threshold in the quote currency of the "
+              "source's chart (price-unit levels -> criterion 2)."),
+    439619: ("2", "The entries and exits are driven by request.security('VIX', 'D', close): a named "
+              "external instrument (the volatility index) used as the signal source "
+              "(SURVEY_README: another symbol -> criterion 2, as #436659)."),
+    439858: ("1", "The take-profit exit closes 50 % of the position (qty_percent = 50) and leaves the "
+              "rest to the stop: partial exits, which the house engine does not do (criterion 1, "
+              "as #430758)."),
+    439965: ("1", "With pyramiding 40 the strategy adds 'Long Add' on every 5 % fall from the last "
+              "buy and takes profit at the average price + 1 %: averaging-down adds that move the "
+              "exit level (DCA), which the house engine does not do (criterion 1, as #438056)."),
 }
 
 DUPLICATE_ON_READING = {
