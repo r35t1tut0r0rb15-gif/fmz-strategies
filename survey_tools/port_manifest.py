@@ -7852,6 +7852,26 @@ SIZING = {
     482875: [],
     482880: [],
     482881: [],
+    # ---- FMZ-C, batch V41 (2026-10-23)
+    482900: [
+        ("strategy(): capital, 10 % of equity", 115, 115),
+    ],
+    483039: [
+        ("strategy(): 10 % of equity", 140, 140),
+    ],
+    483043: [
+        ("strategy(): capital, 100 % of equity", 107, 112),
+    ],
+    483053: [],
+    483056: [],
+    483075: [],
+    483076: [
+        ("strategy(): 2 % of equity", 100, 100),
+    ],
+    483078: [],
+    483088: [
+        ("strategy(): capital, 50 in cash, commission; trend-strength qty", 96, 131),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -10190,6 +10210,15 @@ REJECTED_ON_READING = {
               "2); the factor and period are also swapped, and there is no backtest header."),
     482877: ("2", "Entries need volume > 100000 (minVol): an absolute volume threshold in the source "
               "feed's units (criterion 2, as #426785)."),
+    # ---- FMZ-C, batch V41 (2026-10-23)
+    482884: ("1", "strategy.exit(..., qty_percent = 50) takes half the position at an early target: a "
+              "partial exit (criterion 1, as #430758); its trail_offset is also an ATR price "
+              "amount passed as ticks."),
+    483028: ("2", "The target and the stop are close +- 40 and entryPrice -+ 40 (target / stopLoss "
+              "inputs in points): fixed price distances (criterion 2)."),
+    483069: ("2", "The exits pass ATR price amounts (atr x 0.75 / 0.8, atr x 3) as trail_offset / "
+              "trail_points, which are in ticks: price amounts passed as tick counts (criterion "
+              "2, as #440334); the quantities are also equity-risk sizes."),
 }
 
 DUPLICATE_ON_READING = {
