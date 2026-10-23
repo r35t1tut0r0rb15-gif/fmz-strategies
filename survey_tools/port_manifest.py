@@ -7983,6 +7983,15 @@ SIZING = {
         ("strategy(): 10 % of equity, commission 0.045 %", 173, 173),
     ],
     490793: [],
+    # ---- FMZ-C, batch V48 (2026-10-23)
+    491042: [],
+    491511: [
+        ("strategy(): 1000 cash per order", 166, 166),
+        ("entries: qty = capitalPerTrade / close", 219, 223),
+    ],
+    491895: [
+        ("strategy(): 100 % of equity", 104, 104),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -10411,6 +10420,22 @@ REJECTED_ON_READING = {
     490074: ("1", "The trend filter reads request.security(..., '15', ...) on the header's 1-hour "
               "chart: a lower-timeframe security read (criterion 1, as #427518); it also needs "
               "volume >= 10 (raw units) and passes ATR price amounts as trail ticks."),
+    # ---- FMZ-C, batch V48 (2026-10-23)
+    490801: ("1", "The trend filter reads request.security(..., '15', ...) on the header's 1-hour "
+              "chart: a lower-timeframe security read (criterion 1, as #427518); it also needs "
+              "volume >= 10 (raw units) and passes ATR price amounts as trail ticks."),
+    491044: ("1", "The trend filter reads request.security(..., '60', ...) on the header's 1-day "
+              "chart: a lower-timeframe security read (criterion 1, as #427518); 'dir and adx' "
+              "also treats the supertrend direction as a boolean, so isBearish never holds."),
+    491509: ("2", "Entries need delta > 100 (deltaThreshold), delta being the bar's volume signed by "
+              "its colour: an absolute volume threshold in the source feed's units (criterion 2, "
+              "as #426785); the exits also sit 2 / 4 minimum ticks from the close."),
+    491645: ("1", "The higher-timeframe EMA reads request.security(..., '60', ...) by default on the "
+              "header's 1-day chart: a lower-timeframe security read (criterion 1, as #427518); "
+              "the exits also pass price amounts as loss / profit / trail ticks (as #440334)."),
+    492014: ("1", "Every value is request.security(..., 'D', ...) on the header's 3-day chart, a "
+              "lower-timeframe read (criterion 1, as #427518), and entries need "
+              "timeframe.isdaily, false on a 3-day chart, so as written it cannot trade."),
 }
 
 DUPLICATE_ON_READING = {
