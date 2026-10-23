@@ -7558,6 +7558,19 @@ SIZING = {
     438772: [
         ("strategy(): 100 % of equity, capital 10000, commission 0.075 %", 162, 162),
     ],
+    # ---- FMZ-C, batch V22 (2026-10-23)
+    438823: [],
+    438930: [],
+    438974: [],
+    439081: [],
+    439103: [
+        ("entry qty 1", 192, 193),
+    ],
+    439199: [],
+    439205: [],
+    439270: [],
+    439272: [],
+    439345: [],
 }
 
 REJECTED_ON_READING = {
@@ -9702,6 +9715,14 @@ REJECTED_ON_READING = {
               "6-hour series inside daily bars, a lower-timeframe read whose value on each daily "
               "bar is the day's last 6-hour value, unknown at the daily close it is used with "
               "(criterion 1, as #427518)."),
+    # ---- FMZ-C, batch V22 (2026-10-23)
+    438784: ("1", "Every bar closes all positions once the strategy's own equity is 10 % below its "
+              "peak (maxPortfolioValue from strategy.equity), with entries sized at 5 % of equity "
+              "/ ATR: a size- and history-dependent equity gate on every trade (criterion 1, as "
+              "#440336)."),
+    439107: ("2", "Entries need close > 200 and the close below 100 (resistanceLevel / supportLevel "
+              "inputs): fixed price levels in the quote currency of the source's chart "
+              "(price-unit levels -> criterion 2)."),
 }
 
 DUPLICATE_ON_READING = {
@@ -9727,7 +9748,6 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C72 (2026-10-17)
     # ---- FMZ-C, batch C95 (2026-10-21)
     # ---- FMZ-C, batch C117 (2026-10-22)
-    439103: ("8", "The moving-average rules use ma20 / ma50 / ma100 = vwma(close, 20 / 50 / 100): volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C133 (2026-10-22)
     440372: ("8", "The default moving-average type is VWMA: vwma(close, 66) against vwma(open, 66), volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C145 (2026-10-22)

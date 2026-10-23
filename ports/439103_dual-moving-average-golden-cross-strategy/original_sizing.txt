@@ -1,0 +1,7 @@
+# Original sizing and money-management code, FMZ #439103 (双移动均线黄金交叉策略Dual-Moving-Average-Golden-Cross-Strategy)
+# Source: https://www.fmz.com/strategy/439103  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## entry qty 1  [lines 192-193]
+  192: strategy.entry("short", strategy.short,qty = 1, when=short)
+  193: strategy.entry("long", strategy.long,qty=1, when=long)

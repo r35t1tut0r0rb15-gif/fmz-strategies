@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3425 |
+| PORTED | 3435 |
 | REJECTED | 994 |
-| REJECTED_ON_READING | 560 |
-| HELD_NEEDS_VOLUME | 322 |
+| REJECTED_ON_READING | 562 |
+| HELD_NEEDS_VOLUME | 310 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -1893,8 +1893,10 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 438810 | `ports/438810_donchian-channels-long-term-trend-following-strategy/` | PineScript | donchian_breakout | none | length x2, double_mid x2 | 4 |
 | 438816 | `ports/438816_multiplicative-moving-average-dual-direction-trading-strateg/` | PineScript | volatility_stop_cross | none | multiplier x2, length x2 | 4 |
 | 438820 | `ports/438820_myo-ls-d-quantitative-strategy/` | PineScript | multi_indicator_confluence | none | trend_l x2, base_periods x2 | 4 |
+| 438823 | `ports/438823_dual-confirmation-quant-trading-strategy/` | PineScript | hpotter_combo | none | length x2, pvo_signal x2 | 4 |
 | 438826 | `ports/438826_adx-adx-dynamic-trend-strategy/` | PineScript | directional_movement | none | key_level x2, ma_length x2 | 4 |
 | 438929 | `ports/438929_macd-multi-timeframe-macd-moving-average-trading-strategy/` | PineScript | rsi_oscillator | coarse_bar_stop | k_sl x2, rsi_len x2 | 4 |
+| 438930 | `ports/438930_rmi-trend-sync-strategy/` | PineScript | mfi_threshold | none | length x2, pmom x2 | 4 |
 | 438931 | `ports/438931_ema-ma-ema-ma-crossover-options-trading-strategy/` | PineScript | ma_cross | none | ema1 x2, ema2 x2 | 4 |
 | 438933 | `ports/438933_price-channel-breakout-strategy/` | PineScript | donchian_breakout | none | pch x2, body_ratio x2 | 4 |
 | 438938 | `ports/438938_dema-dual-trend-tracking-strategy/` | PineScript | supertrend | none | periods x2, multiplier x2 | 4 |
@@ -1906,6 +1908,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 438950 | `ports/438950_rsi-moving-average-and-stochastic-rsi-combination-trading-st/` | PineScript | stochastic_oscillator | trailing_stop_pending | stoch_length x2, oversold x2 | 4 |
 | 438951 | `ports/438951_combination-strategy-of-123-reversal-and-pivot-point/` | PineScript | combo_123_reversal | none | length x2, level_set x2 | 4 |
 | 438972 | `ports/438972_ichimoku-kinko-hyo-ichimoku-kinko-hyo-breakout-strategy/` | PineScript | ichimoku | none | ts_bars x2, ks_bars x2 | 4 |
+| 438974 | `ports/438974_trend-following-strategy-based-on-price-action-and-volume/` | PineScript | ma_cross | none | short_ma x2, vol_len x2 | 4 |
 | 438975 | `ports/438975_quantitative-trading-strategy-based-on-moving-average/` | PineScript | hull_ma | none | ma_len x2, mode x2 | 4 |
 | 438978 | `ports/438978_triangular-moving-average-crossover-trading-strategy/` | PineScript | ma_cross | none | ma_type x2, short_len x2 | 4 |
 | 439036 | `ports/439036_key-reversal-backtest-strategy/` | PineScript | reversal_pattern | none | tp_frac x2, sl_frac x2 | 4 |
@@ -1924,6 +1927,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439077 | `ports/439077_adx-adaptive-trading-strategy-based-on-adx-indicator/` | PineScript | directional_movement | none | len x2, diff x2 | 4 |
 | 439079 | `ports/439079_ema-sma-trend-following-strategy-based-on-ema-and-sma-crosso/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 439080 | `ports/439080_momentum-inversion-tracking-strategy/` | PineScript | volatility_stop_cross | none | increment x2, maximum x2 | 4 |
+| 439081 | `ports/439081_macdrsi-rvol-quantitative-trading-strategy-integrating-macd/` | PineScript | multi_indicator_confluence | none | rvol_up x2, rsi_len x2 | 4 |
 | 439082 | `ports/439082_improved-supertrend-strategy/` | PineScript | volatility_channel_breakout | none | atr_mult x2, filter_len x2 | 4 |
 | 439083 | `ports/439083_fibonacci-breakthrough-of-daily-high-low-price-based-on-fibo/` | PineScript | breakout | none | exit_on_low x2, buffer x2 | 4 |
 | 439084 | `ports/439084_ehlers-stochastic-cyber-cycle-strategy/` | PineScript | momentum_oscillator_turn | none | alpha x2, len x2 | 4 |
@@ -1932,6 +1936,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439094 | `ports/439094_momentum-breakout-optimization/` | PineScript | volatility_stop_cross | none | multiplier x2, length x2 | 4 |
 | 439098 | `ports/439098_pb-bandpass-mean-pb-indicator-strategy/` | PineScript | momentum_oscillator | none | period1 x2, period2 x2 | 4 |
 | 439101 | `ports/439101_macd-reverse-momentum-trading-strategy/` | PineScript | macd_cross | none | r x2, fast x2 | 4 |
+| 439103 | `ports/439103_dual-moving-average-golden-cross-strategy/` | PineScript | volume_weighted_ma | none | hold_bars x2, rsi_len x2 | 4 |
 | 439104 | `ports/439104_momentum-moving-average-crossover-trading-strategy/` | PineScript | ma_cross | none | fast x2, slow x2 | 4 |
 | 439106 | `ports/439106_8-21-dual-moving-average-strategy/` | PineScript | ma_cross | none | angle x2, lookback x2 | 4 |
 | 439111 | `ports/439111_dollar-cost-averaging-after-downtrend-strategy/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
@@ -1940,10 +1945,12 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439188 | `ports/439188_dual-factor-momentum-tracking-reversal-strategy/` | PineScript | combo_123_reversal | none | length x2, gamma x2 | 4 |
 | 439190 | `ports/439190_ema-gold-fast-breakthrough-ema-trading-strategy/` | PineScript | ma_cross | trailing_stop_pending | fast x2, slow x2 | 4 |
 | 439193 | `ports/439193_parabolic-sarstoch-security-parabolic-sar-stoch-and-security/` | PineScript | multi_indicator_confluence | none | period_k x2, sar_max x2 | 4 |
+| 439199 | `ports/439199_multi-timeframe-trend-tracking-strategy/` | PineScript | always_long_bracket | none | tp x2, sl x2 | 4 |
 | 439200 | `ports/439200_multi-factor-moving-average-trend-following-strategy/` | PineScript | trend_confluence | none | stop_loss x2, sma_len x2 | 4 |
 | 439201 | `ports/439201_bollinger-bands-breakout-strategy/` | PineScript | bollinger_reversion | none | length x2, mult x2 | 4 |
 | 439202 | `ports/439202_sar-parabolic-sar-trend-tracking-strategy/` | PineScript | volatility_stop_cross | none | slow x2, offset x2 | 4 |
 | 439204 | `ports/439204_atr-based-supertrend-strategy/` | PineScript | supertrend | none | factor x2, atr_length x2 | 4 |
+| 439205 | `ports/439205_dynamic-support-and-resistance-channel-breakout/` | PineScript | support_resistance | none | pivot_len x2, vol_thresh x2 | 4 |
 | 439207 | `ports/439207_patient-trend-following-strategy/` | PineScript | trend_confluence | none | k_tp x2, mult x2 | 4 |
 | 439223 | `ports/439223_moving-average-range-swallowing-strategy/` | PineScript | ma_cross | none | ma1 x2, swing x2 | 4 |
 | 439226 | `ports/439226_a-strict-trend-following-strategy-based-on-ichimoku-kinko-hy/` | PineScript | ichimoku | trailing_stop_pending | min_cloud_atr x2, atr_period x2 | 4 |
@@ -1961,9 +1968,12 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 439262 | `ports/439262_sma-eth-london-sma-cross-eth-reversal-trading-strategy/` | PineScript | ma_cross | none | sma_length x3 | 3 |
 | 439266 | `ports/439266_stochastic-index-short-term-trading-strategy-based-on-stocha/` | PineScript | stochastic_oscillator | none | sm1 x2, level x2 | 4 |
 | 439268 | `ports/439268_t3-trend-following-trading-strategy-based-on-t3-indicator/` | PineScript | ma_trend | none | length x2, b x2 | 4 |
+| 439270 | `ports/439270_aggressive-bottom-sniping-quantitative-strategy/` | PineScript | pullback_time_exit | none | mult x2, close_time x2 | 4 |
+| 439272 | `ports/439272_extended-price-volume-trend-strategy/` | PineScript | volume_flow | none | length x2, tp1 x2 | 4 |
 | 439273 | `ports/439273_bollinger-bands-based-trend-following-strategy/` | PineScript | ma_trend | trailing_stop_pending | len1 x2, len2 x2 | 4 |
 | 439338 | `ports/439338_dual-moving-average-trading-strategy/` | PineScript | ma_cross | bar_size_pending | ma1_length x2, ma2_length x2 | 4 |
 | 439339 | `ports/439339_a-dual-moving-average-crossover-strategy/` | PineScript | ma_cross | trailing_stop_pending | fast_length x2, slow_length x2 | 4 |
+| 439345 | `ports/439345_rsi-vwap-rsi-vwap-short-term-quant-strategy/` | PineScript | vwap_breakout | none | length x2, over_sold x2 | 4 |
 | 439348 | `ports/439348_an-analysis-of-quantitative-trading-strategy-based-on-gaussi/` | PineScript | momentum_oscillator | none | n_points x3 | 3 |
 | 439349 | `ports/439349_simple-trailing-stop-buy-strategy-based-on-percentage/` | PineScript | volatility_channel_breakout | none | offset x2, buyoffset x2 | 4 |
 | 439350 | `ports/439350_k-fibonacci-average-candle-with-moving-average-strategy-for/` | PineScript | ma_trend | none | slow_ema x2 | 2 |
@@ -3552,7 +3562,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491892 | `ports/491892_ema-ema-dual-crossover-dynamic-stop-loss-quantitative-strate/` | PineScript | ma_cross | none | length10 x2, length20 x2 | 4 |
 | 491897 | `ports/491897_multi-factor-trend-following-quantitative-strategy/` | PineScript | parabolic_sar | coarse_bar_stop, trailing_stop_pending | adxThreshold x2, atrMultiplier x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | rsi_divergence | trailing_stop_pending | lookLeft x2, rangeUpper x2 | 4 |
-| | **3425 ports** | | | | | **15484** |
+| | **3435 ports** | | | | | **15524** |
 
 ## Rejected on reading
 
@@ -3827,6 +3837,8 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 438481 | 基于RSI-V形态的短线盈利策略-RSI-V-shaped-Pattern-Swing-Trading-Strategy.md | 1 | Exits close half and three quarters of the position on RSI crossings (strategy.close with qty = position_size x 1/2, x 3/4): partial exits, which the house engine cannot hold (as #436524). |
 | 438495 | 趋势追踪型EMA突破策略Trend-Tracking-EMA-Breakout-Strategy.md | 1 | monthclose / weekclose / dayclose = request.security(tickerid, 'M' / 'W' / 'D', close, lookahead = barmerge.lookahead_on): on a daily chart the month's and week's FINAL close is used from their first bar (look-ahead); the entry requires monthclose > monthopen and weekclose > weekopen. |
 | 438502 | 反转双MACD交易策略Dual-MACD-Reversal-Trading-Strategy.md | 1 | The 1-day chart's MACD filter reads request.security(tickerid, '360', ...): a 6-hour series inside daily bars, a lower-timeframe read whose value on each daily bar is the day's last 6-hour value, unknown at the daily close it is used with (criterion 1, as #427518). |
+| 438784 | 基于月相计算的比特币交易策略Lunar-Phase-Based-Bitcoin-Trading-Strategy.md | 1 | Every bar closes all positions once the strategy's own equity is 10 % below its peak (maxPortfolioValue from strategy.equity), with entries sized at 5 % of equity / ATR: a size- and history-dependent equity gate on every trade (criterion 1, as #440336). |
+| 439107 | 基于均线价格形态和量能的反转策略-A-Trend-Reversal-Strategy-Based-on-Moving-Averages-Price-Patterns-and-Volume.md | 2 | Entries need close > 200 and the close below 100 (resistanceLevel / supportLevel inputs): fixed price levels in the quote currency of the source's chart (price-unit levels -> criterion 2). |
 | 439275 | 基于供需区域与EMA滑动止损的交易策略Trading-Strategy-Based-on-Supply-and-Demand-Zones-with-EMA-and-Trailing-Stop.md | 2 | The only stop is strategy.exit(loss = trailStop) with trailStop = close - 2 x ATR(14): a price LEVEL passed as a TICK distance, so the real distance is the price itself times the tick size (about 10 % of the price at a 0.1 tick on BTC, the whole price at a 1.0 tick), an instrument-specific bracket with no generic reading (as #437048, #437787). The daily supply / demand zones only colour the background. |
 | 439360 | 双止盈双止损移动止损量化策略Dual-Take-Profit-Dual-Stop-Loss-Trailing-Stop-Loss-Bitcoin-Quantitative-Strategy.md | 1 | Every trade is closed by two exits: exit1 (qty_percent = 1, at SL1 / TP1) closes 1 % of the position and exit2 the rest at SL2 / TP2 with a stop that moves after TP1: partial exits (criterion 1, as #436524). The pip distance is also an input times ten ticks. |
 | 439361 | 基于Nadaraya-Watson信封线和ROC指标的趋势跟踪策略Trend-Following-Strategy-Based-on-Nadaraya-Watson-Envelopes-and-ROC-Indicator.md | 2 | Apart from the reversing entries, the exits are strategy.exit(loss = close - 4 x 0.0001, profit = close + 8.4 x 0.0001): price LEVELS passed as TICK counts, so the real distances are about the whole price times the tick size, an instrument-specific bracket with no generic reading (as #437677, #437048). The entry tests close + 9 > 0 and close - 9 < 0 are price-unit thresholds (shorts only below a price of 9). |
