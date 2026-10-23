@@ -1,0 +1,10 @@
+# Original sizing and money-management code, FMZ #440435 (基于市场流通性及趋势的短线交易策略Scalping-Strategy-Based-on-Market-Liquidity-and-Trend)
+# Source: https://www.fmz.com/strategy/440435  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## entry qty 1  [lines 291-295]
+  291:     strategy.entry("My Long Entry Id", strategy.long, 1,  when= longtrig2)
+  292:     strategy.exit("exit long", "My Long Entry Id", profit= 100, loss= 75)
+  293: shortCondition = short
+  294: if (shortCondition)
+  295:     strategy.entry("My Short Entry Id", strategy.short, 1,  when= shorttrig2)

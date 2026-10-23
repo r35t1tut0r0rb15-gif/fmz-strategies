@@ -1,0 +1,13 @@
+# Original sizing and money-management code, FMZ #440461 (基于布林带和卡尔金通道的动量挤压策略Squeeze-Momentum-Breakout-Strategy)
+# Source: https://www.fmz.com/strategy/440461  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## contracts = equity x leverage / close x risk %  [lines 253-260]
+  253:         contracts = get_round((strategy.equity * trade_leverage / close) * (trade_risk / 100), 4)
+  254:         strategy.entry("LONG", strategy.long, qty = contracts, when = window())
+  255:         
+  256: if((tradeType == "SHORT" or tradeType == "BOTH") and (m<0 or useVWMA == false))
+  257:     shortCondition = (val < 0 and noSqz == 0 and sqzOn == 0 and sqzOn[1] == 1)
+  258:     if (shortCondition)
+  259:         contracts = get_round((strategy.equity * trade_leverage / close) * (trade_risk / 100), 4)
+  260:         strategy.entry("SHORT", strategy.short, qty = contracts, when = window())

@@ -7579,6 +7579,27 @@ SIZING = {
     439856: [],
     439956: [],
     439961: [],
+    # ---- FMZ-C, batch V24 (2026-10-23)
+    439980: [],
+    439987: [],
+    440063: [],
+    440086: [],
+    440105: [
+        ("entry qty qn (1 with averaging on)", 484, 488),
+    ],
+    440298: [],
+    440343: [
+        ("strategy(): 100 % of equity, commission 0.075 %", 125, 125),
+    ],
+    440372: [
+        ("strategy(): 100 % of equity, capital 100, commission 0.1 %", 136, 136),
+    ],
+    440435: [
+        ("entry qty 1", 291, 295),
+    ],
+    440461: [
+        ("contracts = equity x leverage / close x risk %", 253, 260),
+    ],
 }
 
 REJECTED_ON_READING = {
@@ -9748,6 +9769,15 @@ REJECTED_ON_READING = {
     439965: ("1", "With pyramiding 40 the strategy adds 'Long Add' on every 5 % fall from the last "
               "buy and takes profit at the average price + 1 %: averaging-down adds that move the "
               "exit level (DCA), which the house engine does not do (criterion 1, as #438056)."),
+    # ---- FMZ-C, batch V24 (2026-10-23)
+    440064: ("1", "The 'ProfitTake' entry (a long that reverses the short) fires only when "
+              "strategy.openprofit > 750: a cash profit threshold that depends on the position "
+              "size and account currency, a size- and history-dependent gate on trades (criterion "
+              "1, as #440336)."),
+    440315: ("2", "Entries need volume > 100 (volume_threshold): an absolute volume threshold in the "
+              "source feed's units (criterion 2, as #426785). Also, ta.vwap(close, 20) passes 20 "
+              "as the reset anchor, so the VWAP restarts every bar and equals the close: close > "
+              "vwap never holds and the script cannot trade."),
 }
 
 DUPLICATE_ON_READING = {
@@ -9774,7 +9804,6 @@ HELD_ON_READING = {
     # ---- FMZ-C, batch C95 (2026-10-21)
     # ---- FMZ-C, batch C117 (2026-10-22)
     # ---- FMZ-C, batch C133 (2026-10-22)
-    440372: ("8", "The default moving-average type is VWMA: vwma(close, 66) against vwma(open, 66), volume-weighted averages (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C145 (2026-10-22)
     441075: ("8", "The MA rating includes vwma(close, 20): a volume-weighted average (check 8, held with the other volume users)."),
     # ---- FMZ-C, batch C152 (2026-10-22)
