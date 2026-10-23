@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #363564 (Welcome-to-the-BEARMARKET-30MIN)
+# Source: https://www.fmz.com/strategy/363564  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## commented strategy(): capital 10000, fixed 1, pyramiding 1, commission 0.04; qty percent input  [lines 76-76]
+   76: //strategy("Welcome to the BEARMARKET [30MIN]", overlay=true, initial_capital = 10000, pyramiding = 1, currency = "USD", calc_on_order_fills = false, calc_on_every_tick = false, default_qty_type = strategy.fixed, default_qty_value = 1, commission_value = 0.04)

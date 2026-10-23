@@ -23,6 +23,7 @@ fmz_id,file,final_outcome,criterion,reason
 363557,Pivot-Points-High-Low-Multi-Time-Frame.md,REJECTED_ON_READING,1,"Pivots come from request.security(syminfo.tickerid, '240', get_phpl(), lookahead_on) without [1]: on historical bars the 4 h pivot is visible from the first 5 m bar of the 4 h bar that confirms it, i.e. it reads the future (SURVEY_README request.security rule)."
 363572,OCC-Strategy-R51.md,REJECTED_ON_READING,1,"Both MA series are read through request.security(..., stratRes, lookahead_on) without [1] (alternate resolution on by default, 3x the chart period): on historical bars the higher-timeframe values are visible before that bar closes, i.e. they read the future."
 365389,TradingView-Alerts-to-MT4-MT5-dynamic-variables-NON-REPAINTING.md,REJECTED_ON_READING,1,"The exit is a two-step ladder: 50 % of the position at a 150-tick profit (qty_percent=50), the rest at 400 ticks or a pivot stop; a partial exit cannot be expressed as one net position's signals, and tick distances are instrument-specific (an MT4 alert template; criterion 2 too)."
+365687,Flawless-Victory-Strategy.md,REJECTED_ON_READING,2,"strategy.entry(""Sell"", when = Sell_1) passes no direction (Pine v4 requires the long argument), so whether the Sell signal opens a long, a short or nothing is undefined as written (criterion 2); the v1 defaults trade only through it and Buy_1."
 368717,Inverted-Hammer-Extended-Options.md,REJECTED_ON_READING,1,"Long entries only (inverted hammer below EMA 10), with no exit, stop or reversal anywhere: after the first signal the position is held for the rest of the data, so there is no repeatable entry/exit rule to test (as #62163)."
 368734,Brick-count-Renko.md,REJECTED_ON_READING,1,"The orders test bar counts as booleans: `if brick_red` (non-green bars among the last 40) is true unless 40 green bars in a row, so the script is long on practically every bar; the brick cross it labels never reaches the orders. No defined signal to test."
 369999,Directional-Movement-Oscillator-DMI.md,REJECTED_ON_READING,1,"The orders test a float and a plot handle as booleans: `if diosc` (DI+ - DI-, true whenever non-zero) -> long, `else if p2` (a plot id) -> short. Long on practically every bar; the short branch depends on how the runtime casts a plot handle. No defined signal to test."
@@ -609,10 +610,12 @@ fmz_id,file,final_outcome,criterion,reason
 362000,Heikin-Ashi-Trend.md,PORTED,,ports/362000_heikin-ashi-trend/
 362004,RSI-Buy-Sell-Signals.md,PORTED,,ports/362004_rsi-buy-sell-signals/
 362012,MACD-Willy-Strategy.md,PORTED,,ports/362012_macd-willy-strategy/
+362022,EMA-bands-leledc-bollinger-bands-trend-catching-strategy.md,PORTED,,ports/362022_ema-bands-leledc-bollinger-bands-trend-catching-strategy/
 362031,Chande-Kroll-Stop.md,PORTED,,ports/362031_chande-kroll-stop/
 362055,Big-Snapper-Alerts-R30-Chaiking-Volatility-condition-TP-RSI.md,PORTED,,ports/362055_big-snapper-alerts-r30-chaiking-volatility-condition-tp-rsi/
 362059,Best-TradingView-Strategy.md,PORTED,,ports/362059_best-tradingview-strategy/
 362060,tv高低点策略.md,PORTED,,ports/362060_tv/
+362083,TMA-Legacy.md,PORTED,,ports/362083_tma-legacy/
 362089,Midas-Mk-II-Ultimate-Crypto-Swing.md,PORTED,,ports/362089_midas-mk-ii-ultimate-crypto-swing/
 362092,Moving-Average-Buy-Sell.md,PORTED,,ports/362092_moving-average-buy-sell/
 362103,EHMA-Range-Strategy.md,PORTED,,ports/362103_ehma-range-strategy/
@@ -648,9 +651,11 @@ fmz_id,file,final_outcome,criterion,reason
 362870,BRAHMASTRA.md,PORTED,,ports/362870_brahmastra/
 362887,FTL-Range-Filter-X2-EMA-UO.md,PORTED,,ports/362887_ftl-range-filter-x2-ema-uo/
 362898,RSI-by-zdmre.md,PORTED,,ports/362898_rsi-by-zdmre/
+362916,Crodls-Supertrend.md,PORTED,,ports/362916_crodls-supertrend/
 363001,Trading-the-Equity-Curve-Position-Sizing-Example.md,PORTED,,ports/363001_trading-the-equity-curve-position-sizing-example/
 363002,Rainbow-Oscillator.md,PORTED,,ports/363002_rainbow-oscillator/
 363562,Sidboss.md,PORTED,,ports/363562_sidboss/
+363564,Welcome-to-the-BEARMARKET-30MIN.md,PORTED,,ports/363564_welcome-to-the-bearmarket-30min/
 363579,Smarter-MACD.md,PORTED,,ports/363579_smarter-macd/
 363582,CCI-MTF-ObOs.md,PORTED,,ports/363582_cci-mtf-obos/
 363588,Fukuiz-Octa-EMA-Ichimoku.md,PORTED,,ports/363588_fukuiz-octa-ema-ichimoku/
@@ -661,14 +666,17 @@ fmz_id,file,final_outcome,criterion,reason
 363797,Backtesting-Indicator.md,PORTED,,ports/363797_backtesting-indicator/
 363803,Super-Scalper.md,PORTED,,ports/363803_super-scalper/
 363807,Concept-Dual-SuperTrend.md,PORTED,,ports/363807_concept-dual-supertrend/
+363822,VuManChu-Cipher-B-Divergences-Strategy.md,PORTED,,ports/363822_vumanchu-cipher-b-divergences-strategy/
 363824,Momentum-based-ZigZag.md,PORTED,,ports/363824_momentum-based-zigzag/
 363825,Supertrend4moving.md,PORTED,,ports/363825_supertrend4moving/
 363829,Pivot-Point-Supertrend.md,PORTED,,ports/363829_pivot-point-supertrend/
 363847,RISOTTO.md,PORTED,,ports/363847_risotto/
 363848,Chandelier-Exit.md,PORTED,,ports/363848_chandelier-exit/
+363970,Johnys-BOT.md,PORTED,,ports/363970_johnys-bot/
 363980,Fukuiz-Trend.md,PORTED,,ports/363980_fukuiz-trend/
 363997,SuperJump-Turn-Back-Bollinger-Band.md,PORTED,,ports/363997_superjump-turn-back-bollinger-band/
 364001,RedK-Momentum-Bars.md,PORTED,,ports/364001_redk-momentum-bars/
+364036,RedK-Volume-Accelerated-Directional-Energy-Ratio.md,PORTED,,ports/364036_redk-volume-accelerated-directional-energy-ratio/
 364037,EMA-TREND-CLOUD.md,PORTED,,ports/364037_ema-trend-cloud/
 364518,BuySell-Strategy-depends-on-AOStochRSIATR.md,PORTED,,ports/364518_buysell-strategy-depends-on-aostochrsiatr/
 364527,Scalping-PullBack-Tool-R1.md,PORTED,,ports/364527_scalping-pullback-tool-r1/
@@ -680,12 +688,16 @@ fmz_id,file,final_outcome,criterion,reason
 365075,Order-Block-Finder.md,PORTED,,ports/365075_order-block-finder/
 365078,ATR-Smoothed.md,PORTED,,ports/365078_atr-smoothed/
 365080,crypto-futures-hourly-scalping-with-ma-rsi-ogcheckers.md,PORTED,,ports/365080_crypto-futures-hourly-scalping-with-ma-rsi-ogcheckers/
+365085,Volume-Flow-v3.md,PORTED,,ports/365085_volume-flow-v3/
+365095,Shannon-Entropy-V2.md,PORTED,,ports/365095_shannon-entropy-v2/
+365126,15MIN-BTCUSDTPERP-BOT.md,PORTED,,ports/365126_15min-btcusdtperp-bot/
 365127,Trading-ABC.md,PORTED,,ports/365127_trading-abc/
 365128,SuperTrended-Moving-Averages.md,PORTED,,ports/365128_supertrended-moving-averages/
 365283,MACD-ReLoaded-STRATEGY.md,PORTED,,ports/365283_macd-reloaded-strategy/
 365314,Moving-Average-Cross-Alert-Multi-Timeframe-MTF.md,PORTED,,ports/365314_moving-average-cross-alert-multi-timeframe-mtf/
 365315,Quantitative-Qualitative-Estimation.md,PORTED,,ports/365315_quantitative-qualitative-estimation/
 365320,Consolidation-Zones-Live.md,PORTED,,ports/365320_consolidation-zones-live/
+365322,RedK-Dual-VADER-with-Energy-Bars.md,PORTED,,ports/365322_redk-dual-vader-with-energy-bars/
 365345,Linear-Regression.md,PORTED,,ports/365345_linear-regression/
 365359,Relative-Strength-Index-Divergences-Libertus.md,PORTED,,ports/365359_relative-strength-index-divergences-libertus/
 365373,Super-Scalper-5-Min-15-Min.md,PORTED,,ports/365373_super-scalper-5-min-15-min/

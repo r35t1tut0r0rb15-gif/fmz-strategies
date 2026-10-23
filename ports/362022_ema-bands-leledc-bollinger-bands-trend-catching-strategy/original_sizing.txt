@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #362022 (EMA-bands-leledc-bollinger-bands-trend-catching-strategy)
+# Source: https://www.fmz.com/strategy/362022  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## commented strategy(): capital 1000, 100 % of equity, commission 0.036  [lines 132-132]
+  132: //strategy(title='EMA bands + leledc + bollinger bands trend catching strategy w/ countertrend scalp', shorttitle='Trend Pooristics', overlay=true, initial_capital = 1000, commission_value= 0.036, pyramiding= 0, default_qty_type= strategy.percent_of_equity, default_qty_value= 100, margin_long=0, margin_short=0, max_bars_back=200)

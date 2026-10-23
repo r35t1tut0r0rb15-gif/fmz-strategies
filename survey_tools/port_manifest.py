@@ -7105,6 +7105,29 @@ SIZING = {
     362012: [
         ("strategy(): pyramiding 1, capital 10000; leverage and reinvest inputs", 96, 114),
     ],
+    # ---- FMZ-C, batch V2 (2026-10-23)
+    362022: [
+        ("commented strategy(): capital 1000, 100 % of equity, commission 0.036", 132, 132),
+    ],
+    362083: [],
+    362916: [],
+    363564: [
+        ("commented strategy(): capital 10000, fixed 1, pyramiding 1, commission 0.04; qty percent input", 76, 76),
+    ],
+    363822: [
+        ("commented strategy(): cash 10000, capital 10000, commission 0.025", 719, 719),
+    ],
+    363970: [
+        ("strategy(): pyramiding 1, capital 10000, 100 % of equity, commission 0.04 %", 116, 116),
+    ],
+    364036: [],
+    365085: [],
+    365095: [],
+    365126: [
+        ("strategy(): pyramiding 1, capital 10000, 100 % of equity; entry-type and backtest-days inputs", 115, 115),
+        ("entry type, backtest days", 387, 390),
+    ],
+    365322: [],
 }
 
 REJECTED_ON_READING = {
@@ -9049,6 +9072,11 @@ REJECTED_ON_READING = {
     313036: ("1", "A multi-coin screener over every Binance USDT perpetual (HttpQuery exchangeInfo) "
               "that adds to losing positions (补仓 at 20 % and 200 % margin losses) and takes "
               "profit by margin share: DCA adds and size-dependent exits (criterion 1)."),
+    # ---- FMZ-C, batch V2 (2026-10-23)
+    365687: ("2", "strategy.entry(\"Sell\", when = Sell_1) passes no direction (Pine v4 requires the "
+              "long argument), so whether the Sell signal opens a long, a short or nothing is "
+              "undefined as written (criterion 2); the v1 defaults trade only through it and "
+              "Buy_1."),
 }
 
 DUPLICATE_ON_READING = {

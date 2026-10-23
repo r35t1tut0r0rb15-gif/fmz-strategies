@@ -11,10 +11,10 @@ Method, contract and interpretation rules: `SURVEY_README.md`. Status and next s
 
 | Outcome | Files |
 |---|---:|
-| PORTED | 3237 |
+| PORTED | 3248 |
 | REJECTED | 994 |
-| HELD_NEEDS_VOLUME | 562 |
-| REJECTED_ON_READING | 508 |
+| HELD_NEEDS_VOLUME | 550 |
+| REJECTED_ON_READING | 509 |
 | FLAGGED_CRYPTO_ONLY | 253 |
 | DUPLICATE | 251 |
 | DUPLICATE_ON_READING | 1 |
@@ -202,10 +202,12 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 362000 | `ports/362000_heikin-ashi-trend/` | PineScript | heikin_ashi_trend | none | ema_len x3, smooth x3 | 9 |
 | 362004 | `ports/362004_rsi-buy-sell-signals/` | PineScript | ma_envelope_reversion | none | length x3, env_atr x3 | 9 |
 | 362012 | `ports/362012_macd-willy-strategy/` | PineScript | multi_indicator_confluence | none | emalen1 x2, w_length x2 | 4 |
+| 362022 | `ports/362022_ema-bands-leledc-bollinger-bands-trend-catching-strategy/` | PineScript | volatility_channel_breakout | none | ema_length x2, use_slow_ema x2 | 4 |
 | 362031 | `ports/362031_chande-kroll-stop/` | PineScript | volatility_stop_cross | bar_size_pending | p x2, q x2, x x2 | 8 |
 | 362055 | `ports/362055_big-snapper-alerts-r30-chaiking-volatility-condition-tp-rsi/` | PineScript | multi_indicator_confluence | none | st_factor x2, st_len x2, len_coloured x3 | 12 |
 | 362059 | `ports/362059_best-tradingview-strategy/` | PineScript | bollinger_reversion | trailing_stop_pending | bb_len x2, bb_mult x2, slow_sma x2 | 8 |
 | 362060 | `ports/362060_tv/` | PineScript | macd_divergence | none | fast x2, slow x3 | 6 |
+| 362083 | `ports/362083_tma-legacy/` | PineScript | rsi_oscillator | none | rsi_length x2, lb x2 | 4 |
 | 362089 | `ports/362089_midas-mk-ii-ultimate-crypto-swing/` | PineScript | ma_trend | none | ema_len x3, sma_len x3 | 9 |
 | 362092 | `ports/362092_moving-average-buy-sell/` | PineScript | ma_trend | none | wave x3, tide x2 | 6 |
 | 362103 | `ports/362103_ehma-range-strategy/` | PineScript | ma_envelope_breakout | none | period x3, band_atr x3 | 9 |
@@ -241,9 +243,11 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 362870 | `ports/362870_brahmastra/` | PineScript | ma_trend | none | length x3, gain x3 | 9 |
 | 362887 | `ports/362887_ftl-range-filter-x2-ema-uo/` | PineScript | volatility_channel_breakout | none | per2 x2, mult2 x2, ema_len x2 | 8 |
 | 362898 | `ports/362898_rsi-by-zdmre/` | PineScript | rsi_oscillator | none | rsi_len x3 | 3 |
+| 362916 | `ports/362916_crodls-supertrend/` | PineScript | supertrend | none | ema_len x2, flow_len x2 | 4 |
 | 363001 | `ports/363001_trading-the-equity-curve-position-sizing-example/` | PineScript | momentum_oscillator_turn | none | cmo_len x2, st_factor x2, mom_len x2 | 8 |
 | 363002 | `ports/363002_rainbow-oscillator/` | PineScript | momentum_oscillator_turn | none | period x3, level_period x2 | 6 |
 | 363562 | `ports/363562_sidboss/` | PineScript | volatility_channel_breakout | none | per x3, mult x3 | 9 |
+| 363564 | `ports/363564_welcome-to-the-bearmarket-30min/` | PineScript | multi_indicator_confluence | none | factor x2, stoploss x2 | 4 |
 | 363579 | `ports/363579_smarter-macd/` | PineScript | macd_momentum | none | fast x2, slow x2, signal x2 | 8 |
 | 363582 | `ports/363582_cci-mtf-obos/` | PineScript | momentum_oscillator_turn | none | cci_len x3 | 3 |
 | 363588 | `ports/363588_fukuiz-octa-ema-ichimoku/` | PineScript | ichimoku | none | ema_fast x2, ema_slow x2, displacement x2 | 8 |
@@ -254,14 +258,17 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 363797 | `ports/363797_backtesting-indicator/` | PineScript | ma_trend | trailing_stop_pending | ema1 x2, ema2 x2, stop_loss x2 | 8 |
 | 363803 | `ports/363803_super-scalper/` | PineScript | momentum_breakout | none | atr_len x3, mult x3 | 9 |
 | 363807 | `ports/363807_concept-dual-supertrend/` | PineScript | supertrend | none | period x3, mult x3 | 9 |
+| 363822 | `ports/363822_vumanchu-cipher-b-divergences-strategy/` | PineScript | wavetrend_oscillator | none | wt_channel_len x2, wt_average_len x2 | 4 |
 | 363824 | `ports/363824_momentum-based-zigzag/` | PineScript | rsi_oscillator | none | rsi_len x3, qqe_factor x2 | 6 |
 | 363825 | `ports/363825_supertrend4moving/` | PineScript | supertrend | none | period x3, mult x3 | 9 |
 | 363829 | `ports/363829_pivot-point-supertrend/` | PineScript | supertrend | none | prd x3, factor x2, atr_period x2 | 12 |
 | 363847 | `ports/363847_risotto/` | PineScript | rsi_oscillator | none | rsi_len x2, var_len x2, ott_pct x3 | 12 |
 | 363848 | `ports/363848_chandelier-exit/` | PineScript | volatility_stop_cross | none | length x3, mult x3 | 9 |
+| 363970 | `ports/363970_johnys-bot/` | PineScript | multi_indicator_confluence | coarse_bar_stop, trailing_stop_pending | volume_f x2, th x2 | 4 |
 | 363980 | `ports/363980_fukuiz-trend/` | PineScript | rsi_oscillator | none | rsi_len x2, lb x3 | 6 |
 | 363997 | `ports/363997_superjump-turn-back-bollinger-band/` | PineScript | bollinger_reversion | none | length x3, mult x3 | 9 |
 | 364001 | `ports/364001_redk-momentum-bars/` | PineScript | ma_trend | none | fast x2, slow x2, filter_len x2 | 8 |
+| 364036 | `ports/364036_redk-volume-accelerated-directional-energy-ratio/` | PineScript | momentum_oscillator | none | length x2, vlookbk x2 | 4 |
 | 364037 | `ports/364037_ema-trend-cloud/` | PineScript | ma_trend | none | fast x2, slow x2 | 4 |
 | 364518 | `ports/364518_buysell-strategy-depends-on-aostochrsiatr/` | PineScript | stochastic_oscillator | trailing_stop_pending | stoch_k x2, rsi_len x3, atr_len x2 | 12 |
 | 364527 | `ports/364527_scalping-pullback-tool-r1/` | PineScript | ma_trend_oscillator_pullback | none | pac_len x2, lookback x3 | 6 |
@@ -273,12 +280,16 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 365075 | `ports/365075_order-block-finder/` | PineScript | candle_pattern | none | periods x3, threshold x2 | 6 |
 | 365078 | `ports/365078_atr-smoothed/` | PineScript | volatility_stop_cross | none | atr_period x3, mult x3 | 9 |
 | 365080 | `ports/365080_crypto-futures-hourly-scalping-with-ma-rsi-ogcheckers/` | PineScript | rsi_oscillator | none | rsi_upper x2, rsi_buffer x2 | 4 |
+| 365085 | `ports/365085_volume-flow-v3/` | PineScript | momentum_breakout | none | length x2, x x2 | 4 |
+| 365095 | `ports/365095_shannon-entropy-v2/` | PineScript | momentum_oscillator | none | len x2, avg x2 | 4 |
+| 365126 | `ports/365126_15min-btcusdtperp-bot/` | PineScript | multi_indicator_confluence | none | rvol_trigger x2, th x2 | 4 |
 | 365127 | `ports/365127_trading-abc/` | PineScript | pivot_reversal | none | prd x3, error_rate x2 | 6 |
 | 365128 | `ports/365128_supertrended-moving-averages/` | PineScript | supertrend | none | length x3, mult x3 | 9 |
 | 365283 | `ports/365283_macd-reloaded-strategy/` | PineScript | macd_momentum | none | fast x2, slow x2, trigger x2 | 8 |
 | 365314 | `ports/365314_moving-average-cross-alert-multi-timeframe-mtf/` | PineScript | ma_trend | none | short x2, long x2 | 4 |
 | 365315 | `ports/365315_quantitative-qualitative-estimation/` | PineScript | rsi_oscillator | none | rsi_len x3, sf x3 | 9 |
 | 365320 | `ports/365320_consolidation-zones-live/` | PineScript | volatility_channel_breakout | none | prd x3, conslen x3 | 9 |
+| 365322 | `ports/365322_redk-dual-vader-with-energy-bars/` | PineScript | momentum_oscillator | none | length x2, vlookbk x2 | 4 |
 | 365345 | `ports/365345_linear-regression/` | PineScript | zscore_reversion | none | length x3, dev x3 | 9 |
 | 365359 | `ports/365359_relative-strength-index-divergences-libertus/` | PineScript | rsi_oscillator | bar_size_pending | rsi_period x3, lookback x2 | 6 |
 | 365373 | `ports/365373_super-scalper-5-min-15-min/` | PineScript | momentum_breakout | none | atr_len x3, mult x3 | 9 |
@@ -3364,7 +3375,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 491892 | `ports/491892_ema-ema-dual-crossover-dynamic-stop-loss-quantitative-strate/` | PineScript | ma_cross | none | length10 x2, length20 x2 | 4 |
 | 491897 | `ports/491897_multi-factor-trend-following-quantitative-strategy/` | PineScript | parabolic_sar | coarse_bar_stop, trailing_stop_pending | adxThreshold x2, atrMultiplier x2 | 4 |
 | 492007 | `ports/492007_rsi-rsi-dynamic-divergence-quantitative-strategy/` | PineScript | rsi_divergence | trailing_stop_pending | lookLeft x2, rangeUpper x2 | 4 |
-| | **3237 ports** | | | | | **14751** |
+| | **3248 ports** | | | | | **14795** |
 
 ## Rejected on reading
 
@@ -3394,6 +3405,7 @@ FAMILY names are proposed (2026-10-03), user to confirm.
 | 363557 | Pivot-Points-High-Low-Multi-Time-Frame.md | 1 | Pivots come from request.security(syminfo.tickerid, '240', get_phpl(), lookahead_on) without [1]: on historical bars the 4 h pivot is visible from the first 5 m bar of the 4 h bar that confirms it, i.e. it reads the future (SURVEY_README request.security rule). |
 | 363572 | OCC-Strategy-R51.md | 1 | Both MA series are read through request.security(..., stratRes, lookahead_on) without [1] (alternate resolution on by default, 3x the chart period): on historical bars the higher-timeframe values are visible before that bar closes, i.e. they read the future. |
 | 365389 | TradingView-Alerts-to-MT4-MT5-dynamic-variables-NON-REPAINTING.md | 1 | The exit is a two-step ladder: 50 % of the position at a 150-tick profit (qty_percent=50), the rest at 400 ticks or a pivot stop; a partial exit cannot be expressed as one net position's signals, and tick distances are instrument-specific (an MT4 alert template; criterion 2 too). |
+| 365687 | Flawless-Victory-Strategy.md | 2 | strategy.entry("Sell", when = Sell_1) passes no direction (Pine v4 requires the long argument), so whether the Sell signal opens a long, a short or nothing is undefined as written (criterion 2); the v1 defaults trade only through it and Buy_1. |
 | 368717 | Inverted-Hammer-Extended-Options.md | 1 | Long entries only (inverted hammer below EMA 10), with no exit, stop or reversal anywhere: after the first signal the position is held for the rest of the data, so there is no repeatable entry/exit rule to test (as #62163). |
 | 368734 | Brick-count-Renko.md | 1 | The orders test bar counts as booleans: `if brick_red` (non-green bars among the last 40) is true unless 40 green bars in a row, so the script is long on practically every bar; the brick cross it labels never reaches the orders. No defined signal to test. |
 | 369999 | Directional-Movement-Oscillator-DMI.md | 1 | The orders test a float and a plot handle as booleans: `if diosc` (DI+ - DI-, true whenever non-zero) -> long, `else if p2` (a plot id) -> short. Long on practically every bar; the short branch depends on how the runtime casts a plot handle. No defined signal to test. |
