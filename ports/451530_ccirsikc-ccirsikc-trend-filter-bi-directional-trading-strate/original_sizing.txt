@@ -1,0 +1,6 @@
+# Original sizing and money-management code, FMZ #451530 (CCIRSIKC趋势滤波多空双向交易策略-CCIRSIKC-Trend-Filter-Bi-Directional-Trading-Strategy)
+# Source: https://www.fmz.com/strategy/451530  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## strategy(): cash 50000 per order, commission 0.0005, slippage 2  [lines 104-104]
+  104: strategy('CCI Strategy with Trend Filter AUDNZD, GBPNZD', overlay=true, default_qty_type=strategy.cash, default_qty_value=50000, commission_value=0.0005, slippage=2, initial_capital=10000)

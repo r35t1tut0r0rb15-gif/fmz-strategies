@@ -7685,6 +7685,30 @@ SIZING = {
         ("entry qty 1 (tradeQty)", 139, 141),
     ],
     451491: [],
+    # ---- FMZ-C, batch V30 (2026-10-23)
+    451530: [
+        ("strategy(): cash 50000 per order, commission 0.0005, slippage 2", 104, 104),
+    ],
+    451532: [],
+    451722: [
+        ("strategy(): 70 % of equity, capital 10000, commission 0.01 %", 98, 98),
+    ],
+    452276: [
+        ("entry qty 1", 131, 133),
+    ],
+    452283: [
+        ("strategy(): cash 10000 per order, capital 100", 100, 100),
+    ],
+    452354: [
+        ("strategy(): 10 % of equity", 102, 102),
+    ],
+    452697: [
+        ("qty = equity x 1 % / stop distance x 2", 145, 156),
+    ],
+    453226: [],
+    453270: [],
+    453279: [],
+    453659: [],
 }
 
 REJECTED_ON_READING = {
@@ -9914,6 +9938,11 @@ REJECTED_ON_READING = {
               "'15', ema(close, 200)): a 15-minute series inside daily bars, a lower-timeframe "
               "read whose value is the day's last 15-minute value, unknown at the daily close it "
               "is used with (criterion 1, as #427518)."),
+    # ---- FMZ-C, batch V30 (2026-10-23)
+    452357: ("1", "With pyramiding 3 the strategy adds 'L2' / 'S2' entries (their own contract sizes) "
+              "when price crosses a level beyond the first entry, each with its own exit order: "
+              "adds with separate exits, which the house engine does not do (criterion 1, as "
+              "#433905)."),
 }
 
 DUPLICATE_ON_READING = {

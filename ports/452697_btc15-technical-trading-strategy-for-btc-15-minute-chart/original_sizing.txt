@@ -1,0 +1,17 @@
+# Original sizing and money-management code, FMZ #452697 (基于BTC15分钟图表的技术交易策略-Technical-Trading-Strategy-for-BTC-15-minute-Chart)
+# Source: https://www.fmz.com/strategy/452697  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+## qty = equity x 1 % / stop distance x 2  [lines 145-156]
+  145: calculatePositionSize(stopLoss) =>
+  146:     riskAmount = strategy.equity * riskPercentage
+  147:     positionSize = riskAmount / stopLoss
+  148:     // Double the position size
+  149:     positionSize *= 2
+  150:     positionSize
+  151: 
+  152: // Entry and Exit Logic with Stop Loss
+  153: if bullishDivergence
+  154:     stopLoss = low - atr * stopLossATR
+  155:     positionSize = calculatePositionSize(close - stopLoss)
+  156:     strategy.entry("Buy", strategy.long, qty=positionSize)

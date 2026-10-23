@@ -1,0 +1,5 @@
+# Original sizing and money-management code, FMZ #453270 (基于量价信号和烛台模式的买卖策略-Buy-Sell-Strategy-Based-on-Volume-Candlestick-Patterns)
+# Source: https://www.fmz.com/strategy/453270  (verbatim from original_source.md; line numbers refer to it)
+# Stored for later testing as a separate layer (criterion 4). Not part of the port's signals.
+
+(The source has no sizing or money-management code: one lot per signal.)
