@@ -123,6 +123,125 @@ are TradingView's.
 | EFI | `efi` | Elder Force Index, 13 |
 | VWAP_SESSION | `vwap(high, low, close, volume, anchor="D", band_mult)` / `vwap_session(..., session)` | TV built-in *VWAP* on hlc3, with stdev bands. `anchor` is D/W/M/Q/Y. The vbt class takes a `session` id input (`ti.session_ids(index, "D")`) |
 
+### More moving averages and filters (`filters.py`)
+
+| Name | Function | Source / defaults |
+|---|---|---|
+| ZLEMA | `zlema` | Zero-lag EMA, 20 |
+| T3 | `t3` | Tillson T3, 5, vfactor 0.7 (same as TA-Lib) |
+| SWMA | `swma` | `ta.swma` (4-bar 1-2-2-1 weights) |
+| VIDYA | `vidya` | VAR/VIDYA [KivancOzbilgic], 9 / CMO 9. Starts from 0, like the script |
+| TRIMA | `trima` | Triangular MA, 20 (same as TA-Lib) |
+| EHMA / THMA | `ehma`, `thma` | Hull Suite [InSilico] exponential and triple Hull, 55 |
+| SUPERSMOOTHER | `supersmoother` | Ehlers 2-pole Super Smoother, 10 |
+| ULTIMATE_SMOOTHER | `ultimate_smoother` | Ehlers Ultimate Smoother (2024), 20 |
+| MEDIAN | `median` | `ta.median` |
+| MIDPOINT / MIDPRICE | `midpoint`, `midprice` | Same as TA-Lib, 14 |
+| GMMA | `gmma` | Guppy: EMAs 3-15 and 30-60 (12 outputs) |
+| ZLSMA | `zlsma` | Zero-lag LSMA [veryfid], 32 |
+| MAVILIMW | `mavilimw` | MavilimW [KivancOzbilgic], 3 / 5 |
+| CORAL | `coral` | Coral Trend [LazyBear], 21 / 0.4 |
+| ITREND | `itrend` | Ehlers Instantaneous Trendline [LazyBear], alpha 0.07 |
+| NADARAYA_WATSON | `nadaraya_watson` | Nadaraya-Watson Envelope [LuxAlgo], non-repainting mode, h 8, mult 3, window 500 |
+| LAGUERRE / LAGUERRE_RSI | `laguerre`, `laguerre_rsi` | Ehlers Laguerre filter (gamma 0.8) and Laguerre RSI [LazyBear] (gamma 0.5) |
+| FRAMA | `frama` | Ehlers Fractal Adaptive MA, 16 |
+| CG | `center_of_gravity` | Ehlers Center of Gravity, 10 |
+
+### More oscillators (`momentum.py`)
+
+| Name | Function | Source / defaults |
+|---|---|---|
+| PPO / APO | `ppo`, `apo` | 12 / 26 / 9 (PPO matches TA-Lib with EMA) |
+| PRICE_OSC | `price_oscillator` | TV built-in *Price Oscillator*, 10 / 21, SMA, in % |
+| KST | `kst` | TV built-in *Know Sure Thing* |
+| RVGI | `rvgi` | TV built-in *Relative Vigor Index*, 10 |
+| RVI | `relative_volatility_index` | TV built-in *Relative Volatility Index*, 10 / 14 |
+| SMI_ERGODIC | `smi_ergodic` | TV built-in *SMI Ergodic Indicator/Oscillator*, 20 / 5 / 5 |
+| SMI | `smi` | Stochastic Momentum Index [UCSgears], 10 / 3 / 10 |
+| BULL_BEAR_POWER | `bull_bear_power` | Elder-Ray / TV *Bull Bear Power*, 13 |
+| BOP | `bop` | Balance of Power |
+| QSTICK | `qstick` | Chande Qstick, 8 |
+| MASS_INDEX | `mass_index` | TV built-in, 10 |
+| ULCER | `ulcer_index` | Ulcer Index, 14 |
+| CHAIKIN_VOL | `chaikin_volatility` | 10 / 10 |
+| ER | `efficiency_ratio` | Kaufman Efficiency Ratio, 10 |
+| VHF | `vhf` | Vertical Horizontal Filter, 28 |
+| TREND_STRENGTH | `trend_strength_index` | TV built-in *Trend Strength Index* (correlation with bar index), 14 |
+| RCI | `rci` | `ta.rci` Rank Correlation Index, 9 |
+| PMO | `pmo` | DecisionPoint Price Momentum Oscillator, 35 / 20 / 10 |
+| IFISH_RSI | `inverse_fisher_rsi` | Ehlers Inverse Fisher of RSI, 5 / 9 |
+| TDI | `tdi` | Traders Dynamic Index, 13 / 34 / 1.6185 / 2 / 7 |
+| MACD_V | `macd_v` | MACD-V (Spiroglou): MACD / ATR(26) x 100 |
+| EWO | `elliott_wave_oscillator` | 5 / 35 |
+| RMI | `rmi` | Relative Momentum Index, 20 / 5 |
+| DEMARKER | `demarker` | 14 |
+| PSY | `psychological_line` | 12 |
+| DISPARITY | `disparity_index` | 14 |
+| AC | `accelerator_oscillator` | TV built-in Accelerator Oscillator |
+| ELDER_IMPULSE | `elder_impulse` | Elder Impulse System (+1 / 0 / -1) |
+| CFO | `chande_forecast_oscillator` | 14 |
+| PGO | `pretty_good_oscillator` | 14 |
+| IMI | `intraday_momentum_index` | 14 |
+| RWI | `random_walk_index` | 14 |
+
+### Community trend scripts, stops and bands (`community.py`)
+
+| Name | Function | Source / defaults |
+|---|---|---|
+| SUPERTREND_KIVANC | `supertrend_kivanc` | SuperTrend [KivancOzbilgic], 10 / 3. Differs from `ta.supertrend` |
+| HALFTREND | `halftrend` | HalfTrend [everget], 2 / 2 |
+| SSL_CHANNEL | `ssl_channel` | SSL Channel [ErwinBeckers], 10 |
+| RANGE_FILTER | `range_filter` | Range Filter Buy and Sell [guikroth], 100 / 3 |
+| TWIN_RANGE_FILTER | `twin_range_filter` | Twin Range Filter [colinmck], 27 / 1.6 / 55 / 2 |
+| TREND_MAGIC | `trend_magic` | Trend Magic, CCI 20, ATR 5 x 1 |
+| ALPHATREND | `alphatrend` | AlphaTrend [KivancOzbilgic], 1 / 14, MFI (or RSI) |
+| OTT | `ott` | Optimized Trend Tracker [KivancOzbilgic], 2 / 1.4 |
+| QQE | `qqe` | QQE, 14 / 5 / 4.238 |
+| STC | `schaff_trend_cycle` | STC Indicator - A Better MACD [SHK] |
+| WAE | `waddah_attar_explosion` | Waddah Attar Explosion [LazyBear] |
+| WVF | `williams_vix_fix` | CM_Williams_Vix_Fix [ChrisMoody] |
+| VOLATILITY_STOP | `volatility_stop` | TV built-in, 20 / 2 |
+| CHANDE_KROLL_STOP | `chande_kroll_stop` | TV built-in, 10 / 1 / 9 |
+| ATR_STOP | `atr_stop_loss` | ATR Stop Loss Finder [veryfid], 14 / 1.5 |
+| STARC | `starc_bands` | STARC Bands, SMA 6, ATR 15 x 2 |
+
+### Bill Williams, pivots, trend (`bill_williams.py`, `pivots.py`, `trend.py`)
+
+| Name | Function | Source / defaults |
+|---|---|---|
+| ALLIGATOR | `alligator` | TV built-in; values are the lines drawn under the current bar (no look-ahead) |
+| GATOR | `gator` | Gator Oscillator |
+| FRACTALS | `fractals` | Williams Fractals, flagged when *confirmed* (2 bars later) |
+| BW_MFI | `market_facilitation_index` | (high - low) / volume |
+| PIVOT_POINTS_SESSION | `pivot_points(open, high, low, close, anchor, kind)` | TV *Pivot Points Standard*: traditional, fibonacci, woodie, classic, camarilla; P, R1-R3, S1-S3 from the previous period |
+| ADXR | `adxr` | 14 (same as TA-Lib) |
+
+### Statistics and volatility estimators (`statistics.py`)
+
+| Name | Function | Notes |
+|---|---|---|
+| STDEV / VARIANCE / ZSCORE | `stdev`, `variance`, `zscore` | population, like Pine |
+| PERCENTRANK | `percentrank` | `ta.percentrank` |
+| LINREG | `linreg` → value, slope, intercept, r2, angle | matches TA-Lib's LINEARREG_* |
+| CORREL | `correlation(close, other)` | `ta.correlation` |
+| BETA | `beta(close, benchmark)` | rolling beta of returns |
+| RELATIVE_STRENGTH | `relative_strength(close, benchmark)` | [Modhelius], 55 |
+| PARKINSON / GARMAN_KLASS / ROGERS_SATCHELL / YANG_ZHANG | ... | range-based volatility, per bar (`annual` = bars per year to annualize) |
+
+### More volume (`volume.py`)
+
+| Name | Function | Source / defaults |
+|---|---|---|
+| EOM | `ease_of_movement` | TV built-in, 14 / 10000 |
+| NVI / PVI | `nvi`, `pvi` | start 1000, EMA 255 signal |
+| KLINGER | `klinger` | TV built-in, 34 / 55 / 13 |
+| NET_VOLUME | `net_volume` | TV built-in |
+| WILLIAMS_AD | `williams_ad` | Williams Accumulation/Distribution |
+| RVOL | `relative_volume` | volume / sma(volume, 20) |
+| VFI | `vfi` | Volume Flow Indicator [LazyBear], 130 |
+| VZO | `volume_zone_oscillator` | 14 |
+| ROLLING_VWAP | `rolling_vwap` | VWAP over the last N bars |
+
 ## Conventions and accuracy notes
 
 * **Warm-up.** EMA and RMA seed with the SMA of the first `length` values,
