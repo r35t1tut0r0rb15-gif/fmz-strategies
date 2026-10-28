@@ -408,7 +408,11 @@ def twin_range_filter(close, fast_period=27, fast_range=1.6, slow_period=55, slo
 
 @indicator("TREND_MAGIC", ["high", "low", "close"], ["magic_trend", "bullish"])
 def trend_magic(high, low, close, cci_period=20, atr_multiplier=1.0, atr_period=5):
-    """Trend Magic [KivancOzbilgic / Glaz]: ATR trail flipped by CCI >= 0."""
+    """Trend Magic [KivancOzbilgic], the most-liked version: ATR trail flipped by CCI >= 0.
+
+    Like the script, the line sits at 0 until the first bullish bar. glaz's
+    older "Trend Magic" handles CCI sign changes differently and is not this.
+    """
     n = int(cci_period)
     cci = safe_div(close - k.sma_nb(close, n), 0.015 * k.dev_nb(close, n))
     a = k.sma_nb(k.tr_nb(high, low, close, False), int(atr_period))
@@ -458,7 +462,11 @@ def ott(close, length=2, percent=1.4):
 
 @indicator("QQE", ["close"], ["rsi_ma", "trailing_line", "trend", "long_band", "short_band"])
 def qqe(close, rsi_length=14, smoothing=5, factor=4.238):
-    """QQE (Quantitative Qualitative Estimation) as in the classic Pine script."""
+    """QQE (Quantitative Qualitative Estimation), Glaz's classic script (14 / 5 / 4.238).
+
+    QQE MOD [Mihkel00] uses this same core with 6 / 5 / 3 (and a second
+    6 / 5 / 1.61 line); call ``qqe(close, 6, 5, 3.0)`` for its main line.
+    """
     n = int(rsi_length)
     wilders = n * 2 - 1
     rma_ = k.ema_nb(rsi_2d(close, n), int(smoothing))
@@ -477,8 +485,14 @@ def schaff_trend_cycle(close, length=12, fast=26, slow=50, factor=0.5):
 
 
 @indicator("WAE", ["high", "low", "close"], ["trend_up", "trend_down", "explosion", "dead_zone"])
-def waddah_attar_explosion(high, low, close, sensitivity=150, fast=20, slow=40, channel_length=20, mult=2.0):
-    """Waddah Attar Explosion [LazyBear]."""
+def waddah_attar_explosion(high, low, close, sensitivity=150, fast=20, slow=40, channel_length=20, mult=2.0,
+                           dead_zone=20.0, atr_dead_zone=False):
+    """Waddah Attar Explosion [LazyBear].
+
+    LazyBear's dead zone is the constant ``dead_zone`` input (20).
+    ``atr_dead_zone=True`` uses rma(tr, 100) * 3.7 instead, as in
+    "Waddah Attar Explosion V2 [SHK]".
+    """
     m = k.ema_nb(close, int(fast)) - k.ema_nb(close, int(slow))
     t1 = (m - shift_2d(m, 1)) * sensitivity
     n = int(channel_length)
@@ -486,7 +500,10 @@ def waddah_attar_explosion(high, low, close, sensitivity=150, fast=20, slow=40, 
     with np.errstate(invalid="ignore"):
         up = np.where(t1 >= 0, t1, 0.0)
         dn = np.where(t1 < 0, -t1, 0.0)
-    dz = np.nan_to_num(k.rma_nb(k.tr_nb(high, low, close, True), 100)) * 3.7
+    if atr_dead_zone:
+        dz = np.nan_to_num(k.rma_nb(k.tr_nb(high, low, close, True), 100)) * 3.7
+    else:
+        dz = np.full(close.shape, float(dead_zone))
     return up, dn, e1, dz
 
 

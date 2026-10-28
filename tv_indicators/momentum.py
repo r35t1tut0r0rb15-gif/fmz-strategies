@@ -110,18 +110,21 @@ def smi_ergodic(close, long_length=20, short_length=5, signal_length=5):
     return e, s, e - s
 
 
-@indicator("SMI", ["high", "low", "close"], ["smi", "signal", "ema"])
-def smi(high, low, close, k_length=10, d_length=3, ema_length=10):
-    """Stochastic Momentum Index (Blau), as in the popular [UCSgears] script."""
+@indicator("SMI", ["high", "low", "close"], ["smi", "signal"])
+def smi(high, low, close, k_length=5, d_length=3):
+    """Stochastic Momentum Index (Blau), as in the popular [UCSgears] script (5 / 3).
+
+    Like the script, SMI is 0 (not na) while its EMAs warm up.
+    """
     a, b = int(k_length), int(d_length)
     hh = k.highest_nb(high, a)
     ll = k.lowest_nb(low, a)
     rel = k.ema_nb(k.ema_nb(close - (hh + ll) / 2, b), b)
     dif = k.ema_nb(k.ema_nb(hh - ll, b), b)
     with np.errstate(divide="ignore", invalid="ignore"):
-        s = np.where(dif != 0, rel / (dif / 2) * 100, 0.0)
-    s[np.isnan(dif)] = NAN
-    return s, k.ema_nb(s, b), k.ema_nb(s, int(ema_length))
+        s = np.where(dif != 0, rel / (dif / 2) * 100, 0.0)  # na != 0 is false -> 0
+    s[np.isnan(dif)] = 0.0
+    return s, k.ema_nb(s, b)
 
 
 @indicator("BULL_BEAR_POWER", ["high", "low", "close"], ["bull", "bear", "bbp"])

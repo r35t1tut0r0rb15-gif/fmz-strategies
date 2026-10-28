@@ -143,7 +143,7 @@ are TradingView's.
 | CORAL | `coral` | Coral Trend [LazyBear], 21 / 0.4 |
 | ITREND | `itrend` | Ehlers Instantaneous Trendline [LazyBear], alpha 0.07 |
 | NADARAYA_WATSON | `nadaraya_watson` | Nadaraya-Watson Envelope [LuxAlgo], non-repainting mode, h 8, mult 3, window 500 |
-| LAGUERRE / LAGUERRE_RSI | `laguerre`, `laguerre_rsi` | Ehlers Laguerre filter (gamma 0.8) and Laguerre RSI [LazyBear] (gamma 0.5) |
+| LAGUERRE / LAGUERRE_RSI | `laguerre`, `laguerre_rsi` | Ehlers Laguerre filter (gamma 0.8) and Laguerre RSI (gamma 0.5, 0..1 scale; Kivanc's version is gamma 0.8, x100) |
 | FRAMA | `frama` | Ehlers Fractal Adaptive MA, 16 |
 | CG | `center_of_gravity` | Ehlers Center of Gravity, 10 |
 
@@ -157,7 +157,7 @@ are TradingView's.
 | RVGI | `rvgi` | TV built-in *Relative Vigor Index*, 10 |
 | RVI | `relative_volatility_index` | TV built-in *Relative Volatility Index*, 10 / 14 |
 | SMI_ERGODIC | `smi_ergodic` | TV built-in *SMI Ergodic Indicator/Oscillator*, 20 / 5 / 5 |
-| SMI | `smi` | Stochastic Momentum Index [UCSgears], 10 / 3 / 10 |
+| SMI | `smi` → smi, signal | Stochastic Momentum Index [UCSgears], 5 / 3 |
 | BULL_BEAR_POWER | `bull_bear_power` | Elder-Ray / TV *Bull Bear Power*, 13 |
 | BOP | `bop` | Balance of Power |
 | QSTICK | `qstick` | Chande Qstick, 8 |
@@ -195,12 +195,12 @@ are TradingView's.
 | SSL_CHANNEL | `ssl_channel` | SSL Channel [ErwinBeckers], 10 |
 | RANGE_FILTER | `range_filter` | Range Filter Buy and Sell [guikroth], 100 / 3 |
 | TWIN_RANGE_FILTER | `twin_range_filter` | Twin Range Filter [colinmck], 27 / 1.6 / 55 / 2 |
-| TREND_MAGIC | `trend_magic` | Trend Magic, CCI 20, ATR 5 x 1 |
+| TREND_MAGIC | `trend_magic` | Trend Magic [KivancOzbilgic] (the most-liked version; glaz's differs), CCI 20, ATR 5 x 1 |
 | ALPHATREND | `alphatrend` | AlphaTrend [KivancOzbilgic], 1 / 14, MFI (or RSI) |
 | OTT | `ott` | Optimized Trend Tracker [KivancOzbilgic], 2 / 1.4 |
-| QQE | `qqe` | QQE, 14 / 5 / 4.238 |
+| QQE | `qqe` | QQE [Glaz], 14 / 5 / 4.238. For QQE MOD's main line use 6 / 5 / 3 |
 | STC | `schaff_trend_cycle` | STC Indicator - A Better MACD [SHK] |
-| WAE | `waddah_attar_explosion` | Waddah Attar Explosion [LazyBear] |
+| WAE | `waddah_attar_explosion` | Waddah Attar Explosion [LazyBear], dead zone 20 (`atr_dead_zone=True` for the SHK V2 ATR dead zone) |
 | WVF | `williams_vix_fix` | CM_Williams_Vix_Fix [ChrisMoody] |
 | VOLATILITY_STOP | `volatility_stop` | TV built-in, 20 / 2 |
 | CHANDE_KROLL_STOP | `chande_kroll_stop` | TV built-in, 10 / 1 / 9 |
@@ -273,7 +273,7 @@ are TradingView's.
 
 ## How it was verified
 
-The tests in `tests/` (91 in all) check each indicator in one of these ways:
+The tests in `tests/` (143 in all) check each indicator in one of these ways:
 
 1. Against **TA-Lib** where its formula is the same as TradingView's: SMA,
    EMA, WMA, DEMA, TEMA, LINEARREG, KAMA, BBANDS (SMA, EMA and VWMA basis),
@@ -291,7 +291,13 @@ The tests in `tests/` (91 in all) check each indicator in one of these ways:
 4. Against **TradingView's own source code**: `test_pine_ports_builtin.py`
    ports the built-in scripts as TradingView serves them (the chart's
    "Source code" view) and the Pine v6 reference code, bar by bar, without
-   using the library's kernels.
+   using the library's kernels. `test_pine_ports_community.py` does the same
+   for 18 community scripts from their published Pine code (Range Filter,
+   Twin Range Filter, HalfTrend, SSL, Trend Magic, AlphaTrend, OTT, Kivanc
+   SuperTrend, QQE, STC, WAE, VFI, Coral, Vix Fix, iTrend, MavilimW, ZLSMA,
+   Nadaraya-Watson, SMI), including their default inputs. The only script
+   whose source could not be found is LazyBear's Laguerre RSI; its formula
+   was checked against KivancOzbilgic's version instead.
 
 They have **not** been checked against numbers exported from a TradingView
 chart. To spot-check one, export chart data with the indicator on it from

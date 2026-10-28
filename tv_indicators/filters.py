@@ -373,7 +373,11 @@ def laguerre(close, gamma=0.8):
 
 @indicator("LAGUERRE_RSI", ["close"], ["lrsi"])
 def laguerre_rsi(close, gamma=0.5):
-    """Laguerre RSI (Ehlers, LazyBear's Pine): 0..1 scale."""
+    """Laguerre RSI (Ehlers), 0..1 scale.
+
+    Same formula as KivancOzbilgic's "Laguerre RSI" with gamma = 1 - alpha
+    (his default alpha 0.2 is gamma 0.8; he plots x100).
+    """
     l0, l1, l2, l3 = _laguerre_nb(close, float(gamma))
     cu = np.zeros(close.shape)
     cd = np.zeros(close.shape)

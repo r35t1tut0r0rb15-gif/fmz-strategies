@@ -673,8 +673,11 @@ def test_supertrend_kivanc(change_atr):
 
 
 # ---------------------------------------------------------------------------
-# 9. QQE. The original glaz "QQE" page/code was not found. The same core is in
-#    "QQE signals" [colinmck] (v4), Indie-script/indie-script.github.io
+# 9. QQE. Glaz's own "QQE MT4" page was not located; its code ("//By Glaz",
+#    v3, defaults 14 / 5 / 4.238) is in "QQE MT4 Glaz-modified by JustUncleL"
+#    (https://www.tradingview.com/script/34U0KMEK/), mirrored at
+#    github.com/vidoluco/TradingView-Indicators Others/Volumes_QQE_plus.
+#    The same core is in "QQE signals" [colinmck] (v4), Indie-script/indie-script.github.io
 #    indicators/QQE Signals/QQE Signals.pinescript4 (defaults 14 / 5 / 4.238),
 #    and in "QQE MOD" [Mihkel00] ("By Glaz, Modified"),
 #    https://www.tradingview.com/script/TpUW4muw/ (code: github.com/edyatl/qqe-mod
@@ -781,12 +784,9 @@ def test_waddah_attar_explosion_lazybear():
 
 def test_waddah_dead_zone_is_shk_v2_formula():
     dz = [nz(t) * 3.7 for t in ta_rma(ta_tr(hi, lo, cl, True), 100)]
-    same(ti.waddah_attar_explosion(H, L, C).dead_zone, fl(dz), **TOL)
+    same(ti.waddah_attar_explosion(H, L, C, atr_dead_zone=True).dead_zone, fl(dz), **TOL)
 
 
-@pytest.mark.xfail(strict=True, reason=(
-    "LazyBear's WAE plots deadZone = input(20) (a constant line); the library's "
-    "dead_zone is nz(rma(tr(true),100))*3.7 from 'Waddah Attar Explosion V2 [SHK]'"))
 def test_waddah_dead_zone_lazybear():
     same(ti.waddah_attar_explosion(H, L, C).dead_zone, np.full(N, 20.0), **TOL)
 
@@ -996,10 +996,6 @@ def test_smi_ucsgears_after_warmup():
     same(got[1], fl(sig), tail=N - 100, **TOL)
 
 
-@pytest.mark.xfail(strict=True, reason=(
-    "UCSgears: SMI = avgdiff != 0 ? ... : 0, and na != 0 is false, so the script "
-    "plots 0 (not na) while the double EMA warms up; its signal ema(SMI, 3) then "
-    "starts at bar 2. The library returns na there (warm-up only, converges later)"))
 def test_smi_ucsgears_warmup():
     smi, sig = pine_smi_ucs()
     got = ti.smi(H, L, C, k_length=5, d_length=3)
@@ -1030,9 +1026,7 @@ PUBLISHED_DEFAULTS = [
     (ti.mavilimw, dict(first_length=3, second_length=5)),
     (ti.zlsma, dict(length=32, offset=0)),
     (ti.nadaraya_watson, dict(bandwidth=8.0, mult=3.0)),
-    pytest.param(ti.smi, dict(k_length=5, d_length=3), marks=pytest.mark.xfail(
-        strict=True, reason="UCSgears SMI defaults are Percent K Length 5 / Percent D Length 3; "
-                            "library k_length=10 (and ema_length=10 is an extra line not in the script)")),
+    (ti.smi, dict(k_length=5, d_length=3)),
 ]
 
 
