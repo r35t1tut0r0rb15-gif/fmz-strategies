@@ -152,7 +152,7 @@ are TradingView's.
 | Name | Function | Source / defaults |
 |---|---|---|
 | PPO / APO | `ppo`, `apo` | 12 / 26 / 9 (PPO matches TA-Lib with EMA) |
-| PRICE_OSC | `price_oscillator` | TV built-in *Price Oscillator*, 10 / 21, SMA, in % |
+| PRICE_OSC | `price_oscillator` → ppo, signal, hist | TV built-in *Price Oscillator* (v35, which is a PPO): 12 / 26 / 9, EMA or SMA |
 | KST | `kst` | TV built-in *Know Sure Thing* |
 | RVGI | `rvgi` | TV built-in *Relative Vigor Index*, 10 |
 | RVI | `relative_volatility_index` | TV built-in *Relative Volatility Index*, 10 / 14 |
@@ -167,7 +167,7 @@ are TradingView's.
 | ER | `efficiency_ratio` | Kaufman Efficiency Ratio, 10 |
 | VHF | `vhf` | Vertical Horizontal Filter, 28 |
 | TREND_STRENGTH | `trend_strength_index` | TV built-in *Trend Strength Index* (correlation with bar index), 14 |
-| RCI | `rci` | `ta.rci` Rank Correlation Index, 9 |
+| RCI | `rci` | `ta.rci` Rank Correlation Index, 10 (ties share their average rank) |
 | PMO | `pmo` | DecisionPoint Price Momentum Oscillator, 35 / 20 / 10 |
 | IFISH_RSI | `inverse_fisher_rsi` | Ehlers Inverse Fisher of RSI, 5 / 9 |
 | TDI | `tdi` | Traders Dynamic Index, 13 / 34 / 1.6185 / 2 / 7 |
@@ -183,6 +183,8 @@ are TradingView's.
 | PGO | `pretty_good_oscillator` | 14 |
 | IMI | `intraday_momentum_index` | 14 |
 | RWI | `random_walk_index` | 14 |
+| ADR | `average_day_range` | TV built-in *Average Day Range*, 14 |
+| CHOP_ZONE | `chop_zone` → angle, zone | TV built-in *Chop Zone* (EMA 34 angle, colour zones -4..4) |
 
 ### Community trend scripts, stops and bands (`community.py`)
 
@@ -211,9 +213,9 @@ are TradingView's.
 |---|---|---|
 | ALLIGATOR | `alligator` | TV built-in; values are the lines drawn under the current bar (no look-ahead) |
 | GATOR | `gator` | Gator Oscillator |
-| FRACTALS | `fractals` | Williams Fractals, flagged when *confirmed* (2 bars later) |
+| FRACTALS | `fractals` | TV built-in Williams Fractals (same tie rules), flagged when *confirmed* (2 bars later) |
 | BW_MFI | `market_facilitation_index` | (high - low) / volume |
-| PIVOT_POINTS_SESSION | `pivot_points(open, high, low, close, anchor, kind)` | TV *Pivot Points Standard*: traditional, fibonacci, woodie, classic, camarilla; P, R1-R3, S1-S3 from the previous period |
+| PIVOT_POINTS_SESSION | `pivot_points(open, high, low, close, anchor, kind)` | TV *Pivot Points Standard*: traditional, fibonacci, woodie, classic, camarilla; P, R1-R3, S1-S3 from the previous calendar period of the index's timezone. TV builds them from daily settlement data, so session boundaries can differ; R4/R5 and DM are not included |
 | ADXR | `adxr` | 14 (same as TA-Lib) |
 
 ### Statistics and volatility estimators (`statistics.py`)
@@ -235,7 +237,7 @@ are TradingView's.
 | EOM | `ease_of_movement` | TV built-in, 14 / 10000 |
 | NVI / PVI | `nvi`, `pvi` | start 1000, EMA 255 signal |
 | KLINGER | `klinger` | TV built-in, 34 / 55 / 13 |
-| NET_VOLUME | `net_volume` | TV built-in |
+| NET_VOLUME | `net_volume` | Legacy TV version, sign(change) x volume. The current built-in needs intrabar up/down volume |
 | WILLIAMS_AD | `williams_ad` | Williams Accumulation/Distribution |
 | RVOL | `relative_volume` | volume / sma(volume, 20) |
 | VFI | `vfi` | Volume Flow Indicator [LazyBear], 130 |
@@ -251,8 +253,11 @@ are TradingView's.
   slightly at the start of the data and converges after about
   `4-5 × length` bars. For a precise comparison with a TV chart, load extra
   history before the period you trade.
-* **`na` handling** follows Pine: any `na` in a window gives `na`, `x/0`
-  gives `na`, and comparisons with `na` are false.
+* **`na` handling** follows Pine: comparisons with `na` are false and `x/0`
+  gives `na`. EMA/RMA skip `na` inputs (they seed on the first `length`
+  non-na values), as the Pine reference documents. Window functions (SMA,
+  stdev, highest...) return `na` while their window holds an `na`; Pine
+  skips those too, which only matters for series with gaps in the middle.
 * **Standard deviation** is population stdev (`ta.stdev`, `biased=true`), the
   same as TradingView and TA-Lib. pandas `.std()` defaults to sample stdev
   (`ddof=1`) and does **not** match.
@@ -260,15 +265,15 @@ are TradingView's.
   `close[t+25]`, which is future data, so never use it in a signal. Use
   `senkou_a` / `senkou_b` (the cloud drawn under the current bar) for
   cloud rules.
-* **PSAR** is a direct port of the Pine reference code for `ta.sar`. It
-  agrees with TA-Lib on most bars but differs around some reversals,
-  because Pine checks for a reversal before clamping SAR to the prior two
-  bars' range and TA-Lib clamps first.
+* **PSAR** is a port of the Pine v6 reference code for `ta.sar` (verified
+  line by line). It differs from TA-Lib around some reversals, because Pine
+  checks for a reversal before clamping SAR to the prior two bars' range
+  and TA-Lib clamps first.
 * Aroon ties (equal highs) resolve to the most recent bar, as in TA-Lib.
 
 ## How it was verified
 
-`tests/test_indicators.py` (34 tests) checks each indicator in one of three ways:
+The tests in `tests/` (91 in all) check each indicator in one of these ways:
 
 1. Against **TA-Lib** where its formula is the same as TradingView's: SMA,
    EMA, WMA, DEMA, TEMA, LINEARREG, KAMA, BBANDS (SMA, EMA and VWMA basis),
@@ -282,6 +287,11 @@ are TradingView's.
    Donchian, Ichimoku, VWAP and Heikin Ashi.
 3. Every vectorbt class runs, parameter grids work, and the results equal
    the function API.
+
+4. Against **TradingView's own source code**: `test_pine_ports_builtin.py`
+   ports the built-in scripts as TradingView serves them (the chart's
+   "Source code" view) and the Pine v6 reference code, bar by bar, without
+   using the library's kernels.
 
 They have **not** been checked against numbers exported from a TradingView
 chart. To spot-check one, export chart data with the indicator on it from

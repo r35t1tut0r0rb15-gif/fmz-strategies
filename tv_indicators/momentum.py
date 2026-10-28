@@ -37,7 +37,10 @@ def _csf_nb(src, n):
 
 @indicator("PPO", ["close"], ["ppo", "signal", "hist"])
 def ppo(close, fast=12, slow=26, signal=9, ma_type="ema"):
-    """Percentage Price Oscillator: 100 * (fast MA - slow MA) / slow MA."""
+    """Percentage Price Oscillator: 100 * (fast MA - slow MA) / slow MA, EMA signal.
+
+    Same as :func:`price_oscillator` (TradingView's PPO) with an EMA signal.
+    """
     s = ma_2d(close, slow, ma_type)
     p = safe_div(ma_2d(close, fast, ma_type) - s, s) * 100
     sig = k.ema_nb(p, int(signal))
@@ -50,12 +53,18 @@ def apo(close, fast=12, slow=26, ma_type="ema"):
     return ma_2d(close, fast, ma_type) - ma_2d(close, slow, ma_type)
 
 
-@indicator("PRICE_OSC", ["close"], ["po"])
-def price_oscillator(close, short_length=10, long_length=21, exponential=False):
-    """Price Oscillator (TradingView built-in, 10 / 21, SMA): (short-long)/long*100."""
-    t = "ema" if exponential else "sma"
-    lng = ma_2d(close, long_length, t)
-    return safe_div(ma_2d(close, short_length, t) - lng, lng) * 100
+@indicator("PRICE_OSC", ["close"], ["ppo", "signal", "hist"])
+def price_oscillator(close, fast=12, slow=26, signal=9, osc_ma="ema", signal_ma="ema"):
+    """Price Oscillator (TradingView built-in v35): 100*(fast MA - slow MA)/slow MA.
+
+    Defaults 12 / 26 / 9, EMA or SMA for the oscillator and the signal line.
+    (TradingView's older v1 script used SMA 10 / 21 with no signal:
+    ``price_oscillator(close, 10, 21, osc_ma="sma")``.)
+    """
+    s = ma_2d(close, slow, osc_ma)
+    p = safe_div(ma_2d(close, fast, osc_ma) - s, s) * 100
+    sig = ma_2d(p, signal, signal_ma)
+    return p, sig, p - sig
 
 
 @indicator("KST", ["close"], ["kst", "signal"])
@@ -179,8 +188,8 @@ def trend_strength_index(close, length=14):
 
 
 @indicator("RCI", ["close"], ["rci"])
-def rci(close, length=9):
-    """Rank Correlation Index (``ta.rci``), -100..100."""
+def rci(close, length=10):
+    """Rank Correlation Index (``ta.rci``, TV default 10), -100..100; ties share ranks."""
     return k.rci_nb(close, int(length))
 
 
@@ -317,3 +326,33 @@ def random_walk_index(high, low, close, length=14):
     n = int(length)
     den = atr_2d(high, low, close, n) * np.sqrt(n)
     return safe_div(high - shift_2d(low, n), den), safe_div(shift_2d(high, n) - low, den)
+
+
+@indicator("ADR", ["high", "low"], ["adr"])
+def average_day_range(high, low, length=14):
+    """Average Day Range (TradingView built-in): sma(high - low, 14) on the chart's bars."""
+    return k.sma_nb(high - low, int(length))
+
+
+@indicator("CHOP_ZONE", ["high", "low", "close"], ["angle", "zone"])
+def chop_zone(high, low, close, periods=30, ema_length=34):
+    """Chop Zone (TradingView built-in): angle of EMA 34 in degrees.
+
+    ``zone`` codes TV's colours: 4 turquoise (>= 5), 3 dark green, 2 pale
+    green, 1 lime (>= 0.71), 0 yellow (choppy), -1 light orange, -2 orange,
+    -3 red, -4 dark red (<= -5).
+    """
+    hh = k.highest_nb(high, int(periods))
+    ll = k.lowest_nb(low, int(periods))
+    span = safe_div(25 * ll, hh - ll)
+    e = k.ema_nb(close, int(ema_length))
+    y2 = (shift_2d(e, 1) - e) / ((high + low + close) / 3) * span
+    with np.errstate(invalid="ignore"):
+        ang = np.floor(180 * np.arccos(1 / np.sqrt(1 + y2 * y2)) / np.pi + 0.5)
+        ang = np.where(y2 > 0, -ang, ang)
+        zone = np.select(
+            [ang >= 5, ang >= 3.57, ang >= 2.14, ang >= 0.71,
+             ang <= -5, ang <= -3.57, ang <= -2.14, ang <= -0.71],
+            [4.0, 3.0, 2.0, 1.0, -4.0, -3.0, -2.0, -1.0], 0.0)
+    zone[np.isnan(ang)] = np.nan
+    return ang, zone

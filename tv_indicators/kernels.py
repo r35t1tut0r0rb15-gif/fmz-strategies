@@ -280,24 +280,25 @@ def alma_nb(x, n, offset, sigma, floor):
 
 @njit(cache=True)
 def ewm_nb(x, n, alpha):
-    """SMA-seeded exponential smoothing shared by ``ta.ema`` and ``ta.rma``."""
+    """SMA-seeded exponential smoothing shared by ``ta.ema`` and ``ta.rma``.
+
+    As the Pine reference says, na values in the source are ignored: the
+    seed is the mean of the first ``n`` non-na values, and an na bar after
+    that keeps the previous value.
+    """
     out = np.full(x.shape, NAN)
     for c in range(x.shape[1]):
         state = NAN
-        run = 0
+        count = 0
+        acc = 0.0
         for i in range(x.shape[0]):
             v = x[i, c]
-            if np.isnan(v):
-                run = 0
-                state = NAN
-            else:
-                run += 1
-                if np.isnan(state):
-                    if run >= n:
-                        s = 0.0
-                        for k in range(n):
-                            s += x[i - k, c]
-                        state = s / n
+            if not np.isnan(v):
+                if count < n:
+                    acc += v
+                    count += 1
+                    if count == n:
+                        state = acc / n
                 else:
                     state = alpha * v + (1.0 - alpha) * state
             out[i, c] = state

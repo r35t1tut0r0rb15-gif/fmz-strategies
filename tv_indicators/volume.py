@@ -141,14 +141,18 @@ def klinger(high, low, close, volume, fast=34, slow=55, signal=13):
     """Klinger Oscillator (TradingView built-in version: signed volume EMAs)."""
     ch = change_2d((high + low + close) / 3)
     with np.errstate(invalid="ignore"):
-        sv = np.where(np.isnan(ch), np.nan, np.where(ch >= 0, volume, -volume))
+        sv = np.where(ch >= 0, volume, -volume)  # bar 0: na >= 0 is false -> -volume
     kvo = k.ema_nb(sv, int(fast)) - k.ema_nb(sv, int(slow))
     return kvo, k.ema_nb(kvo, int(signal))
 
 
 @indicator("NET_VOLUME", ["close", "volume"], ["net_volume"])
 def net_volume(close, volume):
-    """Net Volume (TradingView built-in): +volume on up closes, -volume on down."""
+    """Net Volume, legacy TradingView version: sign(change(close)) * volume.
+
+    The current TV built-in uses intrabar up/down volume
+    (``ta.requestUpAndDownVolume``), which cannot be rebuilt from OHLCV bars.
+    """
     return np.sign(change_2d(close)) * volume
 
 

@@ -51,7 +51,7 @@ from .filters import (  # noqa: F401
     thma, trima, ultimate_smoother, vidya, zlema, zlsma,
 )
 from .momentum import (  # noqa: F401
-    accelerator_oscillator, apo, bop, bull_bear_power, chaikin_volatility,
+    accelerator_oscillator, apo, average_day_range, bop, chop_zone, bull_bear_power, chaikin_volatility,
     chande_forecast_oscillator, demarker, disparity_index, efficiency_ratio,
     elder_impulse, elliott_wave_oscillator, intraday_momentum_index,
     inverse_fisher_rsi, kst, macd_v, mass_index, pmo, ppo, pretty_good_oscillator,

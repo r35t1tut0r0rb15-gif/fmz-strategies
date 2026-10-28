@@ -34,25 +34,48 @@ def gator(high, low, jaw_length=13, jaw_offset=8, teeth_length=8, teeth_offset=5
     return np.abs(jaw - teeth), -np.abs(teeth - lips)
 
 
+def _fractal_flags(x, n, sign):
+    """TradingView's Williams Fractals test for bar ``n`` bars ago.
+
+    ``sign=1`` for up fractals on highs, ``-1`` for down fractals on lows.
+    Newer bars must be strictly lower (higher); up to 4 older bars may tie.
+    """
+    y = sign * x  # turn the low test into a high test
+    c = shift_2d(y, n)
+
+    def s(j):
+        return shift_2d(y, j)
+
+    with np.errstate(invalid="ignore"):
+        down = np.ones(x.shape, dtype=bool)
+        for i in range(1, n + 1):
+            down &= s(n - i) < c
+        any_up = np.zeros(x.shape, dtype=bool)
+        for t in range(5):  # upflagUpFrontier0..4
+            ties = np.ones(x.shape, dtype=bool)
+            for j in range(1, t + 1):
+                ties &= s(n + j) <= c
+            flag = np.ones(x.shape, dtype=bool)
+            for i in range(1, n + 1):
+                flag &= ties & (s(n + i + t) < c)
+            any_up |= flag
+    return down & any_up
+
+
 @indicator("FRACTALS", ["high", "low"], ["up", "down", "up_level", "down_level"])
 def fractals(high, low, periods=2):
-    """Williams Fractals, reported when *confirmed* (``periods`` bars later).
+    """Williams Fractals (TradingView built-in), flagged when *confirmed*.
 
-    A fractal on bar t-n is flagged on bar t, so there is no look-ahead.
-    ``up_level``/``down_level`` hold the price of the most recent confirmed
-    fractal. Uses strict comparisons on both sides; TradingView's built-in
-    also accepts some equal highs/lows to the right, so rare ties differ.
+    A fractal on bar t-n is flagged on bar t (TV draws it ``n`` bars back),
+    so there is no look-ahead. Same tie rules as TV: the ``n`` newer bars
+    must be strictly lower/higher, and up to 4 older bars may be equal.
+    ``up_level``/``down_level`` hold the price of the latest confirmed fractal.
     """
     n = int(periods)
-    ph, pl = shift_2d(high, n), shift_2d(low, n)
-    up = np.ones(high.shape, dtype=bool)
-    dn = np.ones(high.shape, dtype=bool)
-    with np.errstate(invalid="ignore"):
-        for j in range(1, n + 1):
-            up &= (ph > shift_2d(high, n + j)) & (ph > shift_2d(high, n - j))
-            dn &= (pl < shift_2d(low, n + j)) & (pl < shift_2d(low, n - j))
-    up_level = k.fixnan_nb(np.where(up, ph, np.nan))
-    down_level = k.fixnan_nb(np.where(dn, pl, np.nan))
+    up = _fractal_flags(high, n, 1)
+    dn = _fractal_flags(low, n, -1)
+    up_level = k.fixnan_nb(np.where(up, shift_2d(high, n), np.nan))
+    down_level = k.fixnan_nb(np.where(dn, shift_2d(low, n), np.nan))
     return up, dn, up_level, down_level
 
 
