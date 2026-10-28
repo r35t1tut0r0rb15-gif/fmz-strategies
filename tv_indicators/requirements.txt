@@ -1,0 +1,7 @@
+numpy
+pandas
+numba
+vectorbt
+# tests only
+TA-Lib
+pytest
