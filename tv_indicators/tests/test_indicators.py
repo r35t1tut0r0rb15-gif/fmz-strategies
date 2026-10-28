@@ -448,7 +448,8 @@ def test_every_indicator_runs_in_vbt():
     from tv_indicators import vbt as tvb
 
     cols = {"open": O, "high": H, "low": L, "close": C, "volume": V,
-            "session": pd.Series(ti.session_ids(D.index), index=D.index)}
+            "session": pd.Series(ti.session_ids(D.index), index=D.index),
+            "other": O, "benchmark": O}
     for name, cls in tvb.FACTORIES.items():
         res = cls.run(*[cols[i] for i in cls.input_names])
         for out in cls.output_names:

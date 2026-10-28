@@ -61,3 +61,10 @@ def ichimoku(high, low, close, conversion=9, base=26, span_b=52, displacement=26
     off = int(displacement) - 1
     return (tenkan, kijun, shift_2d(lead_a, off), shift_2d(lead_b, off),
             lead_a, lead_b, shift_2d(close, -off))
+
+
+@indicator("ADXR", ["high", "low", "close"], ["adxr"])
+def adxr(high, low, close, length=14):
+    """Average Directional Movement Rating: (ADX + ADX[length-1]) / 2 (TA-Lib)."""
+    a = dmi.core(high, low, close, length, length)[2]
+    return (a + shift_2d(a, int(length) - 1)) / 2

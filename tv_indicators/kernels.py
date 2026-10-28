@@ -665,3 +665,139 @@ def vwap_nb(src, volume, session):
                 var = svp2 / sv - m * m
                 sd[i, c] = np.sqrt(var) if var > 0 else 0.0
     return vw, sd
+
+
+# ---------------------------------------------------------------------------
+# Statistics
+# ---------------------------------------------------------------------------
+
+@njit(cache=True)
+def median_nb(x, n):
+    """``ta.median(x, n)``; even windows average the two middle values."""
+    out = np.full(x.shape, NAN)
+    buf = np.empty(n)
+    for c in range(x.shape[1]):
+        for i in range(n - 1, x.shape[0]):
+            if not _window_ok(x, i, c, n):
+                continue
+            for j in range(n):
+                buf[j] = x[i - j, c]
+            s = np.sort(buf)
+            if n % 2 == 1:
+                out[i, c] = s[n // 2]
+            else:
+                out[i, c] = (s[n // 2 - 1] + s[n // 2]) / 2.0
+    return out
+
+
+@njit(cache=True)
+def correlation_nb(x, y, n):
+    """``ta.correlation(x, y, n)``: Pearson correlation over ``n`` bars."""
+    out = np.full(x.shape, NAN)
+    for c in range(x.shape[1]):
+        for i in range(n - 1, x.shape[0]):
+            mx = 0.0
+            my = 0.0
+            for k in range(n):
+                mx += x[i - k, c]
+                my += y[i - k, c]
+            mx /= n
+            my /= n
+            sxy = 0.0
+            sxx = 0.0
+            syy = 0.0
+            for k in range(n):
+                dx = x[i - k, c] - mx
+                dy = y[i - k, c] - my
+                sxy += dx * dy
+                sxx += dx * dx
+                syy += dy * dy
+            if sxx > 0 and syy > 0:
+                out[i, c] = sxy / np.sqrt(sxx * syy)
+    return out
+
+
+@njit(cache=True)
+def linreg_stats_nb(x, n):
+    """Rolling least squares on x=0 (oldest) .. n-1 (current).
+
+    Returns (slope, intercept at x=0, r squared), like TA-Lib's
+    LINEARREG_SLOPE / LINEARREG_INTERCEPT.
+    """
+    slope = np.full(x.shape, NAN)
+    icpt = np.full(x.shape, NAN)
+    r2 = np.full(x.shape, NAN)
+    sx = n * (n - 1) / 2.0
+    sxx = (n - 1) * n * (2 * n - 1) / 6.0
+    denom = n * sxx - sx * sx
+    for c in range(x.shape[1]):
+        for i in range(n - 1, x.shape[0]):
+            sy = 0.0
+            sxy = 0.0
+            syy = 0.0
+            for j in range(n):
+                y = x[i - (n - 1) + j, c]
+                sy += y
+                sxy += j * y
+                syy += y * y
+            b = (n * sxy - sx * sy) / denom
+            slope[i, c] = b
+            icpt[i, c] = (sy - b * sx) / n
+            vy = n * syy - sy * sy
+            if vy > 0:
+                r = (n * sxy - sx * sy) / np.sqrt(denom * vy)
+                r2[i, c] = r * r
+    return slope, icpt, r2
+
+
+@njit(cache=True)
+def rci_nb(x, n):
+    """``ta.rci``: Spearman rank correlation of price with time, x100.
+
+    Tied prices share their average rank.
+    """
+    out = np.full(x.shape, NAN)
+    vals = np.empty(n)
+    ranks = np.empty(n)
+    mean_rank = (n + 1) / 2.0
+    for c in range(x.shape[1]):
+        for i in range(n - 1, x.shape[0]):
+            if not _window_ok(x, i, c, n):
+                continue
+            for j in range(n):
+                vals[j] = x[i - (n - 1) + j, c]  # j=0 oldest
+            for j in range(n):
+                less = 0
+                eq = 0
+                for m in range(n):
+                    if vals[m] < vals[j]:
+                        less += 1
+                    elif vals[m] == vals[j]:
+                        eq += 1
+                ranks[j] = less + (eq + 1) / 2.0
+            sxy = 0.0
+            sxx = 0.0
+            syy = 0.0
+            for j in range(n):
+                dx = (j + 1) - mean_rank
+                dy = ranks[j] - mean_rank
+                sxy += dx * dy
+                sxx += dx * dx
+                syy += dy * dy
+            if syy > 0:
+                out[i, c] = 100.0 * sxy / np.sqrt(sxx * syy)
+    return out
+
+
+@njit(cache=True)
+def barssince_nb(cond):
+    """``ta.barssince(cond)``; ``na`` before the first true bar."""
+    out = np.full(cond.shape, NAN)
+    for c in range(cond.shape[1]):
+        last = -1
+        for i in range(cond.shape[0]):
+            if cond[i, c]:
+                last = i
+            if last >= 0:
+                out[i, c] = i - last
+    return out
