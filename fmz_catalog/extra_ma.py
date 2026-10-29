@@ -32,7 +32,7 @@ from numba import njit
 
 from fmz_catalog.extra import _jma_nb
 from tv_indicators import kernels as k
-from tv_indicators._core import (REGISTRY, hma_2d, indicator, ma_2d, ma_kind, safe_div,
+from tv_indicators._core import (REGISTRY, hma_2d, indicator, ma_2d, safe_div,
                                  shift_2d)
 from tv_indicators.volatility import atr_2d
 

@@ -1,0 +1,370 @@
+{
+ "g_channel": {
+  "function": "fmz_catalog.extra_trend.g_channel",
+  "status": "implemented",
+  "reference": "G-Channels [alexgrover] PUB;ucsvQVFwNp08jVIBHddQIK44K5J1N8Un (https://www.tradingview.com/script/fIvlS64B/); trend rule from G-Channel Trend Detection [jaggedsoft] PUB;YmCsEMMCosINI8dTShLrBHjl2JKqfk1B (https://www.tradingview.com/script/smADlDdP/)",
+  "strategy_specific": false,
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [
+   {"id": "3798407ae4b7", "files": ["G-Channel-Trend-Detection-Strategy-G-Channel趋势检测策略.md"], "issue": "Bands are faithful, but the signals use crossup = ta.crossunder(b, close) and crossdn = ta.crossunder(a, close). That is the reverse of the original's crossup = b[1] < close[1] and b > close and crossdn = a[1] < close[1] and a > close, so 'bullish' and the trades are inverted relative to G-Trend."},
+   {"id": "a7e67a006b74", "files": ["G通道与EMA趋势过滤交易系统-G-Channel-and-EMA-Trend-Filter-Trading-System.md"], "issue": "Bands are faithful, but the signals use crossup = ta.crossover(close, b) and crossdn = ta.crossunder(close, a). That is the opposite direction of the original's b-over-close and a-over-close crosses."}
+  ],
+  "notes": "seed='zero' is alexgrover's nz() original. The lower band starts at 0 and needs a few times length bars to converge. seed='source' reproduces the na(a[1]) ? close copies (ids 2f92c395f980, 6b5dc87e5745, 47dd3a076f3c and the converging_channel snippet fe44fbdbd4c1). Outputs: upper, lower, avg and bullish (barssince(crossdn) <= barssince(crossup)). Bar-for-bar test against the jaggedsoft source. The other copies (1b249adfc22b and the v4 G-Trend copies) match exactly."
+ },
+ "td_sequential": {
+  "function": "fmz_catalog.extra_trend.td_sequential",
+  "status": "implemented",
+  "reference": "Tom DeMark TD Setup / TD Sequential as documented in Jason Perl, 'DeMark Indicators' (2008); countdown qualifier, cancellation and recycle rule I as summarised at https://oxfordstrat.com/indicators/td-sequential-3/",
+  "strategy_specific": false,
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [
+   {"id": "c25f0dd3006d", "files": ["Tom-DeMark-Sequential-Heat-Map.md"], "issue": "The 'sequential' is only the consecutive close > close[4] streak, wrapping from 13 back to 1. It trades buySetup == 13 / sellSetup == 13 as if it were a TD Countdown 13, but there is no setup completion at 9 and no close <= low[2] countdown. Reproduced by buy_count / sell_count ((count-1) % 13 + 1)."},
+   {"id": "812c068f7006", "files": ["Tom-DeMark-Sequential-Heat-Map.md"], "issue": "Same as c25f0dd3006d for the buy side."}
+  ],
+  "notes": "buy_count / sell_count are the plain streaks the FMZ copies call TD (ids 28951d1604e0, 41fe9f1aa056, fb3a692ce0dd, ad23467a7a82); they match bar for bar. TDUp = TD - valuewhen(TD < TD[1], TD, 1) in the copies equals TD once two resets have happened (TD only drops by resetting to 0). The proper TD Setup (buy_setup) needs the price flip close[1] > close[5] and is complete at 9, with perfection and TDST. Also implemented: TD Countdown (close <= low[2], 13th bar qualified by low <= close of countdown bar 8, deferred otherwise), cancellation by an opposite setup or a true low above TDST, and recycle rule I (TR1 <= TR2 < 1.618*TR1). Not modelled: recycle rules II/III and TD Combo. Tested against a separate bar-by-bar port of these rules."
+ },
+ "renko": {
+  "function": "fmz_catalog.extra_trend.renko (+ fmz_catalog.extra_trend.sizeblock)",
+  "status": "implemented",
+  "reference": "TradingView Renko chart rules (traditional / ATR / percentage box, close source): a brick needs a close one box beyond the last brick close, and a reversal needs a close one box beyond the last brick open. Sizeblock: the FMZ strategy's own Assembling() function.",
+  "strategy_specific": false,
+  "matches_strategy_copies": false,
+  "strategy_issues": [
+   {"id": "95b3182db088", "files": ["克隆阴阳数量化交易策略Renko-Yin-Yang-Quant-Trading-Strategy.md"], "issue": "RafaelZioni 'Renko XZ' level p1 := close > nz(p1[1]) + atr ? ... is seeded at 0 and moves at most one ATR box per bar. It lags price for about price/ATR bars after the start (hundreds of bars), and its one-box reversals are not Renko's two-box rule."},
+   {"id": "d44854dae9a9", "files": ["克隆阴阳数量化交易策略Renko-Yin-Yang-Quant-Trading-Strategy.md"], "issue": "Same zero seed and one-box-per-bar issue, applied to open (Renko3 / Renko4 'open' series)."},
+   {"id": "d3e4a9110892", "files": ["动量砖策略Momentum-Brick-Strategy.md"], "issue": "Zack_the_Lego 'Flex Renko Emulator' has the same zero-seeded, one-brick-per-bar construction. The brick size also comes from security(res='D', atr(14)) without lookahead control."},
+   {"id": "6c29f58825ba", "files": ["基于ATR通道的破口踏入趋势策略ATR-Channel-Breakout-Trend-following-Strategy.md"], "issue": "Myhaj_Lito 'Renko Trend Strategy' is a bespoke 1-2 brick ATR step on HTF security data (hl2 -+ ATR/2 seed, H = previous brick height). It is not traditional Renko, so it is not reproduced."},
+   {"id": "5c8d165b6e97", "files": ["逐级铺垫的均线兼顾策略Level-by-Level-Build-Up-Moving-Average-Strategy.md"], "issue": "RENKO := close whenever close moves more than ATR[1] from the last level. This is an ATR step line, not Renko bricks, so it is not reproduced."}
+  ],
+  "notes": "Non-repainting: bricks are the ones known at each bar's close. ATR boxes use the ATR of the bar being processed. TradingView's own ATR box uses the last chart bar's ATR for the whole history, which is look-ahead. Outputs: brick_open, brick_close, direction and new_bricks (signed count per bar, since several bricks can form on one bar). The grid starts at the first close. cb86a8751105 (Sizeblock, 趋势成块策略Sizeblock-Strategy.md) is the author's own block row with a separate U-turn size and percent/tick steps. It is ported faithfully as sizeblock() (strategy-specific), including math.round_to_mintick when mintick > 0, and matches bar for bar."
+ },
+ "pivot_point_supertrend": {
+  "function": "fmz_catalog.extra_trend.pivot_point_supertrend",
+  "status": "implemented",
+  "reference": "Pivot Point SuperTrend [LonesomeTheBlue] PUB;HN4w1eNW3B9HP5oSa2MNMIHMYUqLPHUT (https://www.tradingview.com/script/L0AIiLvH/)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Uses a private ta.pivothigh/ta.pivotlow helper (strictly above the left bars, >= the right bars; same rule as fmz_catalog.extra_tv.pivothigh, and tested equal to it). Pivots, the center line and support/resistance are reported on the confirming bar, period bars after the pivot; the script only draws them back in time. The three copies match the v4 original: 'float center = na; center := center[1]' is equivalent to var, and 'if lastpp > 0' is equivalent to 'if lastpp' for prices. Fragment id 6591b0767854 is covered."
+ },
+ "range_filter_dw": {
+  "function": "fmz_catalog.extra_trend.range_filter_dw",
+  "status": "implemented",
+  "reference": "Range Filter [DW] (DonovanWall, v4 array version) PUB;pshyCmQSqlUKsVQ4FrNUAuGkurQPg3ty (https://www.tradingview.com/script/lut7sBgG/)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Type 1/2 filters, Close/Wicks movement source, and every range scale: Average Change, ATR (Cond_EMA of tr(true), not RMA), Standard Deviation (partial-window Cond_SMA), % of Price, Points, Pips, Ticks and Absolute. Also range smoothing and Cond_EMA averaging of filter changes. Defaults are the script's (Type 1, Close, 2.618, Average Change, 14, smooth 27, no averaging); the FMZ copies enable averaging (av_vals=true, 2). Different from tv_indicators.range_filter (guikroth's version). Snippets be13772bd5b2, e00dcf1b8584 and 9aece7d7a577 (Cond_EMA) match bar for bar."
+ },
+ "demark_reversal_points": {
+  "function": "fmz_catalog.extra_trend.demark_reversal_points",
+  "status": "implemented",
+  "reference": "Demark Reversal Points [CC] and Demark Setup Indicator [CC] by Franklin Moormann (cheatcountry), MIT license (source reproduced in the FMZ copies)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "length=9, lb_length=4 gives Reversal Points (ce61834cc639); length=lb_length=4 gives Demark Setup Indicator (1a773c807fc7). Keeps the script's nz() on missing history, so warm-up bars compare against 0. Demark-Reversal-Points.md feeds request.security(res, inp[0])[1]; pass that shifted higher-timeframe close as the input to reproduce it."
+ },
+ "leledc_exhaustion": {
+  "function": "fmz_catalog.extra_trend.leledc_exhaustion",
+  "status": "implemented",
+  "reference": "Leledc Exhaustion Bar (glaz, Pine v2) as ported by Joy_Bangla: 'Leledc Exhaustion (Joy Bangla)' PUB;rhuzP1VuglKPh1DqvHKEoJO2a9LdLKIy (https://www.tradingview.com/script/pQv1kge2/)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Outputs major (6, 30) and minor (5, 5): -1 exhaustion top, +1 bottom. The counts accumulate (not consecutive) and reset only on a signal. close_lookback (4) and index_lookback (Joy_Bangla's bindexSindex, 1) are parameters, as in the DEC copy (21623207fd6c). bbddd11fd2d4, 21623207fd6c and e458c578f113 all match."
+ },
+ "pivothigh_atr": {
+  "function": "fmz_catalog.extra_trend.pivot_atr",
+  "status": "implemented",
+  "reference": "pivotHighSig / pivotLowSig of 'Pivot of Pivot Reversal Strategy [QuantNomad]' (source in the FMZ copies)",
+  "strategy_specific": true,
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [
+   {"id": "0bc1a30c3900", "files": ["基于枢轴点逆转的量化策略Pivot-Reversal-Quantitative-Strategy-Based-on-Pivot-Points.md", "重要支点反转策略Significant-Pivot-Points-Reversal-Strategy.md"], "issue": "pp_ok starts true and only becomes false on a comparison that is true. While atr(atr_length) or high[right+i] is na, every comparison is false, so every warm-up bar (from bar 'right' to atr_length-1) is returned as a pivot high."},
+   {"id": "c8519e518a1e", "files": ["基于枢轴点逆转的量化策略Pivot-Reversal-Quantitative-Strategy-Based-on-Pivot-Points.md", "重要支点反转策略Significant-Pivot-Points-Reversal-Strategy.md"], "issue": "Same warm-up flaw for pivot lows."},
+   {"id": "11b35b2ebdc7", "files": ["增强型双重枢轴点反转交易策略-Enhanced-Dual-Pivot-Point-Reversal-Trading-Strategy.md"], "issue": "Same warm-up flaw (v5 copy)."}
+  ],
+  "notes": "high[right] must be >= every neighbour high + ATR*mult, using the ATR of the confirming bar; lows are mirrored. With mult=0 ties pass on both sides, unlike ta.pivothigh. Reported on the confirming bar. The fixed version gives no pivot while the window or the ATR has na. It matches the copies bar for bar after warm-up. Loop fragments d9bf0a92247b and 8a6b73a5da55 are covered."
+ },
+ "ols_regression": {
+  "function": "fmz_catalog.extra_trend.ols_regression",
+  "status": "implemented",
+  "reference": "Ordinary least squares y = a + b*x over a rolling window (window means for both deviations)",
+  "strategy_specific": false,
+  "matches_strategy_copies": false,
+  "strategy_issues": [
+   {"id": "cac6fda86484", "files": ["动态意识形态趋势反转策略Dynamic-Pattern-Trend-Reversal-Strategy.md", "多空线性交叉策略Long-Short-Linear-Regression-Crossover-Strategy.md", "线性MACD解锁交易视图中线性回归的魔力Linear-MACD-Unlocking-the-Magic-of-Linear-Regression-in-TradingView.md"], "issue": "linregs() computes b = sum((x - xbar)*(y - ybar), len) / sum((x - xbar)^2, len) with xbar and ybar as series, so each bar's deviation uses that bar's own rolling mean instead of the current window's mean. The result is not the OLS slope; the test checks that it differs. a = ybar - b*xbar inherits the error."}
+  ],
+  "notes": "Tested against numpy.polyfit per window. NaN when x is constant over the window. The copies regress close on volume (vol) with len 21."
+ },
+ "atr_trailing_support": {
+  "function": "fmz_catalog.extra_trend.atr_trailing_support",
+  "status": "implemented",
+  "reference": "ATR_func() of the FMZ 'Bidirectional / Dual Moving Average Reversion' strategies (no published original)",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "low - ATR(len); it is raised whenever a higher value appears and reset to the current low - ATR when close <= the line. The script's _src is close in both copies (7795a230b3cd)."
+ },
+ "most": {
+  "function": "fmz_catalog.extra_trend.most",
+  "status": "implemented",
+  "reference": "MOST (Moving Stop Loss) by Anil Ozeksi; KivancOzbilgic's TradingView MOST is closed source, so the open code it shares with OTT / PMax (longStop/shortStop + dir) is used (tested equal to tv_indicators.community._ott_nb's MOST line)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "method='kivanc' (default) is the long/short stop pair with a direction flip; it matches the MOST Dual Position copy (d557ad668993, with ma_type='none' fed its ZLEMA). method='trailing' is the older single-line UT-Bot-style recursion: 'mostfiyat' in 追踪止损移动平均策略 (917f95c637ec) and Trail2 in Y-Profit-Maximizer. It matches bar for bar. MAs: sma, ema, wma, tma, var, wwma, zlema, tsf, the ma_2d names, or 'none' to pass your own T3 / HullEMA. Defaults are EMA(3), 2% (Ozeksi's classic setting; the FMZ copies use 20 ZLEMA 3.4% and 28 HullEMA 3.8%)."
+ },
+ "atr_trailing_bands": {
+  "function": "fmz_catalog.extra_trend.atr_trailing_bands (+ fmz_catalog.extra_trend.atr_breakout_bands)",
+  "status": "implemented",
+  "reference": "78e3af06a40f: 'ATR Trailing Stop Bands Strategy[R]' (River's mod of HPotter's port of Sylvain Vervoort's ATR trailing stop, TASC June 2009). 24d166b5d6fa: the 'Claw-Pattern' ATR trend bands of Trading Strategy Guides.",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Two different authors' bands share this work-list name. atr_trailing_bands is River's: bands high + mult*ATR + upper wick / low - mult*ATR - lower wick, wick protection by SMA or highest, a trailing stop that jumps to the previous opposite band, the script's literal 0 fallback, and pos. atr_breakout_bands is the Claw-Pattern pair: upper = high + mult*ATR held while it would rise with close below it, lower mirrored, plus the colour state from barssince(cross(close, band[1])). Both match their strategy source bar for bar."
+ },
+ "volumatic_vidya_bigbeluga": {
+  "function": "fmz_catalog.extra_trend.volumatic_vidya",
+  "status": "implemented",
+  "reference": "Volumatic Variable Index Dynamic Average [BigBeluga] PUB;04a9de6fcdeb4a34b6c82bf53358fdae (https://www.tradingview.com/script/llhVjhA5/)",
+  "strategy_specific": false,
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [
+   {"id": "07cda3b49148", "files": ["动态波动率指标VIDYA结合ATR趋势跟踪反转策略-Dynamic-Volatility-Index-VIDYA-with-ATR-Trend-Following-Reversal-Strategy.md"], "issue": "vidya_calc matches. But the copy declares 'bool is_trend_up = na' without var (the original has 'var bool is_trend_up = false'), so the trend state resets every bar: it is true only on crossover bars and the smoothed trend line is the upper band almost always. The entries use the raw crossovers, so trades are unaffected."}
+  ],
+  "notes": "Trend part only; the volume and liquidity labels are not reproduced. VIDYA uses alpha = 2/(len+1)*|CMO(momentum)|/100, is zero-seeded, then ta.sma(.., 15). Bands are -+ ATR(200)*distance. trend_up is persistent; trail is the band on the trend side, NaN on flip bars."
+ },
+ "pmax": {
+  "function": "fmz_catalog.extra_trend.pmax (+ fmz_catalog.extra_trend.pmax_core)",
+  "status": "implemented",
+  "reference": "Profit Maximizer (PMax) [KivancOzbilgic] PUB;ps6kWkOWqLJPZhvTAj2ORDYjN1ewE9gA (https://www.tradingview.com/script/sU9molfV/)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "All 8 MA types (SMA, EMA, WMA, TMA, VAR, WWMA, ZLEMA, TSF) are tested against a port of the script, together with the 'Change ATR' (ta.atr vs sma(tr)) and Normalize options. The FMZ copy 0ae3e041e7b3 runs Pmax_Func on a T3 of RSI with an RSI-derived true range; that is reproduced by pmax_core(mavg, atr, multiplier)."
+ },
+ "trend_score": {
+  "function": "fmz_catalog.extra_trend.trend_score",
+  "status": "implemented",
+  "reference": "Tushar Chande, 'Rating Trend Strength', TASC V.11:9 (Sept 1993): +1/-1 for close >= / < close[i], i = 11..20",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Defaults are Chande's lags 11..20; the copy (1b302c1d09fd, 83a2aa7b72f6) uses 10..14. The copy's nz(src[i]) counts +1 for missing history; here the first to_index bars are NaN. Identical afterwards."
+ },
+ "recursive_bands": {
+  "function": "fmz_catalog.extra_trend.recursive_bands",
+  "status": "implemented",
+  "reference": "(Extended) Recursive Bands [alexgrover] PUB;qLuJ87gK9HlpqlLanJfXD0KcwwZejDzz (https://www.tradingview.com/script/ZkxYgPTT/); paper: figshare 9762845",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "All methods: Classic, Atr, Stdev, Ahlr and Rfv. middle = (a+b)/2 is the line added by FMZ's 'Extended Recursive Bands Strategy' (Adulari). 67558cc22d79 and ebdd71ae57c0 match."
+ },
+ "alexgrover_adaptive_ls_trend": {
+  "function": "fmz_catalog.extra_trend.adaptive_ls_trend",
+  "status": "implemented",
+  "reference": "functionTrend() of the FMZ 'OCC Trend Combo 1 day BTC Moonflag' strategy (Josef Tainsh, 2020), which reworks alexgrover's adaptive trailing level",
+  "strategy_specific": true,
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [],
+  "notes": "Chart-timeframe port: src = sc*close + (1-sc)*nz(ls[1], close); trailing level b with step a = cum|src - b[1]| / bar_index * (1 + ER); ls = alpha*b + beta from correlation*stdev ratio (fixnan); osc. Matches bar for bar on the chart timeframe; deviations within 1e-10 count as zero, as in Pine's ta.stdev reference. The script's higher-timeframe branch (security(close) without lookahead plus is_newBar holds) is not ported. Run it on higher-timeframe bars instead."
+ },
+ "logistic_price_forecast": {
+  "function": "fmz_catalog.extra_trend.logistic_price_forecast",
+  "status": "implemented",
+  "reference": "logistic() of the FMZ 'Logistic' strategy (基于对数的价格预测策略)",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "net = +volume on up closes (roc > 0), -volume otherwise; z = sma(net,10)/stdev(net,100); forecast = (close + stdev(close,20)) / (1 + stdev/close*exp(-z)). The script's 'for i = 0 to 100' loop is a no-op and is dropped."
+ },
+ "atr_envelope": {
+  "function": "fmz_catalog.extra_trend.atr_envelope",
+  "status": "implemented",
+  "reference": "f_atrEnv() of 'baguette by multigrain' (credited to redktrader)",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "source -+ ATR(34)*3, with the width only refreshed on bars where the source changes (change != 0; na counts as no change). The strategy's source is JMA(close, 144, 34) = fmz_catalog.extra.jma."
+ },
+ "dual_envelope": {
+  "function": "fmz_catalog.extra_trend.andean_oscillator",
+  "status": "implemented",
+  "reference": "Andean Oscillator, alexgrover (Alex Pierrefeu), https://alpaca.markets/learn/andean-oscillator-a-new-technical-indicator-based-on-an-online-algorithm-for-trend-analysis/ (Pine version: length 50, signal 9, nz-seeded with close)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "The 'dual envelope' (up1/up2/dn1/dn2, ids 09e38635875d, ddd50376a488, fc2b694728e7, 06be385d432b) is alexgrover's Andean Oscillator: bull = sqrt(dn2 - dn1^2), bear = sqrt(up2 - up1^2), signal = EMA(max(bull, bear), 9). The copy is faithful."
+ },
+ "atr_trend_identifier": {
+  "function": "fmz_catalog.extra_trend.trend_trader",
+  "status": "implemented",
+  "reference": "Andrew Abraham, 'Trading the Trend', TASC Sept 1998 (Trend Trader), as coded in HPotter's 'Trend Trader Strategy'",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "avgTR = wma(TR, n); hiLimit = highest(high)[1] - avgTR[1]*mult; loLimit = lowest(low)[1] + avgTR[1]*mult; ret / pos recursion with nz(.., 0). The copy (172e65512d2f, OCC Trend Combo) labels it 'highest close', but Pine v4 highest(Length) is the highest high. The copy reads closeA and TR through security(trendRes_ATR); the port is on the chart timeframe. Defaults are Abraham's 21 / 3 (the copy uses 15 / 6)."
+ },
+ "atr_trend_band": {
+  "function": "fmz_catalog.extra_trend.atr_breakout_bands",
+  "status": "merged_into:atr_trailing_bands",
+  "reference": "'Claw-Pattern' / ATR Trend Breakout strategy (Trading Strategy Guides)",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "819ab31a51f3 (lower_trend) is the lower half of the same band pair as atr_trailing_bands' 24d166b5d6fa (upper_trend); both are in atr_breakout_bands."
+ },
+ "converging_channel": {
+  "function": "fmz_catalog.extra_trend.g_channel(seed='source')",
+  "status": "merged_into:g_channel",
+  "reference": "G-Channels [alexgrover]",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "fe44fbdbd4c1 (b := na(b[1]) ? close : min(close, b[1]) + (a[1]-b[1])/length) is the G-Channel lower band with source seeding (双均线价格通道交易策略)."
+ },
+ "fib_progression_breaks": {
+  "function": "fmz_catalog.extra_trend.fib_progression_breaks",
+  "status": "implemented",
+  "reference": "Fibonacci Progression With Breaks [LuxAlgo] PUB;91fffae773254f91afa5e37561f8a6c4 (https://www.tradingview.com/script/xyCba4gl/)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Outputs avg, dist (ATR(200)*size*fib[n] or manual), os, buy/sell (avg resets up/down), target/stop (NaN on reset bars) and fib_n. 525302ba242c matches."
+ },
+ "superichi": {
+  "function": "fmz_catalog.extra_trend.superichi",
+  "status": "implemented",
+  "reference": "SuperIchi [LuxAlgo] PUB;ec52552d888e467b9e25df03bad61c85 (https://www.tradingview.com/script/vDGd9X9y/)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "tenkan / kijun / senkou_b come from avg(close, len, mult); senkou_a = (tenkan+kijun)/2. cloud_a / cloud_b are senkou shifted offset-1 bars (the cloud drawn under the current bar), which is how the FMZ copy (ba94c5a14bda) reads it: senkouA[offset-1]. Chikou is left out (look-ahead)."
+ },
+ "percent_trailing_stop": {
+  "function": "fmz_catalog.extra_trend.most(method='trailing')",
+  "status": "merged_into:most",
+  "reference": "MOST, single-line form (Y-Profit-Maximizer plots Trail2 as 'Most')",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "09ea336c03f9: Trail2 is the UT-Bot recursion on Trail1 = MA with SL2 = Trail1*AF2, i.e. most(src, length, percent, ma_type, method='trailing') (ma_type='none' for an arbitrary Trail1)."
+ },
+ "adaptive_ma_channel": {
+  "function": "fmz_catalog.extra_trend.ama_channel",
+  "status": "implemented",
+  "reference": "'[CS] AMA Strategy - Channel Break Out' (FMZ 均自适应通道价格突破策略), with Duerschner's NWMA",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Ported with the script's alpha[1] / beta[1] lags and zero seeding (nz). Pine's int/float division makes lambda = 2 for lookback >= 4 (it would be 3 with integer division only at lookback 3). Division by zero gives na. 4a22f372b305 matches (default lookback 5)."
+ },
+ "avellaneda_stoikov_bands": {
+  "function": "fmz_catalog.extra_trend.avellaneda_stoikov_quotes",
+  "status": "implemented",
+  "reference": "model='tamim': 'Khaled Tamim's Avellaneda-Stoikov Strategy' (FMZ copy). model='as2008': Avellaneda & Stoikov (2008), 'High-frequency trading in a limit order book', Quantitative Finance 8(3).",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [
+   {"id": "de0fce76c40f", "files": ["Khaled-Tamims-Avellaneda-Stoikov-Strategy-Khaled-Tamims-Avellaneda-Stoikov-Strategy.md"], "issue": "Not the Avellaneda-Stoikov model: the quotes are mid -+ k*gamma*sigma^2*T, with no inventory term, no time decay and no (2/gamma)ln(1+gamma/k) spread. 'k' is used as a plain multiplier, and sigma=8 is in price units. Ported as written (default model) and labelled."}
+  ],
+  "notes": "The real model is offered as model='as2008' with constant T and a user inventory q: reservation price r = close - q*gamma*sigma^2*T; quotes r -+ (gamma*sigma^2*T + (2/gamma)ln(1+gamma/k))/2."
+ },
+ "adaptive_trailing_stop": {
+  "function": "fmz_catalog.extra_trend.wilder_volatility_trail",
+  "status": "implemented",
+  "reference": "'Wilder's Volatility Trailing Stop Strategy with various MA's' by SparkyFlary (FMZ 适应性趋势跟踪止损策略); concept from Wilder's Volatility System (New Concepts, 1978)",
+  "strategy_specific": true,
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [
+   {"id": "f2ac2c8906a7", "files": ["适应性趋势跟踪止损策略Adaptive-Trend-Tracking-Stop-Loss-Strategy.md"], "issue": "'float TS = 0' is not var, so the ': TS' branch of 'TS := close < TS[1] ? upperTrail[1] : close > TS[1] ? lowerTrail[1] : TS' yields 0. The stop drops to 0 on any bar whose close equals the previous stop, and it alternates 0 / na during warm-up. Fixed: the stop holds its previous value."}
+  ],
+  "notes": "upper = lowest(close or low, n) + mult*ATR and lower = highest(close or high, n) - mult*ATR, with ATR = rma/ema/sma/hma of tr. Matches the script on every bar where the script's stop is not 0/na. Wilder's own system uses the extreme close since entry, not a rolling window."
+ },
+ "dual_thrust": {
+  "function": "fmz_catalog.extra_trend.dual_thrust",
+  "status": "implemented",
+  "reference": "Dual Thrust (Michael Chalek); QuantConnect tutorial https://www.quantconnect.com/tutorials/strategy-library/dual-thrust-trading-algorithm; capissimo 'Dual Thrust Trading Algorithm (ps4)' for the asymmetric Algo #2",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Range = max(HH - LC, HC - LL) over the previous N bars (current bar excluded); triggers are open + k1*range and open - k2*range. sell_length > 0 gives Algo #2's separate sell lookback. faf73a411400 and 8eae2812800a match. capissimo's trend rule that scales k1/k2 is not part of Dual Thrust and is left out. Chalek's system uses daily ranges with intraday entries: compute on daily bars and map down with a higher-timeframe helper."
+ },
+ "standard_error_bands": {
+  "function": "fmz_catalog.extra_trend.standard_error_bands",
+  "status": "implemented",
+  "reference": "Jon Andersen, 'Standard Error Bands', TASC Sept 1996 (21-period linear regression, 2 standard errors, 3-period SMA smoothing)",
+  "strategy_specific": false,
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [
+   {"id": "64f29545b658", "files": ["Dual-Thrust-Trading-Algorithm-ps4.md"], "issue": "The 'narrow' band is the correct standard error, but computed as sum(y^2) - a*sum(y) - b*sum(x*y) with x = bar_index. That cancels large numbers and loses precision on long histories or high prices (it can even go negative and give NaN). The 'wide' band (sum((linreg - close)^2)/(n-2), residuals against each bar's own endpoint) is not a standard error at all."}
+  ],
+  "notes": "SEE is computed from the residuals around each window's regression line (numerically stable). Matches the copy's narrow band to 1e-5 relative."
+ },
+ "adaptive_trend_flow": {
+  "function": "fmz_catalog.extra_trend.adaptive_trend_flow",
+  "status": "implemented",
+  "reference": "Adaptive Trend Flow [QuantAlgo] PUB;87158567b731451c8a1347f953921ab7 (https://www.tradingview.com/script/1ttpw8M3/)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Defaults are QuantAlgo's (10, 14, 2.0); the FMZ copy (bfde7300f106) uses 2 / 2 / 2.0 with SMA and MACD filters around it. Outputs: basis, upper, lower, trend and level."
+ },
+ "max_min_envelope_volatility": {
+  "function": "fmz_catalog.extra_trend.andean_oscillator",
+  "status": "merged_into:dual_envelope",
+  "reference": "Andean Oscillator (alexgrover)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "06be385d432b (up2 envelope of squared price) is part of the same Andean Oscillator."
+ },
+ "trend_persistence": {
+  "function": "fmz_catalog.extra_trend.trend_persistence",
+  "status": "implemented",
+  "reference": "trendPersistence() of the FMZ 'VAWSI and Trend Persistance Reversal' strategy",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Ported with the script's own highest_custom / lowest_custom (length + 1 bars, na history skipped), loop WMA, change(cum()) and zero-seeded custom rma. length can be a series: the strategy feeds BlackCat1402's Ehlers homodyne dominant-cycle length of a Heikin-Ashi close, which is not ported here. 1080947f905c matches with fixed and with series length."
+ },
+ "trend_thrust_indicator": {
+  "function": "fmz_catalog.extra_trend.trend_thrust_indicator",
+  "status": "implemented",
+  "reference": "Buff Pelz Dormeier, 'Trend Thrust Indicator', TASC Aug 2011; code from PineCodersTASC 'TASC 2024.08 Volume Confirmation For A Trend System' PUB;76bb266d420a42d981b331c36106b2db (https://www.tradingview.com/script/K3s5dmdv/)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "vMult = (VWMA13/VWMA26)^2; TTI = VWMA13*vMult - VWMA26/vMult; signal = SMA(TTI, 9). 50cc127aac30 is a verbatim copy."
+ },
+ "trailing_stop_flip": {
+  "function": "fmz_catalog.extra_trend.trailing_stop_flip",
+  "status": "implemented",
+  "reference": "'BitMex Trailing Stop Strategy' by River (FMZ 基于动态追踪止损策略)",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Price-offset (not ATR) trailing line that ratchets with highs/lows and flips on penetration; offsets are in price units (228.5 / 243.5 for BTC). The script reads 1-minute bars via security; pass whatever bars you trade. 59206ffb71e8 matches."
+ },
+ "range_filter_trailing_band": {
+  "function": "fmz_catalog.extra_trend.range_filter_trailing",
+  "status": "implemented",
+  "reference": "Twin Range Filter [colinmck] filter plus the FUB/FLB/TRF trailing band of the FMZ 'Dual Range Filter Momentum' strategy",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Reuses tv_indicators' twin range filter kernels for the filter; upper/lower bands and the trailing line follow the script (bd9a815364ef). The filter equals tv_indicators.twin_range_filter().filter."
+ },
+ "rsi_trend_threshold": {
+  "function": "fmz_catalog.extra_trend.rsi_trend_threshold",
+  "status": "implemented",
+  "reference": "rsilev() of the FMZ 'RSI Trend Reversal' strategy",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Stop-and-reverse threshold over the bars since the last cross (BearGuy), with nested highest_custom / lowest_custom of RSI- and ATR-scaled extremes and min_diff% caps. The strategy's source is a Heikin-Ashi close; ATR uses chart high/low/close. dd23224063b4 matches."
+ }
+}

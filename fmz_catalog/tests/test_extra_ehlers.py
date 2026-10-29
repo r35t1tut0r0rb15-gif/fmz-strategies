@@ -14,7 +14,7 @@ import pandas as pd
 import pytest
 
 import fmz_catalog.extra_ehlers as fe
-from tv_indicators.tests.test_indicators import TAIL, C, H, L, N, O, c, h, l, o, same
+from tv_indicators.tests.test_indicators import TAIL, C, H, L, N, c, h, l, o, same
 
 talib = pytest.importorskip("talib")
 

@@ -14,7 +14,7 @@ import pytest
 
 import fmz_catalog.extra_tv as xt
 import tv_indicators as ti
-from tv_indicators.tests.test_indicators import D, H, L, C, O, N, c, h, l, o, same
+from tv_indicators.tests.test_indicators import D, H, L, C, O, c, h, l, same
 
 NA = float("nan")
 

@@ -18,7 +18,7 @@ import fmz_catalog.extra as fx
 import fmz_catalog.extra_trend as xt
 import tv_indicators as ti
 from tv_indicators import kernels as kk
-from tv_indicators.tests.test_indicators import TAIL, C, D, H, L, N, O, V, c, h, l, o, same, v
+from tv_indicators.tests.test_indicators import C, H, L, N, O, V, c, h, l, o, same, v
 
 nan = float("nan")
 
@@ -842,8 +842,9 @@ def test_wilder_volatility_trail_sparkyflary():
 def test_trend_trader_abraham():
     n, mult = 21, 3.0
     avg = p_wma(p_tr(False), n)
-    hi = [at(p_highest(h, n), i - 1) - at(avg, i - 1) * mult for i in range(N)]
-    lo = [at(p_lowest(l, n), i - 1) + at(avg, i - 1) * mult for i in range(N)]
+    hh, ll = p_highest(h, n), p_lowest(l, n)
+    hi = [at(hh, i - 1) - at(avg, i - 1) * mult for i in range(N)]
+    lo = [at(ll, i - 1) + at(avg, i - 1) * mult for i in range(N)]
     R, P = [], []
     for i in range(N):
         x = c[i]
@@ -1026,8 +1027,8 @@ def test_avellaneda_stoikov_quotes():
 
 def test_dual_thrust_capissimo_algos():
     def hl(n):
-        return ([at(p_highest(h, n), i - 1) for i in range(N)], [at(p_highest(c, n), i - 1) for i in range(N)],
-                [at(p_lowest(c, n), i - 1) for i in range(N)], [at(p_lowest(l, n), i - 1) for i in range(N)])
+        ser = (p_highest(h, n), p_highest(c, n), p_lowest(c, n), p_lowest(l, n))
+        return tuple([at(x, i - 1) for i in range(N)] for x in ser)
 
     k1, k2 = 0.7, 0.4
     hh, hc, lc, ll = hl(5)

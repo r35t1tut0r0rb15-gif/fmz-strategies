@@ -17,8 +17,7 @@ import numpy as np
 from numba import njit
 
 from tv_indicators import kernels as k
-from tv_indicators._core import REGISTRY, change_2d, indicator, safe_div, shift_2d
-from tv_indicators.volatility import atr_2d
+from tv_indicators._core import REGISTRY, indicator, safe_div, shift_2d
 
 NAN = np.nan
 _BEFORE = set(REGISTRY)

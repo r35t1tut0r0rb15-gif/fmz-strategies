@@ -781,8 +781,7 @@
 "tags": [
 "sma",
 "ema",
-"macd",
-"aroon"
+"macd"
 ],
 "issues": []
 },
@@ -829,7 +828,6 @@
 "lang": "PineScript",
 "worst": "variant",
 "tags": [
-"aroon",
 "mfi_bw",
 "zigzag",
 "fib"
@@ -1029,7 +1027,6 @@
 "tags": [
 "donchian",
 "ichimoku",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -1082,8 +1079,7 @@
 "sma",
 "rsi",
 "stoch",
-"stochrsi",
-"aroon"
+"stochrsi"
 ],
 "issues": []
 },
@@ -1225,7 +1221,6 @@
 "wma",
 "donchian",
 "ichimoku",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -1326,7 +1321,6 @@
 "atr",
 "adx_sma",
 "psar",
-"aroon",
 "rangefilter",
 "hv",
 "volosc",
@@ -1590,8 +1584,7 @@
 "laguerre",
 "ribbon",
 "rsi",
-"qqe",
-"aroon"
+"qqe"
 ],
 "issues": []
 },
@@ -1826,8 +1819,7 @@
 "rma",
 "wma",
 "vwma",
-"ribbon",
-"aroon"
+"ribbon"
 ],
 "issues": []
 },
@@ -2888,7 +2880,6 @@
 "rsi",
 "mfi",
 "atr",
-"aroon",
 "alphatrend"
 ],
 "issues": []
@@ -3161,7 +3152,6 @@
 "worst": "standard",
 "tags": [
 "supertrend",
-"aroon",
 "vwap",
 "mtf"
 ],
@@ -3394,8 +3384,7 @@
 "worst": "standard",
 "tags": [
 "sma",
-"rsi",
-"aroon"
+"rsi"
 ],
 "issues": []
 },
@@ -3490,7 +3479,6 @@
 "tags": [
 "sma",
 "ema",
-"aroon",
 "mtf"
 ],
 "issues": []
@@ -3777,7 +3765,6 @@
 "dema",
 "rsi",
 "atr",
-"aroon",
 "highest",
 "fib"
 ],
@@ -4146,7 +4133,6 @@
 "kc",
 "macd",
 "atr",
-"aroon",
 "ssl",
 "highest"
 ],
@@ -4531,8 +4517,7 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"sma",
-"aroon"
+"sma"
 ],
 "issues": []
 },
@@ -4848,8 +4833,7 @@
 "worst": "standard",
 "tags": [
 "rma",
-"rsi",
-"aroon"
+"rsi"
 ],
 "issues": []
 },
@@ -5297,7 +5281,6 @@
 "lang": "PineScript",
 "worst": "variant",
 "tags": [
-"aroon",
 "mfi_bw",
 "zigzag",
 "fib"
@@ -5390,8 +5373,7 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"sma",
-"aroon"
+"sma"
 ],
 "issues": []
 },
@@ -5459,7 +5441,6 @@
 "t3",
 "ribbon",
 "rsi",
-"aroon",
 "hv",
 "volosc",
 "vfi"
@@ -5490,7 +5471,6 @@
 "tags": [
 "sma",
 "ema",
-"aroon",
 "mtf"
 ],
 "issues": []
@@ -5924,7 +5904,6 @@
 "atr",
 "dmi",
 "supertrend",
-"aroon",
 "ssl",
 "hv",
 "highest"
@@ -6420,7 +6399,6 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"aroon",
 "highest"
 ],
 "issues": []
@@ -7349,7 +7327,6 @@
 "bbands",
 "squeeze",
 "atr",
-"aroon",
 "hv",
 "highest"
 ],
@@ -7661,7 +7638,6 @@
 "tags": [
 "ema",
 "atr",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -8226,7 +8202,6 @@
 "ema",
 "ppo",
 "divergence",
-"aroon",
 "highest",
 "correlation"
 ],
@@ -8930,8 +8905,7 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"ema",
-"aroon"
+"ema"
 ],
 "issues": []
 },
@@ -9230,7 +9204,6 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"aroon",
 "pivots_hl",
 "pivot_levels"
 ],
@@ -9533,7 +9506,6 @@
 "worst": "standard",
 "tags": [
 "atr",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -9732,7 +9704,6 @@
 "worst": "standard",
 "tags": [
 "sma",
-"aroon",
 "volosc",
 "mfi_bw",
 "highest",
@@ -9919,8 +9890,7 @@
 "laguerre",
 "ribbon",
 "rsi",
-"qqe",
-"aroon"
+"qqe"
 ],
 "issues": []
 },
@@ -10238,8 +10208,7 @@
 "elder",
 "atr",
 "dmi",
-"psar",
-"aroon"
+"psar"
 ],
 "issues": []
 },
@@ -10763,7 +10732,6 @@
 "worst": "standard",
 "tags": [
 "ema",
-"aroon",
 "rangefilter",
 "mtf"
 ],
@@ -10990,7 +10958,6 @@
 "squeeze",
 "macd",
 "atr",
-"aroon",
 "hv",
 "highest"
 ],
@@ -11317,7 +11284,6 @@
 "worst": "variant",
 "tags": [
 "ema",
-"aroon",
 "heikin",
 "pvt",
 "mfi_bw",
@@ -11848,7 +11814,6 @@
 "ema",
 "stoch",
 "stc",
-"aroon",
 "hv",
 "vwap",
 "highest"
@@ -12605,7 +12570,6 @@
 "tags": [
 "donchian",
 "ichimoku",
-"aroon",
 "heikin",
 "highest",
 "mtf"
@@ -12894,8 +12858,7 @@
 "worst": "standard",
 "tags": [
 "rma",
-"rsi",
-"aroon"
+"rsi"
 ],
 "issues": []
 },
@@ -13315,7 +13278,6 @@
 "cci",
 "fisher",
 "divergence",
-"aroon",
 "volosc",
 "mfi_bw",
 "highest"
@@ -13744,7 +13706,6 @@
 "vwma",
 "bbands",
 "psar",
-"aroon",
 "hv",
 "vwap",
 "highest",
@@ -14822,7 +14783,6 @@
 "worst": "standard",
 "tags": [
 "ema",
-"aroon",
 "rangefilter",
 "mtf"
 ],
@@ -16205,7 +16165,6 @@
 "worst": "standard",
 "tags": [
 "ema",
-"aroon",
 "rangefilter",
 "highest",
 "mtf"
@@ -16487,7 +16446,6 @@
 "supersmoother",
 "laguerre",
 "ribbon",
-"aroon",
 "renko",
 "correlation"
 ],
@@ -17682,7 +17640,6 @@
 "bbands",
 "squeeze",
 "atr",
-"aroon",
 "hv",
 "highest"
 ],
@@ -18088,7 +18045,6 @@
 "rsi",
 "qqe",
 "atr",
-"aroon",
 "atrstop"
 ],
 "issues": [
@@ -18455,7 +18411,6 @@
 "ema",
 "bbands",
 "rsi",
-"aroon",
 "vwap"
 ],
 "issues": []
@@ -18465,7 +18420,6 @@
 "worst": "standard",
 "tags": [
 "atr",
-"aroon",
 "wvf",
 "highest"
 ],
@@ -19535,7 +19489,6 @@
 "macd",
 "atr",
 "ichimoku",
-"aroon",
 "volosc",
 "highest",
 "pivots_hl",
@@ -19563,7 +19516,6 @@
 "tags": [
 "ema",
 "bbands",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -19765,7 +19717,6 @@
 "divergence",
 "atr",
 "adx_sma",
-"aroon",
 "rangefilter",
 "volosc",
 "mtf"
@@ -20162,7 +20113,6 @@
 "squeeze",
 "macd",
 "atr",
-"aroon",
 "hv",
 "mfi_bw",
 "highest",
@@ -20571,10 +20521,8 @@
 },
 "短线动量反转策略Momentum-Reversal-Strategy.md": {
 "lang": "PineScript",
-"worst": "standard",
-"tags": [
-"aroon"
-],
+"worst": "none",
+"tags": [],
 "issues": []
 },
 "月度抛物线突破策略Monthly-Parabolic-Breakout-Strategy.md": {
@@ -20701,7 +20649,6 @@
 "worst": "standard",
 "tags": [
 "sma",
-"aroon",
 "ssl"
 ],
 "issues": []
@@ -21042,7 +20989,6 @@
 "tags": [
 "donchian",
 "atr",
-"aroon",
 "highest",
 "slope"
 ],
@@ -21191,7 +21137,6 @@
 "cci",
 "atr",
 "dmi",
-"aroon",
 "trendmagic",
 "hv",
 "heikin",
@@ -21205,7 +21150,6 @@
 "tags": [
 "sma",
 "ema",
-"aroon",
 "mtf"
 ],
 "issues": []
@@ -22206,7 +22150,6 @@
 "qqe",
 "atr",
 "adx_sma",
-"aroon",
 "hv",
 "coral",
 "vwap",
@@ -22726,7 +22669,6 @@
 "tags": [
 "sma",
 "rma",
-"aroon",
 "volosc"
 ],
 "issues": []
@@ -22750,7 +22692,6 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"aroon",
 "highest"
 ],
 "issues": []
@@ -23069,7 +23010,6 @@
 "bbands",
 "kc",
 "atr",
-"aroon",
 "atrstop"
 ],
 "issues": []
@@ -23258,7 +23198,6 @@
 "mom",
 "atr",
 "supertrend",
-"aroon",
 "hv",
 "coral",
 "ad",
@@ -23349,7 +23288,6 @@
 "hma",
 "tema",
 "bbands",
-"aroon",
 "hv"
 ],
 "issues": []
@@ -23579,8 +23517,7 @@
 "tags": [
 "sma",
 "ema",
-"lsma",
-"aroon"
+"lsma"
 ],
 "issues": []
 },
@@ -24020,7 +23957,6 @@
 "sma",
 "rsi",
 "ichimoku",
-"aroon",
 "highest",
 "mtf"
 ],
@@ -24288,7 +24224,6 @@
 "ema",
 "stoch",
 "atr",
-"aroon",
 "ssl",
 "highest",
 "mtf"
@@ -24421,7 +24356,6 @@
 "rsi",
 "mfi",
 "atr",
-"aroon",
 "alphatrend"
 ],
 "issues": []
@@ -24481,7 +24415,6 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"aroon",
 "mfi_bw",
 "highest"
 ],
@@ -24669,8 +24602,7 @@
 "supersmoother",
 "itrend",
 "ifish",
-"atr",
-"aroon"
+"atr"
 ],
 "issues": []
 },
@@ -25064,7 +24996,6 @@
 "atr",
 "dmi",
 "supertrend",
-"aroon",
 "ssl",
 "hv",
 "highest"
@@ -26002,7 +25933,6 @@
 "tags": [
 "sma",
 "ichimoku",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -26233,7 +26163,6 @@
 "wma",
 "donchian",
 "ichimoku",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -26856,7 +26785,6 @@
 "tsf",
 "trima",
 "ribbon",
-"aroon",
 "chandelier"
 ],
 "issues": [
@@ -26909,7 +26837,6 @@
 "rsi",
 "psar",
 "ichimoku",
-"aroon",
 "rangefilter",
 "heikin",
 "highest",
@@ -26968,7 +26895,6 @@
 "ema",
 "kc",
 "atr",
-"aroon",
 "highest",
 "pivots_hl",
 "pivot_levels",
@@ -27529,9 +27455,7 @@
 "趋势成块策略Sizeblock-Strategy.md": {
 "lang": "PineScript",
 "worst": "standard",
-"tags": [
-"aroon"
-],
+"tags": [],
 "issues": []
 },
 "均线突破固定利润目标自适应时间周期量化交易策略-Adaptive-Timeframe-SMA-Crossover-Strategy-with-Fixed-Profit-Targets.md": {
@@ -28021,7 +27945,6 @@
 "sma",
 "lsma",
 "squeeze",
-"aroon",
 "hv",
 "highest"
 ],
@@ -28869,7 +28792,6 @@
 "alma",
 "swma",
 "atr",
-"aroon",
 "vwap"
 ],
 "issues": []
@@ -28932,7 +28854,6 @@
 "ema",
 "ribbon",
 "bbands",
-"aroon",
 "hv"
 ],
 "issues": []
@@ -29171,8 +29092,7 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"ema",
-"aroon"
+"ema"
 ],
 "issues": []
 },
@@ -29230,7 +29150,6 @@
 "rsi",
 "mfi",
 "atr",
-"aroon",
 "alphatrend"
 ],
 "issues": []
@@ -29334,8 +29253,7 @@
 "worst": "standard",
 "tags": [
 "ema",
-"tema",
-"aroon"
+"tema"
 ],
 "issues": []
 },
@@ -29475,7 +29393,6 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"aroon",
 "pivot_levels",
 "fib",
 "mtf"
@@ -29990,8 +29907,7 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"ema",
-"aroon"
+"ema"
 ],
 "issues": []
 },
@@ -30394,7 +30310,6 @@
 "atr",
 "psar",
 "ichimoku",
-"aroon",
 "trendmagic",
 "hv",
 "volosc",
@@ -31278,7 +31193,6 @@
 "bbands",
 "squeeze",
 "atr",
-"aroon",
 "hv",
 "highest"
 ],
@@ -31341,7 +31255,6 @@
 "ema",
 "donchian",
 "ichimoku",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -31511,8 +31424,7 @@
 "tags": [
 "sma",
 "ema",
-"rsi",
-"aroon"
+"rsi"
 ],
 "issues": []
 },
@@ -31815,8 +31727,7 @@
 "sma",
 "ema",
 "vwma",
-"rsi",
-"aroon"
+"rsi"
 ],
 "issues": []
 },
@@ -31946,7 +31857,6 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"aroon",
 "highest",
 "pivots_hl",
 "zigzag",
@@ -32503,7 +32413,6 @@
 "tags": [
 "ema",
 "smi",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -32734,7 +32643,6 @@
 "worst": "standard",
 "tags": [
 "sma",
-"aroon",
 "ssl"
 ],
 "issues": []
@@ -32790,7 +32698,6 @@
 "rsi",
 "mfi",
 "atr",
-"aroon",
 "alphatrend"
 ],
 "issues": [
@@ -32823,7 +32730,6 @@
 "ema",
 "ppo",
 "divergence",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -33101,7 +33007,6 @@
 "wma",
 "vwma",
 "hma",
-"aroon",
 "highest",
 "mtf"
 ],
@@ -33214,8 +33119,7 @@
 "tags": [
 "ema",
 "dmi",
-"supertrend",
-"aroon"
+"supertrend"
 ],
 "issues": []
 },
@@ -33891,7 +33795,6 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"aroon",
 "highest",
 "zigzag",
 "fib",
@@ -34572,8 +34475,7 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"laguerre",
-"aroon"
+"laguerre"
 ],
 "issues": []
 },
@@ -34735,7 +34637,6 @@
 "ppo",
 "divergence",
 "ichimoku",
-"aroon",
 "hv",
 "heikin",
 "highest",
@@ -35006,7 +34907,6 @@
 "tags": [
 "sma",
 "ema",
-"aroon",
 "mtf"
 ],
 "issues": []
@@ -35607,7 +35507,6 @@
 "atr",
 "dmi",
 "supertrend",
-"aroon",
 "ssl",
 "hv",
 "wae",
@@ -35659,7 +35558,6 @@
 "bbands",
 "kc",
 "atr",
-"aroon",
 "atrstop",
 "mtf"
 ],
@@ -36137,8 +36035,7 @@
 "ema",
 "wma",
 "hma",
-"mom",
-"aroon"
+"mom"
 ],
 "issues": []
 },
@@ -36375,7 +36272,6 @@
 "ribbon",
 "atr",
 "psar",
-"aroon",
 "renko",
 "highest",
 "slope"
@@ -36569,7 +36465,6 @@
 "ribbon",
 "atr",
 "psar",
-"aroon",
 "renko",
 "highest",
 "slope"
@@ -36617,8 +36512,7 @@
 "worst": "variant",
 "tags": [
 "sma",
-"kama",
-"aroon"
+"kama"
 ],
 "issues": [
 {
@@ -36778,7 +36672,6 @@
 "atr",
 "adx_sma",
 "psar",
-"aroon",
 "rangefilter",
 "hv",
 "heikin",
@@ -36881,8 +36774,7 @@
 "lang": "PineScript",
 "worst": "variant",
 "tags": [
-"sma",
-"aroon"
+"sma"
 ],
 "issues": [
 {
@@ -37553,7 +37445,6 @@
 "ema",
 "ribbon",
 "atr",
-"aroon",
 "highest",
 "pivots_hl",
 "pivot_levels",
@@ -37916,7 +37807,6 @@
 "worst": "standard",
 "tags": [
 "donchian",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -39151,7 +39041,6 @@
 "rsi",
 "stoch",
 "cci",
-"aroon",
 "renko",
 "volosc",
 "mfi_bw",
@@ -39333,7 +39222,6 @@
 "ema",
 "divergence",
 "atr",
-"aroon",
 "mfi_bw"
 ],
 "issues": []
@@ -39699,8 +39587,7 @@
 "tags": [
 "sma",
 "ema",
-"macd",
-"aroon"
+"macd"
 ],
 "issues": []
 },
@@ -41275,7 +41162,6 @@
 "worst": "standard",
 "tags": [
 "sma",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -41410,7 +41296,6 @@
 "worst": "standard",
 "tags": [
 "sma",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -41570,7 +41455,6 @@
 "stochrsi",
 "macd",
 "crsi",
-"aroon",
 "heikin",
 "highest"
 ],
@@ -41630,7 +41514,6 @@
 "rsi",
 "macd",
 "psar",
-"aroon",
 "hv",
 "pivots_hl",
 "pivot_levels",
@@ -42027,7 +41910,6 @@
 "kc",
 "squeeze",
 "atr",
-"aroon",
 "hv"
 ],
 "issues": []
@@ -42498,7 +42380,6 @@
 "worst": "standard",
 "tags": [
 "ema",
-"aroon",
 "rangefilter"
 ],
 "issues": []
@@ -42942,8 +42823,7 @@
 "sma",
 "ema",
 "rma",
-"zlema",
-"aroon"
+"zlema"
 ],
 "issues": [
 {
@@ -43035,7 +42915,6 @@
 "stochrsi",
 "macd",
 "cci",
-"aroon",
 "hv",
 "renko",
 "vwap",
@@ -43276,7 +43155,6 @@
 "atr",
 "dmi",
 "psar",
-"aroon",
 "hv",
 "volosc",
 "highest",
@@ -43460,7 +43338,6 @@
 "sma",
 "ema",
 "macd",
-"aroon",
 "obv"
 ],
 "issues": []
@@ -44310,7 +44187,6 @@
 "ribbon",
 "cmo",
 "atr",
-"aroon",
 "hv"
 ],
 "issues": []
@@ -44394,7 +44270,6 @@
 "donchian",
 "rsi",
 "ichimoku",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -44507,8 +44382,7 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"sma",
-"aroon"
+"sma"
 ],
 "issues": []
 },
@@ -44985,7 +44859,6 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"aroon",
 "highest",
 "zigzag",
 "fib",
@@ -45196,8 +45069,7 @@
 "wma",
 "vwma",
 "dema",
-"rsi",
-"aroon"
+"rsi"
 ],
 "issues": []
 },
@@ -45392,7 +45264,6 @@
 "worst": "standard",
 "tags": [
 "rsi",
-"aroon",
 "ssl",
 "vwap"
 ],
@@ -45902,7 +45773,6 @@
 "macd",
 "mom",
 "crsi",
-"aroon",
 "heikin",
 "highest"
 ],
@@ -46537,7 +46407,6 @@
 "rmi",
 "atr",
 "adx_sma",
-"aroon",
 "heikin",
 "volosc",
 "mfi_bw",
@@ -46823,7 +46692,6 @@
 "sma",
 "ema",
 "ribbon",
-"aroon",
 "pivots_hl",
 "pivot_levels",
 "mtf"
@@ -46904,7 +46772,6 @@
 "sma",
 "ema",
 "ribbon",
-"aroon",
 "pivots_hl",
 "pivot_levels"
 ],
@@ -46969,7 +46836,6 @@
 "rsi",
 "mfi",
 "atr",
-"aroon",
 "alphatrend"
 ],
 "issues": []
@@ -47165,8 +47031,7 @@
 "wwma",
 "rsi",
 "qqe",
-"atr",
-"aroon"
+"atr"
 ],
 "issues": [
 {
@@ -47587,8 +47452,7 @@
 "wma",
 "vwma",
 "wavetrend",
-"crsi",
-"aroon"
+"crsi"
 ],
 "issues": []
 },
@@ -48065,7 +47929,6 @@
 "cci",
 "fisher",
 "divergence",
-"aroon",
 "volosc",
 "mfi_bw",
 "highest"
@@ -48342,7 +48205,6 @@
 "sma",
 "ema",
 "rma",
-"aroon",
 "mfi_bw",
 "highest"
 ],
@@ -48617,7 +48479,6 @@
 "sma",
 "ema",
 "atr",
-"aroon",
 "hv",
 "highest"
 ],
@@ -48786,7 +48647,6 @@
 "sma",
 "macd",
 "atr",
-"aroon",
 "obv",
 "pvt",
 "volosc",
@@ -48958,8 +48818,7 @@
 "tags": [
 "sma",
 "ema",
-"macd",
-"aroon"
+"macd"
 ],
 "issues": []
 },
@@ -49003,7 +48862,6 @@
 "squeeze",
 "atr",
 "psar",
-"aroon",
 "hv",
 "highest"
 ],
@@ -49067,7 +48925,6 @@
 "sma",
 "ema",
 "atr",
-"aroon",
 "mtf"
 ],
 "issues": []
@@ -49241,8 +49098,7 @@
 "tags": [
 "sma",
 "vwma",
-"stoch",
-"aroon"
+"stoch"
 ],
 "issues": []
 },
@@ -49420,7 +49276,6 @@
 "rsi",
 "macd",
 "psar",
-"aroon",
 "hv",
 "pivots_hl",
 "pivot_levels",
@@ -49868,7 +49723,6 @@
 "bbands",
 "squeeze",
 "atr",
-"aroon",
 "hv",
 "highest"
 ],
@@ -50459,7 +50313,6 @@
 "bbands",
 "squeeze",
 "atr",
-"aroon",
 "hv",
 "highest"
 ],
@@ -50508,7 +50361,6 @@
 "worst": "variant",
 "tags": [
 "ema",
-"aroon",
 "heikin",
 "mfi_bw",
 "mtf"
@@ -50533,8 +50385,7 @@
 "worst": "bug",
 "tags": [
 "lrc",
-"rsi",
-"aroon"
+"rsi"
 ],
 "issues": [
 {
@@ -50585,8 +50436,7 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"ema",
-"aroon"
+"ema"
 ],
 "issues": []
 },
@@ -50778,7 +50628,6 @@
 "tags": [
 "sma",
 "ema",
-"aroon",
 "hv"
 ],
 "issues": []
@@ -51189,7 +51038,6 @@
 "rsi",
 "mfi",
 "atr",
-"aroon",
 "alphatrend"
 ],
 "issues": []
@@ -51218,7 +51066,6 @@
 "sma",
 "ema",
 "rsi",
-"aroon",
 "pivot_levels",
 "mtf"
 ],
@@ -51235,8 +51082,7 @@
 "worst": "standard",
 "tags": [
 "ema",
-"divergence",
-"aroon"
+"divergence"
 ],
 "issues": []
 },
@@ -51380,8 +51226,7 @@
 "tags": [
 "sma",
 "ema",
-"rsi",
-"aroon"
+"rsi"
 ],
 "issues": []
 },
@@ -51808,7 +51653,6 @@
 "stoch",
 "atr",
 "supertrend",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -52566,7 +52410,6 @@
 "mom",
 "atr",
 "supertrend",
-"aroon",
 "hv",
 "coral",
 "ad",
@@ -52803,7 +52646,6 @@
 "worst": "standard",
 "tags": [
 "ema",
-"aroon",
 "mtf"
 ],
 "issues": []
@@ -52846,7 +52688,6 @@
 "tags": [
 "donchian",
 "ichimoku",
-"aroon",
 "highest"
 ],
 "issues": []
@@ -53788,7 +53629,6 @@
 "tags": [
 "sma",
 "ema",
-"aroon",
 "mtf"
 ],
 "issues": []
@@ -53987,7 +53827,6 @@
 "worst": "standard",
 "tags": [
 "atr",
-"aroon",
 "vstop"
 ],
 "issues": []
@@ -54347,8 +54186,7 @@
 "tags": [
 "ema",
 "dmi",
-"supertrend",
-"aroon"
+"supertrend"
 ],
 "issues": []
 },
@@ -54905,7 +54743,6 @@
 "lsma",
 "ribbon",
 "ao",
-"aroon",
 "mtf"
 ],
 "issues": [
@@ -55351,8 +55188,7 @@
 "worst": "standard",
 "tags": [
 "sma",
-"ema",
-"aroon"
+"ema"
 ],
 "issues": []
 },
@@ -55710,8 +55546,7 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"ema",
-"aroon"
+"ema"
 ],
 "issues": []
 },
@@ -55932,7 +55767,6 @@
 "bbands",
 "squeeze",
 "atr",
-"aroon",
 "hv",
 "highest"
 ],
@@ -56087,7 +55921,6 @@
 "worst": "standard",
 "tags": [
 "ema",
-"aroon",
 "highest",
 "fib"
 ],
@@ -56631,8 +56464,7 @@
 "wma",
 "vwma",
 "ribbon",
-"rsi",
-"aroon"
+"rsi"
 ],
 "issues": []
 },
@@ -57169,8 +57001,7 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"rsi",
-"aroon"
+"rsi"
 ],
 "issues": []
 },
@@ -57470,8 +57301,7 @@
 "lang": "PineScript",
 "worst": "standard",
 "tags": [
-"ema",
-"aroon"
+"ema"
 ],
 "issues": []
 },
@@ -57689,7 +57519,6 @@
 "worst": "standard",
 "tags": [
 "vidya",
-"aroon",
 "hv"
 ],
 "issues": []
@@ -57907,7 +57736,6 @@
 "sma",
 "bbands",
 "rsi",
-"aroon",
 "hv"
 ],
 "issues": []
@@ -58442,7 +58270,6 @@
 "worst": "standard",
 "tags": [
 "ema",
-"aroon",
 "hv",
 "zscore"
 ],
@@ -58965,8 +58792,7 @@
 "laguerre",
 "ribbon",
 "rsi",
-"qqe",
-"aroon"
+"qqe"
 ],
 "issues": []
 },
@@ -59019,7 +58845,6 @@
 "rsi",
 "macd",
 "adx_sma",
-"aroon",
 "ssl",
 "rangefilter"
 ],
@@ -63005,7 +62830,7 @@
 },
 "tag:wwma": {
 "label": "WWMA (Welles Wilder MA, zero-seeded)",
-"tv": null,
+"tv": "extra.wwma",
 "n_files": 27,
 "verdicts": {},
 "best": {},
@@ -63015,7 +62840,7 @@
 },
 "tag:tsf": {
 "label": "TSF (time series forecast)",
-"tv": null,
+"tv": "extra.tsf",
 "n_files": 21,
 "verdicts": {},
 "best": {},
@@ -63045,7 +62870,7 @@
 },
 "tag:jma": {
 "label": "Jurik MA (JMA)",
-"tv": null,
+"tv": "extra.jma",
 "n_files": 31,
 "verdicts": {},
 "best": {},
@@ -63075,7 +62900,7 @@
 },
 "tag:ssf3": {
 "label": "Ehlers 3-pole Super Smoother",
-"tv": null,
+"tv": "extra.ssf3",
 "n_files": 13,
 "verdicts": {},
 "best": {},
@@ -63085,7 +62910,7 @@
 },
 "tag:gaussian": {
 "label": "Ehlers Gaussian filter",
-"tv": null,
+"tv": "extra.gaussian_filter / gaussian_channel",
 "n_files": 27,
 "verdicts": {},
 "best": {},
@@ -63105,7 +62930,7 @@
 },
 "tag:kalman": {
 "label": "Kalman filter",
-"tv": null,
+"tv": "extra_ma.kalman_alpha_beta",
 "n_files": 13,
 "verdicts": {},
 "best": {},
@@ -63125,7 +62950,7 @@
 },
 "tag:mama": {
 "label": "Ehlers MAMA / FAMA / Hilbert",
-"tv": null,
+"tv": "extra.mama / extra_ehlers.ehlers_homodyne_dc",
 "n_files": 18,
 "verdicts": {},
 "best": {},
@@ -63245,7 +63070,7 @@
 },
 "tag:lrc": {
 "label": "Linear regression channel / std-error bands",
-"tv": null,
+"tv": "extra_tv.linreg_channel / extra_trend.standard_error_bands",
 "n_files": 9,
 "verdicts": {},
 "best": {},
@@ -63285,7 +63110,7 @@
 },
 "tag:kdj": {
 "label": "KDJ (Chinese)",
-"tv": null,
+"tv": "extra.kdj",
 "n_files": 14,
 "verdicts": {},
 "best": {},
@@ -63605,7 +63430,7 @@
 },
 "tag:divergence": {
 "label": "Divergence detection (pivot based)",
-"tv": null,
+"tv": "extra_tv.divergence",
 "n_files": 143,
 "verdicts": {},
 "best": {},
@@ -63635,7 +63460,7 @@
 },
 "tag:adx_sma": {
 "label": "ADX = SMA(DX) variant (BeikabuOyaji)",
-"tv": null,
+"tv": "extra.adx_sma",
 "n_files": 41,
 "verdicts": {},
 "best": {},
@@ -63676,7 +63501,7 @@
 "tag:aroon": {
 "label": "Aroon",
 "tv": "aroon",
-"n_files": 188,
+"n_files": 15,
 "verdicts": {},
 "best": {},
 "source": [
@@ -63835,7 +63660,7 @@
 },
 "tag:renko": {
 "label": "Renko bricks",
-"tv": null,
+"tv": "extra_trend.renko",
 "n_files": 26,
 "verdicts": {},
 "best": {},
@@ -63965,7 +63790,7 @@
 },
 "tag:pivots_hl": {
 "label": "Pivot high / low (swing points)",
-"tv": null,
+"tv": "extra_tv.pivothigh / pivotlow",
 "n_files": 152,
 "verdicts": {},
 "best": {},
@@ -63985,7 +63810,7 @@
 },
 "tag:zigzag": {
 "label": "ZigZag",
-"tv": null,
+"tv": "extra_tv.zigzag",
 "n_files": 25,
 "verdicts": {},
 "best": {},
@@ -63995,7 +63820,7 @@
 },
 "tag:fib": {
 "label": "Fibonacci levels",
-"tv": null,
+"tv": "extra.fib_levels",
 "n_files": 123,
 "verdicts": {},
 "best": {},
@@ -64045,7 +63870,7 @@
 },
 "tag:candles": {
 "label": "Candlestick patterns",
-"tv": null,
+"tv": "extra_tv.candlestick_patterns",
 "n_files": 22,
 "verdicts": {},
 "best": {},
@@ -64055,7 +63880,7 @@
 },
 "tag:rev123": {
 "label": "123 Reversal (HPotter, stochastic based)",
-"tv": null,
+"tv": "extra.reversal_123",
 "n_files": 128,
 "verdicts": {},
 "best": {},
@@ -64065,7 +63890,7 @@
 },
 "tag:mtf": {
 "label": "Higher-timeframe values (security)",
-"tv": null,
+"tv": "extra_tv.htf / resample_ohlcv",
 "n_files": 731,
 "verdicts": {},
 "best": {},

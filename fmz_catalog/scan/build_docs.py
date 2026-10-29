@@ -12,12 +12,29 @@ import glob
 import importlib
 import json
 import os
-import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RANK = {"none": -1, "standard": 0, "warmup_only": 1, "variant": 2, "bug": 3, "lookahead": 4}
 MODULES = ["extra", "extra_tv", "extra_ehlers", "extra_hpotter", "extra_ma", "extra_trend", "extra_misc"]
+
+# Severity of the strategy-copy issues the implementation agents reported,
+# keyed by (family, indicator, issue index). Anything not listed is a bug.
+SEVERITY = {
+    **{("ehlers", "ehlers_bandpass", i): "warmup_only" for i in range(5)},     # pi = 3.14 / 3.1415
+    ("ehlers", "ehlers_emd", 0): "warmup_only", ("ehlers", "ehlers_emd", 1): "warmup_only",
+    ("ehlers", "ehlers_highpass_2pole", 0): "warmup_only", ("ehlers", "ehlers_highpass_2pole", 1): "warmup_only",
+    ("ehlers", "emdi_hpotter", 0): "standard",                                  # unused input only
+    ("ma_filters", "variable_ma", 0): "warmup_only", ("ma_filters", "geometric_mean_ma", 0): "warmup_only",
+    ("ma_filters", "uhl_ma", 0): "standard", ("ma_filters", "windowed_ema", 0): "standard",
+    ("ma_filters", "binomial_ma", 0): "standard",                               # correct on FMZ (doubles)
+    ("ma_filters", "essma", 0): "variant", ("ma_filters", "nma_durschner", 0): "variant",
+    ("misc", "gyroscopic_trajectory", 0): "warmup_only", ("misc", "p_signal", 0): "variant", ("misc", "tmo", 0): "variant",
+    ("trend", "renko", 3): "variant", ("trend", "renko", 4): "variant",
+    ("trend", "td_sequential", 0): "variant", ("trend", "td_sequential", 1): "variant",
+    **{("trend", "pivothigh_atr", i): "warmup_only" for i in range(3)},
+    ("trend", "standard_error_bands", 0): "warmup_only", ("trend", "avellaneda_stoikov_bands", 0): "variant",
+}
 
 
 def staging_functions():
@@ -79,7 +96,8 @@ def main(usage_json, summary_json):
         for name, ent in rep.items():
             if not isinstance(ent, dict):
                 continue
-            for iss in ent.get("strategy_issues") or []:
+            for idx, iss in enumerate(ent.get("strategy_issues") or []):
+                sev = SEVERITY.get((fam, name, idx), "bug")
                 files = iss.get("files") or []
                 if isinstance(files, str):
                     files = [files]
@@ -88,11 +106,11 @@ def main(usage_json, summary_json):
                     if f not in per_file:
                         continue
                     e = per_file[f]
-                    if not any(x.get("id") == iss.get("id") and x.get("indicator") == name for x in e["issues"]):
-                        e["issues"].append({"id": iss.get("id"), "verdict": "bug", "indicator": name,
+                    if sev != "standard" and not any(x.get("id") == iss.get("id") and x.get("indicator") == name for x in e["issues"]):
+                        e["issues"].append({"id": iss.get("id"), "verdict": sev, "indicator": name,
                                             "note": f"[{fam}] {iss.get('issue')}"})
-                    if RANK["bug"] > RANK.get(e["worst"], -1):
-                        e["worst"] = "bug"
+                    if RANK[sev] > RANK.get(e["worst"], -1):
+                        e["worst"] = sev
 
     # ---- impact csv
     with open(os.path.join(ROOT, "impact_by_strategy.csv"), "w", newline="", encoding="utf-8") as fh:
@@ -128,7 +146,7 @@ def main(usage_json, summary_json):
     # ---- usage table for built-in / pattern-detected indicators
     ul = ["| Indicator | Strategies | Best implementation |", "|---|---|---|"]
     for key, u in sorted(usage["usage"].items(), key=lambda kv: -len(kv[1]["files"])):
-        ul.append(f"| {u['label']} | {len(u['files'])} | {('tv_indicators.' + u['tv']) if u['tv'] else '(see staging)'} |")
+        ul.append(f"| {u['label']} | {len(u['files'])} | {(('fmz_catalog.' if u['tv'].startswith('extra') else 'tv_indicators.') + u['tv']) if u['tv'] else '-'} |")
     open(os.path.join(ROOT, "scan", "usage_table.md"), "w").write("\n".join(ul) + "\n")
 
     print("strategies", total, dict(cnt))
