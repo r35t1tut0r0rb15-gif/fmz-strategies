@@ -1293,7 +1293,7 @@
 },
 "Combo-Backtest-123-Reversal-Relative-Volatility-Index.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "variant",
 "tags": [
 "sma",
 "stoch",
@@ -1301,7 +1301,14 @@
 "hv",
 "rev123"
 ],
-"issues": []
+"issues": [
+{
+"id": "f5c16d073552",
+"verdict": "variant",
+"indicator": "relative_volatility_index",
+"note": "HPotter/Dorsey original Wilder (13/14) smoothing, zero seed, strict close>close[1]; TV uses EMA."
+}
+]
 },
 "Johnys-BOT.md": {
 "lang": "PineScript",
@@ -1332,6 +1339,12 @@
 "verdict": "variant",
 "indicator": "adx",
 "note": "BeikabuOyaji/MasaNakamura ADX: Wilder running sums for DI, but ADX = sma(DX, len) instead of rma."
+},
+{
+"id": "73129a169294",
+"verdict": "warmup_only",
+"indicator": "rma",
+"note": "Wilder MA seeded from 0 instead of SMA."
 },
 {
 "id": "6b349f2676c2",
@@ -5420,7 +5433,7 @@
 },
 "ESSMA.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "bug",
 "tags": [
 "sma",
 "ema",
@@ -5428,7 +5441,14 @@
 "wma",
 "atr"
 ],
-"issues": []
+"issues": [
+{
+"id": "eec925ff604e",
+"verdict": "bug",
+"indicator": "rma",
+"note": "Recurses on smma[2] instead of smma[1], producing two interleaved SMMAs."
+}
+]
 },
 "多种技术指标动量趋向策略Momentum-Trend-Strategy.md": {
 "lang": "PineScript",
@@ -7880,12 +7900,19 @@
 },
 "基于流动性趋势的量化交易策略Liquidity-Driven-Trend-Strategy-A-Quant-Trading-Strategy-Based-on-Flow-Trend-Indication.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "lookahead",
 "tags": [
 "rma",
 "mtf"
 ],
-"issues": []
+"issues": [
+{
+"id": "d496d4e6337d",
+"verdict": "lookahead",
+"indicator": "rsi",
+"note": "HTF RMA up/down via security lookahead_on without [1] offset, leaking HTF bar's final value."
+}
+]
 },
 "震荡突破布林带T3均线策略Bollinger-Band-T3-Moving-Average-Strategy.md": {
 "lang": "PineScript",
@@ -10359,7 +10386,7 @@
 },
 "基于Heikin-Ashi的超级趋势-trailing-stop损策略SuperTrend-Trailing-Stop-Strategy-Based-on-Heikin-Ashi.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "variant",
 "tags": [
 "sma",
 "ema",
@@ -10371,7 +10398,14 @@
 "heikin",
 "mtf"
 ],
-"issues": []
+"issues": [
+{
+"id": "8348876b0e4b",
+"verdict": "variant",
+"indicator": "trend_magic",
+"note": "glaz Trend Magic: SMA(TR) buffers on high/low swapped on CCI zero-cross; Kivanc version differs."
+}
+]
 },
 "双均线交叉开仓策略-Dual-Moving-Average-Crossover-Entry-Strategy.md": {
 "lang": "PineScript",
@@ -13739,7 +13773,7 @@
 },
 "MACD和RSI结合的自然交易策略-MACD-and-RSI-Combined-Natural-Trading-Strategy.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "bug",
 "tags": [
 "sma",
 "ema",
@@ -13750,7 +13784,14 @@
 "rsi",
 "macd"
 ],
-"issues": []
+"issues": [
+{
+"id": "f12551be4f7d",
+"verdict": "bug",
+"indicator": "wma",
+"note": "Named wma but uses squared weights (length-i)^2 instead of linear weights."
+}
+]
 },
 "动态线性回归通道与海因安士出场优化交易策略-Advanced-Linear-Regression-Channel-Trading-Strategy-with-Dynamic-Exit-System.md": {
 "lang": "PineScript",
@@ -14996,6 +15037,12 @@
 ],
 "issues": [
 {
+"id": "75a7e592a445",
+"verdict": "warmup_only",
+"indicator": "dmi",
+"note": "Wilder running sum of TR seeded 0; DI ratio converges."
+},
+{
 "id": "a5d45087d458",
 "verdict": "warmup_only",
 "indicator": "dmi",
@@ -15866,7 +15913,7 @@
 },
 "开放收盘交叉移动平均线趋势追踪策略Open-Close-Cross-Moving-Average-Trend-Following-Strategy.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "bug",
 "tags": [
 "sma",
 "ema",
@@ -15880,7 +15927,14 @@
 "ribbon",
 "mtf"
 ],
-"issues": []
+"issues": [
+{
+"id": "ad69a33e2c77",
+"verdict": "bug",
+"indicator": "ma_selector",
+"note": "SMMA option recurses on previous WMA (v5[1]) instead of its own value; others standard."
+}
+]
 },
 "均线-MACD趋势反转量化交易策略-EMA-MACD-Trend-Reversal-Quantitative-Trading-Strategy.md": {
 "lang": "PineScript",
@@ -18076,13 +18130,20 @@
 },
 "RSI与SuperTrend过滤策略组合系统趋势确认下的动量反转交易框架-RSI-and-SuperTrend-Filter-Combination-System-Momentum-Reversal-Trading-Framework-with-Trend-Confirmation.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "bug",
 "tags": [
 "rsi",
 "atr",
 "supertrend"
 ],
-"issues": []
+"issues": [
+{
+"id": "e48787ed1d59",
+"verdict": "bug",
+"indicator": "supertrend",
+"note": "close > lowerBand is almost always true, so direction is nearly always 1; no band/state flip logic."
+}
+]
 },
 "布林带突破交易策略Bollinger-Bands-Breakout-Trading-Strategy.md": {
 "lang": "PineScript",
@@ -22307,6 +22368,12 @@
 "note": "BeikabuOyaji ADX and DI: Wilder sums seeded at 0, ADX = sma(DX) instead of rma(DX)."
 },
 {
+"id": "fadcf0ad0d03",
+"verdict": "variant",
+"indicator": "rmi",
+"note": "EMA smoothing instead of Wilder RMA; dn==0 returns 0 instead of 100."
+},
+{
 "id": "6b349f2676c2",
 "verdict": "variant",
 "indicator": "mama",
@@ -22964,6 +23031,12 @@
 "verdict": "warmup_only",
 "indicator": "kama",
 "note": "HPotter KAMA seeded at 0 instead of price."
+},
+{
+"id": "f4c2c1add268",
+"verdict": "warmup_only",
+"indicator": "ema",
+"note": "EMA-style recursion seeded at 0."
 }
 ]
 },
@@ -25392,6 +25465,12 @@
 ],
 "issues": [
 {
+"id": "e0b952296b57",
+"verdict": "bug",
+"indicator": "ehlers_zero_lag_ec",
+"note": "Gain search loop runs only i=limit and leastError never updates, so best gain is fixed limit/10."
+},
+{
 "id": "76556390c488",
 "verdict": "bug",
 "indicator": "ehlers_zlec",
@@ -26762,7 +26841,7 @@
 },
 "基于MOST和KAMA的趋势跟踪策略Trend-Riding-Strategy-Based-on-MOST-and-KAMA.md": {
 "lang": "PineScript",
-"worst": "warmup_only",
+"worst": "variant",
 "tags": [
 "sma",
 "ema",
@@ -26792,6 +26871,12 @@
 "verdict": "warmup_only",
 "indicator": "kama",
 "note": "HPotter KAMA (0.666/0.0645) seeded at 0; slow sc makes convergence take many bars."
+},
+{
+"id": "9f766bd1ab2e",
+"verdict": "variant",
+"indicator": "zlema",
+"note": "Lag = length/2 for even lengths (library (n-1)//2); identical for odd. Kivanc form."
 }
 ]
 },
@@ -27313,14 +27398,21 @@
 },
 "基于VWMA和MFI-ADX的kNN机器学习量化交易策略This-is-an-experimental-quantitative-trading-strategy.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "warmup_only",
 "tags": [
 "vwma",
 "rsi",
 "atr",
 "dmi"
 ],
-"issues": []
+"issues": [
+{
+"id": "dc8e62c1361d",
+"verdict": "warmup_only",
+"indicator": "rma",
+"note": "RMA recursion seeded at 0."
+}
+]
 },
 "指标积分策略Momentum-Integral-Indicator-Strategy.md": {
 "lang": "PineScript",
@@ -28403,6 +28495,18 @@
 "verdict": "warmup_only",
 "indicator": "atr",
 "note": "Wilder smoothed TR sum seeded at 0."
+},
+{
+"id": "d9c44c9c20e3",
+"verdict": "warmup_only",
+"indicator": "dmi",
+"note": "Wilder running sum of +DM seeded 0; DI ratio converges."
+},
+{
+"id": "ff4435e83b9d",
+"verdict": "warmup_only",
+"indicator": "dmi",
+"note": "Wilder running sum of -DM seeded 0; DI ratio converges."
 },
 {
 "id": "151019a05b98",
@@ -29583,6 +29687,12 @@
 "verdict": "variant",
 "indicator": "supertrend",
 "note": "Lower band ratchet tests max(src[1], c[1]) instead of close[1]."
+},
+{
+"id": "ef8c941e9138",
+"verdict": "variant",
+"indicator": "supertrend",
+"note": "Upper band ratchet condition uses min(src[1], close[1]) instead of close[1]."
 },
 {
 "id": "f893e66e5004",
@@ -31442,7 +31552,7 @@
 },
 "基于多时间周期赫斯特指数与斐波那契回撤的动态趋势交易策略Multi-Timeframe-Hurst-Exponent-and-Fibonacci-Retracement-Dynamic-Trend-Trading-Strategy.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "bug",
 "tags": [
 "sma",
 "hv",
@@ -31450,7 +31560,14 @@
 "fib",
 "mtf"
 ],
-"issues": []
+"issues": [
+{
+"id": "ffaf2cba477f",
+"verdict": "bug",
+"indicator": "hurst_exponent",
+"note": "R from rolling sums of deviations from each bar's own SMA, not cumulative deviations within one window; uses prices not returns."
+}
+]
 },
 "DEMA交叉趋势追踪策略DEMA-Crossover-Trend-Following-Strategy.md": {
 "lang": "PineScript",
@@ -31898,6 +32015,12 @@
 "hv"
 ],
 "issues": [
+{
+"id": "cb54c78f3e56",
+"verdict": "warmup_only",
+"indicator": "kama",
+"note": "KAMA recursion seeded 0 via nz instead of prior price."
+},
 {
 "id": "839b712ef5b4",
 "verdict": "variant",
@@ -32508,13 +32631,20 @@
 },
 "Dual-Candle-Rapid-Swing-Strategy.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "variant",
 "tags": [
 "ema",
 "pvt",
 "highest"
 ],
-"issues": []
+"issues": [
+{
+"id": "b9724bfedb1e",
+"verdict": "variant",
+"indicator": "nvi",
+"note": "Additive percent changes from 0 instead of compounding from 1000."
+}
+]
 },
 "双均线RSI指标组合反转策略Dual-Moving-Average-RSI-Indicator-Combination-Reversal-Strategy.md": {
 "lang": "PineScript",
@@ -35003,7 +35133,7 @@
 },
 "基于态势的Karobein均值回归策略Scaled-Normalized-Vector-Strategy-with-Karobein-Mean-Reversion.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "lookahead",
 "tags": [
 "ema",
 "divergence",
@@ -35011,7 +35141,14 @@
 "highest",
 "mtf"
 ],
-"issues": []
+"issues": [
+{
+"id": "8857af618ded",
+"verdict": "lookahead",
+"indicator": "daily_change",
+"note": "useold branch reads security(prc) with lookahead_on and no [1], leaking the HTF bar's final value."
+}
+]
 },
 "双K线预测闭合策略Dual-Candlestick-Prediction-Close-Strategy.md": {
 "lang": "PineScript",
@@ -39990,6 +40127,12 @@
 ],
 "issues": [
 {
+"id": "dc5b04c1705c",
+"verdict": "warmup_only",
+"indicator": "kama",
+"note": "KAMA recursion seeded 0 via nz instead of prior price."
+},
+{
 "id": "adbec95e4635",
 "verdict": "warmup_only",
 "indicator": "kama",
@@ -40252,13 +40395,20 @@
 },
 "基于超级趋势和CCI指标的多时间框架交易策略Best-Supertrend-CCI-Multi-Timeframe-Trading-Strategy.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "variant",
 "tags": [
 "cci",
 "atr",
 "supertrend"
 ],
-"issues": []
+"issues": [
+{
+"id": "e8d352d08a57",
+"verdict": "variant",
+"indicator": "supertrend",
+"note": "Ratchet and flip driven by CCI vs ML instead of close vs bands (Best Supertrend CCI)."
+}
+]
 },
 "双向霍尔移动平均线交易策略Dual-Hull-Moving-Average-Trading-Strategy.md": {
 "lang": "PineScript",
@@ -42308,7 +42458,7 @@
 },
 "价格平均线交叉策略Cross-Moving-Average-Price-Strategy.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "warmup_only",
 "tags": [
 "sma",
 "ema",
@@ -42316,7 +42466,14 @@
 "kama",
 "highest"
 ],
-"issues": []
+"issues": [
+{
+"id": "a35a4a5d8698",
+"verdict": "warmup_only",
+"indicator": "kama",
+"note": "KAMA recursion seeded 0 via nz instead of prior price."
+}
+]
 },
 "基于EMA通道和MACD的短线交易策略EMA-Channel-and-MACD-Based-Short-term-Trading-Strategy.md": {
 "lang": "PineScript",
@@ -43420,13 +43577,20 @@
 },
 "动量砖策略Momentum-Brick-Strategy.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "bug",
 "tags": [
 "atr",
 "renko",
 "mtf"
 ],
-"issues": []
+"issues": [
+{
+"id": "d3e4a9110892",
+"verdict": "bug",
+"indicator": "renko",
+"note": "Brick level seeded at 0 and moves one BrickSize per bar, so it lags price for price/BrickSize bars."
+}
+]
 },
 "SSL-Hybrid-STOCH-RSI.md": {
 "lang": "PineScript",
@@ -43639,7 +43803,7 @@
 },
 "追踪止损移动平均策略Moving-Average-Tracking-Stop-Loss-Strategy.md": {
 "lang": "PineScript",
-"worst": "warmup_only",
+"worst": "variant",
 "tags": [
 "sma",
 "ema",
@@ -43653,6 +43817,12 @@
 "supersmoother"
 ],
 "issues": [
+{
+"id": "de53a53ce31e",
+"verdict": "variant",
+"indicator": "trima",
+"note": "SMA of SMA both full length (span 2n-1) vs standard TRIMA halves."
+},
 {
 "id": "83881a702bb8",
 "verdict": "warmup_only",
@@ -44936,14 +45106,21 @@
 },
 "基于MACD与Supertrend的双重验证趋势跟踪交易策略-MACD-Supertrend-Dual-Confirmation-Trend-Following-Trading-Strategy.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "variant",
 "tags": [
 "sma",
 "macd",
 "atr",
 "supertrend"
 ],
-"issues": []
+"issues": [
+{
+"id": "a96327b12dab",
+"verdict": "variant",
+"indicator": "supertrend",
+"note": "Single-line ratchet with no band reset on flip; ATR via SMA(TR)."
+}
+]
 },
 "指数移动平均线交叉策略与止损止盈优化系统-EMA-Crossover-Strategy-with-Stop-Loss-and-Take-Profit-Optimization-System.md": {
 "lang": "PineScript",
@@ -45085,7 +45262,7 @@
 },
 "多重成交量动量组合交易策略-Multi-Volume-Momentum-Combined-Trading-Strategy.md": {
 "lang": "PineScript",
-"worst": "variant",
+"worst": "bug",
 "tags": [
 "sma",
 "rsi",
@@ -45095,6 +45272,12 @@
 "volosc"
 ],
 "issues": [
+{
+"id": "aeaab2eb274a",
+"verdict": "bug",
+"indicator": "accdist",
+"note": "No high==low guard: such a bar gives na and the next bar restarts cumulative AD from 0."
+},
 {
 "id": "ac8bcf0b34a3",
 "verdict": "variant",
@@ -46257,7 +46440,7 @@
 },
 "基于ATR和CCI的趋势跟踪策略CCI-and-ATR-Based-Trend-Following-Strategy.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "variant",
 "tags": [
 "ema",
 "wma",
@@ -46269,7 +46452,14 @@
 "slope",
 "mtf"
 ],
-"issues": []
+"issues": [
+{
+"id": "fe2230de6af7",
+"verdict": "variant",
+"indicator": "trend_magic",
+"note": "glaz Trend Magic band-swap logic on CCI sign change with wma(TR); library is Kivanc version."
+}
+]
 },
 "VWAP交叉动态利润目标交易策略-VWAP-Crossover-Dynamic-Profit-Target-Trading-Strategy.md": {
 "lang": "PineScript",
@@ -48109,7 +48299,7 @@
 },
 "融合双重趋势信号的反转指数量化策略Quantitative-Reversal-Index-Strategy-Integrating-Dual-Trend-Signals.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "bug",
 "tags": [
 "sma",
 "ema",
@@ -48118,7 +48308,14 @@
 "pvt",
 "rev123"
 ],
-"issues": []
+"issues": [
+{
+"id": "d59f89695d63",
+"verdict": "bug",
+"indicator": "nvi",
+"note": "Adds EMA_Len-bar ROC additively on down-volume bars from 0, instead of compounding 1-bar % change."
+}
+]
 },
 "SMA-ATR动态风险回报比趋势跟踪策略-SMA-ATR-Dynamic-Risk-Reward-Trend-Following-Strategy.md": {
 "lang": "PineScript",
@@ -50021,6 +50218,12 @@
 "note": "T3 first EMA stage seeded at 0 via nz (applied to CCI)."
 },
 {
+"id": "e1ae953081df",
+"verdict": "warmup_only",
+"indicator": "t3",
+"note": "T3 EMA stage recursion seeded at 0."
+},
+{
 "id": "552440d66e3c",
 "verdict": "warmup_only",
 "indicator": "t3",
@@ -50363,6 +50566,12 @@
 "verdict": "variant",
 "indicator": "correlation",
 "note": "Pearson correlation centered on EMA means instead of window SMA means."
+},
+{
+"id": "a04057d6503c",
+"verdict": "variant",
+"indicator": "correlation",
+"note": "Pearson correlation sums of squares around current EMA instead of window mean."
 },
 {
 "id": "a88c35c0e174",
@@ -52479,14 +52688,21 @@
 },
 "激活函数优化的规模归一化向量交易策略Scaled-Normalized-Vector-Strategy-with-Activation-Functions-ver4.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "lookahead",
 "tags": [
 "ema",
 "obv",
 "highest",
 "mtf"
 ],
-"issues": []
+"issues": [
+{
+"id": "dd0f426be9ce",
+"verdict": "lookahead",
+"indicator": "htf_scaled_diff",
+"note": "With useold, security(hlc3) uses lookahead_on without [1], leaking the HTF bar's final value."
+}
+]
 },
 "多重指标动态波动交易策略-Multi-Indicator-Dynamic-Volatility-Trading-Strategy.md": {
 "lang": "PineScript",
@@ -58027,7 +58243,7 @@
 },
 "Momentum-based-ZigZag.md": {
 "lang": "PineScript",
-"worst": "standard",
+"worst": "variant",
 "tags": [
 "sma",
 "ema",
@@ -58039,7 +58255,14 @@
 "qqe",
 "zigzag"
 ],
-"issues": []
+"issues": [
+{
+"id": "ba825c6a4c97",
+"verdict": "variant",
+"indicator": "qqe",
+"note": "QQE bands plus trend flips on breaking last QQE high/low (Momentum-based ZigZag)."
+}
+]
 },
 "基于双均线和RSI的短线可扩展趋势追踪策略-Dual-Moving-Average-and-RSI-Based-Short-Term-Scalable-Trend-Following-Strategy.md": {
 "lang": "PineScript",
@@ -58389,6 +58612,12 @@
 "laguerre"
 ],
 "issues": [
+{
+"id": "9702412d5c36",
+"verdict": "warmup_only",
+"indicator": "laguerre_rsi",
+"note": "Laguerre L0 stage seeded with 1 via nz(...,1)."
+},
 {
 "id": "80f596045ed9",
 "verdict": "warmup_only",
@@ -63847,18 +64076,18 @@
 "rev:ma_selector": {
 "label": "ma_selector",
 "tv": null,
-"n_files": 68,
+"n_files": 78,
 "verdicts": {
-"standard": 62,
+"standard": 72,
 "variant": 5,
-"bug": 2
+"bug": 3
 },
 "best": {
 "tv:ma(ma_type)": 34,
-"tv:ma(ma_type=type)": 16,
+"tv:ma(ma_type=type)": 21,
 "tv:ma(ma_type=maType)": 10,
-"tv:ma(ma_type=smoothing)": 5,
-"tv:ma(ma_type=smoothingATR)": 1
+"tv:ma(ma_type=smoothing)": 6,
+"tv:ma(ma_type=mav)": 2
 },
 "source": [
 "review"
@@ -63905,12 +64134,13 @@
 "rev:supersmoother3": {
 "label": "supersmoother3",
 "tv": null,
-"n_files": 5,
+"n_files": 6,
 "verdicts": {
-"standard": 5
+"standard": 6
 },
 "best": {
-"new:supersmoother3(length)": 5
+"new:supersmoother3(length)": 5,
+"new:supersmoother3": 1
 },
 "source": [
 "review"
@@ -63919,14 +64149,14 @@
 "rev:ma": {
 "label": "ma",
 "tv": null,
-"n_files": 68,
+"n_files": 72,
 "verdicts": {
-"standard": 62,
+"standard": 66,
 "bug": 4,
 "variant": 3
 },
 "best": {
-"tv:ma(length, ma_type)": 65,
+"tv:ma(length, ma_type)": 69,
 "new:ssl_hybrid_ma(length, type)": 4
 },
 "source": [
@@ -63939,13 +64169,13 @@
 "n_files": 91,
 "verdicts": {
 "standard": 67,
-"warmup_only": 74,
+"warmup_only": 77,
 "bug": 2,
 "variant": 2
 },
 "best": {
 "tv:dmi(di_length=len)": 83,
-"tv:dmi(di_length=14)": 27,
+"tv:dmi(di_length=14)": 28,
 "tv:dmi(length=14)": 11,
 "tv:dmi(di_length)": 5,
 "tv:dmi(di_length=lenADX)": 3
@@ -63957,14 +64187,14 @@
 "rev:adx": {
 "label": "adx",
 "tv": null,
-"n_files": 87,
+"n_files": 89,
 "verdicts": {
-"standard": 81,
+"standard": 84,
 "variant": 16,
 "bug": 4
 },
 "best": {
-"tv:adx(di_length=dilen, adx_smoothing=adxlen)": 43,
+"tv:adx(di_length=dilen, adx_smoothing=adxlen)": 44,
 "tv:adx(di_length=14, adx_smoothing=14)": 17,
 "tv:adx(length=14)": 16,
 "tv:dmi(di_length=_len, adx_smoothing=_len)": 14,
@@ -63979,10 +64209,10 @@
 "tv": null,
 "n_files": 30,
 "verdicts": {
-"standard": 46
+"standard": 47
 },
 "best": {
-"tv:ssl_channel(length=10)": 28,
+"tv:ssl_channel(length=10)": 29,
 "tv:ssl_channel(length)": 10,
 "tv:ssl_channel(length=len)": 8
 },
@@ -64007,17 +64237,17 @@
 "rev:ut_bot": {
 "label": "ut_bot",
 "tv": null,
-"n_files": 41,
+"n_files": 43,
 "verdicts": {
-"standard": 42,
+"standard": 44,
 "variant": 3,
 "bug": 1
 },
 "best": {
 "tv:ut_bot(key_value=1, atr_period=10)": 26,
 "tv:ut_bot(key=1, atr_period=10)": 11,
-"tv:ut_bot(key_value, atr_period)": 6,
-"tv:ut_bot()": 2,
+"tv:ut_bot(key_value, atr_period)": 7,
+"tv:ut_bot()": 3,
 "tv:ut_bot(key_value=nATRMultip, atr_period=nATRPeriod)": 1
 },
 "source": [
@@ -64047,17 +64277,17 @@
 "rev:supertrend": {
 "label": "supertrend",
 "tv": null,
-"n_files": 136,
+"n_files": 140,
 "verdicts": {
-"variant": 13,
-"bug": 13,
-"standard": 231,
+"variant": 16,
+"bug": 14,
+"standard": 242,
 "warmup_only": 2
 },
 "best": {
 "tv:supertrend_kivanc(period=10, multiplier=3)": 152,
-"tv:supertrend(factor=3, atr_period=10)": 51,
-"tv:supertrend_kivanc(period, multiplier)": 33,
+"tv:supertrend(factor=3, atr_period=10)": 57,
+"tv:supertrend_kivanc(period, multiplier)": 37,
 "tv:supertrend(factor, atr_period)": 16,
 "tv:supertrend_kivanc(period=9, multiplier=3.9)": 2
 },
@@ -64074,6 +64304,26 @@
 },
 "best": {
 "tv:cmo(length)": 6
+},
+"source": [
+"review"
+]
+},
+"rev:vidya": {
+"label": "vidya",
+"tv": null,
+"n_files": 33,
+"verdicts": {
+"standard": 34,
+"warmup_only": 6,
+"bug": 1
+},
+"best": {
+"tv:vidya(length, cmo_length=9)": 11,
+"tv:vidya(length, cmo_length)": 8,
+"tv:vidya(length=length, cmo_length=9)": 6,
+"tv:vidya(length=length, cmo_length=length)": 5,
+"tv:vidya(length=length2, cmo_length=9)": 3
 },
 "source": [
 "review"
@@ -64157,16 +64407,16 @@
 "rev:hma": {
 "label": "hma",
 "tv": null,
-"n_files": 53,
+"n_files": 55,
 "verdicts": {
-"standard": 50,
+"standard": 52,
 "variant": 5
 },
 "best": {
 "tv:hma(length)": 34,
 "tv:hma(length=_length)": 7,
+"tv:hma(length=len)": 4,
 "tv:hma(length=9)": 4,
-"tv:hma(length=len)": 3,
 "tv:hma(length=length1)": 2
 },
 "source": [
@@ -64260,9 +64510,9 @@
 "rev:zlema": {
 "label": "zlema",
 "tv": null,
-"n_files": 31,
+"n_files": 32,
 "verdicts": {
-"variant": 29,
+"variant": 30,
 "standard": 7
 },
 "best": {
@@ -64279,16 +64529,16 @@
 "rev:roc": {
 "label": "roc",
 "tv": null,
-"n_files": 15,
+"n_files": 16,
 "verdicts": {
-"standard": 15
+"standard": 16
 },
 "best": {
 "tv:roc(length=lkb)": 7,
 "tv:roc(length)": 2,
 "tv:roc(length=1)": 2,
-"tv:roc": 1,
-"tv:roc(length=Period)": 1
+"tv:roc(length=input_barsback)": 1,
+"tv:roc": 1
 },
 "source": [
 "review"
@@ -64297,9 +64547,9 @@
 "rev:stoch": {
 "label": "stoch",
 "tv": null,
-"n_files": 10,
+"n_files": 11,
 "verdicts": {
-"standard": 10,
+"standard": 11,
 "warmup_only": 1
 },
 "best": {
@@ -64319,10 +64569,10 @@
 "n_files": 21,
 "verdicts": {
 "variant": 15,
-"standard": 23
+"standard": 24
 },
 "best": {
-"tv:fractals(periods=2)": 24,
+"tv:fractals(periods=2)": 25,
 "tv:fractals(periods=n)": 7,
 "tv:fractals(high, low)": 6,
 "tv:fractals(periods)": 1
@@ -64349,13 +64599,13 @@
 "rev:linreg_channel": {
 "label": "linreg_channel",
 "tv": null,
-"n_files": 9,
+"n_files": 10,
 "verdicts": {
-"standard": 10,
+"standard": 11,
 "variant": 1
 },
 "best": {
-"new:linreg_channel": 5,
+"new:linreg_channel": 6,
 "tv:linreg(length)": 2,
 "tv:lsma(length) - mult*tv:stdev(length)": 2,
 "tv:linreg(length=len)": 1,
@@ -64368,19 +64618,19 @@
 "rev:kama": {
 "label": "kama",
 "tv": null,
-"n_files": 36,
+"n_files": 40,
 "verdicts": {
-"warmup_only": 24,
+"warmup_only": 27,
 "variant": 8,
 "bug": 2,
-"standard": 6
+"standard": 9
 },
 "best": {
 "tv:kama(length)": 12,
 "tv:kama(length=len)": 9,
 "tv:kama(length=10, fast=2, slow=30)": 8,
 "tv:kama(length, fast=2, slow=30)": 5,
-"tv:kama(length=length)": 2
+"tv:kama(length=length)": 4
 },
 "source": [
 "review"
@@ -64407,9 +64657,9 @@
 "rev:macd": {
 "label": "macd",
 "tv": null,
-"n_files": 31,
+"n_files": 33,
 "verdicts": {
-"standard": 30,
+"standard": 32,
 "lookahead": 1
 },
 "best": {
@@ -64443,19 +64693,33 @@
 "rev:qqe": {
 "label": "qqe",
 "tv": null,
-"n_files": 22,
+"n_files": 23,
 "verdicts": {
 "bug": 1,
-"standard": 63,
-"variant": 3,
+"standard": 64,
+"variant": 4,
 "warmup_only": 2
 },
 "best": {
 "tv:qqe(rsi_length=14, smoothing=5, factor=4.238)": 47,
 "tv:qqe(rsi_length=6, smoothing=5, factor=3)": 9,
+"tv:qqe()": 5,
 "tv:qqe(14, 5, 4.238)": 5,
-"tv:qqe(rsi_length=14, smoothing=5, factor=4.236)": 5,
-"tv:qqe()": 3
+"tv:qqe(rsi_length=14, smoothing=5, factor=4.236)": 5
+},
+"source": [
+"review"
+]
+},
+"rev:relative_volatility_index": {
+"label": "relative_volatility_index",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"variant": 1
+},
+"best": {
+"tv:relative_volatility_index(stdev_length, ema_length)": 1
 },
 "source": [
 "review"
@@ -64464,14 +64728,14 @@
 "rev:mama": {
 "label": "mama",
 "tv": null,
-"n_files": 9,
+"n_files": 10,
 "verdicts": {
-"standard": 40,
+"standard": 41,
 "variant": 6,
 "bug": 1
 },
 "best": {
-"new:mama": 24,
+"new:mama": 25,
 "new:mama(fast_limit=0.5, slow_limit=0.05)": 23
 },
 "source": [
@@ -64481,15 +64745,36 @@
 "rev:range_filter": {
 "label": "range_filter",
 "tv": null,
-"n_files": 28,
+"n_files": 29,
 "verdicts": {
-"standard": 70
+"standard": 71
 },
 "best": {
 "tv:range_filter(period=100, multiplier=3)": 55,
 "tv:range_filter(period=t, multiplier=m)": 8,
 "tv:range_filter(period, multiplier)": 5,
-"new:range_filter_dw(type, rng_qty, rng_period, smooth_period)": 2
+"new:range_filter_dw(type, rng_qty, rng_period, smooth_period)": 2,
+"tv:range_filter(period=_per, multiplier=_mult)": 1
+},
+"source": [
+"review"
+]
+},
+"rev:rma": {
+"label": "rma",
+"tv": null,
+"n_files": 74,
+"verdicts": {
+"warmup_only": 46,
+"standard": 40,
+"bug": 1
+},
+"best": {
+"tv:rma(length=length)": 29,
+"tv:rma(length=14)": 19,
+"tv:rma(length=len)": 15,
+"tv:rma(length)": 11,
+"tv:rma(length=y)": 2
 },
 "source": [
 "review"
@@ -64510,12 +64795,29 @@
 "review"
 ]
 },
+"rev:obv": {
+"label": "obv",
+"tv": null,
+"n_files": 6,
+"verdicts": {
+"standard": 8,
+"variant": 1
+},
+"best": {
+"tv:obv": 4,
+"tv:obv(close, volume)": 3,
+"tv:obv()": 2
+},
+"source": [
+"review"
+]
+},
 "rev:thma": {
 "label": "thma",
 "tv": null,
-"n_files": 25,
+"n_files": 26,
 "verdicts": {
-"standard": 23,
+"standard": 24,
 "variant": 2
 },
 "best": {
@@ -64523,7 +64825,7 @@
 "tv:thma(length)": 7,
 "tv:thma(length=55)": 7,
 "new:triple_hma": 2,
-"tv:thma(length=_length)": 1
+"tv:thma(length=lengthhull)": 1
 },
 "source": [
 "review"
@@ -64548,11 +64850,11 @@
 "tv": null,
 "n_files": 24,
 "verdicts": {
-"standard": 33
+"standard": 34
 },
 "best": {
 "tv:rma(length=len)": 14,
-"tv:rma(length)": 11,
+"tv:rma(length)": 12,
 "tv:rma(length=len2)": 2,
 "tv:rma(length=len3)": 2,
 "tv:rma(length=len1)": 2
@@ -64564,17 +64866,17 @@
 "rev:dema": {
 "label": "dema",
 "tv": null,
-"n_files": 32,
+"n_files": 33,
 "verdicts": {
-"standard": 41,
+"standard": 43,
 "variant": 1,
 "bug": 1
 },
 "best": {
 "tv:dema(length=9)": 15,
-"tv:dema(length=len)": 11,
+"tv:dema(length=len)": 12,
 "tv:dema(length)": 10,
-"tv:dema(length=length)": 4,
+"tv:dema(length=length)": 5,
 "tv:dema(length=length2)": 1
 },
 "source": [
@@ -64672,13 +64974,13 @@
 "rev:renko": {
 "label": "renko",
 "tv": null,
-"n_files": 6,
+"n_files": 7,
 "verdicts": {
 "standard": 6,
-"bug": 2
+"bug": 3
 },
 "best": {
-"new:renko": 8
+"new:renko": 9
 },
 "source": [
 "review"
@@ -64779,9 +65081,9 @@
 "rev:bbands": {
 "label": "bbands",
 "tv": null,
-"n_files": 15,
+"n_files": 16,
 "verdicts": {
-"standard": 20,
+"standard": 21,
 "bug": 1
 },
 "best": {
@@ -64819,11 +65121,11 @@
 "tv": null,
 "n_files": 9,
 "verdicts": {
-"standard": 18
+"standard": 19
 },
 "best": {
 "tv:vwap(anchor=\"D\")": 8,
-"tv:vwap()": 2,
+"tv:vwap()": 3,
 "tv:vwap(high, low, close, volume, anchor=\"D\")": 2,
 "tv:vwap(anchor=\"D\", band_mult)": 1,
 "tv:vwap(anchor=D)": 1
@@ -64849,15 +65151,15 @@
 "rev:heikin_ashi": {
 "label": "heikin_ashi",
 "tv": null,
-"n_files": 33,
+"n_files": 34,
 "verdicts": {
-"standard": 27,
+"standard": 28,
 "bug": 1,
 "warmup_only": 5,
 "variant": 1
 },
 "best": {
-"tv:heikin_ashi()": 20,
+"tv:heikin_ashi()": 21,
 "tv:heikin_ashi(open, high, low, close)": 7,
 "tv:heikin_ashi": 5,
 "tv:heikin_ashi(open, high, low, close).open": 1,
@@ -64904,20 +65206,15 @@
 "review"
 ]
 },
-"rev:rma": {
-"label": "rma",
+"rev:rmta": {
+"label": "rmta",
 "tv": null,
-"n_files": 69,
+"n_files": 1,
 "verdicts": {
-"standard": 37,
-"warmup_only": 44
+"standard": 1
 },
 "best": {
-"tv:rma(length=length)": 26,
-"tv:rma(length=14)": 19,
-"tv:rma(length=len)": 14,
-"tv:rma(length)": 10,
-"tv:rma(length=y)": 2
+"new:rmta_hpotter(length)": 1
 },
 "source": [
 "review"
@@ -64954,6 +65251,38 @@
 "review"
 ]
 },
+"rev:jma": {
+"label": "jma",
+"tv": null,
+"n_files": 15,
+"verdicts": {
+"standard": 25,
+"variant": 2,
+"bug": 1
+},
+"best": {
+"new:jma": 21,
+"new:jma(length, phase, power)": 6,
+"new:jma(phase=-50, power=1)": 1
+},
+"source": [
+"review"
+]
+},
+"rev:atr_envelope": {
+"label": "atr_envelope",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"new:atr_envelope(length, mult)": 1
+},
+"source": [
+"review"
+]
+},
 "rev:bear_power": {
 "label": "bear_power",
 "tv": null,
@@ -64971,14 +65300,15 @@
 "rev:pivot_points": {
 "label": "pivot_points",
 "tv": null,
-"n_files": 4,
+"n_files": 5,
 "verdicts": {
-"standard": 3,
+"standard": 4,
 "variant": 1
 },
 "best": {
 "tv:pivot_points(open, high, low, close, anchor=\"D\")": 2,
-"tv:pivot_points(anchor=\"D\", kind=\"traditional\")": 2
+"tv:pivot_points(anchor=\"D\", kind=\"traditional\")": 2,
+"tv:pivot_points(kind=\"traditional\")": 1
 },
 "source": [
 "review"
@@ -65005,13 +65335,13 @@
 "rev:donchian": {
 "label": "donchian",
 "tv": null,
-"n_files": 15,
+"n_files": 17,
 "verdicts": {
-"standard": 16
+"standard": 18
 },
 "best": {
+"tv:donchian(length)": 6,
 "tv:donchian(length=_len).basis": 5,
-"tv:donchian(length)": 4,
 "tv:donchian(length=len)": 2,
 "tv:donchian(length=50)": 1,
 "tv:donchian(length=Length).basis": 1
@@ -65023,36 +65353,18 @@
 "rev:ema": {
 "label": "ema",
 "tv": null,
-"n_files": 24,
+"n_files": 27,
 "verdicts": {
-"standard": 17,
-"warmup_only": 15,
+"standard": 19,
+"warmup_only": 16,
 "bug": 1
 },
 "best": {
-"tv:ema(length)": 17,
+"tv:ema(length)": 19,
 "tv:ema(length=p)": 4,
 "tv:ema(length=len1)": 2,
 "tv:ema(length=9)": 2,
 "tv:ema(length=_length)": 2
-},
-"source": [
-"review"
-]
-},
-"rev:jma": {
-"label": "jma",
-"tv": null,
-"n_files": 14,
-"verdicts": {
-"standard": 23,
-"variant": 2,
-"bug": 1
-},
-"best": {
-"new:jma": 19,
-"new:jma(length, phase, power)": 6,
-"new:jma(phase=-50, power=1)": 1
 },
 "source": [
 "review"
@@ -65094,17 +65406,17 @@
 "rev:wma": {
 "label": "wma",
 "tv": null,
-"n_files": 9,
+"n_files": 10,
 "verdicts": {
-"standard": 11,
-"bug": 3
+"standard": 12,
+"bug": 4
 },
 "best": {
-"tv:wma(length)": 7,
+"tv:wma(length)": 8,
 "tv:wma(length=9)": 3,
 "tv:wma(length=len5)": 2,
-"tv:wma(length=4)": 1,
-"tv:wma(length=n)": 1
+"tv:wma(length=length)": 1,
+"tv:wma(length=4)": 1
 },
 "source": [
 "review"
@@ -65129,11 +65441,11 @@
 "tv": null,
 "n_files": 5,
 "verdicts": {
-"standard": 12,
-"warmup_only": 3
+"standard": 14,
+"warmup_only": 4
 },
 "best": {
-"tv:laguerre_rsi(gamma=gamma)": 12,
+"tv:laguerre_rsi(gamma=gamma)": 15,
 "tv:laguerre_rsi(gamma)": 2,
 "tv:laguerre_rsi(gamma=0.5)": 1
 },
@@ -65144,14 +65456,15 @@
 "rev:rmi": {
 "label": "rmi",
 "tv": null,
-"n_files": 4,
+"n_files": 5,
 "verdicts": {
-"variant": 3,
+"variant": 4,
 "bug": 2
 },
 "best": {
 "tv:rmi(length=20, momentum=5)": 3,
-"tv:rmi(length, momentum)": 2
+"tv:rmi(length, momentum)": 2,
+"tv:rmi(length=len, momentum=m)": 1
 },
 "source": [
 "review"
@@ -65202,19 +65515,33 @@
 "rev:t3": {
 "label": "t3",
 "tv": null,
-"n_files": 18,
+"n_files": 19,
 "verdicts": {
-"standard": 16,
+"standard": 17,
 "bug": 1,
 "variant": 2,
-"warmup_only": 3
+"warmup_only": 4
 },
 "best": {
 "tv:t3(length, vfactor=0.7)": 7,
 "tv:t3(length=5, vfactor=0.7)": 6,
+"tv:t3(length, vfactor)": 4,
 "tv:t3(length=nr, vfactor)": 3,
-"tv:t3(length, vfactor)": 2,
 "tv:t3(length=len, vfactor=factor)": 1
+},
+"source": [
+"review"
+]
+},
+"rev:adaptive_trend_flow": {
+"label": "adaptive_trend_flow",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"new:adaptive_trend_flow": 1
 },
 "source": [
 "review"
@@ -65268,14 +65595,14 @@
 "rev:sma": {
 "label": "sma",
 "tv": null,
-"n_files": 38,
+"n_files": 40,
 "verdicts": {
-"standard": 42,
+"standard": 45,
 "warmup_only": 3,
 "bug": 1
 },
 "best": {
-"tv:sma(length)": 20,
+"tv:sma(length)": 21,
 "tv:sma(length=y)": 8,
 "tv:sma(length=9)": 6,
 "tv:sma(length=len)": 4,
@@ -65305,13 +65632,13 @@
 "rev:wavetrend": {
 "label": "wavetrend",
 "tv": null,
-"n_files": 6,
+"n_files": 7,
 "verdicts": {
 "variant": 1,
-"standard": 5
+"standard": 6
 },
 "best": {
-"tv:wavetrend(channel_length=chlen, average_length=avg, signal_length=malen)": 3,
+"tv:wavetrend(channel_length=chlen, average_length=avg, signal_length=malen)": 4,
 "tv:wavetrend(channel_length, average_length, signal_length)": 2,
 "tv:wavetrend(channel_length, average_length)": 1
 },
@@ -65350,14 +65677,17 @@
 "rev:trima": {
 "label": "trima",
 "tv": null,
-"n_files": 7,
+"n_files": 9,
 "verdicts": {
-"variant": 8
+"variant": 9,
+"standard": 1
 },
 "best": {
 "tv:trima(length)": 4,
 "tv:trima(length=length)": 3,
-"tv:trima(length=_len)": 1
+"tv:trima(length=y)": 1,
+"tv:trima(length=_len)": 1,
+"tv:trima(length=ortalamauzunluk)": 1
 },
 "source": [
 "review"
@@ -65525,26 +65855,6 @@
 "review"
 ]
 },
-"rev:vidya": {
-"label": "vidya",
-"tv": null,
-"n_files": 31,
-"verdicts": {
-"warmup_only": 6,
-"standard": 32,
-"bug": 1
-},
-"best": {
-"tv:vidya(length, cmo_length=9)": 11,
-"tv:vidya(length, cmo_length)": 8,
-"tv:vidya(length=length, cmo_length=9)": 6,
-"tv:vidya(length=length, cmo_length=length)": 4,
-"tv:vidya(length=length2, cmo_length=9)": 3
-},
-"source": [
-"review"
-]
-},
 "rev:g_channel": {
 "label": "g_channel",
 "tv": null,
@@ -65563,17 +65873,18 @@
 "rev:rsi": {
 "label": "rsi",
 "tv": null,
-"n_files": 15,
+"n_files": 18,
 "verdicts": {
 "bug": 1,
-"standard": 15
+"lookahead": 1,
+"standard": 17
 },
 "best": {
-"tv:rsi(length)": 8,
-"tv:rsi(length=len)": 3,
+"tv:rsi(length)": 9,
+"tv:rsi(length=len)": 4,
 "tv:mfi(high, low, close, volume, length)": 2,
-"tv:rsi(length=RSIPeriod)": 1,
-"tv:rsi(length=y)": 1
+"tv:rsi(length=20)": 1,
+"tv:rsi(length=RSIPeriod)": 1
 },
 "source": [
 "review"
@@ -65611,14 +65922,14 @@
 "rev:true_range": {
 "label": "true_range",
 "tv": null,
-"n_files": 4,
+"n_files": 5,
 "verdicts": {
-"standard": 4
+"standard": 5
 },
 "best": {
 "tv:true_range(handle_na=False)": 2,
-"tv:true_range()": 1,
-"tv:true_range(high, low, close)": 1
+"tv:true_range(high, low, close)": 2,
+"tv:true_range()": 1
 },
 "source": [
 "review"
@@ -65732,14 +66043,15 @@
 "rev:tsf": {
 "label": "tsf",
 "tv": null,
-"n_files": 13,
+"n_files": 14,
 "verdicts": {
-"standard": 18
+"standard": 19
 },
 "best": {
 "new:tsf(length)": 11,
 "tv:linreg(length=length)": 5,
-"tv:linreg(length=length1)": 2
+"tv:linreg(length=length1)": 2,
+"tv:linreg(length=ma_length)": 1
 },
 "source": [
 "review"
@@ -65868,13 +66180,13 @@
 "rev:ehma": {
 "label": "ehma",
 "tv": null,
-"n_files": 15,
+"n_files": 16,
 "verdicts": {
-"standard": 15
+"standard": 16
 },
 "best": {
 "tv:ehma(length=55)": 13,
-"tv:ehma(length=_length)": 1,
+"tv:ehma(length=_length)": 2,
 "tv:ehma(length=ortalamauzunluk)": 1
 },
 "source": [
@@ -65936,6 +66248,24 @@
 "tv:coral(smoothing, constant_d)": 7,
 "tv:coral(21, 0.4)": 2,
 "tv:coral(smoothing=smoothingPeriod, constant_d=constantD)": 1
+},
+"source": [
+"review"
+]
+},
+"rev:trend_magic": {
+"label": "trend_magic",
+"tv": null,
+"n_files": 7,
+"verdicts": {
+"variant": 4,
+"standard": 3
+},
+"best": {
+"tv:trend_magic(cci_period, atr_multiplier, atr_period)": 3,
+"tv:trend_magic(cci_period=20, atr_multiplier=1, atr_period=5)": 2,
+"tv:trend_magic()": 1,
+"tv:trend_magic(cci_period=period, atr_multiplier, atr_period)": 1
 },
 "source": [
 "review"
@@ -66109,28 +66439,12 @@
 "tv": null,
 "n_files": 2,
 "verdicts": {
-"standard": 2
+"standard": 3
 },
 "best": {
 "new:prime_number_oscillator_hpotter(percent)": 1,
-"new:prime_number_oscillator(percent)": 1
-},
-"source": [
-"review"
-]
-},
-"rev:trend_magic": {
-"label": "trend_magic",
-"tv": null,
-"n_files": 5,
-"verdicts": {
-"standard": 3,
-"variant": 2
-},
-"best": {
-"tv:trend_magic(cci_period, atr_multiplier, atr_period)": 2,
-"tv:trend_magic(cci_period=20, atr_multiplier=1, atr_period=5)": 2,
-"tv:trend_magic(cci_period=period, atr_multiplier, atr_period)": 1
+"new:prime_number_oscillator(percent)": 1,
+"new:prime_number_oscillator": 1
 },
 "source": [
 "review"
@@ -66145,6 +66459,20 @@
 },
 "best": {
 "tv:ema(length=t)": 1
+},
+"source": [
+"review"
+]
+},
+"rev:relative_body_index": {
+"label": "relative_body_index",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"new:relative_body_index": 1
 },
 "source": [
 "review"
@@ -66224,15 +66552,29 @@
 "rev:ichimoku": {
 "label": "ichimoku",
 "tv": null,
-"n_files": 7,
+"n_files": 8,
 "verdicts": {
 "lookahead": 4,
-"standard": 5
+"standard": 6
 },
 "best": {
 "tv:ichimoku(9, 26, 52, 26)": 5,
-"tv:ichimoku()": 2,
+"tv:ichimoku()": 3,
 "tv:ichimoku(conversion, base, span_b, displacement)": 2
+},
+"source": [
+"review"
+]
+},
+"rev:kalman_filter": {
+"label": "kalman_filter",
+"tv": null,
+"n_files": 2,
+"verdicts": {
+"standard": 2
+},
+"best": {
+"new:kalman_filter": 2
 },
 "source": [
 "review"
@@ -66401,12 +66743,14 @@
 "rev:accdist": {
 "label": "accdist",
 "tv": null,
-"n_files": 1,
+"n_files": 3,
 "verdicts": {
-"standard": 1
+"standard": 2,
+"bug": 1
 },
 "best": {
-"tv:accdist(high, low, close, volume)": 1
+"tv:accdist(high, low, close, volume)": 2,
+"tv:accdist()": 1
 },
 "source": [
 "review"
@@ -66561,12 +66905,13 @@
 "rev:apo": {
 "label": "apo",
 "tv": null,
-"n_files": 1,
+"n_files": 2,
 "verdicts": {
-"standard": 1
+"standard": 2
 },
 "best": {
-"tv:apo(12, 26)": 1
+"tv:apo(12, 26)": 1,
+"tv:apo(fast=LengthShortEMA, slow=LengthLongEMA)": 1
 },
 "source": [
 "review"
@@ -66582,6 +66927,20 @@
 "best": {
 "tv:willr(length=14)": 2,
 "tv:willr(length=byjugth)": 1
+},
+"source": [
+"review"
+]
+},
+"rev:gann_hilo": {
+"label": "gann_hilo",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"tv:ssl_channel(length)": 1
 },
 "source": [
 "review"
@@ -66619,12 +66978,13 @@
 "rev:ehlers_zero_lag_ec": {
 "label": "ehlers_zero_lag_ec",
 "tv": null,
-"n_files": 3,
+"n_files": 4,
 "verdicts": {
-"standard": 3
+"standard": 3,
+"bug": 1
 },
 "best": {
-"new:ehlers_ec(length, gain_limit)": 3
+"new:ehlers_ec(length, gain_limit)": 4
 },
 "source": [
 "review"
@@ -66636,10 +66996,10 @@
 "n_files": 4,
 "verdicts": {
 "variant": 1,
-"standard": 6
+"standard": 8
 },
 "best": {
-"new:ehlers_dominant_cycle": 7
+"new:ehlers_dominant_cycle": 9
 },
 "source": [
 "review"
@@ -66806,13 +67166,14 @@
 "rev:vwma": {
 "label": "vwma",
 "tv": null,
-"n_files": 3,
+"n_files": 4,
 "verdicts": {
-"standard": 3
+"standard": 4
 },
 "best": {
 "tv:vwma(length=y)": 1,
 "tv:vwma(length=len)": 1,
+"tv:vwma(length=ortalamauzunluk)": 1,
 "tv:vwma(close, volume, length)": 1
 },
 "source": [
@@ -66836,13 +67197,13 @@
 "rev:zigzag": {
 "label": "zigzag",
 "tv": null,
-"n_files": 4,
+"n_files": 5,
 "verdicts": {
-"standard": 4
+"standard": 5
 },
 "best": {
-"new:zigzag_candle()": 2,
-"new:zigzag_rs(length, detection)": 2
+"new:zigzag_rs(length, detection)": 3,
+"new:zigzag_candle()": 2
 },
 "source": [
 "review"
@@ -66872,6 +67233,20 @@
 },
 "best": {
 "new:p_signal(length)": 3
+},
+"source": [
+"review"
+]
+},
+"rev:chaikin_volatility": {
+"label": "chaikin_volatility",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"tv:chaikin_volatility(ema_length=Length, roc_length=ROCLength)": 1
 },
 "source": [
 "review"
@@ -67034,12 +67409,14 @@
 "rev:bull_bear_power": {
 "label": "bull_bear_power",
 "tv": null,
-"n_files": 2,
+"n_files": 3,
 "verdicts": {
-"variant": 2
+"variant": 2,
+"standard": 1
 },
 "best": {
-"tv:bull_bear_power(length=Length)": 2
+"tv:bull_bear_power(length=Length)": 2,
+"new:bull_bear_power_gimelfarb(sma=15)": 1
 },
 "source": [
 "review"
@@ -67183,23 +67560,6 @@
 },
 "best": {
 "new:kdj(length=9, m1=3, m2=3)": 1
-},
-"source": [
-"review"
-]
-},
-"rev:obv": {
-"label": "obv",
-"tv": null,
-"n_files": 4,
-"verdicts": {
-"standard": 6,
-"variant": 1
-},
-"best": {
-"tv:obv": 4,
-"tv:obv(close, volume)": 2,
-"tv:obv()": 1
 },
 "source": [
 "review"
@@ -67354,6 +67714,20 @@
 },
 "best": {
 "new:ehlers_bandpass(length=20, delta=0.5)": 3
+},
+"source": [
+"review"
+]
+},
+"rev:hpotter_pdo": {
+"label": "hpotter_pdo",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"new:hpotter_pdo": 1
 },
 "source": [
 "review"
@@ -67533,12 +67907,12 @@
 "rev:windowed_ema": {
 "label": "windowed_ema",
 "tv": null,
-"n_files": 1,
+"n_files": 2,
 "verdicts": {
-"standard": 1
+"standard": 2
 },
 "best": {
-"new:windowed_ema": 1
+"new:windowed_ema": 2
 },
 "source": [
 "review"
@@ -67651,10 +68025,11 @@
 "tv": null,
 "n_files": 1,
 "verdicts": {
-"standard": 1
+"standard": 2
 },
 "best": {
-"new:dual_thrust(len, k1, k2)": 1
+"new:dual_thrust(len, k1, k2)": 1,
+"new:dual_thrust": 1
 },
 "source": [
 "review"
@@ -67669,6 +68044,20 @@
 },
 "best": {
 "tv:market_facilitation_index(high, low, volume)": 1
+},
+"source": [
+"review"
+]
+},
+"rev:vma_lazybear": {
+"label": "vma_lazybear",
+"tv": null,
+"n_files": 2,
+"verdicts": {
+"standard": 6
+},
+"best": {
+"new:vma_lazybear": 6
 },
 "source": [
 "review"
@@ -67693,11 +68082,11 @@
 "tv": null,
 "n_files": 1,
 "verdicts": {
-"standard": 8
+"standard": 9
 },
 "best": {
 "new:butterworth2(period)": 7,
-"new:butterworth2": 1
+"new:butterworth2": 2
 },
 "source": [
 "review"
@@ -67709,10 +68098,10 @@
 "n_files": 1,
 "verdicts": {
 "bug": 1,
-"standard": 6
+"standard": 8
 },
 "best": {
-"new:butterworth_2pole(length)": 7
+"new:butterworth_2pole(length)": 9
 },
 "source": [
 "review"
@@ -67834,12 +68223,13 @@
 "rev:momentum": {
 "label": "momentum",
 "tv": null,
-"n_files": 3,
+"n_files": 4,
 "verdicts": {
-"standard": 3
+"standard": 4
 },
 "best": {
-"tv:mom(length=length)": 3
+"tv:mom(length=length)": 3,
+"tv:mom(length=length1)": 1
 },
 "source": [
 "review"
@@ -67865,10 +68255,10 @@
 "tv": null,
 "n_files": 2,
 "verdicts": {
-"standard": 4
+"standard": 5
 },
 "best": {
-"new:prime_number_bands": 3,
+"new:prime_number_bands": 4,
 "new:prime_number_oscillator(percent)": 1
 },
 "source": [
@@ -67946,6 +68336,20 @@
 "review"
 ]
 },
+"rev:hurst_exponent": {
+"label": "hurst_exponent",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"bug": 1
+},
+"best": {
+"new:hurst_exponent": 1
+},
+"source": [
+"review"
+]
+},
 "rev:binomial_ma": {
 "label": "binomial_ma",
 "tv": null,
@@ -67989,6 +68393,23 @@
 "review"
 ]
 },
+"rev:nvi": {
+"label": "nvi",
+"tv": null,
+"n_files": 3,
+"verdicts": {
+"variant": 2,
+"bug": 1
+},
+"best": {
+"tv:nvi()": 1,
+"tv:nvi(close, volume)": 1,
+"tv:nvi(start=1000)": 1
+},
+"source": [
+"review"
+]
+},
 "rev:ftsma": {
 "label": "ftsma",
 "tv": null,
@@ -67999,6 +68420,20 @@
 "best": {
 "new:ftsma": 12,
 "new:ftsma(N)": 4
+},
+"source": [
+"review"
+]
+},
+"rev:corrected_ma": {
+"label": "corrected_ma",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"new:corrected_ma": 1
 },
 "source": [
 "review"
@@ -68091,6 +68526,20 @@
 "review"
 ]
 },
+"rev:roofing_filter": {
+"label": "roofing_filter",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 2
+},
+"best": {
+"new:ehlers_roofing_filter(hp=48, ss=10)": 2
+},
+"source": [
+"review"
+]
+},
 "rev:ehlers_agc": {
 "label": "ehlers_agc",
 "tv": null,
@@ -68101,20 +68550,6 @@
 "best": {
 "new:ehlers_agc": 1,
 "new:ehlers_agc(decay=0.991)": 1
-},
-"source": [
-"review"
-]
-},
-"rev:roofing_filter": {
-"label": "roofing_filter",
-"tv": null,
-"n_files": 1,
-"verdicts": {
-"standard": 1
-},
-"best": {
-"new:ehlers_roofing_filter(hp=48, ss=10)": 1
 },
 "source": [
 "review"
@@ -68171,6 +68606,20 @@
 },
 "best": {
 "new:range_volatility": 1
+},
+"source": [
+"review"
+]
+},
+"rev:daily_change": {
+"label": "daily_change",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"lookahead": 1
+},
+"best": {
+"tv:roc(length=1)": 1
 },
 "source": [
 "review"
@@ -68289,15 +68738,30 @@
 "review"
 ]
 },
+"rev:hpotter_money_flow": {
+"label": "hpotter_money_flow",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"new:hpotter_money_flow": 1
+},
+"source": [
+"review"
+]
+},
 "rev:chandelier_exit": {
 "label": "chandelier_exit",
 "tv": null,
 "n_files": 2,
 "verdicts": {
-"standard": 3
+"standard": 4
 },
 "best": {
 "tv:chandelier_exit(22, 3.0)": 1,
+"tv:chandelier_exit()": 1,
 "tv:chandelier_exit(length, mult)": 1,
 "tv:chandelier_exit(length=22, mult=3, use_close=True)": 1
 },
@@ -68462,6 +68926,20 @@
 "review"
 ]
 },
+"rev:percentrank": {
+"label": "percentrank",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"tv:percentrank(length=length)": 1
+},
+"source": [
+"review"
+]
+},
 "rev:trend_continuation_factor": {
 "label": "trend_continuation_factor",
 "tv": null,
@@ -68506,6 +68984,20 @@
 "review"
 ]
 },
+"rev:rsi_heikin_ashi": {
+"label": "rsi_heikin_ashi",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"new:rsi_heikin_ashi": 1
+},
+"source": [
+"review"
+]
+},
 "rev:edsma": {
 "label": "edsma",
 "tv": null,
@@ -68516,20 +69008,6 @@
 "best": {
 "new:edsma(length, ssf_length, poles)": 1,
 "new:edsma": 1
-},
-"source": [
-"review"
-]
-},
-"rev:vma_lazybear": {
-"label": "vma_lazybear",
-"tv": null,
-"n_files": 1,
-"verdicts": {
-"standard": 2
-},
-"best": {
-"new:vma_lazybear": 2
 },
 "source": [
 "review"
@@ -68615,6 +69093,20 @@
 },
 "best": {
 "new:td_sequential": 3
+},
+"source": [
+"review"
+]
+},
+"rev:fractal_chaos_bands": {
+"label": "fractal_chaos_bands",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"new:fractal_chaos_bands": 1
 },
 "source": [
 "review"
@@ -68720,6 +69212,20 @@
 "review"
 ]
 },
+"rev:reflex": {
+"label": "reflex",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"new:ehlers_reflex_trendflex(length)": 1
+},
+"source": [
+"review"
+]
+},
 "rev:ehlers_dominant_cycle": {
 "label": "ehlers_dominant_cycle",
 "tv": null,
@@ -68757,6 +69263,20 @@
 },
 "best": {
 "new:trailing_stop_flip": 1
+},
+"source": [
+"review"
+]
+},
+"rev:ema_2_20": {
+"label": "ema_2_20",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"tv:ema(length=Length)": 1
 },
 "source": [
 "review"
@@ -68874,6 +69394,20 @@
 "review"
 ]
 },
+"rev:logistic_forecast": {
+"label": "logistic_forecast",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"new:logistic_price_forecast": 1
+},
+"source": [
+"review"
+]
+},
 "rev:demark_setup": {
 "label": "demark_setup",
 "tv": null,
@@ -68897,6 +69431,20 @@
 },
 "best": {
 "tv:garman_klass(open, high, low, close, length)": 1
+},
+"source": [
+"review"
+]
+},
+"rev:squeeze_momentum": {
+"label": "squeeze_momentum",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"tv:squeeze_momentum()": 1
 },
 "source": [
 "review"
@@ -69008,11 +69556,12 @@
 "n_files": 1,
 "verdicts": {
 "bug": 1,
-"variant": 2
+"variant": 3
 },
 "best": {
 "tv:correlation(close, other, length)": 1,
 "tv:correlation(length=20)": 1,
+"tv:correlation(length=_length)": 1,
 "tv:correlation(length)": 1
 },
 "source": [
@@ -69061,6 +69610,20 @@
 "review"
 ]
 },
+"rev:dual_envelope_ema": {
+"label": "dual_envelope_ema",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"new:dual_envelope_ema": 1
+},
+"source": [
+"review"
+]
+},
 "rev:ehlers_emd": {
 "label": "ehlers_emd",
 "tv": null,
@@ -69075,20 +69638,6 @@
 "review"
 ]
 },
-"rev:nvi": {
-"label": "nvi",
-"tv": null,
-"n_files": 1,
-"verdicts": {
-"variant": 1
-},
-"best": {
-"tv:nvi(start=1000)": 1
-},
-"source": [
-"review"
-]
-},
 "rev:linreg_band": {
 "label": "linreg_band",
 "tv": null,
@@ -69098,6 +69647,20 @@
 },
 "best": {
 "tv:lsma(length=length) + mult*tv:stdev(length=length)": 2
+},
+"source": [
+"review"
+]
+},
+"rev:htf_scaled_diff": {
+"label": "htf_scaled_diff",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"lookahead": 1
+},
+"best": {
+"-": 1
 },
 "source": [
 "review"
@@ -69168,6 +69731,20 @@
 },
 "best": {
 "new:sine_fir_filter(length, alpha, beta)": 1
+},
+"source": [
+"review"
+]
+},
+"rev:fir_filter": {
+"label": "fir_filter",
+"tv": null,
+"n_files": 1,
+"verdicts": {
+"standard": 1
+},
+"best": {
+"new:fir_filter": 1
 },
 "source": [
 "review"
@@ -69314,5 +69891,5 @@
 ]
 }
 },
-"n_reviewed": 3270
+"n_reviewed": 3583
 }

@@ -1,0 +1,646 @@
+{
+ "g_channel": {
+  "n_files": 8,
+  "ids": [
+   "2f92c395f980",
+   "6b5dc87e5745",
+   "1b249adfc22b",
+   "3798407ae4b7",
+   "47dd3a076f3c",
+   "a7e67a006b74"
+  ],
+  "example_files": [
+   "G-Channel-Trend-Detection-Strategy-G-Channel趋势检测策略.md",
+   "G-Channel与EMA结合的趋势跟踪策略G-Channel-and-EMA-Trend-Following-Strategy.md",
+   "G趋势EMA-ATR智能交易策略G-Trend-EMA-ATR-Intelligent-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 9
+  },
+  "notes": [
+   "alexgrover G-Channel upper line: max(close,a[1]) - (a[1]-b[1])/length.",
+   "alexgrover G-Channel upper line.",
+   "G-Channel [alexgrover] lower band recursion as published."
+  ]
+ },
+ "td_sequential": {
+  "n_files": 7,
+  "ids": [
+   "28951d1604e0",
+   "41fe9f1aa056",
+   "c25f0dd3006d",
+   "812c068f7006",
+   "fb3a692ce0dd",
+   "ad23467a7a82"
+  ],
+  "example_files": [
+   "Multi-Indicator-Convergence-Trading-Strategy.md",
+   "Tom-DeMark-Sequential-Heat-Map.md",
+   "动量TD反转交易策略Momentum-TD-Reversal-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 8,
+   "variant": 2
+  },
+  "notes": [
+   "TD setup count close < close[4].",
+   "TD setup count src < src[4].",
+   "TD sequential sell setup count (close > close[4]) as in the heat-map script."
+  ]
+ },
+ "renko": {
+  "n_files": 7,
+  "ids": [
+   "6c29f58825ba",
+   "d44854dae9a9",
+   "cb86a8751105",
+   "95b3182db088",
+   "d3e4a9110892",
+   "5c8d165b6e97"
+  ],
+  "example_files": [
+   "克隆阴阳数量化交易策略Renko-Yin-Yang-Quant-Trading-Strategy.md",
+   "动量砖策略Momentum-Brick-Strategy.md",
+   "基于ATR通道的破口踏入趋势策略ATR-Channel-Breakout-Trend-following-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 4,
+   "bug": 2
+  },
+  "notes": [
+   "Initial ATR renko brick level seed.",
+   "ATR-sized renko brick level from open.",
+   "Sizeblock fixed tick/percent box (renko-style) construction."
+  ]
+ },
+ "pivot_point_supertrend": {
+  "n_files": 4,
+  "ids": [
+   "6591b0767854"
+  ],
+  "example_files": [
+   "基于超趋势支撑阻力与ADX指标的高频交易策ADX-Filtered-SuperTrend-Pivot-Trading-Strategy.md",
+   "基于趋势追踪和ADX指标的短线交易策略Trend-Tracking-and-Short-term-Trading-Strategy-Based-on-ADX-Indicator.md",
+   "多时间框架枢轴点超趋势策略Pivot-SuperTrend-Strategy-Across-Multiple-Timeframes.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Center-line carry of LonesomeTheBlue Pivot Point SuperTrend; fragment only."
+  ]
+ },
+ "range_filter_dw": {
+  "n_files": 3,
+  "ids": [
+   "be13772bd5b2",
+   "e00dcf1b8584",
+   "9aece7d7a577"
+  ],
+  "example_files": [
+   "双向自适应范围滤波动量跟踪策略This-strategy-is-a-bidirectional-adaptive-range-filtering-momentum-tracking-strategy.md",
+   "双范围过滤趋势跟踪策略Dual-Range-Filter-Trend-Tracking-Strategy.md",
+   "多重技术指标黄金即时变动检测与风险管理策略-Multi-Technical-Indicator-Gold-Real-Time-Movement-Detection-and-Risk-Management-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 3
+  },
+  "notes": [
+   "DonovanWall Range Filter [DW] Type 1/2 with conditional EMA averaging.",
+   "DonovanWall Range Filter Type 1/2 with conditional EMA averaging, faithful copy.",
+   "DonovanWall Range Filter conditional EMA updated only when cond true."
+  ]
+ },
+ "demark_reversal_points": {
+  "n_files": 3,
+  "ids": [
+   "ce61834cc639",
+   "1a773c807fc7"
+  ],
+  "example_files": [
+   "Demark-Reversal-Points-CC.md",
+   "Demark-Reversal-Points.md",
+   "Demark-Setup-Indicator.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "TD-setup style up/down counts versus src[i+4] (cheatcountry port).",
+   "DeMark setup up/down counts vs src[i+length]."
+  ]
+ },
+ "leledc_exhaustion": {
+  "n_files": 3,
+  "ids": [
+   "bbddd11fd2d4",
+   "21623207fd6c",
+   "e458c578f113"
+  ],
+  "example_files": [
+   "DEC策略Leledec-DEC-Strategy.md",
+   "多个因子量化交易策略Multi-factor-Quantitative-Trading-Strategy.md",
+   "日内多头突破策略-Intraday-Bullish-Breakout-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 3
+  },
+  "notes": [
+   "glaz Leledc exhaustion bar counts, exact logic.",
+   "Joy_Bangla Leledc exhaustion bar counts with configurable lookbacks (defaults match original).",
+   "Joy_Bangla Leledc exhaustion bar, original form."
+  ]
+ },
+ "pivothigh_atr": {
+  "n_files": 3,
+  "ids": [
+   "0bc1a30c3900",
+   "c8519e518a1e",
+   "d9bf0a92247b",
+   "11b35b2ebdc7",
+   "8a6b73a5da55"
+  ],
+  "example_files": [
+   "基于枢轴点逆转的量化策略Pivot-Reversal-Quantitative-Strategy-Based-on-Pivot-Points.md",
+   "增强型双重枢轴点反转交易策略-Enhanced-Dual-Pivot-Point-Reversal-Trading-Strategy.md",
+   "重要支点反转策略Significant-Pivot-Points-Reversal-Strategy.md"
+  ],
+  "verdicts": {
+   "variant": 5
+  },
+  "notes": [
+   "Pivot high requiring high[right] exceed neighbours by atr*mult, stricter than ta.pivothigh; confirmed after right bars.",
+   "Pivot low requiring low[right] below neighbours by atr*mult, stricter than ta.pivotlow; confirmed after right bars.",
+   "Loop of ATR-margin pivot-high test; stricter than ta.pivothigh."
+  ]
+ },
+ "ols_regression": {
+  "n_files": 3,
+  "ids": [
+   "cac6fda86484"
+  ],
+  "example_files": [
+   "动态意识形态趋势反转策略Dynamic-Pattern-Trend-Reversal-Strategy.md",
+   "多空线性交叉策略Long-Short-Linear-Regression-Crossover-Strategy.md",
+   "线性MACD解锁交易视图中线性回归的魔力Linear-MACD-Unlocking-the-Magic-of-Linear-Regression-in-TradingView.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Rolling OLS intercept/slope of y on x."
+  ]
+ },
+ "atr_trailing_support": {
+  "n_files": 2,
+  "ids": [
+   "7795a230b3cd"
+  ],
+  "example_files": [
+   "双向均线回归交易策略Bidirectional-Moving-Average-Reversion-Trading-Strategy.md",
+   "双均线反转策略Dual-Moving-Average-Reversion-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Custom ratcheting low-ATR support line, resets when hit; no published reference."
+  ]
+ },
+ "most": {
+  "n_files": 2,
+  "ids": [
+   "917f95c637ec",
+   "d557ad668993"
+  ],
+  "example_files": [
+   "MOST指标双仓位自适应策略MOST-Indicator-Dual-Position-Adaptive-Strategy.md",
+   "追踪止损移动平均策略Moving-Average-Tracking-Stop-Loss-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Original MOST (Anil Ozeksi/Kivanc) moving stop loss recursion.",
+   "MOST direction-carry fragment (Anil Ozeksi Moving Stop Loss)."
+  ]
+ },
+ "atr_trailing_bands": {
+  "n_files": 2,
+  "ids": [
+   "24d166b5d6fa",
+   "78e3af06a40f"
+  ],
+  "example_files": [
+   "基于ATR指标的自适应跟踪止损策略ATR-Trailing-Stop-Bands-Strategy.md",
+   "趋势突破策略ATR-Trend-Breakout-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Script's own ratcheting high+mult*ATR band; no published standard.",
+   "Author's ATR trailing band: high+ATR loss+upper wick ratcheted down while highs stay below."
+  ]
+ },
+ "volumatic_vidya_bigbeluga": {
+  "n_files": 1,
+  "ids": [
+   "07cda3b49148"
+  ],
+  "example_files": [
+   "动态波动率指标VIDYA结合ATR趋势跟踪反转策略-Dynamic-Volatility-Index-VIDYA-with-ATR-Trend-Following-Reversal-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "BigBeluga Volumatic VIDYA core: CMO-alpha VIDYA then SMA(15), as published."
+  ]
+ },
+ "pmax": {
+  "n_files": 1,
+  "ids": [
+   "0ae3e041e7b3"
+  ],
+  "example_files": [
+   "基于RSI和T3指标的PMax自适应突破策略PMax-Breakout-Strategy-Based-on-RSI-and-T3-Indicators.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Exact Kivanc Profit Maximizer (PMax) logic."
+  ]
+ },
+ "trend_score": {
+  "n_files": 1,
+  "ids": [
+   "1b302c1d09fd",
+   "83a2aa7b72f6"
+  ],
+  "example_files": [
+   "多因子策略Multi-factor-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Sum of sign(src - src[i]) over lags; author formula.",
+   "Chande TrendScore: sum of sign(src - src[i])."
+  ]
+ },
+ "recursive_bands": {
+  "n_files": 1,
+  "ids": [
+   "67558cc22d79",
+   "ebdd71ae57c0"
+  ],
+  "example_files": [
+   "递归带动量交易策略Recursive-Momentum-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "alexgrover Recursive Bands lower band recursion.",
+   "alexgrover Recursive Bands upper band with selectable volatility measure."
+  ]
+ },
+ "alexgrover_adaptive_ls_trend": {
+  "n_files": 1,
+  "ids": [
+   "9abeeaac43fd"
+  ],
+  "example_files": [
+   "双向趋势追踪均线交叉策略Bi-Directional-Trend-Tracking-Moving-Average-Crossover-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "alexgrover-style adaptive trailing level with least-squares fit on HTF close."
+  ]
+ },
+ "logistic_price_forecast": {
+  "n_files": 1,
+  "ids": [
+   "ddcd62ec6108"
+  ],
+  "example_files": [
+   "基于对数的价格预测策略Logarithmic-Price-Forecasting-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Author's logistic price projection formula."
+  ]
+ },
+ "atr_envelope": {
+  "n_files": 1,
+  "ids": [
+   "e2264267442d"
+  ],
+  "example_files": [
+   "baguette-by-multigrain.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "multigrain ATR envelope holding width when source unchanged."
+  ]
+ },
+ "dual_envelope": {
+  "n_files": 1,
+  "ids": [
+   "09e38635875d",
+   "ddd50376a488",
+   "fc2b694728e7"
+  ],
+  "example_files": [
+   "Adaptive-Trend-Detection-Strategy-with-Dual-Envelope-EMA-System-基于双包络EMA系统的自适应趋势检测策略.md"
+  ],
+  "verdicts": {
+   "standard": 3
+  },
+  "notes": [
+   "Alpha-decay max/min envelope of price and price^2 (author's adaptive envelope), seeded with close.",
+   "Alpha-decay max envelope (pair of 177), seeded with close.",
+   "Lower envelope of squared price via adaptive EMA step (custom script)."
+  ]
+ },
+ "atr_trend_identifier": {
+  "n_files": 1,
+  "ids": [
+   "172e65512d2f"
+  ],
+  "example_files": [
+   "双向趋势追踪均线交叉策略Bi-Directional-Trend-Tracking-Moving-Average-Crossover-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Highest close minus ATR*mult / lowest close plus ATR*mult trend line, author's trendATR."
+  ]
+ },
+ "atr_trend_band": {
+  "n_files": 1,
+  "ids": [
+   "819ab31a51f3"
+  ],
+  "example_files": [
+   "趋势突破策略ATR-Trend-Breakout-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Author's ATR band (low - k*ATR) ratcheting while close above."
+  ]
+ },
+ "converging_channel": {
+  "n_files": 1,
+  "ids": [
+   "fe44fbdbd4c1"
+  ],
+  "example_files": [
+   "双均线价格通道交易策略Dual-Moving-Average-Price-Channel-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "alexgrover-style channel: lower = min(close,b[1]) + (a[1]-b[1])/length."
+  ]
+ },
+ "fib_progression_breaks": {
+  "n_files": 1,
+  "ids": [
+   "525302ba242c"
+  ],
+  "example_files": [
+   "Fibonacci-Progression-With-Breaks.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "LuxAlgo Fibonacci Progression With Breaks average reset."
+  ]
+ },
+ "superichi": {
+  "n_files": 1,
+  "ids": [
+   "ba94c5a14bda"
+  ],
+  "example_files": [
+   "超一目趋势策略Super-Ichi-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "LuxAlgo SuperIchi: average of max/min tracked against a Supertrend line."
+  ]
+ },
+ "percent_trailing_stop": {
+  "n_files": 1,
+  "ids": [
+   "09ea336c03f9"
+  ],
+  "example_files": [
+   "Y-Profit-Maximizer策略Y-Profit-Maximizer-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "UT Bot style trailing recursion on an MA with stop distance MA*pct."
+  ]
+ },
+ "adaptive_ma_channel": {
+  "n_files": 1,
+  "ids": [
+   "4a22f372b305"
+  ],
+  "example_files": [
+   "均自适应通道价格突破策略Adaptive-Moving-Average-Channel-Breakout-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Author's adaptive channel: EMA of negative returns with previous-bar adaptive alpha."
+  ]
+ },
+ "avellaneda_stoikov_bands": {
+  "n_files": 1,
+  "ids": [
+   "de0fce76c40f"
+  ],
+  "example_files": [
+   "Khaled-Tamims-Avellaneda-Stoikov-Strategy-Khaled-Tamims-Avellaneda-Stoikov-Strategy.md"
+  ],
+  "verdicts": {
+   "variant": 1
+  },
+  "notes": [
+   "Simplified quotes mid +- k*gamma*sigma^2*T; omits inventory term and ln(1+gamma/k) spread of Avellaneda-Stoikov."
+  ]
+ },
+ "adaptive_trailing_stop": {
+  "n_files": 1,
+  "ids": [
+   "f2ac2c8906a7"
+  ],
+  "example_files": [
+   "适应性趋势跟踪止损策略Adaptive-Trend-Tracking-Stop-Loss-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Author's trail: switches to previous upper/lower trail when close crosses it."
+  ]
+ },
+ "dual_thrust": {
+  "n_files": 1,
+  "ids": [
+   "faf73a411400",
+   "8eae2812800a"
+  ],
+  "example_files": [
+   "Dual-Thrust-Trading-Algorithm-ps4.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Dual Thrust range from previous-bar highest/lowest of H/C/L.",
+   "Dual Thrust asymmetric buy/sell ranges."
+  ]
+ },
+ "standard_error_bands": {
+  "n_files": 1,
+  "ids": [
+   "64f29545b658"
+  ],
+  "example_files": [
+   "Dual-Thrust-Trading-Algorithm-ps4.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Andersen Standard Error Bands around linreg (narrow/wide forms)."
+  ]
+ },
+ "adaptive_trend_flow": {
+  "n_files": 1,
+  "ids": [
+   "bfde7300f106"
+  ],
+  "example_files": [
+   "自适应趋势流动性多重过滤交易策略-Adaptive-Trend-Flow-Multiple-Filter-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Fast/slow EMA basis with EMA-smoothed stdev bands."
+  ]
+ },
+ "max_min_envelope_volatility": {
+  "n_files": 1,
+  "ids": [
+   "06be385d432b"
+  ],
+  "example_files": [
+   "Adaptive-Trend-Detection-Strategy-with-Dual-Envelope-EMA-System-基于双包络EMA系统的自适应趋势检测策略.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "alexgrover-style max/min envelope of price and squared price for volatility; no lookahead."
+  ]
+ },
+ "trend_persistence": {
+  "n_files": 1,
+  "ids": [
+   "1080947f905c"
+  ],
+  "example_files": [
+   "VAWSI和趋势持续性反转策略结合动态长度计算的多指标综合分析系统-VAWSI-and-Trend-Persistence-Reversal-Strategy-with-Dynamic-Length-Calculation-Multi-Indicator-Analysis-System.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Author's custom trend-persistence RSI (VAWSI script)."
+  ]
+ },
+ "trend_thrust_indicator": {
+  "n_files": 1,
+  "ids": [
+   "50cc127aac30"
+  ],
+  "example_files": [
+   "多指标趋势跟踪与成交量确认策略-Multi-Indicator-Trend-Following-with-Volume-Confirmation-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Buff Dormeier Trend Thrust Indicator: VWMA fast/slow with (fast/slow)^2 volume multiplier, SMA signal."
+  ]
+ },
+ "trailing_stop_flip": {
+  "n_files": 1,
+  "ids": [
+   "59206ffb71e8"
+  ],
+  "example_files": [
+   "基于动态追踪止损策略Dynamic-Trailing-Stop-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Offset trailing line ratcheting with highs/lows and flipping on penetration; not position-based."
+  ]
+ },
+ "range_filter_trailing_band": {
+  "n_files": 1,
+  "ids": [
+   "bd9a815364ef"
+  ],
+  "example_files": [
+   "双区间滤波动量交易策略-Dual-Range-Filter-Momentum-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Range-filter band trailing line flipping between upper/lower bands on crosses."
+  ]
+ },
+ "rsi_trend_threshold": {
+  "n_files": 1,
+  "ids": [
+   "dd23224063b4"
+  ],
+  "example_files": [
+   "RSI趋势反转策略-RSI-Trend-Reversal-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Author's custom RSI/ATR adaptive threshold line (RSI Trend Reversal script)."
+  ]
+ }
+}

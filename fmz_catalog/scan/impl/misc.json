@@ -1,0 +1,460 @@
+{
+ "volume_rsi": {
+  "n_files": 5,
+  "ids": [
+   "744cff252d2f",
+   "604e98dd0523",
+   "42a888897f9e"
+  ],
+  "example_files": [
+   "Cryptocurrency-RSI-Curve-Tracking-Strategy.md",
+   "Johnys-BOT.md",
+   "多空寻趋势双重激光策略Dual-Laser-Trend-seeking-Strategy.md"
+  ],
+  "verdicts": {
+   "warmup_only": 1,
+   "standard": 2
+  },
+  "notes": [
+   "RSI of volume-weighted price changes, Wilder MA seeded at 0.",
+   "RSI of volume-weighted up/down changes with Wilder smoothing (WiMA).",
+   "Volume-weighted RSI with Wilder smoothing."
+  ]
+ },
+ "cipher_b_rsimfi": {
+  "n_files": 5,
+  "ids": [
+   "e2d9b1820d4c",
+   "61089b27cc93"
+  ],
+  "example_files": [
+   "VuManChu-Cipher-B-Divergences-Strategy.md",
+   "基于乖离率指标优化的波动跟踪策略WaveTrend-and-DER-Based-Swing-Trading-Strategy.md",
+   "基于双重趋势过滤器的量化交易策略Quantitative-Trading-Strategy-Based-on-Double-Trend-Filter.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "VuManChu Cipher B RSI+MFI area: sma((c-o)/(h-l)*mult) - posY.",
+   "VuManChu Cipher B RSI+MFI area: sma((c-o)/(h-l)*mult) - posY, HTF without lookahead."
+  ]
+ },
+ "redk_vader": {
+  "n_files": 4,
+  "ids": [
+   "20de27f83a13"
+  ],
+  "example_files": [
+   "RedK-Dual-VADER-with-Energy-Bars.md",
+   "RedK-Volume-Accelerated-Directional-Energy-Ratio.md",
+   "VuManChu-Cipher-B-Divergences-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "RedK VADER relvol as published; stoch over highest/lowest makes effective window 2n-1."
+  ]
+ },
+ "nadaraya_watson_rq": {
+  "n_files": 3,
+  "ids": [
+   "2ba8a3e89f43",
+   "469ba92d8cbb",
+   "ae010a1ed01d"
+  ],
+  "example_files": [
+   "动量跟踪自适应统计套利策略Momentum-Tracking-Adaptive-Statistical-Arbitrage-Strategy.md",
+   "基于Nadaraya-Watson回归和ATR通道的趋势跟踪策略Trend-Following-Strategy-Based-on-Nadaraya-Watson-Regression-and-ATR-Channel.md",
+   "基于核回归和ATR动态波段的自适应趋势跟踪策略-Adaptive-Trend-Following-Strategy-Based-on-Kernel-Regression-and-ATR-Dynamic-Bands.md"
+  ],
+  "verdicts": {
+   "standard": 3
+  },
+  "notes": [
+   "jdehorty rational quadratic kernel regression, exact weight loop.",
+   "jdehorty Nadaraya-Watson rational quadratic kernel weights.",
+   "Rational quadratic kernel regression as in jdehorty Nadaraya-Watson (non-repainting, past bars only)."
+  ]
+ },
+ "p_signal": {
+  "n_files": 3,
+  "ids": [
+   "edc4b7a22c65",
+   "f5635ee110ed"
+  ],
+  "example_files": [
+   "P-Signal多时间框架交易策略P-Signal-Multi-Timeframe-Trading-Strategy.md",
+   "P-信号反转策略P-Signal-Reversal-Strategy.md",
+   "基于高斯误差函数的量化交易策略An-Analysis-of-Quantitative-Trading-Strategy-Based-on-Gaussian-Error-Function.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "P-Signal: erf(sma/stdev/sqrt2) of a series, as published.",
+   "P-Signal: erf(SMA/stdev/sqrt 2) of a series."
+  ]
+ },
+ "delta_rsi": {
+  "n_files": 3,
+  "ids": [
+   "c61d9be778ae",
+   "dd03825b1b31"
+  ],
+  "example_files": [
+   "Delta-RSI-Oscillator-Strategy.md",
+   "动态RSI震荡多项式拟合指标趋势量化交易策略-Dynamic-RSI-Oscillator-Polynomial-Fitting-Indicator-Trend-Quantitative-Trading-Strategy.md",
+   "基于多项式插值的RSI动量指标策略Polynomial-Interpolation-Based-RSI-Momentum-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "tbiktag Delta-RSI polynomial-fit derivative.",
+   "tbiktag Delta-RSI: polynomial least-squares fit derivative with NRMSE."
+  ]
+ },
+ "zvwap": {
+  "n_files": 2,
+  "ids": [
+   "2ebd567ddea2",
+   "a8d539f18019"
+  ],
+  "example_files": [
+   "基于Z距离的VWAP策略ZVWAP-Strategy-Based-on-Z-Distance-from-VWAP.md",
+   "指标验证自动交易策略Indicator-Verification-Automated-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "LazyBear Z-distance from rolling VWAP, exact.",
+   "LazyBear VWAP Z-score."
+  ]
+ },
+ "gaussian_weighted_stdev": {
+  "n_files": 1,
+  "ids": [
+   "3e4f30f87332",
+   "d9e97e7b3cea"
+  ],
+  "example_files": [
+   "高斯通道趋势跟踪与随机相对强弱指标交易策略-Gaussian-Channel-Trend-Following-with-Stochastic-RSI-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Gaussian-weighted deviation over trailing window; author's function.",
+   "Gaussian-weighted stdev around Gaussian (ALMA 0.5/6) mean."
+  ]
+ },
+ "vw_stdev": {
+  "n_files": 1,
+  "ids": [
+   "3fb8c94282a9",
+   "96b6b38b7908"
+  ],
+  "example_files": [
+   "基于VWAP和OBV-RSI指标的BabyShark交易策略BabyShark-VWAP-Trading-Strategy-Based-on-VWAP-and-OBV-RSI-Indicators.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Rolling volume-weighted stdev (BabyShark VWAP script).",
+   "Rolling volume-weighted stdev (BabyShark VWAP script)."
+  ]
+ },
+ "vawsi": {
+  "n_files": 1,
+  "ids": [
+   "55876c066b9e"
+  ],
+  "example_files": [
+   "VAWSI和趋势持续性反转策略结合动态长度计算的多指标综合分析系统-VAWSI-and-Trend-Persistence-Reversal-Strategy-with-Dynamic-Length-Calculation-Multi-Indicator-Analysis-System.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "RSI built on volume-adjusted weighted MA of gains/losses; author's function."
+  ]
+ },
+ "blackflag_fts": {
+  "n_files": 1,
+  "ids": [
+   "76826a5d5a17"
+  ],
+  "example_files": [
+   "渔夫转身EMA多重止损多重止盈策略Fisher-Turnaround-EMA-Multi-Take-Profit-and-Multi-Stop-Strategy.md"
+  ],
+  "verdicts": {
+   "bug": 1
+  },
+  "notes": [
+   "up and down both sum high-low, so the RSI-style value is constant 50."
+  ]
+ },
+ "weighted_stdev": {
+  "n_files": 1,
+  "ids": [
+   "d2ac4f2b3266",
+   "d294254758ec",
+   "fe5d9b545e83"
+  ],
+  "example_files": [
+   "均线加权标准差交易策略Weighted-Standard-Deviation-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 3
+  },
+  "notes": [
+   "Weighted squared-error sum for weighted stdev.",
+   "Weighted mean / unbiased weighted variance helper.",
+   "Weighted mean / unbiased weighted variance over series."
+  ]
+ },
+ "range_volatility": {
+  "n_files": 1,
+  "ids": [
+   "74bb85cf96d2"
+  ],
+  "example_files": [
+   "历史波动率区间突破交易策略Volatility-Range-Breakout-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "2*(highest-lowest)/(highest+lowest) range ratio, author's volatility."
+  ]
+ },
+ "volume_pressure": {
+  "n_files": 1,
+  "ids": [
+   "a0618d65a6ff"
+  ],
+  "example_files": [
+   "多指标趋势追踪策略Multi-indicator-Trend-Following-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Sums volume split by close location over bars 1..L-1; na if high==low."
+  ]
+ },
+ "vwap_deviation": {
+  "n_files": 1,
+  "ids": [
+   "b32adfe93ff6"
+  ],
+  "example_files": [
+   "基于VWAP和OBV-RSI指标的BabyShark交易策略BabyShark-VWAP-Trading-Strategy-Based-on-VWAP-and-OBV-RSI-Indicators.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Volume-weighted mean absolute deviation from basis."
+  ]
+ },
+ "tmo": {
+  "n_files": 1,
+  "ids": [
+   "e5e8f715e05c"
+  ],
+  "example_files": [
+   "15MIN-BTCUSDTPERP-BOT.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "True Momentum Oscillator (Mobius) count of close vs past opens, TV-port loop 1..len-1."
+  ]
+ },
+ "for_loop_score": {
+  "n_files": 1,
+  "ids": [
+   "63080c1c6462"
+  ],
+  "example_files": [
+   "零延迟趋势动量指标交易策略-Zero-Lag-Trend-Momentum-Indicator-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Score: +1/-1 for each lag where basis above/below its past value."
+  ]
+ },
+ "price_friction": {
+  "n_files": 1,
+  "ids": [
+   "af0296aaa73f"
+  ],
+  "example_files": [
+   "基于价格摩擦区的趋势追踪策略Trend-Following-Strategy-Based-on-Price-Friction-Zones.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Author's friction count: weighted count of past bars whose range contains close."
+  ]
+ },
+ "vw_mean_abs_dev": {
+  "n_files": 1,
+  "ids": [
+   "f6ef3187b144"
+  ],
+  "example_files": [
+   "基于VWAP和OBV-RSI指标的BabyShark交易策略BabyShark-VWAP-Trading-Strategy-Based-on-VWAP-and-OBV-RSI-Indicators.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Volume-weighted mean absolute deviation from a basis (BabyShark VWAP)."
+  ]
+ },
+ "rsi_heikin_ashi": {
+  "n_files": 1,
+  "ids": [
+   "bc82392f8fab"
+  ],
+  "example_files": [
+   "多指标组合趋势反转策略Multi-Indicator-Trend-Reversal-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Heikin Ashi candles built from zero-centred RSI of OHLC (JayRogers style)."
+  ]
+ },
+ "relative_body_index": {
+  "n_files": 1,
+  "ids": [
+   "e0b1aed40162"
+  ],
+  "example_files": [
+   "相对笔涨幅均线交叉策略Relative-Body-Index-Crossover-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "EMA of rolling sum of body/range ratio."
+  ]
+ },
+ "hurst_exponent": {
+  "n_files": 1,
+  "ids": [
+   "ffaf2cba477f"
+  ],
+  "example_files": [
+   "基于多时间周期赫斯特指数与斐波那契回撤的动态趋势交易策略Multi-Timeframe-Hurst-Exponent-and-Fibonacci-Retracement-Dynamic-Trend-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "bug": 1
+  },
+  "notes": [
+   "R from rolling sums of deviations from each bar's own SMA, not cumulative deviations within one window; uses prices not returns."
+  ]
+ },
+ "weis_wave_volume": {
+  "n_files": 1,
+  "ids": [
+   "3eaa98e656fa"
+  ],
+  "example_files": [
+   "综合技术指标策略Multi-indicator-Combination-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Weis wave volume: accumulates volume while wave direction unchanged."
+  ]
+ },
+ "faytterro_estimator": {
+  "n_files": 1,
+  "ids": [
+   "77429a71db9b"
+  ],
+  "example_files": [
+   "基于Faytterro-Estimator的交易策略Trading-Strategy-Based-on-Faytterro-Estimator.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Triangular-weight sum of past values (faytterro estimator core); past data only."
+  ]
+ },
+ "gyroscopic_trajectory": {
+  "n_files": 1,
+  "ids": [
+   "78a16007b906"
+  ],
+  "example_files": [
+   "基于轨迹平均振幅的多时igkeit交易策略Gyroscopic-Bands-Strategy-Based-on-Multi-Time-Frame-and-Average-Amplitude.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Author's custom smoothed lagged change: (close[1]-close[2] + traj[1]*varb)/(varb+1)."
+  ]
+ },
+ "vawsi_hln": {
+  "n_files": 1,
+  "ids": [
+   "b447615a4fee"
+  ],
+  "example_files": [
+   "VAWSI和趋势持续性反转策略结合动态长度计算的多指标综合分析系统-VAWSI-and-Trend-Persistence-Reversal-Strategy-with-Dynamic-Length-Calculation-Multi-Indicator-Analysis-System.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Author's custom VAWSI volatility term (VAWSI script)."
+  ]
+ },
+ "volume_profile": {
+  "n_files": 1,
+  "ids": [
+   "b8dae24f3e5b"
+  ],
+  "example_files": [
+   "基于成交量热图与实时价格的买卖策略-Buy-and-Sell-Volume-Heatmap-with-Real-Time-Price-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Buy/sell volume per price level over lookback (volume heatmap)."
+  ]
+ },
+ "vpci": {
+  "n_files": 1,
+  "ids": [
+   "c510af7141ec"
+  ],
+  "example_files": [
+   "多指标趋势跟踪与成交量确认策略-Multi-Indicator-Trend-Following-with-Volume-Confirmation-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Buff Dormeier Volume Price Confirmation Indicator."
+  ]
+ }
+}

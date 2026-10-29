@@ -1,0 +1,329 @@
+{
+ "ehlers_bandpass": {
+  "n_files": 9,
+  "ids": [
+   "2e037a3e2dac",
+   "260e44cd6294",
+   "43c4d40fda98",
+   "84fca2bd478d",
+   "8b33238037e2",
+   "d2af4fc6ad27"
+  ],
+  "example_files": [
+   "Combo-2-20-EMA-Bandpass-Filter.md",
+   "一种基于带通滤波反转策略Bandpass-Filter-Reversed-Strategy.md",
+   "双因子反转波段突破组合策略Reversal-Breakout-Bandpass-Combo-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 6
+  },
+  "notes": [
+   "HPotter Ehlers bandpass filter with pi=3.14 as published, +1/-1 zone state.",
+   "HPotter Ehlers bandpass with pi=3.14, trigger state.",
+   "50-bar RMS of Ehlers bandpass for normalisation."
+  ]
+ },
+ "ehlers_dominant_cycle": {
+  "n_files": 6,
+  "ids": [
+   "5370070d2a11",
+   "91ea10f69def",
+   "a285a6576772",
+   "b3a2fdcf2a30",
+   "ea17aa6592f2",
+   "2d731f6f18c2"
+  ],
+  "example_files": [
+   "Adaptive-Zero-Lag-EMA-Strategy.md",
+   "Enhanced-Fish-Net-Strategy.md",
+   "VAWSI和趋势持续性反转策略结合动态长度计算的多指标综合分析系统-VAWSI-and-Trend-Persistence-Reversal-Strategy-with-Dynamic-Length-Calculation-Multi-Indicator-Analysis-System.md"
+  ],
+  "verdicts": {
+   "standard": 14,
+   "bug": 1,
+   "variant": 1
+  },
+  "notes": [
+   "Ehlers cycle measurement phase-accumulation component.",
+   "Ehlers I-Q dominant cycle measurement (Fish Net port).",
+   "InstPeriod = nz(InstPeriod[1]) declares a local (should be :=), so previous-period fallback never applies."
+  ]
+ },
+ "ehlers_ec": {
+  "n_files": 4,
+  "ids": [
+   "62235ec98940",
+   "e0b952296b57",
+   "76556390c488",
+   "b0f1be861aa8"
+  ],
+  "example_files": [
+   "Adaptive-Zero-Lag-EMA-Strategy.md",
+   "移动平均线双轨带牛熊策略CBMA-Bollinger-Bands-Breaker-Strategy.md",
+   "自适应零滞后EMA交易策略Adaptive-Zero-Lag-EMA-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2,
+   "bug": 2
+  },
+  "notes": [
+   "Ehlers Zero Lag Error Correcting EMA, exact formula.",
+   "Gain search loop runs only i=limit and leastError never updates, so best gain is fixed limit/10.",
+   "Gain loop runs emaGainLimit..emaGainLimit (one gain), and '=' shadows leastError/bestGain, so no least-error search."
+  ]
+ },
+ "butterworth_2pole": {
+  "n_files": 4,
+  "ids": [
+   "15f2fd3dd738",
+   "2c2d51168a77",
+   "427997e8cc8d",
+   "56b61d2f9087",
+   "5e55907b6d8a",
+   "7c46da442d82"
+  ],
+  "example_files": [
+   "MA-Emperor-insiliconot.md",
+   "移动平均交叉双向交易策略Moving-Average-Crossover-Strategy-for-Two-way-Trading.md",
+   "移动平均线交叉趋势追踪策略Moving-Average-Crossover-Trend-Following-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 33,
+   "bug": 1
+  },
+  "notes": [
+   "Ehlers 2-pole Butterworth applied to DI-.",
+   "Ehlers 2-pole Butterworth applied to DI-.",
+   "Ehlers 2-pole Butterworth applied to choppiness."
+  ]
+ },
+ "ehlers_optimal_tracking": {
+  "n_files": 2,
+  "ids": [
+   "612f06c93f04"
+  ],
+  "example_files": [
+   "双向均线回归交易策略Bidirectional-Moving-Average-Reversion-Trading-Strategy.md",
+   "双均线反转策略Dual-Moving-Average-Reversion-Strategy.md"
+  ],
+  "verdicts": {
+   "variant": 1
+  },
+  "notes": [
+   "Ehlers tracking (Kalman-like) filter but Value2 smooths ta.tr instead of Ehlers' high-low range."
+  ]
+ },
+ "ehlers_emd": {
+  "n_files": 2,
+  "ids": [
+   "bb4eb74fddfc",
+   "776561522cd3",
+   "a483eea078b5"
+  ],
+  "example_files": [
+   "双重反转均衡策略Dual-Reversion-Balance-Strategy.md",
+   "基于经验模态分解的量化交易策略Empirical-Mode-Decomposition-Based-Quantitative-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 3
+  },
+  "notes": [
+   "HPotter Ehlers EMD bandpass peak hold.",
+   "HPotter/Ehlers EMD bandpass valley holder.",
+   "HPotter port of Ehlers Empirical Mode Decomposition bandpass with peak/valley averages."
+  ]
+ },
+ "trendflex": {
+  "n_files": 2,
+  "ids": [
+   "e54f6ffbc33f",
+   "a9fd45587b41",
+   "380bfd896d56",
+   "ae0f9276f654"
+  ],
+  "example_files": [
+   "基于TFO和ATR的趋势跟踪止损策略TFO-and-ATR-Based-Trend-Tracking-Stop-Loss-Strategy.md",
+   "跨周期方向策略Eltrut-Turtle-Reversal-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 4
+  },
+  "notes": [
+   "Ehlers Reflex/Trendflex (2020), exact.",
+   "Ehlers TrendFlex sum of Filt - Filt[i].",
+   "Ehlers TrendFlex (2020): super smoother, mean slope sum, RMS normalisation."
+  ]
+ },
+ "butterworth_3pole": {
+  "n_files": 2,
+  "ids": [
+   "d50a6773692b"
+  ],
+  "example_files": [
+   "并联移动平均线与无限脉冲响应均线策略Combined-Moving-Average-and-Infinite-Impulse-Response-Line-Strategy.md",
+   "组合简单移动平均线与自适应移动平均线的策略Combining-Simple-Moving-Average-and-Adaptive-Moving-Average-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Correct bilinear 3-pole Butterworth lowpass coefficients, seeded with source."
+  ]
+ },
+ "ehlers_roofing_filter": {
+  "n_files": 1,
+  "ids": [
+   "08e7067e43b8",
+   "f5053c9a3c92"
+  ],
+  "example_files": [
+   "基于压缩指标的多时间框架交易策略Multi-Timeframe-Trend-Trading-Strategy-Based-on-Compressed-Indicators.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Ehlers SuperSmoother stage applied to high-pass output.",
+   "Ehlers SuperSmoother stage applied to high-pass output."
+  ]
+ },
+ "ehlers_cyber_cycle": {
+  "n_files": 1,
+  "ids": [
+   "8de876e07849"
+  ],
+  "example_files": [
+   "基于信号平滑的埃尔斯循环策略Signal-Smoothing-Ehlers-Cyber-Cycle-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "EMA signal smoothing of Ehlers Cyber Cycle."
+  ]
+ },
+ "ehlers_smoothed_rsi": {
+  "n_files": 1,
+  "ids": [
+   "244993af1cfd"
+  ],
+  "example_files": [
+   "结合123反转与平滑RSI的交易策略Combo-Strategy-of-123-Reversal-and-Smoothed-RSI.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter port of Ehlers Smoothed RSI (1-2-2-1 prefilter, CU/(CU+CD)) with band signal."
+  ]
+ },
+ "ehlers_highpass_2pole": {
+  "n_files": 1,
+  "ids": [
+   "bc6ce7a2f2a1",
+   "45c58c8b84bd"
+  ],
+  "example_files": [
+   "基于压缩指标的多时间框架交易策略Multi-Timeframe-Trend-Trading-Strategy-Based-on-Compressed-Indicators.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Ehlers 2-pole high-pass filter recursion.",
+   "Ehlers 2-pole high-pass filter (roofing filter stage)."
+  ]
+ },
+ "voss_filter": {
+  "n_files": 1,
+  "ids": [
+   "23c5736daf3f"
+  ],
+  "example_files": [
+   "基于Voss滤波器和趋势指标的量化交易策略Quantitative-Trading-Strategy-Based-on-Voss-Filter-and-Trend-Indicator.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Ehlers Voss predictive filter (TASC Aug 2019); zeroed for first 3*predict bars."
+  ]
+ },
+ "emdi_hpotter": {
+  "n_files": 1,
+  "ids": [
+   "8c4170a9988a"
+  ],
+  "example_files": [
+   "双指标略逆反转交易策略Dual-Indicator-Slight-Reversal-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter port: double EMA of close-EMA with EMA signal, position state."
+  ]
+ },
+ "ehlers_agc": {
+  "n_files": 1,
+  "ids": [
+   "d80b9548ff01",
+   "20bf69a68a1e"
+  ],
+  "example_files": [
+   "基于压缩指标的多时间框架交易策略Multi-Timeframe-Trend-Trading-Strategy-Based-on-Compressed-Indicators.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Ehlers automatic gain control peak decay.",
+   "Ehlers automatic gain control peak decay 0.991."
+  ]
+ },
+ "ehlers_decycler": {
+  "n_files": 1,
+  "ids": [
+   "4083e6771206"
+  ],
+  "example_files": [
+   "基于量化震荡指标组合策略Quantitative-Oscillation-Indicator-Combination-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Ehlers simple decycler 1-pole recursion."
+  ]
+ },
+ "ehlers_fisher_stoch": {
+  "n_files": 1,
+  "ids": [
+   "4c07c0bbafaf"
+  ],
+  "example_files": [
+   "埃勒斯-费希尔相对活力指数策略Ehlers-Fisher-Stochastic-Relative-Vigor-Index-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Ehlers Fisher of WMA-smoothed stochastic."
+  ]
+ },
+ "deli": {
+  "n_files": 1,
+  "ids": [
+   "d5a1abb2dbee"
+  ],
+  "example_files": [
+   "趋势追踪反转与埃勒斯先导指标联合策略Trend-Reversal-and-Ehlers-Leading-Indicator-Combo-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter Ehlers DELI-style detrended EMA difference on daily hl2 (no lookahead)."
+  ]
+ }
+}

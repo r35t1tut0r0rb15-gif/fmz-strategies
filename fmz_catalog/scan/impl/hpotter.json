@@ -1,0 +1,636 @@
+{
+ "fractal_chaos_oscillator": {
+  "n_files": 4,
+  "ids": [
+   "b4effb7b48ae",
+   "41a4a6e67cc2",
+   "7462f909381c",
+   "ec689de4ae18",
+   "bb87c7b21a99",
+   "d55362353138"
+  ],
+  "example_files": [
+   "分形混沌震荡器交易策略Fractal-Chaos-Oscillator-Trading-Strategy.md",
+   "双重反转震荡带趋势跟踪策略Dual-Reversal-Oscillating-Band-Trend-Following-Strategy.md",
+   "反转复活振荡指标组合策略Combo-Strategy-of-123-Reversal-and-Fractal-Chaos-Oscillator.md"
+  ],
+  "verdicts": {
+   "standard": 10
+  },
+  "notes": [
+   "HPotter down-fractal level (Fractal Chaos style), held until next.",
+   "HPotter Fractal Chaos Oscillator fractal-low right-side check, faithful copy.",
+   "HPotter Fractal Chaos Oscillator fractal-high left-side check, faithful copy."
+  ]
+ },
+ "gimelfarb_bull_bear_power": {
+  "n_files": 4,
+  "ids": [
+   "da0b8373838f",
+   "5e413e8aa862",
+   "a9f762a03388",
+   "2e98e4f2873e"
+  ],
+  "example_files": [
+   "双向跨均线反转策略Dual-Cross-Moving-Average-Reversal-Strategy.md",
+   "双项式动量突破反转策略Binomial-Momentum-Breakout-Reversal-Strategy.md",
+   "均线先行指标短期做空策略Short-term-Bearish-Strategy-Based-on-EMA-Crossover-and-Bear-Power-Indicators.md"
+  ],
+  "verdicts": {
+   "standard": 4
+  },
+  "notes": [
+   "HPotter Gimelfarb buying pressure, SMA 15 threshold state.",
+   "HPotter port of Gimelfarb Bear Power, position state.",
+   "HPotter Bear Power port, position state."
+  ]
+ },
+ "rainbow_oscillator": {
+  "n_files": 3,
+  "ids": [
+   "7a19ea794837",
+   "0532e4077396"
+  ],
+  "example_files": [
+   "Rainbow-Oscillator.md",
+   "双重趋势追踪量化策略Combo-Quantitative-Trend-Tracking-Strategy.md",
+   "彩虹震荡器交易策略Rainbow-Oscillator-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Rainbow (Widner) recursive MA smoothing helper.",
+   "HPotter Mel Widner Rainbow Oscillator (10 recursive SMAs), returns pos."
+  ]
+ },
+ "prime_number_oscillator": {
+  "n_files": 3,
+  "ids": [
+   "61fbaca3a249",
+   "14a9138e3495",
+   "d45883ee78db",
+   "cd11c3c5470f"
+  ],
+  "example_files": [
+   "双因子量化交易策略Dual-factor-Quant-Trading-Strategy.md",
+   "基于质数震荡的交易策略Prime-Number-Oscillator-Trading-Strategy.md",
+   "质数波带回测策略Prime-Number-Bands-Backtest-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 4
+  },
+  "notes": [
+   "HPotter Prime Number Oscillator as published (divisor loop bound sqrt(price)).",
+   "HPotter Prime Number Oscillator port (nearest prime above/below price).",
+   "HPotter Prime Number Bands upper band port."
+  ]
+ },
+ "finite_volume_elements": {
+  "n_files": 3,
+  "ids": [
+   "a366fb275f43",
+   "f979ec6ee9e7",
+   "83a363283762"
+  ],
+  "example_files": [
+   "双均线套利策略Dual-Moving-Average-Arbitrage-Strategy.md",
+   "双边三点移位均线量化交易策略Bilateral-Three-Point-Moving-Average-Quantitative-Trading-Strategy.md",
+   "量化反转与成交量策略组合Quantitative-Reversal-and-Volume-Combo-Strategy.md"
+  ],
+  "verdicts": {
+   "variant": 2,
+   "bug": 1
+  },
+  "notes": [
+   "HPotter FVE accumulates cumulatively; Katsanos FVE sums the signed volume over Period only.",
+   "HPotter FVE accumulates forever (nRes[1] + term) instead of Katsanos' rolling Period-bar sum.",
+   "HPotter volatility FVE: cutoff from stdev(sma(intra)) / stdev(sma(inter)) instead of Katsanos stdev(intra) / stdev(inter)."
+  ]
+ },
+ "modified_pvt": {
+  "n_files": 2,
+  "ids": [
+   "0892b318efc4",
+   "f4644dc5da11"
+  ],
+  "example_files": [
+   "双因子反转与改良价格量趋势组合策略Combo-Strategy-of-Double-Factors-Reversal-and-Improved-Price-Volume-Trend.md",
+   "基于价格量变动的趋势策略Modified-Price-Volume-Trend-Strategy-Based-on-Price-Volume-Changes.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "HPotter Modified Price-Volume Trend on ohlc4 with relative volume.",
+   "HPotter improved price-volume trend on ohlc4 with volume/50000 scaling."
+  ]
+ },
+ "trend_continuation_factor": {
+  "n_files": 2,
+  "ids": [
+   "29decdb7b8df",
+   "9049bca31d77",
+   "daaa8ae198cc",
+   "2e8eb6441fc6",
+   "78be0a639b12"
+  ],
+  "example_files": [
+   "动量趋势延续因子策略Momentum-Trend-Continuation-Factor-Strategy.md",
+   "基于趋势平均线的多重反转策略Trend-Reversal-Strategy-Based-on-Multiple-Moving-Averages.md"
+  ],
+  "verdicts": {
+   "warmup_only": 1,
+   "standard": 4
+  },
+  "notes": [
+   "HPotter TCF (M.H. Pee) minus CF; nz seed 1 only affects start.",
+   "Pee's Trend Continuation Factor +CF accumulation.",
+   "HPotter port of M.H. Pee Trend Continuation Factor plus-CF accumulation."
+  ]
+ },
+ "dsp": {
+  "n_files": 2,
+  "ids": [
+   "2d2737fa9e9f",
+   "c7e0646d0fd8"
+  ],
+  "example_files": [
+   "动量反转组合策略Momentum-Reversal-Combo-Strategy.md",
+   "双机制动态趋势追踪策略Dual-Mechanism-Dynamic-Trend-Tracking-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "HPotter/Ehlers Detrended Synthetic Price ema(hl2,n)-ema(hl2,2n), +1/-1 state.",
+   "HPotter Detrended Synthetic Price: EMA(hl2,n)-EMA(hl2,2n), position state."
+  ]
+ },
+ "reverse_engineering_rsi": {
+  "n_files": 2,
+  "ids": [
+   "b0d0c45467bc",
+   "0973e1d7fcd8",
+   "f939e0c8c3a2"
+  ],
+  "example_files": [
+   "多因子融合反转追踪策略Multi-factor-Reversal-Tracking-Strategy.md",
+   "逆向工程RSI策略Reverse-Engineering-RSI-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2,
+   "warmup_only": 1
+  },
+  "notes": [
+   "HPotter port of Siligardos Reverse Engineering RSI, exact formula.",
+   "HPotter Siligardos Reverse Engineering RSI down-average recursion, seeded 1.",
+   "Siligardos Reverse Engineering RSI AUC recursion (HPotter), seeded with 1."
+  ]
+ },
+ "inertia": {
+  "n_files": 2,
+  "ids": [
+   "1ce27ae445ff"
+  ],
+  "example_files": [
+   "惯性指标交易策略Inertia-Indicator-Trading-Strategy.md",
+   "相对波动指数回测策略Relative-Volatility-Index-Backtesting-Strategy.md"
+  ],
+  "verdicts": {
+   "warmup_only": 1
+  },
+  "notes": [
+   "Dorsey RVI up-leg Wilder smoothing (13/14) seeded at 0, as HPotter Inertia."
+  ]
+ },
+ "signal_to_noise": {
+  "n_files": 2,
+  "ids": [
+   "efb2af3f8fba",
+   "b0a014de8577",
+   "fc743a18547b"
+  ],
+  "example_files": [
+   "双重震荡反转信噪比优化组合策略Dual-Oscillation-Reversal-Signal-to-Noise-Ratio-Optimization-Combo-Strategy.md",
+   "基于信噪比和均线的量化交易策略Signal-to-Noise-Moving-Average-Trading-Strategy-Based-on-Quantitative-Trading.md"
+  ],
+  "verdicts": {
+   "standard": 3
+  },
+  "notes": [
+   "Faithful copy of HPotter Signal To Noise (-10*log of mean 1/close, i=1..length-1).",
+   "HPotter Signal To Noise port: -10*log of mean inverse close.",
+   "HPotter signal-to-noise ratio vs SMA signal."
+  ]
+ },
+ "prime_number_bands": {
+  "n_files": 2,
+  "ids": [
+   "715ed81ccf25",
+   "29867240e2bf",
+   "5505fec0e164",
+   "fb33ba366fb7"
+  ],
+  "example_files": [
+   "双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md",
+   "质数波带回测策略Prime-Number-Bands-Backtest-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 4
+  },
+  "notes": [
+   "HPotter Prime Number Bands upper prime search, faithful copy.",
+   "HPotter Prime Number Bands lower band.",
+   "HPotter Prime Number Bands lower band."
+  ]
+ },
+ "trend_intensity_index": {
+  "n_files": 2,
+  "ids": [
+   "90832c57eca6",
+   "43b8dfbe9ff1"
+  ],
+  "example_files": [
+   "双指数移动平均量化交易策略Double-Exponential-Moving-Average-Quant-Trading-Strategy.md",
+   "基于趋势平均线的多重反转策略Trend-Reversal-Strategy-Based-on-Multiple-Moving-Averages.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "M.H. Pee Trend Intensity Index sums of deviations from SMA.",
+   "M.H. Pee Trend Intensity Index sums of deviations from SMA."
+  ]
+ },
+ "smart_money_index": {
+  "n_files": 2,
+  "ids": [
+   "aafedc5f56c9",
+   "222282fe6723"
+  ],
+  "example_files": [
+   "坚固趋势追踪策略Robust-Trend-Tracking-Strategy.md",
+   "智能资金指数策略回测Smart-Money-Index-SMI-Strategy-Backtest.md"
+  ],
+  "verdicts": {
+   "variant": 1,
+   "standard": 1
+  },
+  "notes": [
+   "HPotter SMI: adds full bar change, subtracts prior hourly bar change; not Hays first-30min/last-hour.",
+   "HPotter Smart Money Index using prior HTF bar open/close (no lookahead)."
+  ]
+ },
+ "csi": {
+  "n_files": 2,
+  "ids": [
+   "75775e105f77",
+   "a56c3b40a738"
+  ],
+  "example_files": [
+   "动量反转双轨配对策略Combo-Momentum-Reversal-Dual-Rail-Matching-Strategy.md",
+   "双重动量指数与反转复合策略Double-Momentum-Index-and-Reversal-Hybrid-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "HPotter port of Wilder Commodity Selection Index with SMA signal.",
+   "HPotter port of Wilder Commodity Selection Index, position state."
+  ]
+ },
+ "dinapoli_detrended_oscillator": {
+  "n_files": 2,
+  "ids": [
+   "a8e561e0ea04",
+   "6aa95964271d"
+  ],
+  "example_files": [
+   "双接头智能突破策略Double-Tops-Smart-Breakout-Strategy.md",
+   "双线交叉反转策略Dual-Moving-Average-Crossover-Reversal-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "HPotter regime-normalized RSI vs SMA, returns pos.",
+   "HPotter DiNapoli detrended oscillator close - sma(close), trigger signal."
+  ]
+ },
+ "fast_slow_kurtosis_hpotter": {
+  "n_files": 1,
+  "ids": [
+   "65320c19926c"
+  ],
+  "example_files": [
+   "多因子反转交易组合策略Multi-factor-Reversal-Trading-Combo-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter Fast and Slow Kurtosis: mom(mom(close,3),1), EMA 65, WMA 3."
+  ]
+ },
+ "statistical_volatility_hpotter": {
+  "n_files": 1,
+  "ids": [
+   "814c5e320f5c"
+  ],
+  "example_files": [
+   "趋势反转波动率联合策略Trend-Reversal-Volatility-Combination-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter extreme-value statistical volatility, +1/-1 bands."
+  ]
+ },
+ "cmo_filtered_hpotter": {
+  "n_files": 1,
+  "ids": [
+   "8e84aa0355e7"
+  ],
+  "example_files": [
+   "双动量反转策略Momentum-Reversal-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter CMOfilt: Chande momentum with noise filter, +1/-1 bands."
+  ]
+ },
+ "ergodic_candlestick_oscillator": {
+  "n_files": 1,
+  "ids": [
+   "a79c2a499b6c"
+  ],
+  "example_files": [
+   "搏浪者策略Surf-Rider-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter Blau Ergodic Candlestick Oscillator, +1/-1 state."
+  ]
+ },
+ "rmta_hpotter": {
+  "n_files": 1,
+  "ids": [
+   "fc721394ef48"
+  ],
+  "example_files": [
+   "递归移动趋势均线结合123形态反转的组合策略Recursive-Moving-Trend-Average-Combined-with-123-Reversal-Pattern-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter Recursive Moving Trend Average (Meyers), exact."
+  ]
+ },
+ "dti_blau": {
+  "n_files": 1,
+  "ids": [
+   "64f5f8228435"
+  ],
+  "example_files": [
+   "双重趋势追踪策略Combo-Trend-Tracking-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter port of Blau Directional Trend Index (triple EMA of HMU-LMD) with signal."
+  ]
+ },
+ "fld": {
+  "n_files": 1,
+  "ids": [
+   "76afaebdb4cd"
+  ],
+  "example_files": [
+   "融合反转与未来推移均线的量化交易策略Quantitative-Trading-Strategy-Integrating-Reversal-and-Future-Lines-of-Demarcation.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter FLD signal: close vs source displaced by Period."
+  ]
+ },
+ "pring_special_k": {
+  "n_files": 1,
+  "ids": [
+   "8dc6f88cc42d"
+  ],
+  "example_files": [
+   "双K弹弓策略Double-K-Crossbow-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter port of Martin Pring's Special K weighted ROC sum with signal."
+  ]
+ },
+ "hpotter_obos": {
+  "n_files": 1,
+  "ids": [
+   "08145481170e"
+  ],
+  "example_files": [
+   "双重趋势追踪策略Dual-Trend-Tracking-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter port: stoch scaled by direction of close vs close[Length], position state."
+  ]
+ },
+ "apz": {
+  "n_files": 1,
+  "ids": [
+   "28d905728b06"
+  ],
+  "example_files": [
+   "双重均线震荡交易策略Double-Moving-Average-Oscillation-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter Adaptive Price Zone: double EMA of close and range with sqrt period."
+  ]
+ },
+ "gann_swing_oscillator": {
+  "n_files": 1,
+  "ids": [
+   "343008c3d41e"
+  ],
+  "example_files": [
+   "基于双重反转套利策略Dual-Reversal-Arbitrage-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter Gann Swing Oscillator port, position state."
+  ]
+ },
+ "hl_range_hist": {
+  "n_files": 1,
+  "ids": [
+   "545db2429515"
+  ],
+  "example_files": [
+   "多时间段动量反转策略Momentum-Reversal-Multi-Timeframe-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter high-low range vs its lagged SMA, position state."
+  ]
+ },
+ "hpotter_dbp": {
+  "n_files": 1,
+  "ids": [
+   "60fde9b01c31"
+  ],
+  "example_files": [
+   "双均线反转突破策略Dual-Moving-Average-Reversal-Breakout-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter abs(close - SMA)*100/close zone position state."
+  ]
+ },
+ "hpotter_high_low_bands": {
+  "n_files": 1,
+  "ids": [
+   "73a200c7a993"
+  ],
+  "example_files": [
+   "双均线策略与随机指标组合Dual-Moving-Average-Strategy-Combined-with-Stochastic-Indicator.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter High/Low Bands: sma(sma(close,n),n) +- percent shift, position state."
+  ]
+ },
+ "made": {
+  "n_files": 1,
+  "ids": [
+   "75a650eca59c"
+  ],
+  "example_files": [
+   "双均线再反转价格突破策略Dual-Moving-Average-Price-Reversal-Breakout-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter Moving Average Displaced Envelope, position state."
+  ]
+ },
+ "comparative_relative_strength": {
+  "n_files": 1,
+  "ids": [
+   "e3c5db50d7cc"
+  ],
+  "example_files": [
+   "基于逆转与相对强度的组合量化策略Quantitative-Strategy-Based-on-Reversal-and-Comparative-Relative-Strength.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter SMA of price ratio of two symbols, position state."
+  ]
+ },
+ "dynamic_momentum_index": {
+  "n_files": 1,
+  "ids": [
+   "ff6b181d2367"
+  ],
+  "example_files": [
+   "动量张弛指标与123形态策略Momentum-Oscillator-123-Pattern-Strategy.md"
+  ],
+  "verdicts": {
+   "bug": 1
+  },
+  "notes": [
+   "HPotter DMI: period 14/sma(stdev) (missing stdev/sma ratio), then RSI of the period series, not RSI of close with dynamic length."
+  ]
+ },
+ "fractal_chaos_bands": {
+  "n_files": 1,
+  "ids": [
+   "7f796be5fff2"
+  ],
+  "example_files": [
+   "双重反转震荡带趋势跟踪策略Dual-Reversal-Oscillating-Band-Trend-Following-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter Fractal Chaos Bands breakout, returns pos."
+  ]
+ },
+ "hpotter_money_flow": {
+  "n_files": 1,
+  "ids": [
+   "8daa590f1ba6"
+  ],
+  "example_files": [
+   "反转与资金流动量组合策略-Reversal-and-Money-Flow-Combo-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter fast/slow EMA of summed intrabar money flow, returns pos."
+  ]
+ },
+ "polarized_fractal_efficiency": {
+  "n_files": 1,
+  "ids": [
+   "98ff615c83f1"
+  ],
+  "example_files": [
+   "多因子反转交易策略Multi-factor-Reversal-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "bug": 1
+  },
+  "notes": [
+   "HPotter PFE hard-codes +100 (=10^2) in the net-distance term regardless of Length; correct only for 10 bars."
+  ]
+ },
+ "gimelfarb_bull_bear_balance": {
+  "n_files": 1,
+  "ids": [
+   "d388b1697445"
+  ],
+  "example_files": [
+   "双重均衡牛熊策略Dual-Balanced-Bulls-and-Bears-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "HPotter port of Gimelfarb Bull and Bear Balance indicator."
+  ]
+ }
+}

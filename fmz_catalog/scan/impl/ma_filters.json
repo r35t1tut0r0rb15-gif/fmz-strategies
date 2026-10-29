@@ -1,0 +1,870 @@
+{
+ "evwma": {
+  "n_files": 7,
+  "ids": [
+   "16ba4bf12972",
+   "83881a702bb8",
+   "6757a478adae",
+   "642ae0a27592",
+   "2033ef89e329",
+   "d06dffd60c30"
+  ],
+  "example_files": [
+   "基于EVWMA指标的趋势跟踪策略EVWMA-Trend-Following-Strategy.md",
+   "基于EVWMA的MACD交易策略EVWMA-based-MACD-Trading-Strategy.md",
+   "基于EVWMA的布林带策略EVWBB-Strategy-Based-on-EVWMA-and-Bollinger-Bands.md"
+  ],
+  "verdicts": {
+   "standard": 4,
+   "warmup_only": 1,
+   "bug": 1
+  },
+  "notes": [
+   "Elastic VWMA (Fries), N = volume sum, close seed.",
+   "Elastic VWMA (Fries) recursion seeded at 0 instead of price.",
+   "Elastic VWMA (Fries/LazyBear): N = volume sum, seeded with close."
+  ]
+ },
+ "ma_angle_atr": {
+  "n_files": 6,
+  "ids": [
+   "90f62eee95d5",
+   "baf21c6061de",
+   "5b162e960b51",
+   "c5a0ccef795a",
+   "ee15893b904b"
+  ],
+  "example_files": [
+   "8周期和21周期的移动平均线策略Dual-Moving-Average-Strategy.md",
+   "Angle-Attack-Follow-Line-Indicator.md",
+   "动量型指数趋势跟随策略Momentum-Index-ETF-Trend-Following-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 5
+  },
+  "notes": [
+   "Slope angle atan(change/ATR) in degrees; common community formula.",
+   "Angle of one-bar change normalized by ATR(14).",
+   "Angle of source change over lookback normalized by ATR, in degrees."
+  ]
+ },
+ "kalman_alpha_beta": {
+  "n_files": 6,
+  "ids": [
+   "61ca98e5812e",
+   "f58a2c5f7506",
+   "00704ab9913c"
+  ],
+  "example_files": [
+   "双均线策略360Dual-Moving-Average-Strategy-360.md",
+   "基于Hull移动平均线和WT指标交叉的交易策略Trading-Strategy-Based-on-Hull-Moving-Average-and-WT-Cross.md",
+   "基于卡尔曼滤波的趋势跟踪策略Kalman-Filter-Based-Trend-Tracking-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 3
+  },
+  "notes": [
+   "Common TradingView alpha-beta Kalman smoother (gain sqrt(2g), velocity g), seeded with price.",
+   "Velocity term of the community Pine Kalman (alpha-beta) filter: alpha=sqrt(2g/1e4), beta=g/1e4.",
+   "Community Pine Kalman (alpha-beta) filter, alpha=sqrt(2g/1e4), beta=g/1e4."
+  ]
+ },
+ "ssl_hybrid_ma": {
+  "n_files": 4,
+  "ids": [
+   "7c952705413c",
+   "c5236f494d29"
+  ],
+  "example_files": [
+   "QQE-MOD-SSL-Hybrid-Waddah-Attar-Explosion.md",
+   "基于SSL通道和波浪趋势的量化交易策略SSL-Channel-and-Wave-Trend-Quantitative-Trading-Strategy.md",
+   "多指标趋势追踪策略Multi-indicator-Trend-Following-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "SSL Hybrid (Mihkel00) MA selector; JMA matches everget, MF/VAMA/Kijun v2 copies.",
+   "SSL Hybrid (Mihkel00) MA selector copy."
+  ]
+ },
+ "sine_wma": {
+  "n_files": 3,
+  "ids": [
+   "58798ca239a2",
+   "6b6130206f10"
+  ],
+  "example_files": [
+   "MA-Emperor-insiliconot.md",
+   "移动平均交叉双向交易策略Moving-Average-Crossover-Strategy-for-Two-way-Trading.md",
+   "移动平均线交叉趋势追踪策略Moving-Average-Crossover-Trend-Following-Strategy.md"
+  ],
+  "verdicts": {
+   "bug": 2
+  },
+  "notes": [
+   "Weight sin(i*pi/(n+1)) starts at i=0, so current bar gets weight 0; standard uses sin((i+1)*pi/(n+1)).",
+   "Sine weights start at i=0 so current bar weight is 0; standard sin((i+1)*pi/(n+1))."
+  ]
+ },
+ "rwma": {
+  "n_files": 3,
+  "ids": [
+   "701a5f2c33b9",
+   "f2f6606edcc8"
+  ],
+  "example_files": [
+   "RSI趋势跟踪策略RSI-Trend-Following-Strategy.md",
+   "动量趋势同步策略RMI-Trend-Sync-Strategy.md",
+   "基于RSI和加权移动平均线的趋势跟踪策略Trend-Following-Strategy-Based-on-RSI-and-Weighted-Moving-Average.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "TZack88 RMI Trend Sniper range-weighted MA, exact copy.",
+   "Author's own retro-weighted MA (newest 4 bars weight x, older 1.3x)."
+  ]
+ },
+ "variable_ma": {
+  "n_files": 3,
+  "ids": [
+   "a3ea89a120ce",
+   "1143a6624b5b",
+   "5e46a0147139",
+   "9f6f768eedb8",
+   "a70893d22435",
+   "fa6f61e12ac1"
+  ],
+  "example_files": [
+   "可变移动平均线-TradingVMA-策略TradingVMA-Variable-Moving-Average-Trading-Strategy.md",
+   "多时间轴趋势跟踪策略Multi-Timeframe-Trend-Following-Strategy.md",
+   "多重趋势交叉策略Multi-Trend-Crossover-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 18,
+   "warmup_only": 1
+  },
+  "notes": [
+   "LazyBear Variable Moving Average recursion.",
+   "LazyBear VMA iS (smoothed DI difference ratio), exact copy.",
+   "LazyBear VMA final recursion seeded with SMA instead of 0."
+  ]
+ },
+ "nma_durschner": {
+  "n_files": 3,
+  "ids": [
+   "18741b5a0cfd",
+   "d4ad6415ebc8"
+  ],
+  "example_files": [
+   "OBV-MACD-Indicator.md",
+   "Smooth-HA-Candles-MTF-v1.md",
+   "均自适应通道价格突破策略Adaptive-Moving-Average-Channel-Breakout-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Dürschner New Weighted MA: (1+a)*WMA - a*WMA(WMA), lambda=2.",
+   "Durschner Moving Average 3.0 (NMA) formula."
+  ]
+ },
+ "geometric_mean_ma": {
+  "n_files": 3,
+  "ids": [
+   "afef761bb001"
+  ],
+  "example_files": [
+   "MA-Emperor-insiliconot.md",
+   "移动平均交叉双向交易策略Moving-Average-Crossover-Strategy-for-Two-way-Trading.md",
+   "移动平均线交叉趋势追踪策略Moving-Average-Crossover-Trend-Following-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Rolling geometric mean of price over per bars."
+  ]
+ },
+ "epanechnikov_kernel_ma": {
+  "n_files": 3,
+  "ids": [
+   "b0ea837ece39",
+   "55d78c64c94e"
+  ],
+  "example_files": [
+   "基于核平滑多重均线的自适应趋势追踪系统-Adaptive-Trend-Following-System-with-Kernel-Smoothed-Multiple-Moving-Averages.md",
+   "多核心回归动态反应器趋势跟踪策略-Multi-Kernel-Regression-Dynamic-Reactor-Trend-Following-Strategy.md",
+   "多核心回归动态趋势跟踪交易策略-Multi-Kernel-Regression-Dynamic-Trend-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Normalized Epanechnikov kernel weights for kernel-smoothed MA.",
+   "Epanechnikov-kernel weighted average of past closes (Nadaraya-Watson style, no lookahead)."
+  ]
+ },
+ "trama": {
+  "n_files": 3,
+  "ids": [
+   "0c8fa8f418e7",
+   "22eacb25f1d7"
+  ],
+  "example_files": [
+   "基于自适应移动平均线和趋势突破的交易策略Trend-Breakout-Strategy-Based-on-Adaptive-MA-and-Trendlines.md",
+   "多重过滤器SuperTrend交易策略SuperTrend-Trading-Strategy-with-Multiple-Filters.md",
+   "月度趋势突破策略Monthly-Trend-Breakout-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "LuxAlgo TRAMA recursion.",
+   "LuxAlgo TRAMA recursion."
+  ]
+ },
+ "step_ma": {
+  "n_files": 3,
+  "ids": [
+   "f4e22c0b71d1",
+   "f66235c41bc1",
+   "5dd1a82ae1e5"
+  ],
+  "example_files": [
+   "Goblin-Town-60min-可用版.md",
+   "T-Step-LSMA.md",
+   "综合技术指标策略Multi-indicator-Combination-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 3
+  },
+  "notes": [
+   "Deadband step line: follows src only when it moves beyond dev.",
+   "T-Step LSMA deadband step line.",
+   "Ladder step MA double-SMA smoothed (same script as 4h version)."
+  ]
+ },
+ "kalman_filter": {
+  "n_files": 3,
+  "ids": [
+   "b573b068c110",
+   "e4fb7ea58afb",
+   "5bd594b0d476"
+  ],
+  "example_files": [
+   "BRAHMASTRA.md",
+   "基于卡尔曼滤波和均值回归的量化交易策略Transitive-Ratio-Trading-Strategy-Based-on-Kalman-Filter-and-Mean-Reversion.md",
+   "基于霍尔速度均线和卡尔曼滤波的趋势跟踪策略Hull-Moving-Average-and-Kalman-Filter-Based-Trend-Tracking-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 3
+  },
+  "notes": [
+   "Pine community Kalman smoother velocity update (Distance*K/100).",
+   "Pine community Kalman smoother (gain g/10000).",
+   "Common TV 'Kahlman' smoother (gain g, velocity term) as in Hull Suite/BRAHMASTRA scripts."
+  ]
+ },
+ "obv_macd": {
+  "n_files": 2,
+  "ids": [
+   "0343c78a106a",
+   "54fca81c5658",
+   "a5190d316f50",
+   "1f8f917a2812",
+   "3c0734609bcd",
+   "c0714298d077"
+  ],
+  "example_files": [
+   "OBV-MACD-Indicator.md",
+   "Smooth-HA-Candles-MTF-v1.md"
+  ],
+  "verdicts": {
+   "standard": 6,
+   "variant": 1
+  },
+  "notes": [
+   "DEMA of zero-lag source, lag=round((len-1)/2), OBV MACD script.",
+   "Triple-TEMA composite from OBV MACD script.",
+   "Double ZLEMA 2*z1-z2 from OBV MACD script."
+  ]
+ },
+ "henderson_ma": {
+  "n_files": 2,
+  "ids": [
+   "1ae7631d9e99",
+   "66598abde5cd",
+   "76753031521e"
+  ],
+  "example_files": [
+   "平滑移动平均带策略The-Smooth-Moving-Average-Ribbon-Strategy.md",
+   "平滑移动平均线策略Smoothed-Moving-Average-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 3
+  },
+  "notes": [
+   "Henderson weighted MA (everget), standard Henderson weights applied trailing.",
+   "Henderson weighted moving average loop.",
+   "Henderson MA weight formula."
+  ]
+ },
+ "retro_wma": {
+  "n_files": 2,
+  "ids": [
+   "5987494448aa"
+  ],
+  "example_files": [
+   "RSI趋势跟踪策略RSI-Trend-Following-Strategy.md",
+   "基于RSI和加权移动平均线的趋势跟踪策略Trend-Following-Strategy-Based-on-RSI-and-Weighted-Moving-Average.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Author's retro weighted MA: last 4 bars weight x, older 1.3x; no external reference."
+  ]
+ },
+ "session_vwma": {
+  "n_files": 2,
+  "ids": [
+   "bbd49647d6db"
+  ],
+  "example_files": [
+   "交易时段VWMA动态价位上下穿透策略-Session-Based-VWMA-Dynamic-Level-Breakthrough-Strategy.md",
+   "基于会话VWMA的日内合成期权策略多空信号自适应交易系统-Session-VWMA-Based-Intraday-Synthetic-Options-Strategy-Adaptive-Trading-System-with-Long-Short-Signals.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "VWMA with length capped at bars since session start; author's own."
+  ]
+ },
+ "uhl_ma": {
+  "n_files": 2,
+  "ids": [
+   "0e62275e3a23",
+   "6a55524ed514",
+   "ce715f0923c3"
+  ],
+  "example_files": [
+   "15MIN-BTCUSDTPERP-BOT.md",
+   "基于Uhl-MA的自适应均线交叉策略Adaptive-Moving-Average-Crossover-Strategy-Based-on-Uhl-MA.md"
+  ],
+  "verdicts": {
+   "standard": 3
+  },
+  "notes": [
+   "alexgrover Uhl MA crossover system CMA/CTS recursion.",
+   "alexgrover Uhl MA Crossover CTS line: corrected-average gain kb from variance ratio.",
+   "Uhl Corrected Moving Average recursion with gain ka."
+  ]
+ },
+ "ftsma": {
+  "n_files": 2,
+  "ids": [
+   "fac3eb5994c0",
+   "102228bbb029",
+   "36ee81eefe03",
+   "8f29569361e8",
+   "2e1ceb8a0011",
+   "dac3c42b96d2"
+  ],
+  "example_files": [
+   "FTSMA-Trend-is-your-frend.md",
+   "低频傅里叶变换趋势跟踪移动平均线策略Low-Frequency-Fourier-Transform-Trend-Following-Moving-Average-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 8
+  },
+  "notes": [
+   "DFT sine term over N bars for Fourier-transform smoothing.",
+   "DFT imaginary component of the FTSMA Fourier-smoothing script.",
+   "Inverse DFT reconstruction of FTSMA script."
+  ]
+ },
+ "gaussian_kernel_ma": {
+  "n_files": 2,
+  "ids": [
+   "17951c65b851",
+   "025db67d9b86"
+  ],
+  "example_files": [
+   "Ichimoku-Oscillator-ChartPrime-指标.md",
+   "基于核平滑多重均线的自适应趋势追踪系统-Adaptive-Trend-Following-System-with-Kernel-Smoothed-Multiple-Moving-Averages.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "ChartPrime Ichimoku Oscillator gaussian kernel smoother.",
+   "Normalised Gaussian window weights centred on window middle."
+  ]
+ },
+ "windowed_ema": {
+  "n_files": 2,
+  "ids": [
+   "611c2f6f4a44",
+   "d0f844410739"
+  ],
+  "example_files": [
+   "EMA-200-交叉量价趋势策略EMA-200-Crossover-with-Volume-and-Trend-Strategy.md",
+   "双指数平滑趋势跟踪交易系统-Dual-Exponential-Smoothing-Trend-Following-Trading-System.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Normalized exponential weights over finite lookback.",
+   "Normalized exponential weights over finite lookback."
+  ]
+ },
+ "quadratic_wma": {
+  "n_files": 1,
+  "ids": [
+   "360c4bd5a612"
+  ],
+  "example_files": [
+   "MACD和RSI结合的自然交易策略-MACD-and-RSI-Combined-Natural-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Weights (n-i)^2 weighted MA; author's function."
+  ]
+ },
+ "signed_wma": {
+  "n_files": 1,
+  "ids": [
+   "4303da9f0813",
+   "991ff7dcf517"
+  ],
+  "example_files": [
+   "Volume-Divergence.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Linear weights signed by candle direction; author's volume divergence function.",
+   "Linear weights signed by candle direction; author's function."
+  ]
+ },
+ "chebyshev_ma": {
+  "n_files": 1,
+  "ids": [
+   "550601711fe6"
+  ],
+  "example_files": [
+   "Ichimoku-Oscillator-ChartPrime-指标.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "One-pole Chebyshev Type I smoothing, common TV community formula."
+  ]
+ },
+ "slope_adaptive_ma": {
+  "n_files": 1,
+  "ids": [
+   "bfcf3a155bd0"
+  ],
+  "example_files": [
+   "Slope-Adaptive-Moving-Average.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Range-position adaptive alpha squared MA; zero seed as published."
+  ]
+ },
+ "ama_durenard": {
+  "n_files": 1,
+  "ids": [
+   "8379a8d887e3"
+  ],
+  "example_files": [
+   "均自适应通道价格突破策略Adaptive-Moving-Average-Channel-Breakout-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Durenard adaptive MA using previous bar alpha (alpha computed later), per book."
+  ]
+ },
+ "binomial_ma": {
+  "n_files": 1,
+  "ids": [
+   "cc794ddbeba9",
+   "7345387b8363"
+  ],
+  "example_files": [
+   "二项式移动平均趋势策略Binomial-Moving-Average-Trend-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Binomial-weighted MA, weights C(2n-1,k) normalized, heaviest on newest bar.",
+   "Binomial-coefficient weighted MA normalisation loop."
+  ]
+ },
+ "edsma": {
+  "n_files": 1,
+  "ids": [
+   "e31ba52c2674",
+   "5608817ec195"
+  ],
+  "example_files": [
+   "多重趋势交叉策略Multi-Trend-Crossover-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "EDSMA adaptive EMA recursion stage; nz seed.",
+   "Ehlers Deviation-Scaled MA [everget] recursion, alpha = 5 x abs(scaled filter) / length."
+  ]
+ },
+ "vawma": {
+  "n_files": 1,
+  "ids": [
+   "f7e041f6855a"
+  ],
+  "example_files": [
+   "VAWSI和趋势持续性反转策略结合动态长度计算的多指标综合分析系统-VAWSI-and-Trend-Persistence-Reversal-Strategy-with-Dynamic-Length-Calculation-Multi-Indicator-Analysis-System.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Author's volume- and ATR-weighted MA over length+1 bars."
+  ]
+ },
+ "hysteresis_filter": {
+  "n_files": 1,
+  "ids": [
+   "fafa4b4c6e86"
+  ],
+  "example_files": [
+   "自适应网格交易策略与动态调整机制-Adaptive-Grid-Trading-Strategy-with-Dynamic-Adjustment-Mechanism.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Lazy line: holds value until change exceeds lzf fraction."
+  ]
+ },
+ "range_adaptive_ema": {
+  "n_files": 1,
+  "ids": [
+   "0e7103163c3d"
+  ],
+  "example_files": [
+   "动态突破均线交易策略Dynamic-Moving-Average-Crossover-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Body/HTF-range adaptive EMA; HTF high[1]/low[1] with lookahead_on, so no future data."
+  ]
+ },
+ "essma": {
+  "n_files": 1,
+  "ids": [
+   "52c4c16053d8"
+  ],
+  "example_files": [
+   "ESSMA.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "ESSMA script's weighted combination of SMMA/EMA/SMA/WMA/RMA plus open/close."
+  ]
+ },
+ "vwema": {
+  "n_files": 1,
+  "ids": [
+   "8443afa48ace"
+  ],
+  "example_files": [
+   "RSI与布林带结合的短线交易策略RSI-Bollinger-Bands-Short-term-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Exponential volume-weighted MA: ema(src*vol)/ema(vol)."
+  ]
+ },
+ "jurik_rsx": {
+  "n_files": 1,
+  "ids": [
+   "bd98e2a0280f"
+  ],
+  "example_files": [
+   "多时间轴均线系统交易策略Multi-Timeframe-Moving-Average-System-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Jurik RSX standard Pine port (f8..f90 chain)."
+  ]
+ },
+ "sine_fir_filter": {
+  "n_files": 1,
+  "ids": [
+   "181d1246b5fb"
+  ],
+  "example_files": [
+   "双指标组合疯狂日内scalping策略Dual-Indicators-Combo-Crazy-Intraday-Scalping-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "FIR with weights sin(2*pi*x^alpha)*(1-x^beta), normalised by weight sum, as in source script."
+  ]
+ },
+ "deadband_double_sma": {
+  "n_files": 1,
+  "ids": [
+   "22384204d377"
+  ],
+  "example_files": [
+   "Goblin-Town-60min-可用版.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Author's custom MA: double SMA of source clamped to prior value +- cumulative-deviation band."
+  ]
+ },
+ "moonflag_average": {
+  "n_files": 1,
+  "ids": [
+   "3328ad694d1f"
+  ],
+  "example_files": [
+   "月旗MACD动量StochRSI交易策略MoonFlag-MACD-Momentum-StochRSI-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "MoonFlag custom triple-chained WMA smoother, as in source script."
+  ]
+ },
+ "kernel_regression_chartprime": {
+  "n_files": 1,
+  "ids": [
+   "733d68785e0f"
+  ],
+  "example_files": [
+   "Ichimoku-Oscillator-ChartPrime-指标.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "ChartPrime Gaussian-kernel weighted average of past values."
+  ]
+ },
+ "beta_kernel_ma": {
+  "n_files": 1,
+  "ids": [
+   "88de4f81b58b"
+  ],
+  "example_files": [
+   "基于核平滑多重均线的自适应趋势追踪系统-Adaptive-Trend-Following-System-with-Kernel-Smoothed-Multiple-Moving-Averages.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Normalised Beta-distribution kernel weights."
+  ]
+ },
+ "vawsi_weighted_ma": {
+  "n_files": 1,
+  "ids": [
+   "ac8e4b9be88b"
+  ],
+  "example_files": [
+   "VAWSI和趋势持续性反转策略结合动态长度计算的多指标综合分析系统-VAWSI-and-Trend-Persistence-Reversal-Strategy-with-Dynamic-Length-Calculation-Multi-Indicator-Analysis-System.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Weights by average of relative volume and relative ATR, as in source script."
+  ]
+ },
+ "tillson_gd": {
+  "n_files": 1,
+  "ids": [
+   "cd6161732857"
+  ],
+  "example_files": [
+   "双移动平均反转趋势策略Dual-Moving-Average-Counter-Trend-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Tillson Generalized DEMA, T3 building block."
+  ]
+ },
+ "gaussian_fir": {
+  "n_files": 1,
+  "ids": [
+   "0450465b5621"
+  ],
+  "example_files": [
+   "高斯通道趋势跟踪与随机相对强弱指标交易策略-Gaussian-Channel-Trend-Following-with-Stochastic-RSI-Trading-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Gaussian-weighted window average over past bars (no lookahead)."
+  ]
+ },
+ "rema": {
+  "n_files": 1,
+  "ids": [
+   "13682940b312"
+  ],
+  "example_files": [
+   "基于适应性正则化移动平均线的跨市场套利策略Adaptive-Regularized-Moving-Average-Cross-Market-Arbitrage-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Satchwell Regularized EMA, lambda 0.5."
+  ]
+ },
+ "chebyshev_filter": {
+  "n_files": 1,
+  "ids": [
+   "44e7fbbc31c5"
+  ],
+  "example_files": [
+   "Ichimoku-Oscillator-ChartPrime-指标.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "ChartPrime Chebyshev type I smoothing with optional Gaussian kernel."
+  ]
+ },
+ "fir_filter": {
+  "n_files": 1,
+  "ids": [
+   "a756ee77e465"
+  ],
+  "example_files": [
+   "双指标组合疯狂日内scalping策略Dual-Indicators-Combo-Crazy-Intraday-Scalping-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "FIR weighted sum loop with precomputed weights."
+  ]
+ },
+ "accelerating_adaptive_ma": {
+  "n_files": 1,
+  "ids": [
+   "1ab7da0983fd"
+  ],
+  "example_files": [
+   "双MA动量突破策略Dual-MA-Momentum-Breakout-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Custom MA whose alpha grows by k on new band extremes and resets on cross (uses alpha[1])."
+  ]
+ },
+ "knn_mean": {
+  "n_files": 1,
+  "ids": [
+   "581e30a6722b",
+   "9ac0fc45136a"
+  ],
+  "example_files": [
+   "KNN-机器学习策略基于-K-近邻算法的趋势预测交易系统-KNN-Machine-Learning-Strategy-Trend-Prediction-Trading-System-Based-on-K-Nearest-Neighbors-Algorithm.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Mean of k past values closest to target (KNN smoother helper).",
+   "KNN closest-values search loop."
+  ]
+ },
+ "kernel_ma": {
+  "n_files": 1,
+  "ids": [
+   "62ee285e87d8",
+   "7854da8c558f"
+  ],
+  "example_files": [
+   "基于核平滑多重均线的自适应趋势追踪系统-Adaptive-Trend-Following-System-with-Kernel-Smoothed-Multiple-Moving-Averages.md"
+  ],
+  "verdicts": {
+   "standard": 2
+  },
+  "notes": [
+   "Generic kernel-weighted sum over past bars.",
+   "Generic kernel-weighted sum over past bars."
+  ]
+ },
+ "conditional_ema": {
+  "n_files": 1,
+  "ids": [
+   "739e212ca6df"
+  ],
+  "example_files": [
+   "多重技术指标黄金即时变动检测与风险管理策略-Multi-Technical-Indicator-Gold-Real-Time-Movement-Detection-and-Risk-Management-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "EMA of values sampled when a condition is true."
+  ]
+ },
+ "ahrens_ma": {
+  "n_files": 1,
+  "ids": [
+   "a9b33f5053b6"
+  ],
+  "example_files": [
+   "基于动量顺势策略Momentum-Trend-Following-Strategy.md"
+  ],
+  "verdicts": {
+   "standard": 1
+  },
+  "notes": [
+   "Richard Ahrens moving average (TASC 2013): prev + (src - (prev + prev[n])/2)/n."
+  ]
+ }
+}

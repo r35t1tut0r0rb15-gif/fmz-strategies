@@ -1,0 +1,2941 @@
+{
+ "ma_filters": {
+  "evwma": {
+   "n_files": 7,
+   "ids": [
+    "16ba4bf12972",
+    "83881a702bb8",
+    "6757a478adae",
+    "642ae0a27592",
+    "2033ef89e329",
+    "d06dffd60c30"
+   ],
+   "example_files": [
+    "基于EVWMA指标的趋势跟踪策略EVWMA-Trend-Following-Strategy.md",
+    "基于EVWMA的MACD交易策略EVWMA-based-MACD-Trading-Strategy.md",
+    "基于EVWMA的布林带策略EVWBB-Strategy-Based-on-EVWMA-and-Bollinger-Bands.md"
+   ],
+   "verdicts": {
+    "standard": 4,
+    "warmup_only": 1,
+    "bug": 1
+   },
+   "notes": [
+    "Elastic VWMA (Fries), N = volume sum, close seed.",
+    "Elastic VWMA (Fries) recursion seeded at 0 instead of price.",
+    "Elastic VWMA (Fries/LazyBear): N = volume sum, seeded with close."
+   ]
+  },
+  "ma_angle_atr": {
+   "n_files": 6,
+   "ids": [
+    "90f62eee95d5",
+    "baf21c6061de",
+    "5b162e960b51",
+    "c5a0ccef795a",
+    "ee15893b904b"
+   ],
+   "example_files": [
+    "8周期和21周期的移动平均线策略Dual-Moving-Average-Strategy.md",
+    "Angle-Attack-Follow-Line-Indicator.md",
+    "动量型指数趋势跟随策略Momentum-Index-ETF-Trend-Following-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 5
+   },
+   "notes": [
+    "Slope angle atan(change/ATR) in degrees; common community formula.",
+    "Angle of one-bar change normalized by ATR(14).",
+    "Angle of source change over lookback normalized by ATR, in degrees."
+   ]
+  },
+  "kalman_alpha_beta": {
+   "n_files": 6,
+   "ids": [
+    "61ca98e5812e",
+    "f58a2c5f7506",
+    "00704ab9913c"
+   ],
+   "example_files": [
+    "双均线策略360Dual-Moving-Average-Strategy-360.md",
+    "基于Hull移动平均线和WT指标交叉的交易策略Trading-Strategy-Based-on-Hull-Moving-Average-and-WT-Cross.md",
+    "基于卡尔曼滤波的趋势跟踪策略Kalman-Filter-Based-Trend-Tracking-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 3
+   },
+   "notes": [
+    "Common TradingView alpha-beta Kalman smoother (gain sqrt(2g), velocity g), seeded with price.",
+    "Velocity term of the community Pine Kalman (alpha-beta) filter: alpha=sqrt(2g/1e4), beta=g/1e4.",
+    "Community Pine Kalman (alpha-beta) filter, alpha=sqrt(2g/1e4), beta=g/1e4."
+   ]
+  },
+  "ssl_hybrid_ma": {
+   "n_files": 4,
+   "ids": [
+    "7c952705413c",
+    "c5236f494d29"
+   ],
+   "example_files": [
+    "QQE-MOD-SSL-Hybrid-Waddah-Attar-Explosion.md",
+    "基于SSL通道和波浪趋势的量化交易策略SSL-Channel-and-Wave-Trend-Quantitative-Trading-Strategy.md",
+    "多指标趋势追踪策略Multi-indicator-Trend-Following-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "SSL Hybrid (Mihkel00) MA selector; JMA matches everget, MF/VAMA/Kijun v2 copies.",
+    "SSL Hybrid (Mihkel00) MA selector copy."
+   ]
+  },
+  "sine_wma": {
+   "n_files": 3,
+   "ids": [
+    "58798ca239a2",
+    "6b6130206f10"
+   ],
+   "example_files": [
+    "MA-Emperor-insiliconot.md",
+    "移动平均交叉双向交易策略Moving-Average-Crossover-Strategy-for-Two-way-Trading.md",
+    "移动平均线交叉趋势追踪策略Moving-Average-Crossover-Trend-Following-Strategy.md"
+   ],
+   "verdicts": {
+    "bug": 2
+   },
+   "notes": [
+    "Weight sin(i*pi/(n+1)) starts at i=0, so current bar gets weight 0; standard uses sin((i+1)*pi/(n+1)).",
+    "Sine weights start at i=0 so current bar weight is 0; standard sin((i+1)*pi/(n+1))."
+   ]
+  },
+  "rwma": {
+   "n_files": 3,
+   "ids": [
+    "701a5f2c33b9",
+    "f2f6606edcc8"
+   ],
+   "example_files": [
+    "RSI趋势跟踪策略RSI-Trend-Following-Strategy.md",
+    "动量趋势同步策略RMI-Trend-Sync-Strategy.md",
+    "基于RSI和加权移动平均线的趋势跟踪策略Trend-Following-Strategy-Based-on-RSI-and-Weighted-Moving-Average.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "TZack88 RMI Trend Sniper range-weighted MA, exact copy.",
+    "Author's own retro-weighted MA (newest 4 bars weight x, older 1.3x)."
+   ]
+  },
+  "variable_ma": {
+   "n_files": 3,
+   "ids": [
+    "a3ea89a120ce",
+    "1143a6624b5b",
+    "5e46a0147139",
+    "9f6f768eedb8",
+    "a70893d22435",
+    "fa6f61e12ac1"
+   ],
+   "example_files": [
+    "可变移动平均线-TradingVMA-策略TradingVMA-Variable-Moving-Average-Trading-Strategy.md",
+    "多时间轴趋势跟踪策略Multi-Timeframe-Trend-Following-Strategy.md",
+    "多重趋势交叉策略Multi-Trend-Crossover-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 18,
+    "warmup_only": 1
+   },
+   "notes": [
+    "LazyBear Variable Moving Average recursion.",
+    "LazyBear VMA iS (smoothed DI difference ratio), exact copy.",
+    "LazyBear VMA final recursion seeded with SMA instead of 0."
+   ]
+  },
+  "nma_durschner": {
+   "n_files": 3,
+   "ids": [
+    "18741b5a0cfd",
+    "d4ad6415ebc8"
+   ],
+   "example_files": [
+    "OBV-MACD-Indicator.md",
+    "Smooth-HA-Candles-MTF-v1.md",
+    "均自适应通道价格突破策略Adaptive-Moving-Average-Channel-Breakout-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Dürschner New Weighted MA: (1+a)*WMA - a*WMA(WMA), lambda=2.",
+    "Durschner Moving Average 3.0 (NMA) formula."
+   ]
+  },
+  "geometric_mean_ma": {
+   "n_files": 3,
+   "ids": [
+    "afef761bb001"
+   ],
+   "example_files": [
+    "MA-Emperor-insiliconot.md",
+    "移动平均交叉双向交易策略Moving-Average-Crossover-Strategy-for-Two-way-Trading.md",
+    "移动平均线交叉趋势追踪策略Moving-Average-Crossover-Trend-Following-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Rolling geometric mean of price over per bars."
+   ]
+  },
+  "epanechnikov_kernel_ma": {
+   "n_files": 3,
+   "ids": [
+    "b0ea837ece39",
+    "55d78c64c94e"
+   ],
+   "example_files": [
+    "基于核平滑多重均线的自适应趋势追踪系统-Adaptive-Trend-Following-System-with-Kernel-Smoothed-Multiple-Moving-Averages.md",
+    "多核心回归动态反应器趋势跟踪策略-Multi-Kernel-Regression-Dynamic-Reactor-Trend-Following-Strategy.md",
+    "多核心回归动态趋势跟踪交易策略-Multi-Kernel-Regression-Dynamic-Trend-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Normalized Epanechnikov kernel weights for kernel-smoothed MA.",
+    "Epanechnikov-kernel weighted average of past closes (Nadaraya-Watson style, no lookahead)."
+   ]
+  },
+  "trama": {
+   "n_files": 3,
+   "ids": [
+    "0c8fa8f418e7",
+    "22eacb25f1d7"
+   ],
+   "example_files": [
+    "基于自适应移动平均线和趋势突破的交易策略Trend-Breakout-Strategy-Based-on-Adaptive-MA-and-Trendlines.md",
+    "多重过滤器SuperTrend交易策略SuperTrend-Trading-Strategy-with-Multiple-Filters.md",
+    "月度趋势突破策略Monthly-Trend-Breakout-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "LuxAlgo TRAMA recursion.",
+    "LuxAlgo TRAMA recursion."
+   ]
+  },
+  "step_ma": {
+   "n_files": 3,
+   "ids": [
+    "f4e22c0b71d1",
+    "f66235c41bc1",
+    "5dd1a82ae1e5"
+   ],
+   "example_files": [
+    "Goblin-Town-60min-可用版.md",
+    "T-Step-LSMA.md",
+    "综合技术指标策略Multi-indicator-Combination-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 3
+   },
+   "notes": [
+    "Deadband step line: follows src only when it moves beyond dev.",
+    "T-Step LSMA deadband step line.",
+    "Ladder step MA double-SMA smoothed (same script as 4h version)."
+   ]
+  },
+  "kalman_filter": {
+   "n_files": 3,
+   "ids": [
+    "b573b068c110",
+    "e4fb7ea58afb",
+    "5bd594b0d476"
+   ],
+   "example_files": [
+    "BRAHMASTRA.md",
+    "基于卡尔曼滤波和均值回归的量化交易策略Transitive-Ratio-Trading-Strategy-Based-on-Kalman-Filter-and-Mean-Reversion.md",
+    "基于霍尔速度均线和卡尔曼滤波的趋势跟踪策略Hull-Moving-Average-and-Kalman-Filter-Based-Trend-Tracking-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 3
+   },
+   "notes": [
+    "Pine community Kalman smoother velocity update (Distance*K/100).",
+    "Pine community Kalman smoother (gain g/10000).",
+    "Common TV 'Kahlman' smoother (gain g, velocity term) as in Hull Suite/BRAHMASTRA scripts."
+   ]
+  },
+  "obv_macd": {
+   "n_files": 2,
+   "ids": [
+    "0343c78a106a",
+    "54fca81c5658",
+    "a5190d316f50",
+    "1f8f917a2812",
+    "3c0734609bcd",
+    "c0714298d077"
+   ],
+   "example_files": [
+    "OBV-MACD-Indicator.md",
+    "Smooth-HA-Candles-MTF-v1.md"
+   ],
+   "verdicts": {
+    "standard": 6,
+    "variant": 1
+   },
+   "notes": [
+    "DEMA of zero-lag source, lag=round((len-1)/2), OBV MACD script.",
+    "Triple-TEMA composite from OBV MACD script.",
+    "Double ZLEMA 2*z1-z2 from OBV MACD script."
+   ]
+  },
+  "henderson_ma": {
+   "n_files": 2,
+   "ids": [
+    "1ae7631d9e99",
+    "66598abde5cd",
+    "76753031521e"
+   ],
+   "example_files": [
+    "平滑移动平均带策略The-Smooth-Moving-Average-Ribbon-Strategy.md",
+    "平滑移动平均线策略Smoothed-Moving-Average-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 3
+   },
+   "notes": [
+    "Henderson weighted MA (everget), standard Henderson weights applied trailing.",
+    "Henderson weighted moving average loop.",
+    "Henderson MA weight formula."
+   ]
+  },
+  "retro_wma": {
+   "n_files": 2,
+   "ids": [
+    "5987494448aa"
+   ],
+   "example_files": [
+    "RSI趋势跟踪策略RSI-Trend-Following-Strategy.md",
+    "基于RSI和加权移动平均线的趋势跟踪策略Trend-Following-Strategy-Based-on-RSI-and-Weighted-Moving-Average.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Author's retro weighted MA: last 4 bars weight x, older 1.3x; no external reference."
+   ]
+  },
+  "session_vwma": {
+   "n_files": 2,
+   "ids": [
+    "bbd49647d6db"
+   ],
+   "example_files": [
+    "交易时段VWMA动态价位上下穿透策略-Session-Based-VWMA-Dynamic-Level-Breakthrough-Strategy.md",
+    "基于会话VWMA的日内合成期权策略多空信号自适应交易系统-Session-VWMA-Based-Intraday-Synthetic-Options-Strategy-Adaptive-Trading-System-with-Long-Short-Signals.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "VWMA with length capped at bars since session start; author's own."
+   ]
+  },
+  "uhl_ma": {
+   "n_files": 2,
+   "ids": [
+    "0e62275e3a23",
+    "6a55524ed514",
+    "ce715f0923c3"
+   ],
+   "example_files": [
+    "15MIN-BTCUSDTPERP-BOT.md",
+    "基于Uhl-MA的自适应均线交叉策略Adaptive-Moving-Average-Crossover-Strategy-Based-on-Uhl-MA.md"
+   ],
+   "verdicts": {
+    "standard": 3
+   },
+   "notes": [
+    "alexgrover Uhl MA crossover system CMA/CTS recursion.",
+    "alexgrover Uhl MA Crossover CTS line: corrected-average gain kb from variance ratio.",
+    "Uhl Corrected Moving Average recursion with gain ka."
+   ]
+  },
+  "ftsma": {
+   "n_files": 2,
+   "ids": [
+    "fac3eb5994c0",
+    "102228bbb029",
+    "36ee81eefe03",
+    "8f29569361e8",
+    "2e1ceb8a0011",
+    "dac3c42b96d2"
+   ],
+   "example_files": [
+    "FTSMA-Trend-is-your-frend.md",
+    "低频傅里叶变换趋势跟踪移动平均线策略Low-Frequency-Fourier-Transform-Trend-Following-Moving-Average-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 8
+   },
+   "notes": [
+    "DFT sine term over N bars for Fourier-transform smoothing.",
+    "DFT imaginary component of the FTSMA Fourier-smoothing script.",
+    "Inverse DFT reconstruction of FTSMA script."
+   ]
+  },
+  "gaussian_kernel_ma": {
+   "n_files": 2,
+   "ids": [
+    "17951c65b851",
+    "025db67d9b86"
+   ],
+   "example_files": [
+    "Ichimoku-Oscillator-ChartPrime-指标.md",
+    "基于核平滑多重均线的自适应趋势追踪系统-Adaptive-Trend-Following-System-with-Kernel-Smoothed-Multiple-Moving-Averages.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "ChartPrime Ichimoku Oscillator gaussian kernel smoother.",
+    "Normalised Gaussian window weights centred on window middle."
+   ]
+  },
+  "windowed_ema": {
+   "n_files": 2,
+   "ids": [
+    "611c2f6f4a44",
+    "d0f844410739"
+   ],
+   "example_files": [
+    "EMA-200-交叉量价趋势策略EMA-200-Crossover-with-Volume-and-Trend-Strategy.md",
+    "双指数平滑趋势跟踪交易系统-Dual-Exponential-Smoothing-Trend-Following-Trading-System.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Normalized exponential weights over finite lookback.",
+    "Normalized exponential weights over finite lookback."
+   ]
+  },
+  "quadratic_wma": {
+   "n_files": 1,
+   "ids": [
+    "360c4bd5a612"
+   ],
+   "example_files": [
+    "MACD和RSI结合的自然交易策略-MACD-and-RSI-Combined-Natural-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Weights (n-i)^2 weighted MA; author's function."
+   ]
+  },
+  "signed_wma": {
+   "n_files": 1,
+   "ids": [
+    "4303da9f0813",
+    "991ff7dcf517"
+   ],
+   "example_files": [
+    "Volume-Divergence.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Linear weights signed by candle direction; author's volume divergence function.",
+    "Linear weights signed by candle direction; author's function."
+   ]
+  },
+  "chebyshev_ma": {
+   "n_files": 1,
+   "ids": [
+    "550601711fe6"
+   ],
+   "example_files": [
+    "Ichimoku-Oscillator-ChartPrime-指标.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "One-pole Chebyshev Type I smoothing, common TV community formula."
+   ]
+  },
+  "slope_adaptive_ma": {
+   "n_files": 1,
+   "ids": [
+    "bfcf3a155bd0"
+   ],
+   "example_files": [
+    "Slope-Adaptive-Moving-Average.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Range-position adaptive alpha squared MA; zero seed as published."
+   ]
+  },
+  "ama_durenard": {
+   "n_files": 1,
+   "ids": [
+    "8379a8d887e3"
+   ],
+   "example_files": [
+    "均自适应通道价格突破策略Adaptive-Moving-Average-Channel-Breakout-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Durenard adaptive MA using previous bar alpha (alpha computed later), per book."
+   ]
+  },
+  "binomial_ma": {
+   "n_files": 1,
+   "ids": [
+    "cc794ddbeba9",
+    "7345387b8363"
+   ],
+   "example_files": [
+    "二项式移动平均趋势策略Binomial-Moving-Average-Trend-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Binomial-weighted MA, weights C(2n-1,k) normalized, heaviest on newest bar.",
+    "Binomial-coefficient weighted MA normalisation loop."
+   ]
+  },
+  "edsma": {
+   "n_files": 1,
+   "ids": [
+    "e31ba52c2674",
+    "5608817ec195"
+   ],
+   "example_files": [
+    "多重趋势交叉策略Multi-Trend-Crossover-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "EDSMA adaptive EMA recursion stage; nz seed.",
+    "Ehlers Deviation-Scaled MA [everget] recursion, alpha = 5 x abs(scaled filter) / length."
+   ]
+  },
+  "vawma": {
+   "n_files": 1,
+   "ids": [
+    "f7e041f6855a"
+   ],
+   "example_files": [
+    "VAWSI和趋势持续性反转策略结合动态长度计算的多指标综合分析系统-VAWSI-and-Trend-Persistence-Reversal-Strategy-with-Dynamic-Length-Calculation-Multi-Indicator-Analysis-System.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Author's volume- and ATR-weighted MA over length+1 bars."
+   ]
+  },
+  "hysteresis_filter": {
+   "n_files": 1,
+   "ids": [
+    "fafa4b4c6e86"
+   ],
+   "example_files": [
+    "自适应网格交易策略与动态调整机制-Adaptive-Grid-Trading-Strategy-with-Dynamic-Adjustment-Mechanism.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Lazy line: holds value until change exceeds lzf fraction."
+   ]
+  },
+  "range_adaptive_ema": {
+   "n_files": 1,
+   "ids": [
+    "0e7103163c3d"
+   ],
+   "example_files": [
+    "动态突破均线交易策略Dynamic-Moving-Average-Crossover-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Body/HTF-range adaptive EMA; HTF high[1]/low[1] with lookahead_on, so no future data."
+   ]
+  },
+  "essma": {
+   "n_files": 1,
+   "ids": [
+    "52c4c16053d8"
+   ],
+   "example_files": [
+    "ESSMA.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "ESSMA script's weighted combination of SMMA/EMA/SMA/WMA/RMA plus open/close."
+   ]
+  },
+  "vwema": {
+   "n_files": 1,
+   "ids": [
+    "8443afa48ace"
+   ],
+   "example_files": [
+    "RSI与布林带结合的短线交易策略RSI-Bollinger-Bands-Short-term-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Exponential volume-weighted MA: ema(src*vol)/ema(vol)."
+   ]
+  },
+  "jurik_rsx": {
+   "n_files": 1,
+   "ids": [
+    "bd98e2a0280f"
+   ],
+   "example_files": [
+    "多时间轴均线系统交易策略Multi-Timeframe-Moving-Average-System-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Jurik RSX standard Pine port (f8..f90 chain)."
+   ]
+  },
+  "sine_fir_filter": {
+   "n_files": 1,
+   "ids": [
+    "181d1246b5fb"
+   ],
+   "example_files": [
+    "双指标组合疯狂日内scalping策略Dual-Indicators-Combo-Crazy-Intraday-Scalping-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "FIR with weights sin(2*pi*x^alpha)*(1-x^beta), normalised by weight sum, as in source script."
+   ]
+  },
+  "deadband_double_sma": {
+   "n_files": 1,
+   "ids": [
+    "22384204d377"
+   ],
+   "example_files": [
+    "Goblin-Town-60min-可用版.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Author's custom MA: double SMA of source clamped to prior value +- cumulative-deviation band."
+   ]
+  },
+  "moonflag_average": {
+   "n_files": 1,
+   "ids": [
+    "3328ad694d1f"
+   ],
+   "example_files": [
+    "月旗MACD动量StochRSI交易策略MoonFlag-MACD-Momentum-StochRSI-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "MoonFlag custom triple-chained WMA smoother, as in source script."
+   ]
+  },
+  "kernel_regression_chartprime": {
+   "n_files": 1,
+   "ids": [
+    "733d68785e0f"
+   ],
+   "example_files": [
+    "Ichimoku-Oscillator-ChartPrime-指标.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "ChartPrime Gaussian-kernel weighted average of past values."
+   ]
+  },
+  "beta_kernel_ma": {
+   "n_files": 1,
+   "ids": [
+    "88de4f81b58b"
+   ],
+   "example_files": [
+    "基于核平滑多重均线的自适应趋势追踪系统-Adaptive-Trend-Following-System-with-Kernel-Smoothed-Multiple-Moving-Averages.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Normalised Beta-distribution kernel weights."
+   ]
+  },
+  "vawsi_weighted_ma": {
+   "n_files": 1,
+   "ids": [
+    "ac8e4b9be88b"
+   ],
+   "example_files": [
+    "VAWSI和趋势持续性反转策略结合动态长度计算的多指标综合分析系统-VAWSI-and-Trend-Persistence-Reversal-Strategy-with-Dynamic-Length-Calculation-Multi-Indicator-Analysis-System.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Weights by average of relative volume and relative ATR, as in source script."
+   ]
+  },
+  "tillson_gd": {
+   "n_files": 1,
+   "ids": [
+    "cd6161732857"
+   ],
+   "example_files": [
+    "双移动平均反转趋势策略Dual-Moving-Average-Counter-Trend-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Tillson Generalized DEMA, T3 building block."
+   ]
+  },
+  "gaussian_fir": {
+   "n_files": 1,
+   "ids": [
+    "0450465b5621"
+   ],
+   "example_files": [
+    "高斯通道趋势跟踪与随机相对强弱指标交易策略-Gaussian-Channel-Trend-Following-with-Stochastic-RSI-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Gaussian-weighted window average over past bars (no lookahead)."
+   ]
+  },
+  "rema": {
+   "n_files": 1,
+   "ids": [
+    "13682940b312"
+   ],
+   "example_files": [
+    "基于适应性正则化移动平均线的跨市场套利策略Adaptive-Regularized-Moving-Average-Cross-Market-Arbitrage-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Satchwell Regularized EMA, lambda 0.5."
+   ]
+  },
+  "chebyshev_filter": {
+   "n_files": 1,
+   "ids": [
+    "44e7fbbc31c5"
+   ],
+   "example_files": [
+    "Ichimoku-Oscillator-ChartPrime-指标.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "ChartPrime Chebyshev type I smoothing with optional Gaussian kernel."
+   ]
+  },
+  "fir_filter": {
+   "n_files": 1,
+   "ids": [
+    "a756ee77e465"
+   ],
+   "example_files": [
+    "双指标组合疯狂日内scalping策略Dual-Indicators-Combo-Crazy-Intraday-Scalping-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "FIR weighted sum loop with precomputed weights."
+   ]
+  },
+  "accelerating_adaptive_ma": {
+   "n_files": 1,
+   "ids": [
+    "1ab7da0983fd"
+   ],
+   "example_files": [
+    "双MA动量突破策略Dual-MA-Momentum-Breakout-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Custom MA whose alpha grows by k on new band extremes and resets on cross (uses alpha[1])."
+   ]
+  },
+  "knn_mean": {
+   "n_files": 1,
+   "ids": [
+    "581e30a6722b",
+    "9ac0fc45136a"
+   ],
+   "example_files": [
+    "KNN-机器学习策略基于-K-近邻算法的趋势预测交易系统-KNN-Machine-Learning-Strategy-Trend-Prediction-Trading-System-Based-on-K-Nearest-Neighbors-Algorithm.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Mean of k past values closest to target (KNN smoother helper).",
+    "KNN closest-values search loop."
+   ]
+  },
+  "kernel_ma": {
+   "n_files": 1,
+   "ids": [
+    "62ee285e87d8",
+    "7854da8c558f"
+   ],
+   "example_files": [
+    "基于核平滑多重均线的自适应趋势追踪系统-Adaptive-Trend-Following-System-with-Kernel-Smoothed-Multiple-Moving-Averages.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Generic kernel-weighted sum over past bars.",
+    "Generic kernel-weighted sum over past bars."
+   ]
+  },
+  "conditional_ema": {
+   "n_files": 1,
+   "ids": [
+    "739e212ca6df"
+   ],
+   "example_files": [
+    "多重技术指标黄金即时变动检测与风险管理策略-Multi-Technical-Indicator-Gold-Real-Time-Movement-Detection-and-Risk-Management-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "EMA of values sampled when a condition is true."
+   ]
+  },
+  "ahrens_ma": {
+   "n_files": 1,
+   "ids": [
+    "a9b33f5053b6"
+   ],
+   "example_files": [
+    "基于动量顺势策略Momentum-Trend-Following-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Richard Ahrens moving average (TASC 2013): prev + (src - (prev + prev[n])/2)/n."
+   ]
+  }
+ },
+ "ehlers": {
+  "ehlers_bandpass": {
+   "n_files": 9,
+   "ids": [
+    "2e037a3e2dac",
+    "260e44cd6294",
+    "43c4d40fda98",
+    "84fca2bd478d",
+    "8b33238037e2",
+    "d2af4fc6ad27"
+   ],
+   "example_files": [
+    "Combo-2-20-EMA-Bandpass-Filter.md",
+    "一种基于带通滤波反转策略Bandpass-Filter-Reversed-Strategy.md",
+    "双因子反转波段突破组合策略Reversal-Breakout-Bandpass-Combo-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 6
+   },
+   "notes": [
+    "HPotter Ehlers bandpass filter with pi=3.14 as published, +1/-1 zone state.",
+    "HPotter Ehlers bandpass with pi=3.14, trigger state.",
+    "50-bar RMS of Ehlers bandpass for normalisation."
+   ]
+  },
+  "ehlers_dominant_cycle": {
+   "n_files": 6,
+   "ids": [
+    "5370070d2a11",
+    "91ea10f69def",
+    "a285a6576772",
+    "b3a2fdcf2a30",
+    "ea17aa6592f2",
+    "2d731f6f18c2"
+   ],
+   "example_files": [
+    "Adaptive-Zero-Lag-EMA-Strategy.md",
+    "Enhanced-Fish-Net-Strategy.md",
+    "VAWSI和趋势持续性反转策略结合动态长度计算的多指标综合分析系统-VAWSI-and-Trend-Persistence-Reversal-Strategy-with-Dynamic-Length-Calculation-Multi-Indicator-Analysis-System.md"
+   ],
+   "verdicts": {
+    "standard": 14,
+    "bug": 1,
+    "variant": 1
+   },
+   "notes": [
+    "Ehlers cycle measurement phase-accumulation component.",
+    "Ehlers I-Q dominant cycle measurement (Fish Net port).",
+    "InstPeriod = nz(InstPeriod[1]) declares a local (should be :=), so previous-period fallback never applies."
+   ]
+  },
+  "ehlers_ec": {
+   "n_files": 4,
+   "ids": [
+    "62235ec98940",
+    "e0b952296b57",
+    "76556390c488",
+    "b0f1be861aa8"
+   ],
+   "example_files": [
+    "Adaptive-Zero-Lag-EMA-Strategy.md",
+    "移动平均线双轨带牛熊策略CBMA-Bollinger-Bands-Breaker-Strategy.md",
+    "自适应零滞后EMA交易策略Adaptive-Zero-Lag-EMA-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2,
+    "bug": 2
+   },
+   "notes": [
+    "Ehlers Zero Lag Error Correcting EMA, exact formula.",
+    "Gain search loop runs only i=limit and leastError never updates, so best gain is fixed limit/10.",
+    "Gain loop runs emaGainLimit..emaGainLimit (one gain), and '=' shadows leastError/bestGain, so no least-error search."
+   ]
+  },
+  "butterworth_2pole": {
+   "n_files": 4,
+   "ids": [
+    "15f2fd3dd738",
+    "2c2d51168a77",
+    "427997e8cc8d",
+    "56b61d2f9087",
+    "5e55907b6d8a",
+    "7c46da442d82"
+   ],
+   "example_files": [
+    "MA-Emperor-insiliconot.md",
+    "移动平均交叉双向交易策略Moving-Average-Crossover-Strategy-for-Two-way-Trading.md",
+    "移动平均线交叉趋势追踪策略Moving-Average-Crossover-Trend-Following-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 33,
+    "bug": 1
+   },
+   "notes": [
+    "Ehlers 2-pole Butterworth applied to DI-.",
+    "Ehlers 2-pole Butterworth applied to DI-.",
+    "Ehlers 2-pole Butterworth applied to choppiness."
+   ]
+  },
+  "ehlers_optimal_tracking": {
+   "n_files": 2,
+   "ids": [
+    "612f06c93f04"
+   ],
+   "example_files": [
+    "双向均线回归交易策略Bidirectional-Moving-Average-Reversion-Trading-Strategy.md",
+    "双均线反转策略Dual-Moving-Average-Reversion-Strategy.md"
+   ],
+   "verdicts": {
+    "variant": 1
+   },
+   "notes": [
+    "Ehlers tracking (Kalman-like) filter but Value2 smooths ta.tr instead of Ehlers' high-low range."
+   ]
+  },
+  "ehlers_emd": {
+   "n_files": 2,
+   "ids": [
+    "bb4eb74fddfc",
+    "776561522cd3",
+    "a483eea078b5"
+   ],
+   "example_files": [
+    "双重反转均衡策略Dual-Reversion-Balance-Strategy.md",
+    "基于经验模态分解的量化交易策略Empirical-Mode-Decomposition-Based-Quantitative-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 3
+   },
+   "notes": [
+    "HPotter Ehlers EMD bandpass peak hold.",
+    "HPotter/Ehlers EMD bandpass valley holder.",
+    "HPotter port of Ehlers Empirical Mode Decomposition bandpass with peak/valley averages."
+   ]
+  },
+  "trendflex": {
+   "n_files": 2,
+   "ids": [
+    "e54f6ffbc33f",
+    "a9fd45587b41",
+    "380bfd896d56",
+    "ae0f9276f654"
+   ],
+   "example_files": [
+    "基于TFO和ATR的趋势跟踪止损策略TFO-and-ATR-Based-Trend-Tracking-Stop-Loss-Strategy.md",
+    "跨周期方向策略Eltrut-Turtle-Reversal-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 4
+   },
+   "notes": [
+    "Ehlers Reflex/Trendflex (2020), exact.",
+    "Ehlers TrendFlex sum of Filt - Filt[i].",
+    "Ehlers TrendFlex (2020): super smoother, mean slope sum, RMS normalisation."
+   ]
+  },
+  "butterworth_3pole": {
+   "n_files": 2,
+   "ids": [
+    "d50a6773692b"
+   ],
+   "example_files": [
+    "并联移动平均线与无限脉冲响应均线策略Combined-Moving-Average-and-Infinite-Impulse-Response-Line-Strategy.md",
+    "组合简单移动平均线与自适应移动平均线的策略Combining-Simple-Moving-Average-and-Adaptive-Moving-Average-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Correct bilinear 3-pole Butterworth lowpass coefficients, seeded with source."
+   ]
+  },
+  "ehlers_roofing_filter": {
+   "n_files": 1,
+   "ids": [
+    "08e7067e43b8",
+    "f5053c9a3c92"
+   ],
+   "example_files": [
+    "基于压缩指标的多时间框架交易策略Multi-Timeframe-Trend-Trading-Strategy-Based-on-Compressed-Indicators.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Ehlers SuperSmoother stage applied to high-pass output.",
+    "Ehlers SuperSmoother stage applied to high-pass output."
+   ]
+  },
+  "ehlers_cyber_cycle": {
+   "n_files": 1,
+   "ids": [
+    "8de876e07849"
+   ],
+   "example_files": [
+    "基于信号平滑的埃尔斯循环策略Signal-Smoothing-Ehlers-Cyber-Cycle-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "EMA signal smoothing of Ehlers Cyber Cycle."
+   ]
+  },
+  "ehlers_smoothed_rsi": {
+   "n_files": 1,
+   "ids": [
+    "244993af1cfd"
+   ],
+   "example_files": [
+    "结合123反转与平滑RSI的交易策略Combo-Strategy-of-123-Reversal-and-Smoothed-RSI.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter port of Ehlers Smoothed RSI (1-2-2-1 prefilter, CU/(CU+CD)) with band signal."
+   ]
+  },
+  "ehlers_highpass_2pole": {
+   "n_files": 1,
+   "ids": [
+    "bc6ce7a2f2a1",
+    "45c58c8b84bd"
+   ],
+   "example_files": [
+    "基于压缩指标的多时间框架交易策略Multi-Timeframe-Trend-Trading-Strategy-Based-on-Compressed-Indicators.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Ehlers 2-pole high-pass filter recursion.",
+    "Ehlers 2-pole high-pass filter (roofing filter stage)."
+   ]
+  },
+  "voss_filter": {
+   "n_files": 1,
+   "ids": [
+    "23c5736daf3f"
+   ],
+   "example_files": [
+    "基于Voss滤波器和趋势指标的量化交易策略Quantitative-Trading-Strategy-Based-on-Voss-Filter-and-Trend-Indicator.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Ehlers Voss predictive filter (TASC Aug 2019); zeroed for first 3*predict bars."
+   ]
+  },
+  "emdi_hpotter": {
+   "n_files": 1,
+   "ids": [
+    "8c4170a9988a"
+   ],
+   "example_files": [
+    "双指标略逆反转交易策略Dual-Indicator-Slight-Reversal-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter port: double EMA of close-EMA with EMA signal, position state."
+   ]
+  },
+  "ehlers_agc": {
+   "n_files": 1,
+   "ids": [
+    "d80b9548ff01",
+    "20bf69a68a1e"
+   ],
+   "example_files": [
+    "基于压缩指标的多时间框架交易策略Multi-Timeframe-Trend-Trading-Strategy-Based-on-Compressed-Indicators.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Ehlers automatic gain control peak decay.",
+    "Ehlers automatic gain control peak decay 0.991."
+   ]
+  },
+  "ehlers_decycler": {
+   "n_files": 1,
+   "ids": [
+    "4083e6771206"
+   ],
+   "example_files": [
+    "基于量化震荡指标组合策略Quantitative-Oscillation-Indicator-Combination-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Ehlers simple decycler 1-pole recursion."
+   ]
+  },
+  "ehlers_fisher_stoch": {
+   "n_files": 1,
+   "ids": [
+    "4c07c0bbafaf"
+   ],
+   "example_files": [
+    "埃勒斯-费希尔相对活力指数策略Ehlers-Fisher-Stochastic-Relative-Vigor-Index-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Ehlers Fisher of WMA-smoothed stochastic."
+   ]
+  },
+  "deli": {
+   "n_files": 1,
+   "ids": [
+    "d5a1abb2dbee"
+   ],
+   "example_files": [
+    "趋势追踪反转与埃勒斯先导指标联合策略Trend-Reversal-and-Ehlers-Leading-Indicator-Combo-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter Ehlers DELI-style detrended EMA difference on daily hl2 (no lookahead)."
+   ]
+  }
+ },
+ "trend_misc": {
+  "g_channel": {
+   "n_files": 8,
+   "ids": [
+    "2f92c395f980",
+    "6b5dc87e5745",
+    "1b249adfc22b",
+    "3798407ae4b7",
+    "47dd3a076f3c",
+    "a7e67a006b74"
+   ],
+   "example_files": [
+    "G-Channel-Trend-Detection-Strategy-G-Channel趋势检测策略.md",
+    "G-Channel与EMA结合的趋势跟踪策略G-Channel-and-EMA-Trend-Following-Strategy.md",
+    "G趋势EMA-ATR智能交易策略G-Trend-EMA-ATR-Intelligent-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 9
+   },
+   "notes": [
+    "alexgrover G-Channel upper line: max(close,a[1]) - (a[1]-b[1])/length.",
+    "alexgrover G-Channel upper line.",
+    "G-Channel [alexgrover] lower band recursion as published."
+   ]
+  },
+  "td_sequential": {
+   "n_files": 7,
+   "ids": [
+    "28951d1604e0",
+    "41fe9f1aa056",
+    "c25f0dd3006d",
+    "812c068f7006",
+    "fb3a692ce0dd",
+    "ad23467a7a82"
+   ],
+   "example_files": [
+    "Multi-Indicator-Convergence-Trading-Strategy.md",
+    "Tom-DeMark-Sequential-Heat-Map.md",
+    "动量TD反转交易策略Momentum-TD-Reversal-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 8,
+    "variant": 2
+   },
+   "notes": [
+    "TD setup count close < close[4].",
+    "TD setup count src < src[4].",
+    "TD sequential sell setup count (close > close[4]) as in the heat-map script."
+   ]
+  },
+  "renko": {
+   "n_files": 7,
+   "ids": [
+    "6c29f58825ba",
+    "d44854dae9a9",
+    "cb86a8751105",
+    "95b3182db088",
+    "d3e4a9110892",
+    "5c8d165b6e97"
+   ],
+   "example_files": [
+    "克隆阴阳数量化交易策略Renko-Yin-Yang-Quant-Trading-Strategy.md",
+    "动量砖策略Momentum-Brick-Strategy.md",
+    "基于ATR通道的破口踏入趋势策略ATR-Channel-Breakout-Trend-following-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 4,
+    "bug": 2
+   },
+   "notes": [
+    "Initial ATR renko brick level seed.",
+    "ATR-sized renko brick level from open.",
+    "Sizeblock fixed tick/percent box (renko-style) construction."
+   ]
+  },
+  "volume_rsi": {
+   "n_files": 5,
+   "ids": [
+    "744cff252d2f",
+    "604e98dd0523",
+    "42a888897f9e"
+   ],
+   "example_files": [
+    "Cryptocurrency-RSI-Curve-Tracking-Strategy.md",
+    "Johnys-BOT.md",
+    "多空寻趋势双重激光策略Dual-Laser-Trend-seeking-Strategy.md"
+   ],
+   "verdicts": {
+    "warmup_only": 1,
+    "standard": 2
+   },
+   "notes": [
+    "RSI of volume-weighted price changes, Wilder MA seeded at 0.",
+    "RSI of volume-weighted up/down changes with Wilder smoothing (WiMA).",
+    "Volume-weighted RSI with Wilder smoothing."
+   ]
+  },
+  "cipher_b_rsimfi": {
+   "n_files": 5,
+   "ids": [
+    "e2d9b1820d4c",
+    "61089b27cc93"
+   ],
+   "example_files": [
+    "VuManChu-Cipher-B-Divergences-Strategy.md",
+    "基于乖离率指标优化的波动跟踪策略WaveTrend-and-DER-Based-Swing-Trading-Strategy.md",
+    "基于双重趋势过滤器的量化交易策略Quantitative-Trading-Strategy-Based-on-Double-Trend-Filter.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "VuManChu Cipher B RSI+MFI area: sma((c-o)/(h-l)*mult) - posY.",
+    "VuManChu Cipher B RSI+MFI area: sma((c-o)/(h-l)*mult) - posY, HTF without lookahead."
+   ]
+  },
+  "redk_vader": {
+   "n_files": 4,
+   "ids": [
+    "20de27f83a13"
+   ],
+   "example_files": [
+    "RedK-Dual-VADER-with-Energy-Bars.md",
+    "RedK-Volume-Accelerated-Directional-Energy-Ratio.md",
+    "VuManChu-Cipher-B-Divergences-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "RedK VADER relvol as published; stoch over highest/lowest makes effective window 2n-1."
+   ]
+  },
+  "pivot_point_supertrend": {
+   "n_files": 4,
+   "ids": [
+    "6591b0767854"
+   ],
+   "example_files": [
+    "基于超趋势支撑阻力与ADX指标的高频交易策ADX-Filtered-SuperTrend-Pivot-Trading-Strategy.md",
+    "基于趋势追踪和ADX指标的短线交易策略Trend-Tracking-and-Short-term-Trading-Strategy-Based-on-ADX-Indicator.md",
+    "多时间框架枢轴点超趋势策略Pivot-SuperTrend-Strategy-Across-Multiple-Timeframes.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Center-line carry of LonesomeTheBlue Pivot Point SuperTrend; fragment only."
+   ]
+  },
+  "nadaraya_watson_rq": {
+   "n_files": 3,
+   "ids": [
+    "2ba8a3e89f43",
+    "469ba92d8cbb",
+    "ae010a1ed01d"
+   ],
+   "example_files": [
+    "动量跟踪自适应统计套利策略Momentum-Tracking-Adaptive-Statistical-Arbitrage-Strategy.md",
+    "基于Nadaraya-Watson回归和ATR通道的趋势跟踪策略Trend-Following-Strategy-Based-on-Nadaraya-Watson-Regression-and-ATR-Channel.md",
+    "基于核回归和ATR动态波段的自适应趋势跟踪策略-Adaptive-Trend-Following-Strategy-Based-on-Kernel-Regression-and-ATR-Dynamic-Bands.md"
+   ],
+   "verdicts": {
+    "standard": 3
+   },
+   "notes": [
+    "jdehorty rational quadratic kernel regression, exact weight loop.",
+    "jdehorty Nadaraya-Watson rational quadratic kernel weights.",
+    "Rational quadratic kernel regression as in jdehorty Nadaraya-Watson (non-repainting, past bars only)."
+   ]
+  },
+  "range_filter_dw": {
+   "n_files": 3,
+   "ids": [
+    "be13772bd5b2",
+    "e00dcf1b8584",
+    "9aece7d7a577"
+   ],
+   "example_files": [
+    "双向自适应范围滤波动量跟踪策略This-strategy-is-a-bidirectional-adaptive-range-filtering-momentum-tracking-strategy.md",
+    "双范围过滤趋势跟踪策略Dual-Range-Filter-Trend-Tracking-Strategy.md",
+    "多重技术指标黄金即时变动检测与风险管理策略-Multi-Technical-Indicator-Gold-Real-Time-Movement-Detection-and-Risk-Management-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 3
+   },
+   "notes": [
+    "DonovanWall Range Filter [DW] Type 1/2 with conditional EMA averaging.",
+    "DonovanWall Range Filter Type 1/2 with conditional EMA averaging, faithful copy.",
+    "DonovanWall Range Filter conditional EMA updated only when cond true."
+   ]
+  },
+  "demark_reversal_points": {
+   "n_files": 3,
+   "ids": [
+    "ce61834cc639",
+    "1a773c807fc7"
+   ],
+   "example_files": [
+    "Demark-Reversal-Points-CC.md",
+    "Demark-Reversal-Points.md",
+    "Demark-Setup-Indicator.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "TD-setup style up/down counts versus src[i+4] (cheatcountry port).",
+    "DeMark setup up/down counts vs src[i+length]."
+   ]
+  },
+  "p_signal": {
+   "n_files": 3,
+   "ids": [
+    "edc4b7a22c65",
+    "f5635ee110ed"
+   ],
+   "example_files": [
+    "P-Signal多时间框架交易策略P-Signal-Multi-Timeframe-Trading-Strategy.md",
+    "P-信号反转策略P-Signal-Reversal-Strategy.md",
+    "基于高斯误差函数的量化交易策略An-Analysis-of-Quantitative-Trading-Strategy-Based-on-Gaussian-Error-Function.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "P-Signal: erf(sma/stdev/sqrt2) of a series, as published.",
+    "P-Signal: erf(SMA/stdev/sqrt 2) of a series."
+   ]
+  },
+  "leledc_exhaustion": {
+   "n_files": 3,
+   "ids": [
+    "bbddd11fd2d4",
+    "21623207fd6c",
+    "e458c578f113"
+   ],
+   "example_files": [
+    "DEC策略Leledec-DEC-Strategy.md",
+    "多个因子量化交易策略Multi-factor-Quantitative-Trading-Strategy.md",
+    "日内多头突破策略-Intraday-Bullish-Breakout-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 3
+   },
+   "notes": [
+    "glaz Leledc exhaustion bar counts, exact logic.",
+    "Joy_Bangla Leledc exhaustion bar counts with configurable lookbacks (defaults match original).",
+    "Joy_Bangla Leledc exhaustion bar, original form."
+   ]
+  },
+  "pivothigh_atr": {
+   "n_files": 3,
+   "ids": [
+    "0bc1a30c3900",
+    "c8519e518a1e",
+    "d9bf0a92247b",
+    "11b35b2ebdc7",
+    "8a6b73a5da55"
+   ],
+   "example_files": [
+    "基于枢轴点逆转的量化策略Pivot-Reversal-Quantitative-Strategy-Based-on-Pivot-Points.md",
+    "增强型双重枢轴点反转交易策略-Enhanced-Dual-Pivot-Point-Reversal-Trading-Strategy.md",
+    "重要支点反转策略Significant-Pivot-Points-Reversal-Strategy.md"
+   ],
+   "verdicts": {
+    "variant": 5
+   },
+   "notes": [
+    "Pivot high requiring high[right] exceed neighbours by atr*mult, stricter than ta.pivothigh; confirmed after right bars.",
+    "Pivot low requiring low[right] below neighbours by atr*mult, stricter than ta.pivotlow; confirmed after right bars.",
+    "Loop of ATR-margin pivot-high test; stricter than ta.pivothigh."
+   ]
+  },
+  "delta_rsi": {
+   "n_files": 3,
+   "ids": [
+    "c61d9be778ae",
+    "dd03825b1b31"
+   ],
+   "example_files": [
+    "Delta-RSI-Oscillator-Strategy.md",
+    "动态RSI震荡多项式拟合指标趋势量化交易策略-Dynamic-RSI-Oscillator-Polynomial-Fitting-Indicator-Trend-Quantitative-Trading-Strategy.md",
+    "基于多项式插值的RSI动量指标策略Polynomial-Interpolation-Based-RSI-Momentum-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "tbiktag Delta-RSI polynomial-fit derivative.",
+    "tbiktag Delta-RSI: polynomial least-squares fit derivative with NRMSE."
+   ]
+  },
+  "ols_regression": {
+   "n_files": 3,
+   "ids": [
+    "cac6fda86484"
+   ],
+   "example_files": [
+    "动态意识形态趋势反转策略Dynamic-Pattern-Trend-Reversal-Strategy.md",
+    "多空线性交叉策略Long-Short-Linear-Regression-Crossover-Strategy.md",
+    "线性MACD解锁交易视图中线性回归的魔力Linear-MACD-Unlocking-the-Magic-of-Linear-Regression-in-TradingView.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Rolling OLS intercept/slope of y on x."
+   ]
+  },
+  "atr_trailing_support": {
+   "n_files": 2,
+   "ids": [
+    "7795a230b3cd"
+   ],
+   "example_files": [
+    "双向均线回归交易策略Bidirectional-Moving-Average-Reversion-Trading-Strategy.md",
+    "双均线反转策略Dual-Moving-Average-Reversion-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Custom ratcheting low-ATR support line, resets when hit; no published reference."
+   ]
+  },
+  "most": {
+   "n_files": 2,
+   "ids": [
+    "917f95c637ec",
+    "d557ad668993"
+   ],
+   "example_files": [
+    "MOST指标双仓位自适应策略MOST-Indicator-Dual-Position-Adaptive-Strategy.md",
+    "追踪止损移动平均策略Moving-Average-Tracking-Stop-Loss-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Original MOST (Anil Ozeksi/Kivanc) moving stop loss recursion.",
+    "MOST direction-carry fragment (Anil Ozeksi Moving Stop Loss)."
+   ]
+  },
+  "zvwap": {
+   "n_files": 2,
+   "ids": [
+    "2ebd567ddea2",
+    "a8d539f18019"
+   ],
+   "example_files": [
+    "基于Z距离的VWAP策略ZVWAP-Strategy-Based-on-Z-Distance-from-VWAP.md",
+    "指标验证自动交易策略Indicator-Verification-Automated-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "LazyBear Z-distance from rolling VWAP, exact.",
+    "LazyBear VWAP Z-score."
+   ]
+  },
+  "atr_trailing_bands": {
+   "n_files": 2,
+   "ids": [
+    "24d166b5d6fa",
+    "78e3af06a40f"
+   ],
+   "example_files": [
+    "基于ATR指标的自适应跟踪止损策略ATR-Trailing-Stop-Bands-Strategy.md",
+    "趋势突破策略ATR-Trend-Breakout-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Script's own ratcheting high+mult*ATR band; no published standard.",
+    "Author's ATR trailing band: high+ATR loss+upper wick ratcheted down while highs stay below."
+   ]
+  },
+  "volumatic_vidya_bigbeluga": {
+   "n_files": 1,
+   "ids": [
+    "07cda3b49148"
+   ],
+   "example_files": [
+    "动态波动率指标VIDYA结合ATR趋势跟踪反转策略-Dynamic-Volatility-Index-VIDYA-with-ATR-Trend-Following-Reversal-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "BigBeluga Volumatic VIDYA core: CMO-alpha VIDYA then SMA(15), as published."
+   ]
+  },
+  "pmax": {
+   "n_files": 1,
+   "ids": [
+    "0ae3e041e7b3"
+   ],
+   "example_files": [
+    "基于RSI和T3指标的PMax自适应突破策略PMax-Breakout-Strategy-Based-on-RSI-and-T3-Indicators.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Exact Kivanc Profit Maximizer (PMax) logic."
+   ]
+  },
+  "trend_score": {
+   "n_files": 1,
+   "ids": [
+    "1b302c1d09fd",
+    "83a2aa7b72f6"
+   ],
+   "example_files": [
+    "多因子策略Multi-factor-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Sum of sign(src - src[i]) over lags; author formula.",
+    "Chande TrendScore: sum of sign(src - src[i])."
+   ]
+  },
+  "gaussian_weighted_stdev": {
+   "n_files": 1,
+   "ids": [
+    "3e4f30f87332",
+    "d9e97e7b3cea"
+   ],
+   "example_files": [
+    "高斯通道趋势跟踪与随机相对强弱指标交易策略-Gaussian-Channel-Trend-Following-with-Stochastic-RSI-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Gaussian-weighted deviation over trailing window; author's function.",
+    "Gaussian-weighted stdev around Gaussian (ALMA 0.5/6) mean."
+   ]
+  },
+  "vw_stdev": {
+   "n_files": 1,
+   "ids": [
+    "3fb8c94282a9",
+    "96b6b38b7908"
+   ],
+   "example_files": [
+    "基于VWAP和OBV-RSI指标的BabyShark交易策略BabyShark-VWAP-Trading-Strategy-Based-on-VWAP-and-OBV-RSI-Indicators.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Rolling volume-weighted stdev (BabyShark VWAP script).",
+    "Rolling volume-weighted stdev (BabyShark VWAP script)."
+   ]
+  },
+  "vawsi": {
+   "n_files": 1,
+   "ids": [
+    "55876c066b9e"
+   ],
+   "example_files": [
+    "VAWSI和趋势持续性反转策略结合动态长度计算的多指标综合分析系统-VAWSI-and-Trend-Persistence-Reversal-Strategy-with-Dynamic-Length-Calculation-Multi-Indicator-Analysis-System.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "RSI built on volume-adjusted weighted MA of gains/losses; author's function."
+   ]
+  },
+  "recursive_bands": {
+   "n_files": 1,
+   "ids": [
+    "67558cc22d79",
+    "ebdd71ae57c0"
+   ],
+   "example_files": [
+    "递归带动量交易策略Recursive-Momentum-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "alexgrover Recursive Bands lower band recursion.",
+    "alexgrover Recursive Bands upper band with selectable volatility measure."
+   ]
+  },
+  "blackflag_fts": {
+   "n_files": 1,
+   "ids": [
+    "76826a5d5a17"
+   ],
+   "example_files": [
+    "渔夫转身EMA多重止损多重止盈策略Fisher-Turnaround-EMA-Multi-Take-Profit-and-Multi-Stop-Strategy.md"
+   ],
+   "verdicts": {
+    "bug": 1
+   },
+   "notes": [
+    "up and down both sum high-low, so the RSI-style value is constant 50."
+   ]
+  },
+  "alexgrover_adaptive_ls_trend": {
+   "n_files": 1,
+   "ids": [
+    "9abeeaac43fd"
+   ],
+   "example_files": [
+    "双向趋势追踪均线交叉策略Bi-Directional-Trend-Tracking-Moving-Average-Crossover-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "alexgrover-style adaptive trailing level with least-squares fit on HTF close."
+   ]
+  },
+  "weighted_stdev": {
+   "n_files": 1,
+   "ids": [
+    "d2ac4f2b3266",
+    "d294254758ec",
+    "fe5d9b545e83"
+   ],
+   "example_files": [
+    "均线加权标准差交易策略Weighted-Standard-Deviation-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 3
+   },
+   "notes": [
+    "Weighted squared-error sum for weighted stdev.",
+    "Weighted mean / unbiased weighted variance helper.",
+    "Weighted mean / unbiased weighted variance over series."
+   ]
+  },
+  "logistic_price_forecast": {
+   "n_files": 1,
+   "ids": [
+    "ddcd62ec6108"
+   ],
+   "example_files": [
+    "基于对数的价格预测策略Logarithmic-Price-Forecasting-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Author's logistic price projection formula."
+   ]
+  },
+  "atr_envelope": {
+   "n_files": 1,
+   "ids": [
+    "e2264267442d"
+   ],
+   "example_files": [
+    "baguette-by-multigrain.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "multigrain ATR envelope holding width when source unchanged."
+   ]
+  },
+  "dual_envelope": {
+   "n_files": 1,
+   "ids": [
+    "09e38635875d",
+    "ddd50376a488",
+    "fc2b694728e7"
+   ],
+   "example_files": [
+    "Adaptive-Trend-Detection-Strategy-with-Dual-Envelope-EMA-System-基于双包络EMA系统的自适应趋势检测策略.md"
+   ],
+   "verdicts": {
+    "standard": 3
+   },
+   "notes": [
+    "Alpha-decay max/min envelope of price and price^2 (author's adaptive envelope), seeded with close.",
+    "Alpha-decay max envelope (pair of 177), seeded with close.",
+    "Lower envelope of squared price via adaptive EMA step (custom script)."
+   ]
+  },
+  "atr_trend_identifier": {
+   "n_files": 1,
+   "ids": [
+    "172e65512d2f"
+   ],
+   "example_files": [
+    "双向趋势追踪均线交叉策略Bi-Directional-Trend-Tracking-Moving-Average-Crossover-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Highest close minus ATR*mult / lowest close plus ATR*mult trend line, author's trendATR."
+   ]
+  },
+  "range_volatility": {
+   "n_files": 1,
+   "ids": [
+    "74bb85cf96d2"
+   ],
+   "example_files": [
+    "历史波动率区间突破交易策略Volatility-Range-Breakout-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "2*(highest-lowest)/(highest+lowest) range ratio, author's volatility."
+   ]
+  },
+  "atr_trend_band": {
+   "n_files": 1,
+   "ids": [
+    "819ab31a51f3"
+   ],
+   "example_files": [
+    "趋势突破策略ATR-Trend-Breakout-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Author's ATR band (low - k*ATR) ratcheting while close above."
+   ]
+  },
+  "volume_pressure": {
+   "n_files": 1,
+   "ids": [
+    "a0618d65a6ff"
+   ],
+   "example_files": [
+    "多指标趋势追踪策略Multi-indicator-Trend-Following-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Sums volume split by close location over bars 1..L-1; na if high==low."
+   ]
+  },
+  "vwap_deviation": {
+   "n_files": 1,
+   "ids": [
+    "b32adfe93ff6"
+   ],
+   "example_files": [
+    "基于VWAP和OBV-RSI指标的BabyShark交易策略BabyShark-VWAP-Trading-Strategy-Based-on-VWAP-and-OBV-RSI-Indicators.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Volume-weighted mean absolute deviation from basis."
+   ]
+  },
+  "tmo": {
+   "n_files": 1,
+   "ids": [
+    "e5e8f715e05c"
+   ],
+   "example_files": [
+    "15MIN-BTCUSDTPERP-BOT.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "True Momentum Oscillator (Mobius) count of close vs past opens, TV-port loop 1..len-1."
+   ]
+  },
+  "converging_channel": {
+   "n_files": 1,
+   "ids": [
+    "fe44fbdbd4c1"
+   ],
+   "example_files": [
+    "双均线价格通道交易策略Dual-Moving-Average-Price-Channel-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "alexgrover-style channel: lower = min(close,b[1]) + (a[1]-b[1])/length."
+   ]
+  },
+  "fib_progression_breaks": {
+   "n_files": 1,
+   "ids": [
+    "525302ba242c"
+   ],
+   "example_files": [
+    "Fibonacci-Progression-With-Breaks.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "LuxAlgo Fibonacci Progression With Breaks average reset."
+   ]
+  },
+  "superichi": {
+   "n_files": 1,
+   "ids": [
+    "ba94c5a14bda"
+   ],
+   "example_files": [
+    "超一目趋势策略Super-Ichi-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "LuxAlgo SuperIchi: average of max/min tracked against a Supertrend line."
+   ]
+  },
+  "percent_trailing_stop": {
+   "n_files": 1,
+   "ids": [
+    "09ea336c03f9"
+   ],
+   "example_files": [
+    "Y-Profit-Maximizer策略Y-Profit-Maximizer-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "UT Bot style trailing recursion on an MA with stop distance MA*pct."
+   ]
+  },
+  "adaptive_ma_channel": {
+   "n_files": 1,
+   "ids": [
+    "4a22f372b305"
+   ],
+   "example_files": [
+    "均自适应通道价格突破策略Adaptive-Moving-Average-Channel-Breakout-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Author's adaptive channel: EMA of negative returns with previous-bar adaptive alpha."
+   ]
+  },
+  "for_loop_score": {
+   "n_files": 1,
+   "ids": [
+    "63080c1c6462"
+   ],
+   "example_files": [
+    "零延迟趋势动量指标交易策略-Zero-Lag-Trend-Momentum-Indicator-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Score: +1/-1 for each lag where basis above/below its past value."
+   ]
+  },
+  "price_friction": {
+   "n_files": 1,
+   "ids": [
+    "af0296aaa73f"
+   ],
+   "example_files": [
+    "基于价格摩擦区的趋势追踪策略Trend-Following-Strategy-Based-on-Price-Friction-Zones.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Author's friction count: weighted count of past bars whose range contains close."
+   ]
+  },
+  "avellaneda_stoikov_bands": {
+   "n_files": 1,
+   "ids": [
+    "de0fce76c40f"
+   ],
+   "example_files": [
+    "Khaled-Tamims-Avellaneda-Stoikov-Strategy-Khaled-Tamims-Avellaneda-Stoikov-Strategy.md"
+   ],
+   "verdicts": {
+    "variant": 1
+   },
+   "notes": [
+    "Simplified quotes mid +- k*gamma*sigma^2*T; omits inventory term and ln(1+gamma/k) spread of Avellaneda-Stoikov."
+   ]
+  },
+  "adaptive_trailing_stop": {
+   "n_files": 1,
+   "ids": [
+    "f2ac2c8906a7"
+   ],
+   "example_files": [
+    "适应性趋势跟踪止损策略Adaptive-Trend-Tracking-Stop-Loss-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Author's trail: switches to previous upper/lower trail when close crosses it."
+   ]
+  },
+  "vw_mean_abs_dev": {
+   "n_files": 1,
+   "ids": [
+    "f6ef3187b144"
+   ],
+   "example_files": [
+    "基于VWAP和OBV-RSI指标的BabyShark交易策略BabyShark-VWAP-Trading-Strategy-Based-on-VWAP-and-OBV-RSI-Indicators.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Volume-weighted mean absolute deviation from a basis (BabyShark VWAP)."
+   ]
+  },
+  "dual_thrust": {
+   "n_files": 1,
+   "ids": [
+    "faf73a411400",
+    "8eae2812800a"
+   ],
+   "example_files": [
+    "Dual-Thrust-Trading-Algorithm-ps4.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Dual Thrust range from previous-bar highest/lowest of H/C/L.",
+    "Dual Thrust asymmetric buy/sell ranges."
+   ]
+  },
+  "standard_error_bands": {
+   "n_files": 1,
+   "ids": [
+    "64f29545b658"
+   ],
+   "example_files": [
+    "Dual-Thrust-Trading-Algorithm-ps4.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Andersen Standard Error Bands around linreg (narrow/wide forms)."
+   ]
+  },
+  "rsi_heikin_ashi": {
+   "n_files": 1,
+   "ids": [
+    "bc82392f8fab"
+   ],
+   "example_files": [
+    "多指标组合趋势反转策略Multi-Indicator-Trend-Reversal-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Heikin Ashi candles built from zero-centred RSI of OHLC (JayRogers style)."
+   ]
+  },
+  "adaptive_trend_flow": {
+   "n_files": 1,
+   "ids": [
+    "bfde7300f106"
+   ],
+   "example_files": [
+    "自适应趋势流动性多重过滤交易策略-Adaptive-Trend-Flow-Multiple-Filter-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Fast/slow EMA basis with EMA-smoothed stdev bands."
+   ]
+  },
+  "relative_body_index": {
+   "n_files": 1,
+   "ids": [
+    "e0b1aed40162"
+   ],
+   "example_files": [
+    "相对笔涨幅均线交叉策略Relative-Body-Index-Crossover-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "EMA of rolling sum of body/range ratio."
+   ]
+  },
+  "hurst_exponent": {
+   "n_files": 1,
+   "ids": [
+    "ffaf2cba477f"
+   ],
+   "example_files": [
+    "基于多时间周期赫斯特指数与斐波那契回撤的动态趋势交易策略Multi-Timeframe-Hurst-Exponent-and-Fibonacci-Retracement-Dynamic-Trend-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "bug": 1
+   },
+   "notes": [
+    "R from rolling sums of deviations from each bar's own SMA, not cumulative deviations within one window; uses prices not returns."
+   ]
+  },
+  "max_min_envelope_volatility": {
+   "n_files": 1,
+   "ids": [
+    "06be385d432b"
+   ],
+   "example_files": [
+    "Adaptive-Trend-Detection-Strategy-with-Dual-Envelope-EMA-System-基于双包络EMA系统的自适应趋势检测策略.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "alexgrover-style max/min envelope of price and squared price for volatility; no lookahead."
+   ]
+  },
+  "trend_persistence": {
+   "n_files": 1,
+   "ids": [
+    "1080947f905c"
+   ],
+   "example_files": [
+    "VAWSI和趋势持续性反转策略结合动态长度计算的多指标综合分析系统-VAWSI-and-Trend-Persistence-Reversal-Strategy-with-Dynamic-Length-Calculation-Multi-Indicator-Analysis-System.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Author's custom trend-persistence RSI (VAWSI script)."
+   ]
+  },
+  "weis_wave_volume": {
+   "n_files": 1,
+   "ids": [
+    "3eaa98e656fa"
+   ],
+   "example_files": [
+    "综合技术指标策略Multi-indicator-Combination-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Weis wave volume: accumulates volume while wave direction unchanged."
+   ]
+  },
+  "trend_thrust_indicator": {
+   "n_files": 1,
+   "ids": [
+    "50cc127aac30"
+   ],
+   "example_files": [
+    "多指标趋势跟踪与成交量确认策略-Multi-Indicator-Trend-Following-with-Volume-Confirmation-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Buff Dormeier Trend Thrust Indicator: VWMA fast/slow with (fast/slow)^2 volume multiplier, SMA signal."
+   ]
+  },
+  "trailing_stop_flip": {
+   "n_files": 1,
+   "ids": [
+    "59206ffb71e8"
+   ],
+   "example_files": [
+    "基于动态追踪止损策略Dynamic-Trailing-Stop-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Offset trailing line ratcheting with highs/lows and flipping on penetration; not position-based."
+   ]
+  },
+  "faytterro_estimator": {
+   "n_files": 1,
+   "ids": [
+    "77429a71db9b"
+   ],
+   "example_files": [
+    "基于Faytterro-Estimator的交易策略Trading-Strategy-Based-on-Faytterro-Estimator.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Triangular-weight sum of past values (faytterro estimator core); past data only."
+   ]
+  },
+  "gyroscopic_trajectory": {
+   "n_files": 1,
+   "ids": [
+    "78a16007b906"
+   ],
+   "example_files": [
+    "基于轨迹平均振幅的多时igkeit交易策略Gyroscopic-Bands-Strategy-Based-on-Multi-Time-Frame-and-Average-Amplitude.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Author's custom smoothed lagged change: (close[1]-close[2] + traj[1]*varb)/(varb+1)."
+   ]
+  },
+  "vawsi_hln": {
+   "n_files": 1,
+   "ids": [
+    "b447615a4fee"
+   ],
+   "example_files": [
+    "VAWSI和趋势持续性反转策略结合动态长度计算的多指标综合分析系统-VAWSI-and-Trend-Persistence-Reversal-Strategy-with-Dynamic-Length-Calculation-Multi-Indicator-Analysis-System.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Author's custom VAWSI volatility term (VAWSI script)."
+   ]
+  },
+  "volume_profile": {
+   "n_files": 1,
+   "ids": [
+    "b8dae24f3e5b"
+   ],
+   "example_files": [
+    "基于成交量热图与实时价格的买卖策略-Buy-and-Sell-Volume-Heatmap-with-Real-Time-Price-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Buy/sell volume per price level over lookback (volume heatmap)."
+   ]
+  },
+  "range_filter_trailing_band": {
+   "n_files": 1,
+   "ids": [
+    "bd9a815364ef"
+   ],
+   "example_files": [
+    "双区间滤波动量交易策略-Dual-Range-Filter-Momentum-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Range-filter band trailing line flipping between upper/lower bands on crosses."
+   ]
+  },
+  "vpci": {
+   "n_files": 1,
+   "ids": [
+    "c510af7141ec"
+   ],
+   "example_files": [
+    "多指标趋势跟踪与成交量确认策略-Multi-Indicator-Trend-Following-with-Volume-Confirmation-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Buff Dormeier Volume Price Confirmation Indicator."
+   ]
+  },
+  "rsi_trend_threshold": {
+   "n_files": 1,
+   "ids": [
+    "dd23224063b4"
+   ],
+   "example_files": [
+    "RSI趋势反转策略-RSI-Trend-Reversal-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "Author's custom RSI/ATR adaptive threshold line (RSI Trend Reversal script)."
+   ]
+  }
+ },
+ "hpotter": {
+  "fractal_chaos_oscillator": {
+   "n_files": 4,
+   "ids": [
+    "b4effb7b48ae",
+    "41a4a6e67cc2",
+    "7462f909381c",
+    "ec689de4ae18",
+    "bb87c7b21a99",
+    "d55362353138"
+   ],
+   "example_files": [
+    "分形混沌震荡器交易策略Fractal-Chaos-Oscillator-Trading-Strategy.md",
+    "双重反转震荡带趋势跟踪策略Dual-Reversal-Oscillating-Band-Trend-Following-Strategy.md",
+    "反转复活振荡指标组合策略Combo-Strategy-of-123-Reversal-and-Fractal-Chaos-Oscillator.md"
+   ],
+   "verdicts": {
+    "standard": 10
+   },
+   "notes": [
+    "HPotter down-fractal level (Fractal Chaos style), held until next.",
+    "HPotter Fractal Chaos Oscillator fractal-low right-side check, faithful copy.",
+    "HPotter Fractal Chaos Oscillator fractal-high left-side check, faithful copy."
+   ]
+  },
+  "gimelfarb_bull_bear_power": {
+   "n_files": 4,
+   "ids": [
+    "da0b8373838f",
+    "5e413e8aa862",
+    "a9f762a03388",
+    "2e98e4f2873e"
+   ],
+   "example_files": [
+    "双向跨均线反转策略Dual-Cross-Moving-Average-Reversal-Strategy.md",
+    "双项式动量突破反转策略Binomial-Momentum-Breakout-Reversal-Strategy.md",
+    "均线先行指标短期做空策略Short-term-Bearish-Strategy-Based-on-EMA-Crossover-and-Bear-Power-Indicators.md"
+   ],
+   "verdicts": {
+    "standard": 4
+   },
+   "notes": [
+    "HPotter Gimelfarb buying pressure, SMA 15 threshold state.",
+    "HPotter port of Gimelfarb Bear Power, position state.",
+    "HPotter Bear Power port, position state."
+   ]
+  },
+  "rainbow_oscillator": {
+   "n_files": 3,
+   "ids": [
+    "7a19ea794837",
+    "0532e4077396"
+   ],
+   "example_files": [
+    "Rainbow-Oscillator.md",
+    "双重趋势追踪量化策略Combo-Quantitative-Trend-Tracking-Strategy.md",
+    "彩虹震荡器交易策略Rainbow-Oscillator-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "Rainbow (Widner) recursive MA smoothing helper.",
+    "HPotter Mel Widner Rainbow Oscillator (10 recursive SMAs), returns pos."
+   ]
+  },
+  "prime_number_oscillator": {
+   "n_files": 3,
+   "ids": [
+    "61fbaca3a249",
+    "14a9138e3495",
+    "d45883ee78db",
+    "cd11c3c5470f"
+   ],
+   "example_files": [
+    "双因子量化交易策略Dual-factor-Quant-Trading-Strategy.md",
+    "基于质数震荡的交易策略Prime-Number-Oscillator-Trading-Strategy.md",
+    "质数波带回测策略Prime-Number-Bands-Backtest-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 4
+   },
+   "notes": [
+    "HPotter Prime Number Oscillator as published (divisor loop bound sqrt(price)).",
+    "HPotter Prime Number Oscillator port (nearest prime above/below price).",
+    "HPotter Prime Number Bands upper band port."
+   ]
+  },
+  "finite_volume_elements": {
+   "n_files": 3,
+   "ids": [
+    "a366fb275f43",
+    "f979ec6ee9e7",
+    "83a363283762"
+   ],
+   "example_files": [
+    "双均线套利策略Dual-Moving-Average-Arbitrage-Strategy.md",
+    "双边三点移位均线量化交易策略Bilateral-Three-Point-Moving-Average-Quantitative-Trading-Strategy.md",
+    "量化反转与成交量策略组合Quantitative-Reversal-and-Volume-Combo-Strategy.md"
+   ],
+   "verdicts": {
+    "variant": 2,
+    "bug": 1
+   },
+   "notes": [
+    "HPotter FVE accumulates cumulatively; Katsanos FVE sums the signed volume over Period only.",
+    "HPotter FVE accumulates forever (nRes[1] + term) instead of Katsanos' rolling Period-bar sum.",
+    "HPotter volatility FVE: cutoff from stdev(sma(intra)) / stdev(sma(inter)) instead of Katsanos stdev(intra) / stdev(inter)."
+   ]
+  },
+  "modified_pvt": {
+   "n_files": 2,
+   "ids": [
+    "0892b318efc4",
+    "f4644dc5da11"
+   ],
+   "example_files": [
+    "双因子反转与改良价格量趋势组合策略Combo-Strategy-of-Double-Factors-Reversal-and-Improved-Price-Volume-Trend.md",
+    "基于价格量变动的趋势策略Modified-Price-Volume-Trend-Strategy-Based-on-Price-Volume-Changes.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "HPotter Modified Price-Volume Trend on ohlc4 with relative volume.",
+    "HPotter improved price-volume trend on ohlc4 with volume/50000 scaling."
+   ]
+  },
+  "trend_continuation_factor": {
+   "n_files": 2,
+   "ids": [
+    "29decdb7b8df",
+    "9049bca31d77",
+    "daaa8ae198cc",
+    "2e8eb6441fc6",
+    "78be0a639b12"
+   ],
+   "example_files": [
+    "动量趋势延续因子策略Momentum-Trend-Continuation-Factor-Strategy.md",
+    "基于趋势平均线的多重反转策略Trend-Reversal-Strategy-Based-on-Multiple-Moving-Averages.md"
+   ],
+   "verdicts": {
+    "warmup_only": 1,
+    "standard": 4
+   },
+   "notes": [
+    "HPotter TCF (M.H. Pee) minus CF; nz seed 1 only affects start.",
+    "Pee's Trend Continuation Factor +CF accumulation.",
+    "HPotter port of M.H. Pee Trend Continuation Factor plus-CF accumulation."
+   ]
+  },
+  "dsp": {
+   "n_files": 2,
+   "ids": [
+    "2d2737fa9e9f",
+    "c7e0646d0fd8"
+   ],
+   "example_files": [
+    "动量反转组合策略Momentum-Reversal-Combo-Strategy.md",
+    "双机制动态趋势追踪策略Dual-Mechanism-Dynamic-Trend-Tracking-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "HPotter/Ehlers Detrended Synthetic Price ema(hl2,n)-ema(hl2,2n), +1/-1 state.",
+    "HPotter Detrended Synthetic Price: EMA(hl2,n)-EMA(hl2,2n), position state."
+   ]
+  },
+  "reverse_engineering_rsi": {
+   "n_files": 2,
+   "ids": [
+    "b0d0c45467bc",
+    "0973e1d7fcd8",
+    "f939e0c8c3a2"
+   ],
+   "example_files": [
+    "多因子融合反转追踪策略Multi-factor-Reversal-Tracking-Strategy.md",
+    "逆向工程RSI策略Reverse-Engineering-RSI-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2,
+    "warmup_only": 1
+   },
+   "notes": [
+    "HPotter port of Siligardos Reverse Engineering RSI, exact formula.",
+    "HPotter Siligardos Reverse Engineering RSI down-average recursion, seeded 1.",
+    "Siligardos Reverse Engineering RSI AUC recursion (HPotter), seeded with 1."
+   ]
+  },
+  "inertia": {
+   "n_files": 2,
+   "ids": [
+    "1ce27ae445ff"
+   ],
+   "example_files": [
+    "惯性指标交易策略Inertia-Indicator-Trading-Strategy.md",
+    "相对波动指数回测策略Relative-Volatility-Index-Backtesting-Strategy.md"
+   ],
+   "verdicts": {
+    "warmup_only": 1
+   },
+   "notes": [
+    "Dorsey RVI up-leg Wilder smoothing (13/14) seeded at 0, as HPotter Inertia."
+   ]
+  },
+  "signal_to_noise": {
+   "n_files": 2,
+   "ids": [
+    "efb2af3f8fba",
+    "b0a014de8577",
+    "fc743a18547b"
+   ],
+   "example_files": [
+    "双重震荡反转信噪比优化组合策略Dual-Oscillation-Reversal-Signal-to-Noise-Ratio-Optimization-Combo-Strategy.md",
+    "基于信噪比和均线的量化交易策略Signal-to-Noise-Moving-Average-Trading-Strategy-Based-on-Quantitative-Trading.md"
+   ],
+   "verdicts": {
+    "standard": 3
+   },
+   "notes": [
+    "Faithful copy of HPotter Signal To Noise (-10*log of mean 1/close, i=1..length-1).",
+    "HPotter Signal To Noise port: -10*log of mean inverse close.",
+    "HPotter signal-to-noise ratio vs SMA signal."
+   ]
+  },
+  "prime_number_bands": {
+   "n_files": 2,
+   "ids": [
+    "715ed81ccf25",
+    "29867240e2bf",
+    "5505fec0e164",
+    "fb33ba366fb7"
+   ],
+   "example_files": [
+    "双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md",
+    "质数波带回测策略Prime-Number-Bands-Backtest-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 4
+   },
+   "notes": [
+    "HPotter Prime Number Bands upper prime search, faithful copy.",
+    "HPotter Prime Number Bands lower band.",
+    "HPotter Prime Number Bands lower band."
+   ]
+  },
+  "trend_intensity_index": {
+   "n_files": 2,
+   "ids": [
+    "90832c57eca6",
+    "43b8dfbe9ff1"
+   ],
+   "example_files": [
+    "双指数移动平均量化交易策略Double-Exponential-Moving-Average-Quant-Trading-Strategy.md",
+    "基于趋势平均线的多重反转策略Trend-Reversal-Strategy-Based-on-Multiple-Moving-Averages.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "M.H. Pee Trend Intensity Index sums of deviations from SMA.",
+    "M.H. Pee Trend Intensity Index sums of deviations from SMA."
+   ]
+  },
+  "smart_money_index": {
+   "n_files": 2,
+   "ids": [
+    "aafedc5f56c9",
+    "222282fe6723"
+   ],
+   "example_files": [
+    "坚固趋势追踪策略Robust-Trend-Tracking-Strategy.md",
+    "智能资金指数策略回测Smart-Money-Index-SMI-Strategy-Backtest.md"
+   ],
+   "verdicts": {
+    "variant": 1,
+    "standard": 1
+   },
+   "notes": [
+    "HPotter SMI: adds full bar change, subtracts prior hourly bar change; not Hays first-30min/last-hour.",
+    "HPotter Smart Money Index using prior HTF bar open/close (no lookahead)."
+   ]
+  },
+  "csi": {
+   "n_files": 2,
+   "ids": [
+    "75775e105f77",
+    "a56c3b40a738"
+   ],
+   "example_files": [
+    "动量反转双轨配对策略Combo-Momentum-Reversal-Dual-Rail-Matching-Strategy.md",
+    "双重动量指数与反转复合策略Double-Momentum-Index-and-Reversal-Hybrid-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "HPotter port of Wilder Commodity Selection Index with SMA signal.",
+    "HPotter port of Wilder Commodity Selection Index, position state."
+   ]
+  },
+  "dinapoli_detrended_oscillator": {
+   "n_files": 2,
+   "ids": [
+    "a8e561e0ea04",
+    "6aa95964271d"
+   ],
+   "example_files": [
+    "双接头智能突破策略Double-Tops-Smart-Breakout-Strategy.md",
+    "双线交叉反转策略Dual-Moving-Average-Crossover-Reversal-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 2
+   },
+   "notes": [
+    "HPotter regime-normalized RSI vs SMA, returns pos.",
+    "HPotter DiNapoli detrended oscillator close - sma(close), trigger signal."
+   ]
+  },
+  "fast_slow_kurtosis_hpotter": {
+   "n_files": 1,
+   "ids": [
+    "65320c19926c"
+   ],
+   "example_files": [
+    "多因子反转交易组合策略Multi-factor-Reversal-Trading-Combo-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter Fast and Slow Kurtosis: mom(mom(close,3),1), EMA 65, WMA 3."
+   ]
+  },
+  "statistical_volatility_hpotter": {
+   "n_files": 1,
+   "ids": [
+    "814c5e320f5c"
+   ],
+   "example_files": [
+    "趋势反转波动率联合策略Trend-Reversal-Volatility-Combination-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter extreme-value statistical volatility, +1/-1 bands."
+   ]
+  },
+  "cmo_filtered_hpotter": {
+   "n_files": 1,
+   "ids": [
+    "8e84aa0355e7"
+   ],
+   "example_files": [
+    "双动量反转策略Momentum-Reversal-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter CMOfilt: Chande momentum with noise filter, +1/-1 bands."
+   ]
+  },
+  "ergodic_candlestick_oscillator": {
+   "n_files": 1,
+   "ids": [
+    "a79c2a499b6c"
+   ],
+   "example_files": [
+    "搏浪者策略Surf-Rider-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter Blau Ergodic Candlestick Oscillator, +1/-1 state."
+   ]
+  },
+  "rmta_hpotter": {
+   "n_files": 1,
+   "ids": [
+    "fc721394ef48"
+   ],
+   "example_files": [
+    "递归移动趋势均线结合123形态反转的组合策略Recursive-Moving-Trend-Average-Combined-with-123-Reversal-Pattern-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter Recursive Moving Trend Average (Meyers), exact."
+   ]
+  },
+  "dti_blau": {
+   "n_files": 1,
+   "ids": [
+    "64f5f8228435"
+   ],
+   "example_files": [
+    "双重趋势追踪策略Combo-Trend-Tracking-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter port of Blau Directional Trend Index (triple EMA of HMU-LMD) with signal."
+   ]
+  },
+  "fld": {
+   "n_files": 1,
+   "ids": [
+    "76afaebdb4cd"
+   ],
+   "example_files": [
+    "融合反转与未来推移均线的量化交易策略Quantitative-Trading-Strategy-Integrating-Reversal-and-Future-Lines-of-Demarcation.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter FLD signal: close vs source displaced by Period."
+   ]
+  },
+  "pring_special_k": {
+   "n_files": 1,
+   "ids": [
+    "8dc6f88cc42d"
+   ],
+   "example_files": [
+    "双K弹弓策略Double-K-Crossbow-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter port of Martin Pring's Special K weighted ROC sum with signal."
+   ]
+  },
+  "hpotter_obos": {
+   "n_files": 1,
+   "ids": [
+    "08145481170e"
+   ],
+   "example_files": [
+    "双重趋势追踪策略Dual-Trend-Tracking-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter port: stoch scaled by direction of close vs close[Length], position state."
+   ]
+  },
+  "apz": {
+   "n_files": 1,
+   "ids": [
+    "28d905728b06"
+   ],
+   "example_files": [
+    "双重均线震荡交易策略Double-Moving-Average-Oscillation-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter Adaptive Price Zone: double EMA of close and range with sqrt period."
+   ]
+  },
+  "gann_swing_oscillator": {
+   "n_files": 1,
+   "ids": [
+    "343008c3d41e"
+   ],
+   "example_files": [
+    "基于双重反转套利策略Dual-Reversal-Arbitrage-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter Gann Swing Oscillator port, position state."
+   ]
+  },
+  "hl_range_hist": {
+   "n_files": 1,
+   "ids": [
+    "545db2429515"
+   ],
+   "example_files": [
+    "多时间段动量反转策略Momentum-Reversal-Multi-Timeframe-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter high-low range vs its lagged SMA, position state."
+   ]
+  },
+  "hpotter_dbp": {
+   "n_files": 1,
+   "ids": [
+    "60fde9b01c31"
+   ],
+   "example_files": [
+    "双均线反转突破策略Dual-Moving-Average-Reversal-Breakout-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter abs(close - SMA)*100/close zone position state."
+   ]
+  },
+  "hpotter_high_low_bands": {
+   "n_files": 1,
+   "ids": [
+    "73a200c7a993"
+   ],
+   "example_files": [
+    "双均线策略与随机指标组合Dual-Moving-Average-Strategy-Combined-with-Stochastic-Indicator.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter High/Low Bands: sma(sma(close,n),n) +- percent shift, position state."
+   ]
+  },
+  "made": {
+   "n_files": 1,
+   "ids": [
+    "75a650eca59c"
+   ],
+   "example_files": [
+    "双均线再反转价格突破策略Dual-Moving-Average-Price-Reversal-Breakout-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter Moving Average Displaced Envelope, position state."
+   ]
+  },
+  "comparative_relative_strength": {
+   "n_files": 1,
+   "ids": [
+    "e3c5db50d7cc"
+   ],
+   "example_files": [
+    "基于逆转与相对强度的组合量化策略Quantitative-Strategy-Based-on-Reversal-and-Comparative-Relative-Strength.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter SMA of price ratio of two symbols, position state."
+   ]
+  },
+  "dynamic_momentum_index": {
+   "n_files": 1,
+   "ids": [
+    "ff6b181d2367"
+   ],
+   "example_files": [
+    "动量张弛指标与123形态策略Momentum-Oscillator-123-Pattern-Strategy.md"
+   ],
+   "verdicts": {
+    "bug": 1
+   },
+   "notes": [
+    "HPotter DMI: period 14/sma(stdev) (missing stdev/sma ratio), then RSI of the period series, not RSI of close with dynamic length."
+   ]
+  },
+  "fractal_chaos_bands": {
+   "n_files": 1,
+   "ids": [
+    "7f796be5fff2"
+   ],
+   "example_files": [
+    "双重反转震荡带趋势跟踪策略Dual-Reversal-Oscillating-Band-Trend-Following-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter Fractal Chaos Bands breakout, returns pos."
+   ]
+  },
+  "hpotter_money_flow": {
+   "n_files": 1,
+   "ids": [
+    "8daa590f1ba6"
+   ],
+   "example_files": [
+    "反转与资金流动量组合策略-Reversal-and-Money-Flow-Combo-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter fast/slow EMA of summed intrabar money flow, returns pos."
+   ]
+  },
+  "polarized_fractal_efficiency": {
+   "n_files": 1,
+   "ids": [
+    "98ff615c83f1"
+   ],
+   "example_files": [
+    "多因子反转交易策略Multi-factor-Reversal-Trading-Strategy.md"
+   ],
+   "verdicts": {
+    "bug": 1
+   },
+   "notes": [
+    "HPotter PFE hard-codes +100 (=10^2) in the net-distance term regardless of Length; correct only for 10 bars."
+   ]
+  },
+  "gimelfarb_bull_bear_balance": {
+   "n_files": 1,
+   "ids": [
+    "d388b1697445"
+   ],
+   "example_files": [
+    "双重均衡牛熊策略Dual-Balanced-Bulls-and-Bears-Strategy.md"
+   ],
+   "verdicts": {
+    "standard": 1
+   },
+   "notes": [
+    "HPotter port of Gimelfarb Bull and Bear Balance indicator."
+   ]
+  }
+ }
+}
