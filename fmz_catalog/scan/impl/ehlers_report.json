@@ -1,0 +1,293 @@
+{
+ "ehlers_bandpass": {
+  "function": "ehlers_bandpass",
+  "status": "implemented",
+  "reference": "Ehlers & Way, 'Empirical Mode Decomposition', TASC Mar 2010; Ehlers, Cycle Analytics for Traders (2013) band-pass (Bandwidth = 2*delta)",
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [
+   {
+    "id": "2e037a3e2dac",
+    "files": [
+     "Combo-2-20-EMA-Bandpass-Filter.md",
+     "双因子反转波段突破组合策略Reversal-Breakout-Bandpass-Combo-Strategy.md",
+     "基于双EMA和带通滤波器的组合交易策略Combination-Trading-Strategy-Based-on-Dual-EMA-and-Bandpass-Filter.md"
+    ],
+    "issue": "pi written as 3.14 in cos(3.14*(360/Length)/180): centre frequency/bandwidth slightly off (about 0.08% of the band-pass std for Length 20). Implemented with exact pi."
+   },
+   {
+    "id": "260e44cd6294",
+    "files": [
+     "Combo-2-20-EMA-Bandpass-Filter.md",
+     "双因子反转波段突破组合策略Reversal-Breakout-Bandpass-Combo-Strategy.md",
+     "基于双EMA和带通滤波器的组合交易策略Combination-Trading-Strategy-Based-on-Dual-EMA-and-Bandpass-Filter.md"
+    ],
+    "issue": "Same pi = 3.14 approximation."
+   },
+   {
+    "id": "84fca2bd478d",
+    "files": [
+     "一种基于带通滤波反转策略Bandpass-Filter-Reversed-Strategy.md",
+     "双边波段过滤策略Dual-Bandpass-Filter-Strategy.md"
+    ],
+    "issue": "Same pi = 3.14 approximation."
+   },
+   {
+    "id": "8b33238037e2",
+    "files": [
+     "基于经验模态分解的量化交易策略Empirical-Mode-Decomposition-Based-Quantitative-Trading-Strategy.md",
+     "带通滤波趋势提取策略Bandpass-Filtering-Trend-Extraction-Strategy.md"
+    ],
+    "issue": "pi written as 3.1415 (about 0.005% of the band-pass std)."
+   },
+   {
+    "id": "d2af4fc6ad27",
+    "files": [
+     "双因子组合反转交易策略Dual-factor-Reversal-Trading-Strategy.md",
+     "双重反转均衡策略Dual-Reversion-Balance-Strategy.md"
+    ],
+    "issue": "pi written as 3.1415. This 'ETT' snippet is sma(bandpass, 2*Length), i.e. the EMD trend: use ehlers_emd(...).mean."
+   },
+   {
+    "id": "43c4d40fda98",
+    "files": [
+     "布林带穿越均值PB指标策略Bandpass-Mean-PB-Indicator-Strategy.md"
+    ],
+    "issue": "Mis-assigned: this is Ehlers' Super Passband filter (TASC Jul 2016), not the EMD band-pass. The copy sums 50 squared PB values but divides by 40 (Ehlers: 50), so its RMS bands are sqrt(50/40) = 1.118x too wide; it also zeroes PB until bar_index > Period1. Implemented as ehlers_super_passband."
+   }
+  ],
+  "notes": "Recursion matches the HPotter copies bar for bar when they are given the same pi (tested with 3.14 and 3.1415 through the private kernel). Output is na until price[2] exists, as in the copies. The HPotter +1/-1 zone/trigger states are strategy rules left to the caller. Super Passband: ehlers_super_passband(close, 40, 60, 50); Ehlers' 50-bar RMS confirmed in the EasyLanguage quoted at https://forums.worden.com/default.aspx?g=posts&t=65337 (TASC Jul 2016 Traders' Tips: https://traders.com/Documentation/FEEDbk_docs/2016/07/TradersTips.html)."
+ },
+ "ehlers_dominant_cycle": {
+  "function": "ehlers_iq_ifm",
+  "other_functions": [
+   "ehlers_cosine_ifm",
+   "ehlers_hilbert_period",
+   "ehlers_homodyne_dc",
+   "ehlers_zero_lag_ec_adaptive"
+  ],
+  "status": "implemented",
+  "reference": "John Ehlers, 'Measuring Cycles' (1999, Word doc): https://c.mql5.com/forextsd/forum/59/ehlers_measuring_cycles.doc (I-Q IFM SideBar 1, Cosine IFM SideBar 2, both sum 51 bars); Ehlers, Rocket Science for Traders (2001) ch. 7 homodyne discriminator (TA-Lib HT_DCPERIOD); phase-accumulation 'original approach' also in ProRealCode's Market Mode Strategies Sinewave port https://www.prorealcode.com/prorealtime-indicators/john-ehlers-sinewave/",
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [
+   {
+    "id": "a285a6576772",
+    "files": [
+     "Enhanced-Fish-Net-Strategy.md"
+    ],
+    "issue": "getHT: 'InstPeriod = nz(InstPeriod[1])' inside the if-block declares a new local instead of assigning (':='), so on bars without a 360-degree crossing in 51 bars InstPeriod stays 0 and Period decays toward 0 instead of holding the last measurement. Fixed in ehlers_hilbert_period (tested on a 20-bar cycle that turns into a 120-bar one)."
+   }
+  ],
+  "notes": "Four measurers. ehlers_iq_ifm matches the Fish Net getIQ (max 50, seed=1 for nz(lenIQ[1],1)) and Adaptive ZLEMA v2 (range 60) copies bar for bar from bar 0, and the Eltrut f_IQIFM copy after warm-up (it uses nz(src[7]) and nz(v1[4])). ehlers_cosine_ifm matches the Adaptive ZLEMA copies (range 50/100) from the first detected cycle on; before it the copies give na (inst := inst[1] without nz), Ehlers' code and ours give 0. Ehlers' own loops run 0..50; the copies use 50, 60, 100 or an input (max_count). ehlers_hilbert_period is the Fish Net getHT with the bug fixed (copy uses PI = 3.14159 in the degree conversion; ProRealCode's Sinewave sums 41 bars, Fish Net 51). ehlers_homodyne_dc (VAWSI copy, BlackCat1402's EhlersHoDyDC) equals TA-Lib HT_DCPERIOD to 1e-8 after warm-up and the VAWSI port. Ehlers' price is hl2 for the IFMs; the copies pass close. Fish Net's min clamp and VAWSI's ceil(1.1*p) in [1,34] are left to the caller."
+ },
+ "ehlers_ec": {
+  "function": "ehlers_zero_lag_ec",
+  "other_functions": [
+   "ehlers_zero_lag_ec_adaptive"
+  ],
+  "status": "implemented",
+  "reference": "Ehlers & Way, 'Zero Lag (Well, Almost)', TASC Nov 2010: https://mesasoftware.com/papers/ZeroLag.pdf ; Traders' Tips https://traders.com/Documentation/FEEDbk_docs/2010/11/TradersTips.html",
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [
+   {
+    "id": "e0b952296b57",
+    "files": [
+     "移动平均线双轨带牛熊策略CBMA-Bollinger-Bands-Breaker-Strategy.md"
+    ],
+    "issue": "calc_cbma: the gain loop runs from emaGainLimit to emaGainLimit (one gain) and 'leastError = abs(error)' / 'bestGain = gain' inside the if-block declare locals, so bestGain stays 0 and the final ec is a zero-seeded EMA of ta.ema(price, emaLength): no error correction at all (the reviewer's 'fixed limit/10' is not what happens). Correct version: gain search over -GainLimit..GainLimit with ':='."
+   },
+   {
+    "id": "76556390c488",
+    "files": [
+     "移动平均线双轨带牛熊策略CBMA-Bollinger-Bands-Breaker-Strategy.md"
+    ],
+    "issue": "Same loop as e0b952296b57 (single gain, shadowed leastError/bestGain)."
+   }
+  ],
+  "notes": "Matches the three Adaptive ZLEMA copies (62235ec98940, b0f1be861aa8) bar for bar, including least_error used in their threshold. ehlers_zero_lag_ec_adaptive takes a per-bar period series and reproduces the adaptive copies (round(Cosine IFM)) bar for bar, na periods included. Ehlers' defaults are Length 20, GainLimit 50; the copies use 8, 10, 15 or 50."
+ },
+ "butterworth_2pole": {
+  "function": "ehlers_butterworth2",
+  "status": "implemented",
+  "reference": "Ehlers, Cybernetic Analysis for Stocks and Futures (2004), 2-pole Butterworth: a = exp(-1.414*pi/P), b = 2a*cos(1.414*180/P), coef1 = (1-b+a^2)/4 on x + 2x[1] + x[2]; e.g. https://tw.tradingview.com/script/bD8PeDpX-Butterworth-2345poles-ATGS",
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [
+   {
+    "id": "7c46da442d82",
+    "files": [
+     "震荡市场多头策略Oscillating-Market-Long-Strategy.md"
+    ],
+    "issue": "butCMOmed mixes coefficient sets: cf21BW20/cf23BW20 with cf22BW50, so the filter is not a Butterworth of any length (wrong gain and response). Use ehlers_butterworth2(chandeMO, 20)."
+   }
+  ],
+  "notes": "zero_seed=True reproduces the FMZ copies' nz() seeding bar for bar (variant_butt2pole in MA-Emperor-insiliconot and the two Moving-Average-Crossover strategies, and the cf21BW*/cf22BW*/cf23BW* lines of the Oscillating-Market-Long strategy, which uses pi = 3.14159265). Default follows Ehlers: first two bars = price, which removes the start-up transient. Copies and this function use exact sqrt(2); Ehlers prints 1.414."
+ },
+ "ehlers_optimal_tracking": {
+  "function": "ehlers_optimal_tracking",
+  "status": "implemented",
+  "reference": "Ehlers, Optimal Tracking Filter (Kalata tracking index); EasyLanguage-derived listing at https://www.prorealcode.com/prorealtime-indicators/john-ehlers-optimal-tracking-filter/ (Price = hl2, Value1 = .2*chg + .8*Value1[1], Value2 = .1*(H-L) + .8*Value2[1])",
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Variant, not a bug: the copies (f_kalman_filter) filter a moving average and smooth ta.tr instead of high-low; true_range=True reproduces them bar for bar. Default is Ehlers' H-L range. Zero-seeded like the EasyLanguage. When the smoothed range is exactly 0 the previous lambda is kept (Ehlers' 'If Value2 <> 0'); the copies would give na there. Original article not located online; formula cross-checked against the ProRealCode copy."
+ },
+ "ehlers_emd": {
+  "function": "ehlers_emd",
+  "status": "implemented",
+  "reference": "Ehlers & Way, 'Empirical Mode Decomposition', TASC Mar 2010 (HPotter's port cites it)",
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [
+   {
+    "id": "a483eea078b5",
+    "files": [
+     "双重反转均衡策略Dual-Reversion-Balance-Strategy.md"
+    ],
+    "issue": "pi written as 3.1415 in the band-pass coefficients (tiny frequency error). Implemented with exact pi."
+   },
+   {
+    "id": "bb4eb74fddfc",
+    "files": [
+     "基于经验模态分解的量化交易策略Empirical-Mode-Decomposition-Based-Quantitative-Trading-Strategy.md"
+    ],
+    "issue": "Same 3.1415 approximation in the band-pass feeding the peak/valley holds."
+   }
+  ],
+  "notes": "Outputs mean = sma(bp, 2*Length), upper/lower = Fraction x 50-bar averages of the band-pass peaks/valleys, HPotter's trend state (1 above both, -1 below both, else previous) and the band-pass. Bar for bar with the HPotter EMD port given the same pi. Defaults Length 20, Delta 0.5, Fraction 0.1 (Ehlers and HPotter)."
+ },
+ "trendflex": {
+  "function": "ehlers_trendflex",
+  "other_functions": [
+   "ehlers_reflex"
+  ],
+  "status": "implemented",
+  "reference": "Ehlers, 'Reflex: A New Zero-Lag Indicator', TASC Feb 2020 (Traders' Tips https://traders.com/Documentation/FEEDbk_docs/2020/02/TradersTips.html; code as published at https://www.prorealcode.com/prorealtime-indicators/reflex-and-trendflex-indicators-john-f-ehlers/ : Super Smoother period .5*Length on (Close+Close[1])/2, MS = .04*Sum^2 + .96*MS[1])",
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [
+   {
+    "id": "e54f6ffbc33f",
+    "files": [
+     "跨周期方向策略Eltrut-Turtle-Reversal-Strategy.md"
+    ],
+    "issue": "Eltrut f_flex smooths with f_supersmoother(src, Length) - period Length instead of Ehlers' 0.5*Length and without the (src + src[1])/2 input average - so its Reflex/Trendflex is a different (slower) curve. The sum/MS loop itself is Ehlers' (tested through the private kernel)."
+   },
+   {
+    "id": "ae0f9276f654",
+    "files": [
+     "跨周期方向策略Eltrut-Turtle-Reversal-Strategy.md"
+    ],
+    "issue": "Same Eltrut f_flex loop, fed by the period-Length smoother."
+   }
+  ],
+  "notes": "The TFO copy (380bfd896d56, a9fd45587b41) is Ehlers' Trendflex with its own parameters: ehlers_trendflex(close, 14, ss_length=8, ms_alpha=2/34) matches it after warm-up (it sums nz(superSmooth[i]) on the first bars). ss_length=0 means Ehlers' length/2. Uses exact sqrt(2) like both copies (Ehlers prints 1.414). Output is na for the first `length` bars; the copies print 0 there."
+ },
+ "butterworth_3pole": {
+  "function": "ehlers_butterworth3",
+  "status": "implemented",
+  "reference": "Ehlers, Cybernetic Analysis (2004) 3-pole Butterworth: a = exp(-pi/P), b = 2a*cos(1.738*180/P), c = a^2, coef1 = (1-b+c)(1-c)/8 (https://lavs9.github.io/quantwave/guides/indicators/native/butterworth3/); bilinear-transform Butterworth for the iirma copy",
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "The iirma copy is not Ehlers' design but a correct bilinear-transform 3rd-order Butterworth with prewarping (coefficients checked by expanding H(s) = 1/(s^3+2s^2+2s+1)); method='bilinear' matches it bar for bar with exact pi and to 1e-6 with its 3.14159. Default method='ehlers'. Both seed the first 3 bars with the price, like the copy's nz(..., src)."
+ },
+ "ehlers_roofing_filter": {
+  "function": "ehlers_roofing_filter",
+  "status": "implemented",
+  "reference": "Ehlers, Cycle Analytics for Traders (2013) roofing filter; TASC Aug 2014 'The Quotient Transform' (Early Onset Trend, the Boom Hunter source: HP period 100, Super Smoother LPPeriod)",
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [],
+  "notes": "Super Smoother stage c1*(HP + HP[1])/2 + c2*Filt[1] + c3*Filt[2] with 1.414 as in Ehlers and the copy. Identical to the Boom Hunter copy (hp 100, ss 6 and 28) after the start-up transient it inherits from its high-pass (nz(close[1]), see ehlers_highpass_2pole); bar for bar with Ehlers' code from bar 0. Ehlers' Cycle Analytics defaults hp 48, ss 10."
+ },
+ "ehlers_cyber_cycle": {
+  "function": "ehlers_cyber_cycle",
+  "status": "implemented",
+  "reference": "Ehlers, Cybernetic Analysis for Stocks and Futures (2004) ch. 4 Cyber Cycle (alpha .07, Price hl2, 'If CurrentBar < 7 then Cycle = (Price - 2*Price[1] + Price[2])/4')",
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [],
+  "notes": "Warm-up only: the copy tests na(cycle[7]), which keeps the start-up formula until bar 8 (Ehlers: bar 5). Identical after warm-up. signal = the strategy's EMA with alpha 1/(lag+1) (default lag 9); trigger = cycle[1] (Ehlers)."
+ },
+ "ehlers_smoothed_rsi": {
+  "function": "ehlers_smoothed_rsi",
+  "status": "implemented",
+  "reference": "Ehlers, Smoothed RSI (Rocket Science for Traders, 2001): CU/(CU+CD) over Length changes of (C + 2C[1] + 2C[2] + C[3])/6; HPotter port 'Smoothed RSI'",
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [],
+  "notes": "Identical to HPotter's copies (3 files) from bar 3+Length on. Before that HPotter's iff() turns na comparisons into 0s and prints values from bar Length-1; this returns na. A window with no movement keeps the previous value (Ehlers); HPotter prints 0. The TopBand/LowBand position state is a strategy rule. Book listing not located online; formula as in HPotter's port, which credits Ehlers."
+ },
+ "ehlers_highpass_2pole": {
+  "function": "ehlers_highpass2",
+  "status": "implemented",
+  "reference": "Ehlers, Cycle Analytics for Traders (2013) 2-pole high-pass: alpha1 = (cos(.707*360/P) + sin(.707*360/P) - 1)/cos(.707*360/P)",
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [
+   {
+    "id": "45c58c8b84bd",
+    "files": [
+     "基于压缩指标的多时间框架交易策略Multi-Timeframe-Trend-Trading-Strategy-Based-on-Compressed-Indicators.md"
+    ],
+    "issue": "Uses nz(close[1]) and nz(close[2]) on the first bars, so bar 0 sees a step of size close and the high-pass rings for several hundred bars (period 100: poles at 0.957). Warm-up defect only; implemented with na until close[2] exists."
+   },
+   {
+    "id": "bc6ce7a2f2a1",
+    "files": [
+     "基于压缩指标的多时间框架交易策略Multi-Timeframe-Trend-Trading-Strategy-Based-on-Compressed-Indicators.md"
+    ],
+    "issue": "Same nz(close[1]) start-up step (EOT 2 line)."
+   }
+  ],
+  "notes": "Identical to the copy after the transient. .707 and 1.414 kept as published."
+ },
+ "voss_filter": {
+  "function": "ehlers_voss",
+  "status": "implemented",
+  "reference": "Ehlers, 'A Peek Into The Future', TASC Aug 2019 (Traders' Tips https://www.traders.com/Documentation/FEEDbk_docs/2019/08/TradersTips.html): Period 20, Predict 3, Bandwidth .25",
+  "matches_strategy_copies": "partial",
+  "strategy_issues": [],
+  "notes": "Warm-up only: the copy zeroes Filt and Voss while bar_index <= 3*predict; Ehlers zeroes Filt for the first 5 bars (from memory of the published listing; the Traders' Tips page is behind Cloudflare). The predictor recursion is stable (largest root 0.82-0.86 for order 9-12), so both converge; identical after warm-up for predict 3 and 4."
+ },
+ "emdi_hpotter": {
+  "function": "ergodic_mdi",
+  "status": "implemented",
+  "reference": "William Blau, Momentum, Direction and Divergence (1995): Ergodic Mean Deviation Indicator; HPotter 'Ergodic MDI' port",
+  "matches_strategy_copies": true,
+  "strategy_issues": [
+   {
+    "id": "8c4170a9988a",
+    "files": [
+     "动量均差指标突破策略Momentum-Mean-Deviation-Breakthrough-Strategy.md",
+     "双指标略逆反转交易策略Dual-Indicator-Slight-Reversal-Trading-Strategy.md"
+    ],
+    "issue": "Minor: the SmthLen input is never used; the signal line is ema(ergodic, u). signal_length defaults to u (5) to match."
+   }
+  ],
+  "notes": "Mis-assigned to the Ehlers family: this is Blau's indicator (HPotter's comment says so). ema(ema(close - ema(close, r), s), u) with ta.ema seeding; pos = 1/-1 on ergodic above/below signal. Bar for bar with the copy."
+ },
+ "ehlers_agc": {
+  "function": "ehlers_agc",
+  "status": "implemented",
+  "reference": "Ehlers, 'The Quotient Transform', TASC Aug 2014 (fast attack - slow decay AGC, decay .991); Cycle Analytics for Traders (2013)",
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Peak = max(|x|, .991*Peak[1]); normalized = x/Peak. Bar for bar with the Boom Hunter copy (except it prints 0 instead of na while its input is na). Feed it ehlers_roofing_filter; the Quotient step (X+K)/(K*X+1) is one line left to the caller."
+ },
+ "ehlers_decycler": {
+  "function": "ehlers_decycler",
+  "status": "implemented",
+  "reference": "Ehlers, Cycle Analytics for Traders (2013) ch. 4 Decycler: Decycle = (alpha1/2)*(Close + Close[1]) + (1 - alpha1)*Decycle[1], alpha1 = (cos(360/P) + sin(360/P) - 1)/cos(360/P); see https://www.luxalgo.com/library/concept/decycler/",
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Bar for bar with the copy (nz seeding as written there). Default cutoff 60. TASC Sep 2015's 'Simple Decycler' (close minus a 2-pole high-pass, 125) is close - ehlers_highpass2(close, 125)."
+ },
+ "ehlers_fisher_stoch": {
+  "function": "ehlers_fisher_stoch",
+  "status": "implemented",
+  "reference": "Ehlers, Cybernetic Analysis for Stocks and Futures (2004): Fisher transform of stochasticised indicators (Fisher Stochastic RVI / CG / Cyber Cycle): (4,3,2,1)/10 WMA of the stochastic, .5*ln((1+1.98(v-.5))/(1-1.98(v-.5)))",
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Generic: apply to any series (the strategy feeds its RVI). normalize=True divides by 2.64 as the copy does (a rescale, not Ehlers'). Bar for bar with the copy once its RVI warm-up has passed. On a flat stochastic window Ehlers keeps the previous value; Pine's stoch gives na there."
+ },
+ "deli": {
+  "function": "deli",
+  "status": "implemented",
+  "reference": "HPotter 'D_ELI' (Detrended Ehlers Leading Indicator), citing Ehlers, MESA and Trading Market Cycles, pp. 64-70 (DSP and Ehlers Leading Indicator)",
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "HPotter's definition is the only one in use: DSP = ema(hl2, n) - ema(hl2, 2n), DELI = DSP - ema(DSP, n), pos = sign state (default n = 7). Bar for bar on the input series. The copy reads daily hl2 through security(); pass a daily series resampled without look-ahead yourself. HPotter's comment describes DSP as 2-pole minus 3-pole Butterworth, but his code (and this) uses EMAs."
+ }
+}

@@ -1,0 +1,342 @@
+{
+ "volume_rsi": {
+  "function": "volume_rsi",
+  "status": "implemented",
+  "reference": "RSI_Volume / calc_rsi_volume with WiMA, shared verbatim by the FMZ copies (Johny's BOT, Dual Laser, Quant Trend, Indicator Verification, exlux99 RSI Curve); first publisher not traced",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "WiMA is Wilder's recursion seeded at 0 (not ta.rma's SMA seed), so early values differ from an SMA-seeded RSI (the reviewers' warmup_only verdict). All 5 copies are identical."
+ },
+ "cipher_b_rsimfi": {
+  "function": "cipher_b_rsimfi",
+  "status": "implemented",
+  "reference": "VuManChu Cipher B + Divergences, f_rsimfi (defaults 60 / 150 / 2.5)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "sma((close-open)/(high-low)*mult, period) - posY; a flat bar gives na for `period` bars as in Pine. The scripts' request.security HTF variant is not included: pass resampled bars for another timeframe. One copy (Indicators-Combination-Breakthrough) uses 80 / 200 / 2."
+ },
+ "redk_vader": {
+  "function": "redk_vader",
+  "status": "implemented",
+  "reference": "RedK Dual VADER with Energy Bars v4.0 / RedK VADER v3.0 [RedKTrader] (identical core; v4 defaults length 10, lookback 20)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [
+   {
+    "id": "20de27f83a13",
+    "files": [
+     "VuManChu-Cipher-B-Divergences-Strategy.md",
+     "基于乖离率指标优化的波动跟踪策略WaveTrend-and-DER-Based-Swing-Trading-Strategy.md"
+    ],
+    "issue": "These copies embed an altered VADER: R = (highest(1) - lowest(1)) / 2 is half the current bar's range although the comment says '2-bar average bar range' (RedK uses highest(2)/lowest(2)); no fixnan on c, so a zero-range bar makes c na and the WMAs na for `length` bars; adp/asp scaled x1 instead of x100."
+   }
+  ],
+  "notes": "The RedK files match bar for bar (v3 and v4 differ only in defaults/plots). f_RelVol uses ta.stoch over highest/lowest of volume, so its effective window is 2n-1 (kept as published). Outputs demand, supply, vader, signal (wma(vader, smooth)), sentiment."
+ },
+ "nadaraya_watson_rq": {
+  "function": "nadaraya_watson_rq",
+  "status": "implemented",
+  "reference": "jdehorty, 'Nadaraya-Watson: Rational Quadratic Kernel (Non-Repainting)' https://www.tradingview.com/script/AWNvbPRM-Nadaraya-Watson-Rational-Quadratic-Kernel-Non-Repainting/ ; same kernel as rationalQuadratic in jdehorty's KernelFunctions https://www.tradingview.com/script/e0Ek9x99-KernelFunctions/",
+  "strategy_specific": false,
+  "matches_strategy_copies": false,
+  "strategy_issues": [
+   {
+    "id": "469ba92d8cbb",
+    "files": [
+     "动量跟踪自适应统计套利策略Momentum-Tracking-Adaptive-Statistical-Arbitrage-Strategy.md"
+    ],
+    "issue": "customKernel weights use (x_0 - i)^2 instead of i^2 and loop only i = 0..h (9 bars): the kernel is centred 25 bars in the past, so within the 9-bar window the OLDEST bar gets the largest weight. Not jdehorty's estimator (which spans size + x_0 + 1 = 27 bars with the newest bar weighted most)."
+   },
+   {
+    "id": "ae010a1ed01d",
+    "files": [
+     "动量跟踪自适应统计套利策略Momentum-Tracking-Adaptive-Statistical-Arbitrage-Strategy.md"
+    ],
+    "issue": "Same customKernel as 469ba92d8cbb (the full function)."
+   },
+   {
+    "id": "2ba8a3e89f43",
+    "files": [
+     "基于Nadaraya-Watson回归和ATR通道的趋势跟踪策略Trend-Following-Strategy-Based-on-Nadaraya-Watson-Regression-and-ATR-Channel.md"
+    ],
+    "issue": "Passes h as _size (kernel_regression1(src, h, h)) instead of array.size(array.from(src)) = 1, so yhat1 spans h + x_0 + 1 = 61 bars and yhat2 h - lag + x_0 + 1 = 59. Reproduce with nadaraya_watson_rq(src, h, r, x_0, size=h).yhat1 and (src, h-lag, r, x_0, size=h-lag).yhat1 (tested)."
+   }
+  ],
+  "notes": "Defaults h 8, r 8, x_0 25, lag 2; na until bar size + x_0 + 1 = 26. Lupown's copy (基于核回归和ATR动态波段...) is faithful and matches bar for bar. Unrelated to LuxAlgo's Gaussian NADARAYA_WATSON envelope already in tv_indicators."
+ },
+ "p_signal": {
+  "function": "p_signal",
+  "status": "implemented",
+  "reference": "P-Signal Strategy and P-Signal Strategy RVS [Kharevsky]: sma(fErf(sma/stdev/sqrt2) of change(ohlc4), n), n = points - 1",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [
+   {
+    "id": "edc4b7a22c65",
+    "files": [
+     "P-Signal多时间框架交易策略P-Signal-Multi-Timeframe-Trading-Strategy.md",
+     "基于高斯误差函数的量化交易策略An-Analysis-of-Quantitative-Trading-Strategy-Based-on-Gaussian-Error-Function.md"
+    ],
+    "issue": "v4 fPSignal evaluates fErf(1.0) = 0.8427 whenever stdev is not > 0, including the warm-up when stdev is na, so the first bars read a bullish 0.84 instead of na and a flat window is bullish regardless of the mean. Kharevsky's own v5 RVS script (f5635ee110ed) replaces this with sign(sma)."
+   }
+  ],
+  "notes": "Both variants are implemented: version=4 (default, the original P-Signal Strategy) and version=5 (RVS). fErf is the script's Numerical-Recipes erfc approximation (|err| < 1.2e-7), kept for bar-for-bar equality. Pass ohlc4 as the source; the multi-timeframe copy applies it to W/M security data too."
+ },
+ "delta_rsi": {
+  "function": "delta_rsi",
+  "status": "implemented",
+  "reference": "Delta-RSI Oscillator [tbiktag] https://www.tradingview.com/script/OXQVFTQD-Delta-RSI-Oscillator/",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Local polynomial least-squares fit (degree 2, window 21) of RSI(21); drsi = slope at the newest point, nrmse = RMSE / window mean, signal = ema(drsi, 9). numpy pinv replaces the script's modified Gram-Schmidt QR pseudoinverse; the test ports the MGS QR literally and agrees to ~1e-10. All 3 copies identical."
+ },
+ "zvwap": {
+  "function": "zvwap",
+  "status": "implemented",
+  "reference": "ZVWAP / Z distance from VWAP [LazyBear], pds 20",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Each bar's squared deviation is from that bar's own rolling VWAP (as published). mohanee's copy generalises the source (calc_zvwap(pds, source1)) but calls it with close."
+ },
+ "gaussian_weighted_stdev": {
+  "function": "gaussian_stdev_channel",
+  "status": "implemented",
+  "reference": "f_gaussian / f_gaussian_std in 'Gaussian Channel + Stoch RSI Strategy' (FMZ 482786)",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Gaussian weights centred on the middle of the trailing window (sigma = length/6), mean and weighted stdev around it; outputs mid, stdev, upper, lower. Not DonovanWall's Gaussian Channel (fmz_catalog.extra.gaussian_channel); being centred, mid lags ~(n-1)/2 bars."
+ },
+ "vw_stdev": {
+  "function": "vw_deviation_bands",
+  "status": "implemented",
+  "reference": "BabyShark VWAP [GreatestUsername]: pine_vwmean / pine_vwstdev",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "vw_deviation_bands(close, volume, length=60, kind='stdev'); basis = rolling volume-weighted mean (= ta.vwma), bands +/-2 and +/-3 dev, optional log space."
+ },
+ "vawsi": {
+  "function": "vawsi",
+  "status": "implemented",
+  "reference": "vawma / vawsi in 'VAWSI and Trend Persistance Reversal' (FMZ strategy)",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Weights (volume/sma(volume,n) + tr/sma(tr,n))/2 over n+1 bars (the loop is 0..length), averages taken at the current bar. Takes a `src` input (the strategy uses the Heikin Ashi close) and chart high/low/close for ta.atr(1). The strategy's length is a per-bar series from BlackCat1402's Ehlers dominant cycle; here length is a fixed parameter."
+ },
+ "blackflag_fts": {
+  "function": "blackflag_fts",
+  "status": "implemented",
+  "reference": "Blackflag FTS (Jose Azcarate; v4 study by Duyck), defaults modified / 28 / 5; source copy https://c.mql5.com/21/448/blackflag.txt , discussion https://prorealcode.com/topic/blackflag-fts-indicator",
+  "strategy_specific": false,
+  "matches_strategy_copies": false,
+  "strategy_issues": [
+   {
+    "id": "76826a5d5a17",
+    "files": [
+     "渔夫转身EMA多重止损多重止盈策略Fisher-Turnaround-EMA-Multi-Take-Profit-and-Multi-Stop-Strategy.md"
+    ],
+    "issue": "'Blackflag FTS signal' is invented: up and down both accumulate high - low, so up/down = 1 and fts_value = 100 - 100/2 = 50 on every bar (na for the first 13). The buy filter fts_value > 0 is always true and the sell condition fts_value < 0 never fires. Blackflag FTS is an ATR trailing stop, not an RSI-style ratio."
+   }
+  ],
+  "notes": "Implemented the real indicator: trail (stop), trend (+1/-1), extremum (na until the first trend change, as Pine's max(na, x)), fib1/2/3 = 61.8/78.6/88.6 % zones. Both trail types tested against a port of the published source."
+ },
+ "weighted_stdev": {
+  "function": "weighted_stdev",
+  "status": "implemented",
+  "reference": "[rumpypumpydumpy] 'Function - Weighted Standard Deviation' (f_weighted_sd_from_series / f_weighted_sd_from_arrays)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "weighted_stdev(close, weight, length) -> mean, variance (unbiased with non-zero-weight count), dev, mse, rmse; the strategy uses weight = volume. weighted_stdev_linear is the arrays example (weights n..1, newest heaviest; mean = ta.wma)."
+ },
+ "range_volatility": {
+  "function": "range_volatility",
+  "status": "implemented",
+  "reference": "Volatility Range Breakout Strategy [wbburgin] (FMZ strategy)",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [
+   {
+    "id": "74bb85cf96d2",
+    "files": [
+     "历史波动率区间突破交易策略Volatility-Range-Breakout-Trading-Strategy.md"
+    ],
+    "issue": "The bands use the script's wma(priceType, length, weight) with weight = the current bar's volatility for every term, so the weight cancels and the 'volatility-weighted' average is a plain SMA (na only when volatility is 0). Ported as written."
+   }
+  ],
+  "notes": "volatility = 2(highest-lowest)/(highest+lowest); outputs volatility, upper, lower, mid."
+ },
+ "volume_pressure": {
+  "function": "volume_strength",
+  "status": "implemented",
+  "reference": "Volume Strength Finder [Saravanan_Ragavan] as embedded in 多指标趋势追踪策略 (session anchor 09:15)",
+  "strategy_specific": false,
+  "matches_strategy_copies": false,
+  "strategy_issues": [
+   {
+    "id": "a0618d65a6ff",
+    "files": [
+     "多指标趋势追踪策略Multi-indicator-Trend-Following-Strategy.md"
+    ],
+    "issue": "On a session's first bar L = 1 and 'for i = 1 to L - 1' becomes 'for i = 1 to 0', which Pine runs backwards (i = 1, 0): it adds the previous session's last bar and the current unfinished bar instead of nothing. Implemented with an empty sum there (pos/neg na). Also na before the first 09:15 bar (Z1 na)."
+   }
+  ],
+  "notes": "Generalised the 09:15 anchor to a `session` id input (ti.session_ids(index, 'D')). A flat bar (high == low) makes the session's sums na from then on, as in Pine. Matches the copy on every bar except a session's first bar."
+ },
+ "vwap_deviation": {
+  "function": "vw_deviation_bands",
+  "status": "merged_into:vw_mean_abs_dev",
+  "reference": "BabyShark VWAP [GreatestUsername]: pine_vwavdev",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Same snippet family as vw_mean_abs_dev (the for-loop body of pine_vwavdev)."
+ },
+ "tmo": {
+  "function": "tmo",
+  "status": "implemented",
+  "reference": "True Momentum Oscillator, Mobius (thinkorswim 2018): fold i = 0 to length of sign(close - open[i]), ExpAverage 5 then 3, signal ExpAverage 3 (defaults 14/5/3) https://usethinkscript.com/threads/tmo-true-momentum-oscillator-for-thinkorswim.9413/ ; TV port https://www.tradingview.com/script/o9BQyaA4-True-Momentum-Oscillator/",
+  "strategy_specific": false,
+  "matches_strategy_copies": false,
+  "strategy_issues": [
+   {
+    "id": "e5e8f715e05c",
+    "files": [
+     "15MIN-BTCUSDTPERP-BOT.md"
+    ],
+    "issue": "Loops i = 1..tmolength-1, dropping Mobius' i = 0 term (close vs the current bar's open), so the count has length-1 terms. Reproduce with tmo(..., start=1) (tested)."
+   }
+  ],
+  "notes": "Default start=0 follows Mobius' fold. Uses ta.ema (SMA seed) like the Pine ports; thinkScript's ExpAverage seeds with the first value, so the first bars differ slightly. Strategy inputs 45/12/9."
+ },
+ "for_loop_score": {
+  "function": "for_loop_score",
+  "status": "implemented",
+  "reference": "forloop_analysis in 'Zero Lag Trend Strategy' [josephdelvecchio] (FMZ strategy)",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Score = sum over lags start..end of sign(x - x[i]); lags beyond history count 0 (Pine na compare). Apply to the zero-lag EMA as the strategy does."
+ },
+ "price_friction": {
+  "function": "price_friction",
+  "status": "implemented",
+  "reference": "'LUBE' price-friction strategy (FMZ strategy)",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "friction = sum of (1+bb)/(i+bb) over previous bars whose range contains close; outputs friction, low_f, high_f, mid_f, trigger (the strategy reads mid_f[5] / trigger[5])."
+ },
+ "vw_mean_abs_dev": {
+  "function": "vw_deviation_bands",
+  "status": "implemented",
+  "reference": "BabyShark VWAP [GreatestUsername]: pine_vwavdev ('Average Deviation', the script's setting)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "vw_deviation_bands(close, volume, length=60, kind='average'), deviations from the current bar's volume-weighted mean."
+ },
+ "rsi_heikin_ashi": {
+  "function": "rsi_heikin_ashi",
+  "status": "implemented",
+  "reference": "Heikin Ashi RSI Oscillator (HARSI) [JayRogers], f_rsiHeikinAshi, open smoothing default 1 https://www.tradingview.com/script/1o4oWbEx-Heikin-Ashi-RSI-Oscillator/",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "Zero-centred RSI candles Heikin-Ashi-ed; the FMZ strategy uses length 14, smoothing 7. Only the HA candles, not HARSI's stoch/RSI plots."
+ },
+ "relative_body_index": {
+  "function": "relative_body_index",
+  "status": "implemented",
+  "reference": "RBI [Vitelot/Yanez/Vts, 2019] as in 'RBI Backtest /w TSSL'",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "ema(sum((close-open)/(high-low), n), n) (binary=True: +1 bull / -1 otherwise); signal = ema(rbi, 5). A flat bar gives na for n bars."
+ },
+ "hurst_exponent": {
+  "function": "hurst_exponent",
+  "status": "implemented",
+  "reference": "Rescaled-range Hurst exponent (Hurst 1951 / Mandelbrot), single window of n log returns: H = log(R/S)/log(n)",
+  "strategy_specific": false,
+  "matches_strategy_copies": false,
+  "strategy_issues": [
+   {
+    "id": "ffaf2cba477f",
+    "files": [
+     "基于多时间周期赫斯特指数与斐波那契回撤的动态趋势交易策略Multi-Timeframe-Hurst-Exponent-and-Fibonacci-Retracement-Dynamic-Trend-Trading-Strategy.md"
+    ],
+    "issue": "calcHurst is not R/S: dev = src - sma(src) uses each bar's own rolling mean, cumDev is a rolling sum of those deviations (not the cumulative profile inside one window), R = highest - lowest of that rolling sum over another len bars (2len-1 bars in all), and it works on price levels instead of returns, with S = stdev of prices. The value has no fixed relation to 0.5, which the strategy uses as its trend threshold."
+   }
+  ],
+  "notes": "Correct single-window estimate; biased upward for small n (~0.6 for a random walk at n = 50). Not ported: the strategy's daily request.security call."
+ },
+ "weis_wave_volume": {
+  "function": "weis_wave_volume",
+  "status": "implemented",
+  "reference": "Weis Wave Volume [LazyBear] (trendDetectionLength 2, showDistributionBelowZero true)",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "The strategy uses trendDetectionLength 4 and the non-negative dn (below_zero=False); both tested bar for bar."
+ },
+ "faytterro_estimator": {
+  "function": "faytterro_estimator",
+  "status": "implemented",
+  "reference": "Faytterro Estimator Strategy [faytterro] (FMZ 427588)",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "estimator = cr(src, 2n-1) = ti.trima(src, 2n-1) exactly (tested), so the smoothing itself exists; added the quadratic extrapolation (dizi[len+6]) and the raw buy/sell turns before the strategy's price-gap filters. Past data only (unlike faytterro's repainting indicator)."
+ },
+ "gyroscopic_trajectory": {
+  "function": "gyroscopic_bands",
+  "status": "implemented",
+  "reference": "Jomy's Gyroscopic Bands (FMZ 433147)",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [
+   {
+    "id": "78a16007b906",
+    "files": [
+     "基于轨迹平均振幅的多时igkeit交易策略Gyroscopic-Bands-Strategy-Based-on-Multi-Time-Frame-and-Average-Amplitude.md"
+    ],
+    "issue": "Warm-up quirks, ported as written: 'pos := a <= 5 ? close : nz(pos[1])' is overwritten on the same bar, so pos starts near 0; it reaches the price only through traj's one-off close[1] - nz(close[2]) = close jump at bar 1, which decays with factor b/(b+1). grav = 10^a / close is price-scale dependent (tuned for BTC)."
+   }
+  ],
+  "notes": "traj = (close[1]-close[2] + traj[1]*b)/(b+1); outputs pos, upper, lower, traj. Discard the first several x b bars."
+ },
+ "vawsi_hln": {
+  "function": "vawsi_hln",
+  "status": "implemented",
+  "reference": "hln in 'VAWSI and Trend Persistance Reversal' (FMZ strategy)",
+  "strategy_specific": true,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "The script's custom rma sums a window and then overwrites it with nz(rma[1])*(n-1)/n + x/n, so it is a 0-seeded Wilder MA (dead code, behaviour kept). hln = 100*|change(rma(TR))|/src, na when the change is 0."
+ },
+ "volume_profile": {
+  "function": "volume_profile",
+  "status": "implemented",
+  "reference": "Rolling volume profile (POC / VAH / VAL) over the last N bars; value area per TradingView's procedure https://www.tradingview.com/support/solutions/43000502040-volume-profile/",
+  "strategy_specific": false,
+  "matches_strategy_copies": false,
+  "strategy_issues": [],
+  "notes": "The work-list snippet (b8dae24f3e5b, 'Buy and Sell Volume Heatmap') is not a profile: it sums volume of the previous 100 bars at 10 levels close*(1 +/- k*1%) and only colours labels. Ported separately as volume_heatmap (matches the copy bar for bar). volume_profile: rows over the window's [lowest low, highest high], each bar's volume spread uniformly over its range (TV uses lower-timeframe bars), POC = middle of the max row, value area expanded one row at a time by the larger neighbour (ties: closer, then above) without exceeding 70 %; vah/val are row edges. Recomputed each bar from the last N bars (current bar included), no repaint; tested against a plain-Python profile and a future-perturbation check."
+ },
+ "vpci": {
+  "function": "vpci",
+  "status": "implemented",
+  "reference": "Volume Price Confirmation Indicator, Buff Dormeier (TASC July 2007 'Between Price and Volume'); LazyBear's TV port https://www.tradingview.com/script/lmTqKOsa-Indicator-Volume-Price-Confirmation-Indicator-VPCI/",
+  "strategy_specific": false,
+  "matches_strategy_copies": true,
+  "strategy_issues": [],
+  "notes": "VPCI = (vwma_long - sma_long) * (vwma_short / sma_short) * (sma(vol, short) / sma(vol, long)); defaults 5/20, strategy 5/25. The smoothed VPCI / Bollinger lines are not included (their exact definition could not be confirmed)."
+ }
+}
