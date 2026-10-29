@@ -123,3 +123,468 @@
 {"id": "8d4ca0175d01", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Long counter carry."}
 {"id": "8e0ad2a4ae3c", "indicator": "trend_state", "best": "-", "verdict": "not_indicator", "note": "Trend flag from price vs MA."}
 {"id": "8f1792f5759c", "indicator": "tanh", "best": "-", "verdict": "not_indicator", "note": "Pure tanh helper."}
+{"id": "90881798131d", "indicator": "ema", "best": "tv:ema(length)", "verdict": "standard", "note": "Plain ta.ema wrapper."}
+{"id": "91739c1899a0", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "SSL Hybrid (Mihkel00) MA selector; JMA, McGinley, TMA, VAMA match their sources (EDSMA uses c1*src SSF)."}
+{"id": "9e43cbd3a871", "indicator": "ftsma", "best": "new:ftsma", "verdict": "standard", "note": "DFT real-part sum for Fourier Transform SMA (FTSMA); textbook DFT."}
+{"id": "a05f9647bfde", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Last filter signal direction."}
+{"id": "a2793aae03d8", "indicator": "kama", "best": "tv:kama(length)", "verdict": "variant", "note": "ER-adaptive smoothing with alpha = ER^pow instead of KAMA's (ER*(fast-slow)+slow)^2."}
+{"id": "a49a25895d38", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Stop price carry."}
+{"id": "a5817a276466", "indicator": "pivot_helper", "best": "-", "verdict": "not_indicator", "note": "Pivot low check with ATR margin; pattern helper."}
+{"id": "a72c8b2710c4", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "SSL Hybrid (Mihkel00) MA selector; components match their sources."}
+{"id": "bc374580ab40", "indicator": "dominant_cycle", "best": "new:ehlers_dominant_cycle", "verdict": "standard", "note": "Ehlers phase-accumulation cycle period (adaptive zero-lag EMA); past data only."}
+{"id": "bd2e4ab542fc", "indicator": "dema", "best": "tv:dema(length)", "verdict": "standard", "note": "Standard DEMA."}
+{"id": "be5062dc533d", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last long."}
+{"id": "c012e078f530", "indicator": "supertrend", "best": "tv:supertrend_kivanc(period=10, multiplier=3)", "verdict": "standard", "note": "Supertrend upper-band ratchet."}
+{"id": "c520cde5402e", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Breakout long state."}
+{"id": "c5fa2304c21a", "indicator": "supertrend", "best": "tv:supertrend_kivanc(period=10, multiplier=3)", "verdict": "standard", "note": "Supertrend lower-band ratchet."}
+{"id": "c77e2f9a4c60", "indicator": "linreg", "best": "tv:linreg(length)", "verdict": "standard", "note": "Sum of i*x for least-squares regression (HPotter LR intercept)."}
+{"id": "c9b3b4ddce04", "indicator": "ftsma", "best": "new:ftsma", "verdict": "standard", "note": "Inverse DFT synthesis term for FTSMA."}
+{"id": "cafb1b5d410b", "indicator": "supertrend", "best": "tv:supertrend_kivanc(period=10, multiplier=3)", "verdict": "standard", "note": "Supertrend direction flip (HTF inputs)."}
+{"id": "cc4b37a28e3a", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Entry condition state."}
+{"id": "ccff9e546293", "indicator": "roc", "best": "tv:roc(length)", "verdict": "standard", "note": "Rate of change as fraction (roc/100)."}
+{"id": "ce68578f0c98", "indicator": "ema", "best": "tv:ema(length)", "verdict": "standard", "note": "Plain ta.ema wrapper."}
+{"id": "d221a2476c36", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "variant", "note": "JustUncleL MA selector: ZEMA = 2*SMA - EMA(SMA) and TMA = sma(sma(len),len) differ from standard ZLEMA/TRIMA."}
+{"id": "daeb98600aaf", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Grid sell count carry."}
+{"id": "dd03825b1b31", "indicator": "delta_rsi", "best": "new:delta_rsi", "verdict": "standard", "note": "tbiktag Delta-RSI: polynomial least-squares fit derivative with NRMSE."}
+{"id": "e897c87fa112", "indicator": "sr_helper", "best": "-", "verdict": "not_indicator", "note": "Support/resistance strength array search."}
+{"id": "ea500ea35600", "indicator": "sigmoid", "best": "-", "verdict": "not_indicator", "note": "Pure sigmoid helper."}
+{"id": "ec79eb0e9b3d", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Heikin long state."}
+{"id": "ef753ac6006c", "indicator": "ma_angle_cum", "best": "-", "verdict": "not_indicator", "note": "Custom cumulative sum of MA angle."}
+{"id": "f0108718ce03", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Pivot-reversal entry pending flag."}
+{"id": "f2aefe32730b", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Time window and signal flag."}
+{"id": "f4d6e5b9ee8f", "indicator": "sr_level", "best": "-", "verdict": "not_indicator", "note": "Resistance level carry."}
+{"id": "f7188eb169a8", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "OBV MACD MA selector of library-style averages."}
+{"id": "01963d228a6a", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Doji flag."}
+{"id": "029300fee55c", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "MA type selector with standard formulas."}
+{"id": "035d9941a0c4", "indicator": "sma", "best": "tv:sma(length)", "verdict": "standard", "note": "Loop sum over len bars (SMA numerator)."}
+{"id": "0377573651ec", "indicator": "key_reversal", "best": "-", "verdict": "not_indicator", "note": "HPotter key reversal up flag."}
+{"id": "03eadfaf861d", "indicator": "tick_helper", "best": "-", "verdict": "not_indicator", "note": "Price difference in ticks."}
+{"id": "04743057b729", "indicator": "trend_state", "best": "-", "verdict": "not_indicator", "note": "Combined trend flag."}
+{"id": "050cf9d968b8", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Stop-loss carry."}
+{"id": "054db4d869a2", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "MA type selector."}
+{"id": "06be385d432b", "indicator": "envelope_volatility", "best": "new:max_min_envelope_volatility", "verdict": "standard", "note": "alexgrover-style max/min envelope of price and squared price for volatility; no lookahead."}
+{"id": "06eb22b70aa8", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Plot value carry."}
+{"id": "07917a35d610", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Stacking count carry."}
+{"id": "07d201eaab0c", "indicator": "pivot_levels", "best": "new:pivot_high_low_levels", "verdict": "standard", "note": "Holds last confirmed ta.pivothigh value."}
+{"id": "0814213537f0", "indicator": "butterworth_2pole", "best": "new:butterworth_2pole", "verdict": "standard", "note": "Ehlers 2-pole Butterworth (x+2x[1]+x[2]) applied to ROC."}
+{"id": "0871d68a71d9", "indicator": "knn_classifier", "best": "-", "verdict": "not_indicator", "note": "Toy nearest-neighbour vote; ML helper."}
+{"id": "097fe8e1868e", "indicator": "swing_detection", "best": "-", "verdict": "not_indicator", "note": "Swing high/low detection on HTF values."}
+{"id": "0af63b42652c", "indicator": "position_stop", "best": "-", "verdict": "not_indicator", "note": "Stop at lowest low on entry."}
+{"id": "0b2144c7f87d", "indicator": "sr_helper", "best": "-", "verdict": "not_indicator", "note": "Support/resistance array getter."}
+{"id": "0bc29b2ce742", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Entry price of last long."}
+{"id": "0cb3345c461f", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Short state."}
+{"id": "0d3f30146caf", "indicator": "candle_count", "best": "-", "verdict": "not_indicator", "note": "Counts down candles for order blocks."}
+{"id": "0e4bc04c1e81", "indicator": "cross_signal", "best": "-", "verdict": "not_indicator", "note": "Price crosses SMA flags."}
+{"id": "0e7fcde8ff09", "indicator": "chandelier_exit", "best": "tv:chandelier_exit(22, 3.0)", "verdict": "standard", "note": "everget Chandelier Exit long-stop ratchet."}
+{"id": "0ebe237e1dc1", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Hammer flag."}
+{"id": "0f75521dbaec", "indicator": "frama", "best": "tv:frama(length=16)", "verdict": "variant", "note": "FC/SC-modified FRAMA: alpha remapped between 2/(SC+1) and 2/(FC+1), not original Ehlers alpha."}
+{"id": "105e898a7e93", "indicator": "ema3", "best": "tv:ema(length)", "verdict": "standard", "note": "EMA of EMA of EMA (triple-smoothed, not TEMA), SMA seed on first bar."}
+{"id": "1080947f905c", "indicator": "trend_persistence", "best": "new:trend_persistence", "verdict": "standard", "note": "Author's custom trend-persistence RSI (VAWSI script)."}
+{"id": "1175901b632e", "indicator": "t3", "best": "tv:t3(length, vfactor=0.7)", "verdict": "standard", "note": "Tillson T3 as c1*e6+c2*e5+c3*e4+c4*e3."}
+{"id": "128e1bc1d703", "indicator": "swing_helper", "best": "-", "verdict": "not_indicator", "note": "Swing low flag."}
+{"id": "134649043e5d", "indicator": "ama_level", "best": "-", "verdict": "not_indicator", "note": "Holds AMA low while falling; state helper."}
+{"id": "1371911b5772", "indicator": "donchian_helper", "best": "-", "verdict": "not_indicator", "note": "Donchian band monotonic check."}
+{"id": "149561697d98", "indicator": "pivot_state", "best": "-", "verdict": "not_indicator", "note": "Price position among pivot levels."}
+{"id": "15298fe1ef7e", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Open price of last short."}
+{"id": "159ad928a87b", "indicator": "pattern_similarity", "best": "-", "verdict": "not_indicator", "note": "Pattern match ratio."}
+{"id": "1659b79f7ffc", "indicator": "efficiency_ratio", "best": "tv:efficiency_ratio(length)", "verdict": "bug", "note": "Kaufman ER sums len+1 abs changes (i=0..len) against len-bar net change; ER biased low."}
+{"id": "174be35e746b", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Last swing high carry."}
+{"id": "17d68f00b25f", "indicator": "center_of_gravity", "best": "tv:center_of_gravity(length)", "verdict": "standard", "note": "Ehlers CG numerator/denominator loop."}
+{"id": "180e2cfd51d8", "indicator": "rsi", "best": "tv:rsi(length)", "verdict": "standard", "note": "TV built-in RSI formula, HTF via security without lookahead, plus signal index."}
+{"id": "18de8108ae80", "indicator": "trend_state", "best": "-", "verdict": "not_indicator", "note": "Band trend state."}
+{"id": "19b65b22c978", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last long6."}
+{"id": "1a1e5ea3cf59", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Exit memory state."}
+{"id": "1ab7da0983fd", "indicator": "accelerating_ma", "best": "new:accelerating_adaptive_ma", "verdict": "standard", "note": "Custom MA whose alpha grows by k on new band extremes and resets on cross (uses alpha[1])."}
+{"id": "1b1641111905", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Hammer flag."}
+{"id": "1b4b4b74bee5", "indicator": "trend_state", "best": "-", "verdict": "not_indicator", "note": "Trend flag from MA +/- ATR."}
+{"id": "1c12bf1cb098", "indicator": "supertrend", "best": "tv:supertrend_kivanc(period=10, multiplier=3)", "verdict": "variant", "note": "HPotter SuperTrend: highest[1]-m*wma(TR) / lowest[1]+m*wma(TR) switch, not hl2 ATR band ratchet."}
+{"id": "1c7e159046bd", "indicator": "factorial", "best": "-", "verdict": "not_indicator", "note": "Factorial helper for binomial MA."}
+{"id": "1cf7d86133bc", "indicator": "candle_range", "best": "-", "verdict": "not_indicator", "note": "Bar range helper."}
+{"id": "1d2590f503b2", "indicator": "fractal_chaos_oscillator", "best": "new:fractal_chaos_oscillator", "verdict": "standard", "note": "HPotter Fractal Chaos Oscillator signal from fractal level changes."}
+{"id": "1dd7c97db58d", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "EMA/RMA/SMA/WMA selector."}
+{"id": "1e7607a0dfff", "indicator": "sma", "best": "tv:sma(length)", "verdict": "standard", "note": "Loop sum (SMA numerator)."}
+{"id": "1f8abe8141a3", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Bearish engulfing flag."}
+{"id": "2012e29fd517", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last short condition."}
+{"id": "20bf69a68a1e", "indicator": "ehlers_agc", "best": "new:ehlers_agc", "verdict": "standard", "note": "Ehlers automatic gain control peak decay 0.991."}
+{"id": "21623207fd6c", "indicator": "leledc_exhaustion", "best": "new:leledc_exhaustion", "verdict": "standard", "note": "Joy_Bangla Leledc exhaustion bar counts with configurable lookbacks (defaults match original)."}
+{"id": "2250be777060", "indicator": "position_stop", "best": "-", "verdict": "not_indicator", "note": "Stop level fixed while in position."}
+{"id": "22a5fa0ca60d", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "bug", "note": "'TEMA' = 3*ema - ema(ema(ema)), missing -3*ema2 term; T*/F* families likewise; basic MAs and DEMA fine."}
+{"id": "24d53e2f0000", "indicator": "position_pnl", "best": "-", "verdict": "not_indicator", "note": "Accumulated short profit tracker."}
+{"id": "254851be7a50", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Lowest low while short."}
+{"id": "260dbc50e32d", "indicator": "symbol_helper", "best": "-", "verdict": "not_indicator", "note": "Currency conversion symbol lookup."}
+{"id": "27a0716e858e", "indicator": "kama", "best": "tv:kama(length)", "verdict": "bug", "note": "Volatility sums abs(src - src[i]) instead of abs(src[i] - src[i+1]); efficiency ratio wrong."}
+{"id": "288c185e0bf1", "indicator": "stoch", "best": "tv:stoch(14, 1, 3)", "verdict": "standard", "note": "Standard slow stochastic via HTF security (no lookahead) plus signal index."}
+{"id": "2922cb1d623b", "indicator": "jma", "best": "new:jma", "verdict": "standard", "note": "everget JMA stage e0."}
+{"id": "29601ed5adaf", "indicator": "position_stop", "best": "-", "verdict": "not_indicator", "note": "Stop-loss lookback loop."}
+{"id": "2973e3c18a89", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Open price of last long."}
+{"id": "29b41ae41ae2", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Last swing high level for pivot reversal entries."}
+{"id": "2a1a77059f9b", "indicator": "ema", "best": "tv:ema(length)", "verdict": "standard", "note": "Plain ema wrapper."}
+{"id": "2a7646538019", "indicator": "ott", "best": "tv:ott(length=2, percent=1.4)", "verdict": "standard", "note": "OTT direction-carry fragment."}
+{"id": "2aaad73e9911", "indicator": "sr_helper", "best": "-", "verdict": "not_indicator", "note": "Support/resistance array getter."}
+{"id": "2b087315fcb6", "indicator": "supertrend", "best": "tv:supertrend(factor=3, atr_period=10)", "verdict": "variant", "note": "ta.supertrend reference logic on (sma(high)+sma(low))/2 source instead of hl2."}
+{"id": "2c18ea84fafc", "indicator": "session_state", "best": "-", "verdict": "not_indicator", "note": "Previous session close."}
+{"id": "2c59eba65129", "indicator": "macd", "best": "tv:macd(12, 26, 9)", "verdict": "standard", "note": "ta.macd wrapper."}
+{"id": "2cb0442ca865", "indicator": "signal_state", "best": "-", "verdict": "not_indicator", "note": "EMA stack short setup flag."}
+{"id": "2cd42532b278", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Indicator direction state."}
+{"id": "2db55fd93133", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last short1."}
+{"id": "2e1d1fe19e6d", "indicator": "counter", "best": "-", "verdict": "not_indicator", "note": "Reversal condition counter."}
+{"id": "2e8eb6441fc6", "indicator": "trend_continuation_factor", "best": "new:trend_continuation_factor", "verdict": "standard", "note": "M.H. Pee Trend Continuation Factor minus-CF accumulation."}
+{"id": "2f10e5661b7d", "indicator": "hma", "best": "tv:hma(length)", "verdict": "standard", "note": "Classic Hull MA formula."}
+{"id": "2f5d519dfa6d", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Open price of last long5."}
+{"id": "2f85095f8d45", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Barssince exit condition."}
+{"id": "2ffc32d0f99c", "indicator": "tanh", "best": "-", "verdict": "not_indicator", "note": "Pure tanh helper."}
+{"id": "305f074fecf6", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Stoch oversold within lookback."}
+{"id": "3157b6dfb93e", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Cross price highest check."}
+{"id": "32337a286d62", "indicator": "grid_logic", "best": "-", "verdict": "not_indicator", "note": "Grid order loop."}
+{"id": "33ba2851bbbc", "indicator": "kama", "best": "tv:kama(length)", "verdict": "warmup_only", "note": "HPotter KAMA (fast 2, slow 30) seeded at 0 instead of price; returns position."}
+{"id": "35d08cbfec69", "indicator": "wma", "best": "tv:wma(length)", "verdict": "standard", "note": "Loop weighted sum (WMA numerator)."}
+{"id": "360e75ebc88b", "indicator": "counter", "best": "-", "verdict": "not_indicator", "note": "Unchanged MACD-count counter."}
+{"id": "368e620aeccc", "indicator": "mama", "best": "new:mama", "verdict": "standard", "note": "MAMA final step with alpha from fMAMA."}
+{"id": "36fb08ff7374", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "State carry."}
+{"id": "37160070ed04", "indicator": "table_helper", "best": "-", "verdict": "not_indicator", "note": "Table cell output."}
+{"id": "37a9a6b6ca70", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Reference high carry."}
+{"id": "380bfd896d56", "indicator": "trendflex", "best": "new:trendflex", "verdict": "standard", "note": "Ehlers TrendFlex (2020): super smoother, mean slope sum, RMS normalisation."}
+{"id": "398fc2e7bfe5", "indicator": "cmo", "best": "tv:cmo(length)", "verdict": "standard", "note": "HPotter average of CMO over three lengths, position signal."}
+{"id": "3aca256898c0", "indicator": "hma", "best": "tv:hma(length)", "verdict": "variant", "note": "Half length math.round(len/2) (len=9 gives 5) vs ta.hma floor(len/2)."}
+{"id": "3bb45b52ce86", "indicator": "supertrend", "best": "tv:supertrend_kivanc(period=10, multiplier=3)", "verdict": "standard", "note": "Supertrend direction-carry fragment."}
+{"id": "3bcb0d653fd4", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "SMA/EMA/WMA/RMA switch."}
+{"id": "3c55b12aac40", "indicator": "dominant_cycle", "best": "new:ehlers_dominant_cycle", "verdict": "variant", "note": "Phase accumulation sets period to i-1 instead of Ehlers' count i (one bar shorter)."}
+{"id": "3d428ee49e77", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Black marubozu flag."}
+{"id": "3e2abb71d86d", "indicator": "candle_count", "best": "-", "verdict": "not_indicator", "note": "Positive bar count."}
+{"id": "3eaa98e656fa", "indicator": "weis_wave_volume", "best": "new:weis_wave_volume", "verdict": "standard", "note": "Weis wave volume: accumulates volume while wave direction unchanged."}
+{"id": "3ef7aa1bafda", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last short SL signal."}
+{"id": "3f6e8be050a9", "indicator": "trend_state", "best": "-", "verdict": "not_indicator", "note": "DI trend flag."}
+{"id": "3fedacd8ecec", "indicator": "ema", "best": "tv:ema(length)", "verdict": "standard", "note": "HPotter 2/20 EMA breakout signal; EMA core standard."}
+{"id": "40a022676ec7", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Re-entry count carry."}
+{"id": "40b8ad46b519", "indicator": "trend_state", "best": "-", "verdict": "not_indicator", "note": "Wave trend state."}
+{"id": "413f485f0692", "indicator": "technical_ratings", "best": "new:technical_ratings", "verdict": "standard", "note": "TradingView Technical Ratings built-in (MA and oscillator ratings)."}
+{"id": "452b3fd1b0c8", "indicator": "dominant_cycle", "best": "new:ehlers_dominant_cycle", "verdict": "standard", "note": "Ehlers phase-accumulation InstPeriod loop (360 degrees)."}
+{"id": "459fe986712c", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Signal carry."}
+{"id": "45c58c8b84bd", "indicator": "ehlers_highpass", "best": "new:ehlers_highpass_2pole", "verdict": "standard", "note": "Ehlers 2-pole high-pass filter (roofing filter stage)."}
+{"id": "46d62d369aaa", "indicator": "dmi", "best": "tv:dmi(length=14)", "verdict": "variant", "note": "Modified DMI: DM from change of highest(up_band)/lowest(low_band) instead of high/low change."}
+{"id": "4796d207f335", "indicator": "qqe", "best": "tv:qqe(14, 5, 4.238)", "verdict": "standard", "note": "Glaz QQE trend flip on band cross."}
+{"id": "488f59509d08", "indicator": "hma", "best": "tv:hma(length)", "verdict": "standard", "note": "Classic Hull MA formula."}
+{"id": "48f84d985cb4", "indicator": "wma", "best": "tv:wma(length)", "verdict": "standard", "note": "Weights (len-i)*len, constant factor cancels: WMA."}
+{"id": "49ac723439e1", "indicator": "sma", "best": "tv:sma(length)", "verdict": "standard", "note": "Loop sum (SMA numerator)."}
+{"id": "49d12127a368", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Short state carry."}
+{"id": "4a32d85fe72f", "indicator": "median", "best": "tv:median(length)", "verdict": "bug", "note": "Named median but computes repeated halving average (x+src[i])/2, not a median."}
+{"id": "4ae51ad89958", "indicator": "sizing", "best": "-", "verdict": "not_indicator", "note": "Order quantity mode."}
+{"id": "4b4bd0bbee43", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last long6."}
+{"id": "4b9527f4617b", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Bullish pin bar flag."}
+{"id": "4c3f7f7c11a1", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Dragonfly doji flag."}
+{"id": "4c6de762c294", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Price vs Ichimoku cloud entry filter."}
+{"id": "4d7cf3647004", "indicator": "position_target", "best": "-", "verdict": "not_indicator", "note": "Take-profit level at entry."}
+{"id": "4def4c70397a", "indicator": "awesome_oscillator", "best": "tv:awesome_oscillator(5, 34)", "verdict": "standard", "note": "HPotter AO: sma(hl2,fast)-sma(hl2,slow) rising/falling signal."}
+{"id": "4e76c62acca9", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Low crosses trailing MA level."}
+{"id": "4f5b6d015c2d", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Trailing stop side state."}
+{"id": "4fb7d4d67d7a", "indicator": "jma", "best": "new:jma", "verdict": "standard", "note": "everget JMA, exact formula."}
+{"id": "50cc127aac30", "indicator": "trend_thrust_indicator", "best": "new:trend_thrust_indicator", "verdict": "standard", "note": "Buff Dormeier Trend Thrust Indicator: VWMA fast/slow with (fast/slow)^2 volume multiplier, SMA signal."}
+{"id": "51d7efdc96bd", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last long4."}
+{"id": "52439e167b75", "indicator": "trend_state", "best": "-", "verdict": "not_indicator", "note": "MA rising/falling direction state."}
+{"id": "52981da3a59e", "indicator": "trade_logic", "best": "-", "verdict": "not_indicator", "note": "Breakout entry loop with strategy orders."}
+{"id": "534d3cc4d475", "indicator": "position_sizing", "best": "-", "verdict": "not_indicator", "note": "Leverage carry."}
+{"id": "5372de049512", "indicator": "signal_state", "best": "-", "verdict": "not_indicator", "note": "MACD/channel buy condition state."}
+{"id": "53d2c8123b22", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Highest close while in position."}
+{"id": "53e477d7c984", "indicator": "signal_state", "best": "-", "verdict": "not_indicator", "note": "Buy/sell direction state."}
+{"id": "54564357a6e0", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Position price carry."}
+{"id": "5499df729647", "indicator": "trend_state", "best": "-", "verdict": "not_indicator", "note": "EMA slope direction state."}
+{"id": "54d43ed29b4f", "indicator": "apo", "best": "tv:apo(12, 26)", "verdict": "standard", "note": "HPotter Absolute Price Oscillator: ema short - ema long, sign signal."}
+{"id": "550a3090a935", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of anti-liquidation long."}
+{"id": "5578bf8f2983", "indicator": "supertrend", "best": "tv:supertrend_kivanc(period=10, multiplier=3)", "verdict": "standard", "note": "Supertrend direction-carry fragment."}
+{"id": "55d4cd087452", "indicator": "nadaraya_watson", "best": "tv:nadaraya_watson(h=8, mult=3)", "verdict": "bug", "note": "Gaussian weight uses (len-1-i), so the oldest bar gets the largest weight instead of the current bar."}
+{"id": "56ca4633fe3d", "indicator": "linreg", "best": "tv:linreg(length)", "verdict": "standard", "note": "OLS intercept: mean(y) - beta*mean(bar_index)."}
+{"id": "5755d539c242", "indicator": "tema", "best": "tv:tema(length)", "verdict": "standard", "note": "Standard TEMA."}
+{"id": "581e30a6722b", "indicator": "knn_mean", "best": "new:knn_mean", "verdict": "standard", "note": "Mean of k past values closest to target (KNN smoother helper)."}
+{"id": "59206ffb71e8", "indicator": "trailing_stop_flip", "best": "new:trailing_stop_flip", "verdict": "standard", "note": "Offset trailing line ratcheting with highs/lows and flipping on penetration; not position-based."}
+{"id": "59afb17ff6a4", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Close at MACD counter change."}
+{"id": "5a052b9c8b0f", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last short6."}
+{"id": "5a53719acd41", "indicator": "candle_count", "best": "-", "verdict": "not_indicator", "note": "Down-candle count for order blocks."}
+{"id": "5afd74d3f121", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Level carry."}
+{"id": "5b099f138cf6", "indicator": "hma", "best": "tv:hma(length)", "verdict": "standard", "note": "Classic Hull MA formula."}
+{"id": "5b4f71f0dd60", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Grid sell price carry."}
+{"id": "5ba8bbb9bac6", "indicator": "direction_label", "best": "-", "verdict": "not_indicator", "note": "Arrow text for rising/falling."}
+{"id": "5bd594b0d476", "indicator": "kalman_smoother", "best": "new:kalman_smoother", "verdict": "standard", "note": "Common TV 'Kahlman' smoother (gain g, velocity term) as in Hull Suite/BRAHMASTRA scripts."}
+{"id": "5c51d3015493", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Open price of last short3."}
+{"id": "5c8d165b6e97", "indicator": "renko", "best": "new:renko", "verdict": "standard", "note": "Renko brick level carry fragment."}
+{"id": "5cd072146049", "indicator": "rsi", "best": "tv:rsi(length)", "verdict": "standard", "note": "HPotter RSI of ROC with zone signal."}
+{"id": "5d2509970efb", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last short4."}
+{"id": "5da477190971", "indicator": "signal_state", "best": "-", "verdict": "not_indicator", "note": "ANN output sign state."}
+{"id": "5e363f3449b3", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Fib level carry."}
+{"id": "5e59456c9302", "indicator": "psar", "best": "tv:psar(0.02, 0.02, 0.2)", "verdict": "standard", "note": "Parabolic SAR acceleration factor update."}
+{"id": "5f676ed26358", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Mode carry."}
+{"id": "600ab67234ab", "indicator": "angle_helper", "best": "-", "verdict": "not_indicator", "note": "Slope angle in degrees helper."}
+{"id": "6068569ef01e", "indicator": "pivot_helper", "best": "-", "verdict": "not_indicator", "note": "Pivot low check with ATR margin."}
+{"id": "61089b27cc93", "indicator": "vumanchu_rsimfi", "best": "new:vumanchu_rsimfi", "verdict": "standard", "note": "VuManChu Cipher B RSI+MFI area: sma((c-o)/(h-l)*mult) - posY, HTF without lookahead."}
+{"id": "615e7336ed82", "indicator": "pmo", "best": "tv:pmo(35, 20, 10)", "verdict": "warmup_only", "note": "DecisionPoint CSF smoothing (2/length) seeded at 0 instead of src."}
+{"id": "61abd055a349", "indicator": "rma", "best": "tv:rma(length)", "verdict": "warmup_only", "note": "Kivanc wwma: Wilder MA with zero seed instead of SMA seed."}
+{"id": "6239badd2720", "indicator": "trend_state", "best": "-", "verdict": "not_indicator", "note": "Trend carry."}
+{"id": "62ee285e87d8", "indicator": "kernel_ma", "best": "new:kernel_ma", "verdict": "standard", "note": "Generic kernel-weighted sum over past bars."}
+{"id": "6360f19a8d32", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "HPotter weekly high/low breakout signal (HTF [1], no lookahead)."}
+{"id": "64101d47878b", "indicator": "zlema", "best": "tv:zlema(length)", "verdict": "variant", "note": "'ZLEMA' as ema + (ema - ema(ema)) = DEMA, not ema(src + src - src[lag])."}
+{"id": "6453a6fdd5b4", "indicator": "position_target", "best": "-", "verdict": "not_indicator", "note": "Take-profit carry."}
+{"id": "649f8239ec57", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Hammer flag on previous bar."}
+{"id": "6595f984c03e", "indicator": "signal_state", "best": "-", "verdict": "not_indicator", "note": "Consecutive order flag."}
+{"id": "66c54b3148f7", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Indicator direction carry."}
+{"id": "674a45ed61fc", "indicator": "volume_count", "best": "-", "verdict": "not_indicator", "note": "Count of high-volume down days."}
+{"id": "67a58f90848a", "indicator": "linreg_slope", "best": "tv:linreg(length)", "verdict": "variant", "note": "Centered-weight sum over n(n+1): least-squares slope scaled by (n-1)/12; custom band offset."}
+{"id": "683555828009", "indicator": "supertrend", "best": "tv:supertrend_kivanc(period=10, multiplier=3)", "verdict": "standard", "note": "Supertrend lower-band ratchet."}
+{"id": "68afbc9c6646", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last long signal."}
+{"id": "6950fa66fd7b", "indicator": "pivot_level", "best": "-", "verdict": "not_indicator", "note": "Last pivot low level."}
+{"id": "6a3f64585660", "indicator": "vidya", "best": "tv:vidya(9)", "verdict": "standard", "note": "Chande VIDYA recursion with abs CMO, zero seed like Kivanc."}
+{"id": "6aa95964271d", "indicator": "dinapoli_detrended_oscillator", "best": "new:dinapoli_detrended_oscillator", "verdict": "standard", "note": "HPotter DiNapoli detrended oscillator close - sma(close), trigger signal."}
+{"id": "6ad0e9a6f1dc", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "RVI value at counter change."}
+{"id": "6b4ac8f5984a", "indicator": "sr_level", "best": "-", "verdict": "not_indicator", "note": "Resistance touch loop."}
+{"id": "6b9e824df0c1", "indicator": "time_helper", "best": "-", "verdict": "not_indicator", "note": "Friday flag."}
+{"id": "6c72e961f271", "indicator": "mcginley", "best": "tv:mcginley(length)", "verdict": "standard", "note": "TV built-in McGinley Dynamic formula."}
+{"id": "6ccbf94c4f21", "indicator": "signal_count", "best": "-", "verdict": "not_indicator", "note": "Stoch cross count in lookback."}
+{"id": "6da58ad91db5", "indicator": "fees", "best": "-", "verdict": "not_indicator", "note": "Fee helper."}
+{"id": "6e6dc9e11f11", "indicator": "trend_state", "best": "-", "verdict": "not_indicator", "note": "Breakout trend state."}
+{"id": "6f67224109e0", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Bullish engulfing flag."}
+{"id": "6fb61edf9ab8", "indicator": "lowest", "best": "tv:donchian(length)", "verdict": "bug", "note": "Loop 0..length inclusive spans length+1 bars vs ta.lowest(length)."}
+{"id": "6ff9d564fd9f", "indicator": "dmi", "best": "tv:dmi(length=14)", "verdict": "warmup_only", "note": "Wilder running sum of -DM seeded at 0; DI ratio converges to ta.dmi."}
+{"id": "7089fba4f3e5", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Already-bought flag."}
+{"id": "70c3f65f224b", "indicator": "ut_bot", "best": "tv:ut_bot(key=1, atr_period=10)", "verdict": "standard", "note": "UT Bot ATR trailing stop recursion."}
+{"id": "7117bc11a411", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last long SL."}
+{"id": "71a8730973bc", "indicator": "plot_state", "best": "-", "verdict": "not_indicator", "note": "Color flag carry."}
+{"id": "71c703899cdd", "indicator": "signal_state", "best": "-", "verdict": "not_indicator", "note": "Direction state."}
+{"id": "72a24e99ed42", "indicator": "laguerre_rsi", "best": "tv:laguerre_rsi(gamma=0.5)", "verdict": "warmup_only", "note": "Laguerre L2 stage seeded with 1 instead of 0; converges."}
+{"id": "7300af2843e3", "indicator": "rma", "best": "tv:rma(length)", "verdict": "standard", "note": "SMMA seeded with SMA = ta.rma."}
+{"id": "7345387b8363", "indicator": "binomial_ma", "best": "new:binomial_ma", "verdict": "standard", "note": "Binomial-coefficient weighted MA normalisation loop."}
+{"id": "739e212ca6df", "indicator": "conditional_ema", "best": "new:conditional_ema", "verdict": "standard", "note": "EMA of values sampled when a condition is true."}
+{"id": "757f3732cdb7", "indicator": "ut_bot", "best": "tv:ut_bot(key=1, atr_period=10)", "verdict": "bug", "note": "Trailing stop with no direction logic: max(prev, close-nLoss) then overwritten by min(that, close+nLoss)."}
+{"id": "762bddfe4546", "indicator": "supertrend", "best": "tv:supertrend(factor=3, atr_period=10)", "verdict": "standard", "note": "ta.supertrend wrapper."}
+{"id": "7655e24d65a1", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Trade running state."}
+{"id": "76d15410d1d2", "indicator": "trendline_state", "best": "-", "verdict": "not_indicator", "note": "Angle carry."}
+{"id": "77429a71db9b", "indicator": "faytterro_estimator", "best": "new:faytterro_estimator", "verdict": "standard", "note": "Triangular-weight sum of past values (faytterro estimator core); past data only."}
+{"id": "778433abfa1a", "indicator": "cci", "best": "tv:cci(length=10)", "verdict": "standard", "note": "HPotter CCI with fast/slow SMA signal."}
+{"id": "7854da8c558f", "indicator": "kernel_ma", "best": "new:kernel_ma", "verdict": "standard", "note": "Generic kernel-weighted sum over past bars."}
+{"id": "78a16007b906", "indicator": "gyroscopic_traj", "best": "new:gyroscopic_trajectory", "verdict": "standard", "note": "Author's custom smoothed lagged change: (close[1]-close[2] + traj[1]*varb)/(varb+1)."}
+{"id": "78be0a639b12", "indicator": "trend_continuation_factor", "best": "new:trend_continuation_factor", "verdict": "standard", "note": "TCF plus-change helper."}
+{"id": "78f56c807472", "indicator": "pivot_helper", "best": "-", "verdict": "not_indicator", "note": "Pivot high check with ATR margin."}
+{"id": "79964cd3f706", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Close at last bear signal."}
+{"id": "79be58b0ec55", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "HPotter position from rising/falling MA spread."}
+{"id": "7a470ae99ffc", "indicator": "sr_level", "best": "-", "verdict": "not_indicator", "note": "Support/resistance touch counter."}
+{"id": "7b2e8f012949", "indicator": "rsi", "best": "tv:rsi(length)", "verdict": "standard", "note": "RSI via rma of gains/losses; no down==0 guard."}
+{"id": "7ba97e21fcb6", "indicator": "jma", "best": "new:jma", "verdict": "standard", "note": "everget JMA stage e1."}
+{"id": "7c0cc5a6161b", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last short4 signal."}
+{"id": "7cb002219693", "indicator": "fractal_chaos_oscillator", "best": "new:fractal_chaos_oscillator", "verdict": "standard", "note": "HPotter Fractal Chaos Oscillator fractalDn."}
+{"id": "7d36049dfc5d", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "ta.* MA switch."}
+{"id": "7e4f447c5ac5", "indicator": "swing_levels", "best": "-", "verdict": "not_indicator", "note": "LuxAlgo-style swing high/low detection state."}
+{"id": "7f3f9891faec", "indicator": "volume_helper", "best": "-", "verdict": "not_indicator", "note": "HTF volume lookup without lookahead."}
+{"id": "7fdb142b3e07", "indicator": "mama", "best": "new:mama", "verdict": "bug", "note": "LazyBear MAMA port: Pine atan in radians where Ehlers uses degrees, so dphase clamps to 1 and alpha ~ fastlimit; period smoothed with p3[1]."}
+{"id": "821f866bd792", "indicator": "trend_state", "best": "-", "verdict": "not_indicator", "note": "Donchian breakout trend color."}
+{"id": "82bb3932742d", "indicator": "table_helper", "best": "-", "verdict": "not_indicator", "note": "Yearly PnL table."}
+{"id": "83a363283762", "indicator": "finite_volume_elements", "best": "new:finite_volume_elements", "verdict": "variant", "note": "HPotter volatility FVE: cutoff from stdev(sma(intra)) / stdev(sma(inter)) instead of Katsanos stdev(intra) / stdev(inter)."}
+{"id": "85d0b5c9b964", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "MA type selector."}
+{"id": "88102745099b", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Fib level carry."}
+{"id": "8838a6d4d4f0", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Open short count carry."}
+{"id": "8871ca840994", "indicator": "fractal_levels", "best": "tv:fractals(high, low)", "verdict": "standard", "note": "Holds last fractal high level."}
+{"id": "88df3ca3c3fd", "indicator": "awesome_oscillator", "best": "tv:awesome_oscillator(5, 34)", "verdict": "standard", "note": "AO on HTF (no lookahead) with direction index."}
+{"id": "89e20eb599f9", "indicator": "supertrend", "best": "tv:supertrend_kivanc(period=10, multiplier=3)", "verdict": "standard", "note": "Supertrend direction flip."}
+{"id": "8a36a26bddce", "indicator": "sort_helper", "best": "-", "verdict": "not_indicator", "note": "Sorts 5 daily highs/lows."}
+{"id": "8c349b3a1cc8", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "VFI smoothing selector."}
+{"id": "8d39213ece61", "indicator": "pivot_levels", "best": "new:pivot_high_low_levels", "verdict": "standard", "note": "ta.pivothigh/pivotlow with pivot times."}
+{"id": "8dd3cfa419fc", "indicator": "lowest", "best": "tv:donchian(length)", "verdict": "standard", "note": "ta.lowest support level."}
+{"id": "8e16c1b47f2d", "indicator": "trade_logic", "best": "-", "verdict": "not_indicator", "note": "DCA order placement."}
+{"id": "8ef1b7b45635", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Keep-short flag."}
+{"id": "8fa26d439d49", "indicator": "fisher", "best": "tv:fisher(9)", "verdict": "standard", "note": "Ehlers Fisher transform recursion as TV built-in."}
+{"id": "8ff03996e33e", "indicator": "rma", "best": "tv:rma(length)", "verdict": "standard", "note": "RMA seeded with SMA."}
+{"id": "901b4db7edf2", "indicator": "position_stop", "best": "-", "verdict": "not_indicator", "note": "Stop price carry."}
+{"id": "90585a9e5730", "indicator": "random_helper", "best": "-", "verdict": "not_indicator", "note": "Pseudo-random generator state."}
+{"id": "90f0e66caf34", "indicator": "cmo", "best": "tv:cmo(length)", "verdict": "standard", "note": "HPotter CMO: 100*(close-close[L]) / sum of abs changes, equals Chande CMO."}
+{"id": "91897e761ef8", "indicator": "t3", "best": "tv:t3(length, vfactor=0.7)", "verdict": "standard", "note": "HPotter T3-CCI: standard T3 coefficients on CCI, Tillson period mapping."}
+{"id": "94283fe47061", "indicator": "alphatrend", "best": "tv:alphatrend(coeff=1, period=14)", "verdict": "standard", "note": "Kivanc AlphaTrend recursion with MFI."}
+{"id": "94a93fd3942f", "indicator": "macd", "best": "tv:macd(12, 26, 9)", "verdict": "standard", "note": "MACD line on HTF (no lookahead) sign index."}
+{"id": "953f06536c33", "indicator": "vwap", "best": "tv:vwap(anchor=D)", "verdict": "standard", "note": "Session VWAP numerator accumulation on custom source."}
+{"id": "95b26cdbec25", "indicator": "sinh", "best": "-", "verdict": "not_indicator", "note": "Pure sinh helper."}
+{"id": "95df74674364", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Falling check loop."}
+{"id": "9671b641ef9d", "indicator": "wma", "best": "tv:wma(length)", "verdict": "bug", "note": "Named wma but uses a constant weight for every bar, so it is an SMA."}
+{"id": "96b6a297159a", "indicator": "linreg_channel", "best": "tv:linreg(length)", "verdict": "standard", "note": "Squared residuals from least-squares line over close[1..length] for channel width."}
+{"id": "96f9bd560035", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "ta.* MA switch."}
+{"id": "982bb52d6159", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Level carry."}
+{"id": "987f47c02b13", "indicator": "true_range", "best": "tv:true_range(high, low, close)", "verdict": "standard", "note": "Standard true range."}
+{"id": "98ff615c83f1", "indicator": "polarized_fractal_efficiency", "best": "new:polarized_fractal_efficiency", "verdict": "bug", "note": "HPotter PFE hard-codes +100 (=10^2) in the net-distance term regardless of Length; correct only for 10 bars."}
+{"id": "9a16c257cf86", "indicator": "triple_wma", "best": "tv:wma(length)", "verdict": "standard", "note": "MoonFlag custom triple-WMA smoothing with split lengths."}
+{"id": "9ac0fc45136a", "indicator": "knn_mean", "best": "new:knn_mean", "verdict": "standard", "note": "KNN closest-values search loop."}
+{"id": "9c140c5597a3", "indicator": "obv", "best": "tv:obv(close, volume)", "verdict": "standard", "note": "OBV computed on 2-bar lagged data."}
+{"id": "9c80623ef98f", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "RMA/SMA/EMA/WMA switch."}
+{"id": "9cc8a3a86429", "indicator": "grid_level", "best": "-", "verdict": "not_indicator", "note": "Grid anchor price."}
+{"id": "9cf582b7bd7d", "indicator": "keltner", "best": "tv:keltner(20, 2.0)", "verdict": "variant", "note": "HPotter classic 1960 Keltner: sma(hlc3) +/- sma(high-low), not TV EMA +/- ATR."}
+{"id": "9d28a1d61db0", "indicator": "signal_state", "best": "-", "verdict": "not_indicator", "note": "Price action buy condition state."}
+{"id": "9d93477c727f", "indicator": "macd_state", "best": "-", "verdict": "not_indicator", "note": "Lowest MACD histogram since zero cross."}
+{"id": "9dc0eaeec716", "indicator": "gaussian", "best": "-", "verdict": "not_indicator", "note": "Gaussian density helper."}
+{"id": "9e3177101b08", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "RSI > 50 sign."}
+{"id": "9e94b8833fb7", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "variant", "note": "Selector whose JMA branch fixes phaseRatio=1 and power=1 (simplified JMA); other branches standard."}
+{"id": "a1d490edf864", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last long5."}
+{"id": "a2684a922ae9", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Bearish engulfing with size filters."}
+{"id": "a30b2d476c15", "indicator": "knn_distance", "best": "-", "verdict": "not_indicator", "note": "KNN feature distance loop."}
+{"id": "a37f25a2a9bf", "indicator": "ichimoku", "best": "tv:ichimoku(9, 26, 52, 26)", "verdict": "standard", "note": "Ichimoku lines unshifted."}
+{"id": "a40bce8cf9df", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Bar filter carry."}
+{"id": "a434161d6203", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "In-buy flag."}
+{"id": "a490ae37692c", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Martingale count carry."}
+{"id": "a499ce69bd7a", "indicator": "lowest", "best": "tv:donchian(length)", "verdict": "standard", "note": "Lowest low over bars 1..entP+1 (excludes current bar)."}
+{"id": "a5143e5343d0", "indicator": "linreg", "best": "tv:linreg(length)", "verdict": "standard", "note": "OLS slope/intercept on array values."}
+{"id": "a60f8447346e", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Percent change since window start."}
+{"id": "a709416a4328", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last short1 signal."}
+{"id": "a788f876fa2f", "indicator": "signal_state", "best": "-", "verdict": "not_indicator", "note": "Fake breakout flag."}
+{"id": "a7b43086b622", "indicator": "vidya", "best": "tv:vidya(9)", "verdict": "warmup_only", "note": "Kivanc VIDYA seeded with SMA instead of 0."}
+{"id": "a846d790ec10", "indicator": "dmi", "best": "tv:dmi(length=14)", "verdict": "standard", "note": "TV dirmov on HTF high/low/TR via security (no lookahead)."}
+{"id": "a87ca4f8bae0", "indicator": "t3", "best": "tv:t3(length, vfactor=0.7)", "verdict": "bug", "note": "T3 coefficients applied to ema4..ema1 instead of e6..e3 (two EMA stages missing)."}
+{"id": "a8c8465412e3", "indicator": "accdist", "best": "tv:accdist(high, low, close, volume)", "verdict": "standard", "note": "ta.accdist longhand, then SMA smoothing."}
+{"id": "a923ec71be7d", "indicator": "tema", "best": "tv:tema(length)", "verdict": "standard", "note": "Standard TEMA."}
+{"id": "a93f6d0700e3", "indicator": "rescale", "best": "-", "verdict": "not_indicator", "note": "Min-max rescale helper."}
+{"id": "a9b33f5053b6", "indicator": "ahrens_ma", "best": "new:ahrens_ma", "verdict": "standard", "note": "Richard Ahrens moving average (TASC 2013): prev + (src - (prev + prev[n])/2)/n."}
+{"id": "aa19f03b4503", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Bull trend check loop."}
+{"id": "aaa23228a402", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "ATR level carry."}
+{"id": "aadeee30ec1c", "indicator": "dema", "best": "tv:dema(length)", "verdict": "standard", "note": "Standard DEMA."}
+{"id": "ab270abda9d9", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Short open flag."}
+{"id": "abd9097263aa", "indicator": "ichimoku", "best": "tv:ichimoku(9, 26, 52, 26)", "verdict": "standard", "note": "HPotter Ichimoku: span names swapped, but values equal the cloud drawn under the current bar; no lookahead."}
+{"id": "acaabb749bd0", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Barssince exit condition."}
+{"id": "acf68f7e6aaf", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Flag pattern bar check."}
+{"id": "ad3e5b8169fb", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Valuewhen helper."}
+{"id": "ad99d2c2790f", "indicator": "position_stop", "best": "-", "verdict": "not_indicator", "note": "Long stop at entry."}
+{"id": "ae0f9276f654", "indicator": "ehlers_reflex", "best": "new:ehlers_reflex", "verdict": "standard", "note": "Ehlers Reflex/TrendFlex sum loop with slope correction (TASC 2020)."}
+{"id": "ae6aa6e3d9d2", "indicator": "pvi", "best": "tv:pvi(close, volume)", "verdict": "variant", "note": "HPotter PVI: additive cumulative ROC on up-volume days instead of multiplicative index from 1000."}
+{"id": "aebbf41d89d2", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Falling three methods flag."}
+{"id": "af5d43dea6b4", "indicator": "position_stop", "best": "-", "verdict": "not_indicator", "note": "SL price carry."}
+{"id": "afe12c18b4c0", "indicator": "signal_state", "best": "-", "verdict": "not_indicator", "note": "Arrow condition state."}
+{"id": "b077baec6ccd", "indicator": "sma", "best": "tv:sma(length)", "verdict": "standard", "note": "Plain sma wrapper."}
+{"id": "b0c5e1874b7a", "indicator": "candle_helper", "best": "-", "verdict": "not_indicator", "note": "Body touches level flag."}
+{"id": "b10a79ab3cb0", "indicator": "trend_state", "best": "-", "verdict": "not_indicator", "note": "Up/down flag state."}
+{"id": "b154ad72d50b", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Price vs SMA150 loop."}
+{"id": "b211634f2098", "indicator": "heikin_ashi", "best": "tv:heikin_ashi(open, high, low, close)", "verdict": "standard", "note": "Smoothed Heikin Ashi open on MA-smoothed OHLC."}
+{"id": "b266dfd8c561", "indicator": "session_state", "best": "-", "verdict": "not_indicator", "note": "Previous session high."}
+{"id": "b2ffd7955534", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "BB entry within lookback."}
+{"id": "b361053ad64f", "indicator": "grid_helper", "best": "-", "verdict": "not_indicator", "note": "Grid width option."}
+{"id": "b3d8f4b425b6", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Bullish engulfing with volume."}
+{"id": "b447615a4fee", "indicator": "vawsi_hln", "best": "new:vawsi_hln", "verdict": "standard", "note": "Author's custom VAWSI volatility term (VAWSI script)."}
+{"id": "b4f55632ceb0", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Bearish pattern aggregate."}
+{"id": "b5fcf4dc4fa2", "indicator": "supertrend", "best": "tv:supertrend_kivanc(period=10, multiplier=3)", "verdict": "standard", "note": "Supertrend upper-band ratchet (HTF)."}
+{"id": "b67c22c27a6c", "indicator": "t3", "best": "tv:t3(length, vfactor=0.7)", "verdict": "standard", "note": "T3 e4 EMA stage."}
+{"id": "b7135743216f", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "RMA/SMA/EMA/WMA selector."}
+{"id": "b7a37093fcfd", "indicator": "lowest", "best": "tv:donchian(length)", "verdict": "bug", "note": "Loop 0..length inclusive spans length+1 bars vs ta.lowest(length)."}
+{"id": "b8797d1cd39d", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Plot level carry."}
+{"id": "b8dae24f3e5b", "indicator": "volume_profile", "best": "new:volume_profile", "verdict": "standard", "note": "Buy/sell volume per price level over lookback (volume heatmap)."}
+{"id": "b9b1724a7128", "indicator": "dema", "best": "tv:dema(length)", "verdict": "standard", "note": "Standard DEMA."}
+{"id": "b9caa3bf1371", "indicator": "trima", "best": "tv:trima(length)", "verdict": "variant", "note": "'TRIMA' as sma(sma(len),len): window 2len-1, not standard triangular MA of len."}
+{"id": "ba8871f87ce7", "indicator": "ut_bot", "best": "tv:ut_bot(key=1, atr_period=10)", "verdict": "standard", "note": "UT Bot ATR trailing stop recursion (short copy)."}
+{"id": "ba93e45c42d5", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Three higher lows flag."}
+{"id": "ba9491d7257e", "indicator": "lowest", "best": "tv:donchian(length)", "verdict": "bug", "note": "Lowest over src[0..len] spans len+1 bars vs Lowest(len)."}
+{"id": "bad5fa6b077d", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "EMA/SMA/SWMA/VWMA/WMA selector."}
+{"id": "bb62cd18d1ee", "indicator": "daily_change", "best": "-", "verdict": "not_indicator", "note": "Change vs previous daily close (HTF [1], no lookahead)."}
+{"id": "bc08beb7339d", "indicator": "hma", "best": "tv:hma(length)", "verdict": "standard", "note": "Classic Hull MA formula."}
+{"id": "bc7685f1865a", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Bullish pattern aggregate."}
+{"id": "bd6e162a859c", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Bullish bar flag."}
+{"id": "bd9a815364ef", "indicator": "range_filter_trailing", "best": "new:range_filter_trailing_band", "verdict": "standard", "note": "Range-filter band trailing line flipping between upper/lower bands on crosses."}
+{"id": "be162141dcd7", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Gravestone doji flag."}
+{"id": "bf8f13a4c2d4", "indicator": "ott", "best": "tv:ott(length=2, percent=1.4)", "verdict": "standard", "note": "Kivanc OTT on VAR, exact."}
+{"id": "c127415a6611", "indicator": "sr_helper", "best": "-", "verdict": "not_indicator", "note": "Close crosses SR mid level."}
+{"id": "c230c3459f6f", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Barssince range check."}
+{"id": "c2c01fcfb165", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "RMA/SMA/EMA/WMA selector."}
+{"id": "c371cd9a2264", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Keltner touch loop."}
+{"id": "c40ad398827d", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Grid quantity carry."}
+{"id": "c4e8d9e7ad54", "indicator": "macd", "best": "tv:macd(12, 26, 9)", "verdict": "standard", "note": "Standard MACD."}
+{"id": "c510af7141ec", "indicator": "vpci", "best": "new:vpci", "verdict": "standard", "note": "Buff Dormeier Volume Price Confirmation Indicator."}
+{"id": "c5f847c7724f", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Trailing stop side state."}
+{"id": "c623190d15d2", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "MA variant selector (KAMA/MAMA/T3 delegated)."}
+{"id": "c77684810648", "indicator": "fractals", "best": "tv:fractals(high, low)", "verdict": "variant", "note": "RicardoSantos BW fractal: allows tie at high[1] (right side); TV built-in requires strictly lower right-side bars."}
+{"id": "c848c5979f9e", "indicator": "knn_helper", "best": "-", "verdict": "not_indicator", "note": "KNN neighbour selection helper."}
+{"id": "c8e319e62310", "indicator": "g_channel", "best": "new:g_channel", "verdict": "standard", "note": "alexgrover G-Channel upper recursion."}
+{"id": "c9e6b66b56f4", "indicator": "butterworth_2pole", "best": "new:butterworth_2pole", "verdict": "standard", "note": "Ehlers 2-pole Butterworth applied to DI+."}
+{"id": "ca076642ba56", "indicator": "ema", "best": "tv:ema(length)", "verdict": "standard", "note": "Plain ta.ema wrapper."}
+{"id": "cabc6ac7d168", "indicator": "candle_count", "best": "-", "verdict": "not_indicator", "note": "Candle direction count."}
+{"id": "cb3900a2f45c", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Evening star flag."}
+{"id": "cb8bc61e6d0a", "indicator": "midpoint", "best": "tv:midpoint(length)", "verdict": "standard", "note": "(lowest+highest)/2 of source."}
+{"id": "cbd082295033", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Doji flag."}
+{"id": "cbfb8f6c6af2", "indicator": "supertrend", "best": "tv:supertrend_kivanc(period=10, multiplier=3)", "verdict": "standard", "note": "Supertrend direction flip."}
+{"id": "cc9c72845288", "indicator": "g_channel", "best": "new:g_channel", "verdict": "standard", "note": "alexgrover G-Channel lower recursion."}
+{"id": "ccd9ef9e1533", "indicator": "jma", "best": "new:jma", "verdict": "standard", "note": "everget JMA e2 stage."}
+{"id": "cd0d8b7a9ae2", "indicator": "adx", "best": "tv:adx(length=14)", "verdict": "standard", "note": "TV built-in ADX longhand."}
+{"id": "cd9b5290e407", "indicator": "lowest", "best": "tv:donchian(length)", "verdict": "bug", "note": "Loop 0..length inclusive spans length+1 bars vs ta.lowest(length)."}
+{"id": "ce27408e800e", "indicator": "supersmoother", "best": "tv:supersmoother(length)", "verdict": "standard", "note": "Ehlers 2-pole super smoother with (src+src[1]) averaging; seeded with src."}
+{"id": "ceccd749d23b", "indicator": "plot_state", "best": "-", "verdict": "not_indicator", "note": "Color carry."}
+{"id": "cf300a40dda3", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "RSI cross flags."}
+{"id": "cfa95ae63a17", "indicator": "variable_ma", "best": "new:variable_ma", "verdict": "standard", "note": "LazyBear-style Variable MA recursion sc*vi, SMA seed."}
+{"id": "d038dfff04fc", "indicator": "bbands", "best": "tv:bbands(length=20, mult=2.0)", "verdict": "standard", "note": "BB lower: basis - mult*stdev."}
+{"id": "d0c2bb2e105c", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "In-position state."}
+{"id": "d1993c812b06", "indicator": "td_sequential", "best": "new:td_sequential", "verdict": "standard", "note": "DeMark TD setup count close > close[4]."}
+{"id": "d1c04b159f90", "indicator": "signal_state", "best": "-", "verdict": "not_indicator", "note": "ATR multiplier state from ADX."}
+{"id": "d2693f173f68", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Total long price carry."}
+{"id": "d294254758ec", "indicator": "weighted_stdev", "best": "new:weighted_stdev", "verdict": "standard", "note": "Weighted mean / unbiased weighted variance helper."}
+{"id": "d31ad1a45d2b", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "SMA/EMA using close[1] only on last bar (anti-repaint); historical values standard."}
+{"id": "d388b1697445", "indicator": "bull_bear_balance", "best": "new:bull_bear_balance", "verdict": "standard", "note": "HPotter port of Gimelfarb Bull and Bear Balance indicator."}
+{"id": "d557ad668993", "indicator": "most", "best": "new:most", "verdict": "standard", "note": "MOST direction-carry fragment (Anil Ozeksi Moving Stop Loss)."}
+{"id": "d5a1abb2dbee", "indicator": "deli", "best": "new:deli", "verdict": "standard", "note": "HPotter Ehlers DELI-style detrended EMA difference on daily hl2 (no lookahead)."}
+{"id": "d65236db8825", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Low at last short condition."}
+{"id": "d6f0288c3d96", "indicator": "supertrend", "best": "tv:supertrend(factor=3, atr_period=10)", "verdict": "standard", "note": "Supertrend previous lower band carry fragment."}
+{"id": "d7aaef136b2b", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Middle reversal candle flag."}
+{"id": "d8823c7e6496", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Three white soldiers flag."}
+{"id": "d8d46ba8ad39", "indicator": "signal_state", "best": "-", "verdict": "not_indicator", "note": "MACD direction line carry."}
+{"id": "d9d4b94076f7", "indicator": "rma", "best": "tv:rma(length)", "verdict": "standard", "note": "SMMA seeded with SMA = ta.rma (plus plain SMA loop)."}
+{"id": "da3f5ef2ec81", "indicator": "average_price", "best": "-", "verdict": "not_indicator", "note": "Mean close since backtest start; helper."}
+{"id": "dab87439d2de", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Cross price carry."}
+{"id": "daf1ecb65fea", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "RMA/SMA/EMA/WMA/HMA/VWMA selector."}
+{"id": "dbd5ed41301f", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Bayesian up/down counts."}
+{"id": "dc7891e50844", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Long open flag."}
+{"id": "dce44b3565f0", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Order block down flag."}
+{"id": "dd23224063b4", "indicator": "rsi_trend_threshold", "best": "new:rsi_trend_threshold", "verdict": "standard", "note": "Author's custom RSI/ATR adaptive threshold line (RSI Trend Reversal script)."}
+{"id": "de75f2503013", "indicator": "grid_logic", "best": "-", "verdict": "not_indicator", "note": "Grid levels and PnL bookkeeping."}
+{"id": "e2aeab2ae49e", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Price above EMAs flag."}
+{"id": "e31738c9e238", "indicator": "ema_sma_ratio", "best": "tv:ema(length)", "verdict": "standard", "note": "Custom index: ema(close,i)/sma(close,i)."}
+{"id": "e365900c2867", "indicator": "ut_bot", "best": "tv:ut_bot(key=1, atr_period=10)", "verdict": "standard", "note": "UT Bot ATR trailing stop recursion."}
+{"id": "e40e70acea64", "indicator": "linreg_channel", "best": "tv:linreg(length)", "verdict": "standard", "note": "Squared residual sum from regression line (trend confidence)."}
+{"id": "e458c578f113", "indicator": "leledc_exhaustion", "best": "new:leledc_exhaustion", "verdict": "standard", "note": "Joy_Bangla Leledc exhaustion bar, original form."}
+{"id": "e5708e76e478", "indicator": "signal_state", "best": "-", "verdict": "not_indicator", "note": "Price action buy state."}
+{"id": "e5bdd421a850", "indicator": "wma", "best": "tv:wma(length)", "verdict": "bug", "note": "Weight fixed at n-1 for every bar instead of n-i, so it is an SMA."}
+{"id": "e686aa68523a", "indicator": "supertrend", "best": "tv:supertrend_kivanc(period=10, multiplier=3)", "verdict": "standard", "note": "Supertrend lower-band ratchet."}
+{"id": "e6fcc093a2fb", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Inside bar flags."}
+{"id": "e81122e96afc", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "standard", "note": "ta.* MA switch."}
+{"id": "e86bf9243325", "indicator": "ssl_channel", "best": "tv:ssl_channel(length=10)", "verdict": "standard", "note": "SSL channel Hlv state on SMA high/low."}
+{"id": "ea17c5b5744a", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Entry carry."}
+{"id": "ea7812dcb501", "indicator": "ma", "best": "tv:ma(length, ma_type)", "verdict": "bug", "note": "SMMA branch recurses on previous WMA value (w[1]) instead of its own previous value; other branches standard."}
+{"id": "eb4eaae11ae8", "indicator": "acosh", "best": "-", "verdict": "not_indicator", "note": "Pure acosh helper."}
+{"id": "ebc6fb68ab43", "indicator": "donchian", "best": "tv:donchian(length)", "verdict": "standard", "note": "Donchian upper/lower/middle."}
+{"id": "ebfadbeadce5", "indicator": "tick_helper", "best": "-", "verdict": "not_indicator", "note": "Pip conversion helper."}
+{"id": "ecab588019b3", "indicator": "kama", "best": "tv:kama(length)", "verdict": "warmup_only", "note": "HPotter KAMA seeded at 0 instead of price."}
+{"id": "ed26e64d4706", "indicator": "ut_bot", "best": "tv:ut_bot(key=1, atr_period=10)", "verdict": "standard", "note": "UT Bot ATR trailing stop recursion (long copy)."}
+{"id": "ee2d82fb396d", "indicator": "td_sequential", "best": "new:td_sequential", "verdict": "standard", "note": "DeMark TD sell setup count close < close[4]."}
+{"id": "ee64d28d1d2a", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last long9."}
+{"id": "eed2bcf6bd01", "indicator": "trendline_level", "best": "-", "verdict": "not_indicator", "note": "Pivot value carry for trendline."}
+{"id": "ef3d156892a9", "indicator": "qqe", "best": "tv:qqe(14, 5, 4.238)", "verdict": "standard", "note": "Glaz QQE short-band ratchet."}
+{"id": "ef78efdb5285", "indicator": "position_stop", "best": "-", "verdict": "not_indicator", "note": "Percent stop at signal."}
+{"id": "ef9f4017df4f", "indicator": "signal_helper", "best": "-", "verdict": "not_indicator", "note": "Barssince range check."}
+{"id": "eff063c5734b", "indicator": "mama", "best": "new:mama", "verdict": "standard", "note": "FAMA step .5*alpha*MAMA + (1-.5*alpha)*FAMA[1] (alpha from fMAMA)."}
+{"id": "f0132c105285", "indicator": "trend_state", "best": "-", "verdict": "not_indicator", "note": "Trend flag from price vs SMA."}
+{"id": "f09030bc979c", "indicator": "zigzag_helper", "best": "-", "verdict": "not_indicator", "note": "Zigzag array push."}
+{"id": "f10597bbaa1a", "indicator": "sort_helper", "best": "-", "verdict": "not_indicator", "note": "Bubble sort helper."}
+{"id": "f215b3d47ed6", "indicator": "ema", "best": "tv:ema(length)", "verdict": "warmup_only", "note": "EMA seeded at 0 instead of SMA."}
+{"id": "f28aacf1cc5a", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "In-long state."}
+{"id": "f2ca6d64fbdb", "indicator": "position_stop", "best": "-", "verdict": "not_indicator", "note": "Strategy trailing high while in position."}
+{"id": "f39d1adf6e06", "indicator": "rma", "best": "tv:rma(length)", "verdict": "warmup_only", "note": "Kivanc wwma: Wilder MA with zero seed instead of SMA seed."}
+{"id": "f3c3fe377f37", "indicator": "t3", "best": "tv:t3(length, vfactor=0.5)", "verdict": "standard", "note": "Triple generalized DEMA with v=0.5 (1.5*ema - 0.5*ema2) = Tillson T3, vfactor 0.5."}
+{"id": "f4644dc5da11", "indicator": "modified_pvt", "best": "new:modified_pvt", "verdict": "standard", "note": "HPotter improved price-volume trend on ohlc4 with volume/50000 scaling."}
+{"id": "f53ad7b58d9d", "indicator": "tsi", "best": "tv:tsi(25, 13, 13)", "verdict": "standard", "note": "TSI double_smooth helper ema(ema(src,long),short)."}
+{"id": "f587b3432c29", "indicator": "market_facilitation_index", "best": "tv:market_facilitation_index(high, low, volume)", "verdict": "standard", "note": "HPotter BW MFI: (high-low)/volume scaled x10000."}
+{"id": "f605990b08d4", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last short3 signal."}
+{"id": "f6660c2c22bd", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Timestamp of last long1."}
+{"id": "f69a75c32e94", "indicator": "trend_state", "best": "-", "verdict": "not_indicator", "note": "Close vs open series state."}
+{"id": "f7204332934b", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Last bar close flag."}
+{"id": "f740d993bba6", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Previous trade price."}
+{"id": "f7d9aa24ec64", "indicator": "supertrend", "best": "tv:supertrend_kivanc(period=10, multiplier=3)", "verdict": "variant", "note": "HPotter SuperTrend: highest[1]-m*wma(TR) / lowest[1]+m*wma(TR) switch, not hl2 ATR band ratchet."}
+{"id": "f842fa60f34d", "indicator": "signal_state", "best": "-", "verdict": "not_indicator", "note": "BB overbought level carry."}
+{"id": "f8addd739d93", "indicator": "hma", "best": "tv:hma(length)", "verdict": "standard", "note": "Classic Hull MA formula."}
+{"id": "f939e0c8c3a2", "indicator": "reverse_engineering_rsi", "best": "new:reverse_engineering_rsi", "verdict": "warmup_only", "note": "Siligardos Reverse Engineering RSI AUC recursion (HPotter), seeded with 1."}
+{"id": "f9dba95cfa4d", "indicator": "position_target", "best": "-", "verdict": "not_indicator", "note": "Take-profit carry."}
+{"id": "f9faa99ba8e4", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Rising three methods flag."}
+{"id": "fa7c369da3a7", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Pivot-reversal entry pending flag."}
+{"id": "faf7496878c0", "indicator": "supersmoother", "best": "tv:supersmoother(length)", "verdict": "standard", "note": "Ehlers super smoother of inverse Fisher with (x+x[1])/2 averaging."}
+{"id": "fb049db43239", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Hammer flag."}
+{"id": "fb647751374b", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Martingale count carry."}
+{"id": "fbe3a32b42df", "indicator": "flag_pattern", "best": "-", "verdict": "not_indicator", "note": "Flag pole search loop."}
+{"id": "fc090e79243d", "indicator": "fisher", "best": "tv:fisher(9)", "verdict": "standard", "note": "Ehlers/Yurik Fisher value smoothing 0.66 / 0.67 as TV built-in."}
+{"id": "fc743a18547b", "indicator": "signal_to_noise", "best": "new:signal_to_noise", "verdict": "standard", "note": "HPotter signal-to-noise ratio vs SMA signal."}
+{"id": "fd9133e9bca4", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Trailing trend position."}
+{"id": "fdfb05367d93", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Dark cloud cover flag."}
+{"id": "fe5d9b545e83", "indicator": "weighted_stdev", "best": "new:weighted_stdev", "verdict": "standard", "note": "Weighted mean / unbiased weighted variance over series."}
+{"id": "ff4ce15a4b79", "indicator": "kama", "best": "tv:kama(length)", "verdict": "standard", "note": "KAMA recursion seeded with src."}
+{"id": "ffa10e75a2f9", "indicator": "stoch_rsi", "best": "tv:stoch_rsi(14, 14, 3, 3)", "verdict": "standard", "note": "HPotter Stoch RSI with band signal."}
