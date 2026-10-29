@@ -1,0 +1,314 @@
+{"file": "123反转与STARC波段组合策略123-Reversal-and-STARC-Bands-Combo-Strategy.md", "indicator": "starc_bands", "verdict": "standard", "note": "SMA(close,5) +/- 1.33*ATR(15); tv:starc_bands formula (Stoller's 6/15/2 are only defaults)."}
+{"file": "123反转与费希尔变换指标组合策略123-Reversal-and-Fisher-Transform-Indicator-Combo-Strategy.md", "indicator": "fisher_transform", "verdict": "variant", "note": "Unclamped value fed back into the recursion (Ehlers clamps it); differs when |value|>0.99."}
+{"file": "2-20指数移动平均策略2-20-Exponential-Moving-Average-Strategy.md", "indicator": "ema_2_20", "verdict": "standard", "note": "EMA(20) and the 2-bar high/low test: tv:ema; the nXS rule is signal logic."}
+{"file": "ATR趋势跟踪策略ATR-Trend-Following-Strategy.md", "indicator": "atr_trailing_stop", "verdict": "standard", "note": "Vervoort ATR trailing stop as in HPotter (credits HPotter); equals tv:ut_bot core."}
+{"file": "Andrew-Abraham趋势追踪策略Andrew-Abraham-Trend-Tracking-Strategy.md", "indicator": "trend_trader_abraham", "verdict": "standard", "note": "Andrew Abraham's Trend Trader (TASC Sep 1998) port, faithful."}
+{"file": "Bullish-Harami-Reversal-Strategy.md", "indicator": "harami", "verdict": "standard", "note": "Bullish harami with minimum body."}
+{"file": "Combo-2-20-EMA-Bandpass-Filter.md", "indicator": "bandpass_filter", "verdict": "variant", "note": "EMA20 combo; bandpass with pi=3.14 in the degree conversion."}
+{"file": "Combo-Backtest-123-Reversal-Relative-Volatility-Index.md", "indicator": "relative_volatility_index", "verdict": "variant", "note": "Dorsey RVI with zero-seeded (13*nU+u)/14 smoothing; unchanged closes counted as down."}
+{"file": "DMI与移动平均线的聚合交易策略DMI-and-Moving-Average-Combination-Strategy.md", "indicator": "dmi_ma", "verdict": "standard", "note": "TV DMI (+DI/-DI cross) and SMA(30) cross: tv:dmi, tv:sma."}
+{"file": "Dual-Moving-Average-Indicators-Fusion-Strategy.md", "indicator": "apo", "verdict": "standard", "note": "EMA20 combo; EMA(10)-EMA(20) = tv:apo."}
+{"file": "Fisher变换指标回测策略Backtesting-Strategy-Based-on-Fisher-Transform-Indicator.md", "indicator": "fisher_transform", "verdict": "variant", "note": "Unclamped value fed back into the recursion."}
+{"file": "Fisher变换指标回测策略Fisher-Transform-Backtest-Strategy.md", "indicator": "fisher_transform", "verdict": "variant", "note": "Unclamped value fed back into the recursion."}
+{"file": "K线Stochastic-RSI交易策略Renko-Stochastic-RSI-Trading-Strategy.md", "indicator": "stochastic_rsi", "verdict": "standard", "note": "Portions from HPotter's Stochastic RSI; tv:stoch_rsi."}
+{"file": "RSI指标改进交易策略RSI-Indicator-Improvement-Trading-Strategy.md", "indicator": "rsi_histoalert", "verdict": "standard", "note": "(RSI(13)-50)*1.5: tv:rsi."}
+{"file": "STARC通道回测策略STARC-Channel-Backtest-Strategy.md", "indicator": "starc_bands", "verdict": "standard", "note": "SMA(close,5) +/- 1.33*ATR(15)."}
+{"file": "Stochastic-RSI交易策略Stochastic-RSI-Trading-Strategy.md", "indicator": "stochastic_rsi", "verdict": "standard", "note": "tv:stoch_rsi."}
+{"file": "一目均衡策略Ichimoku-Equilibrium-Strategy.md", "indicator": "ichimoku2c", "verdict": "standard", "note": "Cloud lines as tv:ichimoku (HPotter's SenkouA/SenkouB names are swapped; values used are the standard displaced lines)."}
+{"file": "一种基于均线的趋势跟踪策略Adaptive-Moving-Average-Tracking-Strategy.md", "indicator": "tether_line", "verdict": "standard", "note": "TFS Tether line = Donchian midline (tv:donchian basis)."}
+{"file": "一种基于带通滤波反转策略Bandpass-Filter-Reversed-Strategy.md", "indicator": "bandpass_filter", "verdict": "variant", "note": "pi=3.14 in the degree conversion."}
+{"file": "一种移动平均线指标策略-Moving-Average-Indicator-Strategy.md", "indicator": "hpotter_obos", "verdict": "standard", "note": "HPotter's Overbought/Oversold, faithful."}
+{"file": "三内下反转策略Three-Inside-Down-Reversal-Strategy.md", "indicator": "three_inside", "verdict": "standard", "note": "Three Inside Down pattern (trades long, signal logic)."}
+{"file": "三内在上涨反转策略Three-Inside-Up-Reversal-Strategy.md", "indicator": "three_inside", "verdict": "standard", "note": "Three Inside Up pattern (trades short, signal logic)."}
+{"file": "三平滑移动平均线策略Triple-Moving-Average-Crossover-Strategy.md", "indicator": "bill_williams_3lines", "verdict": "variant", "note": "Alligator lines with SMA instead of Williams' SMMA."}
+{"file": "三线形态突破策略Three-Line-Breakout-Strategy.md", "indicator": "three_line_break_hpotter", "verdict": "standard", "note": "HPotter's own 'modified' three line break, ported literally."}
+{"file": "三重EMA移动平均突破策略Triple-EMA-Breakout-Strategy.md", "indicator": "tema", "verdict": "standard", "note": "tv:tema."}
+{"file": "中心引力通道趋势跟踪策略Center-of-Gravity-SSL-Channel-Trend-Following-Strategy.md", "indicator": "center_of_gravity_hpotter", "verdict": "standard", "note": "Fork of HPotter's Center of Gravity (linreg offset 5 +/- %) plus SSL channel."}
+{"file": "买卖力量弹性移动平均线交易策略Bull-and-Bear-Power-Moving-Average-Trading-Strategy.md", "indicator": "elder_ray_bull_power", "verdict": "variant", "note": "Bull power from the running day high (not the bar high) minus EMA."}
+{"file": "交易量百分比振荡指标策略Percentage-Volume-Oscillator-Strategy.md", "indicator": "pvo", "verdict": "standard", "note": "Percentage Volume Oscillator: tv:price_oscillator on volume."}
+{"file": "价格反转RSI组合策略Price-Reversal-RSI-Combo-Strategy.md", "indicator": "rsi", "verdict": "standard", "note": "tv:rsi."}
+{"file": "价格表现指数策略Price-Performance-Index-Strategy.md", "indicator": "performance_index", "verdict": "standard", "note": "100*(close-close[n])/close[n] = tv:roc."}
+{"file": "偏反指标回测策略Key-Reversal-Backtest-Strategy.md", "indicator": "key_reversal", "verdict": "standard", "note": "Key reversal down."}
+{"file": "关键反转信号回测策略Key-Reversal-Backtest-Strategy.md", "indicator": "key_reversal", "verdict": "standard", "note": "Key reversal up."}
+{"file": "凯斯动态止损策略Kase-Dynamic-Stop-Loss-Strategy.md", "indicator": "kase_dev_stops", "verdict": "variant", "note": "2-bar high-low range (no close[2]), 20 bars, 1/2/3 SD instead of Kase's 1/2.2/3.6."}
+{"file": "分形混沌震荡器交易策略Fractal-Chaos-Oscillator-Trading-Strategy.md", "indicator": "fractal_chaos_oscillator", "verdict": "standard", "note": "Faithful."}
+{"file": "创富综合策略Wealth-Creation-Composite-Strategy.md", "indicator": "accelerator_oscillator", "verdict": "standard", "note": "AO - SMA(AO,5) on hl2 = tv:accelerator_oscillator."}
+{"file": "动态ATR止损中心线策略Dynamic-ATR-Stop-Loss-Center-Line-Strategy.md", "indicator": "center_of_gravity_hpotter", "verdict": "standard", "note": "Fork of HPotter's Center of Gravity backtest."}
+{"file": "动态动量震荡器交易策略Dynamic-Momentum-Oscillator-Trading-Strategy.md", "indicator": "dynamo", "verdict": "standard", "note": "E. Marshall Wall's Dynamo as ported by HPotter."}
+{"file": "动态均线趋势交叉策略Dynamic-Moving-Average-Trend-Crossover-Strategy.md", "indicator": "macd", "verdict": "standard", "note": "EMA MACD with SMA signal: tv:macd(signal_ma='sma')."}
+{"file": "动态摆动指标策略Dynamic-Momentum-Index-Strategy.md", "indicator": "cmo_disparity", "verdict": "variant", "note": "Disparity divided by close instead of the EMA."}
+{"file": "动态支撑阻力回测策略Dynamic-Pivot-Point-Backtest-Strategy.md", "indicator": "floor_pivot_points", "verdict": "standard", "note": "Previous day PP, R1=2PP-L, S1=2PP-H (tv:pivot_points traditional)."}
+{"file": "动态止损追踪交易策略ATR-Trailing-Stops-Strategy.md", "indicator": "atr_trailing_stop", "verdict": "standard", "note": "okadoke's version of HPotter's ATR trailing stop; tv:ut_bot core."}
+{"file": "动态移动平均线跟踪策略Dynamic-Moving-Average-Tracking-Strategy.md", "indicator": "atr_trailing_stop", "verdict": "standard", "note": "UT Bot (credits HPotter) with MA filter; tv:ut_bot core."}
+{"file": "动量反转双轨配对策略Combo-Momentum-Reversal-Dual-Rail-Matching-Strategy.md", "indicator": "ergodic_csi", "verdict": "bug", "note": "Computes Wilder CSI with ADX(1)/ATR(1)/close + SMA, not Blau's Ergodic Candlestick Index."}
+{"file": "动量反转均线组合策略Momentum-Reversal-Combo-Strategy.md", "indicator": "cmo_average", "verdict": "standard", "note": "Average of three plain-sum CMOs."}
+{"file": "动量反转指数策略Relative-Momentum-Index-Strategy.md", "indicator": "relative_momentum_index", "verdict": "bug", "note": "Up/down sums frozen (not decayed) on bars without a move; same length for momentum and smoothing; seeds 1/0."}
+{"file": "动量反转组合策略Momentum-Reversal-Combo-Strategy.md", "indicator": "dsp", "verdict": "standard", "note": "EMA(hl2,14)-EMA(hl2,28)."}
+{"file": "动量反转缩量突破型低吸金叉策略Camarilla-Pivot-Points-Breakthrough-and-Momentum-Reversal-Low-Absorption-Golden-Cross-Strategy.md", "indicator": "camarilla_pivot_points", "verdict": "variant", "note": "request.security(res, high/low/close) without [1]: current (developing) period levels; repaints in realtime."}
+{"file": "动量商品选择指数策略Commodity-Momentum-Index-Strategy.md", "indicator": "csi", "verdict": "variant", "note": "ADXR uses ADX[14] instead of ADX[13] (TA-Lib/Wilder worksheet)."}
+{"file": "动量均差指标突破策略Momentum-Mean-Deviation-Breakthrough-Strategy.md", "indicator": "ergodic_mdi", "verdict": "standard", "note": "Faithful; signal length taken from u (SmthLen input unused)."}
+{"file": "动量均线信封交易策略Moving-Average-Envelopes-Trading-Strategy.md", "indicator": "moving_average_envelopes", "verdict": "standard", "note": "tv:envelope."}
+{"file": "动量套利策略回测分析Momentum-Arbitrage-Strategy-Backtest-Analysis.md", "indicator": "cmo", "verdict": "standard", "note": "100*(close-close[n])/(sma(|mom|,n)*n) == tv:cmo."}
+{"file": "动量张弛指标与123形态策略Momentum-Oscillator-123-Pattern-Strategy.md", "indicator": "dynamic_momentum_index", "verdict": "bug", "note": "Period = round(14/sma(stdev)-0.5) without the stdev ratio, then RSI of the period series instead of RSI of price."}
+{"file": "动量指标反向交易策略Momentum-Reversal-Trading-Strategy.md", "indicator": "ease_of_movement", "verdict": "bug", "note": "Uses the second difference of the half range (mom(mom((H-L)/2))) instead of the midpoint move; no smoothing."}
+{"file": "动量方向发散策略Momentum-Direction-Divergence-Strategy.md", "indicator": "ergodic_csi", "verdict": "bug", "note": "Wilder CSI with ADX(1)/ATR(1), not Blau's Ergodic CSI."}
+{"file": "动量突破交易策略Momentum-Breakout-Strategy.md", "indicator": "atr_trailing_stop", "verdict": "standard", "note": "UT Bot (credits HPotter); tv:ut_bot core."}
+{"file": "动量结合趋势判断型多因子量化交易策略Momentum-Combined-with-Trend-Judgment-Multi-factor-Quantitative-Trading-Strategy.md", "indicator": "confluence", "verdict": "standard", "note": "Faithful port."}
+{"file": "动量绝对值指标策略Absolute-Momentum-Indicator-Strategy.md", "indicator": "cmo_abs", "verdict": "standard", "note": "|CMO| = abs(tv:cmo)."}
+{"file": "动量趋势延续因子策略Momentum-Trend-Continuation-Factor-Strategy.md", "indicator": "trend_continuation_factor", "verdict": "standard", "note": "Matches Pee bar for bar (nz seed never used)."}
+{"file": "动量趋势跟踪策略Momentum-Trend-Tracking-Strategy.md", "indicator": "kwan_nrp", "verdict": "standard", "note": "HPotter's Kwan NRP, ported literally."}
+{"file": "动量转向形态反转策略Momentum-Reversal-Trading-Strategy.md", "indicator": "ease_of_movement", "verdict": "bug", "note": "Second difference of half range instead of midpoint move."}
+{"file": "动量过滤移动平均线策略Momentum-Filtering-Moving-Average-Strategy.md", "indicator": "cmo_filtered_hpotter", "verdict": "standard", "note": "Faithful."}
+{"file": "双K弹弓策略Double-K-Crossbow-Strategy.md", "indicator": "pring_special_k", "verdict": "standard", "note": "Faithful (12 weighted smoothed ROCs)."}
+{"file": "双信号趋势跟踪策略Dual-Signal-Trend-Tracking-Strategy.md", "indicator": "accelerator_oscillator", "verdict": "standard", "note": "EMA20 combo; AC with WMA signal (signal logic)."}
+{"file": "双信号量化反转策略Reverse-Triad-Quantitative-Strategy.md", "indicator": "accelerator_oscillator", "verdict": "standard", "note": "tv:accelerator_oscillator."}
+{"file": "双动量反转策略Momentum-Reversal-Trading-Strategy.md", "indicator": "cmo_filtered_hpotter", "verdict": "standard", "note": "Faithful."}
+{"file": "双向交叉零轴Qstick指标回测策略Bi-directional-Crossing-Zero-Axis-Qstick-Indicator-Backtest-Strategy.md", "indicator": "qstick", "verdict": "standard", "note": "tv:qstick."}
+{"file": "双向反转与动量均线策略Bidirectional-Reversal-and-Momentum-Moving-Average-Strategy.md", "indicator": "cmo", "verdict": "standard", "note": "== tv:cmo."}
+{"file": "双向跨均线反转策略Dual-Cross-Moving-Average-Reversal-Strategy.md", "indicator": "gimelfarb_bull_bear_power", "verdict": "standard", "note": "Gimelfarb Bear Power case table."}
+{"file": "双向追踪反转量化交易策略Bi-directional-Reversal-Quantitative-Trading-Strategy.md", "indicator": "volume_sma", "verdict": "standard", "note": "volume vs SMA(volume): tv:sma."}
+{"file": "双向逆转重叠优选策略Dual-Reversal-Overlap-Selective-Strategy.md", "indicator": "dss_bressert", "verdict": "standard", "note": "Faithful."}
+{"file": "双因子动量追踪反转策略Dual-Factor-Momentum-Tracking-Reversal-Strategy.md", "indicator": "laguerre_rsi", "verdict": "warmup_only", "note": "nz(L[1], 1) seeds; equals tv:laguerre_rsi after warm-up."}
+{"file": "双因子反转与改良价格量趋势组合策略Combo-Strategy-of-Double-Factors-Reversal-and-Improved-Price-Volume-Trend.md", "indicator": "modified_pvt", "verdict": "standard", "note": "Faithful."}
+{"file": "双因子反转波段突破组合策略Reversal-Breakout-Bandpass-Combo-Strategy.md", "indicator": "bandpass_filter", "verdict": "variant", "note": "pi=3.14."}
+{"file": "双因子反转追踪策略Dual-Factor-Mean-Reversion-Tracking-Strategy.md", "indicator": "keltner_channel", "verdict": "standard", "note": "Chester Keltner's original SMA(hlc3,10) +/- SMA(H-L,10) (keltner_original), not TV's EMA/ATR."}
+{"file": "双因子循环交易策略Dual-factor-Cycle-Trading-Strategy.md", "indicator": "cueing_off_support_resistance", "verdict": "standard", "note": "Previous week's high/low via security('W', high[1]) = period_high_low(lookback=1)."}
+{"file": "双因子组合反转交易策略Dual-factor-Reversal-Trading-Strategy.md", "indicator": "extracting_the_trend", "verdict": "variant", "note": "pi=3.1415 (negligible)."}
+{"file": "双因子量化交易策略Dual-factor-Quant-Trading-Strategy.md", "indicator": "prime_number_oscillator", "verdict": "bug", "note": "Float loop counter: on prices with decimals no prime is found and the oscillator stays na, so the X filter never fires."}
+{"file": "双因子量化反转追踪策略Dual-factor-Quantitative-Reversal-Tracking-Strategy.md", "indicator": "awesome_oscillator", "verdict": "standard", "note": "tv:awesome_oscillator."}
+{"file": "双均线ADX择时策略Dual-Moving-Average-ADX-Timing-Strategy.md", "indicator": "adxr", "verdict": "variant", "note": "EMA20 combo; ADXR = (ADX + ADX[14])/2 instead of ADX[13]."}
+{"file": "双均线交叉反转趋势追踪策略Dual-Moving-Average-Crossover-Reverse-Trend-Tracking-Strategy.md", "indicator": "ema_sma_cross", "verdict": "standard", "note": "EMA(SMA(close,10),10) vs SMA: tv:ema/tv:sma."}
+{"file": "双均线价格突破与多空力量平衡组合策略Dual-Moving-Average-Crossover-and-Bull-Bear-Power-Balance-Combination-Strategy.md", "indicator": "gimelfarb_bull_bear_balance", "verdict": "standard", "note": "EMA20 combo; faithful."}
+{"file": "双均线再反转价格突破策略Dual-Moving-Average-Price-Reversal-Breakout-Strategy.md", "indicator": "made", "verdict": "standard", "note": "Faithful."}
+{"file": "双均线反转与ATR-trailing-stop组合策略Combination-Strategy-of-Dual-Moving-Average-Reversal-and-ATR-Trailing-Stop.md", "indicator": "atr_trailing_stop", "verdict": "standard", "note": "tv:ut_bot core (ATR 5 x 3.5)."}
+{"file": "双均线反转交易策略Dual-Moving-Average-Reversal-Trading-Strategy.md", "indicator": "simple_sma", "verdict": "standard", "note": "SMA of a higher-timeframe series: tv:sma."}
+{"file": "双均线反转突破策略Dual-Moving-Average-Reversal-Breakout-Strategy.md", "indicator": "hpotter_dbp", "verdict": "standard", "note": "|close-SMA|*100/close."}
+{"file": "双均线反转跟踪策略Dual-Moving-Average-Reversal-Tracking-Strategy.md", "indicator": "simple_sma", "verdict": "standard", "note": "tv:sma."}
+{"file": "双均线回转与枢轴点组合策略Combination-Strategy-of-123-Reversal-and-Pivot-Point.md", "indicator": "pivot_point_v2", "verdict": "variant", "note": "security(res, high/low/close) without [1]: current period levels; repaints in realtime."}
+{"file": "双均线套利策略Dual-Moving-Average-Arbitrage-Strategy.md", "indicator": "finite_volume_elements", "verdict": "bug", "note": "Cumulative sum forever instead of Katsanos' rolling Period-bar sum."}
+{"file": "双均线穿叉策略Dual-Moving-Average-Crossover-Strategy.md", "indicator": "awesome_oscillator", "verdict": "standard", "note": "AO on Heikin Ashi hl2 (credits HPotter's AO); tv:awesome_oscillator on HA candles."}
+{"file": "双均线策略与随机指标组合Dual-Moving-Average-Strategy-Combined-with-Stochastic-Indicator.md", "indicator": "hpotter_high_low_bands", "verdict": "variant", "note": "Triangular MA as sma(sma(close,n),n) instead of the standard TMA."}
+{"file": "双基指标跟随策略Multiple-Indicators-Follow-Strategy.md", "indicator": "qstick", "verdict": "standard", "note": "tv:qstick."}
+{"file": "双峰回转交易策略的量化交易策略called-the-Dual-Peak-Reversal-Trading-Strategy.md", "indicator": "hl_sma_bands", "verdict": "standard", "note": "SMA(high)/SMA(low) +/- half spread: tv:sma composition."}
+{"file": "双平滑随机指数布雷瑟策略Dual-Smoothed-Stochastic-Bressert-Strategy.md", "indicator": "dss_bressert", "verdict": "standard", "note": "Faithful."}
+{"file": "双指数移动平均线策略Developing-a-2-20-Exponential-Moving-Average-Strategy.md", "indicator": "ema_2_20", "verdict": "standard", "note": "tv:ema."}
+{"file": "双指标反转趋势追踪策略Dual-Indicator-Mean-Reversion-Trend-Following-Strategy.md", "indicator": "market_facilitation_index", "verdict": "standard", "note": "(H-L)/V*10000 = tv:market_facilitation_index x 10000."}
+{"file": "双指标略逆反转交易策略Dual-Indicator-Slight-Reversal-Trading-Strategy.md", "indicator": "ergodic_mdi", "verdict": "standard", "note": "Faithful (signal length = u)."}
+{"file": "双指标量化策略Dual-Indicator-Quantitative-Strategy.md", "indicator": "ravi", "verdict": "variant", "note": "Signed RAVI; Chande's RAVI is the absolute value."}
+{"file": "双接头智能突破策略Double-Tops-Smart-Breakout-Strategy.md", "indicator": "pivot_detector_oscillator", "verdict": "standard", "note": "Faithful (0 instead of na during the 200-bar warm-up)."}
+{"file": "双机会反转量化策略Dual-confirmation-Reversal-Trading-Strategy.md", "indicator": "stochastic_rsi", "verdict": "standard", "note": "tv:stoch_rsi."}
+{"file": "双机制动态趋势追踪策略Dual-Mechanism-Dynamic-Trend-Tracking-Strategy.md", "indicator": "dsp", "verdict": "standard", "note": "Faithful."}
+{"file": "双机构量化反转追踪策略Reversal-Tracking-Strategy-with-Double-Mechanisms.md", "indicator": "positive_volume_index", "verdict": "variant", "note": "Additive sum of ROC% instead of Fosback's compounded index."}
+{"file": "双移动均线反转策略Dual-Moving-Average-Reversal-Strategy.md", "indicator": "atr_trailing_stop", "verdict": "standard", "note": "EMA20 combo; tv:ut_bot core."}
+{"file": "双移动均线趋势跟踪策略Dual-Moving-Average-Trend-Following-Strategy.md", "indicator": "smi_ergodic", "verdict": "warmup_only", "note": "EMA order fast(4) then slow(8); same as tv:smi_ergodic(4,8) after warm-up (x1 scale)."}
+{"file": "双移动平均线与Williams平均线组合策略Dual-Moving-Average-and-Williams-Average-Combination-Strategy.md", "indicator": "bill_williams_3lines", "verdict": "variant", "note": "EMA20 combo; SMA instead of SMMA."}
+{"file": "双移动平均线穿越与威廉姆斯指标组合策略Dual-Moving-Average-Crossover-and-Williams-Indicator-Combo-Strategy.md", "indicator": "accelerator_oscillator", "verdict": "standard", "note": "AC with WMA signal line (signal logic)."}
+{"file": "双管齐下量化反转追踪策略Dual-driver-Quantized-Reversal-Tracking-Strategy.md", "indicator": "kama", "verdict": "variant", "note": "Constants rounded to 0.666/0.0645 and AMA seeded at 0."}
+{"file": "双线交叉反转策略Dual-Moving-Average-Crossover-Reversal-Strategy.md", "indicator": "dinapoli_detrended_oscillator", "verdict": "standard", "note": "close - SMA(close,14)."}
+{"file": "双线性反转均线振荡器组合策略123-Reversal-Moving-Average-Convergence-Divergence-Combination-Strategy.md", "indicator": "movroc_kst", "verdict": "standard", "note": "KST formula with ROC 6/10/15/20, SMA 10/10/9/15 (tv:kst with those params)."}
+{"file": "双线追踪反转均线系统Dual-Moving-Average-Reversal-Tracking-System.md", "indicator": "ichimoku2c", "verdict": "standard", "note": "Standard displaced cloud (names swapped)."}
+{"file": "双自信价格震荡量化策略Doubly-Confident-Price-Oscillation-Quant-Strategy.md", "indicator": "apo", "verdict": "standard", "note": "tv:apo."}
+{"file": "双轨道反向MACD量化交易策略Ergotic-Dual-rail-Reverse-MACD-Quantitative-Trading-Strategy.md", "indicator": "ergodic_macd", "verdict": "standard", "note": "Fork of HPotter's Ergotic MACD: tv:macd params."}
+{"file": "双轨道趋势捕捉融合策略Dual-track-Trend-Capturing-Fusion-Strategy.md", "indicator": "smi_ergodic", "verdict": "warmup_only", "note": "EMA order reversed vs TV; warm-up only."}
+{"file": "双边三点移位均线量化交易策略Bilateral-Three-Point-Moving-Average-Quantitative-Trading-Strategy.md", "indicator": "finite_volume_elements", "verdict": "bug", "note": "Cumulative sum forever."}
+{"file": "双边波段过滤策略Dual-Bandpass-Filter-Strategy.md", "indicator": "bandpass_filter", "verdict": "variant", "note": "pi=3.14."}
+{"file": "双速率变化量动量指标交易策略Dual-Rate-of-Change-Momentum-Indicator-Trading-Strategy.md", "indicator": "movroc_kst", "verdict": "standard", "note": "tv:kst with HPotter's params."}
+{"file": "双重Stochastic底部反转策略Combined-Stochastic-Oscillator-and-123-Reversal-Strategy.md", "indicator": "stochastic", "verdict": "standard", "note": "tv:stoch."}
+{"file": "双重优化组合反转EMA加权交易策略Comb-Reverse-EMA-Volume-Weighting-Optimization-Trading-Strategies.md", "indicator": "ema_volume_weighted", "verdict": "standard", "note": "Faithful."}
+{"file": "双重动量指数与反转复合策略Double-Momentum-Index-and-Reversal-Hybrid-Strategy.md", "indicator": "csi", "verdict": "variant", "note": "ADXR lag 14 instead of 13."}
+{"file": "双重反转CMO量子策略Dual-Reversion-CMO-Quantum-Strategy.md", "indicator": "cmo_wma", "verdict": "standard", "note": "CMO == tv:cmo; WMA signal."}
+{"file": "双重反转RSI动量策略Double-Reversal-RSI-Momentum-Strategy.md", "indicator": "rsi_roc", "verdict": "standard", "note": "tv:rsi(tv:roc)."}
+{"file": "双重反转RSI历史警报策略Dual-Reversion-RSI-HistoAlert-Strategy.md", "indicator": "rsi_histoalert", "verdict": "standard", "note": "tv:rsi."}
+{"file": "双重反转交易策略Dual-Reversal-Trading-Strategy.md", "indicator": "n_bars_up_down", "verdict": "standard", "note": "HPotter's lagged counter (n_bars_up_down hpotter=True)."}
+{"file": "双重反转动点指数均线策略Reversal-Dynamic-Pivot-Points-Exponential-Moving-Average-Strategy.md", "indicator": "floor_pivot_points", "verdict": "standard", "note": "Dynamic Pivot Point = classic R1/S1 from the previous day."}
+{"file": "双重反转动量指数策略A-Dual-Reversal-Momentum-Index-Trading-Strategy.md", "indicator": "relative_momentum_index", "verdict": "bug", "note": "Sums frozen on bars without a move (no Wilder decay)."}
+{"file": "双重反转均衡策略Dual-Reversion-Balance-Strategy.md", "indicator": "empirical_mode_decomposition", "verdict": "variant", "note": "pi=3.1415 (negligible)."}
+{"file": "双重反转百分比变化柱形图量化策略Double-Reversal-Percentage-Change-Bar-Quantitative-Strategy.md", "indicator": "percent_change_bar", "verdict": "standard", "note": "ROC(1): tv:roc."}
+{"file": "双重反转趋势跟踪策略Dual-Reversal-Trend-Tracking-Strategy.md", "indicator": "performance_index", "verdict": "standard", "note": "tv:roc."}
+{"file": "双重反转追踪策略Dual-Reversal-Tracking-Strategy.md", "indicator": "key_reversal", "verdict": "standard", "note": "Faithful."}
+{"file": "双重反转震荡带趋势跟踪策略Dual-Reversal-Oscillating-Band-Trend-Following-Strategy.md", "indicator": "fractal_chaos_bands", "verdict": "standard", "note": "Faithful."}
+{"file": "双重反转高-低策略Dual-Reversal-High-Low-Strategy.md", "indicator": "high_ema", "verdict": "standard", "note": "high[1]-EMA[1]: tv:ema."}
+{"file": "双重因子组合反转与增量指标策略Dual-Factor-Combo-Reversal-and-Mass-Index-Strategy.md", "indicator": "mass_index", "verdict": "standard", "note": "Dorsey Mass Index (EMA9 ratio summed over 25) = tv:mass_index(25)."}
+{"file": "双重均线反转和三重最低闪现的组合交易策略Dual-Moving-Average-Reversal-and-Triple-Bottom-Flash-Combo-Trading-Strategy.md", "indicator": "three_bar_reversal", "verdict": "standard", "note": "EMA20 combo; 3-bar reversal pattern."}
+{"file": "双重均线反转策略Dual-Moving-Average-Reversal-Strategy.md", "indicator": "ema_2_20", "verdict": "standard", "note": "tv:ema."}
+{"file": "双重均线震荡交易策略Double-Moving-Average-Oscillation-Trading-Strategy.md", "indicator": "apz", "verdict": "standard", "note": "EMA20 combo; faithful."}
+{"file": "双重均衡牛熊策略Dual-Balanced-Bulls-and-Bears-Strategy.md", "indicator": "gimelfarb_bull_bear_balance", "verdict": "standard", "note": "Faithful."}
+{"file": "双重确认反转趋势追踪策略Dual-Confirmation-Reversal-Trend-Tracking-Strategy.md", "indicator": "floor_pivot_points", "verdict": "standard", "note": "Previous-day classic R1/S1."}
+{"file": "双重确认量化交易策略Dual-Confirmation-Quant-Trading-Strategy.md", "indicator": "pvo", "verdict": "standard", "note": "tv:price_oscillator on volume."}
+{"file": "双重超跌翻转突破系统A-Powerful-System-Combining-Reversal-and-Trend-Following-Strategies.md", "indicator": "t3_averages", "verdict": "standard", "note": "Pine EMA chain == tv:t3."}
+{"file": "双重趋势反转移动平均线组合策略Combo-Trend-Reversal-Moving-Average-Crossover-Strategy.md", "indicator": "bill_williams_3lines", "verdict": "variant", "note": "SMA instead of SMMA."}
+{"file": "双重趋势追踪策略Combo-Trend-Tracking-Strategy.md", "indicator": "dti_blau", "verdict": "standard", "note": "Faithful."}
+{"file": "双重趋势追踪策略Dual-Trend-Tracking-Strategy.md", "indicator": "hpotter_obos", "verdict": "standard", "note": "Faithful."}
+{"file": "双重趋势追踪量化策略Combo-Quantitative-Trend-Tracking-Strategy.md", "indicator": "rainbow_oscillator", "verdict": "standard", "note": "Faithful."}
+{"file": "双重震荡反转信噪比优化组合策略Dual-Oscillation-Reversal-Signal-to-Noise-Ratio-Optimization-Combo-Strategy.md", "indicator": "signal_to_noise", "verdict": "standard", "note": "Faithful copy of HPotter's formula."}
+{"file": "双重震荡追踪反转交易策略Dual-Oscillation-Tracking-Reversal-Trading-Strategy.md", "indicator": "chaikin_volatility", "verdict": "standard", "note": "ROC(12) of EMA(H-L,10) = tv:chaikin_volatility(10,12)."}
+{"file": "双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md", "indicator": "prime_number_bands", "verdict": "bug", "note": "Float loop: on prices with decimals the bands equal high/low, the strategy becomes a 5-bar breakout."}
+{"file": "双项式动量突破反转策略Binomial-Momentum-Breakout-Reversal-Strategy.md", "indicator": "gimelfarb_bull_bear_power", "verdict": "standard", "note": "Gimelfarb Bull Power."}
+{"file": "反转与资金流动量组合策略-Reversal-and-Money-Flow-Combo-Strategy.md", "indicator": "hpotter_money_flow", "verdict": "variant", "note": "Rolling sums of (C-O)/(H-L)*V with EMAs, not Chaikin's oscillator of the cumulative A/D line."}
+{"file": "反转交叉捕捉策略Price-Reversal-with-Crossover-Capturing-Strategy.md", "indicator": "stochastic_crossover", "verdict": "standard", "note": "tv:stoch."}
+{"file": "反转均线包络策略123-Reversal-Moving-Average-Envelope-Strategy.md", "indicator": "moving_average_envelopes", "verdict": "standard", "note": "tv:envelope."}
+{"file": "反转复活振荡指标组合策略Combo-Strategy-of-123-Reversal-and-Fractal-Chaos-Oscillator.md", "indicator": "fractal_chaos_oscillator", "verdict": "standard", "note": "Faithful."}
+{"file": "反转强势策略-Elder-Ray-Bull-Power-Combo-Strategy.md", "indicator": "elder_ray_bull_power", "verdict": "variant", "note": "Running day high minus EMA(13)."}
+{"file": "反转趋势捕捉与动态止损双重策略Reversal-Trend-Catching-and-Dynamic-Stop-Loss-Combo-Strategy.md", "indicator": "kase_dev_stops", "verdict": "variant", "note": "HPotter's DevStop variant (2-bar H-L range, 20 bars, 1/2/3 SD)."}
+{"file": "反转趋势突破策略Reversal-Breakout-Trend-Strategy.md", "indicator": "breakout_range", "verdict": "standard", "note": "high > highest(high,4)[1]: tv:donchian."}
+{"file": "反转追踪蜡烛形态策略Reversal-Candlestick-Backtesting-Strategy.md", "indicator": "doji", "verdict": "standard", "note": "open == close doji."}
+{"file": "反转预判与振荡器组合策略Reversal-Prediction-and-Oscillator-Combo-Strategy.md", "indicator": "chande_forecast_oscillator", "verdict": "standard", "note": "tv:chande_forecast_oscillator."}
+{"file": "叠加动量策略Momentum-Stacking-Strategy-of-Different-Timeframes.md", "indicator": "pring_special_k", "verdict": "standard", "note": "Faithful."}
+{"file": "回调后周期反转趋势跟随策略Cycle-Reversal-Trend-Following-Strategy-after-Pullback.md", "indicator": "detrended_price_oscillator", "verdict": "variant", "note": "close - SMA(close) without Hartle's (n/2+1)-bar displacement (= DiNapoli oscillator)."}
+{"file": "均线先行指标短期做空策略Short-term-Bearish-Strategy-Based-on-EMA-Crossover-and-Bear-Power-Indicators.md", "indicator": "gimelfarb_bull_bear_power", "verdict": "standard", "note": "EMA20 combo; Gimelfarb Bear Power."}
+{"file": "均线转换-发散指标交易策略CMO-Oscillator-Trading-Strategy.md", "indicator": "cmo_average", "verdict": "standard", "note": "|CMOav|."}
+{"file": "坚固趋势追踪策略Robust-Trend-Tracking-Strategy.md", "indicator": "smart_money_index", "verdict": "variant", "note": "Adds each bar's change and subtracts the previous HTF bar's change; not Hays' first-30-min / last-hour rule."}
+{"file": "坚果123反转与突破范围短线交易策略Peanut-123-Reversal-and-Breakout-Range-Short-term-Trading-Strategy.md", "indicator": "breakout_range", "verdict": "standard", "note": "low < lowest(low,4)[1]."}
+{"file": "埃勒斯引领指标交易策略Ehlers-Leading-Indicator-Trading-Strategy.md", "indicator": "ehlers_leading_indicator", "verdict": "standard", "note": "Daily DSP - EMA(DSP)."}
+{"file": "基于ATR和RSI的自适应移动止损趋势跟踪策略Adaptive-ATR-and-RSI-Trend-Following-Strategy-with-Trailing-Stop-Loss.md", "indicator": "atr_trailing_stop", "verdict": "standard", "note": "UTBot (credits HPotter); tv:ut_bot core."}
+{"file": "基于ATR指标的自适应跟踪止损策略ATR-Trailing-Stop-Bands-Strategy.md", "indicator": "atr_trailing_stop_bands", "verdict": "variant", "note": "River's wick-adjusted band modification of HPotter's Vervoort ATR trailing stop."}
+{"file": "基于CMO和WMA的动量交易策略Momentum-Trading-Strategy-Based-on-CMO-and-WMA.md", "indicator": "cmo_wma", "verdict": "standard", "note": "tv:cmo + tv:wma."}
+{"file": "基于CMO和WMA的双均线交易策略CMO-and-WMA-Based-Dual-Moving-Average-Trading-Strategy.md", "indicator": "cmo_wma", "verdict": "standard", "note": "tv:cmo + tv:wma."}
+{"file": "基于DMI和移动平均线的交易策略Combining-DMI-and-Moving-Average-Trading-Strategy.md", "indicator": "dmi_ma", "verdict": "standard", "note": "tv:dmi + tv:sma."}
+{"file": "基于MBO指标的趋势跟随策略Trend-Following-Strategy-Based-on-MBO-Indicator.md", "indicator": "mbo", "verdict": "standard", "note": "TFS MBO = SMA(25)-SMA(200): tv:sma."}
+{"file": "基于ROC的RSI交易策略RSI-Based-on-ROC-Trading-Strategy.md", "indicator": "rsi_roc", "verdict": "standard", "note": "tv:rsi(tv:roc)."}
+{"file": "基于Stochastic指标的长短交叉策略Stochastic-Crossover-Long-and-Short-Strategy.md", "indicator": "stochastic_crossover", "verdict": "standard", "note": "tv:stoch."}
+{"file": "基于T3和CCI指标的趋势追踪策略T3-CCI-Trend-Tracking-Strategy.md", "indicator": "t3_cci", "verdict": "standard", "note": "Faithful port of FX Sniper's T3-CCI."}
+{"file": "基于T3指标的趋势追踪交易策略Trend-Following-Trading-Strategy-Based-on-T3-Indicator.md", "indicator": "t3_averages", "verdict": "standard", "note": "== tv:t3."}
+{"file": "基于UT-Bot指标的ATR移动止损策略UT-Bot-Indicator-Based-ATR-Trailing-Stop-Strategy.md", "indicator": "atr_trailing_stop", "verdict": "standard", "note": "UT Bot trailing stop (modified by HPotter); tv:ut_bot core."}
+{"file": "基于Woodie支撑阻力的回测交易策略Woodie-Pivot-Points-Backtest-Strategy.md", "indicator": "woodie_pivot_points", "verdict": "standard", "note": "(H+L+2C)/4 of the previous day (tv:pivot_points woodie)."}
+{"file": "基于stochastic和MACD指标的反转交易策略Reversal-Trading-Strategy-Based-on-Stochastic-and-MACD-Indicators.md", "indicator": "macd", "verdict": "standard", "note": "tv:macd with SMA signal."}
+{"file": "基于交易量的趋势追踪策略Volume-Oscillator-Based-Trend-Tracking-Strategy.md", "indicator": "tfs_volume_oscillator", "verdict": "standard", "note": "Faithful."}
+{"file": "基于价格去趋势振荡器的量化交易策略Detrended-Price-Oscillator-Quantitative-Trading-Strategy.md", "indicator": "detrended_price_oscillator", "verdict": "variant", "note": "No displacement."}
+{"file": "基于价格反转的TTM银隼震荡策略TTM-Falcon-Oscillator-Reversal-Strategy-Based-on-Price-Reversion.md", "indicator": "ttm_scalper", "verdict": "standard", "note": "HPotter's approximation, ported literally."}
+{"file": "基于价格极值点的趋势性交易策略Trend-Trading-Strategy-Based-on-Price-Extremum.md", "indicator": "fractal_chaos_bands", "verdict": "standard", "note": "Faithful."}
+{"file": "基于价格波动率的跟踪止损策略Volatility-Tracking-Stop-Loss-Strategy.md", "indicator": "volatility_atr", "verdict": "bug", "note": "TradeStation 'Volatility' (Wilder average of TrueRange) applied to atr(Length): ATR smoothed twice, zero-seeded."}
+{"file": "基于价格量变动的趋势策略Modified-Price-Volume-Trend-Strategy-Based-on-Price-Volume-Changes.md", "indicator": "modified_pvt", "verdict": "standard", "note": "Faithful."}
+{"file": "基于信噪比和均线的量化交易策略Signal-to-Noise-Moving-Average-Trading-Strategy-Based-on-Quantitative-Trading.md", "indicator": "signal_to_noise", "verdict": "standard", "note": "Faithful copy."}
+{"file": "基于加速振荡器的趋势反转策略Trend-Reversal-Strategy-Based-on-Accelerator-Oscillator.md", "indicator": "accelerator_oscillator", "verdict": "standard", "note": "tv:accelerator_oscillator."}
+{"file": "基于动态趋势追踪策略Trading-Dynamic-Trend-Tracking-Strategy.md", "indicator": "trend_trader_abraham", "verdict": "standard", "note": "Faithful (+EMA of the line)."}
+{"file": "基于动量指标的短期交易策略Short-term-Trading-Strategy-Based-on-Momentum-Indicator.md", "indicator": "mass_index", "verdict": "standard", "note": "tv:mass_index(25)."}
+{"file": "基于动量突破交易策略Momentum-Breakout-Trading-Strategy.md", "indicator": "atr_trailing_stop", "verdict": "standard", "note": "UT Bot (credits HPotter); tv:ut_bot core."}
+{"file": "基于卡马奇拉枢轴与布林带的量化策略Camarilla-Pivot-Points-Strategy-Based-on-Bollinger-Bands.md", "indicator": "camarilla_pivot_points", "verdict": "variant", "note": "Current-period levels via security without [1]; H/L level names swapped."}
+{"file": "基于历史数据的动态支撑阻力策略Dynamic-Support-and-Resistance-Strategy-Based-on-Historical-Data.md", "indicator": "pivot_point_v2", "verdict": "variant", "note": "Current-period levels via security without [1]."}
+{"file": "基于去趋势合成价格的双均线交易策略Dual-Moving-Average-Trading-Strategy-Based-on-Detrended-Synthetic-Price.md", "indicator": "dsp", "verdict": "standard", "note": "Faithful."}
+{"file": "基于双EMA价格摆动策略The-Dual-EMA-Price-Swing-Strategy.md", "indicator": "apo", "verdict": "standard", "note": "tv:apo."}
+{"file": "基于双EMA和AC指标的趋势跟踪策略Dual-EMA-and-AC-Indicator-Based-Trend-Following-Strategy.md", "indicator": "accelerator_oscillator", "verdict": "standard", "note": "EMA20 combo; AC with lengths 33/6 (tv:awesome_oscillator(6,33) - sma(.,6))."}
+{"file": "基于双EMA和价格波动率指标的量化交易策略Quantitative-Trading-Strategy-Based-on-Double-EMA-and-Price-Volatility-Index.md", "indicator": "hl_range_hist", "verdict": "standard", "note": "EMA20 combo; faithful."}
+{"file": "基于双EMA和带通滤波器的组合交易策略Combination-Trading-Strategy-Based-on-Dual-EMA-and-Bandpass-Filter.md", "indicator": "bandpass_filter", "verdict": "variant", "note": "EMA20 combo; pi=3.14."}
+{"file": "基于双均线反转交易策略Dual-Moving-Average-Reversal-Trading-Strategy.md", "indicator": "ema_2_20", "verdict": "standard", "note": "tv:ema."}
+{"file": "基于双重反转动量策略Reversal-Momentum-Strategy-with-Double-Confirmation.md", "indicator": "donchian_channel_width", "verdict": "standard", "note": "tv:donchian upper-lower + SMA."}
+{"file": "基于双重反转套利策略Dual-Reversal-Arbitrage-Strategy.md", "indicator": "gann_swing_oscillator", "verdict": "standard", "note": "Krausz's GSO, faithful."}
+{"file": "基于双重反转策略The-Dual-Reversal-Strategy.md", "indicator": "three_bar_reversal", "verdict": "standard", "note": "Faithful."}
+{"file": "基于唐奇安通道指标开发的量化交易策略Donchian-Channel-Width-Trading-Strategy.md", "indicator": "donchian_channel_width", "verdict": "standard", "note": "tv:donchian."}
+{"file": "基于多因子模型的自适应趋势追踪策略Trend-Tracking-Strategy-Based-on-Multi-factor-Model-with-Adaptive-Trailing-Stoploss.md", "indicator": "atr_trailing_stop", "verdict": "standard", "note": "TradersAI UTBot (credits HPotter); tv:ut_bot core."}
+{"file": "基于多指标验证的量化交易策略Quantitative-Trading-Strategy-with-Multi-Indicator-Confirmation.md", "indicator": "williams_ad", "verdict": "bug", "note": "Uses low[1]/high[1] instead of the true low/high and resets the cumulative total to 0 on unchanged closes."}
+{"file": "基于多策略集成的反转与重心线交易策略Reversal-and-Center-of-Gravity-Integrated-Trading-Strategy-Based-on-Multi-strategy.md", "indicator": "center_of_gravity_hpotter", "verdict": "standard", "note": "linreg(close,20,5) +/- %close."}
+{"file": "基于市场促进指数的交易策略Trading-Strategy-Based-on-Market-Facilitation-Index.md", "indicator": "market_facilitation_index", "verdict": "standard", "note": "x10000 scale."}
+{"file": "基于形态反转和MACD指标的组合交易策略Combo-Trading-Strategy-Based-on-123-Reversal-and-MACD.md", "indicator": "ergodic_macd", "verdict": "standard", "note": "EMA(14)-EMA(21), EMA(5) signal: tv:macd."}
+{"file": "基于指数移动平均和成交量加权的多因子量化策略Quantitative-Strategy-Based-on-Exponential-Moving-Average-and-Volume-Weighting.md", "indicator": "ema_volume_weighted", "verdict": "standard", "note": "Faithful."}
+{"file": "基于改进型MACD指标的短线交易策略Reverse-Momentum-Trading-Strategy.md", "indicator": "ergodic_macd", "verdict": "standard", "note": "EMA(32)-EMA(5), EMA(5) signal: tv:macd."}
+{"file": "基于极值法的统计波动率回测策略Statistical-Volatility-Backtest-Strategy-Based-on-Extreme-Value-Method.md", "indicator": "statistical_volatility_hpotter", "verdict": "standard", "note": "Faithful."}
+{"file": "基于枢轴指标的趋势操纵策略Pivot-Detector-Oscillator-Trend-Trading-Strategy.md", "indicator": "pivot_detector_oscillator", "verdict": "standard", "note": "Faithful."}
+{"file": "基于柴金波动率指标的短线交易策略Short-term-Trading-Strategy-Based-on-Chaikin-Volatility-Indicator.md", "indicator": "chaikin_volatility", "verdict": "standard", "note": "tv:chaikin_volatility(10,12)."}
+{"file": "基于波动率的有限交易量元素策略Volatility-Finite-Volume-Elements-Strategy.md", "indicator": "volatility_fve", "verdict": "standard", "note": "Uses Katsanos' cutoff (stdev of intra/inter) for the money-flow test only."}
+{"file": "基于熊力量指标的量化交易策略Bear-Power-Strategy.md", "indicator": "gimelfarb_bull_bear_power", "verdict": "standard", "note": "Faithful."}
+{"file": "基于甘氏摆动指标的量化交易策略Quantitative-Trading-Strategy-Based-on-Gann-Swing-Oscillator.md", "indicator": "gann_swing_oscillator", "verdict": "bug", "note": "'Gann Trend Oscillator': runs on closes and swaps the signs (-1 on Krausz's up-swing pattern)."}
+{"file": "基于百分比变化的价值棒图回测策略Percent-Change-Bar-Chart-Backtest-Strategy.md", "indicator": "percent_change_bar", "verdict": "standard", "note": "tv:roc."}
+{"file": "基于移动平均线与平均真实范围尾随止损的量化交易策略Quantitative-Trading-Based-on-Moving-Average-Envelope-and-ATR-Trailing-Stop.md", "indicator": "made", "verdict": "standard", "note": "MADE + ATR trailing (v5), faithful."}
+{"file": "基于移动平均线交叉策略Moving-Average-Crossover-Strategy.md", "indicator": "simple_sma", "verdict": "standard", "note": "SMA(13) touch rule: tv:sma."}
+{"file": "基于移动平均线的量化交易策略Moving-Average-Crossover-Strategy.md", "indicator": "simple_sma", "verdict": "standard", "note": "tv:sma."}
+{"file": "基于突破范围的多头交易策略Long-Breakout-Range-Trading-Strategy.md", "indicator": "breakout_range", "verdict": "standard", "note": "tv:donchian."}
+{"file": "基于线性回归拦截点的量化策略Quant-Strategy-Based-on-Linear-Regression-Intercept.md", "indicator": "line_regression_intercept", "verdict": "standard", "note": "HPotter's loop equals the TA-Lib intercept (tv:linreg intercept)."}
+{"file": "基于经验模态分解的量化交易策略Empirical-Mode-Decomposition-Based-Quantitative-Trading-Strategy.md", "indicator": "empirical_mode_decomposition", "verdict": "variant", "note": "pi=3.1415 (negligible)."}
+{"file": "基于自适应波动性的有限体积要素策略Adaptive-Volatility-Finite-Volume-Elements-Strategy.md", "indicator": "volatility_fve", "verdict": "bug", "note": "Cutoff from stdev(sma(x,n),n) instead of stdev(x,n)."}
+{"file": "基于质数震荡的交易策略Prime-Number-Oscillator-Trading-Strategy.md", "indicator": "prime_number_oscillator", "verdict": "bug", "note": "Float loop: never finds primes on decimal prices."}
+{"file": "基于费雪转换的Ehlers交易策略Ehlers-Fisher-Transform-Trading-Strategy.md", "indicator": "fisher_transform", "verdict": "variant", "note": "Unclamped feedback."}
+{"file": "基于趋势交易者平均线的布林带回测策略Trend-Trader-Bands-Backtest-Strategy-Based-on-Trend-Trader-Moving-Average.md", "indicator": "trend_trader_abraham", "verdict": "standard", "note": "Trend Trader + EMA bands."}
+{"file": "基于趋势分析指数的量化交易策略Quantitative-Trading-Strategy-Based-on-Trend-Analysis-Index.md", "indicator": "trend_analysis_index", "verdict": "standard", "note": "Faithful (MetaStock TAI)."}
+{"file": "基于较平滑RSI指标的交易策略Smoothed-RSI-Trading-Strategy-Based-on-Improved-RSI-Indicator.md", "indicator": "smoothed_rsi_ehlers", "verdict": "standard", "note": "Faithful."}
+{"file": "基于逆转与相对强度的组合量化策略Quantitative-Strategy-Based-on-Reversal-and-Comparative-Relative-Strength.md", "indicator": "comparative_relative_strength", "verdict": "standard", "note": "Faithful."}
+{"file": "基于随机转向因子和关键反转信号的组合反转策略Combination-Reversal-Strategy-Based-on-Stochastic-Turnaround-Factor-and-Key-Reversal-Signal.md", "indicator": "key_reversal", "verdict": "standard", "note": "Faithful."}
+{"file": "多因子动量反转组合策略Multi-factor-Momentum-Reversal-Combo-Strategy.md", "indicator": "ergodic_tsi", "verdict": "standard", "note": "Faithful (r,s,u = 4,8,6)."}
+{"file": "多因子动量和反转组合策略Momentum-Reversal-Combo-Strategy.md", "indicator": "cmo_abs", "verdict": "standard", "note": "abs(tv:cmo)."}
+{"file": "多因子反转交易策略Multi-factor-Reversal-Trading-Strategy.md", "indicator": "polarized_fractal_efficiency", "verdict": "variant", "note": "Ratio rounded to an integer; +100 hard-coded (correct for the default Length 9 only)."}
+{"file": "多因子反转交易组合策略Multi-factor-Reversal-Trading-Combo-Strategy.md", "indicator": "fast_slow_kurtosis_hpotter", "verdict": "standard", "note": "Faithful."}
+{"file": "多因子反转量化交易策略Multi-factor-Quantitative-Trading-Strategy.md", "indicator": "psychological_line", "verdict": "standard", "note": "tv:psychological_line."}
+{"file": "多因子模型动量反转策略Moment-Reversal-Strategy-Based-on-Multi-factor-Model.md", "indicator": "confluence", "verdict": "standard", "note": "Faithful port."}
+{"file": "多因子组合交易策略Multi-factor-Combined-Trading-Strategy.md", "indicator": "elder_ray_bear_power", "verdict": "bug", "note": "'Bear Power' strategy computes DayHigh - EMA (bull power) instead of DayLow - EMA."}
+{"file": "多因子融合反转追踪策略Multi-factor-Reversal-Tracking-Strategy.md", "indicator": "reverse_engineering_rsi", "verdict": "warmup_only", "note": "AUC/ADC seeded with 1."}
+{"file": "多指标反转交易策略Dual-Indicator-Reversal-Trading-Strategy.md", "indicator": "cci", "verdict": "variant", "note": "CCI on close instead of Lambert's typical price: tv:cci(close,10)."}
+{"file": "多指标融合反转交易策略Multi-indicator-Combined-Reversal-Trading-Strategy.md", "indicator": "cmo_disparity", "verdict": "variant", "note": "Divides by close."}
+{"file": "多时间段动量反转策略Momentum-Reversal-Multi-Timeframe-Strategy.md", "indicator": "hl_range_hist", "verdict": "standard", "note": "Faithful."}
+{"file": "多空力量平衡策略Bull-and-Bear-Balance-Strategy.md", "indicator": "gimelfarb_bull_bear_balance", "verdict": "standard", "note": "Faithful."}
+{"file": "多空力量策略回测Bull-and-Bear-Power-Backtest-Strategy.md", "indicator": "elder_ray_bull_power", "verdict": "variant", "note": "Running day high."}
+{"file": "多重指标碰撞反转策略Multi-indicator-Collision-Reversal-Strategy.md", "indicator": "n_bars_up_down", "verdict": "standard", "note": "Lagged counter."}
+{"file": "多重指标组合策略Combo-Strategy-with-Multiple-Indicators.md", "indicator": "tema", "verdict": "standard", "note": "tv:tema."}
+{"file": "威廉姆累积-分配指标Williams-AD策略Williams-Accumulation-Distribution-Williams-AD-Strategy.md", "indicator": "williams_ad", "verdict": "bug", "note": "low[1]/high[1] instead of true low/high; resets to 0 on unchanged closes."}
+{"file": "威廉指标的精妙震荡器AC回测策略AC-Backtest-Strategy-of-Williams-Indicator.md", "indicator": "accelerator_oscillator", "verdict": "standard", "note": "tv:accelerator_oscillator."}
+{"file": "威美均线策略WAMI-Strategy.md", "indicator": "wami", "verdict": "standard", "note": "Faithful."}
+{"file": "峰度快慢线交易策略Fast-and-Slow-Kurtosis-Trading-Strategy.md", "indicator": "fast_slow_kurtosis_hpotter", "verdict": "standard", "note": "Faithful."}
+{"file": "带通滤波趋势提取策略Bandpass-Filtering-Trend-Extraction-Strategy.md", "indicator": "extracting_the_trend", "verdict": "variant", "note": "pi=3.1415 (negligible)."}
+{"file": "平均范围趋势过滤器回测策略Vertical-Horizontal-Filter-Backtest-Strategy.md", "indicator": "vertical_horizontal_filter", "verdict": "variant", "note": "Range from highest(high)/lowest(low) instead of closes."}
+{"file": "平滑RSI回测策略V2Smoothed-RSI-Backtesting-Strategy-V2.md", "indicator": "smoothed_rsi_ehlers", "verdict": "standard", "note": "Faithful."}
+{"file": "彩虹震荡器回测策略Rainbow-Oscillator-Backtesting-Strategy.md", "indicator": "rainbow_oscillator", "verdict": "standard", "note": "Faithful."}
+{"file": "心理线交易策略Psychological-Line-Trading-Strategy.md", "indicator": "psychological_line", "verdict": "standard", "note": "tv:psychological_line."}
+{"file": "惯性指标交易策略Inertia-Indicator-Trading-Strategy.md", "indicator": "inertia", "verdict": "variant", "note": "EMA(14) of the close RVI instead of the 20-bar regression of Dorsey's refined (high/low) RVI."}
+{"file": "承压指标追踪策略Bear-Power-Tracking-Strategy.md", "indicator": "elder_ray_bear_power", "verdict": "variant", "note": "Running day low minus EMA."}
+{"file": "搏浪者策略Surf-Rider-Strategy.md", "indicator": "ergodic_candlestick_oscillator", "verdict": "standard", "note": "Blau ECO, faithful."}
+{"file": "方向趋势指数交易策略Directional-Trend-Index-Trading-Strategy.md", "indicator": "dti_blau", "verdict": "standard", "note": "Faithful."}
+{"file": "智能资金指数策略回测Smart-Money-Index-SMI-Strategy-Backtest.md", "indicator": "smart_money_index", "verdict": "variant", "note": "Not Hays' rule (bar change minus previous hourly bar change)."}
+{"file": "未来价格延伸线回测策略Future-Lines-of-Demarcation-Backtest-Strategy.md", "indicator": "fld", "verdict": "standard", "note": "Faithful."}
+{"file": "极化分形效率PFE交易策略Polarized-Fractal-Efficiency-PFE-Trading-Strategy.md", "indicator": "polarized_fractal_efficiency", "verdict": "variant", "note": "Rounded ratio; +100 hard-coded (Length 9 default)."}
+{"file": "枢轴点突破策略Pivot-Points-Breakout-Strategy.md", "indicator": "floor_pivot_points", "verdict": "standard", "note": "Previous-day classic R1/S1."}
+{"file": "枢轴点预测震荡指标回测策略Pivot-Point-Forecast-Oscillator-Backtesting-Strategy.md", "indicator": "chande_forecast_oscillator", "verdict": "standard", "note": "tv:chande_forecast_oscillator."}
+{"file": "标准分数价格突破策略Z-Score-Price-Breakout-Strategy.md", "indicator": "zscore", "verdict": "standard", "note": "tv:zscore."}
+{"file": "正成交量指数策略Positive-Volume-Index-Strategy.md", "indicator": "positive_volume_index", "verdict": "variant", "note": "Additive ROC% sum."}
+{"file": "比较相对强度策略Comparative-Relative-Strength-Strategy.md", "indicator": "comparative_relative_strength", "verdict": "standard", "note": "Faithful."}
+{"file": "流量主导型震荡量化策略Volume-driven-Oscillation-Quant-Strategy.md", "indicator": "klinger_volume_oscillator", "verdict": "variant", "note": "Simplified volume force +/-100*V by sign of change(hlc3), not Klinger's VF."}
+{"file": "熊市反转哈拉米回测策略Bearish-Harami-Reversal-Backtest-Strategy.md", "indicator": "harami", "verdict": "standard", "note": "Bearish harami."}
+{"file": "熊转魔法蜡烛反转策略Bearish-Engulfing-Reversal-Strategy.md", "indicator": "engulfing", "verdict": "standard", "note": "Bearish engulfing."}
+{"file": "牛市力量交易策略Bull-Power-Trading-Strategy.md", "indicator": "gimelfarb_bull_bear_power", "verdict": "standard", "note": "Faithful."}
+{"file": "现代拉盖尔变换相对强弱指标优化策略-Modern-Laguerre-Transform-Relative-Strength-Index-Optimization-Strategy.md", "indicator": "laguerre_rsi", "verdict": "warmup_only", "note": "Seeds 1; equals tv:laguerre_rsi after warm-up."}
+{"file": "相对强弱指标RSI策略Relative-Strength-Index-RSI-Strategy.md", "indicator": "rsi", "verdict": "standard", "note": "tv:rsi."}
+{"file": "相对波动指数回测策略Relative-Volatility-Index-Backtesting-Strategy.md", "indicator": "relative_volatility_index", "verdict": "variant", "note": "Zero-seeded Wilder smoothing; ties counted as down."}
+{"file": "移动平均位移包络线策略Moving-Average-Displaced-Envelope-Strategy.md", "indicator": "made", "verdict": "standard", "note": "Faithful."}
+{"file": "移动平均线百分比反转策略Moving-Average-Percentage-Reversal-Strategy.md", "indicator": "hpotter_dbp", "verdict": "standard", "note": "Faithful."}
+{"file": "移动平均聚合Williams商业区买卖压力指标策略Moving-Average-Aggregation-Williams-Commercial-Bid-Ask-Pressure-Indicator-Strategy.md", "indicator": "williams_ad", "verdict": "bug", "note": "low[1]/high[1]; resets to 0 on unchanged closes."}
+{"file": "移动平均量价趋势攻击震荡策略Momentum-Trend-Following-Oscillation-Strategy.md", "indicator": "adxr", "verdict": "variant", "note": "ADX[14] instead of ADX[13]."}
+{"file": "突破高低点回测策略Breakthrough-Highs-and-Lows-Backtesting-Strategy.md", "indicator": "high_low_levels", "verdict": "standard", "note": "Previous day's high/low (security high[1]) = period_high_low."}
+{"file": "结合123反转与平滑RSI的交易策略Combo-Strategy-of-123-Reversal-and-Smoothed-RSI.md", "indicator": "smoothed_rsi_ehlers", "verdict": "standard", "note": "Faithful."}
+{"file": "绝对价格振荡器趋势跟踪策略Absolute-Price-Oscillator-Trend-Following-Strategy.md", "indicator": "apo", "verdict": "standard", "note": "tv:apo."}
+{"file": "聚合动量指标策略Chaikin-Oscillator-Strategy.md", "indicator": "hpotter_money_flow", "verdict": "variant", "note": "Not Chaikin's oscillator (see report)."}
+{"file": "自适应价格区域反转交易策略Adaptive-Price-Zone-Reversal-Trading-Strategy.md", "indicator": "apz", "verdict": "standard", "note": "Faithful."}
+{"file": "自适应止损跟踪策略Adaptive-Trailing-Stop-Strategy.md", "indicator": "atr_trailing_stop", "verdict": "standard", "note": "UT Bot (credits HPotter); tv:ut_bot core."}
+{"file": "自适应考夫曼移动平均线趋势跟踪策略Adaptive-Kaufman-Moving-Average-Trend-Following-Strategy.md", "indicator": "kama", "verdict": "variant", "note": "Rounded constants, zero seed."}
+{"file": "融合双重趋势信号的反转指数量化策略Quantitative-Reversal-Index-Strategy-Integrating-Dual-Trend-Signals.md", "indicator": "negative_volume_index", "verdict": "bug", "note": "Adds roc(close, EMA_Len=50) (a 50-bar ROC) on low-volume bars instead of the 1-bar change."}
+{"file": "融合反转与未来推移均线的量化交易策略Quantitative-Trading-Strategy-Integrating-Reversal-and-Future-Lines-of-Demarcation.md", "indicator": "fld", "verdict": "standard", "note": "Faithful."}
+{"file": "质数波带回测策略Prime-Number-Bands-Backtest-Strategy.md", "indicator": "prime_number_bands", "verdict": "bug", "note": "Float loop: bands equal high/low on decimal prices."}
+{"file": "超越指标动量系统交易策略SMI-Ergodic-Oscillator-Momentum-Trading-Strategy.md", "indicator": "smi_ergodic", "verdict": "warmup_only", "note": "EMA order reversed; warm-up only."}
+{"file": "趋势反转动量复合策略Reversal-Momentum-Compound-Strategy.md", "indicator": "dapd", "verdict": "standard", "note": "Faithful."}
+{"file": "趋势反转波动率联合策略Trend-Reversal-Volatility-Combination-Strategy.md", "indicator": "statistical_volatility_hpotter", "verdict": "standard", "note": "Faithful."}
+{"file": "趋势跟踪型双均线策略Trend-Following-Dual-Moving-Average-Strategy.md", "indicator": "adxr", "verdict": "variant", "note": "ADX[14] instead of ADX[13]."}
+{"file": "趋势跟踪短线交易策略Trend-Following-Short-term-Trading-Strategy.md", "indicator": "trend_trader_abraham", "verdict": "standard", "note": "Noro's SILA embeds HPotter's Trend Trader (and RSI HistoAlert) code; faithful."}
+{"file": "趋势追踪反转与埃勒斯先导指标联合策略Trend-Reversal-and-Ehlers-Leading-Indicator-Combo-Strategy.md", "indicator": "ehlers_leading_indicator", "verdict": "standard", "note": "Faithful (daily hl2)."}
+{"file": "跨时间框架动量追踪策略Cross-Timeframe-Momentum-Tracking-Strategy.md", "indicator": "macd", "verdict": "standard", "note": "tv:macd with SMA signal."}
+{"file": "跨趋势反转结合三十振荡器双策略Cross-Trend-Reversal-Combined-with-Three-Ten-Oscillator-Dual-Strategies.md", "indicator": "three_ten_oscillator", "verdict": "variant", "note": "EMA(3)-EMA(10) of daily hl2 instead of Raschke's SMA of close."}
+{"file": "连续N根K线收阴策略N-Bar-Close-Below-Open-Short-Strategy.md", "indicator": "n_bars_up_down", "verdict": "standard", "note": "Lagged counter."}
+{"file": "连续高点突破策略N-Consecutive-Higher-Closes-Breakout-Strategy.md", "indicator": "n_bars_up_down", "verdict": "standard", "note": "Lagged counter."}
+{"file": "迪纳波利去趋势震荡器策略DiNapoli-Detrended-Oscillator-Strategy.md", "indicator": "dinapoli_detrended_oscillator", "verdict": "standard", "note": "close - SMA."}
+{"file": "逆向工程RSI策略Reverse-Engineering-RSI-Strategy.md", "indicator": "reverse_engineering_rsi", "verdict": "warmup_only", "note": "Seeds 1."}
+{"file": "逆转与线性回归截距组合策略Reversal-and-Linear-Regression-Intercept-Combo-Strategy.md", "indicator": "line_regression_intercept", "verdict": "standard", "note": "== TA-Lib intercept."}
+{"file": "逆转型商品通道指数交易策略Commodity-Channel-Index-Reversal-Trading-Strategy.md", "indicator": "cci", "verdict": "variant", "note": "CCI on close."}
+{"file": "递归移动趋势均线结合123形态反转的组合策略Recursive-Moving-Trend-Average-Combined-with-123-Reversal-Pattern-Strategy.md", "indicator": "rmta_hpotter", "verdict": "standard", "note": "Faithful."}
+{"file": "通过计算价格波动性趋势突破策略Trend-Breakout-Strategy.md", "indicator": "hl_range_hist", "verdict": "standard", "note": "Faithful."}
+{"file": "重心回测交易策略Center-of-Gravity-Backtesting-Trading-Strategy.md", "indicator": "center_of_gravity_hpotter", "verdict": "standard", "note": "Faithful."}
+{"file": "量化交易动量方向收敛策略Ergotic-Momentum-Direction-Convergence-Trading-Strategy.md", "indicator": "ergodic_tsi", "verdict": "standard", "note": "Faithful."}
+{"file": "量化交易反转趋势串并T3-CCI策略Quantitative-Trading-Reversal-Trend-Combo-T3-CCI-Strategy.md", "indicator": "t3_cci", "verdict": "standard", "note": "Faithful."}
+{"file": "量化双击利反转策略Quant-Trading-Double-Click-Reversal-Strategy.md", "indicator": "klinger_volume_oscillator", "verdict": "variant", "note": "Simplified volume force."}
+{"file": "量化双因子反转惯性交易策略Quantitative-Dual-Factor-Reversal-Inertia-Trading-Strategy.md", "indicator": "inertia", "verdict": "variant", "note": "EMA of close RVI instead of Dorsey's regression of the refined RVI."}
+{"file": "量化双管齐下策略Quantitative-Dual-indicator-Strategy.md", "indicator": "gimelfarb_bull_bear_power", "verdict": "standard", "note": "EMA20 combo; Bull Power with SMA(15) threshold."}
+{"file": "量化反转与成交量策略组合Quantitative-Reversal-and-Volume-Combo-Strategy.md", "indicator": "volatility_fve", "verdict": "bug", "note": "Cutoff from stdev(sma(x,n),n)."}
+{"file": "量化策略之负量指标反转策略Quantitative-Strategy-of-Negative-Volume-Index-Reversal.md", "indicator": "negative_volume_index", "verdict": "variant", "note": "Additive ROC% sum."}
+{"file": "金叉死叉动态止损策略Trend-Following-Strategy-with-Dynamic-Stops.md", "indicator": "atr_trailing_stop", "verdict": "standard", "note": "UT Bot (credits HPotter); tv:ut_bot core."}
+{"file": "随机指标双轨突破策略Stochastic-Oscillator-Band-Breakout-Strategy.md", "indicator": "stochastic", "verdict": "standard", "note": "tv:stoch."}
+{"file": "隐藏的缺口交易量策略Hidden-Gap-Volume-Strategy.md", "indicator": "hidden_gap_vsa_volume", "verdict": "standard", "note": "Volume vs SMA/highest/lowest of volume: tv composition."}
+{"file": "震荡指数变换策略Oscillator-Index-Transformation-Strategy.md", "indicator": "three_ten_oscillator", "verdict": "variant", "note": "EMA of daily hl2 instead of SMA of close."}
+{"file": "震荡波动优异指标交易策略Bill-Williams-Awesome-Oscillator-Trading-Strategy.md", "indicator": "awesome_oscillator", "verdict": "standard", "note": "tv:awesome_oscillator."}
+{"file": "高低位突破量化策略High-Low-Breakout-for-Quantitative-Trading.md", "indicator": "high_low_levels", "verdict": "standard", "note": "Previous day high/low."}
+{"file": "高点减指数移动平均线策略High-Minus-Exponential-Moving-Average-Stock-Strategy.md", "indicator": "high_ema", "verdict": "standard", "note": "tv:ema."}

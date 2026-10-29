@@ -1424,3 +1424,15 @@ def test_hpotter_versions_of_library_indicators():
         out.append(st)
     same(ti.ut_bot(H, L, C, 3.5, 5).stop if hasattr(ti.ut_bot(H, L, C, 3.5, 5), "stop")
          else ti.ut_bot(H, L, C, 3.5, 5)[0], out)
+
+
+def test_vectorbt_factories():
+    pytest.importorskip("vectorbt")
+    from tv_indicators.vbt import _make_factory
+    facs = {name: _make_factory(name, fn) for name, fn in hp.EXTRA_HPOTTER.items()}
+    r = facs["RAVI"].run(C, fast=[5, 7], slow=65, param_product=True)
+    same(r.ravi.iloc[:, 1], hp.ravi(C, 7, 65))
+    f = facs["FVE"].run(H, L, C, V, period=[18, 22])
+    same(f.fve.iloc[:, 0], hp.finite_volume_elements(H, L, C, V, 18))
+    kv = facs["KLINGER_VO"].run(H, L, C, V, hpotter=True)
+    same(kv.kvo, hp.klinger_volume_oscillator(H, L, C, V, hpotter=True).kvo)

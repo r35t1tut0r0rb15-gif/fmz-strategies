@@ -1,0 +1,2067 @@
+{
+ "accelerator_oscillator": {
+  "function": "tv:accelerator_oscillator",
+  "status": "exists",
+  "reference": "Bill Williams AC",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "One EMA20 combo uses 33/6 lengths: tv:awesome_oscillator(6,33) - SMA(.,6).",
+  "n_hpotter_files": 7,
+  "file_verdicts": {
+   "standard": 7
+  }
+ },
+ "adxr": {
+  "function": "adxr (extra_hpotter) / tv:adxr",
+  "status": "implemented",
+  "reference": "Wilder 1978; TA-Lib ADXR",
+  "hpotter_matches_reference": "partial",
+  "issues": [
+   "HPotter averages with ADX[LengthADXR] (14) instead of ADX[13]."
+  ],
+  "notes": "hpotter=True reproduces it; main equals tv:adxr.",
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "variant": 3
+  }
+ },
+ "apo": {
+  "function": "tv:apo",
+  "status": "exists",
+  "reference": "Absolute Price Oscillator",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 4,
+  "file_verdicts": {
+   "standard": 4
+  }
+ },
+ "apz": {
+  "function": "adaptive_price_zone",
+  "status": "implemented",
+  "reference": "Lee Leibfarth, 'Adaptive Price Zone', Technical Analysis of Stocks & Commodities Sep 2006",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "28d905728b06"
+  ]
+ },
+ "atr_trailing_stop": {
+  "function": "tv:ut_bot",
+  "status": "exists",
+  "reference": "Sylvain Vervoort, ATR trailing stop, Technical Analysis of Stocks & Commodities Jun 2009 (HPotter's port is the core of UT Bot)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 12,
+  "file_verdicts": {
+   "standard": 12
+  }
+ },
+ "atr_trailing_stop_bands": {
+  "function": "-",
+  "status": "skipped",
+  "reference": "River's 'ATR Trailing Stop Bands' (modification of HPotter's port)",
+  "hpotter_matches_reference": "partial",
+  "issues": [],
+  "notes": "Not HPotter's computation; covered by the trend family's atr_trailing_bands.",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "variant": 1
+  }
+ },
+ "awesome_oscillator": {
+  "function": "tv:awesome_oscillator",
+  "status": "exists",
+  "reference": "Bill Williams AO",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "standard": 3
+  }
+ },
+ "bandpass_filter": {
+  "function": "ehlers_bandpass",
+  "status": "implemented",
+  "reference": "John Ehlers & Ric Way, 'Empirical Mode Decomposition', Technical Analysis of Stocks & Commodities Mar 2010 (bandpass)",
+  "hpotter_matches_reference": "partial",
+  "issues": [
+   "Degrees converted with 3.14 instead of pi (slightly different filter coefficients)."
+  ],
+  "notes": "hpotter=True uses 3.14. Overlaps the Ehlers family's ehlers_bandpass.",
+  "n_hpotter_files": 5,
+  "file_verdicts": {
+   "variant": 5
+  }
+ },
+ "bill_williams_3lines": {
+  "function": "bill_williams_3lines (main == tv:alligator)",
+  "status": "implemented",
+  "reference": "Bill Williams, 'Trading Chaos' (Alligator: SMMA 13/8/5 shifted 8/5/3)",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "HPotter uses SMA instead of Williams' smoothed MA (SMMA)."
+  ],
+  "notes": "hpotter=True reproduces it.",
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "variant": 3
+  }
+ },
+ "breakout_range": {
+  "function": "tv:donchian / extra:hv_lv",
+  "status": "exists",
+  "reference": "N-bar breakout",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "standard": 3
+  }
+ },
+ "camarilla_pivot_points": {
+  "function": "tv:pivot_points (camarilla)",
+  "status": "exists",
+  "reference": "Nick Scott's Camarilla pivots",
+  "hpotter_matches_reference": "partial",
+  "issues": [
+   "Current-period levels via security without [1] (repaints).",
+   "V2 uses rounded 0.0916/0.183/0.275/0.55 coefficients and labels the H/L levels the other way round."
+  ],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  }
+ },
+ "cci": {
+  "function": "tv:cci(close)",
+  "status": "exists",
+  "reference": "Donald Lambert CCI (typical price)",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "HPotter applies CCI to close instead of the typical price."
+  ],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  }
+ },
+ "center_of_gravity_hpotter": {
+  "function": "hpotter_center_of_gravity",
+  "status": "implemented",
+  "reference": "HPotter 'Center of Gravity' (linreg(close,20,5) +/- %); not Ehlers' CG (tv:center_of_gravity)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 4,
+  "file_verdicts": {
+   "standard": 4
+  }
+ },
+ "chaikin_volatility": {
+  "function": "tv:chaikin_volatility",
+  "status": "exists",
+  "reference": "Marc Chaikin volatility",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "chande_forecast_oscillator": {
+  "function": "tv:chande_forecast_oscillator",
+  "status": "exists",
+  "reference": "Chande Forecast Oscillator",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "cmo": {
+  "function": "tv:cmo",
+  "status": "exists",
+  "reference": "Chande & Kroll 1994",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "100*(close-close[n])/(sma(|mom|,n)*n) == plain-sum CMO (verified in tests).",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "cmo_abs": {
+  "function": "tv:cmo (abs)",
+  "status": "exists",
+  "reference": "Chande & Kroll 1994",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "cmo_average": {
+  "function": "cmo_average",
+  "status": "implemented",
+  "reference": "Chande's CMO averaged over 5/10/20 (CMOav; CMOabsav = |CMOav|)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "cmo_disparity": {
+  "function": "cmo_disparity",
+  "status": "implemented",
+  "reference": "Steve Nison's Disparity Index (100*(close-MA)/MA) on three EMAs (HPotter 'CMOaDisparity')",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "HPotter divides by close instead of the moving average (different scale)."
+  ],
+  "notes": "hpotter=True reproduces it.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  }
+ },
+ "cmo_filtered_hpotter": {
+  "function": "cmo_filtered",
+  "status": "implemented",
+  "reference": "Tushar Chande & Stanley Kroll, 'The New Technical Trader' (1994): CMO with noise filter",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "8e84aa0355e7"
+  ]
+ },
+ "cmo_wma": {
+  "function": "tv:cmo + tv:wma",
+  "status": "exists",
+  "reference": "Chande & Kroll 1994",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "standard": 3
+  }
+ },
+ "comparative_relative_strength": {
+  "function": "comparative_relative_strength",
+  "status": "implemented",
+  "reference": "Comparative relative strength (price ratio of two symbols), SMA smoothed",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "e3c5db50d7cc"
+  ]
+ },
+ "confluence": {
+  "function": "confluence",
+  "status": "implemented",
+  "reference": "'Confluence' indicator (TradeStation), HPotter TV port",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "Faithful vectorised copy; original TradeStation listing not checked.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "csi": {
+  "function": "commodity_selection_index",
+  "status": "implemented",
+  "reference": "J. Welles Wilder, 'New Concepts in Technical Trading Systems' (1978): CSI = ADXR*ATR14*(V/sqrt(M)/(150+C))*100",
+  "hpotter_matches_reference": "partial",
+  "issues": [
+   "ADXR = (ADX + ADX[14])/2; Wilder's worksheet / TA-Lib / tv:adxr use ADX[13]."
+  ],
+  "notes": "hpotter=True uses his lag.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  },
+  "worklist_ids": [
+   "75775e105f77",
+   "a56c3b40a738"
+  ]
+ },
+ "cueing_off_support_resistance": {
+  "function": "period_high_low(session='W', lookback=1)",
+  "status": "implemented",
+  "reference": "Previous-period high/low levels (request.security(tf, high[1]))",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "dapd": {
+  "function": "dapd_bands",
+  "status": "implemented",
+  "reference": "DAPD (Daily Average Price Delta) bands: SMA(high)-SMA(low) added to high / subtracted from low",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "detrended_price_oscillator": {
+  "function": "tv:dpo (Hartle); dinapoli_detrended_oscillator reproduces HPotter",
+  "status": "exists",
+  "reference": "Hartle, Detrended Price Oscillator (Technical Analysis of Stocks & Commodities 1994): close vs SMA displaced n/2+1",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "HPotter's DPO is close - SMA(close, n) without the (n/2+1)-bar displacement (i.e. the DiNapoli oscillator)."
+  ],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  }
+ },
+ "dinapoli_detrended_oscillator": {
+  "function": "dinapoli_detrended_oscillator",
+  "status": "implemented",
+  "reference": "Joe DiNapoli, 'Trading with DiNapoli Levels': close - 7-period SMA",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "HPotter uses length 14 as input. Work-list ids also contain a PDO snippet (a8e561e0ea04), graded under pivot_detector_oscillator.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "a8e561e0ea04",
+   "6aa95964271d"
+  ]
+ },
+ "dmi_ma": {
+  "function": "tv:dmi + tv:sma",
+  "status": "exists",
+  "reference": "Wilder DMI (TradingView DMI) and SMA crossover",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "doji": {
+  "function": "doji",
+  "status": "implemented",
+  "reference": "Nison doji",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "donchian_channel_width": {
+  "function": "tv:donchian",
+  "status": "exists",
+  "reference": "Donchian width",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "dsp": {
+  "function": "detrended_synthetic_price",
+  "status": "implemented",
+  "reference": "John Ehlers, 'MESA and Trading Market Cycles' pp. 64-70 (DSP); eSignal D_DSP.efs",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "EMA(hl2, L) - EMA(hl2, 2L).",
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "standard": 3
+  },
+  "worklist_ids": [
+   "2d2737fa9e9f",
+   "c7e0646d0fd8"
+  ]
+ },
+ "dss_bressert": {
+  "function": "dss_bressert",
+  "status": "implemented",
+  "reference": "Walter Bressert's Double Smoothed Stochastic",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "dti_blau": {
+  "function": "directional_trend_index",
+  "status": "implemented",
+  "reference": "Blau 1995, Directional Trend Index",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "64f5f8228435"
+  ]
+ },
+ "dynamic_momentum_index": {
+  "function": "dynamic_momentum_index",
+  "status": "implemented",
+  "reference": "Chande & Kroll, 'The New Technical Trader' (1994): Dynamic Momentum Index",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "BUG: DTime = round(14 / sma(stdev(close,5),10) - 0.5) omits the ratio stdev/sma(stdev) (the period depends on the price scale), and xRSI = rsi(xDMI, RSILen) is the RSI of the period series, not an RSI of price over the dynamic period."
+  ],
+  "notes": "Main: Vi = stdev5/sma10(stdev5), Td = int(14/Vi) clamped 5..30, Wilder RSI with the bar's Td (TradeStation RSI(C, Td)).",
+  "bug_snippet_ids": [
+   "ff6b181d2367"
+  ],
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "bug": 1
+  },
+  "worklist_ids": [
+   "ff6b181d2367"
+  ],
+  "bug_files": [
+   "动量张弛指标与123形态策略Momentum-Oscillator-123-Pattern-Strategy.md"
+  ]
+ },
+ "dynamo": {
+  "function": "dynamo",
+  "status": "implemented",
+  "reference": "E. Marshall Wall, Dynamic Momentum Oscillator, Futures Jul 1996",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "Ported as HPotter coded it (running min/max of the averaged stochastic).",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "ease_of_movement": {
+  "function": "tv:ease_of_movement",
+  "status": "exists",
+  "reference": "Richard Arms, Ease of Movement",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "BUG: midpoint move computed as mom((H-L)/2, 1) (change of the half range, not of the midpoint (H+L)/2), and then differenced again (MM - MM[1]); no smoothing."
+  ],
+  "notes": "",
+  "bug_snippet_ids": [
+   "3d5c74324104"
+  ],
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "bug": 2
+  },
+  "bug_files": [
+   "动量指标反向交易策略Momentum-Reversal-Trading-Strategy.md",
+   "动量转向形态反转策略Momentum-Reversal-Trading-Strategy.md"
+  ]
+ },
+ "ehlers_leading_indicator": {
+  "function": "ehlers_leading_indicator",
+  "status": "implemented",
+  "reference": "Ehlers Leading Indicator, eSignal D_ELI.efs (Ehlers, MESA and Trading Market Cycles)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "DSP - EMA(DSP, L) on daily hl2 (pass daily bars).",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "elder_ray_bear_power": {
+  "function": "period_high_low(lookback=0) - tv:ema; tv:bull_bear_power",
+  "status": "implemented",
+  "reference": "Elder (Bear Power = Low - EMA13)",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "Running day low instead of the bar low.",
+   "BUG (combo 'Elder Ray (Bear Power)'): computes DayHigh - EMA, i.e. bull power."
+  ],
+  "notes": "",
+  "bug_snippet_ids": [
+   "57c86599272d"
+  ],
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "bug": 1,
+   "variant": 1
+  },
+  "bug_files": [
+   "多因子组合交易策略Multi-factor-Combined-Trading-Strategy.md"
+  ]
+ },
+ "elder_ray_bull_power": {
+  "function": "period_high_low(lookback=0) - tv:ema; tv:bull_bear_power for the bar version",
+  "status": "implemented",
+  "reference": "Alexander Elder, 'Trading for a Living' (Bull Power = High - EMA13)",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "Uses the running high of the current day (dayofmonth reset) instead of the bar's high; identical on daily bars."
+  ],
+  "notes": "",
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "variant": 3
+  }
+ },
+ "ema_2_20": {
+  "function": "tv:ema",
+  "status": "exists",
+  "reference": "David Landry 2/20 EMA breakout",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "The nXS rule is signal logic.",
+  "n_hpotter_files": 4,
+  "file_verdicts": {
+   "standard": 4
+  }
+ },
+ "ema_sma_cross": {
+  "function": "tv:ema + tv:sma",
+  "status": "exists",
+  "reference": "EMA of SMA crossover",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "ema_volume_weighted": {
+  "function": "ema_volume_weighted",
+  "status": "implemented",
+  "reference": "'Combining Exponential And Volume Weighting' (ema(V*C)/ema(V)), HPotter TV port",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "empirical_mode_decomposition": {
+  "function": "empirical_mode_decomposition",
+  "status": "implemented",
+  "reference": "Ehlers & Way, Technical Analysis of Stocks & Commodities Mar 2010",
+  "hpotter_matches_reference": "partial",
+  "issues": [
+   "pi = 3.1415 (negligible)."
+  ],
+  "notes": "Overlaps the Ehlers family's ehlers_emd.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  }
+ },
+ "engulfing": {
+  "function": "engulfing",
+  "status": "implemented",
+  "reference": "Nison engulfing",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "ergodic_candlestick_oscillator": {
+  "function": "ergodic_candlestick_oscillator",
+  "status": "implemented",
+  "reference": "Blau 1995 (Candlestick Index / ECO)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "ECO = 100*EMA_s(EMA_r(C-O))/EMA_s(EMA_r(H-L)) (u=1, q=1).",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  },
+  "worklist_ids": [
+   "a79c2a499b6c"
+  ]
+ },
+ "ergodic_csi": {
+  "function": "ergodic_candlestick_oscillator (Blau CSI with u, signal)",
+  "status": "implemented",
+  "reference": "William Blau, 'Momentum, Direction, and Divergence' (1995): Ergodic Candlestick Index; MQL5 Blau_Ergodic_CSI (q=1, r=20, s=5, u=3, ul=3)",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "BUG: HPotter's 'Ergodic CSI' computes Wilder's Commodity Selection Index with ADX(Length=1), ADXR=(ADX+ADX[1])/2 and ATR(1), divided by close and SMA-smoothed; this is not Blau's Ergodic CSI (a triple-EMA candlestick index)."
+  ],
+  "notes": "Use ergodic_candlestick_oscillator(open, high, low, close, 20, 5, 3, 1, 3).",
+  "bug_snippet_ids": [
+   "a56c3b40a738"
+  ],
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "bug": 2
+  },
+  "bug_files": [
+   "动量反转双轨配对策略Combo-Momentum-Reversal-Dual-Rail-Matching-Strategy.md",
+   "动量方向发散策略Momentum-Direction-Divergence-Strategy.md"
+  ]
+ },
+ "ergodic_macd": {
+  "function": "tv:macd",
+  "status": "exists",
+  "reference": "Blau-style ergodic MACD (EMA fast - EMA slow, EMA signal)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "Plain MACD parameters (14/21/5, 32/5/5).",
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "standard": 3
+  }
+ },
+ "ergodic_mdi": {
+  "function": "ergodic_mdi",
+  "status": "implemented",
+  "reference": "Blau 1995, Ergodic Mean Deviation Indicator",
+  "hpotter_matches_reference": true,
+  "issues": [
+   "The SmthLen input is unused; the signal EMA uses u (5), which with defaults equals a 5-bar signal."
+  ],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "ergodic_tsi": {
+  "function": "ergodic_tsi",
+  "status": "implemented",
+  "reference": "Blau 1995, TSI(r,s,u) and Ergodic signal",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "u=1 equals tv:tsi.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "extracting_the_trend": {
+  "function": "extracting_the_trend",
+  "status": "implemented",
+  "reference": "Ehlers & Way, Technical Analysis of Stocks & Commodities Mar 2010",
+  "hpotter_matches_reference": "partial",
+  "issues": [
+   "pi = 3.1415 (negligible)."
+  ],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  }
+ },
+ "fast_slow_kurtosis_hpotter": {
+  "function": "fast_slow_kurtosis",
+  "status": "implemented",
+  "reference": "Fast & Slow Kurtosis (MetaStock); HPotter TV port",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "mom(mom(c,3),1), EMA 65, WMA 3.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "65320c19926c"
+  ]
+ },
+ "finite_volume_elements": {
+  "function": "finite_volume_elements",
+  "status": "implemented",
+  "reference": "Markos Katsanos, 'Finite Volume Elements', Technical Analysis of Stocks & Commodities Apr 2003 (MetaStock code)",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "BUG: HPotter accumulates nRes[1] + vlm/sma(V)/Period*100 forever instead of Katsanos' rolling sum over Period bars, so FVE drifts without bound."
+  ],
+  "notes": "Main = Katsanos (Sum(signed V, n)/Mov(V,n)/n*100); hpotter=True reproduces the running total.",
+  "bug_snippet_ids": [
+   "f979ec6ee9e7",
+   "a366fb275f43"
+  ],
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "bug": 2
+  },
+  "worklist_ids": [
+   "a366fb275f43",
+   "f979ec6ee9e7",
+   "83a363283762"
+  ],
+  "bug_files": [
+   "双均线套利策略Dual-Moving-Average-Arbitrage-Strategy.md",
+   "双边三点移位均线量化交易策略Bilateral-Three-Point-Moving-Average-Quantitative-Trading-Strategy.md"
+  ]
+ },
+ "fisher_transform": {
+  "function": "fisher_transform (main == tv:fisher)",
+  "status": "implemented",
+  "reference": "John Ehlers, 'Using the Fisher Transform', TASC Nov 2002 / 'Cybernetic Analysis' (2004)",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "HPotter clamps only the copy of the normalised value that goes into the log and feeds the unclamped value back into the 0.67*value[1] recursion (Ehlers clamps the value itself)."
+  ],
+  "notes": "hpotter=True reproduces it; main equals tv:fisher.",
+  "n_hpotter_files": 4,
+  "file_verdicts": {
+   "variant": 4
+  }
+ },
+ "fld": {
+  "function": "tv:shift (src[Period])",
+  "status": "exists",
+  "reference": "J.M. Hurst Future Lines of Demarcation",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "Price displaced by Period; trivial.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "76afaebdb4cd"
+  ]
+ },
+ "floor_pivot_points": {
+  "function": "tv:pivot_points (traditional)",
+  "status": "exists",
+  "reference": "Floor-trader pivot points (previous day)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "Covers 'Dynamic Pivot Point' too (same R1/S1).",
+  "n_hpotter_files": 4,
+  "file_verdicts": {
+   "standard": 4
+  }
+ },
+ "fractal_chaos_bands": {
+  "function": "fractal_chaos_bands",
+  "status": "implemented",
+  "reference": "Edward Dobson, Fractal Chaos Bands (built on Williams' fractals); HPotter TV port",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "Upper/lower = last confirmed fractal high/low, held. Pine na-seeding reproduced.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "7f796be5fff2"
+  ]
+ },
+ "fractal_chaos_oscillator": {
+  "function": "fractal_chaos_oscillator",
+  "status": "implemented",
+  "reference": "Fractal Chaos Oscillator (MetaStock; Bill Williams fractals); HPotter TV 'Fractal Chaos Oscillator'",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "+1/-1 when a new up/down fractal level appears. Levels are strict fractals with `pattern` bars per side, known `pattern` bars after the centre (no look-ahead).",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "b4effb7b48ae",
+   "41a4a6e67cc2",
+   "7462f909381c",
+   "ec689de4ae18",
+   "bb87c7b21a99",
+   "d55362353138"
+  ]
+ },
+ "gann_swing_oscillator": {
+  "function": "gann_swing_oscillator",
+  "status": "implemented",
+  "reference": "Robert Krausz, 'A W.D. Gann Treasure Discovered' (Gann Swing Oscillator)",
+  "hpotter_matches_reference": "partial",
+  "issues": [
+   "BUG in 'Gann Trend Oscillator' (1 file): computed on closes with the signs swapped (-1 on Krausz's up-swing pattern). The combo version is faithful."
+  ],
+  "notes": "Reproduce the trend oscillator with -gann_swing_oscillator(close, close).",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 1,
+   "bug": 1
+  },
+  "worklist_ids": [
+   "343008c3d41e"
+  ],
+  "bug_files": [
+   "基于甘氏摆动指标的量化交易策略Quantitative-Trading-Strategy-Based-on-Gann-Swing-Oscillator.md"
+  ]
+ },
+ "gimelfarb_bull_bear_balance": {
+  "function": "bull_bear_balance",
+  "status": "implemented",
+  "reference": "Gimelfarb, Technical Analysis of Stocks & Commodities Oct 2003",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "balance = bull - bear; `smooth` > 1 gives the Traders' Tip smoothing (HPotter: raw).",
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "standard": 3
+  },
+  "worklist_ids": [
+   "d388b1697445"
+  ]
+ },
+ "gimelfarb_bull_bear_power": {
+  "function": "bull_bear_balance (bull, bear outputs)",
+  "status": "implemented",
+  "reference": "Vadim Gimelfarb, 'Who's In Control?', Technical Analysis of Stocks & Commodities Oct 2003 (Bull and Bear Balance indicator); Traders' Tips Oct 2003",
+  "hpotter_matches_reference": true,
+  "issues": [
+   "Original article text is paywalled; HPotter's case table matches the published MetaStock/TradeStation code as far as could be checked."
+  ],
+  "notes": "Bull/Bear Power of Gimelfarb (not Elder's). HPotter uses the raw values (one combo smooths Bull Power with SMA 15 as a threshold - signal logic).",
+  "n_hpotter_files": 6,
+  "file_verdicts": {
+   "standard": 6
+  },
+  "worklist_ids": [
+   "da0b8373838f",
+   "5e413e8aa862",
+   "a9f762a03388",
+   "2e98e4f2873e"
+  ]
+ },
+ "harami": {
+  "function": "harami",
+  "status": "implemented",
+  "reference": "Steve Nison candlestick harami",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "hidden_gap_vsa_volume": {
+  "function": "tv:sma / tv:highest",
+  "status": "exists",
+  "reference": "VSA volume bars",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "high_ema": {
+  "function": "tv:ema",
+  "status": "exists",
+  "reference": "High minus EMA",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "high_low_levels": {
+  "function": "period_high_low(lookback=1)",
+  "status": "implemented",
+  "reference": "Previous-period high/low levels",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "hl_range_hist": {
+  "function": "hl_range_histogram",
+  "status": "implemented",
+  "reference": "HPotter '(H-L)/C Histogram'",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "standard": 3
+  },
+  "worklist_ids": [
+   "545db2429515"
+  ]
+ },
+ "hl_sma_bands": {
+  "function": "tv:sma",
+  "status": "exists",
+  "reference": "SMA(high)/SMA(low) +/- half spread",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "hpotter_dbp": {
+  "function": "tv:sma (|close-SMA|*100/close)",
+  "status": "exists",
+  "reference": "HPotter 'Percent difference between price and MA'",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "60fde9b01c31"
+  ]
+ },
+ "hpotter_high_low_bands": {
+  "function": "high_low_bands",
+  "status": "implemented",
+  "reference": "High Low Bands: triangular MA +/- percent (MetaStock)",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "HPotter's TMA is sma(sma(close,n),n) (a triangle of length 2n-1) instead of the standard TMA of length n."
+  ],
+  "notes": "hpotter=True reproduces it.",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "variant": 1
+  },
+  "worklist_ids": [
+   "73a200c7a993"
+  ]
+ },
+ "hpotter_money_flow": {
+  "function": "hpotter_money_flow",
+  "status": "implemented",
+  "reference": "Chaikin Oscillator (EMA3-EMA10 of the cumulative A/D line, tv:chaikin_osc) is what the script names; HPotter TV 'Money Flow Indicator (Chaikin Oscillator)'",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "Uses Williams' (close-open)/(high-low)*volume and EMAs of rolling sums (10 vs 3), not Chaikin's CLV-based cumulative A/D; its own description (hl2 instead of open) contradicts the code."
+  ],
+  "notes": "Kept as HPotter wrote it (no standard formula to switch to besides tv:chaikin_osc).",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  },
+  "worklist_ids": [
+   "8daa590f1ba6"
+  ]
+ },
+ "hpotter_obos": {
+  "function": "hpotter_obos",
+  "status": "implemented",
+  "reference": "HPotter 'Overbought/Oversold'",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "08145481170e"
+  ]
+ },
+ "ichimoku2c": {
+  "function": "tv:ichimoku",
+  "status": "exists",
+  "reference": "Goichi Hosoda, Ichimoku",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "HPotter's SenkouA/SenkouB names are swapped but the displaced cloud values are standard.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "inertia": {
+  "function": "inertia",
+  "status": "implemented",
+  "reference": "Donald Dorsey, 'Refining the Relative Volatility Index', Technical Analysis of Stocks & Commodities Sep 1995 (Inertia = 20-bar linear regression of the refined RVI)",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "HPotter's Inertia = EMA(14) of the close-only RVI; Dorsey's is the 20-bar linear regression of the refined RVI (average of RVI(high) and RVI(low)).",
+   "RVI smoothing hard-coded as (13*nz(x[1])+u)/14 (zero seed) and unchanged closes counted as down."
+  ],
+  "notes": "hpotter=True reproduces his line. The work-list note (Wilder 13/14 smoothing seeded 0) is the warm-up part; the EMA/regression difference is the variant.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  },
+  "worklist_ids": [
+   "1ce27ae445ff"
+  ]
+ },
+ "kama": {
+  "function": "kama (main == tv:kama)",
+  "status": "implemented",
+  "reference": "Perry Kaufman, 'Smarter Trading' (1995): KAMA",
+  "hpotter_matches_reference": "partial",
+  "issues": [
+   "Constants rounded to 0.666 / 0.0645 (2/3, 2/31) - a tiny permanent difference.",
+   "AMA seeded at 0, so it takes hundreds of bars to converge."
+  ],
+  "notes": "hpotter=True reproduces it.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  }
+ },
+ "kase_dev_stops": {
+  "function": "kase_dev_stops",
+  "status": "implemented",
+  "reference": "Cynthia Kase, 'Trading with the Odds' (1996) and 'Kase Dev Stop' (2005): mean + 0/1/2.2/3.6 SD of the two-bar true range",
+  "hpotter_matches_reference": "partial",
+  "issues": [
+   "HPotter uses the two-bar high-low range (ignores close[2]), 20 bars and 1/2/3 SD; the original paper was not available, details from forum transcriptions."
+  ],
+  "notes": "Direction from HPotter's WMA(RWH-RWL,3) in both modes; hpotter=True reproduces his stops.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  }
+ },
+ "keltner_channel": {
+  "function": "keltner_original",
+  "status": "implemented",
+  "reference": "Chester Keltner, 'How to Make Money in Commodities' (1960): SMA(typical price,10) +/- SMA(H-L,10)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "tv:keltner is TradingView's EMA/ATR version, a different (Linda Raschke) form.",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "key_reversal": {
+  "function": "key_reversal",
+  "status": "implemented",
+  "reference": "Key reversal bar",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 4,
+  "file_verdicts": {
+   "standard": 4
+  }
+ },
+ "klinger_volume_oscillator": {
+  "function": "klinger_volume_oscillator",
+  "status": "implemented",
+  "reference": "Stephen Klinger, Technical Analysis of Stocks & Commodities Dec 1997 (Volume Force)",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "HPotter's force is +/-100*V by the sign of change(hlc3) (ties negative) - a simplification of Klinger's VF = V*|2(dm/cm-1)|*trend*100 (tv:klinger is the same simplification without x100, ties positive)."
+  ],
+  "notes": "hpotter=True reproduces it.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  }
+ },
+ "kwan_nrp": {
+  "function": "kwan_nrp",
+  "status": "implemented",
+  "reference": "Kwan NRP (HPotter TV port)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "laguerre_rsi": {
+  "function": "tv:laguerre_rsi",
+  "status": "exists",
+  "reference": "John Ehlers, Laguerre RSI ('Cybernetic Analysis')",
+  "hpotter_matches_reference": true,
+  "issues": [
+   "Filter states seeded with nz(x[1], 1) (warm-up only; verified to converge)."
+  ],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "warmup_only": 2
+  }
+ },
+ "line_regression_intercept": {
+  "function": "tv:linreg (intercept)",
+  "status": "exists",
+  "reference": "Linear regression intercept (TA-Lib LINEARREG_INTERCEPT)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "HPotter's loop equals the value at the oldest bar of the window (verified).",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "macd": {
+  "function": "tv:macd(signal_ma='sma')",
+  "status": "exists",
+  "reference": "Gerald Appel MACD",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "standard": 3
+  }
+ },
+ "made": {
+  "function": "ma_displaced_envelope",
+  "status": "implemented",
+  "reference": "Moving Average Displaced Envelope",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "standard": 3
+  },
+  "worklist_ids": [
+   "75a650eca59c"
+  ]
+ },
+ "market_facilitation_index": {
+  "function": "tv:market_facilitation_index",
+  "status": "exists",
+  "reference": "Bill Williams MFI",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "x10000 scale.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "mass_index": {
+  "function": "tv:mass_index(25)",
+  "status": "exists",
+  "reference": "Donald Dorsey, Mass Index",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "mbo": {
+  "function": "tv:sma",
+  "status": "exists",
+  "reference": "TFS MBO (SMA25 - SMA200)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "modified_pvt": {
+  "function": "modified_pvt",
+  "status": "implemented",
+  "reference": "Modified Price-Volume Trend (PVT on ohlc4, volume/50000), HPotter TV port of the Technical Analysis of Stocks & Commodities article",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "level + scale * cum(V/50000 * change(ohlc4)/ohlc4[1]); signal SMA(23).",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "0892b318efc4",
+   "f4644dc5da11"
+  ]
+ },
+ "moving_average_envelopes": {
+  "function": "tv:envelope",
+  "status": "exists",
+  "reference": "MA envelopes",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "movroc_kst": {
+  "function": "tv:kst(6,10,15,20,10,10,9,15)",
+  "status": "exists",
+  "reference": "Martin Pring, Know Sure Thing",
+  "hpotter_matches_reference": "partial",
+  "issues": [],
+  "notes": "KST formula with HPotter's 'MovROC' parameter set; reproduce with tv:kst params.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "n_bars_up_down": {
+  "function": "n_bars_up_down",
+  "status": "implemented",
+  "reference": "HPotter 'N Bars Up/Down'",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "hpotter=True gives his counter on bar[1].",
+  "n_hpotter_files": 4,
+  "file_verdicts": {
+   "standard": 4
+  }
+ },
+ "negative_volume_index": {
+  "function": "volume_index(negative=True) (main == tv:nvi)",
+  "status": "implemented",
+  "reference": "Fosback 1976: NVI",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "Additive ROC% sum instead of compounding.",
+   "BUG (combo 'Combo Backtest 123 Negative Volume Index'): adds roc(close, EMA_Len=50) - a 50-bar ROC - on each falling-volume bar."
+  ],
+  "notes": "volume_index(..., roc_length=50, hpotter=True) reproduces the combo.",
+  "bug_snippet_ids": [
+   "d59f89695d63"
+  ],
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "bug": 1,
+   "variant": 1
+  },
+  "bug_files": [
+   "融合双重趋势信号的反转指数量化策略Quantitative-Reversal-Index-Strategy-Integrating-Dual-Trend-Signals.md"
+  ]
+ },
+ "percent_change_bar": {
+  "function": "tv:roc",
+  "status": "exists",
+  "reference": "Percent change",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "performance_index": {
+  "function": "tv:roc",
+  "status": "exists",
+  "reference": "Performance index = ROC",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "pivot_detector_oscillator": {
+  "function": "pivot_detector_oscillator",
+  "status": "implemented",
+  "reference": "Siligardos, 'The Pivot Detector Oscillator, Simplified', Technical Analysis of Stocks & Commodities Jul 2009",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "RSI(14) rescaled 35-85 above SMA(200), 20-70 below. HPotter returns 0 (not na) during the 200-bar warm-up.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "pivot_point_v2": {
+  "function": "tv:pivot_points (traditional)",
+  "status": "exists",
+  "reference": "Floor-trader pivot points",
+  "hpotter_matches_reference": "partial",
+  "issues": [
+   "request.security(res, high/low/close) without [1]: levels of the current (developing) period; on historical bars they switch to the new period on its last bar and they repaint in realtime."
+  ],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  }
+ },
+ "polarized_fractal_efficiency": {
+  "function": "polarized_fractal_efficiency",
+  "status": "implemented",
+  "reference": "Hans Hannula, 'Polarized Fractal Efficiency', Technical Analysis of Stocks & Commodities Jan 1994 (MetaStock: Roc(C,9,$), Pwr(10,2), Sum(...,9), EMA 5)",
+  "hpotter_matches_reference": "partial",
+  "issues": [
+   "The horizontal term is hard-coded +100 (=10^2): correct for HPotter's default Length 9 (= Hannula's 10-bar window) but wrong for any other length (latent bug).",
+   "The ratio is rounded to an integer before the EMA (Hannula's MetaStock code does not round)."
+  ],
+  "notes": "With the strategies' default Length 9 the only live difference is the rounding; hpotter=True reproduces both.",
+  "bug_snippet_ids": [
+   "98ff615c83f1"
+  ],
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  },
+  "worklist_ids": [
+   "98ff615c83f1"
+  ]
+ },
+ "positive_volume_index": {
+  "function": "volume_index(negative=False) (main == tv:pvi)",
+  "status": "implemented",
+  "reference": "Norman Fosback, 'Stock Market Logic' (1976): PVI",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "HPotter's PVI is an additive running sum of ROC% on rising-volume bars (no compounding, starts at 0)."
+  ],
+  "notes": "hpotter=True reproduces it.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  }
+ },
+ "prime_number_bands": {
+  "function": "prime_number_bands",
+  "status": "implemented",
+  "reference": "Prime Number Bands (Trading Technologies docs); HPotter TV port",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "BUG: same float-counter loop; on decimal prices the 'prime' bands equal high/low, so the PNB strategy degenerates into highest(high,5)[1]/lowest(low,5)[1] breakouts."
+  ],
+  "notes": "Main: nearest prime >= round(high) / <= round(low) within percent; hpotter=True literal port.",
+  "bug_snippet_ids": [
+   "715ed81ccf25",
+   "d45883ee78db",
+   "29867240e2bf",
+   "5505fec0e164"
+  ],
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "bug": 2
+  },
+  "worklist_ids": [
+   "715ed81ccf25",
+   "29867240e2bf",
+   "5505fec0e164",
+   "fb33ba366fb7"
+  ],
+  "bug_files": [
+   "双重黄金交叉反转交易策略Dual-Golden-Cross-Reversal-Trading-Strategy.md",
+   "质数波带回测策略Prime-Number-Bands-Backtest-Strategy.md"
+  ]
+ },
+ "prime_number_oscillator": {
+  "function": "prime_number_oscillator",
+  "status": "implemented",
+  "reference": "Prime Number Oscillator (Trading Technologies / Hybrid Solutions indicator docs); HPotter TV 'Prime Number Oscillator'",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "BUG: `for j = price to price + price*percent/100` runs a float counter starting at the raw price; on prices with decimals no candidate is divisible, res1 = res2 = price, res = 0 -> res[1], so the oscillator stays na forever and the PNO filter never fires (combo never trades).",
+   "Divisors only go up to sqrt(price), not sqrt(j) (harmless)."
+  ],
+  "notes": "Main version searches integer primes around round(price*scale) (scale e.g. 100 for cents). hpotter=True reproduces the literal Pine loop for integer-priced instruments.",
+  "bug_snippet_ids": [
+   "14a9138e3495",
+   "61fbaca3a249"
+  ],
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "bug": 2
+  },
+  "worklist_ids": [
+   "61fbaca3a249",
+   "14a9138e3495",
+   "d45883ee78db",
+   "cd11c3c5470f"
+  ],
+  "bug_files": [
+   "双因子量化交易策略Dual-factor-Quant-Trading-Strategy.md",
+   "基于质数震荡的交易策略Prime-Number-Oscillator-Trading-Strategy.md"
+  ]
+ },
+ "pring_special_k": {
+  "function": "pring_special_k",
+  "status": "implemented",
+  "reference": "Martin Pring, Special K (daily: ROC 10..530 / SMA 10..195, weights 1-4)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "8dc6f88cc42d"
+  ]
+ },
+ "psychological_line": {
+  "function": "tv:psychological_line",
+  "status": "exists",
+  "reference": "Psychological line",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "pvo": {
+  "function": "tv:price_oscillator (on volume)",
+  "status": "exists",
+  "reference": "Percentage Volume Oscillator",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "qstick": {
+  "function": "tv:qstick",
+  "status": "exists",
+  "reference": "Chande Qstick",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "rainbow_oscillator": {
+  "function": "rainbow_oscillator",
+  "status": "implemented",
+  "reference": "Mel Widner, 'Rainbow Charts', Technical Analysis of Stocks & Commodities 1997",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "10 recursive SMA(2), rbo and bandwidth over the 10-bar close range. The two work-list files 'Rainbow-Oscillator.md' / '彩虹震荡器交易策略Rainbow-Oscillator-Trading-Strategy.md' are businessduck's unrelated 'Rainbow Oscillator [Strategy]' (stacked smoothed RSI/CCI bands), not Widner's indicator and not HPotter's; not covered here.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "7a19ea794837",
+   "0532e4077396"
+  ]
+ },
+ "ravi": {
+  "function": "ravi",
+  "status": "implemented",
+  "reference": "Tushar Chande, 'Beyond Technical Analysis' (1997): RAVI = |100*(SMA7-SMA65)/SMA65|",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "HPotter keeps the sign (Chande's RAVI is an absolute trend-strength measure)."
+  ],
+  "notes": "hpotter=True = signed.",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "variant": 1
+  }
+ },
+ "relative_momentum_index": {
+  "function": "tv:rmi",
+  "status": "exists",
+  "reference": "Roger Altman, 'Relative Momentum Index', Technical Analysis of Stocks & Commodities Feb 1993",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "BUG: xMU/xMD are only updated on bars whose momentum has the right sign; on the other bars they are frozen instead of decaying (Wilder: MU - MU/n + 0), so RMI is wrong.",
+   "Same Length used for the momentum lag and the smoothing; seeds nz(.,1)/nz(.,0)."
+  ],
+  "notes": "",
+  "bug_snippet_ids": [
+   "9bd8047ecfb3",
+   "5c45abfc2058"
+  ],
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "bug": 2
+  },
+  "bug_files": [
+   "动量反转指数策略Relative-Momentum-Index-Strategy.md",
+   "双重反转动量指数策略A-Dual-Reversal-Momentum-Index-Trading-Strategy.md"
+  ]
+ },
+ "relative_volatility_index": {
+  "function": "rvi_dorsey",
+  "status": "implemented",
+  "reference": "Dorsey, 'The Relative Volatility Index', Technical Analysis of Stocks & Commodities Jun 1993 (V.11:6); TA-Lib RVI docs",
+  "hpotter_matches_reference": "partial",
+  "issues": [
+   "Zero-seeded Wilder smoothing (warm-up) and unchanged closes counted in the down leg (Dorsey/TA-Lib: neither leg)."
+  ],
+  "notes": "tv:relative_volatility_index is TradingView's EMA(14) version; rvi_dorsey is Dorsey's Wilder version, hpotter=True HPotter's.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  }
+ },
+ "reverse_engineering_rsi": {
+  "function": "reverse_engineering_rsi",
+  "status": "implemented",
+  "reference": "Giorgos Siligardos, 'Reverse Engineering RSI', Technical Analysis of Stocks & Commodities Jun 2003; Traders' Tips Aug 2003",
+  "hpotter_matches_reference": true,
+  "issues": [
+   "AUC/ADC seeded with nz(x[1], 1) instead of a proper EMA seed (warm-up only)."
+  ],
+  "notes": "hpotter=True reproduces the seed.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "warmup_only": 2
+  },
+  "worklist_ids": [
+   "b0d0c45467bc",
+   "0973e1d7fcd8",
+   "f939e0c8c3a2"
+  ]
+ },
+ "rmta_hpotter": {
+  "function": "recursive_moving_trend_average",
+  "status": "implemented",
+  "reference": "Dennis Meyers, 'The Japanese Yen, Recursed', Technical Analysis of Stocks & Commodities Dec 1998",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  },
+  "worklist_ids": [
+   "fc721394ef48"
+  ]
+ },
+ "rsi": {
+  "function": "tv:rsi",
+  "status": "exists",
+  "reference": "Wilder RSI",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "rsi_histoalert": {
+  "function": "tv:rsi",
+  "status": "exists",
+  "reference": "RSI HistoAlert ((RSI-50)*1.5)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "rsi_roc": {
+  "function": "tv:rsi(tv:roc)",
+  "status": "exists",
+  "reference": "RSI of ROC",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "signal_to_noise": {
+  "function": "signal_to_noise",
+  "status": "implemented",
+  "reference": "HPotter TV 'Signal To Noise' (no external source found)",
+  "hpotter_matches_reference": true,
+  "issues": [
+   "The 'signal-to-noise' is -10*ln(mean of 1/close over bars 1..length-1, divided by length) - essentially 10*ln(price); not an S/N measure in Ehlers' sense."
+  ],
+  "notes": "Faithful copy.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "efb2af3f8fba",
+   "b0a014de8577",
+   "fc743a18547b"
+  ]
+ },
+ "simple_sma": {
+  "function": "tv:sma",
+  "status": "exists",
+  "reference": "SMA (optionally of a higher-timeframe series)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 4,
+  "file_verdicts": {
+   "standard": 4
+  }
+ },
+ "smart_money_index": {
+  "function": "smart_money_index (Hays) / smart_money_index_hpotter",
+  "status": "implemented",
+  "reference": "Don Hays' Smart Money Index (SMI = SMI[1] - first-half-hour change + last-hour change)",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "HPotter: smi = nz(smi[1],1) - (open-close) + (htf_open[1]-htf_close[1]): adds every chart bar's own change and subtracts the previous HTF bar's change, not the first-30-minute / last-hour moves."
+  ],
+  "notes": "smart_money_index needs intraday bars + session ids; smart_money_index_hpotter reproduces his formula given the aligned previous-HTF-bar open/close.",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  },
+  "worklist_ids": [
+   "aafedc5f56c9",
+   "222282fe6723"
+  ]
+ },
+ "smi_ergodic": {
+  "function": "tv:smi_ergodic",
+  "status": "exists",
+  "reference": "Blau / TradingView SMI Ergodic Indicator",
+  "hpotter_matches_reference": true,
+  "issues": [
+   "HPotter smooths with EMA(4) then EMA(8) (TV: long then short); identical after warm-up (linear filters commute), x1 scale."
+  ],
+  "notes": "",
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "warmup_only": 3
+  }
+ },
+ "smoothed_rsi_ehlers": {
+  "function": "ehlers_smoothed_rsi",
+  "status": "implemented",
+  "reference": "John Ehlers, 'Cybernetic Analysis' (2004): Smoothed RSI",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "Overlaps the Ehlers family's ehlers_smoothed_rsi.",
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "standard": 3
+  }
+ },
+ "starc_bands": {
+  "function": "tv:starc_bands",
+  "status": "exists",
+  "reference": "Manning Stoller's STARC bands: SMA(close) +/- K*ATR",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "statistical_volatility_hpotter": {
+  "function": "statistical_volatility",
+  "status": "implemented",
+  "reference": "Statistical volatility, extreme-value (Parkinson 1980 0.6*ln(range)) method",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  },
+  "worklist_ids": [
+   "814c5e320f5c"
+  ]
+ },
+ "stochastic": {
+  "function": "tv:stoch",
+  "status": "exists",
+  "reference": "George Lane stochastic",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "stochastic_crossover": {
+  "function": "tv:stoch",
+  "status": "exists",
+  "reference": "Stochastic",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "stochastic_rsi": {
+  "function": "tv:stoch_rsi",
+  "status": "exists",
+  "reference": "Chande & Kroll StochRSI",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "standard": 3
+  }
+ },
+ "t3_averages": {
+  "function": "tv:t3",
+  "status": "exists",
+  "reference": "Tim Tillson T3",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "t3_cci": {
+  "function": "t3_cci",
+  "status": "implemented",
+  "reference": "FX Sniper's T3-CCI (MT4)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "tema": {
+  "function": "tv:tema",
+  "status": "exists",
+  "reference": "Patrick Mulloy TEMA",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "tether_line": {
+  "function": "tv:donchian (basis)",
+  "status": "exists",
+  "reference": "Bryan Strain & Mark Whitley TFS Tether line",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "tfs_volume_oscillator": {
+  "function": "tfs_volume_oscillator",
+  "status": "implemented",
+  "reference": "TFS Volume Oscillator (Strain & Whitley)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "three_bar_reversal": {
+  "function": "three_bar_reversal",
+  "status": "implemented",
+  "reference": "3-Bar Reversal pattern",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "three_inside": {
+  "function": "three_inside",
+  "status": "implemented",
+  "reference": "Nison three inside up/down",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "standard": 2
+  }
+ },
+ "three_line_break_hpotter": {
+  "function": "hpotter_three_line_break",
+  "status": "implemented",
+  "reference": "HPotter's modified Three Line Break (Nison's chart needs a price-based axis)",
+  "hpotter_matches_reference": "partial",
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "three_ten_oscillator": {
+  "function": "three_ten_oscillator",
+  "status": "implemented",
+  "reference": "Linda Raschke, 'Street Smarts' (1996): 3/10 oscillator = SMA3 - SMA10, SMA16 signal",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "HPotter's D_Three Ten Osc uses EMA(3)-EMA(10) of daily hl2."
+  ],
+  "notes": "hpotter=True reproduces it (pass daily bars).",
+  "n_hpotter_files": 2,
+  "file_verdicts": {
+   "variant": 2
+  }
+ },
+ "trend_analysis_index": {
+  "function": "trend_analysis_index",
+  "status": "implemented",
+  "reference": "Trend Analysis Index (MetaStock formula)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "trend_continuation_factor": {
+  "function": "trend_continuation_factor",
+  "status": "implemented",
+  "reference": "M.H. Pee, 'Trend Continuation Factor', Technical Analysis of Stocks & Commodities Mar 2002",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "HPotter's nz(CF[1], 1) seed is never used (bar 0 has no change), so his +/-TCF equal Pee's exactly.",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  },
+  "worklist_ids": [
+   "29decdb7b8df",
+   "9049bca31d77",
+   "daaa8ae198cc",
+   "2e8eb6441fc6",
+   "78be0a639b12"
+  ]
+ },
+ "trend_intensity_index": {
+  "function": "trend_intensity_index",
+  "status": "implemented",
+  "reference": "M.H. Pee, 'Trend Intensity Index', Technical Analysis of Stocks & Commodities Jun 2002",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "Not in an HPotter file: the work-list files are an EMA-SMA strategy and kruskakli's 'M.H Pee indicators' (everget's code). Their nz() replacement only changes the warm-up; main returns na until defined.",
+  "n_hpotter_files": 0,
+  "file_verdicts": {},
+  "worklist_ids": [
+   "90832c57eca6",
+   "43b8dfbe9ff1"
+  ]
+ },
+ "trend_trader_abraham": {
+  "function": "trend_trader",
+  "status": "implemented",
+  "reference": "Andrew Abraham, 'Trading the Trend', Technical Analysis of Stocks & Commodities Sep 1998",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 4,
+  "file_verdicts": {
+   "standard": 4
+  }
+ },
+ "ttm_scalper": {
+  "function": "ttm_scalper",
+  "status": "implemented",
+  "reference": "John Carter, 'Mastering the Trade' (TTM Scalper), HPotter's approximation",
+  "hpotter_matches_reference": "partial",
+  "issues": [],
+  "notes": "Literal port of HPotter's approximation.",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "vertical_horizontal_filter": {
+  "function": "vertical_horizontal_filter (main == tv:vhf)",
+  "status": "implemented",
+  "reference": "Adam White, Vertical Horizontal Filter (closes)",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "HPotter takes the range from highest(high)/lowest(low) instead of the highest/lowest close."
+  ],
+  "notes": "hpotter=True reproduces it.",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "variant": 1
+  }
+ },
+ "volatility_atr": {
+  "function": "tv:atr",
+  "status": "exists",
+  "reference": "TradeStation 'Volatility' function (Wilder average of TrueRange = ATR)",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "BUG: applies the Volatility recursion ((n-1)*x[1] + value)/n to atr(Length) instead of the true range (ATR smoothed twice, zero-seeded)."
+  ],
+  "notes": "",
+  "bug_snippet_ids": [
+   "987e0736d05d"
+  ],
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "bug": 1
+  },
+  "bug_files": [
+   "基于价格波动率的跟踪止损策略Volatility-Tracking-Stop-Loss-Strategy.md"
+  ]
+ },
+ "volatility_fve": {
+  "function": "volatility_fve",
+  "status": "implemented",
+  "reference": "Katsanos, volatility-adjusted FVE, Technical Analysis of Stocks & Commodities Sep 2003 (Traders' Tips)",
+  "hpotter_matches_reference": "partial",
+  "issues": [
+   "BUG (2 files): CutOff uses stdev(sma(intra, Samples), Samples) / stdev(sma(inter, Samples), Samples) - the volatility of a moving average - instead of stdev(intra)/stdev(inter); the cutoff is far too small so almost every bar counts.",
+   "The 'Volatility Finite Volume Elements Strategy' file uses the correct cutoff (only the MF classification)."
+  ],
+  "notes": "hpotter=True reproduces the stdev(sma()) cutoff.",
+  "bug_snippet_ids": [
+   "83a363283762"
+  ],
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "standard": 1,
+   "bug": 2
+  },
+  "bug_files": [
+   "基于自适应波动性的有限体积要素策略Adaptive-Volatility-Finite-Volume-Elements-Strategy.md",
+   "量化反转与成交量策略组合Quantitative-Reversal-and-Volume-Combo-Strategy.md"
+  ]
+ },
+ "volume_sma": {
+  "function": "tv:sma",
+  "status": "exists",
+  "reference": "Volume vs its SMA",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "wami": {
+  "function": "wami",
+  "status": "implemented",
+  "reference": "WAMI (HPotter port)",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "williams_ad": {
+  "function": "tv:williams_ad",
+  "status": "exists",
+  "reference": "Larry Williams' Accumulation/Distribution",
+  "hpotter_matches_reference": false,
+  "issues": [
+   "BUG: adds close - low[1] / close - high[1] instead of close - min(low, close[1]) / close - max(high, close[1]), and resets the cumulative total to 0 whenever close == close[1]."
+  ],
+  "notes": "",
+  "bug_snippet_ids": [
+   "32ce30224abf",
+   "036becab2d2b"
+  ],
+  "n_hpotter_files": 3,
+  "file_verdicts": {
+   "bug": 3
+  },
+  "bug_files": [
+   "基于多指标验证的量化交易策略Quantitative-Trading-Strategy-with-Multi-Indicator-Confirmation.md",
+   "威廉姆累积-分配指标Williams-AD策略Williams-Accumulation-Distribution-Williams-AD-Strategy.md",
+   "移动平均聚合Williams商业区买卖压力指标策略Moving-Average-Aggregation-Williams-Commercial-Bid-Ask-Pressure-Indicator-Strategy.md"
+  ]
+ },
+ "woodie_pivot_points": {
+  "function": "tv:pivot_points (woodie)",
+  "status": "exists",
+  "reference": "Woodie's pivot",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ },
+ "zscore": {
+  "function": "tv:zscore",
+  "status": "exists",
+  "reference": "Z-score",
+  "hpotter_matches_reference": true,
+  "issues": [],
+  "notes": "",
+  "n_hpotter_files": 1,
+  "file_verdicts": {
+   "standard": 1
+  }
+ }
+}

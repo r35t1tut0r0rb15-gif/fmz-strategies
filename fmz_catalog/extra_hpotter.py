@@ -909,29 +909,30 @@ def _ratio0(num, den):
 
 
 @indicator("ERGODIC_TSI", ["close"], ["tsi", "signal"])
-def ergodic_tsi(close, r=25, s=13, u=1, signal_length=5):
+def ergodic_tsi(close, r_length=25, s_length=13, u_length=1, signal_length=5):
     """Blau's True Strength Index TSI(r, s, u) =
     100 * E_u(E_s(E_r(mtm))) / E_u(E_s(E_r(|mtm|))) with mtm = change(close),
     and the Ergodic signal line EMA(signal_length). u=1 is the classic
     double-smoothed TSI (``tv_indicators.tsi``); HPotter's Ergodic TSI uses
     (4, 8, 6, 3). A zero denominator gives 0, as in his port."""
     m = change_2d(close)
-    t = _ratio0(100 * _e3(m, r, s, u), _e3(np.abs(m), r, s, u))
+    t = _ratio0(100 * _e3(m, r_length, s_length, u_length), _e3(np.abs(m), r_length, s_length, u_length))
     return t, k.ema_nb(t, int(signal_length))
 
 
 @indicator("ERGODIC_MDI", ["close"], ["mdi", "signal"])
-def ergodic_mdi(close, r=32, s=5, u=5, signal_length=5):
+def ergodic_mdi(close, r_length=32, s_length=5, u_length=5, signal_length=5):
     """Blau's Ergodic Mean Deviation Indicator: MDI = E_u(E_s(close -
     EMA_r(close))), signal = EMA(MDI, signal_length). HPotter takes the
     signal length from ``u`` and ignores his SmthLen input; with his
     defaults (u = 5) that equals signal_length = 5."""
-    mdi = _e3(close - k.ema_nb(close, int(r)), s, u, 1)
+    mdi = _e3(close - k.ema_nb(close, int(r_length)), s_length, u_length, 1)
     return mdi, k.ema_nb(mdi, int(signal_length))
 
 
 @indicator("ERGODIC_CSI", ["open", "high", "low", "close"], ["csi", "signal"])
-def ergodic_candlestick_oscillator(open, high, low, close, r=32, s=12, u=1, q=1, signal_length=5):
+def ergodic_candlestick_oscillator(open, high, low, close, r_length=32, s_length=12, u_length=1, q_length=1,
+                                   signal_length=5):
     """Blau's Candlestick Index CSI(q, r, s, u) and its Ergodic signal:
     100 * E_u(E_s(E_r(close - open[q-1]))) / E_u(E_s(E_r(HHV(high, q) -
     LLV(low, q)))). With q = 1, u = 1 this is the Ergodic Candlestick
@@ -941,15 +942,15 @@ def ergodic_candlestick_oscillator(open, high, low, close, r=32, s=12, u=1, q=1,
     HPotter's "Ergodic CSI" strategies compute something else: Wilder's
     Commodity Selection Index (ADX(1) x ATR(1)) / close smoothed by an SMA.
     """
-    qq = int(q)
+    qq = int(q_length)
     mom = close - shift_2d(open, qq - 1)
     rng = k.highest_nb(high, qq) - k.lowest_nb(low, qq)
-    csi = _ratio0(100 * _e3(mom, r, s, u), _e3(rng, r, s, u))
+    csi = _ratio0(100 * _e3(mom, r_length, s_length, u_length), _e3(rng, r_length, s_length, u_length))
     return csi, k.ema_nb(csi, int(signal_length))
 
 
 @indicator("DTI_BLAU", ["high", "low"], ["dti"])
-def directional_trend_index(high, low, r=14, s=10, u=5):
+def directional_trend_index(high, low, r_length=14, s_length=10, u_length=5):
     """Blau's Directional Trend Index: HMU = max(high - high[1], 0), LMD =
     max(low[1] - low, 0); DTI = 100 * E_u(E_s(E_r(HMU - LMD))) /
     E_u(E_s(E_r(|HMU - LMD|))). HPotter's port is faithful."""
@@ -959,7 +960,7 @@ def directional_trend_index(high, low, r=14, s=10, u=5):
         hmu = np.where(dh > 0, dh, 0.0)
         lmd = np.where(dl < 0, -dl, 0.0)
     x = hmu - lmd
-    return _ratio0(100 * _e3(x, r, s, u), _e3(np.abs(x), r, s, u))
+    return _ratio0(100 * _e3(x, r_length, s_length, u_length), _e3(np.abs(x), r_length, s_length, u_length))
 
 
 # ---------------------------------------------------------------------------
