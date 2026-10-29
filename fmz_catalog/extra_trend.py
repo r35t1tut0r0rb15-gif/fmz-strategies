@@ -1490,6 +1490,10 @@ def _adaptive_ls_nb(close, n, sc):
                 for j in range(n):
                     dx = sh[i - j] - ms
                     dy = bh[i - j] - mb
+                    if abs(dx) <= 1e-10:  # Pine's ta.stdev treats |dev| <= 1e-10 as 0
+                        dx = 0.0
+                    if abs(dy) <= 1e-10:
+                        dy = 0.0
                     sxy += dx * dy
                     sxx += dx * dx
                     syy += dy * dy
