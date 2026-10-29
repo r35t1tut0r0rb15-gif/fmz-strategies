@@ -1,0 +1,570 @@
+{
+ "evwma": {
+  "function": "evwma(close, volume, length=20, seed='close', cumulative=False)",
+  "status": "implemented",
+  "reference": "Christian P. Fries, Elastic Volume Weighted Moving Average (2001); LazyBear 'Elastic Volume Weighted Moving Average' (TradingView); QuantNomad EVWBB/EVWMA scripts",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes: QuantNomad copies (16ba4bf12972, 6757a478adae, d06dffd60c30) with seed='close'; LazyBear-style copies (2033ef89e329, 83881a702bb8) with seed='zero' (warm-up only); cumulative=True = LazyBear useCV",
+  "strategy_issues": [
+   {
+    "id": "642ae0a27592",
+    "files": [
+     "基于布林带和卡尔金通道的动量挤压策略Squeeze-Momentum-Breakout-Strategy.md"
+    ],
+    "issue": "calc_evwma uses nz(close[1]) instead of nz(data[1]): the result is a one-bar blend of close[1] and close, not a recursive eVWMA. The script then filters entries with m>0 / m<0, which is always / never true for a price average."
+   }
+  ],
+  "notes": "N = sum(volume, length) replaces Fries' floating-share count, as in every TV port."
+ },
+ "ma_angle_atr": {
+  "function": "ma_angle_atr(source, high, low, close, lookback=1, atr_length=14, per_bar=False)",
+  "status": "implemented",
+  "reference": "Common TradingView community slope-angle formula: atan((src - src[n]) / ta.atr(p)) * 180/pi",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes (all 5 ids); per_bar=True for 5b162e960b51 (divides by lookback)",
+  "strategy_issues": [],
+  "notes": "Copies use 180/3.14159265359 (relative difference ~1e-13)."
+ },
+ "kalman_alpha_beta": {
+  "function": "kalman_alpha_beta(close, gain=0.7, scale=1.0, sharpness=2.0) -> kalman, velocity",
+  "status": "implemented",
+  "reference": "TradingView community 'Kahlman' smoother (Hull Suite + Kahlman / BRAHMASTRA kahlman(x, g)): steady-state alpha-beta (g-h) tracker, alpha = sqrt(2g), beta = g",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes: 61ca98e5812e / 5bd594b0d476 (scale=1), 00704ab9913c / f58a2c5f7506 / e4fb7ea58afb (scale=10000)",
+  "strategy_issues": [],
+  "notes": "Seeded with the price (nz(kf[1], x)), velocity from 0."
+ },
+ "ssl_hybrid_ma": {
+  "function": "ssl_hybrid_ma(close, high, low, length=60, ma_type='HMA', ...)",
+  "status": "implemented",
+  "reference": "SSL Hybrid [Mihkel00] ma(type, src, len); JMA [everget], EDSMA [everget], Modular Filter [alexgrover], VAMA [Joris Duyck], McGinley (TV built-in)",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes: all 14 types tested bar for bar against the copy (7c952705413c, c5236f494d29; the third file is the same code)",
+  "strategy_issues": [],
+  "notes": "Kijun v2 reads ta.highest/ta.lowest (high/low) whatever the source, as in the script, so high/low are inputs. JMA reuses fmz_catalog.extra's everget kernel; EDSMA is the edsma() below."
+ },
+ "sine_wma": {
+  "function": "sine_wma(close, length=14, insilico_compat=False)",
+  "status": "implemented",
+  "reference": "everget, Sine Weighted Moving Average (TradingView); pandas-ta sinwma (credits everget): weights sin((i+1)*pi/(n+1)) https://tradingstrategy.ai/docs/_modules/pandas_ta/overlap/sinwma.html",
+  "strategy_specific": false,
+  "matches_strategy_copies": "no (copies are buggy); insilico_compat=True reproduces them bar for bar",
+  "strategy_issues": [
+   {
+    "id": "58798ca239a2",
+    "files": [
+     "MA-Emperor-insiliconot.md",
+     "移动平均交叉双向交易策略Moving-Average-Crossover-Strategy-for-Two-way-Trading.md",
+     "移动平均线交叉趋势追踪策略Moving-Average-Crossover-Trend-Following-Strategy.md"
+    ],
+    "issue": "variant_sinewma uses sin(i*pi/(length+1)) from i=0, so the current bar has weight 0: the average ignores the current bar (it is a lagged sine average of bars 1..n-1). Correct weight is sin((i+1)*pi/(length+1)). It also uses nz(src[i]) so warm-up values are pulled toward 0."
+   },
+   {
+    "id": "6b6130206f10",
+    "files": [
+     "MA-Emperor-insiliconot.md",
+     "移动平均交叉双向交易策略Moving-Average-Crossover-Strategy-for-Two-way-Trading.md",
+     "移动平均线交叉趋势追踪策略Moving-Average-Crossover-Trend-Following-Strategy.md"
+    ],
+    "issue": "Same loop (the for-body of variant_sinewma): zero weight on the current bar."
+   }
+  ],
+  "notes": "The default is NaN until a full window instead of the nz() zeros."
+ },
+ "rwma": {
+  "function": "rwma_range(high, low, close, length=20)",
+  "status": "implemented",
+  "reference": "TZack88, RMI Trend Sniper: calculateRwma (range-weighted MA)",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (701a5f2c33b9)",
+  "strategy_issues": [],
+  "notes": "The work-list name covers two different indicators: TZack88's range-weighted MA (701a5f2c33b9, implemented here) and the author's retro-weighted MA (f2f6606edcc8), which is mapped to retro_wma."
+ },
+ "variable_ma": {
+  "function": "vma_lazybear(close, length=6, seed='zero')",
+  "status": "implemented",
+  "reference": "LazyBear, Variable Moving Average [LazyBear] (TradingView), a VIDYA-style MA driven by a DMI-like volatility index",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes: a3ea89a120ce, 1143a6624b5b, 9f6f768eedb8, a70893d22435, fa6f61e12ac1 (seed='zero'); 5e46a0147139 (seed='sma')",
+  "strategy_issues": [
+   {
+    "id": "5e46a0147139",
+    "files": [
+     "多重趋势交叉策略Multi-Trend-Crossover-Strategy.md"
+    ],
+    "issue": "Seeds the final recursion with ta.sma(src, length) instead of LazyBear's nz() zero (warm-up only); seed='sma' reproduces it."
+   }
+  ],
+  "notes": "Deviation from the script, on purpose: when iS is flat over the window (highest == lowest) Pine gives na and nz() restarts the VMA at 0; here the previous value is held. This never occurs on the test data, so the copies still match bar for bar."
+ },
+ "nma_durschner": {
+  "function": "nma_durschner(close, length=20, length2=0, ma_type='wma')",
+  "status": "implemented",
+  "reference": "M. G. Duerschner, 'Gleitende Durchschnitte 3.0' (Moving Average 3.0), IFTA Journal 2012; CryptoStatistical '[CS] NWMA Moving Average 3.0' https://www.tradingview.com/script/DPo2tdWW-CS-NWMA-Moving-Average-3-0/",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes: 18741b5a0cfd f_nwma (length2=0, WMA) and d4ad6415ebc8 OBV MACD nma (ma_type='ema', length2=26) tested bar for bar",
+  "strategy_issues": [
+   {
+    "id": "d4ad6415ebc8",
+    "files": [
+     "OBV-MACD-Indicator.md",
+     "Smooth-HA-Candles-MTF-v1.md"
+    ],
+    "issue": "nma(src, len, 26) is called with length2 = 26 > length1 (9 or 25), so lambda = n1/n2 < 2, violating Duerschner's Nyquist condition lambda >= 2 (MA2 should be the shorter, n2 = n1/lambda). It still computes a valid but weaker-corrected average."
+   }
+  ],
+  "notes": "For odd n, f_nwma's fast = n/2 is fractional: Pine/FMZ compute lambda = n/(n/2) = 2 in floats and truncate the WMA length to floor(n/2); this is the length2=0 behaviour. Not verified on TradingView."
+ },
+ "geometric_mean_ma": {
+  "function": "geometric_mean_ma(close, length=20)",
+  "status": "implemented",
+  "reference": "Rolling geometric mean (MA Emperor [insilico] variant_geoMean)",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes after warm-up (bar_index > per); the copy returns the price until then, here the first n-1 bars are na",
+  "strategy_issues": [
+   {
+    "id": "afef761bb001",
+    "files": [
+     "MA-Emperor-insiliconot.md",
+     "移动平均交叉双向交易策略Moving-Average-Crossover-Strategy-for-Two-way-Trading.md",
+     "移动平均线交叉趋势追踪策略Moving-Average-Crossover-Trend-Following-Strategy.md"
+    ],
+    "issue": "Warm-up only: returns the price while bar_index <= per (one bar later than needed). With per = 1, Pine's 'for i = 1 to 0' counts down and runs twice, giving price^(1/1)*price[1]*price[0]... (wrong); harmless for per >= 2."
+   }
+  ],
+  "notes": "Computed as exp(mean(log)); non-positive prices give na."
+ },
+ "epanechnikov_kernel_ma": {
+  "function": "kernel_ma(kernel='epanechnikov'); multi_kernel_regression",
+  "status": "implemented",
+  "reference": "Strategy code: 'B4100 NW Trend Ribbon' f_calculate_epanechnikov_kernel; 'DR + Multi Kernel Regression' f_epanechnikov_regression",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes: b0ea837ece39 via kernel_ma, 55d78c64c94e via multi_kernel_regression",
+  "strategy_issues": [],
+  "notes": "Two different scripts share the name. B4100's kernel is centred on the window middle (x = i/(n-1), (x-0.5)/bw), so the 'MA' lags about n/2 bars. The DR+MKR one is a one-sided Nadaraya-Watson weight 1-(i/h)^2 on past bars."
+ },
+ "trama": {
+  "function": "trama(high, low, close, length=99)",
+  "status": "implemented",
+  "reference": "LuxAlgo, Trend Regularity Adaptive Moving Average (TradingView)",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes (0c8fa8f418e7, 22eacb25f1d7)",
+  "strategy_issues": [],
+  "notes": ""
+ },
+ "step_ma": {
+  "function": "step_line(close, band); tchannels(close, mult); tstep_lsma(close, length=100, sc=0.5); deadband_double_sma(close, deviation_source, ...)",
+  "status": "implemented",
+  "reference": "alexgrover, T-Step LSMA and T-Channels (TradingView); Goblin Town ladder average (strategy code)",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes: f66235c41bc1 (tstep_lsma, full script ported), 5dd1a82ae1e5 (deadband_double_sma), f4e22c0b71d1 (step_line with the script's dev band; the script also forces a = src for bar_index < 9, warm-up only)",
+  "strategy_issues": [
+   {
+    "id": "f4e22c0b71d1",
+    "files": [
+     "综合技术指标策略Multi-indicator-Combination-Strategy.md"
+    ],
+    "issue": "The efficiency ratio of the band mixes series: er = abs(change(src, length)) / sum(abs(change(src10)), length) uses close (src) in the numerator and the RSI-like rr (src10) in the denominator, so er is not confined to 0..1 and the dev band weights are meaningless."
+   },
+   {
+    "id": "5dd1a82ae1e5",
+    "files": [
+     "Goblin-Town-60min-可用版.md"
+    ],
+    "issue": "The deviation term d = cum(abs(src[length_] - ma))/bar_index*gamma reads the script's input `src` (= open) while the line itself is built on src_ (= close); pass open as deviation_source to reproduce, close for the consistent version. With gamma = 4 the band is so wide that the line hardly ever moves."
+   }
+  ],
+  "notes": "Three related constructions under one name: generic deadband step (step_line), alexgrover's cumulative-deviation step (tchannels, tstep_lsma) and the Goblin Town double-SMA deadband (deadband_double_sma). T-Step LSMA uses Pine's stdev epsilon (deviations <= 1e-10 are 0), so a flat step line gives an na fit as in Pine instead of rounding noise."
+ },
+ "kalman_filter": {
+  "function": "kalman_alpha_beta",
+  "status": "merged_into:kalman_alpha_beta",
+  "reference": "Same alpha-beta filter as kalman_alpha_beta",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes: e4fb7ea58afb (gain/10000 -> scale=10000), 5bd594b0d476 (scale=1), b573b068c110 Transitive Ratio (gain=K, scale=100, sharpness=Sharpness)",
+  "strategy_issues": [],
+  "notes": "The Transitive Ratio version uses sqrt(Sharpness*K/100) for the gain, i.e. the sharpness parameter."
+ },
+ "obv_macd": {
+  "function": "obv_macd_ma(close, length=9, ma_type='DEMA', nma_length2=26); tchannels(close, mult=1.0)",
+  "status": "implemented",
+  "reference": "RafaelZioni, OBV MACD Indicator (TradingView) myma() selector; its b5 line is alexgrover's T-Channels",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes: all 14 types (0343c78a106a ZLDEMA, 54fca81c5658 TTEMA, a5190d316f50 DZLEMA, 1f8f917a2812 THMA, 3c0734609bcd TDEMA, ...) for len 9 and 10; c0714298d077 via tchannels",
+  "strategy_issues": [],
+  "notes": "THMA here is the TEMA formula on HMAs (3*(h1-h2)+h3), not InSilico's THMA (tv_indicators.thma). ZL lag is round((len-1)/2), half away from zero. The full OBV MACD oscillator (OBV shadow, slope line, divergences) is not in this family and is not implemented."
+ },
+ "henderson_ma": {
+  "function": "henderson_ma(close, length=7)",
+  "status": "implemented",
+  "reference": "Henderson (1916) weights; everget, Henderson Moving Average (TradingView) hwma/getWeight",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes after the first length-1 bars (the copy uses nz(src[i]) zeros there): 1ae7631d9e99, 66598abde5cd, 76753031521e",
+  "strategy_issues": [],
+  "notes": "Trailing application of the symmetric weights (no look-ahead), so it lags (n-1)/2 bars. Even lengths use the script's fractional m = (n-1)/2."
+ },
+ "retro_wma": {
+  "function": "retro_wma(close, length=20)",
+  "status": "implemented",
+  "reference": "Author's own 'retro weighted moving average' (RSI Trend Following strategies); no external definition",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (5987494448aa, f2f6606edcc8)",
+  "strategy_issues": [],
+  "notes": "Newest 4 bars weigh x = 100/(4+(n-4)*1.3), older bars 1.3x."
+ },
+ "session_vwma": {
+  "function": "session_vwma(close, volume, session, length=55, include_session_open=True)",
+  "status": "implemented",
+  "reference": "Strategy code (SVWMA day_vwma)",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes with include_session_open=False (bbd49647d6db)",
+  "strategy_issues": [
+   {
+    "id": "bbd49647d6db",
+    "files": [
+     "交易时段VWMA动态价位上下穿透策略-Session-Based-VWMA-Dynamic-Level-Breakthrough-Strategy.md",
+     "基于会话VWMA的日内合成期权策略多空信号自适应交易系统-Session-VWMA-Based-Intraday-Synthetic-Options-Strategy-Adaptive-Trading-System-with-Long-Short-Signals.md"
+    ],
+    "issue": "Off by one: the length is max(1, barssince(newSession)), so the session's first bar is never in the window (on the 3rd bar of a session the VWMA covers bars 2-3). The default counts barssince + 1 bars."
+   }
+  ],
+  "notes": "session is a per-bar session id (tv_indicators.volume.session_ids)."
+ },
+ "uhl_ma": {
+  "function": "uhl_ma(close, length=100, mult=1.0) -> cma, cts",
+  "status": "implemented",
+  "reference": "Andreas Uhl, corrected moving average; alexgrover, Uhl MA Crossover System (TradingView)",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes (0e62275e3a23, 6a55524ed514, ce715f0923c3)",
+  "strategy_issues": [
+   {
+    "id": "0e62275e3a23",
+    "files": [
+     "基于Uhl-MA的自适应均线交叉策略Adaptive-Moving-Average-Crossover-Strategy-Based-on-Uhl-MA.md"
+    ],
+    "issue": "The strategy version declares mult = input(1.) but never multiplies the variance by it, so the input has no effect (alexgrover's indicator uses variance*mult). Same values at the default 1.0."
+   }
+  ],
+  "notes": "cma is Uhl's corrected average of the SMA; cts applies the correction to the price."
+ },
+ "ftsma": {
+  "function": "ftsma(close, harmonic=1, ma_length=20, lookback=64, ma_type='ema')",
+  "status": "implemented",
+  "reference": "03.freeman, FTSMA - Trend is your friend (TradingView), on xyse's Low-Frequency Fourier Transform",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes for the MA types offered here (EMA tested; SMA/WMA/RMA/ALMA/SWMA/LSMA through tv_indicators)",
+  "strategy_issues": [],
+  "notes": "sx(0, k) reduces to the k-th DFT cosine amplitude at the current bar (the sine term vanishes at i = 0). The script's pi is a 20-term series approximation, identical to ~1e-15. Its custom FRAMA option is not included."
+ },
+ "gaussian_kernel_ma": {
+  "function": "kernel_ma(kernel='gaussian'); kernel_regression_chartprime",
+  "status": "implemented",
+  "reference": "Strategy code: B4100 f_calculate_gaussian_kernel; ChartPrime Ichimoku Oscillator gaussian_kernel",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes: 025db67d9b86 via kernel_ma, 17951c65b851 via kernel_regression_chartprime",
+  "strategy_issues": [],
+  "notes": "Two unrelated scripts share the name; see kernel_ma and kernel_regression_chartprime."
+ },
+ "windowed_ema": {
+  "function": "windowed_ema(close, length=20, decay=nan)",
+  "status": "implemented",
+  "reference": "Strategy code: EMA weights truncated to a window and renormalised",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes: 611c2f6f4a44 (decay = 1-2/(n+1)), d0f844410739 (decay = 0.5)",
+  "strategy_issues": [
+   {
+    "id": "d0f844410739",
+    "files": [
+     "EMA-200-交叉量价趋势策略EMA-200-Crossover-with-Volume-and-Trend-Strategy.md"
+    ],
+    "issue": "Named calcola_media_mobile_jurik ('Jurik MA with phase 100') but it is a 0.5-decay windowed EMA; nothing Jurik about it."
+   }
+  ],
+  "notes": ""
+ },
+ "quadratic_wma": {
+  "function": "quadratic_wma(close, length=20)",
+  "status": "implemented",
+  "reference": "Strategy code (MACD and RSI Natural strategy wma())",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (360c4bd5a612)",
+  "strategy_issues": [],
+  "notes": ""
+ },
+ "signed_wma": {
+  "function": "signed_wma(source, open, close, length=5)",
+  "status": "implemented",
+  "reference": "Strategy code (Volume Divergence by MM pine_wma)",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (4303da9f0813, 991ff7dcf517)",
+  "strategy_issues": [],
+  "notes": ""
+ },
+ "chebyshev_ma": {
+  "function": "chebyshev_ma(close, length=8, ripple=0.05)",
+  "status": "implemented",
+  "reference": "ChartPrime, Ichimoku Oscillator chebyshevI (TradingView community formula)",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (550601711fe6)",
+  "strategy_issues": [],
+  "notes": "Despite the name it is a one-pole EMA with coefficient c = (a-b)/(a+b), not a Chebyshev type I IIR filter. Zero-seeded as published."
+ },
+ "slope_adaptive_ma": {
+  "function": "slope_adaptive_ma(high, low, close, length=200, min_length=6, maj_length=14)",
+  "status": "implemented",
+  "reference": "MightyZinger, Slope Adaptive Moving Average (MZ SAMA) ama()",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes (bfcf3a155bd0)",
+  "strategy_issues": [],
+  "notes": "Zero seed from bar 0 as published; needs a few hundred bars to converge."
+ },
+ "ama_durenard": {
+  "function": "ama_durenard(close, lookback=5, beta=2.1, snr_factor=2.1) -> ama, upper, lower",
+  "status": "implemented",
+  "reference": "E. Durenard, Professional Automated Trading (Wiley 2013); CryptoStatistical '[CS] AMA Strategy - Channel Break Out'",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (8379a8d887e3, full script ported)",
+  "strategy_issues": [],
+  "notes": "alpha comes from Duerschner's NWMA of the atan-normalised SNR and is used with one bar of delay (alpha[1]); the NWMA can overshoot so alpha is not bounded to 0..1. Uses the same odd-length NWMA convention as nma_durschner."
+ },
+ "binomial_ma": {
+  "function": "binomial_ma(close, length=10)",
+  "status": "implemented",
+  "reference": "HosseinDaftary, Binomial Moving Average (TradingView)",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes with exact coefficients (cc794ddbeba9, 7345387b8363)",
+  "strategy_issues": [
+   {
+    "id": "cc794ddbeba9",
+    "files": [
+     "二项式移动平均趋势策略Binomial-Moving-Average-Trend-Strategy.md"
+    ],
+    "issue": "fac() multiplies Pine ints: 21! exceeds int64, so on TradingView any length >= 11 (the strategy's slow MA is 30, fac(59)) overflows and gives garbage weights. FMZ's JS engine uses doubles and gets the right coefficients; this implementation uses exact binomials."
+   }
+  ],
+  "notes": ""
+ },
+ "edsma": {
+  "function": "edsma(close, length=40, ssf_length=20, poles=2)",
+  "status": "implemented",
+  "reference": "everget, Ehlers Deviation-Scaled Moving Average (TradingView)",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes (e31ba52c2674, 5608817ec195; also SSL Hybrid's EDSMA)",
+  "strategy_issues": [],
+  "notes": "The script prints 0 while stdev(ssf) is na; those bars are na here and the recursion starts from 0 afterwards, so later values are identical."
+ },
+ "vawma": {
+  "function": "vawma(close, high, low, volume, length=20)",
+  "status": "implemented",
+  "reference": "Strategy code (VAWSI strategy vawma())",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes for a fixed length (f7e041f6855a)",
+  "strategy_issues": [],
+  "notes": "The window is length+1 bars while the volume/ATR averages use length (as written). The strategy passes a per-bar dynamic length (Ehlers dominant cycle); this takes a fixed one."
+ },
+ "hysteresis_filter": {
+  "function": "hysteresis_filter(close, laziness=0.04)",
+  "status": "implemented",
+  "reference": "Strategy code (Adaptive Grid lz())",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (fafa4b4c6e86)",
+  "strategy_issues": [],
+  "notes": "laziness is a fraction (the script's input 4.0 / 100)."
+ },
+ "range_adaptive_ema": {
+  "function": "ratio_ochl_averager(open, close, range_high, range_low, recursive=False)",
+  "status": "implemented",
+  "reference": "alexgrover, Ratio OCHL Averager - An Alternative to VWAP (TradingView)",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes (0e7103163c3d), with range_high/low = previous HTF bar's high/low",
+  "strategy_issues": [],
+  "notes": "security(.., high[1], lookahead_on) is the previous higher-timeframe bar, so no future data; build it with fmz_catalog.extra_tv.htf and pass it in."
+ },
+ "essma": {
+  "function": "essma(source, open, close, length=50, w1..w5=2.0)",
+  "status": "implemented",
+  "reference": "bhavishya, ESSMA (TradingView)",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (52c4c16053d8)",
+  "strategy_issues": [
+   {
+    "id": "52c4c16053d8",
+    "files": [
+     "ESSMA.md"
+    ],
+    "issue": "Each average is computed on src*w and divided by w again, so the five weight inputs cancel and do nothing; and smma() recurses on smma[2] instead of smma[1] (two interleaved recursions). Ported as written since the script is the definition."
+   }
+  ],
+  "notes": ""
+ },
+ "vwema": {
+  "function": "vwema(close, volume, length=20)",
+  "status": "implemented",
+  "reference": "Strategy code vwma_e: ema(src*volume)/ema(volume)",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (8443afa48ace)",
+  "strategy_issues": [],
+  "notes": ""
+ },
+ "jurik_rsx": {
+  "function": "jurik_rsx(close, length=14)",
+  "status": "implemented",
+  "reference": "Jurik RSX public port (everget 'Jurik RSX' / MQL RSX f8..f90 chain)",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes (bd98e2a0280f) after removing the copy's -50 offset",
+  "strategy_issues": [],
+  "notes": "Output 0..100 (the strategy subtracts 50). 50 for the first 5 bars while the f88/f90 counter warms up."
+ },
+ "sine_fir_filter": {
+  "function": "sine_fir_filter(close, length=50, alpha=1.0, beta=0.5)",
+  "status": "implemented",
+  "reference": "LuxAlgo kernel sin(2*pi*x^alpha)*(1-x^beta) as copied in Kaspricci 'TradeIQ - Crazy Scalping'",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes (181d1246b5fb)",
+  "strategy_issues": [],
+  "notes": "The kernel is 0 at x = 0 (current bar) by construction and can be negative; uses the script's 3.14159."
+ },
+ "deadband_double_sma": {
+  "function": "deadband_double_sma(close, deviation_source, length=15, gamma=4.0, zero_lag=False)",
+  "status": "implemented",
+  "reference": "Strategy code (Goblin Town mad / mad4h)",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (22384204d377 with the daily close[1] series as input)",
+  "strategy_issues": [
+   {
+    "id": "22384204d377",
+    "files": [
+     "Goblin-Town-60min-可用版.md"
+    ],
+    "issue": "mad4h mixes timeframes: src4h is a daily series but src4h[length_] and cum(..)/bar_index count chart (60 min) bars, so the 'daily' band is measured over 15 hours. Same open-vs-close source mix-up as mad (step_ma)."
+   }
+  ],
+  "notes": ""
+ },
+ "moonflag_average": {
+  "function": "moonflag_average(close, gaps=12)",
+  "status": "implemented",
+  "reference": "Strategy code (MoonFlag MoonFlagAverage)",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (3328ad694d1f)",
+  "strategy_issues": [],
+  "notes": "Three nested triple-WMAs with Pine round() lengths."
+ },
+ "kernel_regression_chartprime": {
+  "function": "kernel_regression_chartprime(close, size=64, h=4.0, r=0.5)",
+  "status": "implemented",
+  "reference": "ChartPrime, Ichimoku Oscillator gaussian_kernel()",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (733d68785e0f)",
+  "strategy_issues": [],
+  "notes": "Weights exp(-(k/r)^2/2) with k = i^2/(h^2 r) over size+1 past bars (so effectively exp(-i^4/...))."
+ },
+ "beta_kernel_ma": {
+  "function": "kernel_ma",
+  "status": "merged_into:kernel_ma",
+  "reference": "Strategy code B4100 f_calculate_beta_kernel",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (88de4f81b58b)",
+  "strategy_issues": [],
+  "notes": "With alpha, beta > 1 the current and oldest bars have weight 0 (by design)."
+ },
+ "vawsi_weighted_ma": {
+  "function": "vawma",
+  "status": "merged_into:vawma",
+  "reference": "Same loop as vawma",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (ac8e4b9be88b)",
+  "strategy_issues": [],
+  "notes": ""
+ },
+ "tillson_gd": {
+  "function": "tillson_gd(close, length=5, vfactor=0.7)",
+  "status": "implemented",
+  "reference": "Tim Tillson, 'Better Moving Averages' (TASC 1998): Generalized DEMA, the T3 building block",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes (cd6161732857)",
+  "strategy_issues": [],
+  "notes": "tv_indicators.t3 exists but does not expose GD."
+ },
+ "gaussian_fir": {
+  "function": "gaussian_fir(close, length=20) -> mid, std",
+  "status": "implemented",
+  "reference": "Strategy code (Gaussian Channel f_gaussian / f_gaussian_std)",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (0450465b5621)",
+  "strategy_issues": [],
+  "notes": "Gaussian centred on the window middle, sigma = length/6; lags about (length-1)/2 bars."
+ },
+ "rema": {
+  "function": "rema(close, length=10, lam=0.5, seed='zero')",
+  "status": "implemented",
+  "reference": "Chris Satchwell, Regularized EMA (TASC July 2003)",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes (13682940b312)",
+  "strategy_issues": [],
+  "notes": "seed='price' starts at the first price instead of the published 0."
+ },
+ "chebyshev_filter": {
+  "function": "chebyshev_filter(close, length=3, extra=True)",
+  "status": "implemented",
+  "reference": "ChartPrime, Ichimoku Oscillator smoothing()",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (44e7fbbc31c5)",
+  "strategy_issues": [],
+  "notes": "chebyshevI(src, len, 0.5) then gaussian_kernel(.., 4, 2, 1)."
+ },
+ "fir_filter": {
+  "function": "sine_fir_filter",
+  "status": "merged_into:sine_fir_filter",
+  "reference": "Same loop with the same precomputed weights",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes (a756ee77e465)",
+  "strategy_issues": [],
+  "notes": ""
+ },
+ "accelerating_adaptive_ma": {
+  "function": "ma_converging(high, low, close, length=100, incr=10, fast=10) -> ma, fma",
+  "status": "implemented",
+  "reference": "LuxAlgo, MA Converging (TradingView), as used in 'MAConverging + QQE Threshold Strategy' (Salman4sgd)",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes (1ab7da0983fd, full logic incl. fma)",
+  "strategy_issues": [],
+  "notes": "Bar-for-bar including how ta.cross sees the not-yet-updated `var ma` (0 on bar 0)."
+ },
+ "knn_mean": {
+  "function": "knn_mean(value, target, k_neighbors=3, window=30)",
+  "status": "implemented",
+  "reference": "Zeiierman, Machine Learning: kNN-based strategy meanOfKClosest()",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes where k past values exist (581e30a6722b, 9ac0fc45136a)",
+  "strategy_issues": [],
+  "notes": "The script averages its 0.0 placeholders when fewer than k values are available (first bars); those bars are na here."
+ },
+ "kernel_ma": {
+  "function": "kernel_ma(close, length=20, kernel='beta', alpha=3, beta=3, bandwidth=0.3)",
+  "status": "implemented",
+  "reference": "Strategy code (B4100 NW Trend Ribbon f_apply_kernel_ma with its three kernels)",
+  "strategy_specific": true,
+  "matches_strategy_copies": "yes (62ee285e87d8, 7854da8c558f) for all three kernels",
+  "strategy_issues": [],
+  "notes": ""
+ },
+ "conditional_ema": {
+  "function": "conditional_ema(close, condition, length=20)",
+  "status": "implemented",
+  "reference": "DonovanWall's Range Filter family Cond_EMA (conditional sampling EMA)",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes (739e212ca6df)",
+  "strategy_issues": [],
+  "notes": ""
+ },
+ "ahrens_ma": {
+  "function": "ahrens_ma(close, length=9, seed='zero')",
+  "status": "implemented",
+  "reference": "Richard D. Ahrens, 'Build a Better Moving Average', TASC October 2013",
+  "strategy_specific": false,
+  "matches_strategy_copies": "yes (a9b33f5053b6; also the Smooth MA Ribbon AHMA)",
+  "strategy_issues": [],
+  "notes": "seed='price' starts at the first price instead of the scripts' nz() zero."
+ }
+}

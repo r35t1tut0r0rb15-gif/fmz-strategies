@@ -401,13 +401,13 @@ def _pine_prime(price, pct, step):
         i = 2.0
         if sq >= 2.0:
             while i <= sq:
-                res = 0.0 if math.fmod(j, i) == 0 else j
+                res = 0.0 if np.fmod(j, i) == 0 else j
                 if res == 0:
                     break
                 i += 1.0
         else:
             while i >= sq:
-                res = 0.0 if math.fmod(j, i) == 0 else j
+                res = 0.0 if np.fmod(j, i) == 0 else j
                 if res == 0:
                     break
                 i -= 1.0
