@@ -1,0 +1,50 @@
+{"id": "3173f2e1db41", "indicator": "donchian_basis", "best": "tv:donchian(length=len).basis", "verdict": "standard", "note": "Donchian midline (highest+lowest)/2, as Ichimoku lines."}
+{"id": "c6b17b9e7252", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Time of last long signal."}
+{"id": "770eeff507b8", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Time of last short signal."}
+{"id": "7db8e2d64e6c", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Time of last long condition."}
+{"id": "e1f85149367b", "indicator": "swing_level", "best": "-", "verdict": "not_indicator", "note": "Holds last swing low price."}
+{"id": "8bc15cf87fae", "indicator": "ema_bandpass_signal", "best": "-", "verdict": "not_indicator", "note": "HPotter 2/20 EMA signal function returning position +1/-1, not a numeric indicator."}
+{"id": "38912e114e36", "indicator": "sizing", "best": "-", "verdict": "not_indicator", "note": "Martingale lot multiplier."}
+{"id": "9bec8d273c7a", "indicator": "dmi", "best": "tv:dmi(di_length=len)", "verdict": "standard", "note": "TradingView built-in dirmov copy."}
+{"id": "ba800090654d", "indicator": "smma", "best": "tv:rma(length=len)", "verdict": "standard", "note": "SMMA seeded with SMA equals ta.rma."}
+{"id": "37471717b7fa", "indicator": "state_counter", "best": "-", "verdict": "not_indicator", "note": "QQE signal counter carry-forward."}
+{"id": "1edd78a649be", "indicator": "qqe_trend", "best": "tv:qqe(rsi_length, smoothing, factor)", "verdict": "standard", "note": "Glaz QQE trend from crosses of RSI with bands."}
+{"id": "8cf2b9782f0d", "indicator": "state_counter", "best": "-", "verdict": "not_indicator", "note": "QQE signal counter carry-forward."}
+{"id": "3ceb020a7a60", "indicator": "tema", "best": "tv:tema(length=len)", "verdict": "standard", "note": "3*e1-3*e2+e3."}
+{"id": "9fbf58b7c845", "indicator": "ssl_channel", "best": "tv:ssl_channel(length=len)", "verdict": "standard", "note": "SSL Hlv state; MA type selectable (SSL Hybrid), SMA default in library."}
+{"id": "d938008644df", "indicator": "rma", "best": "tv:rma(length=length)", "verdict": "warmup_only", "note": "Wilder MA seeded from 0 via nz instead of SMA."}
+{"id": "03c863ffe49d", "indicator": "counter", "best": "-", "verdict": "not_indicator", "note": "Consecutive down-bar counter."}
+{"id": "1b4e265b145b", "indicator": "qqe_shortband", "best": "tv:qqe(rsi_length, smoothing, factor)", "verdict": "standard", "note": "Glaz QQE short band ratchet."}
+{"id": "42d423b7d670", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Last long entry price."}
+{"id": "6da18c75d7f5", "indicator": "dmi", "best": "tv:dmi(di_length=len)", "verdict": "warmup_only", "note": "Wilder smoothed sum of -DM seeded at 0; DI ratio converges to TV."}
+{"id": "f59c02351833", "indicator": "supersmoother_3pole", "best": "new:supersmoother_3pole", "verdict": "standard", "note": "Ehlers 3-pole Super Smoother coefficients correct (Cybernetic Analysis); nz seed."}
+{"id": "279113a6189d", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Signal direction state."}
+{"id": "5d347d148fc3", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Trade counter carry."}
+{"id": "7381e8dd8e69", "indicator": "counter", "best": "-", "verdict": "not_indicator", "note": "Counts lookback bars where signal exceeds threshold."}
+{"id": "a68b96e88a08", "indicator": "counter", "best": "-", "verdict": "not_indicator", "note": "Counts narrowing range bars."}
+{"id": "b52f4612bb5a", "indicator": "counter", "best": "-", "verdict": "not_indicator", "note": "Counts bars with buy volume > sell volume."}
+{"id": "bfa0681e5cd7", "indicator": "helper", "best": "-", "verdict": "not_indicator", "note": "max(m,0) helper."}
+{"id": "dc0fa3c9c372", "indicator": "counter", "best": "-", "verdict": "not_indicator", "note": "Counts bars with sell volume > buy volume."}
+{"id": "21e33c1dd373", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Last short entry price."}
+{"id": "44c577a761cd", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Carry buy price."}
+{"id": "5ac1e9c12ae3", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Time of last long condition."}
+{"id": "7d440fc50b91", "indicator": "ma_alignment_score", "best": "-", "verdict": "not_indicator", "note": "MA stacking score/flag."}
+{"id": "c42ce04fd521", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Lowest low during short trade."}
+{"id": "f027845f24e2", "indicator": "rma", "best": "tv:rma(length=length)", "verdict": "warmup_only", "note": "WWMA (Wilder) seeded from 0 instead of SMA."}
+{"id": "0798da44e7c5", "indicator": "state", "best": "-", "verdict": "not_indicator", "note": "Carry-forward state."}
+{"id": "0e0cb9ad407b", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Three-line strike pattern flag."}
+{"id": "1d0a8f69be2a", "indicator": "position_state", "best": "-", "verdict": "not_indicator", "note": "Breakout stop price."}
+{"id": "296907be188b", "indicator": "sma", "best": "tv:sma(length=y)", "verdict": "standard", "note": "Optional SMA smoothing wrapper."}
+{"id": "41a4a6e67cc2", "indicator": "fractal_chaos_oscillator", "best": "new:fractal_chaos_oscillator", "verdict": "standard", "note": "HPotter Fractal Chaos Oscillator fractal-low right-side check, faithful copy."}
+{"id": "532d9fa4624e", "indicator": "helper", "best": "-", "verdict": "not_indicator", "note": "Conditional sum helper."}
+{"id": "647d95866597", "indicator": "fractals", "best": "tv:fractals(periods=2)", "verdict": "standard", "note": "Strict 5-bar bottom fractal on a series, confirmed 2 bars late."}
+{"id": "7056fcf4ad92", "indicator": "swing_level", "best": "-", "verdict": "not_indicator", "note": "Holds last swing low."}
+{"id": "7462f909381c", "indicator": "fractal_chaos_oscillator", "best": "new:fractal_chaos_oscillator", "verdict": "standard", "note": "HPotter Fractal Chaos Oscillator fractal-high left-side check, faithful copy."}
+{"id": "81068c14f295", "indicator": "kama", "best": "tv:kama(length)", "verdict": "warmup_only", "note": "KAMA recursion seeded at 0 via nz."}
+{"id": "8f7f28b9c1ed", "indicator": "swing_level", "best": "-", "verdict": "not_indicator", "note": "Holds last swing high."}
+{"id": "afc47d341374", "indicator": "donchian_basis", "best": "tv:donchian(length=Length).basis", "verdict": "standard", "note": "Donchian midline."}
+{"id": "bb216462282f", "indicator": "stc", "best": "tv:schaff_trend_cycle(length=10, fast=23, slow=50, factor=0.5)", "verdict": "standard", "note": "SHK STC as in VuManChu Cipher B."}
+{"id": "f23bd758bb76", "indicator": "candle_pattern", "best": "-", "verdict": "not_indicator", "note": "Bullish engulfing flag."}
+{"id": "f2ed777a95cb", "indicator": "state", "best": "-", "verdict": "not_indicator", "note": "Carry-forward state."}
+{"id": "f76f91287e87", "indicator": "divergence_state", "best": "-", "verdict": "not_indicator", "note": "Max RSI tracking for divergence."}
+{"id": "0132ddeba218", "indicator": "counter", "best": "-", "verdict": "not_indicator", "note": "Consecutive signal counter."}
